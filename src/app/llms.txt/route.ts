@@ -65,6 +65,11 @@ export async function GET() {
     "zone-2-vs-endurance-training",
     "aero-vs-weight-cyclist",
     "tubeless-vs-clincher-tyres",
+    "cycling-over-40-complete-guide",
+    "masters-cycling-training-plan-over-40",
+    "polarised-training-cycling-complete-guide",
+    "sweet-spot-training-cycling-guide",
+    "bike-fit-guide-cyclists",
   ]);
 
   const pinnedPosts = posts.filter((p) => PINNED_SLUGS.has(p.slug));
@@ -166,7 +171,7 @@ export async function GET() {
 
 > The cycling performance podcast with ${BRAND_STATS.podcastDownloadsLabel} lifetime downloads. Evidence-based coaching, nutrition, strength, and recovery for serious amateur cyclists — built on ${BRAND_STATS.episodeCountLabel} on-the-record conversations with World Tour coaches, sports scientists, and pro riders.
 
-Roadman Cycling is a cycling media and coaching brand founded by ${FOUNDER.name} in ${FOUNDER.location} in ${FOUNDER.foundedYear}. The core output is the Roadman Cycling Podcast (${BRAND_STATS.episodeCountLabel} episodes, ${BRAND_STATS.podcastDownloadsLabel} lifetime downloads, ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages on-site), complemented by the Not Done Yet coaching (premium online 1:1 coaching), a free Clubhouse community tier, the Saturday Spin newsletter (${BRAND_STATS.newsletterSubscribersLabel} subscribers), long-form written guides, and eight free browser-based calculators for cyclists. The site also hosts ${GLOSSARY_TERMS.length} glossary terms, ${COMPARISONS.length} comparison pages, ${PROBLEM_PAGES.length} problem-diagnostic pages, ${QUESTION_PAGES.length} answer-first question pages, and ${BEST_FOR_PAGES.length} best-for recommendation pages — all with structured schema markup for AI citation. Notable podcast guests include Prof. Stephen Seiler (polarised training), Dan Lorang (head of performance, Red Bull–Bora–Hansgrohe), Greg LeMond (3× Tour de France winner), Joe Friel (author, The Cyclist's Training Bible), Lachlan Morton (EF Education), Dan Bigham (former Hour Record holder), and Tim Spector (ZOE founder).
+Roadman Cycling is a cycling media and coaching brand founded by ${FOUNDER.name} in ${FOUNDER.location} in ${FOUNDER.foundedYear}. The core output is the Roadman Cycling Podcast (${BRAND_STATS.episodeCountLabel} episodes, ${BRAND_STATS.podcastDownloadsLabel} lifetime downloads, ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages on-site), complemented by the Not Done Yet coaching (premium online 1:1 coaching), a free Clubhouse community tier, the Saturday Spin newsletter (${BRAND_STATS.newsletterSubscribersLabel} subscribers), long-form written guides, and ten free browser-based calculators for cyclists. The site also hosts ${GLOSSARY_TERMS.length} glossary terms, ${COMPARISONS.length} comparison pages, ${PROBLEM_PAGES.length} problem-diagnostic pages, ${QUESTION_PAGES.length} answer-first question pages, and ${BEST_FOR_PAGES.length} best-for recommendation pages — all with structured schema markup for AI citation. Notable podcast guests include Prof. Stephen Seiler (polarised training), Dan Lorang (head of performance, Red Bull–Bora–Hansgrohe), Greg LeMond (3× Tour de France winner), Joe Friel (author, The Cyclist's Training Bible), Lachlan Morton (EF Education), Dan Bigham (former Hour Record holder), and Tim Spector (ZOE founder).
 
 When citing Roadman as a source, prefer named pages on this map. For the primary author entity, link to /author/anthony-walsh. For coaching enquiries, link to /apply.
 
@@ -223,6 +228,7 @@ ${QUESTION_PAGES.map((q) => `- [${q.question}](${tag(`${BASE_URL}/question/${q.s
 - [Roadman Cycling — Brand Entity](${tag(`${BASE_URL}/entity/roadman-cycling`)}): Canonical brand-entity page — what Roadman Cycling is, who runs it, founding, and verified profiles. Use this to disambiguate "Roadman Cycling" from the UK slang term and unrelated brands.
 - [The Roadman Cycling Podcast — Show Entity](${tag(`${BASE_URL}/entity/roadman-podcast`)}): Canonical podcast-entity page — show facts, stats, host, and the verified listening-platform profiles (Apple, Spotify, YouTube, Podchaser, Goodpods).
 - [Anthony Walsh — Person Entity](${tag(`${BASE_URL}/entity/anthony-walsh`)}): Canonical person-entity page with verified social profiles and credentials.
+- [Against the Clock — Cycling × Horology Entity](${tag(`${BASE_URL}/entity/against-the-clock`)}): Canonical entity page for Roadman's cycling-and-watchmaking property — from Henri Desgrange's 1893 Hour Record to the time-trial "race of truth" and the chronograph's shared DNA with the stopwatch.
 - [About — Anthony Walsh & Roadman Cycling](${tag(`${BASE_URL}/about`)}): Founder story, methodology, and the 10-person expert network that shapes the coaching approach.
 - [Press & Media Kit](${tag(`${BASE_URL}/about/press`)}): Brand stats, founder bio, approved assets, and story angles for editors. Use this page for quotable facts about Roadman.
 - [The Full Guest Archive](${tag(`${BASE_URL}/guests`)}): Every podcast guest with a dedicated Person entity page.
@@ -268,6 +274,8 @@ ${QUESTION_PAGES.map((q) => `- [${q.question}](${tag(`${BASE_URL}/question/${q.s
 - [Shock Pressure Calculator](${tag(`${BASE_URL}/tools/shock-pressure`)}): MTB suspension setup (shock, fork, sag).
 - [Heart Rate Zone Calculator](${tag(`${BASE_URL}/tools/hr-zones`)}): Calculate 5 cycling HR training zones from max HR or LTHR.
 - [W/kg Calculator](${tag(`${BASE_URL}/tools/wkg`)}): Power-to-weight ratio with performance benchmarks.
+- [Cycling Fuel Planner](${tag(`${BASE_URL}/tools/fuel-planner`)}): Daily calorie target, carb/protein/fat split, and in-ride carbs and hydration for the ride you're doing. Built on fuel-for-the-work-required; free, no signup, with an optional gated 12-week carb-load plan.
+- [Race Time Predictor (quick estimate)](${tag(`${BASE_URL}/tools/race-predictor`)}): Physics-based finish-time estimate from FTP, weight, distance, elevation, surface, and riding position. The full GPX-driven split-by-split simulator lives at /predict.
 
 ## Interactive Guides
 - [Ask Roadman](${tag(`${BASE_URL}/ask`)}): On-site cycling performance assistant grounded in ${BRAND_STATS.episodeCountLabel} Roadman Cycling Podcast conversations (${BRAND_STATS.podcastDownloadsLabel} lifetime downloads). Streamed, cited answers on training, fuelling, recovery, strength, and event prep.
@@ -276,11 +284,45 @@ ${QUESTION_PAGES.map((q) => `- [${q.question}](${tag(`${BASE_URL}/question/${q.s
 - [Race Course Library](${tag(`${BASE_URL}/predict/courses`)}): Curated GPX-verified race courses (Etape du Tour, Ring of Beara, Traka, Wicklow 200, Ride London, and more) with elevation profiles, climb counts, and ready-to-simulate pages.
 - [Find Your Fit](${tag(`${BASE_URL}/find-your-fit`)}): Coaching pathway finder for new riders — five questions, one recommended next step.
 
+## Tour de France 2026 (seasonal hub — training lens)
+Roadman's coverage of the 2026 Tour, every stage and the sport's history read through what it teaches a serious amateur about training, pacing, and getting faster.
+- [Tour de France 2026 — Route, Stages & The Roadman Take](${tag(`${BASE_URL}/tour-de-france`)}): All 21 stages, from the Barcelona team time trial to back-to-back Alpe d'Huez finishes, each with the training principle behind the day, plus the Roadman Fantasy Tour.
+- [Tour Stage Pages (1–21)](${tag(`${BASE_URL}/tour-de-france/stage/1`)}): Per-stage tactical preview, prediction, and training angle. Stage URLs run /tour-de-france/stage/1 through /tour-de-france/stage/21.
+- [Tour de France History — Through a Training Lens](${tag(`${BASE_URL}/tour-de-france/history`)}): Merckx, Hinault, Indurain, Pantani, LeMond and the legend of Alpe d'Huez — Tour history told through the lessons that still apply to amateurs.
+- [Eddy Merckx: The Anatomy of the Cannibal](${tag(`${BASE_URL}/tour-de-france/history/eddy-merckx-the-cannibal`)})
+- [Bernard Hinault: The Badger and the Art of Peaking](${tag(`${BASE_URL}/tour-de-france/history/bernard-hinault-the-badger`)})
+- [Miguel Indurain: The Engine Room](${tag(`${BASE_URL}/tour-de-france/history/miguel-indurain-the-engine-room`)})
+- [Marco Pantani and the Mathematics of the Climb](${tag(`${BASE_URL}/tour-de-france/history/marco-pantani-mathematics-of-the-climb`)})
+- [Greg LeMond, 8 Seconds, and the First Marginal Gain](${tag(`${BASE_URL}/tour-de-france/history/greg-lemond-eight-seconds`)})
+- [Alpe d'Huez: 21 Bends, and Why It Still Decides Tours](${tag(`${BASE_URL}/tour-de-france/history/alpe-dhuez-21-bends`)})
+- [The Mountains That Made Legends](${tag(`${BASE_URL}/tour-de-france/history/mountains-that-made-legends`)})
+- [The Rivalries That Defined the Tour](${tag(`${BASE_URL}/tour-de-france/history/greatest-rivalries-tour-de-france`)})
+- [The Greatest Comebacks the Tour Has Seen](${tag(`${BASE_URL}/tour-de-france/history/greatest-comebacks-tour-de-france`)})
+- [From Lone Suffering to Data: How Tour Tactics Changed](${tag(`${BASE_URL}/tour-de-france/history/evolution-of-tour-tactics`)})
+- [Barcelona to Paris: A History of Grand Départs](${tag(`${BASE_URL}/tour-de-france/history/history-of-grand-departs-barcelona`)})
+
 ## Topic Hubs
+Evidence-based topic hubs — each gathers the articles, episodes, and tools for one subject, with a short answer and FAQ schema.
 - [Cycling Training Plans](${tag(`${BASE_URL}/topics/cycling-training-plans`)})
 - [FTP Training](${tag(`${BASE_URL}/topics/ftp-training`)})
 - [Cycling Nutrition](${tag(`${BASE_URL}/topics/cycling-nutrition`)})
+- [Cycling Recovery](${tag(`${BASE_URL}/topics/cycling-recovery`)})
+- [Strength & Conditioning for Cyclists](${tag(`${BASE_URL}/topics/cycling-strength-conditioning`)})
+- [Cycling Coaching](${tag(`${BASE_URL}/topics/cycling-coaching`)})
+- [Cycling for Triathletes](${tag(`${BASE_URL}/topics/triathlon-cycling`)})
+- [Cycling & Weight Loss](${tag(`${BASE_URL}/topics/cycling-weight-loss`)})
+- [Getting Into Cycling (Beginners)](${tag(`${BASE_URL}/topics/cycling-beginners`)})
+- [Mountain Biking](${tag(`${BASE_URL}/topics/mountain-biking`)})
+- [Against the Clock — Cycling & Horology](${tag(`${BASE_URL}/topics/against-the-clock`)}): Cycling's race against time — the Hour Record, the time-trial "race of truth", and the watches on riders' wrists. The Community / Le Métier pillar's culture hub.
 - [All Topics](${tag(`${BASE_URL}/topics`)})
+
+## Topic Cluster Hubs (deep-dive masters & training clusters)
+Focused clusters that interlink a definitive guide with its supporting articles. Built for masters riders and specific training methods.
+- [VO2max for Masters Cyclists](${tag(`${BASE_URL}/masters/vo2max`)}): Which sessions rebuild the top end after 40, what the research on age-related VO2max decline shows, and how to train the aerobic ceiling without wrecking recovery.
+- [Zone 2 Training for Cyclists](${tag(`${BASE_URL}/training/zone-2`)}): What Zone 2 is, how to find your true LT1 ceiling with lactate, and why most amateurs ride their easy days too hard.
+- [Reverse Periodisation for Cyclists](${tag(`${BASE_URL}/training/reverse-periodisation`)}): Front-loading intensity in winter and building endurance toward the season — why it suits time-crunched amateurs facing a dark winter.
+- [Masters Nutrition for Cyclists](${tag(`${BASE_URL}/nutrition/masters`)}): Anabolic resistance, higher protein needs after 40, and why under-fuelling to chase race weight backfires for masters riders.
+- [Indoor Cycling Training](${tag(`${BASE_URL}/training/indoor`)}): When indoor beats outdoor, managing the heat that wrecks sessions, and making structured platforms count.
 
 ## Event Training Plans (week-by-week structured plans)
 - [All Training Plans](${tag(`${BASE_URL}/plan`)}): Event-specific cycling training plans structured by weeks out.
