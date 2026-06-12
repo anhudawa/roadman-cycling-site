@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Header, Footer } from "@/components/layout";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import { EventsClient } from "@/components/features/events/EventsClient";
 
 export const metadata: Metadata = {
@@ -43,11 +44,7 @@ export default function EventsPage() {
               },
               eventAttendanceMode:
                 "https://schema.org/OnlineEventAttendanceMode",
-              organizer: {
-                "@type": "Organization",
-                name: "Roadman Cycling",
-                url: "https://roadmancycling.com",
-              },
+              organizer: { "@id": ENTITY_IDS.organization },
             },
             {
               "@type": "Event",
@@ -71,11 +68,7 @@ export default function EventsPage() {
                   addressCountry: "IE",
                 },
               },
-              organizer: {
-                "@type": "Organization",
-                name: "Roadman Cycling",
-                url: "https://roadmancycling.com",
-              },
+              organizer: { "@id": ENTITY_IDS.organization },
             },
             {
               "@type": "Event",
@@ -99,11 +92,7 @@ export default function EventsPage() {
                   addressCountry: "IE",
                 },
               },
-              organizer: {
-                "@type": "Organization",
-                name: "Roadman Cycling",
-                url: "https://roadmancycling.com",
-              },
+              organizer: { "@id": ENTITY_IDS.organization },
             },
           ],
         }}

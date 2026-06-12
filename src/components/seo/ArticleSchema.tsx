@@ -1,4 +1,6 @@
 import { JsonLd } from "./JsonLd";
+import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
+import { resolveAuthorSlug } from "@/lib/authors";
 
 interface ArticleSchemaProps {
   headline: string;
@@ -25,6 +27,16 @@ export function ArticleSchema({
   image,
   keywords,
 }: ArticleSchemaProps) {
+  // Reference the author and publisher by their canonical @id so this
+  // BlogPosting connects to the same Person/Organization nodes emitted
+  // site-wide in OrganizationJsonLd — never spawn a disconnected
+  // duplicate entity. Anthony resolves to ENTITY_IDS.person; any other
+  // contributor resolves to their /author/<slug>#person node.
+  const authorSlug = resolveAuthorSlug(author);
+  const authorId =
+    authorSlug === "anthony-walsh"
+      ? ENTITY_IDS.person
+      : `${SITE_ORIGIN}/author/${authorSlug}#person`;
   return (
     <JsonLd
       data={{
@@ -32,16 +44,8 @@ export function ArticleSchema({
         "@type": "BlogPosting",
         headline,
         description,
-        author: {
-          "@type": "Person",
-          name: author,
-          url: "https://roadmancycling.com/about",
-        },
-        publisher: {
-          "@type": "Organization",
-          name: "Roadman Cycling",
-          url: "https://roadmancycling.com",
-        },
+        author: { "@id": authorId },
+        publisher: { "@id": ENTITY_IDS.organization },
         datePublished,
         dateModified: dateModified || datePublished,
         mainEntityOfPage: {

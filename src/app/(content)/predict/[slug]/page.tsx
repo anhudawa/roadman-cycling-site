@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import {
   PredictedTimeHero,
   ElevationProfile,
@@ -565,11 +566,7 @@ function PredictEventLanding({ course }: { course: CourseRow }) {
     operatingSystem: "Web",
     url: pageUrl,
     description: `Predict your ${course.name} finish time from rider profile, bike setup, weather assumptions, and ${distanceKm.toFixed(0)} km of route data.`,
-    provider: {
-      "@type": "Organization",
-      name: "Roadman Cycling",
-      url: "https://roadmancycling.com",
-    },
+    provider: { "@id": ENTITY_IDS.organization },
     offers: [
       {
         "@type": "Offer",

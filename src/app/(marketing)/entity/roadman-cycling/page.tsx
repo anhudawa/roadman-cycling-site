@@ -102,7 +102,7 @@ export default function RoadmanCyclingEntityPage() {
           alternateName: BRAND.alternateName,
           url: BRAND.url,
           mainEntityOfPage: PAGE_URL,
-          logo: BRAND.logo,
+          logo: { "@type": "ImageObject", url: BRAND.logo },
           image: BRAND.ogImage,
           description: BRAND.description,
           slogan: BRAND.tagline,

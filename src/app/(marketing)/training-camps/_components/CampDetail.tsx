@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal } from "@/components/ui";
 import { JsonLd, FAQPageJsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import { CAMPS, formatCampDates, type CampConfig } from "@/lib/camps/camps";
 import { ITINERARIES } from "@/lib/camps/itineraries";
 import { CAMP_FAQS } from "@/lib/camps/faqs";
@@ -118,15 +119,8 @@ export function CampDetail({ camp }: Props) {
             validThrough: camp.startDate,
             category: "Cycling Training Camp",
           },
-          organizer: {
-            "@type": "Organization",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
-          performer: {
-            "@type": "Person",
-            name: "Anthony Walsh",
-          },
+          organizer: { "@id": ENTITY_IDS.organization },
+          performer: { "@id": ENTITY_IDS.person },
           maximumAttendeeCapacity: camp.capacity,
           image: [`https://roadmancycling.com${camp.heroImage}`],
         }}
@@ -168,11 +162,7 @@ export function CampDetail({ camp }: Props) {
             url: `https://roadmancycling.com${camp.href}#book`,
             validFrom: "2026-05-04",
           },
-          provider: {
-            "@type": "Organization",
-            name: "Roadman Cycling",
-            url: "https://roadmancycling.com",
-          },
+          provider: { "@id": ENTITY_IDS.organization },
           subjectOf: {
             "@type": "Place",
             name: "Girona, Catalunya, Spain",

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 import { CAMP_LIST, formatCampDates } from "@/lib/camps/camps";
 
 export const metadata: Metadata = {
@@ -144,12 +145,8 @@ export default function TrainingCampsLandingPage() {
                 validThrough: c.startDate,
                 category: "Cycling Training Camp",
               },
-              organizer: {
-                "@type": "Organization",
-                name: "Roadman Cycling",
-                url: "https://roadmancycling.com",
-              },
-              performer: { "@type": "Person", name: "Anthony Walsh" },
+              organizer: { "@id": ENTITY_IDS.organization },
+              performer: { "@id": ENTITY_IDS.person },
               maximumAttendeeCapacity: c.capacity,
             },
             {
@@ -179,11 +176,7 @@ export default function TrainingCampsLandingPage() {
                 url: `https://roadmancycling.com${c.href}`,
                 validFrom: "2026-05-04",
               },
-              provider: {
-                "@type": "Organization",
-                name: "Roadman Cycling",
-                url: "https://roadmancycling.com",
-              },
+              provider: { "@id": ENTITY_IDS.organization },
               subjectOf: {
                 "@type": "Place",
                 name: "Girona, Catalunya, Spain",
