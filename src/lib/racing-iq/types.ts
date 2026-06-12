@@ -125,6 +125,9 @@ export interface Scenario {
   timeOfDay: number;
   /** Narrative setup. Receives state so copy can react to the chain. */
   setup: (s: GameState) => string;
+  /** Race-radio captions shown during the riding interlude before the
+   * decision freezes — broadcast commentary register, 2–3 lines. */
+  radio: string[];
   options: DecisionOption[];
   /** The tactical principle, shown with the expert card. */
   teaches: string;

@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import type { GameResult } from "@/lib/racing-iq/types";
+import type { DecisionRecord, GameResult } from "@/lib/racing-iq/types";
+import { SCENARIOS } from "@/lib/racing-iq/scenarios";
 import { racingIqAnalytics } from "@/lib/racing-iq/analytics";
 import { downloadShareCard, renderShareCard } from "./share-card";
 import { submitRacingIqEmail } from "./EmailGate";
@@ -32,15 +33,59 @@ function AxisBar({ label, value, delay }: { label: string; value: number; delay:
   );
 }
 
+/** The tape: every call the player made, km by km, with the spend. */
+function DecisionLedger({ decisions }: { decisions: DecisionRecord[] }) {
+  const rows = decisions
+    .map((d) => {
+      const scenario = SCENARIOS.find((s) => s.id === d.scenarioId);
+      const option = scenario?.options.find((o) => o.id === d.optionId);
+      if (!scenario || !option) return null;
+      return {
+        km: scenario.km,
+        title: scenario.title,
+        label: option.label,
+        spent: Math.max(0, d.matchesBefore - d.matchesAfter),
+      };
+    })
+    .filter((r): r is NonNullable<typeof r> => r !== null);
+  if (!rows.length) return null;
+  return (
+    <div className="mt-4 border border-off-white/15 bg-charcoal/80 p-5 backdrop-blur-md">
+      <p className="font-heading text-xs tracking-[0.3em] text-coral">THE TAPE</p>
+      <ol className="mt-3 space-y-2.5">
+        {rows.map((row, i) => (
+          <li key={i} className="flex items-baseline gap-3 text-sm">
+            <span className="w-14 shrink-0 font-heading tracking-[0.12em] text-off-white/45">
+              KM {row.km}
+            </span>
+            <span className="min-w-0 flex-1 leading-snug">
+              <span className="text-off-white/55">{row.title} — </span>
+              <span className="text-off-white">{row.label}</span>
+            </span>
+            <span
+              className="shrink-0 font-heading text-xs tracking-[0.15em] text-coral/90"
+              aria-label={row.spent > 0 ? `${row.spent} matches spent` : "no matches spent"}
+            >
+              {row.spent > 0 ? `−${row.spent}` : "·"}
+            </span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
 export function ResultScreen({
   result,
   matchesLeft,
+  decisions,
   emailCaptured,
   knownEmail,
   onReplay,
 }: {
   result: GameResult;
   matchesLeft: number;
+  decisions: DecisionRecord[];
   emailCaptured: boolean;
   knownEmail: string | null;
   onReplay: () => void;
@@ -150,6 +195,8 @@ export function ResultScreen({
               </p>
             </div>
           </div>
+
+          <DecisionLedger decisions={decisions} />
 
           {/* Share card */}
           <div className="mt-6 flex flex-col items-center gap-4 sm:flex-row sm:items-start">

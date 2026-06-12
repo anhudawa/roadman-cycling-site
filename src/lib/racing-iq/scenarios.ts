@@ -30,6 +30,11 @@ export const SCENARIOS: Scenario[] = [
     timeOfDay: 0.05,
     setup: () =>
       "Five riders clip off the front before the race has settled. You know two of them — strong rouleurs, neither can climb. The gap goes to fifteen seconds and the bunch looks at each other. There's a 4k climb at kilometre 95 that decides this race, and everyone knows it.",
+    radio: [
+      "Flag's barely dropped and there's already movement on the front.",
+      "Five riders clear. Two minutes of racing, and the first real question of the day.",
+      "Race radio: gap fifteen seconds. The bunch is watching itself.",
+    ],
     teaches:
       "Race-reading beats ego. The question is never \"can I go with that?\" — it's \"does that move win on this course?\"",
     options: [
@@ -90,6 +95,11 @@ export const SCENARIOS: Scenario[] = [
       s.position === "break"
         ? "Your break is working — five of you are, anyway. One rider has surfed the back for twenty minutes, swinging through soft and short every time. The gap behind is holding at ninety seconds, but only because everyone else is honest."
         : "A split formed over the rollers and you're in a group of eight rolling turns. Seven of you are working. One rider hasn't hit the wind in twenty minutes — soft pulls, early swings, always third wheel when it matters.",
+    radio: [
+      "Thirty kilometres in and the split over the rollers is sticking.",
+      "A group rolling through nicely — well, most of it is.",
+      "Race radio: gap holding at ninety seconds. For now.",
+    ],
     teaches:
       "Cooperation is economics, not etiquette. A group that rotates honestly is faster than the sum of its riders — police it cheaply or pay for it later.",
     options: [
@@ -150,6 +160,11 @@ export const SCENARIOS: Scenario[] = [
       s.position === "break"
         ? "The road turns onto the exposed plain and the wind arrives from the left like a verdict. Your break goes single file in the gutter. Behind, the bunch is tearing itself into echelons — the race is being decided back there and up here, all at once."
         : "The road swings onto the open plain and the wind comes hard off the left. At the front they smell it — the pace lifts and the first echelon starts forming. You're twelfth wheel. The echelon fits eight.",
+    radio: [
+      "The route turns onto the open plain — flags at the roadside are straight out.",
+      "Riders fighting for the front before the corner. They know what's coming.",
+      "This is where the race stops being about legs and starts being about geometry.",
+    ],
     teaches:
       "Position is bought cheap before the corner and ruinously after it. Moving up costs one match. Chasing back costs three.",
     options: [
@@ -214,6 +229,11 @@ export const SCENARIOS: Scenario[] = [
     timeOfDay: 0.5,
     setup: () =>
       "The race settles for the first time all day. Your legs feel — honestly — great. The plan taped to your stem says carbs every twenty-five minutes, and it's been twenty-five minutes. You're sick of sweet. The climb is 25k away.",
+    radio: [
+      "A lull — the first one all day. Bottles up, shoulders drop.",
+      "Twenty-five kilometres to the climb everyone's been talking about since sign-on.",
+      "The smart money is eating right now. The confident money is forgetting to.",
+    ],
     teaches:
       "Fuel for the rider you'll be in an hour, not the one you are now. By the time you feel the deficit, the decision is forty minutes old.",
     options: [
@@ -272,6 +292,10 @@ export const SCENARIOS: Scenario[] = [
       s.position === "chasing"
         ? "The road tips down into the forest and you can see the group ahead through the switchbacks — maybe thirty seconds. It rained under these trees an hour ago and the surface is greasy in the shade. This descent is your way back. Or your way out."
         : "The road drops into the forest, six switchbacks stacked into the shade. It rained here an hour ago and the braking zones are greasy. Gaps open on descents like this — in both directions.",
+    radio: [
+      "Over the top and into the trees — the road is still dark from the morning rain.",
+      "Six switchbacks stacked into the shade. Gaps open here in both directions.",
+    ],
     teaches:
       "Descents reward the smooth, not the brave. Exit speed out of ten corners beats heroics into two.",
     options: [
@@ -366,6 +390,10 @@ export const SCENARIOS: Scenario[] = [
       }
       return base + " Your power meter is asking you a very simple question.";
     },
+    radio: [
+      "Here it is — 4k at 7%. The judge and the jury of this race.",
+      "Somebody always lights it from the bottom. Somebody always regrets it from the middle.",
+    ],
     teaches:
       "Know your numbers — the surge is a question about their fitness, your threshold is an answer about yours. Masters racing is won by the rider who refuses the flattering invitation.",
     options: [
@@ -458,6 +486,10 @@ export const SCENARIOS: Scenario[] = [
         trust
       );
     },
+    radio: [
+      "Three to go. Barriers, a roundabout, and a bunch that can smell the line.",
+      "Everything anyone saved all day gets spent in the next four minutes.",
+    ],
     teaches:
       "Sprints are won at 3k, not at 200 metres. By the time the sprint starts, the result is mostly already decided — the question is only who decided it.",
     options: [

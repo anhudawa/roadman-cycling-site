@@ -15,6 +15,7 @@ export class RaceAudio {
   private crowdGain: GainNode | null = null;
   private heartGain: GainNode | null = null;
   private heartTimer: ReturnType<typeof setInterval> | null = null;
+  private coastTimer: ReturnType<typeof setInterval> | null = null;
   private heartRate = 0; // 0 off … 1 redline
   private muted = false;
   enabled = false;
@@ -110,6 +111,19 @@ export class RaceAudio {
     }
   }
 
+  /** Freehub ratchet for descending — the most cyclist sound there is. */
+  setCoasting(on: boolean): void {
+    if (on && !this.coastTimer && this.ctx) {
+      this.coastTimer = setInterval(() => {
+        // Tiny irregularity keeps it mechanical rather than metronomic.
+        if (Math.random() < 0.92) this.tick();
+      }, 52);
+    } else if (!on && this.coastTimer) {
+      clearInterval(this.coastTimer);
+      this.coastTimer = null;
+    }
+  }
+
   // ── UI sound family ──
 
   uiOpen(): void {
@@ -150,6 +164,7 @@ export class RaceAudio {
 
   dispose(): void {
     if (this.heartTimer) clearInterval(this.heartTimer);
+    if (this.coastTimer) clearInterval(this.coastTimer);
     void this.ctx?.close().catch(() => undefined);
     this.ctx = null;
   }
@@ -182,6 +197,21 @@ export class RaceAudio {
     osc.connect(gain).connect(this.heartGain);
     osc.start(now);
     osc.stop(now + 0.25);
+  }
+
+  private tick(): void {
+    const ctx = this.ctx;
+    if (!ctx || !this.master) return;
+    const now = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    osc.type = "square";
+    osc.frequency.value = 3600 + Math.random() * 900;
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.015, now);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.014);
+    osc.connect(gain).connect(this.master);
+    osc.start(now);
+    osc.stop(now + 0.02);
   }
 
   private blip(freq: number, attack: number, release: number): void {

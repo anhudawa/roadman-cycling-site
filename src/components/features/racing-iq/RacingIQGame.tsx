@@ -20,6 +20,7 @@ import { DecisionPanel } from "./DecisionPanel";
 import { OutcomeCard } from "./OutcomeCard";
 import { EmailGate } from "./EmailGate";
 import { LoadingSequence } from "./LoadingSequence";
+import { RaceRadio } from "./RaceRadio";
 import { ResultScreen } from "./ResultScreen";
 
 type Phase =
@@ -32,8 +33,13 @@ type Phase =
   | "result";
 
 const TOTAL_KM = 120;
-const RIDE_MS = 5200;
+const RADIO_LINE_MS = 3200;
 const RIDE_MS_REDUCED = 1400;
+
+/** Riding interlude length: every radio line gets its beat. */
+function rideMsFor(scenario: Scenario): number {
+  return scenario.radio.length * RADIO_LINE_MS + 1400;
+}
 
 /** How the world stages each scenario. */
 function momentFor(scenario: Scenario, state: GameState): WorldMoment {
@@ -151,6 +157,13 @@ export default function RacingIQGame() {
     audioRef.current?.setIntensity(Math.min(1, worldMoment.speed / 20));
   }, [worldMoment]);
 
+  // Freehub ratchet while coasting down the descent.
+  useEffect(() => {
+    audioRef.current?.setCoasting(
+      phase === "riding" && worldMoment.formation === "descent"
+    );
+  }, [phase, worldMoment.formation]);
+
   const beginScenario = useCallback(
     (nextState: GameState) => {
       const s = SCENARIOS[nextState.scenarioIndex];
@@ -165,11 +178,27 @@ export default function RacingIQGame() {
           audioRef.current?.uiOpen();
           setPhase("decision");
         },
-        reducedMotion ? RIDE_MS_REDUCED : RIDE_MS
+        reducedMotion ? RIDE_MS_REDUCED : rideMsFor(s)
       );
     },
     [reducedMotion]
   );
+
+  /** Impatient riders can jump straight to the decision. */
+  const skipRide = useCallback(() => {
+    if (rideTimer.current) clearTimeout(rideTimer.current);
+    audioRef.current?.uiOpen();
+    setPhase("decision");
+  }, []);
+
+  useEffect(() => {
+    if (phase !== "riding") return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") skipRide();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [phase, skipRide]);
   useEffect(() => () => {
     if (rideTimer.current) clearTimeout(rideTimer.current);
   }, []);
@@ -297,6 +326,21 @@ export default function RacingIQGame() {
         </div>
       )}
 
+      {phase === "riding" && (
+        <>
+          {!reducedMotion && (
+            <RaceRadio key={scenario.id} lines={scenario.radio} intervalMs={RADIO_LINE_MS} />
+          )}
+          <button
+            type="button"
+            onClick={skipRide}
+            className="absolute bottom-5 right-16 z-30 px-2 py-1 font-heading text-[11px] tracking-[0.25em] text-off-white/45 transition-colors hover:text-off-white sm:bottom-7 sm:right-20"
+          >
+            SKIP ▸
+          </button>
+        </>
+      )}
+
       {phase === "decision" && (
         <DecisionPanel
           scenario={scenario}
@@ -327,6 +371,7 @@ export default function RacingIQGame() {
         <ResultScreen
           result={result}
           matchesLeft={state.matches}
+          decisions={state.decisions}
           emailCaptured={emailCaptured}
           knownEmail={knownEmail}
           onReplay={replay}

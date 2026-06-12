@@ -170,18 +170,27 @@ function pushColor(geo: THREE.BufferGeometry, color: THREE.Color): THREE.BufferG
  * per-instance color becomes the kit; hardware stays dark. */
 function buildRiderGeometry(): THREE.BufferGeometry {
   const parts: THREE.BufferGeometry[] = [];
+  const tyre = c(0x202024);
+  const rim = c(0x585862);
   const dark = c(0x2a2a30);
   const frame = c(0x3a3a42);
   const jersey = c(0xffffff);
   const helmet = c(0xd8d8d8);
 
+  // Wheels: dark tyre ring with a lighter rim disc poking through —
+  // reads as a bicycle wheel instead of a black blob at moto distance.
   const wheel = (z: number) => {
-    const g = new THREE.CylinderGeometry(0.34, 0.34, 0.05, 9);
-    g.rotateZ(Math.PI / 2);
-    g.translate(0, 0.34, z);
-    return pushColor(g, dark);
+    const tyreGeo = new THREE.CylinderGeometry(0.34, 0.34, 0.045, 12);
+    tyreGeo.rotateZ(Math.PI / 2);
+    tyreGeo.translate(0, 0.34, z);
+    parts.push(pushColor(tyreGeo, tyre));
+    const rimGeo = new THREE.CylinderGeometry(0.27, 0.27, 0.06, 10);
+    rimGeo.rotateZ(Math.PI / 2);
+    rimGeo.translate(0, 0.34, z);
+    parts.push(pushColor(rimGeo, rim));
   };
-  parts.push(wheel(-0.52), wheel(0.52));
+  wheel(-0.52);
+  wheel(0.52);
 
   const tube = new THREE.BoxGeometry(0.07, 0.09, 0.95);
   tube.rotateX(0.12);
@@ -191,6 +200,14 @@ function buildRiderGeometry(): THREE.BufferGeometry {
   const seatpost = new THREE.BoxGeometry(0.06, 0.3, 0.06);
   seatpost.translate(0, 0.78, 0.3);
   parts.push(pushColor(seatpost, frame));
+
+  // Drop bars — the line that makes the silhouette a road bike.
+  const bars = new THREE.BoxGeometry(0.36, 0.045, 0.05);
+  bars.translate(0, 0.97, -0.5);
+  parts.push(pushColor(bars, dark));
+  const stem = new THREE.BoxGeometry(0.05, 0.22, 0.05);
+  stem.translate(0, 0.86, -0.48);
+  parts.push(pushColor(stem, frame));
 
   // Torso — leaned forward into the drops.
   const torso = new THREE.CapsuleGeometry(0.155, 0.46, 3, 7);
@@ -259,6 +276,60 @@ function buildTreeGeometry(): THREE.BufferGeometry {
   const merged = mergeGeometries(parts, false)!;
   parts.forEach((p) => p.dispose());
   return merged;
+}
+
+/** Greyscale field-patch texture for the ground — multiplied by the
+ * palette colour so the landscape reads as worked land, not a slab. */
+function fieldTexture(): THREE.Texture {
+  const size = 256;
+  const canvas = document.createElement("canvas");
+  canvas.width = canvas.height = size;
+  const ctx = canvas.getContext("2d")!;
+  ctx.fillStyle = "#8a8a8a";
+  ctx.fillRect(0, 0, size, size);
+  // Long field strips at a couple of angles, like a valley floor.
+  for (let i = 0; i < 26; i++) {
+    const shade = 120 + Math.floor(Math.random() * 50);
+    ctx.fillStyle = `rgba(${shade},${shade},${shade},0.5)`;
+    ctx.save();
+    ctx.translate(Math.random() * size, Math.random() * size);
+    ctx.rotate((Math.random() - 0.5) * 0.6);
+    ctx.fillRect(0, 0, 40 + Math.random() * 120, 14 + Math.random() * 36);
+    ctx.restore();
+  }
+  // Fine grain so the flats never band.
+  const img = ctx.getImageData(0, 0, size, size);
+  for (let i = 0; i < img.data.length; i += 4) {
+    const n = (Math.random() - 0.5) * 14;
+    img.data[i] += n;
+    img.data[i + 1] += n;
+    img.data[i + 2] += n;
+  }
+  ctx.putImageData(img, 0, 0);
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  tex.repeat.set(7, 7);
+  return tex;
+}
+
+/** Soft cloud billboard. */
+function cloudTexture(): THREE.Texture {
+  const w = 256, h = 128;
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d")!;
+  for (let i = 0; i < 9; i++) {
+    const cx = 40 + Math.random() * (w - 80);
+    const cy = 50 + Math.random() * 36;
+    const r = 22 + Math.random() * 30;
+    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+    grad.addColorStop(0, "rgba(255,255,255,0.6)");
+    grad.addColorStop(1, "rgba(255,255,255,0)");
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, w, h);
+  }
+  return new THREE.CanvasTexture(canvas);
 }
 
 function radialGlowTexture(): THREE.Texture {
@@ -402,6 +473,9 @@ const SHOTS: Record<string, Shot> = {
   moto: { pos: new THREE.Vector3(6.2, 1.7, 1.5), look: new THREE.Vector3(-0.6, 1.05, 0.2) },
   motoFront: { pos: new THREE.Vector3(-5.2, 1.6, -8.5), look: new THREE.Vector3(0.6, 1.1, 1.5) },
   lowRear: { pos: new THREE.Vector3(1.2, 1.15, 13), look: new THREE.Vector3(-0.3, 1.25, -5) },
+  // Title-sequence opener: aerial over the shoulder of the bunch,
+  // road running away to the ridgelines and the dawn.
+  establish: { pos: new THREE.Vector3(9, 7, 18), look: new THREE.Vector3(-2, 1, -30) },
   freezeIn: { pos: new THREE.Vector3(4.2, 1.9, -3.8), look: new THREE.Vector3(0, 1.1, 0.3) },
   freezeEnd: { pos: new THREE.Vector3(3.1, 1.55, -2.7), look: new THREE.Vector3(0, 1.1, 0.3) },
   // The verdict shot: a high hold down the road corridor (the one
@@ -461,6 +535,7 @@ export class RaceScene {
   private windData: { x: number; y: number; z: number; len: number; speed: number }[] = [];
   private arch: THREE.Group;
   private playerMarker: THREE.Sprite;
+  private clouds: THREE.Sprite[] = [];
 
   // Riders
   private riders: THREE.InstancedMesh;
@@ -551,11 +626,15 @@ export class RaceScene {
     this.dir.position.set(-60, 50, -40);
     this.scene.add(this.hemi, this.dir);
 
-    // Ridgelines (outside the tilt group — they're the horizon)
+    // Ridgelines (outside the tilt group — they're the horizon).
+    // The first three sit ahead of the race; the last two close the
+    // horizon behind it so rear-facing shots never see a bare edge.
     const ridgeSpecs = [
-      { w: 2400, peak: 120, z: -780, seed: 3.1 },
-      { w: 2000, peak: 90, z: -620, seed: 7.7 },
-      { w: 1700, peak: 55, z: -470, seed: 12.3 },
+      { w: 2400, peak: 120, z: -780, seed: 3.1, far: true },
+      { w: 2000, peak: 90, z: -620, seed: 7.7, far: false },
+      { w: 1700, peak: 55, z: -470, seed: 12.3, far: false },
+      { w: 2400, peak: 110, z: 760, seed: 5.3, far: true, behind: true },
+      { w: 2000, peak: 70, z: 580, seed: 9.1, far: false, behind: true },
     ];
     for (const spec of ridgeSpecs) {
       const mesh = new THREE.Mesh(
@@ -563,20 +642,43 @@ export class RaceScene {
         new THREE.MeshBasicMaterial({ color: 0x6c628f, fog: false })
       );
       mesh.position.set(0, 0, spec.z);
+      if (spec.behind) mesh.rotation.y = Math.PI;
       this.ridges.push(mesh);
       this.scene.add(mesh);
     }
 
     this.scene.add(this.terrain);
 
-    // Ground
+    // Ground — palette colour multiplied by a field-patch texture.
     this.ground = new THREE.Mesh(
       new THREE.PlaneGeometry(1600, 1400),
-      new THREE.MeshLambertMaterial({ color: 0x3d4438 })
+      new THREE.MeshLambertMaterial({ color: 0x3d4438, map: fieldTexture() })
     );
     this.ground.rotation.x = -Math.PI / 2;
     this.ground.position.z = -300;
     this.terrain.add(this.ground);
+
+    // Clouds — slow parallax drift above the far ridgelines.
+    const cloudTex = cloudTexture();
+    for (let i = 0; i < 7; i++) {
+      const sprite = new THREE.Sprite(
+        new THREE.SpriteMaterial({
+          map: cloudTex,
+          transparent: true,
+          opacity: 0.32 + rand(i * 5.1) * 0.2,
+          depthWrite: false,
+        })
+      );
+      const w = 180 + rand(i * 2.9) * 240;
+      sprite.scale.set(w, w * 0.34, 1);
+      sprite.position.set(
+        -500 + rand(i * 7.7) * 1000,
+        110 + rand(i * 3.3) * 130,
+        -640 - rand(i * 1.9) * 160
+      );
+      this.clouds.push(sprite);
+      this.scene.add(sprite);
+    }
 
     // Road
     this.road = new THREE.Mesh(
@@ -586,6 +688,18 @@ export class RaceScene {
     this.road.rotation.x = -Math.PI / 2;
     this.road.position.set(0, 0.02, -300);
     this.terrain.add(this.road);
+
+    // Solid edge lines — the cheapest thing that makes tarmac read
+    // as a maintained race road instead of a grey ribbon.
+    for (const x of [-3.95, 3.95]) {
+      const line = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.13, 1400),
+        new THREE.MeshBasicMaterial({ color: 0x9d9da4 })
+      );
+      line.rotation.x = -Math.PI / 2;
+      line.position.set(x, 0.025, -300);
+      this.terrain.add(line);
+    }
 
     // Wet-road sheen (toggles opacity)
     this.roadSheen = new THREE.Mesh(
@@ -739,12 +853,14 @@ export class RaceScene {
     // Scatter static furniture
     this.scatterFurniture();
 
-    // Initial camera
-    const s = SHOTS.heli;
+    // Initial camera: the establishing shot, held while the title sits
+    // over it; the ride cycle takes over once the race starts.
+    const s = SHOTS.establish;
     this.camPos.copy(s.pos);
     this.camLook.copy(s.look);
     this.camPosTarget.copy(s.pos);
     this.camLookTarget.copy(s.look);
+    this.shotTimer = -6; // linger on the opener a beat longer
 
     this.setMoment(this.moment, { instant: true });
     this.loop();
@@ -798,7 +914,19 @@ export class RaceScene {
         .copy(from.ridgeNear).lerp(from.ridgeFar, 0.5)
         .lerp(pal.ridgeNear.clone().lerp(pal.ridgeFar, 0.5), t);
       (this.ridges[0].material as THREE.MeshBasicMaterial).color.copy(from.ridgeFar).lerp(pal.ridgeFar, t);
+      // Rear horizon shares the far/mid tints.
+      (this.ridges[3].material as THREE.MeshBasicMaterial).color.copy(
+        (this.ridges[0].material as THREE.MeshBasicMaterial).color
+      );
+      (this.ridges[4].material as THREE.MeshBasicMaterial).color.copy(
+        (this.ridges[1].material as THREE.MeshBasicMaterial).color
+      );
       (this.roadSheen.material as THREE.MeshBasicMaterial).opacity = lerp(from.sheen, moment.wet ? 0.13 : 0, t);
+      // Clouds pick up the horizon light
+      const cloudTint = pal.skyHorizon.clone().lerp(c(0xffffff), 0.45);
+      for (const cloud of this.clouds) {
+        (cloud.material as THREE.SpriteMaterial).color.copy(cloudTint);
+      }
       // Sun position arcs with the day
       const sunX = lerp(-200, 240, moment.timeOfDay);
       const sunY = lerp(30, 260, pal.sunHeight);
@@ -848,6 +976,7 @@ export class RaceScene {
   }
 
   unfreeze(): void {
+    if (!this.frozen) return; // mount-time no-op — keep the establishing shot
     this.frozen = false;
     this.targetTimeScale = 1;
     this.shotTimer = 0;
@@ -955,7 +1084,7 @@ export class RaceScene {
 
     // Trees: valley scattered, forest dense + close, plain sparse, town none.
     const treeCount =
-      env === "forest" ? 72 : env === "valley" ? 40 : env === "plain" ? 10 : 0;
+      env === "forest" ? 72 : env === "valley" ? 56 : env === "plain" ? 14 : 0;
     for (let i = 0; i < this.trees.count; i++) {
       if (i < treeCount) {
         const side = i % 2 === 0 ? -1 : 1;
@@ -990,7 +1119,9 @@ export class RaceScene {
         const w = 6 + rand(i * 1.7) * 6;
         const h = 7 + rand(i * 2.3) * 11;
         const x = side * (10 + rand(i * 3.7) * 7);
-        const z = -230 + (i / this.buildings.count) * 290 + rand(i) * 8;
+        // Buildings stop short of the stage so the verdict wide shot
+        // (camera around z 25–32) never has a façade in the lens.
+        const z = -240 + (i / this.buildings.count) * 220 + rand(i) * 8;
         m.makeScale(w, h, 7 + rand(i) * 5).setPosition(x, 0, z);
         this.buildings.setMatrixAt(i, m);
       } else {
@@ -1110,7 +1241,7 @@ export class RaceScene {
     // Trees wrap before the stage zone so foliage never crosses a shot.
     recycle(this.trees, 214, -26);
     recycle(this.posts, 360);
-    recycle(this.buildings, 290);
+    recycle(this.buildings, 220, -18);
     recycle(this.barriers, 120);
 
     // Dashes: pure scroll
