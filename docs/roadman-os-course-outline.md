@@ -314,6 +314,6 @@
 ## Upsell Paths from Roadman OS
 
 1. **NDY Community** → Ongoing membership after 12 weeks for community, Q&A, updated plans
-2. **Inner Circle** → $475/month premium coaching with blood work, 1:1 calls, daily macros
+2. **Inner Circle** → $525/month premium coaching with blood work, 1:1 calls, daily macros
 3. **Girona Training Camp** → October 2026, the real-world version of what you've been training for
 4. **Season 2** → Re-enrol for next training phase (different periodisation focus)
