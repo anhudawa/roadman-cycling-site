@@ -328,6 +328,7 @@ Roadman's coverage of the 2026 Tour, every stage and the sport's history read th
 - [Tudor Pro Cycling: The Watch Brand That Crashed the Tour](${tag(`${BASE_URL}/blog/tudor-pro-cycling-tour-de-france-2026`)}): How Fabian Cancellara's Tudor Pro Cycling went from ProTeam licence to automatic 2026 Tour invitation with Alaphilippe and Küng.
 - [The Tudor Bumblebee and Cycling's Watch Obsession](${tag(`${BASE_URL}/blog/tudor-bumblebee-watches-tour-de-france`)}): Tudor's Black Bay Chrono 39 "Bumblebee" TdF edition, plus the full history of Tour de France timekeeping — from Longines in 1947 to Tissot today.
 - [How to Ride Alpe d'Huez — Training & Pacing Guide](${tag(`${BASE_URL}/blog/how-to-ride-alpe-dhuez-training-pacing-guide`)}): Climb profile by section, realistic W/kg targets for amateurs, negative split pacing, 8-12 week training block, and Étape du Tour 2026 fatigue strategy.
+- [Breitling's Top Time Coppi & Bartali: Cycling's Greatest Rivalry on the Wrist](${tag(`${BASE_URL}/blog/breitling-top-time-coppi-bartali-cycling-rivalry`)}): Breitling's limited-edition Top Time B01 tributes to Fausto Coppi and Gino Bartali — the rivalry, the wartime heroism, and the Calibre 01 movement shared with Tudor.
 
 ## Topic Hubs
 Evidence-based topic hubs — each gathers the articles, episodes, and tools for one subject, with a short answer and FAQ schema.

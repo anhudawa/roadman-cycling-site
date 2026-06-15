@@ -1,0 +1,51 @@
+{
+  "slug": "tour-de-france-stage-1-chaos",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Stage 1 was 197km from Brest to Landerneau with four Category 4 climbs and two Category 3 climbs, including a 3km climb at 5.6% with sections reaching 14%",
+    "A spectator holding a cardboard cutout brought down Tony Martin, causing a mass crash that resulted in a DSM rider abandoning the Tour on day one",
+    "Julian Alaphilippe won the stage and took the Yellow Jersey; he could potentially go deep into the race despite not being a traditional GC contender",
+    "Quickstep controlled the final climb by riding aggressively at 5.6% gradient sections reaching 14% pace, catching Mathieu van der Poel and others off guard",
+    "Superman López and Guillain-Martin both lost 1 minute 15 seconds on stage one, demonstrating the brutal nature of the opening stage crashes"
+  ],
+  "named_experts": [
+    "Raymond Poulidor",
+    "Julian Alaphilippe",
+    "Mathieu van der Poel",
+    "Jai Hindley",
+    "Pogačar",
+    "Roglic",
+    "Geraint Thomas",
+    "Pierre Latour"
+  ],
+  "specific_numbers": [
+    "197km stage distance",
+    "4 Category 4 climbs",
+    "2 Category 3 climbs",
+    "3 kilometre climb",
+    "5.6% gradient",
+    "14% peak gradient",
+    "6 kilometres to go (second crash)",
+    "50 kilometres of time trial",
+    "1 minute 15 seconds time loss for López and Martin",
+    "108th edition Tour de France"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "tour-de-france-stage-analysis",
+    "cycling-safety-spectators",
+    "stage-racing-tactics",
+    "alaphilippe-performance",
+    "bunch-crashes-etiquette"
+  ],
+  "primary_cluster": "community",
+  "secondary_clusters": [
+    "coaching"
+  ],
+  "primary_persona": "dave",
+  "cluster_reasoning": "This is a Tour de France stage analysis focused on pro racing drama, spectator incidents, and stage tactics—core community/culture content—with secondary coaching elements in the tactical breakdown of Quickstep's climbing strategy.",
+  "sacred_cow_score": 7,
+  "indexed_at": "2026-06-15T11:58:27.654Z"
+}

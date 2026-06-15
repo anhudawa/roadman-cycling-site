@@ -1,0 +1,43 @@
+{
+  "slug": "training-intensity-how-much-is-too-much",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Training zones are determined by threshold test results and provide a common language for coaches to communicate intensity prescriptions to athletes",
+    "The body adapts to training stress, causing plateaus; coaches must vary training stimulus through periodization to continue making fitness gains",
+    "A sample threshold session structure is 60 minutes in zone 2 endurance with two 15-minute periods in zone 4 intensity",
+    "Power and zones enable precise communication compared to speed alone, which cannot account for gradient, wind, or other variables",
+    "Periodization is applied both at macro level (across training plan) and micro level (within weekly training with interspersed intensity and rest)"
+  ],
+  "named_experts": [],
+  "specific_numbers": [
+    "8 weeks (8-week challenge duration)",
+    "Zone 1-7 (training zone system)",
+    "400 watts (example power output)",
+    "22 km/h (example speed)",
+    "10 minutes (example duration)",
+    "60 minutes zone 2 endurance",
+    "Two 15-minute periods in zone 4",
+    "3-4 years (gym example timeframe)",
+    "2-3 days per week (gym frequency example)",
+    "16 years old (personal anecdote age)",
+    "6 o'clock (work finish time)",
+    "8:30 pm (bedtime in anecdote)",
+    "400 euro (Mavic wheel price point)"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "training-zones",
+    "periodization",
+    "coaching-language",
+    "intensity-variation",
+    "threshold-testing"
+  ],
+  "primary_cluster": "coaching",
+  "secondary_clusters": [],
+  "primary_persona": "tom",
+  "cluster_reasoning": "Episode directly addresses training zones, periodization, threshold testing, and intensity variation—core coaching methodology pillars with no secondary content across nutrition, strength, or recovery domains.",
+  "sacred_cow_score": 7,
+  "indexed_at": "2026-06-15T11:50:29.168Z"
+}

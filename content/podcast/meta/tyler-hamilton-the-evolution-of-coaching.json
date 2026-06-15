@@ -1,0 +1,52 @@
+{
+  "slug": "tyler-hamilton-the-evolution-of-coaching",
+  "guest_name": "Tyler Hamilton",
+  "guest_credentials": "Former professional cyclist and cycling coach, expertise in power meter training and coaching evolution",
+  "key_claims": [
+    "Tyler transitioned from long, slow distance (LSD) training in 1995-1997 to specific interval work using SRM power meters starting in 1998, which significantly changed his career performance",
+    "First professional year was 1995, arrived at Tour de France level in 1997",
+    "Coaches recommend fasted rides occasionally depending on athlete goals, but notes they are very difficult",
+    "Most successful clients are those who follow training prescriptions precisely and send power files to coaches for analysis, showing discipline and homework completion",
+    "Bike handling skills cannot be measured by data but are critical differentiators between professional cyclists like Peter Sagan and amateur riders"
+  ],
+  "named_experts": [
+    "Chris Carmichael",
+    "Uli Schover",
+    "Sebastian Weber",
+    "Peter Sagan",
+    "Valverde",
+    "Kieran Power",
+    "Robby McEuland",
+    "Mike Barry"
+  ],
+  "specific_numbers": [
+    "First pro year 1995",
+    "Arrived at Tour de France level 1997",
+    "Used SRM starting in 1994 season with US national team",
+    "Picked up SRM again in 1998",
+    "Three hours fasted riding followed by two hours fueled",
+    "Five hours total ride duration",
+    "Two short runs weekly for beginners in running cross-training"
+  ],
+  "ndy_members": [],
+  "episode_type": "interview",
+  "topics": [
+    "coaching-evolution",
+    "power-meter-training",
+    "bike-handling-skills",
+    "interval-training",
+    "cross-training-running",
+    "weight-loss-strategies",
+    "group-ride-etiquette",
+    "fasted-rides",
+    "zone-training"
+  ],
+  "primary_cluster": "coaching",
+  "secondary_clusters": [
+    "community"
+  ],
+  "primary_persona": "tom",
+  "cluster_reasoning": "Tyler Hamilton discusses the evolution of training methodology, power meter training, interval work, and zone training—core coaching methodology—while his pro cycling background and expertise as a former professional cyclist also warrant secondary community assignment.",
+  "sacred_cow_score": 6,
+  "indexed_at": "2026-06-15T11:31:22.153Z"
+}
