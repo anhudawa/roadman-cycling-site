@@ -1,0 +1,40 @@
+{
+  "slug": "who-were-the-best-riders-of-2021",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Tadej Pogacar is only the second rider in history to win a Tour de France and two monuments in the same season",
+    "Pogacar won four of five stage races he entered in 2021 and had 13 stage wins total",
+    "Pogacar is 23 years old and has fundamentally changed the pro cycling recruitment model to resemble professional soccer",
+    "Primož Roglič won the Vuelta España for a record-equaling third successive edition and is only the third rider to win a grand tour and Olympic gold in the same season",
+    "Wout van Aert won stage races across multiple categories: time trials, climbing stages, bunch sprints, and Ardennes classics in 2021"
+  ],
+  "named_experts": [
+    "Eddy Merckx",
+    "Sean Kelly"
+  ],
+  "specific_numbers": [
+    "23 years old (Pogacar)",
+    "13 stage wins (Pogacar)",
+    "4 of 5 stage races won (Pogacar)",
+    "3 successive Vuelta España victories (Roglič)",
+    "Second place finish at Tirreno-Adriatico (van Aert)",
+    "Silver medal in world time trial championships (van Aert)",
+    "Silver medal in Olympic road race (van Aert)"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "top-male-road-riders-2021",
+    "tadej-pogacar",
+    "pro-cycling-performance",
+    "grand-tour-victories",
+    "cycling-recruitment-model"
+  ],
+  "primary_cluster": "community",
+  "secondary_clusters": [],
+  "primary_persona": "dave",
+  "cluster_reasoning": "This is a pro cycling retrospective covering 2021's top riders (Pogacar, Roglič, van Aert), their achievements, and the evolution of pro cycling recruitment — pure cycling culture and history content with no training methodology, nutrition, or recovery focus.",
+  "sacred_cow_score": 5,
+  "indexed_at": "2026-06-15T09:47:46.876Z"
+}

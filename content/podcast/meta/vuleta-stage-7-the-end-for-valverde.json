@@ -1,0 +1,41 @@
+{
+  "slug": "vuleta-stage-7-the-end-for-valverde",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Alejandro Valverde crashed and abandoned Stage 7 of the Vuelta España after sliding off on a descent approximately 40 kilometers into the stage",
+    "Valverde is 42 years old and was world champion just two years prior to this race",
+    "Michael Storer won Stage 7 with the climb featuring pitches so steep he had to use a zigzag pattern similar to a postman climbing a hill",
+    "Adam Yates set a tempo pace that only Roglic, Yates, Lopez, Bernal, Delacruz, and Oinerk Masz could follow, with other GC contenders like Landa, Carapaz, and Vlasov dropping",
+    "Roglic held the red jersey with Gómez Schartner in second place, only 8 seconds behind"
+  ],
+  "named_experts": [],
+  "specific_numbers": [
+    "Stage 7: 152km route",
+    "40 kilometers into the stage when Valverde crashed",
+    "Valverde is 42 years old",
+    "World champion 2 years prior",
+    "Michael Storer's Stage 7 victory",
+    "Gómez Schartner 8 seconds behind leader",
+    "Oinerk Masz at 25 seconds in GC",
+    "Superman Lopez at 36 seconds in GC",
+    "Last 8km climb",
+    "5km to go when climb got spicy",
+    "Pitches reaching 15% gradient"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "vuelta-espana-coverage",
+    "stage-racing-analysis",
+    "pro-cycling-tactics",
+    "mountain-climbing",
+    "gc-battle"
+  ],
+  "primary_cluster": "community",
+  "secondary_clusters": [],
+  "primary_persona": "dave",
+  "cluster_reasoning": "This is pro cycling coverage focused on race narrative, GC battle drama, and iconic moments (Valverde's age and former world champion status) rather than training methodology or athlete performance science.",
+  "sacred_cow_score": 5,
+  "indexed_at": "2026-06-15T11:01:33.233Z"
+}

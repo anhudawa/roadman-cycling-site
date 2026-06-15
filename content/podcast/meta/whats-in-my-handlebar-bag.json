@@ -1,0 +1,34 @@
+{
+  "slug": "whats-in-my-handlebar-bag",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "A handlebar bag is more practical than a traditional saddle bag for carrying cycling essentials",
+    "A Rapha raincoat is the most versatile piece of cycling clothing and should be prioritized over high-end brands like Castelli, Assos, and Velocio",
+    "A power link (chain tool release) eliminates the need to remove chain links when repairing a broken chain on the road",
+    "An Asaver mudguard can be compacted and stored in a handlebar bag, taking up virtually no space",
+    "A small keychain lock (approximately 20 grams) can deter opportunistic bike thieves at coffee stops by creating minor inconvenience"
+  ],
+  "named_experts": [],
+  "specific_numbers": [
+    "20 grams (weight of small keychain lock)",
+    "negative 15 to negative 20 degrees Celsius (training temperatures in Canada)",
+    "CR2032 battery (power meter battery type)",
+    "2K down the road (distance before weather change example)"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "handlebar-bag-essentials",
+    "cycling-gear-recommendations",
+    "bike-maintenance-tools",
+    "weather-preparation",
+    "cycling-accessories"
+  ],
+  "primary_cluster": "community",
+  "secondary_clusters": [],
+  "primary_persona": "dave",
+  "cluster_reasoning": "A gear and accessories episode focused on practical cycling culture, brand recommendations, and the unwritten rules of bike preparation—this is community content, not training methodology, nutrition science, or structured conditioning.",
+  "sacred_cow_score": 6,
+  "indexed_at": "2026-06-15T10:01:01.795Z"
+}

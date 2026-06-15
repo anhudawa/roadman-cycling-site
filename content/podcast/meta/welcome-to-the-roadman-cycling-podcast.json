@@ -1,0 +1,41 @@
+{
+  "slug": "welcome-to-the-roadman-cycling-podcast",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Anthony trained almost 15 hours per week but his body wasn't responding to training and he was gaining weight despite high training volume",
+    "Tyler Hamilton talks about the doping culture in US Postal and the pride he felt returning an Olympic gold medal",
+    "Jani Brkovic won stages at the Giro d'Italia while battling an eating disorder",
+    "Sven Tuft wore the maglia rosa and discussed the dichotomy between controlled cycling and wilderness/ancestral living",
+    "The podcast releases five days a week: interviews on Tuesday and Thursday, shorter solo episodes (Roadman Bytes) on Monday, Wednesday, and Friday"
+  ],
+  "named_experts": [
+    "Tyler Hamilton",
+    "Jani Brkovic",
+    "Sven Tuft",
+    "Alberto Contador"
+  ],
+  "specific_numbers": [
+    "15 hours per week training",
+    "Five days a week podcast release schedule",
+    "Since 2019 hosting the podcast"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "cycling-as-transformation",
+    "health-and-happiness",
+    "cycling-longevity",
+    "podcast-introduction",
+    "entrepreneurship-to-cycling-focus"
+  ],
+  "primary_cluster": "community",
+  "secondary_clusters": [
+    "recovery",
+    "nutrition"
+  ],
+  "primary_persona": "dave",
+  "cluster_reasoning": "This is the podcast introduction episode featuring pro cycling stories (Tyler Hamilton's doping narrative, Jani Brkovic's eating disorder battle, Sven Tuft's philosophy), which is quintessentially community content; secondary clusters reflect the health-and-happiness and cycling-longevity themes woven through the episode previews.",
+  "sacred_cow_score": 6,
+  "indexed_at": "2026-06-15T10:47:31.156Z"
+}

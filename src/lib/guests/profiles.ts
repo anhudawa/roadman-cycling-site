@@ -1069,15 +1069,23 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
 
   "mads-wurtz-schmidt": {
     description:
-      "Danish professional cyclist. Former WorldTour rider with Israel-Premier Tech, 2015 U23 World Time Trial Champion. Now races gravel and breakaway-focused road events across European and US calendars.",
+      "Danish professional cyclist. Former WorldTour rider with Israel-Premier Tech and 2015 U23 World Time Trial Champion, now racing gravel for Specialized Off-Road. 2025 European Gravel Champion, Traka winner, and 2026 Unbound Gravel 200 champion.",
+    worksFor: {
+      name: "Specialized Off-Road",
+      type: "SportsTeam",
+    },
     whyMatters:
-      "Mads Wurtz Schmidt is the Danish 2015 U23 World Time Trial Champion who built a long WorldTour career on time trial discipline and breakaway craft. After racing for Stölting, Katusha-Alpecin, and Israel-Premier Tech across Grand Tours and Classics, he has pivoted toward gravel and selective road events as a privateer. His perspective on the realities of being a workhorse-tier WorldTour rider — and the transition into post-WorldTour racing — is candid and useful for amateurs trying to understand how pro careers actually work.",
+      "Mads Wurtz Schmidt is the Danish 2015 U23 World Time Trial Champion who built a long WorldTour career on time trial discipline and breakaway craft. After racing for Stölting, Katusha-Alpecin, and Israel-Premier Tech across Grand Tours and Classics, he moved to gravel with the Specialized Off-Road super team — and in 2026 won the Unbound Gravel 200, soloing one of the muddiest editions in the race's history. His perspective on the realities of being a workhorse-tier WorldTour rider, the professionalisation of gravel, and how time-trial-style pacing wins long races is candid and unusually useful for amateurs.",
     keyIdeas: [
       "Time trial discipline learned at U23 level transfers across the entire pro career — it is the most coachable single skill.",
-      "Workhorse-tier WorldTour life is mostly about consistency and durability, not stage wins.",
-      "Transition from WorldTour to gravel privateer is now a viable career step, not a downshift.",
-      "Breakaway opportunities reward riders who read the race well and commit early — talent is necessary but not sufficient.",
-      "Long-term durability across a 12-year pro career is built on respect for recovery and disciplined off-season strength work.",
+      "Long gravel races are won by time-trial-style pacing — steady, repeatable power beats surging, especially in bad conditions.",
+      "In mud, tyre choice is about grip and puncture prevention, not marginal rolling-resistance gains — finishing upright is the whole game.",
+      "Consistency beats volume in preparation: his Unbound build was about 35 hours over two weeks, not the 40-plus others were posting.",
+      "Gravel has become a team sport at the sharp end — even a solo win can hinge on a teammate's split-second call.",
+    ],
+    featuredArticles: [
+      "how-to-race-gravel-in-the-mud",
+      "mads-wurtz-schmidt-professional-gravel-super-team",
     ],
     relatedHubs: ["cycling-training-plans"],
   },

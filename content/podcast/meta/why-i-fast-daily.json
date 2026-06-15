@@ -1,0 +1,36 @@
+{
+  "slug": "why-i-fast-daily",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "16:8 fasting protocol: 16 hours of no food, 8 hours of eating window compresses caloric intake",
+    "Cellular autophagy occurs when food intake stops, allowing body to repair damaged and pre-cancerous cells",
+    "Fasting reduces feeding window from 12 hours to 6 hours daily, creating caloric deficit without macro tracking",
+    "Hunter-gatherer ancestors fasted regularly due to lack of convenient food access, aligning fasting with ancestral health practices",
+    "Artificial sweeteners like aspartame can trigger insulin production despite zero calories"
+  ],
+  "named_experts": [],
+  "specific_numbers": [
+    "16:8 fasting ratio (16 hours fasting, 8 hours eating)",
+    "20,000 steps daily recommended movement",
+    "6 hours feeding window vs 12 hours typical",
+    "7-9 PM dinner timing, lunch following day break-fast"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "fasting-protocol",
+    "intermittent-fasting",
+    "cellular-autophagy",
+    "body-composition",
+    "ancestral-health"
+  ],
+  "primary_cluster": "nutrition",
+  "secondary_clusters": [
+    "recovery"
+  ],
+  "primary_persona": "james",
+  "cluster_reasoning": "Episode focuses on intermittent fasting as a body composition and weight management strategy, directly aligned with nutrition pillar; secondary recovery cluster warranted due to cellular autophagy and longevity themes.",
+  "sacred_cow_score": 6,
+  "indexed_at": "2026-06-15T09:24:16.190Z"
+}

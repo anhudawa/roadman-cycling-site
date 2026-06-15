@@ -324,6 +324,10 @@ Roadman's coverage of the 2026 Tour, every stage and the sport's history read th
 - [The Greatest Comebacks the Tour Has Seen](${tag(`${BASE_URL}/tour-de-france/history/greatest-comebacks-tour-de-france`)})
 - [From Lone Suffering to Data: How Tour Tactics Changed](${tag(`${BASE_URL}/tour-de-france/history/evolution-of-tour-tactics`)})
 - [Barcelona to Paris: A History of Grand Départs](${tag(`${BASE_URL}/tour-de-france/history/history-of-grand-departs-barcelona`)})
+- [Tour de France 2026 Route: What It Means for Your Training](${tag(`${BASE_URL}/blog/tour-de-france-2026-route-what-it-means-for-you`)}): Every stage of the 2026 Tour broken down into the training lessons a masters cyclist can steal — pacing, fuelling, recovery, repeatability, and race-day tactics.
+- [Tudor Pro Cycling: The Watch Brand That Crashed the Tour](${tag(`${BASE_URL}/blog/tudor-pro-cycling-tour-de-france-2026`)}): How Fabian Cancellara's Tudor Pro Cycling went from ProTeam licence to automatic 2026 Tour invitation with Alaphilippe and Küng.
+- [The Tudor Bumblebee and Cycling's Watch Obsession](${tag(`${BASE_URL}/blog/tudor-bumblebee-watches-tour-de-france`)}): Tudor's Black Bay Chrono 39 "Bumblebee" TdF edition, plus the full history of Tour de France timekeeping — from Longines in 1947 to Tissot today.
+- [How to Ride Alpe d'Huez — Training & Pacing Guide](${tag(`${BASE_URL}/blog/how-to-ride-alpe-dhuez-training-pacing-guide`)}): Climb profile by section, realistic W/kg targets for amateurs, negative split pacing, 8-12 week training block, and Étape du Tour 2026 fatigue strategy.
 
 ## Topic Hubs
 Evidence-based topic hubs — each gathers the articles, episodes, and tools for one subject, with a short answer and FAQ schema.

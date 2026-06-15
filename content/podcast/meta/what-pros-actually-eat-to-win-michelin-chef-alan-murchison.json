@@ -1,0 +1,52 @@
+{
+  "slug": "what-pros-actually-eat-to-win-michelin-chef-alan-murchison",
+  "guest_name": "Alan Murchison",
+  "guest_credentials": "Michelin star chef and author of The Cycling Chef",
+  "key_claims": [
+    "A bircher muesli base of 50g oats, 50g Greek yogurt, and 100ml apple juice with frozen berries provides complete breakfast nutrition for under €2",
+    "Curry base recipe can be manipulated between 60 calories (tinned tomatoes), 300 calories (light coconut milk), or 600 calories (full-fat coconut milk) with identical ingredients",
+    "High-performance habits and behaviors are rarely misaligned with race performance — you can predict who will win based on how they pack their bag and manage food",
+    "Gwen Jorgensen ate McDonald's 4 months before Rio Olympics while competitors were sub-12% body fat and weighing food three times daily; she won gold",
+    "A 10% body weight swing across seasons is normal and healthy; being 'off' allows you to be fully 'on' when it matters"
+  ],
+  "named_experts": [
+    "Mike Posthumus",
+    "Iwan",
+    "Victor Koretzky",
+    "Gwen Jorgensen",
+    "Charlie Trotter",
+    "Darren Rafferty"
+  ],
+  "specific_numbers": [
+    "50g oats, 50g Greek yogurt, 100ml apple juice",
+    "€1.50 for frozen berries bag",
+    "€3 for Spanish tortilla",
+    "60 calories per tin of tomatoes",
+    "300 calories light coconut milk",
+    "600 calories full-fat coconut milk",
+    "100g raw weight cooked rice = 100 calories",
+    "3g carbohydrate per kilo body weight",
+    "120g carbs per hour for hard rides",
+    "750g electrolyte",
+    "sub-12% body fat",
+    "70/30 diet ratio (70% good food, 30% indulgence) in off-season",
+    "10% body weight swing"
+  ],
+  "ndy_members": [],
+  "episode_type": "interview",
+  "topics": [
+    "nutrition-for-cyclists",
+    "performance-fueling",
+    "macro-management",
+    "simple-recipes",
+    "food-as-experience"
+  ],
+  "primary_cluster": "nutrition",
+  "secondary_clusters": [
+    "community"
+  ],
+  "primary_persona": "dave",
+  "cluster_reasoning": "Alan Murchison's episode focuses on practical fueling strategies, meal composition, and body composition management used by World Tour pros—core nutrition content—with secondary community value through pro stories (Gwen Jorgensen, Victor Koretzky) and anti-diet-culture philosophy.",
+  "sacred_cow_score": 6,
+  "indexed_at": "2026-06-15T10:16:41.554Z"
+}

@@ -1,0 +1,44 @@
+{
+  "slug": "why-are-you-always-tired",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Caffeine has a half-life of 5-7 hours, meaning 500mg of caffeine is reduced to 250mg after 5-7 hours and 125mg after 10-14 hours",
+    "A double espresso at 4 p.m. leaves approximately 250mg of caffeine in your system at 11 p.m. when trying to sleep",
+    "Eight hours in bed does not equal eight hours of sleep; accounting for 45 minutes to fall asleep and two 15-minute interruptions reduces actual sleep to under 7 hours",
+    "Open loops (unresolved questions or conversations) before bed impair sleep quality and should be avoided",
+    "The solution to constant fatigue is the intersection of three variables: sleep, diet, and training — not supplements or external products"
+  ],
+  "named_experts": [
+    "Matt Walker",
+    "James Nestor",
+    "Claire Walsh"
+  ],
+  "specific_numbers": [
+    "20-25 minute ride into the city",
+    "Caffeine half-life of 5-7 hours",
+    "500mg caffeine reduced to 250mg after 5-7 hours, 125mg after 10-14 hours",
+    "8 hours sleep target",
+    "7 hours actual sleep (accounting for 45 minutes to fall asleep and two 15-minute interruptions)",
+    "12 p.m. caffeine cutoff",
+    "7.5 minute breath hold (Claire Walsh)",
+    "14 day kickstart challenge"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "sleep-optimization",
+    "caffeine-management",
+    "fatigue-recovery",
+    "sleep-quality",
+    "training-diet-sleep"
+  ],
+  "primary_cluster": "recovery",
+  "secondary_clusters": [
+    "nutrition"
+  ],
+  "primary_persona": "james",
+  "cluster_reasoning": "Episode focuses on sleep optimization, fatigue management, and the foundational recovery variable—core themes of the recovery cluster—with secondary nutrition emphasis on the sleep-diet-training intersection.",
+  "sacred_cow_score": 6,
+  "indexed_at": "2026-06-15T09:38:42.922Z"
+}

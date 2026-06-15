@@ -1,0 +1,38 @@
+{
+  "slug": "why-zwift-is-a-waste-of-time",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Zwift training plans neglect Zone 1 and Zone 2 training, which are essential endurance building blocks for developing mitochondria and fat utilization",
+    "A rider using Zwift training plans for three seasons failed to improve on a local 8-10 minute climb segment, but improved by over 1.5 minutes in 8 weeks using a custom plan focused on zone-specific training",
+    "Zwift and Strava prioritize user acquisition and customer lifetime value through gamification (points, segments) rather than optimizing for actual athlete progression",
+    "Cardiac drift (heart rate rising while power stays constant during endurance rides) indicates poor endurance fitness and the need for more Zone 1-2 work before adding intensity",
+    "A proper training plan requires assessing fitness via threshold testing, establishing zones, understanding lifestyle constraints, and adjusting weekly based on feedback—not static gamified sessions"
+  ],
+  "named_experts": [],
+  "specific_numbers": [
+    "8-week training plan duration",
+    "1.5 minutes improvement on segment over 8 weeks",
+    "8-10 minute climb segment",
+    "Zone 1, 2, 3, 4, 5, 6 training zones",
+    "200 watts at 120 beats per minute baseline",
+    "145 beats per minute end-of-session heart rate example (cardiac decoupling)",
+    "90 minutes Zone 2 sessions",
+    "3 seasons of Zwift/Trainer Road training without improvement"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "zwift-training-criticism",
+    "strava-gamification",
+    "zone-2-training",
+    "endurance-base-building",
+    "cardiac-drift-monitoring"
+  ],
+  "primary_cluster": "coaching",
+  "secondary_clusters": [],
+  "primary_persona": "tom",
+  "cluster_reasoning": "Episode critiques Zwift training plans and advocates for zone-specific training methodology, threshold testing, and periodised training—core coaching fundamentals that align directly with structured training and training metrics.",
+  "sacred_cow_score": 7,
+  "indexed_at": "2026-06-15T08:33:30.548Z"
+}

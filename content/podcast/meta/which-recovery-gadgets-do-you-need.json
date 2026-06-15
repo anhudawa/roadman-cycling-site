@@ -1,0 +1,40 @@
+{
+  "slug": "which-recovery-gadgets-do-you-need",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Training doesn't make you faster — it gives you the potential to get faster, which is realized only through recovery",
+    "Sleep is undoubtedly the best form of recovery; aim for 8 hours per night or supplement with daytime naps",
+    "Sleep trackers like Whoop or Oura Ring measure heart rate variability but don't provide actionable value — you can tell if you've slept well without data",
+    "PowerDot electro-stimulation pads encourage blood flow through electrical impulses and integrate with Strava to personalize recovery protocols based on session difficulty",
+    "Recovery boots cost thousands of euros and require extended stationary time, making them less practical than alternatives like foam rolling or massage"
+  ],
+  "named_experts": [
+    "Matt Walker",
+    "Scott Morphy",
+    "Eric (PowerDot founder)",
+    "Seiler"
+  ],
+  "specific_numbers": [
+    "8 hours of sleep per night",
+    "3-4 months of PowerDot use",
+    "20-40 quid for replacement electro-stimulation pads",
+    "10,000 people analyzed in PowerDot performance data",
+    "Roadman Virtual Performance Summit: 30 leading fitness experts, December 8-9"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "recovery-gadgets",
+    "sleep-optimization",
+    "electro-stimulation",
+    "compression-boots",
+    "foam-rolling"
+  ],
+  "primary_cluster": "recovery",
+  "secondary_clusters": [],
+  "primary_persona": "dave",
+  "cluster_reasoning": "The episode focuses exclusively on recovery gadgets, sleep optimization, and recovery tools—core recovery pillar content that aligns with the cluster's emphasis on adaptation, longevity, and stress management.",
+  "sacred_cow_score": 6,
+  "indexed_at": "2026-06-15T09:54:07.383Z"
+}

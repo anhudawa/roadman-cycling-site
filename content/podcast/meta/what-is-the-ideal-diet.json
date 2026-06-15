@@ -1,0 +1,39 @@
+{
+  "slug": "what-is-the-ideal-diet",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Metabolic flexibility — the ability to extract energy from carbohydrates and fats interchangeably — is the holy grail in nutrition",
+    "A 16-hour fasting and 8-hour eating window (16-8 protocol) forces the body to build metabolic machinery to extract energy from stored fat",
+    "Ketosis is not a sustainable long-term dietary strategy for most people due to lifestyle and social constraints",
+    "Breakfast being the most important meal of the day is a myth that has contributed to modern eating patterns",
+    "The body's ancestral design stores excess energy at the hips because this location is optimal for central gravity and doesn't affect posture or movement"
+  ],
+  "named_experts": [
+    "Mark Sisson",
+    "Joe Rogan",
+    "Dave Asprey"
+  ],
+  "specific_numbers": [
+    "16-8 protocol (16 hours fasting, 8 hours eating window)",
+    "one day per week intermittent fasting to start",
+    "gradual progression to two days next week, three days the week after"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "metabolic-flexibility",
+    "intermittent-fasting",
+    "nutrition-diet",
+    "ketosis",
+    "blood-sugar-management"
+  ],
+  "primary_cluster": "nutrition",
+  "secondary_clusters": [
+    "recovery"
+  ],
+  "primary_persona": "dave",
+  "cluster_reasoning": "Episode focuses on dietary strategies (metabolic flexibility, intermittent fasting, ketosis, breakfast myths) and nutritional science, directly matching the nutrition cluster's scope on fueling strategies and diet philosophy.",
+  "sacred_cow_score": 5,
+  "indexed_at": "2026-06-15T10:33:25.870Z"
+}

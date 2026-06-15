@@ -1,0 +1,35 @@
+{
+  "slug": "what-do-you-need-to-bring-bike-packing",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Big Agnes lightweight bike packing tents cost approximately 400 euros",
+    "MSR camp stove can boil a litre of water in roughly 5 minutes",
+    "Handlebar bags should contain bulky items like tent, mat, and sleeping bag",
+    "Frame bags should carry dead weight (food, spares, towels) close to the frame to avoid affecting center of gravity",
+    "Wicklow Way huts are spaced for 5-7 day hiking routes, making them fall at awkward distances for a 2-day bike packing trip"
+  ],
+  "named_experts": [],
+  "specific_numbers": [
+    "400 euro for Big Agnes tent",
+    "5 minutes to boil 1 litre of water with MSR stove",
+    "2-day bike packing trip",
+    "5-7 day hiking duration on Wicklow Way",
+    "10 minutes for dehydrated camp food to rehydrate"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "bike-packing-gear",
+    "bike-luggage-systems",
+    "sleeping-systems",
+    "camping-equipment",
+    "adventure-cycling"
+  ],
+  "primary_cluster": "community",
+  "secondary_clusters": [],
+  "primary_persona": "dave",
+  "cluster_reasoning": "This is a practical adventure-cycling how-to episode focused on bikepacking gear and logistics, which falls squarely under cycling culture and the broader adventure-cycling movement rather than training methodology, nutrition, or performance science.",
+  "sacred_cow_score": 6,
+  "indexed_at": "2026-06-15T10:39:59.047Z"
+}

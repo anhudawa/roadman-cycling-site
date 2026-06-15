@@ -1,0 +1,46 @@
+{
+  "slug": "what-it-was-like-to-ride-the-longest-climb-in-the-world",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Alto de Lettras is the longest climb in the world at 80 kilometers with no descent breaks in the middle",
+    "The climb reaches over 4,000 meters altitude at the top, with the steepest pitches of 8-10% occurring at the 60km mark",
+    "Anthony completed the climb in approximately 5.5 hours at around 300 watts for the first 3-3.5 hours while riding with two companions",
+    "At altitudes over 2,500 meters, the physiological effect is described as severe oxygen deprivation with dissociative symptoms at the highest elevations",
+    "The climb passes through multiple small towns at 20km, 40km, 60km ('Gates of Hell'), and tops out at 80km, with settlements built by squatters using corrugated metal"
+  ],
+  "named_experts": [
+    "Tyler Hamilton",
+    "Pete Sten"
+  ],
+  "specific_numbers": [
+    "80 kilometers total climb distance",
+    "4,000+ meters altitude at the top",
+    "2,500 meters altitude threshold for severe effects",
+    "8-10% gradient pitches at 60km mark",
+    "5.5 hours completion time",
+    "300 watts for first 3-3.5 hours",
+    "45 minutes warm-up ride to Marquetta",
+    "400 meters climbing in warm-up section",
+    "82-83 kilograms body weight",
+    "2 kilograms added bike weight from gear",
+    "2 megabytes per second upload speed"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "extreme-climbs",
+    "altitude-training",
+    "colombia-cycling",
+    "long-endurance-rides",
+    "mental-toughness"
+  ],
+  "primary_cluster": "community",
+  "secondary_clusters": [
+    "recovery"
+  ],
+  "primary_persona": "mark",
+  "cluster_reasoning": "This is an extreme adventure story about conquering the world's longest climb — a cultural/experiential narrative that belongs in the 'community' pillar (ultra-distance cycling, extreme feats, cycling adventure), with secondary weight in 'recovery' due to the altitude physiology, mental toughness, and the psychological/dissociative elements of extreme endurance.",
+  "sacred_cow_score": 5,
+  "indexed_at": "2026-06-15T10:26:43.398Z"
+}

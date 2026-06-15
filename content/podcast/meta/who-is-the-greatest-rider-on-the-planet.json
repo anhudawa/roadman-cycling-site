@@ -1,0 +1,45 @@
+{
+  "slug": "who-is-the-greatest-rider-on-the-planet",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Power-to-weight ratio above 6.5 watts per kilogram is required for Grand Tour GC riders to compete on long alpine climbs",
+    "Classics riders are typically 70+ kg with higher absolute power but lower power-to-weight ratio, making them suited for flat roads where power and CDA are primary determinants",
+    "Training Stress Score (TSS) is calculated as a function of one-hour maximum effort; riding at full gas for one hour = 100 TSS, while 50% intensity for two hours also equals 100 TSS",
+    "Grand Tour peaking requires lower fitness in April compared to classics riders targeting Tour of Flanders, with fitness mapped over 42-day running totals",
+    "Wout Van Aert is the best rider on the planet because he can compete in Grand Tours, climb alpine passes three weeks into races, perform time trials on flats, and race cyclocross in winter"
+  ],
+  "named_experts": [
+    "Egan Bernal",
+    "Pagacha",
+    "Rogli",
+    "Chris Froome",
+    "Mathieu van der Poel",
+    "Wout Van Aert"
+  ],
+  "specific_numbers": [
+    "6.5-6.57 watts per kilogram power-to-weight ratio for GC riders",
+    "70+ kilograms for classics riders",
+    "75 kilograms example rider weight",
+    "TSS 100 for full gas one hour effort",
+    "42-day running total for fitness mapping",
+    "3-week Grand Tours"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "gc-vs-classics-riders",
+    "power-to-weight-ratio",
+    "training-stress-score",
+    "grand-tour-preparation",
+    "rider-comparison"
+  ],
+  "primary_cluster": "coaching",
+  "secondary_clusters": [
+    "community"
+  ],
+  "primary_persona": "tom",
+  "cluster_reasoning": "Episode centers on training methodology (TSS calculation, periodisation strategies, power-to-weight ratios for different race types) with secondary community element (pro rider comparison and culture of what makes a 'complete' rider).",
+  "sacred_cow_score": 5,
+  "indexed_at": "2026-06-15T09:50:42.584Z"
+}

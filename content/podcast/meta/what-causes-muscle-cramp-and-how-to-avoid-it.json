@@ -1,0 +1,44 @@
+{
+  "slug": "what-causes-muscle-cramp-and-how-to-avoid-it",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Muscle cramp is a malfunctioning of the central nervous system's signaling system that determines muscle tension, causing over-tension in muscles",
+    "Graded adaptation prevents cramping - if your longest ride is 50km, a stretch target should be 60-70km, not 200km",
+    "Position changes like saddle adjustments should be made in tiny increments (0.5cm per day over 4 rides) rather than all at once to avoid cramping",
+    "Environmental changes from flat terrain (like Qatar) to mountainous climbing creates different torque stress that can cause cramping if not gradually adapted",
+    "Stretching 10-15 minutes pre-ride and isolating cramping muscles on-bike helps lubricate the nervous system pathway and ease cramps"
+  ],
+  "named_experts": [
+    "Tyler Hamilton",
+    "Pete Sten"
+  ],
+  "specific_numbers": [
+    "81 kilometer - length of Letras climb in Colombia",
+    "5-10 seconds to couple of minutes - typical cramp duration",
+    "3-4 minutes - duration of Anthony's hamstring cramp",
+    "60 minute vs three 20 minute threshold intervals - interval structure to prevent central nervous system overload",
+    "2 centimeter saddle change broken into 0.5 centimeter increments over 4 rides",
+    "10-15 minutes - recommended pre-ride stretching duration",
+    "30 experts - Roadman Summit contributors",
+    "30 hours of content - Roadman Summit material",
+    "€47 - one-time payment for Roadman Summit access"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "muscle-cramp-prevention",
+    "central-nervous-system",
+    "graded-adaptation",
+    "hydration-and-electrolytes",
+    "climbing-training"
+  ],
+  "primary_cluster": "strength",
+  "secondary_clusters": [
+    "coaching"
+  ],
+  "primary_persona": "tom",
+  "cluster_reasoning": "Muscle cramp prevention centers on nervous system signaling, position adaptation protocols, and pre-ride activation stretching—core strength & conditioning principles—with secondary coaching relevance due to graded training load progression and climbing-specific adaptation methodology.",
+  "sacred_cow_score": 7,
+  "indexed_at": "2026-06-15T10:43:13.081Z"
+}

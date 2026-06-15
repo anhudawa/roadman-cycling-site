@@ -1,0 +1,51 @@
+{
+  "slug": "world-race-race-preview-imola",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "The Imola World Championships course features 5,000 meters of climbing over 250 kilometers across 9 laps",
+    "The decisive final climb Cima Gallisterna is 2 kilometers at 6% gradient with peaks up to 14%, located only 12 kilometers from the finish",
+    "The first climb Maserano is 2.8 kilometers at 6% gradient with a force kilometer at 10%",
+    "Michael Bling Matthews showed strong form in Tirreno-Adriatico the week before and has a chip on his shoulder after being left out of the Tour de France team"
+  ],
+  "named_experts": [
+    "Alejandro Valverde",
+    "Wout Van Aert",
+    "Julian Alaphilippe",
+    "Peter Sagan",
+    "Remco Evenepoel",
+    "Mads Pedersen"
+  ],
+  "specific_numbers": [
+    "250 kilometers race distance",
+    "5,000 meters of climbing",
+    "9 laps of the circuit",
+    "Maserano climb: 2.8 kilometers at 6%",
+    "Maserano force kilometer at 10%",
+    "Cima Gallisterna: 2 kilometers at 6% with peaks up to 14%",
+    "12 kilometers from finish to final climb",
+    "Alejandro Valverde: 40 years old, over 100 career wins",
+    "38 year old Valverde won Innsbruck worlds 2 years ago"
+  ],
+  "ndy_members": [
+    "Chris Hejleson",
+    "Yanny Brackovich",
+    "Michael Woods"
+  ],
+  "episode_type": "solo",
+  "topics": [
+    "world-championships",
+    "imola-race-preview",
+    "cycling-tactics",
+    "one-day-racing",
+    "course-analysis"
+  ],
+  "primary_cluster": "community",
+  "secondary_clusters": [
+    "coaching"
+  ],
+  "primary_persona": "dave",
+  "cluster_reasoning": "This is a World Championships race preview focused on course analysis, tactical positioning, and pro cyclist performance narratives—core community content about pro cycling culture and stories, with secondary coaching value in the tactical/course analysis elements.",
+  "sacred_cow_score": 7,
+  "indexed_at": "2026-06-15T08:15:29.851Z"
+}
