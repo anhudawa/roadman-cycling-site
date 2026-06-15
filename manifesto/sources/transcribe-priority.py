@@ -14,7 +14,7 @@ timestamps, VAD) and writes, per episode, into manifesto/sources/transcripts/:
 Queue is ordered by Manifesto evidence value. Idempotent: skips episodes
 whose .json already exists.
 """
-import json, os, sys, time, urllib.request
+import json, os, sys, time, urllib.request, subprocess
 from faster_whisper import WhisperModel
 
 REPO = "/home/user/roadman-cycling-site"
@@ -67,6 +67,33 @@ def mmss(t):
 
 def log(msg):
     print(f"[{time.strftime('%H:%M:%S')}] {msg}", flush=True)
+
+BRANCH = "claude/roadman-manifesto-phase-0-xs0fcu"
+
+def commit_episode(ep):
+    """Commit + push this episode's outputs immediately, so a container
+    recycle mid-run can never lose a finished transcript again. Retries on
+    index.lock contention (the main agent may commit concurrently)."""
+    rel = [f"manifesto/sources/transcripts/{ep['slug']}.json",
+           f"manifesto/sources/transcripts/{ep['slug']}.txt"]
+    for attempt in range(5):
+        try:
+            subprocess.run(["git", "-C", REPO, "add", *rel], check=True)
+            msg = (f"manifesto: large-v3 transcript — {ep['slug']}\n\n"
+                   f"{ep['title']} ({ep['duration']}, guest {ep['guest']}). "
+                   f"KG-shaped JSON + [mm:ss] txt. UNVERIFIED ASR.\n\n"
+                   f"https://claude.ai/code/session_017F1JB24MW894c8NJKqBvny")
+            subprocess.run(["git", "-C", REPO, "commit", "-q", "-m", msg], check=True)
+            for push_try in range(4):
+                p = subprocess.run(["git", "-C", REPO, "push", "-q", "-u", "origin", BRANCH])
+                if p.returncode == 0:
+                    break
+                time.sleep(2 ** (push_try + 1))
+            log(f"committed + pushed {ep['slug']}")
+            return
+        except subprocess.CalledProcessError:
+            time.sleep(3 * (attempt + 1))  # index.lock or transient — back off
+    log(f"WARN: could not commit {ep['slug']} after retries (files are on disk)")
 
 log("loading large-v3 (int8, 4 threads)")
 model = WhisperModel("large-v3", device="cpu", compute_type="int8", cpu_threads=4)
@@ -123,5 +150,6 @@ for ep in QUEUE:
                 f"# whisper large-v3 · UNVERIFIED ASR — verify quotes against audio\n\n")
         f.write("\n\n".join(lines) + "\n")
     log(f"done {ep['slug']} in {(time.time()-t0)/60:.0f} min ({len(segments)} segments)")
+    commit_episode(ep)
 
 log("queue complete")
