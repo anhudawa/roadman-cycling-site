@@ -4,8 +4,9 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, AnimatedCounter } from "@/components/ui";
 import { getEvents, getAvailability } from "@/lib/inventory";
 import type { AvailabilityByMonth } from "@/lib/inventory";
-import BookingFlow, { FAQSection, FAQ_DATA } from "./SponsorClientSections";
+import BookingFlow, { FAQSection } from "./SponsorClientSections";
 import { FAQSchema } from "@/components/seo/FAQSchema";
+import { FAQ_DATA } from "./sponsor-faq-data";
 
 export const metadata: Metadata = {
   title: "Sponsor the Roadman Cycling Podcast — Live Inventory",
