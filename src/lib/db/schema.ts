@@ -1966,6 +1966,9 @@ export const fantasyPlayers = pgTable(
       .notNull()
       .defaultNow(),
     isDemo: boolean("is_demo").notNull().default(false),
+    /** "Join a mini-league" nudge (48h after signup, Section 5.3) —
+     *  set when sent so nobody is nudged twice. */
+    leagueNudgeSentAt: timestamp("league_nudge_sent_at", { withTimezone: true }),
   },
   (t) => [index("fantasy_players_email_idx").on(t.email)]
 );
@@ -2039,6 +2042,24 @@ export const fantasyRiders = pgTable(
     index("fantasy_riders_team_idx").on(t.proTeamId),
     index("fantasy_riders_status_idx").on(t.status),
   ]
+);
+
+// --- Fantasy: transfer ledger ---
+export const fantasyTransfers = pgTable(
+  "fantasy_transfers",
+  {
+    id: serial("id").primaryKey(),
+    teamId: integer("team_id").notNull().references(() => fantasyTeams.id),
+    /** First stage the incoming rider scores for. */
+    effectiveFromStage: integer("effective_from_stage").notNull(),
+    riderOutId: integer("rider_out_id").notNull().references(() => fantasyRiders.id),
+    riderInId: integer("rider_in_id").notNull().references(() => fantasyRiders.id),
+    /** standard counts against the 8; rest_day_bonus consumes an unlocked bonus;
+     *  grace (pre-Stage-1 DNS swap window) and wildcard (chip) are free. */
+    kind: text("kind").notNull().default("standard").$type<"standard" | "rest_day_bonus" | "grace" | "wildcard">(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [index("fantasy_transfers_team_idx").on(t.teamId)]
 );
 
 // --- Fantasy: Stages ---
@@ -2142,31 +2163,7 @@ export const fantasyTeamRiders = pgTable(
   ]
 );
 
-// --- Fantasy: Transfers ---
-export const fantasyTransfers = pgTable(
-  "fantasy_transfers",
-  {
-    id: serial("id").primaryKey(),
-    teamId: integer("team_id")
-      .notNull()
-      .references(() => fantasyTeams.id),
-    effectiveFromStage: integer("effective_from_stage").notNull(),
-    riderOutId: integer("rider_out_id")
-      .notNull()
-      .references(() => fantasyRiders.id),
-    riderInId: integer("rider_in_id")
-      .notNull()
-      .references(() => fantasyRiders.id),
-    kind: text("kind")
-      .$type<"standard" | "rest_day_bonus" | "grace">()
-      .notNull()
-      .default("standard"),
-    createdAt: timestamp("created_at", { withTimezone: true })
-      .notNull()
-      .defaultNow(),
-  },
-  (t) => [index("fantasy_transfers_team_idx").on(t.teamId)]
-);
+// (fantasyTransfers defined above with full kind union)
 
 // --- Fantasy: Captain picks ---
 export const fantasyCaptainPicks = pgTable(
@@ -2231,6 +2228,9 @@ export const fantasyTeamTotals = pgTable(
     week3Points: integer("week3_points").notNull().default(0),
     bestStagePoints: integer("best_stage_points").notNull().default(0),
     globalRank: integer("global_rank"),
+    /** Rank after the previous scored stage — drives the green/red
+     *  movement arrows on the leaderboard and dashboard. */
+    previousRank: integer("previous_rank"),
     lastScoredStage: integer("last_scored_stage"),
     updatedAt: timestamp("updated_at", { withTimezone: true })
       .notNull()
@@ -2239,19 +2239,39 @@ export const fantasyTeamTotals = pgTable(
   (t) => [index("fantasy_team_totals_rank_idx").on(t.globalRank)]
 );
 
-// --- Fantasy: Leagues ---
-export const fantasyLeagues = pgTable("fantasy_leagues", {
-  id: serial("id").primaryKey(),
-  code: text("code").notNull().unique(),
-  name: text("name").notNull(),
-  createdByPlayerId: integer("created_by_player_id").references(
-    () => fantasyPlayers.id
-  ),
-  isOfficial: boolean("is_official").notNull().default(false),
-  createdAt: timestamp("created_at", { withTimezone: true })
-    .notNull()
-    .defaultNow(),
-});
+// --- Fantasy: chips (the FPL signature, translated to the Tour) ---
+// Each chip is one-shot for the whole Tour and binds to a stage:
+//  - "wildcard":       transfers made for that stage are free and
+//                      uncounted (full squad rebuild mid-Tour)
+//  - "triple_captain": the captain scores ×3 instead of ×2 that stage
+export const fantasyChips = pgTable(
+  "fantasy_chips",
+  {
+    id: serial("id").primaryKey(),
+    teamId: integer("team_id").notNull().references(() => fantasyTeams.id),
+    chip: text("chip").notNull().$type<"wildcard" | "triple_captain">(),
+    stageNumber: integer("stage_number").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [
+    uniqueIndex("fantasy_chips_team_chip_uniq").on(t.teamId, t.chip),
+    index("fantasy_chips_stage_idx").on(t.stageNumber),
+  ]
+);
+
+// --- Fantasy: mini-leagues (the viral mechanic) ---
+export const fantasyLeagues = pgTable(
+  "fantasy_leagues",
+  {
+    id: serial("id").primaryKey(),
+    code: text("code").notNull().unique(),
+    name: text("name").notNull(),
+    createdByPlayerId: integer("created_by_player_id").references(() => fantasyPlayers.id),
+    /** The pre-seeded "Roadman Clubhouse" league everyone can join. */
+    isOfficial: boolean("is_official").notNull().default(false),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  }
+);
 
 // --- Fantasy: League members ---
 export const fantasyLeagueMembers = pgTable(
