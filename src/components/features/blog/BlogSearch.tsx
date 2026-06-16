@@ -71,6 +71,20 @@ const TOPIC_FILTERS: Array<{
       return /triath|ironman|70\.3|bike.?leg|tri.?bike/.test(haystack);
     },
   },
+  {
+    // Cycling's horology cluster — the watch features sit in the `community`
+    // pillar (cycling culture / le metier), so without a cross-cutting filter
+    // they're invisible on /blog unless you already know the brand name. This
+    // surfaces them as their own browsable group. Brand-name anchored to stay
+    // precise: bare "watch" would catch "57M watch hours" (the Netflix piece),
+    // and bare "omega" would catch omega-3 nutrition posts.
+    id: "watches",
+    label: "Watches",
+    match: (p) => {
+      const haystack = `${p.title} ${p.keywords.join(" ")} ${p.excerpt}`.toLowerCase();
+      return /\bwatches\b|cycling watch|wristwatch|smartwatch|chronograph|horolog|\btudor\b|breitling|richard mille|\brolex\b|\bcasio\b|\bbravur\b|omega (olympic|velodrome|timekeep)|f-?91w|black bay/.test(haystack);
+    },
+  },
 ];
 
 export function BlogSearch({ posts }: BlogSearchProps) {

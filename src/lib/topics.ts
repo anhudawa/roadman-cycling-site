@@ -649,6 +649,11 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
   // they diluted the watch-and-time focus this hub is built on.
   "against-the-clock": [
     "against-the-clock-cycling-watches",
+    // The watch features — this hub is their home, not the `community` pillar.
+    "bravur-zwift-collaboration-watch",
+    "tudor-bumblebee-watches-tour-de-france",
+    "breitling-top-time-coppi-bartali-cycling-rivalry",
+    "tudor-pro-cycling-tour-de-france-2026",
     "dan-bigham-aerodynamics-amateur-cyclists",
     "alex-dowsett-pro-cycling-lessons-amateur",
     "ryan-collins-six-hour-velodrome-record-three-tweaks",
