@@ -259,6 +259,11 @@ export default function RacePredictorPage() {
               <Button onClick={calculate} size="lg" className="w-full" disabled={!canCalculate}>
                 Predict My Time
               </Button>
+              {!canCalculate && !result && (
+                <p className="text-foreground-subtle text-xs text-center mt-3">
+                  Enter your power and distance to see your finish time.
+                </p>
+              )}
             </div>
 
             <div aria-live="polite" aria-atomic="false">
