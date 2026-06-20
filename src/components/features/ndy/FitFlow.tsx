@@ -16,7 +16,7 @@ import {
   type StepId,
 } from "@/lib/ndy/questions";
 import type { ProspectAnswers, RoutingDecision } from "@/lib/ndy/types";
-import type { RenderedResponse, TierRecommendation } from "@/lib/ndy/templates";
+import type { RenderedResponse } from "@/lib/ndy/templates";
 
 // ---------------------------------------------------------------------------
 // Types

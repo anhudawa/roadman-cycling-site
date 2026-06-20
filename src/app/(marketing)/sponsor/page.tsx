@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Header, Footer, Section, Container } from "@/components/layout";
-import { Button, Card, ScrollReveal, AnimatedCounter } from "@/components/ui";
+import { Button, ScrollReveal, AnimatedCounter } from "@/components/ui";
 import { getEvents, getAvailability } from "@/lib/inventory";
 import type { AvailabilityByMonth } from "@/lib/inventory";
 import BookingFlow, { FAQSection } from "./SponsorClientSections";

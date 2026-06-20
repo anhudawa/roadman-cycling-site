@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
-import { Card, ScrollReveal, Badge, Button } from "@/components/ui";
+import { Card, ScrollReveal, Badge } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getTermBySlug, getAllTermSlugs, GLOSSARY_TERMS } from "@/lib/glossary";
 

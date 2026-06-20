@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal, Card, Badge } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 import {
   getExpertsWithTopics,

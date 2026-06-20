@@ -9,7 +9,6 @@ import { ENTITY_IDS } from "@/lib/brand-facts";
 import {
   getAllEventGuideSlugs,
   resolveEventGuide,
-  type EventGuide,
   type ResolvedEventGuide,
 } from "@/lib/event-guides";
 import { PHASES } from "@/lib/training-plans";
