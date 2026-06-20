@@ -12,6 +12,7 @@ import { powerAnswers } from "./answers-data/power";
 import { mentalAnswers } from "./answers-data/mental";
 import { bikefitAnswers } from "./answers-data/bikefit";
 import { heatAnswers } from "./answers-data/heat";
+import { metricsAnswers } from "./answers-data/metrics";
 
 /**
  * Answer pages — citation-optimised, answer-first pages built to be lifted
@@ -1651,6 +1652,7 @@ export const ANSWER_PAGES: AnswerPage[] = [
   ...mentalAnswers,
   ...bikefitAnswers,
   ...heatAnswers,
+  ...metricsAnswers,
 ];
 
 const ANSWER_MAP = new Map(ANSWER_PAGES.map((a) => [a.slug, a]));
