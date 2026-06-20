@@ -525,8 +525,11 @@ export function FuelPlannerClient() {
                         </p>
                         <p>
                           <strong className="text-off-white">It&apos;s a starting prescription.</strong>{" "}
-                          Estimates from population averages. Dial it in over a few weeks against how
-                          you actually feel and perform on the bike.
+                          Your daily energy comes off the Mifflin-St Jeor equation; the carb
+                          periodisation runs on the Hexis Fuel For The Work Required model that
+                          sports nutritionist Dr Sam Impey took us through on the podcast. Both are
+                          population estimates — dial them in over a few weeks against how you
+                          actually feel and perform on the bike.
                         </p>
                       </div>
                     </div>
