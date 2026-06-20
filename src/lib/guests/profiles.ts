@@ -728,6 +728,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "andy-mcgrath": {
+    featuredArticles: ["andy-mcgrath-pogacar-not-just-a-freak"],
     description:
       "British cycling journalist and author. Former editor of Rouleur magazine. Author of Tom Simpson: Bird on the Wire (2017 William Hill Sports Book of the Year), God Is Dead: The Rise and Fall of Frank Vandenbroucke, and Tadej Pogačar: Unstoppable. Contributor to The Guardian, Financial Times, and Cyclingnews.",
     sameAs: [
@@ -919,6 +920,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "tim-podlogar": {
+    featuredArticles: ["tim-podlogar-getting-lean-without-losing-power"],
     description:
       "Slovenian sports nutritionist and researcher in carbohydrate metabolism and endurance performance. Peer-reviewed work on glucose-fructose oxidation and high-carb fuelling. Has worked with World Tour cyclists and Ironman athletes on race nutrition.",
     sameAs: [
@@ -1163,6 +1165,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "phil-burt": {
+    featuredArticles: ["phil-burt-crank-length-bike-fit-mistakes"],
     description:
       "British physiotherapist and bike-fit consultant. Former Lead Physiotherapist for British Cycling and bike-fit consultant to Team Sky / Team INEOS. Founder of Phil Burt Innovation. Author of Bike Fit (Bloomsbury). Worked with Bradley Wiggins, Chris Froome, Geraint Thomas, Victoria Pendleton, and Chris Hoy.",
     worksFor: {
@@ -1782,6 +1785,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "sam-impey": {
+    featuredArticles: ["sam-impey-fuelling-carbs-per-hour-world-tour"],
     description:
       "British sports nutritionist and World Tour performance researcher. PhD-level researcher in carbohydrate metabolism. Performance nutritionist working with Tom Pidcock, Filippo Ganna, and other WorldTour athletes. Adviser to Exo Analytics.",
     worksFor: {
@@ -1862,6 +1866,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "daryl-fitzgerald": {
+    featuredArticles: ["daryl-fitzgerald-saddle-height-one-change"],
     description:
       "World Tour bike fitter at Science to Sport. Works with professional and amateur riders on position, comfort and power transfer.",
     whyMatters:
