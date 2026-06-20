@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { StageStrip, type StageStripStage } from "@/components/features/fantasy/StageStrip";
+import { StagePicks } from "@/components/features/fantasy/StagePicks";
+import { LaunchCountdown } from "@/components/features/fantasy/LaunchCountdown";
 import stagesData from "@/data/fantasy/stages-2026.json";
 
 export const metadata: Metadata = {
@@ -38,6 +40,7 @@ export default function FantasyLandingPage() {
           <p className="mb-4 font-heading text-sm tracking-[0.35em] text-coral">
             TOUR DE FRANCE · 4–26 JULY 2026 · FREE TO PLAY
           </p>
+          <LaunchCountdown className="mb-6" />
           <h1 className="font-heading text-[clamp(3.5rem,10vw,7.5rem)] leading-[0.9] tracking-tight">
             PICK 8.
             <br />
@@ -92,6 +95,23 @@ export default function FantasyLandingPage() {
                 <p className="mt-3 leading-relaxed text-off-white/75">{step.body}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stage-by-stage picking guide — helps spend the 100 credits */}
+      <section className="border-t border-white/10 bg-charcoal">
+        <div className="mx-auto max-w-6xl px-4 py-16">
+          <h2 className="font-heading text-4xl tracking-wide sm:text-5xl">
+            STAGE BY STAGE — WHO TO PICK
+          </h2>
+          <p className="mt-3 max-w-2xl leading-relaxed text-off-white/70">
+            Twenty-one stages, twenty-one different days. Sprinters clean up on the flat,
+            climbers own the summit finishes, and the lumpy days reward a brave breakaway pick.
+            Here is what each one asks of your eight, so you spend your credits where they score.
+          </p>
+          <div className="mt-8">
+            <StagePicks stages={stages} />
           </div>
         </div>
       </section>
