@@ -127,6 +127,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "every-roadman-episode-with-stephen-seiler",
       "polarised-vs-sweet-spot-training",
       "what-cycling-podcasts-got-wrong-about-polarised-training",
+      "stephen-seiler-80-20-polarised-training-cyclists",
     ],
     whyMatters:
       "Stephen Seiler is the exercise physiologist who, more than any other researcher, defined how modern endurance athletes structure their training. Working from his lab at the University of Agder, he documented that elite athletes across cycling, rowing, cross-country skiing and running converge on the same intensity distribution — roughly 80% easy, 20% hard, with very little time in the middle. That observation is now known as polarised training and the 80/20 rule, and it is the framework Roadman builds every training conversation on.",
@@ -180,6 +181,9 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "https://www.efprocycling.com/our-team/lachlan-morton/",
       "https://www.procyclingstats.com/rider/lachlan-morton",
     ],
+    featuredArticles: [
+      "lachlan-morton-why-quit-world-tour",
+    ],
     whyMatters:
       "Lachlan Morton is the World Tour rider who proved you can race the Tour de France in July, set the Great Divide bikepacking record, and win Unbound Gravel — all in the same career. He has redefined what a pro cyclist's calendar can look like, championed alt-racing as a serious discipline, and become the public face of the link between ultra-endurance riding and World Tour fitness. For amateurs trying to figure out how to balance long days, racing, and adventure on the same engine, he is the model.",
     keyIdeas: [
@@ -203,6 +207,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "how-to-periodise-cycling-season",
       "how-to-structure-cycling-training-plan",
       "masters-cyclist-guide-getting-faster-after-40",
+      "joe-friel-perfect-cycling-training-week",
     ],
     whyMatters:
       "Joe Friel wrote The Cyclist's Training Bible — the book that taught a generation of amateur cyclists how to think about periodisation, training stress, and the structure of a season. Co-founder of TrainingPeaks and former chairman of the USA Triathlon National Coaching Commission, he is the bridge between sports science and the home-trainer cyclist trying to peak for one event a year. Most modern amateur coaching software still leans on his vocabulary: periodisation, A/B/C races, base, build, peak, recovery weeks.",
@@ -277,6 +282,9 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "https://en.wikipedia.org/wiki/Daniel_Bigham",
       "https://www.britishcycling.org.uk/gbcyclingteam/bio/Dan_Bigham",
     ],
+    featuredArticles: [
+      "dan-bigham-aerodynamics-amateur-cyclists",
+    ],
     whyMatters:
       "Dan Bigham is the British engineer-rider who held the UCI Hour Record at 55.548km in 2022 and now leads engineering at Red Bull–Bora–Hansgrohe. He is one of a small group of people who can talk credibly about both sides of the marginal-gains conversation: the wind-tunnel physics, and what it actually feels like to hold an aero position at threshold for an hour. His work on time-trial position, equipment selection, and pacing strategy has shaped how the modern peloton approaches every TT stage.",
     keyIdeas: [
@@ -301,6 +309,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "every-roadman-episode-with-dan-lorang",
       "ironman-bike-training-plan-16-weeks",
       "bike-leg-of-triathlon-why-age-groupers-get-it-wrong",
+      "cycling-periodisation-friel-lorang-johnson",
     ],
     whyMatters:
       "Dan Lorang is one of the most respected coaches in endurance sport — the long-time coach to triathlon greats Jan Frodeno, Anne Haug, and Lucy Charles-Barclay, and Head of Performance at Red Bull–Bora–Hansgrohe since 2017. He is the rare coach who has produced Ironman world champions and Grand Tour stage winners using the same underlying principles. His public work on training-load management, polarised intensity, and the long-arc development of an athlete has influenced how the smarter end of the amateur world structures their season.",
@@ -348,6 +357,9 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     sameAs: [
       "https://www.researchgate.net/profile/David-Dunne-9",
       "https://www.hexis.live/blog/meet-the-team-david-dunne",
+    ],
+    featuredArticles: [
+      "david-dunne-world-tour-nutritionist-cycling-weight-loss",
     ],
     whyMatters:
       "David Dunne is the performance nutritionist behind Hexis, the personalised sports-nutrition platform used by World Tour cyclists, Premier League clubs, NBA franchises, Super League sides, and Ryder Cup Team Europe. With a PhD in behaviour change, design thinking, and technology innovation in sports nutrition, and IOC alumnus credentials, he sits at the intersection of academic research and practical application. His work matters because he turned periodised nutrition — matching carb intake to training load day by day — from a coaching idea into a measurable system used by hundreds of elite athletes and tens of thousands of amateurs.",
@@ -473,6 +485,9 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "https://www.wikidata.org/wiki/Q138745",
       "https://www.formula1.com/en/drivers/valtteri-bottas",
       "https://www.instagram.com/valtteribottas/",
+    ],
+    featuredArticles: [
+      "valtteri-bottas-f1-cycling-cross-training-mindset",
     ],
     whyMatters:
       "Valtteri Bottas is the F1 driver who became one of the most credible amateur gravel racers in the world while still in the paddock. Two seasons as Mercedes runner-up, ten Grand Prix wins, and a 2024 UCI Gravel World Championships start — plus FNLD GRVL, the Finnish gravel race he co-founded with partner Tiffany Cromwell. For Roadman's audience he is the proof that genuine cycling performance is reachable while holding down a career outside the sport, and a voice on what motorsport-grade preparation, recovery, and discipline look like applied to the bike.",
@@ -698,6 +713,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     ],
     featuredArticles: [
       "best-cycling-coach-ireland",
+      "eddie-dunbar-ineos-grenadiers-training-lessons",
     ],
     whyMatters:
       "Eddie Dunbar is the Irish climber who turned a near-career-ending sequence of injuries and team transitions into two Vuelta stage wins in 2024 and a 2026 move to Q36.5 alongside Tom Pidcock. From Aqua Blue Sport to Team Sky to INEOS to Jayco-AlUla and now Q36.5, his career has been the modern WorldTour journeyman story — and his honesty about how close he came to being out of the sport makes him a rare voice on what genuine resilience looks like at the top end. For the Irish audience and the broader masters base, he is a credible model for staying in the fight when the data says you should not.",
@@ -1021,6 +1037,9 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   "sofiane-sehili": {
     description:
       "French ultra-distance bikepacking and self-supported endurance cyclist. Winner of the Tour Divide, Atlas Mountain Race, and three-time Silk Road Mountain Race champion.",
+    featuredArticles: [
+      "sofiane-sehili-ultra-endurance-mindset-bikepacking",
+    ],
     whyMatters:
       "Sofiane Sehili is one of the most successful self-supported ultra-distance riders in the world — winner of the Tour Divide, the Atlas Mountain Race, and a three-time Silk Road Mountain Race champion. His perspective on routing, sleep strategy, gear minimalism, and sustainable pacing across 4,000+ km races is one of the most experienced on record. For Roadman listeners thinking about TCR, ATR, or solo bikepacking, his content is a primary practical reference.",
     keyIdeas: [
@@ -1980,6 +1999,50 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "Marginal position tweaks compound over hours — small drag savings are huge across a six-hour record.",
     ],
     relatedHubs: ["ftp-training", "cycling-training-plans"],
+  },
+
+  "craig-geater": {
+    description:
+      "Head mechanic for Team Jayco–AlUla with over 20 years working on professional team bikes across road and grand-tour racing.",
+    worksFor: {
+      name: "Team Jayco–AlUla",
+      type: "SportsTeam",
+      url: "https://greenedgecycling.com",
+    },
+    featuredArticles: [
+      "craig-geater-pro-mechanic-bike-maintenance-lessons",
+    ],
+    whyMatters:
+      "Craig Geater has spent more than two decades as a professional cycling mechanic, currently head mechanic at Team Jayco–AlUla, building and maintaining the bikes WorldTour riders trust at 70km/h. He has watched every tool, product and maintenance fad come and go, which makes him an unusually grounded guide to what actually keeps a bike running well — and a useful corrective to the marketing that surrounds amateur bike maintenance.",
+    keyIdeas: [
+      "A good set of Allen keys and a torque wrench will build three-quarters of a modern bike — you need fewer tools than you think.",
+      "Cheap tools are a false economy; quality tools last, work better, and are kinder to delicate carbon parts.",
+      "A torque wrench is non-negotiable on a modern bike — it prevents both cracked carbon and slipped components.",
+      "Diesel cleans a chain aggressively but strips the pins; pro teams use a standard degreaser plus a wax or lube suited to the conditions.",
+      "Consistency beats deep cleans — wiping and re-lubing the drivetrain regularly saves more watts and wear than an occasional strip-down.",
+    ],
+  },
+
+  "ben-oliver": {
+    description:
+      "Professional road cyclist for Modern Adventure Pro Cycling who has raced Paris-Roubaix and the cobbled classics.",
+    worksFor: {
+      name: "Modern Adventure Pro Cycling",
+      type: "SportsTeam",
+      url: "https://hincapie.com/",
+    },
+    featuredArticles: [
+      "paris-roubaix-power-durability-ben-oliver",
+    ],
+    whyMatters:
+      "Ben Oliver is a professional rider with Modern Adventure Pro Cycling who has raced the cobbled classics, including Paris-Roubaix. His value to amateurs is the unfiltered, recent insider view of what those races actually demand — the fight for position into the cobbled sectors, the tyre and pressure choices that decide the day, and the sector-by-sector effort management that matters far more than raw power.",
+    keyIdeas: [
+      "Paris-Roubaix is decided by positioning into the cobbled sectors, not raw power — being at the front before it matters saves the matches you need.",
+      "Cobbles get smoother and pass faster the harder you ride them; committing to speed beats tensing up and braking.",
+      "A fast opening — around 54km/h at Roubaix — can make breakaways impossible regardless of how motivated the riders are.",
+      "Tyre choice and pressure are the most important equipment decisions on rough terrain, more than marginal gains elsewhere.",
+      "Durability on the cobbles is built sector by sector — managing effort one section at a time is as mental as it is physical.",
+    ],
   },
 };
 
