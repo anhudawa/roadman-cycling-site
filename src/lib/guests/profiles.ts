@@ -2044,6 +2044,61 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "Durability on the cobbles is built sector by sector — managing effort one section at a time is as mental as it is physical.",
     ],
   },
+
+  "tyler-hamilton": {
+    description:
+      "Former US Postal, CSC and Phonak professional, 2004 Olympic time-trial gold medallist and Tour de France stage winner, whose 2012 book The Secret Race became the defining first-hand account of the EPO era.",
+    featuredArticles: [
+      "tyler-hamilton-us-postal-doping-confession",
+    ],
+    whyMatters:
+      "Tyler Hamilton was one of the most talented American riders of his generation — an Olympic time-trial champion and a Tour de France stage winner — before he became one of its most important witnesses. His confession and his book The Secret Race did more than any other rider account to document how the EPO-era doping system actually worked, and who built it. For amateurs his value now is double: a hard-won, honest perspective on the culture that produced the era, and a coach's eye on how training and power-based racing have evolved since.",
+    keyIdeas: [
+      "The early US Postal years ran on an A-team and B-team structure; not every rider was inside the programme, and many did not initially know what it involved.",
+      "The first doping intervention was framed by a team doctor as something for his health, explicitly 'not doping' — a framing designed to reduce the moral weight of the moment.",
+      "Pinning the era on a handful of named riders misses the doctors, directors and officials who built and maintained the system and held the structural responsibility.",
+      "Forgiving Lance Armstrong was a long process, less about absolving anyone and more about releasing years of accumulated resentment.",
+      "The shift to power meters and data has changed how riders train and race since his era — a different, more measurable sport than the one he came up in.",
+    ],
+  },
+
+  "steve-cummings": {
+    description:
+      "Retired British professional, Olympic team-pursuit medallist and two-time Tour de France stage winner, known for intelligent solo breakaways and an unusually individual, self-directed approach to training.",
+    featuredArticles: [
+      "steve-cummings-maverick-self-coached-lessons",
+    ],
+    whyMatters:
+      "Steve Cummings built a long WorldTour career — Olympic track medals, stage wins at the Tour de France and the Vuelta, and a reputation as the peloton's great breakaway tactician — by doing things his own way. He tweaked nutrition, training and preparation to fit himself rather than following any programme as gospel. For the self-coached amateur, Cummings is the case study in disciplined individualism: experiment seriously, keep what works for your body, and know when to revert.",
+    keyIdeas: [
+      "Adapt every system to fit yourself rather than following a programme as gospel — the core mindset of good self-coaching.",
+      "He experimented seriously with nutrition, including low-carb and fasted approaches, but tuned them to his own body — n=1, not dogma.",
+      "He also knew the limits: he scaled fasting back around races because it was too big a shock to the body before competition.",
+      "His breakaway wins were built on timing and reading the race, not just raw watts — intelligence as a performance edge.",
+      "Self-coaching works when experimentation is paired with honesty about what is and isn't helping.",
+    ],
+  },
+
+  "tayler-wiles": {
+    description:
+      "Former Trek-Segafredo professional road cyclist and outspoken advocate for equality in women's cycling, who reached the WorldTour despite only taking up the sport in her late teens.",
+    worksFor: {
+      name: "Trek-Segafredo",
+      type: "SportsTeam",
+    },
+    featuredArticles: [
+      "tayler-wiles-womens-cycling-growth-inequality",
+    ],
+    whyMatters:
+      "Tayler Wiles is a former WorldTour professional whose path into the sport — buying her first bike at around nineteen after a childhood in soccer — makes her a compelling argument that the door opens later than most people assume. She raced at the top level for Trek-Segafredo and became a clear voice on wages, inequality and the professionalisation of women's cycling at a pivotal moment in the sport's growth. Her story matters to amateurs as proof that a late start is no barrier, and as a window into how far women's cycling has come.",
+    keyIdeas: [
+      "She came to cycling late — her first bike at around nineteen after a childhood in soccer — and still reached the WorldTour.",
+      "A late start is no barrier: the door into endurance sport opens later than most people think.",
+      "An outspoken advocate for equality, she spoke openly about wages and inequality when women's cycling was only beginning to professionalise.",
+      "Women's cycling has grown markedly since — rising minimum salaries, a deeper calendar, and far more visibility.",
+      "Coming out within the female peloton drew no backlash, in her telling — a sign of how it should be treated everywhere: as no big deal.",
+    ],
+  },
 };
 
 /** Look up overrides for a guest by slug. Returns undefined if no curated data. */

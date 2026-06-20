@@ -201,6 +201,8 @@ const KNOWN_CREDENTIALS: Record<string, string> = {
   "Shannon Malseed": "Professional cyclist, Australian national team",
   "Sofiane Sehili": "Ultra-endurance cyclist, bikepacking record holder",
   "Tayler Wiles": "Former Trek-Segafredo pro cyclist",
+  "Tyler Hamilton": "Olympic time-trial champion, Tour de France stage winner, author of The Secret Race",
+  "Steve Cummings": "Olympic medallist, two-time Tour de France stage winner",
   "Tim Spector": "Professor of genetic epidemiology, ZOE founder",
   "Uli Schoberer": "Inventor of the SRM power meter",
   "Valtteri Bottas": "F1 driver, keen cyclist",
