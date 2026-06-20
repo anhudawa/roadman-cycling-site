@@ -1608,6 +1608,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "michael-ormsbee": {
+    featuredArticles: ["michael-ormsbee-protein-before-bed-cyclists"],
     description:
       "American exercise scientist. Professor of Nutrition and Integrative Physiology at Florida State University. Director of the FSU Institute of Sports Sciences and Medicine. Two decades of published research on pre-sleep protein feeding and overnight muscle protein synthesis.",
     worksFor: {
@@ -1895,6 +1896,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "alex-welburn": {
+    featuredArticles: ["alex-welburn-critical-power-w-prime-training-metrics"],
     description:
       "Cycling coach and physiologist; PhD researcher at Loughborough University focused on critical power and W'. Founder of The Performance Project.",
     whyMatters:
@@ -1909,6 +1911,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "dr-andrew-sellars": {
+    featuredArticles: ["andrew-sellars-breathing-co2-cycling"],
     description:
       "Anaesthesiologist, cycling coach and respiratory-physiology researcher. Co-founder of VO2 Master and Isocapnic, team director of Balance Point Racing.",
     whyMatters:
@@ -1923,6 +1926,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "uri-carlson": {
+    featuredArticles: ["uri-carlson-under-over-optimal-fuelling"],
     description:
       "Registered dietitian nutritionist. Founder of Inner Wild Nutrition and a fuelling specialist associated with Skratch Labs.",
     whyMatters:
@@ -1937,6 +1941,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "stephen-barrett": {
+    featuredArticles: ["stephen-barrett-worldtour-coaching-belief-better-questions"],
     description:
       "Head coach for Decathlon AG2R La Mondiale (UCI WorldTour). Irish coach of Felix Gall and a former Irish national track pursuit rider.",
     whyMatters:
