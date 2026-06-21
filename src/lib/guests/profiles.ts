@@ -939,6 +939,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "dr-michael-gervais": {
+    featuredArticles: ["michael-gervais-mind-awareness-training-cyclists"],
     description:
       "American high-performance psychologist. Co-founder of Compete to Create with Pete Carroll, performance psychologist for the Seattle Seahawks during their Super Bowl-winning era, and host of the Finding Mastery podcast. Has worked with Olympic gold medallists, World Series champions, and a global roster of corporate leaders.",
     whyMatters:
@@ -1506,6 +1507,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "sarah-berry": {
+    featuredArticles: ["sarah-berry-when-you-eat-food-quality-cyclists"],
     description:
       "British nutrition scientist. Professor of Nutritional Sciences at King's College London and Chief Scientist at ZOE. Lead researcher on the PREDICT studies into individual metabolic response to food.",
     worksFor: {
@@ -1809,6 +1811,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "christian-schrot": {
+    featuredArticles: ["christian-schrot-why-pros-train-easy"],
     description:
       "German cycling coach and sports scientist. Coach at Team Jayco–AlUla on the WorldTour. Public voice on lab-based intensity-zone calibration, fat oxidation curves, and the gap between FTP-derived and metabolic-test-derived training zones.",
     worksFor: {
@@ -2128,6 +2131,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "barry-murray": {
+    featuredArticles: ["barry-murray-fat-adaptation-metabolic-flexibility"],
     description:
       "Consultant sports nutritionist and lecturer specialising in endurance fuelling and fat-adaptation approaches.",
     whyMatters:
@@ -2188,6 +2192,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "pete-stetina": {
+    featuredArticles: ["pete-stetina-worldtour-to-gravel-reinvention"],
     description:
       "Former WorldTour professional who became one of the leading figures in the gravel-racing movement.",
     whyMatters:
