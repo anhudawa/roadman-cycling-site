@@ -129,6 +129,13 @@ const NAME_ALIASES: Record<string, string> = {
 
 /** Known credentials for guests (enrichment data) */
 const KNOWN_CREDENTIALS: Record<string, string> = {
+  "Jay Vine": "UAE Team Emirates professional, Zwift Academy winner",
+  "Barry Murray": "Consultant sports nutritionist and lecturer",
+  "Derek Cullen": "Adventurer and bikepacker",
+  "Ed Veal": "Canadian professional cyclist, time-trial specialist",
+  "Imogen Cotter": "Irish national champion road cyclist",
+  "Nicolas Roche": "Former WorldTour professional, 65 top-10 Grand Tour stage finishes",
+  "Pete Stetina": "Former WorldTour professional turned gravel racer",
   "Stephen Seiler": "Exercise physiologist, polarised training pioneer",
   "Cory Williams": "L39ION of Los Angeles co-founder, US criterium champion",
   "Derek Teel": "Founder of Dialed Health, S&C coach for cyclists",

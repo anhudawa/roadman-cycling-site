@@ -402,7 +402,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "30+ different plants a week is not a wellness fad — it is the simplest proxy for the gut diversity that supports recovery, immune function, and hard training.",
       "Race-day nutrition has to be rehearsed in training — the day of an event is the worst possible time to discover a gel does not agree with your gut.",
       "Recovery starts in the first 30 minutes after a hard session and is mostly about getting carbohydrate, protein, and fluid in fast — the format (real food, shake, smoothie) matters less than the timing.",
-      "Plant-powered performance is genuinely possible at the elite level, but the protein and iron maths have to be deliberate — it is not just removing meat from a normal diet.",
+      "Plant-powered performance is possible at the elite level, but the protein and iron maths have to be deliberate — it is not just removing meat from a normal diet.",
     ],
     relatedHubs: ["cycling-nutrition", "cycling-weight-loss"],
   },
@@ -461,7 +461,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "triathlon-ftp-pacing-strategy",
     ],
     whyMatters:
-      "Alistair Brownlee is the standard the rest of triathlon spent a decade chasing. Back-to-back Olympic golds, four European titles, a Commonwealth title, and a career built on a training philosophy of high aerobic volume layered with brutal threshold work — the same template the Norwegian school then refined. For Roadman's masters and triathlete audience he is the bridge from World Tour-level cycling fitness to multi-discipline endurance, and a credible voice on what genuinely transfers from elite training and what does not.",
+      "Alistair Brownlee is the standard the rest of triathlon spent a decade chasing. Back-to-back Olympic golds, four European titles, a Commonwealth title, and a career built on a training philosophy of high aerobic volume layered with brutal threshold work — the same template the Norwegian school then refined. For Roadman's masters and triathlete audience he is the bridge from World Tour-level cycling fitness to multi-discipline endurance, and a credible voice on what transfers from elite training and what does not.",
     keyIdeas: [
       "Back-to-back Olympic triathlon golds at London 2012 and Rio 2016 — the only athlete to hold the title in consecutive Games.",
       "Aerobic base done right beats fashionable intensity protocols — the volume he ran for ten years is what made the threshold sessions land.",
@@ -792,7 +792,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "https://en.wikipedia.org/wiki/Colin_O%27Brady",
     ],
     whyMatters:
-      "Colin O'Brady is the American endurance athlete who completed the first solo unsupported Antarctic crossing — 932 miles, 54 days, dragging a 375-pound sled across the continent. He held the Explorers Grand Slam record (Seven Summits plus both poles in 139 days). His work matters for cyclists not because of the equipment overlap but because of the methodology: training for multi-week ultra-endurance, mental rehearsal under load, energy availability across 6,000-calorie days, and recovery from genuinely extreme physical demands. For Roadman listeners thinking about week-long bikepacking trips or Race Across America-style efforts, his frameworks are some of the cleanest available.",
+      "Colin O'Brady is the American endurance athlete who completed the first solo unsupported Antarctic crossing — 932 miles, 54 days, dragging a 375-pound sled across the continent. He held the Explorers Grand Slam record (Seven Summits plus both poles in 139 days). His work matters for cyclists not because of the equipment overlap but because of the methodology: training for multi-week ultra-endurance, mental rehearsal under load, energy availability across 6,000-calorie days, and recovery from extreme physical demands. For Roadman listeners thinking about week-long bikepacking trips or Race Across America-style efforts, his frameworks are some of the cleanest available.",
     keyIdeas: [
       "Mental rehearsal of suffering is a trainable skill — the riders who finish are the ones who have been there in their head first.",
       "Energy availability for multi-week efforts is the limiting factor — you cannot make up calorie debt mid-event.",
@@ -1377,7 +1377,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     description:
       "South African professional gravel cyclist. Public advocate for addiction recovery. Sustained recovery from heroin and opioid addiction before re-entering competitive endurance sport.",
     whyMatters:
-      "Owen Vermeulen is one of the most honest voices on addiction and recovery in cycling — a South African gravel pro who went public with the full arc of teenage heroin use, a professional skateboarding career, opioid relapse after a sport-ending injury, and the five-year non-linear road back into endurance sport. His perspective matters because it cuts through the highlight-reel pro mythology and reframes addiction as a biological response, not a moral failing. For Roadman's audience — many of whom know someone, or are someone, navigating dependency — his story is one of the most useful ones the show has run.",
+      "Owen Vermeulen is one of the most honest voices on addiction and recovery in cycling — a South African gravel pro who went public with the full arc of teenage heroin use, a professional skateboarding career, opioid relapse after a sport-ending injury, and the five-year non-linear road back into endurance sport. His perspective matters because it cuts through the highlight-reel pro mythology and reframes addiction as a biological response, not a moral failing. For Roadman's audience — many of whom know someone, or are someone, facing dependency — his story is one of the most useful ones the show has run.",
     keyIdeas: [
       "Active addiction collapses the future into a single horizon: avoiding withdrawal tomorrow morning. The inability to think past 24 hours is the central trap, not willpower.",
       "Addiction reshapes neural pathways via trauma and repeated use — relapse is part of the recovery arc, not evidence of failure.",
@@ -1520,7 +1520,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     whyMatters:
       "Sarah Berry is one of the most-cited nutrition researchers working today — Professor of Nutritional Sciences at King's College London and Chief Scientist at ZOE, where she leads the PREDICT studies into how the same meal produces 20-fold different glucose, lipid, and inflammatory responses across individuals. For cyclists chasing the last 2–3% of body composition, fixing mid-ride GI issues, or trying to make sense of why a sports nutrition plan that worked for a teammate doesn't work for them, her work is the most rigorous starting point.",
     keyIdeas: [
-      "Individual blood glucose responses to identical meals vary up to 20-fold between people — generic nutrition guidelines underperform personalised approaches because the variation is genuinely enormous.",
+      "Individual blood glucose responses to identical meals vary up to 20-fold between people — generic nutrition guidelines underperform personalised approaches because the variation is enormous.",
       "Ultra-processed food gets eaten ~50% faster, bypassing satiety signals — the mechanism is consumption speed, not just composition, producing ~500 extra calories/day at the population level.",
       "Eat fibre, fat or protein BEFORE carbohydrate at a meal — same food, lower glucose peak. Slows gastric emptying. The food order is a free intervention.",
       "Sleep deprivation worsens metabolic response to identical food — the same breakfast after a bad night produces a higher glucose peak. Sleep is a direct nutritional strategy.",
@@ -1596,7 +1596,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "https://gabbybernstein.com/",
     ],
     whyMatters:
-      "Gabby Bernstein is a New York Times bestselling author of nine books on trauma, meditation and mental health. Her perspective is useful for endurance athletes for two reasons: the explicit framing that 'spiritual practice isn't a substitute for clinical care' is a corrective for the wellness-industry tendency to under-refer, and her management-by-fun approach to running a creative business is a counterweight to the over-optimised, metrics-driven default that grinds amateur cyclists down. For Roadman's audience navigating the mental side of long training arcs, both halves matter.",
+      "Gabby Bernstein is a New York Times bestselling author of nine books on trauma, meditation and mental health. Her perspective is useful for endurance athletes for two reasons: the explicit framing that 'spiritual practice isn't a substitute for clinical care' is a corrective for the wellness-industry tendency to under-refer, and her management-by-fun approach to running a creative business is a counterweight to the over-optimised, metrics-driven default that grinds amateur cyclists down. For Roadman's audience working through the mental side of long training arcs, both halves matter.",
     keyIdeas: [
       "Spiritual practice isn't a substitute for clinical care — when the issue is biochemical and a proper diagnosis is in place, no meditation gets you out of that.",
       "Some books take six years longer than planned because you can't write them until you're on the other side of what you're describing — useful frame for any athlete trying to talk about a hard experience too soon.",
@@ -1751,7 +1751,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
     description:
       "Irish Ironman triathlete. Self-coached sub-9:30 finisher and Ironman pro license holder. Former North Dublin footballer who signed for Dunfermline as a teenager. Public voice on adversity, mentorship, and second-chance athletic careers.",
     whyMatters:
-      "Ger Redmond is the North Dublin athlete who went from Mountjoy Prison to a sub-9:30 Ironman pro license without a coach — and never having swum a length of a pool before signing up for his first Ironman. His story disrupts every 'you must do X to do Y' frame in endurance training: no periodisation programme, no athletic background in the discipline, no support team. For Roadman's audience navigating mid-life pivots into endurance sport, he is one of the most useful counter-examples to the structured-coaching orthodoxy.",
+      "Ger Redmond is the North Dublin athlete who went from Mountjoy Prison to a sub-9:30 Ironman pro license without a coach — and never having swum a length of a pool before signing up for his first Ironman. His story disrupts every 'you must do X to do Y' frame in endurance training: no periodisation programme, no athletic background in the discipline, no support team. For Roadman's audience facing mid-life pivots into endurance sport, he is one of the most useful counter-examples to the structured-coaching orthodoxy.",
     keyIdeas: [
       "Sub-9:30 Ironman is achievable without a coach, a periodisation plan, or a swimming background — story disrupts the orthodoxy of structured triathlon coaching.",
       "The original life arc was football — 16-year-old North Dublin kid signs for Dunfermline, scores a 4-3 winner off the bench in his trial, lives the dream until a family crisis call brings him home and the spiral starts.",
@@ -1822,7 +1822,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "Fat oxidation curves are individual — lab spirometry will often show your true Fat Max and zones differ meaningfully from anything derived off a 20-minute FTP test.",
       "A 20-minute FTP field test estimates threshold power but says nothing about fuel utilisation — power-derived zones miscalibrate fuel-burning intent right at the start.",
       "Track work via kilojoules per zone, not TSS as a single number — you see how much work is actually being done at each intensity, which is what moves fitness.",
-      "An 80/20 distribution can flex (the 20 can land at 15 or 28 in any given week) — what's non-negotiable is that the 80 is genuinely easy.",
+      "An 80/20 distribution can flex (the 20 can land at 15 or 28 in any given week) — what's non-negotiable is that the 80 is easy.",
     ],
     relatedHubs: ["ftp-training", "cycling-training-plans"],
   },
@@ -1948,7 +1948,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "Stephen Barrett coaches at the very top — head coach at a WorldTour team and the man behind Felix Gall's rise — and he's unusually willing to explain what actually transfers to amateurs. His most valuable training secrets, as he framed them on the podcast, aren't secret sessions; they're the discipline of individualising the plan, periodising the season properly, and protecting the easy riding that makes the hard work land. He's a credible bridge between WorldTour methodology and the rider trying to apply it on a normal life.",
     keyIdeas: [
       "WorldTour gains come from individualisation and periodisation, not secret sessions — the plan is built around the athlete, not copied.",
-      "Protecting the easy riding is what makes the hard work transfer — pros are religious about the 80% being genuinely easy.",
+      "Protecting the easy riding is what makes the hard work transfer — pros are religious about the 80% being easy.",
       "Season structure decides whether form arrives on the right day — base, build and peak each have a distinct job.",
       "Amateurs over-index on single workouts and under-index on the shape of the whole year.",
     ],
@@ -2107,6 +2107,95 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "An outspoken advocate for equality, she spoke openly about wages and inequality when women's cycling was only beginning to professionalise.",
       "Women's cycling has grown markedly since — rising minimum salaries, a deeper calendar, and far more visibility.",
       "Coming out within the female peloton drew no backlash, in her telling — a sign of how it should be treated everywhere: as no big deal.",
+    ],
+  },
+
+  "jay-vine": {
+    description:
+      "Australian professional cyclist for UAE Team Emirates who won the Zwift Academy and turned an indoor-racing breakthrough into a WorldTour career and Grand Tour stage wins.",
+    worksFor: {
+      name: "UAE Team Emirates",
+      type: "SportsTeam",
+    },
+    whyMatters:
+      "Jay Vine is the proof that the path into professional cycling has changed. He won the Zwift Academy from his pain cave and rode it into a WorldTour contract, then into Grand Tour stage wins. For the amateur grinding away on a smart trainer, he's the clearest example yet that watts measured indoors are real watts — and his reflections on how easing his training load made him faster cut against the more-is-better instinct most amateurs share.",
+    keyIdeas: [
+      "Won the Zwift Academy and converted an indoor-racing breakthrough into a WorldTour career — the watts you produce on a trainer are real.",
+      "Found that doing less training, not more, made him faster as he moved up — recovery is the limiter at the top.",
+      "Came through as a neo-pro without the traditional junior-ranks pathway, a thoroughly modern route into the sport.",
+      "Built a reputation on big Strava segment records before the pro contract — performance is performance, wherever it's measured.",
+    ],
+  },
+
+  "barry-murray": {
+    description:
+      "Consultant sports nutritionist and lecturer specialising in endurance fuelling and fat-adaptation approaches.",
+    whyMatters:
+      "Barry Murray is a nutritionist and lecturer who has worked with endurance and World Tour athletes, with a particular interest in fat adaptation and lower-carbohydrate strategies for long efforts. His value to amateurs is a grounding in the metabolic science behind fuelling, and a willingness to question fashionable defaults rather than accept them.",
+    keyIdeas: [
+      "Fuelling strategy should be matched to the demand of the work, not applied as a one-size rule.",
+      "Fat adaptation and lower-carbohydrate approaches have a place for some endurance athletes and contexts.",
+      "Understanding the metabolic 'why' behind a fuelling choice beats following a trend.",
+    ],
+  },
+
+  "derek-cullen": {
+    description:
+      "Adventurer, bikepacker, storyteller and public speaker who cycled solo across Africa.",
+    whyMatters:
+      "Derek Cullen is an adventurer and bikepacker who rode solo across Africa and built a life around long, self-supported journeys. His perspective is a counterweight to the metrics-driven default of amateur cycling: a reminder that the bike is also a vehicle for adventure, perspective and a different kind of fulfilment than a faster FTP.",
+    keyIdeas: [
+      "The bike can be a tool for adventure and perspective, not only for performance.",
+      "Long self-supported journeys are built on managing yourself over days and weeks, not chasing daily numbers.",
+      "Stepping away from routine and into a big trip can reset how you relate to the sport.",
+    ],
+  },
+
+  "ed-veal": {
+    description:
+      "Canadian professional cyclist and time-trial specialist with international honours and a Zwift world record to his name.",
+    whyMatters:
+      "Ed Veal is a Canadian professional with a long palmarès of national and international results, a time-trial specialist who also set a Zwift world record. His value to amateurs is the mindset side: a clear-eyed view of what actually separates riders who win from riders who don't, built on decades at the sharp end.",
+    keyIdeas: [
+      "The 'knack' of winning is a trainable set of skills and habits, not innate luck.",
+      "Time-trialling rewards the rider who can suffer in a controlled, repeatable way.",
+      "Indoor and virtual records are a legitimate proving ground for real fitness.",
+    ],
+  },
+
+  "imogen-cotter": {
+    description:
+      "Irish national champion road cyclist who came to the sport from a background in cross-country running.",
+    whyMatters:
+      "Imogen Cotter is an Irish national champion who switched to cycling from cross-country running and rose quickly to the international level. Her story matters to amateurs as a case study in a fast, late transition into a new endurance discipline — and in handling the training, fuelling and pressure that come with going full-time.",
+    keyIdeas: [
+      "A fast transition from one endurance sport to another is possible with the right training and patience.",
+      "Going full-time changes the demands — recovery, fuelling and managing pressure all scale up.",
+      "Setbacks are part of the path to a national title, not a detour from it.",
+    ],
+  },
+
+  "nicolas-roche": {
+    description:
+      "Former WorldTour professional with a career spanning almost two decades and 65 top-ten Grand Tour stage finishes.",
+    whyMatters:
+      "Nicolas Roche built a near-twenty-year WorldTour career with 65 top-ten Grand Tour stage finishes, racing as both a GC rider and a road captain. His reflections on a long career — the regrets, the highlights, and finding his identity as an Irish rider — offer amateurs a rare honest look at what two decades at the top actually costs and gives.",
+    keyIdeas: [
+      "A long career is built on consistency and reinvention, not just peak years.",
+      "Road captaincy and service are as much a part of the sport as personal results.",
+      "Identity and motivation matter as much as physiology over a two-decade career.",
+    ],
+  },
+
+  "pete-stetina": {
+    description:
+      "Former WorldTour professional who became one of the leading figures in the gravel-racing movement.",
+    whyMatters:
+      "Pete Stetina spent years in the WorldTour before moving to the front of the gravel scene, where he has been one of its most visible and competitive figures. His pivot is instructive for amateurs: a demonstration that there's serious, fulfilling racing well beyond the road peloton, and that the engine built on the road transfers directly to long, hard gravel days.",
+    keyIdeas: [
+      "The fitness built in the WorldTour transfers directly to elite gravel racing.",
+      "Gravel offers serious competition and purpose beyond the traditional road calendar.",
+      "Reinvention late in a career can extend it rather than end it.",
     ],
   },
 };
