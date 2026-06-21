@@ -268,6 +268,27 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
       "cycling and time",
     ],
   },
+  {
+    slug: "masters-cycling",
+    title: "Masters Cycling — Training, Recovery & Performance After 40",
+    headline: "STILL GETTING FASTER",
+    ctaHeadline: "COACHING BUILT FOR THE OVER-40 RIDER.",
+    description:
+      "Masters cycling done right: how to train, recover, lift and fuel after 40 so you keep getting faster. Built for the serious amateur the whole Roadman method is designed around.",
+    pillar: "coaching",
+    keywords: [
+      "masters cycling",
+      "cycling after 40",
+      "cycling over 40",
+      "cycling over 50",
+      "masters cycling training plan",
+      "getting faster after 40",
+      "cycling training over 40",
+      "masters cyclist recovery",
+      "cycling after 50",
+      "vo2 max decline cycling",
+    ],
+  },
 ];
 
 /** Map of topic slugs to relevant blog post slugs */
@@ -683,6 +704,58 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-time-trial-tips",
     "uli-schoberer-first-power-meter-cycling-history",
   ],
+  "masters-cycling": [
+    "10-minute-mobility-routine-masters-cyclist",
+    "age-group-ftp-benchmarks-2026",
+    "alcohol-and-the-masters-cyclist",
+    "andy-galpin-fast-twitch-fibres-cyclist-after-40",
+    "back-to-the-bunch-after-40",
+    "best-cycling-coach-masters-riders",
+    "best-cycling-training-podcasts-age-groupers",
+    "best-roadman-episodes-masters",
+    "bike-fit-after-40",
+    "bike-leg-of-triathlon-why-age-groupers-get-it-wrong",
+    "bone-density-cycling-after-menopause",
+    "comeback-cyclist-12-week-return-plan",
+    "cycling-after-40-faster-science",
+    "cycling-after-40-recovery-report-2026",
+    "cycling-cadence-by-age-masters",
+    "cycling-over-40-complete-guide",
+    "cycling-over-40-getting-faster",
+    "cycling-over-50-training",
+    "cycling-training-plan-masters-over-40",
+    "detraining-after-40",
+    "efficiency-factor-cycling-masters",
+    "heat-tolerance-ageing-cyclist",
+    "hormones-recovery-female-cyclists-over-45",
+    "iron-deficiency-cyclists-masters",
+    "james-golding-race-across-america-comeback",
+    "joe-friel-fast-after-50-cycling-method",
+    "masters-cycling-podcast-playlist",
+    "masters-cycling-training-plan-over-40",
+    "masters-cycling-training-report-2026",
+    "masters-cyclist-guide-getting-faster-after-40",
+    "masters-metabolism-anabolic-resistance-nutrition",
+    "masters-racing-doping-cycling-amateur-cheating",
+    "masters-recovery-audit-seven-things-to-check",
+    "menopause-cycling-fuelling-female-cyclists",
+    "menopause-cycling-performance",
+    "new-study-confirms-heavy-strength-training-beats-more-miles-after-40",
+    "owen-vermeulen-addiction-recovery-cycling-comeback",
+    "perimenopause-cycling-training-adaptation",
+    "podcasts-for-cyclists-over-40",
+    "post-ride-recovery-window-cyclists-over-40",
+    "racing-at-50-plus-masters-cycling",
+    "resting-heart-rate-masters-cyclists",
+    "sleep-and-the-masters-cyclist",
+    "sprint-interval-training-cyclists-masters",
+    "strength-training-cyclists-over-40-what-works",
+    "strength-training-cyclists-over-50",
+    "training-load-management-cyclists-40s-50s",
+    "vo2-max-workouts-cyclists-over-40",
+    "vo2max-decline-reversibility-masters-cyclists",
+    "what-experts-say-about-masters-cycling",
+  ],
 };
 
 /** Cluster enrichment: tools, commercial path, related topics, featured posts, optional claim table */
@@ -695,6 +768,16 @@ const TOPIC_ENRICHMENT: Record<string, {
   claimsHeading?: string;
   claimsCaption?: string;
 }> = {
+  "masters-cycling": {
+    tools: [],
+    commercialPath: "/coaching",
+    relatedTopics: ["cycling-recovery", "cycling-strength-conditioning", "cycling-training-plans"],
+    featuredPostSlugs: [
+      "cycling-over-40-complete-guide",
+      "masters-cycling-training-plan-over-40",
+      "cycling-after-40-faster-science",
+    ],
+  },
   "ftp-training": {
     tools: [
       { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
@@ -772,7 +855,7 @@ const TOPIC_ENRICHMENT: Record<string, {
   "cycling-recovery": {
     tools: [],
     commercialPath: "/coaching",
-    relatedTopics: ["cycling-strength-conditioning", "cycling-training-plans"],
+    relatedTopics: ["cycling-strength-conditioning", "cycling-training-plans", "masters-cycling"],
     featuredPostSlugs: [
       "cycling-recovery-tips",
       "cycling-sleep-performance-guide",
@@ -868,6 +951,7 @@ const TOPIC_ENRICHMENT: Record<string, {
 
 /** Keyword patterns for matching episodes to topics */
 const TOPIC_EPISODE_KEYWORDS: Record<string, RegExp> = {
+  "masters-cycling": /masters|over.?40|over.?50|after.?40|after.?50|age.?group|veteran|fast after 50|40s|50s|perimenopause|menopause/i,
   "ftp-training": /ftp|threshold|power|zones?|watts|watt\/kg/i,
   "cycling-nutrition": /nutri|fuel|diet|eat|food|carb|protein|hydrat|gel|calor/i,
   "cycling-training-plans":
@@ -902,6 +986,28 @@ const TOPIC_EPISODE_EXCLUDE: Record<string, RegExp> = {
  * to four questions per hub, answers held to 2-3 authoritative sentences.
  */
 const TOPIC_FAQS: Record<string, TopicFAQ[]> = {
+  "masters-cycling": [
+    {
+      question: "Can you still get faster cycling after 40?",
+      answer:
+        "Yes. Some decline in VO2 max and fast-twitch power is real, but it's slower than most riders fear, and the gap between an untrained and a well-trained masters rider is enormous. Train your easy days easy, ration your hard sessions, lift twice a week and protect recovery, and most riders over 40 keep setting personal bests for years.",
+    },
+    {
+      question: "What changes most about training after 40?",
+      answer:
+        "Recovery. It slows with age, which is the one change that reshapes the whole plan. The fix isn't training harder — it's training easier most of the time, going hard a small and deliberate amount, and treating recovery as part of the training rather than the absence of it.",
+    },
+    {
+      question: "Should masters cyclists do strength training?",
+      answer:
+        "It's close to non-negotiable. Lifting is the most effective tool for holding onto the muscle, power and bone density that age otherwise erodes, and research shows heavy strength work beats simply riding more for older riders. Two sessions a week is the sweet spot, dropping to one in-season.",
+    },
+    {
+      question: "How much should masters cyclists rest between hard sessions?",
+      answer:
+        "More than they think. Most masters riders do best with one or two quality sessions a week and everything else easy, plus a reduced-volume week every third or fourth week. The recurring mistake is filling the gaps with comfortably-hard riding that costs recovery without delivering adaptation.",
+    },
+  ],
   "ftp-training": [
     {
       question: "What is FTP in cycling?",
