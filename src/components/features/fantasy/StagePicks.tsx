@@ -35,7 +35,7 @@ export function StagePicks({ stages }: { stages: StagePicksStage[] }) {
               <span className="font-heading text-xl tracking-wide text-off-white">
                 STAGE {stage.stageNumber}
               </span>
-              <span className="rounded-full border border-coral/40 bg-coral/10 px-3 py-1 font-heading text-xs tracking-[0.15em] text-coral">
+              <span className="rounded-full border border-jersey-yellow/40 bg-jersey-yellow/10 px-3 py-1 font-heading text-xs tracking-[0.15em] text-jersey-yellow">
                 {preview.pick}
               </span>
             </div>

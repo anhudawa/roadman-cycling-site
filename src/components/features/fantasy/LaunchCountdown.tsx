@@ -40,15 +40,15 @@ export function LaunchCountdown({ className }: { className?: string }) {
 
   return (
     <div
-      className={`inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-md border border-coral/40 bg-coral/10 px-4 py-2.5 ${className ?? ""}`}
+      className={`inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-md border border-jersey-yellow/40 bg-jersey-yellow/10 px-4 py-2.5 ${className ?? ""}`}
     >
       {live ? (
-        <span className="font-heading text-sm tracking-[0.2em] text-coral">
+        <span className="font-heading text-sm tracking-[0.2em] text-jersey-yellow">
           TEAM PICKING IS LIVE — BUILD YOUR EIGHT
         </span>
       ) : (
         <>
-          <span className="font-heading text-sm tracking-[0.2em] text-coral">
+          <span className="font-heading text-sm tracking-[0.2em] text-jersey-yellow">
             TEAM PICKING GOES LIVE {LAUNCH_LABEL}
           </span>
           <span

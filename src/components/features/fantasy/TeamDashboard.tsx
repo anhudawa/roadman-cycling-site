@@ -40,7 +40,7 @@ interface MarketRider {
 
 interface TeamPayload {
   team: { id: number; name: string };
-  player: { firstName: string; email: string; verified: boolean };
+  player: { id: number; firstName: string; email: string; verified: boolean };
   preTour: boolean;
   openStage: { stageNumber: number; deadline: string } | null;
   squad: SquadRider[];
@@ -50,7 +50,16 @@ interface TeamPayload {
     bonusesRemaining: number;
     usedThisStage: number;
   } | null;
-  totals: { totalPoints: number; globalRank: number | null; bestStagePoints: number } | null;
+  chips: {
+    enabled: { wildcardEnabled: boolean; tripleCaptainEnabled: boolean; tripleCaptainMultiplier: number };
+    played: { chip: "wildcard" | "triple_captain"; stageNumber: number }[];
+  };
+  totals: {
+    totalPoints: number;
+    globalRank: number | null;
+    previousRank: number | null;
+    bestStagePoints: number;
+  } | null;
   stageScores: {
     stageNumber: number;
     points: number;
@@ -112,7 +121,7 @@ function Deadline({ iso }: { iso: string }) {
     const interval = setInterval(update, 30_000);
     return () => clearInterval(interval);
   }, [iso]);
-  return <span className="text-coral">{label}</span>;
+  return <span className="text-jersey-yellow">{label}</span>;
 }
 
 export function TeamDashboard() {
@@ -148,6 +157,8 @@ export function TeamDashboard() {
       .catch(() => {});
   }, [reload]);
 
+  useWelcomeLeadPixel(data?.player.id);
+
   const lastScore = useMemo(() => {
     if (!data?.stageScores.length) return null;
     return [...data.stageScores].sort((a, b) => b.stageNumber - a.stageNumber)[0];
@@ -182,7 +193,9 @@ export function TeamDashboard() {
       response.ok
         ? payload.kind === "grace"
           ? "Swapped free — that one was on the house."
-          : `Transfer made (${payload.kind === "rest_day_bonus" ? "rest-day bonus" : "standard"}), effective Stage ${payload.effectiveFromStage}.`
+          : payload.kind === "wildcard"
+            ? `Wildcard transfer — free and uncounted, effective Stage ${payload.effectiveFromStage}.`
+            : `Transfer made (${payload.kind === "rest_day_bonus" ? "rest-day bonus" : "standard"}), effective Stage ${payload.effectiveFromStage}.`
         : payload.error,
     );
     setTransferOut(null);
@@ -215,12 +228,13 @@ export function TeamDashboard() {
         <div className="flex gap-6 text-right">
           <div>
             <p className="text-xs uppercase tracking-widest text-mid-grey">Total</p>
-            <p className="font-heading text-3xl text-coral">{data.totals?.totalPoints ?? 0}</p>
+            <p className="font-heading text-3xl text-jersey-yellow">{data.totals?.totalPoints ?? 0}</p>
           </div>
           <div>
             <p className="text-xs uppercase tracking-widest text-mid-grey">Global</p>
             <p className="font-heading text-3xl">
               {data.totals?.globalRank ? `#${data.totals.globalRank.toLocaleString()}` : "—"}
+              <RankArrow rank={data.totals?.globalRank ?? null} previous={data.totals?.previousRank ?? null} />
             </p>
           </div>
         </div>
@@ -251,7 +265,7 @@ export function TeamDashboard() {
         <section aria-label={`Stage ${lastScore.stageNumber} points`} className="mt-8">
           <h2 className="font-heading text-2xl tracking-wide">
             STAGE {lastScore.stageNumber}:{" "}
-            <PointsTicker value={lastScore.points} className="text-coral" /> PTS
+            <PointsTicker value={lastScore.points} className="text-jersey-yellow" /> PTS
           </h2>
           <ul className="mt-3 grid gap-1.5 sm:grid-cols-2">
             {(lastScore.breakdown.perRider ?? [])
@@ -269,7 +283,7 @@ export function TeamDashboard() {
                     <span className="font-heading text-base tabular-nums">
                       {row.isCaptain ? (
                         <span>
-                          {row.basePoints} <span className="text-coral">→ C ×2 = {row.totalPoints}</span>
+                          {row.basePoints} <span className="text-jersey-yellow">→ C ×2 = {row.totalPoints}</span>
                         </span>
                       ) : (
                         <span className={row.totalPoints > 0 ? "text-off-white" : "text-mid-grey"}>
@@ -324,7 +338,7 @@ export function TeamDashboard() {
                   aria-pressed={captainForOpen === rider.riderId}
                   className={`rounded px-2.5 py-1.5 font-heading text-xs tracking-widest transition-colors ${
                     captainForOpen === rider.riderId
-                      ? "bg-coral text-charcoal"
+                      ? "bg-jersey-yellow text-charcoal"
                       : "bg-white/10 text-off-white/70 hover:bg-white/20"
                   }`}
                 >
@@ -346,13 +360,24 @@ export function TeamDashboard() {
         {data.preTour && (
           <p className="mt-3 text-sm text-mid-grey">
             Until Stage 1 you can{" "}
-            <Link href="/fantasy/build" className="text-coral underline">
+            <Link href="/fantasy/build" className="text-jersey-yellow underline">
               rebuild your whole squad
             </Link>{" "}
             free, as often as you like.
           </p>
         )}
       </section>
+
+      {!data.preTour && data.openStage && (
+        <ChipsPanel
+          chips={data.chips}
+          openStageNumber={data.openStage.stageNumber}
+          onChanged={(message) => {
+            setNotice(message);
+            reload();
+          }}
+        />
+      )}
 
       <ShareCardPanel
         teamName={data.team.name}
@@ -374,6 +399,30 @@ export function TeamDashboard() {
       )}
     </div>
   );
+}
+
+/**
+ * Client half of the Meta CAPI dedup pair (Section 5.1): the server
+ * fires a CAPI Lead with event_id `fantasy-signup-{playerId}` on first
+ * verification; the verify redirect lands here with ?welcome=1 and we
+ * fire the matching browser pixel event with the same eventID so Meta
+ * counts the signup once. No-ops when the consent-gated pixel isn't
+ * loaded. The param is stripped so a reload can't re-fire.
+ */
+function useWelcomeLeadPixel(playerId: number | undefined) {
+  const fired = useRef(false);
+  useEffect(() => {
+    if (fired.current || !playerId) return;
+    const url = new URL(window.location.href);
+    if (url.searchParams.get("welcome") !== "1") return;
+    fired.current = true;
+    const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq;
+    if (typeof fbq === "function") {
+      fbq("track", "Lead", { content_name: "fantasy-tour-2026" }, { eventID: `fantasy-signup-${playerId}` });
+    }
+    url.searchParams.delete("welcome");
+    window.history.replaceState(null, "", url.pathname + url.search);
+  }, [playerId]);
 }
 
 function PointsTicker({ value, className }: { value: number; className?: string }) {
@@ -468,6 +517,130 @@ function TransferModal({
   );
 }
 
+/** Green up / red down vs the previous scored stage (FPL-style). */
+export function RankArrow({ rank, previous }: { rank: number | null; previous: number | null }) {
+  if (rank == null || previous == null || rank === previous) return null;
+  const up = rank < previous;
+  const delta = Math.abs(previous - rank);
+  return (
+    <span
+      className={`ml-2 align-middle font-heading text-base ${up ? "text-good" : "text-bad"}`}
+      aria-label={`${up ? "Up" : "Down"} ${delta} place${delta === 1 ? "" : "s"} since the last stage`}
+      title={`${up ? "Up" : "Down"} ${delta} since the last stage`}
+    >
+      {up ? "\u25B2" : "\u25BC"}
+      {delta.toLocaleString()}
+    </span>
+  );
+}
+
+const CHIP_COPY = {
+  wildcard: {
+    name: "WILDCARD",
+    blurb: "Rebuild your whole squad for one stage — every transfer free and uncounted.",
+  },
+  triple_captain: {
+    name: "TRIPLE CAPTAIN",
+    blurb: "Your captain scores \u00d73 instead of \u00d72 for one stage. Save it for the Alpe.",
+  },
+} as const;
+
+/**
+ * Chips (the FPL signature): one Wildcard and one Triple Captain per
+ * Tour. Played for the next open stage, cancellable until roll-out
+ * (a wildcard with transfers already made is committed).
+ */
+function ChipsPanel({
+  chips,
+  openStageNumber,
+  onChanged,
+}: {
+  chips: TeamPayload["chips"];
+  openStageNumber: number;
+  onChanged: (message: string) => void;
+}) {
+  const [busy, setBusy] = useState<string | null>(null);
+
+  async function play(chip: "wildcard" | "triple_captain", method: "POST" | "DELETE") {
+    setBusy(chip);
+    try {
+      const response = await fetch("/api/fantasy/chips", {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chip }),
+      });
+      const payload = await response.json();
+      onChanged(
+        response.ok
+          ? method === "POST"
+            ? `${CHIP_COPY[chip].name} played for Stage ${payload.stageNumber}.`
+            : `${CHIP_COPY[chip].name} taken back.`
+          : payload.error,
+      );
+    } finally {
+      setBusy(null);
+    }
+  }
+
+  const visible = (["wildcard", "triple_captain"] as const).filter((chip) =>
+    chip === "wildcard" ? chips.enabled.wildcardEnabled : chips.enabled.tripleCaptainEnabled,
+  );
+  if (visible.length === 0) return null;
+
+  return (
+    <section aria-label="Chips" className="mt-10">
+      <h2 className="font-heading text-2xl tracking-wide">CHIPS</h2>
+      <p className="mt-1 text-sm text-mid-grey">One of each for the whole Tour. Choose the moment.</p>
+      <div className="mt-3 grid gap-3 sm:grid-cols-2">
+        {visible.map((chip) => {
+          const played = chips.played.find((c) => c.chip === chip);
+          const pending = played?.stageNumber === openStageNumber;
+          return (
+            <div
+              key={chip}
+              className={`rounded-xl border p-4 ${
+                pending ? "border-jersey-yellow bg-jersey-yellow/10" : "border-white/10 bg-white/[0.03]"
+              }`}
+            >
+              <div className="flex items-baseline justify-between gap-2">
+                <h3 className="font-heading text-xl tracking-wide">{CHIP_COPY[chip].name}</h3>
+                {played && (
+                  <span className={`text-xs uppercase tracking-wider ${pending ? "text-jersey-yellow" : "text-mid-grey"}`}>
+                    {pending ? `Active \u00b7 Stage ${played.stageNumber}` : `Played \u00b7 Stage ${played.stageNumber}`}
+                  </span>
+                )}
+              </div>
+              <p className="mt-1 text-sm text-off-white/70">{CHIP_COPY[chip].blurb}</p>
+              <div className="mt-3">
+                {!played && (
+                  <button
+                    type="button"
+                    disabled={busy !== null}
+                    onClick={() => play(chip, "POST")}
+                    className="rounded-md bg-jersey-yellow px-4 py-2 font-heading text-sm tracking-widest text-charcoal hover:bg-jersey-yellow-deep disabled:opacity-60"
+                  >
+                    {busy === chip ? "PLAYING\u2026" : `PLAY FOR STAGE ${openStageNumber}`}
+                  </button>
+                )}
+                {pending && (
+                  <button
+                    type="button"
+                    disabled={busy !== null}
+                    onClick={() => play(chip, "DELETE")}
+                    className="rounded-md bg-white/10 px-4 py-2 font-heading text-sm tracking-widest text-off-white hover:bg-white/20 disabled:opacity-60"
+                  >
+                    TAKE IT BACK
+                  </button>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 /**
  * Shareable cards (Section 8.4): brand-styled OG images rendered by
  * /api/og/fantasy. Web Share API with the image attached where the
@@ -538,13 +711,13 @@ function ShareCardPanel({
         <button
           type="button"
           onClick={share}
-          className="shrink-0 rounded-md bg-coral px-4 py-2.5 font-heading text-sm tracking-widest text-charcoal hover:bg-coral-hover"
+          className="shrink-0 rounded-md bg-jersey-yellow px-4 py-2.5 font-heading text-sm tracking-widest text-charcoal hover:bg-jersey-yellow-deep"
         >
           SHARE CARD
         </button>
       </div>
       {message && (
-        <p role="status" className="mt-2 text-sm text-coral">
+        <p role="status" className="mt-2 text-sm text-jersey-yellow">
           {message}
         </p>
       )}
@@ -614,7 +787,7 @@ function LeaguesPanel({
     <section aria-label="Mini-leagues" className="mt-10">
       <h2 className="font-heading text-2xl tracking-wide">MINI-LEAGUES</h2>
       {message && (
-        <p role="status" className="mt-2 text-sm text-coral">
+        <p role="status" className="mt-2 text-sm text-jersey-yellow">
           {message}
         </p>
       )}
@@ -624,10 +797,10 @@ function LeaguesPanel({
             key={league.id}
             className="flex items-center justify-between gap-3 rounded-md border border-white/10 bg-white/[0.03] px-3 py-2.5"
           >
-            <Link href={`/fantasy/league/${league.code}`} className="min-w-0 flex-1 truncate hover:text-coral">
+            <Link href={`/fantasy/league/${league.code}`} className="min-w-0 flex-1 truncate hover:text-jersey-yellow">
               {league.name}
               {league.isOfficial && (
-                <span className="ml-2 rounded bg-coral/15 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-coral">
+                <span className="ml-2 rounded bg-jersey-yellow/15 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-jersey-yellow">
                   official
                 </span>
               )}
@@ -661,7 +834,7 @@ function LeaguesPanel({
           />
           <button
             type="submit"
-            className="rounded-md bg-coral px-4 py-2 font-heading text-sm tracking-widest text-charcoal hover:bg-coral-hover"
+            className="rounded-md bg-jersey-yellow px-4 py-2 font-heading text-sm tracking-widest text-charcoal hover:bg-jersey-yellow-deep"
           >
             CREATE
           </button>
@@ -713,7 +886,7 @@ function SignInPanel() {
         <>
           <p className="mt-4 text-off-white/70">
             Signed up already? Enter your email and we&apos;ll send the one-tap link. No team yet?{" "}
-            <Link href="/fantasy/build" className="text-coral underline">
+            <Link href="/fantasy/build" className="text-jersey-yellow underline">
               Build one in five minutes.
             </Link>
           </p>
@@ -729,7 +902,7 @@ function SignInPanel() {
             />
             <button
               type="submit"
-              className="rounded-md bg-coral px-5 py-3 font-heading tracking-widest text-charcoal hover:bg-coral-hover"
+              className="rounded-md bg-jersey-yellow px-5 py-3 font-heading tracking-widest text-charcoal hover:bg-jersey-yellow-deep"
             >
               SEND LINK
             </button>

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 function BetaGateScreen() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-deep-purple to-charcoal px-4 text-off-white">
-      <p className="font-heading text-sm tracking-[0.35em] text-coral">PRIVATE BETA</p>
+      <p className="font-heading text-sm tracking-[0.35em] text-jersey-yellow">PRIVATE BETA</p>
       <h1 className="mt-3 text-center font-heading text-5xl tracking-wide sm:text-6xl">
         ROADMAN FANTASY TOUR
       </h1>
@@ -47,7 +47,7 @@ function BetaGateScreen() {
         />
         <button
           type="submit"
-          className="rounded-md bg-coral px-6 py-3 font-heading tracking-[0.15em] text-charcoal transition-colors hover:bg-coral-hover"
+          className="rounded-md bg-jersey-yellow px-6 py-3 font-heading tracking-[0.15em] text-charcoal transition-colors hover:bg-jersey-yellow-deep"
         >
           ENTER
         </button>
@@ -62,7 +62,7 @@ function BetaGateScreen() {
 /**
  * Immersive game chrome: slim header, no funnel overlays (route is in
  * ConversionChrome's lean list). Dark throughout — charcoal canvas,
- * deep purple surfaces, coral for live/CTA only.
+ * deep purple surfaces, jersey-yellow for live/CTA only.
  *
  * On gated demo deployments the gate check runs first; in production
  * FANTASY_BETA_CODE is unset, betaGateEnabled() short-circuits before
@@ -74,11 +74,17 @@ export default async function FantasyLayout({ children }: { children: React.Reac
   }
   return (
     <div className="min-h-screen bg-charcoal text-off-white">
+      {/* French tricolour stripe */}
+      <div className="flex h-[3px]" aria-hidden="true">
+        <div className="flex-1 bg-tdf-blue" />
+        <div className="flex-1 bg-white" />
+        <div className="flex-1 bg-tdf-red" />
+      </div>
       <header className="sticky top-0 z-40 border-b border-white/10 bg-charcoal/90 backdrop-blur">
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
           <Link href="/fantasy" className="flex items-baseline gap-2">
             <span className="font-heading text-xl tracking-wider text-off-white">ROADMAN</span>
-            <span className="font-heading text-xl tracking-wider text-coral">FANTASY TOUR</span>
+            <span className="font-heading text-xl tracking-wider text-jersey-yellow">FANTASY TOUR</span>
           </Link>
           <nav aria-label="Fantasy Tour" className="flex items-center gap-1 sm:gap-2">
             <Link
@@ -98,6 +104,12 @@ export default async function FantasyLayout({ children }: { children: React.Reac
               className="rounded-md px-3 py-2 font-heading text-sm tracking-widest text-off-white/80 transition-colors hover:text-off-white"
             >
               STANDINGS
+            </Link>
+            <Link
+              href="/fantasy/stats"
+              className="hidden rounded-md px-3 py-2 font-heading text-sm tracking-widest text-off-white/80 transition-colors hover:text-off-white sm:block"
+            >
+              STATS
             </Link>
             <Link
               href="/fantasy/rules"

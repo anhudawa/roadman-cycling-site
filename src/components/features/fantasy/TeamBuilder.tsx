@@ -31,6 +31,8 @@ interface BuilderRider {
   proTeamName: string;
   proTeamCode: string;
   jerseyHex: string | null;
+  /** "Selected by" % across all teams — the differential game. */
+  ownershipPct?: number;
 }
 
 interface BuilderData {
@@ -183,12 +185,12 @@ export function TeamBuilder() {
     <div className="mx-auto max-w-6xl px-4 pb-28 pt-8">
       {data?.demoMode && <DemoBanner />}
 
-      {/* Budget bar — fills coral as you spend. */}
+      {/* Budget bar — fills jersey-yellow as you spend. */}
       <div className="sticky top-14 z-30 -mx-4 border-b border-white/10 bg-charcoal/95 px-4 py-3 backdrop-blur">
         <div className="flex items-baseline justify-between">
           <h1 className="font-heading text-2xl tracking-wide">YOUR EIGHT</h1>
           <p className="font-heading text-2xl tabular-nums" aria-live="polite">
-            <span className={remaining < 0 ? "text-bad" : "text-coral"}>{spent}</span>
+            <span className={remaining < 0 ? "text-bad" : "text-jersey-yellow"}>{spent}</span>
             <span className="text-off-white/40"> / {rules.budget} CR</span>
           </p>
         </div>
@@ -201,7 +203,7 @@ export function TeamBuilder() {
           className="mt-2 h-2 overflow-hidden rounded-full bg-white/10"
         >
           <div
-            className={`h-full rounded-full transition-all duration-300 ${remaining < 0 ? "bg-bad" : "bg-coral"}`}
+            className={`h-full rounded-full transition-all duration-300 ${remaining < 0 ? "bg-bad" : "bg-jersey-yellow"}`}
             style={{ width: `${Math.min(100, (spent / rules.budget) * 100)}%` }}
           />
         </div>
@@ -243,7 +245,7 @@ export function TeamBuilder() {
                         <p className="font-heading text-base leading-tight tracking-wide">
                           {rider.name.toUpperCase()}
                         </p>
-                        <span className="font-heading text-lg leading-none text-coral">{rider.price}</span>
+                        <span className="font-heading text-lg leading-none text-jersey-yellow">{rider.price}</span>
                       </div>
                       <p className="mt-1 text-[11px] text-off-white/60">
                         {rider.proTeamCode} · {CLASS_LABEL[rider.riderClass]}
@@ -261,7 +263,7 @@ export function TeamBuilder() {
                           aria-pressed={captainId === rider.id}
                           className={`rounded px-2 py-1 font-heading text-xs tracking-widest transition-colors ${
                             captainId === rider.id
-                              ? "bg-coral text-charcoal"
+                              ? "bg-jersey-yellow text-charcoal"
                               : "bg-white/10 text-off-white/70 hover:bg-white/20"
                           }`}
                         >
@@ -288,7 +290,7 @@ export function TeamBuilder() {
           })}
         </ol>
         <p className="mt-2 text-xs text-mid-grey sm:mt-16">
-          Tap <span className="font-heading text-coral">C ×2</span> on the rider you want
+          Tap <span className="font-heading text-jersey-yellow">C ×2</span> on the rider you want
           captaining Stage 1 — he scores double, and you can change him before every stage.
         </p>
       </section>
@@ -305,7 +307,7 @@ export function TeamBuilder() {
                 onClick={() => setClassFilter(classFilter === cls ? null : cls)}
                 className={`rounded-full px-3 py-1.5 font-heading text-sm tracking-widest transition-colors ${
                   classFilter === cls
-                    ? "bg-coral text-charcoal"
+                    ? "bg-jersey-yellow text-charcoal"
                     : "bg-white/10 text-off-white/70 hover:bg-white/20"
                 }`}
               >
@@ -381,6 +383,11 @@ export function TeamBuilder() {
                     </p>
                     <p className="truncate text-xs text-mid-grey">
                       {rider.proTeamName} · {CLASS_LABEL[rider.riderClass]}
+                      {rider.ownershipPct != null && rider.ownershipPct > 0 && (
+                        <span title="Percentage of all teams holding this rider">
+                          {" "}· {rider.ownershipPct}% picked
+                        </span>
+                      )}
                     </p>
                   </div>
                   <span className="font-heading text-xl tabular-nums text-off-white/90">{rider.price}</span>
@@ -392,7 +399,7 @@ export function TeamBuilder() {
                     className={`w-20 rounded-md px-3 py-2 font-heading text-sm tracking-widest transition-all motion-safe:active:scale-95 ${
                       picked
                         ? "bg-white/15 text-off-white hover:bg-bad-tint hover:text-bad"
-                        : "bg-coral text-charcoal hover:bg-coral-hover disabled:cursor-not-allowed disabled:bg-white/10 disabled:text-mid-grey"
+                        : "bg-jersey-yellow text-charcoal hover:bg-jersey-yellow-deep disabled:cursor-not-allowed disabled:bg-white/10 disabled:text-mid-grey"
                     }`}
                   >
                     {picked ? "IN ✓" : "ADD"}
@@ -416,7 +423,7 @@ export function TeamBuilder() {
             type="button"
             onClick={() => setGateOpen(true)}
             disabled={!verdict.valid || selection.length !== rules.squadSize}
-            className="rounded-md bg-coral px-6 py-3 font-heading text-base tracking-[0.15em] text-charcoal transition-colors hover:bg-coral-hover disabled:cursor-not-allowed disabled:bg-white/10 disabled:text-mid-grey"
+            className="rounded-md bg-jersey-yellow px-6 py-3 font-heading text-base tracking-[0.15em] text-charcoal transition-colors hover:bg-jersey-yellow-deep disabled:cursor-not-allowed disabled:bg-white/10 disabled:text-mid-grey"
           >
             SAVE YOUR TEAM →
           </button>
@@ -503,7 +510,7 @@ function EmailGate({
             <h2 className="font-heading text-3xl tracking-wide">CHECK YOUR INBOX</h2>
             <p className="mt-3 text-off-white/75">
               One tap on the link locks your team in. The link works once and lasts 24 hours —
-              after that, free edits until Stage 1 rolls out of Barcelona.
+              after that, free edits until noon on race day, 4 July.
             </p>
             <button
               type="button"
@@ -575,7 +582,7 @@ function EmailGate({
                   required
                   checked={consent}
                   onChange={(e) => setConsent(e.target.checked)}
-                  className="mt-1 accent-[#F16363]"
+                  className="mt-1 accent-[#FFD700]"
                 />
                 <span>
                   Send me the daily Tour stage email and Roadman updates. Unsubscribe any time.
@@ -598,7 +605,7 @@ function EmailGate({
               <button
                 type="submit"
                 disabled={state === "sending"}
-                className="flex-1 rounded-md bg-coral px-5 py-3 font-heading tracking-[0.15em] text-charcoal hover:bg-coral-hover disabled:opacity-60"
+                className="flex-1 rounded-md bg-jersey-yellow px-5 py-3 font-heading tracking-[0.15em] text-charcoal hover:bg-jersey-yellow-deep disabled:opacity-60"
               >
                 {state === "sending" ? "SENDING…" : "SEND MY MAGIC LINK"}
               </button>

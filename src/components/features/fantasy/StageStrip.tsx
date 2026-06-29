@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ProfileGlyph, STAGE_TYPE_LABEL, type StageGlyphType } from "./ProfileGlyph";
 
 export interface StageStripStage {
@@ -24,7 +25,7 @@ function shortDate(iso: string): string {
 /**
  * The horizontal 21-stage timeline (Section 8.2). Server-renderable:
  * plain overflow-x scroll with snap points, no JS. Today's stage glows
- * coral; rest days sit between tiles as thin markers.
+ * jersey-yellow; rest days sit between tiles as thin markers.
  */
 export function StageStrip({
   stages,
@@ -45,16 +46,18 @@ export function StageStrip({
           const isToday = stage.stageNumber === todayStageNumber;
           return (
             <li key={stage.stageNumber} className="flex snap-start items-stretch gap-2">
-              <div
-                className={`flex w-32 shrink-0 flex-col justify-between rounded-lg border p-3 transition-colors ${
+              <Link
+                href={`/fantasy/stage/${stage.stageNumber}`}
+                aria-label={`Stage ${stage.stageNumber}: ${stage.startTown} to ${stage.finishTown}`}
+                className={`flex w-32 shrink-0 flex-col justify-between rounded-lg border p-3 transition-colors hover:border-jersey-yellow/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-jersey-yellow ${
                   isToday
-                    ? "border-coral bg-coral/10 shadow-[0_0_20px_rgba(241,99,99,0.3)]"
+                    ? "border-jersey-yellow bg-jersey-yellow/10 shadow-[0_0_20px_rgba(255,215,0,0.3)]"
                     : "border-white/10 bg-white/[0.03]"
                 }`}
               >
                 <div className="flex items-baseline justify-between">
                   <span
-                    className={`font-heading text-lg leading-none ${isToday ? "text-coral" : "text-off-white"}`}
+                    className={`font-heading text-lg leading-none ${isToday ? "text-jersey-yellow" : "text-off-white"}`}
                   >
                     S{stage.stageNumber}
                   </span>
@@ -62,7 +65,7 @@ export function StageStrip({
                 </div>
                 <ProfileGlyph
                   type={stage.stageType}
-                  className={`my-2 h-5 w-full ${isToday ? "text-coral" : "text-off-white/60"}`}
+                  className={`my-2 h-5 w-full ${isToday ? "text-jersey-yellow" : "text-off-white/60"}`}
                 />
                 <p className="truncate text-[11px] leading-tight text-off-white/70" title={`${stage.startTown} → ${stage.finishTown}`}>
                   {stage.finishTown}
@@ -73,9 +76,9 @@ export function StageStrip({
                   {stage.summitFinish ? "summit" : STAGE_TYPE_LABEL[stage.stageType].split(" ")[0].toLowerCase()}
                 </p>
                 {stage.points != null && (
-                  <p className="mt-1 font-heading text-base leading-none text-coral">{stage.points} pts</p>
+                  <p className="mt-1 font-heading text-base leading-none text-jersey-yellow">{stage.points} pts</p>
                 )}
-              </div>
+              </Link>
               {stage.restDayAfter && (
                 <div
                   className="flex w-7 shrink-0 items-center justify-center rounded-md border border-dashed border-white/15"

@@ -1,0 +1,109 @@
+name,pcs_id,team,class,price,country
+Tadej Pogačar,pogacar-tadej,UAE Team Emirates XRG,gc,24,SI
+Jonas Vingegaard,vingegaard-jonas,Visma–Lease a Bike,gc,24,DK
+Remco Evenepoel,evenepoel-remco,Red Bull–Bora–Hansgrohe,gc,24,BE
+Richard Carapaz,carapaz-richard,EF Education–EasyPost,gc,18,EC
+Ben O'Connor,o-connor-ben,Team Jayco–AlUla,gc,18,AU
+Antonio Tiberi,tiberi-antonio,Team Bahrain Victorious,gc,19,IT
+Carlos Rodríguez,rodriguez-carlos,Netcompany INEOS,gc,19,ES
+Juan Ayuso,ayuso-juan,Lidl–Trek,gc,20,ES
+Jai Hindley,hindley-jai,Red Bull–Bora–Hansgrohe,gc,18,AU
+Mikel Landa,landa-mikel,Soudal–Quick-Step,gc,18,ES
+Cian Uijtdebroeks,uijtdebroeks-cian,Movistar Team,gc,17,BE
+Jasper Philipsen,philipsen-jasper,Alpecin–Premier Tech,sprint,20,BE
+Biniam Girmay,girmay-biniam,NSN Cycling Team,sprint,19,ER
+Olav Kooij,kooij-olav,Team Picnic–PostNL,sprint,17,NL
+Tim Merlier,merlier-tim,Soudal–Quick-Step,sprint,18,BE
+Arnaud De Lie,de-lie-arnaud,Lotto–Intermarché,sprint,16,BE
+Mathieu van der Poel,van-der-poel-mathieu,Alpecin–Premier Tech,break,18,NL
+Tom Pidcock,pidcock-tom,Pinarello–Q36.5 Pro Cycling Team,break,15,GB
+Julian Alaphilippe,alaphilippe-julian,Tudor Pro Cycling Team,break,14,FR
+Mads Pedersen,pedersen-mads,Lidl–Trek,break,16,DK
+Michael Matthews,matthews-michael,Team Jayco–AlUla,break,14,AU
+Ben Healy,healy-ben,EF Education–EasyPost,climb,13,IE
+Giulio Ciccone,ciccone-giulio,Lidl–Trek,climb,11,IT
+Magnus Cort,cort-magnus,Uno-X Mobility,climb,12,DK
+Lenny Martinez,martinez-lenny,Team Bahrain Victorious,climb,13,FR
+Tobias Halland Johannessen,johannessen-tobias,Uno-X Mobility,climb,12,NO
+Sergio Higuita,higuita-sergio,XDS Astana Team,climb,11,CO
+Lennert Van Eetvelt,van-eetvelt-lennert,Lotto–Intermarché,climb,12,BE
+Matteo Jorgenson,jorgenson-matteo,Visma–Lease a Bike,climb,14,US
+Valentin Paret-Peintre,paret-peintre-valentin,Decathlon CMA CGM,climb,10,FR
+David Gaudu,gaudu-david,Groupama–FDJ United,climb,11,FR
+Einer Rubio,rubio-einer,Movistar Team,climb,10,CO
+Iván Romeo,romeo-ivan,Movistar Team,climb,10,ES
+Filippo Ganna,ganna-filippo,Netcompany INEOS,break,14,IT
+Stefan Küng,kung-stefan,Tudor Pro Cycling Team,break,11,CH
+Victor Campenaerts,campenaerts-victor,Visma–Lease a Bike,break,10,BE
+Brandon McNulty,mcnulty-brandon,UAE Team Emirates XRG,break,13,US
+Stefan Bissegger,bissegger-stefan,Decathlon CMA CGM,break,10,CH
+Kaden Groves,groves-kaden,Alpecin–Premier Tech,sprint,10,AU
+Matej Mohorič,mohoric-matej,Team Bahrain Victorious,break,10,SI
+Pello Bilbao,bilbao-pello,Team Bahrain Victorious,climb,9,ES
+Kasper Asgreen,asgreen-kasper,EF Education–EasyPost,break,10,DK
+Tiesj Benoot,benoot-tiesj,Decathlon CMA CGM,break,9,BE
+Michał Kwiatkowski,kwiatkowski-michal,Netcompany INEOS,break,9,PL
+Kévin Vauquelin,vauquelin-kevin,Netcompany INEOS,climb,10,FR
+Mattias Skjelmose,skjelmose-mattias,Lidl–Trek,gc,11,DK
+Maxim Van Gils,van-gils-maxim,Red Bull–Bora–Hansgrohe,break,10,BE
+Daniel Felipe Martínez,martinez-daniel,Red Bull–Bora–Hansgrohe,gc,11,CO
+Florian Lipowitz,lipowitz-florian,Red Bull–Bora–Hansgrohe,gc,10,DE
+Jasper Stuyven,stuyven-jasper,Soudal–Quick-Step,break,9,BE
+Dylan van Baarle,van-baarle-dylan,Soudal–Quick-Step,break,10,NL
+Luke Plapp,plapp-luke,Team Jayco–AlUla,break,10,AU
+Mauro Schmid,schmid-mauro,Team Jayco–AlUla,break,9,CH
+Warren Barguil,barguil-warren,Team Picnic–PostNL,climb,9,FR
+Frank van den Broek,van-den-broek-frank,Team Picnic–PostNL,gc,10,NL
+Adam Yates,yates-adam,UAE Team Emirates XRG,gc,11,GB
+Sepp Kuss,kuss-sepp,Visma–Lease a Bike,climb,10,US
+Emanuel Buchmann,buchmann-emanuel,Cofidis,gc,9,DE
+Alex Aranburu,aranburu-alex,Cofidis,break,8,ES
+Ion Izagirre,izagirre-ion,Cofidis,climb,9,ES
+Michael Storer,storer-michael,Tudor Pro Cycling Team,climb,9,AU
+Matteo Trentin,trentin-matteo,Tudor Pro Cycling Team,sprint,9,IT
+Quinten Hermans,hermans-quinten,Pinarello–Q36.5 Pro Cycling Team,break,9,BE
+Fred Wright,wright-fred,Pinarello–Q36.5 Pro Cycling Team,break,8,GB
+Georg Zimmermann,zimmermann-georg,Lotto–Intermarché,break,8,DE
+Guillaume Martin,martin-guillaume,Groupama–FDJ United,climb,9,FR
+Pablo Castrillo,castrillo-pablo,Movistar Team,climb,10,ES
+Alex Baudin,baudin-alex,EF Education–EasyPost,climb,9,FR
+Emiel Verstrynge,verstrynge-emiel,Alpecin–Premier Tech,break,5,BE
+Jonas Rickaert,rickaert-jonas,Alpecin–Premier Tech,break,4,BE
+Daan Hoole,hoole-daan,Decathlon CMA CGM,break,5,NL
+Paul Seixas,seixas-paul,Decathlon CMA CGM,break,4,FR
+Dorian Godon,godon-dorian,Decathlon CMA CGM,break,5,FR
+Thymen Arensman,arensman-thymen,Netcompany INEOS,climb,7,NL
+Mathias Vacek,vacek-mathias,Lidl–Trek,break,6,CZ
+Quinn Simmons,simmons-quinn,Lidl–Trek,break,6,US
+Søren Kragh Andersen,kragh-andersen-soren,Lidl–Trek,break,6,DK
+Roger Adrià,adria-roger,Movistar Team,break,5,ES
+Jake Stewart,stewart-jake,NSN Cycling Team,break,5,GB
+Nico Denz,denz-nico,Red Bull–Bora–Hansgrohe,break,5,DE
+Mick Van Dijke,van-dijke-mick,Red Bull–Bora–Hansgrohe,break,5,NL
+Jordi Meeus,meeus-jordi,Red Bull–Bora–Hansgrohe,sprint,6,BE
+Gianni Moscon,moscon-gianni,Red Bull–Bora–Hansgrohe,break,6,IT
+Jan Tratnik,tratnik-jan,Red Bull–Bora–Hansgrohe,break,6,SI
+Ilan Van Wilder,van-wilder-ilan,Soudal–Quick-Step,break,6,BE
+Louis Vervaeke,vervaeke-louis,Soudal–Quick-Step,break,5,BE
+Bert Van Lerberghe,van-lerberghe-bert,Soudal–Quick-Step,sprint,5,BE
+Pascal Ackermann,ackermann-pascal,Team Jayco–AlUla,sprint,6,DE
+Pavel Bittner,bittner-pavel,Team Picnic–PostNL,sprint,5,CZ
+Bruno Armirail,armirail-bruno,Visma–Lease a Bike,break,5,FR
+Ben Tulett,tulett-ben,Visma–Lease a Bike,break,5,GB
+Edoardo Affini,affini-edoardo,Visma–Lease a Bike,break,5,IT
+Tim Wellens,wellens-tim,UAE Team Emirates XRG,break,6,BE
+Florian Vermeersch,vermeersch-florian,UAE Team Emirates XRG,break,5,BE
+Nils Politt,politt-nils,UAE Team Emirates XRG,break,6,DE
+Andreas Kron,kron-andreas,Uno-X Mobility,break,6,DK
+Mike Teunissen,teunissen-mike,XDS Astana Team,break,5,NL
+Harold Tejada,tejada-harold,XDS Astana Team,climb,6,CO
+Lorenzo Fortunato,fortunato-lorenzo,XDS Astana Team,climb,7,IT
+Alex Kirsch,kirsch-alex,Cofidis,break,5,LU
+Milan Fretin,fretin-milan,Cofidis,sprint,4,BE
+Hugo Page,page-hugo,Cofidis,break,5,FR
+Piet Allegaert,allegaert-piet,Cofidis,break,4,BE
+Jenthe Biermans,biermans-jenthe,Cofidis,break,5,BE
+Benjamin Thomas,thomas-benjamin,Cofidis,break,6,FR
+Rick Pluimers,pluimers-rick,Tudor Pro Cycling Team,break,5,NL
+Jordan Jegat,jegat-jordan,Team TotalEnergies,break,5,FR
+Alex Molenaar,molenaar-alex,Caja Rural–Seguros RGA,break,5,NL
