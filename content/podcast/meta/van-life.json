@@ -1,0 +1,29 @@
+{
+  "slug": "van-life",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Van conversion project using a Honda Step Wagon (VW transporter-sized vehicle) as mobile podcast studio",
+    "Plans to follow iconic Tour de France stages with mobile van setup for live podcast recordings",
+    "Stealth camping involves blocking windows and keeping pop-up roof down to avoid attention while sleeping in van parked on city streets",
+    "Previous Tour de France attendance involved roadside camping which left him exhausted the next day for riding and podcasting",
+    "Van will include pop-up roof bed, roll-out rock-and-roll style bed, outdoor shower, power washer, compressor, cooker, fridge, and satellite wifi for remote uploads"
+  ],
+  "named_experts": [],
+  "specific_numbers": [],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "van-life",
+    "mobile-podcasting",
+    "tour-de-france",
+    "bike-touring",
+    "van-build"
+  ],
+  "primary_cluster": "community",
+  "secondary_clusters": [],
+  "primary_persona": "dave",
+  "cluster_reasoning": "Van Life is a culture and lifestyle piece about mobile touring and following the Tour de France with a custom van setup—classic community/adventure content rather than training, nutrition, or recovery methodology.",
+  "sacred_cow_score": 6,
+  "indexed_at": "2026-06-15T11:22:36.507Z"
+}

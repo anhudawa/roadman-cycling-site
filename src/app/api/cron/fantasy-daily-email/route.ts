@@ -16,7 +16,7 @@ import {
   renderRestDayEmail,
   sendRenderedEmail,
 } from "@/lib/fantasy/emails";
-import { deadlineForStage, listStages } from "@/lib/fantasy/queries";
+import { deadlineForStage, listStages, loadGameConfig } from "@/lib/fantasy/queries";
 import { syncPlayerToBeehiiv } from "@/lib/fantasy/marketing";
 
 export const runtime = "nodejs";
@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
   }
 
   const today = todayInParis();
-  const stages = await listStages();
+  const [stages, gameConfig] = await Promise.all([listStages(), loadGameConfig()]);
   const todayStage = stages.find((s) => s.date === today) ?? null;
   const restDay = !todayStage
     ? stages.find((s) => {
@@ -165,7 +165,7 @@ export async function GET(request: NextRequest) {
           miniLeagues: (leagueRanksByPlayer.get(recipient.playerId) ?? []).slice(0, 3),
           stage: todayStage,
           roadmanTake: todayStage.roadmanTake,
-          deadline: deadlineForStage(todayStage),
+          deadline: deadlineForStage(todayStage, gameConfig.pickingDeadlineIso),
           deepLinkToken,
         })
       : renderRestDayEmail({

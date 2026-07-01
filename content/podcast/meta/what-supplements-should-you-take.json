@@ -1,0 +1,39 @@
+{
+  "slug": "what-supplements-should-you-take",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Iron deficiency is common in endurance athletes because the recommended daily allowance is on the low side for this population",
+    "Heme iron (from animal products) is easier to absorb than non-heme iron, and vitamin C enhances absorption while tannins and caffeine inhibit it",
+    "B12 is not found naturally in non-fortified plant-based foods and is essential for oxygen-carrying capacity in endurance athletes",
+    "Vitamin D supplementation at 1000 IU daily is critical for cyclists due to low-impact training compromising bone density",
+    "Antioxidants like vitamin C should be periodized during training cycles to avoid dampening the free radical stress response needed for fitness adaptation"
+  ],
+  "named_experts": [],
+  "specific_numbers": [
+    "1000 IU vitamin D daily",
+    "30 world-leading fitness experts in summit",
+    "8th and 9th of December summit dates",
+    "Blood tests a couple of times a year",
+    "Once or twice a year crashes mentioned as inevitable for cyclists"
+  ],
+  "ndy_members": [
+    "Sarah"
+  ],
+  "episode_type": "solo",
+  "topics": [
+    "supplement-strategy",
+    "iron-supplementation",
+    "vitamin-d-bone-health",
+    "omega-3-fish-oil",
+    "antioxidant-periodization"
+  ],
+  "primary_cluster": "nutrition",
+  "secondary_clusters": [
+    "recovery"
+  ],
+  "primary_persona": "tom",
+  "cluster_reasoning": "Episode focuses on supplementation strategy (iron, B12, vitamin D, omega-3, antioxidants) and their physiological effects on endurance performance, which is core nutrition content; recovery is secondary because vitamin D and antioxidant periodization touch on adaptation and bone health.",
+  "sacred_cow_score": 6,
+  "indexed_at": "2026-06-15T10:12:54.218Z"
+}

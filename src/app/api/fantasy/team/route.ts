@@ -11,6 +11,7 @@ import {
 } from "@/lib/db/schema";
 import { getFantasySessionFromRequest } from "@/lib/fantasy/auth";
 import {
+  getChips,
   getPlayerByEmail,
   getSquadAsOfStage,
   getTransferLedger,
@@ -48,9 +49,10 @@ export async function GET(request: Request) {
   const openStage = await nextOpenStage();
   const targetStage = openStage?.stageNumber ?? 22;
 
-  const [squad, ledger, totalsRow, stageScores, captains, leagues] = await Promise.all([
+  const [squad, ledger, chips, totalsRow, stageScores, captains, leagues] = await Promise.all([
     getSquadAsOfStage(team.id, targetStage),
     getTransferLedger(team.id),
+    getChips(team.id),
     db.select().from(fantasyTeamTotals).where(eq(fantasyTeamTotals.teamId, team.id)),
     db
       .select({
@@ -67,17 +69,26 @@ export async function GET(request: Request) {
 
   return NextResponse.json({
     team: { id: team.id, name: team.name },
-    player: { firstName: player.firstName, email: player.email, verified: !!player.verifiedAt },
+    player: {
+      id: player.id,
+      firstName: player.firstName,
+      email: player.email,
+      verified: !!player.verifiedAt,
+    },
     preTour: await isPreTour(),
     openStage: openStage
       ? {
           stageNumber: openStage.stageNumber,
-          deadline: deadlineForStage(openStage).toISOString(),
+          deadline: deadlineForStage(openStage, config.pickingDeadlineIso).toISOString(),
         }
       : null,
     squad,
     captainByStage: Object.fromEntries(captains.map((c) => [c.stageNumber, c.riderId])),
     transferBudget: openStage ? transferBudget(ledger, openStage.stageNumber, config) : null,
+    chips: {
+      enabled: config.chips,
+      played: chips.map((c) => ({ chip: c.chip, stageNumber: c.stageNumber })),
+    },
     totals: totalsRow[0] ?? null,
     stageScores,
     leagues,

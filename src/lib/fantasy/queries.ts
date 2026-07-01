@@ -11,6 +11,7 @@ import { and, asc, eq, gte, isNull, lte, or, sql } from "drizzle-orm";
 import { db } from "@/lib/db";
 import {
   fantasyCaptainPicks,
+  fantasyChips,
   fantasyGameConfig,
   fantasyLeagueMembers,
   fantasyLeagues,
@@ -73,22 +74,32 @@ export async function listStages() {
  * Until ASO publishes start times, fall back to 12:00 CEST on the
  * stage date — conservative enough to never lock late. The admin
  * stage manager fills real times as the roadbook lands.
+ *
+ * Stage 1 doubles as the team-picking lock: when a picking deadline is
+ * configured (`config.pickingDeadlineIso`) it governs Stage 1, pinned
+ * independently of the physical TTT start time the admin enters later.
  */
-export function deadlineForStage(stage: { date: string; startTimeCest: Date | null }): Date {
+export function deadlineForStage(
+  stage: { stageNumber?: number; date: string; startTimeCest: Date | null },
+  pickingDeadlineIso?: string | null,
+): Date {
+  if (stage.stageNumber === 1 && pickingDeadlineIso) {
+    return new Date(pickingDeadlineIso);
+  }
   if (stage.startTimeCest) return stage.startTimeCest;
   return new Date(`${stage.date}T12:00:00+02:00`);
 }
 
 /** The next stage whose deadline hasn't passed (transfers target it). */
 export async function nextOpenStage(now = new Date()) {
-  const stages = await listStages();
-  return stages.find((s) => deadlineForStage(s) > now) ?? null;
+  const [stages, config] = await Promise.all([listStages(), loadGameConfig()]);
+  return stages.find((s) => deadlineForStage(s, config.pickingDeadlineIso) > now) ?? null;
 }
 
 export async function isPreTour(now = new Date()): Promise<boolean> {
-  const stages = await listStages();
+  const [stages, config] = await Promise.all([listStages(), loadGameConfig()]);
   const stage1 = stages.find((s) => s.stageNumber === 1);
-  return !stage1 || deadlineForStage(stage1) > now;
+  return !stage1 || deadlineForStage(stage1, config.pickingDeadlineIso) > now;
 }
 
 /* ─── Squads (effective-dated — never overwrite) ────────────── */
@@ -141,7 +152,7 @@ export async function applyTransfer(input: {
   riderOutId: number;
   riderInId: number;
   effectiveFromStage: number;
-  kind: "standard" | "rest_day_bonus" | "grace";
+  kind: "standard" | "rest_day_bonus" | "grace" | "wildcard";
 }): Promise<void> {
   await db
     .update(fantasyTeamRiders)
@@ -158,6 +169,8 @@ export async function applyTransfer(input: {
     riderId: input.riderInId,
     effectiveFromStage: input.effectiveFromStage,
     addedVia: input.kind === "grace" ? "grace" : "transfer",
+    // wildcard moves are ordinary effective-dated transfers; only the
+    // ledger kind differs (uncounted in transferBudget).
   });
   await db.insert(fantasyTransfers).values(input);
 }
@@ -180,6 +193,46 @@ export async function setCaptain(teamId: number, stageNumber: number, riderId: n
       target: [fantasyCaptainPicks.teamId, fantasyCaptainPicks.stageNumber],
       set: { riderId, updatedAt: new Date() },
     });
+}
+
+/* ─── Chips (one each per Tour, FPL-style) ──────────────────── */
+
+export async function getChips(teamId: number) {
+  return db.select().from(fantasyChips).where(eq(fantasyChips.teamId, teamId));
+}
+
+/** Activate a chip for a stage. The unique (team, chip) index is the
+ *  once-per-Tour guarantee; activation races resolve to one winner. */
+export async function activateChip(
+  teamId: number,
+  chip: "wildcard" | "triple_captain",
+  stageNumber: number,
+): Promise<boolean> {
+  const inserted = await db
+    .insert(fantasyChips)
+    .values({ teamId, chip, stageNumber })
+    .onConflictDoNothing()
+    .returning({ id: fantasyChips.id });
+  return inserted.length > 0;
+}
+
+/** Cancel an un-played chip while its stage deadline is still open. */
+export async function cancelChip(
+  teamId: number,
+  chip: "wildcard" | "triple_captain",
+  stageNumber: number,
+): Promise<boolean> {
+  const deleted = await db
+    .delete(fantasyChips)
+    .where(
+      and(
+        eq(fantasyChips.teamId, teamId),
+        eq(fantasyChips.chip, chip),
+        eq(fantasyChips.stageNumber, stageNumber),
+      ),
+    )
+    .returning({ id: fantasyChips.id });
+  return deleted.length > 0;
 }
 
 /* ─── Results → scoring publish (Section 6.3) ───────────────── */
@@ -252,6 +305,11 @@ export async function publishStageScoring(stageNumber: number, actor: string): P
     .from(fantasyCaptainPicks)
     .where(eq(fantasyCaptainPicks.stageNumber, stageNumber));
   const captainByTeam = new Map(captains.map((c) => [c.teamId, c.riderId]));
+  const tripleCaptains = await db
+    .select({ teamId: fantasyChips.teamId })
+    .from(fantasyChips)
+    .where(and(eq(fantasyChips.chip, "triple_captain"), eq(fantasyChips.stageNumber, stageNumber)));
+  const tripleCaptainTeams = new Set(tripleCaptains.map((c) => c.teamId));
 
   for (const team of teams) {
     const squad = await getSquadAsOfStage(team.id, stageNumber);
@@ -261,6 +319,7 @@ export async function publishStageScoring(stageNumber: number, actor: string): P
       captainByTeam.get(team.id) ?? null,
       events,
       config,
+      tripleCaptainTeams.has(team.id) ? config.chips.tripleCaptainMultiplier : undefined,
     );
     await db
       .insert(fantasyTeamStageScores)
@@ -305,6 +364,18 @@ export async function rebuildLeaderboard(): Promise<void> {
   const teams = await db
     .select({ id: fantasyTeams.id, createdAt: fantasyTeams.createdAt })
     .from(fantasyTeams);
+  // Snapshot current ranks so movement arrows can show rank-vs-previous-
+  // stage. previousRank only rolls forward when a NEW stage lands —
+  // republishing a correction keeps comparing against the prior stage.
+  const existing = await db
+    .select({
+      teamId: fantasyTeamTotals.teamId,
+      globalRank: fantasyTeamTotals.globalRank,
+      previousRank: fantasyTeamTotals.previousRank,
+      lastScoredStage: fantasyTeamTotals.lastScoredStage,
+    })
+    .from(fantasyTeamTotals);
+  const existingByTeam = new Map(existing.map((row) => [row.teamId, row]));
   const allScores = await db
     .select({
       teamId: fantasyTeamStageScores.teamId,
@@ -334,6 +405,11 @@ export async function rebuildLeaderboard(): Promise<void> {
 
   for (let i = 0; i < ranked.length; i++) {
     const t = ranked[i];
+    const prior = existingByTeam.get(t.teamId);
+    const previousRank =
+      prior && t.lastScoredStage !== prior.lastScoredStage
+        ? prior.globalRank
+        : (prior?.previousRank ?? null);
     await db
       .insert(fantasyTeamTotals)
       .values({
@@ -344,6 +420,7 @@ export async function rebuildLeaderboard(): Promise<void> {
         week3Points: t.week3Points,
         bestStagePoints: t.bestStagePoints,
         globalRank: i + 1,
+        previousRank,
         lastScoredStage: t.lastScoredStage,
         updatedAt: new Date(),
       })
@@ -356,6 +433,7 @@ export async function rebuildLeaderboard(): Promise<void> {
           week3Points: t.week3Points,
           bestStagePoints: t.bestStagePoints,
           globalRank: i + 1,
+          previousRank,
           lastScoredStage: t.lastScoredStage,
           updatedAt: new Date(),
         },
@@ -456,6 +534,24 @@ export async function leagueStandings(leagueId: number) {
     .orderBy(sql`${fantasyTeamTotals.totalPoints} DESC NULLS LAST`);
 }
 
+/** Auto-enrol a player in the official Roadman Clubhouse league. */
+export async function joinOfficialLeague(playerId: number): Promise<void> {
+  try {
+    const [official] = await db
+      .select({ id: fantasyLeagues.id })
+      .from(fantasyLeagues)
+      .where(eq(fantasyLeagues.isOfficial, true))
+      .limit(1);
+    if (!official) return;
+    await db
+      .insert(fantasyLeagueMembers)
+      .values({ leagueId: official.id, playerId })
+      .onConflictDoNothing();
+  } catch (error) {
+    console.error("[fantasy] clubhouse auto-join failed:", error);
+  }
+}
+
 export async function leaguesForPlayer(playerId: number) {
   return db
     .select({
@@ -467,6 +563,55 @@ export async function leaguesForPlayer(playerId: number) {
     .from(fantasyLeagueMembers)
     .innerJoin(fantasyLeagues, eq(fantasyLeagues.id, fantasyLeagueMembers.leagueId))
     .where(eq(fantasyLeagueMembers.playerId, playerId));
+}
+
+/* ─── Game stats (ownership, captaincy — the differential game) ─ */
+
+/** % of teams currently holding each rider ("selected by", FPL-style). */
+export async function getOwnership(): Promise<{ totalTeams: number; byRider: Map<number, number> }> {
+  const [teams, holdings] = await Promise.all([
+    db.select({ id: fantasyTeams.id }).from(fantasyTeams),
+    db
+      .select({
+        riderId: fantasyTeamRiders.riderId,
+        holders: sql<number>`count(*)::int`,
+      })
+      .from(fantasyTeamRiders)
+      .where(isNull(fantasyTeamRiders.effectiveToStage))
+      .groupBy(fantasyTeamRiders.riderId),
+  ]);
+  return {
+    totalTeams: teams.length,
+    byRider: new Map(holdings.map((h) => [h.riderId, h.holders])),
+  };
+}
+
+/** Most-captained riders for a stage. */
+export async function getCaptaincy(stageNumber: number) {
+  return db
+    .select({
+      riderId: fantasyCaptainPicks.riderId,
+      name: fantasyRiders.name,
+      count: sql<number>`count(*)::int`,
+    })
+    .from(fantasyCaptainPicks)
+    .innerJoin(fantasyRiders, eq(fantasyRiders.id, fantasyCaptainPicks.riderId))
+    .where(eq(fantasyCaptainPicks.stageNumber, stageNumber))
+    .groupBy(fantasyCaptainPicks.riderId, fantasyRiders.name)
+    .orderBy(sql`count(*) DESC`)
+    .limit(10);
+}
+
+/** All scoring events (for the Tour-long Dream Team). */
+export async function getAllScoringEvents() {
+  return db
+    .select({
+      stageNumber: fantasyScoringEvents.stageNumber,
+      riderId: fantasyScoringEvents.riderId,
+      rule: fantasyScoringEvents.rule,
+      points: fantasyScoringEvents.points,
+    })
+    .from(fantasyScoringEvents);
 }
 
 /* ─── Audit ─────────────────────────────────────────────────── */

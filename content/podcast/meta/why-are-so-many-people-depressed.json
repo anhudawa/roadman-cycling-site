@@ -1,0 +1,36 @@
+{
+  "slug": "why-are-so-many-people-depressed",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Over 500 on-off genetic switches are controlled by sunlight exposure on skin",
+    "Depression exists on a continuum from mild stress to severe dark places rather than as a binary destination",
+    "Gut bacteria affected by diet impacts memory, recall, and mood",
+    "Genotype (hereditary) depression requires clinical intervention while phenotype (environmental) depression can be partially alleviated through lifestyle changes",
+    "Healthy habits cannot completely eradicate chronic depression but can move sufferers forward along the mood continuum"
+  ],
+  "named_experts": [],
+  "specific_numbers": [
+    "500 on-off genetic switches controlled by sunlight",
+    "12 months of depression being center stage in discussion",
+    "10:58 episode duration",
+    "14 day kickstart challenge"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "mental-health-depression",
+    "sunlight-exposure",
+    "gut-health-mood",
+    "environmental-factors",
+    "cycling-happiness"
+  ],
+  "primary_cluster": "recovery",
+  "secondary_clusters": [
+    "nutrition"
+  ],
+  "primary_persona": "james",
+  "cluster_reasoning": "Depression, mental health, and mood management fall squarely within the Recovery & Longevity pillar (stress management, mental health, adaptation), with secondary relevance to Nutrition due to gut-health-mood connections.",
+  "sacred_cow_score": 6,
+  "indexed_at": "2026-06-15T09:44:45.675Z"
+}

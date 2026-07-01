@@ -1,0 +1,69 @@
+{
+  "slug": "vuelta-i-found-a-crazy-bookies-mistake",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "The 2020 Vuelta España has 18 stages instead of 21 due to coronavirus",
+    "Alto San Miguel Aralar on Stage 2 is 10 kilometers at 7.8 percent gradient, only 17km from the finish",
+    "Angrilou on Stage 12 is 12.5 kilometers long and pitches out up to 23 percent gradient",
+    "Stage 13 time trial finishes with 2 kilometers at 15 percent gradient",
+    "Mike Woods is a standing climber specialist, essential for climbs pitching 23 percent or steeper"
+  ],
+  "named_experts": [
+    "Chris Froome",
+    "Primož Roglič",
+    "Egan Bernal",
+    "Richard Carapaz",
+    "Enric Mas",
+    "Alejandro Valverde",
+    "Tom Dumoulin",
+    "Sepp Kuss",
+    "Nairo Quintana",
+    "Mikel Landa",
+    "David de la Cruz",
+    "Jai Hindley",
+    "Vlasov",
+    "Thibaut Pinot",
+    "Guillain Martin",
+    "Sam Bennett",
+    "Pascal Ackerman",
+    "Mike Woods"
+  ],
+  "specific_numbers": [
+    "18 stages (reduced from 21)",
+    "4 flat stages",
+    "8 mountain finishes",
+    "1 individual time trial",
+    "Stage 2: 10km at 7.8%",
+    "Stage 6: 135km stage finishing up Tourmalet",
+    "Stage 12 Angrilou: 12.5km long, pitches to 23%",
+    "Stage 13 TT: 2km at 15% finish",
+    "Stage 17: 10km at 7%",
+    "Primo Roglič: 6-4 odds",
+    "Tom Dumoulin: 4-1 odds",
+    "Richard Carapaz: 13-2 odds",
+    "Jai Hindley: 14-1 odds",
+    "Chris Froome: 18-1 odds",
+    "Mike Woods: 60-1 odds",
+    "Local Dublin climb max gradient: 8%"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "vuelta-espana-2020",
+    "grand-tour-analysis",
+    "cycling-betting",
+    "mountain-climbing",
+    "race-favorites",
+    "stage-breakdown",
+    "standing-climbers"
+  ],
+  "primary_cluster": "community",
+  "secondary_clusters": [
+    "coaching"
+  ],
+  "primary_persona": "dave",
+  "cluster_reasoning": "Episode is a Grand Tour analysis and race preview with betting angles and stage breakdowns—cultural/entertainment-focused pro cycling content, not training methodology or personal performance coaching.",
+  "sacred_cow_score": 6,
+  "indexed_at": "2026-06-15T11:15:21.417Z"
+}

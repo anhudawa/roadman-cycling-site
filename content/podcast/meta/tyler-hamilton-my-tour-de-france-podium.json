@@ -1,0 +1,46 @@
+{
+  "slug": "tyler-hamilton-my-tour-de-france-podium",
+  "guest_name": "Tyler Hamilton",
+  "guest_credentials": "Former professional cyclist, Tour de France podium finisher, coach",
+  "key_claims": [
+    "Tyler Hamilton won his only Tour de France stage in 2003 (Pau to Bayonne) in a solo breakaway after attacking on the final major climb",
+    "Pogacar's power output of 6.5 W/kg stacks up against numbers Hamilton was hitting during his racing era",
+    "40/20 interval workouts were not widely known during Hamilton's racing days but are now standard practice among professional cyclists",
+    "Crosswind stages in the first week are unnecessarily stressful and put riders at risk, especially with complicated routing through multiple towns",
+    "Modern professional cyclists are more focused and dedicated than in Hamilton's era, with mandatory training data submission to coaches and directors"
+  ],
+  "named_experts": [
+    "Lance Armstrong",
+    "Bernie Eisel",
+    "Nicholas Roche"
+  ],
+  "specific_numbers": [
+    "Stage 10 Tour de France 2020",
+    "6.5 W/kg power output (Pogacar)",
+    "44 seconds deficit to yellow jersey (Pogacar)",
+    "90 seconds lost in crosswind stage",
+    "21 years old (Pogacar's age)",
+    "2003 stage win",
+    "2004 last Tour de France for Hamilton",
+    "2000+ meters elevation (Bernal's hometown in Colombia)"
+  ],
+  "ndy_members": [],
+  "episode_type": "interview",
+  "topics": [
+    "tour-de-france-2020",
+    "stage-analysis",
+    "professional-cycling-tactics",
+    "training-methods",
+    "pogacar-performance",
+    "sam-bennett-stage-win",
+    "crosswind-racing"
+  ],
+  "primary_cluster": "community",
+  "secondary_clusters": [
+    "coaching"
+  ],
+  "primary_persona": "dave",
+  "cluster_reasoning": "Tyler Hamilton is a pro cycling legend discussing Tour de France stories, stage analysis, and professional tactics — classic community pillar content — with coaching elements (40/20 intervals, modern training methods) as secondary.",
+  "sacred_cow_score": 6,
+  "indexed_at": "2026-06-15T11:36:09.855Z"
+}

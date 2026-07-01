@@ -11,6 +11,8 @@ export const runtime = "edge";
  *      /api/og/fantasy?card=team&team=Watts%20Occurring&riders=Name|Name|...
  *  - stage: "Stage 14: 187 pts — global top 2%" — post-stage brag
  *      /api/og/fantasy?card=stage&team=...&stage=14&points=187&standing=top%202%25
+ *  - league: the invite-link preview in the group chat
+ *      /api/og/fantasy?card=league&name=Sunday%20Worlds&code=AB3K9X&members=14
  *
  * Data arrives via query params so the card needs no DB access and
  * caches at the edge. Nothing sensitive: team name + rider surnames
@@ -18,7 +20,11 @@ export const runtime = "edge";
  */
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const card = searchParams.get("card") === "stage" ? "stage" : "team";
+  const cardParam = searchParams.get("card");
+  const card = cardParam === "stage" || cardParam === "league" ? cardParam : "team";
+  const leagueName = (searchParams.get("name") || "THE LEAGUE").slice(0, 40).toUpperCase();
+  const leagueCode = (searchParams.get("code") || "").slice(0, 6).toUpperCase();
+  const members = searchParams.get("members") || "";
   const team = (searchParams.get("team") || "MY TEAM").slice(0, 40).toUpperCase();
   const riders = (searchParams.get("riders") || "")
     .split("|")
@@ -53,7 +59,34 @@ export async function GET(request: NextRequest) {
           </span>
         </div>
 
-        {card === "stage" ? (
+        {card === "league" ? (
+          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            <span style={{ fontSize: 30, letterSpacing: 6, color: "#9A9A9F" }}>
+              YOU&apos;RE INVITED TO
+            </span>
+            <span style={{ fontSize: 88, fontWeight: 800, lineHeight: 1 }}>{leagueName}</span>
+            <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
+              {leagueCode && (
+                <span
+                  style={{
+                    fontSize: 40,
+                    fontWeight: 800,
+                    letterSpacing: 10,
+                    color: "#F16363",
+                    border: "2px solid rgba(241,99,99,0.5)",
+                    borderRadius: 10,
+                    padding: "10px 22px",
+                  }}
+                >
+                  {leagueCode}
+                </span>
+              )}
+              {members && (
+                <span style={{ fontSize: 28, color: "#B0B0B5" }}>{members} riders in already</span>
+              )}
+            </div>
+          </div>
+        ) : card === "stage" ? (
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             <span style={{ fontSize: 32, letterSpacing: 6, color: "#9A9A9F" }}>
               {team}

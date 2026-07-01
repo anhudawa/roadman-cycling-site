@@ -1,0 +1,40 @@
+{
+  "slug": "why-zwift-doesnt-work-cycling-coaching-is-dead",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Traditional cycling coaching and Zwift/Trainer Road training plans are ineffective because they only address one component (on-bike training) of a complete framework",
+    "A complete cycling performance framework requires five integrated components: on-bike training, off-bike training (stretching, core work), nutrition, biohacking/stress mitigation (meditation, cold therapy), and life stress management",
+    "Many cyclists following training plans improve initially but then plateau and fail to achieve their desired outcomes because the framework is incomplete",
+    "Arbitrary time-based goals (40 hours per week work, reading 1 hour daily) are ineffective without a results-focused framework",
+    "Roadman Cycling delivers transformed results by implementing the complete holistic framework rather than single-component coaching"
+  ],
+  "named_experts": [],
+  "specific_numbers": [
+    "40 hours per week",
+    "1 hour a day reading",
+    "14 day kickstart challenge",
+    "8:51 episode duration"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "coaching-framework",
+    "zwift-limitations",
+    "trainer-road-criticism",
+    "holistic-training",
+    "cycling-performance",
+    "biohacking",
+    "nutrition-and-training"
+  ],
+  "primary_cluster": "coaching",
+  "secondary_clusters": [
+    "strength",
+    "nutrition",
+    "recovery"
+  ],
+  "primary_persona": "tom",
+  "cluster_reasoning": "The episode critiques traditional coaching frameworks and training plans (Zwift, TrainerRoad) while positioning a holistic alternative model, making it fundamentally about coaching methodology and framework design.",
+  "sacred_cow_score": 6,
+  "indexed_at": "2026-06-15T08:40:46.821Z"
+}

@@ -6,6 +6,7 @@ import { getFantasySessionFromRequest } from "@/lib/fantasy/auth";
 import {
   applyTransfer,
   deadlineForStage,
+  getChips,
   getPlayerByEmail,
   getSquadAsOfStage,
   getTransferLedger,
@@ -57,9 +58,10 @@ export async function POST(request: Request) {
   }
 
   const config = await loadGameConfig();
-  const [squad, ledger, riderInRows] = await Promise.all([
+  const [squad, ledger, chips, riderInRows] = await Promise.all([
     getSquadAsOfStage(team.id, openStage.stageNumber),
     getTransferLedger(team.id),
+    getChips(team.id),
     db
       .select({
         id: fantasyRiders.id,
@@ -85,6 +87,9 @@ export async function POST(request: Request) {
   // Grace window: a rider flagged DNS before the race can be swapped
   // free while Stage 1/2 deadlines are still open (Section 4.3).
   const isGrace = riderOut?.status === "dns" && openStage.stageNumber <= 2;
+  const wildcardActive = chips.some(
+    (c) => c.chip === "wildcard" && c.stageNumber === openStage.stageNumber,
+  );
 
   const decision = validateTransfer(
     {
@@ -94,10 +99,11 @@ export async function POST(request: Request) {
       riderIn: riderInRows[0],
       effectiveFromStage: openStage.stageNumber,
       priorTransfers: ledger,
-      stageStartTime: deadlineForStage(openStage),
+      stageStartTime: deadlineForStage(openStage, config.pickingDeadlineIso),
       now: new Date(),
       isPreTour: false,
       isGrace,
+      wildcardActive,
     },
     config,
   );

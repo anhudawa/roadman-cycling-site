@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { requireAdminJson, readJsonBody } from "../_lib/guard";
 import { previewReset, performReset, type ResetScope } from "@/lib/fantasy/reset";
-import { listStages, deadlineForStage } from "@/lib/fantasy/queries";
+import { listStages, deadlineForStage, loadGameConfig } from "@/lib/fantasy/queries";
 
 export const runtime = "nodejs";
 
@@ -15,9 +15,9 @@ function parseScope(value: unknown): ResetScope | null {
  * is pre-Tour by definition.
  */
 async function tourHasStarted(): Promise<boolean> {
-  const stages = await listStages();
+  const [stages, config] = await Promise.all([listStages(), loadGameConfig()]);
   const stage1 = stages.find((s) => s.stageNumber === 1);
-  return !!stage1 && deadlineForStage(stage1) <= new Date();
+  return !!stage1 && deadlineForStage(stage1, config.pickingDeadlineIso) <= new Date();
 }
 
 /** POST /api/admin/fantasy/reset { scope, dryRun?, confirm? } */

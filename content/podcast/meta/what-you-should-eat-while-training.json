@@ -1,0 +1,38 @@
+{
+  "slug": "what-you-should-eat-while-training",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Muscles are loaded with approximately 90 minutes of glycogen, so rides under 90 minutes don't require fueling",
+    "Fuel twice every hour by eating something sugary every 30 minutes rather than large amounts at 60-minute intervals",
+    "Body absorbs small amounts of carbohydrates more efficiently when distributed over time than in large single doses",
+    "Use a sliding scale approach on longer rides: solid real foods at the start, sports-specific foods towards the end due to fatigue and digestive strain"
+  ],
+  "named_experts": [
+    "Sean Kelly"
+  ],
+  "specific_numbers": [
+    "90 minutes of glycogen storage in muscles",
+    "90-minute ride threshold before fueling needed",
+    "2.5 hours into ride when hitting the wall in example story",
+    "30-minute fueling intervals",
+    "4-hour ride example for sliding scale strategy"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "bike-nutrition",
+    "fueling-strategy",
+    "carbohydrate-intake",
+    "glycogen-management",
+    "endurance-riding"
+  ],
+  "primary_cluster": "nutrition",
+  "secondary_clusters": [
+    "coaching"
+  ],
+  "primary_persona": "tom",
+  "cluster_reasoning": "Episode focuses on in-ride fueling strategy, glycogen management, and carbohydrate intake timing—core nutrition pillars—with secondary coaching relevance due to how fueling impacts training performance and ride structure.",
+  "sacred_cow_score": 5,
+  "indexed_at": "2026-06-15T10:05:30.206Z"
+}

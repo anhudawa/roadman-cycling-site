@@ -218,6 +218,10 @@ export interface TeamStageScore {
  * team AS OF that stage (effective-dated rows), never the current team.
  * A captain who is not in the squad-as-of-stage is ignored rather than
  * doubled — the validation layer prevents that state, this is defence.
+ *
+ * `captainMultiplierOverride` is how the Triple Captain chip lands:
+ * the publish job passes config.chips.tripleCaptainMultiplier for
+ * teams that played the chip on this stage.
  */
 export function computeTeamStageScore(
   stageNumber: number,
@@ -225,6 +229,7 @@ export function computeTeamStageScore(
   captainRiderId: number | null,
   stageEvents: ScoringEvent[],
   config: FantasyGameConfig,
+  captainMultiplierOverride?: number,
 ): TeamStageScore {
   const squad = new Set(squadRiderIds);
   const effectiveCaptain = captainRiderId != null && squad.has(captainRiderId) ? captainRiderId : null;
@@ -245,7 +250,9 @@ export function computeTeamStageScore(
       riderId,
       basePoints,
       isCaptain,
-      totalPoints: isCaptain ? basePoints * config.captainMultiplier : basePoints,
+      totalPoints: isCaptain
+        ? basePoints * (captainMultiplierOverride ?? config.captainMultiplier)
+        : basePoints,
       events,
     };
   });
@@ -287,6 +294,25 @@ export function computeTeamTotals(
     if (points > totals.bestStagePoints) totals.bestStagePoints = points;
   }
   return totals;
+}
+
+/**
+ * Dream Team (FPL-style): the highest-scoring legal squad-size set of
+ * riders for a set of events — per stage, or for the whole Tour when
+ * given every event. Captaincy excluded: this is raw rider scoring.
+ */
+export function dreamTeam(
+  events: Pick<ScoringEvent, "riderId" | "points">[],
+  size: number,
+): { riderId: number; points: number }[] {
+  const totals = new Map<number, number>();
+  for (const event of events) {
+    totals.set(event.riderId, (totals.get(event.riderId) ?? 0) + event.points);
+  }
+  return [...totals.entries()]
+    .map(([riderId, points]) => ({ riderId, points }))
+    .sort((a, b) => b.points - a.points || a.riderId - b.riderId)
+    .slice(0, size);
 }
 
 /**

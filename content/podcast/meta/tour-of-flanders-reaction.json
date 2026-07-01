@@ -1,0 +1,43 @@
+{
+  "slug": "tour-of-flanders-reaction",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Casper Asgreen climbed better than Mathieu van der Poel on the 19 short kickers, some up to 23% gradient on cobbles",
+    "Julian Alaphilippe communicated to support Casper Asgreen as the designated leader despite being the world champion",
+    "Wout van Aert was dropped on the penultimate climb, leaving Asgreen and van der Poel for the final sprint",
+    "The Tour of Flanders sprint finish after 254km is fundamentally different from cruising sprints at 34-40 km/h due to accumulated fatigue",
+    "Peter Sagan's reported current salary is around 5 million euro per year"
+  ],
+  "named_experts": [
+    "Greg Van Avermaet"
+  ],
+  "specific_numbers": [
+    "8th victory for Deceuninck-Quick-Step at Tour of Flanders",
+    "26 years old (Casper Asgreen age)",
+    "19 short kickers with gradients up to 23% on cobbles",
+    "254km race distance",
+    "36 years old (Greg Van Avermaet age, stated as 35-36)",
+    "3-year contract (Greg Van Avermaet with AG2R Citroën)",
+    "5 million euro per year (Peter Sagan reported salary)",
+    "2-time Tour de Flanders winner (Peter Sagan)",
+    "7-time Green Jersey winner (Peter Sagan)",
+    "2-3 time world champion (Peter Sagan reference)",
+    "34-40 km/h sprint speed"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "tour-of-flanders-race-review",
+    "classics-cycling",
+    "team-tactics",
+    "sprint-finish-analysis",
+    "pro-cycling-results"
+  ],
+  "primary_cluster": "community",
+  "secondary_clusters": [],
+  "primary_persona": "dave",
+  "cluster_reasoning": "This is a pro cycling race review and analysis focused on tactics, team strategy, and notable performances at a classic WorldTour event — core community content about cycling culture and pro stories.",
+  "sacred_cow_score": 6,
+  "indexed_at": "2026-06-15T11:53:30.032Z"
+}

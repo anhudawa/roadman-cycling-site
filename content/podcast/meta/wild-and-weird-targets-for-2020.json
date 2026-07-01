@@ -1,0 +1,41 @@
+{
+  "slug": "wild-and-weird-targets-for-2020",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Ronan McLaughlin broke the Everest World Record, taking Alberto Contador off the top step",
+    "Ronan split-tested tyres and aerodynamics on every piece of kit, including testing from the bottom half of handlebars",
+    "Ronan ran only three gears on his bike during the Everest record attempt",
+    "A 6-week threshold training block with sessions like 2x20s or 3x12s (40 seconds zone 5, 20 seconds zone 3) can improve 20-minute power",
+    "Strava segments lasting 4.5 minutes represent VO2 max efforts and can be targeted with specific VO2 style training sessions"
+  ],
+  "named_experts": [
+    "Alberto Contador",
+    "Ronan McLaughlin"
+  ],
+  "specific_numbers": [
+    "300 watts 20-minute power",
+    "6-week training block",
+    "2x20 threshold intervals",
+    "3x12 intervals with 40 seconds zone 5, 20 seconds zone 3",
+    "4.5 minute Strava section",
+    "150-200k daily distance for multi-day adventure rides"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "power-testing",
+    "threshold-training",
+    "goal-setting",
+    "vo2-max-training",
+    "record-attempts"
+  ],
+  "primary_cluster": "coaching",
+  "secondary_clusters": [
+    "community"
+  ],
+  "primary_persona": "tom",
+  "cluster_reasoning": "Episode centers on training methodology (threshold blocks, VO2max targeting, power testing) with a secondary focus on the record-attempt narrative and expert profiling.",
+  "sacred_cow_score": 7,
+  "indexed_at": "2026-06-15T08:30:42.615Z"
+}

@@ -105,7 +105,7 @@ export function validateSquad(
 
 export interface PriorTransfer {
   effectiveFromStage: number;
-  kind: "standard" | "rest_day_bonus" | "grace";
+  kind: "standard" | "rest_day_bonus" | "grace" | "wildcard";
 }
 
 export interface TransferBudget {
@@ -160,11 +160,13 @@ export interface TransferRequest {
   isPreTour: boolean;
   /** Grace swap for a rider flagged DNS before Stage 1. */
   isGrace?: boolean;
+  /** Wildcard chip active for this stage: free, uncounted transfers. */
+  wildcardActive?: boolean;
 }
 
 export interface TransferDecision extends ValidationResult {
   /** How the transfer will be booked if valid. */
-  kind: "standard" | "rest_day_bonus" | "grace" | "pre_tour";
+  kind: "standard" | "rest_day_bonus" | "grace" | "pre_tour" | "wildcard";
 }
 
 /**
@@ -208,6 +210,9 @@ export function validateTransfer(
 
   if (request.isPreTour) {
     return { valid: errors.length === 0, errors, kind: "pre_tour" };
+  }
+  if (request.wildcardActive) {
+    return { valid: errors.length === 0, errors, kind: "wildcard" };
   }
   if (request.isGrace) {
     return { valid: errors.length === 0, errors, kind: "grace" };

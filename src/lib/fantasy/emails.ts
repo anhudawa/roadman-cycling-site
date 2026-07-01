@@ -81,7 +81,7 @@ export async function sendFantasyMagicLinkEmail(input: {
     </td></tr>
     <tr><td style="padding:0 0 28px 0;">${ctaButton(url, "Lock in my team")}</td></tr>
     <tr><td style="padding:0 0 8px 0;color:#94A3B8;font-size:13px;line-height:1.5;">
-      The link works once and expires in 24 hours. You can edit your team as often as you like until Stage 1 rolls out of Barcelona on 4 July.
+      The link works once and expires in 24 hours. You can edit your team as often as you like until noon on race day, 4 July.
     </td></tr>
     <tr><td style="padding:0 0 24px 0;color:#94A3B8;font-size:12px;line-height:1.55;word-break:break-all;">
       Or paste this into your browser:<br>
@@ -134,7 +134,8 @@ export interface DailyStageEmailInput {
   deepLinkToken: string;
 }
 
-const STAGE_ANGLE: Record<DailyStageEmailInput["stage"]["stageType"], string> = {
+/** Shared "stage suits" copy — daily email + the stage detail page. */
+export const STAGE_ANGLE: Record<DailyStageEmailInput["stage"]["stageType"], string> = {
   flat: "Stage suits: sprinters. Captain a fast man and pray nobody crashes him out of the lead-out.",
   hilly: "Stage suits: the break and the puncheurs. A well-priced baroudeur can out-score your GC stars today.",
   mountain: "Stage suits: GC riders and climbers. Big points at the summit, and the polka dot battle pays too.",
@@ -254,6 +255,35 @@ export function renderRestDayEmail(input: {
     subject,
     html: emailShell("Roadman Fantasy Tour", "Rest day rundown.", body),
     text: `${input.firstName} — your rest-day bonus transfer is unlocked. Use it: ${deepLink}`,
+  };
+}
+
+/* ─── Mini-league nudge (48h, no league — Section 5.3) ──────── */
+
+export function renderLeagueNudgeEmail(input: {
+  firstName: string;
+  teamName: string;
+  deepLinkToken: string;
+  clubhouseCode: string;
+}): { subject: string; html: string; text: string } {
+  const deepLink = `${getSiteUrl()}/api/fantasy/auth/verify?token=${encodeURIComponent(input.deepLinkToken)}&next=/fantasy/team`;
+  const body = `
+    <tr><td style="padding:0 0 20px 0;color:#CBD5E1;font-size:16px;line-height:1.6;">
+      ${escapeHtml(input.firstName)} — <strong style="color:#FAFAFA;">${escapeHtml(input.teamName)}</strong> is in the global league, but the global league doesn't slag you at the coffee stop. Mini-leagues are where this game gets personal.
+    </td></tr>
+    <tr><td style="padding:0 0 20px 0;color:#94A3B8;font-size:14px;line-height:1.6;">
+      Create one in ten seconds and send the code to the group chat, or join the official Roadman Clubhouse with code <strong style="color:#F16363;letter-spacing:0.15em;">${escapeHtml(input.clubhouseCode)}</strong>.
+    </td></tr>
+    <tr><td style="padding:0 0 28px 0;">${ctaButton(deepLink, "Set up my league")}</td></tr>`;
+  const subject = "Your team needs a rivalry";
+  return {
+    subject,
+    html: emailShell("Roadman Fantasy Tour", "No league, no bragging rights.", body),
+    text: [
+      `${input.firstName} — "${input.teamName}" is in the global league, but mini-leagues are where this game gets personal.`,
+      `Create one in ten seconds, or join the Roadman Clubhouse with code ${input.clubhouseCode}.`,
+      deepLink,
+    ].join("\n\n"),
   };
 }
 

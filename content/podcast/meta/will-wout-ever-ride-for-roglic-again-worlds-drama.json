@@ -1,0 +1,42 @@
+{
+  "slug": "will-wout-ever-ride-for-roglic-again-worlds-drama",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Julian Alaphilippe won the 2020 Road World Championships in Imola after 250km of racing across 9 laps",
+    "Wout van Aert became only the second rider in history to win medals in both the time trial and road race at the same World Championships in one year, joining Miguel Indurain and Abraham Olano",
+    "The riders who finished in the decisive group at the business end of the race (after 220km) had all competed in the Tour de France, suggesting the Tour provided adequate preparation for the one-day championship",
+    "Roglic finished 6th, unable to help van Aert in the final 2km due to being on his limit after 240km of racing",
+    "Van Aert finished 2nd, Herskey 3rd, Kiekovsky 4th, Fugelsang 5th in the final classification"
+  ],
+  "named_experts": [
+    "Miguel Indurain",
+    "Abraham Olano"
+  ],
+  "specific_numbers": [
+    "250km race distance",
+    "9 laps of circuit",
+    "6 riders in final decisive group",
+    "220km into race when business end started",
+    "240km of racing before final 10k effort",
+    "9-10-15 second gap van Aert maintained in final 12km",
+    "2 silver medals for van Aert in 2020 (time trial and road race)"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "world-championships-analysis",
+    "tactics-and-strategy",
+    "cycling-drama",
+    "pro-cycling-stories",
+    "tour-de-france-preparation"
+  ],
+  "primary_cluster": "community",
+  "secondary_clusters": [
+    "coaching"
+  ],
+  "primary_persona": "dave",
+  "cluster_reasoning": "This is a pro cycling narrative analysis focused on World Championships drama, tactics, and the interpersonal dynamics between Roglic and van Aert—classic culture-of-cycling content that fits the community pillar, with secondary coaching relevance due to the tactical race analysis.",
+  "sacred_cow_score": 5,
+  "indexed_at": "2026-06-15T08:26:29.639Z"
+}

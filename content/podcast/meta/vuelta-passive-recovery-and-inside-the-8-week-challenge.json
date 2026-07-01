@@ -1,0 +1,42 @@
+{
+  "slug": "vuelta-passive-recovery-and-inside-the-8-week-challenge",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Training allows for the possibility of increased fitness levels, but improvement only occurs if you recover properly",
+    "The process of getting fit happens when you're resting and recovering, not when you're actually training",
+    "Mental relaxation and reduced cortisol levels are crucial for achieving deeper sleep phases (Delta and deep sleep phases) which enable cognitive and muscular regeneration",
+    "A low-volume, high-intensity training system is predicated upon very good recovery",
+    "Cortisol is a stress hormone that, when constantly elevated, impairs the ability to enter sleep phases and damages recovery"
+  ],
+  "named_experts": [
+    "Mark Twain"
+  ],
+  "specific_numbers": [
+    "8 weeks duration for the challenge",
+    "89 professional victories (Marcel Kittel)",
+    "14 Tour de France stage wins (Marcel Kittel)",
+    "20 watts lower zone 5 session performance when recovery is inadequate",
+    "19 years old (Remco Evenepoel)",
+    "2023 contract extension (Remco Evenepoel with Deceuninck-Quick-Step)",
+    "15 to 20 minute mark for daily Vuelta podcast episodes"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "recovery-and-rest",
+    "vuelta-coverage",
+    "eight-week-challenge",
+    "cortisol-management",
+    "passive-recovery",
+    "mental-relaxation"
+  ],
+  "primary_cluster": "recovery",
+  "secondary_clusters": [
+    "coaching"
+  ],
+  "primary_persona": "tom",
+  "cluster_reasoning": "Episode centers on passive recovery, cortisol management, sleep phases, and adaptation — the physiological foundation enabling training to drive fitness — with secondary focus on low-volume, high-intensity training methodology.",
+  "sacred_cow_score": 7,
+  "indexed_at": "2026-06-15T11:12:25.576Z"
+}

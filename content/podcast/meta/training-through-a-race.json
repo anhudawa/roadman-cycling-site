@@ -1,0 +1,45 @@
+{
+  "slug": "training-through-a-race",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Mathieu van der Poel attacked with 85 kilometers to go in Omloop Het Nieuwsblad as a training effort and race simulation, not necessarily to win",
+    "Victor Campenaerts conducted a full-gas training week leading up to Omloop Het Nieuwsblad with three training sessions on some days including core strength, conditioning, stretching, and super long training rides",
+    "Eddy Merckx completed a 190km training ride on Wednesday, 270km solo training ride on Thursday, 50km on the back of a Derny on Friday, and 40km tempo session Saturday morning before riding the Tour de France prologue the same evening",
+    "Eddy Merckx won the Tour de France after this intensive training week, taking the yellow jersey by over 18 minutes and winning 7 stages",
+    "Professional cyclists use semi-classic races as hard training rides and race simulations to build form for priority races and grand tours later in the season"
+  ],
+  "named_experts": [
+    "Eddy Merckx",
+    "Mathieu van der Poel",
+    "Victor Campenaerts",
+    "Taylor Wiles"
+  ],
+  "specific_numbers": [
+    "85 kilometers to go",
+    "110km criterium",
+    "190km training ride",
+    "270km solo training ride",
+    "50km on the back of a Derny",
+    "40km tempo session",
+    "18 minutes",
+    "7 stages"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "training-through-races",
+    "race-simulation",
+    "classics-preparation",
+    "eddy-merckx-training",
+    "professional-cycling-training"
+  ],
+  "primary_cluster": "coaching",
+  "secondary_clusters": [
+    "community"
+  ],
+  "primary_persona": "tom",
+  "cluster_reasoning": "Episode focuses on training methodology and race simulation strategies used by professional cyclists (van der Poel, Campenaerts, Merckx) to build form—core coaching content—with secondary community value through pro stories and historical context.",
+  "sacred_cow_score": 6,
+  "indexed_at": "2026-06-15T11:42:29.020Z"
+}

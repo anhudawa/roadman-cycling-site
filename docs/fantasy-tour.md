@@ -20,7 +20,19 @@ build handover brief; deadlines: picking live **26 June**, scoring live
 | Admin | `src/app/admin/(dashboard)/fantasy/*` | Overview, stage manager, startlist manager, results entry (two-step publish), pricing CSV, config editor |
 | Share cards | `/api/og/fantasy` | `card=team` and `card=stage` variants, edge-rendered |
 | Cron | `/api/cron/fantasy-daily-email` (vercel.json: `30 5 * 7 *` = 06:30 Irish in July) | Stage + rest-day emails, Beehiiv retry sweep |
-| Tests | `src/lib/fantasy/__tests__/` | 51 tests incl. simulated 21-stage Tour with abandon wave, jury relegation, correction recompute |
+| Tests | `src/lib/fantasy/__tests__/` | 73 tests incl. simulated 21-stage Tour with abandon wave, jury relegation, correction recompute; chips; emails; WCAG contrast |
+| FPL-style layer | chips (`fantasy_chips`), ownership/captaincy/Dream Team (`/fantasy/stats`), rank arrows (`previous_rank`), auto-join Clubhouse | Wildcard + Triple Captain, one each per Tour; ownership % in the builder; Team of the Stage on stage pages |
+
+## Team-picking deadline
+
+The squad freezes for Stage 1 at the **team-picking deadline**, a
+config value (`pickingDeadlineIso`, default `2026-07-04T12:00:00+02:00`
+— noon CEST / 11:00 Irish on race day). It governs Stage 1's lock
+independently of the physical TTT start time, so entering the real
+start time in admin later can't move the picking deadline. Set it to
+`null` in admin → Config to fall back to the Stage 1 start time. Keep
+it at or before the real TTT roll-out (afternoon) — a deadline after
+roll-out would let teams change after racing began.
 
 ## Deliberate deviations from the brief
 
@@ -169,10 +181,17 @@ says further prizes are announced before Stage 1.
 
 ## Still to build (known gaps)
 
-- Mini-league nudge (48 h after signup, no league) and post-Tour
-  sequence — straightforward crons once launch settles
+- Post-Tour sequence (winners, "your Tour in review", Plateau bridge)
+  — needs Anthony-voice copy; the render pipeline and guard exist
 - Results-ingestion automation (PCS blocks scraping; manual admin entry
   is the shipped reliability floor per Section 6.1)
-- Meta CAPI: server event implemented; the client pixel needs the
-  matching `fantasy-signup-{id}` eventID wired for dedup when Anthony
-  enables paid acquisition (open decision #4)
+
+Closed since the first draft of this list: mini-league nudge
+(/api/cron/fantasy-lifecycle, daily June–July, one nudge per player
+via league_nudge_sent_at), Meta pixel/CAPI dedup (client Lead fires
+with event_id fantasy-signup-{id} on the welcome landing), branded
+league share previews (league OG card + page metadata), tappable
+stage strip → /fantasy/stage/[n] detail pages, email renderer tests,
+and the WCAG contrast checks from Section 8 (coral on deep purple
+passes AA at 5.9:1; coral on brand purple is large-text/UI only and
+the test pins that).

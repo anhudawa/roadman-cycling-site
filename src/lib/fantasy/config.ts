@@ -59,12 +59,28 @@ export interface FantasyGameConfig {
   breakawayBonusPoints: number;
 
   captainMultiplier: number;
+  /** Chips (one each per Tour, FPL-style). */
+  chips: {
+    wildcardEnabled: boolean;
+    tripleCaptainEnabled: boolean;
+    tripleCaptainMultiplier: number;
+  };
 
   /** Weekly podium boundaries (inclusive stage ranges). */
   weeks: { week1: [number, number]; week2: [number, number]; week3: [number, number] };
 
   /** Stages followed by a rest day (unlock bonus transfers from the next stage). */
   restDaysAfterStages: number[];
+
+  /**
+   * Team-picking lock — the moment the squad freezes for Stage 1 and the
+   * free pre-Tour edit window closes. ISO string with explicit offset.
+   * When set it governs Stage 1 regardless of the physical TTT start
+   * time the admin enters later (so it can't be silently overwritten).
+   * Default: noon CEST on race day (4 July). Set to null to fall back
+   * to the Stage 1 start time.
+   */
+  pickingDeadlineIso: string | null;
 
   /**
    * Demo mode: players who sign up are tagged is_demo (swept by the
@@ -106,9 +122,15 @@ export const LAUNCH_DEFAULTS: FantasyGameConfig = {
   breakawayBonusPoints: 10,
 
   captainMultiplier: 2,
+  chips: { wildcardEnabled: true, tripleCaptainEnabled: true, tripleCaptainMultiplier: 3 },
 
   weeks: { week1: [1, 9], week2: [10, 15], week3: [16, 21] },
   restDaysAfterStages: [9, 15],
+
+  // Noon CEST on race day (4 July). Players build and edit freely right
+  // up to here; the squad then freezes for Stage 1. Pinned explicitly so
+  // entering the real TTT start time in admin later can't move the lock.
+  pickingDeadlineIso: "2026-07-04T12:00:00+02:00",
 
   demoMode: false,
 };

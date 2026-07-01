@@ -11,7 +11,7 @@ import {
   type SessionScope,
 } from "@/lib/fantasy/auth";
 import { syncPlayerToBeehiiv, sendCapiLeadEvent } from "@/lib/fantasy/marketing";
-import { audit } from "@/lib/fantasy/queries";
+import { audit, joinOfficialLeague } from "@/lib/fantasy/queries";
 
 export const runtime = "nodejs";
 
@@ -79,6 +79,9 @@ export async function GET(request: NextRequest) {
         void syncPlayerToBeehiiv(player);
         void sendCapiLeadEvent(player);
       }
+      // FPL-style: everyone lands in the official league automatically —
+      // instant social proof instead of an empty leagues panel.
+      void joinOfficialLeague(player.id);
       void audit(email, "player.verified", "player", String(player.id));
     }
   }

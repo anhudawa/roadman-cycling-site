@@ -1,0 +1,38 @@
+{
+  "slug": "using-your-power-meter-to-win-races",
+  "guest_name": null,
+  "guest_credentials": null,
+  "key_claims": [
+    "Training stress score of 100 points equals one hour at maximum power output; two hours at 50% intensity also equals 100 stress points",
+    "Fitness score is calculated by taking the last 42 training stress scores, adding them together and dividing by 42; sessions from 43 days ago no longer contribute",
+    "Acute training load (fatigue) is a running total of the last seven training stress scores",
+    "Over 90% of A1 athletes hit their seasonal goals through using performance management chart metrics",
+    "A cyclist took 2 minutes off a 10-minute climb segment after 8 weeks of structured training with a power meter, despite doing that segment 2-3 times weekly for years"
+  ],
+  "named_experts": [],
+  "specific_numbers": [
+    "100 training stress points = 1 hour full gas",
+    "42 training stress scores used for fitness calculation",
+    "7 training stress scores used for acute training load",
+    "90% of athletes hitting seasonal goals",
+    "2 minutes improvement on 10-minute climb after 8 weeks",
+    "£125 per month coaching fee",
+    "10-minute climb segment duration",
+    "8-week training plan duration"
+  ],
+  "ndy_members": [],
+  "episode_type": "solo",
+  "topics": [
+    "power-meter-training",
+    "performance-management-chart",
+    "training-stress-score",
+    "race-peaking",
+    "structured-training"
+  ],
+  "primary_cluster": "coaching",
+  "secondary_clusters": [],
+  "primary_persona": "tom",
+  "cluster_reasoning": "Episode focuses exclusively on power meter training methodology, performance management charts, training stress scores, and structured training metrics—core coaching pillar content about how to systematically improve cycling performance.",
+  "sacred_cow_score": 5,
+  "indexed_at": "2026-06-15T11:25:26.096Z"
+}

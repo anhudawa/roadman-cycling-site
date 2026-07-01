@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { listRidersWithTeams, listStages, loadGameConfig } from "@/lib/fantasy/queries";
+import { getOwnership, listRidersWithTeams, listStages, loadGameConfig } from "@/lib/fantasy/queries";
 import { LAUNCH_DEFAULTS } from "@/lib/fantasy/config";
 import stagesData from "@/data/fantasy/stages-2026.json";
 
@@ -17,14 +17,24 @@ export const runtime = "nodejs";
  */
 export async function GET() {
   try {
-    const [riders, stages, config] = await Promise.all([
+    const [riders, stages, config, ownership] = await Promise.all([
       listRidersWithTeams(),
       listStages(),
       loadGameConfig(),
+      getOwnership(),
     ]);
+    // "Selected by" % (FPL-style) — the differential game starts in the
+    // builder. Rounded to one decimal; 0 until teams exist.
+    const withOwnership = riders.map((r) => ({
+      ...r,
+      ownershipPct:
+        ownership.totalTeams > 0
+          ? Math.round(((ownership.byRider.get(r.id) ?? 0) / ownership.totalTeams) * 1000) / 10
+          : 0,
+    }));
     return NextResponse.json(
       {
-        riders,
+        riders: withOwnership,
         stages: stages.map((s) => ({
           stageNumber: s.stageNumber,
           date: s.date,

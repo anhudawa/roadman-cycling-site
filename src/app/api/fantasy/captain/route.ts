@@ -7,6 +7,7 @@ import {
   deadlineForStage,
   getPlayerByEmail,
   getSquadAsOfStage,
+  loadGameConfig,
   nextOpenStage,
   setCaptain,
   audit,
@@ -43,11 +44,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "The Tour is over." }, { status: 400 });
   }
 
+  const config = await loadGameConfig();
   const squad = await getSquadAsOfStage(team.id, openStage.stageNumber);
   const verdict = validateCaptainPick(
     body.riderId,
     squad.map((r) => r.riderId),
-    deadlineForStage(openStage),
+    deadlineForStage(openStage, config.pickingDeadlineIso),
     new Date(),
   );
   if (!verdict.valid) {
