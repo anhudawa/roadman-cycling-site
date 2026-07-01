@@ -546,7 +546,7 @@ export default async function BlogPostPage({
             {planEvent && <WeeksOutSelector event={planEvent} />}
 
             {mentionedEvents.length > 0 && (
-              <div className="mt-10 rounded-xl border border-white/10 bg-white/[0.03] p-5 md:p-6">
+              <nav className="mt-10 rounded-xl border border-white/10 bg-white/[0.03] p-5 md:p-6" aria-label="Free training plans">
                 <p className="font-heading text-coral text-xs tracking-widest mb-3">
                   FREE TRAINING PLANS
                 </p>
@@ -555,13 +555,14 @@ export default async function BlogPostPage({
                     <Link
                       key={e.slug}
                       href={`/plan/${e.slug}`}
+                      aria-label={`View ${e.shortName} training plan`}
                       className="inline-flex items-center gap-2 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-4 py-2 text-sm font-heading text-off-white tracking-wider transition-all"
                     >
-                      {e.shortName.toUpperCase()} →
+                      {e.shortName.toUpperCase()} <span aria-hidden="true">→</span>
                     </Link>
                   ))}
                 </div>
-              </div>
+              </nav>
             )}
 
             {/* Mid-article inline CTA — injects after 3rd paragraph, pillar-aware.
@@ -678,7 +679,7 @@ export default async function BlogPostPage({
             {/* Topic hub back-links — bidirectional signal for Google +
                 natural "keep exploring" path for readers. */}
             {parentTopics.length > 0 && (
-              <div className="mt-12 pt-8 border-t border-white/5">
+              <nav className="mt-12 pt-8 border-t border-white/5" aria-label="Related topics">
                 <p className="font-heading text-coral text-xs tracking-widest mb-3">
                   MORE ON THIS TOPIC
                 </p>
@@ -687,6 +688,7 @@ export default async function BlogPostPage({
                     <Link
                       key={t.slug}
                       href={`/topics/${t.slug}`}
+                      aria-label={`Explore topic: ${t.title}`}
                       className="
                         inline-flex items-center px-4 py-2 rounded-full
                         bg-white/5 border border-white/10
@@ -699,7 +701,7 @@ export default async function BlogPostPage({
                     </Link>
                   ))}
                 </div>
-              </div>
+              </nav>
             )}
 
             {/* Share + Author */}
@@ -786,7 +788,7 @@ export default async function BlogPostPage({
                 has a "try it yourself" action, and satisfies the article
                 internal-linking rule (1 hub + articles + tool + episode). */}
             {graph.tools.length > 0 && (
-              <div className="mt-10">
+              <nav className="mt-10" aria-label="Related calculators">
                 <p className="font-heading text-coral text-xs tracking-widest mb-3">
                   TRY THE CALCULATORS
                 </p>
@@ -802,25 +804,26 @@ export default async function BlogPostPage({
                     </Link>
                   ))}
                 </div>
-              </div>
+              </nav>
             )}
 
             {/* Graph-powered: related glossary terms */}
             {graph.glossaryTerms.length > 0 && (
-              <div className="mt-10">
+              <nav className="mt-10" aria-label="Key terms">
                 <p className="font-heading text-coral text-xs tracking-widest mb-3">KEY TERMS</p>
                 <div className="flex flex-wrap gap-2">
                   {graph.glossaryTerms.map((t) => (
                     <Link
                       key={t.slug}
                       href={`/glossary/${t.slug}`}
+                      aria-label={`Definition: ${t.term}`}
                       className="inline-flex items-center gap-1 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-3 py-1.5 text-xs font-heading text-off-white tracking-wider transition-all"
                     >
                       {t.term}
                     </Link>
                   ))}
                 </div>
-              </div>
+              </nav>
             )}
 
             {/* Related Posts (blog-only) */}

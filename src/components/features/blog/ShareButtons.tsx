@@ -77,8 +77,8 @@ export function ShareButtons({ title, slug, className = "" }: ShareButtonsProps)
   ];
 
   return (
-    <div className={`flex items-center gap-3 ${className}`}>
-      <span className="text-xs text-foreground-subtle uppercase tracking-widest font-heading">
+    <nav aria-label="Share this article" className={`flex items-center gap-3 ${className}`}>
+      <span className="text-xs text-foreground-subtle uppercase tracking-widest font-heading" aria-hidden="true">
         Share
       </span>
       {shareLinks.map((link) => (
@@ -106,6 +106,7 @@ export function ShareButtons({ title, slug, className = "" }: ShareButtonsProps)
         onClick={handleCopyLink}
         title={copied ? "Copied!" : "Copy link"}
         aria-label={copied ? "Link copied" : "Copy link"}
+        aria-live="polite"
         className="
           inline-flex items-center justify-center w-9 h-9
           bg-white/5 border border-white/10 rounded-lg
@@ -126,6 +127,6 @@ export function ShareButtons({ title, slug, className = "" }: ShareButtonsProps)
           </svg>
         )}
       </button>
-    </div>
+    </nav>
   );
 }

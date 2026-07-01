@@ -69,6 +69,7 @@ export function AuthorBio() {
               href="https://x.com/Roadman_Podcast"
               target="_blank"
               rel="noopener noreferrer me"
+              aria-label="Anthony Walsh on X (formerly Twitter)"
               className="text-foreground-muted hover:text-coral transition-colors"
             >
               X / TWITTER
@@ -77,6 +78,7 @@ export function AuthorBio() {
               href="https://instagram.com/roadman.cycling"
               target="_blank"
               rel="noopener noreferrer me"
+              aria-label="Roadman Cycling on Instagram"
               className="text-foreground-muted hover:text-coral transition-colors"
             >
               INSTAGRAM
@@ -85,6 +87,7 @@ export function AuthorBio() {
               href="https://youtube.com/@theroadmanpodcast"
               target="_blank"
               rel="noopener noreferrer me"
+              aria-label="Roadman Cycling on YouTube"
               className="text-foreground-muted hover:text-coral transition-colors"
             >
               YOUTUBE
@@ -93,6 +96,7 @@ export function AuthorBio() {
               href="https://open.spotify.com/show/2oCs3N4ahypwzzUrFqgUmC"
               target="_blank"
               rel="noopener noreferrer me"
+              aria-label="Roadman Cycling Podcast on Spotify"
               className="text-foreground-muted hover:text-coral transition-colors"
             >
               SPOTIFY

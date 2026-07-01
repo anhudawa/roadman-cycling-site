@@ -77,12 +77,14 @@ export async function GET() {
     "bike-fit-guide-cyclists",
   ]);
 
+  // Pinned posts first (stable high-value articles), then every remaining
+  // post in reverse-chronological order. No cap — llms.txt is the
+  // comprehensive machine-readable index, so every post must appear.
   const pinnedPosts = posts.filter((p) => PINNED_SLUGS.has(p.slug));
-  const otherRecent = posts
-    .filter((p) => !PINNED_SLUGS.has(p.slug))
-    .slice(0, 15);
-  const featuredPosts = [...pinnedPosts, ...otherRecent];
-  const recentEpisodes = episodes.slice(0, 30);
+  const otherPosts = posts.filter((p) => !PINNED_SLUGS.has(p.slug));
+  const allBlogPosts = [...pinnedPosts, ...otherPosts];
+  // All episodes, most-recent-first (already sorted by getAllEpisodes).
+  const allEpisodes = episodes;
 
   /**
    * AEO category priorities — DEV-AEO-03.
@@ -385,16 +387,16 @@ Focused clusters that interlink a definitive guide with its supporting articles.
 - [Coming back after a break?](${tag(`${BASE_URL}/you/comeback`)}): For returning cyclists rebuilding fitness.
 - [Podcast listener, not yet coaching?](${tag(`${BASE_URL}/you/listener`)}): For regular listeners considering coaching.
 
-## Featured Blog Posts (pinned high-value articles + recent)
-${featuredPosts
+## All Blog Posts (${allBlogPosts.length} articles — pinned high-value first, then reverse-chronological)
+${allBlogPosts
   .map(
     (p) =>
       `- [${p.title}](${tag(`${BASE_URL}/blog/${p.slug}`)}): ${p.seoDescription}`,
   )
   .join("\n")}
 
-## Recent Podcast Episodes (most-recent-first)
-${recentEpisodes
+## All Podcast Episodes (${allEpisodes.length} episodes — most-recent-first)
+${allEpisodes
   .map(
     (e) =>
       `- [${e.title}](${tag(`${BASE_URL}/podcast/${e.slug}`)})${e.guest ? ` — guest: ${e.guest}${e.guestCredential ? ` (${e.guestCredential})` : ""}` : ""}: ${e.seoDescription}`,

@@ -90,8 +90,9 @@ export function EvidenceBlock({
                     <Link
                       href={e.href}
                       className="text-coral hover:text-coral/80 transition-colors"
+                      aria-label={`View ${e.name} profile`}
                     >
-                      →
+                      <span aria-hidden="true">→</span>
                     </Link>
                   </>
                 )}

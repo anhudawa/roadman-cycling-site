@@ -14,9 +14,9 @@ export function RelatedPosts({ posts, className = "" }: RelatedPostsProps) {
 
   return (
     <div className={className}>
-      <h3 className="font-heading text-2xl text-off-white mb-6 text-center">
+      <h2 className="font-heading text-2xl text-off-white mb-6 text-center">
         KEEP READING
-      </h3>
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {posts.map((post) => (
           <Link
@@ -58,9 +58,9 @@ export function RelatedPosts({ posts, className = "" }: RelatedPostsProps) {
                 </span>
               </div>
 
-              <h4 className="font-heading text-lg text-off-white mb-1 group-hover:text-coral transition-colors leading-tight">
+              <h3 className="font-heading text-lg text-off-white mb-1 group-hover:text-coral transition-colors leading-tight">
                 {post.title.toUpperCase()}
-              </h4>
+              </h3>
 
               <p className="text-sm text-foreground-muted leading-relaxed line-clamp-3">
                 {post.excerpt}

@@ -27,9 +27,9 @@ export function CitedClaimTable({
       aria-label="Cited claims and Roadman positions"
       className="cited-claim-table my-10 not-prose"
     >
-      <p className="font-heading text-coral text-xs tracking-widest mb-3">
+      <h2 className="font-heading text-coral text-xs tracking-widest mb-3">
         {heading}
-      </p>
+      </h2>
       {caption && (
         <p className="text-sm text-foreground-muted mb-6 max-w-2xl leading-relaxed">
           {caption}

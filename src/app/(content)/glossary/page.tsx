@@ -45,12 +45,22 @@ const GLOSSARY_FAQS = [
     answer:
       "Periodisation is the structured organisation of training into blocks with different goals — base (aerobic), build (intensity), peak (race-specific), and recovery. Each block develops a specific quality, then you stack them so peak fitness lands on race day, not mid-training. Without periodisation, every week looks the same and improvement plateaus.",
   },
+  {
+    question: "What is a peloton in cycling?",
+    answer:
+      "The peloton is the main group of riders in a road race — the pack. Riding in the peloton saves roughly 30% energy compared to riding alone at the same speed, thanks to drafting. But it's not just about energy saving: positioning within the peloton determines your exposure to crashes, your ability to respond to attacks, and whether you're sheltered from wind. Experienced riders sit in the front third — close enough to react, protected enough to conserve. Group rides simulate peloton dynamics on a smaller scale.",
+  },
+  {
+    question: "What is a groupset on a road bike?",
+    answer:
+      "A groupset is the complete matched set of drivetrain and braking components on a road bike: shifters, derailleurs, crankset, cassette, chain, and brakes. The three major manufacturers are Shimano, SRAM, and Campagnolo, each offering a hierarchy of tiers — Shimano's runs from Claris at entry level through Tiagra, 105, Ultegra, up to Dura-Ace. The biggest decision is mechanical versus electronic shifting (Shimano Di2, SRAM AXS), which uses motors for more precise, consistent shifts. The honest truth: a well-maintained mid-range groupset like Shimano 105 performs brilliantly for most riders.",
+  },
 ];
 
 export const metadata: Metadata = {
   title: "Cycling Glossary — FTP, VO2max, Polarised, Sweet Spot & More",
   description:
-    "Cycling performance terms defined by a coach, not a textbook. FTP, VO2max, polarised training, sweet spot, W/kg, lactate threshold, periodisation — with how to actually use them.",
+    "100+ cycling performance terms defined by a coach, not a textbook. FTP, VO2max, polarised training, sweet spot, W/kg, peloton, groupset, time trial — with how to actually use them.",
   alternates: {
     canonical: "https://roadmancycling.com/glossary",
   },
@@ -140,7 +150,7 @@ export default function GlossaryPage() {
         <Section background="charcoal">
           <Container width="narrow">
             <div className="space-y-4">
-              {GLOSSARY_TERMS.map((term, i) => (
+              {[...GLOSSARY_TERMS].sort((a, b) => a.term.localeCompare(b.term)).map((term, i) => (
                 <ScrollReveal key={term.slug} direction="up" delay={i * 0.03}>
                   <Link href={`/glossary/${term.slug}`} className="block group">
                     <Card className="p-6 transition-all group-hover:border-coral/30">

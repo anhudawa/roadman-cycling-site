@@ -93,6 +93,8 @@ export function TableOfContents({
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+        aria-label={isOpen ? "Collapse table of contents" : "Expand table of contents"}
         className="flex items-center gap-2 mb-3 text-foreground-muted hover:text-off-white transition-colors cursor-pointer"
         style={{ transitionDuration: "var(--duration-fast)" }}
       >
@@ -104,6 +106,7 @@ export function TableOfContents({
           fill="none"
           stroke="currentColor"
           strokeWidth="1.5"
+          aria-hidden="true"
           className={`w-3 h-3 transition-transform ${isOpen ? "rotate-0" : "-rotate-90"}`}
         >
           <path d="M3 5l3 3 3-3" />
