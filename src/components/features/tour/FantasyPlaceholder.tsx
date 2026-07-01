@@ -37,11 +37,11 @@ export function FantasyPlaceholder({ id = "fantasy" }: { id?: string }) {
             style={{ fontSize: "var(--text-section)" }}
           >
             FANTASY TOUR DE FRANCE
-            <span className="block text-jersey-yellow">PICK NINE. BEAT THE BUNCH.</span>
+            <span className="block text-jersey-yellow">PICK EIGHT. BEAT THE BUNCH.</span>
           </h2>
 
           <p className="text-foreground-muted max-w-2xl leading-relaxed mb-6">
-            Build your nine-rider roster, score points across all 21 stages, and
+            Build your eight-rider roster, score points across all 21 stages, and
             settle it on a live leaderboard inside the Roadman community. Climbers,
             sprinters, a time-trial specialist, your wildcard for the breakaway —
             the squad that reads the race best wins. We&rsquo;re finishing the game
@@ -51,7 +51,7 @@ export function FantasyPlaceholder({ id = "fantasy" }: { id?: string }) {
 
           <div className="grid sm:grid-cols-3 gap-3 mb-8">
             {[
-              { k: "DRAFT YOUR NINE", v: "A roster within a points budget — balance the mountains against the bunch sprints." },
+              { k: "DRAFT YOUR EIGHT", v: "A roster within a points budget — balance the mountains against the bunch sprints." },
               { k: "SCORE EVERY STAGE", v: "Stage results, the jerseys, and breakaway points tally daily through July." },
               { k: "CLIMB THE BOARD", v: "League table inside the Roadman community — bragging rights all month." },
             ].map((card) => (

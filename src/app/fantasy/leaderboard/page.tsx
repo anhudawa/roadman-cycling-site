@@ -3,6 +3,7 @@ import Link from "next/link";
 import { desc, eq, sql } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { fantasyPlayers, fantasyTeams, fantasyTeamTotals } from "@/lib/db/schema";
+import { RankArrow } from "@/components/features/fantasy/TeamDashboard";
 
 export const metadata: Metadata = {
   title: "Standings",
@@ -43,6 +44,7 @@ export default async function LeaderboardPage({
 
   let rows: {
     rank: number | null;
+    previousRank: number | null;
     points: number;
     teamName: string;
     playerFirstName: string;
@@ -52,6 +54,7 @@ export default async function LeaderboardPage({
     rows = await db
       .select({
         rank: fantasyTeamTotals.globalRank,
+        previousRank: fantasyTeamTotals.previousRank,
         points: weekColumn ?? fantasyTeamTotals.totalPoints,
         teamName: fantasyTeams.name,
         playerFirstName: fantasyPlayers.firstName,
@@ -79,7 +82,7 @@ export default async function LeaderboardPage({
               href={tab.key ? `/fantasy/leaderboard?week=${tab.key}` : "/fantasy/leaderboard"}
               aria-current={active ? "page" : undefined}
               className={`rounded-full px-4 py-2 font-heading text-sm tracking-widest transition-colors ${
-                active ? "bg-coral text-charcoal" : "bg-white/10 text-off-white/70 hover:bg-white/20"
+                active ? "bg-jersey-yellow text-charcoal" : "bg-white/10 text-off-white/70 hover:bg-white/20"
               }`}
             >
               {tab.label}
@@ -93,7 +96,7 @@ export default async function LeaderboardPage({
           <h2 className="font-heading text-2xl tracking-wide">NOBODY HAS SCORED YET</h2>
           <p className="mx-auto mt-3 max-w-md text-off-white/70">
             First points land when Stage 1 finishes in Barcelona on 4 July.{" "}
-            <Link href="/fantasy/build" className="text-coral underline">
+            <Link href="/fantasy/build" className="text-jersey-yellow underline">
               Make sure you&apos;re on the startline.
             </Link>
           </p>
@@ -105,11 +108,12 @@ export default async function LeaderboardPage({
             return (
               <li key={`${row.teamName}-${i}`} className="flex items-center gap-4 py-3">
                 <span
-                  className={`w-12 shrink-0 text-right font-heading text-xl tabular-nums ${
-                    position <= 3 ? "text-coral" : "text-off-white/50"
+                  className={`w-20 shrink-0 text-right font-heading text-xl tabular-nums ${
+                    position <= 3 ? "text-jersey-yellow" : "text-off-white/50"
                   }`}
                 >
                   {position}
+                  {!week && <RankArrow rank={row.rank} previous={row.previousRank} />}
                 </span>
                 <div className="min-w-0 flex-1">
                   <p className="truncate font-medium">{row.teamName}</p>

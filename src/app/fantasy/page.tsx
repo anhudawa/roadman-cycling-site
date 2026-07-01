@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { StageStrip, type StageStripStage } from "@/components/features/fantasy/StageStrip";
-import { StagePicks } from "@/components/features/fantasy/StagePicks";
-import { LaunchCountdown } from "@/components/features/fantasy/LaunchCountdown";
 import stagesData from "@/data/fantasy/stages-2026.json";
 
 export const metadata: Metadata = {
@@ -37,10 +35,9 @@ export default function FantasyLandingPage() {
       {/* Hero — the route IS the thesis: Barcelona to Paris, 21 tiles. */}
       <section className="relative overflow-hidden bg-gradient-to-b from-deep-purple via-charcoal to-charcoal">
         <div className="mx-auto max-w-6xl px-4 pb-10 pt-16 sm:pt-24">
-          <p className="mb-4 font-heading text-sm tracking-[0.35em] text-coral">
+          <p className="mb-4 font-heading text-sm tracking-[0.35em] text-jersey-yellow">
             TOUR DE FRANCE · 4–26 JULY 2026 · FREE TO PLAY
           </p>
-          <LaunchCountdown className="mb-6" />
           <h1 className="font-heading text-[clamp(3.5rem,10vw,7.5rem)] leading-[0.9] tracking-tight">
             PICK 8.
             <br />
@@ -54,18 +51,18 @@ export default function FantasyLandingPage() {
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
               href="/fantasy/build"
-              className="rounded-md bg-coral px-8 py-4 font-heading text-lg tracking-[0.15em] text-charcoal transition-colors hover:bg-coral-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral"
+              className="rounded-md bg-jersey-yellow px-8 py-4 font-heading text-lg tracking-[0.15em] text-charcoal transition-colors hover:bg-jersey-yellow-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-jersey-yellow"
             >
               BUILD YOUR TEAM →
             </Link>
             <p className="text-sm text-mid-grey">
               No signup needed to start picking.
               <br />
-              Teams lock when Stage 1 rolls out of Barcelona.
+              Teams lock at noon on 4 July, race day.
             </p>
           </div>
-          <p className="mt-6 block w-fit max-w-2xl rounded-md border border-coral/40 bg-coral/10 px-4 py-2.5 text-sm text-off-white/90">
-            <span className="font-heading tracking-[0.2em] text-coral">THE PRIZE: </span>
+          <p className="mt-6 block w-fit max-w-2xl rounded-md border border-jersey-yellow/40 bg-jersey-yellow/10 px-4 py-2.5 text-sm text-off-white/90">
+            <span className="font-heading tracking-[0.2em] text-jersey-yellow">THE PRIZE: </span>
             win the global league, ride our Girona training camp on us (ex flights &amp; transfers).{" "}
             <Link href="/fantasy/rules" className="underline hover:text-off-white">
               Full rules
@@ -83,6 +80,12 @@ export default function FantasyLandingPage() {
 
       {/* How it works */}
       <section className="border-t border-white/10 bg-charcoal">
+        {/* French tricolour accent */}
+        <div className="flex h-[2px]" aria-hidden="true">
+          <div className="flex-1 bg-tdf-blue" />
+          <div className="flex-1 bg-white" />
+          <div className="flex-1 bg-tdf-red" />
+        </div>
         <div className="mx-auto max-w-6xl px-4 py-16">
           <h2 className="font-heading text-4xl tracking-wide sm:text-5xl">HOW IT&apos;S PLAYED</h2>
           <div className="mt-8 grid gap-6 md:grid-cols-3">
@@ -91,27 +94,10 @@ export default function FantasyLandingPage() {
                 key={step.title}
                 className="rounded-xl border border-white/10 bg-deep-purple/40 p-6"
               >
-                <h3 className="font-heading text-2xl tracking-wide text-coral">{step.title}</h3>
+                <h3 className="font-heading text-2xl tracking-wide text-jersey-yellow">{step.title}</h3>
                 <p className="mt-3 leading-relaxed text-off-white/75">{step.body}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Stage-by-stage picking guide — helps spend the 100 credits */}
-      <section className="border-t border-white/10 bg-charcoal">
-        <div className="mx-auto max-w-6xl px-4 py-16">
-          <h2 className="font-heading text-4xl tracking-wide sm:text-5xl">
-            STAGE BY STAGE — WHO TO PICK
-          </h2>
-          <p className="mt-3 max-w-2xl leading-relaxed text-off-white/70">
-            Twenty-one stages, twenty-one different days. Sprinters clean up on the flat,
-            climbers own the summit finishes, and the lumpy days reward a brave breakaway pick.
-            Here is what each one asks of your eight, so you spend your credits where they score.
-          </p>
-          <div className="mt-8">
-            <StagePicks stages={stages} />
           </div>
         </div>
       </section>
@@ -124,23 +110,23 @@ export default function FantasyLandingPage() {
             <ul className="mt-6 space-y-3 text-off-white/80">
               <li className="flex justify-between gap-4 border-b border-white/10 pb-2">
                 <span>Stage win</span>
-                <span className="font-heading text-xl text-coral">50</span>
+                <span className="font-heading text-xl text-jersey-yellow">50</span>
               </li>
               <li className="flex justify-between gap-4 border-b border-white/10 pb-2">
                 <span>Yellow jersey, every day he holds it</span>
-                <span className="font-heading text-xl text-coral">10</span>
+                <span className="font-heading text-xl text-jersey-yellow">10</span>
               </li>
               <li className="flex justify-between gap-4 border-b border-white/10 pb-2">
                 <span>Combativity award</span>
-                <span className="font-heading text-xl text-coral">12</span>
+                <span className="font-heading text-xl text-jersey-yellow">12</span>
               </li>
               <li className="flex justify-between gap-4 border-b border-white/10 pb-2">
                 <span>Final GC winner in Paris</span>
-                <span className="font-heading text-xl text-coral">200</span>
+                <span className="font-heading text-xl text-jersey-yellow">200</span>
               </li>
               <li className="flex justify-between gap-4">
                 <span>Your captain, every stage</span>
-                <span className="font-heading text-xl text-coral">×2</span>
+                <span className="font-heading text-xl text-jersey-yellow">×2</span>
               </li>
             </ul>
           </div>
@@ -169,11 +155,11 @@ export default function FantasyLandingPage() {
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-off-white/70">
             Squads are provisional until the team presentation in Barcelona on 1 July — pick now,
-            tune later. Unlimited free changes until Stage 1.
+            tune later. Unlimited free changes until noon on race day, 4 July.
           </p>
           <Link
             href="/fantasy/build"
-            className="mt-8 inline-block rounded-md bg-coral px-10 py-4 font-heading text-lg tracking-[0.15em] text-charcoal transition-colors hover:bg-coral-hover"
+            className="mt-8 inline-block rounded-md bg-jersey-yellow px-10 py-4 font-heading text-lg tracking-[0.15em] text-charcoal transition-colors hover:bg-jersey-yellow-deep"
           >
             START PICKING →
           </Link>

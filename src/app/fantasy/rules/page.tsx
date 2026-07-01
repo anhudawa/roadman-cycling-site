@@ -37,7 +37,7 @@ function PointsTable({ rows, caption }: { rows: [string, string | number][]; cap
         {rows.map(([label, points]) => (
           <tr key={label} className="border-b border-white/5">
             <td className="py-1.5 pr-4 text-off-white/75">{label}</td>
-            <td className="py-1.5 text-right font-heading text-lg tabular-nums text-coral">{points}</td>
+            <td className="py-1.5 text-right font-heading text-lg tabular-nums text-jersey-yellow">{points}</td>
           </tr>
         ))}
       </tbody>
@@ -57,6 +57,19 @@ function RuleSection({ title, children }: { title: string; children: React.React
 export default async function RulesPage() {
   const c = await getConfig();
 
+  // The team-picking lock, shown in Irish time (matches the audience and
+  // the daily-email framing). Falls back to a generic phrase if unset.
+  const pickingDeadlineLabel = c.pickingDeadlineIso
+    ? new Date(c.pickingDeadlineIso).toLocaleString("en-IE", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZone: "Europe/Dublin",
+      }) + " Irish time"
+    : "the Stage 1 start";
+
   const finishRows: [string, number][] = c.stageFinishPoints.map((points, idx) => [
     ordinal(idx + 1),
     points,
@@ -68,7 +81,7 @@ export default async function RulesPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-12">
-      <p className="font-heading text-sm tracking-[0.3em] text-coral">FREE TO PLAY · NO ENTRY FEE</p>
+      <p className="font-heading text-sm tracking-[0.3em] text-jersey-yellow">FREE TO PLAY · NO ENTRY FEE</p>
       <h1 className="mt-2 font-heading text-5xl tracking-wide sm:text-6xl">THE RULEBOOK</h1>
       <p className="mt-4 text-lg text-off-white/80">
         Everything below is exactly how the scoring engine works — this page reads from the same
@@ -82,7 +95,7 @@ export default async function RulesPage() {
           training camp in Girona</strong> — riding, coaching, and the full camp experience on us.
           Flights and transfers are not included; you get yourself to Girona, we do the rest.
           No cash alternative. Further prizes are announced before Stage 1 and listed on the{" "}
-          <Link href="/fantasy/terms" className="text-coral underline">
+          <Link href="/fantasy/terms" className="text-jersey-yellow underline">
             game terms
           </Link>{" "}
           page.
@@ -105,7 +118,8 @@ export default async function RulesPage() {
             Depth picks win this game.
           </li>
           <li>
-            Unlimited free changes until the Stage 1 deadline. Squads are labelled provisional
+            Unlimited free changes until {pickingDeadlineLabel}, when your squad locks for Stage 1.
+            Squads are labelled provisional
             until teams confirm their riders — if a rider you picked doesn&apos;t start, you get a
             free swap in the grace window.
           </li>
@@ -146,6 +160,28 @@ export default async function RulesPage() {
           </li>
         </ul>
       </RuleSection>
+
+      {(c.chips.wildcardEnabled || c.chips.tripleCaptainEnabled) && (
+        <RuleSection title="Chips">
+          <p>One of each for the whole Tour. Played for the next stage, reversible until roll-out.</p>
+          <ul className="list-disc space-y-1.5 pl-5">
+            {c.chips.wildcardEnabled && (
+              <li>
+                <strong className="text-off-white">Wildcard</strong> — rebuild your whole squad for
+                one stage: every transfer that day is free and doesn&apos;t count against your{" "}
+                {c.transfersTotal}. Once you&apos;ve made wildcard transfers, the chip is committed.
+              </li>
+            )}
+            {c.chips.tripleCaptainEnabled && (
+              <li>
+                <strong className="text-off-white">Triple Captain</strong> — your captain scores{" "}
+                ×{c.chips.tripleCaptainMultiplier} instead of ×{c.captainMultiplier} for one stage.
+                Two summit finishes on Alpe d&apos;Huez say hello.
+              </li>
+            )}
+          </ul>
+        </RuleSection>
+      )}
 
       <RuleSection title="Stage finish points">
         <p>Awarded from the official result of every stage:</p>
@@ -234,7 +270,7 @@ export default async function RulesPage() {
       <div className="mt-12 flex flex-wrap items-center gap-4 border-t border-white/10 pt-8">
         <Link
           href="/fantasy/build"
-          className="rounded-md bg-coral px-8 py-4 font-heading text-lg tracking-[0.15em] text-charcoal transition-colors hover:bg-coral-hover"
+          className="rounded-md bg-jersey-yellow px-8 py-4 font-heading text-lg tracking-[0.15em] text-charcoal transition-colors hover:bg-jersey-yellow-deep"
         >
           BUILD YOUR TEAM →
         </Link>

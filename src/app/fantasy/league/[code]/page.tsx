@@ -9,15 +9,45 @@ import { JoinLeagueButton } from "@/components/features/fantasy/JoinLeagueButton
 
 export const revalidate = 60;
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://roadmancycling.com";
+
+/**
+ * The share link IS the viral mechanic, so its unfurl in WhatsApp /
+ * iMessage / the club Facebook group gets a full brand card with the
+ * league name, code, and member count.
+ */
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ code: string }>;
 }): Promise<Metadata> {
   const { code } = await params;
+  const normalised = code.toUpperCase();
+  let name = `League ${normalised}`;
+  let members = 0;
+  try {
+    const [league] = await db
+      .select()
+      .from(fantasyLeagues)
+      .where(eq(fantasyLeagues.code, normalised));
+    if (league) {
+      name = league.name;
+      members = (await leagueStandings(league.id)).length;
+    }
+  } catch {
+    // DB unreachable — fall back to the code-only card.
+  }
+  const ogParams = new URLSearchParams({ card: "league", name, code: normalised });
+  if (members > 0) ogParams.set("members", String(members));
   return {
-    title: `League ${code.toUpperCase()}`,
-    description: "A Roadman Fantasy Tour mini-league. Join with the code and take it personally.",
+    title: name,
+    description: `Join "${name}" in the Roadman Fantasy Tour with code ${normalised}. Free to play, 8 riders, 100 credits.`,
+    openGraph: {
+      title: `${name} — Roadman Fantasy Tour`,
+      description: `Code ${normalised}. Pick 8 inside 100 credits and take it personally.`,
+      images: [{ url: `${SITE_URL}/api/og/fantasy?${ogParams}`, width: 1200, height: 630 }],
+    },
+    twitter: { card: "summary_large_image" },
   };
 }
 
@@ -41,7 +71,7 @@ export default async function LeaguePage({ params }: { params: Promise<{ code: s
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-10">
-      <p className="font-heading text-sm tracking-[0.3em] text-coral">
+      <p className="font-heading text-sm tracking-[0.3em] text-jersey-yellow">
         MINI-LEAGUE · CODE {league.code}
         {league.isOfficial ? " · OFFICIAL" : ""}
       </p>
@@ -51,7 +81,7 @@ export default async function LeaguePage({ params }: { params: Promise<{ code: s
         <JoinLeagueButton code={league.code} />
         <p className="text-sm text-mid-grey">
           No team yet?{" "}
-          <Link href="/fantasy/build" className="text-coral underline">
+          <Link href="/fantasy/build" className="text-jersey-yellow underline">
             Build one first
           </Link>{" "}
           — it takes five minutes.
@@ -68,7 +98,7 @@ export default async function LeaguePage({ params }: { params: Promise<{ code: s
             <li key={row.teamId} className="flex items-center gap-4 py-3">
               <span
                 className={`w-10 shrink-0 text-right font-heading text-xl tabular-nums ${
-                  i < 3 ? "text-coral" : "text-off-white/50"
+                  i < 3 ? "text-jersey-yellow" : "text-off-white/50"
                 }`}
               >
                 {i + 1}

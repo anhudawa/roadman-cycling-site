@@ -243,14 +243,21 @@ export default async function BlogPostPage({
               ? ["h1", ".answer-capsule"]
               : ["h1", ".prose-roadman > p:first-of-type"],
           },
-          ...(post.featuredImage && {
-            image: {
-              "@type": "ImageObject",
-              url: post.featuredImage.startsWith('http') ? post.featuredImage : `${SITE_ORIGIN}${post.featuredImage}`,
-              width: 1200,
-              height: 630,
-            },
-          }),
+          // image: always emitted so every article is eligible for the
+          // Article image rich result. Prefer the post's featuredImage;
+          // for the ~45 posts without one, fall back to the per-post
+          // Satori OG card generated at /blog/<slug>/opengraph-image
+          // (guaranteed to exist and render at exactly 1200×630).
+          image: {
+            "@type": "ImageObject",
+            url: post.featuredImage
+              ? (post.featuredImage.startsWith('http')
+                  ? post.featuredImage
+                  : `${SITE_ORIGIN}${post.featuredImage}`)
+              : `${SITE_ORIGIN}/blog/${slug}/opengraph-image`,
+            width: 1200,
+            height: 630,
+          },
           // mentions: experts cited in the article (linked to their
           // /guests/[slug]#person @id which the guest page emits) plus
           // any explicitly cited related podcast episodes (linked to

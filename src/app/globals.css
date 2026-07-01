@@ -11,6 +11,14 @@
   --color-coral: #F16363;
   --color-coral-hover: #E84E4E;
   --color-coral-muted: rgba(241, 99, 99, 0.15);
+  /* Tour de France — Fantasy game accent palette */
+  --color-jersey-yellow: #FFD700;
+  --color-jersey-yellow-deep: #E6C200;
+  --color-jersey-yellow-muted: rgba(255, 215, 0, 0.15);
+  --color-tdf-blue: #002395;
+  --color-tdf-red: #ED2939;
+  --color-tdf-tricolour-blue: #002395;
+  --color-tdf-tricolour-red: #ED2939;
   --color-mid-grey: #545559;
   --color-purple: #4C1273;
   --color-purple-hover: #5E1A8C;
@@ -84,6 +92,7 @@
   --shadow-elevated: 0 8px 48px rgba(0, 0, 0, 0.4);
   --shadow-glow-coral: 0 0 20px rgba(241, 99, 99, 0.3);
   --shadow-glow-purple: 0 0 20px rgba(76, 18, 115, 0.3);
+  --shadow-glow-yellow: 0 0 20px rgba(255, 215, 0, 0.3);
 
   /* ============================================
      ADMIN DESIGN SYSTEM TOKENS

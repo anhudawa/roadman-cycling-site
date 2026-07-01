@@ -35,7 +35,7 @@ export function JoinLeagueButton({ code }: { code: string }) {
 
   if (state === "joined") {
     return (
-      <p className="font-heading tracking-widest text-coral">
+      <p className="font-heading tracking-widest text-jersey-yellow">
         YOU&apos;RE IN.{" "}
         <Link href="/fantasy/team" className="underline">
           BACK TO MY TEAM
@@ -47,7 +47,7 @@ export function JoinLeagueButton({ code }: { code: string }) {
     return (
       <p className="text-sm text-off-white/75">
         Sign in first —{" "}
-        <Link href="/fantasy/team" className="text-coral underline">
+        <Link href="/fantasy/team" className="text-jersey-yellow underline">
           get your one-tap link
         </Link>
         , then come back to this page.
@@ -60,7 +60,7 @@ export function JoinLeagueButton({ code }: { code: string }) {
         type="button"
         onClick={join}
         disabled={state === "joining"}
-        className="rounded-md bg-coral px-6 py-3 font-heading tracking-[0.15em] text-charcoal transition-colors hover:bg-coral-hover disabled:opacity-60"
+        className="rounded-md bg-jersey-yellow px-6 py-3 font-heading tracking-[0.15em] text-charcoal transition-colors hover:bg-jersey-yellow-deep disabled:opacity-60"
       >
         {state === "joining" ? "JOINING…" : "JOIN THIS LEAGUE"}
       </button>

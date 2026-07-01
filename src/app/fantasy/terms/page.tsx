@@ -69,7 +69,7 @@ export default function TermsPage() {
             Unsubscribing stops the emails without deleting your team. You can request deletion of
             your account at any time; your personal details are erased and your team is anonymised
             so league standings stay intact. Full details in the{" "}
-            <Link href="/privacy" className="text-coral underline">
+            <Link href="/privacy" className="text-jersey-yellow underline">
               privacy policy
             </Link>
             .
