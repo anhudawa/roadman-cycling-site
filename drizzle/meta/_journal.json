@@ -288,6 +288,34 @@
       "when": 1778809200000,
       "tag": "0040_camp_bookings_stripe",
       "breakpoints": true
+    },
+    {
+      "idx": 41,
+      "version": "7",
+      "when": 1781130321181,
+      "tag": "0041_fantasy_tour",
+      "breakpoints": true
+    },
+    {
+      "idx": 42,
+      "version": "7",
+      "when": 1781167086810,
+      "tag": "0048_fantasy_demo_flag",
+      "breakpoints": true
+    },
+    {
+      "idx": 43,
+      "version": "7",
+      "when": 1781253344027,
+      "tag": "0049_fantasy_league_nudge",
+      "breakpoints": true
+    },
+    {
+      "idx": 44,
+      "version": "7",
+      "when": 1781256189768,
+      "tag": "0050_fantasy_chips",
+      "breakpoints": true
     }
   ]
 }

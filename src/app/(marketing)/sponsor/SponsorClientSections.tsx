@@ -4,6 +4,8 @@ import { useState, useRef, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollReveal } from "@/components/ui";
 import { Container, Section } from "@/components/layout";
+import { FAQ_DATA } from "./sponsor-faq-data";
+export { FAQ_DATA };
 
 // ---------------------------------------------------------------------------
 // Types
@@ -1202,29 +1204,6 @@ export default function BookingFlow({ eventBlocks }: BookingFlowProps) {
 // ---------------------------------------------------------------------------
 // FAQ Section (trimmed to 4 questions per spec)
 // ---------------------------------------------------------------------------
-
-export const FAQ_DATA = [
-  {
-    question: "What\u2019s the turnaround from brief to live?",
-    answer:
-      "Minimum two weeks from signed agreement to first placement. That gives us time to receive your brief, script the read, get your sign-off, and slot it into the production schedule. For event-specific blocks, we work backwards from the event start date \u2014 if you\u2019re booking the Tour de France block, you want to be confirmed at least four weeks out. Rush slots exist if something comes up and you need to move fast.",
-  },
-  {
-    question: "Can I see audience data before committing?",
-    answer:
-      "Yes. Full audience report is available on request \u2014 demographics, household income, purchase intent, geographic split, device breakdown, the works. We don\u2019t put every number on the page because some of it requires context. Fill in the form above and we\u2019ll send it over. No commitment required to see the data.",
-  },
-  {
-    question: "Do you have category restrictions?",
-    answer:
-      "A few. We don\u2019t work with brands whose core business is at odds with the sport \u2014 so no fast food, no tobacco, nothing that would make Anthony cringe to read out loud. We do apply a one-brand-per-category rule for long-term partners, and we\u2019ll flag if a category is already taken before you go through the booking process. If you\u2019re not sure whether your brand fits, ask.",
-  },
-  {
-    question: "What does success look like?",
-    answer:
-      "Depends on what you\u2019re tracking, and we\u2019ll ask you that upfront. Some brands track promo code redemptions. Some track site traffic from show notes. Some want the association with the audience and know their sales cycle is long. We\u2019ll agree what we\u2019re measuring before anything goes live, and we\u2019ll send you the numbers when it\u2019s done. Honest conversation upfront means no awkward one afterwards.",
-  },
-];
 
 function FAQItem({
   question,

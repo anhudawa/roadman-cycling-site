@@ -1,0 +1,1 @@
+ALTER TABLE "fantasy_players" ADD COLUMN "league_nudge_sent_at" timestamp with time zone;

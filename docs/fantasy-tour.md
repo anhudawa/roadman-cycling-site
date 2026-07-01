@@ -1,0 +1,197 @@
+# Roadman Fantasy Tour — architecture & runbook
+
+Fantasy Tour de France 2026 game at `/fantasy`. Built June 2026 against the
+build handover brief; deadlines: picking live **26 June**, scoring live
+**4 July** (Stage 1, Barcelona).
+
+## What exists
+
+| Layer | Where | Notes |
+|---|---|---|
+| Schema | `src/lib/db/schema.ts` (fantasy_* tables), migration `drizzle/0041_fantasy_tour.sql` | 16 tables: effective-dated squads, scoring ledger, computed leaderboards, audit log |
+| Game rules | `src/lib/fantasy/config.ts`, `rules.ts` | All numbers are launch defaults overridable per-key in `fantasy_game_config` (admin → Config) |
+| Scoring engine | `src/lib/fantasy/scoring.ts` | Pure + deterministic; recompute = wipe stage events, re-run, rebuild totals |
+| Service layer | `src/lib/fantasy/queries.ts` | Squad-as-of-stage joins, transfer application, two-step publish, leaderboard rebuild |
+| Auth | `src/lib/fantasy/auth.ts` | Magic link (24 h, single-use) + stateless 7-day play-scoped deep-link JWTs for the daily email CTA |
+| Lead gen | `src/lib/fantasy/marketing.ts` | Beehiiv sync (tags `fantasy-tour-2026`, `source:fantasy`, persona) + Meta CAPI Lead; cron retry queue |
+| Emails | `src/lib/fantasy/emails.ts` | Magic link, daily stage email, rest-day email. Table-layout HTML, brand-styled |
+| Content guard | `src/lib/fantasy/content-guard.ts` | Fact blocklist (Lorang↔Pogačar hardcoded forbidden) + AI-slop filters; runs before any stage note ships |
+| Public UI | `src/app/fantasy/*`, `src/components/features/fantasy/*` | Landing (static), echelon builder, dashboard, leagues, standings, terms |
+| Admin | `src/app/admin/(dashboard)/fantasy/*` | Overview, stage manager, startlist manager, results entry (two-step publish), pricing CSV, config editor |
+| Share cards | `/api/og/fantasy` | `card=team` and `card=stage` variants, edge-rendered |
+| Cron | `/api/cron/fantasy-daily-email` (vercel.json: `30 5 * 7 *` = 06:30 Irish in July) | Stage + rest-day emails, Beehiiv retry sweep |
+| Tests | `src/lib/fantasy/__tests__/` | 73 tests incl. simulated 21-stage Tour with abandon wave, jury relegation, correction recompute; chips; emails; WCAG contrast |
+| FPL-style layer | chips (`fantasy_chips`), ownership/captaincy/Dream Team (`/fantasy/stats`), rank arrows (`previous_rank`), auto-join Clubhouse | Wildcard + Triple Captain, one each per Tour; ownership % in the builder; Team of the Stage on stage pages |
+
+## Team-picking deadline
+
+The squad freezes for Stage 1 at the **team-picking deadline**, a
+config value (`pickingDeadlineIso`, default `2026-07-04T12:00:00+02:00`
+— noon CEST / 11:00 Irish on race day). It governs Stage 1's lock
+independently of the physical TTT start time, so entering the real
+start time in admin later can't move the picking deadline. Set it to
+`null` in admin → Config to fall back to the Stage 1 start time. Keep
+it at or before the real TTT roll-out (afternoon) — a deadline after
+roll-out would let teams change after racing began.
+
+## Deliberate deviations from the brief
+
+1. **Drizzle + Vercel Postgres, not Supabase.** Section 7 says "match the
+   existing Roadman build pattern" and also says Supabase; the existing
+   pattern (Plateau Diagnostic, Ask Roadman, CRM) is Drizzle on Vercel
+   Postgres with custom magic-link auth. Matching the codebase won: one
+   database, one auth idiom, RLS-equivalent enforcement in the service
+   layer (every player query is scoped by the session email; admin routes
+   gate on the admin session).
+2. **Deep-link tokens are stateless JWTs**, not DB rows: minting 5–15k
+   bcrypt rows per cron run would blow the send window. Play-scoped,
+   7-day expiry, secret rotation as the revocation story.
+3. **Rest-day bonus transfers are exempt from the 2-per-stage cap**
+   (`restDayBonusExemptFromStageCap`) — otherwise the bonus would be
+   unusable on a day you also wanted your two standard moves. Toggleable.
+4. **Stage deadline fallback**: until ASO publishes start times,
+   transfers lock at 12:00 CEST on the stage date (conservative). Fill
+   real times in admin → Fantasy → Stages when the roadbook lands.
+
+## Data integrity status (Section 6)
+
+- **Stages**: 21 rows seeded from `src/data/fantasy/stages-2026.json`,
+  verified 10 June 2026 against two independent sources (Wikipedia stage
+  table citing the official ASO press kit of 23 Oct 2025; cross-checked
+  against Domestique's stage guide). letour.fr and PCS block automated
+  fetch (403) — **re-verify by hand against letour.fr before launch** and
+  update `verifiedAt`. Published distances sum to 3,329.7 km vs the
+  announced 3,333 km (sources round per-stage values; roadbook will settle it).
+- **Teams**: 23 rows (18 WorldTeams + 5 ProTeams) from the 30 Jan 2026
+  ASO announcement, cross-checked Wikipedia/Cycling Weekly. `jerseyHex`
+  values are Roadman display accents, deliberately NOT kit colours
+  (Section 9: no official jersey graphics).
+- **Riders**: **none seeded — by design.** No rider enters the database
+  from model memory. When PCS publishes the provisional startlist:
+  `npx tsx scripts/fantasy/import-startlist.ts startlist.csv --source-url=<url>`
+  (CSV: name,pcs_id,team,class,price,country). Then per-team confirmation
+  as squads are announced:
+  `npx tsx scripts/fantasy/import-startlist.ts --confirm-team="Lidl–Trek" --source-url=<announcement>`
+- **Pricing**: draft generator in `src/lib/fantasy/pricing.ts` (rank-based
+  curve, 24 down to 4) — feed it PCS points, then **Anthony signs off the
+  full sheet** via the admin pricing CSV export/import before launch.
+
+## Private beta demo — getting it live on a shareable URL
+
+The branch deploys as a Vercel **preview** (vercel.json now builds
+`claude/*` branches alongside `main` and `feat/*`), and the whole
+/fantasy surface sits behind an access-code gate so only the beta
+group gets in. One-time setup in Vercel (≈15 min):
+
+1. **Environment variables, scoped to "Preview"** (Project → Settings →
+   Environment Variables): `POSTGRES_URL` pointing at a **staging**
+   database (a separate Neon/Vercel Postgres DB — do not point the demo
+   at production), `FANTASY_SESSION_SECRET` (any 32+ char string),
+   `FANTASY_BETA_CODE` (the code you'll give the beta group, e.g.
+   `girona26`), and `RESEND_API_KEY` if you want magic links + daily
+   emails to actually send during the demo.
+2. **Prepare the staging DB** (from a machine with that POSTGRES_URL in
+   `.env.local`):
+   `npm run db:migrate` → `npm run fantasy:seed` → set `demoMode` to
+   `true` (admin → Fantasy → Config, or insert the game_config row) →
+   `npx tsx scripts/fantasy/seed-demo.ts --teams=12 --with-results=5`
+   — 184 fictional riders, 12 demo teams on the leaderboard, stages 1–5
+   scored through the real publish pipeline.
+3. **Get the URL**: push anything to the branch; Vercel's deployment
+   list shows the preview URL (stable per-branch alias of the form
+   `roadman-cycling-site-git-<branch>-<team>.vercel.app`).
+4. **Share with the beta group**:
+   `https://<preview-url>/api/fantasy/beta?code=girona26` — one tap
+   sets the access cookie and lands on the game. Anyone hitting the
+   URL without the code sees the access-code screen. Rotate
+   `FANTASY_BETA_CODE` (and redeploy) to revoke everyone at once.
+
+Notes: Vercel crons don't run on previews — fire the daily email by
+hand if you want to demo it
+(`curl -H "Authorization: Bearer $CRON_SECRET" <preview-url>/api/cron/fantasy-daily-email`).
+Beta testers who build teams *after* the seeded results were published
+show 0 points until the next publish — re-publishing any stage from
+admin → Results rescores everyone, which is itself a good demo beat.
+Production never sets `FANTASY_BETA_CODE`, so the gate doesn't exist
+there and the landing stays statically rendered.
+
+## Demo window → launch (Anthony's demo-then-reset flow)
+
+1. Admin → Fantasy → Config: set `demoMode` to `true`. Game surfaces
+   show a demo banner; signups get tagged `is_demo` and never sync to
+   Beehiiv or Meta.
+2. `npm run fantasy:seed-demo` — 184 fictional riders (clearly invented
+   names, `source_url demo://seed`), priced on the real curve. Build
+   teams, enter results in admin → Results, publish, watch the
+   leaderboards and points reveal work end to end.
+3. Before launch: admin → Fantasy → Demo & reset → **Full demo wipe**
+   (preview counts, type RESET). Demo players, teams, leagues, riders,
+   and all scoring artifacts are gone; stages, the 23 real teams,
+   config, and the audit log are untouched. Set `demoMode` back to
+   `false`, then import the real startlist.
+4. Safety: the reset API refuses to run once the Stage 1 deadline has
+   passed — live standings can never be wiped.
+
+The lighter **Wipe scoring only** reset exists for re-running a demo
+without losing the test accounts.
+
+## Prizes (confirmed by Anthony, 11 June 2026)
+
+Grand prize: a place at the Roadman Girona training camp, excluding
+flights and transfers — stated on /fantasy/terms (with the no-cash-
+alternative and booking-conditions language), on /fantasy/rules, and
+in the landing hero. Weekly-podium prizes still TBC; the terms page
+says further prizes are announced before Stage 1.
+
+## Daily race-ops runbook (Ted, ~10 min)
+
+1. Stage finishes (~17:30 CEST). **Wait for official results** — jury
+   decisions take 30–60 min. Never score from live timing.
+2. Admin → Fantasy → Results → stage: enter top 20, jerseys,
+   intermediate sprint top 3, KOM top 3, combativity, abandons.
+   (Stage 1: individual times if published; team order otherwise — the
+   fallback is the `tttIndividualTimes` config toggle.)
+3. Save draft → **Preview scores** → eyeball against the official result.
+4. **Publish**: events written, every team scored against its
+   squad-as-of-stage, leaderboard rebuilt, audit logged.
+5. Corrections (relegation/DSQ): re-open the stage, fix the payload,
+   preview, publish again. Recompute is idempotent — every team and
+   league corrects automatically.
+
+## Launch checklist (maps to brief Phases 4–5)
+
+- [ ] Run migration `0041_fantasy_tour.sql` + `npm run fantasy:seed`
+- [ ] Set `FANTASY_SESSION_SECRET` (and optionally META_CAPI_*) in Vercel
+- [ ] Import provisional startlist when PCS publishes (see above)
+- [ ] Pricing sheet: generate draft → Anthony review/sign-off → import
+- [ ] Re-verify all 21 stage rows against letour.fr by hand; fill start times
+- [ ] Stage notes ("Roadman take") for all 21 stages → Sarah/Ted review
+      (content guard runs automatically on save AND at send time)
+- [ ] Startlist confirmation pass as squads announce (27 Jun–2 Jul);
+      final human audit 3 July (Anthony or Ted) — log it in the audit trail
+- [x] Prize terms confirmed by Anthony (Girona camp, ex flights &
+      transfers) → live on `/fantasy/terms`, `/fantasy/rules`, landing
+- [ ] Run the Full demo wipe + set `demoMode` to `false` (see the demo
+      window section above)
+- [ ] Send-time check: 06:30 Irish vs existing broadcast calendar (open
+      decision #3) — adjust the cron in vercel.json if it collides
+- [ ] T-minus emails to the 30k list (launch / 3 days / teams lock tonight)
+      — broadcast from Beehiiv, segment excludes nobody (tag appends for
+      existing contacts, no duplicates)
+
+## Still to build (known gaps)
+
+- Post-Tour sequence (winners, "your Tour in review", Plateau bridge)
+  — needs Anthony-voice copy; the render pipeline and guard exist
+- Results-ingestion automation (PCS blocks scraping; manual admin entry
+  is the shipped reliability floor per Section 6.1)
+
+Closed since the first draft of this list: mini-league nudge
+(/api/cron/fantasy-lifecycle, daily June–July, one nudge per player
+via league_nudge_sent_at), Meta pixel/CAPI dedup (client Lead fires
+with event_id fantasy-signup-{id} on the welcome landing), branded
+league share previews (league OG card + page metadata), tappable
+stage strip → /fantasy/stage/[n] detail pages, email renderer tests,
+and the WCAG contrast checks from Section 8 (coral on deep purple
+passes AA at 5.9:1; coral on brand purple is large-text/UI only and
+the test pins that).

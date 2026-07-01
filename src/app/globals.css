@@ -1274,3 +1274,12 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
   }
 }
+
+/* ============================================
+   FANTASY TOUR — card entrance
+   Used by the team-builder echelon when a rider lands in a slot.
+   ============================================ */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}

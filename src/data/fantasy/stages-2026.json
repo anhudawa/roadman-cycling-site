@@ -1,0 +1,38 @@
+{
+  "race": "Tour de France 2026 (113th edition)",
+  "verification": {
+    "verifiedAt": "2026-06-10T22:30:00Z",
+    "verifiedBy": "build verification pass (web cross-check, two independent sources)",
+    "primarySource": "https://en.wikipedia.org/wiki/2026_Tour_de_France",
+    "primarySourceNote": "Stage table cites the official Tour de France 2026 Press Kit, ASO, 23 October 2025",
+    "crossCheckSource": "https://www.domestiquecycling.com/en/features/tour-de-france-2026-stage-by-stage-guide/",
+    "outstanding": [
+      "Re-verify all rows directly against letour.fr before launch (PCS and letour.fr block automated fetch; do this by hand from the admin stage manager)",
+      "Official stage start times (transfer deadlines) not yet published — startTimeCest is null until the roadbook lands; deadline falls back to 12:00 CEST",
+      "Published stage distances sum to 3,329.7 km vs ASO's announced 3,333 km — individual stage distances get final values in the roadbook"
+    ]
+  },
+  "stages": [
+    { "stageNumber": 1, "date": "2026-07-04", "startTown": "Barcelona", "finishTown": "Barcelona", "distanceKm": 19.7, "stageType": "ttt", "summitFinish": false, "restDayAfter": false },
+    { "stageNumber": 2, "date": "2026-07-05", "startTown": "Tarragona", "finishTown": "Barcelona", "distanceKm": 178, "stageType": "hilly", "summitFinish": false, "restDayAfter": false },
+    { "stageNumber": 3, "date": "2026-07-06", "startTown": "Granollers", "finishTown": "Les Angles", "distanceKm": 196, "stageType": "mountain", "summitFinish": true, "restDayAfter": false },
+    { "stageNumber": 4, "date": "2026-07-07", "startTown": "Carcassonne", "finishTown": "Foix", "distanceKm": 182, "stageType": "hilly", "summitFinish": false, "restDayAfter": false },
+    { "stageNumber": 5, "date": "2026-07-08", "startTown": "Lannemezan", "finishTown": "Pau", "distanceKm": 158, "stageType": "flat", "summitFinish": false, "restDayAfter": false },
+    { "stageNumber": 6, "date": "2026-07-09", "startTown": "Pau", "finishTown": "Gavarnie-Gèdre", "distanceKm": 186, "stageType": "mountain", "summitFinish": true, "restDayAfter": false },
+    { "stageNumber": 7, "date": "2026-07-10", "startTown": "Hagetmau", "finishTown": "Bordeaux", "distanceKm": 175, "stageType": "flat", "summitFinish": false, "restDayAfter": false },
+    { "stageNumber": 8, "date": "2026-07-11", "startTown": "Périgueux", "finishTown": "Bergerac", "distanceKm": 182, "stageType": "flat", "summitFinish": false, "restDayAfter": false },
+    { "stageNumber": 9, "date": "2026-07-12", "startTown": "Malemort", "finishTown": "Ussel", "distanceKm": 185, "stageType": "hilly", "summitFinish": false, "restDayAfter": true },
+    { "stageNumber": 10, "date": "2026-07-14", "startTown": "Aurillac", "finishTown": "Le Lioran", "distanceKm": 167, "stageType": "mountain", "summitFinish": true, "restDayAfter": false },
+    { "stageNumber": 11, "date": "2026-07-15", "startTown": "Vichy", "finishTown": "Nevers", "distanceKm": 161, "stageType": "flat", "summitFinish": false, "restDayAfter": false },
+    { "stageNumber": 12, "date": "2026-07-16", "startTown": "Circuit de Nevers Magny-Cours", "finishTown": "Chalon-sur-Saône", "distanceKm": 181, "stageType": "flat", "summitFinish": false, "restDayAfter": false },
+    { "stageNumber": 13, "date": "2026-07-17", "startTown": "Dole", "finishTown": "Belfort", "distanceKm": 205, "stageType": "hilly", "summitFinish": false, "restDayAfter": false },
+    { "stageNumber": 14, "date": "2026-07-18", "startTown": "Mulhouse", "finishTown": "Le Markstein Fellering", "distanceKm": 155, "stageType": "mountain", "summitFinish": true, "restDayAfter": false },
+    { "stageNumber": 15, "date": "2026-07-19", "startTown": "Champagnole", "finishTown": "Plateau de Solaison", "distanceKm": 184, "stageType": "mountain", "summitFinish": true, "restDayAfter": true },
+    { "stageNumber": 16, "date": "2026-07-21", "startTown": "Évian-les-Bains", "finishTown": "Thonon-les-Bains", "distanceKm": 26, "stageType": "itt", "summitFinish": false, "restDayAfter": false },
+    { "stageNumber": 17, "date": "2026-07-22", "startTown": "Chambéry", "finishTown": "Voiron", "distanceKm": 175, "stageType": "flat", "summitFinish": false, "restDayAfter": false },
+    { "stageNumber": 18, "date": "2026-07-23", "startTown": "Voiron", "finishTown": "Orcières-Merlette", "distanceKm": 185, "stageType": "mountain", "summitFinish": true, "restDayAfter": false },
+    { "stageNumber": 19, "date": "2026-07-24", "startTown": "Gap", "finishTown": "Alpe d'Huez", "distanceKm": 128, "stageType": "mountain", "summitFinish": true, "restDayAfter": false },
+    { "stageNumber": 20, "date": "2026-07-25", "startTown": "Le Bourg-d'Oisans", "finishTown": "Alpe d'Huez", "distanceKm": 171, "stageType": "mountain", "summitFinish": true, "restDayAfter": false },
+    { "stageNumber": 21, "date": "2026-07-26", "startTown": "Thoiry", "finishTown": "Paris (Champs-Élysées)", "distanceKm": 130, "stageType": "flat", "summitFinish": false, "restDayAfter": false }
+  ]
+}

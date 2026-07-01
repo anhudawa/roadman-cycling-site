@@ -6,6 +6,7 @@ import { getEvents, getAvailability } from "@/lib/inventory";
 import type { AvailabilityByMonth } from "@/lib/inventory";
 import BookingFlow, { FAQSection } from "./SponsorClientSections";
 import { FAQSchema } from "@/components/seo/FAQSchema";
+import { FAQ_DATA } from "./sponsor-faq-data";
 
 // FAQ data defined here (server scope) so FAQSchema can call .map() during SSR.
 // The same data is duplicated inside SponsorClientSections for the interactive accordion.
