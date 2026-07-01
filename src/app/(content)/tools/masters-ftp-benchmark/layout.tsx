@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "amateur cycling benchmarks",
     "ftp 40 45 50 55 60",
   ],
-  alternates: { canonical: "https://roadmancycling.com/tools/masters-ftp-benchmark" },
+  alternates: { canonical: "/tools/masters-ftp-benchmark" },
   openGraph: {
     title: "Masters FTP Benchmark — Where Your Watts Place You by Age",
     description:

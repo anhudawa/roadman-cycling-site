@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description:
     "Five quick questions to find out whether the Not Done Yet coaching matches what you actually want from your cycling. Honest answer, no commitment.",
   alternates: {
-    canonical: "https://roadmancycling.com/community/not-done-yet/fit",
+    canonical: "/community/not-done-yet/fit",
   },
   openGraph: {
     title: "Is Not Done Yet a Fit For You? — 60-Second Check",

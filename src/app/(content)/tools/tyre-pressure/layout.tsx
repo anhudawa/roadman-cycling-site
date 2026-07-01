@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Optimal front and rear PSI for your weight, tyre width and surface — built on the 15% drop method most World Tour teams now use. Faster, more comfortable, fewer pinch flats.",
   keywords: ["tyre pressure calculator cycling", "bike tyre pressure", "cycling PSI calculator", "optimal tyre pressure"],
-  alternates: { canonical: "https://roadmancycling.com/tools/tyre-pressure" },
+  alternates: { canonical: "/tools/tyre-pressure" },
   openGraph: {
     title: "Road Bike Tyre Pressure Calculator — 15% Drop Method (2026)",
     description:

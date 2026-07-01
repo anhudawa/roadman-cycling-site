@@ -4,6 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Game terms",
   description: "Roadman Fantasy Tour — game rules, prize terms, and data handling.",
+  alternates: { canonical: "/fantasy/terms" },
 };
 
 /**

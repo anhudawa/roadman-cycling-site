@@ -24,6 +24,7 @@ import {
   getIndexableExpertTopicPairs,
   getExpertsWithTopics,
 } from "@/lib/experts";
+import { getAllPillarSlugs } from "@/lib/pillars";
 
 const BASE_URL = "https://roadmancycling.com";
 
@@ -289,6 +290,22 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.75,
     })),
+    // Pillar pages — dynamic /pillars/[slug] routes surfacing the five
+    // content pillars (coaching, nutrition, strength, recovery, community).
+    ...getAllPillarSlugs().map((slug) => ({
+      url: `${BASE_URL}/pillars/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+    })),
+    // Fantasy Tour de France game — public-facing pages. /fantasy/team is
+    // noindex (personal team view) so it stays out; /fantasy/build and
+    // /fantasy/league/[code] are user-specific but indexable landing pages.
+    { url: `${BASE_URL}/fantasy`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
+    { url: `${BASE_URL}/fantasy/rules`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
+    { url: `${BASE_URL}/fantasy/terms`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
+    { url: `${BASE_URL}/fantasy/leaderboard`, lastModified: new Date(), changeFrequency: "daily", priority: 0.6 },
+    { url: `${BASE_URL}/fantasy/stats`, lastModified: new Date(), changeFrequency: "daily", priority: 0.6 },
     // Legal pages. Indexable per spec — keeps the corporate footprint
     // discoverable in GSC and reduces "missing legal page" trust flags.
     { url: `${BASE_URL}/privacy`, lastModified: new Date("2026-03-01"), changeFrequency: "yearly", priority: 0.3 },

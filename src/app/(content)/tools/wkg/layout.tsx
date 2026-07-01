@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Your power-to-weight ratio plus where it actually places you. Free W/kg calculator with amateur, competitive and pro benchmarks — and what the next band of riders trains like.",
   keywords: ["w/kg calculator", "watts per kg cycling", "power to weight ratio", "cycling w/kg"],
-  alternates: { canonical: "https://roadmancycling.com/tools/wkg" },
+  alternates: { canonical: "/tools/wkg" },
   openGraph: {
     title: "W/kg Calculator — Cycling Power-to-Weight Ratio + Benchmarks",
     description:

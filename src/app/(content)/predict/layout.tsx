@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   },
   description:
     "Predict your finish time on Étape, Marmotte, Wicklow 200, or any GPX route. Real elevation, wind, rolling resistance, and confidence ranges. Free.",
-  alternates: { canonical: "https://roadmancycling.com/predict" },
+  alternates: { canonical: "/predict" },
   openGraph: {
     title: "Race Time Predictor — Free GPX-Based Sportive Calculator",
     description:

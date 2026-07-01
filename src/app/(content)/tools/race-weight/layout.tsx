@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Your target race-weight range for the event you're training for. Built on competitive cyclist body-composition ranges, not BMI. Sane numbers, not an Instagram fantasy.",
   keywords: ["race weight calculator", "cycling race weight", "cycling body composition", "power to weight cycling"],
-  alternates: { canonical: "https://roadmancycling.com/tools/race-weight" },
+  alternates: { canonical: "/tools/race-weight" },
   openGraph: {
     title: "Race Weight Calculator — Your Target Cycling Weight Range",
     description:

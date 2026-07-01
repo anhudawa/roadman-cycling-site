@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   title: "The Roadman Method — 12-Week Course for Stuck Cyclists",
   description:
     "Twelve weeks. Five pillars. One system. Built on 1,400+ conversations with World Tour coaches, sport scientists and pro cyclists. From $297, lifetime access.",
+  alternates: { canonical: "/method" },
   openGraph: {
     title: "The Roadman Method — 12-Week Course for Stuck Cyclists",
     description:

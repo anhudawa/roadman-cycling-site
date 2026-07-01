@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Get your 5 cycling heart rate zones from either max HR or LTHR. Free, instant, with the rationale for each method and how to test if you don't have a number yet.",
   keywords: ["heart rate zone calculator", "cycling HR zones", "heart rate training zones", "max heart rate zones"],
-  alternates: { canonical: "https://roadmancycling.com/tools/hr-zones" },
+  alternates: { canonical: "/tools/hr-zones" },
   openGraph: {
     title: "Heart Rate Zone Calculator — Cycling HR Zones from Max or LTHR",
     description: "Get your 5 cycling heart rate zones from either max HR or LTHR. With the rationale for each method and a quick test protocol.",

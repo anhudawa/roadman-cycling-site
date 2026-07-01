@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Rules & scoring",
   description:
     "The full Roadman Fantasy Tour rulebook: 100 credits, 8 riders, every points table, transfers, deadlines, and how the Girona training camp gets won.",
+  alternates: { canonical: "/fantasy/rules" },
 };
 
 export const revalidate = 300;

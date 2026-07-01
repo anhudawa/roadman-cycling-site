@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Are you eating enough to train, recover and stay healthy? Free RED-S screener for cyclists, built on fat-free mass and training load. Find out before your body tells you.",
   keywords: ["energy availability calculator", "RED-S cycling", "cyclist energy availability", "relative energy deficiency"],
-  alternates: { canonical: "https://roadmancycling.com/tools/energy-availability" },
+  alternates: { canonical: "/tools/energy-availability" },
   openGraph: {
     title: "Energy Availability Calculator — RED-S Risk for Cyclists",
     description:

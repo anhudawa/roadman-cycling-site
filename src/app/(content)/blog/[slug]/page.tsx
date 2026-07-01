@@ -38,6 +38,9 @@ import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
 import { CitedClaimTable } from "@/components/ui/CitedClaimTable";
 import { EvidenceLevel } from "@/components/ui/EvidenceLevel";
 import { AskRoadmanCTA } from "@/components/features/aeo/AskRoadmanCTA";
+import { ReadingTime } from "@/components/ui/ReadingTime";
+import { SeriesNav } from "@/components/features/blog/SeriesNav";
+import { getSeriesPosts } from "@/lib/blog";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
 
 export async function generateStaticParams() {
@@ -147,6 +150,19 @@ export default async function BlogPostPage({
     pillar: post.pillar,
     limit: 3,
   });
+  // Content series — look up sibling posts when this article belongs to a
+  // multi-part series. Returns an empty array when seriesSlug is unset.
+  const seriesPosts = post.seriesSlug
+    ? getSeriesPosts(post.seriesSlug)
+    : [];
+  const seriesTitle =
+    post.seriesTitle ??
+    (post.seriesSlug
+      ? post.seriesSlug
+          .replace(/-/g, " ")
+          .replace(/\b\w/g, (c) => c.toUpperCase())
+      : "");
+
   const publishDate = new Date(post.publishDate);
 
   // Pick the intent CTA off the article's metadata. When inference
@@ -424,9 +440,7 @@ export default async function BlogPostPage({
             <div className="text-center">
             <div className="flex items-center justify-center gap-3 mb-6">
               <Badge pillar={post.pillar} size="md" />
-              <span className="text-sm text-foreground-muted">
-                {post.readTime}
-              </span>
+              <ReadingTime time={post.readTime} />
             </div>
 
             <h1 className="font-heading text-off-white text-3xl md:text-5xl leading-tight mb-6">
@@ -526,9 +540,34 @@ export default async function BlogPostPage({
               <FeaturedExperts slugs={post.featuredEntities} />
             )}
 
+            {/* Series navigation — shown when this post belongs to a
+                multi-part series (seriesSlug + seriesOrder set in
+                frontmatter). Positioned just above the article body so
+                readers see the "Part X of Y" context before diving in. */}
+            {seriesPosts.length > 1 && (
+              <SeriesNav
+                seriesPosts={seriesPosts}
+                currentSlug={slug}
+                seriesTitle={seriesTitle}
+                className="mb-8"
+              />
+            )}
+
             <article className="prose-roadman prose-enhanced">
               <MDXRemote source={post.content} components={mdxComponents} />
             </article>
+
+            {/* Series navigation — repeated after the article body so
+                readers who finish the post can jump to the next part
+                without scrolling back up. */}
+            {seriesPosts.length > 1 && (
+              <SeriesNav
+                seriesPosts={seriesPosts}
+                currentSlug={slug}
+                seriesTitle={seriesTitle}
+                className="mt-12"
+              />
+            )}
 
             {/* Universal Plateau Diagnostic CTA — editorial entry to the
                 offer ladder. Slotted at the natural end-of-reading moment

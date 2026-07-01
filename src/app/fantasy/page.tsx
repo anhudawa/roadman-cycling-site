@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Roadman Fantasy Tour — pick 8, ride the Tour de France 2026",
   description:
     "100 credits, 8 riders, 21 stages from Barcelona to Paris. Free fantasy Tour de France with daily scoring and mini-leagues for your club. Teams lock 4 July 2026.",
+  alternates: { canonical: "/fantasy" },
 };
 
 // The landing page is fully static (Section 7: static-render everything

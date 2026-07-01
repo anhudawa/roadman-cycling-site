@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Dial in fork and shock pressure plus sag for your weight and riding style — XC, trail, enduro or DH. Free, no signup. A sensible starting point before you tune by feel.",
   keywords: ["shock pressure calculator", "suspension setup calculator", "mountain bike sag calculator", "fork pressure calculator"],
-  alternates: { canonical: "https://roadmancycling.com/tools/shock-pressure" },
+  alternates: { canonical: "/tools/shock-pressure" },
   openGraph: {
     title: "MTB Shock & Fork Pressure Calculator — Suspension Setup",
     description:

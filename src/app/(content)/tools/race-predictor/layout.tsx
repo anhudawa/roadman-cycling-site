@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "cycling power to speed calculator",
     "sportive time predictor",
   ],
-  alternates: { canonical: "https://roadmancycling.com/tools/race-predictor" },
+  alternates: { canonical: "/tools/race-predictor" },
   openGraph: {
     title: "Race Time Predictor — Physics-Based Cycling Finish-Time Calculator",
     description:

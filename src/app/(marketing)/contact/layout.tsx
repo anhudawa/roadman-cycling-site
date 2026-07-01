@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Get in touch with the Roadman Cycling team. Sponsorship, press, partnerships, podcast guest suggestions, or general enquiries.",
   alternates: {
-    canonical: "https://roadmancycling.com/contact",
+    canonical: "/contact",
   },
   openGraph: {
     title: "Contact Roadman Cycling",

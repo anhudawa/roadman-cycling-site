@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { getAllPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
   title: "Page Not Found — Roadman Cycling",
   description:
-    "This page doesn’t exist. Head back to the homepage, the podcast archive, or the blog.",
+    "Looks like you've bonked. This page doesn't exist — but we've got plenty of roads worth riding.",
   robots: {
     index: false,
     follow: true,
@@ -17,12 +19,19 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Page Not Found — Roadman Cycling",
     description:
-      "This page doesn’t exist. Head back to the homepage, the podcast archive, or the blog.",
+      "Looks like you've bonked. This page doesn't exist — but we've got plenty of roads worth riding.",
     type: "website",
   },
 };
 
+/** Grab the 5 most recent posts as popular suggestions. */
+function getPopularPosts() {
+  return getAllPosts().slice(0, 5);
+}
+
 export default function NotFound() {
+  const popularPosts = getPopularPosts();
+
   return (
     <>
       <Header />
@@ -32,12 +41,12 @@ export default function NotFound() {
             <p className="font-heading text-[8rem] md:text-[12rem] text-coral leading-none mb-4">
               404
             </p>
-            <h1 className="font-heading text-3xl md:text-5xl text-off-white mb-6">
-              WRONG TURN
+            <h1 className="font-heading text-3xl md:text-5xl text-off-white mb-4">
+              LOOKS LIKE YOU&apos;VE BONKED
             </h1>
-            <p className="text-foreground-muted text-lg max-w-md mx-auto mb-10">
-              This page doesn&apos;t exist. Maybe the route changed, or you took
-              a detour. Either way, let&apos;s get you back on track.
+            <p className="text-foreground-muted text-lg max-w-lg mx-auto mb-10">
+              No gels left, legs are gone, and this page doesn&apos;t exist.
+              But don&apos;t DNF on us — there&apos;s plenty more road ahead.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button href="/" size="lg">
@@ -50,6 +59,36 @@ export default function NotFound() {
                 Read the Blog
               </Button>
             </div>
+
+            {/* Popular posts suggestions */}
+            {popularPosts.length > 0 && (
+              <div className="mt-16 max-w-xl mx-auto text-left">
+                <p className="font-heading text-coral text-xs tracking-[0.3em] mb-4 text-center">
+                  POPULAR ARTICLES
+                </p>
+                <div className="space-y-2">
+                  {popularPosts.map((post) => (
+                    <Link
+                      key={post.slug}
+                      href={`/blog/${post.slug}`}
+                      className="
+                        block p-4 rounded-lg
+                        bg-white/[0.03] border border-white/5
+                        hover:bg-white/[0.07] hover:border-coral/30
+                        transition-all group
+                      "
+                    >
+                      <p className="font-heading text-sm text-off-white group-hover:text-coral transition-colors leading-snug">
+                        {post.title}
+                      </p>
+                      <p className="text-xs text-foreground-subtle mt-1">
+                        {post.readTime}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <div className="mt-16 max-w-lg mx-auto">
               <EmailCapture

@@ -28,7 +28,7 @@ export function hubMetadata(def: ClusterHubDef): Metadata {
     title: def.metaTitle,
     description: def.description,
     keywords: def.keywords,
-    alternates: { canonical: url },
+    alternates: { canonical: def.path },
     openGraph: {
       title: def.metaTitle,
       description: def.description,

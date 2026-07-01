@@ -123,6 +123,14 @@ export interface BlogFrontmatter {
   // step-by-step plans). Emitted as HowTo JSON-LD; name/description fall
   // back to the post title / seoDescription when omitted.
   howTo?: HowToContent;
+  // Content series support. When both fields are set, articles with the
+  // same `seriesSlug` are grouped into an ordered series and a "Part X
+  // of Y" navigation component is rendered. `seriesOrder` is 1-indexed.
+  seriesSlug?: string;
+  seriesOrder?: number;
+  // Optional human-readable series title, e.g. "Zone 2 Deep Dive".
+  // Defaults to the seriesSlug title-cased in the UI if omitted.
+  seriesTitle?: string;
 }
 
 export interface BlogPostMeta extends BlogFrontmatter {
@@ -262,4 +270,19 @@ export function getAllSlugs(): string[] {
     .readdirSync(BLOG_DIR)
     .filter((f) => f.endsWith(".mdx"))
     .map((f) => f.replace(/\.mdx$/, ""));
+}
+
+/**
+ * Returns all posts belonging to the given series, ordered by
+ * `seriesOrder`. Only posts that have both `seriesSlug` and
+ * `seriesOrder` set are included.
+ */
+export function getSeriesPosts(seriesSlug: string): BlogPostMeta[] {
+  return getAllPosts()
+    .filter(
+      (p) =>
+        p.seriesSlug === seriesSlug &&
+        typeof p.seriesOrder === "number",
+    )
+    .sort((a, b) => (a.seriesOrder ?? 0) - (b.seriesOrder ?? 0));
 }

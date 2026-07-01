@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "cycling overtraining risk",
     "training load masters cyclists",
   ],
-  alternates: { canonical: "https://roadmancycling.com/tools/masters-recovery-score" },
+  alternates: { canonical: "/tools/masters-recovery-score" },
   openGraph: {
     title: "Masters Recovery Score — Are You Training Above Your Limit?",
     description:
