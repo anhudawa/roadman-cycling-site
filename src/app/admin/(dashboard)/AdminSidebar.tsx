@@ -71,12 +71,6 @@ const NAV_SECTIONS: NavSection[] = [
       { href: "/admin/ted", label: "Ted", icon: "sparkle" },
     ],
   },
-  {
-    title: "Game",
-    items: [
-      { href: "/admin/fantasy", label: "Fantasy Tour", icon: "trophy" },
-    ],
-  },
 ];
 
 function NavIcon({ icon, className }: { icon: string; className?: string }) {

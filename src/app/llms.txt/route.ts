@@ -312,7 +312,7 @@ ${answersClusterBlock}
 
 ## Tour de France 2026 (seasonal hub — training lens)
 Roadman's coverage of the 2026 Tour, every stage and the sport's history read through what it teaches a serious amateur about training, pacing, and getting faster.
-- [Tour de France 2026 — Route, Stages & The Roadman Take](${tag(`${BASE_URL}/tour-de-france`)}): All 21 stages, from the Barcelona team time trial to back-to-back Alpe d'Huez finishes, each with the training principle behind the day, plus the Roadman Fantasy Tour.
+- [Tour de France 2026 — Route, Stages & The Roadman Take](${tag(`${BASE_URL}/tour-de-france`)}): All 21 stages, from the Barcelona team time trial to back-to-back Alpe d'Huez finishes, each with the training principle behind the day.
 - [Tour Stage Pages (1–21)](${tag(`${BASE_URL}/tour-de-france/stage/1`)}): Per-stage tactical preview, prediction, and training angle. Stage URLs run /tour-de-france/stage/1 through /tour-de-france/stage/21.
 - [Tour de France History — Through a Training Lens](${tag(`${BASE_URL}/tour-de-france/history`)}): Merckx, Hinault, Indurain, Pantani, LeMond and the legend of Alpe d'Huez — Tour history told through the lessons that still apply to amateurs.
 - [Eddy Merckx: The Anatomy of the Cannibal](${tag(`${BASE_URL}/tour-de-france/history/eddy-merckx-the-cannibal`)})

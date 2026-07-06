@@ -13,7 +13,6 @@ import {
 import { STAGE_TYPE_COLOR } from "./stageMeta";
 import { StageTypeIcon } from "./StageTypeIcon";
 import { StageTimeline } from "./StageTimeline";
-import { FantasyPlaceholder } from "./FantasyPlaceholder";
 
 /** A labelled placeholder card — honest about being awaiting-data, never fake. */
 function PlaceholderCard({
@@ -178,7 +177,7 @@ function RestOrTransitionPanel({ next }: { next?: Stage }) {
 
 /**
  * Live mode (4–26 July). Today's stage leads; yesterday's result, the GC, and
- * the fantasy leaderboard sit as awaiting-data placeholders (manually updated
+ * sit as awaiting-data placeholders (manually updated
  * or API-fed). Rest days swap in a recovery panel.
  */
 export function TourLiveHero() {
@@ -194,10 +193,10 @@ export function TourLiveHero() {
         {today && !rest ? <TodayPanel stage={today} /> : <RestOrTransitionPanel next={next} />}
       </Section>
 
-      {/* Result / GC / Fantasy leaderboard placeholders */}
+      {/* Result / GC placeholders */}
       <Section background="charcoal" className="!py-12 border-y border-white/5">
         <Container>
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 gap-4">
             <PlaceholderCard
               eyebrow={yesterday ? `STAGE ${yesterday.number} RESULT` : "LATEST RESULT"}
               title={yesterday ? `${yesterday.start} → ${yesterday.finish}` : "Awaiting first stage"}
@@ -211,11 +210,6 @@ export function TourLiveHero() {
               eyebrow="GENERAL CLASSIFICATION"
               title="Yellow Jersey Standings"
               body="The overall top ten and time gaps — refreshed after each stage finishes."
-            />
-            <PlaceholderCard
-              eyebrow="FANTASY LEAGUE"
-              title="Roadman Community Board"
-              body="Once the Fantasy Tour is live, the community leaderboard lands right here."
             />
           </div>
         </Container>
@@ -235,12 +229,6 @@ export function TourLiveHero() {
             </Link>
           </div>
           <StageTimeline todayNumber={today?.number} completedNumbers={completed} />
-        </Container>
-      </Section>
-
-      <Section background="charcoal" className="!py-14">
-        <Container>
-          <FantasyPlaceholder />
         </Container>
       </Section>
     </>

@@ -56,14 +56,6 @@
     {
       "path": "/api/cron/brand-citations",
       "schedule": "0 9 * * 1"
-    },
-    {
-      "path": "/api/cron/fantasy-daily-email",
-      "schedule": "30 5 * 7 *"
-    },
-    {
-      "path": "/api/cron/fantasy-lifecycle",
-      "schedule": "0 10 * 6,7 *"
     }
   ]
 }

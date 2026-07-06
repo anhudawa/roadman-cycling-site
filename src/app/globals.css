@@ -11,7 +11,7 @@
   --color-coral: #F16363;
   --color-coral-hover: #E84E4E;
   --color-coral-muted: rgba(241, 99, 99, 0.15);
-  /* Tour de France — Fantasy game accent palette */
+  /* Tour de France — accent palette */
   --color-jersey-yellow: #FFD700;
   --color-jersey-yellow-deep: #E6C200;
   --color-jersey-yellow-muted: rgba(255, 215, 0, 0.15);
@@ -1282,13 +1282,4 @@ h1, h2, h3, h4, h5, h6 {
     top: 0;
     width: 100%;
   }
-}
-
-/* ============================================
-   FANTASY TOUR — card entrance
-   Used by the team-builder echelon when a rider lands in a slot.
-   ============================================ */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(4px) scale(0.98); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
 }

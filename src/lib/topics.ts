@@ -289,6 +289,310 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
       "vo2 max decline cycling",
     ],
   },
+  {
+    slug: "polarised-training",
+    title: "Polarised Training for Cyclists — The Complete 80/20 Guide",
+    headline: "THE 80/20 RULE — EXPLAINED",
+    ctaHeadline: "POLARISED TRAINING, BUILT INTO YOUR WEEK.",
+    description:
+      "The complete guide to polarised training for cyclists. The 80/20 intensity distribution, how to avoid the grey zone, and why the world's best endurance athletes train easy most of the time — from Professor Seiler, Dan Lorang, and 1,400+ podcast episodes.",
+    pillar: "coaching",
+    keywords: [
+      "polarised training cycling",
+      "80/20 training cycling",
+      "polarised vs sweet spot",
+      "grey zone training",
+      "intensity distribution cycling",
+      "zone 2 training",
+    ],
+  },
+  {
+    slug: "vo2max-training",
+    title: "VO2max Training for Cyclists — Raise the Ceiling",
+    headline: "RAISE YOUR CEILING",
+    ctaHeadline: "VO2MAX WORK, PROGRAMMED RIGHT.",
+    description:
+      "The complete guide to VO2max training for cyclists. What VO2max is, how to test it, the best interval sessions to improve it, and how to slow the age-related decline — grounded in conversations with Dan Lorang, John Wakefield, and Andy Galpin.",
+    pillar: "coaching",
+    keywords: [
+      "vo2max cycling",
+      "vo2max intervals",
+      "improve vo2max cycling",
+      "vo2max decline age",
+      "vo2max training plan",
+      "cycling vo2max workouts",
+    ],
+  },
+  {
+    slug: "indoor-training",
+    title: "Indoor Cycling Training — Zwift, Trainers & Winter Structure",
+    headline: "TRAIN SMARTER INDOORS",
+    ctaHeadline: "INDOOR TRAINING WITH PURPOSE.",
+    description:
+      "The complete guide to indoor cycling training. Smart trainers, Zwift vs TrainerRoad, pain cave setup, winter training structure, and the mental strategies that keep you sharp when the roads are dark and wet.",
+    pillar: "coaching",
+    keywords: [
+      "indoor cycling training",
+      "zwift training",
+      "smart trainer cycling",
+      "winter cycling training",
+      "turbo trainer workouts",
+      "zwift vs trainerroad",
+      "pain cave setup",
+    ],
+  },
+  {
+    slug: "bike-fitting",
+    title: "Bike Fitting — The Complete Guide for Cyclists",
+    headline: "FIT THE BIKE TO THE RIDER",
+    ctaHeadline: "A PROPER FIT CHANGES EVERYTHING.",
+    description:
+      "The complete guide to bike fitting. What a proper fit involves, when to get one, common problems it solves, crank length, saddle position, and why most amateurs are leaving watts on the table through poor position.",
+    pillar: "community",
+    keywords: [
+      "bike fit cycling",
+      "bike fitting guide",
+      "cycling saddle position",
+      "crank length cycling",
+      "bike fit after 40",
+      "cycling position",
+      "bike fit cost",
+    ],
+  },
+  {
+    slug: "gravel-cycling",
+    title: "Gravel Cycling — Getting Started, Training & Racing",
+    headline: "GRAVEL — FROM FIRST RIDE TO RACE DAY",
+    ctaHeadline: "GRAVEL TRAINING THAT GETS RESULTS.",
+    description:
+      "The complete guide to gravel cycling. Getting started, training differences from road, racing Unbound and Badlands, tyre setup, aero in gravel, and the riders who've shaped the discipline — from the Roadman Cycling Podcast.",
+    pillar: "community",
+    keywords: [
+      "gravel cycling",
+      "gravel racing",
+      "unbound gravel training",
+      "badlands cycling",
+      "gravel bike setup",
+      "gravel cycling beginners",
+    ],
+  },
+  {
+    slug: "climbing",
+    title: "Climbing — How to Get Faster Uphill on the Bike",
+    headline: "STOP GETTING DROPPED ON CLIMBS",
+    ctaHeadline: "CLIMBING SPEED, BUILT INTO YOUR PLAN.",
+    description:
+      "The complete guide to cycling climbing. Pacing, power-to-weight, cadence, position, mental approach, and the five fixable reasons your climbing is slow — grounded in conversations with Dan Lorang, Joe Friel, and World Tour coaches.",
+    pillar: "coaching",
+    keywords: [
+      "cycling climbing tips",
+      "climb faster cycling",
+      "watts per kg climbing",
+      "cycling pacing climbs",
+      "alpe dhuez training",
+      "climbing cadence",
+    ],
+  },
+  {
+    slug: "cycling-psychology",
+    title: "Cycling Psychology — Mental Toughness, Focus & Race Confidence",
+    headline: "THE MIND IS THE LAST 5%",
+    ctaHeadline: "MENTAL TOOLS THAT MAKE YOU FASTER.",
+    description:
+      "The complete guide to the mental side of cycling. Race-day nerves, mental toughness on climbs and time trials, goal setting, motivation, and the psychological frameworks used by the world's best riders.",
+    pillar: "recovery",
+    keywords: [
+      "cycling psychology",
+      "cycling mental toughness",
+      "race anxiety cycling",
+      "cycling motivation",
+      "cycling goal setting",
+      "mental training cycling",
+    ],
+  },
+  {
+    slug: "heat-training",
+    title: "Heat Training for Cyclists — Acclimation, Protocol & Performance",
+    headline: "TRAIN THE HEAT, GAIN THE WATTS",
+    ctaHeadline: "HEAT ACCLIMATION, PERIODISED INTO YOUR PLAN.",
+    description:
+      "The complete guide to heat training for cyclists. How heat acclimation improves FTP by up to 5%, at-home protocols, performance gains, safety for masters riders, and the science behind Remco Evenepoel's heat strategy.",
+    pillar: "coaching",
+    keywords: [
+      "heat training cycling",
+      "heat acclimation cycling",
+      "cycling in heat",
+      "heat training protocol",
+      "heat training ftp gains",
+    ],
+  },
+  {
+    slug: "women-cycling",
+    title: "Women's Cycling — Training, Nutrition & Hormones",
+    headline: "TRAINING THAT WORKS WITH YOUR BODY",
+    ctaHeadline: "COACHING THAT UNDERSTANDS FEMALE PHYSIOLOGY.",
+    description:
+      "The complete guide to women's cycling. Training around the menstrual cycle, menopause and perimenopause, bone density, nutrition differences, strength training, bike fit, and building a women's cycling community.",
+    pillar: "coaching",
+    keywords: [
+      "women cycling training",
+      "cycling menstrual cycle",
+      "menopause cycling",
+      "female cyclist nutrition",
+      "women cycling community",
+      "perimenopause cycling",
+      "bone density cycling",
+    ],
+  },
+  {
+    slug: "race-preparation",
+    title: "Race Preparation — Tapering, Pacing & Race-Day Execution",
+    headline: "PEAK ON THE DAY THAT MATTERS",
+    ctaHeadline: "RACE-DAY COACHING THAT DELIVERS.",
+    description:
+      "The complete guide to race preparation for cyclists. Tapering, race-day nutrition, pacing strategy, warm-up protocols, and the 12-week countdown to your target event — built from World Tour race-day science.",
+    pillar: "coaching",
+    keywords: [
+      "cycling race preparation",
+      "cycling taper guide",
+      "sportive preparation",
+      "race day nutrition cycling",
+      "cycling pacing strategy",
+      "cycling warm up protocol",
+    ],
+  },
+  {
+    slug: "cycling-periodisation",
+    title: "Cycling Periodisation — How to Structure Your Training Year",
+    headline: "STRUCTURE BEATS RANDOMNESS",
+    ctaHeadline: "A STRUCTURED YEAR, NOT RANDOM WEEKS.",
+    description:
+      "The complete guide to cycling periodisation. Base, build, peak, and transition phases, mesocycle design, reverse periodisation, and the frameworks used by Joe Friel, Dan Lorang, and the best coaches in endurance sport.",
+    pillar: "coaching",
+    keywords: [
+      "cycling periodisation",
+      "training periodisation cycling",
+      "mesocycle cycling",
+      "base build peak cycling",
+      "reverse periodisation",
+      "off season cycling",
+    ],
+  },
+  {
+    slug: "sweet-spot-training",
+    title: "Sweet Spot Training for Cyclists — The Complete Guide",
+    headline: "THE SWEET SPOT — EXPLAINED",
+    ctaHeadline: "SWEET SPOT, PROGRAMMED AT THE RIGHT TIME.",
+    description:
+      "The complete guide to sweet spot training for cyclists. What it is (88-93% FTP), when to use it, how it compares to polarised and threshold training, and why it works best for time-crunched amateurs in the right phase of the season.",
+    pillar: "coaching",
+    keywords: [
+      "sweet spot training cycling",
+      "sweet spot vs threshold",
+      "sweet spot vs polarised",
+      "88-93% ftp training",
+      "sweet spot intervals",
+    ],
+  },
+  {
+    slug: "sprint-training",
+    title: "Sprint Training for Cyclists — Power, Tactics & Sessions",
+    headline: "FASTER WHEN IT MATTERS",
+    ctaHeadline: "SPRINT POWER, BUILT INTO YOUR PROGRAMME.",
+    description:
+      "The complete guide to sprint training for cyclists. Sprint power development, race tactics, the difference between sprint power and winning power, and sessions for road racers, criterium riders, and masters cyclists.",
+    pillar: "coaching",
+    keywords: [
+      "sprint training cycling",
+      "cycling sprint power",
+      "criterium training",
+      "sprint intervals cycling",
+      "masters sprint training",
+    ],
+  },
+  {
+    slug: "sleep-performance",
+    title: "Sleep & Cycling Performance — The Recovery You Can't Skip",
+    headline: "SLEEP IS YOUR BEST SESSION",
+    ctaHeadline: "RECOVERY THAT STARTS AT LIGHTS-OUT.",
+    description:
+      "The complete guide to sleep and cycling performance. Why sleep is the highest-leverage recovery tool, how sleep debt erodes adaptation, optimisation strategies, and the sleep habits of the world's best endurance athletes.",
+    pillar: "recovery",
+    keywords: [
+      "sleep cycling performance",
+      "sleep recovery cycling",
+      "sleep optimisation cyclists",
+      "sleep debt cycling",
+      "cycling recovery sleep",
+    ],
+  },
+  {
+    slug: "cycling-cadence",
+    title: "Cycling Cadence — Optimal RPM, Low Cadence Training & Climbing",
+    headline: "FIND YOUR RPM",
+    ctaHeadline: "CADENCE WORK, BUILT INTO YOUR SESSIONS.",
+    description:
+      "The complete guide to cycling cadence. Optimal RPM for flat and climbing, low-cadence torque intervals, age-related cadence changes, and the sessions John Wakefield and Tim Kerrison prescribe to World Tour riders.",
+    pillar: "coaching",
+    keywords: [
+      "cycling cadence",
+      "optimal cadence cycling",
+      "low cadence training",
+      "torque intervals cycling",
+      "climbing cadence",
+      "cadence masters cycling",
+    ],
+  },
+  {
+    slug: "ultra-endurance",
+    title: "Ultra-Endurance Cycling — Badlands, Tour Divide & Beyond",
+    headline: "GO LONGER",
+    ctaHeadline: "ENDURANCE BUILT FOR THE LONG HAUL.",
+    description:
+      "The complete guide to ultra-endurance cycling. Training and fuelling for Badlands, Tour Divide, Unbound, RAAM, and events that push past the point where fitness alone won't save you — from Lachlan Morton, Alex Howes, Sofiane Sehili, and Lael Wilcox.",
+    pillar: "community",
+    keywords: [
+      "ultra endurance cycling",
+      "badlands training",
+      "tour divide training",
+      "ultra distance cycling",
+      "bikepacking racing",
+      "unbound gravel training",
+    ],
+  },
+  {
+    slug: "cycling-breathing",
+    title: "Breathing for Cyclists — Respiratory Training & Techniques",
+    headline: "BREATHE BETTER, RIDE FASTER",
+    ctaHeadline: "BREATHING THAT SUPPORTS YOUR POWER.",
+    description:
+      "The complete guide to breathing for cyclists. Nasal vs mouth breathing, respiratory muscle training, CO2 tolerance, breathing patterns on climbs, and the ventilation technology Visma–Lease a Bike are using in races.",
+    pillar: "recovery",
+    keywords: [
+      "breathing cycling",
+      "respiratory training cycling",
+      "nasal breathing cycling",
+      "breathing techniques cycling",
+      "co2 tolerance cycling",
+    ],
+  },
+  {
+    slug: "power-meter-training",
+    title: "Power Meter Training — The Complete Guide for Cyclists",
+    headline: "TRAIN WITH NUMBERS THAT MATTER",
+    ctaHeadline: "POWER-BASED COACHING THAT WORKS.",
+    description:
+      "The complete guide to training with a power meter. Which type to buy, how to set zones, how to structure workouts around power data, and when heart rate or RPE is actually the better guide.",
+    pillar: "coaching",
+    keywords: [
+      "power meter cycling",
+      "power meter training",
+      "cycling power meter guide",
+      "train with power cycling",
+      "power meter vs heart rate",
+      "best power meter",
+    ],
+  },
 ];
 
 /** Map of topic slugs to relevant blog post slugs */
@@ -756,6 +1060,259 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "vo2max-decline-reversibility-masters-cyclists",
     "what-experts-say-about-masters-cycling",
   ],
+  "polarised-training": [
+    "polarised-training-cycling-complete-guide",
+    "polarised-training-cycling-guide",
+    "polarised-training-cycling-world-tour-prescription",
+    "polarised-vs-sweet-spot-training",
+    "80-20-cycling-training-the-grey-zone-trap",
+    "what-cycling-podcasts-got-wrong-about-polarised-training",
+    "what-stephen-seiler-says-about-polarised-training",
+    "stephen-seiler-research-polarised-training-lessons",
+    "stephen-seiler-80-20-polarised-training-cyclists",
+    "sweet-spot-vs-threshold-vs-polarised-comparison",
+    "zone-2-training-complete-guide",
+    "zone-2-cycling-heart-rate-vs-power-vs-rpe",
+    "zone-2-vs-endurance-training",
+    "why-pros-train-so-easy-mixed-metabolism-zone",
+    "what-experts-say-about-zone-2-training",
+    "christian-schrot-why-pros-train-easy",
+    "prof-seiler-low-heart-rate-cycling",
+    "vasilis-anastopoulos-zone-1-base-training",
+  ],
+  "vo2max-training": [
+    "cycling-vo2max-intervals",
+    "vo2max-cycling-fixable-reasons-low",
+    "vo2max-training-cyclists-seven-reasons",
+    "vo2max-decline-reversibility-masters-cyclists",
+    "vo2-max-workouts-cyclists-over-40",
+    "vo2max-intervals-cycling-session-guide",
+    "cycling-hill-repeats-training",
+    "low-cadence-training-cycling-torque-intervals",
+    "sprint-interval-training-cyclists-masters",
+    "steady-state-vs-interval-training-cycling",
+  ],
+  "indoor-training": [
+    "cycling-zwift-training-guide",
+    "best-indoor-cycling-workouts-winter",
+    "best-indoor-smart-trainers-2026",
+    "zwift-vs-trainerroad",
+    "zwift-vs-structured-training-cyclists",
+    "zwift-vs-cycling-coach",
+    "rouvy-vs-zwift",
+    "pain-cave-setup-guide-cyclists",
+    "indoor-vs-outdoor-cycling-training-when-each-wins",
+    "indoor-cycling-for-triathletes-winter-plan",
+    "indoor-trainer-vs-rollers",
+    "cycling-indoor-training-tips",
+    "cycling-podcasts-for-indoor-training",
+    "best-indoor-cycling-podcasts-winter",
+    "staying-sane-turbo-trainer-mental-strategies",
+    "winter-cycling-training-indoor-protocol-pros",
+    "heart-rate-zones-indoor-vs-outdoor-cycling",
+    "heat-training-indoor-trainer-cyclists",
+    "indoor-cycling-heat-management-trainingpeaks-virtual",
+    "power-meter-vs-smart-trainer",
+    "trainingpeaks-virtual-structured-indoor-training",
+  ],
+  "bike-fitting": [
+    "bike-fit-guide-cyclists",
+    "bike-fit-after-40",
+    "bike-fit-one-change-amateurs-should-make",
+    "bike-fit-women-cyclists-guide",
+    "phil-burt-crank-length-bike-fit-mistakes",
+    "shorter-cranks-cycling-power-gains",
+    "numb-hands-cycling-5-fixes-bike-fit",
+    "cycling-shoes-fit-guide",
+    "courtney-conley-cycling-shoes-fit",
+    "cycling-saddle-sore-prevention",
+    "daryl-fitzgerald-saddle-height-one-change",
+    "mtb-bike-fit-basics",
+    "cycling-back-pain-fixes",
+    "cycling-knee-pain-causes-fixes",
+  ],
+  "gravel-cycling": [
+    "gravel-cycling-beginners-guide",
+    "unbound-gravel-200-training-guide",
+    "unbound-gravel-2026-complete-guide",
+    "badlands-training-guide",
+    "badlands-800km-fuelling-strategy",
+    "rosa-kloser-unbound-2024-simple-training-plan",
+    "pete-stetina-worldtour-to-gravel-reinvention",
+    "nathan-haas-gravel-soul-professionalisation",
+    "wind-tunnel-aero-gains-gravel-cyclists",
+    "best-gravel-trails-ireland",
+    "how-to-race-gravel-in-the-mud",
+    "chris-mehlman-badlands-podium-pacing-kit",
+    "mads-wurtz-schmidt-professional-gravel-super-team",
+    "sebastian-breuer-badlands-aero-bikepacking",
+    "alex-howes-when-to-quit-pro-cycling-gravel-privateer",
+    "dylan-johnson-oscillation-training-plan",
+    "sofiane-sehili-ultra-endurance-mindset-bikepacking",
+  ],
+  "climbing": [
+    "climb-faster-cycling-five-fixable-reasons",
+    "cycling-climbing-tips-stop-getting-dropped",
+    "best-cadence-for-climbing",
+    "cycling-pacing-strategy-long-climbs",
+    "how-to-ride-alpe-dhuez-training-pacing-guide",
+    "how-to-descend-faster-cycling",
+    "how-to-descend-faster-road-bike",
+    "watts-per-kg-alpe-dhuez",
+    "jack-burke-strava-records-stelvio-alpe-dhuez",
+    "science-of-climbing-tour-de-france-speeds-wkg",
+    "cycling-hill-repeats-training",
+    "mental-tools-long-climbs-time-trials",
+    "cycling-power-to-weight-ratio-guide",
+    "cycling-body-composition-guide",
+  ],
+  "cycling-psychology": [
+    "cycling-mental-toughness",
+    "mental-preparation-cycling-race",
+    "mental-tools-long-climbs-time-trials",
+    "cycling-goal-setting-that-actually-works",
+    "staying-sane-turbo-trainer-mental-strategies",
+    "gabby-bernstein-trauma-cycling-mental-recovery",
+    "ger-redmond-prison-pro-mental-method-cyclists",
+    "mohoric-tour-de-france-stage-win-mindset",
+    "running-cycling-mental-health-benefits",
+    "sofiane-sehili-ultra-endurance-mindset-bikepacking",
+    "valtteri-bottas-f1-cycling-cross-training-mindset",
+    "yanto-barker-le-col-goal-setting-cycling",
+    "tj-eisenhart-breathwork-meditation-cycling",
+  ],
+  "heat-training": [
+    "cycling-heat-training-guide",
+    "cycling-heat-training-protocol-at-home",
+    "heat-training-cyclists-30-watts-ftp-protocol",
+    "heat-training-indoor-trainer-cyclists",
+    "heat-tolerance-ageing-cyclist",
+    "indoor-cycling-heat-management-trainingpeaks-virtual",
+  ],
+  "women-cycling": [
+    "cycling-training-around-menstrual-cycle",
+    "menopause-cycling-performance",
+    "menopause-cycling-fuelling-female-cyclists",
+    "perimenopause-cycling-training-adaptation",
+    "bike-fit-women-cyclists-guide",
+    "cycling-nutrition-women-different",
+    "women-cycling-strength-training-guide",
+    "bone-density-cycling-after-menopause",
+    "hormones-recovery-female-cyclists-over-45",
+    "women-cycling-community-getting-started",
+    "cycling-bone-density-running-fix",
+    "tayler-wiles-womens-cycling-growth-inequality",
+  ],
+  "race-preparation": [
+    "cycling-sportive-preparation",
+    "cycling-taper-guide-peak-race-day",
+    "cycling-taper-race-preparation-system",
+    "cycling-taper-discipline-15-percent-gain",
+    "cycling-taper-pmc-performance-management-chart",
+    "cycling-tapering-guide",
+    "race-day-checklist-cyclists",
+    "race-day-fuelling-24-hour-timeline",
+    "race-day-nutrition-plan-cyclists",
+    "pre-race-warmup-protocol-cyclists",
+    "pacing-strategy-cycling-sportive",
+    "peaking-for-a-sportive-12-week-framework",
+    "cycling-nutrition-race-day-guide",
+    "cycling-nutrition-plan-100-mile-sportive",
+    "cycling-carb-loading-protocol-race-week",
+    "sportive-training-readiness-index-2026",
+    "how-to-train-for-a-sportive-12-weeks",
+    "travel-fatigue-cycling-pre-event-protocol",
+    "what-amateurs-can-learn-from-tour-de-france-preparation",
+    "cycling-race-tactics-guide",
+  ],
+  "cycling-periodisation": [
+    "cycling-periodisation-plan-guide",
+    "cycling-periodisation-friel-lorang-johnson",
+    "how-to-periodise-cycling-season",
+    "mesocycle-training-explained-cyclists",
+    "reverse-periodisation-cycling",
+    "winter-base-training-modern-approach-cycling",
+    "cycling-base-training-guide",
+    "nutrition-periodisation-base-build-race",
+    "off-season-gym-routine-cyclists-12-week-block",
+    "running-off-season-cyclists",
+    "triathlon-off-season-cycling",
+    "vasilis-anastopoulos-zone-1-base-training",
+    "winter-training-cycling-guide",
+    "cycling-training-plan-build-friel-lorang-johnson",
+  ],
+  "sweet-spot-training": [
+    "sweet-spot-training-cycling",
+    "sweet-spot-training-cycling-guide",
+    "sweet-spot-training-cyclists-explained",
+    "sweet-spot-vs-threshold-vs-polarised-comparison",
+    "polarised-vs-sweet-spot-training",
+    "how-to-improve-ftp-cycling",
+    "improve-ftp-cycling-evidence-based-methods",
+    "time-crunched-cyclist-8-hours-week",
+  ],
+  "sprint-training": [
+    "30-day-sprint-power-cycling-plan",
+    "sam-bennett-what-sprinters-do-differently",
+    "andre-greipel-sprint-captains-code",
+    "cory-williams-sprint-power-vs-winning-power",
+    "sprint-interval-training-cyclists-masters",
+    "vasilis-anastopoulos-cavendish-sprint-training",
+    "cycling-race-tactics-guide",
+  ],
+  "sleep-performance": [
+    "cycling-sleep-performance-guide",
+    "cycling-sleep-optimisation",
+    "sleep-and-the-masters-cyclist",
+    "sleep-debt-hrv-cycling-adaptation",
+    "cycling-hrv-training-guide",
+    "cycling-recovery-tips",
+    "masters-recovery-audit-seven-things-to-check",
+  ],
+  "cycling-cadence": [
+    "cycling-cadence-optimal-guide",
+    "cycling-cadence-by-age-masters",
+    "best-cadence-for-climbing",
+    "low-cadence-training-cycling-torque-intervals",
+    "low-cadence-training-world-tour-coaches",
+    "john-wakefield-team-bora-endurance-training",
+  ],
+  "ultra-endurance": [
+    "badlands-training-guide",
+    "badlands-800km-fuelling-strategy",
+    "alex-howes-tour-divide-ultra-endurance-pro-perspective",
+    "alex-howes-when-to-quit-pro-cycling-gravel-privateer",
+    "lael-wilcox-ultra-distance-cycling-lessons",
+    "sofiane-sehili-ultra-endurance-mindset-bikepacking",
+    "unbound-gravel-200-training-guide",
+    "leadville-100-training-guide",
+    "colin-obrady-race-across-america-training",
+    "james-golding-race-across-america-comeback",
+    "chris-mehlman-badlands-podium-pacing-kit",
+    "sebastian-breuer-badlands-aero-bikepacking",
+    "rosa-kloser-unbound-2024-simple-training-plan",
+  ],
+  "cycling-breathing": [
+    "breathing-for-cyclists-respiratory-training-guide",
+    "breathing-techniques-cycling-performance",
+    "cycling-breathing-techniques",
+    "andrew-sellars-breathing-co2-cycling",
+    "tj-eisenhart-breathwork-meditation-cycling",
+    "team-visma-breathing-sensor-ventilation-training",
+  ],
+  "power-meter-training": [
+    "cycling-power-meter-guide",
+    "power-meter-buying-guide-cyclists",
+    "power-meter-training-cyclists-how-to-use",
+    "power-meter-training-plan-week-by-week",
+    "power-meter-vs-smart-trainer",
+    "uli-schoberer-first-power-meter-cycling-history",
+    "cycling-power-to-weight-ratio-guide",
+    "rpe-and-power-using-them-together",
+    "reading-your-training-data-tss-ctl-atl-tsb",
+    "wahoo-vs-garmin-cycling-computers",
+    "best-cycling-computers-2026",
+  ],
 };
 
 /** Cluster enrichment: tools, commercial path, related topics, featured posts, optional claim table */
@@ -947,6 +1504,208 @@ const TOPIC_ENRICHMENT: Record<string, {
       "ryan-collins-six-hour-velodrome-record-three-tweaks",
     ],
   },
+  "polarised-training": {
+    tools: [
+      { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+      { slug: "hr-zones", title: "HR Zone Calculator", href: "/tools/hr-zones" },
+    ],
+    commercialPath: "/coaching",
+    relatedTopics: ["ftp-training", "cycling-training-plans", "sweet-spot-training"],
+    featuredPostSlugs: [
+      "polarised-training-cycling-complete-guide",
+      "polarised-vs-sweet-spot-training",
+      "80-20-cycling-training-the-grey-zone-trap",
+    ],
+  },
+  "vo2max-training": {
+    tools: [
+      { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+    ],
+    commercialPath: "/coaching",
+    relatedTopics: ["ftp-training", "polarised-training", "cycling-training-plans"],
+    featuredPostSlugs: [
+      "cycling-vo2max-intervals",
+      "vo2max-cycling-fixable-reasons-low",
+      "vo2max-decline-reversibility-masters-cyclists",
+    ],
+  },
+  "indoor-training": {
+    tools: [
+      { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+    ],
+    commercialPath: "/coaching",
+    relatedTopics: ["ftp-training", "cycling-training-plans", "heat-training"],
+    featuredPostSlugs: [
+      "cycling-zwift-training-guide",
+      "best-indoor-cycling-workouts-winter",
+      "pain-cave-setup-guide-cyclists",
+    ],
+  },
+  "bike-fitting": {
+    tools: [],
+    commercialPath: "/coaching",
+    relatedTopics: ["cycling-beginners", "masters-cycling", "women-cycling"],
+    featuredPostSlugs: [
+      "bike-fit-guide-cyclists",
+      "bike-fit-one-change-amateurs-should-make",
+      "phil-burt-crank-length-bike-fit-mistakes",
+    ],
+  },
+  "gravel-cycling": {
+    tools: [
+      { slug: "tyre-pressure", title: "Tyre Pressure Calculator", href: "/tools/tyre-pressure" },
+    ],
+    commercialPath: "/coaching",
+    relatedTopics: ["ultra-endurance", "cycling-beginners", "cycling-nutrition"],
+    featuredPostSlugs: [
+      "gravel-cycling-beginners-guide",
+      "unbound-gravel-200-training-guide",
+      "rosa-kloser-unbound-2024-simple-training-plan",
+    ],
+  },
+  "climbing": {
+    tools: [
+      { slug: "wkg", title: "W/kg Calculator", href: "/tools/wkg" },
+      { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+    ],
+    commercialPath: "/coaching",
+    relatedTopics: ["ftp-training", "cycling-weight-loss", "cycling-cadence"],
+    featuredPostSlugs: [
+      "climb-faster-cycling-five-fixable-reasons",
+      "cycling-pacing-strategy-long-climbs",
+      "how-to-ride-alpe-dhuez-training-pacing-guide",
+    ],
+  },
+  "cycling-psychology": {
+    tools: [],
+    commercialPath: "/coaching",
+    relatedTopics: ["cycling-recovery", "race-preparation", "cycling-training-plans"],
+    featuredPostSlugs: [
+      "cycling-mental-toughness",
+      "mental-preparation-cycling-race",
+      "cycling-goal-setting-that-actually-works",
+    ],
+  },
+  "heat-training": {
+    tools: [],
+    commercialPath: "/coaching",
+    relatedTopics: ["race-preparation", "indoor-training", "masters-cycling"],
+    featuredPostSlugs: [
+      "cycling-heat-training-guide",
+      "heat-training-cyclists-30-watts-ftp-protocol",
+      "cycling-heat-training-protocol-at-home",
+    ],
+  },
+  "women-cycling": {
+    tools: [],
+    commercialPath: "/coaching",
+    relatedTopics: ["masters-cycling", "cycling-nutrition", "cycling-strength-conditioning"],
+    featuredPostSlugs: [
+      "cycling-training-around-menstrual-cycle",
+      "menopause-cycling-performance",
+      "women-cycling-strength-training-guide",
+    ],
+  },
+  "race-preparation": {
+    tools: [
+      { slug: "fuelling", title: "In-Ride Fuelling Calculator", href: "/tools/fuelling" },
+      { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+    ],
+    commercialPath: "/coaching",
+    relatedTopics: ["cycling-nutrition", "cycling-periodisation", "ftp-training"],
+    featuredPostSlugs: [
+      "cycling-taper-guide-peak-race-day",
+      "race-day-checklist-cyclists",
+      "pacing-strategy-cycling-sportive",
+    ],
+  },
+  "cycling-periodisation": {
+    tools: [],
+    commercialPath: "/coaching",
+    relatedTopics: ["cycling-training-plans", "ftp-training", "race-preparation"],
+    featuredPostSlugs: [
+      "cycling-periodisation-plan-guide",
+      "mesocycle-training-explained-cyclists",
+      "reverse-periodisation-cycling",
+    ],
+  },
+  "sweet-spot-training": {
+    tools: [
+      { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+    ],
+    commercialPath: "/coaching",
+    relatedTopics: ["ftp-training", "polarised-training", "cycling-training-plans"],
+    featuredPostSlugs: [
+      "sweet-spot-training-cycling",
+      "sweet-spot-vs-threshold-vs-polarised-comparison",
+      "polarised-vs-sweet-spot-training",
+    ],
+  },
+  "sprint-training": {
+    tools: [],
+    commercialPath: "/coaching",
+    relatedTopics: ["ftp-training", "cycling-strength-conditioning", "race-preparation"],
+    featuredPostSlugs: [
+      "sam-bennett-what-sprinters-do-differently",
+      "30-day-sprint-power-cycling-plan",
+      "cory-williams-sprint-power-vs-winning-power",
+    ],
+  },
+  "sleep-performance": {
+    tools: [],
+    commercialPath: "/coaching",
+    relatedTopics: ["cycling-recovery", "masters-cycling", "cycling-psychology"],
+    featuredPostSlugs: [
+      "cycling-sleep-performance-guide",
+      "sleep-and-the-masters-cyclist",
+      "sleep-debt-hrv-cycling-adaptation",
+    ],
+  },
+  "cycling-cadence": {
+    tools: [],
+    commercialPath: "/coaching",
+    relatedTopics: ["ftp-training", "climbing", "masters-cycling"],
+    featuredPostSlugs: [
+      "cycling-cadence-optimal-guide",
+      "low-cadence-training-cycling-torque-intervals",
+      "best-cadence-for-climbing",
+    ],
+  },
+  "ultra-endurance": {
+    tools: [
+      { slug: "fuelling", title: "In-Ride Fuelling Calculator", href: "/tools/fuelling" },
+    ],
+    commercialPath: "/coaching",
+    relatedTopics: ["gravel-cycling", "cycling-nutrition", "cycling-psychology"],
+    featuredPostSlugs: [
+      "badlands-training-guide",
+      "alex-howes-tour-divide-ultra-endurance-pro-perspective",
+      "lael-wilcox-ultra-distance-cycling-lessons",
+    ],
+  },
+  "cycling-breathing": {
+    tools: [],
+    commercialPath: "/coaching",
+    relatedTopics: ["cycling-recovery", "ftp-training", "cycling-psychology"],
+    featuredPostSlugs: [
+      "breathing-for-cyclists-respiratory-training-guide",
+      "andrew-sellars-breathing-co2-cycling",
+      "team-visma-breathing-sensor-ventilation-training",
+    ],
+  },
+  "power-meter-training": {
+    tools: [
+      { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+      { slug: "wkg", title: "W/kg Calculator", href: "/tools/wkg" },
+    ],
+    commercialPath: "/coaching",
+    relatedTopics: ["ftp-training", "cycling-coaching", "cycling-training-plans"],
+    featuredPostSlugs: [
+      "cycling-power-meter-guide",
+      "power-meter-training-cyclists-how-to-use",
+      "uli-schoberer-first-power-meter-cycling-history",
+    ],
+  },
 };
 
 /** Keyword patterns for matching episodes to topics */
@@ -965,6 +1724,24 @@ const TOPIC_EPISODE_KEYWORDS: Record<string, RegExp> = {
   "mountain-biking": /mountain.?bik|mtb|enduro|downhill|trail.?rid|suspension|fork.?setup|sag|shock.?pressur|dropper|trail.?centre/i,
   "against-the-clock":
     /hour record|time.?trial|\btt\b|race of truth|against the clock|contre la montre|\bwatches\b|wristwatch|watchmaker|chronograph|richard mille|velodrome|pursuit|track cycl|track racing|track bike/i,
+  "polarised-training": /polaris|polariz|80.?20|grey.?zone|intensity.?distribut|zone.?2|low.?intensity/i,
+  "vo2max-training": /vo2|v02|vo2.?max|max.?aerobic|oxygen.?uptake/i,
+  "indoor-training": /indoor|zwift|trainer|turbo|rollers|pain.?cave|smart.?trainer|wahoo|kickr|tacx|rouvy/i,
+  "bike-fitting": /bike.?fit|saddle.?height|crank.?length|position|cleat|shoe.?fit|aero.?position/i,
+  "gravel-cycling": /gravel|unbound|badlands|bikepacking|adventure.?cycling|off.?road/i,
+  "climbing": /climb|ascent|gradient|mountain|summit|col\b|alpe|dolomit|pyrenee|uphill/i,
+  "cycling-psychology": /mental|psych|mindset|anxiety|confidence|motivation|fear|tough/i,
+  "heat-training": /heat|hot|temperature|acclim|thermal|summer.?train/i,
+  "women-cycling": /women|female|menstrual|menopause|perimenopause|hormone|bone.?density/i,
+  "race-preparation": /race.?day|race.?prep|taper|sportive|warm.?up|pacing|peak|checklist|race.?nutrition/i,
+  "cycling-periodisation": /periodis|mesocycle|base.?phase|build.?phase|off.?season|training.?block|macrocycle/i,
+  "sweet-spot-training": /sweet.?spot|88.?93|sub.?threshold/i,
+  "sprint-training": /sprint|criterium|crit|lead.?out|bunch.?finish|fast.?twitch/i,
+  "sleep-performance": /sleep|circadian|nap|insomnia|melatonin|sleep.?hygiene/i,
+  "cycling-cadence": /cadence|rpm|torque|low.?cadence|pedal.?speed|grinding/i,
+  "ultra-endurance": /ultra|bikepacking|tour.?divide|badlands|unbound|leadville|race.?across|24.?hour|endurance.?race/i,
+  "cycling-breathing": /breath|respiratory|nasal|co2.?tolerance|ventilat|lung|diaphragm/i,
+  "power-meter-training": /power.?meter|srm|stages|quarq|pedal.?power|power.?data|dual.?sided/i,
 };
 
 /**
@@ -1248,6 +2025,402 @@ const TOPIC_FAQS: Record<string, TopicFAQ[]> = {
       question: "Why do pro cyclists wear luxury watches like Richard Mille?",
       answer:
         "Mostly sponsorship — a watch visible through three weeks of close-up television is worth far more than the few grams it costs, and modern carbon-and-titanium cases weigh almost nothing. But it rhymes with something real: the chronograph was invented to measure exactly what cycling measures — elapsed time, to a fraction of a second. The stopwatch and the time trial are siblings.",
+    },
+  ],
+  "polarised-training": [
+    {
+      question: "What is polarised training?",
+      answer:
+        "Polarised training is an intensity distribution where roughly 80% of your training sits at low intensity (Zone 1-2) and roughly 20% sits at high intensity (Zone 4-5), with very little time in the moderate middle. It's the pattern that Professor Stephen Seiler found across elite endurance athletes in every discipline.",
+    },
+    {
+      question: "Does polarised training work for amateur cyclists?",
+      answer:
+        "Yes. Seiler's research and our coaching experience both confirm that the 80/20 distribution works for amateurs, not just elites. The most common amateur mistake is spending too much time in the grey zone — training at moderate intensity that feels productive but doesn't efficiently build either the aerobic base or the top end.",
+    },
+    {
+      question: "How do I know if I'm training in the grey zone?",
+      answer:
+        "If your easy rides regularly creep above Zone 2, your heart rate on recovery rides drifts into tempo, or you finish 'easy' sessions feeling moderately tired rather than fresh, you're in the grey zone. Check your data — most amateurs are surprised by how hard their easy days actually are.",
+    },
+    {
+      question: "Is sweet spot or polarised training better?",
+      answer:
+        "Both work — the question is timing. Sweet spot is efficient for time-crunched riders in the base-to-build transition. Polarised tends to produce better long-term results, especially when you have the volume for genuine Zone 2 work. Most coaches use both at different points in the season.",
+    },
+  ],
+  "vo2max-training": [
+    {
+      question: "What is VO2max in cycling?",
+      answer:
+        "VO2max is the maximum rate at which your body can take in and use oxygen during exercise — it's the ceiling above your FTP. A higher VO2max gives your threshold more room to climb, which is why VO2max intervals are a key part of any structured training plan.",
+    },
+    {
+      question: "How do I improve my VO2max?",
+      answer:
+        "VO2max intervals — 3-5 minute efforts at 106-120% of FTP with equal or slightly shorter recovery — are the primary tool. The classic 4x4 protocol (4 minutes hard, 4 minutes rest) is the most research-validated session. Two VO2max sessions per week is the sweet spot for most amateurs.",
+    },
+    {
+      question: "Does VO2max decline with age?",
+      answer:
+        "Yes — typically 5-10% per decade after age 30 in untrained individuals. But trained masters cyclists can slow this decline dramatically. Research shows that cyclists who maintain structured high-intensity training lose far less VO2max than those who only ride easy.",
+    },
+    {
+      question: "What are the best VO2max intervals for cycling?",
+      answer:
+        "The 4x4 minute protocol is the gold standard. Other effective formats include 5x3 minutes, 6x3 minutes, and hill repeat variations at 106-120% FTP. The key is spending enough total time above 90% of your maximum heart rate to drive the adaptation.",
+    },
+  ],
+  "indoor-training": [
+    {
+      question: "Is indoor training as effective as outdoor riding?",
+      answer:
+        "For structured interval work, indoor training is often more effective because you can control every variable — power, cadence, duration, recovery. For long endurance rides and skill development, outdoor riding has the edge. Most serious cyclists use both.",
+    },
+    {
+      question: "Should I use Zwift or TrainerRoad?",
+      answer:
+        "TrainerRoad is better for structured, data-driven training with adaptive plans. Zwift is better for motivation through gamification and group rides. If you're disciplined and want the most efficient sessions, TrainerRoad. If you struggle with indoor motivation, Zwift keeps you pedalling.",
+    },
+    {
+      question: "What smart trainer should I buy?",
+      answer:
+        "A direct-drive smart trainer from Wahoo, Tacx, or Elite in the mid-range price bracket covers everything most amateurs need — accurate power, controllable resistance, and quiet operation. Wheel-on trainers are cheaper but less accurate and noisier.",
+    },
+    {
+      question: "How do I stay motivated training indoors?",
+      answer:
+        "Variety, structure, and a proper setup. Alternate between structured intervals, Zwift races, and group rides. Set up a fan, screen, and good ventilation. Keep indoor sessions shorter and sharper than outdoor rides — 60-90 minutes of quality beats three hours of grinding.",
+    },
+  ],
+  "bike-fitting": [
+    {
+      question: "How much does a bike fit cost?",
+      answer:
+        "A professional bike fit typically costs between £150 and £350 depending on the method and the fitter. The best value comes from fitters who combine physical assessment with on-bike measurement — not just software or plumb lines. It's one of the best investments a serious cyclist can make.",
+    },
+    {
+      question: "How often should I get a bike fit?",
+      answer:
+        "Get fitted when you buy a new bike, after a significant injury or surgery, if your riding goals change substantially, or if persistent pain develops. A good fit lasts years unless your body changes — and a yearly check-in is usually a 30-minute adjustment, not a full session.",
+    },
+    {
+      question: "Can a bike fit improve my power output?",
+      answer:
+        "Yes. A proper fit optimises hip angle, knee tracking, and pedalling efficiency, which can unlock watts you were losing to poor position. Phil Burt has documented cases where a single saddle or crank-length change added measurable watts without any fitness change.",
+    },
+    {
+      question: "Should I try shorter cranks?",
+      answer:
+        "Possibly. Shorter cranks reduce hip impingement at the top of the pedal stroke and can improve comfort and power for riders with limited hip flexibility — especially masters cyclists. Phil Burt and Daryl Fitzgerald both recommend it as one of the first things to check.",
+    },
+  ],
+  "gravel-cycling": [
+    {
+      question: "How is gravel training different from road training?",
+      answer:
+        "Gravel demands more muscular endurance, bike handling, and fuelling discipline than road racing. Training should include more sustained tempo and sweet-spot work, off-road skills sessions, and gut training for high carbohydrate intake over long events. The aerobic base matters just as much.",
+    },
+    {
+      question: "Do I need a gravel-specific bike?",
+      answer:
+        "For serious gravel riding and racing, yes — wider tyre clearance, more stable geometry, and mounting points for bags make a real difference. For casual gravel, many road bikes with 32-35mm tyres handle well enough to get started.",
+    },
+    {
+      question: "Does aerodynamics matter in gravel?",
+      answer:
+        "More than most riders think. Dylan Johnson's wind-tunnel testing showed meaningful time savings from aero optimisation even on gravel — position, helmet, and bar width all contribute. At Unbound speeds, aero gains are real and free.",
+    },
+    {
+      question: "What are the best gravel races?",
+      answer:
+        "Unbound Gravel (200 miles, Kansas), Badlands (800km, Spain), and the Belgian Waffle Ride are the marquee events. In Ireland, the emerging gravel scene includes routes across Wicklow and Kerry. Each has a different character — pick the one that matches your ambition and terrain preference.",
+    },
+  ],
+  "climbing": [
+    {
+      question: "How do I stop getting dropped on climbs?",
+      answer:
+        "Five fixable things: pace yourself (don't follow the first attack), improve your power-to-weight ratio, find the right climbing cadence, check your position and bike fit on gradients, and work on the mental side. Most amateurs lose time through pacing errors, not fitness gaps.",
+    },
+    {
+      question: "What W/kg do I need for Alpe d'Huez?",
+      answer:
+        "To ride Alpe d'Huez comfortably you need roughly 3.0-3.5 W/kg. To ride it well under an hour, closer to 4.0 W/kg. The 21 hairpins take most amateurs between 60 and 90 minutes — pacing the first third conservatively is the single biggest factor in how the climb feels.",
+    },
+    {
+      question: "Should I climb seated or standing?",
+      answer:
+        "Both. Seated climbing is more efficient for sustained efforts. Standing uses more energy but recruits different muscle groups and provides relief on steep pitches. The best climbers alternate — standing for 10-15 pedal strokes to reset, then sitting back down.",
+    },
+    {
+      question: "How do I pace a long climb?",
+      answer:
+        "Start conservative — the first 20% of any long climb should feel easy. Target 85-90% of your FTP for climbs over 20 minutes and increase effort only in the final third if you have legs left. Negative-splitting a climb almost always produces a faster overall time.",
+    },
+  ],
+  "cycling-psychology": [
+    {
+      question: "Can mental training make me faster on the bike?",
+      answer:
+        "Yes. The mental side is often the last 5% that separates two riders with identical fitness. Techniques like process-focused goal setting, pre-race visualisation, and self-talk management have measurable effects on race performance and training consistency.",
+    },
+    {
+      question: "How do I deal with race-day anxiety?",
+      answer:
+        "Reframe anxiety as activation — your body preparing to perform. Focus on process goals (pacing, fuelling, position) rather than outcome goals (time, placing). A structured warm-up routine and a written race plan both reduce uncertainty, which is what most anxiety is actually about.",
+    },
+    {
+      question: "How do I stay motivated to train?",
+      answer:
+        "Motivation follows action more than it precedes it. Set specific, measurable goals tied to events. Train with others or inside a community like Not Done Yet. Track progress with data. And accept that motivation will dip — discipline and habit carry you through the flat patches.",
+    },
+    {
+      question: "How do I cope after a bad race?",
+      answer:
+        "Separate the data from the emotion. Review what went wrong factually — pacing, fuelling, preparation — and identify what's fixable. Most bad races have one or two specific errors that won't repeat if you address them. The riders who improve fastest are the ones who treat setbacks as diagnostics, not verdicts.",
+    },
+  ],
+  "heat-training": [
+    {
+      question: "Does heat training improve FTP?",
+      answer:
+        "Yes — research shows heat acclimation can improve time-trial performance by 4-6% and FTP by up to 5%, even in cool conditions. The adaptations include increased plasma volume, better cardiovascular efficiency, and improved thermoregulation. It's one of the most underused legal performance tools.",
+    },
+    {
+      question: "How do I heat acclimate at home?",
+      answer:
+        "Ride your indoor trainer in a warm room (30°C+) with minimal fan for 60-90 minutes at easy to moderate intensity, 5-7 days in a row. Wear extra layers if needed. The protocol takes 7-14 days to produce measurable adaptations and needs to be done within 4 weeks of your target event.",
+    },
+    {
+      question: "Is heat training safe for masters riders?",
+      answer:
+        "Yes, with precautions. Heat tolerance does decline with age, so start conservatively, hydrate aggressively, and monitor how you feel. Cut sessions short if you feel dizzy or nauseous. The performance benefits are just as real for over-40 riders — they just need a more gradual build-up.",
+    },
+    {
+      question: "How long does heat acclimation last?",
+      answer:
+        "Most of the adaptation decays within 2-3 weeks of stopping heat exposure. Schedule your heat block to finish 1-2 weeks before your target event — close enough to retain the benefits, far enough to freshen up with normal training.",
+    },
+  ],
+  "women-cycling": [
+    {
+      question: "Should I train differently around my menstrual cycle?",
+      answer:
+        "You can. The follicular phase (days 1-14) tends to favour high-intensity work, while the luteal phase (days 15-28) can bring higher perceived effort and reduced recovery. Some women benefit from aligning hard sessions with the follicular phase, but consistency matters more than perfect cycle-syncing.",
+    },
+    {
+      question: "Does menopause affect cycling performance?",
+      answer:
+        "Menopause changes recovery speed, body composition, bone density, and thermoregulation — but it doesn't end performance improvement. Strength training, adequate protein, and adjusted recovery become more important. Many women set personal bests through perimenopause and beyond with the right approach.",
+    },
+    {
+      question: "Why is bone density a concern for female cyclists?",
+      answer:
+        "Cycling is non-weight-bearing, so it doesn't build bone the way running or lifting does. Combined with the hormonal changes of menopause, female cyclists face a higher risk of low bone density. The fix is strength training plus impact exercise — even short running sessions help.",
+    },
+    {
+      question: "How is nutrition different for female cyclists?",
+      answer:
+        "Women typically need higher relative protein intake, more attention to iron and calcium, and careful management of energy availability — especially during menstruation and perimenopause. Under-fuelling hits female athletes harder and faster than male athletes, and the consequences are more serious.",
+    },
+  ],
+  "race-preparation": [
+    {
+      question: "How long should I taper before a race?",
+      answer:
+        "For a target event, 7-14 days of reduced volume with maintained intensity is the standard taper. Drop training volume by 40-60% but keep the intensity of your key sessions the same. The most common mistake is tapering too conservatively — you should feel slightly antsy, not fully rested.",
+    },
+    {
+      question: "What should I eat on race morning?",
+      answer:
+        "A familiar carbohydrate-rich meal 2-3 hours before the start — porridge, toast, rice, or whatever you've rehearsed in training. Avoid anything new, high-fibre, or high-fat. Top up with a gel or small snack 15-30 minutes before the gun.",
+    },
+    {
+      question: "How do I pace a 100-mile sportive?",
+      answer:
+        "Start at 70-75% of your FTP for the first hour, settle into 75-80% through the middle, and use whatever's left in the final quarter. Most amateurs go too hard in the first 30 minutes and pay for it in the last 30. Fuel from the start — don't wait until you're hungry.",
+    },
+    {
+      question: "What should I bring on race day?",
+      answer:
+        "Bike, spare inner tubes, CO2 inflators, your race nutrition (pre-planned and measured), a warm-up plan, your number, and a written pacing strategy. The night before, set everything out so race morning has zero decisions. Read our race-day checklist for the full list.",
+    },
+  ],
+  "cycling-periodisation": [
+    {
+      question: "What is periodisation in cycling?",
+      answer:
+        "Periodisation is the practice of dividing your training year into distinct phases — base, build, peak, and transition — each with a specific focus. It ensures you arrive at your target event in the best possible form, rather than training randomly and hoping for the best.",
+    },
+    {
+      question: "How long should a training block be?",
+      answer:
+        "Most training blocks (mesocycles) run 3-6 weeks, with a recovery week built in every third or fourth week. The exact length depends on your training age, recovery capacity, and how your body responds — masters cyclists often do better with shorter blocks and more frequent recovery.",
+    },
+    {
+      question: "What is reverse periodisation?",
+      answer:
+        "Reverse periodisation flips the traditional model: intensity-focused work in winter (when time is short) and volume in summer (when daylight allows long rides). It works well for time-crunched amateurs and riders whose main events are in late summer.",
+    },
+    {
+      question: "Do I need an off-season?",
+      answer:
+        "Yes. A 2-4 week transition phase after your last target event allows physical and mental recovery. Ride if you want to, but without structure or intensity. Use the time for gym work, cross-training, or simply enjoying the bike without a plan. The season that follows is almost always better for it.",
+    },
+  ],
+  "sweet-spot-training": [
+    {
+      question: "What is sweet spot training?",
+      answer:
+        "Sweet spot sits at 88-93% of your FTP — just below threshold, in the zone where you get a strong training stimulus with manageable fatigue. It's efficient because it's hard enough to drive adaptation but sustainable enough to do more total work than threshold intervals.",
+    },
+    {
+      question: "Is sweet spot better than threshold training?",
+      answer:
+        "Neither is universally better — they serve different purposes. Sweet spot produces a high training load with less fatigue, making it ideal for base-to-build phases and time-crunched riders. Threshold work (95-105% FTP) is more race-specific and targets FTP improvement more directly.",
+    },
+    {
+      question: "When should I use sweet spot training?",
+      answer:
+        "Sweet spot works best in the base-to-build transition and for time-crunched riders who need maximum return from limited hours. It's less effective as your sole intensity year-round — rotate it with polarised blocks and VO2max work to avoid accommodation.",
+    },
+    {
+      question: "Can I do too much sweet spot?",
+      answer:
+        "Yes. Too much sweet spot without sufficient easy riding or genuine high-intensity work can leave you stuck in the grey zone — moderately fit but not improving. The most common pattern we see is riders who do nothing but sweet spot and plateau after 8-12 weeks.",
+    },
+  ],
+  "sprint-training": [
+    {
+      question: "Can I improve my sprint as a masters cyclist?",
+      answer:
+        "Yes. Sprint power does decline with age, but it responds to training at any age. Heavy gym work, short maximal sprints (6-15 seconds), and neuromuscular activation drills all maintain and develop sprint power. André Greipel was winning World Tour sprints well into his thirties.",
+    },
+    {
+      question: "What's the difference between sprint power and winning power?",
+      answer:
+        "Sprint power is your raw peak wattage. Winning power is the ability to produce that wattage at the right moment — after positioning, timing the jump, and reading the race. Cory Williams has made this point clearly: the strongest sprinter doesn't always win.",
+    },
+    {
+      question: "How do sprinters train differently?",
+      answer:
+        "Sprinters do more gym work (heavy squats, plyometrics), more short maximal efforts (10-30 seconds), and more race-simulation sprints out of fatigued states. But they also need an enormous aerobic base to reach the finish fresh enough to sprint — which is why Grand Tour sprinters train like endurance athletes for most of the year.",
+    },
+    {
+      question: "How often should I sprint train?",
+      answer:
+        "Two sprint-specific sessions per week is enough for most amateurs — one in the gym and one on the bike. Sprint efforts are neuromuscular, so they need full recovery between reps and between sessions. Quality matters far more than volume.",
+    },
+  ],
+  "sleep-performance": [
+    {
+      question: "How much sleep do cyclists need?",
+      answer:
+        "7-9 hours per night, consistently. Sleep is where growth hormone release peaks, muscle repair happens, and the neural adaptations from training consolidate. Consistently getting less than 7 hours measurably reduces power output, reaction time, and immune function.",
+    },
+    {
+      question: "Does sleep debt affect cycling performance?",
+      answer:
+        "Yes — and it accumulates. Even moderate sleep debt (1-2 hours per night over a week) reduces endurance performance, increases perceived effort, and impairs recovery. You can't fully 'catch up' with a single long night. Consistency matters more than occasional long sleeps.",
+    },
+    {
+      question: "How do I optimise sleep for recovery?",
+      answer:
+        "Keep a consistent wake time (even on weekends), sleep in a cool dark room, avoid screens for 30-60 minutes before bed, and time caffeine to stop at least 8 hours before sleep. These basics outperform every supplement and gadget on the market.",
+    },
+    {
+      question: "Is napping useful for cyclists?",
+      answer:
+        "A 20-30 minute nap in the early afternoon can partially offset a bad night's sleep and improve afternoon training quality. Longer naps risk disrupting nighttime sleep. If you regularly need naps to function, the real fix is your nighttime sleep, not the nap.",
+    },
+  ],
+  "cycling-cadence": [
+    {
+      question: "What is the best cadence for cycling?",
+      answer:
+        "There's no single best cadence — it depends on terrain, effort, and physiology. Most efficient flat riding sits around 85-95 RPM. Climbing cadence tends to drop to 70-85 RPM. The 'right' cadence is the one you can sustain at your target power without excessive cardiovascular or muscular fatigue.",
+    },
+    {
+      question: "Should I do low-cadence training?",
+      answer:
+        "Yes. Low-cadence intervals (40-60 RPM) force type 2 muscle fibres to develop aerobic capacity and build neuromuscular strength. A 2024 study showed they improved VO2max by 8.7% compared to 4.6% for freely chosen cadence. John Wakefield and Tim Kerrison both prescribe them to World Tour riders.",
+    },
+    {
+      question: "Does optimal cadence change with age?",
+      answer:
+        "Masters cyclists tend to self-select slightly lower cadences as type 2 fibre recruitment changes with age. This isn't necessarily wrong — lower cadence can be more metabolically efficient for older riders. But deliberate high-cadence drills help maintain neuromuscular speed that might otherwise decline.",
+    },
+    {
+      question: "What cadence should I use for climbing?",
+      answer:
+        "Most riders climb best at 70-85 RPM, depending on the gradient. Steeper climbs naturally drive cadence lower. The key is finding a cadence that balances muscular and cardiovascular strain — grinding at 50 RPM overloads the legs, spinning at 100 RPM overloads the lungs.",
+    },
+  ],
+  "ultra-endurance": [
+    {
+      question: "How do I train for an ultra-distance cycling event?",
+      answer:
+        "Build a huge aerobic base with high-volume Zone 2 riding, practise sustained moderate efforts (4-8 hours), train your gut to absorb 60-90g of carbohydrate per hour, and simulate race conditions including sleep deprivation and night riding. The fitness is only half the challenge — logistics and mental resilience matter just as much.",
+    },
+    {
+      question: "How do you fuel a 24+ hour cycling event?",
+      answer:
+        "The same principles as shorter events, just extended: 60-90g carbohydrate per hour from a mix of gels, bars, and real food. Add savoury options (rice cakes, sandwiches) after 8+ hours when sweetness becomes nauseating. Practise your entire nutrition plan in training — Badlands is not the place to try a new gel.",
+    },
+    {
+      question: "What mental strategies work in ultra racing?",
+      answer:
+        "Break the event into manageable segments rather than thinking about the total distance. Use process goals (ride to the next checkpoint, eat every 30 minutes). Accept that low points are inevitable and temporary. Sofiane Sehili talks about the Silk Road teaching him that the worst moments pass if you keep moving.",
+    },
+    {
+      question: "Do I need bikepacking-specific equipment?",
+      answer:
+        "For unsupported events like Badlands and Tour Divide, yes — lightweight bags, navigation, lighting, and sleeping gear are essential. For supported sportives and stage races, standard road equipment is fine. Sebastian Breuer's wind-tunnel testing showed that bag placement matters for aerodynamics even in ultra events.",
+    },
+  ],
+  "cycling-breathing": [
+    {
+      question: "Should I breathe through my nose or mouth while cycling?",
+      answer:
+        "At low intensity, nasal breathing is fine and may offer some benefits (better air filtration, improved CO2 tolerance). At moderate to high intensity, mouth breathing is necessary to move enough air. Most riders naturally switch as effort increases — don't force nasal breathing during hard efforts.",
+    },
+    {
+      question: "Does respiratory training improve cycling performance?",
+      answer:
+        "Inspiratory muscle training (IMT) has decent evidence for improving time-trial performance and reducing perceived effort, especially in trained athletes. The gains are modest but real — typically 2-4% improvement in time-trial performance. Devices like POWERbreathe are the most studied tools.",
+    },
+    {
+      question: "What is CO2 tolerance training?",
+      answer:
+        "CO2 tolerance training involves deliberate breath-hold exercises and controlled breathing to raise your tolerance to carbon dioxide. Higher CO2 tolerance reduces the urge to breathe and can improve pacing discipline. Dr Andrew Sellars has covered the science and practical protocols on the podcast.",
+    },
+    {
+      question: "How should I breathe on climbs?",
+      answer:
+        "Focus on full exhalation — most riders under-breathe on climbs by not emptying their lungs completely. A rhythmic breathing pattern matched to your cadence (e.g., exhale for 2 pedal strokes, inhale for 2) helps maintain oxygen delivery and reduces the panicky feeling that comes with high-effort climbing.",
+    },
+  ],
+  "power-meter-training": [
+    {
+      question: "Do I need a power meter?",
+      answer:
+        "If you want to train with precision, yes. A power meter is the most objective way to set training zones, track progress, pace efforts, and ensure you're hitting the right intensity. Heart rate and RPE work, but power removes the guesswork. It's the single best training investment after a good bike fit.",
+    },
+    {
+      question: "Which type of power meter is best?",
+      answer:
+        "Crank-based and pedal-based power meters offer the best balance of accuracy, portability, and ease of installation. Spider-based options are the gold standard for accuracy. Pedal-based systems (like Garmin Rally) are easy to swap between bikes. Hub-based and single-sided options work on a tighter budget.",
+    },
+    {
+      question: "How do I train with a power meter?",
+      answer:
+        "Start by establishing your FTP, then set your training zones. Use power to pace intervals precisely, monitor easy-day intensity (the biggest source of grey-zone drift), and track progress over 6-8 week blocks. The real value is in the data over time, not a single ride.",
+    },
+    {
+      question: "Power meter or smart trainer — which should I buy first?",
+      answer:
+        "If you train indoors regularly, a smart trainer with built-in power is the better first purchase — it doubles as your indoor training platform and your power source. If you race or ride outdoors primarily, an on-bike power meter gives you data where it matters most.",
     },
   ],
 };

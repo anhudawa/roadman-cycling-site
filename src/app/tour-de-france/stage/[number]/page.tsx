@@ -3,10 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Header, Footer, Section, Container } from "@/components/layout";
-import { Button, ScrollReveal } from "@/components/ui";
+import { ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
-import { SkoolTrialButton } from "@/components/features/community/SkoolTrialButton";
 import { SITE_ORIGIN } from "@/lib/brand-facts";
 
 import {
@@ -17,7 +16,7 @@ import {
 } from "@/data/tour-de-france-2026";
 import { formatStageDate } from "@/lib/tour";
 import { getStagePodcast } from "@/data/tour-podcast";
-import { StageTypeIcon, STAGE_TYPE_COLOR, SKOOL_URL, DailyPodcastCard } from "@/components/features/tour";
+import { StageTypeIcon, STAGE_TYPE_COLOR, DailyPodcastCard } from "@/components/features/tour";
 
 export function generateStaticParams() {
   return TOUR_STAGES.map((s) => ({ number: String(s.number) }));
@@ -312,31 +311,6 @@ export default async function StagePage({
             </Container>
           </Section>
         )}
-
-        {/* Fantasy CTA */}
-        <Section background="deep-purple" className="!py-12 border-y border-white/5">
-          <Container className="text-center">
-            <h2 className="font-heading text-off-white text-2xl sm:text-3xl tracking-wide mb-3">
-              PLAY THE FANTASY TOUR
-            </h2>
-            <p className="text-foreground-muted max-w-lg mx-auto mb-6">
-              Pick your nine riders, score every stage, and settle it on the community
-              leaderboard. Coming for July inside the Roadman community.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Button href="/tour-de-france#fantasy" dataTrack={`tour_stage_${stage.number}_fantasy`}>
-                See the Fantasy Game
-              </Button>
-              <SkoolTrialButton
-                href={SKOOL_URL}
-                source={`tour-stage-${stage.number}`}
-                className="!bg-jersey-yellow !text-charcoal hover:!bg-jersey-yellow-deep !shadow-none"
-              >
-                Join the Community Free
-              </SkoolTrialButton>
-            </div>
-          </Container>
-        </Section>
 
         {/* Prev / next */}
         <Section background="charcoal" className="!py-10">

@@ -8,7 +8,6 @@ export { CountdownTimer } from "./CountdownTimer";
 export { StageTimeline } from "./StageTimeline";
 export { StageCard } from "./StageCard";
 export { StageTypeIcon } from "./StageTypeIcon";
-export { FantasyPlaceholder } from "./FantasyPlaceholder";
 export { DailyPodcastCard } from "./DailyPodcastCard";
 export { STAGE_TYPE_COLOR, STAGE_TYPE_TAG } from "./stageMeta";
 export { SKOOL_URL } from "./constants";

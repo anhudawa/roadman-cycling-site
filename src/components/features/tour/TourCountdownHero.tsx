@@ -5,12 +5,10 @@ import { TOUR_META } from "@/data/tour-de-france-2026";
 import { formatStageDate } from "@/lib/tour";
 import { CountdownTimer } from "./CountdownTimer";
 import { StageTimeline } from "./StageTimeline";
-import { FantasyPlaceholder } from "./FantasyPlaceholder";
 
 /**
  * Countdown mode (now → 3 July). The homepage hero becomes a live clock to
- * the Grand Départ, with the full stage timeline and the Fantasy centrepiece
- * stacked below.
+ * the Grand Départ, with the full stage timeline stacked below.
  */
 export function TourCountdownHero() {
   return (
@@ -43,12 +41,6 @@ export function TourCountdownHero() {
             <Button href="/tour-de-france" dataTrack="tour_countdown_hub">
               Full Route &amp; Stages
             </Button>
-            <Link
-              href="/tour-de-france#fantasy"
-              className="font-heading tracking-wider uppercase text-jersey-yellow hover:text-jersey-yellow-deep transition-colors text-sm"
-            >
-              The Fantasy Game →
-            </Link>
           </div>
         </Container>
       </Section>
@@ -67,12 +59,6 @@ export function TourCountdownHero() {
             </Link>
           </div>
           <StageTimeline />
-        </Container>
-      </Section>
-
-      <Section background="deep-purple" className="!py-14">
-        <Container>
-          <FantasyPlaceholder />
         </Container>
       </Section>
     </>

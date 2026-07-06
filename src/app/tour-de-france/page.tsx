@@ -18,14 +18,14 @@ import {
 } from "@/lib/tour";
 import { getStagePodcast } from "@/data/tour-podcast";
 import { TOUR_HISTORY } from "@/data/tour-history";
-import { StageCard, FantasyPlaceholder, DailyPodcastCard } from "@/components/features/tour";
+import { StageCard, DailyPodcastCard } from "@/components/features/tour";
 
 const URL = `${SITE_ORIGIN}/tour-de-france`;
 
 export const metadata: Metadata = {
   title: "Tour de France 2026 — Route, Stages & The Roadman Take",
   description:
-    "Every stage of the 2026 Tour de France, from the Barcelona team time trial to back-to-back Alpe d'Huez finishes — with the training principle behind each day and the Roadman Fantasy Tour.",
+    "Every stage of the 2026 Tour de France, from the Barcelona team time trial to back-to-back Alpe d'Huez finishes — with the training principle behind each day ",
   alternates: { canonical: URL },
   openGraph: {
     title: "Tour de France 2026 — Route, Stages & The Roadman Take",
@@ -136,7 +136,7 @@ export default function TourDeFranceHubPage() {
                 Barcelona to Paris. {TOUR_META.stageCount}&nbsp;stages, five mountain
                 ranges, two summit finishes on Alpe d&rsquo;Huez. Below: every stage, the climbs
                 that decide it, and the training principle a Roadman rider takes from each
-                one — plus the Fantasy Tour you can play with the community.
+                one.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Button href="#stages" dataTrack="tour_hub_stages">
@@ -144,9 +144,6 @@ export default function TourDeFranceHubPage() {
                 </Button>
                 <Button href="/tour-de-france/history" variant="ghost" dataTrack="tour_hub_history">
                   Tour History
-                </Button>
-                <Button href="#fantasy" variant="ghost" dataTrack="tour_hub_fantasy">
-                  The Fantasy Game
                 </Button>
               </div>
             </ScrollReveal>
@@ -250,13 +247,6 @@ export default function TourDeFranceHubPage() {
               </div>
               {featuredPodcast && <DailyPodcastCard slot={featuredPodcast} highlight />}
             </div>
-          </Container>
-        </Section>
-
-        {/* Fantasy centrepiece */}
-        <Section background="charcoal" grain className="!py-14">
-          <Container>
-            <FantasyPlaceholder />
           </Container>
         </Section>
 

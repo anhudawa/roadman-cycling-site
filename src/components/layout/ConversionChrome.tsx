@@ -27,10 +27,6 @@ const LEAN_PATH_PREFIXES = [
   // Lead-magnet squeeze page for the Masters Cycling Training Report.
   // Same single-purpose rationale as /go — the form is the page.
   "/masters-report",
-  // Fantasy Tour: immersive game surface with its own chrome and its
-  // own email gate. Exit-intent and cohort banners would fight the
-  // team-builder flow (and the daily-email deep links land here).
-  "/fantasy",
 ];
 
 function isLeanRoute(pathname: string | null): boolean {
