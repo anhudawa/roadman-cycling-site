@@ -2,6 +2,7 @@ import { Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { TOUR_META } from "@/data/tour-de-france-2026";
 import { StageTimeline } from "./StageTimeline";
+import { TourHeroBackdrop, Tricolour } from "./TourHeroBackdrop";
 
 /**
  * Fade-out mode (27 July → OVERLAY_END). The race is over; the overlay
@@ -11,11 +12,15 @@ import { StageTimeline } from "./StageTimeline";
 export function TourFadeoutHero() {
   return (
     <>
-      <Section background="deep-purple" grain className="pt-28 sm:pt-32 pb-14">
-        <Container className="text-center">
-          <p className="font-heading text-jersey-yellow text-sm tracking-[0.3em] mb-4">
-            TOUR DE FRANCE {TOUR_META.year} · THAT&rsquo;S A WRAP
-          </p>
+      <Section background="deep-purple" grain className="pt-28 sm:pt-36 pb-16">
+        <TourHeroBackdrop />
+        <Container className="relative z-10 text-center">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <Tricolour className="h-3.5 w-7" />
+            <p className="font-heading text-jersey-yellow text-sm tracking-[0.3em]">
+              TOUR DE FRANCE {TOUR_META.year} · THAT&rsquo;S A WRAP
+            </p>
+          </div>
           <h1
             className="font-heading text-off-white leading-[0.9] mb-6"
             style={{ fontSize: "var(--text-hero)" }}

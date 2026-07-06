@@ -5,6 +5,7 @@ import { TOUR_META } from "@/data/tour-de-france-2026";
 import { formatStageDate } from "@/lib/tour";
 import { CountdownTimer } from "./CountdownTimer";
 import { StageTimeline } from "./StageTimeline";
+import { TourHeroBackdrop, Tricolour } from "./TourHeroBackdrop";
 
 /**
  * Countdown mode (now → 3 July). The homepage hero becomes a live clock to
@@ -13,12 +14,16 @@ import { StageTimeline } from "./StageTimeline";
 export function TourCountdownHero() {
   return (
     <>
-      <Section background="deep-purple" grain className="pt-28 sm:pt-32 pb-14">
-        <Container className="text-center">
-          <p className="font-heading text-jersey-yellow text-xs sm:text-sm tracking-[0.3em] mb-4">
-            GRAND DÉPART · {TOUR_META.grandDepart.toUpperCase()} ·{" "}
-            {formatStageDate(TOUR_META.startDate).toUpperCase()}
-          </p>
+      <Section background="deep-purple" grain className="pt-28 sm:pt-36 pb-16">
+        <TourHeroBackdrop />
+        <Container className="relative z-10 text-center">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <Tricolour className="h-3.5 w-7" />
+            <p className="font-heading text-jersey-yellow text-xs sm:text-sm tracking-[0.3em]">
+              GRAND DÉPART · {TOUR_META.grandDepart.toUpperCase()} ·{" "}
+              {formatStageDate(TOUR_META.startDate).toUpperCase()}
+            </p>
+          </div>
           <h1
             className="font-heading text-off-white leading-[0.9] mb-8"
             style={{ fontSize: "var(--text-hero)" }}

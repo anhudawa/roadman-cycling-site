@@ -1205,6 +1205,37 @@ h1, h2, h3, h4, h5, h6 {
   100% { top: 100%; opacity: 0; }
 }
 
+/* ============================================
+   Tour de France homepage hero — maillot-jaune
+   backdrop. Compositor-only transforms/opacity so
+   the glow drift stays at 60fps behind the content.
+   ============================================ */
+
+.tdf-hero-glow {
+  animation: tdf-glow-pulse 9s var(--ease-in-out) infinite;
+  will-change: opacity, transform;
+}
+
+@keyframes tdf-glow-pulse {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -33%) scale(1); }
+  50%      { opacity: 0.9; transform: translate(-50%, -30%) scale(1.08); }
+}
+
+.tdf-ghost-number {
+  animation: tdf-ghost-float 12s var(--ease-in-out) infinite;
+  will-change: transform;
+}
+
+@keyframes tdf-ghost-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tdf-hero-glow  { animation: none; }
+  .tdf-ghost-number { animation: none; }
+}
+
 /* ── Exit-intent popup animations ── */
 .animate-fade-in {
   animation: fade-in 0.3s ease-out forwards;
