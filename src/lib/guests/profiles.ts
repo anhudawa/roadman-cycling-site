@@ -2203,6 +2203,27 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "Reinvention late in a career can extend it rather than end it.",
     ],
   },
+
+  "mattias-reck": {
+    featuredArticles: ["mads-pedersen-training-what-amateurs-can-learn"],
+    description:
+      "Swedish former professional rider turned performance coach. Head coach at Lidl-Trek. Has personally coached Mads Pedersen since 2017, and also works with a group of the team's WorldTour riders including Shirin van Anrooij and Fleur Moors.",
+    worksFor: {
+      name: "Lidl-Trek",
+      type: "SportsTeam",
+      url: "https://racing.trekbikes.com/team/lidl-trek",
+    },
+    whyMatters:
+      "Mattias Reck is the coach who took Mads Pedersen from a raw young neo-pro into a world champion, Grand Tour stage winner and one of the most durable Classics riders in the sport — and he did it over the better part of a decade. For the Roadman audience his value is a rare, honest window into how elite fitness is actually built: not through a secret session, but through years of patiently learning how much load one athlete can absorb, and treating recovery capacity and consistency as the things that set the ceiling. He is the antidote to copy-the-pro-spreadsheet thinking.",
+    keyIdeas: [
+      "Trainable load is individual and built over years — Reck has said it took him years to learn how much training Mads Pedersen can actually handle.",
+      "Recovery capacity, not raw volume, sets a rider's ceiling — the number that matters is how much you can absorb and repeat, not survive once.",
+      "Consistency beats heroics: Pedersen's roughly 1,100–1,200 hours a year come from showing up daily, not from occasional monster weeks.",
+      "A large share of elite training is unglamorous, controlled work — Pedersen once logged 37 hours on the rollers in a single camp week.",
+      "Resilience is developed, not gifted — durability in hard racing is the product of patient, progressive loading over time.",
+    ],
+    relatedHubs: ["cycling-training-plans", "cycling-coaching"],
+  },
 };
 
 /** Look up overrides for a guest by slug. Returns undefined if no curated data. */
