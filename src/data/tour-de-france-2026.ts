@@ -194,7 +194,7 @@ export const TOUR_STAGES: Stage[] = [
     range: "Pyrenees",
     climbs: [
       { name: "Collada de Toses", lengthKm: 9.3, gradientPct: 6.5 },
-      { name: "Col du Calvaire", lengthKm: 14.9, gradientPct: 4.1, summitM: 1836 },
+      { name: "Col du Calvaire", lengthKm: 11.4, gradientPct: 4.1, summitM: 1836 },
       { name: "Les Angles", lengthKm: 1.7, gradientPct: 6.5 },
     ],
     summitFinish: true,
@@ -205,7 +205,7 @@ export const TOUR_STAGES: Stage[] = [
       whoBenefits:
         "The pure climbers and the GC favourites. The first summit finish of the race is the first honest look at who has the legs.",
       whatToWatch:
-        "Whether the favourites mark each other into a stalemate or one of them tests the water on the 14km Col du Calvaire. Early-week nerves and fresh legs make for cagey racing.",
+        "Whether the favourites mark each other into a stalemate or one of them tests the water on the 11km Col du Calvaire. Early-week nerves and fresh legs make for cagey racing.",
     },
     prediction:
       "The first real GC time gaps of the Tour, even if only seconds. Whoever among Pogačar, Vingegaard and Evenepoel shows their hand here sets the tone for the rest of the Pyrenees.",
@@ -414,7 +414,7 @@ export const TOUR_STAGES: Stage[] = [
     range: "Massif Central",
     climbs: [
       { name: "Suc au May", lengthKm: 3.8, gradientPct: 7.7 },
-      { name: "Mont Bessou", lengthKm: 4.2, gradientPct: 5.5 },
+      { name: "Mont Bessou", lengthKm: 0.8, gradientPct: 5.5 },
       { name: "Côte des Gardes", lengthKm: 2.2, gradientPct: 4.8 },
     ],
     summitFinish: false,
@@ -601,7 +601,6 @@ export const TOUR_STAGES: Stage[] = [
     climbs: [
       { name: "Grand Ballon", lengthKm: 21.5, gradientPct: 4.5, summitM: 1424 },
       { name: "Col du Haag", lengthKm: 11.2, gradientPct: 7.3 },
-      { name: "Geishouse", lengthKm: 10.9, gradientPct: 7.3 },
     ],
     summitFinish: true,
     sprintFriendly: false,
@@ -638,7 +637,7 @@ export const TOUR_STAGES: Stage[] = [
     type: "mountain",
     range: "Alps",
     climbs: [
-      { name: "Plateau de Solaison", category: "1", lengthKm: 11.3, gradientPct: 9 },
+      { name: "Plateau de Solaison", category: "HC", lengthKm: 11.3, gradientPct: 9 },
       { name: "Col de la Croisette", lengthKm: 7.6, gradientPct: 8.8 },
       { name: "Col de la Savine", lengthKm: 5.9, gradientPct: 4.6 },
     ],
@@ -830,8 +829,8 @@ export const TOUR_STAGES: Stage[] = [
     elevationGainM: 5600,
     climbs: [
       { name: "Col de la Croix de Fer", category: "HC", lengthKm: 24, gradientPct: 5.2, summitM: 2067 },
-      { name: "Col du Galibier", category: "HC", lengthKm: 17.7, gradientPct: 6.8, summitM: 2642 },
       { name: "Col du Télégraphe", category: "1", lengthKm: 11.9, gradientPct: 7.1, summitM: 1566 },
+      { name: "Col du Galibier", category: "HC", lengthKm: 17.7, gradientPct: 6.8, summitM: 2642 },
       { name: "Col de Sarenne", category: "1", lengthKm: 12.8, gradientPct: 7.3 },
       { name: "Alpe d'Huez", category: "HC", lengthKm: 13.8, gradientPct: 8.1, summitM: 1860 },
     ],

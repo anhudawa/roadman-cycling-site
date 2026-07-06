@@ -127,7 +127,7 @@ You will never have Indurain's lungs. You do not need them. The engine is traina
     tag: "Pantani · 1994–2000",
     readMinutes: 6,
     published: "2026-06-10",
-    body: `When Marco Pantani attacked on a mountain, he did the thing that should not work: he stood up, threw the bandana down, and accelerated away from the best climbers in the world on the steepest part of the climb. In 1998 he won the Giro and the Tour in the same season, the last rider to manage the double. On his day, going uphill, Il Pirata looked less like he was racing than escaping.
+    body: `When Marco Pantani attacked on a mountain, he did the thing that should not work: he stood up, threw the bandana down, and accelerated away from the best climbers in the world on the steepest part of the climb. In 1998 he won the Giro and the Tour in the same season, a feat only Pogačar would repeat, twenty-six years later in 2024. On his day, going uphill, Il Pirata looked less like he was racing than escaping.
 
 The mathematics behind it is the cleanest in cycling. On a steep climb, against gravity, what matters above almost everything else is power-to-weight — the watts you can sustain divided by the kilograms you carry up the hill. Pantani was small, around 57 kilograms, and he produced a climbing power that, set against that weight, gave him a power-to-weight ratio at the absolute edge of the sport. Light, strong, and willing to suffer past where others stopped.
 
