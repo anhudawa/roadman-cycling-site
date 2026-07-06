@@ -66,6 +66,7 @@ function MDXLink({ href, children, ...rest }: AnchorProps) {
 
 export const mdxComponents = {
   img: MDXImage,
+  Image: MDXImage,
   a: MDXLink,
   // Custom components authors can drop into MDX directly:
   //   <EvidenceLevel level="strong" />
