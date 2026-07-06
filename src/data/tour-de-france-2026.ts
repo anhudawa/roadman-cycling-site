@@ -560,8 +560,8 @@ export const TOUR_STAGES: Stage[] = [
     type: "hilly",
     range: "Vosges",
     climbs: [
-      { name: "Ballon d'Alsace", lengthKm: 8.7, gradientPct: 6.9 },
       { name: "Col des Croix", lengthKm: 5.4, gradientPct: 4.9 },
+      { name: "Ballon d'Alsace", lengthKm: 8.7, gradientPct: 6.9 },
     ],
     summitFinish: false,
     sprintFriendly: false,
