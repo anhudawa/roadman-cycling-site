@@ -558,7 +558,7 @@ export const TOUR_STAGES: Stage[] = [
     finish: "Belfort",
     distanceKm: 205.8,
     type: "hilly",
-    range: "Jura",
+    range: "Vosges",
     climbs: [
       { name: "Ballon d'Alsace", lengthKm: 8.7, gradientPct: 6.9 },
       { name: "Col des Croix", lengthKm: 5.4, gradientPct: 4.9 },
@@ -636,7 +636,7 @@ export const TOUR_STAGES: Stage[] = [
     finish: "Plateau de Solaison",
     distanceKm: 183.9,
     type: "mountain",
-    range: "Jura",
+    range: "Alps",
     climbs: [
       { name: "Plateau de Solaison", category: "1", lengthKm: 11.3, gradientPct: 9 },
       { name: "Col de la Croisette", lengthKm: 7.6, gradientPct: 8.8 },
@@ -830,8 +830,9 @@ export const TOUR_STAGES: Stage[] = [
     elevationGainM: 5600,
     climbs: [
       { name: "Col de la Croix de Fer", category: "HC", lengthKm: 24, gradientPct: 5.2, summitM: 2067 },
-      { name: "Col du Galibier", category: "HC", lengthKm: 23, gradientPct: 5.1, summitM: 2642 },
+      { name: "Col du Galibier", category: "HC", lengthKm: 17.7, gradientPct: 6.8, summitM: 2642 },
       { name: "Col du Télégraphe", category: "1", lengthKm: 11.9, gradientPct: 7.1, summitM: 1566 },
+      { name: "Col de Sarenne", category: "1", lengthKm: 12.8, gradientPct: 7.3 },
       { name: "Alpe d'Huez", category: "HC", lengthKm: 13.8, gradientPct: 8.1, summitM: 1860 },
     ],
     summitFinish: true,
