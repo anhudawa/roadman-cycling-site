@@ -68,22 +68,32 @@ export default async function GuestPage({
 
   return (
     <>
+      {/* ProfilePage wrapper — uses the page URL as its implicit @id.
+          mainEntity points to the separate Person node below so Google
+          never sees duplicate @ids between the page entity and the
+          person entity. */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": ["Person", "ProfilePage"],
-          // Canonical Person @id for the guest. Episodes (`actor`,
-          // `mentions`) and articles (`mentions`) reference this same
-          // anchor so all citations of the person across the site
-          // resolve to one Knowledge Graph node rather than duplicate
-          // entities with the same name.
+          "@type": "ProfilePage",
+          name: `${guest.name} — Podcast Guest`,
+          url: `https://roadmancycling.com/guests/${slug}`,
+          mainEntity: {
+            "@id": `https://roadmancycling.com/guests/${slug}#person`,
+          },
+        }}
+      />
+      {/* Canonical Person entity for the guest. Episodes (`actor`,
+          `mentions`) and articles (`mentions`) reference this same
+          anchor so all citations of the person across the site
+          resolve to one Knowledge Graph node rather than duplicate
+          entities with the same name. */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Person",
           "@id": `https://roadmancycling.com/guests/${slug}#person`,
           name: guest.name,
-          mainEntity: {
-            "@type": "Person",
-            "@id": `https://roadmancycling.com/guests/${slug}#person`,
-            name: guest.name,
-          },
           ...(guest.credential && { jobTitle: guest.credential }),
           description:
             override?.whyMatters ??

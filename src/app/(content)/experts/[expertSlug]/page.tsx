@@ -63,10 +63,26 @@ export default async function ExpertIndexPage({
 
   return (
     <>
+      {/* ProfilePage wrapper — uses the page URL as its implicit @id.
+          mainEntity points to the canonical Person node so Google sees
+          distinct entities for the page and the person. */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": ["Person", "ProfilePage"],
+          "@type": "ProfilePage",
+          name: `${guest.name} — Expert Topics`,
+          url: `${SITE_ORIGIN}/experts/${expertSlug}`,
+          mainEntity: {
+            "@id": `${SITE_ORIGIN}/guests/${expertSlug}#person`,
+          },
+        }}
+      />
+      {/* Canonical Person entity — shares the same #person anchor as
+          /guests/[slug] so cross-site references resolve to one node. */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Person",
           "@id": `${SITE_ORIGIN}/guests/${expertSlug}#person`,
           name: guest.name,
           ...(guest.credential && { jobTitle: guest.credential }),
