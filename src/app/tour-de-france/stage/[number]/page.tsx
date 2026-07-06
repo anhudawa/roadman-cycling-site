@@ -72,6 +72,9 @@ export default async function StagePage({
           name: `Tour de France 2026 — Stage ${stage.number}: ${stage.start} to ${stage.finish}`,
           sport: "Road cycling",
           startDate: stage.date,
+          eventStatus: "https://schema.org/EventScheduled",
+          eventAttendanceMode:
+            "https://schema.org/OfflineEventAttendanceMode",
           url,
           superEvent: {
             "@type": "SportsEvent",

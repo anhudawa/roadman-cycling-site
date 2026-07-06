@@ -7,6 +7,10 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 import {
+  nextAnnualStartDate,
+  EVENT_STATUS_SCHEDULED,
+} from "@/lib/event-schema";
+import {
   getEvent,
   getAllEventSlugs,
   PHASES,
@@ -117,17 +121,15 @@ export default async function PlanEventHubPage({
             "@type": "SportsEvent",
             name: event.name,
             sport: "Cycling",
-            startDate: (() => {
-              const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-              const mi = months.indexOf(event.defaultMonth);
-              if (mi < 0) return undefined;
-              const now = new Date();
-              const year = mi >= now.getMonth() ? now.getFullYear() : now.getFullYear() + 1;
-              return `${year}-${String(mi + 1).padStart(2, "0")}`;
-            })(),
+            startDate: nextAnnualStartDate(event.defaultMonth),
+            eventStatus: EVENT_STATUS_SCHEDULED,
             location: {
               "@type": "Place",
               name: event.region,
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: event.region,
+              },
             },
           },
           speakable: {
@@ -158,7 +160,16 @@ export default async function PlanEventHubPage({
             "@type": "SportsEvent",
             name: event.name,
             sport: "Cycling",
-            location: { "@type": "Place", name: event.region },
+            startDate: nextAnnualStartDate(event.defaultMonth),
+            eventStatus: EVENT_STATUS_SCHEDULED,
+            location: {
+              "@type": "Place",
+              name: event.region,
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: event.region,
+              },
+            },
           },
           hasCourseInstance: PHASES.map((p) => ({
             "@type": "CourseInstance",

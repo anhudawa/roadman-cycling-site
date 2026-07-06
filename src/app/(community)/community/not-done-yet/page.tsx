@@ -138,6 +138,10 @@ export default function NotDoneYetPage() {
             "@type": "Brand",
             name: "Roadman Cycling",
           },
+          // `image` and `url` are strongly recommended for the Product
+          // rich result — without an image Google suppresses it.
+          image: ["https://roadmancycling.com/og-image.jpg"],
+          url: "https://roadmancycling.com/community/not-done-yet",
           offers: tiers.map((tier) => ({
             "@type": "Offer",
             name: tier.name,
@@ -145,25 +149,14 @@ export default function NotDoneYetPage() {
             priceCurrency: "USD",
             availability: "https://schema.org/InStock",
           })),
-          // Review schema mirrors real named testimonials on the page.
-          // No reviewRating — we collect narrative testimonials rather
-          // than star ratings, and inventing a numeric rating would
-          // violate Google's review-snippet guidelines (see the earlier
-          // AggregateRating removal). Uses the full testimonials
-          // catalogue (memberTestimonials), not just the three hero
-          // quotes above.
-          review: memberTestimonials.map((t) => ({
-            "@type": "Review",
-            author: {
-              "@type": "Person",
-              name: t.name,
-            },
-            reviewBody: t.quote,
-            itemReviewed: {
-              "@type": "Product",
-              name: "Not Done Yet Coaching — Roadman Cycling",
-            },
-          })),
+          // NOTE: no Review markup here. We collect narrative testimonials,
+          // not star ratings, and Google requires a `reviewRating` on every
+          // Review — a page emitting rating-less Reviews with no
+          // AggregateRating is flagged "invalid" in Search Console (this
+          // was one of the 8/8 invalid review snippets). Inventing a
+          // numeric rating would breach the review-snippet guidelines, so
+          // the Product stands on its offers alone. The coaching Service's
+          // legitimate 5-star AggregateRating lives on /proof.
         }}
       />
       <FAQSchema

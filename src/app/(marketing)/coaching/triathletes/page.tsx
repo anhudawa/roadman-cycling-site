@@ -196,21 +196,12 @@ export default function TriathlonCoachingPage() {
             description:
               "1:1 bike-leg coaching for triathletes — power, pacing, bricks, fuelling, strength",
           },
-          // Review schema mirrors the real on-page testimonials below.
-          // No reviewRating — we collect narrative testimonials, not star ratings,
-          // so emitting a made-up numeric rating would violate Google's guidelines.
-          review: testimonials.map((t) => ({
-            "@type": "Review",
-            author: {
-              "@type": "Person",
-              name: t.name,
-            },
-            reviewBody: t.quote,
-            itemReviewed: {
-              "@type": "Service",
-              name: "Roadman Cycling — Triathlon Bike Coaching",
-            },
-          })),
+          // NOTE: no Review markup here. These are narrative testimonials
+          // with no star ratings, and Google requires a `reviewRating` on
+          // every Review — rating-less Reviews with no AggregateRating are
+          // flagged "invalid" in Search Console. Fabricating a rating would
+          // breach the review-snippet guidelines, so the Service stands on
+          // its offer alone; the coaching AggregateRating lives on /proof.
         }}
       />
 

@@ -82,6 +82,9 @@ export default function TourDeFranceHubPage() {
           sport: "Road cycling",
           startDate: TOUR_META.startDate,
           endDate: TOUR_META.endDate,
+          eventStatus: "https://schema.org/EventScheduled",
+          eventAttendanceMode:
+            "https://schema.org/OfflineEventAttendanceMode",
           url: URL,
           location: [
             { "@type": "Place", name: "Barcelona, Spain" },
@@ -93,6 +96,8 @@ export default function TourDeFranceHubPage() {
             "@type": "SportsEvent",
             name: `Stage ${s.number}: ${s.start} to ${s.finish}`,
             startDate: s.date,
+            eventStatus: "https://schema.org/EventScheduled",
+            location: { "@type": "Place", name: `${s.start} to ${s.finish}` },
             url: `${URL}/stage/${s.number}`,
           })),
         }}

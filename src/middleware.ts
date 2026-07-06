@@ -202,7 +202,15 @@ export const config = {
     // Method auth routes
     "/method",
     "/method/:path*",
-    // Everything else except admin, API, static assets (for A/B + SEO cleanup)
-    "/((?!admin|api|_next/static|_next/image|favicon.ico|icon.svg|sitemap.xml|robots.txt).*)",
+    // Everything else except admin, API, static assets (for A/B + SEO cleanup).
+    // `sitemap` (bare prefix) excludes the whole sitemap surface —
+    // /sitemap.xml, the /sitemap/[id].xml children AND /sitemap-index.xml.
+    // Previously only the literal `sitemap.xml` was excluded, so the
+    // generateSitemaps() children (/sitemap/0.xml … /sitemap/6.xml) still
+    // ran through middleware: every crawler fetch came back with a
+    // Set-Cookie (ab_variant) and was forced dynamic, and Vercel even
+    // cached the cookie'd response. Crawlers must get clean, cookie-free,
+    // cacheable XML.
+    "/((?!admin|api|_next/static|_next/image|favicon.ico|icon.svg|sitemap|robots.txt).*)",
   ],
 };

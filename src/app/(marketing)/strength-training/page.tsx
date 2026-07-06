@@ -80,11 +80,17 @@ export default function StrengthTrainingPage() {
           description:
             "12-week S&C plan for cyclists. Training plan, instructional videos, stretching guide, core guide, goal setting audio.",
           brand: { "@type": "Brand", name: "Roadman Cycling" },
+          // `image` and `url` are strongly recommended for the Product
+          // rich result — without an image Google suppresses it and flags
+          // the item. og-image.jpg is the only shared brand asset.
+          image: ["https://roadmancycling.com/og-image.jpg"],
+          url: "https://roadmancycling.com/strength-training",
           offers: {
             "@type": "Offer",
             price: "65",
             priceCurrency: "USD",
             availability: "https://schema.org/InStock",
+            url: "https://roadmancycling.com/strength-training",
           },
         }}
       />
