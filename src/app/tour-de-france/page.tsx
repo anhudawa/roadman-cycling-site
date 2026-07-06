@@ -11,14 +11,12 @@ import { TOUR_META, TOUR_STAGES } from "@/data/tour-de-france-2026";
 import {
   getTourPhase,
   getTodayStage,
-  getNextStage,
   getCompletedStages,
   daysUntilStart,
   formatStageDate,
 } from "@/lib/tour";
-import { getStagePodcast } from "@/data/tour-podcast";
 import { TOUR_HISTORY } from "@/data/tour-history";
-import { StageCard, DailyPodcastCard } from "@/components/features/tour";
+import { StageCard } from "@/components/features/tour";
 
 const URL = `${SITE_ORIGIN}/tour-de-france`;
 
@@ -73,10 +71,6 @@ function StatusLine() {
 export default function TourDeFranceHubPage() {
   const today = getTodayStage();
   const completed = new Set(getCompletedStages().map((s) => s.number));
-  // Featured daily podcast: today's during the race, else the next one up
-  // (the Grand Départ debrief before the race starts).
-  const featuredStage = today ?? getNextStage() ?? TOUR_STAGES[0];
-  const featuredPodcast = getStagePodcast(featuredStage.number);
 
   return (
     <>
@@ -198,54 +192,6 @@ export default function TourDeFranceHubPage() {
                   }
                 />
               ))}
-            </div>
-          </Container>
-        </Section>
-
-        {/* Daily Tour podcast */}
-        <Section background="deep-purple" grain id="podcast">
-          <Container>
-            <div className="grid lg:grid-cols-[1.1fr_1fr] gap-8 items-start">
-              <div>
-                <p className="font-heading text-jersey-yellow text-[11px] tracking-[0.3em] mb-3">
-                  THE DAILY TOUR PODCAST
-                </p>
-                <h2 className="font-heading text-off-white text-3xl sm:text-4xl tracking-wide mb-4">
-                  A DEBRIEF EVERY RACE DAY
-                </h2>
-                <p className="text-foreground-muted leading-relaxed mb-6">
-                  Through the three weeks, Anthony records a short daily breakdown of
-                  the stage — the decisive move, the watts behind it, and what a
-                  serious amateur takes to the bike from it. Each one lands on its
-                  stage page the evening of the race, and the latest sits right here.
-                </p>
-                <ul className="space-y-2 text-sm">
-                  {TOUR_STAGES.slice(0, 5).map((s) => (
-                    <li key={s.number}>
-                      <Link
-                        href={`/tour-de-france/stage/${s.number}#podcast`}
-                        className="group flex items-center gap-3 text-foreground-muted hover:text-off-white transition-colors"
-                      >
-                        <span className="font-heading text-jersey-yellow/80 text-xs tracking-wider w-16 shrink-0">
-                          STAGE {s.number}
-                        </span>
-                        <span className="group-hover:text-jersey-yellow transition-colors">
-                          {s.start} → {s.finish}
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                  <li>
-                    <Link
-                      href="#stages"
-                      className="font-heading text-jersey-yellow hover:text-jersey-yellow-deep text-xs tracking-wider transition-colors"
-                    >
-                      ALL {TOUR_META.stageCount} DEBRIEFS →
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              {featuredPodcast && <DailyPodcastCard slot={featuredPodcast} highlight />}
             </div>
           </Container>
         </Section>

@@ -15,8 +15,7 @@ import {
   getStage,
 } from "@/data/tour-de-france-2026";
 import { formatStageDate } from "@/lib/tour";
-import { getStagePodcast } from "@/data/tour-podcast";
-import { StageTypeIcon, STAGE_TYPE_COLOR, DailyPodcastCard } from "@/components/features/tour";
+import { StageTypeIcon, STAGE_TYPE_COLOR } from "@/components/features/tour";
 
 export function generateStaticParams() {
   return TOUR_STAGES.map((s) => ({ number: String(s.number) }));
@@ -63,7 +62,6 @@ export default async function StagePage({
   const color = STAGE_TYPE_COLOR[stage.type];
   const prev = getStage(stage.number - 1);
   const next = getStage(stage.number + 1);
-  const podcast = getStagePodcast(stage.number);
 
   return (
     <>
@@ -268,21 +266,6 @@ export default async function StagePage({
             </div>
           </Container>
         </Section>
-
-        {/* Daily podcast slot for this stage day */}
-        {podcast && (
-          <Section background="charcoal" className="!py-12 border-b border-white/5">
-            <Container width="narrow">
-              <h2 className="font-heading text-off-white text-2xl tracking-wide mb-2">
-                THE DAILY DEBRIEF
-              </h2>
-              <p className="text-foreground-muted text-sm mb-6">
-                Anthony&rsquo;s daily Tour podcast lands here on the evening of the stage.
-              </p>
-              <DailyPodcastCard slot={podcast} highlight />
-            </Container>
-          </Section>
-        )}
 
         {/* Train for it — related content */}
         {stage.related.length > 0 && (
