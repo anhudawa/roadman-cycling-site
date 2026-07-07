@@ -1396,6 +1396,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-replace-long-run-marathon",
     "ftp-for-runners-cycling-power-explained",
     "running-cycling-conversion-calculator",
+    "parkrun-cycling-cross-training",
   ],
   "cycling-for-runners": [
     "switching-from-running-to-cycling-guide",
@@ -1420,6 +1421,9 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-cadence-guide-runners",
     "cycling-commuting-runners",
     "bone-density-cycling-running-deep-dive",
+    "plantar-fasciitis-cycling-alternative",
+    "shin-splints-cycling-cross-training",
+    "achilles-tendinopathy-cycling-guide",
   ],
   "cycling-tech": [
     "gps-watches-cycling-running-guide",
@@ -1432,6 +1436,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "uli-schoberer-first-power-meter-cycling-history",
     "reading-your-training-data-tss-ctl-atl-tsb",
     "cycling-metrics-explained",
+    "power-meter-buying-guide-cyclists",
   ],
 };
 
