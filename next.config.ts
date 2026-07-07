@@ -34,8 +34,6 @@ const nextConfig: NextConfig = {
     // sees a similar effect with icon barrel imports.
     optimizePackageImports: [
       "framer-motion",
-      "shiki",
-      "rehype-pretty-code",
       "recharts",
       "date-fns",
       "lucide-react",
