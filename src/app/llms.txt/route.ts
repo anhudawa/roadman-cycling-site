@@ -302,6 +302,7 @@ ${answersClusterBlock}
 - [W/kg Calculator](${tag(`${BASE_URL}/tools/wkg`)}): Power-to-weight ratio with performance benchmarks.
 - [Cycling Fuel Planner](${tag(`${BASE_URL}/tools/fuel-planner`)}): Daily calorie target, carb/protein/fat split, and in-ride carbs and hydration for the ride you're doing. Built on fuel-for-the-work-required; free, no signup, with an optional gated 12-week carb-load plan.
 - [Race Time Predictor (quick estimate)](${tag(`${BASE_URL}/tools/race-predictor`)}): Physics-based finish-time estimate from FTP, weight, distance, elevation, surface, and riding position. The full GPX-driven split-by-split simulator lives at /predict.
+- [Run↔Ride Converter](${tag(`${BASE_URL}/tools/run-ride-converter`)}): VDOT-based translation of running fitness into cycling terms and back — pace to power, session to session.
 
 ## Interactive Guides
 - [Ask Roadman](${tag(`${BASE_URL}/ask`)}): On-site cycling performance assistant grounded in ${BRAND_STATS.episodeCountLabel} Roadman Cycling Podcast conversations (${BRAND_STATS.podcastDownloadsLabel} lifetime downloads). Streamed, cited answers on training, fuelling, recovery, strength, and event prep.
@@ -345,6 +346,8 @@ Evidence-based topic hubs — each gathers the articles, episodes, and tools for
 - [Getting Into Cycling (Beginners)](${tag(`${BASE_URL}/topics/cycling-beginners`)})
 - [Mountain Biking](${tag(`${BASE_URL}/topics/mountain-biking`)})
 - [Against the Clock — Cycling & Horology](${tag(`${BASE_URL}/topics/against-the-clock`)}): Cycling's race against time — the Hour Record, the time-trial "race of truth", and the watches on riders' wrists. The Community / Le Métier pillar's culture hub.
+- [Running for Cyclists](${tag(`${BASE_URL}/topics/running-for-cyclists`)})
+- [Cycling for Runners](${tag(`${BASE_URL}/topics/cycling-for-runners`)})
 - [All Topics](${tag(`${BASE_URL}/topics`)})
 
 ## Topic Cluster Hubs (deep-dive masters & training clusters)
