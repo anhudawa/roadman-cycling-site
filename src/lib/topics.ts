@@ -612,6 +612,25 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
       "running plan for cyclists",
     ],
   },
+  {
+    slug: "cycling-for-runners",
+    title: "Cycling for Runners",
+    headline: "Cycling for Runners — The Complete Cross-Training Guide",
+    ctaHeadline: "Add Cycling to Your Running",
+    description:
+      "How cycling builds aerobic base without impact stress, helps injured runners maintain fitness, and improves running performance through cross-training — with bike buying guides, fit advice, and structured plans.",
+    pillar: "strength",
+    keywords: [
+      "cycling for runners",
+      "is cycling good for runners",
+      "best bike for runners",
+      "cycling cross training running",
+      "runner cycling",
+      "cycling instead of running",
+      "low impact cardio for runners",
+      "cycling to improve running",
+    ],
+  },
 ];
 
 /** Map of topic slugs to relevant blog post slugs */
@@ -1359,6 +1378,18 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "ftp-for-runners-cycling-power-explained",
     "running-cycling-conversion-calculator",
   ],
+  "cycling-for-runners": [
+    "switching-from-running-to-cycling-guide",
+    "cycling-for-injured-runners",
+    "cycling-better-for-knees-than-running",
+    "cycling-replace-long-run-marathon",
+    "ftp-for-runners-cycling-power-explained",
+    "running-cycling-conversion-calculator",
+    "fuelling-running-vs-cycling-differences",
+    "supplements-endurance-cyclist-runner",
+    "running-vs-cycling-fitness-transfer",
+    "zone-2-running-vs-cycling-heart-rate",
+  ],
 };
 
 /** Cluster enrichment: tools, commercial path, related topics, featured posts, optional claim table */
@@ -1770,6 +1801,24 @@ const TOPIC_ENRICHMENT: Record<string, {
       "cycling-bone-density-running-fix",
     ],
   },
+  "cycling-for-runners": {
+    tools: [
+      { slug: "hr-zones", title: "HR Zone Calculator", href: "/tools/hr-zones" },
+      { slug: "fuelling", title: "In-Ride Fuelling Calculator", href: "/tools/fuelling" },
+    ],
+    commercialPath: "/strength-training",
+    relatedTopics: [
+      "running-for-cyclists",
+      "masters-cycling",
+      "ftp-training",
+      "cycling-nutrition",
+    ],
+    featuredPostSlugs: [
+      "switching-from-running-to-cycling-guide",
+      "cycling-for-injured-runners",
+      "cycling-better-for-knees-than-running",
+    ],
+  },
 };
 
 /** Keyword patterns for matching episodes to topics */
@@ -1808,6 +1857,8 @@ const TOPIC_EPISODE_KEYWORDS: Record<string, RegExp> = {
   "power-meter-training": /power.?meter|srm|stages|quarq|pedal.?power|power.?data|dual.?sided/i,
   "running-for-cyclists":
     /run(?:ning)?.as.a.cyclist|cyclists?.{0,12}(?:should|start).{0,12}run|start.?running|running.for.cyclists|\bduathlon\b|\bmarathon\b|\btrail.?run|\bparkrun\b|running.(?:shoes?|plan|injur|form|gait)/i,
+  "cycling-for-runners":
+    /cycling.for.runners|runners?.{0,15}(?:turned|becom\w+|switch\w*|take.up|took.up).{0,12}(?:cycling|cyclist|the.bike)|from.runn(?:ing|er).to.(?:cycling|the.bike)|ex.?runner|former.runner|running.background|injur(?:ed|y).{0,20}cross.?train|cross.?train\w*.{0,20}(?:injur|runner)|\bduathlon\b/i,
 };
 
 /**
@@ -1822,6 +1873,7 @@ const TOPIC_EPISODE_KEYWORDS: Record<string, RegExp> = {
 const TOPIC_EPISODE_EXCLUDE: Record<string, RegExp> = {
   "against-the-clock": /\bepo\b|doping|painkiller|drug|cheat|exploding|strength training|over 40/i,
   "running-for-cyclists": /\brace.run|tour.*run|breakaway|run.down/i,
+  "cycling-for-runners": /\brace.run|tour.*run|breakaway|run.down/i,
 };
 
 /**
@@ -2510,6 +2562,28 @@ const TOPIC_FAQS: Record<string, TopicFAQ[]> = {
       question: "Do I need special running shoes as a cyclist?",
       answer:
         "You need a proper pair of daily trainers (Asics Novablast, Brooks Ghost, or Hoka Clifton are solid starting points, $130-160). You do not need carbon-plated super shoes for two runs a week. Get fitted at a running shop — shoe choice matters more than any other running purchase.",
+    },
+  ],
+  "cycling-for-runners": [
+    {
+      question: "Is cycling good cross-training for runners?",
+      answer:
+        "Yes — it's the best-supported cross-training option runners have. A 2026 systematic review (Menges et al., Frontiers in Sports and Active Living) found VO2max gains transfer meaningfully between cycling and running, so aerobic work done on the bike counts toward your running fitness. Because cycling is non-impact, it adds that aerobic volume without adding to the cumulative loading on bones, tendons, and cartilage that limits how much running most athletes can absorb. Even Eliud Kipchoge has used the bike as a cross-training tool.",
+    },
+    {
+      question: "Can cycling replace running for cardio?",
+      answer:
+        "For the cardiovascular system, largely yes — your heart doesn't know whether the demand came from pedalling or striding, which is why injured runners can hold most of their aerobic fitness on the bike for weeks. What cycling cannot replicate is impact tolerance, running economy, and the eccentric loading your legs need for the sport itself, so a runner with a race on the calendar still needs some running. As a rule of thumb, expect roughly 2-3 minutes of moderate cycling to approximate 1 minute of running for aerobic training load.",
+    },
+    {
+      question: "What type of bike should a runner buy first?",
+      answer:
+        "For most runners the answer is a road bike or an endurance-geometry gravel bike in the $1,000-2,500 range — both give you an efficient position, real gearing, and room to grow. A gravel bike is the more forgiving first choice: wider tyres, more stable handling, and it opens up traffic-free riding. Skip the cheap hybrid if you intend to train seriously; the upright position and heavy frame make structured aerobic work harder than it needs to be. Whatever you buy, budget for a basic bike fit — it matters more than any component upgrade.",
+    },
+    {
+      question: "How many times a week should a runner cycle?",
+      answer:
+        "Two to three rides of 45-90 minutes is the sweet spot for a healthy runner using cycling as a supplement — enough to add meaningful aerobic volume without eating into recovery from key run sessions. Keep most of it easy (conversational, Zone 2) and schedule rides on the days between hard runs, not before them. An injured runner can push that to four or five rides a week, since the bike is carrying the full aerobic load while the injury heals.",
     },
   ],
 };
