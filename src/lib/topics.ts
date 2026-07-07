@@ -593,6 +593,25 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
       "best power meter",
     ],
   },
+  {
+    slug: "running-for-cyclists",
+    title: "Running for Cyclists",
+    headline: "Running for Cyclists — The Complete Cross-Training Guide",
+    ctaHeadline: "Train Smarter Across Both Sports",
+    description:
+      "Evidence-based running guidance for cyclists — VO2max transfer, bone density, injury prevention, off-season protocols, and practical run-build plans for riders who want running as a training tool.",
+    pillar: "strength",
+    keywords: [
+      "running for cyclists",
+      "cross training cycling",
+      "is running good for cyclists",
+      "cycling cross training",
+      "running and cycling",
+      "cyclist bone density",
+      "off season running",
+      "running plan for cyclists",
+    ],
+  },
 ];
 
 /** Map of topic slugs to relevant blog post slugs */
@@ -1313,6 +1332,18 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "wahoo-vs-garmin-cycling-computers",
     "best-cycling-computers-2026",
   ],
+  "running-for-cyclists": [
+    "running-cross-training-cyclists",
+    "running-vs-cycling-fitness-transfer",
+    "running-plan-cyclists-first-5k",
+    "running-injury-prevention-cyclists",
+    "running-off-season-cyclists",
+    "trail-running-cyclists-guide",
+    "cycling-running-weekly-schedule",
+    "cycling-bone-density-running-fix",
+    "running-cycling-mental-health-benefits",
+    "time-crunched-cyclist-running-benefits",
+  ],
 };
 
 /** Cluster enrichment: tools, commercial path, related topics, featured posts, optional claim table */
@@ -1706,6 +1737,24 @@ const TOPIC_ENRICHMENT: Record<string, {
       "uli-schoberer-first-power-meter-cycling-history",
     ],
   },
+  "running-for-cyclists": {
+    tools: [
+      { slug: "hr-zones", title: "HR Zone Calculator", href: "/tools/hr-zones" },
+      { slug: "fuelling", title: "In-Ride Fuelling Calculator", href: "/tools/fuelling" },
+    ],
+    commercialPath: "/strength-training",
+    relatedTopics: [
+      "cycling-strength-conditioning",
+      "triathlon-cycling",
+      "cycling-periodisation",
+      "masters-cycling",
+    ],
+    featuredPostSlugs: [
+      "running-cross-training-cyclists",
+      "running-plan-cyclists-first-5k",
+      "cycling-bone-density-running-fix",
+    ],
+  },
 };
 
 /** Keyword patterns for matching episodes to topics */
@@ -1742,6 +1791,8 @@ const TOPIC_EPISODE_KEYWORDS: Record<string, RegExp> = {
   "ultra-endurance": /ultra|bikepacking|tour.?divide|badlands|unbound|leadville|race.?across|24.?hour|endurance.?race/i,
   "cycling-breathing": /breath|respiratory|nasal|co2.?tolerance|ventilat|lung|diaphragm/i,
   "power-meter-training": /power.?meter|srm|stages|quarq|pedal.?power|power.?data|dual.?sided/i,
+  "running-for-cyclists":
+    /run(?:ning)?.as.a.cyclist|cyclists?.{0,12}(?:should|start).{0,12}run|start.?running|running.for.cyclists|\bduathlon\b|\bmarathon\b|\btrail.?run|\bparkrun\b|running.(?:shoes?|plan|injur|form|gait)/i,
 };
 
 /**
@@ -1755,6 +1806,7 @@ const TOPIC_EPISODE_KEYWORDS: Record<string, RegExp> = {
  */
 const TOPIC_EPISODE_EXCLUDE: Record<string, RegExp> = {
   "against-the-clock": /\bepo\b|doping|painkiller|drug|cheat|exploding|strength training|over 40/i,
+  "running-for-cyclists": /\brace.run|tour.*run|breakaway|run.down/i,
 };
 
 /**
@@ -2421,6 +2473,28 @@ const TOPIC_FAQS: Record<string, TopicFAQ[]> = {
       question: "Power meter or smart trainer — which should I buy first?",
       answer:
         "If you train indoors regularly, a smart trainer with built-in power is the better first purchase — it doubles as your indoor training platform and your power source. If you race or ride outdoors primarily, an on-bike power meter gives you data where it matters most.",
+    },
+  ],
+  "running-for-cyclists": [
+    {
+      question: "Is running good cross-training for cyclists?",
+      answer:
+        "Yes. A 2026 systematic review (Menges et al., Frontiers in Sports and Active Living) found meaningful VO2max transfer between the two disciplines, and pros including Roglič, Evenepoel, and Yates run regularly. The benefits are cardiovascular maintenance in less time, improved bone density (cyclists are 7× more likely to have spinal osteopenia), and neuromuscular variety.",
+    },
+    {
+      question: "How much should a cyclist run per week?",
+      answer:
+        "Two to three runs of 20-40 minutes in the off-season; one easy 20-30 minute run during racing season. The limiter is tissue adaptation, not fitness — your cardiovascular engine is ahead of your tendons and bones.",
+    },
+    {
+      question: "Will running make me slower on the bike?",
+      answer:
+        "Not if volume and intensity are managed. Running becomes a problem when it adds excessive fatigue on top of hard cycling sessions. Kept easy and progressive, it supplements cycling without competing with it.",
+    },
+    {
+      question: "Do I need special running shoes as a cyclist?",
+      answer:
+        "You need a proper pair of daily trainers (Asics Novablast, Brooks Ghost, or Hoka Clifton are solid starting points, $130-160). You do not need carbon-plated super shoes for two runs a week. Get fitted at a running shop — shoe choice matters more than any other running purchase.",
     },
   ],
 };
