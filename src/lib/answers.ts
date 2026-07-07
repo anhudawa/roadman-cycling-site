@@ -12,6 +12,7 @@ import { powerAnswers } from "./answers-data/power";
 import { mentalAnswers } from "./answers-data/mental";
 import { bikefitAnswers } from "./answers-data/bikefit";
 import { heatAnswers } from "./answers-data/heat";
+import { crossTrainingAnswers } from "./answers-data/cross-training";
 import { metricsAnswers } from "./answers-data/metrics";
 import { trainingPhysiologyAnswers } from "./answers-data/training-physiology";
 import { wave3Answers } from "./answers-data/wave3";
@@ -52,7 +53,8 @@ export type AnswerCluster =
   | "power"
   | "mental"
   | "bikefit"
-  | "heat";
+  | "heat"
+  | "cross-training";
 
 export interface AnswerWhoFor {
   /** Short audience label, e.g. "The plateaued club racer" */
@@ -205,6 +207,12 @@ export const ANSWER_CLUSTERS: { id: AnswerCluster; label: string; description: s
     label: "Heat & Altitude",
     description:
       "Training the body to handle heat and thin air — and the free adaptation most amateurs skip.",
+  },
+  {
+    id: "cross-training",
+    label: "Running & Cross-Training",
+    description:
+      "Where running and cycling overlap — fitness transfer, injury cross-training, and training the two together.",
   },
 ];
 
@@ -1654,6 +1662,7 @@ export const ANSWER_PAGES: AnswerPage[] = [
   ...mentalAnswers,
   ...bikefitAnswers,
   ...heatAnswers,
+  ...crossTrainingAnswers,
   ...metricsAnswers,
   ...trainingPhysiologyAnswers,
   ...wave3Answers,
