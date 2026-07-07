@@ -63,9 +63,13 @@ export default async function ExpertIndexPage({
 
   return (
     <>
-      {/* ProfilePage wrapper — uses the page URL as its implicit @id.
-          mainEntity points to the canonical Person node so Google sees
-          distinct entities for the page and the person. */}
+      {/* ProfilePage with the canonical Person nested inline as
+          `mainEntity`. Google's ProfilePage rich result requires
+          `mainEntity` to resolve to a Person carrying a `name`; a bare
+          `{ "@id" }` reference to a Person in a separate <script> is not
+          resolved for rich-result eligibility. The `#person` @id is
+          shared with /guests/[slug] so cross-site references still
+          resolve to one Knowledge Graph node. */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -73,26 +77,18 @@ export default async function ExpertIndexPage({
           name: `${guest.name} — Expert Topics`,
           url: `${SITE_ORIGIN}/experts/${expertSlug}`,
           mainEntity: {
+            "@type": "Person",
             "@id": `${SITE_ORIGIN}/guests/${expertSlug}#person`,
+            name: guest.name,
+            ...(guest.credential && { jobTitle: guest.credential }),
+            description:
+              override?.whyMatters ?? override?.description ?? undefined,
+            url: `${SITE_ORIGIN}/experts/${expertSlug}`,
+            ...(override?.image && { image: override.image }),
+            ...(override?.sameAs &&
+              override.sameAs.length > 0 && { sameAs: override.sameAs }),
+            knowsAbout: topics.flatMap((t) => [t.label, t.phrase]),
           },
-        }}
-      />
-      {/* Canonical Person entity — shares the same #person anchor as
-          /guests/[slug] so cross-site references resolve to one node. */}
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Person",
-          "@id": `${SITE_ORIGIN}/guests/${expertSlug}#person`,
-          name: guest.name,
-          ...(guest.credential && { jobTitle: guest.credential }),
-          description:
-            override?.whyMatters ?? override?.description ?? undefined,
-          url: `${SITE_ORIGIN}/experts/${expertSlug}`,
-          ...(override?.image && { image: override.image }),
-          ...(override?.sameAs &&
-            override.sameAs.length > 0 && { sameAs: override.sameAs }),
-          knowsAbout: topics.flatMap((t) => [t.label, t.phrase]),
         }}
       />
       <JsonLd

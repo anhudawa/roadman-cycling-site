@@ -14,6 +14,7 @@ import {
   getCompletedStages,
   daysUntilStart,
   formatStageDate,
+  tourPlace,
 } from "@/lib/tour";
 import { TOUR_HISTORY } from "@/data/tour-history";
 import { StageCard } from "@/components/features/tour";
@@ -86,10 +87,7 @@ export default function TourDeFranceHubPage() {
           eventAttendanceMode:
             "https://schema.org/OfflineEventAttendanceMode",
           url: URL,
-          location: [
-            { "@type": "Place", name: "Barcelona, Spain" },
-            { "@type": "Place", name: "Paris, France" },
-          ],
+          location: [tourPlace("Barcelona"), tourPlace("Paris")],
           description:
             "The 2026 Tour de France — 21 stages from Barcelona to Paris across five mountain ranges.",
           subEvent: TOUR_STAGES.map((s) => ({
@@ -97,7 +95,9 @@ export default function TourDeFranceHubPage() {
             name: `Stage ${s.number}: ${s.start} to ${s.finish}`,
             startDate: s.date,
             eventStatus: "https://schema.org/EventScheduled",
-            location: { "@type": "Place", name: `${s.start} to ${s.finish}` },
+            eventAttendanceMode:
+              "https://schema.org/OfflineEventAttendanceMode",
+            location: [tourPlace(s.start), tourPlace(s.finish)],
             url: `${URL}/stage/${s.number}`,
           })),
         }}

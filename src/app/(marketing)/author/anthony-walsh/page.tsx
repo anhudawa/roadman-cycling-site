@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ENTITY_IDS, BRAND_STATS } from "@/lib/brand-facts";
+import { ENTITY_IDS, BRAND_STATS, FOUNDER } from "@/lib/brand-facts";
 import { getSiteStats } from "@/lib/content-graph";
 import { getAllPosts } from "@/lib/blog";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
@@ -60,15 +60,23 @@ export default function AuthorPage() {
   return (
     <>
       {/* Canonical Person + Organization entities live in the root layout's
-          @graph. This page is the canonical Person URL, so we reference the
-          shared @id rather than redeclaring the same sameAs/knowsAbout. */}
+          @graph. This page is the canonical Person URL. `mainEntity` nests a
+          named Person inline (rather than a bare `{ "@id" }` reference to the
+          layout node in a separate <script>) because Google's ProfilePage
+          rich result only resolves `mainEntity` when it carries a `name`
+          inline. The shared @id merges this with the layout's fuller Person
+          node, so we don't redeclare sameAs/knowsAbout. */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
           "@type": "ProfilePage",
           name: "Anthony Walsh — Cycling Coach & Podcast Host",
           url: "https://roadmancycling.com/author/anthony-walsh",
-          mainEntity: { "@id": ENTITY_IDS.person },
+          mainEntity: {
+            "@type": "Person",
+            "@id": ENTITY_IDS.person,
+            name: FOUNDER.name,
+          },
           isPartOf: { "@id": ENTITY_IDS.website },
           about: { "@id": ENTITY_IDS.person },
           dateCreated: "2024-01-01",

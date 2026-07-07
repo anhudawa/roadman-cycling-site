@@ -68,10 +68,14 @@ export default async function GuestPage({
 
   return (
     <>
-      {/* ProfilePage wrapper — uses the page URL as its implicit @id.
-          mainEntity points to the separate Person node below so Google
-          never sees duplicate @ids between the page entity and the
-          person entity. */}
+      {/* ProfilePage with the canonical Person nested inline as
+          `mainEntity`. Google's ProfilePage rich result requires
+          `mainEntity` to resolve to a Person carrying a `name`; a bare
+          `{ "@id" }` reference to a Person in a separate <script> is not
+          resolved for rich-result eligibility, so the Person object lives
+          directly under `mainEntity` here. The `@id` is preserved, so
+          episode (`actor`, `mentions`) and article citations across the
+          site still resolve to this single Knowledge Graph node. */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -79,97 +83,86 @@ export default async function GuestPage({
           name: `${guest.name} — Podcast Guest`,
           url: `https://roadmancycling.com/guests/${slug}`,
           mainEntity: {
+            "@type": "Person",
             "@id": `https://roadmancycling.com/guests/${slug}#person`,
+            name: guest.name,
+            ...(guest.credential && { jobTitle: guest.credential }),
+            description:
+              override?.whyMatters ??
+              override?.description ??
+              (guest.credential
+                ? `${guest.name} — ${guest.credential}. Expert guest on The Roadman Cycling Podcast.`
+                : `${guest.name} — expert guest on The Roadman Cycling Podcast.`),
+            url: `https://roadmancycling.com/guests/${slug}`,
+            ...(override?.image && { image: override.image }),
+            // sameAs is the single strongest Knowledge Graph disambiguation
+            // signal — it tells Google our "Greg LeMond" is THE Greg LeMond,
+            // not some other person with the same name.
+            ...(override?.sameAs &&
+              override.sameAs.length > 0 && { sameAs: override.sameAs }),
+            ...(override?.worksFor && {
+              worksFor: {
+                "@type": override.worksFor.type,
+                name: override.worksFor.name,
+                ...(override.worksFor.url && { url: override.worksFor.url }),
+              },
+            }),
+            // hasOccupation is richer than jobTitle — it carries the credential
+            // string plus the inferred occupational category and the cycling/
+            // endurance pillars this guest is known for, so AI assistants can
+            // ground "what does X do?" queries with the same answer that
+            // appears on the visible page.
+            ...(guest.credential && {
+              hasOccupation: {
+                "@type": "Occupation",
+                name: guest.credential,
+                occupationalCategory: "Sports / Endurance Performance",
+                skills: guest.pillars.map((p) =>
+                  p === "coaching"
+                    ? "cycling coaching"
+                    : p === "nutrition"
+                      ? "cycling nutrition"
+                      : p === "recovery"
+                        ? "cycling recovery"
+                        : p === "strength"
+                          ? "strength training for cyclists"
+                          : p === "community"
+                            ? "cycling culture"
+                            : p
+                ),
+              },
+            }),
+            // memberOf mirrors worksFor for guests with a verified team /
+            // university affiliation — gives Google a redundant Organization
+            // reference under the relationship Schema actually documents for
+            // sports professionals.
+            ...(override?.worksFor && {
+              memberOf: {
+                "@type": override.worksFor.type,
+                name: override.worksFor.name,
+                ...(override.worksFor.url && { url: override.worksFor.url }),
+              },
+            }),
+            knowsAbout: guest.pillars.map((p) =>
+              p === "coaching"
+                ? "cycling coaching"
+                : p === "nutrition"
+                  ? "cycling nutrition"
+                  : p === "recovery"
+                    ? "cycling recovery"
+                    : p === "strength"
+                      ? "strength training for cyclists"
+                      : p === "community"
+                        ? "cycling culture"
+                        : p
+            ),
+            subjectOf: guest.episodes.slice(0, 5).map((ep) => ({
+              "@type": "PodcastEpisode",
+              "@id": `https://roadmancycling.com/podcast/${ep.slug}#episode`,
+              name: ep.title,
+              url: `https://roadmancycling.com/podcast/${ep.slug}`,
+            })),
           },
-        }}
-      />
-      {/* Canonical Person entity for the guest. Episodes (`actor`,
-          `mentions`) and articles (`mentions`) reference this same
-          anchor so all citations of the person across the site
-          resolve to one Knowledge Graph node rather than duplicate
-          entities with the same name. */}
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Person",
-          "@id": `https://roadmancycling.com/guests/${slug}#person`,
-          name: guest.name,
-          ...(guest.credential && { jobTitle: guest.credential }),
-          description:
-            override?.whyMatters ??
-            override?.description ??
-            (guest.credential
-              ? `${guest.name} — ${guest.credential}. Expert guest on The Roadman Cycling Podcast.`
-              : `${guest.name} — expert guest on The Roadman Cycling Podcast.`),
-          url: `https://roadmancycling.com/guests/${slug}`,
-          ...(override?.image && { image: override.image }),
-          // sameAs is the single strongest Knowledge Graph disambiguation
-          // signal — it tells Google our "Greg LeMond" is THE Greg LeMond,
-          // not some other person with the same name.
-          ...(override?.sameAs &&
-            override.sameAs.length > 0 && { sameAs: override.sameAs }),
-          ...(override?.worksFor && {
-            worksFor: {
-              "@type": override.worksFor.type,
-              name: override.worksFor.name,
-              ...(override.worksFor.url && { url: override.worksFor.url }),
-            },
-          }),
-          // hasOccupation is richer than jobTitle — it carries the credential
-          // string plus the inferred occupational category and the cycling/
-          // endurance pillars this guest is known for, so AI assistants can
-          // ground "what does X do?" queries with the same answer that
-          // appears on the visible page.
-          ...(guest.credential && {
-            hasOccupation: {
-              "@type": "Occupation",
-              name: guest.credential,
-              occupationalCategory: "Sports / Endurance Performance",
-              skills: guest.pillars.map((p) =>
-                p === "coaching"
-                  ? "cycling coaching"
-                  : p === "nutrition"
-                    ? "cycling nutrition"
-                    : p === "recovery"
-                      ? "cycling recovery"
-                      : p === "strength"
-                        ? "strength training for cyclists"
-                        : p === "community"
-                          ? "cycling culture"
-                          : p
-              ),
-            },
-          }),
-          // memberOf mirrors worksFor for guests with a verified team /
-          // university affiliation — gives Google a redundant Organization
-          // reference under the relationship Schema actually documents for
-          // sports professionals.
-          ...(override?.worksFor && {
-            memberOf: {
-              "@type": override.worksFor.type,
-              name: override.worksFor.name,
-              ...(override.worksFor.url && { url: override.worksFor.url }),
-            },
-          }),
-          knowsAbout: guest.pillars.map((p) =>
-            p === "coaching"
-              ? "cycling coaching"
-              : p === "nutrition"
-                ? "cycling nutrition"
-                : p === "recovery"
-                  ? "cycling recovery"
-                  : p === "strength"
-                    ? "strength training for cyclists"
-                    : p === "community"
-                      ? "cycling culture"
-                      : p
-          ),
-          subjectOf: guest.episodes.slice(0, 5).map((ep) => ({
-            "@type": "PodcastEpisode",
-            "@id": `https://roadmancycling.com/podcast/${ep.slug}#episode`,
-            name: ep.title,
-            url: `https://roadmancycling.com/podcast/${ep.slug}`,
-          })),
         }}
       />
       <JsonLd

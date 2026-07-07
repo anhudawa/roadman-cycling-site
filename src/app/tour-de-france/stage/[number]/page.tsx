@@ -14,7 +14,7 @@ import {
   TOUR_TYPE_LABEL,
   getStage,
 } from "@/data/tour-de-france-2026";
-import { formatStageDate } from "@/lib/tour";
+import { formatStageDate, tourPlace } from "@/lib/tour";
 import { StageTypeIcon, STAGE_TYPE_COLOR } from "@/components/features/tour";
 
 export function generateStaticParams() {
@@ -81,10 +81,7 @@ export default async function StagePage({
             name: `Tour de France ${TOUR_META.year}`,
             url: `${SITE_ORIGIN}/tour-de-france`,
           },
-          location: [
-            { "@type": "Place", name: stage.start },
-            { "@type": "Place", name: stage.finish },
-          ],
+          location: [tourPlace(stage.start), tourPlace(stage.finish)],
           description: stage.description,
         }}
       />

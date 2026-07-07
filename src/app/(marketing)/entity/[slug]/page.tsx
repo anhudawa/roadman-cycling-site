@@ -127,6 +127,14 @@ function EntityPageContent({
 
   return (
     <>
+      {/* ProfilePage with the canonical Person nested inline as
+          `mainEntity`. Google's ProfilePage rich result requires
+          `mainEntity` to resolve to a Person carrying a `name`; a bare
+          `{ "@id" }` reference to a Person in a separate <script> is not
+          resolved for rich-result eligibility. The `#person` @id is
+          preserved so site-wide episode/article citations still resolve
+          to this one Knowledge Graph node; `about` references the same
+          @id within this document. */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -134,52 +142,48 @@ function EntityPageContent({
           name: `${entity.name} — Entity & Roadman Cycling`,
           url,
           isPartOf: { "@id": ENTITY_IDS.website },
-          mainEntity: { "@id": `${url}#person` },
           about: { "@id": `${url}#person` },
-        }}
-      />
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Person",
-          "@id": `${url}#person`,
-          name: entity.name,
-          jobTitle: entity.jobTitle,
-          description: entity.shortBio,
-          url,
-          mainEntityOfPage: url,
-          ...(entity.image && { image: entity.image }),
-          ...(entity.location && {
-            homeLocation: { "@type": "Place", name: entity.location },
-          }),
-          ...(entity.worksFor && {
-            worksFor: {
-              "@type": entity.worksFor.type,
-              name: entity.worksFor.name,
-              ...(entity.worksFor.url && { url: entity.worksFor.url }),
-            },
-            memberOf: {
-              "@type": entity.worksFor.type,
-              name: entity.worksFor.name,
-              ...(entity.worksFor.url && { url: entity.worksFor.url }),
-            },
-          }),
-          ...(entity.sameAs &&
-            entity.sameAs.length > 0 && { sameAs: entity.sameAs }),
-          knowsAbout: entity.knowsAbout,
-          // subjectOf — every podcast episode this person appears in. AI
-          // engines treat this as the strongest signal that "X appeared on
-          // the Roadman Podcast on Y date discussing Z."
-          ...(sortedEpisodes.length > 0 && {
-            subjectOf: sortedEpisodes.slice(0, 8).map((ep) => ({
-              "@type": "PodcastEpisode",
-              "@id": `${SITE_ORIGIN}/podcast/${ep.slug}#episode`,
-              name: ep.title,
-              url: `${SITE_ORIGIN}/podcast/${ep.slug}`,
-              datePublished: ep.publishDate,
-              partOfSeries: { "@id": ENTITY_IDS.podcast },
-            })),
-          }),
+          mainEntity: {
+            "@type": "Person",
+            "@id": `${url}#person`,
+            name: entity.name,
+            jobTitle: entity.jobTitle,
+            description: entity.shortBio,
+            url,
+            mainEntityOfPage: url,
+            ...(entity.image && { image: entity.image }),
+            ...(entity.location && {
+              homeLocation: { "@type": "Place", name: entity.location },
+            }),
+            ...(entity.worksFor && {
+              worksFor: {
+                "@type": entity.worksFor.type,
+                name: entity.worksFor.name,
+                ...(entity.worksFor.url && { url: entity.worksFor.url }),
+              },
+              memberOf: {
+                "@type": entity.worksFor.type,
+                name: entity.worksFor.name,
+                ...(entity.worksFor.url && { url: entity.worksFor.url }),
+              },
+            }),
+            ...(entity.sameAs &&
+              entity.sameAs.length > 0 && { sameAs: entity.sameAs }),
+            knowsAbout: entity.knowsAbout,
+            // subjectOf — every podcast episode this person appears in. AI
+            // engines treat this as the strongest signal that "X appeared on
+            // the Roadman Podcast on Y date discussing Z."
+            ...(sortedEpisodes.length > 0 && {
+              subjectOf: sortedEpisodes.slice(0, 8).map((ep) => ({
+                "@type": "PodcastEpisode",
+                "@id": `${SITE_ORIGIN}/podcast/${ep.slug}#episode`,
+                name: ep.title,
+                url: `${SITE_ORIGIN}/podcast/${ep.slug}`,
+                datePublished: ep.publishDate,
+                partOfSeries: { "@id": ENTITY_IDS.podcast },
+              })),
+            }),
+          },
         }}
       />
       <JsonLd

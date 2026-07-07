@@ -83,45 +83,48 @@ const notableInterviews = [
 export default function AnthonyWalshEntityPage() {
   return (
     <>
+      {/* ProfilePage with the canonical Person nested inline as
+          `mainEntity`. Google's ProfilePage rich result requires
+          `mainEntity` to resolve to a Person carrying a `name`; a bare
+          `{ "@id" }` reference to a Person in a separate <script> is not
+          resolved for rich-result eligibility. The `@id` is preserved so
+          site-wide references still resolve to this one node; `about`
+          references the same @id within this document. */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
           "@type": "ProfilePage",
           name: "Anthony Walsh — Entity",
           url: PAGE_URL,
-          mainEntity: { "@id": ENTITY_IDS.person },
           isPartOf: { "@id": ENTITY_IDS.website },
           about: { "@id": ENTITY_IDS.person },
-        }}
-      />
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Person",
-          "@id": ENTITY_IDS.person,
-          name: FOUNDER.name,
-          jobTitle: FOUNDER.jobTitle,
-          url: FOUNDER.url,
-          mainEntityOfPage: PAGE_URL,
-          email: FOUNDER.email,
-          image: `${SITE_ORIGIN}/images/team/anthony.avif`,
-          description: PERSON_DESCRIPTION,
-          worksFor: { "@id": ENTITY_IDS.organization },
-          founder: { "@id": ENTITY_IDS.organization },
-          birthPlace: { "@type": "Place", name: FOUNDER.location },
-          homeLocation: { "@type": "Place", name: FOUNDER.location },
-          sameAs: [...SAME_AS.person],
-          knowsAbout: [
-            "cycling training methodology",
-            "periodisation",
-            "polarised training",
-            "FTP and threshold training",
-            "cycling nutrition",
-            "strength training for cyclists",
-            "endurance recovery",
-            "triathlon bike coaching",
-            "masters cycling performance",
-          ],
+          mainEntity: {
+            "@type": "Person",
+            "@id": ENTITY_IDS.person,
+            name: FOUNDER.name,
+            jobTitle: FOUNDER.jobTitle,
+            url: FOUNDER.url,
+            mainEntityOfPage: PAGE_URL,
+            email: FOUNDER.email,
+            image: `${SITE_ORIGIN}/images/team/anthony.avif`,
+            description: PERSON_DESCRIPTION,
+            worksFor: { "@id": ENTITY_IDS.organization },
+            founder: { "@id": ENTITY_IDS.organization },
+            birthPlace: { "@type": "Place", name: FOUNDER.location },
+            homeLocation: { "@type": "Place", name: FOUNDER.location },
+            sameAs: [...SAME_AS.person],
+            knowsAbout: [
+              "cycling training methodology",
+              "periodisation",
+              "polarised training",
+              "FTP and threshold training",
+              "cycling nutrition",
+              "strength training for cyclists",
+              "endurance recovery",
+              "triathlon bike coaching",
+              "masters cycling performance",
+            ],
+          },
         }}
       />
       <JsonLd

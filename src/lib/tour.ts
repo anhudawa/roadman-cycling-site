@@ -132,3 +132,30 @@ export function formatStageDate(dateKey: string): string {
     timeZone: "UTC",
   });
 }
+
+/**
+ * The three 2026 Grand Départ towns sit in Spain (Catalonia); every other
+ * town on the route is in France. Used to stamp a country on each stage
+ * `location` so the SportsEvent JSON-LD carries the `address` Google's
+ * Event rich result requires (a Place with only a `name` is flagged
+ * "missing field address").
+ */
+const SPANISH_TOUR_TOWNS = new Set(["Barcelona", "Tarragona", "Granollers"]);
+
+/**
+ * Build a schema.org `Place` for a Tour town with a `PostalAddress` so the
+ * enclosing SportsEvent satisfies Google's Event `location.address`
+ * requirement. `addressCountry` is ISO 3166-1 alpha-2 (ES for the Grand
+ * Départ towns, FR for the rest of the route).
+ */
+export function tourPlace(town: string) {
+  return {
+    "@type": "Place",
+    name: town,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: town,
+      addressCountry: SPANISH_TOUR_TOWNS.has(town) ? "ES" : "FR",
+    },
+  };
+}

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, ParallaxImage } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
+import { ENTITY_IDS, SITE_ORIGIN, FOUNDER } from "@/lib/brand-facts";
 import { slugifyGuestName } from "@/lib/guests";
 
 /**
@@ -88,7 +88,15 @@ export default function AboutPage() {
           "@type": "ProfilePage",
           name: "About Anthony Walsh — Roadman Cycling",
           url: "https://roadmancycling.com/about",
-          mainEntity: { "@id": ENTITY_IDS.person },
+          // mainEntity nests a named Person inline (not a bare `{ "@id" }`
+          // reference to the layout node in a separate <script>) so Google's
+          // ProfilePage rich result resolves it; the shared @id merges with
+          // the layout's fuller Person node.
+          mainEntity: {
+            "@type": "Person",
+            "@id": ENTITY_IDS.person,
+            name: FOUNDER.name,
+          },
           isPartOf: { "@id": ENTITY_IDS.website },
           about: { "@id": ENTITY_IDS.organization },
           // The expert network surfaces as `mentions: [Person]` so AI
