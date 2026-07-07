@@ -1,0 +1,235 @@
+---
+title: 'Cycling Metrics Explained — TSS, IF, NP, CTL and What Actually Matters'
+seoTitle: 'Cycling Metrics Explained: TSS, IF, NP, CTL, ATL, TSB'
+seoDescription: >-
+  Cycling metrics explained in plain English — TSS, Intensity Factor,
+  Normalised Power, CTL, ATL and TSB. Which to check daily, which to check
+  weekly, and the mistakes that come from misreading them.
+excerpt: >-
+  Your training platform shows you six or seven acronyms after every ride.
+  Most riders understand maybe two of them properly. Here's what TSS, IF,
+  NP, CTL, ATL and TSB actually measure, which ones deserve a daily look,
+  and the misreadings that send riders chasing the wrong number.
+pillar: coaching
+primaryHub: cycling-tech
+author: Anthony Walsh
+publishDate: '2026-07-07'
+featuredImage: /images/blog/placeholder.webp
+keywords:
+  - cycling metrics explained
+  - tss cycling
+  - what is np cycling
+  - ctl atl tsb explained
+  - training stress score
+  - intensity factor cycling
+  - normalised power explained
+answerCapsule: >-
+  Six numbers describe your cycling training load: TSS (Training Stress
+  Score) measures how demanding a single ride was; IF (Intensity Factor) is
+  how hard it was relative to your FTP; NP (Normalised Power) is a
+  fatigue-weighted average that reflects variable efforts more honestly
+  than a simple mean; CTL (Chronic Training Load) is your 42-day fitness
+  trend; ATL (Acute Training Load) is your 7-day fatigue trend; and TSB
+  (Training Stress Balance) is CTL minus ATL — your form. Check TSS, IF and
+  NP after each ride to judge whether the session did its job. Check CTL,
+  ATL and TSB weekly to judge whether the season is progressing. The most
+  common misreading is treating any of these as a target to maximise
+  rather than a measurement to interpret.
+keyTakeaways:
+  - "TSS combines duration and intensity into one number — an hour at FTP is 100 TSS, the anchor everything else scales from."
+  - "NP matters most on variable rides. A stop-start group ride can carry a much higher NP than its simple average power suggests."
+  - "CTL, ATL and TSB are weekly-review numbers. Checking them after every ride adds noise, not insight."
+  - "A negative TSB during a training block is correct, not a warning sign — it means you're carrying the load that builds fitness."
+  - "None of these numbers replace judgment. They tell you what happened; they don't tell you what to do next without context."
+faq:
+  - question: 'What does TSS mean in cycling?'
+    answer: >-
+      TSS stands for Training Stress Score — a single number that combines
+      how long a ride was with how intense it was, relative to your FTP.
+      An hour ridden flat out at threshold scores 100 TSS by definition;
+      everything else scales up or down from that anchor based on duration
+      and intensity.
+  - question: 'What is a good TSS score for a ride?'
+    answer: >-
+      There's no universal good number — it depends entirely on what the
+      ride was for. A recovery spin might be 30-40 TSS, an endurance ride
+      80-150, a hard interval session 90-120, and a long sportive 250-350.
+      The right TSS is whatever matches the session's intended purpose.
+  - question: 'What is the difference between NP and average power?'
+    answer: >-
+      Average power is a simple mean across the whole ride. Normalised
+      Power weights harder surges more heavily to reflect the true
+      physiological cost of a variable effort. On a steady ride the two
+      numbers are close. On a stop-start group ride or a punchy race, NP
+      can run well above the simple average because it accounts for how
+      much harder variability makes a ride feel.
+  - question: 'Should I check my CTL every day?'
+    answer: >-
+      No. CTL is a 42-day rolling average, so it moves slowly by design —
+      a single ride barely shifts it. Checking it daily creates anxiety
+      without adding useful information. A weekly glance at the trend line
+      is enough to know whether your training is building, flat, or
+      declining.
+  - question: 'Is a negative TSB always bad?'
+    answer: >-
+      No — it's the expected, correct state during a training block.
+      Negative TSB means your recent fatigue (ATL) outweighs your longer-
+      term fitness (CTL), which is exactly what productive hard training
+      produces. It only becomes a problem if you try to race while deeply
+      negative, which is what a taper exists to fix.
+  - question: 'What is Intensity Factor and why does it matter?'
+    answer: >-
+      Intensity Factor (IF) is your Normalised Power divided by your FTP,
+      expressed as a decimal — an IF of 1.0 means you rode the whole
+      session at exactly your threshold. It's the number that turns raw
+      wattage into a comparable intensity figure across riders of
+      different fitness levels, and it's the intensity half of the TSS
+      calculation.
+relatedPosts:
+  - reading-your-training-data-tss-ctl-atl-tsb
+  - cycling-power-meter-guide
+  - power-meter-training-cyclists-how-to-use
+  - efficiency-factor-trainingpeaks-tracking
+  - cycling-taper-pmc-performance-management-chart
+  - wahoo-vs-garmin-cycling-computers
+relatedEpisodes:
+  - ep-2205-the-training-secret-to-going-faster-after-40-joe-friel
+  - ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler
+experts:
+  - name: Joe Friel
+    role: Co-founder of TrainingPeaks, author of The Cyclist's Training Bible
+    href: /guests/joe-friel
+  - name: Prof. Stephen Seiler
+    role: Sports scientist; polarised-training researcher
+    href: /guests/stephen-seiler
+---
+
+Open TrainingPeaks after a ride and you get a wall of letters. TSS. IF. NP. Scroll to the dashboard and there's a second wall: CTL, ATL, TSB, three coloured lines climbing and dipping against each other. Most riders glance at the top number, decide the ride was either "good" or "not that good," and close the app.
+
+That's a waste of data that's already been collected. None of these numbers are complicated once you strip the acronym away from the concept underneath it. This guide covers what each one actually measures, in plain English, which ones deserve a look after every ride versus once a week, and the misreadings that send otherwise sensible riders chasing a number instead of using it.
+
+**In this guide:**
+- [TSS — how demanding was the ride](#tss)
+- [IF — how hard, relative to your threshold](#if)
+- [NP — the honest average for a variable ride](#np)
+- [CTL — your fitness trend](#ctl)
+- [ATL — your fatigue trend](#atl)
+- [TSB — your form, and why negative isn't bad](#tsb)
+- [Daily numbers vs weekly numbers](#daily-vs-weekly)
+- [The misinterpretations that trip riders up](#misinterpretations)
+- [A five-minute weekly review](#weekly-review)
+
+---
+
+## TSS: How Demanding Was the Ride
+
+Training Stress Score answers one question: how much did that ride actually cost you, combining how long it was and how hard it was? It's the foundational unit almost everything else in this guide is built from.
+
+The anchor point is simple. One hour ridden flat out at your FTP — an all-out, sustainable-for-an-hour effort — scores exactly 100 TSS by definition. Everything else scales from there using both duration and intensity:
+
+- A 60-minute ride at 70% of FTP scores roughly 50 TSS.
+- A 90-minute ride at the same 70% intensity scores roughly 75 TSS — duration alone pushed it up.
+- A 4-hour Zone 2 ride at 65% intensity can score 170+ TSS — a long easy ride can out-score a short hard one.
+- A 60-minute VO2max interval session at a high intensity factor might land at 110-120 TSS.
+
+The value of TSS is that it lets you compare rides that feel completely different in the legs on one common scale. A gentle three-hour Sunday ride and a brutal 50-minute interval session might land at similar TSS despite feeling nothing alike — and that's useful information, not a contradiction. Duration and intensity are both real training stimuli; TSS is what happens when you let them share one number.
+
+**A note on accuracy.** TSS calculated from a calibrated power meter is reliable. TSS estimated from heart rate (TrainingPeaks calls this hrTSS) is roughly accurate — usually within 10-15% of the power-based figure for a trained rider — but drifts more on short, high-intensity efforts where heart rate lags behind the actual work. TSS estimated from perceived effort alone (duration multiplied by a subjective RPE score) is the roughest version, but it's still better than nothing if you're riding without a power meter or heart rate strap.
+
+The single biggest misuse of TSS: treating a bigger weekly total as automatically better. It isn't. TSS measures stress, not adaptation. A rider who stacks up 600 TSS in a week and crashes into illness has not out-trained the rider who held a sustainable 400. More on this in the misinterpretations section below.
+
+## IF: How Hard, Relative to Your Threshold
+
+Intensity Factor is the half of the TSS calculation that describes pure intensity, stripped of duration. It's your Normalised Power (see below) divided by your FTP, expressed as a decimal.
+
+An IF of 1.0 means you held exactly your threshold power for the whole effort — a properly hard, sustained hour. An IF of 0.65-0.75 is typical Zone 2 territory. An IF of 0.85-0.95 sits in the sweet spot to tempo range. Short, hard intervals can push IF above 1.0 for the interval itself, even though the ride's overall IF averages down once you include the warm-up and recovery.
+
+Why IF matters on its own, separate from TSS: it tells you how hard a ride was *relative to your own threshold*, which makes it comparable across riders of completely different fitness levels. A club racer's IF of 0.85 for a tempo ride and a World Tour rider's IF of 0.85 for the same style of session represent an equivalent relative demand, even though the absolute wattage numbers are worlds apart. Raw watts don't travel between riders. IF does.
+
+The practical use: check your planned IF against your actual IF after a session. If a threshold workout was supposed to land around 0.95 and you executed at 0.88, either the pacing was off or the day wasn't there — useful information either way, and something a plain average power number wouldn't tell you as cleanly.
+
+## NP: The Honest Average for a Variable Ride
+
+Normalised Power exists to solve a specific problem: a simple average power figure lies about variable efforts.
+
+Picture a group ride with surges, coasting on descents, and a few hard pulls on the front. The simple mathematical average of all that might read 180 watts. But your body didn't experience a steady 180 watts — it experienced repeated spikes to 350 watts followed by near-zero coasting, and that pattern is physiologically far more costly than a steady 180-watt effort of the same duration. Normalised Power accounts for this by weighting the harder surges more heavily in the calculation, producing a number that better reflects what the ride actually demanded of you.
+
+On a steady, controlled ride — a smooth Zone 2 spin or an even-paced time trial — NP and average power sit close together, often within a few watts. The gap opens up specifically on variable, punchy, stop-start rides: criteriums, hilly group rides, technical gravel. The bigger the gap between your average power and your NP on a given ride, the more variable that ride actually was — which is itself a useful diagnostic. A big NP-to-average gap on a ride you meant to be a steady endurance session is a sign the pacing wandered, whether that was terrain, group dynamics, or just not holding discipline.
+
+NP is also the number that feeds directly into IF and TSS — both use Normalised Power rather than the simple average, specifically because it's the more honest reflection of training cost.
+
+## CTL: Your Fitness Trend
+
+Chronic Training Load is a 42-day exponentially-weighted rolling average of your daily TSS. TrainingPeaks labels it "Fitness," and that's a reasonably fair shorthand — it's a rolling measure of how much daily training stress your body has been absorbing and adapting to over the last six weeks, with more recent days weighted slightly more heavily than older ones.
+
+The 42-day window isn't arbitrary. It approximates the timescale over which the body's aerobic and muscular adaptations to training actually accumulate. A single big ride barely moves it. Six weeks of consistent, appropriately loaded training moves it steadily. That slowness is the entire point — CTL can't be faked by one heroic weekend, and it doesn't collapse because of one missed week either.
+
+What a rising CTL tells you: your training load is trending upward over a meaningful stretch of time, which — assuming the load is appropriate and recoverable — usually means real fitness gains are accumulating underneath it. What CTL doesn't tell you: whether you're actually fresh enough to perform right now (that's TSB's job), or whether your intensity distribution within that load was sensible (a rider who built CTL entirely through grey-zone riding looks identical on this one line to a rider who built it through a proper 80/20 split).
+
+**Sustainable ramp rate.** Most coaches, including Joe Friel, treat a 4-6 TSS-per-week rise in CTL as sustainable for the average trained amateur. Push it to 8-10 per week and you're in aggressive territory that works for a short block but rarely holds. Beyond 10 per week, most riders crash into a fatigue spiral within two to three weeks. CTL gained slowly holds. CTL gained in a rush usually costs you the following month.
+
+## ATL: Your Fatigue Trend
+
+Acute Training Load is the short-window counterpart to CTL — a 7-day exponentially-weighted average of daily TSS, labelled "Fatigue" in TrainingPeaks. Same units, much shorter memory.
+
+Because the averaging window is just a week, ATL reacts fast. A Tuesday threshold session, a Thursday VO2max block and a big Saturday ride will show up in ATL by Sunday as a clear, sharp rise — your body is legitimately carrying real fatigue from that stretch. Take an easy week and ATL falls just as quickly, well before CTL has had time to notice the reduction.
+
+ATL is good for exactly one thing: showing you, in near-real-time, how much recent load your body is absorbing. It's not good for telling you whether tomorrow's session should be hard or easy in isolation — that call needs the relationship between ATL and CTL (which is TSB, below), plus how you're actually feeling.
+
+## TSB: Your Form, and Why Negative Isn't Bad
+
+Training Stress Balance is CTL minus ATL. TrainingPeaks calls it "Form," and of the three load metrics, it's the one that actually tells you something actionable in the moment.
+
+When TSB is negative, your recent fatigue (ATL) outweighs your longer-term fitness base (CTL). This is the normal, correct state during almost any productive training block — you can't build fitness without carrying some fatigue, and a build block that shows persistently positive TSB usually means you aren't training hard enough to drive adaptation. Riders new to reading their own data often panic the first time they see a deeply negative TSB number, assuming something has gone wrong. Usually nothing has. It means the training is working as intended.
+
+When TSB climbs positive, your fitness now outweighs your recent fatigue — the state you want walking into an event. This is what a taper is engineered to produce: cut volume while holding a little intensity, watch ATL fall fast while CTL barely moves, and the widening gap between the two lifts TSB into positive territory right as race day arrives.
+
+Rough guideposts most coaches use:
+
+- **+10 to +25:** race-fresh. The taper worked; fitness hasn't decayed enough to matter yet.
+- **-10 to -20:** productive overload. Most of a build block lives comfortably here.
+- **-20 to -30:** approaching the fatigue limit. Watch your RPE at given power outputs — if it's crept up, that's the signal to deload.
+- **Below -30:** diminishing returns. More training here typically degrades the fitness it's meant to build rather than adding to it.
+- **Above +30:** detraining territory. Fine, briefly, in race week itself. A problem if it persists outside of one.
+
+The arc of a well-run 12-week block usually shows a controlled negative TSB through base and build — typically -10 to -25 — tightening toward -25 to -30 in the single hardest week, then climbing steadily through a taper to land around +5 to +20 on race morning.
+
+## Daily Numbers vs Weekly Numbers
+
+Here's the practical grouping that saves you from either ignoring your data entirely or drowning in it.
+
+**Check after every ride: TSS, IF, and (on variable rides) the gap between NP and average power.** These tell you whether the session you just did matched what it was supposed to be. Planned a threshold workout at IF 0.95 and executed at 0.90? Useful to know. Planned an easy Zone 2 spin and your NP-to-average gap says it was choppier than intended? Also useful, and something the raw average alone wouldn't have shown you.
+
+**Check weekly: CTL, ATL, TSB.** These are rolling, slow-moving trend lines. A single ride doesn't meaningfully change any of them, so checking them daily just generates noise — a slightly different TSB reading Tuesday versus Wednesday tells you almost nothing on its own. A Sunday or Monday morning glance at the trend across the last few weeks tells you everything that actually matters: is CTL climbing at a sustainable rate, is TSB behaving the way this phase of your plan expects it to, does the shape of the last week match the plan.
+
+Riders who check the weekly numbers daily tend to develop a low-grade anxiety about numbers that were never designed to move quickly. Riders who check the daily numbers only weekly miss the chance to catch a badly executed session before the pattern repeats. Match the checking frequency to the metric's actual timescale and both problems disappear.
+
+## The Misinterpretations That Trip Riders Up
+
+**Treating TSS as a score to maximise.** The riders who chase the highest possible weekly TSS number are, almost without exception, the riders stuck in grey-zone riding — accumulating stress without the intensity distribution that actually produces adaptation. TSS measures load. It doesn't measure whether that load was well-structured.
+
+**Panicking at a negative TSB.** Covered above, but worth repeating because it's the single most common false alarm: negative TSB during training is correct, not a warning. It only becomes a genuine concern if it stays deeply negative (below roughly -30) for an extended stretch with no recovery week in sight, or if it coincides with actual physical warning signs — flat legs on efforts that should feel manageable, elevated resting heart rate, poor sleep.
+
+**Assuming a bigger CTL number is automatically better.** CTL is relative to the individual rider and their event, not a leaderboard. A CTL of 70 built sustainably over months, with recovery weeks intact, beats a CTL of 90 built through a reckless six-week spike that ends in illness or injury. The trend and the ramp rate matter more than the absolute figure.
+
+**Comparing your numbers to someone else's.** A friend's CTL of 85 means nothing about your own training unless you're comparing apples to apples on training history, event goals and recovery capacity. These metrics are built to track your own trend against your own baseline. Cross-rider comparison is close to meaningless.
+
+**Confusing NP with "real" power and average power with "fake" power.** Both are legitimate numbers measuring different things. NP is the better single figure for judging physiological cost on a variable ride. Average power is still useful for pacing steady efforts and time trials. Neither one is the lie — they just answer different questions.
+
+**Forgetting what none of this measures.** Sleep quality, life stress, illness, nutrition status — none of it shows up in TSS, CTL, ATL or TSB. A 100-TSS session after six hours of bad sleep costs your body more than the same 100-TSS session after a full night's rest, even though the metric reads identically. The numbers are a dashboard for training load. They are blind to everything else going on in your life, which is exactly why they need to be read alongside how you actually feel, not instead of it.
+
+## A Five-Minute Weekly Review
+
+The whole system earns its keep in about five minutes, once a week:
+
+1. **Look at the CTL trend.** Rising, flat, or falling — and does that match the phase of training you're supposed to be in?
+2. **Check TSB against the plan.** Productive negative through a build, climbing through a taper — is it behaving the way this week is supposed to look?
+3. **Skim last week's daily TSS and IF.** Were the hard days actually hard? Were the easy days actually easy, or did they quietly creep up?
+4. **Compare planned versus completed.** Did the week you executed match the week you intended, given whatever life actually threw at you?
+5. **Note anything outside the numbers.** Bad sleep, a heavy work week, a session that felt harder than the data suggests — flag it, because it should shape how you read next week's numbers too.
+
+That's the whole habit. The riders who do this consistently develop a noticeably sharper sense of where they sit in a season than the riders who only open the app after a session goes badly. The numbers aren't the training. The training is the hours, the structure, the recovery, the food. The numbers are just the instrument panel that tells you whether all of that is adding up the way you intended — and like any instrument panel, it's only useful if you glance at the right dial at the right time.
+
+If you're setting your zones for the first time or need to recalculate them before any of these numbers mean anything, start with the [FTP Zone Calculator](/tools/ftp-zones). And if you want the fuller field guide to reading the TrainingPeaks dashboard itself — screen by screen, with the taper arc mapped out in detail — [Reading Your Training Data: TSS, CTL, ATL & TSB](/blog/reading-your-training-data-tss-ctl-atl-tsb) goes deeper on the practical mechanics.
+
+None of this replaces a coach's judgment or your own honest read of how you're feeling. What it does is give both of those things something concrete to check themselves against — which, most weeks, is exactly the gap between a rider who's guessing and a rider who's training with a plan. If you want that plan built around your actual numbers instead of a generic template, [Not Done Yet](https://www.skool.com/roadmancycling) is where that happens.

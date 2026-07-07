@@ -16,6 +16,7 @@ import { crossTrainingAnswers } from "./answers-data/cross-training";
 import { metricsAnswers } from "./answers-data/metrics";
 import { trainingPhysiologyAnswers } from "./answers-data/training-physiology";
 import { wave3Answers } from "./answers-data/wave3";
+import { cyclingTechAnswers } from "./answers-data/cycling-tech";
 
 /**
  * Answer pages — citation-optimised, answer-first pages built to be lifted
@@ -54,7 +55,8 @@ export type AnswerCluster =
   | "mental"
   | "bikefit"
   | "heat"
-  | "cross-training";
+  | "cross-training"
+  | "cycling-tech";
 
 export interface AnswerWhoFor {
   /** Short audience label, e.g. "The plateaued club racer" */
@@ -213,6 +215,12 @@ export const ANSWER_CLUSTERS: { id: AnswerCluster; label: string; description: s
     label: "Running & Cross-Training",
     description:
       "Where running and cycling overlap — fitness transfer, injury cross-training, and training the two together.",
+  },
+  {
+    id: "cycling-tech",
+    label: "Cycling Tech & GPS",
+    description:
+      "Bike computers, GPS watches, power meters, and the metrics worth actually tracking.",
   },
 ];
 
@@ -1666,6 +1674,7 @@ export const ANSWER_PAGES: AnswerPage[] = [
   ...metricsAnswers,
   ...trainingPhysiologyAnswers,
   ...wave3Answers,
+  ...cyclingTechAnswers,
 ];
 
 const ANSWER_MAP = new Map(ANSWER_PAGES.map((a) => [a.slug, a]));

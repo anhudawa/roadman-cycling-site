@@ -631,6 +631,25 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
       "cycling to improve running",
     ],
   },
+  {
+    slug: "cycling-tech",
+    title: "Cycling Tech & GPS — Bike Computers, Watches & Power Meters",
+    headline: "THE DATA THAT ACTUALLY MATTERS",
+    ctaHeadline: "TRAINING BUILT ON YOUR ACTUAL DATA.",
+    description:
+      "The complete guide to cycling tech. Bike computers vs GPS watches, power meters, and the handful of metrics worth checking — cutting through the marketing to what actually moves your training.",
+    pillar: "coaching",
+    keywords: [
+      "cycling tech",
+      "best cycling computers 2026",
+      "gps watch cycling",
+      "wahoo vs garmin",
+      "power meter cycling",
+      "cycling metrics explained",
+      "bike computer vs watch",
+      "cycling data",
+    ],
+  },
 ];
 
 /** Map of topic slugs to relevant blog post slugs */
@@ -1402,6 +1421,18 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-commuting-runners",
     "bone-density-cycling-running-deep-dive",
   ],
+  "cycling-tech": [
+    "gps-watches-cycling-running-guide",
+    "wahoo-vs-garmin-cycling-computers",
+    "best-cycling-computers-2026",
+    "cycling-power-meter-guide",
+    "power-meter-training-cyclists-how-to-use",
+    "power-meter-training-plan-week-by-week",
+    "power-meter-vs-smart-trainer",
+    "uli-schoberer-first-power-meter-cycling-history",
+    "reading-your-training-data-tss-ctl-atl-tsb",
+    "cycling-metrics-explained",
+  ],
 };
 
 /** Cluster enrichment: tools, commercial path, related topics, featured posts, optional claim table */
@@ -1832,6 +1863,20 @@ const TOPIC_ENRICHMENT: Record<string, {
       "cycling-better-for-knees-than-running",
     ],
   },
+  "cycling-tech": {
+    tools: [
+      { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+      { slug: "hr-zones", title: "HR Zone Calculator", href: "/tools/hr-zones" },
+      { slug: "wkg", title: "W/kg Calculator", href: "/tools/wkg" },
+    ],
+    commercialPath: "/coaching",
+    relatedTopics: ["power-meter-training", "ftp-training", "cycling-training-plans"],
+    featuredPostSlugs: [
+      "best-cycling-computers-2026",
+      "wahoo-vs-garmin-cycling-computers",
+      "cycling-metrics-explained",
+    ],
+  },
 };
 
 /** Keyword patterns for matching episodes to topics */
@@ -1872,6 +1917,8 @@ const TOPIC_EPISODE_KEYWORDS: Record<string, RegExp> = {
     /run(?:ning)?.as.a.cyclist|cyclists?.{0,12}(?:should|start).{0,12}run|start.?running|running.for.cyclists|\bduathlon\b|\bmarathon\b|\btrail.?run|\bparkrun\b|running.(?:shoes?|plan|injur|form|gait)/i,
   "cycling-for-runners":
     /cycling.for.runners|runners?.{0,15}(?:turned|becom\w+|switch\w*|take.up|took.up).{0,12}(?:cycling|cyclist|the.bike)|from.runn(?:ing|er).to.(?:cycling|the.bike)|ex.?runner|former.runner|running.background|injur(?:ed|y).{0,20}cross.?train|cross.?train\w*.{0,20}(?:injur|runner)|\bduathlon\b/i,
+  "cycling-tech":
+    /garmin|wahoo|\bgps\b|bike computer|head unit|power meter|cycling computer|edge \d|elemnt|karoo|hammerhead|srm|stages power|quarq|smart trainer|tss|ctl|atl|tsb|normalised power|normalized power/i,
 };
 
 /**
@@ -2597,6 +2644,28 @@ const TOPIC_FAQS: Record<string, TopicFAQ[]> = {
       question: "How many times a week should a runner cycle?",
       answer:
         "Two to three rides of 45-90 minutes is the sweet spot for a healthy runner using cycling as a supplement — enough to add meaningful aerobic volume without eating into recovery from key run sessions. Keep most of it easy (conversational, Zone 2) and schedule rides on the days between hard runs, not before them. An injured runner can push that to four or five rides a week, since the bike is carrying the full aerobic load while the injury heals.",
+    },
+  ],
+  "cycling-tech": [
+    {
+      question: "Do I need a bike computer or is a watch enough for cycling?",
+      answer:
+        "A dedicated bike computer is worth it if you train with power or ride more than three times a week — it pairs directly with your power meter and sensors and shows the data you need mid-effort without competing for wrist space. A GPS watch covers casual riding fine, especially if you already use it for running.",
+    },
+    {
+      question: "What cycling metrics should I actually track?",
+      answer:
+        "Three matter for most riders: average power (or heart rate without a meter), cadence, and time in zone. Everything else — TSS, CTL, NP — is useful for a coach or a data-curious rider planning load, but these three tell you whether a session did its job.",
+    },
+    {
+      question: "Is Wahoo or Garmin better for cycling?",
+      answer:
+        "Wahoo tends to win on workout-execution simplicity; Garmin wins on mapping depth and multi-sport ecosystem breadth. Neither is wrong — the right pick depends on whether you ride structured intervals or explore unfamiliar routes more often.",
+    },
+    {
+      question: "Do I need a power meter to train properly?",
+      answer:
+        "No — heart rate and RPE built a lot of fast cyclists long before power meters existed. A power meter removes guesswork and is worth the cost once you're training with real structure, but it's an upgrade, not a prerequisite.",
     },
   ],
 };
