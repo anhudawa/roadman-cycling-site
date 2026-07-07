@@ -1802,6 +1802,7 @@ const TOPIC_ENRICHMENT: Record<string, {
     ],
     commercialPath: "/strength-training",
     relatedTopics: [
+      "cycling-for-runners",
       "cycling-strength-conditioning",
       "triathlon-cycling",
       "cycling-periodisation",
