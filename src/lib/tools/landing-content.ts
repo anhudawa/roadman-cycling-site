@@ -858,6 +858,82 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
       "Hydration estimate from body weight and ride duration",
     ],
   },
+
+  "run-ride-converter": {
+    slug: "run-ride-converter",
+    title: "Run↔Ride Equivalence Converter",
+    description:
+      "Convert a running pace or race time into an equivalent cycling FTP, or a bike FTP into equivalent running race times. Free tool using VO2max as the bridge.",
+    url: `${ROADMAN_BASE}/tools/run-ride-converter`,
+    breadcrumbName: "Run↔Ride Equivalence Converter",
+    answerSummary:
+      "Enter a running pace or race time and get an estimated cycling FTP in watts and W/kg, or enter your FTP and get estimated VDOT plus race time predictions for 5K through marathon. VO2max is the shared currency linking the two sports, with a correction factor for the lower VO2max readings typical of cycling tests.",
+    whatItDoes:
+      "This tool bridges running and cycling performance using VO2max as the common measure. Runners moving to the bike (injury, off-season, triathlon) get an estimated starting FTP instead of guessing. Cyclists picking up running get estimated race times instead of showing up to a 10K blind. Both directions include a training-load equivalence and a heart-rate comparison note, because effort doesn't translate 1:1 between the sports.",
+    whoItsFor: [
+      "Runners cross-training on the bike during an injury or off-season",
+      "Cyclists adding running for triathlon or general fitness",
+      "Coaches setting a sensible starting point for an athlete new to the other sport",
+      "Anyone curious how their running fitness stacks up against their cycling fitness, or vice versa",
+    ],
+    howItWorks:
+      "Running pace or race time is converted to VDOT using Jack Daniels' model — velocity becomes an oxygen cost, then adjusted for how long that pace can be sustained. Cycling FTP is converted to VO2max using a standard FTP-to-VO2max regression. A 0.92 correction factor links the two, because cycling VO2max tests typically read 5-8% lower than running VO2max tests for the same athlete. Training-load equivalence uses a 1.65x duration scale between easy cycling and easy running.",
+    howToSteps: [
+      { name: "Pick a direction", text: "Choose Run → Ride if you're converting running fitness to an estimated bike FTP, or Ride → Run if you're converting FTP to estimated running performance." },
+      { name: "Enter your weight", text: "Body weight in kg or lbs — needed to convert between VO2max and FTP in either direction." },
+      { name: "Enter your running or cycling number", text: "For Run → Ride: a pace (min/km or min/mile) or a race time at 5K, 10K, half marathon or marathon. For Ride → Run: your FTP in watts." },
+      { name: "Read the equivalent numbers", text: "You'll get an estimated FTP or VDOT, race time predictions, an easy-effort description, a training-load equivalence, and a heart-rate comparison note." },
+    ],
+    howToTotalTime: "PT2M",
+    limitations:
+      "This tool estimates aerobic-capacity transfer between two different sports — it can't account for running economy, cycling efficiency, bike fit, neuromuscular skill, or terrain. Two athletes with identical VO2max numbers can have meaningfully different race times or FTP. The 0.92 cycling correction factor and 1.65x duration scale are coaching approximations, not physiological constants. Treat every output here as a rough guide for programming cross-training, not a precise prediction.",
+    whenToSeeACoach:
+      "If you're using this to plan a serious cross-training block — injury rehab, off-season bike focus, or a first triathlon — a coach can build the actual week around your real numbers rather than an estimate, and adjust as your body responds.",
+    examples: [
+      {
+        scenario: "Runner, 70kg, converting a 10K time to bike FTP",
+        inputs: ["Weight: 70kg", "10K: 45:00"],
+        output: "Estimated FTP around 230-250W (roughly 3.3-3.6 W/kg), with an equivalent easy-ride description and a training-load note.",
+      },
+      {
+        scenario: "Cyclist, 75kg, converting FTP to running times",
+        inputs: ["Weight: 75kg", "FTP: 250W"],
+        output: "Estimated VDOT in the mid-40s, with predicted 5K, 10K, half marathon and marathon times and an equivalent easy running pace.",
+      },
+    ],
+    faqs: [
+      {
+        question: "How accurate is a run-to-bike FTP conversion?",
+        answer: "It's a starting-point estimate, not a precise prediction. VO2max transfers reasonably well between running and cycling, but running economy and cycling efficiency are separate skills that vary a lot between athletes. Use the output as a first FTP to train from, then retest on the bike after a few weeks.",
+      },
+      {
+        question: "Why is cycling VO2max usually lower than running VO2max?",
+        answer: "Cycling recruits less total muscle mass than running — no upper body involvement, less core and stabiliser demand — so the same athlete typically posts a VO2max reading 5-8% lower on a bike test than on a treadmill test. This tool applies a 0.92 correction factor to account for that gap.",
+      },
+      {
+        question: "Why does cycling heart rate run lower than running heart rate?",
+        answer: "At an equivalent physiological effort, cycling heart rate is typically 5-10 bpm lower than running heart rate, mainly because there's no impact loading and less total muscle mass working against gravity. Don't apply your running heart-rate zones directly to the bike, or vice versa.",
+      },
+      {
+        question: "Can I use this to plan a cross-training week?",
+        answer: "Yes, as a rough guide. The training-load equivalence uses a 1.65x duration scale — an easy ride can typically run about 65% longer than an easy run for similar aerobic cost, reflecting lower impact stress on the bike. Start conservative and adjust based on how your body responds.",
+      },
+    ],
+    related: [
+      { label: "FTP Zone Calculator", href: "/tools/ftp-zones", kind: "tool" },
+      { label: "Heart-Rate Zone Calculator", href: "/tools/hr-zones", kind: "tool" },
+      { label: "W/kg Calculator", href: "/tools/wkg", kind: "tool" },
+      { label: "Race Time Predictor", href: "/tools/race-predictor", kind: "tool" },
+      { label: "FTP training topic hub", href: "/topics/ftp-training", kind: "topic" },
+    ],
+    webAppFeatures: [
+      "Two-way conversion — running to cycling and cycling to running",
+      "VDOT-based race time predictions for 5K through marathon",
+      "Estimated FTP and W/kg from running pace or race time",
+      "Training-load equivalence between easy rides and easy runs",
+      "Heart-rate comparison note between the two sports",
+    ],
+  },
 };
 
 /** Helper for components that look up a tool by slug. */

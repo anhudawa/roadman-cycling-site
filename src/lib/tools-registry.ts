@@ -90,6 +90,13 @@ export const TOOLS: ToolEntry[] = [
     pillar: "coaching",
     inputs: ["riderWeight", "bikeWeight", "power", "distance", "elevation", "crr", "cda"],
   },
+  {
+    slug: "run-ride-converter",
+    title: "Run↔Ride Equivalence Converter",
+    description:
+      "Convert between running pace and cycling power. Estimates equivalent efforts across both sports using VO2max as the bridge.",
+    pillar: "coaching",
+  },
 ];
 
 export function getAllTools(): ToolEntry[] {
