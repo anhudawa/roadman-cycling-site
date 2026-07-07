@@ -5,51 +5,32 @@ interface DiscussionCTAProps {
 }
 
 /**
- * "Discuss this module in Not Done Yet" CTA. Each module can carry a
- * specific Skool thread URL; if it doesn't, falls back to the community
- * URL configured via env (METHOD_NDY_DISCUSSION_URL).
+ * Live home of the Not Done Yet community on Skool. Used site-wide (see
+ * brand-facts.ts, ask/cta.ts, the /community pages). This is the floor the
+ * Discuss CTA always lands on, so a paying member is never shown a dead or
+ * "coming soon" community link.
+ */
+const NDY_COMMUNITY_URL =
+  "https://www.skool.com/roadmancycling?utm_source=method&utm_medium=module&utm_campaign=discuss";
+
+/**
+ * "Discuss this module in Not Done Yet" CTA.
  *
- * If neither a per-module thread nor the env fallback is set, we still
- * render an intentional card — a "threads land here soon" coming-soon
- * with the same visual weight as the live state, so the layout never
- * feels half-shipped.
+ * Target precedence:
+ *   1. A module-specific Skool thread (`url`, from `module.discussionUrl`)
+ *   2. An env-configured community/thread link (`METHOD_NDY_DISCUSSION_URL`)
+ *   3. The live Not Done Yet community home (always set)
+ *
+ * When we have a specific thread (1 or an explicit env thread) the copy
+ * invites the member to open *the thread*; when we fall through to the
+ * community home the copy honestly points them into the community to post,
+ * rather than implying a dedicated Module-N thread already exists.
  */
 export function DiscussionCTA({ moduleTitle, weekIndex, url }: DiscussionCTAProps) {
-  const fallback = process.env.METHOD_NDY_DISCUSSION_URL;
-  const target = url ?? fallback ?? null;
+  const envThread = process.env.METHOD_NDY_DISCUSSION_URL?.trim() || null;
+  const specificThread = url ?? envThread;
+  const target = specificThread ?? NDY_COMMUNITY_URL;
   const week = weekIndex.toString().padStart(2, "0");
-
-  if (!target) {
-    return (
-      <section className="relative overflow-hidden rounded-xl border border-white/10 bg-charcoal/60 p-5">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -bottom-12 -right-12 h-32 w-32 rounded-full bg-deep-purple/40 blur-3xl"
-        />
-        <div className="relative">
-          <h2 className="font-heading uppercase tracking-wider text-sm text-coral mb-2">
-            Discuss · Not Done Yet
-          </h2>
-          <p className="text-sm text-foreground-muted mb-4 leading-relaxed">
-            The Module {week} thread opens inside the community soon —
-            compare notes on{" "}
-            <span className="text-off-white">{moduleTitle}</span> with the rest
-            of the cohort.
-          </p>
-          <span className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-charcoal/80 px-4 py-2 font-heading uppercase tracking-wider text-foreground-muted text-sm">
-            <span
-              aria-hidden
-              className="relative flex h-1.5 w-1.5"
-            >
-              <span className="absolute inset-0 motion-safe:animate-ping rounded-full bg-coral/60" />
-              <span className="relative h-1.5 w-1.5 rounded-full bg-coral" />
-            </span>
-            Threads coming soon
-          </span>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section className="relative overflow-hidden rounded-xl border border-white/10 bg-charcoal/60 p-5">
@@ -62,9 +43,20 @@ export function DiscussionCTA({ moduleTitle, weekIndex, url }: DiscussionCTAProp
           Discuss in Not Done Yet
         </h2>
         <p className="text-sm text-foreground-muted mb-4">
-          Compare notes on Module {week} —{" "}
-          <span className="text-off-white">{moduleTitle}</span> — with the rest of
-          the cohort.
+          {specificThread ? (
+            <>
+              Compare notes on Module {week} —{" "}
+              <span className="text-off-white">{moduleTitle}</span> — with the
+              rest of the cohort.
+            </>
+          ) : (
+            <>
+              Working through Module {week} —{" "}
+              <span className="text-off-white">{moduleTitle}</span>? Post your
+              numbers, ask the questions, and see how the rest of the cohort is
+              getting on.
+            </>
+          )}
         </p>
         <a
           href={target}
@@ -72,7 +64,7 @@ export function DiscussionCTA({ moduleTitle, weekIndex, url }: DiscussionCTAProp
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-md border border-coral/40 bg-coral/10 hover:bg-coral/15 px-4 py-2 font-heading uppercase tracking-wider text-coral text-sm transition-all active:scale-[0.97]"
         >
-          Open the thread →
+          {specificThread ? "Open the thread →" : "Open Not Done Yet →"}
         </a>
       </div>
     </section>
