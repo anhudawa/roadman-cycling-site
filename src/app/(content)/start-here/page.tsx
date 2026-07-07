@@ -4,6 +4,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS } from "@/lib/brand-facts";
+import { TestimonialStrip } from "@/components/proof";
 
 export const metadata: Metadata = {
   title: "Start Here — New to Roadman Cycling?",
@@ -72,6 +73,59 @@ const PILLARS = [
   },
 ];
 
+interface PersonaPathLink {
+  label: string;
+  href: string;
+}
+
+interface PersonaPath {
+  label: string;
+  desc: string;
+  links: PersonaPathLink[];
+}
+
+/**
+ * Self-selection routing — four common visitor intents, each pointing at
+ * the 2-3 highest-relevance destinations on the site. Keeps this page
+ * useful as a "front door" for cold traffic that doesn't know where to
+ * start, without duplicating the pillar/essential-reading sections above.
+ */
+const PERSONA_PATHS: PersonaPath[] = [
+  {
+    label: "I'm a cyclist who wants to get faster",
+    desc: "Start with the coaching system, test your FTP, or take the four-minute diagnostic to find out exactly what's holding your numbers back.",
+    links: [
+      { label: "Cycling Coaching Hub", href: "/topics/cycling-coaching" },
+      { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+      { label: "Take the Plateau Diagnostic", href: "/go" },
+    ],
+  },
+  {
+    label: "I'm a runner adding cycling",
+    desc: "Cycling builds aerobic fitness without the impact stress of running. Here's how to add it properly, plus a tool to translate your running numbers onto the bike.",
+    links: [
+      { label: "Cycling for Runners Hub", href: "/topics/cycling-for-runners" },
+      { label: "Run ↔ Ride Converter", href: "/tools/run-ride-converter" },
+    ],
+  },
+  {
+    label: "I'm a cyclist who wants to start running",
+    desc: "Running off the bike, done right, builds bone density and a different kind of engine. Here's the evidence-based way in without wrecking your legs.",
+    links: [
+      { label: "Running for Cyclists Hub", href: "/topics/running-for-cyclists" },
+    ],
+  },
+  {
+    label: "I want to understand my numbers",
+    desc: "FTP, heart rate zones, bike computers, power meters — what actually matters and what's just marketing. Start here before you buy anything.",
+    links: [
+      { label: "Cycling Tech & GPS Hub", href: "/topics/cycling-tech" },
+      { label: "HR Zone Calculator", href: "/tools/hr-zones" },
+      { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+    ],
+  },
+];
+
 export default function StartHerePage() {
   return (
     <>
@@ -119,8 +173,48 @@ export default function StartHerePage() {
           </Container>
         </Section>
 
-        {/* About Roadman & Anthony */}
+        {/* Persona routing — self-selection for new visitors */}
         <Section background="charcoal">
+          <Container>
+            <ScrollReveal direction="up" className="text-center mb-10">
+              <p className="text-coral font-heading text-sm tracking-widest mb-4">
+                WHICH ONE IS YOU?
+              </p>
+              <h2 className="font-heading text-off-white" style={{ fontSize: "var(--text-section)" }}>
+                FIND YOUR STARTING POINT
+              </h2>
+            </ScrollReveal>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+              {PERSONA_PATHS.map((path, i) => (
+                <ScrollReveal key={path.label} direction="up" delay={i * 0.05}>
+                  <Card className="h-full p-6 md:p-7">
+                    <h3 className="font-heading text-off-white text-lg mb-2">
+                      {path.label}
+                    </h3>
+                    <p className="text-foreground-muted text-sm leading-relaxed mb-4">
+                      {path.desc}
+                    </p>
+                    <ul className="space-y-2">
+                      {path.links.map((link) => (
+                        <li key={link.href}>
+                          <Link
+                            href={link.href}
+                            className="text-coral hover:text-coral/80 text-sm transition-colors"
+                          >
+                            {link.label} →
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </Card>
+                </ScrollReveal>
+              ))}
+            </div>
+          </Container>
+        </Section>
+
+        {/* About Roadman & Anthony */}
+        <Section background="deep-purple" grain>
           <Container width="narrow">
             <ScrollReveal direction="up" className="text-center mb-10">
               <p className="text-coral font-heading text-sm tracking-widest mb-4">
@@ -155,7 +249,7 @@ export default function StartHerePage() {
         </Section>
 
         {/* Five Pillars */}
-        <Section background="deep-purple" grain>
+        <Section background="charcoal">
           <Container>
             <ScrollReveal direction="up" className="text-center mb-10">
               <p className="text-coral font-heading text-sm tracking-widest mb-4">
@@ -179,7 +273,7 @@ export default function StartHerePage() {
         </Section>
 
         {/* Essential Reading */}
-        <Section background="charcoal">
+        <Section background="deep-purple" grain>
           <Container>
             <ScrollReveal direction="up" className="text-center mb-10">
               <p className="text-coral font-heading text-sm tracking-widest mb-4">
@@ -205,7 +299,7 @@ export default function StartHerePage() {
         </Section>
 
         {/* Podcast */}
-        <Section background="deep-purple" grain>
+        <Section background="charcoal">
           <Container width="narrow" className="text-center">
             <ScrollReveal direction="up">
               <p className="text-coral font-heading text-sm tracking-widest mb-4">
@@ -223,6 +317,15 @@ export default function StartHerePage() {
               <Button href="/podcast" size="lg">
                 Browse Episodes
               </Button>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
+        {/* Social proof — verified member quotes via TestimonialStrip (member-reviews.ts) */}
+        <Section background="deep-purple" grain>
+          <Container>
+            <ScrollReveal direction="up">
+              <TestimonialStrip subheading="Riders who stopped guessing and plugged into the system." />
             </ScrollReveal>
           </Container>
         </Section>

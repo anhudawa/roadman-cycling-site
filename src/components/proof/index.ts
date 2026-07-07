@@ -4,3 +4,4 @@ export { TestimonialBlock } from "./TestimonialBlock";
 export { CoachingCTA } from "./CoachingCTA";
 export { ProofModule } from "./ProofModule";
 export { SocialProof } from "./SocialProof";
+export { TestimonialStrip } from "./TestimonialStrip";

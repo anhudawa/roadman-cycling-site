@@ -17,7 +17,9 @@ import { ReadingProgress } from "@/components/features/diagnostic/ReadingProgres
 import { StickyCta } from "@/components/features/diagnostic/StickyCta";
 import { SuccessBanner } from "@/components/features/diagnostic/SuccessBanner";
 import { AskRoadmanHandoff } from "@/components/features/diagnostic/AskRoadmanHandoff";
+import { ContentRecommendations } from "@/components/features/diagnostic/ContentRecommendations";
 import type { Breakdown, Profile } from "@/lib/diagnostic/types";
+import type { QuizOutcomeId } from "@/lib/quiz-content-map";
 import { getTestimonialsByName, type Testimonial } from "@/lib/testimonials";
 
 /**
@@ -129,6 +131,13 @@ export default async function DiagnosticResultsPage({
     getTestimonialsByName(testimonialNames);
 
   const seasonLine = seasonUrgencyLine(new Date());
+
+  // Maps this result onto the quiz-content recommendation map — see
+  // src/lib/quiz-content-map.ts for why this diagnostic's four scored
+  // profiles (not generic plateau/injury/nutrition buckets) are the keys.
+  const contentOutcome: QuizOutcomeId = isCloseToBreakthrough
+    ? "closeToBreakthrough"
+    : submission.primaryProfile;
 
   return (
     <>
@@ -272,6 +281,13 @@ export default async function DiagnosticResultsPage({
             </ol>
           </Container>
         </Section>
+
+        {/* ── Keep reading ───────────────────────────── */}
+        {/* Content recommendations keyed off this result's outcome — see
+            src/lib/quiz-content-map.ts. Sits right after the three-step
+            fix so a rider who wants to read before they buy has
+            somewhere concrete to go. */}
+        <ContentRecommendations outcome={contentOutcome} />
 
         {/* ── Why alone ──────────────────────────────── */}
         <Section background="deep-purple" grain>

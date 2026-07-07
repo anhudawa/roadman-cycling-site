@@ -135,6 +135,25 @@ export const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
+    // Highest-value topic hubs by mapped-post count (see src/lib/topics.ts
+    // TOPIC_POST_MAP), plus the two cross-training hubs and Cycling Tech &
+    // GPS called out explicitly in the content-hub nav brief. "Topic Hubs"
+    // in the Learn dropdown above still links to the full /topics index —
+    // this dropdown is a shortcut to the 8 biggest/most relevant hubs.
+    label: "Topics",
+    href: "/topics",
+    children: [
+      { label: "Training Plans", href: "/topics/cycling-training-plans" },
+      { label: "Cycling Coaching", href: "/topics/cycling-coaching" },
+      { label: "Masters Cycling", href: "/topics/masters-cycling" },
+      { label: "Cycling Nutrition", href: "/topics/cycling-nutrition" },
+      { label: "FTP Training", href: "/topics/ftp-training" },
+      { label: "Running for Cyclists", href: "/topics/running-for-cyclists" },
+      { label: "Cycling for Runners", href: "/topics/cycling-for-runners" },
+      { label: "Cycling Tech & GPS", href: "/topics/cycling-tech" },
+    ],
+  },
+  {
     label: "Tools",
     href: "/tools",
     children: [
