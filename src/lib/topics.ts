@@ -1389,6 +1389,18 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "supplements-endurance-cyclist-runner",
     "running-vs-cycling-fitness-transfer",
     "zone-2-running-vs-cycling-heart-rate",
+    "best-bikes-for-runners-buying-guide",
+    "bike-fit-guide-runners",
+    "cycling-group-rides-guide-runners",
+    "indoor-cycling-cross-training-runners",
+    "cycling-for-marathon-training",
+    "recovery-rides-for-runners",
+    "how-cycling-improves-running-performance",
+    "duathlon-training-guide-beginners",
+    "cycling-vs-running-weight-loss",
+    "cycling-cadence-guide-runners",
+    "cycling-commuting-runners",
+    "bone-density-cycling-running-deep-dive",
   ],
 };
 
