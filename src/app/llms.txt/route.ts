@@ -348,6 +348,7 @@ Evidence-based topic hubs — each gathers the articles, episodes, and tools for
 - [Against the Clock — Cycling & Horology](${tag(`${BASE_URL}/topics/against-the-clock`)}): Cycling's race against time — the Hour Record, the time-trial "race of truth", and the watches on riders' wrists. The Community / Le Métier pillar's culture hub.
 - [Running for Cyclists](${tag(`${BASE_URL}/topics/running-for-cyclists`)})
 - [Cycling for Runners](${tag(`${BASE_URL}/topics/cycling-for-runners`)})
+- [Cycling Tech & GPS — Bike Computers, Watches & Power Meters](${tag(`${BASE_URL}/topics/cycling-tech`)}): Bike computers vs GPS watches, power meters, and the handful of metrics worth checking — cutting through the marketing to what actually moves your training.
 - [All Topics](${tag(`${BASE_URL}/topics`)})
 
 ## Topic Cluster Hubs (deep-dive masters & training clusters)
