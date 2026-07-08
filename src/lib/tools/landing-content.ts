@@ -934,6 +934,91 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
       "Heart-rate comparison note between the two sports",
     ],
   },
+
+  "power-speed": {
+    slug: "power-speed",
+    title: "Power↔Speed Calculator",
+    description:
+      "Convert between cycling power and speed using real physics. Gradient, wind, riding position, rolling resistance, altitude — see exactly what your watts buy you on any road.",
+    url: `${ROADMAN_BASE}/tools/power-speed`,
+    breadcrumbName: "Power↔Speed Calculator",
+    answerSummary:
+      "Enter your power in watts and the calculator returns your speed in km/h and mph, or enter a target speed and get the watts required. The model accounts for gradient, rider + bike mass, aerodynamic drag (CdA by position), rolling resistance (Crr by surface), wind, altitude-adjusted air density, and drivetrain efficiency.",
+    whatItDoes:
+      "This calculator solves the standard cycling power equation in both directions. Give it watts and it tells you how fast you go; give it a speed and it tells you what that costs. The physics covers gravity, rolling resistance, and aero drag — the three forces that determine your speed for a given power output. Preset scenarios for Alpe d'Huez, Mont Ventoux, a flat TT, and a rolling sportive let you compare instantly.",
+    whoItsFor: [
+      "Riders setting realistic speed targets for a time trial, sportive, or training ride",
+      "Cyclists quantifying how much speed a position change, lighter wheelset, or tyre upgrade buys",
+      "Anyone who wants to know what their FTP actually means on a specific gradient",
+      "Self-coached athletes comparing power-to-speed across flat, climbing, and windy conditions",
+    ],
+    howItWorks:
+      "The engine solves P = v × (m·g·sin(θ) + m·g·Crr·cos(θ) + 0.5·ρ·CdA·v²) / η. For Power → Speed, Newton-Raphson iterates to find the velocity where total resistive power matches your input. For Speed → Power, the equation is solved directly. Wind speed is added to rider velocity for the aero term. Air density adjusts with altitude using the International Standard Atmosphere barometric formula.",
+    howToSteps: [
+      { name: "Choose a direction", text: "Power → Speed if you want to know how fast your watts take you, or Speed → Power if you have a target pace and want to know the cost in watts." },
+      { name: "Enter rider and bike weight", text: "Body weight in kg or lbs; bike weight in kg. Total system mass drives the gravity and rolling-resistance terms." },
+      { name: "Set gradient", text: "0% for flat, positive for climbs, negative for descents. Range: -20% to 25%." },
+      { name: "Optionally open advanced settings", text: "Choose a riding position (sets CdA), surface type (sets Crr), add wind speed (negative for tailwind), and set altitude to adjust air density. Sensible defaults are already loaded." },
+      { name: "Read the result", text: "You get speed in km/h and mph (or watts and W/kg), a force-breakdown bar showing gravity, rolling, and aero drag percentages, a contextual comparison, and links to deeper tools." },
+    ],
+    howToTotalTime: "PT2M",
+    limitations:
+      "CdA values are representative estimates for typical riders — wind tunnel or velodrome aero testing gives precise numbers, and individual CdA can vary by 15-20% within a position category depending on body shape, helmet, and clothing. The model assumes constant speed, still air (unless wind is entered), and no drafting. On descents, the model does not cap speed — real-world braking, cornering, and terminal velocity limits apply. Rolling resistance varies with tyre pressure, temperature, and casing quality beyond what the surface preset captures.",
+    whenToSeeACoach:
+      "If you can see the speed you want but cannot hold the power to get there — or if you are producing the watts but still missing the target — the gap is pacing, position, or how you structure your training week. That is where coaching beats another calculator.",
+    examples: [
+      {
+        scenario: "Strong amateur, flat road, hoods position",
+        inputs: ["Power: 250W", "Rider: 75kg", "Bike: 8kg", "Gradient: 0%", "Position: hoods"],
+        output: "About 36.5 km/h (22.7 mph). Aero drag accounts for roughly 85% of resistive force on the flat.",
+      },
+      {
+        scenario: "Same rider, Alpe d'Huez preset",
+        inputs: ["Power: 250W", "Rider: 75kg", "Bike: 8kg", "Gradient: 8.1%", "Position: hoods", "Altitude: 1100m"],
+        output: "About 11.5 km/h (7.1 mph). Gravity takes over 85% of resistance. That is roughly 5:13 per kilometre.",
+      },
+    ],
+    faqs: [
+      {
+        question: "How fast does 200 watts go on a bike?",
+        answer: "On a flat road at sea level with a 75kg rider on the hoods, 200W gives roughly 31-32 km/h (19-20 mph). Add a 5% gradient and the same 200W drops to about 13 km/h. The answer always depends on gradient, wind, position, weight, and rolling resistance — which is exactly what this calculator models.",
+      },
+      {
+        question: "How many watts to hold 40 km/h on a flat road?",
+        answer: "For a 75kg rider on the hoods (CdA 0.35 m²) with a road bike on smooth tarmac, roughly 280-300W depending on wind and exact position. Switch to drops (CdA 0.32) and it drops to around 250-265W. Switch to aero bars (CdA 0.27) and it is closer to 210-225W. Position is the biggest lever on the flat.",
+      },
+      {
+        question: "Does CdA matter more than weight?",
+        answer: "On flat roads and gentle gradients (under 3-4%), CdA dominates — a 10% CdA reduction saves more watts than a 10% weight reduction. On steep climbs (8%+), weight dominates because gravity is the primary force. The force breakdown bar in this calculator shows you exactly where your watts go for any scenario.",
+      },
+      {
+        question: "How accurate are the CdA values in this calculator?",
+        answer: "They are representative averages. Real CdA varies with body shape, clothing, helmet, and subtle position differences — two riders both \"on the hoods\" can differ by 0.03-0.05 m² easily. A wind tunnel or velodrome Chung method test gives precise numbers. Use these values for comparison and planning; test for precision.",
+      },
+      {
+        question: "Why does altitude make me faster?",
+        answer: "Air density drops with altitude — roughly 3% per 300m of elevation. Lower density means less aerodynamic drag, which matters most on flat roads and descents. At 1,500m, air density is about 13% lower than sea level. The trade-off is reduced oxygen availability, which limits your sustainable power — this calculator does not model that physiological effect.",
+      },
+      {
+        question: "What is the effect of wind on cycling speed?",
+        answer: "A 15 km/h headwind at 35 km/h roughly doubles the aerodynamic force you face, because the aero term depends on the square of air speed relative to the rider (35 + 15 = 50 km/h airspeed vs 35 km/h in still air). Tailwinds help less than headwinds hurt, because you spend more time riding into the wind on an out-and-back route. Enter wind speed in the advanced settings to quantify the difference.",
+      },
+    ],
+    related: [
+      { label: "Race Time Predictor", href: "/tools/race-predictor", kind: "tool" },
+      { label: "W/kg Calculator", href: "/tools/wkg", kind: "tool" },
+      { label: "FTP Zone Calculator", href: "/tools/ftp-zones", kind: "tool" },
+      { label: "FTP training topic hub", href: "/topics/ftp-training", kind: "topic" },
+    ],
+    webAppFeatures: [
+      "Two-way conversion — watts to speed and speed to watts",
+      "Gradient, wind, riding position, and surface presets",
+      "Altitude-adjusted air density (ISA barometric formula)",
+      "Force breakdown showing gravity, rolling, and aero drag percentages",
+      "Preset scenarios for Alpe d'Huez, Ventoux, flat TT, and rolling sportive",
+      "Newton-Raphson solver for the full cycling power equation",
+    ],
+  },
 };
 
 /** Helper for components that look up a tool by slug. */

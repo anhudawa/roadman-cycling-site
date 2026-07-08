@@ -97,6 +97,30 @@ export const TOOLS: ToolEntry[] = [
       "Convert between running pace and cycling power. Estimates equivalent efforts across both sports using VO2max as the bridge.",
     pillar: "coaching",
   },
+  {
+    slug: "tss",
+    title: "TSS Calculator",
+    description:
+      "Training Stress Score from ride duration, power, and FTP — with recovery benchmarks and training load interpretation.",
+    pillar: "coaching",
+    inputs: ["duration", "power", "ftp"],
+  },
+  {
+    slug: "vo2max",
+    title: "VO2max Estimator",
+    description:
+      "Estimate your VO2max from ramp test peak power or FTP — with age-adjusted percentiles and masters benchmarks.",
+    pillar: "coaching",
+    inputs: ["power", "weight", "age", "gender"],
+  },
+  {
+    slug: "power-speed",
+    title: "Power↔Speed Calculator",
+    description:
+      "Convert between cycling power and speed. Physics-based model with gradient, wind, position, and rolling resistance — see exactly what your watts buy you.",
+    pillar: "coaching",
+    inputs: ["power", "weight", "gradient", "cda", "crr"],
+  },
 ];
 
 export function getAllTools(): ToolEntry[] {

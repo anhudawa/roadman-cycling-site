@@ -303,6 +303,9 @@ ${answersClusterBlock}
 - [Cycling Fuel Planner](${tag(`${BASE_URL}/tools/fuel-planner`)}): Daily calorie target, carb/protein/fat split, and in-ride carbs and hydration for the ride you're doing. Built on fuel-for-the-work-required; free, no signup, with an optional gated 12-week carb-load plan.
 - [Race Time Predictor (quick estimate)](${tag(`${BASE_URL}/tools/race-predictor`)}): Physics-based finish-time estimate from FTP, weight, distance, elevation, surface, and riding position. The full GPX-driven split-by-split simulator lives at /predict.
 - [Run↔Ride Converter](${tag(`${BASE_URL}/tools/run-ride-converter`)}): VDOT-based translation of running fitness into cycling terms and back — pace to power, session to session.
+- [TSS Calculator](${tag(`${BASE_URL}/tools/tss`)}): Training Stress Score from ride duration, power, and FTP — with recovery benchmarks and training load interpretation.
+- [VO2max Estimator](${tag(`${BASE_URL}/tools/vo2max`)}): Estimate VO2max from ramp test peak power or FTP — with age-adjusted percentiles and masters benchmarks.
+- [Power↔Speed Calculator](${tag(`${BASE_URL}/tools/power-speed`)}): Physics-based conversion between cycling power and speed with gradient, wind, position, and rolling resistance.
 
 ## Interactive Guides
 - [Ask Roadman](${tag(`${BASE_URL}/ask`)}): On-site cycling performance assistant grounded in ${BRAND_STATS.episodeCountLabel} Roadman Cycling Podcast conversations (${BRAND_STATS.podcastDownloadsLabel} lifetime downloads). Streamed, cited answers on training, fuelling, recovery, strength, and event prep.
