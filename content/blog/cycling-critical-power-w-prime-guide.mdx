@@ -1,0 +1,188 @@
+---
+title: "Critical Power and W': The Model That Explains What FTP Cannot"
+seoTitle: "Critical Power and W' Explained — Cycling Guide"
+seoDescription: "What critical power and W' mean for cyclists. How to test CP, track W'bal during races, and use the model to train and race smarter than FTP alone allows."
+excerpt: "FTP tells you where your engine sits at threshold. Critical power and W' tell you how hard you can go above it, for how long, and exactly when you are about to blow up."
+pillar: "coaching"
+primaryHub: "cycling-coaching"
+author: "anthony-walsh"
+publishDate: "2026-07-10"
+keyTakeaways:
+  - "Critical power is the highest power output you can sustain without a progressive accumulation of fatigue metabolites — it is the true boundary between steady-state and non-steady-state exercise. FTP, by contrast, is an estimate of the power you can hold for roughly one hour. CP is typically 3-8% higher than FTP, and conflating the two leads to misjudged pacing and inaccurate training zones."
+  - "W' (W-prime) is your finite anaerobic work capacity above critical power, measured in kilojoules. Think of it as a battery. Every second you spend above CP drains the battery. When it reaches zero, you are finished — your power drops to CP or below regardless of motivation. The size of your W' determines how many hard efforts you can make before that happens."
+  - "The 3-minute all-out test, developed by Vanhatalo and colleagues, provides both CP and W' from a single maximal effort. After a thorough warm-up, you ride as hard as you can for three minutes. Your CP is the average power of the final 30 seconds; your W' is the total work done above that value. It is brutal, but it is valid and repeatable."
+  - "W'bal (W-prime balance) tracks your remaining anaerobic capacity in real time during a ride. When W'bal approaches zero, you are about to blow up. When you ride below CP, W'bal recharges — but the reconstitution rate varies between individuals and slows with accumulated fatigue. Garmin and Wahoo head units can display W'bal if you configure CP and W' in the settings."
+  - "In racing, CP and W' explain outcomes that FTP cannot. Two riders with identical FTPs can have very different race results because one has a larger W' (more capacity for attacks and surges) or a higher CP relative to FTP (more headroom above threshold). Understanding your own CP/W' profile changes how you race — it tells you whether you are a diesel or a sprinter above threshold."
+  - "For masters cyclists, W' tends to decline faster with age than CP. This means your anaerobic capacity shrinks while your sustainable power holds relatively well. The practical implication: after 40, racing tactics should shift toward sustained efforts rather than repeated attacks. Play to your CP, not your W'."
+  - "The critical power model has real limitations. It assumes CP is a fixed value, but CP changes with hydration, glycogen status, and accumulated fatigue. W' reconstitution rates are individual and poorly understood. The model also breaks down at very short durations (under 3 seconds) and very long durations (beyond 30 minutes of supra-CP work). Use it as a framework, not a law of physics."
+faq:
+  - question: "Is critical power the same as FTP?"
+    answer: "No. FTP estimates the power you can sustain for approximately one hour. Critical power is the mathematical boundary between steady-state and non-steady-state exercise — the highest power at which your physiology can reach equilibrium. CP is typically 3-8% higher than FTP. They measure related but distinct things, and using one as a proxy for the other introduces meaningful error into your training zones."
+  - question: "How do I test my critical power without a lab?"
+    answer: "The simplest validated field test is the 3-minute all-out test. After a thorough warm-up, you ride maximally for three minutes in a fixed gear or ERG mode. Your CP is the average power of the final 30 seconds, and your W' is the work done above that value. Alternatively, you can use three maximal efforts of different durations (e.g., 3, 7, and 12 minutes on separate days) and fit the critical power curve to the data."
+  - question: "What is a good W' value for an amateur cyclist?"
+    answer: "W' values for trained amateur cyclists typically fall between 15 and 25 kJ. Sprinter types tend toward the higher end, and time trialists toward the lower end. W' is highly individual and less trainable than CP — it is largely determined by your proportion of fast-twitch muscle fibres and your anaerobic enzyme activity. A small W' is not a weakness if your CP is high."
+  - question: "Can I see W'bal on my Garmin during a ride?"
+    answer: "Yes. If you enter your CP and W' values in the Garmin Connect settings, you can add a W'bal data field to your ride screen. It displays your remaining anaerobic capacity as a percentage or in kilojoules. Wahoo offers similar functionality through the ELEMNT platform. The display is most useful in racing, where it tells you how many hard efforts you have left."
+  - question: "Does W' recharge during a race if I ride below CP?"
+    answer: "Yes, but not instantly. W' reconstitution occurs when you ride below CP, and the further below CP you ride, the faster it recharges. However, the reconstitution rate slows as the race goes on due to accumulated fatigue, glycogen depletion, and other factors. In practical terms, the W' you recover after the fifth hard effort is less than the W' you recovered after the first."
+relatedPosts:
+  - "alex-welburn-critical-power-w-prime-training-metrics"
+  - "power-duration-curve-find-your-limiters"
+  - "cycling-energy-systems-explained-guide"
+  - "cycling-ctl-atl-tsb-explained-guide"
+  - "cycling-training-stress-balance-tsb-guide"
+relatedTools:
+  - "ftp-zones"
+  - "tss"
+  - "interval-builder"
+  - "power-speed"
+---
+
+FTP is the number every cyclist knows. It sits at the top of your TrainingPeaks profile. Your coach asks for it. Your mates at the cafe stop compare theirs like they are comparing salaries. And for what it does, it is genuinely useful — a single number that tells you roughly where your aerobic engine sits at threshold.
+
+But here is the thing nobody tells you: FTP only describes half of what matters in cycling performance. It tells you where your ceiling is for sustained effort. It says nothing about what happens above that ceiling. How hard can you go over threshold? For how long? How many times can you do it before the lights go out?
+
+These are the questions that decide bike races. Not the steady-state cruise. The attack on the third-category climb. The surge to close a gap. The final sprint where your legs either respond or they do not. FTP cannot explain any of that. The critical power model can.
+
+The pros moved beyond FTP years ago. When Alex Welburn came on the podcast and talked about the [metrics that sit behind the numbers Pogacar's team uses](/blog/alex-welburn-critical-power-w-prime-training-metrics), this was the model he meant. Critical power and W'. Two numbers that, together, describe not just your engine but your fuel tank above threshold — and they change how you think about racing, pacing and training once you understand them.
+
+## What critical power actually is
+
+The idea is older than most people realise. Monod and Scherrer published the original work in 1965, studying the relationship between power output and the time you can sustain it. The maths is surprisingly clean. Plot your best efforts across multiple durations — three minutes, seven minutes, twelve minutes, twenty minutes — and you get a curve. A hyperbolic curve. And that curve has an asymptote: a power output that the curve approaches but never quite reaches as duration extends toward infinity.
+
+That asymptote is your critical power.
+
+Let me break this down in practical terms. CP is the highest power output at which your body can reach a physiological steady state. Below CP, your oxygen consumption stabilises, your blood lactate stabilises, your muscle metabolites reach an equilibrium that you can sustain for a very long time. Not forever — glycogen runs out eventually — but the metabolic disturbance is manageable. Your body is coping.
+
+Above CP, something fundamentally different happens. Oxygen consumption does not stabilise. It continues to rise toward VO2max. Lactate accumulates progressively. The intramuscular environment degrades in a way that cannot be reversed while you stay above that power. You are on a clock. The harder you go above CP, the faster the clock runs down.
+
+This is what makes CP so powerful as a concept. It is not just a number on a chart. It is a genuine physiological boundary — the line between steady-state and non-steady-state exercise. Andrew Jones at Exeter and Anni Vanhatalo have spent decades refining this, and the evidence is robust. CP marks the threshold above which fatigue becomes inevitable and time-limited. Below it, you can manage. Above it, you are spending a finite resource.
+
+Hugh Morton extended the mathematical framework through the 1990s, and the model that most coaches and platforms use today — the two-parameter critical power model — comes directly from this lineage. Two parameters. That is all you need to describe the entire power-duration relationship above CP: the asymptote (CP) and the total work you can do above it (W').
+
+## What W' is — your battery above threshold
+
+W' — pronounced "W-prime" — is the second parameter. It represents your total capacity for work above critical power, measured in kilojoules. Think of it as a battery. A finite battery. Every second you spend above CP drains the battery. The harder you go above CP, the faster it drains. And when the battery hits zero, you are done. Not "push through the pain" done. Physiologically done. Your power drops to CP or below whether you want it to or not.
+
+This is one of the most clarifying ideas in exercise physiology, and I wish I had understood it fifteen years ago. Every time you have blown up on a climb and wondered what happened — where the legs went, why the willpower was not enough — W' depletion is almost certainly the answer. You spent your battery. Motivation is irrelevant once the battery is empty.
+
+Typical W' values for trained amateur cyclists sit between 15 and 25 kJ. Sprinter types tend toward the higher end. Time triallists and steady-state specialists tend toward the lower end. The variation is substantial, and it is largely determined by your muscle fibre composition and anaerobic enzyme activity — which means W' is far less trainable than CP. You can improve it, but the ceiling is lower and the returns diminish faster.
+
+Here is where it gets really interesting. Two riders can have identical FTPs and wildly different race outcomes. Rider A has an FTP of 280 watts, a CP of 295 watts, and a W' of 22 kJ. Rider B has the same FTP, the same CP, but a W' of 14 kJ. On paper, they look the same. In a race with repeated surges, Rider A can make six or seven hard efforts above CP before the battery runs out. Rider B gets three or four. That is the difference between bridging to the break and watching it ride away.
+
+## CP vs FTP — why they are not the same number
+
+This trips up more riders than almost anything else in training science. FTP and CP sound like they describe the same thing. They do not.
+
+FTP — functional threshold power — is an estimate of the highest power you can sustain for approximately one hour. It was popularised by Andrew Coggan and Hunter Allen, and it has been enormously useful for setting training zones and tracking fitness. But it is an estimate, typically derived from a 20-minute test with a 5 per cent reduction applied. It is a field-practical proxy.
+
+CP is a mathematically derived parameter from the power-duration relationship. It represents a genuine physiological boundary. And in almost every case, CP sits higher than FTP. Typically 3 to 8 per cent higher, though the gap varies between individuals and changes with training status.
+
+Why does this matter? Because if you set your training zones off FTP and your actual CP is 6 per cent higher, your zones are wrong. Your "threshold" intervals are below actual threshold. Your "VO2max" efforts might be barely above CP. The training stimulus you think you are creating is not the one your body is receiving.
+
+The practical implications are real. If your FTP is 260 watts and your CP is 275 watts, then an interval at 275 watts is not "supra-threshold suffering." It is right on your CP boundary — sustainable for much longer than you would expect from looking at your FTP-based zones. Your actual supra-CP work starts at 276 watts and above. The zone chart built on FTP does not show you this.
+
+I am not saying FTP is useless. It remains a practical, testable, widely understood metric. But if you are serious about understanding your physiology and getting your zones right, CP is the more precise anchor. And you can test it yourself without a laboratory.
+
+## How to test critical power
+
+There are three practical ways to establish your CP and W'. Each has trade-offs.
+
+**The 3-minute all-out test.** This is the protocol Vanhatalo and colleagues validated, and it is the one I would start with if you have never tested CP before. After a thorough warm-up — genuinely thorough, not a ten-minute spin — you ride as hard as you possibly can for three minutes. ERG mode off. Fixed gear or a gear you cannot shift out of. You start at an all-out sprint and hold on for dear life.
+
+The principle is simple. In three minutes of maximal effort, you completely deplete your W'. Every kilojoule of anaerobic capacity gets used up. By the end, you are riding on CP alone because there is nothing left above it. Your CP is the average power of the final 30 seconds of the test. Your W' is the total work done above that CP value across the full three minutes.
+
+The good news: it gives you both numbers from a single effort. The bad news: it is one of the most painful tests you will ever do. The temptation to pace yourself is enormous, and if you pace it even slightly, the results are invalid. You must go all-out from the gun and accept the catastrophic power drop that comes around the 90-second mark. It requires genuine commitment.
+
+**The multi-duration test.** This is the traditional approach. You perform three maximal efforts of different durations — commonly 3 minutes, 7 minutes, and 12 minutes — on separate days or with substantial recovery between them. You record the average power for each, then fit the critical power curve to those data points. The maths spits out your CP and W'.
+
+This method is more comfortable per individual effort (no single test is as brutal as the all-out protocol) but requires multiple testing sessions, which introduces variability. Your condition on day one might differ from day three. The curve-fitting is also sensitive to effort quality — if one of your three tests was subpar, the derived values shift.
+
+**Using existing ride data.** If you have a power meter and several months of hard rides, you already have the data. Platforms like Golden Cheetah, WKO5, and intervals.icu can fit a critical power model to your best efforts across multiple durations, pulling mean maximal power data from your ride history. No dedicated testing session required.
+
+The trade-off is accuracy. Your ride data reflects your best efforts in training and racing conditions, which may not be true physiological maximums. If you never go truly all-out for three minutes in training — and most people do not — the model will underestimate your W'. But as a starting point, and for tracking trends over time, it is remarkably useful.
+
+## W'bal — watching your battery drain in real time
+
+This is where the model becomes genuinely practical for racing. Phil Skiba developed the W'bal (W-prime balance) concept, and it does exactly what the name suggests: it tracks your remaining anaerobic capacity in real time, second by second, throughout a ride.
+
+The principle is straightforward. You start the ride with your full W' — say 20 kJ. Every time you ride above CP, W'bal decreases. The further above CP and the longer you stay there, the faster it drops. When you ride below CP, W'bal recharges. The further below CP you ride, the faster the recharge. Skiba's differential equation models this reconstitution as an exponential function of the power below CP.
+
+On a head unit, W'bal typically displays as a percentage or a kilojoule figure. Full battery. Draining. Recharging. Draining harder. And then the moment where the number approaches zero and you know — with mathematical certainty — that you are about to blow up.
+
+Garmin supports W'bal as a data field if you enter your CP and W' values in Garmin Connect. Wahoo offers similar functionality through the ELEMNT platform. The setup takes five minutes. The display is most useful in races, but it is also revealing in training — you start to see exactly how your hard efforts deplete and recharge, which changes how you pace intervals and recovery valleys.
+
+Here is what W'bal looks like in a typical road race. You start full. The neutral zone costs nothing because you are well below CP. Then the first selection happens — a surge on a short climb. W'bal drops from 100 per cent to 70 per cent. You sit in the wheels for five minutes, and it climbs back to 85 per cent. Another surge. Down to 55 per cent. Recovery. Back to 72 per cent. A third attack. Down to 30 per cent. And now the recovery is slower — Skiba's model captures this — because accumulated fatigue reduces the reconstitution rate as the race progresses. The W' you get back after the fifth effort is less than the W' you got back after the first. Each time you go to the well, the well gets a little shallower.
+
+This is why riders blow up in the final kilometres of a race. It is not that they are weak. It is that their W'bal is near zero, the reconstitution rate has slowed, and the next surge — even a small one — finishes them. Understanding this changes your racing. You stop wondering why your legs disappeared. You start managing the battery.
+
+## How CP and W' change how you race
+
+Let me break this down with a specific example. You are in a road race. There are three classified climbs. The first two are in the opening half. The final climb comes with 8 kilometres to go and usually decides the race.
+
+If all you know is your FTP, your pacing strategy is vague. Stay below threshold on the early climbs, try to have something left for the last one. Hope for the best.
+
+If you know your CP and W', the strategy becomes precise. You know your CP is 275 watts. You know your W' is 18 kJ. You can calculate — or your head unit can show you — exactly how much battery each climb costs and how much you recover between them. If the first climb costs 6 kJ of W' and you get 4 kJ back before the second climb, you arrive at climb two with 16 kJ. The second climb costs 5 kJ. You recover 3 kJ on the approach to the final climb. You arrive with 14 kJ. That is enough for a sustained effort of roughly two minutes at 30 watts above CP on the decisive climb. You know this before the gun goes off.
+
+This is how the best coaches and riders think about pacing. Not in vague terms of "saving something for the end." In kilojoules. In battery life. In the precise arithmetic of effort and recovery that the critical power model provides.
+
+Here is the thing nobody tells you about why some riders always seem to have something left at the end of a race. It is not that they are fitter. Often their FTP is the same as yours. They are simply better at managing their W'. They sit in wheels when they can. They do not chase every surge. They let W'bal recharge before the next effort. They race with a budget.
+
+Two riders with the same CP and the same W' can have completely different race outcomes based solely on how they spend their anaerobic battery. The rider who uses 80 per cent of W' in the first half has nothing for the finale. The rider who uses 40 per cent arrives at the decisive moment with options.
+
+## How CP and W' change how you train
+
+The model also tells you something specific about training design. CP and W' respond to different training stimuli, and understanding which one limits your performance points you toward the right sessions.
+
+**Training to raise CP.** CP responds to the same stimulus that raises FTP — sustained threshold work, sweet-spot intervals, and long aerobic volume. Sessions like 3 x 10 minutes at CP, or 2 x 20 minutes just below CP, with adequate recovery between efforts. The mechanisms are aerobic: mitochondrial density, capillary density, lactate clearance capacity. This is the patient, steady work that builds your sustainable engine.
+
+**Training to expand W'.** W' responds to short, hard efforts with incomplete recovery. Think 30-second to 3-minute intervals at intensities well above CP, with rest periods that do not allow full W' reconstitution before the next effort. Sessions like 8 x 60 seconds at 130 per cent of CP with 90 seconds recovery, or 6 x 2 minutes at 115 per cent of CP with 2 minutes rest. The mechanisms are largely anaerobic: glycolytic enzyme activity, buffering capacity, fast-twitch fibre recruitment.
+
+Here is the practical point. If your [power-duration curve](/blog/power-duration-curve-find-your-limiters) shows that you are strong at sustained efforts but fade quickly above threshold, your limiter is probably W'. Targeted anaerobic work will shift the curve. If you can produce big numbers for short durations but cannot sustain anything near that over ten or twenty minutes, your limiter is CP, and sustained aerobic and threshold work is where you should focus.
+
+Most self-coached riders default to the same session types regardless of their profile. The critical power model gives you a reason to choose. It tells you which parameter is limiting your performance and points you toward the training that will shift it.
+
+Both matter. But in any given training block, one matters more than the other for your specific goals. A road racer preparing for a hilly event needs CP and enough W' to handle surges. A criterium racer needs a large W' and the ability to reconstitute it quickly between efforts. A time triallist needs the highest CP possible and can largely ignore W'. The model tells you where to spend your training time.
+
+## The limitations you should know about
+
+The critical power model is powerful, but it is a simplification. Two parameters cannot fully describe human physiology, and there are real boundaries where the model stops working well.
+
+**CP is not a fixed number.** It changes with hydration, glycogen status, temperature, accumulated fatigue, and time of day. The CP you test on a fresh Saturday morning after a rest day, a solid breakfast, and a good night's sleep is not the same CP you have at hour four of a sportive when you are dehydrated and glycogen-depleted. The model treats CP as constant. Your body does not.
+
+**W' reconstitution is individual and poorly modelled.** Skiba's W'bal equation assumes a specific reconstitution curve, but the rate at which different riders recover W' varies substantially. Some riders recharge quickly below CP. Others recover slowly. The factors that determine reconstitution rate — fibre type, blood flow, metabolic clearance — are not fully understood, and the model cannot account for inter-individual differences without custom calibration.
+
+**The model breaks down at extremes.** For very short efforts — under about three seconds — the critical power model does not apply. The neuromuscular system and the phosphocreatine energy pathway operate on different principles that the two-parameter model does not capture. At the other end, for efforts that require more than about 30 minutes of continuous work above CP, the model also becomes unreliable. Fatigue mechanisms that operate on longer timescales — central fatigue, glycogen depletion, thermoregulation — introduce errors that the simple CP/W' framework cannot address.
+
+**It is still a model.** The map is not the territory. CP and W' describe a mathematical relationship that closely approximates what happens in your body, but they are not a complete description of exercise physiology. Use them as a framework — a very good framework — not as a law of physics. When the model says you have 5 kJ of W' remaining but your legs feel empty, trust your legs.
+
+## What masters cyclists need to know
+
+Here is where it gets really interesting for anyone over 40. The research on ageing and the critical power parameters suggests an asymmetry that has real implications for how masters riders should race.
+
+CP and W' both decline with age. That is not surprising — most physiological capacities decline after roughly 35. But they do not decline at the same rate. CP, being primarily an aerobic parameter, tends to hold up relatively well with continued training. The aerobic system is remarkably resilient to ageing if you keep training it. W', on the other hand, declines faster. Anaerobic capacity, fast-twitch fibre recruitment, and the glycolytic enzymes that underpin W' are more sensitive to age-related decline.
+
+The practical implication is this: after 40, your battery gets smaller while your engine holds relatively steady. You can still sustain high power for long durations, but your capacity for repeated hard surges above CP shrinks. You have fewer matches to burn.
+
+This changes race tactics. A 25-year-old with a large W' can afford to follow every attack, surge repeatedly, and still have something for the sprint. A 48-year-old with the same CP but a smaller W' cannot. The smart masters racer plays to their CP. Sustained efforts. Tempo on the front that hurts everyone. Long accelerations rather than sharp kicks. Make the race about who can sustain the highest power for the longest, not about who can produce the most repeated surges.
+
+I have talked to dozens of masters riders on this podcast who describe the same experience: they can still hold watts that surprise younger riders on a long climb, but they cannot respond to the third or fourth attack in a bunch sprint scenario. That is W' decline. It is not a fitness problem. It is a physiological reality, and the correct response is not to train harder. It is to race differently.
+
+The good news: CP is very trainable at any age. The aerobic system responds to structured training well into your 50s and 60s. Focus your training on raising and maintaining CP — threshold work, sweet-spot intervals, long aerobic volume — and accept that your W' will be what it is. Then race to your strengths. The diesel engine. The sustained effort. The climb where you set the pace and hold it while others surge and fade.
+
+## Making it practical
+
+The critical power model is only useful if it changes how you train and race. Theory that stays in a textbook does not make you faster. So here is what I would do if you are reading this and have never worked with CP and W' before.
+
+First, test it. Use the 3-minute all-out protocol or let your training software derive CP from your ride history. Get the numbers. They do not need to be perfect — they need to be in the right postcode.
+
+Second, put W'bal on your head unit. Garmin or Wahoo, it takes five minutes to configure. Ride with it for a month. Watch it drain and recharge. Start to build an intuition for how your battery behaves in different situations — hard group rides, interval sessions, hill efforts. This intuition is worth more than the raw numbers.
+
+Third, look at your [power-duration curve](/blog/power-duration-curve-find-your-limiters) and ask which parameter is limiting you. If your curve drops steeply after 3 to 5 minutes, W' is your limiter. If the curve is relatively flat but sits lower than you would like, CP is your limiter. Design your next training block around the answer.
+
+Fourth, race with a budget. Before your next event, estimate the demands of the course — how many hard efforts, how long, how much recovery between them — and run the numbers against your CP and W'. Arrive at the decisive moment with battery remaining. It sounds mechanical. It is. And it works.
+
+The science has finally caught up with what the best coaches and riders have known intuitively for years. Above threshold is where races are decided. CP and W' give you the language and the numbers to make decisions in that space rather than guessing. FTP got you this far. CP and W' tell you where to go next.
+
+If you want to discuss how CP and W' apply to your own training and racing, [join the conversation in the Roadman community on Skool](https://www.skool.com/roadmancycling). Plenty of riders in there working through exactly this.

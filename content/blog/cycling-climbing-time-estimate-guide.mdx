@@ -1,0 +1,230 @@
+---
+title: 'How Long Will It Take You to Climb That Col? The Maths Behind Cycling Climbing Time'
+seoTitle: Cycling Climbing Time Calculator — How Long to Climb Any Hill
+seoDescription: >-
+  How to estimate your climbing time on any gradient using power, weight, and basic
+  physics. Benchmark times for Alpe d'Huez, Ventoux, Galibier, Stelvio, and more.
+excerpt: >-
+  Every cyclist staring at a col profile asks the same question — how long will it
+  take me? The maths is simpler than you think, and getting it right changes how
+  you pace the whole climb.
+pillar: coaching
+primaryHub: climbing
+author: Anthony Walsh
+updatedDate: '2026-07-08'
+publishDate: '2026-07-08'
+featuredImage: /images/cycling/gravel-road-climb.jpg
+keywords:
+  - cycling climbing time
+  - how long to climb alpe d'huez
+  - climbing time calculator cycling
+  - cycling power to climbing speed
+  - col climbing time estimate
+answerCapsule: >-
+  Your climbing time depends primarily on your power-to-weight ratio (W/kg), the
+  gradient, and the length of the climb. On gradients above 6%, gravity accounts
+  for over 90% of the resistance — making W/kg nearly the whole story. A 75kg
+  rider at 3.0 W/kg will climb Alpe d'Huez in roughly 1:16, while the same rider
+  at 4.0 W/kg cuts that to about 58 minutes. Use the Climbing Time Estimator to
+  model any climb with your own numbers.
+keyTakeaways:
+  - "On climbs above 6%, gravity accounts for 90%+ of the resistance you fight. Aerodynamics barely matter — W/kg is nearly the whole story."
+  - "A 75kg rider at 3.0 W/kg will climb Alpe d'Huez in roughly 1:16. At 4.0 W/kg, that drops to about 58 minutes — 18 minutes saved from one extra watt per kilo."
+  - "Air density drops roughly 12% per 1,000m of altitude. At the Galibier summit (2,642m), you push through about 22% less air — but on steep gradients this saves only seconds."
+  - "The difference between knowing your climbing time and guessing is the difference between pacing it right and blowing up at two-thirds."
+  - "Hold 75-85% of your FTP on long climbs. A 75kg rider with a 250W FTP holding 80% (200W) will take about 1:37 on the Galibier — solid, sustainable, no blowup."
+  - "Use the Climbing Time Estimator to model any climb before you ride it. Enter your power, weight, and the climb profile. Plan the effort, ride the plan."
+faq:
+  - question: How long does it take to climb Alpe d'Huez at 3 W/kg?
+    answer: >-
+      A 75kg rider sustaining 3.0 W/kg (225W) will climb Alpe d'Huez
+      (13.8km at 8.1%) in roughly 1 hour 16 minutes, averaging about
+      10.9 km/h with a VAM of around 843 m/hr. That is a solid amateur
+      effort. At 3.5 W/kg it drops to about 1:06, and at 4.0 W/kg to
+      roughly 58 minutes.
+  - question: How do I calculate my climbing time for any col?
+    answer: >-
+      You need four inputs — your sustained power output, your weight
+      (plus bike), the distance of the climb, and the average gradient.
+      The physics equation balances your power against gravity, rolling
+      resistance, and aerodynamic drag to find your speed, then divides
+      distance by speed for the time. The Climbing Time Estimator on
+      this site runs this calculation for you with presets for six
+      famous climbs.
+  - question: Does altitude affect climbing time?
+    answer: >-
+      Yes, but less than most people assume on steep gradients. Air
+      density drops roughly 12% per 1,000m of elevation. At the
+      Galibier summit (2,642m), air is about 22% thinner than at sea
+      level — which reduces aerodynamic drag. But on gradients above
+      6%, aero drag is only 3-4% of total resistance, so the altitude
+      benefit is marginal. On shallower gradients (3-5%) where aero
+      matters more, altitude can save 30-60 seconds over a 20km climb.
+  - question: What power should I hold on a long climb?
+    answer: >-
+      For climbs lasting 30-60 minutes, target 85-90% of your FTP. For
+      climbs lasting 60-90 minutes, drop to 80-85%. For anything over
+      90 minutes, 75-80% is realistic. The key is sustainability — a
+      power you can hold for the entire climb without blowing up in the
+      final third. Use the Climbing Time Estimator to see what that
+      power produces in terms of time and speed on your target climb.
+  - question: Why is W/kg more important than raw watts for climbing?
+    answer: >-
+      On a climb, most of your power fights gravity — literally lifting
+      your body weight against the gradient. The force of gravity
+      depends on total mass (you plus bike). A 90kg rider producing
+      270W (3.0 W/kg) fights more gravitational resistance than a 65kg
+      rider producing 195W (also 3.0 W/kg), but their climbing speeds
+      are nearly identical because the power-to-mass ratio is the same.
+      Raw watts matter on the flat where aerodynamics dominate. On a
+      climb, it is watts divided by kilograms.
+relatedPosts:
+  - vam-climbing-speed-explained-cyclists
+  - climb-faster-cycling-five-fixable-reasons
+  - cycling-climbing-tips-stop-getting-dropped
+  - how-to-ride-alpe-dhuez-training-pacing-guide
+  - watts-per-kg-alpe-dhuez
+  - cycling-pacing-strategy-long-climbs
+  - science-of-climbing-tour-de-france-speeds-wkg
+  - best-cadence-for-climbing
+  - cycling-hill-repeats-training
+relatedTools:
+  - climb-time
+---
+
+You are standing at the bottom of a climb you have never ridden. You know it is 18km at 7% average. You know your FTP. The question you are asking — the question every cyclist asks — is how long this will take.
+
+The answer matters more than curiosity. If you guess wrong by 15 minutes, you pace wrong. You eat wrong. You blow up at two-thirds and crawl the final 6km wondering what happened. If you know the answer before you clip in, you set a target power, hold it, and ride the climb the way the climb wants to be ridden.
+
+The physics behind that answer is more approachable than you think. And once you understand it, the number on your head unit stops being a hope and starts being a plan.
+
+## The physics, made simple
+
+Three forces resist you on a climb: gravity, aerodynamic drag, and rolling resistance. Your power has to overcome all three.
+
+**Gravity** is the big one. It is your total mass (you plus bike) multiplied by the gradient and the gravitational constant, multiplied again by your speed. The steeper the road, the more power gets eaten by gravity. On a flat road, gravity takes nothing. On a 7% gradient, it takes nearly everything.
+
+**Aerodynamic drag** is the force you feel riding into wind on the flat. It depends on air density, your frontal area and drag coefficient (CdA), and the cube of your speed through the air. On the flat at 35 km/h, aero drag dominates. On a climb at 11 km/h, it shrinks to almost nothing.
+
+**Rolling resistance** is the friction between your tyres and the road. Small but constant. Typically around 5-6% of total resistance on a climb.
+
+The equation the [Climbing Time Estimator](/tools/climb-time) runs looks like this:
+
+**Power = (gravity drag + aero drag + rolling resistance) / drivetrain efficiency**
+
+Given your power output, weight, and the climb profile, Newton-Raphson iteration solves for speed. Distance divided by speed gives time.
+
+Here is what makes climbing physics different from flat-road physics: the steeper the gradient, the more gravity dominates. The numbers are stark.
+
+| Gradient | Gravity share | Aero share | Rolling share |
+|----------|:------------:|:----------:|:-------------:|
+| 3% | 68% | 21% | 11% |
+| 5% | 83% | 8% | 8% |
+| 7% | 90% | 4% | 6% |
+| 8% | 92% | 3% | 6% |
+| 10% | 94% | 2% | 5% |
+| 12% | 95% | 1% | 4% |
+
+At 7% and above, gravity is over 90% of the fight. Aero is a rounding error. That deep-section wheelset, the skin suit, the aero helmet — they made a measurable difference in the time trial yesterday. On the 8% col tomorrow, they are worth seconds at best. What matters on that col is watts per kilogram. Period.
+
+This is why the [W/kg Calculator](/tools/wkg) is the first tool any climber should use. Not because it is trendy. Because the physics says your power-to-weight ratio is, quite literally, 90% of your climbing speed.
+
+## Benchmark climbing times for famous cols
+
+The table below uses a 75kg rider with a 9kg bike (84kg total), standard climbing position (CdA 0.35), rolling resistance of 0.005, and 97% drivetrain efficiency. Air density is adjusted for the average altitude of each climb. These are the same physics the [Climbing Time Estimator](/tools/climb-time) runs.
+
+| Climb | Distance | Gradient | 2.5 W/kg | 3.0 W/kg | 3.5 W/kg | 4.0 W/kg | 4.5 W/kg |
+|-------|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+| **Alpe d'Huez** | 13.8 km | 8.1% | 1:31 | 1:16 | 1:06 | 0:58 | 0:52 |
+| **Mont Ventoux (Bedoin)** | 21.5 km | 7.5% | 2:12 | 1:51 | 1:36 | 1:25 | 1:17 |
+| **Col du Galibier (south)** | 18.1 km | 6.9% | 1:43 | 1:27 | 1:15 | 1:07 | 1:00 |
+| **Stelvio (Prato)** | 24.3 km | 7.4% | 2:28 | 2:04 | 1:47 | 1:35 | 1:25 |
+| **Sa Calobra** | 9.4 km | 7.1% | 0:55 | 0:47 | 0:40 | 0:36 | 0:32 |
+| **Col du Tourmalet** | 17.1 km | 7.4% | 1:44 | 1:27 | 1:16 | 1:07 | 1:00 |
+
+*Times shown in hours:minutes. Based on 75kg rider, 9kg bike, standard climbing position, altitude-adjusted air density.*
+
+Read across the row for your fitness level. A strong club rider sustaining 3.0 W/kg will take about 1:16 up Alpe d'Huez. A trained amateur at 3.5 W/kg brings that down to 1:06. A competitive masters racer at 4.0 W/kg drops under the hour to roughly 58 minutes.
+
+The column gaps tell the real story. From 3.0 to 4.0 W/kg on Alpe d'Huez is 18 minutes. That is the return on one extra watt per kilogram — 18 minutes on a single climb. On Ventoux, that gap widens to 26 minutes. On Stelvio, 29 minutes. The longer and steeper the climb, the more W/kg compounds.
+
+Your weight shifts the numbers too. A 65kg rider at 3.5 W/kg produces 228W. A 85kg rider at 3.5 W/kg produces 298W. Same W/kg, nearly identical climbing times — the lighter rider pushes less power but fights less gravity. The ratio is what matters.
+
+The [VAM Calculator](/tools/vam) translates these times into vertical ascent rate if you want another frame of reference. A 3.0 W/kg effort on Alpe d'Huez produces a VAM of about 843 m/hr — solid amateur territory.
+
+## The altitude factor
+
+Air thins as you go up. At sea level, air density is 1.225 kg/m3. By 1,000m it has dropped 9%. By 2,000m, 18%. At the Galibier summit (2,642m), you are pushing through roughly 22% less air than at sea level.
+
+That sounds like a significant advantage. Less air, less drag, faster climbing. But remember the power breakdown table above. On a 7% gradient, aerodynamic drag is only 4% of total resistance. A 22% reduction in 4% is less than 1% of your total resistance. On the Galibier, the altitude effect saves you maybe 20-30 seconds over the full 18km. Noticeable on paper. Irrelevant to pacing.
+
+Where altitude does matter is on shallower climbs. On a 3% gradient where aero drag accounts for 21% of resistance, a 22% reduction in air density saves genuine time — 30-60 seconds over a 20km climb becomes plausible. It also matters on the descents and flat sections between climbs, where your speed is high enough for aero drag to dominate again.
+
+The other altitude effect is physiological. Thinner air means less oxygen per breath. Most riders see a 5-8% drop in sustainable power at 2,000m compared to sea level, and that percentage grows at higher altitudes. The Galibier's thin air helps your aerodynamics by a fraction but hurts your engine by a much larger fraction. The net result at altitude is almost always slower, not faster — unless you have spent weeks acclimatising.
+
+The [Climbing Time Estimator](/tools/climb-time) accounts for the aerodynamic component by adjusting air density for altitude. The physiological cost is on you to factor in — if you know you lose 5% power at altitude, drop your input watts by 5%.
+
+## How to use this for event pacing
+
+This is where the climbing time estimate stops being pub trivia and becomes a race tool.
+
+Say you are riding the Galibier on a sportive. You weigh 75kg. Your FTP is 250W. That is 3.33 W/kg — a solid trained amateur. But you are not going to hold FTP for 90 minutes. You need a sustainable target.
+
+Here is what different FTP percentages produce on the Galibier for that rider:
+
+| Effort level | Power | W/kg | Est. time | Avg speed | VAM |
+|-------------|:-----:|:----:|:---------:|:---------:|:---:|
+| 75% FTP | 188W | 2.50 | 1:43 | 10.5 km/h | 723 |
+| 80% FTP | 200W | 2.67 | 1:37 | 11.2 km/h | 769 |
+| 85% FTP | 212W | 2.83 | 1:31 | 11.8 km/h | 814 |
+| 90% FTP | 225W | 3.00 | 1:27 | 12.5 km/h | 859 |
+
+*75kg rider, 9kg bike, Galibier south (18.1km, 6.9%, avg altitude ~2,020m).*
+
+For a climb this long (roughly 90 minutes), 80-85% of FTP is the realistic sustainable range. That puts our rider at 1:31 to 1:37. Call it an hour and a half, give or take.
+
+Now you have a plan. You know the effort. You know the time. You know the speed to expect on your head unit. When the group surges at the bottom and rides away from you, you hold your number. When the gradient kicks up and your speed drops to 9 km/h on the steep ramps, you do not panic — you expected that. When you hit the final 3km and still have legs, you know the pacing worked.
+
+The [FTP Zones Calculator](/tools/ftp-zones) sets your training zones from your FTP. The [Power-Speed Calculator](/tools/power-speed) models what a given power output produces at a specific gradient and speed. Between those tools and the [Climbing Time Estimator](/tools/climb-time), you have everything you need to plan the effort before you reach the climb.
+
+This is the approach Brad Wiggins used on the climbs — power target based on what was sustainable, held regardless of what other riders did around him. The detail is in the [5 fixable reasons your climbing is slow](/blog/climb-faster-cycling-five-fixable-reasons). Andrew Feather used the same principle to beat Pogacar on a Strava segment. It works because steady-state effort produces higher average power than surge-and-recover, every time, for every rider, on every climb.
+
+## Where the estimates break down
+
+The model assumes a constant gradient and a constant effort. Real climbs have neither.
+
+**Variable gradients.** Alpe d'Huez averages 8.1% but ramps to 12-13% on several hairpins and drops below 6% between them. The physics still works — average gradient produces a reasonable time estimate for the whole climb — but the speed varies dramatically from section to section. You will be grinding at 8 km/h on the steep ramps and rolling at 15 km/h on the flatter connectors. The pacing target should be power, not speed.
+
+**Fatigue.** Holding 85% of FTP for 90 minutes assumes you started the climb fresh. If the Galibier comes at km 120 of a 160km sportive and you have already climbed the Telegraphe, your sustainable power is lower. How much lower depends on your durability — a trained long-distance rider might lose 5-10% compared to a fresh effort; a less-experienced rider might lose 15-20%.
+
+**Heat and hydration.** Ventoux in July with no shade and 35 degrees costs power. Dehydration compounds across a long climb. The estimate assumes normal conditions. If conditions are extreme, knock 5-10% off your target power.
+
+**Wind.** The model defaults to still air. A headwind on an exposed climb like Ventoux can add meaningful time — even on steep gradients, because at 10-12 km/h, a 15 km/h headwind more than doubles your apparent speed through the air, and that squares the aero drag term. A tailwind helps less than a headwind hurts. The [Climbing Time Estimator](/tools/climb-time) includes a wind input if you want to model this.
+
+**Road surface.** Rough tarmac, cobbles, or wet roads increase rolling resistance. The default value of 0.005 assumes decent road surface in dry conditions. Bad roads can push Crr above 0.007, costing 1-2 minutes on a long climb.
+
+None of these invalidate the estimate. They mean the estimate is a baseline — what you would do in ideal conditions at full freshness. Real conditions adjust the number, and knowing the baseline makes the adjustment rational rather than a guess.
+
+## The climbing time estimator
+
+The [Climbing Time Estimator](/tools/climb-time) runs the full physics model with presets for Alpe d'Huez, Mont Ventoux, Galibier, Stelvio, Sa Calobra, and Tourmalet. You can also enter any custom climb — distance, gradient, elevation gain.
+
+Enter your power (direct watts or FTP percentage), your weight, and select a climb. The tool returns estimated time, average speed, VAM, and W/kg. It adjusts air density for altitude. It accounts for wind if you add it.
+
+The tool uses the same physics described in this article: gravitational drag + aerodynamic drag + rolling resistance, solved with Newton-Raphson iteration, with 97% drivetrain efficiency. Standard climbing position (CdA 0.35) and rolling resistance (Crr 0.005) as defaults.
+
+Use it before your next mountain sportive. Use it before the Etape. Use it before you plan your first time up Ventoux. The five minutes you spend modelling the effort will save you the twenty minutes you would have lost blowing up.
+
+## Putting it together
+
+The maths behind climbing time is approachable. Power fights three forces. On steep gradients, gravity is nearly all of it. W/kg is the number that predicts your speed. The rest — aero, rolling resistance, altitude effects — is fine-tuning.
+
+What changes your riding is not knowing the physics. It is applying it. Knowing that you will take 1:16 on Alpe d'Huez at 3.0 W/kg means you set your target at 225W, hold it through the first five hairpins when the adrenaline wants you to push 280W, and still have legs at hairpin 18 when the riders who went too hard are walking.
+
+That is the difference between estimating and guessing. The guess says "about an hour, maybe a bit more." The estimate says "1:16 at this power, here is how I will pace it." One of those riders finishes strong. The other finishes wondering where it went wrong.
+
+Run your numbers through the [Climbing Time Estimator](/tools/climb-time). Know the climb before you ride it. Pace the effort. Ride the plan.
+
+If you are preparing for a specific climbing event, the [Alpe d'Huez pacing and training guide](/blog/how-to-ride-alpe-dhuez-training-pacing-guide) covers the 21 hairpins in detail. The [climbing tips guide](/blog/cycling-climbing-tips-stop-getting-dropped) covers the tactical side — when to sit, when to stand, when to let the wheel go. And the [VAM explainer](/blog/vam-climbing-speed-explained-cyclists) breaks down vertical ascent rate as a climbing fitness metric.
+
+The [Not Done Yet community](https://www.skool.com/roadmancycling) at $195/month is where the climbing questions get answered live — weekly coaching calls, training discussion, and a crew of masters cyclists who take the work seriously.

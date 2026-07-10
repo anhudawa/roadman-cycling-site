@@ -1,0 +1,287 @@
+---
+title: "VO2max for Cyclists: What Your Number Means"
+seoTitle: "VO2max for Cyclists — What Your Number Means and How to Estimate It (2026)"
+seoDescription: >-
+  What VO2max measures, how MAP and FTP-based estimation methods work,
+  percentiles by age and sex, the relationship between VO2max and FTP,
+  trainability limits, and why the number alone does not predict race results.
+excerpt: >-
+  VO2max is the most-cited number in endurance sport and the least understood.
+  Here's what it actually measures, how estimation methods compare to the lab,
+  and why the number on its own tells you less about race day than you think.
+pillar: coaching
+primaryHub: vo2max-training
+author: anthony-walsh
+publishDate: '2026-07-09'
+featuredImage: /images/cycling/gravel-road-climb.jpg
+keywords:
+  - vo2max cycling
+  - vo2max estimator cycling
+  - what is a good vo2max cyclist
+  - vo2max percentiles age cyclists
+  - vo2max vs ftp relationship
+  - vo2max ml/kg/min cycling
+answerCapsule: >-
+  VO2max — maximum oxygen uptake in millilitres per kilogram per minute — sets
+  the aerobic ceiling for cycling performance. Lab testing is the gold standard,
+  but field estimates using MAP (from a ramp test) or FTP (sustained threshold
+  power) correlate within 5–10% for most trained cyclists. A strong amateur male
+  cyclist at 40 typically sits at 45–55 ml/kg/min; competitive masters racers
+  reach 55–65. The number matters, but economy, lactate threshold, and pacing
+  determine how much of it you convert into speed on race day.
+keyTakeaways:
+  - "VO2max measures the maximum rate at which your body delivers and uses oxygen — not fitness, not performance, but the ceiling both of those operate under."
+  - "MAP-based estimation (from a ramp test to exhaustion) is more accurate than FTP-based estimation because it captures the system closer to its limit."
+  - "FTP typically sits between 72% and 80% of the power at VO2max. The higher that fraction, the more efficient the rider — and the less VO2max alone explains."
+  - "Field estimates correlate within 5–10% of lab-measured values for trained cyclists, which is accurate enough to track trends over months and years."
+  - "A 45-year-old male cyclist at 50 ml/kg/min sits near the 75th percentile for active adults. Context by age and sex matters more than a single threshold."
+  - "VO2max is trainable by 15–25% from an untrained baseline. After that, the genetic ceiling is real — but most amateur cyclists are nowhere near it."
+  - "Two riders with identical VO2max values can differ by 30 watts at threshold. Economy and fractional utilisation are the variables the single number hides."
+faq:
+  - question: "How accurate is a VO2max estimate from FTP?"
+    answer: >-
+      FTP-based VO2max estimates are typically within 5–10% of lab-measured
+      values for trained cyclists. The estimate assumes FTP represents 72–80%
+      of power at VO2max and applies a standard oxygen cost of cycling
+      (roughly 10.8 ml O2 per watt per minute, adjusted for body weight).
+      The margin widens for untrained riders or those with unusual efficiency,
+      but for tracking changes over time the method is reliable enough.
+  - question: "What is a good VO2max for a 50-year-old cyclist?"
+    answer: >-
+      For a 50-year-old male cyclist, 45–55 ml/kg/min places you well above
+      the general population average (around 35 ml/kg/min for sedentary men
+      at that age) and into the "trained" category. Competitive masters
+      racers at 50 often reach 55–65 ml/kg/min. For women, subtract roughly
+      10–15% — a trained 50-year-old female cyclist typically sits at
+      38–48 ml/kg/min.
+  - question: "Is VO2max or FTP more important for cycling performance?"
+    answer: >-
+      FTP is the better predictor of sustained performance because it reflects
+      how much of your VO2max you can use before lactate accumulates. VO2max
+      sets the ceiling, but FTP determines where you live inside it. Two
+      riders with the same VO2max can differ by 30 watts at threshold if one
+      has better economy and lactate clearance — and those 30 watts decide
+      the race.
+  - question: "Can you increase VO2max after 40?"
+    answer: >-
+      Yes. Masters cyclists who reintroduce structured high-intensity work
+      consistently raise their VO2max, even in their fifties and sixties.
+      Typical improvements are 5–15% over 8–16 weeks of consistent interval
+      training. The age-related decline in max heart rate (roughly one beat
+      per year) is fixed, but the detraining component — reduced stroke
+      volume, capillary density, and mitochondrial function — is recoverable.
+  - question: "Why do two cyclists with the same VO2max ride at different speeds?"
+    answer: >-
+      Because VO2max is only one variable. Cycling economy (how many watts
+      you produce per litre of oxygen), fractional utilisation (what
+      percentage of VO2max you sustain at threshold), aerodynamic drag,
+      body weight, and pacing strategy all shape the gap between oxygen
+      uptake and road speed. A rider with lower VO2max but superior economy
+      and a higher FTP-to-VO2max ratio will often outperform a less
+      efficient rider with a bigger number.
+relatedPosts:
+  - cycling-vo2max-intervals
+  - vo2max-decline-reversibility-masters-cyclists
+  - vo2max-training-cyclists-seven-reasons
+  - ftp-training-zones-cycling-complete-guide
+  - cycling-age-grading-performance-decline-guide
+  - cycling-power-to-weight-ratio-guide
+relatedTools:
+  - vo2max
+  - ftp-test
+  - ftp-zones
+  - training-load
+  - age-grade
+  - interval-builder
+  - hr-zones
+---
+
+VO2max is the most-quoted number in endurance sport. It appears on watch faces, in training apps, on every forum thread about performance after forty. And most cyclists who cite it couldn't tell you what it measures, how it's estimated, or why two riders with the same number can finish ten minutes apart in the same race. This is the piece that fills that gap — not how to train VO2max (we cover the sessions [here](/blog/cycling-vo2max-intervals) and the masters-specific work [here](/blog/vo2-max-workouts-cyclists-over-40)), but what the number itself means, how the estimation methods behind the [VO2max Estimator](/tools/vo2max) work, and where the number stops being useful.
+
+## What VO2max actually measures
+
+VO2max stands for maximal oxygen uptake — the maximum volume of oxygen your body can transport from the air to your working muscles and use to produce energy, expressed in millilitres per kilogram of body weight per minute (ml/kg/min). The "max" matters. This is not your cruising altitude. It's the absolute ceiling, the point at which oxygen delivery and utilisation hit their combined limit no matter how hard you push.
+
+Three systems set the ceiling together:
+
+1. **Pulmonary ventilation** — how much air your lungs can move. For most healthy adults this is not the bottleneck; you rarely saturate your lungs' capacity to absorb oxygen during exercise.
+
+2. **Cardiac output** — how much oxygenated blood your heart pumps per minute, the product of stroke volume (blood per beat) and heart rate (beats per minute). This is the primary limiter. Bassett and Howley's foundational 2000 review identified central cardiac output as the single largest determinant of VO2max in trained individuals.
+
+3. **Peripheral extraction** — how efficiently your muscles pull oxygen from the blood. Capillary density, mitochondrial volume, and the enzyme systems inside the muscle fibre all contribute. Training improves this substantially, and it's the component most affected by detraining — which is why the [decline after forty](/blog/vo2max-decline-reversibility-masters-cyclists) is partly reversible.
+
+The reason VO2max is expressed relative to body weight (per kilogram) is because cycling uphill is a fight against gravity. A rider with an absolute VO2max of 4.5 litres per minute weighing 75 kg has a relative VO2max of 60 ml/kg/min. The same absolute value in a 90 kg rider gives 50 ml/kg/min — and that 10-unit gap is the difference between leading the group over a col and watching it ride away. Relative VO2max is what matters on any road that tilts upward, and it's the number every estimator reports.
+
+## How the estimation methods work
+
+True VO2max is measured in a lab: you ride an ergometer at increasing intensity while breathing through a mask that analyses oxygen and carbon dioxide concentrations in your expired air. The protocol ramps until you physically cannot continue, and the plateau in oxygen consumption at the end defines your VO2max. It's accurate, reproducible, and costs between £150 and £400 per session.
+
+Most cyclists never do it. The [VO2max Estimator](/tools/vo2max) uses two field-based estimation methods instead, each with a different set of trade-offs.
+
+### MAP-based estimation (ramp test)
+
+MAP — Maximum Aerobic Power — is the highest power output you sustain during a ramp test to exhaustion. In a standard ramp protocol (typically 20–25 watts per minute increments), you ride until you cannot hold the prescribed power for the required duration, and the last completed stage defines your MAP.
+
+The relationship between MAP and VO2max is approximately linear for trained cyclists. The estimator applies the formula:
+
+**VO2max (ml/kg/min) = ((MAP × 10.8) / body weight) + 7**
+
+The 10.8 figure is the established oxygen cost of cycling — roughly 10.8 millilitres of oxygen consumed per watt per minute at intensities near VO2max (derived from the linear regression between power output and oxygen uptake in numerous exercise physiology studies). The +7 accounts for resting metabolic rate.
+
+MAP-based estimation is more accurate than FTP-based methods because it captures the system much closer to its actual limit. The ramp test pushes you to failure; FTP describes a sustainable threshold well below the ceiling. Hawley and Noakes (1992) showed that MAP correlates with VO2max at r = 0.94 or above in trained cyclists, which is strong enough for practical use.
+
+### FTP-based estimation
+
+FTP — Functional Threshold Power — approximates the power you can sustain for roughly one hour. It sits below VO2max by definition, typically between 72% and 80% of the power at VO2max (a range confirmed repeatedly in the literature, including work by Joyner and Coyle, 2008).
+
+The estimator works backwards: it assumes your FTP represents a given fraction of your MAP (default: 75%), calculates an implied MAP, then applies the same oxygen-cost formula. The maths:
+
+**Implied MAP = FTP / 0.75**
+**VO2max (ml/kg/min) = ((Implied MAP × 10.8) / body weight) + 7**
+
+The weakness is obvious — that 75% assumption. A highly trained rider with excellent lactate clearance might sustain FTP at 82% of MAP. An undertrained rider with a big aerobic engine but poor threshold tolerance might sit at 68%. The same FTP produces a different VO2max estimate depending on where the rider falls in that range, and you can't know where you fall without testing both values. It's an approximation layered on an approximation.
+
+Use the [FTP Test Calculator](/tools/ftp-test) to establish your threshold power from a field test, then feed that number into the [VO2max Estimator](/tools/vo2max) for a baseline figure.
+
+## How accurate are field estimates?
+
+Honest answer: accurate enough to track trends, not accurate enough to quote at dinner.
+
+MAP-based estimates in trained cyclists typically fall within 3–7% of lab-measured VO2max. FTP-based estimates widen to 5–12%, depending on the individual's FTP-to-MAP ratio. Both methods assume a standard oxygen cost of cycling (the 10.8 ml/W/min figure), which varies by 5–8% between riders due to differences in pedalling efficiency, muscle fibre composition, and body position on the bike.
+
+For practical purposes, a field estimate of 52 ml/kg/min means your true value probably sits somewhere between 48 and 56 ml/kg/min. That's a range, not a verdict — but it's a useful range. If you test again in twelve weeks after a structured block and the estimate rises from 52 to 56, the improvement is real regardless of where the true number sits within the confidence band. The direction is reliable even when the absolute value is approximate.
+
+Where the estimates break down:
+
+- **Untrained or deconditioned riders** — the oxygen cost of cycling varies more widely in less efficient riders, and the FTP-to-MAP relationship is less predictable.
+- **Very high or very low body weight** — the per-kilogram normalisation amplifies errors in the power-to-oxygen relationship at the extremes.
+- **Altitude** — reduced oxygen availability at altitude lowers VO2max by roughly 6–7% per 1,000 metres above sea level, which field estimates do not account for.
+
+If you want a precise number for a specific purpose — a coaching prescription based on percentage of VO2max, or a benchmark against published normative data — lab testing is worth the money. If you want to track whether your aerobic ceiling is rising or falling over months of training, the [VO2max Estimator](/tools/vo2max) does the job.
+
+## VO2max percentiles by age and sex
+
+Context is everything. A VO2max of 50 ml/kg/min means something very different at 25 than at 55, and the distribution differs substantially between men and women (driven primarily by differences in haemoglobin concentration, heart size relative to body mass, and body composition).
+
+The following tables are drawn from published normative data for active adults (Shvartz and Reibold, 1990; American College of Sports Medicine guidelines), with the cycling-specific upper ranges reflecting trained athlete populations from the research of Tanaka and Seals (2008) and Astrand's longitudinal studies.
+
+### Men — VO2max percentiles (ml/kg/min)
+
+| Age | 25th percentile | 50th percentile | 75th percentile | 90th percentile | Trained cyclist |
+|-----|----------------|----------------|----------------|----------------|----------------|
+| 25–34 | 38 | 43 | 49 | 55 | 55–70 |
+| 35–44 | 35 | 40 | 46 | 52 | 50–65 |
+| 45–54 | 32 | 37 | 43 | 49 | 45–60 |
+| 55–64 | 28 | 33 | 39 | 45 | 42–55 |
+
+### Women — VO2max percentiles (ml/kg/min)
+
+| Age | 25th percentile | 50th percentile | 75th percentile | 90th percentile | Trained cyclist |
+|-----|----------------|----------------|----------------|----------------|----------------|
+| 25–34 | 31 | 36 | 41 | 47 | 47–58 |
+| 35–44 | 28 | 33 | 38 | 44 | 42–54 |
+| 45–54 | 25 | 30 | 35 | 41 | 38–50 |
+| 55–64 | 22 | 27 | 32 | 38 | 35–46 |
+
+A few things to notice. The 50th percentile for the general population drops roughly 3 ml/kg/min per decade — that's the much-cited "10% per decade" decline, which applies to people who progressively stop exercising. The "trained cyclist" column declines more slowly, roughly 5 ml/kg/min per decade, reflecting the 5%-per-decade rate Tanaka and Seals documented in masters athletes who maintain intensity.
+
+The [Cycling Age Grade Calculator](/tools/age-grade) uses a similar framework to show how your current performance compares to age-matched peers — a useful complement if the percentile table leaves you wanting more specificity.
+
+## The relationship between VO2max and FTP
+
+This is where most cyclists get confused, because they treat the two numbers as interchangeable when they measure different things.
+
+VO2max is the ceiling. FTP is where you live inside it. The ratio between them — called fractional utilisation — is one of the most revealing metrics in endurance physiology.
+
+**FTP typically represents 72–80% of the power output at VO2max.** That range is well-established in the literature (Joyner and Coyle, 2008; Lucía et al., 2002) and holds reasonably well across trained cyclists of different ages. Here's what shifts the ratio:
+
+- **Training history** — years of endurance training push fractional utilisation higher. A rider with a decade of structured base work might sustain 80–82% of their VO2max power at threshold. A rider who just started structured training two years ago might sit at 70–72%.
+- **Muscle fibre composition** — riders with a higher proportion of slow-twitch fibres tend to have better lactate clearance at a given percentage of VO2max.
+- **Training specificity** — sweet spot and threshold work improve fractional utilisation directly, even without changing VO2max. This is one reason FTP can rise while VO2max stays flat.
+
+The practical implication: two riders with identical VO2max values of 55 ml/kg/min but different fractional utilisations will have FTPs 30 watts apart. You can set your [FTP training zones](/tools/ftp-zones) and structure your week accordingly, but understanding where your FTP sits relative to your ceiling tells you which lever to pull next.
+
+If your FTP is below 72% of your MAP, there's room to raise it through threshold and [sweet-spot work](/tools/sweet-spot) without touching VO2max. If it's already at 80% or above, the ceiling itself needs to move — and that means [VO2max interval sessions](/blog/cycling-vo2max-intervals).
+
+## What counts as a "good" VO2max
+
+The question every cyclist asks, and the answer is always the same: it depends on who you're comparing yourself to.
+
+Against the general population, any trained cyclist looks exceptional. A 45-year-old male with a VO2max of 50 ml/kg/min sits at roughly the 75th percentile for all active adults his age — comfortably above average. Against the field at a competitive amateur road race, that same number is unremarkable. Against the professional peloton, where values of 75–85 ml/kg/min are standard, it's a different sport.
+
+Useful benchmarks for male cyclists (female values roughly 10–15% lower at equivalent training levels):
+
+| Category | VO2max range (ml/kg/min) |
+|----------|------------------------|
+| Untrained adult | 30–40 |
+| Recreational cyclist | 40–48 |
+| Competitive amateur | 48–58 |
+| Serious age-group racer | 55–65 |
+| Elite amateur / Cat 1 | 62–72 |
+| Professional | 70–85+ |
+
+These are indicative ranges, not sharp boundaries. A 52-year-old competitive masters racer at 58 ml/kg/min is an outlier relative to the general population and solidly competitive within the masters field. The same number in a 25-year-old aspiring professional would not be enough. Age, sex, training history, and competitive ambition all determine what "good" means for you.
+
+The [Training Load Calculator](/tools/training-load) can help contextualise whether your current training volume and intensity are sufficient to support the VO2max you're chasing — because the number doesn't rise without the stimulus.
+
+## Trainability — how much can you improve?
+
+VO2max is trainable. The degree depends on your starting point, your genetics, and the stimulus you apply.
+
+**From an untrained baseline, expect 15–25% improvement.** The Heritage Family Study (Bouchard et al., 1999) — the largest controlled training study ever conducted — found that 20 weeks of standardised endurance training produced VO2max improvements averaging 15–20%, with a range from near-zero to over 40% across individuals. That spread is almost entirely genetic. Same programme, same duration, vastly different outcomes.
+
+**From a trained baseline, expect 3–8% over a dedicated block.** If you've been riding consistently for years, the low-hanging gains are already banked. A focused 8–12-week VO2max training block — two sessions per week at 106–120% of FTP — typically yields 3–5% improvement in trained cyclists. Exceptional responders get more; poor responders get less.
+
+**The age factor is smaller than you think.** Masters cyclists who reintroduce structured intensity after years of steady endurance riding routinely see 5–15% gains, not because they have unusual genetics but because their ceiling dropped from detraining rather than from age alone. We cover the distinction in full in [VO2max decline and reversibility for masters cyclists](/blog/vo2max-decline-reversibility-masters-cyclists). The [seven reasons your VO2max might be low](/blog/vo2max-training-cyclists-seven-reasons) walks through the common culprits before blaming the calendar.
+
+## Genetic ceiling vs training ceiling
+
+Here is where the conversation gets uncomfortable, because the truthful answer is not the motivational one.
+
+VO2max has one of the highest heritabilities of any fitness parameter. Twin studies and the Heritage data suggest that 40–50% of the variation in VO2max between individuals is genetically determined — driven by heart size, haemoglobin mass, muscle capillary density, and the enzymatic machinery inside the mitochondria. You can train every one of these systems, but you cannot train them past the blueprint.
+
+What that means in practice: two riders following identical training programmes for five years will end up at different ceilings, and neither coaching, nutrition, nor willpower closes the gap fully. Bjorn Ekblom's work in the 1960s and 70s established this early; Bouchard's Heritage study confirmed it at scale.
+
+But — and this is the part that matters for anyone reading this who is not auditioning for a WorldTour contract — most amateur cyclists are nowhere near their genetic ceiling. The gap between where you are and where your genes allow you to be is almost always larger than the gap between your genetic ceiling and someone else's. You don't know your ceiling until you spend years trying to reach it, and most people quit optimising long before they arrive.
+
+The practical takeaway: use the [VO2max Estimator](/tools/vo2max) to establish your current number, train it with the protocols that work ([intervals here](/blog/cycling-vo2max-intervals), [masters-specific work here](/blog/vo2-max-workouts-cyclists-over-40)), and track the trend. If it stops moving after years of consistent, well-structured work, you've probably found your ceiling. Until then, the genetics question is academic.
+
+## Why VO2max is necessary but not sufficient
+
+This is the section that should stop you from obsessing over the number, because it explains why it doesn't predict race results as cleanly as the cycling internet suggests.
+
+VO2max sets the ceiling. It does not determine where you live inside it. Three other variables shape the gap between oxygen uptake and road speed, and each of them can override a VO2max difference of 5–10 ml/kg/min:
+
+**Cycling economy** — the oxygen cost of producing a given power output. Two riders at the same VO2max but different efficiencies will produce different wattages at any given oxygen consumption. Economy is influenced by pedalling technique, muscle fibre recruitment patterns, and years of sport-specific adaptation. It's one reason a time trialist with a VO2max of 68 can hold 380 watts while a less efficient rider at the same VO2max holds 355.
+
+**Fractional utilisation (lactate threshold)** — the percentage of VO2max you sustain before lactate accumulates faster than you clear it. A rider at 80% fractional utilisation extracts more performance from the same ceiling than one at 72%. This is what FTP-focused training directly improves, and it's why FTP is a better predictor of sustained performance than VO2max for events lasting more than five minutes.
+
+**Durability** — how well you maintain economy and threshold over the course of a long effort. Fresh legs and four-hour legs produce different numbers. A rider whose efficiency degrades 8% over four hours loses more than one whose degradation is 3%, even if they start with identical physiology. This is the least-measured and most race-relevant variable of the three, and it's not captured by any single-number metric.
+
+Prof. Michael Joyner's work on the "speed equation" formalised this: performance = VO2max × fractional utilisation × economy. All three must be high for the result to be fast. One outlier variable — even a world-class VO2max — does not compensate for mediocre values in the other two. This is why lab testing and field estimation are starting points, not finishing lines.
+
+## Using the estimator practically
+
+The [VO2max Estimator](/tools/vo2max) is most useful as a tracking tool, not a diagnostic one. Here's how to get the most from it.
+
+**Test consistently.** Use the same estimation method each time — either MAP or FTP, not alternating between the two. The absolute number matters less than the trend, and comparing MAP-based and FTP-based estimates across sessions introduces noise from the FTP-to-MAP ratio rather than reflecting actual physiological change.
+
+**Pair it with other metrics.** Your VO2max estimate gains meaning when read alongside your [FTP zones](/tools/ftp-zones), your [training load](/tools/training-load) trend, and your [age-graded performance](/tools/age-grade). A rising VO2max with a flat FTP suggests the ceiling is moving but your threshold work hasn't caught up. A flat VO2max with a rising FTP means you're extracting more from the same engine — which is just as valuable.
+
+**Retest after structured blocks, not after single sessions.** A bad night's sleep, mild dehydration, or residual fatigue from yesterday's ride can suppress a ramp test result by 3–5%. Test at the end of a recovery week following a training block, when you're fresh enough to produce a true max effort. Two to four times a year is sufficient for most riders.
+
+**Use the number to choose your next training emphasis.** If your estimated VO2max is lower than expected for your age, training history, and competitive ambitions, ceiling work — VO2max intervals — is the priority. If it's strong but your FTP sits below 72% of your MAP, threshold and sweet-spot work will yield faster race-day returns. If both are strong and you're still losing races, the answer is probably economy, durability, or tactics — none of which show up in a number.
+
+Build your interval sessions with the [Interval Session Builder](/tools/interval-builder) and track your heart rate response with the [HR Zone Calculator](/tools/hr-zones) to confirm you're reaching the right intensity. The number is a compass heading, not a destination. Point yourself in the right direction, train the thing that's weakest, and retest when the block is done.
+
+## Key takeaways
+
+- VO2max is the maximum rate of oxygen delivery and utilisation — the aerobic ceiling under which all endurance performance operates.
+- MAP-based estimation (ramp test) is more accurate than FTP-based, but both track trends reliably within 5–10% of lab values.
+- FTP sits at 72–80% of VO2max power. The ratio tells you whether to raise the ceiling or raise where you live inside it.
+- Percentiles shift with age and sex. A 50 ml/kg/min reading means different things at 30 and at 55 — context is the whole point.
+- Trainability is real: 15–25% from untrained, 3–8% from a trained baseline, and masters-specific recovery gains on top. But genetics set the ceiling.
+- VO2max alone does not predict race results. Economy, fractional utilisation, and durability fill the gap between oxygen and speed.
+- Use the [VO2max Estimator](/tools/vo2max) to track the trend, not to chase a single number. Pair it with FTP zones, training load, and age-grading for the full picture.
+
+The [Roadman Cycling community on Skool](https://www.skool.com/roadmancycling) is where we discuss testing protocols, training block design, and what to do when the numbers stop moving. Free to join.

@@ -1,0 +1,310 @@
+---
+title: "Predicting Your Race Time — What Actually Works"
+seoTitle: "Predicting Your Cycling Race Time: What Works"
+seoDescription: "How physics-based race prediction works for cycling — CdA, Crr, gradient, weight, FTP — and why Strava estimates miss the mark."
+excerpt: >-
+  Strava's estimated time is a coin toss. A physics-based race predictor that
+  models aero drag, rolling resistance, gradient, and your actual power data
+  gets within 2-3 per cent of reality — if you feed it honest numbers.
+pillar: "coaching"
+primaryHub: "cycling-training-plans"
+author: "anthony-walsh"
+publishDate: "2026-07-09"
+featuredImage: "/images/blog/placeholder.webp"
+keywords:
+  - predicting cycling race time
+  - cycling race time calculator
+  - cycling power to speed
+  - CdA cycling aerodynamics
+  - rolling resistance Crr cycling
+  - FTP race prediction
+  - cycling pacing strategy power
+  - race time estimator cycling
+  - cycling physics model
+  - time trial prediction
+  - gran fondo finish time
+answerCapsule: >-
+  Physics-based race prediction models convert your power, weight, CdA
+  (aerodynamic drag area), Crr (rolling resistance), and course profile into
+  a finish-time estimate by solving the power-balance equation at every point
+  on the route. They are accurate to 2-3 per cent when fed honest data, far
+  closer than Strava segment estimates or rule-of-thumb calculations, and
+  they reveal exactly where your time is won and lost — making them the
+  foundation of any serious pacing plan.
+keyTakeaways:
+  - "Strava's estimated time uses crowd-sourced segment data with no knowledge of your power, weight, or position — it is a popularity contest, not a prediction."
+  - "The power-balance equation (gravity + rolling resistance + aero drag + drivetrain loss = power) is the physics engine behind every credible race predictor."
+  - "CdA (drag area) dominates on the flat: at 40 km/h, roughly 85 per cent of your power fights air resistance. On a 7 per cent climb at 12 km/h, gravity takes over 75 per cent."
+  - "You need four inputs for a useful prediction: FTP or target power, total system weight (rider + bike + kit), course distance and elevation, and your riding position."
+  - "A flat 40km TT prediction is dominated by CdA and power — a 0.03 m² CdA difference changes the finish time by 90 seconds or more."
+  - "For hilly sportives, the model splits climbing time (weight-dominated) from descent time (speed-capped by braking) — which is why a hilly 100km takes longer than a flat one at the same power."
+  - "Calibrate your model with a past race where you have power data — the gap between predicted and actual time exposes your real-world CdA and Crr."
+faq:
+  - question: "How accurate is a physics-based cycling race time predictor?"
+    answer: >-
+      With honest inputs — a tested FTP, accurate body and bike weight, and a
+      real course profile — physics-based predictors land within 2-3 per cent
+      of actual finish times on solo efforts like time trials. For group rides
+      and sportives, the prediction sets a ceiling (solo, no draft) that
+      drafting, pack dynamics, and stop time will modify. Calibrating with one
+      known race result tightens the margin further.
+  - question: "Why is my Strava estimated time so different from my actual time?"
+    answer: >-
+      Strava estimates are based on segment leaderboard percentiles and your
+      historical times, not physics. They do not account for wind direction,
+      your current fitness, the bike you are riding, or whether you were in a
+      group. A physics model uses your actual power and the forces acting on
+      you — gravity, drag, rolling resistance — which is why it produces a
+      fundamentally different (and more reliable) number.
+  - question: "What is CdA and why does it matter for race prediction?"
+    answer: >-
+      CdA is the product of your drag coefficient (Cd) and frontal area (A),
+      measured in square metres. It represents how much aerodynamic resistance
+      you create. A rider on the hoods in a relaxed position might have a CdA
+      of 0.38 m², while the same rider in a TT position could be 0.21 m². At
+      40 km/h that difference is worth over 100 watts, which is why CdA is the
+      single most important variable in any flat or rolling race prediction.
+  - question: "Do I need a power meter to use a race predictor?"
+    answer: >-
+      You need a power number, but you do not necessarily need a power meter
+      on race day. An FTP estimate from an indoor test, a ramp test, or even
+      a well-calibrated RPE-to-power conversion gives the predictor what it
+      needs. The power meter's real value is validating the prediction
+      afterwards — comparing your predicted split times against actual power
+      file data to calibrate future predictions.
+  - question: "How do I account for wind in a race time prediction?"
+    answer: >-
+      Wind shifts the aero drag equation. A 15 km/h headwind at 35 km/h ground
+      speed means you are punching through air at 50 km/h — aero drag rises by
+      roughly 100 per cent compared to still conditions. Most predictors let
+      you input a headwind or tailwind component. For out-and-back courses the
+      effects do not cancel out: the time lost into the headwind always exceeds
+      the time gained with the tailwind, because drag scales with the square of
+      air speed.
+relatedPosts:
+  - pacing-strategy-cycling-sportive
+  - cycling-time-trial-tips
+  - tour-de-france-time-trial-lessons-amateurs
+  - cycling-metrics-explained
+  - aero-vs-weight-cyclist
+  - power-meter-training-cyclists-how-to-use
+relatedEpisodes: []
+relatedTools:
+  - race-predictor
+---
+
+A rider emailed me last month asking why his Strava estimated time for a local 10-mile time trial was 28 minutes when he finished in 24:11. Four minutes is not an error margin. It is a different race.
+
+Strava does not know his FTP. It does not know he was on a TT bike with clip-on extensions instead of the road bike he usually rides that segment on. It does not know the wind was 8 km/h from the south-west, which on that course is a net tailwind. What Strava knows is that other people have ridden that segment, and based on their times and his history, it produced a number. That number has no relationship to the physics of his body moving through air on that specific day.
+
+This is the core problem with most race time estimates cyclists encounter. They are either crowd-sourced averages or simple distance-over-speed calculations that ignore the forces actually determining how fast you go. A physics-based prediction model — the kind that solves the power-balance equation for gravity, aerodynamic drag, rolling resistance, and drivetrain loss — works differently. It starts from what your body can produce and calculates what the road and the air will let you achieve. That distinction matters, and it is worth understanding properly.
+
+## The four forces that determine your speed
+
+Every second you spend on a bike, your power output is fighting four things. Understanding each one is not academic — it determines which variable matters most on which course, and where your prediction will be most sensitive to error.
+
+**Gravity** pulls your total system mass (rider + bike + bottles + kit) downhill or resists it uphill. The force is proportional to mass, the gravitational constant (9.81 m/s²), and the sine of the gradient angle. On a 7 per cent climb, gravity accounts for roughly 75 to 80 per cent of the resistance a rider faces. On a flat road, it is zero. This is why your [W/kg Calculator](/tools/wkg) number is the metric that matters on climbs, while raw watts matter on the flat.
+
+**Aerodynamic drag** is the big one on flat and rolling terrain. The drag force equals half the air density, multiplied by your CdA (drag coefficient times frontal area), multiplied by your speed squared relative to the air. At 40 km/h on a calm day, roughly 85 per cent of a rider's power goes to fighting air resistance. At 15 km/h on a steep climb, it drops below 10 per cent. This square-law relationship is why small speed increases on the flat cost disproportionately more power — going from 38 to 40 km/h costs more additional watts than going from 30 to 32.
+
+**Rolling resistance** is the friction between your tyres and the road surface. It is expressed as a coefficient (Crr) multiplied by the normal force (mass times gravity times cosine of the gradient). Smooth tarmac has a Crr around 0.0032. Rough chip seal is closer to 0.005. Gravel pushes past 0.007. The force is constant regardless of speed, so its relative contribution shrinks as speed rises and aero drag takes over. But on a 160km sportive over mixed surfaces, the accumulated time cost of higher rolling resistance is significant — 2 to 4 minutes over the distance, easily.
+
+**Drivetrain loss** is the percentage of your pedalling power that never reaches the rear wheel. A clean, well-maintained chain and drivetrain is roughly 97 per cent efficient, meaning 3 per cent of your power is lost to friction in the chain, jockey wheels, and bearings. A dirty, worn drivetrain drops to 94 to 95 per cent. On 250 watts, that is the difference between 242.5 watts and 237.5 watts reaching the tyre. Over a long event, those 5 watts add up.
+
+The power-balance equation ties all four together: the power delivered to the rear wheel (your output minus drivetrain loss) equals the sum of the power required to overcome gravity, aero drag, and rolling resistance at a given speed. A race predictor solves this equation for speed — given your power, mass, CdA, Crr, gradient, and air density, what speed does the physics allow?
+
+## Why Strava estimates miss the mark
+
+Strava's estimated time is a statistical model, not a physics model. It looks at your historical performance on a segment (or similar segments), compares it to the population of riders who have recorded that segment, and extrapolates. The problems with this approach stack up quickly.
+
+First, Strava does not know your equipment. The same rider on a TT bike with a CdA of 0.21 m² and on a road bike sitting upright at 0.38 m² is two completely different speed profiles. At 250 watts on flat ground, the TT position produces roughly 40 km/h. The upright position produces roughly 33 km/h. Strava has no way to distinguish these.
+
+Second, Strava does not model wind. A 15 km/h headwind on an out-and-back course does not cancel with the tailwind on the return. Because drag scales with the square of air speed, the time you lose into the headwind always exceeds what you gain with the tailwind. A race predictor can model this. Strava cannot.
+
+Third, Strava's segment data is polluted. GPS drift, car-assisted KOMs, riders who forgot to stop recording, group rides where drafting inflated speeds — all of this contaminates the dataset the estimate is built from. A physics model does not care about other riders. It cares about forces.
+
+Fourth, and most importantly, Strava does not know your current fitness. Your FTP in January and your FTP in July are different numbers. A physics model starts from what you can produce right now.
+
+## What data you actually need
+
+A useful race prediction requires four categories of input. Get these right and the model works. Get them wrong and the output is fiction — well-formatted fiction, but fiction.
+
+### Power
+
+Your average sustainable power for the event duration. For a 25-mile TT lasting roughly an hour, this is close to your FTP. For a 160km sportive lasting 5 to 6 hours, it is 65 to 72 per cent of FTP. If you do not know your FTP, [run an FTP test](/tools/ftp-test) before building any prediction. Guessing your power is the fastest way to produce a meaningless number.
+
+The [Power↔Speed Calculator](/tools/power-speed) can help you sense-check your power input — if the predicted speed at your target power looks wildly different from what you experience in training, the power number (or the CdA/Crr assumptions) needs revising.
+
+### Weight
+
+Total system weight: rider mass plus bike mass plus kit, bottles, spares, everything on the bike. For a flat TT, weight barely matters — a 1 kg difference at 40 km/h on flat ground costs less than 2 seconds over 40 km. For a mountainous sportive with 3,000 metres of climbing, that same kilogram costs 2 to 3 minutes. Weigh yourself and your bike with all kit attached. Do not guess and do not use the weight from your last doctor's visit.
+
+### Course profile
+
+Distance and total elevation gain are the minimum. With just those two numbers, a predictor can model the route as a symmetric climb-and-descent profile — half the distance climbing at an average gradient, half descending at the same gradient. This captures the fundamental asymmetry: climbs cost more time than descents give back, because aero drag means you cannot descend as fast as the climb was slow.
+
+A GPX file from the actual course is better. It lets the predictor integrate the power-balance equation over the real elevation profile — every rise, every dip, every false flat. The difference between a GPX prediction and a distance-plus-elevation prediction is typically 2 to 5 per cent, because real courses have variable gradients that the symmetric model smooths over.
+
+### Riding position and surface
+
+Your CdA depends on your position. The [Race Time Predictor](/tools/race-predictor) uses preset values: TT bars at 0.21 m², aero drops at 0.24, aero hoods at 0.31, endurance hoods at 0.34, standard upright hoods at 0.38, and a climbing position at 0.40. These are population averages. Your actual CdA depends on your body dimensions, flexibility, helmet, clothing, and how well you hold your position under fatigue.
+
+Crr depends on the surface. Smooth tarmac is 0.0032, mixed tarmac 0.004, rough chip seal 0.005, smooth gravel 0.007, rough gravel 0.012, cobbles 0.025. If your sportive has a 15 km gravel sector, that sector costs far more time per kilometre than the tarmac sections, and the predictor needs to know about it.
+
+## How the physics model works
+
+The power-balance equation at any point on the course:
+
+Power × drivetrain efficiency = (gravity force + rolling resistance + aero drag) × speed
+
+Rearranged to solve for speed given a power input:
+
+P × η = [m × g × sin(θ) + Crr × m × g × cos(θ) + ½ × ρ × CdA × v²] × v
+
+Where P is power, η is drivetrain efficiency, m is total mass, g is gravitational acceleration, θ is the road gradient angle, Crr is the rolling resistance coefficient, ρ is air density, CdA is aerodynamic drag area, and v is speed.
+
+This is a cubic equation in v. The predictor solves it numerically — iterating until the speed that satisfies the power balance is found, then stepping forward along the course and solving again at the next gradient point.
+
+On a flat road with no wind, the equation simplifies to a balance between aero drag and available power. On a steep climb, gravity dominates and the aero term shrinks because speed is low. On a descent, gravity assists and the predictor caps speed at a realistic maximum (around 75 km/h) because real riders brake on descents — no model that predicts 90 km/h descents is useful.
+
+The [Climbing Time Estimator](/tools/climb-time) applies the same physics to individual climbs, and the [VAM Calculator](/tools/vam) lets you cross-reference your climbing rate against the prediction's implied VAM.
+
+## Flat 40km time trial: a worked example
+
+Take a 75 kg rider on an 8 kg TT bike. FTP tested at 280 watts. The course is a flat, out-and-back 40 km on smooth tarmac, negligible wind.
+
+**Inputs:**
+- Rider mass: 75 kg
+- Bike mass: 8 kg (total system: 83 kg)
+- Power: 270 watts (targeting 96 per cent of FTP for a ~55-minute effort)
+- Distance: 40 km
+- Elevation gain: 50 m (essentially flat with a few undulations)
+- Position: TT bars (CdA 0.21 m²)
+- Surface: smooth tarmac (Crr 0.0032)
+
+Plug these into the [Race Time Predictor](/tools/race-predictor). The model solves the power-balance equation across the course. With minimal gradient, aero drag dominates — roughly 85 per cent of the 270 watts goes to pushing air. The predicted finish time comes out around 57 to 58 minutes, an average speed of roughly 41 to 42 km/h.
+
+Now change one variable. Switch from TT bars (CdA 0.21) to aero hoods (CdA 0.31). Same rider, same power, same course. The predicted time jumps to roughly 65 to 67 minutes — a loss of 8 to 9 minutes purely from position. That is the cost of CdA on flat ground, and it is why time triallists obsess over position before they obsess over watts.
+
+Run it again at 250 watts instead of 270 — a 20-watt drop. Staying in TT position, the time extends by roughly 2 to 3 minutes. Twenty watts costs less time than a poor position does. The maths makes the priority order clear: position first, then power.
+
+This is exactly the kind of analysis covered in our [time trial tips](/blog/cycling-time-trial-tips) and the [TdF time trial lessons for amateurs](/blog/tour-de-france-time-trial-lessons-amateurs).
+
+## Hilly 120km gran fondo: a worked example
+
+Same rider, different event. A 120 km gran fondo with 2,200 metres of climbing, mixed road surfaces.
+
+**Inputs:**
+- Rider mass: 75 kg
+- Bike mass: 8.5 kg (road bike, slightly heavier with bottles and spares; total system: 83.5 kg)
+- Power: 210 watts (targeting 75 per cent of FTP for a 4+ hour effort)
+- Distance: 120 km
+- Elevation gain: 2,200 m
+- Position: endurance hoods (CdA 0.34 m²)
+- Surface: mixed tarmac (Crr 0.004)
+
+The model splits the course into climbing and descending segments. With 2,200 m of gain over 120 km, the modelled average gradient on the climbing half is roughly 3.7 per cent. On the climbs, gravity is the primary resistance and speed drops. On the descents, speed is capped at a realistic maximum because riders brake through corners and on technical roads.
+
+The predicted finish time is roughly 4 hours 15 minutes to 4 hours 30 minutes — an average speed of 27 to 28 km/h. Considerably slower than the flat TT despite a similar rider, because the climbing segments drag down the average.
+
+Now test the sensitivity. Drop the rider's weight by 3 kg (72 kg instead of 75, same bike). On the flat TT, this barely registered. Here, with 2,200 m of climbing, the model predicts a saving of 4 to 6 minutes. Weight matters when the road tilts up.
+
+Increase power by 10 watts (220 instead of 210). The saving is 5 to 7 minutes — the extra watts buy speed on the climbs where every watt-per-kilo counts. This is the domain of the [W/kg Calculator](/tools/wkg): 210 W at 75 kg is 2.8 W/kg; 220 W at 72 kg is 3.06 W/kg. That shift from 2.8 to 3.06 is the difference between struggling on the climbs and riding them within yourself.
+
+For anyone building a [pacing strategy for a sportive](/blog/pacing-strategy-cycling-sportive), this kind of modelling removes the guesswork. You know, before the start, what power produces what time on that specific course.
+
+## Why predicted and actual time always differ
+
+Even a well-built model will not match your stopwatch exactly. The discrepancies are predictable, and understanding them is part of using the tool properly.
+
+### Drafting
+
+The single biggest source of error in sportive predictions. Sitting in a group at 35 km/h reduces your aero drag by 25 to 40 per cent depending on your position in the pack and the size of the group. A solo prediction that says 4:30 might become a 4:05 actual time if you sat in a group for 60 per cent of the flat sections. The model predicts solo effort because it cannot know your drafting opportunities in advance — but it gives you the ceiling, which is the right number for pacing.
+
+### Fatigue and power decay
+
+The model assumes you hold constant power for the duration. In reality, power fades over long events. A rider targeting 210 watts for a 120 km sportive might average 215 for the first 60 km and 195 for the last 60 km. The average is 205, not 210, and the finish time reflects that lower number. Normalised power captures this effect — if you find your NP consistently falling below your predicted power in the final quarter, your model input is too optimistic.
+
+### Nutrition and hydration
+
+A rider who misses two feeding windows in hours 2 and 3 is a different engine by hour 4. The model does not know you forgot to eat. It assumes a biological machine operating at a stated power output. The reality of glycogen depletion, dehydration, and gut distress creates a gap between prediction and performance that no physics equation can close. The answer is not a better model — it is a better feeding plan, starting from the first 20 minutes.
+
+### Heat
+
+Air density drops as temperature rises. At 35°C, air is roughly 4 per cent less dense than at 15°C, which marginally reduces aero drag. But heat also degrades the rider. Core temperature rises, cardiac drift pushes heart rate up at the same power, and the body diverts blood to cooling instead of propulsion. The net effect is slower, not faster, despite the thinner air. The [Wind Chill Calculator](/tools/wind-chill) gives a sense of what the apparent temperature does at speed, but heat's real cost is physiological, not aerodynamic.
+
+### Mechanical and terrain factors
+
+Braking on descents, technical corners that force you to scrub speed, a gravel sector you did not know about, punctures, traffic lights on a sportive route — all of these add time the model cannot predict. For an open-road sportive, add 3 to 8 per cent to the model's prediction as a realistic buffer for stops and disruptions.
+
+## How to calibrate your model with past data
+
+The most powerful use of a race predictor is not the first prediction. It is the second one, after you have calibrated it against reality.
+
+Take a past race where you have power data — a time trial, a sportive, a segment you have ridden at race pace. Plug your actual average power, weight, course distance, and elevation into the predictor. Compare the predicted time to your actual time.
+
+If the model predicts faster than you actually rode (which is common), the gap reveals that your real-world CdA or Crr is worse than the preset values. Maybe your position slips under fatigue. Maybe the road surface was rougher than smooth tarmac. Adjust the CdA upward or the Crr upward until the model matches your actual time. Those adjusted values are your calibrated inputs for future predictions.
+
+If the model predicts slower than your actual time, you were probably drafting for a significant portion of the ride. This is useful information too — it tells you how much time drafting saved, which helps you plan differently for solo events versus group events.
+
+One calibration race is useful. Three or four across different course types — flat, rolling, hilly — gives you a profile of your real-world drag characteristics that is more accurate than any wind tunnel visit. Because it accounts for how you actually ride: the position you hold under fatigue, the surfaces you encounter, the way you brake on descents.
+
+For riders who track their [training data through TSS, CTL, and ATL](/blog/reading-your-training-data-tss-ctl-atl-tsb), the race predictor becomes a planning tool that connects fitness numbers to event outcomes. If your CTL suggests you can sustain 220 watts for four hours, plug that into the predictor for your target event and see what time it produces. If the time is not competitive enough, the model tells you exactly what needs to change — and whether that change should be more watts, less weight, or a better position. The [power meter training guide](/blog/power-meter-training-cyclists-how-to-use) covers how to build those power benchmarks accurately.
+
+## Flat courses versus mountain courses: different physics, different priorities
+
+The reason a single pacing approach does not transfer between course types is that the dominant physics term shifts.
+
+On a flat 40 km TT, aero drag consumes 80 to 90 per cent of your power. Weight is irrelevant. Crr is minor. CdA is everything. The priority order is: position → power → surface → weight.
+
+On a mountainous sportive with 3,000+ metres of climbing, gravity consumes 70 to 80 per cent of your power on the ascents. CdA still matters on the valley sections, but the climbs are where the time is won or lost. The priority order flips: power-to-weight → climbing pacing → CdA on the flat sections → surface.
+
+A race predictor makes this visible by showing you the split between climbing time and flat/descent time. When 60 per cent of your total time is spent climbing, optimising your flat-road CdA is low priority compared to holding 5 more watts on the climbs. When 80 per cent of your time is on the flat, losing 2 kg off your body weight is less valuable than getting into the drops more consistently.
+
+This is the same analysis explored in the [aero versus weight](/blog/aero-vs-weight-cyclist) breakdown — the race predictor quantifies it for your specific event.
+
+## Turning a prediction into a pacing plan
+
+The prediction itself is useful. What makes it actionable is converting it into a pacing plan for race day.
+
+The model already implies a pacing structure. On climbs, speed drops and each watt costs less time — so lifting power 5 to 8 per cent above your flat-road target on climbs buys cheap time. On descents, speed rises and extra watts buy almost nothing — so backing off to 85 per cent of target power on descents saves energy without losing time. On the flat, holding your target power steadily is optimal because variation (surges and recoveries) always costs more than steady-state riding at the same average.
+
+For a hilly sportive, the [pacing strategy for long climbs](/blog/cycling-pacing-strategy-long-climbs) applies: cap your climbing power at a sustainable percentage of FTP and resist the urge to match the pace of riders around you. The predictor tells you what that cap should produce in terms of a climbing split time. If you know the climb is 8 km at 6 per cent and your predicted climbing time for that section is 28 minutes, you have a benchmark. When you start the climb and see 25 km/h on the screen with your heart rate at threshold, you know that pace is too hot — the model says your speed should be closer to 17 km/h at your target power.
+
+Write those numbers on tape on your stem. Predicted split times for each major climb, target power for flats, climbing power ceiling. This is what coaches build when they [construct race plans](/blog/how-cycling-coaches-build-race-plans) — the race predictor automates the physics so you can focus on execution.
+
+## When the model breaks down
+
+No model is perfect, and knowing where this one fails is as important as knowing where it works.
+
+**Group dynamics.** Any event with drafting opportunities introduces a variable the solo model cannot capture. Use the prediction as your solo ceiling and expect to beat it if you ride in a group.
+
+**Variable conditions.** A three-hour sportive where the first hour is calm and the second hour has a 30 km/h crosswind is a different event from the model's single-condition assumption. Check the forecast and adjust your expectations, but do not expect the predictor to handle shifting conditions within a single ride.
+
+**Technical courses.** If 20 per cent of the route is on narrow, technical descents where you are braking constantly, the model's descent speeds are too fast. Add time for any section where your actual speed will be limited by road geometry rather than physics.
+
+**Altitude.** Air density drops at elevation. At 2,000 metres, air is roughly 20 per cent less dense than at sea level, which reduces aero drag — but it also reduces your power output by 5 to 10 per cent depending on acclimatisation. The net effect on a climb is roughly neutral. On a flat time trial at altitude, the reduced drag wins and speeds are slightly higher.
+
+**Your honesty.** The most common failure mode is not the physics. It is the rider inputting an FTP they achieved once, eighteen months ago, on a good day, at the end of a training block. The model is only as good as the numbers you feed it. Test your FTP within the last six weeks. Weigh yourself this week, not last month. Be honest about your riding position — if you spend half the race on the tops, you are not a 0.31 CdA rider.
+
+## The practical workflow
+
+Here is how I use race prediction for event preparation, and how I recommend it to riders I work with.
+
+**Six weeks out:** Run an [FTP test](/tools/ftp-test). Weigh yourself and your race-day bike with all kit. Plug the course distance and elevation (or GPX file) into the [Race Time Predictor](/tools/race-predictor). Get a baseline predicted time and note the climbing split versus the flat/descent split.
+
+**Four weeks out:** Do a hard training ride on similar terrain. Compare your actual power, speed, and time to what the model would predict. Calibrate your CdA and Crr if needed. Revise the prediction with calibrated values.
+
+**Race week:** Check the forecast. If wind or heat are factors, adjust your power target (down 5 to 10 watts in heat, or factor in the headwind component). Run the final prediction. Write your target power and key split times on your stem.
+
+**Race day:** Execute the plan. Hold your target power on the flats, lift 5 to 8 per cent on the climbs, back off on the descents. Eat from the first 20 minutes. Do not chase other riders who are riding above their sustainable power — the maths says they will come back to you, and the maths is rarely wrong.
+
+**Post-race:** Compare predicted time to actual time. Compare predicted splits to actual splits. Identify where the gaps were. Update your calibrated values. The next prediction will be better.
+
+If you want to work through this process with other riders who are preparing for the same events, the [Roadman community on Skool](https://www.skool.com/roadmancycling) is where those conversations happen — course profiles, predicted times, pacing plans, and post-race analysis with people who are actually pinning numbers on.
+
+## The bottom line
+
+Race prediction is not fortune-telling. It is applied physics. The power-balance equation has been validated against decades of cycling performance data, and when you feed it accurate inputs, it produces accurate outputs. The value is not just the finish time itself — it is the insight into which variables matter most for your specific event, which changes produce the biggest time savings, and what pacing strategy the physics supports.
+
+A rider who knows their predicted split times before the start has a plan. A rider who does not is guessing. And in any event longer than an hour, guessing costs minutes that physics would have saved.

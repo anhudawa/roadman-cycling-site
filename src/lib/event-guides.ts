@@ -882,6 +882,12 @@ export const EVENT_GUIDES: EventGuide[] = [
         whyItMatters:
           "The training distribution that builds the aerobic depth a 5,000m climbing day requires. Anchored in Professor Stephen Seiler's research.",
       },
+      {
+        slug: "la-marmotte-training-guide",
+        title: "How to Train for La Marmotte: A Practical 16-Week Guide",
+        whyItMatters:
+          "The companion deep-dive — 16-week phased plan with col-by-col pacing targets, gearing, fuelling timeline, and race-day execution for the full 174km.",
+      },
     ],
   },
   {

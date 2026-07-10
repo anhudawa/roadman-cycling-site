@@ -1,0 +1,199 @@
+---
+title: "Data Overload: Which Cycling Metrics Actually Matter (And Which Are Noise)"
+seoTitle: "Cycling Data Overload — 5 Metrics That Matter"
+seoDescription: "Your head unit shows 40 data fields. Five of them matter. Here is how to tell signal from noise in cycling data and build a 5-minute weekly review that drives better decisions."
+excerpt: "Your head unit can display 40 different data fields. Your training platform tracks another 30. Your watch adds 15 more. Somewhere in that avalanche of numbers are the five that actually tell you whether you are getting fitter — and the rest are noise dressed up as information."
+pillar: coaching
+primaryHub: power-meter-training
+author: anthony-walsh
+publishDate: "2026-07-10"
+keyTakeaways:
+  - "Five metrics deserve weekly attention: TSS trend (weekly total, not daily), CTL trajectory over 6-8 weeks, FTP progression across test cycles, acute-to-chronic workload ratio as a fatigue guardrail, and resting heart rate or HRV trend as a recovery signal."
+  - "Hunter Allen and Andrew Coggan's power metrics framework was designed for decision-making, not decoration — TSS tells you how much you did, CTL tells you whether it is accumulating, and the ratio between acute and chronic load tells you whether you are pushing too hard or too gently."
+  - "Garmin's VO2max estimate, body battery, and training status features use proprietary algorithms that conflate multiple signals and produce numbers you cannot act on. They feel informative. They are not."
+  - "Strava's suffer score and relative effort metrics are engagement features, not training tools. They measure something, but what they measure has no reliable relationship to the training stimulus your body actually experienced."
+  - "A 5-minute weekly review — total TSS, CTL trend, one subjective fatigue rating — gives you more useful insight than spending 30 minutes after every ride analysing normalised power, variability index, and efficiency factor."
+  - "Tim Kerrison's approach at Team Sky was famous for its data rigour, but the layer that actually drove decisions was remarkably thin: power output, heart rate response, and subjective feel. Everything else was context, not signal."
+  - "The psychological trap of metric obsession is that more data creates the illusion of more control. In practice, it creates more anxiety, more second-guessing, and worse adherence to the plan you already have."
+faq:
+  - question: "What five cycling metrics should I track weekly?"
+    answer: "Weekly TSS total (not individual session TSS), CTL trend plotted over 6-8 weeks, FTP tested every 6-8 weeks, acute-to-chronic workload ratio as a guardrail against ramping too fast, and either resting heart rate or HRV measured first thing each morning. These five tell you how much you are doing, whether it is accumulating, whether you are getting stronger, whether the load is sustainable, and whether your body is recovering between sessions. Everything else is supporting detail or noise."
+  - question: "Is Garmin's VO2max estimate accurate?"
+    answer: "Not accurate enough to make decisions from. Garmin estimates VO2max from pace, heart rate, and its proprietary algorithm. The number can fluctuate by 3-5 ml/kg/min based on temperature, hydration, caffeine, sleep, and whether you warmed up properly. A lab test gives you a real number. Garmin gives you an estimate of an estimate. Track the trend if you find it motivating, but do not let it dictate your training."
+  - question: "Should I use HRV to decide whether to train hard?"
+    answer: "HRV is useful as a trend over 7-14 days, not as a daily go/no-go signal. A single low HRV reading means very little — it could reflect a late meal, alcohol, poor sleep, or genuine overreaching. A consistently declining HRV trend over 10-14 days, combined with rising resting heart rate and subjective fatigue, is a signal worth acting on. The best current practice is to log HRV daily, review the 7-day rolling average, and only adjust training when the trend aligns with how you feel."
+  - question: "What is the acute-to-chronic workload ratio and why does it matter?"
+    answer: "It compares your recent training load (last 7 days) against your longer-term average (last 28 days). A ratio between 0.8 and 1.3 is generally considered a safe zone for building fitness without excessive injury or illness risk. Below 0.8, you are detraining. Above 1.5, you are ramping dangerously fast. It is not a perfect metric — the original cricket research it came from has been debated — but as a simple guardrail against doing too much too soon, it remains useful."
+  - question: "How often should I test my FTP?"
+    answer: "Every 6-8 weeks during structured training, or at the start of each new training block. Testing more frequently adds noise without adding information — FTP does not move meaningfully in two weeks unless you have just started training for the first time. Use the same test protocol each time (20-minute test, ramp test, or 2x8 protocol — pick one and stick with it) so the comparison is valid. The number itself matters less than the trend across three or four tests."
+relatedPosts:
+  - "reading-your-training-data-tss-ctl-atl-tsb"
+  - "cycling-metrics-explained"
+  - "rpe-and-power-using-them-together"
+  - "cycling-self-coaching-framework-guide"
+  - "power-meter-vs-smart-trainer"
+  - "cycling-training-log-how-to-guide"
+relatedTools:
+  - "tss"
+  - "training-load"
+  - "ftp-zones"
+  - "ftp-test"
+---
+
+You know the moment. You finish a ride, pull out your phone, and watch the numbers populate. TSS. Normalised power. Intensity factor. Variability index. Efficiency factor. Kilojoules. Strava suffer score. Garmin body battery drops from 64 to 31. Training status: "unproductive." Your watch reckons your VO2max went down by half a point.
+
+You did the ride your coach prescribed. You felt good. You nailed every interval. And now six different platforms are telling you six different things, and at least two of them sound like bad news.
+
+Here's the thing nobody tells you about cycling data: having more of it does not make you a better decision-maker. It usually makes you a worse one. The riders I've spoken to across 1,400-plus podcast episodes — from WorldTour coaches to age-group athletes who've been at this for decades — say the same thing. The ones who improve consistently track very little. The ones who stagnate track everything.
+
+That is not a coincidence. It is a pattern worth paying attention to.
+
+## The Problem Is Not the Data. It Is What You Do With It.
+
+When Hunter Allen and Andrew Coggan built the power-based training metrics framework — the one that gave us TSS, CTL, ATL, and the rest — they were building tools for decision-making. Each metric answered a specific question. TSS: how much did this session cost? CTL: is the training accumulating over weeks? The system was designed to be read as a whole, not obsessed over piece by piece.
+
+What happened instead is that every platform, watch manufacturer, and fitness app took those metrics, added their own proprietary layers on top, and created dashboards that reward engagement rather than understanding. Strava added suffer score. Garmin added body battery, training status, training effect, and a VO2max estimate. Whoop added strain scores. Each one measures something, but what they measure and how reliably they measure it are two very different questions.
+
+The result: a 45-year-old cyclist doing structured training now has access to more data per ride than a WorldTour team had per season fifteen years ago. And they are paralysed by it. Not because they are not smart enough. Because the signal-to-noise ratio is terrible.
+
+So let's fix that.
+
+## The Five Metrics That Actually Deserve Your Attention
+
+I am not going to explain what these metrics are — we have done that elsewhere on the site and done it properly. This is about which ones matter for making decisions, and why these five and not the other thirty-five.
+
+### 1. Weekly TSS Total (Not Individual Session TSS)
+
+Your total training stress for the week tells you one thing: volume. Not in hours, not in kilometres, but in physiological cost. A week at 450 TSS feels very different from a week at 650 TSS, and the number captures that difference in a way that "I rode five times" does not.
+
+The mistake most riders make is fixating on session-level TSS. They finish a ride, see 87 TSS, and wonder whether that was enough. Wrong question. The session TSS only matters in context of the weekly total, which only matters in context of what your body can absorb, which only matters in context of what it absorbed last week and the week before.
+
+Weekly total. Sunday evening. One number. That is all you need from TSS.
+
+### 2. CTL Trajectory Over 6-8 Weeks
+
+CTL — your chronic training load — is the 42-day rolling average of your daily TSS. It is the closest thing you have to a single number that says "this is my current fitness."
+
+But here is where it gets really interesting. The absolute number matters far less than the direction. A CTL of 55 that has risen steadily from 40 over six weeks is a better position than a CTL of 70 that has been flatlined for three months. Direction tells you whether the training is accumulating. The number alone tells you almost nothing without history.
+
+Plot it. Look at it once a week. Ask one question: is it going up, staying flat, or going down? If it is going up at 3-7 points per week, you are building. If it is flat, your training is maintaining, not progressing. If it is dropping, you are either tapering deliberately or losing ground.
+
+That is the entire decision. One line on a chart. One question.
+
+### 3. FTP Progression Across Test Cycles
+
+Functional threshold power is the number your entire training structure is built on. Every zone, every interval target, every TSS calculation flows from it. If FTP is wrong, everything downstream is wrong.
+
+Test it every 6-8 weeks using the same protocol each time — 20-minute test, ramp test, or the 2x8 protocol that Coggan and Allen advocated. Pick one and stick with it so the comparison across tests is valid. The number itself matters, but the trend across three or four tests matters more. FTP moving from 245 to 252 to 259 over four months tells you the training is working. FTP bouncing between 248 and 253 across six tests tells you something else entirely.
+
+And here is the part people get wrong: FTP does not move in two weeks. If you are testing every fortnight, you are adding noise. You are measuring test-day variability — sleep, motivation, fuelling, temperature — and calling it fitness change. Test less. Trust more.
+
+### 4. Acute-to-Chronic Workload Ratio (The Guardrail)
+
+This one sounds technical. It is not. It compares your training load from the last 7 days against your average load from the last 28 days. That is it. Last week versus the month.
+
+A ratio between 0.8 and 1.3 means you are in a zone where you are building fitness without ramping so fast that your body cannot keep up. Below 0.8, you are doing less than your body is adapted to — detraining, essentially. Above 1.3, you are asking for more than your recent history supports, and injury or illness risk starts climbing. Above 1.5, you are in the danger zone.
+
+The original research came from cricket, not cycling, and the metric has been debated in the sports science literature. Fair enough. But as a simple guardrail — a number that tells you "you are ramping too fast, pull back" — it remains one of the most useful things you can check. Especially for self-coached riders who do not have someone else watching the bigger picture.
+
+Most training platforms calculate this automatically. Check it once a week alongside your TSS total. If it is creeping above 1.3, you know why you feel rough, and you know what to do about it.
+
+### 5. Resting Heart Rate or HRV Trend
+
+This is your body's side of the conversation. The other four metrics measure what you did. This one measures how your body responded.
+
+Resting heart rate, taken first thing in the morning before you get out of bed, is the simplest recovery metric available. It requires no wearable, no subscription, no algorithm. If it trends upward over 7-10 days — two or three beats above your baseline — your body is not recovering between sessions. Simple.
+
+HRV adds a layer of sensitivity. Heart rate variability measures the variation in time between heartbeats, and higher variability generally indicates a more recovered, more adaptable autonomic nervous system. But — and this is critical — HRV is useful as a 7-14 day trend, not as a daily traffic light. A single low reading means almost nothing. You had a glass of wine. You ate late. You slept badly. The reading tells you about last night, not about your fitness.
+
+The science has finally caught up to what coaches suspected for years: the rolling average of HRV, cross-referenced with subjective fatigue, is a reliable early-warning system for overreaching. A consistently declining 7-day HRV average, combined with a rising resting heart rate and the feeling that you would rather do anything other than get on the bike — that convergence is a signal worth acting on.
+
+Log it daily. Review the trend weekly. Do not make single-day decisions from it.
+
+## The Metrics That Are Noise Dressed as Signal
+
+Now for the uncomfortable part. Some of the numbers you look at every single day are not helping you. They feel informative. They are not. They are engagement features built by companies whose business model depends on you opening the app.
+
+### Strava Suffer Score and Relative Effort
+
+Strava's suffer score — now rebranded as "relative effort" — is calculated from heart rate data using a proprietary formula. It measures something. But what it measures has no reliable relationship to the training stimulus your body actually experienced.
+
+Here is why. Heart rate is affected by caffeine, hydration, temperature, fatigue, stress, altitude, and whether you had an argument before the ride. Two identical efforts — same power, same duration — can produce wildly different suffer scores depending on external factors. A metric that changes its answer based on how much coffee you drank is not a training metric. It is a vibe check.
+
+It exists because it gives you a number after every ride. Numbers feel like progress. Strava knows this.
+
+### Garmin Body Battery
+
+Body battery combines heart rate, HRV, stress, and activity data into a single score from 0-100. The idea is appealing: one number that tells you how recovered you are. The problem is that the algorithm behind it is proprietary, unvalidated in peer-reviewed literature for trained athletes, and conflates multiple signals in a way that makes the output uninterpretable.
+
+What does it mean when your body battery drops from 60 to 35 after a ride? That you did a ride. What does it mean when it only recovers to 50 overnight? That you did not sleep well, or that you trained hard, or that Garmin's algorithm has a particular recovery curve baked in. You cannot tell. You cannot act on it. And you cannot verify it against anything real.
+
+If it motivates you to sleep more, fine. But do not confuse it with data.
+
+### Garmin Training Status and VO2max Estimate
+
+"Unproductive." "Detraining." "Overreaching." Garmin's training status feature uses these labels in ways that sound clinical but are not. The algorithm looks at recent training load and recent performance trends and categorises you into a bucket. The problem: it defines "performance" using its own VO2max estimate, which is itself an estimate built from pace, heart rate, and a proprietary model.
+
+That VO2max number can fluctuate by 3-5 ml/kg/min based on temperature, hydration, caffeine, sleep, and warm-up quality. A lab-tested VO2max on a well-calibrated metabolic cart is a real measurement. Garmin's number is an estimate of an estimate, updated after every run with no error bars and no context.
+
+I have had riders message me in a panic because Garmin told them they were "detraining" — during a recovery week that was deliberately scheduled. The algorithm does not know your plan. It does not know your context. It just sees reduced load and sounds the alarm.
+
+### Single-Session Normalised Power Obsession
+
+Normalised power is a useful metric for understanding the physiological cost of variable efforts. Coggan designed it to solve a real problem: an average power of 200 watts on a flat TT and an average of 200 watts on a hilly road race with surges to 600 watts are very different sessions. NP captures that.
+
+But checking NP after every ride and comparing it against last Tuesday's NP is not training analysis. It is pattern-matching without purpose. NP is a descriptive metric. It tells you what happened during the session. Unless that description changes a decision — "this was supposed to be endurance but NP says I went too hard" — looking at it is just looking.
+
+### Kilojoule Tracking for Training Purposes
+
+Kilojoules tell you how much mechanical work you did. For fuelling decisions, they are mildly useful: the approximate calorie cost of a ride in kilojoules (for cycling, due to ~25% gross efficiency, kilojoules roughly equals kilocalories). For training decisions, they tell you nothing that TSS does not tell you better.
+
+If you are counting kilojoules to decide whether today's ride was hard enough, you are counting the wrong thing.
+
+## Why More Data Makes You Worse at Deciding
+
+There is a well-documented phenomenon in decision science called information overload. When people are given more data than they can meaningfully process, their decisions get worse, not better. They become less confident. They second-guess. They fixate on whatever number moved most recently, regardless of whether that number is the right one to watch.
+
+Tim Kerrison's approach at Team Sky — now Ineos Grenadiers — is the best case study cycling has produced on this topic. Kerrison was famous for his data rigour. The team collected vast quantities of information on every rider: power, heart rate, blood lactate, training load, sleep quality, mood, body weight, skin-fold measurements. The data set was enormous.
+
+But here is what most people miss about Kerrison's system. The layer that actually changed decisions was remarkably thin. Power output, heart rate response to a given power output, and subjective feel. That was the triangle. Everything else was context that helped explain the triangle when something looked unusual. The data did not drive the decisions. The decisions drove which data got looked at.
+
+Most self-coached riders do this backwards. They look at everything, every day, and try to synthesise meaning from the noise. The result is anxiety, not insight. You finish a ride feeling great and then Garmin tells you that you are unproductive and your VO2max dropped and your body battery is low and Strava says your relative effort was only a 74 and now you feel terrible about a ride that was, by every measure that matters, exactly right.
+
+The psychology of metric obsession is simple: more data creates the illusion of more control. It feels like diligence. It feels like you are taking this seriously. But in practice, it creates more anxiety, more second-guessing, and worse adherence to the plan you already have. You start adjusting sessions based on a watch algorithm instead of following the programme that was designed to produce adaptation over weeks, not to win a daily approval rating from your wrist.
+
+## The 5-Minute Weekly Review That Actually Works
+
+Here is what I do, and what I recommend to every rider I talk to. Sunday evening. Five minutes. Three things.
+
+**Step one: Weekly TSS total.** Open your training platform. Look at the weekly total. Compare it to last week and your target. Too high, too low, or about right? That is one decision.
+
+**Step two: CTL trend.** Look at the performance management chart. Is the line going up? Is it going up at a rate that makes sense — 3-7 points per week if you are building, flat if you are maintaining, dropping during a taper? That is one glance.
+
+**Step three: How do you feel?** Not a number. Not a metric. Just a subjective rating. On a scale of 1-10, how fatigued are you? How motivated are you? If both numbers are low — tired and unmotivated — that is a signal. If you are tired but keen to ride, you are probably fine. If you are fresh but unmotivated, that is a different kind of problem.
+
+That is it. Weekly TSS, CTL direction, and a gut check. Total time: less than five minutes. And it gives you more useful insight than spending 30 minutes after every ride poring over normalised power, variability index, efficiency factor, and whatever new score Garmin invented this quarter.
+
+Every six to eight weeks, add an FTP test. Plot the results. Check the acute-to-chronic ratio if you have been ramping training. Glance at your resting heart rate or HRV trend to confirm your body agrees with what the numbers say.
+
+That is your entire data practice. Five metrics, tracked weekly, reviewed in minutes. Everything else is optional context or noise.
+
+## Putting It Into Practice
+
+If you are currently drowning in data, here is the simple transition. Do not try to unlearn everything at once. Just do this:
+
+**This week:** Remove suffer score, body battery, and training status from your watch face. Seriously. Take them off. If you do not see them, you do not react to them.
+
+**Next Sunday:** Do the 5-minute review. Write down your weekly TSS total, note whether CTL is rising or flat, and rate your fatigue 1-10. Three numbers. One note in your phone.
+
+**After your next FTP test:** Plot the result alongside your previous tests. Draw the trend line. That is your answer to "is the training working?"
+
+**Every week after that:** Repeat the Sunday review. It should take less time than making a coffee. If it takes longer than five minutes, you are looking at too much.
+
+The good news is that stripping back to these five metrics does not mean you are less informed. It means you are better informed, because the information you are acting on is the information that actually matters. You are trading breadth for depth, volume for signal, and the illusion of control for actual control over the decisions that affect your fitness.
+
+Allen and Coggan gave us the tools. Kerrison showed us how to use them at the highest level. The principle is the same whether you are preparing for the Tour de France or trying to hold 250 watts for your local sportive: track what drives decisions, ignore what drives anxiety, and trust the process more than the dashboard.
+
+---
+
+If you want to talk through your own data setup — what to track, what to bin, and how to build a weekly review that works for your specific goals — that is exactly the kind of thing we get into inside the Roadman Cycling community. Real conversations with riders who have been through the same process. No algorithms. No engagement scores. Just people figuring it out together. [Come join us](https://www.skool.com/roadmancycling).

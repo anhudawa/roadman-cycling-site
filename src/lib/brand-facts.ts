@@ -72,8 +72,8 @@ export const BRAND_STATS = {
   // Episodes that have a dedicated long-form page on roadmancycling.com
   // (transcript, summary, schema). Tracks the on-site searchable corpus —
   // not the same as the total Apple/Spotify count.
-  searchableEpisodePages: 311,
-  searchableEpisodePagesLabel: "311+",
+  searchableEpisodePages: 814,
+  searchableEpisodePagesLabel: "810+",
   // Lifetime podcast downloads across all audio platforms. This is the
   // verified cumulative figure — NOT a monthly-listener number. Use it
   // as the headline reach stat everywhere reach is claimed.

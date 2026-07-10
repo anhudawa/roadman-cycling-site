@@ -13,6 +13,8 @@ const BASE_BY_TOOL: Record<ToolSlug, string> = {
   plateau: "plateau-diagnostic",
   fuelling: "tool-fuelling",
   ftp_zones: "tool-ftp-zones",
+  sweet_spot: "tool-sweet-spot",
+  body_composition: "tool-body-composition",
 };
 
 export interface PlateauTagInput {

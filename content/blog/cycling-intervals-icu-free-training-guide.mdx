@@ -1,0 +1,224 @@
+---
+title: "Intervals.icu: The Free Training Platform Most Cyclists Are Sleeping On"
+seoTitle: "Intervals.icu Guide for Cyclists — Free Training Analysis"
+seoDescription: "How to use Intervals.icu for cycling training analysis. Setup, fitness and fatigue charts, power curves, and season planning — all free. Practical walkthrough."
+excerpt: "You are sitting on months of training data. Power files, heart rate traces, ride after ride after ride. And most of it is doing nothing except filling up your Garmin Connect dashboard. Intervals.icu turns that dead data into decisions you can actually act on — and it costs nothing."
+pillar: "coaching"
+primaryHub: "cycling-coaching"
+author: "anthony-walsh"
+publishDate: "2026-07-10"
+keyTakeaways:
+  - "Intervals.icu is a free, browser-based training analysis platform that syncs with Garmin, Wahoo, Strava, and most major head units — it provides the fitness and fatigue modelling, power curve analysis, and season planning that previously required a paid subscription elsewhere."
+  - "The fitness and fatigue chart — CTL, ATL, and TSB — is the most immediately useful feature. CTL tracks your chronic training load over 42 days, ATL tracks acute fatigue over 7 days, and TSB (the difference) tells you whether you are fresh, fatigued, or at risk of overreaching."
+  - "Your power duration curve in Intervals.icu reveals your limiter more clearly than any single FTP number — a curve that drops steeply after 1 minute suggests aerobic weakness, while a flat curve with a low peak suggests neuromuscular limitations."
+  - "Season comparison lets you overlay your current fitness trajectory against previous years, which is the fastest way to answer the question every cyclist asks in March: am I ahead or behind where I was last year?"
+  - "The workout builder and calendar let you plan structured sessions and drag them onto your weekly schedule — not as polished as dedicated planning platforms, but functional enough for self-coached riders who want everything in one place."
+  - "Setting your power zones correctly in Intervals.icu is the first thing to do after connecting your account — the default zones use a generic model that will misclassify your training distribution and make your fitness chart less accurate."
+  - "Intervals.icu is not a replacement for a coach, and it does not tell you what to do — it tells you what you did, how your body responded, and where the patterns are. The interpretation still requires human judgment."
+faq:
+  - question: "Is Intervals.icu really free?"
+    answer: "Yes. The core platform — fitness and fatigue charts, power analysis, workout planning, and ride history — is entirely free. There is an optional supporter tier for around $2 per month that adds a few extra features and helps fund development, but nothing essential is locked behind it."
+  - question: "How do I connect Intervals.icu to my Garmin or Wahoo?"
+    answer: "Go to Settings in Intervals.icu and link your Garmin Connect, Wahoo, or Strava account. The sync pulls your historical rides automatically — most users see their full ride history appear within a few minutes. New rides sync automatically after each upload."
+  - question: "What is the difference between CTL, ATL, and TSB?"
+    answer: "CTL is your Chronic Training Load — a rolling 42-day average of your daily training stress, representing your fitness. ATL is your Acute Training Load — a 7-day rolling average representing your fatigue. TSB is the difference between them: CTL minus ATL. A positive TSB means you are fresh. A negative TSB means you are carrying fatigue. Most riders perform best with a TSB between 0 and positive 15 on race day."
+  - question: "Can I plan workouts in Intervals.icu?"
+    answer: "Yes. The workout builder lets you create structured intervals with power or heart rate targets, and the calendar lets you schedule them across your week. You can also import workout files from other platforms. It is not as feature-rich as dedicated coaching platforms, but for self-coached riders who want to plan and track in one place, it does the job."
+  - question: "Should I use Intervals.icu instead of TrainingPeaks?"
+    answer: "They serve different needs. TrainingPeaks has deeper coaching integration, plan libraries, and workout prescription features that make it the standard for coached athletes. Intervals.icu provides excellent analysis tools for free and works well for self-coached riders or as a complement to a paid platform. Many cyclists use both — one for planning and coaching, the other for deeper analysis and visualisation."
+relatedPosts:
+  - "reading-your-training-data-tss-ctl-atl-tsb"
+  - "cycling-strava-segments-training-guide"
+  - "cycling-head-unit-data-screens-setup-guide"
+  - "cycling-metrics-explained"
+  - "cycling-how-to-choose-a-training-plan-guide"
+relatedTools:
+  - "tss"
+  - "ftp-zones"
+  - "training-load"
+---
+
+You finished a ride this morning. Maybe a structured interval session, maybe a long endurance loop. You uploaded the file to Garmin Connect or Strava, glanced at the summary — average power, distance, time, maybe a segment ranking — and moved on. That data is now sitting in a database alongside every other ride you've done this year, and the year before, and possibly the year before that.
+
+It's doing nothing.
+
+Most cyclists have hundreds of training files generating zero insight. The numbers exist. The trends exist. The patterns that would tell you whether your fitness is actually building, whether your fatigue is accumulating dangerously, whether you're stronger at 5-minute efforts than you were in March — all of that is buried in files you uploaded and forgot about.
+
+Here's the thing nobody tells you about training data: collecting it is not the same as using it. And for years, using it properly meant paying for a platform with the analytical tools to make sense of it. That's changed. There's a free, browser-based platform called Intervals.icu that gives you the fitness modelling, the power analysis, and the season tracking that most self-coached cyclists actually need — without spending a penny.
+
+This is not a review. This is a walkthrough. By the end you'll have Intervals.icu set up, your historical data synced, and a working understanding of the charts and tools that turn dead files into training decisions.
+
+**In this guide:**
+- [The dead data problem](#the-dead-data-problem)
+- [What Intervals.icu actually is](#what-intervals-icu-actually-is)
+- [Setting up: connect, configure, calibrate](#setting-up)
+- [The fitness and fatigue chart: CTL, ATL, TSB](#fitness-and-fatigue-chart)
+- [Power duration curves: finding your limiter](#power-duration-curves)
+- [Season comparison: year-on-year tracking](#season-comparison)
+- [Workout planning and the calendar](#workout-planning-and-the-calendar)
+- [What Intervals.icu does not do](#what-it-does-not-do)
+- [Where it sits alongside other platforms](#where-it-sits-alongside-other-platforms)
+
+---
+
+## The Dead Data Problem
+
+Garmin Connect gives you a nice summary after every ride. Strava gives you kudos and segment times. Neither gives you the thing that actually matters for training: context over time.
+
+A single ride file tells you almost nothing about your fitness trajectory. Your average power today, in isolation, is meaningless. Was it higher than last month? Was it achieved at a lower heart rate? Was it part of a week where you were systematically overreaching, or was it the tail end of a rest block where you should have been sharper? One ride can't answer those questions. You need the pattern across weeks and months.
+
+This is where most amateur cyclists hit a wall. They have the data. They have years of it. But the tools that sit on top of that data — the ones that model fitness, track fatigue, compare seasons and surface the shape of your power curve — those tools historically cost money. Not a fortune, but enough that a lot of self-coached riders skip the step entirely and rely on feel, Strava segment times, and memory.
+
+Feel is unreliable. Strava segments are affected by wind, traffic and whether you drafted someone's wheel for half the effort. Memory is worse than both. What you need is a systematic view of your training over time, and Intervals.icu provides exactly that — for free.
+
+## What Intervals.icu Actually Is
+
+Intervals.icu is a browser-based training analysis platform built by David Tinker, a software developer and cyclist who wanted the analytical power of premium platforms without the subscription. It runs entirely in your browser. There's no app to install. You sign in, connect your data source — Garmin, Wahoo, Strava, or direct file upload — and your ride history populates automatically.
+
+The core feature set covers what most self-coached cyclists actually use: fitness and fatigue modelling (the CTL/ATL/TSB chart that underpins periodisation), power duration curves, workout building, a training calendar, season comparison, and detailed ride analytics. If you've used a paid training platform before, the layout will feel familiar. If you haven't, it's intuitive enough that you won't be lost for long.
+
+The platform is genuinely free. There is an optional supporter subscription — roughly $2 per month — that adds a handful of extra features and helps fund ongoing development. But the analytical tools that matter for training decisions are all available without paying anything.
+
+Let me break this down by what you actually do with it.
+
+## Setting Up
+
+The initial setup takes about five minutes, and getting it right matters — particularly the zone configuration, which affects how your training is classified across every chart on the platform.
+
+### Connecting your data
+
+Go to [intervals.icu](https://intervals.icu), sign in with your Google, Apple or email account, and head to Settings. You'll see options to connect Garmin Connect, Wahoo Cloud, Strava, or other services. Pick whichever holds your ride data.
+
+Once connected, Intervals.icu pulls your historical files. Most users see months or years of rides appear within minutes. New rides sync automatically after each upload to your head unit platform — you finish a ride, upload to Garmin, and it shows up in Intervals.icu shortly after.
+
+If you've been training with power for any length of time, you'll suddenly have a populated fitness chart stretching back as far as your data goes. That alone is worth the five minutes.
+
+### Configuring your power zones
+
+This is the step most people skip, and it's the step that makes the biggest difference to accuracy.
+
+Intervals.icu ships with default power zones based on a generic model. Those defaults are almost certainly wrong for you. They'll misclassify your training distribution — labelling tempo work as threshold, or sweet spot as Zone 2 — and every chart that depends on zone classification will be off as a result.
+
+Go to Settings, find the power zones section, and set them to match your actual physiology. If you've done a recent FTP test, enter that number and use the zone model you're familiar with — whether that's the classic Coggan 7-zone model or something your coach has prescribed. If you use a different zone structure, you can define custom zones manually.
+
+This matters because the fitness chart calculates training stress from your zone distribution. If the zones are wrong, the stress scores are wrong, and the fitness and fatigue model becomes unreliable. Five minutes here saves you from misreading every chart for the next twelve months.
+
+Set your heart rate zones too, while you're in there. Same principle — the defaults are generic, your actual thresholds are specific to you.
+
+### Configuring your FTP history
+
+If your FTP has changed over time — and it should have, if you've been training — you can enter historical FTP values with dates. Intervals.icu will then recalculate your training stress scores using the correct FTP for each period, which makes your historical fitness chart significantly more accurate. A ride you did at 250 watts when your FTP was 260 is a very different training stimulus than the same ride when your FTP was 220.
+
+## Fitness and Fatigue Chart
+
+This is the single most useful feature on the platform, and it's the one most cyclists either don't understand or misread. If you learn nothing else from Intervals.icu, learn this chart. It tells you whether your training is building fitness, accumulating dangerous fatigue, or doing neither.
+
+The chart plots three lines over time: CTL, ATL, and TSB.
+
+**CTL — Chronic Training Load** is a rolling 42-day exponentially weighted average of your daily training stress. Think of it as your fitness. It moves slowly. It doesn't spike after one big ride. It builds gradually as you stack consistent training days, and it decays gradually when you stop. If your CTL is higher now than it was two months ago, you are fitter. That simple.
+
+**ATL — Acute Training Load** is the same calculation over a 7-day window. Think of it as your fatigue. It moves fast. A monster weekend of riding will spike your ATL. Two easy days will bring it down. It tracks the short-term cost of what you've been doing recently.
+
+**TSB — Training Stress Balance** is the difference: CTL minus ATL. This is the number that tells you how you'll feel. A positive TSB means your fitness exceeds your fatigue — you're fresh. A negative TSB means your recent training has accumulated more stress than your body has had time to absorb — you're tired.
+
+### How to read it practically
+
+Most riders target a race day TSB between 0 and +15. That range means you've shed enough fatigue to feel sharp but haven't rested so long that you've lost fitness. Andrew Coggan, who developed the original performance management framework, has written extensively about this — and while the specific numbers vary between individuals, the principle holds: you want to arrive at a goal event with your CTL as high as you can build it and your ATL low enough that TSB comes up into that positive range.
+
+Here's where it gets practical. Watch the TSB trend during a training block. If it drops steadily into -20, -25, -30 over three weeks and then you schedule a rest week, you'll see it rise back toward zero or slightly positive. That's a textbook build-and-recover pattern. If it drops past -30 and keeps falling week after week with no recovery, you're overreaching — and the chart is telling you before your body screams it at you through illness, injury or flatlined performance.
+
+The flip side is just as useful. If your TSB never goes negative — if you never accumulate meaningful fatigue — your CTL will plateau. You're not pushing hard enough to force adaptation. The chart won't tell you exactly what to do, but it'll show you the pattern: either you're loading and recovering sensibly, or you're stuck in a grey zone where you're neither fresh enough to perform nor fatigued enough to grow.
+
+For anyone who hasn't worked with these metrics before, we've written a detailed breakdown of [TSS, CTL, ATL and TSB](/blog/reading-your-training-data-tss-ctl-atl-tsb) that covers the maths and the practical application. Worth reading alongside this.
+
+## Power Duration Curves
+
+Your FTP is one number. Your power duration curve is the whole picture.
+
+Intervals.icu plots your best power output at every duration — from 1 second out to several hours — and maps it as a curve. That curve is a fingerprint of your current abilities, and it reveals more about your strengths and limiters than any single metric.
+
+Here's what to look for.
+
+**A steep drop after 1 minute** means your short-duration power is strong relative to your sustained power. You can sprint, you can punch over a short climb, but your aerobic engine isn't supporting those efforts as durations extend. Your limiter is aerobic capacity — VO2max work, threshold intervals, and sustained riding are where you'll find the most gains.
+
+**A relatively flat curve that sits low across all durations** suggests your neuromuscular power is the ceiling. You can sustain a decent percentage of your peak for a long time, but the peak itself is modest. Short, explosive efforts — sprints, standing starts, high-force low-cadence work — might shift the curve upward.
+
+**A curve that's strong at 3-5 minutes but drops sharply at 20 minutes and beyond** points to a threshold limitation. Your VO2max system is reasonable, but you can't maintain a high fraction of that for long enough. Sweet spot and threshold sessions address this directly.
+
+### Comparing time periods
+
+The real power of the curve emerges when you overlay different time periods. Intervals.icu lets you compare your current 90-day power curve against the previous 90 days, or against the same period last year. You can immediately see whether your training is shifting the curve in the right direction.
+
+If you've been doing a block of sweet spot and threshold work, you want to see the 10-to-60-minute portion of the curve lift. If you've been doing sprint work, the 5-to-30-second portion should move. If nothing has changed — if the curve from January looks identical to the curve from June — something in your training isn't working, regardless of how consistent you've been.
+
+This is where Intervals.icu starts replacing guesswork with evidence. You don't need to wonder whether you're stronger than you were three months ago. The curve answers it.
+
+## Season Comparison
+
+Every cyclist asks the same question around late winter: am I ahead or behind where I was last year?
+
+The season comparison feature answers that directly. It overlays your CTL trajectory from the current year against previous years, aligned by date. You can see, at a glance, whether your fitness is building faster, slower, or identically compared to prior seasons.
+
+This matters more than most people realise. Training is cumulative, and small differences in January and February compound by June and July. If your CTL in mid-February is 10 points lower than the same date last year, that's not a crisis — but it is information. It tells you either that you've been less consistent, that you've structured things differently, or that illness or life interrupted the build. You can respond accordingly rather than arriving at your target event wondering why you feel flat.
+
+The comparison also keeps expectations honest. If your peak CTL last year was 85 and you're currently sitting at 60 in March, you know exactly how much building is left — and whether your event in May gives you enough weeks to close the gap. No guessing. No wishful thinking. Just the trajectory plotted against your own history.
+
+I use this view at the start of every year to sanity-check my own training plan against reality. The plan says one thing. The chart shows whether my actual behaviour is matching it. Those two things diverge more often than you'd think, and the earlier you catch the gap, the easier it is to adjust.
+
+## Workout Planning and the Calendar
+
+Intervals.icu includes a workout builder and a calendar, which means you can plan structured sessions, drag them onto specific days, and see your planned and completed training in one view.
+
+The workout builder lets you define intervals by power, heart rate or perceived effort, with warm-up and cool-down segments, work and rest intervals, and repeated blocks. You can build a 4x8-minute sweet spot session, a VO2max pyramid, or a simple endurance ride template. The syntax is straightforward — you specify duration, target intensity, and rest periods, and the platform generates a visual representation of the workout.
+
+The calendar then lets you schedule those sessions across your week and month. You drag a workout onto a day, and it becomes part of your plan. As you complete rides and they sync, the planned session shows alongside the actual execution — you can see whether you hit the targets, fell short, or overcooked it.
+
+It's functional. It works. For a self-coached rider who wants everything in one place — analysis, planning and tracking — it does the job without requiring a separate platform.
+
+That said, the workout builder and calendar are not the strongest part of the platform. They lack some of the polish and depth that dedicated planning tools offer. If you're working with a coach who prescribes sessions through a specific platform, you'll likely keep using that platform for the planning side and use Intervals.icu for the analysis side. The two roles complement each other well — one for what you should do, the other for what you actually did and how your body responded.
+
+## What It Does Not Do
+
+Being honest about limitations matters more than overselling capabilities, and Intervals.icu has clear boundaries.
+
+**It does not tell you what to do.** The fitness chart shows your load trajectory. The power curve shows your strengths and weaknesses. The season comparison shows your progress relative to previous years. None of those features prescribe a training plan. They show you what happened. The interpretation — whether to add more intensity, take a rest week, shift focus from threshold to VO2max work — still requires human judgment. Yours, or a coach's.
+
+**It does not replace coaching expertise.** A coach brings context that no software can. They know your injury history, your work schedule, your mental state, your race goals, and how all of those interact. Intervals.icu gives you the data a coach would use, but it doesn't provide the decision-making that turns data into a plan. If you're working with a coach, this is a complement to that relationship, not a substitute for it.
+
+**It does not provide structured training plans.** You can build individual workouts, but there is no plan library with periodised training blocks designed by coaches. If you want a ready-made 12-week build toward a specific event, you'll need to source that elsewhere and use Intervals.icu to monitor how your body responds to it.
+
+**The mobile experience is limited.** Intervals.icu is browser-based, and while it works on a phone, it's built for a desktop or tablet screen. The charts and data views are dense, and they're better on a full-sized display. You can check your TSB on your phone, but you'll want a laptop for any serious analysis.
+
+**It can be overwhelming initially.** There are a lot of features, a lot of charts, and a lot of configuration options. If you've never worked with training analysis tools before, the first login can feel like walking into a cockpit. Stick with the fitness chart and the power curve for the first few weeks. Let the rest reveal itself gradually.
+
+## Where It Sits Alongside Other Platforms
+
+Let me be direct about this, because the cycling world loves false binaries and platform tribalism.
+
+Intervals.icu is not at war with TrainingPeaks, and you do not have to pick one. They serve overlapping but distinct roles, and plenty of serious cyclists use both.
+
+TrainingPeaks is the standard for coach-athlete workflows. It has deep coaching integration, plan libraries from certified coaches, workout prescription and compliance tracking, and a polished athlete-coach communication layer that makes it the default platform for coached riders. If you're paying a coach and they prescribe sessions through TrainingPeaks, that platform is doing a specific job extremely well — and nothing in Intervals.icu replaces that particular function.
+
+What Intervals.icu adds is analytical depth at no cost. The fitness chart, the power curve tools, the season comparison, the ability to slice and explore your data from different angles — these are strong on Intervals.icu, and they're available without a subscription. For self-coached riders who want that level of analysis without a monthly fee, it's a genuine option. For coached riders who already use TrainingPeaks for planning and communication, Intervals.icu works as a secondary analysis platform that gives you a different lens on the same data.
+
+Strava serves a different purpose entirely — it's social, it's segment-driven, and it's excellent at what it does. But it's not a training analysis tool in the way these platforms are. Your Strava feed tells you what you did. Your fitness chart tells you what it's doing to your body over time.
+
+The sensible approach is to use what serves your needs. If you're self-coached and want powerful analysis for free, Intervals.icu is the starting point. If you're working with a coach, use whatever your coach prescribes through and add Intervals.icu alongside it for the data exploration. If you outgrow the planning features and want a more structured coaching platform, that upgrade path exists — and the analysis work you've done in Intervals.icu will have taught you how to read the charts on any platform.
+
+## Get Started This Week
+
+Here's what I'd suggest. Set aside 20 minutes. Go to [intervals.icu](https://intervals.icu). Connect your Garmin, Wahoo or Strava account. While your rides sync, go to Settings and set your power zones and heart rate zones to match your actual thresholds. Enter your FTP history if you have records of past tests.
+
+Then look at three things.
+
+First, your fitness chart. Find the CTL line and trace it over the last six months. Is it trending up, flat, or down? Where did you rest? Where did you overreach? The pattern is already telling you something about how you've been training.
+
+Second, your power duration curve. Compare the last 90 days against the 90 days before that. Has the curve shifted? In which durations? That tells you whether your recent training is producing the changes you want.
+
+Third, your season comparison. Overlay this year against last year. Are you ahead or behind? Is the gap widening or closing?
+
+Those three views — fitness trend, power curve, season comparison — give you more genuine training insight than most cyclists get from an entire year of uploading rides to Strava and glancing at the summary.
+
+The data is already there. It's been there for months. Intervals.icu just shows you what it means.
+
+If you want to go further — if you want structured coaching guidance alongside the analysis, help interpreting the patterns, and a community of cyclists working through the same questions — that's what we're building inside the [Roadman Cycling community on Skool](https://www.skool.com/roadmancycling). Come and put those charts to work.

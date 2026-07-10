@@ -1,0 +1,245 @@
+---
+title: "How Many Calories Does Cycling Actually Burn?"
+seoTitle: "How Many Calories Does Cycling Burn? Real Numbers from Power Data | Roadman Cycling"
+seoDescription: "Accurate cycling calorie burn from power meters and MET estimates — real numbers for 1-4 hour rides, the fat/carb crossover, and why Strava overestimates by 20-40%."
+excerpt: "Your head unit says you burned 2,400 calories. You probably burned 1,600. The difference matters if you are fuelling around that number."
+pillar: "nutrition"
+primaryHub: "cycling-nutrition"
+author: "anthony-walsh"
+publishDate: "2026-07-08"
+featuredImage: "/images/blog/cycling-calories-placeholder.jpg"
+keywords:
+  - calories burned cycling
+  - cycling calorie calculator
+  - how many calories cycling
+  - cycling fat burn
+  - power meter calories
+  - cycling weight loss calories
+answerCapsule: "A 75 kg rider burns roughly 500-700 kcal per hour at moderate intensity (Zone 2-3) and 800-1,100 kcal per hour at high intensity (Zone 4-5). The most accurate method is power-based: kJ of work ≈ kcal burned (because ~25 % mechanical efficiency means 1 kJ of pedalling costs roughly 4 kJ of metabolic energy, and 4 kJ ≈ 1 kcal). Strava and most apps overestimate by 20-40 %."
+keyTakeaways:
+  - "Power-based calorie counting is the most accurate method. kJ of work from your power meter ≈ kcal burned, because 25 % mechanical efficiency and the kJ-to-kcal conversion roughly cancel out."
+  - "Strava, MyFitnessPal, and most head units overestimate calorie burn by 20-40 %, because they use heart rate or speed-based models that include resting metabolic rate and inflate the number."
+  - "A 75 kg rider at moderate intensity (200W average) burns roughly 720 kcal per hour. A 2-hour Zone 2 ride burns approximately 1,000-1,200 kcal — not the 1,800 your app claims."
+  - "At lower intensities (Zone 2), a higher percentage of energy comes from fat. At higher intensities (Zone 4+), carbohydrate dominates. But total fat burned is often highest at moderate efforts because you can sustain them longer."
+  - "Calorie burn alone does not determine weight loss. Compensation eating, metabolic adaptation, and the quality of post-ride fuelling all matter more than the number on the screen."
+faq:
+  - question: "How many calories does a 1-hour bike ride burn?"
+    answer: "For a 75 kg rider, roughly 500-700 kcal at moderate intensity (Zone 2-3) and 800-1,100 kcal at high intensity (Zone 4-5). If you have a power meter, multiply your average watts by 3.6 to get kJ per hour — that number closely approximates kcal burned."
+  - question: "Why does Strava overestimate calories?"
+    answer: "Strava uses heart-rate or speed-based models that include your resting metabolic rate in the total, double-counting calories you would have burned anyway. Power-based estimates are 20-40 % lower and more accurate."
+  - question: "Is cycling good for weight loss?"
+    answer: "Cycling creates a significant calorie deficit per session, but weight loss depends on what happens off the bike — total daily intake, protein adequacy, sleep, and whether you compensate by eating more after rides. The riders who lose weight consistently fuel their training rides properly and manage their non-training nutrition."
+relatedPosts:
+  - "cycling-weight-loss-fuel-for-the-work-required"
+  - "fasted-vs-fueled-cycling"
+  - "bonking-cycling-what-happens-how-to-prevent"
+  - "calories-burned-cycling-accurate-guide"
+  - "energy-availability-red-s-cyclists-guide"
+  - "cycling-body-composition-what-matters"
+relatedEpisodes: []
+---
+
+You finish a three-hour ride, park the bike, and check Strava. It says 2,400 calories. You feel good about that number. You earned it. Except you didn't — not that many. The real figure is probably closer to 1,600, and the 800-calorie gap between the two is the difference between a meaningful deficit and no deficit at all.
+
+This is not a rounding error. Most calorie estimates from apps, head units, and online calculators are systematically wrong, and they are wrong in the same direction: too high. If you are making fuelling decisions, weight management decisions, or recovery nutrition decisions around those numbers, you are working off bad data.
+
+I want to lay out how calorie burn in cycling actually works, give you the two credible methods for estimating it, run through what a 75 kg rider really burns at different durations and intensities, and then explain why even an accurate number does not tell you what you think it tells you about weight loss.
+
+## Why most calorie estimates are wrong
+
+The calorie figure on your Garmin, Wahoo, Strava, or MyFitnessPal screen is a model output, not a measurement. No consumer device measures calorie burn directly. They estimate it, and the quality of that estimate depends entirely on what inputs the model uses.
+
+**Heart rate models** are the most common. They use your heart rate, age, weight, and sometimes sex to predict oxygen consumption, then convert that to calories. The problem: heart rate is a noisy proxy for metabolic cost. Caffeine raises it. Heat raises it. Dehydration raises it. Cardiac drift on a long ride raises it without any increase in actual work. A heart-rate model sees all of those as extra calories burned. They are not.
+
+**Speed-based models** are worse. Strava's default when you upload without heart rate or power data is a speed-and-elevation estimate, which cannot account for wind, drafting, road surface, tyre pressure, or body position — all of which change the relationship between speed and energy cost enormously.
+
+Both approaches also tend to include your resting metabolic rate in the total. Your body burns roughly 70-90 kcal per hour just existing. A model that includes that in the ride total is double-counting: you would have burned those calories sitting on the sofa. When Strava reports 800 kcal for a one-hour ride, roughly 80-90 of those are baseline metabolism that had nothing to do with pedalling.
+
+The research on this is consistent. Studies comparing heart-rate-based estimates to indirect calorimetry (the gold standard, where you breathe into a mask and researchers measure gas exchange) find overestimates of 20-40 %. A 2020 paper in the *Journal of Sports Sciences* found that wrist-based wearables overestimated cycling energy expenditure by an average of 28 %. The variance was enormous — some rides were off by more than 50 %.
+
+If you have been eating back every calorie Strava tells you that you burned, this is probably the reason the scale has not moved. The [accurate calorie guide](/blog/calories-burned-cycling-accurate-guide) covers how to cross-check your devices and build a number you can actually trust.
+
+## Method one: power-based (the accurate one)
+
+If you have a power meter, you have access to the most reliable calorie estimate available outside a metabolic lab. The method is simple, and the maths behind it is satisfying.
+
+A power meter measures mechanical work in watts. One watt sustained for one second equals one joule of work. Over an hour, the total work is reported in kilojoules (kJ). Your head unit does this calculation automatically: average watts multiplied by duration in seconds, divided by 1,000.
+
+Here is the useful part. The human body is roughly 20-25 % mechanically efficient on a bicycle. For every 1 kJ of work delivered to the pedals, your body actually burns about 4 kJ of total metabolic energy — the other 75-80 % becomes heat, which is why you sweat. So the metabolic cost of 1 kJ of pedal work is roughly 4 kJ.
+
+Now, a dietary kilocalorie (the "calorie" on food labels) equals 4.184 kJ. Which means 4 kJ of metabolic cost is almost exactly 1 kcal.
+
+The result: **kJ of work from your power meter approximately equals kcal burned**. The two conversion factors — the ~25 % efficiency and the 4.184 kJ-per-kcal ratio — roughly cancel each other out. It is a fortunate coincidence, and it makes the calculation trivially easy.
+
+If your ride file says 1,500 kJ, you burned approximately 1,500 kcal. Not exactly, because individual efficiency varies (trained cyclists tend toward 22-24 %, some outliers reach 26-27 %), but the error band is narrow — typically within 5-10 %. That is vastly better than the 20-40 % error you get from heart rate.
+
+**Quick formula for estimation:** Average power (watts) x duration (hours) x 3.6 = kJ, which ≈ kcal.
+
+A rider averaging 200 watts for two hours: 200 x 2 x 3.6 = 1,440 kJ, so roughly 1,440 kcal. Not 2,000. Not 2,200. About 1,440.
+
+You can run your own numbers through the [Calories Burned Calculator](/tools/calories) on this site.
+
+## Method two: MET-based (the reasonable estimate)
+
+If you do not have a power meter, MET values (Metabolic Equivalent of Task) give you a reasonable estimate, though with wider error bars.
+
+One MET equals the energy cost of sitting quietly — roughly 1 kcal per kilogram of body weight per hour. Cycling at different intensities has published MET values derived from laboratory measurements:
+
+- **Light cycling** (flat, easy spin, <50 % of max HR): ~4-5 METs
+- **Moderate cycling** (steady endurance pace, 50-70 % max HR): ~6-8 METs
+- **Vigorous cycling** (tempo to threshold, 70-85 % max HR): ~8-10 METs
+- **Very hard cycling** (racing, intervals, >85 % max HR): ~10-14 METs
+
+The calculation: **METs x body weight (kg) x duration (hours) = kcal**.
+
+A 75 kg rider cycling for two hours at moderate intensity (7 METs): 7 x 75 x 2 = 1,050 kcal. That is a reasonable ballpark — not far from what a power meter would show for a Zone 2-3 ride at about 170-180 watts.
+
+The limitation is that MET values are averages across populations and do not account for individual fitness, terrain, wind, or how much of the ride was spent coasting. A two-hour ride with 30 minutes of descending has very different energy costs from a two-hour ride on a flat time-trial course, even if the average heart rate was similar.
+
+Use METs as a starting estimate. But if the number you are acting on matters — for fuelling, for body composition, for anything beyond curiosity — a power meter is a better investment than most upgrades on the bike.
+
+## What a 75 kg rider actually burns
+
+These numbers assume a 75 kg rider and are based on power-based estimates, which I trust more than MET values. Your numbers will scale roughly linearly with body weight — a 65 kg rider burns about 13 % less, a 90 kg rider about 20 % more.
+
+### One-hour ride
+
+| Intensity | Approx. average power | kJ (≈ kcal) |
+|---|---|---|
+| Easy spin (Zone 1-2) | 130-160W | 470-575 |
+| Moderate endurance (Zone 2-3) | 170-210W | 610-755 |
+| Tempo (Zone 3) | 210-240W | 755-865 |
+| Threshold/hard (Zone 4) | 250-280W | 900-1,010 |
+| Race pace (mixed Zone 4-5) | 270-310W | 970-1,115 |
+
+### Two-hour ride
+
+| Intensity | Approx. average power | kJ (≈ kcal) |
+|---|---|---|
+| Easy endurance (Zone 2) | 150-180W | 1,080-1,295 |
+| Moderate endurance (Zone 2-3) | 180-210W | 1,295-1,510 |
+| Hard group ride (mixed zones) | 210-250W | 1,510-1,800 |
+
+### Three-hour ride
+
+| Intensity | Approx. average power | kJ (≈ kcal) |
+|---|---|---|
+| Long steady ride (Zone 2) | 150-175W | 1,620-1,890 |
+| Sportive pace (Zone 2-3) | 175-210W | 1,890-2,270 |
+
+### Four-hour ride
+
+| Intensity | Approx. average power | kJ (≈ kcal) |
+|---|---|---|
+| Long endurance ride (Zone 2) | 140-170W | 2,015-2,450 |
+| Gran fondo pace (Zone 2-3) | 170-200W | 2,450-2,880 |
+
+Notice how different these are from what most apps report. A four-hour endurance ride at an honest Zone 2 pace might burn 2,200 kcal. Strava will probably tell you 3,000-3,400. That is 800-1,200 phantom calories — enough to wipe out an entire day's deficit if you eat them back.
+
+## Fat versus carbohydrate: what you burn and when
+
+Your body runs on two main fuel sources during cycling: fat and carbohydrate. The mix depends primarily on intensity, and Prof. Asker Jeukendrup's work on substrate utilisation during exercise is the foundation for how this is understood.
+
+**At low intensities (Zone 1-2),** fat provides the majority of the energy — up to 60-70 % of total calories burned. The absolute rate of fat oxidation in a trained endurance cyclist at these intensities is typically 0.3-0.6 grams per minute, or roughly 20-35 grams per hour. At 9 kcal per gram of fat, that is 180-315 kcal per hour from fat.
+
+**At moderate intensities (upper Zone 2 into Zone 3),** the mix shifts. Carbohydrate contribution rises, and fat contribution peaks in absolute terms — this is what Jeukendrup calls the "Fatmax" intensity, typically around 55-65 % of VO2max. Above that intensity, fat oxidation starts to decline even as total calorie burn increases.
+
+**At high intensities (Zone 4-5),** carbohydrate dominates, providing 80-95 % of the energy. Fat oxidation drops to near zero above lactate threshold. The body simply cannot mobilise and oxidise fat fast enough to meet the demand, so glycogen and blood glucose take over almost entirely.
+
+This is the crossover concept: as intensity rises, there is a point where the body shifts from predominantly fat-fuelled to predominantly carb-fuelled. For most trained cyclists, that crossover occurs somewhere around 65-75 % of VO2max.
+
+The practical takeaway is subtle. Low-intensity rides burn a higher *proportion* of fat, but high-intensity rides burn more *total* calories per hour. And because absolute fat oxidation peaks at moderate intensity and you can sustain moderate intensity for longer than high intensity, the total grams of fat burned over a session is often highest during a long, steady Zone 2-3 ride — not during a short, hard interval session.
+
+This matters for body composition. A one-hour Zone 2 ride at 160W might burn 575 kcal, with roughly 250-300 kcal coming from fat. A one-hour threshold session at 260W might burn 935 kcal, but only 100-150 kcal from fat — the rest is glycogen. The threshold session burns more total energy, but the Zone 2 ride burns more fat in absolute terms.
+
+Neither of those facts should determine your training. You should train at the intensity that your plan requires. But they do explain why long, easy rides are such a powerful tool for body composition when paired with sensible nutrition — they tap into fat stores without creating the glycogen depletion that drives post-ride overeating.
+
+## Why calorie burn does not equal weight loss
+
+This is where most people's thinking goes wrong, and it is worth being direct about it: the number of calories you burn on a ride is a poor predictor of whether you will lose weight.
+
+### Compensation eating
+
+The single biggest factor is what you eat after the ride. The body has powerful regulatory mechanisms that increase appetite in response to energy expenditure. A three-hour ride that burns 1,800 kcal can easily be followed by eating 2,000 kcal more than you otherwise would have. This is not a failure of willpower — it is physiology. Hunger hormones (ghrelin up, peptide YY down) drive you toward food, and the psychological "I earned it" effect removes the usual restraint.
+
+I have written about this in detail in the [weight loss mistakes post](/blog/cycling-weight-loss-mistakes): the deficit does not come from the ride. The deficit comes from what you do on the easy days and rest days. The approach Dr Sam Impey advocates — [fuel for the work required](/blog/cycling-weight-loss-fuel-for-the-work-required) — solves this by matching carbohydrate to training load day by day. Hard days get fuelled. Easy days create the deficit.
+
+### EPOC is negligible
+
+"Afterburn" — excess post-exercise oxygen consumption (EPOC) — is real but small. After a moderate cycling session, EPOC adds roughly 5-8 % to the total calorie cost of the exercise, tapering off within a few hours. After a very hard session, it might reach 10-15 %. In absolute terms, that is 50-150 extra calories over several hours. It is not zero, but it is not the metabolic jackpot that some fitness marketing makes it out to be.
+
+### Metabolic adaptation
+
+Sustained calorie deficits trigger adaptive thermogenesis: the body reduces resting metabolic rate, increases movement efficiency, and dials down non-exercise activity (fidgeting, walking pace, general restlessness). Research by Kevin Hall at the NIH has shown that resting metabolic rate can drop by 10-15 % during prolonged weight loss, and some of that reduction persists even after weight stabilises. This means the deficit you calculated on paper shrinks over time without you changing anything.
+
+The practical response is not to create a larger deficit. It is to periodise the deficit — weeks of moderate restriction interspersed with weeks of maintenance-level eating — and to protect lean mass through protein intake and [strength training](/blog/strength-training-cyclists-minimum-effective-dose) so that the weight lost comes disproportionately from fat rather than muscle.
+
+### The scale is noisy
+
+Bodyweight fluctuates by 1-3 kg day to day from glycogen, hydration, gut contents, and sodium. A long ride that depletes glycogen stores can drop the scale by 1.5 kg overnight — and that weight returns the moment you refuel properly. If you weigh yourself the morning after a big ride and feel pleased, then weigh yourself two days later after eating normally and feel defeated, you are measuring water, not fat.
+
+Weigh daily if you want, but only look at the seven-day rolling average. That is the signal. Everything else is noise.
+
+## Post-ride fuelling: what to eat and when
+
+The calorie question inevitably leads to the fuelling question, so let me address it briefly. (There is a [full post on post-ride recovery nutrition](/blog/post-ride-recovery-nutrition-cyclists) if you want the detail.)
+
+After a hard or long ride (90+ minutes, or any ride with significant intensity), the priorities are:
+
+1. **Carbohydrate:** 1.0-1.2 g per kg of body weight within the first couple of hours. For a 75 kg rider, that is 75-90 g of carbohydrate. Rice, pasta, bread, potatoes, fruit — real food works fine.
+
+2. **Protein:** 20-40 g of high-quality protein to support muscle protein synthesis. Chicken, eggs, Greek yoghurt, whey — the source matters less than hitting the number.
+
+3. **Fluid and sodium:** Replace what you lost. Roughly 1.5 litres of fluid per kilogram of body weight lost during the ride, with sodium to aid retention.
+
+The old "30-minute anabolic window" was overstated. Glycogen resynthesis continues for 4-6 hours, and muscle protein synthesis stays elevated for 24-48 hours. Unless you are riding hard again within 8 hours (stage racing, double days), a proper meal within a couple of hours is sufficient. No need for a panicked protein shake at the bike stand.
+
+The [In-Ride Fuelling Calculator](/tools/fuelling) on this site will give you session-specific carbohydrate targets for during the ride, and the [Energy Availability Calculator](/tools/energy-availability) can help you check whether your overall daily intake is above the 30 kcal/kg/FFM floor below which health markers start to deteriorate.
+
+## The "earn your carbs" trap
+
+There is a mindset in amateur cycling that goes something like this: ride hard, create a big calorie burn, and then "earn" the right to eat. The corollary is that on days you do not ride, you should eat as little as possible to maximise the deficit.
+
+This thinking is backwards, and it wrecks both performance and body composition simultaneously.
+
+When you underfuel a hard training session, three things happen. First, you cannot hold the prescribed intensities, so the training stimulus is weaker. Second, recovery from the session takes longer because you have insufficient substrate to repair and adapt. Third, the glycogen depletion and hormonal disruption create a rebound hunger that, within 24-48 hours, leads to overeating that erases whatever deficit you thought you were creating.
+
+I have experienced this pattern myself. Riding fasted into an interval session, barely completing the workout, then spending the rest of the day thinking about food and eating everything in sight by dinner. The net intake over two days was higher than if I had fuelled the session properly, and the training quality was worse.
+
+The correct approach — the one supported by Impey's research and the consensus across the nutritionists we have interviewed on the podcast — is to [fuel the work](/blog/cycling-weight-loss-fuel-for-the-work-required). Eat around the sessions that matter. Take in 60-90 g of carbohydrate per hour during hard or long rides. Have a proper recovery meal afterwards. Then create your deficit on the easy days and rest days, where lower carbohydrate intake does not cost you any training adaptation.
+
+The riders who get lean and stay fast are not the ones who ride on empty. They are the ones who match the fuel to the demand, day by day, week by week. That is what [periodised nutrition](/blog/nutrition-periodisation-base-build-race) looks like in practice.
+
+## How to get your own accurate number
+
+If you want a reliable calorie estimate for your riding, here is the hierarchy:
+
+1. **Power meter on the bike.** Read the kJ from your ride file. That number, in kcal, is your best estimate. If your head unit reports "calories" separately from kJ, use the kJ figure — some units apply their own correction factors that introduce error.
+
+2. **Power meter on a smart trainer.** Indoor rides with a direct-drive trainer (Wahoo Kickr, Tacx Neo, Saris H3) give highly accurate power data in a controlled environment. The kJ = kcal method works the same way.
+
+3. **MET-based estimate.** If you have no power data, use the MET calculation described above. Be honest about your intensity — most people overestimate how hard they ride — and round down rather than up.
+
+4. **Strava or app estimate, discounted.** If all you have is a Strava estimate, multiply it by 0.65-0.75 to get a more realistic figure. That is crude, but it is closer to reality than the raw number.
+
+What I would avoid: building any nutrition plan around the calorie figure from a wrist-based fitness tracker. The error margin is too wide, and it is consistently biased high, which means you will consistently eat too much if you treat it as accurate.
+
+Run your own numbers through the [Calories Burned Calculator](/tools/calories) and compare them to what your apps have been telling you. The gap is usually instructive.
+
+## The numbers that matter more
+
+Calorie burn per ride is useful context, but it is not the number that determines outcomes. The numbers that matter more are:
+
+- **Daily energy availability** — total intake minus exercise expenditure, divided by fat-free mass. Below 30 kcal/kg/FFM, health markers deteriorate. Check yours with the [Energy Availability Calculator](/tools/energy-availability).
+
+- **Daily protein** — 1.6-2.2 g per kg of body weight, distributed across 4-5 meals. This protects lean mass during any deficit and supports adaptation from training.
+
+- **In-ride carbohydrate** — 60-90 g per hour for hard or long sessions. This is the fuel that preserves training quality. Calculate your targets with the [In-Ride Fuelling Calculator](/tools/fuelling).
+
+- **Weekly energy balance** — the cumulative surplus or deficit over seven days, not the daily number. A 300 kcal daily deficit is a 2,100 kcal weekly deficit, which is roughly 0.25-0.3 kg of fat loss per week. Sustainable. Measurable. Not dramatic.
+
+- **Race weight trend** — tracked over weeks, not days, with the [Race Weight Calculator](/tools/race-weight) as a reference for where the sustainable floor sits for your build and power output.
+
+The calorie burn from a single ride is one input into this larger system. Treating it as the whole picture — or worse, treating an inflated estimate of it as the whole picture — is how cyclists end up riding 10 hours a week and gaining weight.
+
+Get the number right. Then use it in context. That is the whole job.

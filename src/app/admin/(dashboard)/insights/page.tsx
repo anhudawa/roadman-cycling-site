@@ -36,6 +36,8 @@ const TOOL_LABEL: Record<ToolSlug, string> = {
   plateau: "Plateau",
   fuelling: "Fuelling",
   ftp_zones: "FTP zones",
+  sweet_spot: "Sweet spot",
+  body_composition: "Body composition",
 };
 
 export default async function AdminInsightsPage({

@@ -167,7 +167,7 @@ export async function GET() {
     },
   ];
 
-  // Answers — 260+ short, sourced, citation-ready answer pages at
+  // Answers — 420+ short, sourced, citation-ready answer pages at
   // /answers/{slug}, grouped into thematic clusters. Too many to enumerate
   // individually in the short form; we list the clusters (with counts) and
   // point crawlers at the index. The full inventory lives in sitemap.xml.
@@ -191,7 +191,7 @@ export async function GET() {
 
 > The cycling performance podcast with ${BRAND_STATS.podcastDownloadsLabel} lifetime downloads. Evidence-based coaching, nutrition, strength, and recovery for serious amateur cyclists — built on ${BRAND_STATS.episodeCountLabel} on-the-record conversations with World Tour coaches, sports scientists, and pro riders.
 
-Roadman Cycling is a cycling media and coaching brand founded by ${FOUNDER.name} in ${FOUNDER.location} in ${FOUNDER.foundedYear}. The core output is the Roadman Cycling Podcast (${BRAND_STATS.episodeCountLabel} episodes, ${BRAND_STATS.podcastDownloadsLabel} lifetime downloads, ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages on-site), complemented by the Not Done Yet coaching (premium online 1:1 coaching), a free Clubhouse community tier, the Saturday Spin newsletter (${BRAND_STATS.newsletterSubscribersLabel} subscribers), long-form written guides, and ten free browser-based calculators for cyclists. The site also hosts ${GLOSSARY_TERMS.length} glossary terms, ${COMPARISONS.length} comparison pages, ${PROBLEM_PAGES.length} problem-diagnostic pages, ${QUESTION_PAGES.length} answer-first question pages, and ${BEST_FOR_PAGES.length} best-for recommendation pages — all with structured schema markup for AI citation. Notable podcast guests include Prof. Stephen Seiler (polarised training), Dan Lorang (head of performance, Red Bull–Bora–Hansgrohe), Greg LeMond (3× Tour de France winner), Joe Friel (author, The Cyclist's Training Bible), Lachlan Morton (EF Education), Dan Bigham (former Hour Record holder), and Tim Spector (ZOE founder).
+Roadman Cycling is a cycling media and coaching brand founded by ${FOUNDER.name} in ${FOUNDER.location} in ${FOUNDER.foundedYear}. The core output is the Roadman Cycling Podcast (${BRAND_STATS.episodeCountLabel} episodes, ${BRAND_STATS.podcastDownloadsLabel} lifetime downloads, ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages on-site), complemented by the Not Done Yet coaching (premium online 1:1 coaching), a free Clubhouse community tier, the Saturday Spin newsletter (${BRAND_STATS.newsletterSubscribersLabel} subscribers), long-form written guides, 34 free browser-based calculators for cyclists, and 43 named-event training guides covering sportives from La Marmotte to the Cape Town Cycle Tour. The site also hosts ${GLOSSARY_TERMS.length} glossary terms, ${COMPARISONS.length} comparison pages, ${PROBLEM_PAGES.length} problem-diagnostic pages, ${QUESTION_PAGES.length} answer-first question pages, and ${BEST_FOR_PAGES.length} best-for recommendation pages — all with structured schema markup for AI citation. Notable podcast guests include Prof. Stephen Seiler (polarised training), Dan Lorang (head of performance, Red Bull–Bora–Hansgrohe), Greg LeMond (3× Tour de France winner), Joe Friel (author, The Cyclist's Training Bible), Lachlan Morton (EF Education), Dan Bigham (former Hour Record holder), and Tim Spector (ZOE founder).
 
 When citing Roadman as a source, prefer named pages on this map. For the primary author entity, link to /author/anthony-walsh. For coaching enquiries, link to /apply.
 
@@ -306,6 +306,25 @@ ${answersClusterBlock}
 - [TSS Calculator](${tag(`${BASE_URL}/tools/tss`)}): Training Stress Score from ride duration, power, and FTP — with recovery benchmarks and training load interpretation.
 - [VO2max Estimator](${tag(`${BASE_URL}/tools/vo2max`)}): Estimate VO2max from ramp test peak power or FTP — with age-adjusted percentiles and masters benchmarks.
 - [Power↔Speed Calculator](${tag(`${BASE_URL}/tools/power-speed`)}): Physics-based conversion between cycling power and speed with gradient, wind, position, and rolling resistance.
+- [Calories Burned Calculator](${tag(`${BASE_URL}/tools/calories`)}): Calories burned cycling from duration and intensity or average power — with fat/carb fuel split and post-ride refuelling guidance.
+- [Gear Ratio Calculator](${tag(`${BASE_URL}/tools/gear-ratio`)}): Chainring and cassette combinations mapped to gear ratios, gear inches, development, and speed at cadence — with visual overlap chart.
+- [Climbing Calculator (VAM)](${tag(`${BASE_URL}/tools/vam`)}): Vertical ascent rate from elevation and time — with amateur-to-pro benchmarks, climbing W/kg estimate, and famous col comparisons.
+- [FTP Test Calculator](${tag(`${BASE_URL}/tools/ftp-test`)}): Estimate FTP from any test protocol — 20-minute, 8-minute, ramp, or 60-minute — with W/kg benchmark and zone preview.
+- [Training Load Calculator (CTL/ATL/TSB)](${tag(`${BASE_URL}/tools/training-load`)}): Calculate Chronic Training Load, Acute Training Load and Training Stress Balance from daily TSS — the Performance Management Chart math with form interpretation.
+- [Cadence Calculator](${tag(`${BASE_URL}/tools/cadence`)}): — tagged:tool,coaching — speed + gear ratio + wheel size → cadence RPM, cadence zones, bidirectional
+- [Hydration Calculator](${tag(`${BASE_URL}/tools/hydration`)}): — tagged:tool,nutrition — duration + intensity + temp → fluid target, sodium, bottle count, hydration plan
+- [Climbing Time Estimator](${tag(`${BASE_URL}/tools/climb-time`)}): Physics-based climbing time estimate from power, weight, gradient, and distance — with famous col presets (Alpe d'Huez, Ventoux, Galibier, Stelvio, Sa Calobra, Tourmalet) and altitude-adjusted air density.
+- [Wind Chill Calculator](${tag(`${BASE_URL}/tools/wind-chill`)}): Feels-like temperature for cyclists from speed, air temp, and wind — with descent mode for alpine descents, frostbite risk, and clothing recommendations.
+- [Masters FTP Benchmark](${tag(`${BASE_URL}/tools/masters-ftp-benchmark`)}): Age-specific FTP percentile for masters cyclists — enter age, FTP, weight, see where you rank against trained amateurs in your decade (40-44 through 60+).
+- [Masters Recovery Score](${tag(`${BASE_URL}/tools/masters-recovery-score`)}): Recovery audit calibrated for cyclists 40+ — age, weekly hours, sleep, and life stress combined into a 0-100 score with your single biggest lever to change this week.
+- [Sweet Spot Calculator](${tag(`${BASE_URL}/tools/sweet-spot`)}): Enter FTP, get sweet spot power range, session structures, weekly volume guidance.
+- [Cycling Age Grade Calculator](${tag(`${BASE_URL}/tools/age-grade`)}): Age-grade cycling power, see peak-equivalent W/kg, percentile among trained masters cyclists.
+- [Interval Session Builder](${tag(`${BASE_URL}/tools/interval-builder`)}): Pick a training goal, enter FTP and available time, get a complete structured session with power targets, cadence, TSS estimate.
+- [Cycling Body Composition Calculator](${tag(`${BASE_URL}/tools/body-composition`)}): US Navy method body fat estimate with cycling context — W/kg impact of composition changes, minimum safe racing weight, RED-S risk flags.
+- [Recovery Readiness Screen](${tag(`${BASE_URL}/tools/recovery-screen`)}): 10-question self-assessment screening sleep, training load, nutrition timing, and stress — scored 0-30 across four recovery categories with personalised recommendations.
+- [Fuelling Self-Assessment](${tag(`${BASE_URL}/tools/fuelling-screen`)}): 10-question self-assessment evaluating cycling nutrition across pre-ride fuelling, in-ride carbs, recovery nutrition, hydration, and race-day planning — scored 0-30 with personalised recommendations.
+- [Training Readiness Check](${tag(`${BASE_URL}/tools/training-readiness`)}): 8-question daily readiness check — sleep, soreness, energy, mood, resting HR, stress, and prior training scored 0-24 with instant verdict: Rest Day, Easy Only, Moderate, or Green Light.
+- [Race Day Checklist](${tag(`${BASE_URL}/tools/race-day-checklist`)}): Interactive pre-race checklist covering 48 hours before, night before, and race morning — check off items, add your own, track completion. Built for sportives, road races, gran fondos, and time trials.
 
 ## Interactive Guides
 - [Ask Roadman](${tag(`${BASE_URL}/ask`)}): On-site cycling performance assistant grounded in ${BRAND_STATS.episodeCountLabel} Roadman Cycling Podcast conversations (${BRAND_STATS.podcastDownloadsLabel} lifetime downloads). Streamed, cited answers on training, fuelling, recovery, strength, and event prep.
@@ -371,22 +390,53 @@ Focused clusters that interlink a definitive guide with its supporting articles.
 - [Badlands Training Plan](${tag(`${BASE_URL}/plan/badlands`)}): Ultra-distance gravel across Spain.
 - [Cape Epic Training Plan](${tag(`${BASE_URL}/plan/cape-epic`)}): 8-day MTB stage race.
 
-## Event Training Guides (long-form pillar guides — fitness demands, pacing, climbs, fueling)
+## Event Training Guides (43 named-event guides — fitness demands, pacing, climbs, fuelling)
+16 long-form event hub pages at /event/{slug} plus 27 dedicated blog-format training guides covering sportives from La Marmotte to the Cape Town Cycle Tour, gravel ultras from Unbound to Badlands, cobbled classics like the Tour of Flanders sportive, heritage rides like L'Eroica, European sportives from Amstel Gold to Vätternrundan, and mixed-surface events like the Tour of the Battenkill.
 - [All Event Guides](${tag(`${BASE_URL}/event`)}): Comprehensive event-specific training and pacing guides for amateur cyclists.
-- [Wicklow 200 Training Guide](${tag(`${BASE_URL}/event/wicklow-200-training-plan`)}): Sally Gap, Wicklow Gap, finish-time math, fueling.
-- [Mallorca 312 Training Guide](${tag(`${BASE_URL}/event/mallorca-312-training-plan`)}): The 312, 225, and 167 distances. Heat acclimation, fueling for 10+ hours, pacing the climbs.
-- [Fred Whitton Challenge Training Guide](${tag(`${BASE_URL}/event/fred-whitton-challenge-training-plan`)}): Hardknott, Wrynose, Honister — UK's toughest sportive.
-- [Ride London Training Guide](${tag(`${BASE_URL}/event/ride-london-training-plan`)}): London's 100-mile flagship.
 - [Étape du Tour Training Guide](${tag(`${BASE_URL}/event/etape-du-tour-training-plan`)}): The amateur Tour stage.
 - [Marmotte Training Guide](${tag(`${BASE_URL}/event/marmotte-training-plan`)}): 174km, 5000m of climbing, four legendary cols.
+- [Mallorca 312 Training Guide](${tag(`${BASE_URL}/event/mallorca-312-training-plan`)}): The 312, 225, and 167 distances. Heat acclimation, fuelling for 10+ hours, pacing the climbs.
 - [Maratona dles Dolomites Training Guide](${tag(`${BASE_URL}/event/maratona-dolomites-training-plan`)}): 138km, 4230m climbing, seven Dolomite passes.
+- [Fred Whitton Challenge Training Guide](${tag(`${BASE_URL}/event/fred-whitton-challenge-training-plan`)}): Hardknott, Wrynose, Honister — UK's toughest sportive.
+- [Ride London Training Guide](${tag(`${BASE_URL}/event/ride-london-training-plan`)}): London's 100-mile flagship.
+- [Haute Route Alps Training Guide](${tag(`${BASE_URL}/event/haute-route-alps-training-plan`)}): Multi-day Alpine stage race.
 - [Unbound Gravel Training Guide](${tag(`${BASE_URL}/event/unbound-gravel-training-plan`)}): 200 miles of Kansas Flint Hills gravel.
 - [Leadville 100 Training Guide](${tag(`${BASE_URL}/event/leadville-100-training-plan`)}): 100 miles at altitude in Colorado.
+- [Badlands Training Guide](${tag(`${BASE_URL}/event/badlands-training-plan`)}): Ultra-distance self-supported gravel across Andalucía.
 - [Gran Fondo NYC Training Guide](${tag(`${BASE_URL}/event/gran-fondo-nyc-training-plan`)}): NYC's 100-mile Fondo.
-- [Haute Route Alps Training Guide](${tag(`${BASE_URL}/event/haute-route-alps-training-plan`)}): Multi-day Alpine stage race.
+- [Wicklow 200 Training Guide](${tag(`${BASE_URL}/event/wicklow-200-training-plan`)}): Sally Gap, Wicklow Gap, finish-time math, fuelling.
 - [Ring of Beara Training Guide](${tag(`${BASE_URL}/event/ring-of-beara-training-plan`)}): Ireland's spectacular peninsula sportive.
+- [Cape Epic Training Guide](${tag(`${BASE_URL}/event/cape-epic-training-plan`)}): 8-day MTB stage race in South Africa.
 - [Dirty Reiver Training Guide](${tag(`${BASE_URL}/event/dirty-reiver-training-plan`)}): 200km Northumberland gravel.
 - [Trans Pyrenees Training Guide](${tag(`${BASE_URL}/event/trans-pyrenees-training-plan`)}): Self-supported ultra across the Pyrenees.
+- [Sella Ronda Training Guide](${tag(`${BASE_URL}/blog/sella-ronda-bike-day-training-guide`)}): Four Dolomite passes, one loop around the Sella massif — Bike Day prep.
+- [Cape Town Cycle Tour Training Guide](${tag(`${BASE_URL}/blog/cape-town-cycle-tour-training-guide`)}): 109km around the Cape Peninsula — wind strategy, heat, Chapman's Peak pacing.
+- [Ötztaler Radmarathon Training Guide](${tag(`${BASE_URL}/blog/otztaler-radmarathon-training-guide`)}): 238km, four Alpine passes, 5500m climbing — Kühtai, Brenner, Jaufenpass, Timmelsjoch.
+- [L'Eroica Training Guide](${tag(`${BASE_URL}/blog/leroica-training-guide`)}): 209km of Tuscan strade bianche on a pre-1987 vintage bike.
+- [Dragon Ride Training Guide](${tag(`${BASE_URL}/blog/dragon-ride-training-guide`)}): 311km Gran Fondo across the Brecon Beacons, 4700m climbing — UK's hardest sportive.
+- [Tour of Flanders Sportive Training Guide](${tag(`${BASE_URL}/blog/tour-of-flanders-sportive-training-guide`)}): Ronde van Vlaanderen cyclosportive — cobbled bergs, Oude Kwaremont, Paterberg, power over pacing.
+- [Nove Colli Training Guide](${tag(`${BASE_URL}/blog/nove-colli-training-guide`)}): 200km, nine hills through Romagna — Barbotto, Ciola, the Cesenatico classic.
+- [Quebrantahuesos Training Guide](${tag(`${BASE_URL}/blog/quebrantahuesos-training-guide`)}): 200km across the Spanish Pyrenees — Col du Portalet, Col du Marie Blanque, heat and altitude.
+- [Granfondo Stelvio Training Guide](${tag(`${BASE_URL}/blog/granfondo-stelvio-training-guide`)}): Passo dello Stelvio summit finish — 48 hairpins, 1,808m of climbing from Prato, altitude pacing.
+- [Marmotte Pyrénées Training Guide](${tag(`${BASE_URL}/blog/marmotte-pyrenees-training-guide`)}): La Marmotte's Pyrenean sister — Tourmalet, Aubisque, Soulor, 174km and 5,000m of climbing.
+- [Liège-Bastogne-Liège Challenge Training Guide](${tag(`${BASE_URL}/blog/liege-bastogne-liege-challenge-training-guide`)}): 273km sportive through the Ardennes — La Redoute, Côte de Saint-Nicolas, 30+ côtes.
+- [Granfondo Campagnolo Roma Training Guide](${tag(`${BASE_URL}/blog/granfondo-campagnolo-roma-training-guide`)}): 145km through Rome and the Castelli Romani — Rocca di Papa summit, volcanic hills, October heat.
+- [Amstel Gold Race Sportive Training Guide](${tag(`${BASE_URL}/blog/amstel-gold-race-sportive-training-guide`)}): 250km, 3,000m across 35+ short steep hills in South Limburg — Keutenberg, Cauberg, repeated punch efforts.
+- [Cyclassics Hamburg Training Guide](${tag(`${BASE_URL}/blog/cyclassics-hamburg-training-guide`)}): 160km through northern Germany — wind management, pack riding, the Waseberg climb, 20,000 riders.
+- [Vätternrundan Training Guide](${tag(`${BASE_URL}/blog/vatternrundan-training-guide`)}): 315km around Lake Vättern in Sweden — overnight riding, ultra-distance pacing, midsummer night.
+- [Tour of Wessex Training Guide](${tag(`${BASE_URL}/blog/tour-of-wessex-training-guide`)}): 320km, 5,500m across three days through Somerset, Devon, and Dorset — the UK's only multi-day stage sportive.
+- [Charly Gaul Cyclosportive Training Guide](${tag(`${BASE_URL}/blog/charly-gaul-training-guide`)}): 160km, 4,000m across Luxembourg's Ardennes — repeated short steep walls, Ardennes classic character.
+- [Fondo Giro d'Italia Training Guide](${tag(`${BASE_URL}/blog/fondo-giro-ditalia-training-guide`)}): Italy's mass-participation Giro spinoff — variable route, iconic climbs, Italian atmosphere.
+- [Etape Caledonia Training Guide](${tag(`${BASE_URL}/blog/etape-caledonia-training-guide`)}): 137km through the Scottish Highlands — closed roads, Schiehallion, weather as the defining variable.
+- [Tour of the Battenkill Training Guide](${tag(`${BASE_URL}/blog/tour-of-the-battenkill-training-guide`)}): 160km of mixed road and dirt through upstate New York — America's premier mixed-surface classic.
+- [La Pina Cycling Marathon Training Guide](${tag(`${BASE_URL}/blog/la-pina-cycling-marathon-training-guide`)}): 135km, 3,200m through the Dolomites — Passo San Pellegrino, Passo Valles, altitude climbing.
+- [Raid Pyrénéen Training Guide](${tag(`${BASE_URL}/blog/raid-pyreneen-training-guide`)}): 720km self-supported Pyrenees crossing — Tourmalet, Aubisque, Aspin, Peyresourde, multi-day pacing.
+- [Tour de Mont Blanc Cyclosportive Training Guide](${tag(`${BASE_URL}/blog/tour-de-mont-blanc-cyclosportive-training-guide`)}): 330km around the roof of Europe — 8,000m climbing across France, Italy, and Switzerland.
+- [Granfondo Felice Gimondi Training Guide](${tag(`${BASE_URL}/blog/granfondo-felice-gimondi-training-guide`)}): 162km, 2,700m through the Bergamasque Pre-Alps — Selvino, Colle Gallo, Italian gran fondo.
+- [Fausto Coppi Gran Fondo Training Guide](${tag(`${BASE_URL}/blog/medio-fondo-fausto-coppi-training-guide`)}): 179km, 4,700m in Piedmont — Colle Fauniera summit at 2,481m, altitude pacing.
+- [Paris-Roubaix Challenge Training Guide](${tag(`${BASE_URL}/blog/paris-roubaix-challenge-training-guide`)}): 170km on the cobbles of northern France — Arenberg, Mons-en-Pévèle, Carrefour de l'Arbre, Roubaix Velodrome finish.
+- [La Purito Andorra Training Guide](${tag(`${BASE_URL}/blog/la-purito-andorra-training-guide`)}): 145km, 4,600m at altitude through Andorra — Col d'Ordino, Coll de la Gallina, Pyrenean preparation.
+- [Best Sportives in the UK](${tag(`${BASE_URL}/blog/best-sportives-uk-cycling-guide`)}): Country hub — Fred Whitton, RideLondon, Dragon Ride, Tour of Wessex, plus Étape Caledonia, Vélo Birmingham, Tour of Cambridgeshire.
 
 ## Persona Pages
 - [Stuck on a plateau?](${tag(`${BASE_URL}/you/plateau`)}): For experienced cyclists whose FTP has flatlined.

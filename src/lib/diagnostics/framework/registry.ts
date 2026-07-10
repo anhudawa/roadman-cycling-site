@@ -10,10 +10,11 @@ import { ftpZonesDefinition } from "../definitions/ftp-zones";
  * the source of truth; the `diagnostic_definitions` table is a
  * write-through snapshot for admin review + audit.
  */
-const DEFS: Record<ToolSlug, DiagnosticDefinition> = {
+const DEFS: Partial<Record<ToolSlug, DiagnosticDefinition>> = {
   plateau: plateauDefinition,
   fuelling: fuellingDefinition,
   ftp_zones: ftpZonesDefinition,
+  // sweet_spot is a standalone calculator — no diagnostic definition
 };
 
 export function getDefinition(toolSlug: ToolSlug): DiagnosticDefinition {

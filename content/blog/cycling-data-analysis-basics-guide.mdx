@@ -1,0 +1,240 @@
+---
+title: "Cycling Data Analysis: Making Sense of Your Numbers Without Losing Your Mind"
+seoTitle: "Cycling Data Analysis Basics: What to Track and Why"
+seoDescription: "A practical guide to cycling data analysis. What to check post-ride, weekly trends that matter, normalised power vs average power, variability index, decoupling, and when to ignore the numbers entirely."
+excerpt: "Your head unit records 40 data fields. Your training platform adds 30 more. Your watch contributes another 15. Somewhere in that avalanche is the handful of numbers that actually tell you whether you are getting fitter — and the rest are just noise with a nice graph."
+pillar: "coaching"
+primaryHub: "power-meter-training"
+author: "anthony-walsh"
+publishDate: "2026-07-10"
+keyTakeaways:
+  - "Average power is what happened. Normalised power is what it cost you. The gap between them tells you how steady your ride was — and steadier rides, measured by Variability Index, are almost always more efficient rides."
+  - "Aerobic decoupling — the drift between power and heart rate over the second half of a steady ride — is the single best indicator of endurance fitness development that most amateur cyclists never check."
+  - "A weekly data review takes 5 minutes and three numbers: total TSS, CTL trend over 6-8 weeks, and one subjective fatigue rating. That gives you more actionable insight than 30 minutes of post-ride number-crunching."
+  - "Data anxiety is real and counterproductive. Riders who check every metric after every ride make worse training decisions than riders who review weekly trends and ignore day-to-day noise."
+  - "Intensity Factor tells you how hard a ride was relative to your FTP. An IF above 0.78 for rides over 3 hours means you went too hard for the duration — regardless of how the ride felt."
+  - "Chronic Training Load is a trailing indicator that smooths out daily variation. It tells you where your fitness is trending, not where it is today. Reacting to daily CTL changes is like checking your weight after every meal."
+  - "The most useful thing data does is not confirm good rides — it catches bad patterns. A rising resting heart rate, a climbing aerobic decoupling trend, or a TSS plateau despite more training hours are all signals that something needs to change."
+faq:
+  - question: "What is the difference between average power and normalised power?"
+    answer: "Average power is the arithmetic mean of all your power readings. Normalised power accounts for the physiological cost of variability — surges, sprints, and recovery periods. A ride with 180 watts average but 210 watts normalised was variable and cost your body more than a steady 180-watt ride. The gap between them, expressed as Variability Index, tells you how smooth the effort was."
+  - question: "What is aerobic decoupling and why does it matter?"
+    answer: "Aerobic decoupling measures how much your heart rate drifts upward relative to power in the second half of a steady ride. Below 5 per cent decoupling at endurance pace means your aerobic base is solid. Above 10 per cent means your body is struggling to maintain the effort — either you went too hard or your endurance base needs more work."
+  - question: "How often should I analyse my cycling data?"
+    answer: "Post-ride: glance at normalised power, intensity factor, and average heart rate — 60 seconds. Weekly: check total TSS, CTL trend, and aerobic decoupling from your longest ride — 5 minutes. Monthly: review FTP trend, power curve changes, and training volume distribution — 15 minutes. Anything more than that is usually procrastination disguised as analysis."
+  - question: "What cycling data should beginners focus on?"
+    answer: "If you have a power meter: normalised power and heart rate per ride, weekly TSS total. If you only have heart rate: average heart rate per zone per ride, resting heart rate trend. If you have neither: perceived effort rating after each ride and total weekly duration. Start simple. Add complexity only when the simple metrics stop answering your questions."
+  - question: "Can too much data analysis hurt my cycling?"
+    answer: "Yes. Riders who obsess over daily metrics make reactive decisions — skipping recovery rides because TSS looks low, pushing harder because CTL dipped, or doubting their fitness because one ride produced a lower normalised power. Data is a tool for pattern recognition, not a daily report card. Review trends, not individual data points."
+relatedPosts:
+  - "how-to-read-cycling-power-file-guide"
+  - "cycling-data-overload-what-to-track-guide"
+  - "reading-your-training-data-tss-ctl-atl-tsb"
+  - "aerobic-decoupling-cycling-cardiac-drift"
+  - "post-ride-analysis-improve-cycling-guide"
+relatedTools:
+  - "tss"
+  - "ftp-zones"
+  - "training-load"
+  - "ftp-test"
+---
+
+You finish a ride. You felt strong. The legs were there, the breathing was controlled, you held wheels you normally drop. Good day. Then you open the app.
+
+Normalised power is lower than last week. TSS is 12 points below your target. Garmin reckons your training status is "unproductive" and your VO2max dropped half a point. Strava's suffer score seems low. Your watch says your body battery went from 55 to 19, which sounds alarming even though you have no idea what it means.
+
+Ten minutes ago you were buzzing. Now you are second-guessing the entire session.
+
+This is what happens when data has no framework. When every number gets equal weight because nobody taught you which ones matter and which ones are noise dressed up in a colourful graph. And it is fixable — but not by learning more metrics. By learning fewer ones, better.
+
+This guide is the starting point. Not deep on any single metric — we have detailed breakdowns of [power file analysis](/blog/how-to-read-cycling-power-file-guide), [TSS and CTL](/blog/reading-your-training-data-tss-ctl-atl-tsb), and [post-ride review workflows](/blog/post-ride-analysis-improve-cycling-guide) elsewhere on the site. This is the framework that ties them together. What to look at, how often, and — critically — when to close the app and go live your life.
+
+## Why Most Riders Drown in Data
+
+Here's the thing nobody tells you about cycling analytics platforms: they are designed to keep you engaged, not to make you a better cyclist. Every additional metric displayed, every badge awarded, every proprietary score calculated keeps you on the platform longer. That is good for the platform. It is bad for your training.
+
+A modern head unit records 30-40 data fields per ride. Your training platform applies formulas to those fields and produces another 20-30 derived metrics. Your watch adds its own proprietary calculations on top. By the time you have uploaded a Tuesday evening ride, you have access to more numbers than a WorldTour performance analyst had per race stage in 2010.
+
+The problem is not intelligence. The problem is that without a hierarchy — without knowing which numbers deserve attention and which deserve to be ignored — more data produces more doubt. You start comparing Tuesday's normalised power to last Tuesday's normalised power without accounting for sleep, stress, temperature, fuelling, or fatigue. You see CTL drop by a single point and wonder if you are losing fitness. You check Garmin's VO2max estimate and confuse a proprietary algorithm's opinion with a measurement of your physiology.
+
+The riders I have spoken to across 1,400-plus podcast episodes — coaches, sports scientists, athletes who have raced at every level from club to WorldTour — consistently say the same thing. The ones who improve track a small number of metrics consistently. The ones who stagnate track everything reactively.
+
+Let me break this down into what actually works.
+
+## The Post-Ride Check: 60 Seconds, Three Numbers
+
+When you finish a ride, you do not need to sit down with a coffee and dissect the file. Not every ride. Not most rides. What you need is a glance — 60 seconds — at three numbers that tell you whether the session did what it was supposed to do.
+
+**Normalised power.** Did the intensity match the intention? If it was an endurance ride, your NP should sit in Zone 2. If it was a tempo session, NP should reflect that. The number itself is less important than the match between plan and execution.
+
+**Intensity factor.** This is NP divided by your FTP. It expresses how hard the ride was relative to your current capacity. An IF of 0.65-0.75 is a solid endurance ride. 0.80-0.90 is tempo to threshold territory. Above 1.0 and you were exceeding your FTP, which is fine for short efforts but unsustainable for longer ones. If your easy ride came back at IF 0.82, you were not riding easy. Full stop.
+
+**Average heart rate.** Not for the precision — heart rate is messy and influenced by caffeine, temperature, stress, sleep, and hydration. But as a sanity check against power, it is useful. If your power was Zone 2 but your heart rate was Zone 4, something is off. That mismatch is worth noting, even if you do not investigate it until your weekly review.
+
+Three numbers. Sixty seconds. Then put the phone down.
+
+The detailed file reviews — the pacing audits, the power distribution analysis, the interval-by-interval breakdowns — those belong in your weekly review or after key sessions: race efforts, threshold tests, benchmark rides. Not after every Tuesday evening spin.
+
+## Average Power vs Normalised Power
+
+This is the concept that changes how you read every ride. If you leave this guide with one thing understood properly, make it this.
+
+Average power is exactly what it sounds like. Add up every power reading, divide by the number of readings, and you get a number. If you rode at a perfectly steady 200 watts for two hours, your average power is 200 watts. Simple.
+
+But cycling is not steady. You surge over a hill, soft-pedal through a corner, sit in a draft at 120 watts, then pull through at 280 watts. You stop at junctions. You sprint for a town sign because your mate gave you a look. The average of all those readings might be 185 watts, which sounds moderate. But your body did not experience a moderate ride. It experienced repeated high-intensity surges separated by recovery periods, and that costs significantly more energy than a steady 185 watts.
+
+Normalised power accounts for this. Andrew Coggan's algorithm applies a 30-second rolling average, raises each value to the fourth power (which disproportionately weights the hard efforts), averages those values, and takes the fourth root. The result is a number that better represents what the ride actually cost your body.
+
+Here's where it gets really interesting. Two riders can finish the same ride with identical average power but very different normalised power. The one who paced steadily will have NP close to average power. The one who surged and recovered repeatedly will have NP substantially higher. And the one with the higher NP burned more glycogen, accumulated more fatigue, and needs more recovery — even though the "average" was the same.
+
+When you see your ride summary, always read normalised power first. Average power is what happened. Normalised power is what it cost.
+
+## Variability Index: How Steady Were You?
+
+Variability Index is the ratio of normalised power to average power. It puts a number on how smooth or erratic your effort was.
+
+- **VI below 1.05** — Very steady. Target this for time trials, threshold sessions, and long base rides. It means you held a consistent output with minimal surging.
+- **VI of 1.05-1.10** — Moderate variability. Normal for a well-ridden sportive on rolling terrain or a controlled group ride.
+- **VI of 1.10-1.20** — High variability. Common in group rides and road races. Acceptable when the terrain or tactics demand it, but expensive if it was just poor pacing.
+- **VI above 1.20** — Extreme variability. Either a criterium, a mountain stage, or a ride where you had no pacing strategy at all.
+
+Why does this matter in practice? Because high variability is metabolically expensive. Every time you surge from 150 watts to 350 watts and back, you burn through glycogen at a rate that steady riding at 250 watts would not. That is why the rider who paces a sportive at a steady IF of 0.72 with a VI of 1.05 will finish feeling markedly better than the rider who averaged the same power but with a VI of 1.15 from chasing every wheel and attacking every hill.
+
+For most of your training rides, aim for VI below 1.08. If your group rides consistently come back at 1.15 or higher, that is worth noting — not because it is wrong, but because it tells you the ride is costing you more than the average power suggests.
+
+## Intensity Factor: Your Single-Number Ride Summary
+
+If someone asked "how hard was that ride?" and you could only answer with one number, Intensity Factor is the one.
+
+IF equals normalised power divided by your FTP. It scales every ride against your current capacity, which means it stays meaningful as your fitness changes. A ride at IF 0.75 is the same relative intensity whether your FTP is 200 watts or 300 watts.
+
+The practical ranges:
+
+- **Below 0.65** — Recovery pace. Active rest.
+- **0.65-0.78** — Endurance zone. Where most of your training volume should sit.
+- **0.78-0.88** — Tempo. Purposeful work, but not threshold.
+- **0.88-0.95** — Threshold territory. Hard, sustainable for 30-60 minutes.
+- **0.95-1.05** — Above threshold. Sustainable for short efforts only.
+- **Above 1.05** — Race-intensity efforts. Intervals or short, very hard sessions.
+
+Here is where IF becomes properly useful. It catches lies — specifically, the lies you tell yourself about ride intensity. That "easy" group ride that felt social? If it came back at IF 0.83, it was not easy. That "hard" threshold session that felt brutal? If it came back at IF 0.79, you did not hit the target.
+
+Let me be really clear about this: the single most common training error in amateur cycling is riding easy days too hard. IF catches it every time. If your endurance rides are consistently above IF 0.78, your easy is not easy enough, and your hard sessions will suffer because you are arriving at them pre-fatigued.
+
+For rides over three hours, keep IF below 0.78. If it is above that, the ride was harder than your body can absorb as an endurance session, and it is eating into recovery that should be saved for your quality workouts.
+
+## Aerobic Decoupling: The Best Metric Most Riders Ignore
+
+Here's the thing nobody tells you about endurance fitness: there is a metric that tracks it directly, it is available on every training platform, and almost nobody checks it.
+
+Aerobic decoupling measures the relationship between power output and heart rate over the course of a steady ride. Specifically, it compares the ratio of power to heart rate in the first half of a ride against the same ratio in the second half. If your heart rate drifts upward while your power stays constant — or worse, while power drops — that is decoupling. Your cardiovascular system is working harder to maintain the same output.
+
+The numbers that matter:
+
+- **Below 5 per cent decoupling** at endurance pace means your aerobic base is well developed for that intensity. Your heart and your muscles are working in sync. This is what you are building toward with all those Zone 2 hours.
+- **5-10 per cent** means there is room for improvement. You are getting there, but your aerobic engine is not yet efficient at that duration and intensity.
+- **Above 10 per cent** means either you went too hard for your current fitness, you did not fuel or hydrate properly, or your endurance base needs significantly more work.
+
+Why is this so valuable? Because it is the most direct indicator of aerobic base development available to amateur cyclists. FTP is a snapshot. CTL is a proxy. But decoupling on a 90-minute endurance ride tells you, in real time, how well your aerobic system is coping with sustained work. And it changes before other metrics do — you will see decoupling improve weeks before your FTP moves.
+
+Track it on your long rides. Every two to three weeks, do a standardised endurance ride — same route, similar conditions, same target power — and note the decoupling percentage. A trend from 12 per cent to 8 per cent to 5 per cent across two months of base training is some of the most satisfying data in cycling. It means the work is working.
+
+## The Weekly Review: Five Minutes That Actually Matter
+
+Post-ride checks are glances. The weekly review is where you actually learn something. And the good news is that it takes five minutes if you know what you are looking at.
+
+Every Sunday evening — or whatever day marks the end of your training week — sit down and check three things.
+
+### Total Weekly TSS
+
+Your Training Stress Score for the week tells you the total training load in one number. Not hours, not kilometres, but physiological cost. A week at 400 TSS is meaningfully different from a week at 600 TSS, and the number captures that in a way that "I rode five times" does not.
+
+The question is not "was this week's TSS high enough?" It is "does this week's TSS fit the trend?" If you have been building from 350 to 400 to 450 over three weeks, then a 500 TSS week is progression. If you have been sitting at 400 for six weeks, something is either holding steady or stuck — and those are very different situations that require the same follow-up question: is this intentional?
+
+### CTL Trend Over Six to Eight Weeks
+
+Chronic Training Load is your 42-day rolling average of daily TSS. It is the closest thing to a single fitness number. But here is where it gets really interesting — the absolute value matters far less than the direction.
+
+A CTL of 50 that has risen from 35 over two months is a better position than a CTL of 75 that has been flat for ten weeks. Direction tells you whether the training is accumulating. The number tells you nothing without history.
+
+Pull up the chart. Look at the trend. Ask one question: up, flat, or down? If it is rising 3-7 points per week, you are building. If it is flat, you are maintaining. If it is dropping, you are either tapering deliberately or losing ground accidentally.
+
+Do not react to daily CTL changes. A single rest day can drop CTL by a point. That is not fitness loss. That is maths. CTL is a trailing indicator — it smooths out daily variation by design. Treating it as a daily report card defeats its purpose entirely. It is like checking your weight after every meal and panicking about the fluctuations.
+
+### One Subjective Fatigue Rating
+
+This is the bit most data-focused riders skip, and it is arguably the most important of the three. Before you look at any numbers, rate your fatigue on a simple scale. One to five. One means fresh, five means wrecked.
+
+Then compare it against your TSS total. If TSS was 500 and fatigue is a two, you absorbed the training well. If TSS was 350 and fatigue is a four, something else is going on — poor sleep, work stress, illness, under-fuelling. The mismatch between load and fatigue is where the signal lives. Data tells you what you did. Subjective fatigue tells you what it cost.
+
+## The Monthly Review: Fifteen Minutes, Once a Month
+
+Once a month — typically at the end of a training block — give yourself fifteen minutes for a deeper look.
+
+### FTP Trend
+
+If you are testing FTP every six to eight weeks (and you should be), plot those results. The number matters, but the trend matters more. A steady climb from 240 to 248 to 255 across three test cycles is progress. A jump from 240 to 260 followed by a drop to 250 suggests the 260 was an outlier or you peaked and faded.
+
+### Power Curve Changes
+
+Your power curve — maximum power at every duration from five seconds to sixty minutes — reveals where your physiology is developing and where it is not. If your five-minute and twenty-minute power are both rising, your engine is building across the board. If your five-minute power is climbing but your sixty-minute power is flat, you are getting faster but not more durable. The shape of the curve tells you what kind of rider you are becoming.
+
+### Volume Distribution
+
+Where did your training hours go? What percentage was endurance, tempo, threshold, VO2max? Most age-group cyclists discover that their training distribution does not match their intention. They planned 80 per cent endurance and 20 per cent intensity, but the actual split was 60/40 because their "easy" group ride was not easy and their "recovery" rides had too many town-sign sprints.
+
+This is data doing what data does best: catching the gap between what you think you are doing and what you are actually doing.
+
+## When Data Helps vs When It Creates Anxiety
+
+Let me be really clear about this: data anxiety is a real phenomenon and it makes riders worse, not better.
+
+Data helps when you use it for **pattern recognition over time**. A rising decoupling trend across three weeks tells you something useful. A declining CTL over a month when you thought you were training hard tells you something useful. An IF that consistently lands at 0.82 on your easy rides tells you something very useful.
+
+Data creates anxiety when you use it for **judgement of individual sessions**. One ride's normalised power being lower than last week's means almost nothing. A single TSS number that missed target by 10 points means nothing. One day's CTL dip means nothing. But riders who check these numbers after every ride start making reactive decisions — pushing harder tomorrow because today looked weak, skipping a rest day because the numbers say they can handle more, doubting their fitness because a single data point looked wrong.
+
+The pattern I see repeatedly across the riders I talk to: the ones who obsess over daily metrics make worse training decisions than the ones who review weekly trends and leave the rest alone. More information is not always better information. Sometimes it is just more noise at a higher resolution.
+
+Here is a useful test. After you check your data, do you feel informed or anxious? If the answer is informed — you know what happened, you know what to do next, you close the app — the data is serving you. If the answer is anxious — you are comparing, doubting, recalculating, wondering if the ride was good enough — the data is running you. And that is a sign to step back, not dig deeper.
+
+## The Data-Free Ride
+
+This will sound like heresy on a site full of training tools and data guides, but sometimes the best thing you can do for your cycling is leave the head unit at home.
+
+Not every ride needs to be measured. Not every ride needs to be quantified, analysed, and filed. Some rides exist purely for the reason you started cycling in the first place — because it is fun, because the weather is good, because your mate called and said "fancy a spin?"
+
+A data-free ride once a week, or once a fortnight, does three things. It breaks the feedback loop that makes every ride feel like a test. It lets you reconnect with how effort actually feels without a screen telling you whether your feeling is correct. And it teaches you something that all the data in the world cannot: what your body already knows about pace, effort, and fatigue when you listen to it without a number confirming or denying the sensation.
+
+I am not saying throw the power meter away. I am saying that the riders who build long, sustainable, enjoyable careers in this sport are the ones who treat data as a tool they pick up when they need it and put down when they do not.
+
+## Common Data Analysis Mistakes
+
+After years of conversations with coaches and self-coached athletes, these are the patterns that keep coming back.
+
+**Comparing individual sessions without context.** Last Thursday's NP was 215. This Thursday's NP was 198. Panic. But last Thursday you were rested, well-fed, and it was 18 degrees. This Thursday you were coming off a hard weekend, slept badly, and it was 32 degrees. The numbers are not comparable. They never were.
+
+**Reacting to daily CTL changes.** CTL moved from 62.3 to 61.8 after a rest day. That is not fitness loss. That is what a trailing 42-day average does when you remove a data point. Reacting to this is like panicking because the tide went out.
+
+**Ignoring subjective feel in favour of numbers.** You feel terrible. The data says you should feel fine. You train hard because the data says you can. You get injured or ill. The data was not wrong — it just could not see the whole picture. Sleep, stress, nutrition, and cumulative life load do not show up in your power file.
+
+**Chasing higher TSS instead of appropriate TSS.** More is not always better. A week at 600 TSS built thoughtfully with proper recovery between hard sessions is worth more than 700 TSS accumulated through six identical moderate rides. The distribution matters as much as the total.
+
+**Never testing the metrics that matter.** You track CTL religiously but have not tested your FTP in four months. You know your weekly TSS to the decimal but have never checked aerobic decoupling. The metrics you track should include the ones that actually confirm whether you are getting fitter — not just the ones that confirm you are training.
+
+## Building a Sustainable Data Review Habit
+
+The system that works is the one you will actually do. Here is a framework that takes less than thirty minutes per week total, covers everything that matters, and leaves the rest alone.
+
+**Post-ride (60 seconds, every ride):** Glance at normalised power, intensity factor, and average heart rate. Did the ride match its intention? Yes? Move on. No? Make a mental note and check it in the weekly review.
+
+**Weekly (5 minutes, once a week):** Total TSS, CTL trend direction, subjective fatigue rating. Are you building, maintaining, or fading? Is your body absorbing the load or struggling with it? Any mismatch between numbers and feel?
+
+**Monthly (15 minutes, end of each training block):** FTP trend across test cycles. Power curve changes. Training volume distribution. Are you getting stronger, are you developing in the right areas, and is your actual training distribution matching your intended one?
+
+**Per key session (5-10 minutes, after threshold work, races, and tests):** Full file review. Pacing analysis. Interval-by-interval comparison. Power distribution. This is where detailed analysis belongs — applied to the sessions that generate the most useful data, not applied to every ride indiscriminately.
+
+That is the system. It scales whether you are training eight hours a week or eighteen. It catches the patterns that matter without drowning you in the noise that does not. And it leaves you enough headspace to actually enjoy riding your bike, which — let me be really clear about this — is still the point.
+
+If you want to discuss data analysis, training approaches, or anything else related to getting faster on the bike with a community of riders who are working through the same questions, [join us in the Roadman Cycling community on Skool](https://www.skool.com/roadmancycling). It is where these conversations happen daily, and it is full of riders who have made every data mistake on this list and come out the other side with a system that works.
+
+Your numbers are there to serve you. Not the other way around.

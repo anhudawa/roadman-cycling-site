@@ -1,0 +1,241 @@
+---
+title: "Post-Ride Analysis: How to Review Your Cycling Data and Actually Get Faster"
+seoTitle: "Post-Ride Analysis: Review Cycling Data to Get Faster"
+seoDescription: "How to analyse your cycling data after every ride. Power file review, pacing audit, nutrition tracking, and the specific numbers that reveal where your fitness is going."
+excerpt: "The ride is over. The data is sitting on your Garmin, waiting to tell you something useful. Most riders glance at the summary, check their Strava segment times, and move on. That is a missed opportunity."
+pillar: coaching
+primaryHub: cycling-coaching
+author: anthony-walsh
+publishDate: "2026-07-09"
+keyTakeaways:
+  - "The three numbers that matter most in a post-ride review are Normalised Power, Intensity Factor, and Variability Index — together they tell you how hard the ride was, how steady you held your effort, and how much that variability cost you."
+  - "Aerobic decoupling — the drift between power and heart rate over the second half of a ride — is the clearest indicator of whether your endurance base is developing or whether you went out too hard."
+  - "A post-ride nutrition audit comparing planned versus actual intake catches the fuelling errors that cause late-ride fade, bonking, and GI distress — problems most riders blame on fitness when the cause was intake."
+  - "TrainingPeaks' Efficiency Factor (NP divided by average heart rate) tracked over months is one of the best measures of aerobic fitness improvement that most amateurs never look at."
+  - "Strava segment analysis is useful for tracking progress on repeatable efforts, but only when conditions (wind, temperature, fatigue state) are comparable — a PR on a tailwind day is not the same as a PR into a headwind."
+  - "The 10-minute post-ride review habit — pacing, power distribution, nutrition, RPE match — done consistently teaches you more about your cycling than any single coaching session."
+  - "Writing a 2-3 sentence post-ride note capturing how you felt, what you ate, and how you slept the night before creates the context that makes raw data interpretable weeks later."
+faq:
+  - question: "What should I look at first when reviewing a ride?"
+    answer: "Start with three numbers: Normalised Power (how hard the ride actually was), Intensity Factor (NP as a percentage of your FTP), and Training Stress Score (the total load). These tell you whether the ride hit its intended target. Then check your power distribution chart to see if you spent your time in the right zones."
+  - question: "What is aerobic decoupling and why does it matter?"
+    answer: "Aerobic decoupling measures the drift between your power output and heart rate over the course of a ride. If your heart rate rises while power stays stable (or drops), your cardiovascular system is working harder to maintain the same output — a sign that the effort was too high for your current fitness, or that dehydration or heat is affecting you. Keeping decoupling under 5% on endurance rides indicates a well-developed aerobic base."
+  - question: "Is Strava segment analysis useful for training?"
+    answer: "It is useful for tracking progress on specific climbs or time-trial efforts you repeat regularly, but only when you account for wind, temperature, and your fatigue state. A segment PR set with a 30kph tailwind tells you less than a slower time set into a headwind after a hard training week. Use segments as one data point among many, not as your primary performance measure."
+  - question: "How do I review my nutrition after a ride?"
+    answer: "Compare what you planned to eat and drink against what you actually consumed. Note the timing of each intake. If you faded in the last third of the ride, check whether your carbohydrate intake dropped below 60g per hour. If you had GI distress, check whether you introduced a new product or took in too much at once. This audit catches fuelling errors that repeat silently ride after ride."
+  - question: "Should I write notes after every ride?"
+    answer: "Yes — even two or three sentences. Record how you felt (RPE), what you ate, how you slept, and any unusual conditions (wind, heat, stress). This context makes your data interpretable weeks and months later. A coach reviewing your file can see the numbers, but only you know you were stressed at work, slept poorly, and skipped breakfast."
+relatedPosts:
+  - reading-your-training-data-tss-ctl-atl-tsb
+  - how-to-read-cycling-power-file-guide
+  - cycling-metrics-explained
+  - aerobic-decoupling-cycling-cardiac-drift
+  - efficiency-factor-trainingpeaks-tracking
+relatedTools:
+  - tss
+  - training-load
+  - ftp-zones
+---
+
+Two riders finish the same group ride on a Saturday morning. Same route, same distance, same weather. Rider A uploads to Strava, checks whether she got a segment PR on the local climb, scrolls through the kudos on her feed, and puts the phone down. Total review time: ninety seconds.
+
+Rider B sits down with a coffee and opens TrainingPeaks. She checks Normalised Power against her target for the session. She looks at the power distribution chart and sees she spent twenty minutes in Zone 4 during what was meant to be a Zone 2 endurance ride. She notices her heart rate drifted eight beats higher in the second half despite holding the same power. She writes three sentences: slept badly, skipped breakfast, wind was strong from the west. Total review time: ten minutes.
+
+Over four weeks, the difference is invisible. Over a season, Rider B is a different cyclist. Not because she trained harder. Because she learned from every session, corrected small errors before they became habits, and built an understanding of her own physiology that no training plan can give you out of the box.
+
+That ten-minute window after the ride — when the data is fresh, the sensations are still in your legs, and the context is in your head — is the cheapest performance gain in cycling. The work is done. The data is collected. All that's missing is the discipline to sit with it for a few minutes and ask the right questions.
+
+## Why Post-Ride Analysis Matters
+
+Every ride you do with a power meter, heart rate strap, or even just a GPS unit generates a data file. That file contains a second-by-second record of what your body did. Power output. Heart rate response. Cadence. Speed. Elevation. Temperature. The raw material for understanding how your body responds to training, pacing, nutrition, sleep, stress, and weather is sitting on your Garmin or Wahoo after every single session.
+
+World Tour teams understood this decades ago. The performance staff at Ineos Grenadiers, Visma-Lease a Bike, and UAE Team Emirates employ full-time analysts who review every rider's file from every training session and every race stage. Tim Cusick, who developed the analytical tools inside WKO5, has spent years building frameworks that turn raw power data into actionable coaching decisions. Hunter Allen, who co-authored *Training and Racing with a Power Meter* with Andrew Coggan, built the original case for why power file analysis should be a non-negotiable part of every serious cyclist's routine.
+
+You don't need a team analyst. You don't need WKO5 (though it's excellent if you want to go deep). You need ten minutes, a basic understanding of what the key numbers mean, and the consistency to do it after every ride that matters.
+
+The reason most amateurs skip this step is not laziness. It's that nobody taught them what to look at. The training platforms present walls of data — graphs, charts, metrics, zones, scores — and without a framework for reading them, it feels overwhelming. So riders default to the summary page: distance, time, average speed, maybe average power. These tell you almost nothing useful about the quality of the session.
+
+What follows is the framework. The specific numbers. The questions to ask. And a repeatable template you can run through in the time it takes to drink a recovery shake.
+
+## The Power File: Your Four Essential Numbers
+
+If you have a power meter, four numbers from every ride tell you most of what you need to know. They work together, not in isolation, and understanding the relationship between them is where the real diagnostic value sits.
+
+### Normalised Power
+
+Average power is the simple mean of every data point across the ride. It treats a steady 200W the same as alternating between 50W and 350W. Your body does not. The surges cost more — metabolically, glycogenically, and in accumulated fatigue — than the number suggests.
+
+Normalised Power (NP) corrects for this. Andrew Coggan's algorithm applies a 30-second rolling average, raises each value to the fourth power, averages those, and takes the fourth root. The maths sound complicated but the result is simple: NP tells you the physiological cost of your ride, accounting for the reality that cycling is variable.
+
+On a flat, steady ride on the trainer, NP and average power will be almost identical. On a hilly group ride with surges, attacks, and descents, NP might be 15-25% higher than average power. That gap itself tells you something — and that's where the next number comes in.
+
+### Variability Index
+
+Variability Index (VI) is NP divided by average power. It quantifies how steady or erratic your effort was.
+
+- **Below 1.05:** Well-paced. You held a consistent effort. This is the target for time trials, threshold sessions, and long steady rides.
+- **1.05–1.10:** Moderate variability. Typical of a well-ridden sportive on rolling terrain.
+- **1.10–1.20:** High variability. You were surging and recovering repeatedly. Common in group rides and races, but expensive if it wasn't necessary.
+- **Above 1.20:** Extreme variability. Either a criterium or a pacing problem.
+
+For post-ride analysis, VI answers a specific question: did I pay a metabolic tax I didn't need to? A rider who finishes a long sportive with a VI of 1.18 has spent significantly more glycogen and accumulated more fatigue than one who finished at 1.06 with the same average power. The second rider arrived at the finish line with more in the tank and probably went faster in the second half.
+
+### Intensity Factor
+
+Intensity Factor (IF) is NP divided by your FTP. It places the ride in context against your current fitness ceiling.
+
+- **0.55–0.70:** Recovery or easy endurance.
+- **0.70–0.85:** Solid endurance to brisk training pace.
+- **0.85–0.95:** Tempo to threshold. Hard work.
+- **0.95–1.05:** Threshold. Sustainable for about an hour.
+- **Above 1.05:** Supra-threshold. Minutes, not hours.
+
+The diagnostic use of IF is in comparing it against what the session was supposed to be. An endurance ride that comes back at IF 0.82 was too hard — you were riding tempo when you should have been riding easy. A threshold session that registers IF 0.88 didn't hit the mark. These are the subtle miscalibrations that compound across weeks and months, and IF catches them cleanly.
+
+Coggan's approximate maximum sustainable IF values (1.00 for one hour, 0.90 for two hours, 0.85 for three, 0.78 for five) give you a pacing ceiling for events. If your sportive file shows an IF above the guideline for its duration, you either went too hard or your FTP is set too low. Both are worth knowing. Use the [TSS calculator](/tools/tss) to cross-reference your IF and duration against expected training stress.
+
+### Training Stress Score
+
+TSS combines intensity and duration into a single load number. A one-hour ride at FTP produces a TSS of 100. A two-hour endurance ride at IF 0.70 produces roughly 98 TSS. A five-hour sportive at IF 0.80 might produce 320 TSS.
+
+After the ride, TSS answers one question: how much did that cost me? The answer feeds directly into recovery planning. A session under 150 TSS is manageable with a normal day of recovery. A session between 150 and 300 requires careful planning of the next two or three days. Above 300 and you're looking at multiple days before the next hard session — and if you ignore that, you're digging a fatigue hole. The full framework for how TSS feeds into CTL, ATL, and TSB is covered in the [training data guide](/blog/reading-your-training-data-tss-ctl-atl-tsb).
+
+## Pacing Review: Where Did You Actually Spend Your Time?
+
+The power distribution chart — available in TrainingPeaks, Garmin Connect, Intervals.icu, and Strava (premium) — shows you how much time you spent in each power zone. This is where the most common amateur training error becomes visible.
+
+Professor Stephen Seiler's research on polarised training has shown, across dozens of studies, that elite endurance athletes spend roughly 80% of their training time at low intensity and 20% at high intensity, with very little time in the moderate "grey zone" between. The evidence base for this intensity distribution is large and consistent.
+
+The grey zone — roughly Zone 3, or the tempo range between your aerobic threshold and your functional threshold — is where amateur rides habitually land. The ride was supposed to be easy. You intended Zone 2. But you pushed a bit on the hills. You chased the wheel in front. The headwind section felt hard and you didn't back off. When you check the distribution chart afterwards, 35% of the ride was in Zone 3. The session wasn't easy enough to build your aerobic base and wasn't hard enough to produce a threshold adaptation. It was a compromise that served neither goal.
+
+Post-ride, the distribution chart catches this instantly. You can see the time-in-zone breakdown and compare it against your plan. If your Tuesday ride was prescribed as endurance and the chart shows significant Zone 3 time, you know to hold back next Tuesday. If your Thursday intervals were supposed to include four blocks of VO2max work and the chart shows you spent most of the high-intensity time at threshold rather than VO2max, you know the targets were wrong or the recovery between intervals was too short.
+
+This is the kind of retrospective audit that separates structured training from just riding. The sensations during the ride often deceive you. Zone 2 feels too easy. Zone 3 feels "about right." But "about right" is the feeling of the grey zone, and it is the single most common reason amateur cyclists plateau. The data doesn't care how it felt. It tells you where you were.
+
+## Aerobic Decoupling: Is Your Base Real?
+
+Aerobic decoupling measures the drift between your power output and your heart rate over the course of a ride. In a well-trained cyclist with a strong aerobic base, the relationship between power and heart rate should remain stable across a long steady effort. When heart rate rises while power stays flat — or power drops while heart rate holds — the aerobic system is losing the battle.
+
+Joe Friel popularised the use of decoupling as a base-fitness test in *The Cyclist's Training Bible*, and it remains one of the most practical field tests available. The protocol is simple: ride 60–90 minutes at steady Zone 2 power. Split the ride into two equal halves. Compare the power-to-heart-rate ratio (Pa:HR) for each half. The percentage drop from the first half to the second half is your decoupling number.
+
+TrainingPeaks calculates this automatically on any structured ride. You don't need to do the maths.
+
+### What the number means:
+
+- **Under 5%:** Your aerobic base is solid for that duration. You are cleared to layer harder work on top without risk of the base crumbling underneath you.
+- **5–10%:** Base is developing but not finished. You can include some moderate-intensity work, but the heavy interval blocks should wait.
+- **Above 10%:** The base needs more work. Could also indicate that you went out too hard, that you're dehydrated, that it's hot, or that your fuelling during the ride was poor. Run the test again under controlled conditions before concluding anything.
+
+For post-ride analysis, decoupling is the number that tells you whether your endurance sessions are actually building endurance. If you've been doing four weeks of Zone 2 base work and your decoupling on a 90-minute ride has dropped from 12% to 6%, the training is working. If it's stuck at 12%, something is off — sleep, nutrition, volume, or the intensity of those "easy" rides creeping into the grey zone (check the distribution chart). The [full guide to aerobic decoupling](/blog/aerobic-decoupling-cycling-cardiac-drift) covers the protocols and the common confounds in detail.
+
+## Efficiency Factor: The Metric Nobody Tracks
+
+Efficiency Factor (EF) is Normalised Power divided by average heart rate. It is a crude but effective measure of how efficiently your cardiovascular system is producing power. A higher EF means you're generating more watts per heartbeat — which is one working definition of improved aerobic fitness.
+
+The single-ride number is less useful than the trend. Track EF across weeks and months, on comparable rides (same type, similar conditions, similar fatigue state). If EF is gradually rising — say from 1.35 to 1.45 over an eight-week base block — your aerobic fitness is improving even if your FTP hasn't moved. If EF has plateaued or declined, something in the training, recovery, or health picture needs attention.
+
+TrainingPeaks displays EF on the workout summary. You can add it to your dashboard and see the trend line. Most riders never look at it. Coaches who work with large numbers of athletes — particularly masters riders whose FTP progression can be slow and non-linear — rely on EF as an early indicator. It often moves before FTP does, which means it catches improvement (or regression) sooner.
+
+For self-coached riders, EF is the reassurance metric. When you've been doing patient Zone 2 work for six weeks and your FTP is stubbornly sitting where it was, EF tells you whether the adaptations are happening underneath. If they are, the FTP will follow. If they're not, the work needs adjusting. The [Efficiency Factor tracking guide](/blog/efficiency-factor-trainingpeaks-tracking) walks through how to set up the trend in TrainingPeaks and what to look for over a training block.
+
+## Heart Rate Analysis: What to Look at Without a Power Meter
+
+Not every rider has a power meter. If your data set is heart rate and speed, you can still run a meaningful post-ride review. The analysis is less precise but still revealing.
+
+**Time in HR zones.** The same principle as power zones applies. If your endurance ride spent 40% of its time in Zone 3 heart rate, you were too hard. If your interval session never pushed you into Zone 4 or 5, the intervals weren't intense enough. The distribution chart in Garmin Connect or Strava gives you this.
+
+**Heart rate recovery.** How quickly your heart rate drops after a hard effort is a marker of cardiovascular fitness. If you pushed hard on a climb and your HR took four minutes to return to a conversational level, note it. Over weeks, as fitness improves, that recovery time shortens. It's an imprecise but consistent indicator.
+
+**Resting heart rate trends.** This sits outside the ride file but connects to it. If your resting HR (measured first thing in the morning, ideally with a chest strap or a wearable that tracks overnight) has crept up by five or more beats over the past week, you're carrying fatigue, fighting off illness, or under-recovering. That context changes how you interpret the ride data. A ride that felt harder than usual, with heart rate sitting five beats above where you'd expect for the power, makes more sense when your morning HR is elevated too.
+
+**HR:speed ratio on repeatable routes.** If you ride the same flat route regularly in similar conditions, track the relationship between your average heart rate and your average speed. A lower heart rate at the same speed (or a higher speed at the same heart rate) is the heart-rate equivalent of rising Efficiency Factor. It's crude — wind, temperature, tyre pressure, and a dozen other factors affect it — but across enough data points, the trend is meaningful.
+
+## Nutrition Audit: The Review Nobody Does
+
+This is the one most riders skip entirely. It is also the one most likely to find something immediately fixable.
+
+Dr Asker Jeukendrup's research has established clear guidelines for in-ride carbohydrate intake. For rides of two to three hours, 60g of carbohydrate per hour. For rides over three hours, 80–120g per hour is possible with trained guts using a glucose-fructose mix. These numbers are not aspirational targets for professionals. They are the intake levels at which amateur cyclists perform measurably better and recover faster.
+
+After every ride over 90 minutes, compare what you planned to eat against what you actually consumed. Most riders will find a gap.
+
+**The fade correlation.** If you faded in the last third of the ride — power dropping, RPE climbing, everything getting harder — look at your carb intake for the first two-thirds. Was it above 60g per hour? Was it consistent, or did you forget to eat during a hard section and then try to catch up later? The pattern is remarkably common: rider pushes hard on a climb, can't eat during the effort, gets into a carb deficit, tries to eat a gel at the top but feels nauseous, abandons the nutrition plan, and bonks forty-five minutes later. The file shows the power fade. The nutrition log explains why.
+
+**The GI distress audit.** If your stomach turned during the ride, note exactly what you ate and when. Did you introduce a new gel brand? Did you take in two gels within ten minutes? Did you drink a concentrated carb solution without diluting it? GI issues during cycling are almost always a dosing or timing problem, not a product problem. One rider in the [Skool community](https://www.skool.com/roadmancycling) tracked every GI incident for three months and found that every single one correlated with taking in more than 40g of carbohydrate in a ten-minute window. The fix was spacing. The gut was fine. The intake pattern wasn't.
+
+**The recovery window.** What you ate in the first 30 minutes after the ride affects the next day's session. A post-ride note that includes "had nothing for 90 minutes after" explains why Thursday's intervals felt terrible when Wednesday's endurance ride felt fine. It's data, the same as power and heart rate.
+
+Keep a simple log. Date, ride type, planned intake, actual intake, any GI issues, any fade. A notes app is fine. A spreadsheet is better. The point is to capture it while the memory is fresh, because you will not remember two weeks later whether you had two gels or three on that ride where you cracked at hour four.
+
+## The Post-Ride Note: Two Sentences That Change Everything
+
+Raw data is context-blind. Your Garmin records that you averaged 195W NP over three hours with a heart rate that drifted 12 beats. It does not record that you slept four hours, that you're fighting a head cold, that the temperature was 34 degrees, or that your boss sent you a stress-inducing email ten minutes before the ride.
+
+That context is what makes the data interpretable. Without it, a bad ride is just a bad ride. With it, a bad ride is a data point that tells you something specific — that your power drops when you're sleep-deprived, or that heat adds six beats to your average heart rate, or that work stress consistently elevates your RPE by two points.
+
+TrainingPeaks has a post-session comments field. Garmin Connect has a notes section. Use them. The note doesn't need to be long. Two to three sentences is enough.
+
+A template:
+
+- **How did I feel?** RPE out of 10, any particular sensations (heavy legs, breathless, strong, flat).
+- **Sleep.** Hours and quality (good/disrupted/terrible).
+- **Nutrition.** Pre-ride meal, in-ride fuelling, anything unusual.
+- **External factors.** Wind, heat, cold, life stress, illness.
+
+Coaches lean on these notes heavily. When a coach reviews your file, they can see the watts, the heart rate, the cadence. They cannot see why the numbers look the way they do. A file that shows NP 20W below target with a note saying "slept three hours, daughter was sick" tells a completely different story from the same file with no note. Without context, the coach might adjust the training plan based on a problem that doesn't exist. With context, they know the session was compromised and move on.
+
+For self-coached riders, the notes compound over months. You start recognising your own patterns — that you always ride better on two rest days than one, that rides after 8pm are consistently worse, that your power on the indoor trainer is reliably 10-15W below outdoor power. These are individually small insights. Together, they constitute self-knowledge that changes how you train.
+
+## Strava and Segments: What's Signal, What's Noise
+
+Strava segments have a legitimate place in post-ride review. They also have a tendency to distort your interpretation of a session if you're not careful.
+
+**What's useful.** A repeatable climb or flat stretch that you ride regularly in similar conditions gives you a longitudinal performance marker. If you ride your local 3km climb every Saturday and your time is consistently dropping over a two-month block — without conditions changing dramatically — your fitness is improving on that specific effort. That's real.
+
+Local climbs are particularly good as informal time-trial benchmarks. Pick one that takes 5–15 minutes to ride at threshold pace. Ride it in a controlled fashion — same position on the road, same gear selection, from a comparable fatigue state — once a month. Track the time and average power. Over a season, this tells you more about your threshold fitness than a formal FTP test, because the conditions are naturalistic and repeatable.
+
+**What's noise.** A segment PR set with a 30kph tailwind is not the same as a PR set into a headwind. A PR set fresh at the start of a ride is not comparable to an effort after four hours of riding. A PR set on a Saturday morning when you're rested tells you something different from the same time on a Wednesday evening after work.
+
+Strava doesn't control for any of this. The leaderboard treats all efforts as equivalent. They are not. If you're using segments for training analysis, you need to add the context yourself — wind direction, temperature, position in the ride, fatigue state. Without that context, the segment time is a number without meaning.
+
+The other trap is emotional. Chasing segment PRs during a ride changes the session. An endurance ride that becomes a segment hunt stops being an endurance ride. The distribution chart will show it — thirty minutes of Zone 5 in the middle of a session that was supposed to be Zone 2. This is why some coaches ask their athletes to turn off Strava live segments during structured training blocks. The temptation to chase them undermines pacing discipline.
+
+Use segments as one data point among many. They are useful for progress tracking when conditions are comparable. They are not a substitute for structured analysis of the full ride file.
+
+## The 10-Minute Post-Ride Review Template
+
+This is a checklist you can run through after every ride that matters. It doesn't need to take longer than the time it takes to drink your recovery shake. Not every ride needs every item — a 45-minute recovery spin doesn't need a nutrition audit — but any ride with a training purpose or an event effort deserves this level of attention.
+
+**Step 1: The headline numbers (1 minute).** Check NP, IF, VI, and TSS. Did the ride hit its intended target? If the session was prescribed as endurance (IF 0.65–0.75) and the file shows IF 0.82, note it. If the session was threshold intervals and IF was 0.91, you were close but didn't quite get there.
+
+**Step 2: Power distribution (2 minutes).** Open the time-in-zone chart. Where did you actually spend your time? Does it match the session plan? If it was an endurance ride, was 80%+ of the time in Zone 1–2? If it was intervals, did the work intervals land in the target zone?
+
+**Step 3: Pacing shape (2 minutes).** Compare first-half NP to second-half NP. A drop of more than 10% on a steady ride or event is a pacing failure. Also check VI — if it's above 1.10 on a ride that didn't involve racing or hills, your effort was too erratic.
+
+**Step 4: Heart rate check (1 minute).** Was average HR where you expected for the power output? Did HR drift upward in the second half (decoupling)? Was recovery between intervals consistent or did it lengthen as the session progressed?
+
+**Step 5: Nutrition check (2 minutes).** On rides over 90 minutes: what did you eat, how much, and when? Did you hit your carb-per-hour target? Did you fade? Any GI issues? Note the specifics.
+
+**Step 6: The RPE match (1 minute).** Compare how the ride felt against what the numbers say. If the file shows an easy ride but it felt hard, something is off — fatigue, illness, stress, under-fuelling. If the file shows a hard ride but it felt easy, fitness is improving. Both are worth noting.
+
+**Step 7: Write the note (1 minute).** Two to three sentences in the comments field. RPE, sleep, nutrition, anything unusual. This is the context that makes the data interpretable weeks later.
+
+That's the template. Seven steps, ten minutes. The first few times you do it, it takes longer because the metrics are unfamiliar. Within a week or two, it becomes automatic. Within a month, you'll struggle to imagine uploading a ride without doing it.
+
+## The Compound Effect of Consistent Review
+
+I've talked to dozens of coaches on the podcast about what separates the athletes who improve steadily from the ones who plateau. The answer is rarely training volume or intensity. It's awareness. The riders who improve know their own data. They know what their heart rate does at threshold, what their power distribution looks like on a good week versus a tired week, how their Efficiency Factor trends across a base block, and what happens to their pacing when they underfuel.
+
+That awareness doesn't come from a single analysis session. It comes from doing the ten-minute review after every ride, consistently, for months. The pattern recognition develops gradually. You start seeing things in the data that you couldn't see before — not because the data changed, but because your ability to read it improved.
+
+Tim Cusick talks about this when he describes the difference between data collection and data analysis. Every rider with a head unit collects data. Very few analyse it. The .fit files pile up on Garmin Connect and TrainingPeaks, a growing archive of missed insights. Each one contains answers to questions the rider never asked.
+
+The post-ride review is where you ask the questions. Did I do what I intended? Did my body respond the way I expected? Did I eat enough? Did I pace myself well? What would I do differently next time? These are not complicated questions. But asking them consistently, with the data in front of you, is the difference between training and just riding.
+
+## Where to Go From Here
+
+If you're already tracking your rides on TrainingPeaks, Garmin Connect, or Intervals.icu, you have everything you need to start. The data is there. The ten-minute review template above gives you the structure. The metrics explained in this post — and in the companion pieces on [reading your training data](/blog/reading-your-training-data-tss-ctl-atl-tsb) and [how to read a power file](/blog/how-to-read-cycling-power-file-guide) — give you the vocabulary.
+
+If you want a community of riders working through this stuff together — sharing files, asking questions, getting feedback on their pacing and nutrition — that's what the [Roadman Cycling community on Skool](https://www.skool.com/roadmancycling) is for. Data analysis is more useful with other eyes on it, and the conversations in there regularly surface the kind of small, specific insights that this post can only point you toward.
+
+Start with the next ride. Upload the file. Spend ten minutes with it. Write the note. Do it again on the ride after that. The compound effect will take care of the rest.

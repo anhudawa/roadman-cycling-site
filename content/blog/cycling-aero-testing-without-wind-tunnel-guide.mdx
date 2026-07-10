@@ -1,0 +1,288 @@
+---
+title: "DIY Aero Testing: How to Measure Your CdA Without a Wind Tunnel"
+seoTitle: "DIY Aero Testing for Cyclists — Chung Method Guide"
+seoDescription: "How to measure your CdA without a wind tunnel. The Chung method, velodrome testing, GPS field tests, apps, and what equipment changes actually show up in the data."
+excerpt: "Wind tunnels cost thousands. But the Chung method, a power meter, and a calm morning can tell you most of what a tunnel would — for the price of an early alarm. Here is how to test your own aerodynamics."
+pillar: "coaching"
+primaryHub: "cycling-tech"
+author: "anthony-walsh"
+publishDate: "2026-07-10"
+keyTakeaways:
+  - "The Chung method — developed by physicist Robert Chung — lets you estimate CdA from a power meter, GPS, and basic weather data. It is the most accessible DIY aero test and, when done properly, produces results within 2-3% of wind tunnel measurements."
+  - "Velodrome testing is the gold standard for DIY aero because it eliminates wind, gradient, and surface variables. If you have access to a track, even a short session of timed laps at constant power gives you the cleanest CdA comparisons between positions or equipment."
+  - "GPS-based field testing works on flat, sheltered roads but requires calm conditions — wind below 5mph, early morning or late evening — and multiple runs in both directions to cancel out any residual breeze. A single out-and-back run is never enough."
+  - "Apps like MyWindsock and Aerosensor process your ride files against weather station data to estimate CdA from normal rides. They are not as precise as controlled tests but they are excellent for spotting large changes and tracking trends over time."
+  - "The biggest CdA gains for most riders come from head position, arm width, and torso angle — not from equipment. A DIY test that shows you how much a 2cm elbow tuck saves is worth more than any wheel or skinsuit purchase made without data."
+  - "Diminishing returns hit hard in aero testing. The first position change might save 15 watts. The tenth might save 0.5 watts. Know when you have found the significant gains and stop chasing numbers that are smaller than your measurement error."
+  - "Repeatability matters more than absolute accuracy. You do not need to know your exact CdA to 0.001 — you need to know whether a change made you faster or slower. Consistent protocol, consistent conditions, consistent effort."
+faq:
+  - question: "How accurate is the Chung method compared to a wind tunnel?"
+    answer: "When conducted properly — flat road, calm conditions, calibrated power meter, multiple runs — the Chung method produces CdA estimates within 2-3% of professional wind tunnel results. That is accurate enough to detect meaningful position changes (saving 5+ watts at 40kph) but not precise enough to compare helmets that differ by 1 watt. For most amateur riders, 2-3% accuracy is more than sufficient to make informed decisions."
+  - question: "Do I need a power meter to do DIY aero testing?"
+    answer: "Yes. Aero testing without a power meter is guesswork. You need to know your exact power output to calculate the drag force working against you. A crank-based or pedal-based power meter is preferable to a hub-based one for aero testing because it responds faster to effort changes, but any calibrated power meter will work for the Chung method."
+  - question: "What weather conditions do I need for a field aero test?"
+    answer: "Wind below 5mph is essential — ideally below 3mph. Early morning before thermal winds develop is usually the best window. Temperature and air pressure matter less for comparison testing (they affect absolute CdA but cancel out when comparing two runs back-to-back) but you should record them for completeness. Rain, gusty conditions, or wind above 8mph make field testing unreliable."
+  - question: "Can I test aero on my normal training rides?"
+    answer: "Apps like MyWindsock and Aerosensor can estimate CdA from normal ride files, but the results are noisier than controlled tests. They are best used for tracking trends over weeks rather than comparing specific equipment changes. For a reliable A-versus-B comparison, you need a controlled protocol: same course, same conditions, same effort, back-to-back."
+  - question: "What is the cheapest meaningful aero improvement I can make?"
+    answer: "Narrowing your elbows by 4-6cm and tucking your head forward typically saves 8-15 watts at 35-40kph and costs nothing. After body position, a well-fitting aero helmet is the single best return on investment, saving 5-10 watts for around $150-250. Everything else — wheels, skinsuits, shoe covers — delivers smaller gains at higher cost."
+relatedPosts:
+  - "cycling-aero-position-road-bike-guide"
+  - "bike-position-aerodynamics-free-speed-guide"
+  - "aero-for-amateur-cyclists-does-it-matter"
+  - "cycling-time-trial-pacing-strategy-guide"
+  - "alex-dowsett-aero-marginal-gains-amateurs"
+relatedTools:
+  - "power-speed"
+  - "race-predictor"
+  - "ftp-zones"
+---
+
+You bought the aero helmet. You bought the deep-section wheels. You taped over the vents on your shoes. And you have absolutely no idea whether any of it made you faster.
+
+Here's the thing nobody tells you: most cyclists spend on aerodynamics based on marketing claims and magazine reviews, but never actually measure their own drag. They are guessing. And guessing with $2,000 wheelsets is an expensive way to ride.
+
+The good news? You can measure your own CdA — coefficient of drag area, the single number that defines how slippery you are through the air — without stepping inside a wind tunnel. The tools exist. The methods are proven. A physicist named Robert Chung worked most of it out years ago, and the sport has been catching up ever since.
+
+Let me break this down.
+
+## What CdA Actually Is (and Why One Number Rules Everything)
+
+CdA stands for coefficient of drag area. It combines two things: how aerodynamic your shape is (Cd) and how much frontal area you present to the wind (A). The result is a single number, measured in square metres, that captures your total aerodynamic resistance.
+
+A typical road cyclist on the hoods sits around 0.35-0.40 m². Get into the drops, tuck your elbows, lower your head, and you might hit 0.28-0.32 m². A time trialist in a good position on a TT bike will be around 0.22-0.26 m².
+
+Why does this matter? Because at 35-40kph, aerodynamic drag accounts for 80-90% of the resistance you are fighting. Rolling resistance, gravity on flat ground, drivetrain friction — all of it combined is a fraction of the force the air puts on you. A CdA reduction of 0.01 m² saves roughly 2-3 watts at 40kph. That does not sound like much until you realise that a [body position](/blog/cycling-aero-position-road-bike-guide) change can shift CdA by 0.05-0.10 m² — which is 10-30 watts. For free.
+
+The problem has always been measurement. Wind tunnels give precise answers, but a session costs $1,500-4,000 and requires travel. For most of us, that is not practical. So we test ourselves.
+
+## The Chung Method: The Foundation of DIY Aero Testing
+
+Robert Chung is a physicist and cycling analyst who developed a method for estimating CdA from field data. It is not new — he published the core work in the early 2000s — but it remains the most widely used and validated approach for DIY aero testing.
+
+The principle is straightforward. When you ride at a steady speed on a flat road, the power you produce equals the power needed to overcome four forces: aerodynamic drag, rolling resistance, gravity (even tiny gradients count), and drivetrain losses. If you know your power output, your speed, the gradient, the air density, and your rolling resistance coefficient, you can solve for CdA.
+
+### What You Need
+
+- A calibrated power meter (crank-based or pedal-based is preferable to hub-based for response speed)
+- A GPS head unit recording at 1-second intervals
+- A barometric altimeter (most modern head units have one)
+- Current temperature and air pressure readings (a weather app will do)
+- Your total system weight — you, the bike, kit, bottles, everything
+- A flat, sheltered road with known gradient
+
+### The Protocol
+
+**1. Find your course.** You want a flat stretch of road, ideally 1-3km, with minimal traffic and good wind shelter (trees, hedgerows, or buildings on both sides). A slight false flat is actually fine — the maths accounts for gradient — but avoid anything steeper than 1-2%.
+
+**2. Check conditions.** Wind below 5mph is essential. Below 3mph is better. Early morning, before thermal winds develop, is usually the best window. Most experienced testers will not bother if wind is above 8mph.
+
+**3. Warm up properly.** Ride for 15-20 minutes at endurance pace. You need to be settled into a stable effort, not still warming up during your test runs.
+
+**4. Run the course at a steady effort.** Pick a power target — 200-250W works well for most riders — and hold it as steadily as possible for the full length of the course. Ride in the position you want to test. Keep your head, hands, and body as consistent as possible.
+
+**5. Turn around and ride back at the same effort.** This is critical. Riding in both directions cancels out any residual wind or gradient error. One direction is never enough.
+
+**6. Repeat.** Do at least three out-and-back runs. Five is better. More data means lower measurement noise.
+
+**7. Process the data.** Upload your ride file to analysis software (more on this below) and use the Chung method solver to estimate your CdA from the combined runs.
+
+### What Accuracy to Expect
+
+When done well — calm conditions, consistent effort, multiple runs — the Chung method produces CdA estimates within 2-3% of wind tunnel results. That is accurate enough to detect a meaningful position change (saving 5+ watts at 40kph) but not precise enough to split hairs between two helmets that differ by 1 watt.
+
+For most amateur riders, 2-3% accuracy is more than sufficient. You are not trying to win an Olympic gold. You are trying to find the 10-20 watts hiding in your position.
+
+## Velodrome Testing: The Cleanest Data You Will Get
+
+If you have access to a velodrome — even an outdoor 400m track — you have the single best environment for DIY aero testing. Better than any road, any app, any shortcut.
+
+Why? Because a velodrome eliminates the three biggest sources of noise in field testing: wind (indoor tracks especially), gradient variation, and surface changes. You ride in circles on a consistent surface with a constant bank angle. The physics become beautifully clean.
+
+### The Velodrome Protocol
+
+**1. Weigh everything.** Bike, you, kit, bottles. This matters for the rolling resistance calculation on the banked surface.
+
+**2. Warm up on the track.** 15-20 minutes at endurance pace. Get comfortable with the banking and find a consistent line.
+
+**3. Ride at constant power for a set number of laps.** Ten laps of a 250m track is 2.5km — enough for a single data point. Hold a steady 200-250W.
+
+**4. Record lap times.** Your head unit will do this if you set a manual lap button, or you can use transponder-based timing if the track has it. Consistent lap times at consistent power tell you everything.
+
+**5. Change one variable and repeat.** Swap helmets. Narrow your elbows. Lower your head. Then ride another set of laps at the same power.
+
+**6. Compare average speed.** If your average speed increased at the same power, your CdA dropped. The maths to convert the speed difference into a CdA difference is simple algebra once you know the air density and rolling resistance.
+
+Dan Bigham — who broke the hour record in 2022 — used this approach extensively during his preparation. He tested position changes, equipment variations, and clothing on a velodrome before ever stepping into a wind tunnel. The track gave him the rank order of what mattered. The tunnel confirmed the absolute numbers.
+
+### Finding Track Time
+
+Most major cities have a velodrome, and many offer public sessions or hire slots. In the UK, the Manchester Velodrome, Derby Arena, and the Lee Valley VeloPark all allow bookings. In Ireland, the Sundrive Velodrome in Dublin is a smaller outdoor option but still works for comparative testing. In the US, tracks in Carson (California), Trexlertown (Pennsylvania), and Blaine (Minnesota) offer open sessions.
+
+An hour of track time typically costs $15-40. That is less than a set of tyre levers from your local bike shop, and it gives you data no amount of spending can replicate.
+
+## GPS-Based Field Testing on Open Roads
+
+Not everyone has a velodrome nearby. The road is where most of us will test. Here is how to make road-based testing as reliable as possible.
+
+### Choosing Your Test Course
+
+The ideal test course is:
+
+- **Flat.** Less than 0.5% average gradient, with no sharp undulations.
+- **Sheltered.** Tree-lined roads, cuts through woodland, or corridors between buildings. Open, exposed roads are the enemy of accuracy.
+- **Smooth.** Consistent tarmac. Potholes and surface changes introduce noise.
+- **Low traffic.** You need to hold a steady line and effort without braking for junctions or dodging cars.
+- **1-3km long.** Long enough for a stable reading, short enough to repeat many times in a session.
+
+Motorway service roads, industrial estate perimeter roads, and flat canal towpaths (if paved) are often excellent. Airport perimeter roads, if accessible, tend to be flat and long.
+
+### The Out-and-Back Protocol
+
+Always ride in both directions. Always. A 3mph breeze that you cannot even feel on your face is enough to shift your CdA estimate by 5-10% if you only ride one direction. Riding both ways cancels this out.
+
+Here is the structure for a proper field test session:
+
+1. Three out-and-back runs in Position A (your baseline)
+2. Three out-and-back runs in Position B (the change you are testing)
+3. Three more out-and-back runs in Position A (confirmation)
+
+That A-B-A structure is critical. If conditions change during your session — wind picking up, temperature shifting — the final set of Position A runs tells you whether your baseline drifted. If your final A runs match your initial A runs, you know any difference in Position B is real.
+
+### The Numbers That Matter
+
+You are looking for a difference in average speed at the same power. At 250W on a flat road, a 1kph speed increase from 37kph to 38kph corresponds roughly to a CdA reduction of about 0.015 m² — around 4-5 watts saved at that speed. That is a meaningful, measurable change.
+
+Anything less than about 0.3-0.5kph difference at 250W is getting into the noise floor of field testing. Do not get excited about 0.1kph differences. That is measurement error, not speed.
+
+## Apps and Software: Turning Ride Files Into CdA Estimates
+
+Several tools now exist that process your power and GPS data to estimate CdA, either from controlled tests or from normal rides.
+
+### Aerolab (Golden Cheetah)
+
+The free, open-source option. Aerolab is a module within Golden Cheetah that implements the Chung method directly. You upload your ride file, enter the environmental data (temperature, pressure, wind), set your rolling resistance coefficient (0.004-0.005 for a road bike on smooth tarmac), and the software plots your CdA over time.
+
+The learning curve is real — Golden Cheetah is not the most intuitive software — but the analysis is solid. If you are doing structured Chung method tests, this is the reference tool.
+
+### MyWindsock
+
+MyWindsock takes a different approach. It pulls weather station data (wind speed, direction, temperature, pressure) for the location and time of your ride, then models the aerodynamic conditions you experienced. It estimates your CdA from normal ride files — no special test protocol required.
+
+The accuracy is lower than a controlled Chung test because it relies on weather station data that may not perfectly represent conditions at your exact location. But it is excellent for two things: spotting trends over weeks of riding, and flagging large changes (like a new position saving 10+ watts).
+
+The basic features are free. The premium tier runs about $5-8 per month and gives you more detailed analysis and historical tracking.
+
+### Aerosensor
+
+Aerosensor is a dedicated aero testing app that guides you through a structured field test protocol. It is essentially the Chung method in a polished, user-friendly package. The app tells you when to start, when to turn, when your data is clean enough to use, and spits out a CdA estimate at the end.
+
+If you want structured testing but do not want to wrestle with Golden Cheetah, Aerosensor is the most accessible route. It costs around $10-15 and works with any ANT+ or Bluetooth power meter and GPS.
+
+### A Word on Zwift and Indoor Platforms
+
+Zwift estimates CdA internally for its physics engine, but you cannot directly measure your real-world CdA on a trainer. Indoor platforms are useful for training, not for aero testing. The air you are not riding through is sort of the whole point.
+
+## What to Test First: The Order of Gains
+
+Here is where it gets really interesting. Most riders attack aero testing backwards. They test equipment first — helmets, wheels, skinsuits — when the biggest gains are in body position, which costs nothing to change.
+
+### The Hierarchy of Aero Gains (Largest to Smallest)
+
+**1. Torso angle.** The angle of your back relative to the ground is the single biggest determinant of CdA. Dropping from a 30-degree torso angle to a 20-degree angle can save 20-40 watts at 40kph. This is where a [proper bike fit](/blog/bike-position-aerodynamics-free-speed-guide) and flexibility work pay off.
+
+**2. Head position.** Your head is a bowling ball on top of a stick, sitting right in the airflow. Tucking your chin down and forward — looking up through your eyebrows rather than lifting your whole head — saves 5-15 watts for most riders.
+
+**3. Arm width and elbow position.** Narrowing your elbows by 4-6cm can save 8-15 watts. This is the easiest position change to make and the easiest to measure in a field test.
+
+**4. Aero helmet.** $150-250 for a well-fitting aero road helmet. Saves 5-10 watts versus a vented road helmet at 35-40kph. The key word is well-fitting — an aero helmet that sits too high or catches your back actually creates more drag. Test it.
+
+**5. Skinsuit versus jersey and shorts.** A skinsuit saves 3-8 watts over a standard jersey-and-shorts combination, mainly by eliminating fabric flap around the waist and chest. For racing, it is worth it. For training, probably not.
+
+**6. Wheels.** Deep-section aero wheels (50-65mm) save 3-7 watts over shallow box-section rims at 35-40kph. The benefit is speed-dependent — below 30kph, the difference is marginal. Above 40kph, it becomes significant.
+
+**7. Shoe covers.** 1-3 watts. Real, measurable, but small.
+
+**8. Bar tape, cables, bottle position.** 0.5-2 watts each. Genuine gains, but you need a wind tunnel or very controlled testing to measure them reliably.
+
+Notice the pattern. The free changes (position) save the most. The expensive changes (equipment) save the least. Test the free ones first.
+
+## The Diminishing Returns Curve
+
+This is the part most people do not want to hear.
+
+Aero testing follows a steep diminishing returns curve. The first position change you make — say, narrowing your elbows by 5cm — might save 12 watts. The second change — tucking your head — might save 8 watts. The third, fourth, and fifth changes save progressively less. By the time you are adjusting bar tape routing and debating the aerodynamics of your water bottle cage, you are chasing fractions of a watt that are smaller than your measurement error.
+
+Here is a rough guide to where the meaningful gains end for different types of rider:
+
+- **Sportive and gran fondo riders:** Position changes and an aero helmet. Total savings: 15-30 watts. Everything beyond this is not worth the testing time.
+- **Club racers and crit riders:** Add a skinsuit and aero wheels for race day. Total savings: 25-45 watts. You are now capturing 90% of available gains.
+- **Time triallists and triathletes:** This is where the detail matters. TT bar width, extensions angle, visor position, shoe covers, bottle placement — all worth testing because the sustained solo effort at speed amplifies every fraction. Total savings: 40-80 watts over an un-optimised position.
+
+For most riders reading this, the honest answer is: find the big position wins, buy an aero helmet, and stop. The remaining gains are smaller than the improvement you would get from an extra interval session per week.
+
+## Common Mistakes in DIY Aero Testing
+
+After talking to riders, coaches, and aero specialists about this for years, the same errors come up again and again.
+
+### 1. Testing in Too Much Wind
+
+The number one mistake. Riders head out in 10-15mph winds because that is a normal day, and wonder why their CdA estimates bounce around like a pinball. Below 5mph. Ideally below 3mph. Set your alarm for 5am if you have to.
+
+### 2. Not Doing Enough Runs
+
+A single out-and-back gives you one data point. One data point is not data — it is a guess with a power meter attached. Three out-and-back runs is the minimum. Five gives you something you can trust.
+
+### 3. Changing Multiple Variables at Once
+
+You swap your helmet AND narrow your elbows AND change your hand position. The test shows a 10-watt improvement. Which change caused it? You have no idea. Change one thing at a time. That is the entire point of testing.
+
+### 4. Inconsistent Effort
+
+Your power needs to be steady — within plus or minus 10W of your target — for the full length of each run. Surging and recovering introduces errors that the maths cannot correct. If you find steady-state riding difficult, use your head unit's power target feature and focus on holding the number.
+
+### 5. Ignoring Rolling Resistance
+
+CdA calculations require a rolling resistance coefficient (Crr) as an input. If you guess wrong — using 0.003 when your actual Crr is 0.005 — your CdA estimate shifts. It does not ruin comparisons between runs in the same session (the error is consistent), but it makes your absolute CdA number inaccurate. If you want to compare your CdA to published benchmarks, you need to know your Crr.
+
+### 6. Confusing Precision with Accuracy
+
+Your DIY test might consistently give you a CdA of 0.310 m². That number might be precisely repeatable. But it might be consistently 5% off the wind tunnel answer due to systematic errors in your Crr estimate, your altimeter calibration, or your power meter accuracy. This is fine. Repeatability is what matters for comparison testing. You are asking whether a change made you faster, not whether your CdA matches a published table.
+
+## When a Wind Tunnel IS Worth It
+
+I write all of this as someone who believes DIY testing is sufficient for the vast majority of riders. But there are situations where a wind tunnel is genuinely worth the money.
+
+**You are a serious time triallist or triathlete.** If you race against the clock regularly, and you have already found the big position wins through DIY testing, a tunnel session lets you fine-tune the details — TT bar angle, visor position, suit choice — with a precision that field testing cannot match.
+
+**You need to compare small equipment differences.** Deciding between two helmets that differ by 2-3 watts at 45kph? A field test cannot reliably detect that. A tunnel can.
+
+**You want a baseline to calibrate your DIY testing.** One tunnel session gives you a reference CdA that you can use to calibrate your field testing setup. Once you know your Crr and your power meter's offset, your DIY tests become more accurate going forward.
+
+**You are spending serious money on equipment.** If you are about to drop $4,000 on a new wheelset, spending $1,500 on a tunnel session to confirm it actually saves you watts is sensible due diligence. Think of it as insurance against an expensive mistake.
+
+For most club riders and sportive riders? A calm morning, a flat road, and the Chung method will tell you everything you need to know.
+
+## Putting It All Together: Your First DIY Aero Test
+
+Here is the practical step-by-step for your first session.
+
+**The week before:** Scout your test course. Ride it once to check for surface problems, traffic patterns, and shelter from wind. Measure the gradient with your altimeter.
+
+**The night before:** Check the weather forecast. You want wind below 5mph at your test time. Set your alarm early — 5-6am is usually the calmest window.
+
+**Morning of:** Weigh yourself and your bike in full kit. Note the temperature and air pressure (your phone will have both). Calibrate your power meter before you start.
+
+**On the course:** Warm up for 15-20 minutes. Then run your A-B-A test protocol — three out-and-back runs in your current position, three in your modified position, three back in your original position. Hold a steady 200-250W throughout.
+
+**After:** Upload to Golden Cheetah's Aerolab or Aerosensor. Enter the environmental data. Compare your CdA estimates between positions.
+
+**What to look for:** A consistent CdA difference of 0.005 m² or more between positions is a real gain. Below that, you are in the noise. If your A runs bracket your B runs consistently — A shows 0.320, B shows 0.305, final A shows 0.318 — you have found a genuine improvement.
+
+Then test the next change. One at a time. Build your picture of what makes you faster, based on your own data, on your own bike, in your own position.
+
+That is worth more than any magazine review or marketing claim. And it costs nothing but a few early mornings.
+
+---
+
+If you want to go deeper on position, equipment, and the data behind what actually makes you faster, the [Roadman Cycling community](https://www.skool.com/roadmancycling) is where we break this stuff down every week. Real riders, real data, no guesswork.

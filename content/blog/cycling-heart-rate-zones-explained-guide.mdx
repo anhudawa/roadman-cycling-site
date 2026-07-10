@@ -1,0 +1,249 @@
+---
+title: "Heart Rate Training Zones for Cyclists: How to Set Them, Use Them, and Stop Getting Them Wrong"
+seoTitle: "Heart Rate Zones for Cyclists — Set and Use Them Properly"
+seoDescription: "How to set heart rate training zones for cycling. Field test methods, five-zone vs three-zone models, cardiac drift, decoupling, and why HR still matters with a power meter."
+excerpt: "Most cyclists set their heart rate zones once, using a formula they found online, and never touch them again. That is why most cyclists train in the wrong zones."
+pillar: "coaching"
+primaryHub: "ftp-training"
+author: "anthony-walsh"
+publishDate: "2026-07-10"
+keyTakeaways:
+  - "The 220-minus-age formula for maximum heart rate is a population average with a standard deviation of 10-12 beats per minute. Using it to set training zones means your zones could be off by two full zones in either direction — which makes them worse than useless."
+  - "Lactate threshold heart rate (LTHR) is a far better anchor for setting zones than maximum heart rate. You can estimate LTHR from a 30-minute field test: ride as hard as you can sustain for 30 minutes and take the average heart rate from the final 20 minutes."
+  - "Five-zone models provide more granularity for structured training, but a three-zone model — easy, moderate, hard — is often more practical for time-crunched riders who need simple guardrails to stop themselves riding too hard on easy days and too easy on hard days."
+  - "Cardiac drift is the gradual rise in heart rate during prolonged steady-state exercise even when power output stays constant. It is caused by dehydration, rising core temperature, and cardiovascular strain. Expecting your heart rate to stay flat during a three-hour ride is unrealistic and will lead you to slow down unnecessarily."
+  - "Aerobic decoupling — the ratio of heart rate drift to power drift — is one of the most useful metrics in endurance training. A decoupling value below 5% on a 60-90 minute steady ride suggests strong aerobic fitness. Above 5% suggests your aerobic base needs more work."
+  - "Heart rate remains valuable even if you train with power because it reveals internal cost. Two rides at the same power but different heart rates tell very different stories — one says you are fresh and fit, the other says you are fatigued, dehydrated, or getting ill."
+  - "Heart rate zones need recalibrating every 8-12 weeks as your fitness changes. Zones set in January will underestimate your fitness by April if your training has been consistent. Periodic retesting ensures you are training at the right intensity, not the intensity you needed three months ago."
+faq:
+  - question: "What is the best way to find my maximum heart rate?"
+    answer: "The most reliable method is a supervised ramp test or a series of hard hill repeats. After a thorough warm-up, do three to four maximal efforts of 2-3 minutes on a steep gradient with short recovery between them. The highest heart rate recorded on the final effort is a good approximation of your maximum. The 220-minus-age formula is unreliable for individuals."
+  - question: "Should I use heart rate or power for training?"
+    answer: "Both, ideally. Power tells you what you are producing — the external load. Heart rate tells you what it is costing you — the internal load. Using both gives you a complete picture. If you can only afford one, a heart rate monitor is cheaper and still provides useful training guidance, particularly for zone 2 and endurance work."
+  - question: "Why is my heart rate higher indoors than outdoors?"
+    answer: "Indoor riding typically produces heart rates 5-10 beats per minute higher at the same power output due to reduced cooling from airflow, higher core temperature, and greater cardiovascular strain. Use a strong fan, keep the room cool, and consider setting separate indoor heart rate zones 3-5 beats higher than your outdoor zones."
+  - question: "Do heart rate zones change as I get fitter?"
+    answer: "Your maximum heart rate changes very little with fitness — it is largely genetic and declines slowly with age. What changes is your lactate threshold heart rate, which rises as your aerobic fitness improves. This means your zone boundaries shift upward and should be recalibrated every 8-12 weeks."
+  - question: "Is heart rate training outdated now that power meters are common?"
+    answer: "Not at all. Heart rate provides information that power cannot — fatigue state, hydration status, illness onset, heat stress, and long-term aerobic development. Many World Tour coaches still use heart rate data alongside power. It is a complementary tool, not a redundant one."
+relatedPosts:
+  - "cycling-heart-rate-zones-explained"
+  - "heart-rate-zone-training-cycling-guide"
+  - "heart-rate-high-cycling-fixable-reasons"
+  - "zone-2-cycling-heart-rate-vs-power-vs-rpe"
+  - "rpe-and-power-using-them-together"
+  - "cycling-training-with-heart-rate-only-guide"
+relatedTools:
+  - "hr-zones"
+  - "ftp-zones"
+  - "training-readiness"
+---
+
+Most cyclists set their heart rate zones once. They type their age into a formula, get five numbers, save them to their Garmin, and never think about it again. Then they spend years training in the wrong zones and wondering why the fitness isn't arriving.
+
+Here's the thing nobody tells you: the way you set your zones matters more than which zone model you pick. Get the anchor point wrong and every session built on top of it is aiming at the wrong intensity. It's like calibrating a power meter 30 watts too high — everything downstream is off, and you won't know until the results stop coming.
+
+This guide covers how to set heart rate zones properly, which zone model to use and when, what cardiac drift and aerobic decoupling actually mean for your training, and why heart rate still earns its place on your handlebars even if you've got a power meter strapped to your cranks.
+
+**In this guide:**
+- [Why most cyclists get their zones wrong](#why-most-cyclists-get-their-zones-wrong)
+- [How to find your lactate threshold heart rate](#how-to-find-your-lactate-threshold-heart-rate)
+- [Five-zone vs three-zone models](#five-zone-vs-three-zone-models)
+- [Setting zones from LTHR — the actual percentages](#setting-zones-from-lthr)
+- [Cardiac drift explained](#cardiac-drift-explained)
+- [Aerobic decoupling — what it tells you about fitness](#aerobic-decoupling)
+- [Why HR still matters with a power meter](#why-hr-still-matters-with-a-power-meter)
+- [When and how to retest](#when-and-how-to-retest)
+
+---
+
+## Why Most Cyclists Get Their Zones Wrong
+
+The 220-minus-age formula is the most widely used and least reliable tool in endurance training. It was derived from a 1971 paper by Fox, Naughton, and Haskell — not from original research, but from a rough line of best fit drawn across data from multiple studies. The formula was never validated. It was never intended to prescribe individual training zones. It became the default because it was easy to remember, and it's persisted because nobody has managed to kill it.
+
+The standard deviation on that formula is 10-12 beats per minute. If you're 45, the formula says your max heart rate is 175. But your actual max could be anywhere from 163 to 187. That's a 24-beat range. When your training zones are carved into bands of 8-12 beats each, being 10 beats off at the anchor point means your "zone 2" could actually be someone else's zone 3 or zone 4. You're not training easy. You're training moderate-to-hard and wondering why you feel permanently fatigued.
+
+Joe Friel made this point years ago in *The Cyclist's Training Bible*: zones built from an estimated max heart rate are zones built on sand. The formula might be right for you by coincidence — and that's all it would be, coincidence. It's a population average applied to an individual, and individual variation in maximum heart rate is enormous. Two 50-year-old riders with identical training histories can have max heart rates 20 beats apart. Age explains less than half the variance.
+
+The second problem is subtler but equally damaging: most riders have never actually seen their true maximum heart rate. They've seen the highest number that appeared on their watch during a hard ride, and they've assumed that's it. But a true maximum requires a protocol specifically designed to push you there — a full ramp to exhaustion or a series of maximal hill efforts. If the hardest thing you've done recently is a spirited group ride, the number sitting in your Garmin's settings could easily be 5-10 beats below your actual ceiling.
+
+So you've got an anchor point based on a bad formula, or on an underestimate from a ride that wasn't hard enough. Every zone calculated from that anchor is wrong. Every session aimed at those zones is aimed at the wrong target. The fix is simple, but it requires ditching the formula entirely and anchoring your zones to something more reliable.
+
+## How to Find Your Lactate Threshold Heart Rate
+
+The better anchor is lactate threshold heart rate — LTHR. This is the heart rate at which your body shifts from predominantly aerobic metabolism to a mix where lactate starts accumulating faster than it can be cleared. It corresponds roughly to the second lactate threshold, LT2, which is where functional threshold power (FTP) sits in the power world.
+
+LTHR is a better anchor than max heart rate for one reason: it's the intensity boundary that separates what you can sustain from what you can't. Zone boundaries set from LTHR track your actual physiological thresholds, not a statistical guess about your ceiling.
+
+**The gold standard** is a lab-based lactate profile test. You ride at increasing intensities while someone draws blood from your earlobe or fingertip at each stage and measures blood lactate concentration. The lab plots the curve and identifies the deflection points — LT1 and LT2 — with precision. If you've got access to a sports science lab or a coach like Iñigo San Millán who runs metabolic testing, this is the most accurate route. Expect to pay $150-250 for a full test.
+
+**The field test alternative** is free, takes about 45 minutes, and gives you a number that's close enough to build useful zones from. Here's the protocol, adapted from Joe Friel's method:
+
+1. **Warm up for 15 minutes.** Start easy and build to a moderate pace. Include two or three 30-second efforts at high intensity in the last five minutes of the warm-up to prime your cardiovascular system.
+
+2. **Ride for 30 minutes as hard as you can sustain.** This is a time trial effort — the hardest pace you can hold for the full 30 minutes without blowing up. Start conservatively. Most riders go out too hard in the first five minutes and fade, which ruins the data. A flat road or a steady, moderate climb works best. Avoid routes with traffic lights, junctions, or descents.
+
+3. **Take the average heart rate from the final 20 minutes.** Ignore the first 10 minutes — your heart rate is still stabilising and your pacing is least reliable in that window. The average HR from minute 10 to minute 30 is your estimated LTHR.
+
+4. **Cool down for 10-15 minutes.** Easy spinning. Let your heart rate come down gradually.
+
+A few notes on getting a clean result. Do this test when you're rested — not the day after a hard group ride or a block of intervals. Caffeine is fine if you normally use it during training; don't introduce a variable you won't replicate. Hydrate beforehand. And do the test outdoors if possible — indoor heart rates run 5-10 beats per minute higher at the same effort due to heat buildup and reduced cooling, which will skew your LTHR upward and make your outdoor zones inaccurate.
+
+If you can't ride outdoors, do the test on the trainer with a powerful fan aimed directly at your upper body. And note that the result is your indoor LTHR — you may want to subtract 3-5 beats for outdoor zone boundaries.
+
+The number you get from this test won't be perfect. It won't match a lab test to the beat. But it will be dramatically closer to your actual threshold than anything derived from 220-minus-age, and the zones you build from it will put you in the right intensity ballpark for every session.
+
+## Five-Zone vs Three-Zone Models
+
+Once you have your LTHR, you need a framework to divide the intensity spectrum into meaningful bands. Two models dominate endurance training, and which one suits you depends on how structured your training actually is.
+
+### The five-zone model
+
+This is the system most heart rate monitors and training platforms use by default. It's the model Joe Friel popularised, and it maps roughly to five distinct physiological intensity ranges:
+
+- **Zone 1 (Active Recovery):** Very easy. Below 85% of LTHR. Barely feels like exercise. Used for recovery rides and warm-ups.
+- **Zone 2 (Aerobic/Endurance):** Easy to moderate. 85-89% of LTHR. The conversational-pace zone where the bulk of your training volume should live. This is where mitochondrial density, capillary networks, and fat oxidation develop.
+- **Zone 3 (Tempo):** Moderately hard. 90-94% of LTHR. You can talk in short sentences but not hold a full conversation. Useful in specific blocks but easy to overuse.
+- **Zone 4 (Lactate Threshold):** Hard. 95-99% of LTHR. Near your sustainable limit. This is the zone for threshold intervals — 2 x 20, 3 x 15, that sort of session.
+- **Zone 5 (Above Threshold):** Very hard to maximal. 100-106% of LTHR. VO2max intervals, hard surges, race-intensity efforts. Heart rate becomes less reliable here because it lags behind rapid changes in effort.
+
+The five-zone model gives you granularity. If you follow a structured training plan with specific session prescriptions — "90 minutes in zone 2" or "3 x 10 minutes at zone 4" — then five zones give you and your coach a shared language with enough resolution to be useful.
+
+### The three-zone model
+
+Prof. Stephen Seiler's three-zone model simplifies the picture by anchoring to two physiological thresholds rather than carving up the range into smaller slices:
+
+- **Zone 1 (Below LT1):** Easy. Below the first lactate threshold. Conversational. This is where 80% of your training sits in a polarised approach.
+- **Zone 2 (Between LT1 and LT2):** Moderate. The grey zone between the two thresholds — tempo, sweet spot territory. Training here accumulates fatigue without providing the specific stimulus of either easy or hard work.
+- **Zone 3 (Above LT2):** Hard. Above lactate threshold. Intervals at threshold, VO2max, anaerobic work.
+
+The three-zone model is blunter, but that bluntness is its strength. For riders who don't follow a written training plan and just want to know whether today's ride should be easy or hard, three zones reduce the decision to one question: am I below LT1 or above LT2? If you're between the two, you're probably in the grey zone that Seiler's research shows produces the least return for the fatigue it generates.
+
+Alan Couzens, who has coached professional triathletes and cyclists for over two decades, has written extensively about the practical value of the three-zone model for self-coached athletes. His argument is simple: most amateurs don't need five zones because most amateurs don't execute five-zone prescriptions accurately enough for the extra resolution to matter. What they need is a clear boundary between "easy enough to recover from" and "hard enough to produce a training stimulus" — and three zones deliver that with less room for confusion.
+
+### Which model to use
+
+If you work with a coach and follow structured sessions, use five zones. The granularity serves a purpose.
+
+If you self-coach, ride by feel most of the time, and just need guardrails to stop yourself going too hard on easy days and too easy on hard days, use three zones. The simplicity is the feature, not a limitation.
+
+Either way, the anchor matters more than the model. Get LTHR right and both frameworks will point you in the right direction. Get it wrong and neither will save you.
+
+## Setting Zones From LTHR
+
+Here are the actual percentages for the five-zone model, based on Joe Friel's framework. Take your LTHR from the field test above and multiply:
+
+| Zone | Name | % of LTHR | Purpose |
+|------|------|-----------|---------|
+| 1 | Active Recovery | < 85% | Recovery rides, warm-ups |
+| 2 | Aerobic | 85-89% | Base building, endurance |
+| 3 | Tempo | 90-94% | Moderate sustained efforts |
+| 4 | Lactate Threshold | 95-99% | Threshold intervals |
+| 5a | Above Threshold | 100-102% | VO2max intervals |
+| 5b | Aerobic Capacity | 103-106% | Short hard efforts |
+| 5c | Anaerobic | > 106% | Sprints, max efforts |
+
+**A worked example.** Say your 30-minute field test returned an average HR of 168 from the final 20 minutes. Your LTHR is 168. Your zones look like this:
+
+- Zone 1: Below 143
+- Zone 2: 143-149
+- Zone 3: 151-158
+- Zone 4: 160-166
+- Zone 5a: 168-171
+- Zone 5b: 173-178
+- Zone 5c: Above 178
+
+Notice how tight these bands are. Zone 2 is only a 6-beat window. This is why the anchor needs to be accurate — a 5-beat error in your LTHR shifts every zone boundary by roughly the same amount, and suddenly your "easy" riding sits in someone else's tempo zone.
+
+For the three-zone model, the boundaries are simpler. LT1 typically falls at approximately 80-85% of LTHR (though this varies more between individuals). LT2 is your LTHR itself. Everything below LT1 is zone 1. Between LT1 and LT2 is zone 2. Above LT2 is zone 3. If you want precision on your LT1, you'll need a lactate test — field tests can estimate LT2 well but are poor at pinpointing LT1.
+
+One more thing: enter these zones into your head unit and your training platform. Having them on paper but not on your Garmin is like having a speed limit that only exists in theory. The beep that tells you you've drifted out of zone 2 on a Tuesday morning ride is the most useful alert your watch will ever produce.
+
+## Cardiac Drift Explained
+
+You're 90 minutes into a steady endurance ride. Your power is exactly where it was at the start — 180 watts, dead flat, no surges, no changes. But your heart rate has crept from 135 to 148. Same effort, same output, higher heart rate. What gives?
+
+This is cardiac drift, and it is completely normal. It is not a sign that you're unfit, that your zones are wrong, or that you need to slow down. It is physiology doing what physiology does during prolonged exercise.
+
+Here's what's happening inside. As you ride, you lose fluid through sweat. Blood volume decreases. With less blood available per beat, your heart compensates by beating faster to maintain the same cardiac output — the same amount of blood pumped per minute. At the same time, your core temperature rises, which causes blood vessels in the skin to dilate (your body's attempt to dump heat), further reducing the blood available for working muscles. The heart rate climbs to keep pace.
+
+The magnitude of drift depends on several factors: ambient temperature, humidity, hydration status, ride duration, and fitness. In cool conditions with good hydration, you might see a drift of 5-8 beats over two hours. On a hot day with inadequate fluid intake, drift of 15-20 beats over the same period is common.
+
+The mistake most riders make is treating heart rate as a fixed target for the entire ride. They see the drift, panic that they've left their zone, and slow down to push heart rate back into the prescribed range. This is counterproductive. If your power is steady and your perceived effort hasn't changed dramatically, the drift is cardiovascular — not metabolic. You haven't suddenly started working harder. Your heart is working harder to maintain the same output. Those are different things.
+
+**What to do about it.** For endurance rides, pin the first 30-60 minutes to heart rate to ensure you start in the right zone. After that, let heart rate drift and use power or perceived effort as the primary guide. If you're riding without a power meter, accept that the second half of a long ride will show a higher heart rate than the first half at the same effort, and don't chase the number down.
+
+A practical ceiling: if your heart rate drifts more than 10% above your starting value at the same power, consider whether you're dehydrated, overheating, or underfuelled. Drift is normal. Excessive drift is a signal that something external — usually hydration or heat — needs addressing.
+
+## Aerobic Decoupling
+
+Cardiac drift is something you observe. Aerobic decoupling is how you measure it — and what it tells you about your fitness is worth paying attention to.
+
+Decoupling is the ratio between heart rate drift and power drift during a steady-state effort. TrainingPeaks calculates it automatically for any ride tagged as an endurance or tempo workout. The calculation splits the ride into two halves, compares the efficiency factor (normalised power divided by average heart rate) of the first half to the second half, and expresses the difference as a percentage.
+
+A decoupling value below 5% means your cardiovascular system maintained its efficiency across the duration. Heart rate stayed roughly proportional to power output. This is a strong indicator of aerobic fitness — your body can sustain the work without significant cardiovascular strain.
+
+A decoupling value above 5% means heart rate drifted upward relative to power as the ride went on. Your cardiovascular system couldn't hold steady. This suggests your aerobic base at that intensity and duration is still developing.
+
+Joe Friel has used this metric for decades to assess whether riders are ready to progress from base training into more intense work. His benchmark: complete a 60-90 minute ride at upper zone 2 with decoupling under 5%, and your aerobic base is solid enough to support threshold and VO2max work. If decoupling is consistently above 5% at that duration and intensity, more base work is the prescription before layering on intensity.
+
+Alan Couzens takes it further, tracking decoupling across progressively longer rides. If you can hold under 5% for 90 minutes, try 2 hours. Then 2.5. The duration at which decoupling exceeds 5% tells you the boundary of your current aerobic endurance — the duration beyond which your body starts running into cardiovascular limitations at that intensity.
+
+**How to use this practically.** During base-building phases, do a steady zone 2 ride of 60-90 minutes once a week and check the decoupling value afterward. Track it over weeks. As your aerobic fitness develops, you should see decoupling shrink at the same duration, or hold steady as you extend the ride length. Both are progress. If decoupling is climbing at the same duration, something is off — usually inadequate recovery, chronic dehydration, or too many hard sessions eating into your base work.
+
+One caveat: decoupling is only meaningful on reasonably steady-state rides. A ride with big surges, long descents, or 20 minutes of coasting in a peloton will produce garbage decoupling numbers because the power-to-heart-rate relationship breaks down when the effort is highly variable. Save the analysis for rides where you held a steady power for an extended block.
+
+## Why HR Still Matters With a Power Meter
+
+There's a persistent idea in cycling that once you have a power meter, heart rate becomes redundant. That power is the objective measure and heart rate is just noise. This is wrong, and the coaches who work at the highest levels of the sport know it.
+
+Power tells you what your body is producing — the external load. Heart rate tells you what it's costing — the internal load. Those are two fundamentally different pieces of information, and training intelligently requires both.
+
+Consider two Tuesday evening rides, both at 220 watts for 90 minutes. On ride one, your average heart rate is 138 and it barely drifts. On ride two, your average heart rate is 152, it drifts 12 beats over the session, and the effort feels noticeably harder. Power says both rides were identical. Heart rate says they were not. The difference is your internal state — fatigue from the weekend, poor sleep, a mild illness brewing, dehydration, heat, stress. Power can't see any of that. Heart rate can.
+
+This is why coaches like Andrea Morelli, who has worked with multiple Grand Tour riders, still review heart rate data alongside power files. When heart rate at a given power is lower than usual, the athlete is well-rested and adapting — the same work is cheaper. When heart rate at the same power is elevated, something is draining the system. That might be accumulated training fatigue (which is expected during a build block) or it might be the early warning of overreaching, illness, or inadequate recovery. Power alone can't distinguish between those scenarios.
+
+Iñigo San Millán's work with Tadej Pogačar at UAE Team Emirates includes regular monitoring of heart rate at sub-threshold intensities precisely because the trend over weeks reveals how the aerobic system is developing. A falling heart rate at zone 2 power means the mitochondria are doing more work per heartbeat. That's aerobic progression. You can see it in the power data too, eventually, but the heart rate signal arrives first.
+
+Heart rate is also the better guide for a few specific training contexts:
+
+- **Zone 2 and recovery rides.** For low-intensity work, heart rate is a more intuitive and reliable governor than power. Most riders find it easier to stay properly easy by watching heart rate than by watching watts, because the social temptation to push a few extra watts is strong and heart rate makes the cost immediately visible.
+
+- **Heat and altitude.** In hot conditions or at altitude, power output drops but internal strain rises. A heart rate monitor captures that strain. A power meter does not. Training by power alone in 35-degree heat is a recipe for burying yourself.
+
+- **Long-term trend tracking.** Plotting heart rate at a fixed sub-threshold power over months reveals aerobic development more clearly than power data alone. If your heart rate at 200 watts has dropped from 145 to 138 over three months of consistent training, your aerobic engine has improved — regardless of whether your FTP has moved.
+
+- **Fatigue and illness screening.** A resting heart rate 5-8 beats above normal, or an elevated heart rate during the warm-up at a power that usually feels routine, is one of the earliest signals that your body needs an easy day or a day off. Power doesn't provide this early warning. Heart rate does.
+
+The relationship between power and heart rate is where the real insight lives. Neither metric alone tells the full story. Together, they give you a dashboard that covers both what you're doing and what it's costing you to do it.
+
+## When and How to Retest
+
+Your heart rate zones are not permanent. They're a snapshot of your current fitness, and fitness changes. If you're training consistently, your lactate threshold heart rate will shift upward over months as your aerobic system develops. Zones set in January will understate your fitness by April. You'll be riding "zone 4" intervals at what is now your zone 3 — still hard enough to feel like work, but no longer hard enough to produce the threshold adaptation the session was designed for.
+
+**Retest every 8-12 weeks.** That's the rough cadence most coaches recommend. Friel suggests retesting at the start of each new training block. If you periodise your season — base, build, peak, race — retest at each transition. If you don't formally periodise, just set a calendar reminder every two months and do the 30-minute field test.
+
+**What changes and what doesn't.** Your maximum heart rate is largely genetic and declines slowly with age — roughly half a beat per year after 30, though individual variation is substantial. Fitness training barely moves it. What training does move is LTHR, and it can move meaningfully. A rider who begins structured training with an LTHR of 155 can reasonably expect to see 162-168 after six months of consistent, well-structured work. That's a significant shift in zone boundaries.
+
+**Signs you need to retest sooner than planned:**
+
+- Your zone 2 rides feel trivially easy and your heart rate barely reaches the bottom of the zone, even after 90 minutes. Your threshold has climbed and your zones haven't followed.
+- Your threshold intervals feel manageable at the top of zone 4 but your heart rate isn't reaching the prescribed range. Again, your LTHR has moved up.
+- You've had a significant break from training — illness, injury, life — and your fitness has likely regressed. Zones from before the break will overstate your current capability.
+- You've moved to a new environment: altitude, a significantly hotter or cooler climate. Environmental factors affect heart rate responses and may warrant a retest in the new conditions.
+
+**How to retest.** Same protocol as before — the 30-minute field test. Same rules about being rested, hydrated, and doing it on a consistent route. The beauty of using the same test each time is that the comparison across tests becomes meaningful. You're controlling the variables, which means the change in LTHR from test to test reflects a real change in fitness, not a change in test conditions.
+
+Keep a log of your results. Date, LTHR, how the test felt, conditions, any notes. Over a season, that log becomes a narrative of your aerobic development — and it gives you and your coach (or your future self) something concrete to review when planning the next block.
+
+## Putting It All Together
+
+Heart rate training isn't complicated. It's just poorly taught. The formula most people start with is unreliable. The zone models are confusing because there are multiple versions with overlapping names. And the metrics that make heart rate so useful — cardiac drift, aerobic decoupling — rarely get explained in a way that tells you what to actually do with them.
+
+Here's the short version. Test your LTHR with a 30-minute field test. Set your zones from that number, using either a five-zone or three-zone model depending on how structured your training is. Use heart rate to govern easy days and power to govern hard days. Track decoupling on your endurance rides to measure aerobic progress. Retest every 8-12 weeks.
+
+And if you train with a power meter, don't retire your heart rate strap. The two tools answer different questions. Power asks: what did you produce? Heart rate asks: what did it cost? The gap between those answers is where the real coaching insight sits — and ignoring half of it because you've got the other half is leaving information on the table that could change how you train.
+
+---
+
+**If you want to go deeper on training structure, zone debates, and the kind of coaching conversations that actually make a difference, come join us in the Roadman Cycling community on Skool.** It's where we break down concepts like this in real time, share training data, and have the arguments about zones that your club mates are tired of hearing. [Join the community here.](https://www.skool.com/roadmancycling)

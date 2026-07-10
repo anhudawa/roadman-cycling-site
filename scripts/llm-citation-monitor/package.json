@@ -1,0 +1,11 @@
+{
+  "name": "llm-citation-monitor",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Monthly AEO scoreboard — tracks whether Roadman Cycling appears in AI answer engine results",
+  "type": "module",
+  "scripts": {
+    "monitor": "tsx monitor.ts",
+    "monitor:dry": "tsx monitor.ts --dry-run"
+  }
+}

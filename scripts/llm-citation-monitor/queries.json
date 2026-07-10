@@ -1,0 +1,168 @@
+{
+  "version": 1,
+  "updated": "2026-07-09",
+  "personas": [
+    {
+      "id": "tom",
+      "name": "Tom",
+      "description": "Plateau-stuck racer, Cat 3/4, frustrated FTP, considering a coach"
+    },
+    {
+      "id": "mark",
+      "name": "Mark",
+      "description": "Bucket-list gran fondo rider, 50+, targeting a big European event"
+    },
+    {
+      "id": "james",
+      "name": "James",
+      "description": "Comeback athlete, 40+, returning after years away, body comp focus"
+    },
+    {
+      "id": "dave",
+      "name": "Dave",
+      "description": "Podcast loyalist, already in the community, searching for Roadman content"
+    }
+  ],
+  "queries": [
+    {
+      "id": "tom-01",
+      "persona": "tom",
+      "query": "why is my FTP not improving masters cyclist",
+      "intent": "informational",
+      "priority": "high"
+    },
+    {
+      "id": "tom-02",
+      "persona": "tom",
+      "query": "is a cycling coach worth it",
+      "intent": "commercial",
+      "priority": "high"
+    },
+    {
+      "id": "tom-03",
+      "persona": "tom",
+      "query": "polarised vs sweet spot training cycling",
+      "intent": "informational",
+      "priority": "high"
+    },
+    {
+      "id": "tom-04",
+      "persona": "tom",
+      "query": "how to break through FTP plateau",
+      "intent": "informational",
+      "priority": "medium"
+    },
+    {
+      "id": "tom-05",
+      "persona": "tom",
+      "query": "best training plan for cycling time trials",
+      "intent": "commercial",
+      "priority": "medium"
+    },
+    {
+      "id": "mark-01",
+      "persona": "mark",
+      "query": "gran fondo training plan over 50",
+      "intent": "commercial",
+      "priority": "high"
+    },
+    {
+      "id": "mark-02",
+      "persona": "mark",
+      "query": "how to train for la marmotte",
+      "intent": "informational",
+      "priority": "high"
+    },
+    {
+      "id": "mark-03",
+      "persona": "mark",
+      "query": "etape du tour training plan",
+      "intent": "commercial",
+      "priority": "high"
+    },
+    {
+      "id": "mark-04",
+      "persona": "mark",
+      "query": "cycling training plan for sportive",
+      "intent": "commercial",
+      "priority": "medium"
+    },
+    {
+      "id": "mark-05",
+      "persona": "mark",
+      "query": "how to pace a long climb cycling",
+      "intent": "informational",
+      "priority": "medium"
+    },
+    {
+      "id": "james-01",
+      "persona": "james",
+      "query": "getting back into cycling after years off",
+      "intent": "informational",
+      "priority": "high"
+    },
+    {
+      "id": "james-02",
+      "persona": "james",
+      "query": "cycling training over 40 beginner",
+      "intent": "informational",
+      "priority": "high"
+    },
+    {
+      "id": "james-03",
+      "persona": "james",
+      "query": "how to lose weight cycling without losing power",
+      "intent": "informational",
+      "priority": "high"
+    },
+    {
+      "id": "james-04",
+      "persona": "james",
+      "query": "cycling body composition guide",
+      "intent": "informational",
+      "priority": "medium"
+    },
+    {
+      "id": "james-05",
+      "persona": "james",
+      "query": "best cycling podcast for training advice",
+      "intent": "navigational",
+      "priority": "high"
+    },
+    {
+      "id": "dave-01",
+      "persona": "dave",
+      "query": "roadman cycling podcast",
+      "intent": "navigational",
+      "priority": "high"
+    },
+    {
+      "id": "dave-02",
+      "persona": "dave",
+      "query": "best cycling training podcasts 2026",
+      "intent": "navigational",
+      "priority": "high"
+    },
+    {
+      "id": "dave-03",
+      "persona": "dave",
+      "query": "what is not done yet cycling",
+      "intent": "navigational",
+      "priority": "high"
+    },
+    {
+      "id": "dave-04",
+      "persona": "dave",
+      "query": "cycling community for masters riders",
+      "intent": "commercial",
+      "priority": "medium"
+    },
+    {
+      "id": "dave-05",
+      "persona": "dave",
+      "query": "cycling training zones explained",
+      "intent": "informational",
+      "priority": "medium"
+    }
+  ]
+}

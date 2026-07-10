@@ -1,0 +1,250 @@
+---
+title: "Training Load Explained: CTL, ATL and TSB for Cyclists"
+seoTitle: "Training Load Explained — CTL, ATL & TSB for Cyclists"
+seoDescription: "What CTL, ATL and TSB mean, how the Performance Management Chart works, and how to use training load numbers to train smarter, taper sharper and race fresher."
+description: >-
+  Three numbers run the Performance Management Chart that every serious cyclist
+  eventually encounters: CTL, ATL and TSB. This is what they mean, where they
+  came from, and how coaches actually use them — including the mistakes that turn
+  useful data into bad decisions.
+excerpt: >-
+  The Performance Management Chart runs on three numbers: your fitness, your
+  fatigue and the gap between them. Coaches have used this framework for decades.
+  Here is what CTL, ATL and TSB mean in practice — the model, the maths, the
+  mistakes, and how to read the chart without letting it read you.
+pillar: coaching
+primaryHub: cycling-training-plans
+author: Anthony Walsh
+publishDate: '2026-07-08'
+updatedDate: '2026-07-08'
+featuredImage: /images/cycling/gravel-canyon-rest.jpg
+tags:
+  - training-load
+  - ctl
+  - atl
+  - tsb
+  - performance-management-chart
+  - trainingpeaks
+  - coaching
+  - masters-cycling
+keywords:
+  - ctl atl tsb explained
+  - training load cycling
+  - chronic training load
+  - acute training load
+  - training stress balance
+  - performance management chart cycling
+  - pmc cycling
+  - banister impulse response model
+answerCapsule: >-
+  CTL (Chronic Training Load) is your fitness — a 42-day rolling average of daily
+  training stress. ATL (Acute Training Load) is your fatigue — the same average
+  over 7 days. TSB (Training Stress Balance) is CTL minus ATL, representing your
+  form: negative means you are carrying fatigue, positive means you are fresh.
+  Coaches use the three together on the Performance Management Chart to time
+  training blocks, recovery weeks and race tapers. The model was first described
+  by Dr. Eric Banister in the 1970s and later adapted for cycling by Dr. Andrew
+  Coggan, Hunter Allen and TrainingPeaks.
+keyTakeaways:
+  - >-
+    CTL is your fitness (42-day average of training stress), ATL is your fatigue
+    (7-day average), and TSB is the gap between them — your form.
+  - >-
+    A negative TSB means fatigue exceeds fitness adaptation. That is expected
+    during a training block. Sustained TSB below −30 is a warning sign.
+  - >-
+    Race-day TSB of +5 to +25 is the target for most cyclists. Masters riders
+    often need the higher end because they shed fatigue more slowly.
+  - >-
+    The model treats all TSS equally, which means it cannot distinguish between
+    Zone 2 and VO2max stress. Context from sleep, nutrition and life stress still
+    matters.
+  - >-
+    Chasing CTL for its own sake is the most common mistake. A high CTL number
+    with poor recovery, bad fuelling or no specificity produces slow racing.
+  - >-
+    TrainingPeaks popularised the Performance Management Chart, and it remains
+    the best visual tool for reading fitness, fatigue and form across a season.
+  - >-
+    The 42-day and 7-day time constants are population averages. Individual
+    response varies, which is why coaching interpretation beats raw numbers.
+relatedPosts:
+  - cycling-taper-pmc-performance-management-chart
+  - reading-your-training-data-tss-ctl-atl-tsb
+  - efficiency-factor-trainingpeaks-tracking
+  - cycling-overtraining-signs-guide
+  - how-to-structure-cycling-training-plan
+  - cycling-periodisation-plan-guide
+  - training-load-management-cyclists-40s-50s
+faq:
+  - question: What is a good CTL for an amateur cyclist?
+    answer: >-
+      It depends on your training history, event targets and available hours. A
+      recreational rider might sit around 40–60 CTL; a serious amateur training
+      ten to twelve hours a week can build to 80–120 over a season. The number
+      itself matters less than the trend and the rate of change. Jumping CTL too
+      fast, beyond about five to seven points per week, is where injuries and
+      illness start.
+  - question: What TSB should I have on race day?
+    answer: >-
+      Most riders target a race-day TSB between +5 and +25. Too low and you arrive
+      tired; above +25 usually means you rested so long that fitness has started to
+      erode. Masters riders often need the higher end of that range because they
+      shed fatigue more slowly. The Performance Management Chart lets you watch TSB
+      climb during a taper and pick your race day by design rather than by feel.
+  - question: Is TSB below minus 30 dangerous?
+    answer: >-
+      Sustained TSB below −30 is a warning. A planned overreach block that dips
+      below −30 for a few days can be productive when followed by rest, but
+      spending weeks in that territory raises the risk of non-functional
+      overreaching, illness and injury. If your TSB has been below −30 for more
+      than a week and you are sleeping badly or getting ill, it is time to back
+      off.
+  - question: Can I calculate CTL and ATL without TrainingPeaks?
+    answer: >-
+      Yes. The formulas are public and simple. Today's CTL equals
+      yesterday's CTL plus the difference between today's TSS and yesterday's CTL
+      multiplied by one over forty-two. ATL is the same formula with seven instead
+      of forty-two. You can track it in a spreadsheet, or use the free training
+      load calculator on this site at /tools/training-load.
+---
+
+There is a moment, usually a few months into riding with a power meter, when a cyclist opens TrainingPeaks or WKO and notices a chart they have been ignoring. Three coloured lines winding across the screen, tracking something called CTL, ATL and TSB. The numbers do not explain themselves, the chart looks like a weather forecast, and the temptation is to close the tab and go back to staring at average power.
+
+That would be a mistake. Those three lines are the simplest framework we have for reading whether training is working — whether you are building fitness, whether you are carrying too much fatigue, and whether you will show up to your target event fresh or buried. The model behind it has been around for half a century, it has survived every training trend since interval training was considered radical, and every coach I have spoken to on this podcast uses some version of it, whether they plot it on software or carry it in their head.
+
+This is what CTL, ATL and TSB actually mean, where the maths came from, and — more usefully — how to read them without falling into the traps that catch nearly everyone at some point.
+
+## The model behind the numbers
+
+In 1975, a Canadian exercise physiologist named Dr. Eric Banister published a model for predicting athletic performance from training data. The idea was simple and, at the time, radical: every training session produces two competing effects. One is a positive fitness impulse — the body adapts and gets stronger. The other is a negative fatigue impulse — the body is tired and temporarily worse. Performance at any given moment is the difference between accumulated fitness and accumulated fatigue.
+
+Banister called it the impulse-response model. The maths used exponential decay functions — the same kind used in pharmacology to model how a drug washes out of the body. Fitness builds slowly and decays slowly. Fatigue builds fast and decays fast. The interplay between those two decay rates is what makes periodisation work: train hard to build fitness, then rest to let fatigue clear while fitness lingers.
+
+For decades the model lived mostly in academic papers and the notebooks of a few track-and-field coaches. Then, in the early 2000s, Dr. Andrew Coggan and Hunter Allen translated it into cycling-specific language built around power data. They gave the fitness function a name — Chronic Training Load — and the fatigue function another — Acute Training Load. The difference between them became Training Stress Balance, your "form." TrainingPeaks wrapped it into a visual tool they called the Performance Management Chart, and within a few years every coached cyclist in the world was staring at the same three lines.
+
+The maths has not changed since Banister first wrote it down. What changed was access: power meters got cheap, software got smart, and suddenly a model that used to require a research lab could be plotted on a phone while you cool down from a ride.
+
+## CTL — the fitness line
+
+Chronic Training Load is an exponentially weighted moving average of your daily [Training Stress Score](/tools/tss) over a 42-day time constant. In plain terms: it is the work you have absorbed over roughly the last six weeks, with more recent days weighted more heavily than older ones.
+
+The formula is disarmingly simple:
+
+**Today's CTL = Yesterday's CTL + (Today's TSS − Yesterday's CTL) × (1/42)**
+
+What this means in practice is that CTL moves slowly. A single massive ride barely nudges it. A single rest day barely dents it. It responds to the trend across weeks, not the shape of a single day. That slowness is the point — it represents the deep physiological adaptations (mitochondrial density, capillary growth, enzyme activity) that take weeks to build and weeks to lose.
+
+A rising CTL means you are getting fitter. A flat CTL during a period of consistent training means you have reached a steady state — your body is absorbing what you give it but not being pushed further. A falling CTL means you are detraining, which is either deliberate (a taper) or accidental (life got in the way). If yours has been falling for months and you are looking at how to rebuild it, the [comeback after a break guide](/blog/cycling-comeback-after-break-complete-guide) covers the right ramp rate and the injury risks of pushing CTL back up too fast.
+
+The number itself carries no inherent meaning without context. A CTL of 50 might represent peak fitness for a recreational rider and a recovery phase for a Cat 2 racer. What matters is *your* CTL over *your* season, and particularly the rate at which it changes. Most coaches watch for ramp rates — how many CTL points per week you are adding. Sustainable ramp rates sit around three to seven points per week for most amateurs. Push it faster than that and you are asking for trouble.
+
+## ATL — the fatigue line
+
+Acute Training Load is the same exponential average, but with a 7-day time constant. It captures the training stress your body has accumulated in the last week or so — the fatigue you can feel in your legs on a Monday morning after a big weekend.
+
+**Today's ATL = Yesterday's ATL + (Today's TSS − Yesterday's ATL) × (1/7)**
+
+ATL moves fast. A hard Saturday and Sunday will spike it. Three rest days will crater it. This volatility is what makes it useful: it captures the short-term cost of recent training, the fatigue that clouds performance even when fitness is high.
+
+You can think of CTL as the size of the engine and ATL as how hot it is running right now. A big engine running hot needs time to cool down before it can deliver its full power. A small engine running cool is fresh but lacks the depth to sustain a hard effort. The relationship between the two is where the real information lives.
+
+## TSB — the form line
+
+Training Stress Balance is the simplest of the three. It is yesterday's CTL minus yesterday's ATL. That is the whole formula:
+
+**TSB = CTL − ATL**
+
+When TSB is negative, fatigue outweighs the fitness signal — you are in the hole, training hard, accumulating stress. This is where building happens, but also where breaking happens if you stay too long.
+
+When TSB is positive, fatigue has cleared and the fitness is still there. This is the feeling of fresh, snappy legs. It is where you want to be on race day.
+
+The zones most coaches work with:
+
+**Below −30: Overreaching territory.** Short, planned overreach blocks that dip here can be productive — it is how build phases work. But sustained time below −30 carries genuine risk: non-functional overreaching, suppressed immunity, soft-tissue injury. If you are here for more than a week, something needs to change.
+
+**−30 to −10: Productive training.** This is the sweet spot for a hard training block. You are carrying fatigue, your body is being asked to adapt, and the stress is manageable. Recovery weeks should bring you back toward zero before the next push.
+
+**−10 to +5: The grey zone.** Neither fresh nor building. This is a plateau in graphical form — not enough stress to force adaptation, not enough freshness to perform well. If you live here for months, your fitness flatlines and you wonder why you are not getting faster.
+
+**+5 to +25: Fresh and race-ready.** The target for race day. Your fitness (CTL) is high from weeks or months of consistent work, and your fatigue (ATL) has been shed through a taper. This is form. Coaches spend entire mesocycles engineering this window for the day that matters.
+
+**Above +25: Detrained.** High positive TSB after prolonged rest usually means fitness is eroding. The fatigue is gone, but so is the training stimulus that built the engine. Time to rebuild.
+
+## How coaches actually use the PMC
+
+The Performance Management Chart is not something coaches glance at once. It is the central dashboard for a structured season. Here is how the coaches I have spoken to on the podcast — Dan Lorang, John Wakefield, Joe Friel, Stephen Barrett — tend to use it.
+
+**Planning mesocycles.** A typical three-week build, one-week recovery pattern shows up clearly on the PMC. CTL rises across the three build weeks as TSB drops into the −10 to −25 range. In the recovery week, volume drops, ATL crashes, TSB swings back toward zero, and CTL gives back a point or two. The rider feels human again. Then the next block starts with a slightly higher CTL baseline than the last one. That staircase is the visible shape of progressive overload.
+
+**Timing the taper.** The race-day taper is where the PMC earns its keep. The goal is to hold CTL roughly steady — protecting fitness — while cutting volume so ATL drops, driving TSB positive. Most riders need about two weeks, with volume cut 40–60% and a handful of short, sharp openers to keep the legs firing. The PMC shows it happening in real time: the fatigue line falls, the form line climbs, and the coach picks the day when TSB lands in the +5 to +15 window. For masters riders, who clear fatigue more slowly, aiming for the upper end of that range often works better.
+
+**Spotting trouble early.** A sustained period where CTL is rising but performance is dropping is a red flag. It usually means the rider is absorbing stress without recovering from it — the classic overtraining precursor. The PMC catches it because TSB stays deeply negative week after week despite the rider "doing the work." Similarly, a sudden CTL spike after a training camp or a block of consecutive big days shows up as a warning to programme recovery before the body demands it through illness or injury.
+
+**Calibrating recovery weeks.** The question "how easy should my easy week be?" has a PMC answer: easy enough that TSB climbs back to around zero. For some riders, that means four days off and two short spins. For others, it means six easy rides at 60% of normal volume. The chart shows when the recovery has landed, rather than guessing at it.
+
+## The five mistakes that wreck the model
+
+The PMC is a powerful tool, but it is also easy to misuse. These are the errors I see most often, and the ones that coaches on the podcast consistently warn against.
+
+### 1. Chasing CTL
+
+The most common trap. CTL is a number on a screen, and human beings like making numbers go up. Riders start optimising for CTL rather than for performance — adding junk miles to push the line higher, skipping rest days because they do not want CTL to drop, treating the number like a high score. A CTL of 120 built on months of grey-zone riding, poor sleep and inadequate fuelling is worth less than a CTL of 80 built on polarised work, proper recovery and targeted intensity. The number describes the load. It says nothing about the quality of what went in, or how well the body absorbed it.
+
+### 2. Ignoring what TSS cannot see
+
+The model treats all TSS equally. One hundred TSS from a steady Zone 2 ride is counted the same as 100 TSS from a session of brutal VO2max intervals, even though the physiological cost and the recovery demand are very different. The PMC also ignores life stress, sleep quality, travel fatigue, heat, altitude, illness, emotional load and hormonal fluctuation. A cyclist going through a house move, sleeping five hours a night and eating poorly can have perfectly healthy-looking CTL and ATL numbers while their body is falling apart. The chart is a compass, not a GPS pin. It tells you the general direction. The terrain still requires your own eyes.
+
+### 3. Panic-tapering
+
+The rider sees TSB in the −20s two weeks out from a race and panics, slashing volume and intensity in an emergency taper. But the taper started too early, and now TSB is already at +20 with a week still to go. By race day they have been at +25 or above for several days, fitness has started to slip, and they arrive fresh but flat. The correct move is to trust the calendar, keep the intensity sharp and let volume do the dropping. The PMC shows when the taper has landed. You do not need to force it.
+
+### 4. Not accounting for individual time constants
+
+The 42-day and 7-day time constants are population averages derived from Banister's original work and refined over decades. But individual physiology varies. Some riders — particularly younger ones with strong recovery capacity — respond to a shorter fitness constant, meaning fitness builds and decays faster for them. Masters riders often have an effective fatigue constant longer than seven days, meaning they carry acute fatigue further into the week than the model predicts. A good coach adjusts their mental model of these constants based on what they observe in the rider, even if the software uses the standard numbers.
+
+### 5. Treating the chart as a crystal ball
+
+The PMC describes what has already happened. It models what *should* happen based on the maths. It does not predict illness, mechanical failures, bad weather, life events or the unpredictable ways human physiology occasionally refuses to follow an exponential curve. Coaches who use it well treat it as one input among many. Coaches who use it badly treat it as the answer.
+
+## Where TrainingPeaks fits
+
+It is worth saying plainly: TrainingPeaks did more to make this framework accessible than any other single entity. Coggan and Allen built the science, but TrainingPeaks built the interface that put it in front of hundreds of thousands of cyclists. The PMC chart, the automated CTL/ATL/TSB calculations, the colour-coded form markers — all of that came out of TrainingPeaks making a dense academic model into something a time-crunched amateur could actually read.
+
+We use TrainingPeaks to deliver the [Roadman coaching plans](/coaching), and the PMC is the first thing I check every Monday morning for every athlete. Not because the numbers are gospel — they are not — but because they give the conversation a starting point. "Your CTL is up four points from a month ago, your recovery week brought TSB back to −2, and we are ten weeks out. Here is what the next block looks like." That is a very different conversation from "How are your legs feeling?" — though we ask that too.
+
+If you are not on TrainingPeaks, you can still use the model. The formulas are public, a spreadsheet will do the job, and the [training load calculator](/tools/training-load) on this site will give you CTL, ATL and TSB from your daily TSS values for free.
+
+## Making the numbers useful
+
+Three rules to keep the model serving you rather than the other way around.
+
+**Track TSB trend, not TSB value.** A single TSB snapshot is a data point. The direction TSB is moving over a week tells you whether the training block is doing what it should. Falling TSB during a build phase is correct. Rising TSB during a recovery week is correct. Flat TSB for weeks on end is usually a problem worth investigating.
+
+**Pair the chart with subjective feel.** Rate your session, your sleep, your mood and your appetite every day. When the PMC says you should feel fresh but you feel wrecked, something the model cannot see is at play — and that something matters more than the number. When the PMC says you should be tired but you feel strong, you might have room to push harder. The best athletes and coaches I know cross-reference both inputs constantly.
+
+**Plan your season on CTL, execute your week on ATL, race on TSB.** The long view is about building the fitness engine. The medium view is about managing fatigue so you can absorb training. The short view — the taper, the race week, the key session — is about arriving with the right form. Each metric operates at a different time horizon, and trying to optimise all three simultaneously is a fast track to doing none of them well.
+
+## The maths in one place
+
+For reference, the complete set of formulas:
+
+**TSS (Training Stress Score):** (Duration in seconds × NP × IF) / (FTP × 3600) × 100, where IF = NP / FTP. One hour at FTP equals exactly 100 TSS. [Calculate your TSS here](/tools/tss).
+
+**CTL:** CTL_today = CTL_yesterday + (TSS_today − CTL_yesterday) × (1/42)
+
+**ATL:** ATL_today = ATL_yesterday + (TSS_today − ATL_yesterday) × (1/7)
+
+**TSB:** TSB = CTL_yesterday − ATL_yesterday
+
+The decay constants (42 and 7) can be adjusted in some software. Unless you have a specific reason and a coach advising you, leave them at the defaults. The model is robust enough at these values for the vast majority of riders.
+
+## Where to go from here
+
+If you have daily TSS values and want to see your numbers, the [Training Load Calculator](/tools/training-load) on this site will give you CTL, ATL and TSB with form interpretation — no signup, no spreadsheet.
+
+If you want to understand how to calculate TSS for individual sessions, the [TSS Calculator](/tools/tss) takes your ride duration, power and FTP and gives you the number.
+
+If you want your [power zones](/tools/ftp-zones) set correctly so the TSS numbers are meaningful, start there.
+
+And if you want someone who reads these numbers every week, who knows what they mean in the context of your life and your racing, and who tells you what to do tomorrow — that is what [coaching](https://www.skool.com/roadmancycling) is for.

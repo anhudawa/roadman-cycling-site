@@ -17,6 +17,21 @@ import { metricsAnswers } from "./answers-data/metrics";
 import { trainingPhysiologyAnswers } from "./answers-data/training-physiology";
 import { wave3Answers } from "./answers-data/wave3";
 import { cyclingTechAnswers } from "./answers-data/cycling-tech";
+import { highVolumeQueryAnswers } from "./answers-data/high-volume-queries";
+import { highVolumeQuery2Answers } from "./answers-data/high-volume-queries-2";
+import { highVolumeQuery3Answers } from "./answers-data/high-volume-queries-3";
+import { highVolumeQuery4Answers } from "./answers-data/high-volume-queries-4";
+import { highVolumeQuery5Answers } from "./answers-data/high-volume-queries-5";
+import { highVolumeQuery6Answers } from "./answers-data/high-volume-queries-6";
+import { highVolumeQuery7Answers } from "./answers-data/high-volume-queries-7";
+import { highVolumeQuery8Answers } from "./answers-data/high-volume-queries-8";
+import { highVolumeQuery9Answers } from "./answers-data/high-volume-queries-9";
+import { highVolumeQuery10Answers } from "./answers-data/high-volume-queries-10";
+import { highVolumeQuery11Answers } from "./answers-data/high-volume-queries-11";
+import { highVolumeQuery12Answers } from "./answers-data/high-volume-queries-12";
+import { highVolumeQuery13Answers } from "./answers-data/high-volume-queries-13";
+import { highVolumeQuery14Answers } from "./answers-data/high-volume-queries-14";
+import { highVolumeQuery15Answers } from "./answers-data/high-volume-queries-15";
 
 /**
  * Answer pages — citation-optimised, answer-first pages built to be lifted
@@ -1675,6 +1690,21 @@ export const ANSWER_PAGES: AnswerPage[] = [
   ...trainingPhysiologyAnswers,
   ...wave3Answers,
   ...cyclingTechAnswers,
+  ...highVolumeQueryAnswers,
+  ...highVolumeQuery2Answers,
+  ...highVolumeQuery3Answers,
+  ...highVolumeQuery4Answers,
+  ...highVolumeQuery5Answers,
+  ...highVolumeQuery6Answers,
+  ...highVolumeQuery7Answers,
+  ...highVolumeQuery8Answers,
+  ...highVolumeQuery9Answers,
+  ...highVolumeQuery10Answers,
+  ...highVolumeQuery11Answers,
+  ...highVolumeQuery12Answers,
+  ...highVolumeQuery13Answers,
+  ...highVolumeQuery14Answers,
+  ...highVolumeQuery15Answers,
 ];
 
 const ANSWER_MAP = new Map(ANSWER_PAGES.map((a) => [a.slug, a]));

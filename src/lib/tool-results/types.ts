@@ -7,7 +7,7 @@
  * Ask Roadman hand-off all read from one place.
  */
 
-export const TOOL_SLUGS = ["plateau", "fuelling", "ftp_zones"] as const;
+export const TOOL_SLUGS = ["plateau", "fuelling", "ftp_zones", "sweet_spot", "body_composition"] as const;
 export type ToolSlug = (typeof TOOL_SLUGS)[number];
 
 export function isToolSlug(x: unknown): x is ToolSlug {

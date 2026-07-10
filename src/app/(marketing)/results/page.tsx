@@ -50,10 +50,17 @@ const TOOL_LABEL: Record<ToolSlug, string> = {
   plateau: "Plateau diagnostic",
   fuelling: "Fuelling plan",
   ftp_zones: "FTP zones",
+  sweet_spot: "Sweet spot",
+  body_composition: "Body composition",
 };
 
 function toolPathSegment(slug: ToolSlug): string {
-  return slug === "ftp_zones" ? "ftp-zones" : slug;
+  const MAP: Partial<Record<ToolSlug, string>> = {
+    ftp_zones: "ftp-zones",
+    body_composition: "body-composition",
+    sweet_spot: "sweet-spot",
+  };
+  return MAP[slug] ?? slug;
 }
 
 function formatDate(d: Date): string {

@@ -1,0 +1,283 @@
+---
+title: "How to Read a Power File: What Your Data Is Actually Telling You"
+seoTitle: "How to Read a Cycling Power File: NP, VI, IF Explained (2026)"
+seoDescription: >-
+  Learn to read your cycling power file properly — normalised power, variability
+  index, intensity factor, power curves, and pacing analysis with a worked
+  sportive example from a masters rider.
+excerpt: >-
+  Your power meter records everything. The .fit file sitting on your
+  computer after every ride contains answers to questions most amateurs
+  never think to ask — and the ability to read that data separates
+  riders who train from riders who just ride.
+pillar: coaching
+primaryHub: cycling-coaching
+author: anthony-walsh
+publishDate: '2026-07-09'
+keywords:
+  - normalised power cycling
+  - variability index cycling
+  - intensity factor cycling
+  - how to read power file
+  - cycling power curve analysis
+  - pacing strategy cycling power
+  - power data analysis cycling
+answerCapsule: >-
+  Reading a power file means understanding normalised power (the metabolic cost
+  of your effort), variability index (how steady your pacing was), intensity
+  factor (how hard the ride was relative to your threshold), and your power
+  curve (where your physiological strengths and limiters sit). Together, these
+  metrics tell you whether you paced well, went too hard too early, or raced
+  within your capabilities — and they point directly at what to train next.
+keyTakeaways:
+  - "Normalised power (NP) reflects the true physiological cost of a ride better than average power because it weights surges and variability — two rides with identical average power can leave you in very different states of fatigue depending on how variable the effort was."
+  - "Variability index (NP divided by average power) quantifies pacing discipline — a VI below 1.05 on a flat time trial or steady climb indicates well-paced effort, while a VI above 1.15 on a sportive suggests repeated surging that costs you disproportionate energy."
+  - "Intensity factor (NP divided by FTP) tells you how hard a ride was relative to your current capacity — an IF of 0.75 is a solid endurance ride, 0.85-0.90 is tempo territory, and anything above 1.0 means you exceeded your threshold and the clock is ticking on how long you can sustain it."
+  - "Your power curve — the maximum power you can hold for every duration from 5 seconds to 60 minutes — reveals whether you are a diesel engine (strong at longer durations) or a punchy rider (strong in short efforts), and this profile should dictate your race tactics and training priorities."
+  - "A second-half power fade of more than 10% in a sportive or road race is the clearest sign of going too hard in the opening kilometres, and the fade is almost always larger than it feels during the ride."
+  - "Aerobic decoupling — where heart rate drifts upward while power stays constant — is visible in power files and indicates either insufficient base fitness or fuelling problems during long rides."
+  - "Reviewing power files consistently after every key session and race, rather than glancing at the summary page and moving on, is where the diagnostic value of power data compounds over months and seasons."
+faq:
+  - question: What is the difference between normalised power and average power?
+    answer: >-
+      Average power is the arithmetic mean of every data point in your ride.
+      Normalised power uses a weighted algorithm (developed by Andrew Coggan)
+      that accounts for the physiological cost of variability — surges, sprints,
+      and uneven efforts cost your body more than the same average power held
+      steady. On a flat time trial where effort is constant, NP and AP will be
+      nearly identical. On a hilly sportive with group riding, NP can be 15-25%
+      higher than AP because the repeated surges carry a metabolic penalty.
+  - question: What variability index should I aim for in a time trial?
+    answer: >-
+      For a flat or rolling time trial, aim for a variability index below 1.05.
+      Elite time triallists like Filippo Ganna routinely post VIs of 1.02-1.03
+      on flat courses. A VI above 1.08 in a TT means you were surging and
+      recovering rather than holding steady effort, which costs time. Hilly
+      time trials naturally produce higher VIs — 1.06-1.10 is acceptable when
+      terrain forces power variation.
+  - question: How do I identify my limiter from a power file?
+    answer: >-
+      Compare your power curve against population benchmarks for your category.
+      If your 5-second and 30-second power are strong relative to your 20-minute
+      power, you are a punchy rider who needs more threshold and endurance work.
+      If your 20-minute and 60-minute power are strong but your sprint numbers
+      are low, you are a diesel who should train neuromuscular power and
+      anaerobic capacity. The shape of the curve matters more than the absolute
+      numbers.
+  - question: What intensity factor is normal for a sportive or gran fondo?
+    answer: >-
+      For a sportive lasting 4-7 hours, most well-paced riders finish with an
+      intensity factor of 0.65-0.80. Stronger riders on shorter sportives
+      (3-4 hours) may average 0.78-0.85. If your IF for a long sportive is
+      above 0.85, you either have an outdated FTP or you went too hard and
+      probably faded significantly in the final third. Use the Roadman
+      TSS Calculator at /tools/tss to cross-reference IF against your
+      expected training stress.
+  - question: How often should I review my power files in detail?
+    answer: >-
+      Review every key session (threshold work, VO2max intervals, race efforts)
+      and every race or event file in detail. Easy endurance rides need only a
+      glance at average power and heart rate to confirm you stayed in zone.
+      Weekly, look at the trend across sessions. Monthly, compare your power
+      curve against the previous month. The diagnostic value comes from
+      pattern recognition across files, not from obsessing over any single
+      ride.
+relatedPosts:
+  - power-meter-training-cyclists-how-to-use
+  - rpe-and-power-using-them-together
+  - aerobic-decoupling-cycling-cardiac-drift
+  - reading-your-training-data-tss-ctl-atl-tsb
+  - training-stress-score-tss-cycling-guide
+  - power-meter-training-plan-week-by-week
+relatedEpisodes:
+  - ep-2101-the-genius-behind-the-first-ever-power-meter-uli-schoberer
+  - ep-2026-ftp-jumped-30-watts-after-this-workout
+  - ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know
+experts:
+  - name: Andrew Coggan
+    role: Exercise physiologist, co-creator of Training Stress Score and Normalised Power
+  - name: Joe Friel
+    role: Endurance coaching pioneer, author of The Cyclist's Training Bible
+    href: /guests/joe-friel
+---
+
+I spend a lot of time on the podcast talking to coaches about what separates the athletes who improve year on year from the ones who plateau. The answer is almost never more training. It is almost always better interpretation of the training they already do. And the single richest source of interpretive data in cycling sits inside the .fit file your head unit uploads to Garmin Connect, TrainingPeaks, or Strava after every ride.
+
+Most riders glance at the summary page. Average power, total distance, elevation, maybe kilojoules if they are tracking fuelling. Then they close the app. The file contains far more than that. It contains the shape of your effort, the metabolic cost of your pacing decisions, the relationship between your output and your current capacity, and — across enough files — a diagnostic map of where you are physiologically strong and where you are limited.
+
+This is how to read that data. Not the software menus. The actual meaning.
+
+## Average Power vs Normalised Power: Why the Distinction Matters
+
+Average power is the simplest metric. Sum every power data point across the ride, divide by the number of data points, done. If you rode for two hours at a perfectly constant 200 watts, your average power is 200W.
+
+The problem is that nobody rides at a perfectly constant wattage outside of a laboratory or a Zwift workout. Real riding involves surges on climbs, soft-pedalling in a group, hard efforts out of corners, coasting on descents, and extended periods of freewheeling. Two riders might both average 180W over a three-hour ride — but one held a steady 180W on a flat route with no wind, while the other repeatedly surged to 350W on climbs and coasted at zero on descents. Their bodies experienced two very different rides, despite the spreadsheet saying otherwise.
+
+This is the problem Andrew Coggan solved with Normalised Power. The algorithm (which runs a 30-second rolling average, raises each value to the fourth power, averages those values, and takes the fourth root) weights harder efforts disproportionately. It captures the physiological reality that surging to 400W for 30 seconds and recovering at 100W for 30 seconds costs your body substantially more than holding 250W for that entire minute — even though the average power of both patterns is 250W.
+
+In practice, NP is the metric that predicts fatigue. When coaches like [Joe Friel](/guests/joe-friel) talk about pacing an event, they are thinking in terms of normalised power even when they do not always use the term. The question is not "what was your average" but "what did your body actually pay for that effort?"
+
+For steady efforts — flat time trials, indoor trainer sessions, consistent tempo work — NP and average power converge. The more variable the ride, the more NP exceeds average power. A group ride on rolling terrain might show a 20% gap between the two. A criterium can show a 30% or greater gap. That gap itself is diagnostic, which brings us to the next metric.
+
+## Variability Index: The Pacing Report Card
+
+Variability Index (VI) is the ratio of Normalised Power to Average Power. It is a single number that quantifies how even or uneven your effort was.
+
+**VI = NP / AP**
+
+A perfectly steady ride produces a VI of 1.00. Real rides are always above 1.00 because nobody holds perfectly constant power. The useful benchmarks:
+
+- **Below 1.05:** Well-paced. You held a steady effort. This is the target for time trials, sustained climbs, and any effort where you are trying to go as fast as possible over a set distance.
+- **1.05–1.10:** Moderate variability. Typical of a well-ridden sportive on rolling terrain, or a race where you were in a group but not surging excessively.
+- **1.10–1.20:** High variability. Common in criteriums, group rides with attacks, hilly sportives where you matched accelerations. The metabolic cost of this variability is significant.
+- **Above 1.20:** Extreme variability. You were either racing a criterium or you paced the ride badly.
+
+The practical use is retrospective: after a sportive or race, check VI to understand the cost of your riding style. A rider who finishes a 160km sportive with a VI of 1.18 has paid a substantial metabolic tax for surging. The same rider, pacing more evenly, might have finished faster at the same average power simply by smoothing the effort — because the spikes consumed glycogen and accumulated fatigue disproportionately to their contribution to average speed.
+
+Dan Lorang — who coached Jan Frodeno and has spoken extensively on pacing for long-course events — emphasises that pacing variability is one of the first things he examines in race files. A high VI in the first half of an event, dropping to a low VI in the second half, tells the story of a rider who surged early and then locked into survival mode. The inverse — moderate VI throughout — is the signature of a well-executed race.
+
+## Intensity Factor: How Hard Was It, Really?
+
+Intensity Factor (IF) puts your ride into context against your current fitness. It is the ratio of your Normalised Power to your Functional Threshold Power.
+
+**IF = NP / FTP**
+
+An IF of 1.00 means you averaged your threshold power for the entire ride — possible for about an hour. The ranges, assuming your FTP is current and accurate (use the [FTP test tool](/tools/ftp-test) if yours is more than 12 weeks old):
+
+- **0.55–0.70:** Recovery or easy endurance. Heart rate should stay in Zone 1-2. This is your long base ride territory.
+- **0.70–0.85:** Moderate to brisk endurance. A solid training ride. Most sportive preparation rides live here.
+- **0.85–0.95:** Tempo to threshold. Hard riding. Sustainable for 2-3 hours for well-trained riders.
+- **0.95–1.05:** Threshold. Sustainable for 45-75 minutes. This is race-pace territory for time trials and breakaways.
+- **Above 1.05:** Supra-threshold. Sustainable for minutes, not hours. Your 20-minute test will show an IF above 1.00 if your FTP is set correctly.
+
+The diagnostic value is in the relationship between IF and ride duration. Coggan's original guidelines suggest approximate maximum IFs for given durations:
+
+| Duration | Max sustainable IF |
+|---|---|
+| 1 hour | ~1.00 |
+| 2 hours | ~0.90 |
+| 3 hours | ~0.85 |
+| 5 hours | ~0.78 |
+| 8 hours | ~0.70 |
+
+If your IF for a five-hour sportive is 0.88, one of three things happened: your FTP is set too low, you overreached badly and faded hard at the end, or you had an exceptionally strong day. The first explanation is the most common. Many amateurs run on stale FTP numbers that flatter their metrics. A 10W error in your FTP cascades through every IF and TSS calculation you make — which is why regular testing matters.
+
+You can model the expected [training stress](/tools/tss) from a planned ride using IF and duration. TSS = (seconds x NP x IF) / (FTP x 3600) x 100. This lets you forecast the cost of an event before you ride it, and compare that forecast against your actual file afterwards. The delta between planned and actual TSS is often the most revealing number in post-event analysis. For a broader view of how TSS, CTL, ATL, and TSB interact across your training, the [guide to reading your training data](/blog/reading-your-training-data-tss-ctl-atl-tsb) walks through the full framework.
+
+## The Power Curve: Your Physiological Fingerprint
+
+Your power curve — sometimes called the power-duration curve or mean maximal power curve — plots the highest power you can sustain for every duration from a few seconds to several hours. Most training platforms (TrainingPeaks, WKO5, Intervals.icu) generate this automatically from your ride history.
+
+The shape of this curve is your physiological fingerprint. Two riders with identical FTPs can have wildly different power curves. One might sprint at 1,200W for five seconds but hold only 260W for 20 minutes. The other might sprint at 800W but hold 310W for 20 minutes. Same FTP (280W, say), completely different riders. The curve reveals this. The FTP number alone does not.
+
+The key durations to examine:
+
+- **5 seconds:** Peak neuromuscular power. Sprint capacity. Largely genetic but trainable.
+- **30 seconds:** Anaerobic capacity. The ability to produce power without oxygen. Critical for attacks, bridge-building, and race surges.
+- **5 minutes:** VO2max power. The ceiling of your aerobic engine. Trainable and responsive to structured interval work — the [episode on the 30W FTP jump](/podcast/ep-2026-ftp-jumped-30-watts-after-this-workout) digs into what specific sessions drive this.
+- **20 minutes:** Threshold-adjacent. The standard proxy for FTP and the most commonly tested duration.
+- **60 minutes:** Functional threshold. The gold standard definition, though rarely tested directly because a full-hour test is brutal.
+
+### Finding Your Limiter
+
+The relationship between these durations tells you what to train. Coaches describe riders using a few archetypes, and your power curve reveals which one you are:
+
+**The Diesel.** Strong 20-minute and 60-minute power relative to body weight. Weaker 5-second and 30-second power. This rider can sustain high output for long periods but lacks the ability to respond to attacks or sprint for a finish. The training priority is anaerobic interval work — short, sharp efforts that develop the top end without neglecting the engine underneath.
+
+**The Puncher.** Strong 5-second through 5-minute power. Weaker at durations beyond 20 minutes. This rider can attack and sprint but struggles to sustain pace in long breakaways or on extended climbs. The training priority is threshold and sweet spot work — building the aerobic base that supports repeated hard efforts across a full event.
+
+**The All-Rounder.** Balanced curve, no extreme strengths or weaknesses. This rider's training should target whatever duration is weakest relative to the rest of the curve, rotating priorities across training blocks.
+
+The practical application: if you are a diesel who keeps entering criteriums and getting dropped at the first attack, your power file is telling you that your limiter is not fitness — it is the specific fitness required for that event format. Either train the limiter or pick events that suit your strengths. Both are valid. The data simply clarifies the choice.
+
+As I discussed in the podcast with coaches who have [13 years of experience working with professionals](/podcast/ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know), this kind of self-awareness about rider type is something most amateurs never develop. They train generically rather than targeting their specific limiters, and the power curve is the diagnostic that makes targeted training possible.
+
+## The Second-Half Power Fade: Reading a Pacing Failure
+
+One of the most common patterns in power files from sportives and long road races is the second-half power fade. The rider starts strong — feeling good, legs fresh, adrenaline flowing — and holds a higher intensity than is sustainable. Somewhere between 60% and 75% of the way through the ride, power drops. Sometimes gradually, sometimes dramatically.
+
+The file tells this story clearly. Split the ride into halves by time or distance and compare normalised power for each half. A well-paced ride shows either equal NP in both halves or a slight negative split (second half marginally higher, as the rider kicks for the finish). A poorly paced ride shows a first-half NP that is 10%, 15%, sometimes 20% or more above the second half.
+
+The insidious thing about a pacing failure is that it does not feel like a failure at the time. The first hour feels strong. The numbers look good. The rider feels powerful. But the metabolic debt is accumulating invisibly, and by the time the legs start to go heavy, the damage is done. No amount of gels or caffeine will restore power output once glycogen depletion and accumulated fatigue have set in.
+
+The fix is prospective, not retrospective: set a power ceiling for the opening third of the event based on your IF targets, and ride to that ceiling regardless of how the legs feel. This requires discipline and a current FTP — which is why [knowing your zones](/tools/ftp-zones) before the start line matters more than most riders appreciate.
+
+[Aerobic decoupling](/blog/aerobic-decoupling-cycling-cardiac-drift) is the related phenomenon visible in the file: heart rate drifting upward while power stays constant (or power dropping while heart rate stays constant). If your file shows significant decoupling in the second half of a long ride, your aerobic base may not be sufficient for the duration, or your fuelling strategy failed. Both are addressable. But you have to look at the file to know which one it was.
+
+## Worked Example: A Masters Rider's Sportive File
+
+This is a worked example of a realistic power file analysis. This is a composite based on patterns I see constantly from riders in the [Skool community](https://www.skool.com/roadmancycling) and the kinds of files coaches on the podcast describe reviewing.
+
+**The rider:** Mark, 48 years old, 78kg, FTP of 245W (3.14 W/kg). Riding a 140km sportive in the Yorkshire Dales with 2,200m of climbing. He has been training consistently for seven months, mostly sweet spot and endurance work, with a weekly TSS of around 450-500. His target was to finish in under five hours.
+
+**The summary numbers:**
+
+| Metric | Value |
+|---|---|
+| Duration | 5h 12m (moving time 4h 48m) |
+| Distance | 142km |
+| Average Power | 178W |
+| Normalised Power | 211W |
+| Intensity Factor | 0.86 |
+| Variability Index | 1.19 |
+| TSS | 387 |
+| Average HR | 148 bpm |
+| Max HR | 177 bpm |
+
+**What the numbers say:**
+
+**IF of 0.86 over five hours is too high.** Coggan's guidelines suggest a max sustainable IF of about 0.78 for five hours. Mark rode above his sustainable ceiling. He either had a very strong day, or — more likely — he went too hard early and paid for it later. Let us check.
+
+**VI of 1.19 is high.** This tells us Mark's effort was extremely variable. On a hilly course, some variability is inevitable, but 1.19 says he was repeatedly surging hard on climbs and then recovering on descents. Each surge carried a metabolic penalty. Smoother pacing up the climbs — sitting at 260-270W instead of punching 300-320W — would have produced a lower VI and a lower NP, even with the same average power.
+
+**Split analysis (first half vs second half):**
+
+| Metric | First half (0-2h30) | Second half (2h30-5h12) |
+|---|---|---|
+| Normalised Power | 228W | 189W |
+| Average HR | 152 bpm | 145 bpm |
+| Average Cadence | 84 rpm | 76 rpm |
+
+The first-half NP of 228W gives an IF of 0.93 — nearly threshold intensity. For a ride that was going to last five hours, this was unsustainable. Mark probably felt strong on the early climbs, pushed the pace in a group, and did not realise the cost until the two-hour mark. By the time the second half started, his NP had dropped to 189W (IF of 0.77), his cadence had fallen — a classic fatigue marker — and his heart rate was actually lower despite what would have felt like harder effort. The heart rate drop in the second half, despite a feeling of significant effort, is the hallmark of muscular fatigue outpacing cardiovascular capacity. His legs had run out of matches before his lungs did.
+
+**The second-half NP drop of 17% is a clear pacing failure.** A drop of 5% or less across halves is acceptable. A 10% drop is a warning. At 17%, Mark left significant time on the table.
+
+**What should Mark have done differently?**
+
+Started the ride at an NP target of 200W (IF 0.82). On the Yorkshire Dales climbs, that would have meant sitting at 250-260W rather than the 300-320W he was hitting. It would have felt uncomfortably easy in the first 90 minutes. That discomfort is the price of correct pacing. The reward would have come in the final two hours, where he would have retained power instead of haemorrhaging it.
+
+**The power curve from this ride** shows Mark's 5-minute best at 292W (3.74 W/kg) — respectable for a masters rider — but his 60-minute best from training is only 240W. That gap (a ratio of about 1.22 between 5-minute and 60-minute power) marks him as a moderately punchy rider. He should be targeting events that reward sustained power rather than repeated short climbs, or — if he loves the Dales — training his sustained power with long threshold intervals and tempo work to close that ratio.
+
+**The lesson from Mark's file** is the lesson from most amateur sportive files: the problem was not fitness. It was pacing. His engine was capable of finishing in under five hours — an IF of 0.80 over 4h45m was within his range. He needed the discipline to hold back in the first half, and either a coach or sufficient self-awareness to set that ceiling before the start.
+
+## Using RPE Alongside the Data
+
+Power files are powerful precisely because they are objective. But they are incomplete without the subjective layer. How the ride felt matters.
+
+A file that shows 240W normalised power with an RPE of 6/10 tells a different story from the same 240W at an RPE of 9/10. The first suggests fitness has improved — the rider is producing the same output at lower perceived effort. The second suggests fatigue, illness, heat stress, or any of the dozens of variables that make power output a partial picture rather than the whole one.
+
+This is where [combining RPE with power data](/blog/rpe-and-power-using-them-together) becomes important. Training platforms record the numbers but not the feel. Keep a brief note with each key session: RPE, sleep quality, nutrition, and any relevant context. Over weeks, this subjective layer enriches the power data. You start to see patterns — that your Thursday intervals always feel harder when you slept badly on Wednesday, that your long ride power drops when you underfuel in the first two hours, that your RPE runs high in the week after a big event.
+
+The combination of objective power data and subjective feel is more diagnostic than either alone. Coaches who have worked with thousands of athletes — and we have had plenty of those on the podcast — universally emphasise this point. The numbers do not replace feel. They augment it.
+
+## What to Do With What You Find
+
+Reading a power file is diagnostic. It tells you what happened and, with practice, why. But the value comes from what you do next.
+
+**If your VI is consistently high:** Work on pacing discipline. Set power alerts on your head unit for upper and lower limits. Practice riding to a target power on varied terrain. This is a skill, not a fitness problem.
+
+**If your power curve shows a clear limiter:** Dedicate a training block to that limiter. Use the [power-based training plan framework](/blog/power-meter-training-plan-week-by-week) to structure the work. A diesel who needs sprint power might run four weeks of neuromuscular intervals. A puncher who needs endurance might run six weeks of sustained threshold work.
+
+**If your files show consistent second-half fades:** The fix is nutritional, pacing-related, or both. Check your fuelling strategy — most amateurs undereat in events. Check your opening intensity — set a power ceiling and stick to it. The [power-speed calculator](/tools/power-speed) can help you estimate the required power for your target time, giving you a rational number to pace against rather than a feeling.
+
+**If your aerobic decoupling is high on long rides:** Your base fitness needs work. Spend more time in Zone 2, extend your long ride duration gradually, and retest after a mesocycle. The [aerobic decoupling guide](/blog/aerobic-decoupling-cycling-cardiac-drift) walks through the numbers.
+
+**If you are not sure what you are looking at:** That is what coaching is for. The data rewards interpretation, and interpretation improves with experience. Coaches who review thousands of files per year — people like those we feature regularly on the podcast — see patterns that take self-coached riders years to recognise. The [Not Done Yet programme](https://www.skool.com/roadmancycling) includes structured data review because the data only matters if someone helps you act on it.
+
+## The File Is Not the Ride
+
+I want to close with something that might sound contradictory after 3,000 words about power analysis. The file is not the ride. The data matters enormously — it is the most precise tool we have for understanding what happened on the bike and planning what should happen next. But cycling is not a spreadsheet sport. The power file from [Uli Schoberer's](/guests/uli-schoberer) first SRM test ride contained numbers. What it meant was that for the first time, a cyclist could see the invisible force they were producing. The data made the invisible visible. That was the revolution.
+
+Your file does the same thing. It makes visible the metabolic cost of every decision you made on the bike — every surge, every recovery, every moment you pushed when you should have held back and every moment you held back when you could have pushed. Use it to learn. Use it to plan. Use it to race smarter.
+
+Then close the laptop and go ride your bike.

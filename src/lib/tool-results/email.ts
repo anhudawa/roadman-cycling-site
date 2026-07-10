@@ -16,6 +16,8 @@ const REPORT_SLUG_BY_TOOL: Record<ToolSlug, ReportToolSlug | null> = {
   plateau: null, // plateau has its own transactional confirmation email
   fuelling: "fuelling",
   ftp_zones: "ftp-zones",
+  sweet_spot: null, // standalone calculator — no email report
+  body_composition: null, // standalone calculator — no email report
 };
 
 const FROM_ADDRESS = "Roadman Cycling <noreply@roadmancycling.com>";

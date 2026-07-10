@@ -1019,6 +1019,181 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
       "Newton-Raphson solver for the full cycling power equation",
     ],
   },
+
+  "sweet-spot": {
+    slug: "sweet-spot",
+    title: "Sweet Spot Calculator",
+    description:
+      "Enter your FTP and get your sweet spot power range (88-94%), interval session structures, weekly volume guidance, and a comparison of sweet spot vs tempo vs threshold.",
+    url: `${ROADMAN_BASE}/tools/sweet-spot`,
+    breadcrumbName: "Sweet Spot Calculator",
+    answerSummary:
+      "Enter your FTP in watts and the calculator returns your sweet spot power range (88-94% of FTP), plus tempo and threshold ranges for comparison. It also gives you ready-made interval sessions, weekly volume recommendations by training phase, and guidance on when to choose sweet spot over tempo or threshold.",
+    whatItDoes:
+      "This calculator turns a single FTP number into a complete sweet spot training toolkit. You get the exact watt range to target, session structures from 30 to 90 minutes of sweet spot work, and a phase-by-phase guide to how much sweet spot belongs in your training week. The comparison table makes it clear when to swap sweet spot for tempo or threshold work instead.",
+    whoItsFor: [
+      "Time-crunched cyclists who want the most fitness per training hour",
+      "Riders building a structured training week and choosing between tempo, sweet spot, and threshold sessions",
+      "Self-coached athletes who know their FTP but need session prescriptions",
+      "Anyone returning to structured training after a break and wanting productive but manageable intensity",
+    ],
+    howItWorks:
+      "Sweet spot is defined as 88-94% of FTP, sitting at the top of Coggan's Zone 3 and the bottom of Zone 4. The calculator multiplies your FTP by these percentages and presents the watt range alongside tempo (76-87%) and threshold (95-105%) for context. Session templates are matched to your chosen time target, and weekly volume recommendations are drawn from periodisation research by Seiler and Coggan.",
+    howToSteps: [
+      { name: "Enter your FTP", text: "Type your Functional Threshold Power in watts. If you do not know it, use your best 20-minute power multiplied by 0.95." },
+      { name: "Read your sweet spot range", text: "The calculator shows your sweet spot band (88-94% FTP) in watts, alongside tempo and threshold ranges for comparison." },
+      { name: "Pick a session", text: "Choose a time target (30, 45, 60, or 90 minutes) and get interval structures with recovery guidance." },
+      { name: "Check your training phase", text: "The weekly volume table shows how many sweet spot sessions fit your current phase — base, build, speciality, or recovery." },
+    ],
+    howToTotalTime: "PT1M",
+    limitations:
+      "Sweet spot percentages are population-based — individual lactate kinetics may shift your personal sweet spot a few percentage points in either direction. FTP itself is an estimate of your maximal lactate steady state; if your FTP is wrong, all the zones derived from it will be off. Session templates assume indoor or controlled outdoor conditions; add recovery time for outdoor sessions with stops and terrain variation.",
+    whenToSeeACoach:
+      "If you have been doing sweet spot work consistently for 8+ weeks without seeing FTP gains, the issue is usually session structure, recovery, or fuelling — not the intensity range itself. A coach can audit your training load distribution and find the bottleneck.",
+    examples: [
+      {
+        scenario: "Time-crunched amateur, 250W FTP",
+        inputs: ["FTP: 250W"],
+        output: "Sweet spot: 220-235W. Recommended session: 2x20 min at 220-235W with 5 min recovery. Two sessions per week in the build phase.",
+      },
+      {
+        scenario: "Strong masters rider, 300W FTP",
+        inputs: ["FTP: 300W"],
+        output: "Sweet spot: 264-282W. For a 60-minute target: 3x20 min at 264-282W. During base phase, limit to one session per week alongside Z2 volume.",
+      },
+    ],
+    faqs: [
+      {
+        question: "What is sweet spot training in cycling?",
+        answer: "Sweet spot is the intensity band at 88-94% of your FTP — the top of tempo and the bottom of threshold. The term was coined by Frank Overton to describe the effort level where training stimulus is high but recovery cost is moderate. You get roughly 90% of the adaptation of pure threshold work at a fraction of the fatigue, which means you can accumulate more quality time-in-zone per week.",
+      },
+      {
+        question: "How long should a sweet spot interval be?",
+        answer: "Most sweet spot intervals run 10-45 minutes per block. The classic session is 2x20 minutes with 5 minutes of recovery between blocks. Beginners should start with 3x10 minutes and build toward longer blocks over 4-6 weeks. The key is accumulating 30-90 minutes of total sweet spot time per session, not any single interval length.",
+      },
+      {
+        question: "Is sweet spot better than threshold training?",
+        answer: "Neither is universally better — they serve different purposes. Sweet spot gives more training stimulus per unit of fatigue, making it ideal for the build phase and for time-crunched athletes. Threshold work (95-105% FTP) produces a stronger acute stimulus and is better for directly raising your FTP ceiling in the 6-8 weeks before a target event. Most riders should spend the majority of their structured-intensity time at sweet spot and reserve threshold for race-specific blocks.",
+      },
+      {
+        question: "How many sweet spot sessions per week?",
+        answer: "During the build phase, 2-3 sweet spot sessions per week with 60-120 total minutes of sweet spot work is typical. In base phase, 1-2 sessions (40-60 minutes total). During race-specific preparation, drop to 1-2 sessions as you shift toward threshold and VO2max work. Recovery weeks should have zero or one easy sweet spot session at most.",
+      },
+      {
+        question: "What does sweet spot feel like?",
+        answer: "Controlled effort. You can hold a short conversation but would rather not. Breathing is elevated but rhythmic. Legs feel loaded but not burning. On a 1-10 RPE scale, it sits at 7-8. If it feels easy, you are in tempo. If you are counting down the seconds, you have drifted into threshold.",
+      },
+      {
+        question: "Does sweet spot training work for older cyclists?",
+        answer: "Yes, and it is arguably more valuable for masters riders. Recovery takes longer after 40, so the lower fatigue cost of sweet spot compared to threshold means you can maintain more consistent training weeks without accumulating excessive fatigue. The key is respecting recovery between sessions — 48 hours minimum for riders over 45.",
+      },
+    ],
+    related: [
+      { label: "FTP Zone Calculator", href: "/tools/ftp-zones", kind: "tool" },
+      { label: "TSS Calculator", href: "/tools/tss", kind: "tool" },
+      { label: "FTP Test Calculator", href: "/tools/ftp-test", kind: "tool" },
+      { label: "Training Load Calculator", href: "/tools/training-load", kind: "tool" },
+      { label: "FTP Training topic hub", href: "/topics/ftp-training", kind: "topic" },
+    ],
+    webAppFeatures: [
+      "Sweet spot power range calculation (88-94% FTP)",
+      "Side-by-side tempo, sweet spot, and threshold zone comparison",
+      "Session builder with six interval structures from 30 to 90 minutes",
+      "Weekly volume recommendations by training phase",
+      "Science-backed methodology section with Coggan and Seiler references",
+    ],
+  },
+  "interval-builder": {
+    slug: "interval-builder",
+    title: "Interval Session Builder",
+    description:
+      "Enter your FTP, pick a training goal and available time, and get a complete structured interval session with warm-up, work intervals, recovery, cool-down, power targets, cadence ranges, and TSS estimate.",
+    url: `${ROADMAN_BASE}/tools/interval-builder`,
+    breadcrumbName: "Interval Session Builder",
+    answerSummary:
+      "Enter your FTP in watts, choose a training goal (VO2max, threshold, sweet spot, tempo, sprint, or endurance), set your available time, and the builder returns a complete session structure — warm-up through cool-down — with wattage targets, cadence ranges, RPE, estimated TSS, and recovery guidance. Twenty sessions across six training goals, matched to your time and experience level.",
+    whatItDoes:
+      "This tool prescribes a complete structured interval session based on your FTP, training goal, available time, and experience level. You get a visual session timeline, a block-by-block breakdown with power in watts and percentage of FTP, cadence targets, RPE, and an estimated Training Stress Score. Each session includes a physiological explanation of what the workout targets and when to schedule your next hard session.",
+    whoItsFor: [
+      "Cyclists who know their FTP and want a structured session without a full coaching plan",
+      "Self-coached riders looking for session variety across different training goals",
+      "Time-crunched athletes who need a workout that fits a specific time window",
+      "Riders preparing for a specific event and choosing between VO2max, threshold, or sweet spot work",
+      "Anyone who trains on a smart trainer and wants targets to load into ERG mode",
+    ],
+    howItWorks:
+      "The session library contains twenty prescriptions across six training goals, built from established protocols: Seiler's polarised VO2max blocks, Ronnestad's 30/15s protocol, Coggan's threshold model, and Overton's sweet spot framework. The builder filters sessions by your training goal, experience level, and available time, then expands the selected session into a timed segment list. TSS is estimated from the time-weighted average intensity factor across all segments.",
+    howToSteps: [
+      { name: "Enter your FTP", text: "Type your Functional Threshold Power in watts. If you do not know it, use your best 20-minute power multiplied by 0.95 or use the FTP Test Calculator." },
+      { name: "Select your available time", text: "Choose how long you have to train: 30, 45, 60, 75, or 90 minutes. The builder matches sessions that fit your window." },
+      { name: "Pick a training goal", text: "Choose from VO2max, threshold, sweet spot, tempo, sprint power, or endurance. Each goal prescribes sessions targeting a different physiological adaptation." },
+      { name: "Set your experience level", text: "Beginner, intermediate, or advanced. Some protocols (Ronnestad 30/15s, Tabata, progressive sweet spot) require intermediate or advanced experience." },
+      { name: "Review and copy the session", text: "Read the session timeline, interval breakdown, TSS estimate, and recovery guidance. Copy the session to paste into your training log or head unit." },
+    ],
+    howToTotalTime: "PT2M",
+    limitations:
+      "TSS estimates use a time-weighted average of target power as a proxy for Normalised Power. Actual TSS from your power file will differ depending on how closely you hit the targets and how variable your power is within each interval. Power targets assume your FTP is current and accurate. The session library covers the most common and well-researched protocols but does not replace a coach who can sequence sessions across a training block and adjust for individual response.",
+    whenToSeeACoach:
+      "If you are doing the right sessions but not adapting — FTP flat for 8+ weeks despite consistent training — the issue is usually how sessions are sequenced across the week, recovery between hard days, or fuelling. A coach can audit your training load distribution, spot overreaching before it becomes overtraining, and adjust the plan based on your individual response.",
+    examples: [
+      {
+        scenario: "Time-crunched amateur, 250W FTP, 60 minutes available, threshold goal",
+        inputs: ["FTP: 250W", "Time: 60 min", "Goal: Threshold", "Level: Intermediate"],
+        output: "Classic 2x20 at 238-263W (95-105% FTP). Warm-up 10 min, 2x20 min work with 5 min recovery, 5 min cool-down. Cadence 85-95rpm. Est. TSS: 72. Next hard session in 48-72 hours.",
+      },
+      {
+        scenario: "Advanced rider, 300W FTP, 75 minutes, VO2max goal",
+        inputs: ["FTP: 300W", "Time: 75 min", "Goal: VO2max", "Level: Advanced"],
+        output: "Classic 5x4 at 318-360W (106-120% FTP) with 4 min recovery at 150-180W. Warm-up 10 min, 5x4 min work, cool-down 5 min. Cadence 95-105rpm. Est. TSS: 85. 48-72 hours before next intensity.",
+      },
+    ],
+    faqs: [
+      {
+        question: "How do I choose between VO2max, threshold, and sweet spot sessions?",
+        answer: "It depends on your training phase and goals. Sweet spot (88-94% FTP) is the best return-on-investment for time-crunched riders in the build phase. Threshold (95-105% FTP) directly raises your FTP ceiling and belongs in the final 6-8 weeks before a target event. VO2max (106-120%+ FTP) improves your aerobic ceiling and is most effective in the speciality phase or when your FTP has plateaued despite consistent threshold work. Endurance and tempo sessions build your aerobic base.",
+      },
+      {
+        question: "How many interval sessions should I do per week?",
+        answer: "Most amateur cyclists benefit from 2-3 structured interval sessions per week, with the remaining volume at endurance pace (Zone 2). A typical build-phase week might include one sweet spot session, one threshold or VO2max session, and the rest at Z2. During race-specific preparation, shift toward more threshold and VO2max work. Never stack hard sessions on consecutive days without recovery between.",
+      },
+      {
+        question: "What is the Ronnestad 30/15 protocol?",
+        answer: "Developed by Norwegian researcher Bent Ronnestad, the 30/15 protocol alternates 30 seconds at 130% FTP with 15 seconds at 50% FTP, repeated 13 times per set across 3 sets. Research shows this format produces more time at VO2max than traditional long intervals because the brief recovery periods prevent complete metabolic recovery while the high power demands force rapid re-recruitment of muscle fibres. It is marked as advanced-only due to the extreme metabolic stress.",
+      },
+      {
+        question: "How accurate is the TSS estimate?",
+        answer: "The TSS estimate uses a time-weighted average of each interval's midpoint power as a proxy for Normalised Power. It will be close to your actual TSS if you hit the power targets consistently. Variable power within intervals (surging above target, dipping below) will typically produce a higher actual TSS than the estimate. Treat it as a planning guide, not a definitive number.",
+      },
+      {
+        question: "Should I use ERG mode or resistance mode for intervals?",
+        answer: "ERG mode works well for steady-state intervals like sweet spot and threshold blocks, where holding a consistent power is the goal. For VO2max and sprint sessions, resistance mode is often better because it lets you respond to fatigue naturally and adjust your effort within the target range. Over-unders specifically benefit from resistance mode so you can feel the transitions between the under and over segments.",
+      },
+      {
+        question: "What cadence should I target during intervals?",
+        answer: "Higher cadences (95-110 rpm) during VO2max and sprint intervals reduce muscular force per pedal stroke, shifting stress toward the cardiovascular system. Lower cadences (85-95 rpm) during threshold and sweet spot work increase muscular tension, which drives peripheral adaptations in the working muscles. The cadence targets in each session are prescribed to match the intended physiological stimulus. If a specific cadence feels unnatural, prioritise hitting the power target over the cadence target.",
+      },
+    ],
+    related: [
+      { label: "FTP Zone Calculator", href: "/tools/ftp-zones", kind: "tool" },
+      { label: "TSS Calculator", href: "/tools/tss", kind: "tool" },
+      { label: "Sweet Spot Calculator", href: "/tools/sweet-spot", kind: "tool" },
+      { label: "FTP Test Calculator", href: "/tools/ftp-test", kind: "tool" },
+      { label: "Training Load Calculator", href: "/tools/training-load", kind: "tool" },
+      { label: "FTP Training topic hub", href: "/topics/ftp-training", kind: "topic" },
+    ],
+    webAppFeatures: [
+      "Twenty structured interval sessions across six training goals",
+      "Complete session structure: warm-up, work intervals, recovery, cool-down",
+      "Power targets in watts and percentage of FTP",
+      "Cadence ranges and RPE for every interval block",
+      "Visual session timeline with proportional coloured blocks",
+      "TSS estimation with Normalised Power and Intensity Factor",
+      "Physiological explanation of each session's training effect",
+      "Recovery guidance for post-session scheduling",
+      "Copy-to-clipboard session export",
+      "Experience level filtering (beginner, intermediate, advanced)",
+    ],
+  },
 };
 
 /** Helper for components that look up a tool by slug. */

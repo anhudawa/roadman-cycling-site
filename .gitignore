@@ -73,3 +73,6 @@ scripts/audit-output/
 
 # Claim-extraction dry-run artifacts (regenerate via npm run extract:claims:dry)
 agents/transcript-indexer/output/
+
+# LLM citation monitor reports (regenerated each run)
+scripts/llm-citation-monitor/reports/
