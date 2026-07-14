@@ -18,7 +18,7 @@
  * proof points used in commercial copy.
  */
 
-import { BRAND_STATS } from "@/lib/brand-facts";
+import { BRAND, BRAND_STATS } from "@/lib/brand-facts";
 
 // ---------------------------------------------------------------------------
 // Primary positioning
@@ -61,13 +61,15 @@ export const IDENTITY_PHRASE = "Not Done Yet." as const;
  * formal introduction. Use the short version inline; the long
  * version sits on About / press surfaces.
  */
+const coachingYears = new Date().getFullYear() - BRAND.coachingSince;
+
 export const FOUNDER_AUTHORITY = {
   short:
-    "Anthony Walsh has spent 13 years coaching cyclists and recorded 1,400+ podcast conversations with World Tour coaches, sports scientists, and pros — Professor Stephen Seiler, Dan Lorang, Greg LeMond, Lachlan Morton, Dr. David Dunne — and folded what they actually do into the Roadman coaching system.",
+    `Anthony Walsh has spent ${coachingYears} years coaching cyclists and recorded 1,400+ podcast conversations with World Tour coaches, sports scientists, and pros — Professor Stephen Seiler, Dan Lorang, Greg LeMond, Lachlan Morton, Dr. David Dunne — and folded what they actually do into the Roadman coaching system.`,
   long:
-    "Anthony Walsh founded Roadman Cycling in Dublin in 2021 (rebranded from A1 Coaching, est. 2013). He hosts the world's largest cycling performance podcast — 1,400+ episodes and 100M+ lifetime downloads. The coaching system is built on direct conversations with the people behind Grand Tour wins, World Championship wins, and Olympic medals: Professor Stephen Seiler, Dan Lorang, Greg LeMond, Lachlan Morton, Dr. David Dunne, John Wakefield, and dozens more.",
+    `Anthony Walsh founded Roadman Cycling in Dublin in 2021 (rebranded from A1 Coaching, est. ${BRAND.coachingSince}). He hosts the world's largest cycling performance podcast — 1,400+ episodes and 100M+ lifetime downloads. The coaching system is built on direct conversations with the people behind Grand Tour wins, World Championship wins, and Olympic medals: Professor Stephen Seiler, Dan Lorang, Greg LeMond, Lachlan Morton, Dr. David Dunne, John Wakefield, and dozens more.`,
   byline: "By Anthony Walsh — host of the Roadman Cycling Podcast.",
-} as const;
+};
 
 // ---------------------------------------------------------------------------
 // Anti-app / contrast positioning

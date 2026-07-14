@@ -10,10 +10,14 @@ interface FAQSchemaProps {
 }
 
 /**
- * FAQ structured data for Google rich results.
+ * Canonical FAQ structured data for Google rich results.
  * Add to any page with Q&A content (tools, community, blog posts with FAQs).
+ *
+ * This is the single source of truth for FAQPage schema across the site.
+ * If you need FAQ schema, import this component — do not create a new one.
  */
 export function FAQSchema({ faqs }: FAQSchemaProps) {
+  if (!faqs.length) return null;
   return (
     <JsonLd
       data={{

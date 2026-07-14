@@ -9,6 +9,7 @@ import {
   SAME_AS,
   SITE_ORIGIN,
 } from "@/lib/brand-facts";
+import { FAQSchema } from "./FAQSchema";
 
 interface JsonLdProps {
   data: Record<string, unknown>;
@@ -180,32 +181,28 @@ export function ArticleJsonLd({
   );
 }
 
-// FAQ schema for articles with FAQ sections
+/**
+ * @deprecated Use `FAQSchema` from `@/components/seo/FAQSchema` directly.
+ * Kept as a thin wrapper for backwards compatibility — delegates to the
+ * canonical `FAQSchema` component.
+ */
 export function FAQPageJsonLd({
   questions,
 }: {
   questions: { question: string; answer: string }[];
 }) {
-  if (!questions.length) return null;
-  return (
-    <JsonLd
-      data={{
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: questions.map((q) => ({
-          "@type": "Question",
-          name: q.question,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: q.answer,
-          },
-        })),
-      }}
-    />
-  );
+  return <FAQSchema faqs={questions} />;
 }
 
-// Breadcrumb schema
+/**
+ * Canonical BreadcrumbList structured data for per-page breadcrumbs.
+ *
+ * For the auto-derived site-wide fallback, see `RouteBreadcrumbJsonLd`.
+ * This component is for pages that supply their own explicit trail
+ * (e.g. with the actual blog post or episode title in the crumb).
+ *
+ * Callers must include Home in the items array if desired.
+ */
 export function BreadcrumbJsonLd({
   items,
 }: {
@@ -227,7 +224,25 @@ export function BreadcrumbJsonLd({
   );
 }
 
-// Podcast episode schema
+/**
+ * Converts "MM:SS" or "H:MM:SS" to ISO 8601 duration.
+ * Pre-formatted ISO durations (starting with "PT") pass through unchanged.
+ */
+function toIsoDuration(duration: string): string {
+  if (duration.startsWith("PT")) return duration;
+  const parts = duration.split(":").map(Number);
+  if (parts.length === 3) return `PT${parts[0]}H${parts[1]}M${parts[2]}S`;
+  if (parts.length === 2) return `PT${parts[0]}M${parts[1]}S`;
+  return `PT${parts[0]}M`;
+}
+
+/**
+ * Canonical PodcastEpisode structured data for Google rich results.
+ *
+ * Links back to the site-wide PodcastSeries, Person, and Organisation
+ * entities via `@id` so the knowledge graph stays connected. This is
+ * the single source of truth — do not create a second implementation.
+ */
 export function PodcastEpisodeJsonLd({
   title,
   description,
@@ -235,13 +250,22 @@ export function PodcastEpisodeJsonLd({
   datePublished,
   duration,
   episodeNumber,
+  image,
+  spotifyId,
+  guest,
+  guestCredential,
 }: {
   title: string;
   description: string;
   url: string;
   datePublished: string;
+  /** Duration as ISO 8601 ("PT45M") or "MM:SS" / "H:MM:SS" — auto-converted. */
   duration?: string;
   episodeNumber?: number;
+  image?: string;
+  spotifyId?: string;
+  guest?: string;
+  guestCredential?: string;
 }) {
   return (
     <JsonLd
@@ -252,11 +276,25 @@ export function PodcastEpisodeJsonLd({
         description,
         url,
         datePublished,
-        ...(duration && { timeRequired: duration }),
+        ...(duration && { timeRequired: toIsoDuration(duration) }),
         ...(episodeNumber && { episodeNumber }),
+        ...(image && { image }),
         partOfSeries: { "@id": ENTITY_IDS.podcast },
         author: { "@id": ENTITY_IDS.person },
         publisher: { "@id": ENTITY_IDS.organization },
+        ...(spotifyId && {
+          associatedMedia: {
+            "@type": "MediaObject",
+            contentUrl: `https://open.spotify.com/episode/${spotifyId}`,
+          },
+        }),
+        ...(guest && {
+          actor: {
+            "@type": "Person",
+            name: guest,
+            ...(guestCredential && { description: guestCredential }),
+          },
+        }),
       }}
     />
   );

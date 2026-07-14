@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal } from "@/components/ui";
-import { JsonLd, FAQPageJsonLd } from "@/components/seo/JsonLd";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { FAQSchema } from "@/components/seo/FAQSchema";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 import { CAMPS, formatCampDates } from "@/lib/camps/camps";
 import { GIRONA_ROUTE_LIST } from "@/lib/girona/routes";
@@ -113,8 +114,8 @@ export default function CyclingGironaPage() {
           },
         }}
       />
-      <FAQPageJsonLd
-        questions={PILLAR_FAQS.map((f) => ({ question: f.q, answer: f.a }))}
+      <FAQSchema
+        faqs={PILLAR_FAQS.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <JsonLd
         data={{

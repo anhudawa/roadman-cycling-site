@@ -7,7 +7,8 @@ import { Container, Footer, Header, Section } from "@/components/layout";
 import { ScrollReveal } from "@/components/ui";
 import { db } from "@/lib/db";
 import { diagnosticSubmissions } from "@/lib/db/schema";
-import { JsonLd, FAQPageJsonLd } from "@/components/seo/JsonLd";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { FAQSchema } from "@/components/seo/FAQSchema";
 import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 import { SocialProof } from "@/components/proof";
 import { DiagnosticFlow } from "@/components/features/diagnostic/DiagnosticFlow";
@@ -464,8 +465,8 @@ export default async function PlateauPage() {
           author: { "@id": ENTITY_IDS.person },
         }}
       />
-      <FAQPageJsonLd
-        questions={FAQS.map((f) => ({ question: f.q, answer: f.a }))}
+      <FAQSchema
+        faqs={FAQS.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Header />
       <main id="main-content">

@@ -6,6 +6,16 @@ import { Card, ScrollReveal, Badge } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getTermBySlug, getAllTermSlugs, GLOSSARY_TERMS } from "@/lib/glossary";
 
+/** Extract acronym/abbreviation for schema.org termCode */
+function getTermCode(termName: string): string | undefined {
+  // Match patterns like "FTP (Functional Threshold Power)"
+  const parenMatch = termName.match(/^([A-Z][A-Z0-9/]+)\s*\(/);
+  if (parenMatch) return parenMatch[1];
+  // Match standalone abbreviations like "VO2max", "HRV", "HIIT"
+  if (/^[A-Z]{2,}/.test(termName) && termName.length <= 10) return termName;
+  return undefined;
+}
+
 export function generateStaticParams() {
   return getAllTermSlugs().map((slug) => ({ slug }));
 }
@@ -41,6 +51,8 @@ export default async function GlossaryTermPage({
     .map((s) => GLOSSARY_TERMS.find((t) => t.slug === s))
     .filter(Boolean);
 
+  const termCode = getTermCode(term.term);
+
   return (
     <>
       <JsonLd
@@ -55,6 +67,7 @@ export default async function GlossaryTermPage({
           // the same DefinedTermSet entity declared on /glossary, not a
           // duplicate string-named set per term.
           inDefinedTermSet: { "@id": "https://roadmancycling.com/glossary#termset" },
+          ...(termCode ? { termCode } : {}),
         }}
       />
       <JsonLd

@@ -1,36 +1,9 @@
-import { JsonLd } from "./JsonLd";
-
-interface BreadcrumbItem {
-  name: string;
-  url: string;
-}
-
-interface BreadcrumbSchemaProps {
-  items: BreadcrumbItem[];
-}
-
 /**
- * BreadcrumbList structured data for Google rich results.
- * Automatically prepends Home as the first item.
+ * @deprecated Consolidated into `BreadcrumbJsonLd` in `./JsonLd`.
+ * This file is kept only as a re-export to avoid stale imports.
+ *
+ * Note: `BreadcrumbJsonLd` does NOT auto-prepend Home — callers must
+ * include it in the items array if needed. This differs from the
+ * original `BreadcrumbSchema` which prepended Home automatically.
  */
-export function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
-  const allItems = [
-    { name: "Home", url: "https://roadmancycling.com" },
-    ...items,
-  ];
-
-  return (
-    <JsonLd
-      data={{
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: allItems.map((item, i) => ({
-          "@type": "ListItem",
-          position: i + 1,
-          name: item.name,
-          item: item.url,
-        })),
-      }}
-    />
-  );
-}
+export { BreadcrumbJsonLd as BreadcrumbSchema } from "./JsonLd";

@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal, Card, Badge, Button } from "@/components/ui";
-import { JsonLd, FAQPageJsonLd } from "@/components/seo/JsonLd";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { FAQSchema } from "@/components/seo/FAQSchema";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { PlateauCTA } from "@/components/cta";
 import { SITE_ORIGIN } from "@/lib/brand-facts";
@@ -180,7 +181,7 @@ export default async function ExpertTopicPage({
         />
       )}
 
-      <FAQPageJsonLd questions={faqs} />
+      <FAQSchema faqs={faqs} />
 
       <JsonLd
         data={{

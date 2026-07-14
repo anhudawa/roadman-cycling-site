@@ -60,13 +60,23 @@ const GLOSSARY_FAQS = [
 export const metadata: Metadata = {
   title: "Cycling Glossary — FTP, VO2max, Polarised, Sweet Spot & More",
   description:
-    "100+ cycling performance terms defined by a coach, not a textbook. FTP, VO2max, polarised training, sweet spot, W/kg, peloton, groupset, time trial — with how to actually use them.",
+    "150+ cycling performance terms defined by a coach, not a textbook. FTP, VO2max, polarised training, sweet spot, W/kg, peloton, groupset, time trial — with how to actually use them.",
   alternates: {
     canonical: "https://roadmancycling.com/glossary",
   },
 };
 
 export default function GlossaryPage() {
+  // Sort terms alphabetically and group by first letter
+  const sortedTerms = [...GLOSSARY_TERMS].sort((a, b) => a.term.localeCompare(b.term));
+  const grouped = new Map<string, typeof GLOSSARY_TERMS>();
+  for (const term of sortedTerms) {
+    const letter = /^[A-Za-z]/.test(term.term) ? term.term[0].toUpperCase() : '#';
+    if (!grouped.has(letter)) grouped.set(letter, []);
+    grouped.get(letter)!.push(term);
+  }
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+
   return (
     <>
       <JsonLd
@@ -143,36 +153,78 @@ export default function GlossaryPage() {
                 {GLOSSARY_TERMS.length} cycling performance terms defined by a coach, not a textbook.
                 Each one links to the guide that explains how to apply it.
               </p>
+              <div className="flex flex-wrap gap-2 justify-center mt-6">
+                {(['coaching', 'nutrition', 'community', 'recovery', 'strength'] as const).map(pillar => {
+                  const count = GLOSSARY_TERMS.filter(t => t.pillar === pillar).length;
+                  return count > 0 ? (
+                    <span key={pillar} className="inline-flex items-center gap-1.5">
+                      <Badge pillar={pillar} size="sm" />
+                      <span className="text-foreground-subtle text-xs">{count}</span>
+                    </span>
+                  ) : null;
+                })}
+              </div>
             </ScrollReveal>
           </Container>
         </Section>
 
         <Section background="charcoal">
           <Container width="narrow">
-            <div className="space-y-4">
-              {[...GLOSSARY_TERMS].sort((a, b) => a.term.localeCompare(b.term)).map((term, i) => (
-                <ScrollReveal key={term.slug} direction="up" delay={i * 0.03}>
-                  <Link href={`/glossary/${term.slug}`} className="block group">
-                    <Card className="p-6 transition-all group-hover:border-coral/30">
-                      <div className="flex items-start justify-between gap-4">
-                        <div>
-                          <div className="flex items-center gap-3 mb-2">
-                            <h2 className="font-heading text-lg text-off-white group-hover:text-coral transition-colors">
-                              {term.term}
-                            </h2>
-                            <Badge pillar={term.pillar} size="sm" />
+            {/* A-Z letter navigation */}
+            <nav aria-label="Alphabetical index" className="flex flex-wrap gap-1.5 justify-center mb-10">
+              {alphabet.map(letter => {
+                const hasTerms = grouped.has(letter);
+                return hasTerms ? (
+                  <a
+                    key={letter}
+                    href={`#letter-${letter}`}
+                    className="w-8 h-8 flex items-center justify-center rounded text-sm font-heading text-off-white hover:text-coral hover:bg-white/[0.06] transition-colors"
+                  >
+                    {letter}
+                  </a>
+                ) : (
+                  <span
+                    key={letter}
+                    className="w-8 h-8 flex items-center justify-center rounded text-sm font-heading text-foreground-subtle/40"
+                  >
+                    {letter}
+                  </span>
+                );
+              })}
+            </nav>
+
+            {/* Grouped terms */}
+            {Array.from(grouped.entries()).map(([letter, terms]) => (
+              <div key={letter} id={`letter-${letter}`} className="scroll-mt-24">
+                <p className="font-heading text-coral text-xs tracking-widest mb-4 mt-10 first:mt-0">
+                  {letter}
+                </p>
+                <div className="space-y-4">
+                  {terms.map((term, i) => (
+                    <ScrollReveal key={term.slug} direction="up" delay={i * 0.03}>
+                      <Link href={`/glossary/${term.slug}`} className="block group">
+                        <Card className="p-6 transition-all group-hover:border-coral/30">
+                          <div className="flex items-start justify-between gap-4">
+                            <div>
+                              <div className="flex items-center gap-3 mb-2">
+                                <h2 className="font-heading text-lg text-off-white group-hover:text-coral transition-colors">
+                                  {term.term}
+                                </h2>
+                                <Badge pillar={term.pillar} size="sm" />
+                              </div>
+                              <p className="text-foreground-muted text-sm leading-relaxed">
+                                {term.definition}
+                              </p>
+                            </div>
+                            <span className="text-coral shrink-0 mt-1">→</span>
                           </div>
-                          <p className="text-foreground-muted text-sm leading-relaxed">
-                            {term.definition}
-                          </p>
-                        </div>
-                        <span className="text-coral shrink-0 mt-1">→</span>
-                      </div>
-                    </Card>
-                  </Link>
-                </ScrollReveal>
-              ))}
-            </div>
+                        </Card>
+                      </Link>
+                    </ScrollReveal>
+                  ))}
+                </div>
+              </div>
+            ))}
           </Container>
         </Section>
 
