@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { HowToSchema } from "@/components/seo/HowToSchema";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
   title: "Masters FTP Benchmark — Where Your Watts Place You by Age",
@@ -29,6 +30,31 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Dataset",
+          name: "Masters Cycling FTP Benchmarks by Age Group",
+          description:
+            "Age-graded FTP and W/kg percentile data for trained amateur masters cyclists, segmented by five-year age group (40-44 through 65+) and gender. Built from Coggan power-profile data adjusted for masters populations.",
+          url: "https://roadmancycling.com/tools/masters-ftp-benchmark",
+          identifier: "roadman-masters-ftp-benchmarks-2026",
+          creator: { "@id": ENTITY_IDS.organization },
+          publisher: { "@id": ENTITY_IDS.organization },
+          isAccessibleForFree: true,
+          license: "https://creativecommons.org/licenses/by/4.0/",
+          variableMeasured: [
+            "FTP (watts)",
+            "W/kg",
+            "Age group",
+            "Gender",
+            "Percentile ranking",
+          ],
+          temporalCoverage: "2024/2026",
+          measurementTechnique:
+            "Heuristic distributions built from Coggan power-profile data adjusted for amateur masters populations and age-graded decline observed across published results.",
+        }}
+      />
       <SoftwareApplicationSchema
         name="Masters FTP Benchmark Calculator"
         description="Free browser-based FTP benchmark for masters cyclists. Calculates W/kg and percentile ranking among trained amateur masters cyclists by age group and gender."

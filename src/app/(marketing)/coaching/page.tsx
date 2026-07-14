@@ -3,10 +3,11 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ENTITY_IDS } from "@/lib/brand-facts";
+import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 import { SocialProof } from "@/components/proof";
-import { getTestimonialsByName } from "@/lib/testimonials";
+import { TESTIMONIALS, getTestimonialsByName } from "@/lib/testimonials";
+import { getMemberReviews } from "@/lib/member-reviews";
 import { BeforeAfterMetrics, type MetricRow } from "@/components/proof";
 import { JourneyBlock } from "@/components/journey";
 import { SEGMENT_DISPLAY_ORDER } from "@/lib/coaching-segments";
@@ -211,6 +212,60 @@ const testimonials = [
   },
 ];
 
+// ── Review structured data ─────────────────────────────────────────
+// Built from real testimonials visible on this page: hero proof point,
+// IN THEIR WORDS row, FROM CYCLISTS WHO'VE DONE IT section, and the
+// coaching member reviews rendered by <SocialProof>. Every quote is an
+// unambiguous positive endorsement — rating each 5/5 follows the same
+// policy as the /proof page. Uses the same Service @id so Google
+// resolves a single coaching entity across /coaching and /proof.
+const coachingPageTestimonials = [
+  "Damien Maloney",
+  "David Lundy",
+  "Chris O'Connor",
+  "Rob Capps",
+  "Daniel Stone",
+  "Brian Morrissey",
+  "Gregory Gross",
+]
+  .map((n) => TESTIMONIALS.find((t) => t.name === n))
+  .filter((t): t is NonNullable<typeof t> => t !== undefined);
+
+const coachingMemberReviews = getMemberReviews("coaching");
+
+const reviewSchema = [
+  ...coachingPageTestimonials.map((t) => ({
+    "@type": "Review",
+    author: {
+      "@type": "Person",
+      name: t.name,
+      ...(t.detail ? { description: t.detail } : {}),
+    },
+    reviewBody: t.quote,
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: 5,
+      bestRating: 5,
+      worstRating: 1,
+    },
+  })),
+  ...coachingMemberReviews.map((r) => ({
+    "@type": "Review",
+    author: {
+      "@type": "Person",
+      name: r.author,
+      ...(r.location ? { description: r.location } : {}),
+    },
+    reviewBody: r.quote,
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: 5,
+      bestRating: 5,
+      worstRating: 1,
+    },
+  })),
+];
+
 export default function CoachingPage() {
   return (
     <>
@@ -218,6 +273,7 @@ export default function CoachingPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "Service",
+          "@id": `${SITE_ORIGIN}/#coaching-service`,
           name: "Roadman Cycling Coaching",
           description:
             "Personalised online cycling coaching across five pillars: training, nutrition, strength, recovery, and community. Built on 1,400+ expert podcast conversations.",
@@ -243,7 +299,27 @@ export default function CoachingPage() {
               "1:1 personalised coaching across training, nutrition, strength, recovery, and community",
             availability: "https://schema.org/InStock",
             url: "https://roadmancycling.com/apply",
+            priceSpecification: {
+              "@type": "UnitPriceSpecification",
+              price: "195",
+              priceCurrency: "USD",
+              billingDuration: "P1M",
+              billingIncrement: 1,
+              referenceQuantity: {
+                "@type": "QuantitativeValue",
+                value: 1,
+                unitCode: "MON",
+              },
+            },
           },
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: 5,
+            bestRating: 5,
+            worstRating: 1,
+            reviewCount: reviewSchema.length,
+          },
+          review: reviewSchema,
         }}
       />
       {/* Course schema — structured coaching programme with instructor + delivery mode */}
@@ -266,6 +342,20 @@ export default function CoachingPage() {
             price: "195",
             priceCurrency: "USD",
             category: "Monthly subscription",
+            availability: "https://schema.org/InStock",
+            url: "https://roadmancycling.com/apply",
+            priceSpecification: {
+              "@type": "UnitPriceSpecification",
+              price: "195",
+              priceCurrency: "USD",
+              billingDuration: "P1M",
+              billingIncrement: 1,
+              referenceQuantity: {
+                "@type": "QuantitativeValue",
+                value: 1,
+                unitCode: "MON",
+              },
+            },
           },
         }}
       />

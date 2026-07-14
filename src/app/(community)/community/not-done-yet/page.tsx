@@ -148,6 +148,19 @@ export default function NotDoneYetPage() {
             price: tier.price.replace("$", "").replace(",", ""),
             priceCurrency: "USD",
             availability: "https://schema.org/InStock",
+            url: "https://roadmancycling.com/apply",
+            priceSpecification: {
+              "@type": "UnitPriceSpecification",
+              price: tier.price.replace("$", "").replace(",", ""),
+              priceCurrency: "USD",
+              billingDuration: tier.period === "/year" ? "P1Y" : "P1M",
+              billingIncrement: 1,
+              referenceQuantity: {
+                "@type": "QuantitativeValue",
+                value: 1,
+                unitCode: tier.period === "/year" ? "ANN" : "MON",
+              },
+            },
           })),
           // NOTE: no Review markup here. We collect narrative testimonials,
           // not star ratings, and Google requires a `reviewRating` on every

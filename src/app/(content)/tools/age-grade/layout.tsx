@@ -4,6 +4,7 @@ import { HowToSchema } from "@/components/seo/HowToSchema";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ToolSchemas } from "@/components/seo/ToolSchemas";
 import { ToolJourney } from "@/components/features/tools/ToolJourney";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
   title: "Cycling Age Grade Calculator | Roadman Cycling",
@@ -32,6 +33,32 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <ToolSchemas slug="age-grade" />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Dataset",
+          name: "Cycling Age-Graded Performance Data",
+          description:
+            "Age-adjusted W/kg percentile tables for trained masters cyclists by five-year age group (20-29 through 65+) and gender, with research-backed age-decline curves for trained versus sedentary populations.",
+          url: "https://roadmancycling.com/tools/age-grade",
+          identifier: "roadman-age-grade-performance-2026",
+          creator: { "@id": ENTITY_IDS.organization },
+          publisher: { "@id": ENTITY_IDS.organization },
+          isAccessibleForFree: true,
+          license: "https://creativecommons.org/licenses/by/4.0/",
+          variableMeasured: [
+            "W/kg",
+            "Age factor",
+            "Peak-equivalent power",
+            "Age group",
+            "Gender",
+            "Percentile",
+          ],
+          temporalCoverage: "2024/2026",
+          measurementTechnique:
+            "Age-decline model based on Pino et al. (2021), Allen & Coggan power profiling, Hawkins & Wiswell VO2max decline research, and Pollock et al. trained-athlete data.",
+        }}
+      />
       <SoftwareApplicationSchema
         name="Cycling Age Grade Calculator"
         description="Free browser-based age-grading calculator for cyclists. Compare your current FTP to your peak potential, see where you rank among trained masters cyclists in your age group, and find out how much performance structured training preserves."
