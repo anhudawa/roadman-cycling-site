@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
 import { getAllEpisodes, getTranscriptSlugs } from "@/lib/podcast";
+import { EPISODES_PER_PAGE } from "@/components/features/podcast/PodcastPagination";
 import { getAllGuests } from "@/lib/guests";
 import { getAllTopicSlugs } from "@/lib/topics";
 import { getAllClusterHubPaths } from "@/lib/cluster-hubs";
@@ -100,7 +101,19 @@ export default async function sitemap(props: {
 function buildStaticSitemap(): MetadataRoute.Sitemap {
   return [
     { url: BASE_URL, lastModified: new Date(), changeFrequency: "daily", priority: 1.0 },
-    { url: `${BASE_URL}/podcast`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    // Podcast archive — page 1 is the canonical /podcast, subsequent
+    // pages use ?page=N. Each paginated page gets its own sitemap entry
+    // so crawlers can discover the full archive without client-side JS.
+    ...(() => {
+      const totalEpisodes = getAllEpisodes().length;
+      const totalPages = Math.max(1, Math.ceil(totalEpisodes / EPISODES_PER_PAGE));
+      return Array.from({ length: totalPages }, (_, i) => ({
+        url: i === 0 ? `${BASE_URL}/podcast` : `${BASE_URL}/podcast?page=${i + 1}`,
+        lastModified: new Date(),
+        changeFrequency: "weekly" as const,
+        priority: i === 0 ? 0.8 : 0.6,
+      }));
+    })(),
     { url: `${BASE_URL}/podcast/transcripts`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
     { url: `${BASE_URL}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/tools`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },

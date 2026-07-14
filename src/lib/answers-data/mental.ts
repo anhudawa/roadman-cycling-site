@@ -1056,7 +1056,7 @@ export const mentalAnswers: AnswerPage[] = [
     ],
     relatedTopics: [
       { label: "Why Has My Cycling Plateaued?", href: "/answers/how-to-stop-plateauing" },
-      { label: "FTP Plateau Breakthrough", href: "/blog/ftp-plateau-breakthrough" },
+      { label: "Why Your FTP Is Stuck — Five Causes", href: "/blog/why-your-ftp-is-stuck-five-causes" },
       { label: "Signs of Cycling Fatigue", href: "/blog/cycling-fatigue-signs-when-to-back-off" },
       { label: "Cycling Overtraining Signs Guide", href: "/blog/cycling-overtraining-signs-guide" },
       { label: "Cycling Recovery — Topic Hub", href: "/topics/cycling-recovery" },

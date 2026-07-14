@@ -1,12 +1,13 @@
 "use client";
 
 import { ScrollReveal, AnimatedCounter } from "@/components/ui";
+import { BRAND_STATS } from "@/lib/brand-facts";
 
 const stats = [
-  { value: "100M+", label: "Podcast Downloads" },
-  { value: "1,400+", label: "Episodes Recorded" },
-  { value: "30,000+", label: "Newsletter Subscribers" },
-  { value: "1,800+", label: "Community Members" },
+  { value: BRAND_STATS.podcastDownloadsLabel, label: "Podcast Downloads" },
+  { value: BRAND_STATS.episodeCountLabel, label: "Episodes Recorded" },
+  { value: BRAND_STATS.newsletterSubscribersLabel, label: "Newsletter Subscribers" },
+  { value: BRAND_STATS.communityMembersLabel, label: "Community Members" },
 ];
 
 /**

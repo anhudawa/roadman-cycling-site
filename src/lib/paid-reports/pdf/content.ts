@@ -230,7 +230,7 @@ function renderSection(
         title: section.title ?? "The room matters",
         paragraphs: [
           "You can keep guessing alone, or plug into a group that's already solving the same problem you are. Not Done Yet is the paid community — 113 serious amateur cyclists, Anthony on weekly calls, TrainingPeaks training plans, the accountability you've been missing.",
-          "Free tier if you want to lurk first: the Roadman Cycling Clubhouse — 1,800+ members, weekly Q&A, no cost.",
+          "Free tier if you want to lurk first: the Roadman Cycling Clubhouse — 2,100+ members, weekly Q&A, no cost.",
         ],
       };
 

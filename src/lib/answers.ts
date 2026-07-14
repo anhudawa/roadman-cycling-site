@@ -941,7 +941,7 @@ const BASE_ANSWERS: AnswerPage[] = [
       "ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler",
     ],
     relatedTopics: [
-      { label: "FTP Plateau — How to Break Through", href: "/blog/ftp-plateau-breakthrough" },
+      { label: "Why Your FTP Is Stuck — Five Causes", href: "/blog/why-your-ftp-is-stuck-five-causes" },
       { label: "Take the Plateau Diagnostic", href: "/plateau" },
       { label: "How do I improve my FTP?", href: "/answers/how-to-improve-ftp" },
       {

@@ -67,7 +67,7 @@ export const PERSONAS: Record<PersonaSlug, PersonaContent> = {
     blogSlugs: [
       "polarised-training-cycling-guide",
       "stephen-seiler-research-polarised-training-lessons",
-      "ftp-plateau-breakthrough",
+      "why-your-ftp-is-stuck-five-causes",
     ],
     podcastSlugs: [
       "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",

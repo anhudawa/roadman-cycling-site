@@ -650,6 +650,25 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
       "cycling data",
     ],
   },
+  {
+    slug: "cycling-plateaus",
+    title: "Cycling Plateaus — Why You're Stuck and How to Break Through",
+    headline: "STUCK? HERE'S WHY — AND WHAT TO DO ABOUT IT",
+    ctaHeadline: "COACHING THAT FINDS THE LIMITER AND FIXES IT.",
+    description:
+      "Why cyclists plateau, how to diagnose the limiter, and evidence-based strategies to break through. FTP stalls, overtraining traps, grey-zone drift, and the recovery mistakes that masquerade as fitness problems — from the coaches and scientists behind 1,400+ Roadman episodes.",
+    pillar: "coaching",
+    keywords: [
+      "cycling plateau",
+      "ftp plateau",
+      "stuck cycling",
+      "cycling performance stall",
+      "break through cycling plateau",
+      "overtraining cycling",
+      "cycling not improving",
+      "why am i not getting faster cycling",
+    ],
+  },
 ];
 
 /** Map of topic slugs to relevant blog post slugs */
@@ -657,7 +676,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
   "ftp-training": [
     "ftp-training-zones-cycling-complete-guide",
     "how-to-improve-ftp-cycling",
-    "ftp-plateau-breakthrough",
     "sweet-spot-training-cycling",
     "sweet-spot-training-cycling-guide",
     "cycling-vo2max-intervals",
@@ -1356,7 +1374,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-training-full-time-job",
     "cycling-over-40-getting-faster",
     "cycling-over-50-training",
-    "ftp-plateau-breakthrough",
     "how-to-get-faster-cycling",
     "cycling-base-training-guide",
     "zone-2-training-complete-guide",
@@ -2215,6 +2232,54 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-aero-testing-without-wind-tunnel-guide",
     "cycling-groupset-electronic-vs-mechanical-guide",
   ],
+  "cycling-plateaus": [
+    "ftp-plateau-breakthrough",
+    "why-your-ftp-is-stuck-five-causes",
+    "cycling-training-plateaus-how-to-break-through-guide",
+    "cycling-overtraining-signs-guide",
+    "overtraining-vs-overreaching-cyclists",
+    "recognising-overtraining-cyclists-guide",
+    "cycling-recovering-from-overtraining-guide",
+    "more-volume-getting-slower-cycling-overtraining",
+    "cycling-chronic-fatigue-when-tiredness-persists-guide",
+    "biggest-training-mistakes-from-coaches",
+    "common-training-mistakes-from-1400-podcast-episodes",
+    "five-mistakes-self-coached-cyclists-make",
+    "self-coached-cyclist-mistakes",
+    "cycling-self-coaching-framework-guide",
+    "cycling-dealing-with-setbacks-guide",
+    "cycling-injury-comeback-rehab-guide",
+    "comeback-cyclist-12-week-return-plan",
+    "cycling-comeback-after-break-complete-guide",
+    "cycling-comeback-after-time-off-guide",
+    "cycling-returning-after-illness-guide",
+    "cycling-after-illness-rebuild-guide",
+    "cycling-motivation-consistency-guide",
+    "cycling-motivation-through-dark-months-guide",
+    "cycling-training-consistency-beats-intensity-guide",
+    "cycling-why-training-alone-doesnt-work-guide",
+    "personalised-cycling-training-plan-why-generic-plans-fail",
+    "cycling-progressive-overload-guide",
+    "detraining-after-40",
+    "cycling-deload-week-recovery-guide",
+    "mid-season-fitness-reset-cycling-guide",
+    "cycling-recovery-week-what-to-actually-do",
+    "recovery-readiness-self-assessment-cycling-guide",
+    "cycling-cortisol-stress-performance-guide",
+    "power-duration-curve-find-your-limiters",
+    "cycling-building-ftp-systematic-guide",
+    "cycling-rider-phenotype-strengths-guide",
+    "what-25-top-coaches-agree-on-about-ftp",
+    "training-load-management-cyclists-40s-50s",
+    "cycling-ctl-atl-tsb-explained-guide",
+    "cycling-structured-vs-unstructured-training-guide",
+    "cycling-iron-deficiency-performance-guide",
+    "sleep-debt-hrv-cycling-adaptation",
+    "cycling-mental-fatigue-brain-endurance-guide",
+    "cycling-fatigue-resistance-training-guide",
+    "how-to-improve-ftp-cycling",
+    "improve-ftp-cycling-evidence-based-methods",
+  ],
 };
 
 /** Cluster enrichment: tools, commercial path, related topics, featured posts, optional claim table */
@@ -2228,7 +2293,13 @@ const TOPIC_ENRICHMENT: Record<string, {
   claimsCaption?: string;
 }> = {
   "masters-cycling": {
-    tools: [],
+    tools: [
+      { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+      { slug: "age-grade", title: "Cycling Age Grade Calculator", href: "/tools/age-grade" },
+      { slug: "recovery-screen", title: "Recovery Readiness Screen", href: "/tools/recovery-screen" },
+      { slug: "training-readiness", title: "Training Readiness Check", href: "/tools/training-readiness" },
+      { slug: "body-composition", title: "Cycling Body Composition Calculator", href: "/tools/body-composition" },
+    ],
     commercialPath: "/coaching",
     relatedTopics: ["cycling-recovery", "cycling-strength-conditioning", "cycling-training-plans"],
     featuredPostSlugs: [
@@ -2252,7 +2323,7 @@ const TOPIC_ENRICHMENT: Record<string, {
     featuredPostSlugs: [
       "ftp-training-zones-cycling-complete-guide",
       "how-to-improve-ftp-cycling",
-      "ftp-plateau-breakthrough",
+      "why-your-ftp-is-stuck-five-causes",
     ],
     claimsCaption:
       "Where Roadman lands on the recurring questions about FTP — and the strength of evidence behind each position.",
@@ -2297,6 +2368,7 @@ const TOPIC_ENRICHMENT: Record<string, {
       { slug: "race-weight", title: "Race Weight Calculator", href: "/tools/race-weight" },
       { slug: "hydration", title: "Hydration Calculator", href: "/tools/hydration" },
       { slug: "body-composition", title: "Body Composition Calculator", href: "/tools/body-composition" },
+      { slug: "fuel-planner", title: "Cycling Fuel Planner", href: "/tools/fuel-planner" },
     ],
     commercialPath: "/coaching",
     relatedTopics: ["cycling-weight-loss", "ftp-training"],
@@ -2317,6 +2389,7 @@ const TOPIC_ENRICHMENT: Record<string, {
       { slug: "sweet-spot", title: "Sweet Spot Calculator", href: "/tools/sweet-spot" },
       { slug: "age-grade", title: "Cycling Age Grade Calculator", href: "/tools/age-grade" },
       { slug: "interval-builder", title: "Interval Session Builder", href: "/tools/interval-builder" },
+      { slug: "race-predictor", title: "Race Time Predictor", href: "/tools/race-predictor" },
     ],
     commercialPath: "/plan",
     relatedTopics: ["ftp-training", "cycling-coaching"],
@@ -2342,7 +2415,10 @@ const TOPIC_ENRICHMENT: Record<string, {
     ],
   },
   "cycling-strength-conditioning": {
-    tools: [],
+    tools: [
+      { slug: "body-composition", title: "Cycling Body Composition Calculator", href: "/tools/body-composition" },
+      { slug: "training-readiness", title: "Training Readiness Check", href: "/tools/training-readiness" },
+    ],
     commercialPath: "/strength-training",
     relatedTopics: ["cycling-recovery", "ftp-training"],
     featuredPostSlugs: [
@@ -2509,6 +2585,7 @@ const TOPIC_ENRICHMENT: Record<string, {
       { slug: "power-speed", title: "Power↔Speed Calculator", href: "/tools/power-speed" },
       { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
       { slug: "wind-chill", title: "Wind Chill Calculator", href: "/tools/wind-chill" },
+      { slug: "race-predictor", title: "Race Time Predictor", href: "/tools/race-predictor" },
     ],
     commercialPath: "/coaching",
     relatedTopics: ["ftp-training", "cycling-weight-loss", "cycling-cadence"],
@@ -2553,6 +2630,8 @@ const TOPIC_ENRICHMENT: Record<string, {
       { slug: "fuelling", title: "In-Ride Fuelling Calculator", href: "/tools/fuelling" },
       { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
       { slug: "race-day-checklist", title: "Race Day Checklist", href: "/tools/race-day-checklist" },
+      { slug: "fuel-planner", title: "Cycling Fuel Planner", href: "/tools/fuel-planner" },
+      { slug: "race-predictor", title: "Race Time Predictor", href: "/tools/race-predictor" },
     ],
     commercialPath: "/coaching",
     relatedTopics: ["cycling-nutrition", "cycling-periodisation", "ftp-training"],
@@ -2617,6 +2696,7 @@ const TOPIC_ENRICHMENT: Record<string, {
   "ultra-endurance": {
     tools: [
       { slug: "fuelling", title: "In-Ride Fuelling Calculator", href: "/tools/fuelling" },
+      { slug: "fuel-planner", title: "Cycling Fuel Planner", href: "/tools/fuel-planner" },
     ],
     commercialPath: "/coaching",
     relatedTopics: ["gravel-cycling", "cycling-nutrition", "cycling-psychology"],
@@ -2704,6 +2784,21 @@ const TOPIC_ENRICHMENT: Record<string, {
       "cycling-metrics-explained",
     ],
   },
+  "cycling-plateaus": {
+    tools: [
+      { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
+      { slug: "training-load", title: "Training Load Calculator (CTL/ATL/TSB)", href: "/tools/training-load" },
+      { slug: "recovery-screen", title: "Recovery Readiness Screen", href: "/tools/recovery-screen" },
+      { slug: "training-readiness", title: "Training Readiness Check", href: "/tools/training-readiness" },
+    ],
+    commercialPath: "/go",
+    relatedTopics: ["ftp-training", "cycling-recovery", "cycling-coaching", "masters-cycling"],
+    featuredPostSlugs: [
+      "cycling-training-plateaus-how-to-break-through-guide",
+      "ftp-plateau-breakthrough",
+      "more-volume-getting-slower-cycling-overtraining",
+    ],
+  },
 };
 
 /** Keyword patterns for matching episodes to topics */
@@ -2746,6 +2841,8 @@ const TOPIC_EPISODE_KEYWORDS: Record<string, RegExp> = {
     /cycling.for.runners|runners?.{0,15}(?:turned|becom\w+|switch\w*|take.up|took.up).{0,12}(?:cycling|cyclist|the.bike)|from.runn(?:ing|er).to.(?:cycling|the.bike)|ex.?runner|former.runner|running.background|injur(?:ed|y).{0,20}cross.?train|cross.?train\w*.{0,20}(?:injur|runner)|\bduathlon\b/i,
   "cycling-tech":
     /garmin|wahoo|\bgps\b|bike computer|head unit|power meter|cycling computer|edge \d|elemnt|karoo|hammerhead|srm|stages power|quarq|smart trainer|tss|ctl|atl|tsb|normalised power|normalized power/i,
+  "cycling-plateaus":
+    /plateau|stuck|stagnation|stall|breakthrough|overtrain|overreach|not.?improv|going.?backwards|lost.?form|fatigue.?syndrome|burnout/i,
 };
 
 /**
@@ -3493,6 +3590,28 @@ const TOPIC_FAQS: Record<string, TopicFAQ[]> = {
       question: "Do I need a power meter to train properly?",
       answer:
         "No — heart rate and RPE built a lot of fast cyclists long before power meters existed. A power meter removes guesswork and is worth the cost once you're training with real structure, but it's an upgrade, not a prerequisite.",
+    },
+  ],
+  "cycling-plateaus": [
+    {
+      question: "Why has my cycling performance plateaued?",
+      answer:
+        "Most plateaus trace to one of five causes: grey-zone training (too much moderate intensity, too little easy and hard), inadequate recovery, under-fuelling, accumulated life stress, or a training plan that never changes stimulus. Identifying which limiter applies to you is the first step — and more often than not, it's a recovery or lifestyle problem disguised as a fitness problem.",
+    },
+    {
+      question: "How do I know if I'm overtraining or just tired?",
+      answer:
+        "Normal fatigue clears within 48-72 hours. Overreaching persists for one to two weeks despite rest. True overtraining syndrome takes months to recover from and is accompanied by persistent performance decline, disrupted sleep, elevated resting heart rate, and low motivation. If a deload week doesn't restore your form, it's time to dig deeper.",
+    },
+    {
+      question: "How long does a cycling plateau usually last?",
+      answer:
+        "A training-driven plateau typically resolves within 4-8 weeks once the limiter is addressed — whether that's adding genuine recovery, changing the training stimulus, or fixing a fuelling gap. Plateaus that last longer often have a lifestyle root: chronic sleep debt, unmanaged stress, or an underlying health issue like iron deficiency.",
+    },
+    {
+      question: "What is the fastest way to break through a cycling plateau?",
+      answer:
+        "There's no shortcut, but the highest-leverage move is almost always more recovery, not more training. After that, audit your training polarity (are your easy days actually easy?), check your fuelling, and introduce a stimulus your body hasn't seen — VO2max intervals if you've been grinding sweet spot, or genuine Zone 2 volume if you've been smashing intervals every ride.",
     },
   ],
 };

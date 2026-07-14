@@ -94,8 +94,8 @@ export const BRAND_STATS = {
   newsletterSubscribersLongLabel: "30,000+",
   newsletterOpenRate: "65%+",
   // Free Skool community (the Roadman Clubhouse).
-  communityMembers: 1_800,
-  communityMembersLabel: "1,800+",
+  communityMembers: 2_100,
+  communityMembersLabel: "2,100+",
 } as const;
 
 /** Social / external profile URLs. Used for Organization.sameAs,

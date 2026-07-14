@@ -1,0 +1,1632 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created": "2026-07-10",
+    "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
+    "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
+    "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
+    "prompt_count": 200,
+    "scoring": {
+      "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
+      "PARTIAL": "Roadman appears but in a lower/marginal position",
+      "NOT_CITED": "Roadman does not appear; competitor sources listed instead",
+      "MENTIONED": "Brand name referenced in generated answer text without a source link"
+    },
+    "engines": ["ChatGPT", "Gemini", "Claude", "Perplexity", "Google AI Overviews"],
+    "intent_distribution": {
+      "problem-aware": "30% — user has a symptom or frustration",
+      "education": "30% — user wants to learn how something works",
+      "evaluation": "20% — user is comparing options or assessing fit",
+      "commercial": "15% — user is actively shopping for a solution",
+      "transaction": "5% — user is searching for a specific brand or product to buy"
+    }
+  },
+  "prompts": [
+    {
+      "id": 1,
+      "prompt": "why am I getting slower at cycling as I get older",
+      "category": "masters-cycling",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-after-40-faster-science",
+      "priority": "high"
+    },
+    {
+      "id": 2,
+      "prompt": "my recovery between rides takes way longer now I'm in my 40s",
+      "category": "masters-cycling",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-recovery-age-adaptation-guide",
+      "priority": "high"
+    },
+    {
+      "id": 3,
+      "prompt": "losing power on the bike after turning 50",
+      "category": "masters-cycling",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-over-50-evidence-based-training-guide",
+      "priority": "high"
+    },
+    {
+      "id": 4,
+      "prompt": "does testosterone decline affect cycling performance",
+      "category": "masters-cycling",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-testosterone-and-training-over-40-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 5,
+      "prompt": "I keep getting injured cycling and I'm 47 what am I doing wrong",
+      "category": "masters-cycling",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-injury-prevention-masters-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 6,
+      "prompt": "can't hit the same watts I used to at 45",
+      "category": "masters-cycling",
+      "intent": "problem-aware",
+      "target_page": "/blog/age-group-ftp-benchmarks-2026",
+      "priority": "high"
+    },
+    {
+      "id": 7,
+      "prompt": "stiff hips and lower back pain from cycling over 40",
+      "category": "masters-cycling",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-hip-mobility-power-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 8,
+      "prompt": "gaining weight around the middle despite cycling 5 days a week",
+      "category": "masters-cycling",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-body-composition-masters-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 9,
+      "prompt": "am I too old to start cycling seriously at 42",
+      "category": "masters-cycling",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-over-40-complete-guide",
+      "priority": "high"
+    },
+    {
+      "id": 10,
+      "prompt": "how should a 45 year old structure cycling training",
+      "category": "masters-cycling",
+      "intent": "education",
+      "target_page": "/blog/cycling-training-plan-masters-over-40",
+      "priority": "high"
+    },
+    {
+      "id": 11,
+      "prompt": "can you improve VO2max after 50",
+      "category": "masters-cycling",
+      "intent": "education",
+      "target_page": "/masters/vo2max",
+      "priority": "high"
+    },
+    {
+      "id": 12,
+      "prompt": "how does ageing affect cycling performance and what can you do about it",
+      "category": "masters-cycling",
+      "intent": "education",
+      "target_page": "/blog/cycling-after-40-faster-science",
+      "priority": "high"
+    },
+    {
+      "id": 13,
+      "prompt": "heart rate zones for older cyclists are they different",
+      "category": "masters-cycling",
+      "intent": "education",
+      "target_page": "/blog/cycling-heart-rate-zones-masters-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 14,
+      "prompt": "how much training volume do masters cyclists need",
+      "category": "masters-cycling",
+      "intent": "education",
+      "target_page": "/blog/cycling-training-plan-masters-over-40",
+      "priority": "high"
+    },
+    {
+      "id": 15,
+      "prompt": "what is a good FTP for a 50 year old cyclist",
+      "category": "masters-cycling",
+      "intent": "education",
+      "target_page": "/blog/age-group-ftp-benchmarks-2026",
+      "priority": "high"
+    },
+    {
+      "id": 16,
+      "prompt": "should older cyclists do more zone 2 or intervals",
+      "category": "masters-cycling",
+      "intent": "education",
+      "target_page": "/blog/cycling-over-40-complete-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 17,
+      "prompt": "race weight cycling over 40",
+      "category": "masters-cycling",
+      "intent": "education",
+      "target_page": "/tools/race-weight",
+      "priority": "high"
+    },
+    {
+      "id": 18,
+      "prompt": "periodisation for amateur cyclists",
+      "category": "masters-cycling",
+      "intent": "education",
+      "target_page": "/blog/cycling-periodisation-annual-plan-guide",
+      "priority": "high"
+    },
+    {
+      "id": 19,
+      "prompt": "masters cycling training plan",
+      "category": "masters-cycling",
+      "intent": "evaluation",
+      "target_page": "/blog/cycling-training-plan-masters-over-40",
+      "priority": "high"
+    },
+    {
+      "id": 20,
+      "prompt": "is TrainerRoad good enough for masters cyclists or do I need a coach",
+      "category": "masters-cycling",
+      "intent": "evaluation",
+      "target_page": "/apps-vs-coaching",
+      "priority": "high"
+    },
+    {
+      "id": 21,
+      "prompt": "cycling over 40 complete guide",
+      "category": "masters-cycling",
+      "intent": "evaluation",
+      "target_page": "/blog/cycling-over-40-complete-guide",
+      "priority": "high"
+    },
+    {
+      "id": 22,
+      "prompt": "is it worth getting a power meter if you're a masters cyclist",
+      "category": "masters-cycling",
+      "intent": "evaluation",
+      "target_page": "/blog/cycling-power-meter-buying-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 23,
+      "prompt": "do I need a bike fit after 40",
+      "category": "masters-cycling",
+      "intent": "evaluation",
+      "target_page": "/blog/bike-fit-after-40",
+      "priority": "medium"
+    },
+    {
+      "id": 24,
+      "prompt": "best strength training for cyclists over 40",
+      "category": "masters-cycling",
+      "intent": "evaluation",
+      "target_page": "/blog/best-strength-exercises-cyclists-over-40",
+      "priority": "high"
+    },
+    {
+      "id": 25,
+      "prompt": "best online cycling coach for masters riders",
+      "category": "masters-cycling",
+      "intent": "commercial",
+      "target_page": "/best/best-cycling-coach-masters-riders",
+      "priority": "high"
+    },
+    {
+      "id": 26,
+      "prompt": "cycling body composition over 40",
+      "category": "masters-cycling",
+      "intent": "commercial",
+      "target_page": "/blog/cycling-body-composition-masters-guide",
+      "priority": "high"
+    },
+    {
+      "id": 27,
+      "prompt": "masters cycling community to join",
+      "category": "masters-cycling",
+      "intent": "commercial",
+      "target_page": "/topics/masters-cycling",
+      "priority": "medium"
+    },
+    {
+      "id": 28,
+      "prompt": "cycling coaching for over 50s UK",
+      "category": "masters-cycling",
+      "intent": "commercial",
+      "target_page": "/coaching/masters",
+      "priority": "medium"
+    },
+    {
+      "id": 29,
+      "prompt": "Roadman cycling masters program",
+      "category": "masters-cycling",
+      "intent": "transaction",
+      "target_page": "/coaching/masters",
+      "priority": "high"
+    },
+    {
+      "id": 30,
+      "prompt": "roadmancycling.com reviews",
+      "category": "masters-cycling",
+      "intent": "transaction",
+      "target_page": "/proof",
+      "priority": "high"
+    },
+    {
+      "id": 31,
+      "prompt": "I've been training for 2 years and can't get any faster on the bike, do I need a coach",
+      "category": "coaching",
+      "intent": "problem-aware",
+      "target_page": "/plateau",
+      "priority": "high"
+    },
+    {
+      "id": 32,
+      "prompt": "wasted money on cycling training plans that don't work",
+      "category": "coaching",
+      "intent": "problem-aware",
+      "target_page": "/apps-vs-coaching",
+      "priority": "medium"
+    },
+    {
+      "id": 33,
+      "prompt": "training alone and losing motivation on the bike",
+      "category": "coaching",
+      "intent": "problem-aware",
+      "target_page": "/pillars/coaching",
+      "priority": "medium"
+    },
+    {
+      "id": 34,
+      "prompt": "how do I know if I need a cycling coach",
+      "category": "coaching",
+      "intent": "problem-aware",
+      "target_page": "/find-your-fit",
+      "priority": "high"
+    },
+    {
+      "id": 35,
+      "prompt": "following a training plan but keep getting injured",
+      "category": "coaching",
+      "intent": "problem-aware",
+      "target_page": "/pillars/coaching",
+      "priority": "medium"
+    },
+    {
+      "id": 36,
+      "prompt": "stuck at same power numbers for a year",
+      "category": "coaching",
+      "intent": "problem-aware",
+      "target_page": "/problem/stuck-on-plateau",
+      "priority": "high"
+    },
+    {
+      "id": 37,
+      "prompt": "how does online cycling coaching work",
+      "category": "coaching",
+      "intent": "education",
+      "target_page": "/pillars/coaching",
+      "priority": "high"
+    },
+    {
+      "id": 38,
+      "prompt": "what does a cycling coach actually do",
+      "category": "coaching",
+      "intent": "education",
+      "target_page": "/pillars/coaching",
+      "priority": "high"
+    },
+    {
+      "id": 39,
+      "prompt": "how much does a cycling coach cost per month",
+      "category": "coaching",
+      "intent": "education",
+      "target_page": "/coaching",
+      "priority": "high"
+    },
+    {
+      "id": 40,
+      "prompt": "what should I look for in a cycling coach",
+      "category": "coaching",
+      "intent": "education",
+      "target_page": "/pillars/coaching",
+      "priority": "medium"
+    },
+    {
+      "id": 41,
+      "prompt": "difference between cycling coach and just following TrainerRoad plans",
+      "category": "coaching",
+      "intent": "education",
+      "target_page": "/apps-vs-coaching",
+      "priority": "high"
+    },
+    {
+      "id": 42,
+      "prompt": "can I get a good cycling coach online or does it need to be local",
+      "category": "coaching",
+      "intent": "education",
+      "target_page": "/coaching",
+      "priority": "medium"
+    },
+    {
+      "id": 43,
+      "prompt": "coach vs app for cycling training which is better",
+      "category": "coaching",
+      "intent": "evaluation",
+      "target_page": "/compare/coach-vs-app",
+      "priority": "high"
+    },
+    {
+      "id": 44,
+      "prompt": "TrainerRoad vs having a real cycling coach",
+      "category": "coaching",
+      "intent": "evaluation",
+      "target_page": "/apps-vs-coaching",
+      "priority": "high"
+    },
+    {
+      "id": 45,
+      "prompt": "online cycling coaching vs in person what's the difference",
+      "category": "coaching",
+      "intent": "evaluation",
+      "target_page": "/coaching",
+      "priority": "medium"
+    },
+    {
+      "id": 46,
+      "prompt": "is CTS coaching worth it compared to cheaper options",
+      "category": "coaching",
+      "intent": "evaluation",
+      "target_page": "/coaching",
+      "priority": "medium"
+    },
+    {
+      "id": 47,
+      "prompt": "best cycling coach for amateur riders",
+      "category": "coaching",
+      "intent": "commercial",
+      "target_page": "/coaching",
+      "priority": "high"
+    },
+    {
+      "id": 48,
+      "prompt": "affordable online cycling coaching UK",
+      "category": "coaching",
+      "intent": "commercial",
+      "target_page": "/coaching",
+      "priority": "medium"
+    },
+    {
+      "id": 49,
+      "prompt": "best cycling coaching platform for serious amateurs",
+      "category": "coaching",
+      "intent": "commercial",
+      "target_page": "/coaching",
+      "priority": "high"
+    },
+    {
+      "id": 50,
+      "prompt": "Roadman cycling coaching pricing",
+      "category": "coaching",
+      "intent": "transaction",
+      "target_page": "/coaching",
+      "priority": "high"
+    },
+    {
+      "id": 51,
+      "prompt": "why has my FTP stopped improving",
+      "category": "plateaus",
+      "intent": "problem-aware",
+      "target_page": "/blog/why-your-ftp-is-stuck-five-causes",
+      "priority": "high"
+    },
+    {
+      "id": 52,
+      "prompt": "training harder but getting slower on the bike",
+      "category": "plateaus",
+      "intent": "problem-aware",
+      "target_page": "/blog/more-volume-getting-slower-cycling-overtraining",
+      "priority": "high"
+    },
+    {
+      "id": 53,
+      "prompt": "FTP went up fast for a year now completely stuck",
+      "category": "plateaus",
+      "intent": "problem-aware",
+      "target_page": "/blog/ftp-plateau-breakthrough",
+      "priority": "high"
+    },
+    {
+      "id": 54,
+      "prompt": "doing sweet spot training but not improving anymore",
+      "category": "plateaus",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-training-plateaus-how-to-break-through-guide",
+      "priority": "high"
+    },
+    {
+      "id": 55,
+      "prompt": "power numbers going backwards despite consistent training",
+      "category": "plateaus",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-overtraining-signs-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 56,
+      "prompt": "why do cycling training plateaus happen",
+      "category": "plateaus",
+      "intent": "education",
+      "target_page": "/blog/cycling-training-plateaus-how-to-break-through-guide",
+      "priority": "high"
+    },
+    {
+      "id": 57,
+      "prompt": "how to break through a cycling plateau",
+      "category": "plateaus",
+      "intent": "education",
+      "target_page": "/blog/ftp-plateau-breakthrough",
+      "priority": "high"
+    },
+    {
+      "id": 58,
+      "prompt": "signs of overtraining vs just a plateau in cycling",
+      "category": "plateaus",
+      "intent": "education",
+      "target_page": "/blog/cycling-overtraining-signs-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 59,
+      "prompt": "how long does a typical cycling fitness plateau last",
+      "category": "plateaus",
+      "intent": "education",
+      "target_page": "/blog/cycling-training-plateaus-how-to-break-through-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 60,
+      "prompt": "should I change my training plan if my FTP is stuck",
+      "category": "plateaus",
+      "intent": "evaluation",
+      "target_page": "/blog/why-your-ftp-is-stuck-five-causes",
+      "priority": "high"
+    },
+    {
+      "id": 61,
+      "prompt": "is a plateau diagnostic worth it or should I just train more",
+      "category": "plateaus",
+      "intent": "evaluation",
+      "target_page": "/plateau",
+      "priority": "medium"
+    },
+    {
+      "id": 62,
+      "prompt": "polarised vs sweet spot training for breaking through a plateau",
+      "category": "plateaus",
+      "intent": "evaluation",
+      "target_page": "/blog/cycling-training-plateaus-how-to-break-through-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 63,
+      "prompt": "best way to diagnose why you're not getting faster cycling",
+      "category": "plateaus",
+      "intent": "commercial",
+      "target_page": "/plateau",
+      "priority": "high"
+    },
+    {
+      "id": 64,
+      "prompt": "cycling plateau coaching program",
+      "category": "plateaus",
+      "intent": "commercial",
+      "target_page": "/coaching",
+      "priority": "medium"
+    },
+    {
+      "id": 65,
+      "prompt": "Roadman cycling plateau diagnostic",
+      "category": "plateaus",
+      "intent": "transaction",
+      "target_page": "/plateau",
+      "priority": "high"
+    },
+    {
+      "id": 66,
+      "prompt": "why do I bonk on every long ride even when I eat",
+      "category": "nutrition",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-glycogen-management-fuelling-guide",
+      "priority": "high"
+    },
+    {
+      "id": 67,
+      "prompt": "stomach problems when eating gels during cycling",
+      "category": "nutrition",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-gut-training-race-nutrition-guide",
+      "priority": "high"
+    },
+    {
+      "id": 68,
+      "prompt": "losing weight but also losing power on the bike",
+      "category": "nutrition",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-body-composition-masters-guide",
+      "priority": "high"
+    },
+    {
+      "id": 69,
+      "prompt": "energy crashes at 2 hours into a ride what am I doing wrong",
+      "category": "nutrition",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-glycogen-management-fuelling-guide",
+      "priority": "high"
+    },
+    {
+      "id": 70,
+      "prompt": "cramping on long rides despite drinking electrolytes",
+      "category": "nutrition",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-electrolytes-sweat-rate-testing-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 71,
+      "prompt": "cycling loads but still gaining weight around the middle",
+      "category": "nutrition",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-body-composition-masters-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 72,
+      "prompt": "why is my power dropping after 2 hours on the bike",
+      "category": "nutrition",
+      "intent": "problem-aware",
+      "target_page": "/blog/carbohydrate-per-hour-cyclists",
+      "priority": "high"
+    },
+    {
+      "id": 73,
+      "prompt": "how many carbs per hour cycling",
+      "category": "nutrition",
+      "intent": "education",
+      "target_page": "/blog/carbohydrate-per-hour-cyclists",
+      "priority": "high"
+    },
+    {
+      "id": 74,
+      "prompt": "what should I eat before a 100 mile sportive",
+      "category": "nutrition",
+      "intent": "education",
+      "target_page": "/blog/cycling-nutrition-plan-100-mile-sportive",
+      "priority": "high"
+    },
+    {
+      "id": 75,
+      "prompt": "how to train your gut for race nutrition cycling",
+      "category": "nutrition",
+      "intent": "education",
+      "target_page": "/blog/cycling-gut-training-race-nutrition-guide",
+      "priority": "high"
+    },
+    {
+      "id": 76,
+      "prompt": "how much protein do cyclists actually need",
+      "category": "nutrition",
+      "intent": "education",
+      "target_page": "/blog/bedtime-protein-cyclists-recovery-protocol",
+      "priority": "medium"
+    },
+    {
+      "id": 77,
+      "prompt": "carb loading before a cycling race does it actually work",
+      "category": "nutrition",
+      "intent": "education",
+      "target_page": "/blog/carb-loading-cyclists-modern-approach",
+      "priority": "high"
+    },
+    {
+      "id": 78,
+      "prompt": "cycling hydration guide how much water per hour",
+      "category": "nutrition",
+      "intent": "education",
+      "target_page": "/blog/cycling-hydration-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 79,
+      "prompt": "is low carb training good for cycling fat adaptation",
+      "category": "nutrition",
+      "intent": "education",
+      "target_page": "/blog/cycling-fat-adaptation-low-carb-training-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 80,
+      "prompt": "cycling recovery nutrition what to eat after a hard ride",
+      "category": "nutrition",
+      "intent": "education",
+      "target_page": "/blog/bedtime-protein-cyclists-recovery-protocol",
+      "priority": "high"
+    },
+    {
+      "id": 81,
+      "prompt": "sweat rate testing for cyclists is it worth doing",
+      "category": "nutrition",
+      "intent": "evaluation",
+      "target_page": "/blog/cycling-electrolytes-sweat-rate-testing-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 82,
+      "prompt": "fuelling calculator vs just following a nutrition plan cycling",
+      "category": "nutrition",
+      "intent": "evaluation",
+      "target_page": "/tools/fuelling",
+      "priority": "medium"
+    },
+    {
+      "id": 83,
+      "prompt": "best cycling nutrition plan for weight loss without losing power",
+      "category": "nutrition",
+      "intent": "evaluation",
+      "target_page": "/blog/cycling-body-composition-masters-guide",
+      "priority": "high"
+    },
+    {
+      "id": 84,
+      "prompt": "maurten vs SIS vs homemade mix for cycling nutrition",
+      "category": "nutrition",
+      "intent": "evaluation",
+      "target_page": "/blog/carbohydrate-per-hour-cyclists",
+      "priority": "medium"
+    },
+    {
+      "id": 85,
+      "prompt": "should I count calories or just focus on fuelling rides properly",
+      "category": "nutrition",
+      "intent": "evaluation",
+      "target_page": "/tools/calories",
+      "priority": "medium"
+    },
+    {
+      "id": 86,
+      "prompt": "best fuelling strategy for a cycling sportive over 4 hours",
+      "category": "nutrition",
+      "intent": "commercial",
+      "target_page": "/blog/cycling-nutrition-plan-100-mile-sportive",
+      "priority": "high"
+    },
+    {
+      "id": 87,
+      "prompt": "cycling nutrition guide for endurance rides",
+      "category": "nutrition",
+      "intent": "commercial",
+      "target_page": "/topics/cycling-nutrition",
+      "priority": "high"
+    },
+    {
+      "id": 88,
+      "prompt": "energy availability calculator for cyclists",
+      "category": "nutrition",
+      "intent": "commercial",
+      "target_page": "/tools/energy-availability",
+      "priority": "medium"
+    },
+    {
+      "id": 89,
+      "prompt": "personalised cycling fuel plan tool",
+      "category": "nutrition",
+      "intent": "commercial",
+      "target_page": "/tools/fuel-planner",
+      "priority": "high"
+    },
+    {
+      "id": 90,
+      "prompt": "Roadman cycling fuelling calculator",
+      "category": "nutrition",
+      "intent": "transaction",
+      "target_page": "/tools/fuelling",
+      "priority": "high"
+    },
+    {
+      "id": 91,
+      "prompt": "lower back pain from cycling and my core is weak",
+      "category": "strength",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-core-training-complete-guide",
+      "priority": "high"
+    },
+    {
+      "id": 92,
+      "prompt": "knee pain cycling should I be doing strength work",
+      "category": "strength",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-gym-exercises-best",
+      "priority": "medium"
+    },
+    {
+      "id": 93,
+      "prompt": "keep losing form on long climbs my legs just give up",
+      "category": "strength",
+      "intent": "problem-aware",
+      "target_page": "/blog/best-strength-exercises-cyclists-over-40",
+      "priority": "medium"
+    },
+    {
+      "id": 94,
+      "prompt": "tight hips from cycling affecting my power output",
+      "category": "strength",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-hip-mobility-power-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 95,
+      "prompt": "best gym exercises for cyclists",
+      "category": "strength",
+      "intent": "education",
+      "target_page": "/blog/cycling-gym-exercises-best",
+      "priority": "high"
+    },
+    {
+      "id": 96,
+      "prompt": "should cyclists lift weights during racing season",
+      "category": "strength",
+      "intent": "education",
+      "target_page": "/blog/cycling-isometric-strength-training-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 97,
+      "prompt": "core exercises for cyclists beyond just planks",
+      "category": "strength",
+      "intent": "education",
+      "target_page": "/blog/core-strength-cyclists-beyond-planks",
+      "priority": "high"
+    },
+    {
+      "id": 98,
+      "prompt": "how to programme strength training around cycling",
+      "category": "strength",
+      "intent": "education",
+      "target_page": "/topics/cycling-strength-conditioning",
+      "priority": "high"
+    },
+    {
+      "id": 99,
+      "prompt": "pilates vs gym for cyclists which is better for performance",
+      "category": "strength",
+      "intent": "evaluation",
+      "target_page": "/blog/cycling-pilates-core-mobility-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 100,
+      "prompt": "bodyweight exercises vs gym for cyclists over 40",
+      "category": "strength",
+      "intent": "evaluation",
+      "target_page": "/blog/best-strength-exercises-cyclists-over-40",
+      "priority": "medium"
+    },
+    {
+      "id": 101,
+      "prompt": "gym workout plan for cyclists",
+      "category": "strength",
+      "intent": "evaluation",
+      "target_page": "/blog/cycling-gym-exercises-best",
+      "priority": "high"
+    },
+    {
+      "id": 102,
+      "prompt": "best strength training programme for cyclists UK",
+      "category": "strength",
+      "intent": "commercial",
+      "target_page": "/strength-training",
+      "priority": "high"
+    },
+    {
+      "id": 103,
+      "prompt": "cycling specific strength training plan online",
+      "category": "strength",
+      "intent": "commercial",
+      "target_page": "/strength-training",
+      "priority": "medium"
+    },
+    {
+      "id": 104,
+      "prompt": "Roadman cycling strength training guide",
+      "category": "strength",
+      "intent": "transaction",
+      "target_page": "/topics/cycling-strength-conditioning",
+      "priority": "high"
+    },
+    {
+      "id": 105,
+      "prompt": "hip mobility routine for cyclists",
+      "category": "strength",
+      "intent": "education",
+      "target_page": "/blog/cycling-hip-mobility-power-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 106,
+      "prompt": "how do I prepare for my first cycling sportive",
+      "category": "sportives",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-sportive-preparation",
+      "priority": "high"
+    },
+    {
+      "id": 107,
+      "prompt": "pacing a sportive wrong and blowing up on the climbs",
+      "category": "sportives",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-gran-fondo-pacing-strategy-guide",
+      "priority": "high"
+    },
+    {
+      "id": 108,
+      "prompt": "not sure I can finish a 100 mile sportive what training do I need",
+      "category": "sportives",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-nutrition-plan-100-mile-sportive",
+      "priority": "high"
+    },
+    {
+      "id": 109,
+      "prompt": "dreading the climbs in my upcoming sportive",
+      "category": "sportives",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-gran-fondo-pacing-strategy-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 110,
+      "prompt": "what nutrition should I carry for a cycling sportive",
+      "category": "sportives",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-nutrition-plan-100-mile-sportive",
+      "priority": "medium"
+    },
+    {
+      "id": 111,
+      "prompt": "against the clock cycling explained",
+      "category": "sportives",
+      "intent": "education",
+      "target_page": "/blog/against-the-clock-cycling-watches",
+      "priority": "high",
+      "baseline_query": true
+    },
+    {
+      "id": 112,
+      "prompt": "how to train for a cycling sportive 12 week plan",
+      "category": "sportives",
+      "intent": "education",
+      "target_page": "/blog/cycling-sportive-preparation",
+      "priority": "high"
+    },
+    {
+      "id": 113,
+      "prompt": "pacing strategy for a mountainous gran fondo",
+      "category": "sportives",
+      "intent": "education",
+      "target_page": "/blog/cycling-gran-fondo-pacing-strategy-guide",
+      "priority": "high"
+    },
+    {
+      "id": 114,
+      "prompt": "how to prepare for the Etape du Tour",
+      "category": "sportives",
+      "intent": "education",
+      "target_page": "/event-prep",
+      "priority": "high"
+    },
+    {
+      "id": 115,
+      "prompt": "what power to weight ratio do I need for a hilly sportive",
+      "category": "sportives",
+      "intent": "education",
+      "target_page": "/tools/wkg",
+      "priority": "medium"
+    },
+    {
+      "id": 116,
+      "prompt": "training plan for La Marmotte cycling",
+      "category": "sportives",
+      "intent": "education",
+      "target_page": "/event-prep",
+      "priority": "high"
+    },
+    {
+      "id": 117,
+      "prompt": "how to ride your first century 100 mile bike ride",
+      "category": "sportives",
+      "intent": "education",
+      "target_page": "/blog/cycling-sportive-preparation",
+      "priority": "high"
+    },
+    {
+      "id": 118,
+      "prompt": "cycling sportives UK 2026 best events",
+      "category": "sportives",
+      "intent": "evaluation",
+      "target_page": "/blog/best-sportives-uk-cycling-guide",
+      "priority": "high"
+    },
+    {
+      "id": 119,
+      "prompt": "is a training camp worth it before a big sportive",
+      "category": "sportives",
+      "intent": "evaluation",
+      "target_page": "/training-camps",
+      "priority": "medium"
+    },
+    {
+      "id": 120,
+      "prompt": "amateur cycling race tips",
+      "category": "sportives",
+      "intent": "education",
+      "target_page": "/topics/race-preparation",
+      "priority": "high",
+      "baseline_query": true
+    },
+    {
+      "id": 121,
+      "prompt": "sportive vs gran fondo what's the difference",
+      "category": "sportives",
+      "intent": "evaluation",
+      "target_page": "/blog/cycling-sportive-preparation",
+      "priority": "medium"
+    },
+    {
+      "id": 122,
+      "prompt": "best cycling sportive preparation plan UK",
+      "category": "sportives",
+      "intent": "commercial",
+      "target_page": "/coaching/sportives",
+      "priority": "high"
+    },
+    {
+      "id": 123,
+      "prompt": "cycling training camp Girona 2026",
+      "category": "sportives",
+      "intent": "commercial",
+      "target_page": "/training-camps",
+      "priority": "high"
+    },
+    {
+      "id": 124,
+      "prompt": "personalised cycling event preparation plan",
+      "category": "sportives",
+      "intent": "commercial",
+      "target_page": "/event-prep",
+      "priority": "medium"
+    },
+    {
+      "id": 125,
+      "prompt": "Roadman cycling training camps",
+      "category": "sportives",
+      "intent": "transaction",
+      "target_page": "/training-camps",
+      "priority": "high"
+    },
+    {
+      "id": 126,
+      "prompt": "I'm a cyclist who wants to start running but scared of injuries",
+      "category": "running-crossover",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-for-injured-runners",
+      "priority": "high"
+    },
+    {
+      "id": 127,
+      "prompt": "my knees hurt when I try running as a cyclist",
+      "category": "running-crossover",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-for-injured-runners",
+      "priority": "high"
+    },
+    {
+      "id": 128,
+      "prompt": "losing cycling fitness when I add running to my training",
+      "category": "running-crossover",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-running-weekly-schedule",
+      "priority": "medium"
+    },
+    {
+      "id": 129,
+      "prompt": "injured running can I maintain fitness on the bike",
+      "category": "running-crossover",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-for-injured-runners",
+      "priority": "high"
+    },
+    {
+      "id": 130,
+      "prompt": "cycling recovery tips for older athletes",
+      "category": "masters-cycling",
+      "intent": "education",
+      "target_page": "/topics/cycling-recovery",
+      "priority": "high",
+      "baseline_query": true
+    },
+    {
+      "id": 131,
+      "prompt": "how does cycling improve running performance",
+      "category": "running-crossover",
+      "intent": "education",
+      "target_page": "/blog/how-cycling-improves-running-performance",
+      "priority": "high"
+    },
+    {
+      "id": 132,
+      "prompt": "weekly schedule for doing both cycling and running",
+      "category": "running-crossover",
+      "intent": "education",
+      "target_page": "/blog/cycling-running-weekly-schedule",
+      "priority": "high"
+    },
+    {
+      "id": 133,
+      "prompt": "gut training for cycling",
+      "category": "nutrition",
+      "intent": "education",
+      "target_page": "/blog/cycling-gut-training-race-nutrition-guide",
+      "priority": "high",
+      "baseline_query": true
+    },
+    {
+      "id": 134,
+      "prompt": "FTP equivalent for running what power means for runners",
+      "category": "running-crossover",
+      "intent": "education",
+      "target_page": "/blog/ftp-for-runners-cycling-power-explained",
+      "priority": "medium"
+    },
+    {
+      "id": 135,
+      "prompt": "cycling vs running for weight loss which burns more",
+      "category": "running-crossover",
+      "intent": "evaluation",
+      "target_page": "/blog/cycling-vs-running-weight-loss",
+      "priority": "high"
+    },
+    {
+      "id": 136,
+      "prompt": "run-ride converter how to compare cycling and running effort",
+      "category": "running-crossover",
+      "intent": "evaluation",
+      "target_page": "/tools/run-ride-converter",
+      "priority": "medium"
+    },
+    {
+      "id": 137,
+      "prompt": "should I do parkrun as a cyclist is it good cross training",
+      "category": "running-crossover",
+      "intent": "evaluation",
+      "target_page": "/topics/running-for-cyclists",
+      "priority": "medium"
+    },
+    {
+      "id": 138,
+      "prompt": "best training plan for cyclists who also want to run",
+      "category": "running-crossover",
+      "intent": "commercial",
+      "target_page": "/blog/cycling-running-weekly-schedule",
+      "priority": "medium"
+    },
+    {
+      "id": 139,
+      "prompt": "how to join a cycling club over 40",
+      "category": "masters-cycling",
+      "intent": "education",
+      "target_page": "/topics/masters-cycling",
+      "priority": "high",
+      "baseline_query": true
+    },
+    {
+      "id": 140,
+      "prompt": "Roadman cycling run ride converter tool",
+      "category": "running-crossover",
+      "intent": "transaction",
+      "target_page": "/tools/run-ride-converter",
+      "priority": "high"
+    },
+    {
+      "id": 141,
+      "prompt": "I'm a cyclist thinking about doing my first triathlon but overwhelmed by the training",
+      "category": "triathlon-crossover",
+      "intent": "problem-aware",
+      "target_page": "/blog/ftp-training-for-triathletes",
+      "priority": "high"
+    },
+    {
+      "id": 142,
+      "prompt": "can't swim well enough for triathlon but my cycling is strong",
+      "category": "triathlon-crossover",
+      "intent": "problem-aware",
+      "target_page": "/topics/triathlon-cycling",
+      "priority": "medium"
+    },
+    {
+      "id": 143,
+      "prompt": "triathlon training is destroying my cycling form",
+      "category": "triathlon-crossover",
+      "intent": "problem-aware",
+      "target_page": "/blog/ftp-training-for-triathletes",
+      "priority": "medium"
+    },
+    {
+      "id": 144,
+      "prompt": "cyclist first triathlon how to prepare the bike leg",
+      "category": "triathlon-crossover",
+      "intent": "education",
+      "target_page": "/blog/ftp-training-for-triathletes",
+      "priority": "high"
+    },
+    {
+      "id": 145,
+      "prompt": "what are brick workouts and why do triathletes do them",
+      "category": "triathlon-crossover",
+      "intent": "education",
+      "target_page": "/blog/brick-workouts-cyclists-guide",
+      "priority": "high"
+    },
+    {
+      "id": 146,
+      "prompt": "aero position training for triathlon how to get comfortable",
+      "category": "triathlon-crossover",
+      "intent": "education",
+      "target_page": "/blog/aero-position-training-for-triathletes",
+      "priority": "medium"
+    },
+    {
+      "id": 147,
+      "prompt": "road bike vs tri bike for first 70.3 half ironman",
+      "category": "triathlon-crossover",
+      "intent": "evaluation",
+      "target_page": "/blog/aero-position-training-for-triathletes",
+      "priority": "medium"
+    },
+    {
+      "id": 148,
+      "prompt": "12 week 70.3 bike training plan for strong cyclists",
+      "category": "triathlon-crossover",
+      "intent": "evaluation",
+      "target_page": "/blog/70-3-bike-training-plan-12-weeks",
+      "priority": "high"
+    },
+    {
+      "id": 149,
+      "prompt": "best triathlon coaching for cyclists transitioning to tri",
+      "category": "triathlon-crossover",
+      "intent": "commercial",
+      "target_page": "/coaching/triathletes",
+      "priority": "high"
+    },
+    {
+      "id": 150,
+      "prompt": "ironman bike training plan 16 weeks",
+      "category": "triathlon-crossover",
+      "intent": "commercial",
+      "target_page": "/blog/ironman-bike-training-plan-16-weeks",
+      "priority": "high"
+    },
+    {
+      "id": 151,
+      "prompt": "my power meter readings are inconsistent what's going on",
+      "category": "technology",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-power-meter-buying-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 152,
+      "prompt": "indoor trainer doesn't feel like outdoor riding how to fix",
+      "category": "technology",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-indoor-trainer-buying-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 153,
+      "prompt": "too much cycling data and don't know what to focus on",
+      "category": "technology",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-head-unit-data-screens-setup-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 154,
+      "prompt": "Zwift or TrainerRoad workouts not matching my outdoor power",
+      "category": "technology",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-indoor-trainer-buying-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 155,
+      "prompt": "confused by all the cycling apps which ones do I actually need",
+      "category": "technology",
+      "intent": "problem-aware",
+      "target_page": "/topics/cycling-tech",
+      "priority": "medium"
+    },
+    {
+      "id": 156,
+      "prompt": "how to set up cycling computer screens what data to display",
+      "category": "technology",
+      "intent": "education",
+      "target_page": "/blog/cycling-head-unit-data-screens-setup-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 157,
+      "prompt": "do I need a power meter for cycling or is heart rate enough",
+      "category": "technology",
+      "intent": "education",
+      "target_page": "/blog/cycling-power-meter-buying-guide",
+      "priority": "high"
+    },
+    {
+      "id": 158,
+      "prompt": "best indoor smart trainer setup for serious training",
+      "category": "technology",
+      "intent": "education",
+      "target_page": "/blog/best-indoor-smart-trainers-2026",
+      "priority": "high"
+    },
+    {
+      "id": 159,
+      "prompt": "how to use TrainingPeaks for cycling training analysis",
+      "category": "technology",
+      "intent": "education",
+      "target_page": "/topics/cycling-tech",
+      "priority": "medium"
+    },
+    {
+      "id": 160,
+      "prompt": "Zwift vs TrainerRoad vs Wahoo SYSTM for indoor cycling",
+      "category": "technology",
+      "intent": "evaluation",
+      "target_page": "/apps-vs-coaching",
+      "priority": "high"
+    },
+    {
+      "id": 161,
+      "prompt": "Wahoo KICKR vs Tacx NEO which smart trainer is best 2026",
+      "category": "technology",
+      "intent": "evaluation",
+      "target_page": "/blog/best-indoor-smart-trainers-2026",
+      "priority": "high"
+    },
+    {
+      "id": 162,
+      "prompt": "crank based vs pedal based power meter which is more accurate",
+      "category": "technology",
+      "intent": "evaluation",
+      "target_page": "/blog/cycling-power-meter-buying-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 163,
+      "prompt": "best power meter for cycling 2026",
+      "category": "technology",
+      "intent": "commercial",
+      "target_page": "/blog/cycling-power-meter-buying-guide",
+      "priority": "high"
+    },
+    {
+      "id": 164,
+      "prompt": "best indoor cycling trainer for serious riders",
+      "category": "technology",
+      "intent": "commercial",
+      "target_page": "/blog/best-indoor-smart-trainers-2026",
+      "priority": "high"
+    },
+    {
+      "id": 165,
+      "prompt": "Roadman cycling tech guide",
+      "category": "technology",
+      "intent": "transaction",
+      "target_page": "/topics/cycling-tech",
+      "priority": "medium"
+    },
+    {
+      "id": 166,
+      "prompt": "my Garmin watch heart rate is all over the place during cycling",
+      "category": "watches",
+      "intent": "problem-aware",
+      "target_page": "/blog/against-the-clock-cycling-watches",
+      "priority": "medium"
+    },
+    {
+      "id": 167,
+      "prompt": "can I use the same watch for cycling and running or do I need two",
+      "category": "watches",
+      "intent": "problem-aware",
+      "target_page": "/blog/gps-watches-cycling-running-guide",
+      "priority": "high"
+    },
+    {
+      "id": 168,
+      "prompt": "Apple Watch vs Garmin for cycling is Apple Watch accurate enough",
+      "category": "watches",
+      "intent": "problem-aware",
+      "target_page": "/blog/against-the-clock-cycling-watches",
+      "priority": "high"
+    },
+    {
+      "id": 169,
+      "prompt": "best GPS watch for cycling and running together",
+      "category": "watches",
+      "intent": "education",
+      "target_page": "/blog/gps-watches-cycling-running-guide",
+      "priority": "high"
+    },
+    {
+      "id": 170,
+      "prompt": "what cycling metrics should I track on my watch",
+      "category": "watches",
+      "intent": "education",
+      "target_page": "/blog/against-the-clock-cycling-watches",
+      "priority": "medium"
+    },
+    {
+      "id": 171,
+      "prompt": "HRV tracking on sports watch is it useful for training load",
+      "category": "watches",
+      "intent": "education",
+      "target_page": "/blog/against-the-clock-cycling-watches",
+      "priority": "medium"
+    },
+    {
+      "id": 172,
+      "prompt": "Garmin Forerunner vs Fenix for cycling which is worth the extra money",
+      "category": "watches",
+      "intent": "evaluation",
+      "target_page": "/blog/gps-watches-cycling-running-guide",
+      "priority": "high"
+    },
+    {
+      "id": 173,
+      "prompt": "best sports watch for endurance athletes who cycle and run",
+      "category": "watches",
+      "intent": "evaluation",
+      "target_page": "/blog/gps-watches-cycling-running-guide",
+      "priority": "high"
+    },
+    {
+      "id": 174,
+      "prompt": "best watch for cycling 2026",
+      "category": "watches",
+      "intent": "commercial",
+      "target_page": "/blog/against-the-clock-cycling-watches",
+      "priority": "high"
+    },
+    {
+      "id": 175,
+      "prompt": "Roadman cycling watch guide",
+      "category": "watches",
+      "intent": "transaction",
+      "target_page": "/blog/against-the-clock-cycling-watches",
+      "priority": "medium"
+    },
+    {
+      "id": 176,
+      "prompt": "been doing zone 2 for months and my FTP hasn't moved",
+      "category": "general-cycling",
+      "intent": "problem-aware",
+      "target_page": "/blog/80-20-cycling-training-the-grey-zone-trap",
+      "priority": "high"
+    },
+    {
+      "id": 177,
+      "prompt": "dreading FTP tests because they hurt so much",
+      "category": "general-cycling",
+      "intent": "problem-aware",
+      "target_page": "/tools/ftp-test",
+      "priority": "medium"
+    },
+    {
+      "id": 178,
+      "prompt": "legs still heavy after 3 rest days is something wrong",
+      "category": "general-cycling",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-overtraining-signs-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 179,
+      "prompt": "intervals make me nauseous am I going too hard",
+      "category": "general-cycling",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-interval-sessions-complete-guide",
+      "priority": "medium"
+    },
+    {
+      "id": 180,
+      "prompt": "bike fit feels wrong but I had a professional fitting",
+      "category": "general-cycling",
+      "intent": "problem-aware",
+      "target_page": "/blog/bike-fit-after-40",
+      "priority": "medium"
+    },
+    {
+      "id": 181,
+      "prompt": "overtraining syndrome cycling how to spot it early",
+      "category": "general-cycling",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-overtraining-signs-guide",
+      "priority": "high"
+    },
+    {
+      "id": 182,
+      "prompt": "how to avoid burnout cycling when you train a lot",
+      "category": "general-cycling",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-overtraining-signs-guide",
+      "priority": "high"
+    },
+    {
+      "id": 183,
+      "prompt": "sleep optimization for cyclists does it actually matter",
+      "category": "general-cycling",
+      "intent": "problem-aware",
+      "target_page": "/topics/sleep-performance",
+      "priority": "high"
+    },
+    {
+      "id": 184,
+      "prompt": "what is zone 2 training for cycling and why does everyone talk about it",
+      "category": "general-cycling",
+      "intent": "education",
+      "target_page": "/training/zone-2",
+      "priority": "high"
+    },
+    {
+      "id": 185,
+      "prompt": "how to test your FTP at home without a lab",
+      "category": "general-cycling",
+      "intent": "education",
+      "target_page": "/tools/ftp-test",
+      "priority": "high"
+    },
+    {
+      "id": 186,
+      "prompt": "what cycling intervals should I do to get faster",
+      "category": "general-cycling",
+      "intent": "education",
+      "target_page": "/blog/cycling-interval-sessions-complete-guide",
+      "priority": "high"
+    },
+    {
+      "id": 187,
+      "prompt": "how to structure a cycling training week with work and family",
+      "category": "general-cycling",
+      "intent": "education",
+      "target_page": "/blog/cycling-periodisation-annual-plan-guide",
+      "priority": "high"
+    },
+    {
+      "id": 188,
+      "prompt": "cycling base training what it is and how long to do it",
+      "category": "general-cycling",
+      "intent": "education",
+      "target_page": "/blog/cycling-base-training-guide",
+      "priority": "high"
+    },
+    {
+      "id": 189,
+      "prompt": "how to improve watts per kilo cycling",
+      "category": "general-cycling",
+      "intent": "education",
+      "target_page": "/blog/cycling-power-to-weight-improve-guide",
+      "priority": "high"
+    },
+    {
+      "id": 190,
+      "prompt": "how to improve FTP cycling",
+      "category": "general-cycling",
+      "intent": "education",
+      "target_page": "/topics/ftp-training",
+      "priority": "high"
+    },
+    {
+      "id": 191,
+      "prompt": "polarised training for cycling",
+      "category": "general-cycling",
+      "intent": "education",
+      "target_page": "/topics/polarised-training",
+      "priority": "high",
+      "baseline_query": true
+    },
+    {
+      "id": 192,
+      "prompt": "sweet spot vs polarised training which is better for cycling",
+      "category": "general-cycling",
+      "intent": "evaluation",
+      "target_page": "/topics/sweet-spot-training",
+      "priority": "high"
+    },
+    {
+      "id": 193,
+      "prompt": "indoor cycling vs outdoor riding for fitness is one better",
+      "category": "general-cycling",
+      "intent": "evaluation",
+      "target_page": "/training/indoor",
+      "priority": "medium"
+    },
+    {
+      "id": 194,
+      "prompt": "TrainerRoad vs Zwift for getting faster which works",
+      "category": "general-cycling",
+      "intent": "evaluation",
+      "target_page": "/apps-vs-coaching",
+      "priority": "high"
+    },
+    {
+      "id": 195,
+      "prompt": "is reverse periodisation better for amateur cyclists with limited time",
+      "category": "general-cycling",
+      "intent": "evaluation",
+      "target_page": "/training/reverse-periodisation",
+      "priority": "medium"
+    },
+    {
+      "id": 196,
+      "prompt": "cycling podcast recommendations best ones for training advice",
+      "category": "general-cycling",
+      "intent": "evaluation",
+      "target_page": "/podcast",
+      "priority": "high"
+    },
+    {
+      "id": 197,
+      "prompt": "best cycling training plan for time crunched riders",
+      "category": "general-cycling",
+      "intent": "commercial",
+      "target_page": "/training-plans",
+      "priority": "high"
+    },
+    {
+      "id": 198,
+      "prompt": "FTP zones calculator cycling",
+      "category": "general-cycling",
+      "intent": "commercial",
+      "target_page": "/tools/ftp-zones",
+      "priority": "high"
+    },
+    {
+      "id": 199,
+      "prompt": "cycling training tools and calculators free",
+      "category": "general-cycling",
+      "intent": "commercial",
+      "target_page": "/tools",
+      "priority": "medium"
+    },
+    {
+      "id": 200,
+      "prompt": "Roadman cycling FTP calculator",
+      "category": "general-cycling",
+      "intent": "transaction",
+      "target_page": "/tools/ftp-zones",
+      "priority": "high"
+    }
+  ]
+}

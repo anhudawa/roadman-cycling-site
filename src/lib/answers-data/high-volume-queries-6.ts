@@ -11,7 +11,7 @@ export const highVolumeQuery6Answers: AnswerPage[] = [
     seoTitle: "Yoga for Cyclists: How Often and What Style Works Best",
     seoDescription:
       "Two to three yoga sessions per week of 20-30 minutes is the sweet spot for most cyclists. Here is what the evidence says about frequency, style, and timing around rides.",
-    pillar: "training",
+    pillar: "strength",
     directAnswer:
       "2-3 sessions per week of 20-30 minutes each is enough for most cyclists to see meaningful improvements in hip mobility, thoracic extension, and recovery quality. Daily sessions are unnecessary and can interfere with training adaptations if done too aggressively. A short 10-minute flow after easy rides and a longer 30-minute session on a rest day is a practical structure that fits around a typical training week without adding fatigue.",
     keyTakeaways: [
@@ -116,7 +116,7 @@ export const highVolumeQuery6Answers: AnswerPage[] = [
     seoTitle: "Best Resistance Band Exercises for Cyclists: 6 Moves That Work",
     seoDescription:
       "Resistance bands give cyclists effective strength work without gym access. Here are the six best band exercises targeting glutes, core, and hip stability for better power and injury prevention.",
-    pillar: "training",
+    pillar: "strength",
     directAnswer:
       "6 resistance band exercises performed 2-3 times per week are enough to target the muscle groups cyclists neglect most. Banded clamshells, lateral walks, pallof presses, pull-aparts, glute bridges, and standing hip abductions address the glute, hip, core, and upper back weaknesses that limit power output and cause overuse injuries. Each session takes 15-20 minutes and requires nothing more than a long loop band and a mini band.",
     keyTakeaways: [
@@ -221,7 +221,7 @@ export const highVolumeQuery6Answers: AnswerPage[] = [
     seoTitle: "Core Exercises for Cyclists at Home: No Equipment Needed",
     seoDescription:
       "A 15-minute bodyweight core routine done 3 times per week builds the pelvic stability cyclists need. Here are the best exercises, sets, reps, and common form mistakes to avoid.",
-    pillar: "training",
+    pillar: "strength",
     directAnswer:
       "3 sessions per week of 15 minutes each is the minimum effective dose for meaningful core strength gains. The best home exercises for cyclists are dead bugs, side planks, bird dogs, and pallof press variations — all anti-movement patterns that train the core the way it functions on the bike: resisting rotation and extension under load. Standard crunches and sit-ups are poor choices because they train spinal flexion, which cyclists already have too much of.",
     keyTakeaways: [
@@ -326,7 +326,7 @@ export const highVolumeQuery6Answers: AnswerPage[] = [
     seoTitle: "HIIT Off the Bike for Cyclists: Helpful or Harmful?",
     seoDescription:
       "Off-bike HIIT can complement cycling training but often adds unnecessary fatigue. Here is when it helps, when it hurts, and how to structure it for masters cyclists.",
-    pillar: "training",
+    pillar: "strength",
     directAnswer:
       "1-2 off-bike HIIT sessions per week can benefit cyclists during the off-season or recovery phases, but they should replace, not add to, hard cycling sessions during the competitive season. The main risk is accumulated fatigue: a 30-minute kettlebell HIIT circuit generates significant muscular damage and central nervous system load that competes with your on-bike interval sessions. For masters cyclists over 40, recovery capacity is limited, and additional high-intensity work off the bike frequently does more harm than good.",
     keyTakeaways: [
@@ -431,7 +431,7 @@ export const highVolumeQuery6Answers: AnswerPage[] = [
     seoTitle: "How to Set Up a Cycling Computer: Garmin and Wahoo Guide",
     seoDescription:
       "Setting up a new Garmin or Wahoo cycling computer takes 15-20 minutes. Here is the step-by-step process for pairing sensors, configuring data screens, and getting ride data right from the first session.",
-    pillar: "training",
+    pillar: "coaching",
     directAnswer:
       "15-20 minutes is all you need to get a new cycling computer ride-ready. The process covers three stages: initial setup (account, Wi-Fi, firmware update), sensor pairing (heart rate, power meter, speed, cadence), and data screen configuration (choosing which metrics display on each page). Both Garmin and Wahoo units follow broadly similar steps, and getting the data screens right before your first ride saves frustration later. The single most important step is updating firmware before your first ride — new units almost always ship with outdated software.",
     keyTakeaways: [
@@ -536,7 +536,7 @@ export const highVolumeQuery6Answers: AnswerPage[] = [
     seoTitle: "How to Clean a Bike Properly: Step-by-Step Guide",
     seoDescription:
       "A proper bike wash takes 15-20 minutes and extends component life significantly. Here is the correct method, products, and order of operations to clean your bike without damaging bearings or finish.",
-    pillar: "training",
+    pillar: "coaching",
     directAnswer:
       "15-20 minutes per wash is enough to keep a bike in excellent condition. The correct order is: rinse with low-pressure water, apply bike-specific degreaser to the drivetrain, scrub the cassette and chainrings with a brush, wash the frame with a soft sponge and bike shampoo, rinse again at low pressure, dry with a towel, and re-lube the chain. Never use a pressure washer — high-pressure water forces past seals into bearings and headsets, causing premature wear that costs far more than the time saved.",
     keyTakeaways: [
@@ -641,7 +641,7 @@ export const highVolumeQuery6Answers: AnswerPage[] = [
     seoTitle: "How to Lube a Bike Chain: Wet vs Dry Lube Guide",
     seoDescription:
       "Correct chain lubrication takes 5 minutes and can double drivetrain life. Here is how to choose between wet and dry lube, apply it correctly, and avoid the mistakes that accelerate wear.",
-    pillar: "training",
+    pillar: "coaching",
     directAnswer:
       "1 drop per link applied to a clean, dry chain is the correct method, and it takes under 5 minutes. Back-pedal slowly while applying lube to the inner plates of each link, let it soak for 5 minutes, then wipe off all excess with a clean rag. Use dry lube in summer (cleaner, attracts less dirt) and wet lube in winter (more durable in rain). Excess lube is the most common mistake — it attracts grit that acts as a grinding paste and accelerates chain and cassette wear dramatically.",
     keyTakeaways: [
@@ -746,7 +746,7 @@ export const highVolumeQuery6Answers: AnswerPage[] = [
     seoTitle: "How to Measure Bike Chain Wear: When to Replace Your Chain",
     seoDescription:
       "A chain checker tool gives you an instant read on chain stretch. Here is how to use one, what the wear limits mean for 11 and 12-speed drivetrains, and when replacement saves you money.",
-    pillar: "training",
+    pillar: "coaching",
     directAnswer:
       "0.5% elongation is the replacement threshold for 11 and 12-speed chains, and 0.75% for 10-speed and below. A chain checker tool costs 5-15 GBP and gives you an instant reading in seconds. Insert the tool into the chain under light tension — if it drops fully into the links, the chain has reached the wear limit and needs replacing. Checking every 500-1,000 km prevents a worn chain from damaging the cassette and chainrings, which cost 5-10 times more to replace than the chain itself.",
     keyTakeaways: [
@@ -1493,7 +1493,7 @@ export const highVolumeQuery6Answers: AnswerPage[] = [
     seoTitle: "Best Time of Day to Train Over 40: Circadian Performance Guide",
     seoDescription:
       "Afternoon training at 2-6 pm produces the highest peak power and lowest injury risk for masters cyclists. Here is what circadian science says about training timing and how to make mornings work when you have to.",
-    pillar: "training",
+    pillar: "coaching",
     directAnswer:
       "2-6 pm is the physiological sweet spot for peak performance in cyclists over 40. Core body temperature peaks in late afternoon, which increases muscle contractility, nerve conduction velocity, and joint lubrication — resulting in 3-5% higher power output and lower injury risk compared to early morning. However, the best time to train is the time you can train consistently. For most working adults, that means mornings or evenings, and the consistency gains far outweigh the marginal physiological advantage of afternoon training.",
     keyTakeaways: [
@@ -1598,7 +1598,7 @@ export const highVolumeQuery6Answers: AnswerPage[] = [
     seoTitle: "Masters Cycling Racing Categories: Ages, Rules, and How to Enter",
     seoDescription:
       "Masters cycling racing starts at age 40 and is divided into 5-year age bands. Here is how the categories work in the UK, how to get a racing licence, and what to expect at your first masters event.",
-    pillar: "racing",
+    pillar: "coaching",
     directAnswer:
       "40 is the starting age for masters cycling racing, with categories divided into 5-year bands: 40-44, 45-49, 50-54, 55-59, 60-64, and upward. In the UK, you need a British Cycling racing licence (from 40 GBP per year) and membership to enter sanctioned events. Masters road races, time trials, track events, and cyclocross all follow this age-banding system. Most masters racing is mixed-ability within each age band — there are no 2nd/3rd/4th category distinctions like open racing. You race against everyone in your 5-year bracket.",
     keyTakeaways: [
@@ -1703,7 +1703,7 @@ export const highVolumeQuery6Answers: AnswerPage[] = [
     seoTitle: "How to Clip In and Out Safely: Clipless Pedal Beginner Guide",
     seoDescription:
       "Learning to clip in and out of clipless pedals takes 30-60 minutes of practise. Here is the technique, the common mistakes, and how to avoid the infamous zero-speed fall.",
-    pillar: "training",
+    pillar: "coaching",
     directAnswer:
       "30-60 minutes of stationary practise is enough for most riders to develop reliable clipping in and out technique. Set your cleat tension to the lowest setting, find a wall or doorframe to lean against, and practise the heel-twist-out motion until it becomes automatic. The clip-out movement is a sharp outward heel rotation — push the heel away from the bike, not upward. Practise clipping out with both feet at least 50 times before riding on the road. The classic zero-speed topple happens because riders pull up instead of twisting out, or simply forget under pressure at a junction.",
     keyTakeaways: [
@@ -2018,7 +2018,7 @@ export const highVolumeQuery6Answers: AnswerPage[] = [
     seoTitle: "How to Ride on Rollers: Beginner Guide to Indoor Cycling Rollers",
     seoDescription:
       "Learning to ride on rollers takes 3-5 sessions of 15-20 minutes. Here is the technique, setup, and progression from first contact to confident indoor training.",
-    pillar: "training",
+    pillar: "coaching",
     directAnswer:
       "3-5 sessions of 15-20 minutes is enough for most cyclists to go from first-time wobble to confident roller riding. Start by placing the rollers in a doorway so you can hold the frame on both sides, use a gear that produces moderate resistance (39x17 or similar), look forward — never at the front wheel — and pedal smoothly at 85-95 rpm. The most important technique cue is to relax your grip and upper body: tension causes over-correction, which causes the wobble that makes people fall off. Rollers build pedalling smoothness, balance, and core stability that no turbo trainer can replicate.",
     keyTakeaways: [

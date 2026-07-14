@@ -7,14 +7,14 @@ import { ENTITY_IDS } from "@/lib/brand-facts";
 export const metadata: Metadata = {
   title: "Free Cycling Calculators & Tools — FTP, Fuelling, Weight",
   description:
-    "Ten free cycling tools built on the science discussed on the podcast. FTP zones, race weight, in-ride fuelling, tyre pressure, energy availability. Stop guessing.",
+    "30+ free cycling tools built on the science discussed on the podcast. FTP zones, race weight, in-ride fuelling, tyre pressure, energy availability, and more. Stop guessing.",
   alternates: {
     canonical: "https://roadmancycling.com/tools",
   },
   openGraph: {
     title: "Free Cycling Calculators & Tools — FTP, Fuelling, Weight",
     description:
-      "Ten free cycling tools built on the science discussed on the podcast. FTP zones, race weight, in-ride fuelling, tyre pressure, energy availability.",
+      "30+ free cycling tools built on the science discussed on the podcast. FTP zones, race weight, in-ride fuelling, tyre pressure, energy availability, and more.",
     type: "website",
     url: "https://roadmancycling.com/tools",
   },

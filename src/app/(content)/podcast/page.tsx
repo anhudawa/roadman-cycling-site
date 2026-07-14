@@ -1,72 +1,129 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SocialProof } from "@/components/proof";
 import { ScrollReveal } from "@/components/ui";
 import { getAllEpisodes } from "@/lib/podcast";
 import { PodcastSearch } from "@/components/features/podcast/PodcastSearch";
+import {
+  PodcastPagination,
+  EPISODES_PER_PAGE,
+} from "@/components/features/podcast/PodcastPagination";
 import { ENTITY_IDS, SITE_ORIGIN, BRAND_STATS, PODCAST } from "@/lib/brand-facts";
 
-export const metadata: Metadata = {
-  title: "Cycling Podcast Archive — Every Episode of Roadman",
-  description:
-    "Every episode of the Roadman Cycling Podcast. 100M+ podcast downloads. Seiler, Lorang, LeMond, Morton, Bigham — the conversations behind serious training.",
-  alternates: {
-    canonical: "https://roadmancycling.com/podcast",
-  },
-  openGraph: {
-    title: "Cycling Podcast Archive — Every Episode of Roadman",
-    description:
-      "Every episode of the Roadman Cycling Podcast. Seiler, Lorang, LeMond, Morton, Bigham — the conversations behind serious cycling training.",
-    type: "website",
-    url: "https://roadmancycling.com/podcast",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],
-  },
-};
+interface PodcastPageProps {
+  searchParams: Promise<{ page?: string }>;
+}
 
-export default function PodcastPage() {
-  const episodes = getAllEpisodes();
+function parsePage(raw?: string): number {
+  if (!raw) return 1;
+  const n = parseInt(raw, 10);
+  if (Number.isNaN(n) || n < 1) return 1;
+  return n;
+}
+
+export async function generateMetadata({
+  searchParams,
+}: PodcastPageProps): Promise<Metadata> {
+  const { page: rawPage } = await searchParams;
+  const page = parsePage(rawPage);
+
+  const suffix = page > 1 ? ` — Page ${page}` : "";
+  const canonical =
+    page === 1
+      ? "https://roadmancycling.com/podcast"
+      : `https://roadmancycling.com/podcast?page=${page}`;
+
+  // rel prev/next via alternates — Google deprecated <link rel="prev/next">
+  // in 2019 and relies on crawlable pagination links instead. The
+  // PodcastPagination component's anchor tags carry rel="prev" / rel="next"
+  // attributes, which is the effective replacement. We still express
+  // canonical correctly per page.
+  const alternates: Metadata["alternates"] = { canonical };
+
+  return {
+    title: `Cycling Podcast Archive — Every Episode of Roadman${suffix}`,
+    description:
+      "Every episode of the Roadman Cycling Podcast. 100M+ podcast downloads. Seiler, Lorang, LeMond, Morton, Bigham — the conversations behind serious training.",
+    alternates,
+    openGraph: {
+      title: `Cycling Podcast Archive — Every Episode of Roadman${suffix}`,
+      description:
+        "Every episode of the Roadman Cycling Podcast. Seiler, Lorang, LeMond, Morton, Bigham — the conversations behind serious cycling training.",
+      type: "website",
+      url: canonical,
+      images: [
+        {
+          url: "/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Roadman Cycling",
+        },
+      ],
+    },
+  };
+}
+
+export default async function PodcastPage({ searchParams }: PodcastPageProps) {
+  const { page: rawPage } = await searchParams;
+  const page = parsePage(rawPage);
+  const allEpisodes = getAllEpisodes();
+  const totalPages = Math.ceil(allEpisodes.length / EPISODES_PER_PAGE);
+
+  // 404 for out-of-range pages (but page 1 always valid even if empty)
+  if (page > totalPages && page !== 1) {
+    notFound();
+  }
+
+  const start = (page - 1) * EPISODES_PER_PAGE;
+  const end = start + EPISODES_PER_PAGE;
+  const episodes = allEpisodes.slice(start, end);
 
   return (
     <>
       {/* Augment the canonical PodcastSeries declared in OrganizationJsonLd
           with hub-page specifics (numberOfEpisodes, web feed, cross-platform
           same-as links). Same @id so crawlers merge this into one entity. */}
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "PodcastSeries",
-          "@id": ENTITY_IDS.podcast,
-          webFeed: `${SITE_ORIGIN}/feed/podcast`,
-          author: { "@id": ENTITY_IDS.person },
-          publisher: { "@id": ENTITY_IDS.organization },
-          inLanguage: "en",
-          genre: "Sports",
-          numberOfEpisodes: episodes.length,
-          sameAs: [
-            "https://open.spotify.com/show/2oCs3N4ahypwzzUrFqgUmC",
-            "https://podcasts.apple.com/us/podcast/the-roadman-cycling-podcast/id1224143549",
-            "https://youtube.com/@theroadmanpodcast",
-          ],
-        }}
-      />
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "ItemList",
-          name: "Latest Podcast Episodes",
-          itemListOrder: "https://schema.org/ItemListOrderDescending",
-          numberOfItems: Math.min(episodes.length, 20),
-          itemListElement: episodes.slice(0, 20).map((ep, i) => ({
-            "@type": "ListItem",
-            position: i + 1,
-            url: `https://roadmancycling.com/podcast/${ep.slug}`,
-            name: ep.title,
-          })),
-        }}
-      />
+      {page === 1 && (
+        <>
+          <JsonLd
+            data={{
+              "@context": "https://schema.org",
+              "@type": "PodcastSeries",
+              "@id": ENTITY_IDS.podcast,
+              webFeed: `${SITE_ORIGIN}/feed/podcast`,
+              author: { "@id": ENTITY_IDS.person },
+              publisher: { "@id": ENTITY_IDS.organization },
+              inLanguage: "en",
+              genre: "Sports",
+              numberOfEpisodes: allEpisodes.length,
+              sameAs: [
+                "https://open.spotify.com/show/2oCs3N4ahypwzzUrFqgUmC",
+                "https://podcasts.apple.com/us/podcast/the-roadman-cycling-podcast/id1224143549",
+                "https://youtube.com/@theroadmanpodcast",
+              ],
+            }}
+          />
+          <JsonLd
+            data={{
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              name: "Latest Podcast Episodes",
+              itemListOrder: "https://schema.org/ItemListOrderDescending",
+              numberOfItems: Math.min(allEpisodes.length, 20),
+              itemListElement: allEpisodes.slice(0, 20).map((ep, i) => ({
+                "@type": "ListItem",
+                position: i + 1,
+                url: `https://roadmancycling.com/podcast/${ep.slug}`,
+                name: ep.title,
+              })),
+            }}
+          />
+        </>
+      )}
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -126,7 +183,7 @@ export default function PodcastPage() {
             <p className="text-foreground-muted max-w-2xl mx-auto text-sm md:text-base mt-6 leading-relaxed">
               Showing{" "}
               <span className="text-off-white font-semibold">
-                {episodes.length} full-length episodes
+                {allEpisodes.length} full-length episodes
               </span>{" "}
               with transcripts and takeaways. The Roadman Podcast has{" "}
               <span className="text-off-white font-semibold">
@@ -167,18 +224,26 @@ export default function PodcastPage() {
         {/* Search + Episodes (Client Component) */}
         <Section background="charcoal">
           <Container>
-            <PodcastSearch episodes={episodes.map((ep) => ({
-              slug: ep.slug,
-              title: ep.title,
-              episodeNumber: ep.episodeNumber,
-              guest: ep.guest,
-              guestCredential: ep.guestCredential,
-              description: ep.description,
-              publishDate: ep.publishDate,
-              duration: ep.duration,
-              pillar: ep.pillar,
-              type: ep.type,
-            }))} />
+            <PodcastSearch
+              episodes={episodes.map((ep) => ({
+                slug: ep.slug,
+                title: ep.title,
+                episodeNumber: ep.episodeNumber,
+                guest: ep.guest,
+                guestCredential: ep.guestCredential,
+                description: ep.description,
+                publishDate: ep.publishDate,
+                duration: ep.duration,
+                pillar: ep.pillar,
+                type: ep.type,
+              }))}
+            />
+
+            {/* Server-rendered pagination */}
+            <PodcastPagination
+              currentPage={page}
+              totalPages={totalPages}
+            />
           </Container>
         </Section>
 

@@ -164,8 +164,8 @@ export const QUESTION_PAGES: QuestionPage[] = [
         href: "/answers/how-often-test-ftp",
       },
       {
-        label: "FTP Plateau — How to Break Through",
-        href: "/blog/ftp-plateau-breakthrough",
+        label: "Why Your FTP Is Stuck — Five Causes",
+        href: "/blog/why-your-ftp-is-stuck-five-causes",
       },
       {
         label: "Polarised vs Pyramidal Training",

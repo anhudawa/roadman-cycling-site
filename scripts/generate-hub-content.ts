@@ -57,7 +57,7 @@ const TOPICS: TopicDef[] = [
 
 // Topic → blog post slugs mapping
 const TOPIC_POST_MAP: Record<string, string[]> = {
-  "ftp-training": ["ftp-training-zones-cycling-complete-guide", "how-to-improve-ftp-cycling", "ftp-plateau-breakthrough", "sweet-spot-training-cycling", "cycling-vo2max-intervals"],
+  "ftp-training": ["ftp-training-zones-cycling-complete-guide", "how-to-improve-ftp-cycling", "why-your-ftp-is-stuck-five-causes", "sweet-spot-training-cycling", "cycling-vo2max-intervals"],
   "cycling-nutrition": ["cycling-in-ride-nutrition-guide", "cycling-nutrition-race-day-guide", "cycling-energy-gels-guide", "cycling-hydration-guide", "cycling-fasted-riding-myth"],
   "cycling-training-plans": ["cycling-periodisation-plan-guide", "polarised-training-cycling-guide", "cycling-base-training-guide", "zone-2-training-complete-guide", "cycling-training-full-time-job"],
   "cycling-recovery": ["cycling-recovery-tips", "cycling-sleep-performance-guide", "cycling-knee-pain-causes-fixes", "cycling-returning-after-break"],

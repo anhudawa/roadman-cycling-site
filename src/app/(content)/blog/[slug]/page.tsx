@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ClaimReviewSchema } from "@/components/seo/ClaimReviewSchema";
 import { HowToSchema } from "@/components/seo/HowToSchema";
 import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
+import { CONTENT_PILLARS } from "@/types";
 import { getPostBySlug, getAllSlugs, getRelatedPosts } from "@/lib/blog";
 import { getEpisodeBySlug } from "@/lib/podcast";
 import { getEntityBySlug } from "@/lib/entities";
@@ -516,6 +517,77 @@ export default async function BlogPostPage({
                 caption={post.claimsCaption}
               />
             )}
+
+            {/* Who this is for — audience descriptors rendered as a bullet
+                list, mirroring the answer-page pattern. Helps readers
+                self-select and gives AI crawlers explicit audience
+                signals. Only renders when whoFor frontmatter is set. */}
+            {post.whoFor && post.whoFor.length > 0 && (
+              <section
+                className="mt-8 mb-8 rounded-xl border border-white/10 bg-white/[0.03] p-5 md:p-6"
+                aria-labelledby={`whofor-${slug}`}
+              >
+                <p className="font-heading text-coral text-xs tracking-[0.3em] mb-3">
+                  WHO THIS IS FOR
+                </p>
+                <h2
+                  id={`whofor-${slug}`}
+                  className="font-heading text-off-white text-2xl mb-4"
+                >
+                  IS THIS YOU?
+                </h2>
+                <ul className="space-y-2 list-none p-0 m-0">
+                  {post.whoFor.map((item, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-3 text-foreground-muted text-sm md:text-base leading-relaxed"
+                    >
+                      <span className="text-coral mt-1 shrink-0" aria-hidden="true">
+                        ▸
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
+            {/* The Roadman View — editorial stance callout, mirroring the
+                answer-page pattern. Pillar-aware left border colour. Only
+                renders when roadmanView frontmatter is set. */}
+            {post.roadmanView && post.roadmanView.length > 0 && (() => {
+              const pillarColor = CONTENT_PILLARS[post.pillar].color;
+              return (
+                <section
+                  className="mt-8 mb-8 rounded-xl border-l-4 p-5 md:p-6"
+                  style={{
+                    borderColor: pillarColor,
+                    backgroundColor: `color-mix(in srgb, ${pillarColor} 5%, var(--color-charcoal))`,
+                  }}
+                  aria-labelledby={`view-${slug}`}
+                >
+                  <p
+                    className="font-heading text-xs tracking-[0.3em] mb-3"
+                    style={{ color: pillarColor }}
+                  >
+                    THE ROADMAN VIEW
+                  </p>
+                  <h2 id={`view-${slug}`} className="sr-only">
+                    The Roadman View
+                  </h2>
+                  <ul className="space-y-3 list-none p-0 m-0">
+                    {post.roadmanView.map((point, i) => (
+                      <li
+                        key={i}
+                        className="text-off-white text-base leading-relaxed"
+                      >
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              );
+            })()}
 
             {/* Primary topic hub link — declares the article's home in the
                 site's information architecture and gives readers a one-tap

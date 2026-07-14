@@ -2592,7 +2592,7 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
       "Effective cycling goals are specific, time-bound, and split into process and outcome targets. Here is how to set goals that actually drive training behaviour.",
     pillar: "coaching",
     directAnswer:
-      "Effective cycling goals combine an outcome target (what you want to achieve) with process goals (the daily and weekly actions that lead there). An outcome goal might be completing a 160 km sportive or raising FTP to 4.0 W/kg; the process goals are the three interval sessions per week and the nutrition plan that make it happen. Research by Dr Edwin Locke demonstrates that specific, challenging goals produce 20-25% better performance than vague aspirations like "get fitter." The framework is: set one outcome goal per 12-week block, break it into monthly milestones, define weekly process targets, and review progress every four weeks. Goals without timelines and measurement are wishes.",
+      "Effective cycling goals combine an outcome target (what you want to achieve) with process goals (the daily and weekly actions that lead there). An outcome goal might be completing a 160 km sportive or raising FTP to 4.0 W/kg; the process goals are the three interval sessions per week and the nutrition plan that make it happen. Research by Dr Edwin Locke demonstrates that specific, challenging goals produce 20-25% better performance than vague aspirations like \"get fitter.\" The framework is: set one outcome goal per 12-week block, break it into monthly milestones, define weekly process targets, and review progress every four weeks. Goals without timelines and measurement are wishes.",
     keyTakeaways: [
       "Combine outcome goals (what to achieve) with process goals (actions that get you there).",
       "Specific, challenging goals produce 20-25% better performance than vague aspirations.",
@@ -2617,7 +2617,7 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Most cyclists have goals that are either too vague or too ambitious. "Get fitter" is not a goal — it is a direction. "Ride the Etape du Tour in July" is a goal, but without the process steps between now and July, it is a fantasy.",
+      "Most cyclists have goals that are either too vague or too ambitious. \"Get fitter\" is not a goal — it is a direction. \"Ride the Etape du Tour in July\" is a goal, but without the process steps between now and July, it is a fantasy.",
       "The framework that works is simple: one outcome goal per 12-week block, three to four monthly milestones, and weekly process targets that you can control. You cannot control whether you finish the Etape — weather, mechanicals, and bad luck exist. You can control whether you complete three interval sessions this week, eat 60 g of carbohydrate per hour on your long ride, and get seven hours of sleep.",
       "Review every four weeks. If you are ahead of schedule, raise the bar slightly. If you are behind, ask why before adjusting the goal downward. Sometimes the goal is fine and life got in the way — in which case you adjust the timeline, not the destination. Sometimes the goal was unrealistic from the start — in which case recalibrating is not failure, it is intelligence.",
     ],

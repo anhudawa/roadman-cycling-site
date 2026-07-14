@@ -131,6 +131,18 @@ export interface BlogFrontmatter {
   // Optional human-readable series title, e.g. "Zone 2 Deep Dive".
   // Defaults to the seriesSlug title-cased in the UI if omitted.
   seriesTitle?: string;
+  // "Who this is for" — audience descriptors rendered as a bullet list
+  // above the article body (mirrors the answer-page pattern). When
+  // present, signals to both readers and AI crawlers exactly which
+  // cyclist profile the article targets. Each entry should stand alone
+  // as a full descriptor, e.g. "Masters cyclists over 40 training
+  // 8-12 hours per week".
+  whoFor?: string[];
+  // "The Roadman View" — editorial stance points rendered as a
+  // left-bordered callout above the article body (mirrors the answer-
+  // page pattern). Each entry is one opinionated position, e.g.
+  // "We believe intensity matters more than volume after 40".
+  roadmanView?: string[];
 }
 
 export interface BlogPostMeta extends BlogFrontmatter {

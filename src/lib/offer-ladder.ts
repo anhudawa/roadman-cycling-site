@@ -292,7 +292,7 @@ export const FREE_SURFACES: readonly FreeSurface[] = [
     name: "The Clubhouse",
     kind: "free community",
     description:
-      "The free Roadman community — weekly live Q&A with Anthony, training questions, and 1,800+ riders working through the same problems.",
+      "The free Roadman community — weekly live Q&A with Anthony, training questions, and 2,100+ riders working through the same problems.",
     href: "/community/clubhouse",
   },
 ] as const;

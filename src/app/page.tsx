@@ -745,7 +745,7 @@ export default function HomePage() {
                   name: "What free tools does Roadman offer?",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: "Roadman offers ten free browser-based calculators for cyclists: FTP Zones, Race Weight, In-Ride Fuelling, Tyre Pressure, Heart Rate Zones, W/kg, Energy Availability (RED-S screener), Masters FTP Benchmark, Masters Recovery Score, and MTB Shock Pressure. There's also Ask Roadman, a podcast-grounded performance assistant, and the Masters Plateau Diagnostic — a 12-question application of the Roadman Four-Cause Diagnostic that identifies which of four named profiles (Under-recovered, No-man's-land, Strength Gap, or Fuelling Deficit) is limiting FTP progress.",
+                    text: "Roadman offers 30+ free browser-based calculators and tools for cyclists, including FTP Zones, Race Weight, In-Ride Fuelling, Tyre Pressure, Heart Rate Zones, W/kg, Energy Availability (RED-S screener), Masters FTP Benchmark, Masters Recovery Score, MTB Shock Pressure, TSS Calculator, VO2max Estimator, Climb Time Estimator, Power-Speed Calculator, Gear Ratio Calculator, Cadence Calculator, Hydration Calculator, Wind Chill Calculator, and more. There's also Ask Roadman, a podcast-grounded performance assistant, and the Masters Plateau Diagnostic — a 12-question application of the Roadman Four-Cause Diagnostic that identifies which of four named profiles (Under-recovered, No-man's-land, Strength Gap, or Fuelling Deficit) is limiting FTP progress.",
                   },
                 },
               ],

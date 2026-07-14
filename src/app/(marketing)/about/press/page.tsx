@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ENTITY_IDS } from "@/lib/brand-facts";
+import { ENTITY_IDS, BRAND_STATS } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
   title: "Press & Media Kit — Anthony Walsh & Roadman Cycling",
@@ -27,24 +27,24 @@ export const metadata: Metadata = {
 // Do not add claims here that are not substantiated elsewhere on the site.
 const brandStats = [
   {
-    stat: "100M+",
+    stat: BRAND_STATS.podcastDownloadsLabel,
     label: "Podcast downloads",
     detail: "Across Spotify, Apple Podcasts, YouTube and all podcast platforms",
   },
   {
-    stat: "1,400+",
+    stat: BRAND_STATS.episodeCountLabel,
     label: "Episodes published",
     detail:
       "In-depth interviews with World Tour coaches, sports scientists and pro riders — weekly since 2021, available everywhere podcasts are",
   },
   {
-    stat: "30,000+",
+    stat: BRAND_STATS.newsletterSubscribersLabel,
     label: "Newsletter subscribers",
     detail:
       "Engaged inbox audience receiving weekly performance breakdowns distilled from the podcast",
   },
   {
-    stat: "61,000+",
+    stat: BRAND_STATS.youtubeSubscribersLabel,
     label: "YouTube subscribers",
     detail:
       "On the main channel, with full-length video episodes and clips published weekly",

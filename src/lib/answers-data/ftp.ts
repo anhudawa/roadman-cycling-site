@@ -671,7 +671,7 @@ export const ftpAnswers: AnswerPage[] = [
       { label: "Why has my cycling plateaued?", href: "/answers/how-to-stop-plateauing" },
       { label: "How do I improve my FTP?", href: "/answers/how-to-improve-ftp" },
       { label: "FTP Training — Topic Hub", href: "/topics/ftp-training" },
-      { label: "FTP Plateau Breakthrough Guide", href: "/blog/ftp-plateau-breakthrough" },
+      { label: "Why Your FTP Is Stuck — Five Causes", href: "/blog/why-your-ftp-is-stuck-five-causes" },
       { label: "Sweet Spot vs Threshold", href: "/compare/sweet-spot-vs-threshold" },
     ],
     evidenceLevel: "moderate",
@@ -1210,7 +1210,7 @@ export const ftpAnswers: AnswerPage[] = [
     relatedTopics: [
       { label: "How do I improve my FTP?", href: "/answers/how-to-improve-ftp" },
       { label: "FTP Training — Topic Hub", href: "/topics/ftp-training" },
-      { label: "FTP Plateau Breakthrough Guide", href: "/blog/ftp-plateau-breakthrough" },
+      { label: "Why Your FTP Is Stuck — Five Causes", href: "/blog/why-your-ftp-is-stuck-five-causes" },
       { label: "Sweet Spot vs Threshold", href: "/compare/sweet-spot-vs-threshold" },
       { label: "Improve FTP: Evidence-Based Methods", href: "/blog/improve-ftp-cycling-evidence-based-methods" },
     ],

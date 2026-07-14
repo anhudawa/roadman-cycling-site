@@ -135,7 +135,7 @@ export default function StartHerePage() {
           "@type": "CollectionPage",
           name: "Start Here — New to Roadman Cycling?",
           description:
-            "Guided starting point for new visitors. Essential articles, podcast episodes, and training pillars from 1,400+ episodes and 170+ articles.",
+            "Guided starting point for new visitors. Essential articles, podcast episodes, and training pillars from 1,400+ episodes and 1,000+ articles.",
           url: "https://roadmancycling.com/start-here",
           isPartOf: { "@id": ENTITY_IDS.website },
         }}
@@ -165,7 +165,7 @@ export default function StartHerePage() {
                 <span style={{ fontSize: "var(--text-hero)" }}>START HERE.</span>
               </GradientText>
               <p className="text-foreground-muted text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-                1,400+ podcast episodes. 170+ articles. A lot of ground to cover.
+                1,400+ podcast episodes. 1,000+ articles. A lot of ground to cover.
                 This page cuts through all of it — who we are, what we do, and the
                 best stuff to read and listen to first.
               </p>
