@@ -64,7 +64,7 @@ export interface StageResult {
  * (the component will show placeholders). During the race, bump
  * this to the latest completed stage number.
  */
-export const lastUpdatedAfterStage = 11;
+export const lastUpdatedAfterStage = 12;
 
 /**
  * General classification — top 10 after the latest completed stage.
@@ -74,16 +74,16 @@ export const lastUpdatedAfterStage = 11;
  * the leader.
  */
 export const gcStandings: GCRider[] = [
-  { position: 1,  name: "Tadej Pogačar",       team: "UAE Team Emirates",           country: "SLO", gapSeconds: 0 },
-  { position: 2,  name: "Jonas Vingegaard",     team: "Visma–Lease a Bike",          country: "DEN", gapSeconds: 43 },
-  { position: 3,  name: "Remco Evenepoel",      team: "Red Bull–Bora–Hansgrohe",     country: "BEL", gapSeconds: 58 },
-  { position: 4,  name: "Primož Roglič",        team: "Red Bull–Bora–Hansgrohe",     country: "SLO", gapSeconds: 127 },
-  { position: 5,  name: "Egan Bernal",          team: "Ineos Grenadiers",            country: "COL", gapSeconds: 215 },
-  { position: 6,  name: "Juan Ayuso",           team: "UAE Team Emirates",           country: "ESP", gapSeconds: 248 },
-  { position: 7,  name: "Matteo Jorgenson",     team: "Visma–Lease a Bike",          country: "USA", gapSeconds: 312 },
-  { position: 8,  name: "Mikel Landa",          team: "Soudal–Quick-Step",           country: "ESP", gapSeconds: 345 },
-  { position: 9,  name: "Enric Mas",            team: "Movistar Team",               country: "ESP", gapSeconds: 401 },
-  { position: 10, name: "Aleksandr Vlasov",     team: "Red Bull–Bora–Hansgrohe",     country: "RUS", gapSeconds: 438 },
+  { position: 1,  name: "Tadej Pogačar",       team: "UAE Team Emirates–XRG",        country: "SLO", gapSeconds: 0 },
+  { position: 2,  name: "Jonas Vingegaard",     team: "Visma–Lease a Bike",          country: "DEN", gapSeconds: 216 },
+  { position: 3,  name: "Remco Evenepoel",      team: "Red Bull–Bora–Hansgrohe",     country: "BEL", gapSeconds: 246 },
+  { position: 4,  name: "Juan Ayuso",           team: "Lidl–Trek",                   country: "ESP", gapSeconds: 262 },
+  { position: 5,  name: "Paul Seixas",          team: "Decathlon–AG2R La Mondiale",  country: "FRA", gapSeconds: 275 },
+  { position: 6,  name: "Florian Lipowitz",     team: "Red Bull–Bora–Hansgrohe",     country: "GER", gapSeconds: 284 },
+  { position: 7,  name: "Isaac del Toro",       team: "UAE Team Emirates–XRG",        country: "MEX", gapSeconds: 308 },
+  { position: 8,  name: "Mattias Skjelmose",    team: "Lidl–Trek",                   country: "DEN", gapSeconds: 345 },
+  { position: 9,  name: "Lenny Martinez",       team: "Bahrain Victorious",          country: "FRA", gapSeconds: 394 },
+  { position: 10, name: "Tom Pidcock",          team: "Q36.5 Pro Cycling",           country: "GBR", gapSeconds: 709 },
 ];
 
 /**
@@ -91,11 +91,11 @@ export const gcStandings: GCRider[] = [
  * Set to `null` before the race starts.
  */
 export const latestStageResult: StageResult | null = {
-  stageNumber: 11,
+  stageNumber: 12,
   topThree: [
-    { position: 1, name: "Jasper Philipsen",  team: "Alpecin–Deceuninck",  country: "BEL", gapSeconds: 0 },
-    { position: 2, name: "Jonathan Milan",    team: "Lidl–Trek",           country: "ITA", gapSeconds: 0 },
-    { position: 3, name: "Arnaud De Lie",     team: "Lotto–Dstny",         country: "BEL", gapSeconds: 0 },
+    { position: 1, name: "Tim Merlier",        team: "Soudal–Quick-Step",   country: "BEL", gapSeconds: 0 },
+    { position: 2, name: "Olav Kooij",         team: "Visma–Lease a Bike",  country: "NED", gapSeconds: 0 },
+    { position: 3, name: "Jasper Philipsen",   team: "Alpecin–Deceuninck",  country: "BEL", gapSeconds: 0 },
   ],
 };
 

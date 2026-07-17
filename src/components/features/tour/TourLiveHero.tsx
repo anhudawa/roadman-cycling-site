@@ -4,6 +4,13 @@ import { Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { TOUR_META, TOUR_TYPE_LABEL, type Stage } from "@/data/tour-de-france-2026";
 import {
+  gcStandings,
+  latestStageResult,
+  lastUpdatedAfterStage,
+  formatGap,
+  hasResults,
+} from "@/data/tour-results-2026";
+import {
   getTodayStage,
   getYesterdayStage,
   getCompletedStages,
@@ -256,24 +263,97 @@ export function TourLiveHero() {
         {today && !rest ? <TodayPanel stage={today} /> : <RestOrTransitionPanel next={next} />}
       </Section>
 
-      {/* Result / GC placeholders */}
+      {/* Result / GC live data */}
       <Section background="charcoal" className="!py-12 border-y border-white/5">
         <Container>
           <div className="grid md:grid-cols-2 gap-4">
-            <PlaceholderCard
-              eyebrow={yesterday ? `STAGE ${yesterday.number} RESULT` : "LATEST RESULT"}
-              title={yesterday ? `${yesterday.start} → ${yesterday.finish}` : "Awaiting first stage"}
-              body={
-                yesterday
-                  ? "Yesterday's top three and the day's movers — updated as results come in."
-                  : "Stage results appear here once the racing starts."
-              }
-            />
-            <PlaceholderCard
-              eyebrow="GENERAL CLASSIFICATION"
-              title="Yellow Jersey Standings"
-              body="The overall top ten and time gaps — refreshed after each stage finishes."
-            />
+            {/* Latest stage result */}
+            {hasResults() && latestStageResult ? (
+              <div className="group relative overflow-hidden rounded-xl border border-white/10 bg-background-elevated p-5 h-full flex flex-col transition-colors hover:border-jersey-yellow/30">
+                <Tricolour className="absolute inset-x-0 top-0 h-[3px] w-full rounded-none opacity-70" />
+                <p className="font-heading text-jersey-yellow text-[11px] tracking-[0.25em] mb-2 mt-1">
+                  STAGE {latestStageResult.stageNumber} RESULT
+                </p>
+                <p className="font-heading text-off-white text-xl tracking-wide mb-4">
+                  Stage Winner
+                </p>
+                <div className="space-y-2.5">
+                  {latestStageResult.topThree.map((rider) => (
+                    <div key={rider.position} className="flex items-center gap-3">
+                      <span
+                        className={`font-heading text-sm w-7 h-7 rounded-full flex items-center justify-center shrink-0 ${
+                          rider.position === 1
+                            ? "bg-jersey-yellow text-[#210140]"
+                            : "bg-white/10 text-foreground-muted"
+                        }`}
+                      >
+                        {rider.position}
+                      </span>
+                      <span className={`font-body text-sm flex-1 ${rider.position === 1 ? "text-off-white font-medium" : "text-foreground-muted"}`}>
+                        {rider.name}
+                      </span>
+                      <span className="text-foreground-subtle text-xs font-body">
+                        {rider.team}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <PlaceholderCard
+                eyebrow={yesterday ? `STAGE ${yesterday.number} RESULT` : "LATEST RESULT"}
+                title={yesterday ? `${yesterday.start} → ${yesterday.finish}` : "Awaiting first stage"}
+                body={
+                  yesterday
+                    ? "Yesterday's top three and the day's movers — updated as results come in."
+                    : "Stage results appear here once the racing starts."
+                }
+              />
+            )}
+
+            {/* General classification */}
+            {hasResults() && gcStandings.length > 0 ? (
+              <div className="group relative overflow-hidden rounded-xl border border-white/10 bg-background-elevated p-5 h-full flex flex-col transition-colors hover:border-jersey-yellow/30">
+                <Tricolour className="absolute inset-x-0 top-0 h-[3px] w-full rounded-none opacity-70" />
+                <p className="font-heading text-jersey-yellow text-[11px] tracking-[0.25em] mb-2 mt-1">
+                  GENERAL CLASSIFICATION
+                </p>
+                <p className="font-heading text-off-white text-xl tracking-wide mb-4">
+                  After Stage {lastUpdatedAfterStage}
+                </p>
+                <div className="space-y-1.5 flex-1">
+                  {gcStandings.slice(0, 10).map((rider) => (
+                    <div key={rider.position} className="flex items-center gap-2">
+                      <span
+                        className={`font-heading text-xs w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${
+                          rider.position === 1
+                            ? "bg-jersey-yellow text-[#210140]"
+                            : "bg-white/5 text-foreground-subtle"
+                        }`}
+                      >
+                        {rider.position}
+                      </span>
+                      <span className={`font-body text-sm flex-1 truncate ${rider.position === 1 ? "text-off-white font-medium" : "text-foreground-muted"}`}>
+                        {rider.name}
+                      </span>
+                      <span className="text-foreground-subtle text-xs font-body tabular-nums whitespace-nowrap">
+                        {rider.gapSeconds === 0 ? (
+                          <span className="text-jersey-yellow font-heading text-[10px] tracking-wider">LEADER</span>
+                        ) : (
+                          formatGap(rider.gapSeconds)
+                        )}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <PlaceholderCard
+                eyebrow="GENERAL CLASSIFICATION"
+                title="Yellow Jersey Standings"
+                body="The overall top ten and time gaps — refreshed after each stage finishes."
+              />
+            )}
           </div>
         </Container>
       </Section>
