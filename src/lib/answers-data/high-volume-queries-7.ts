@@ -70,7 +70,7 @@ export const highVolumeQuery7Answers: AnswerPage[] = [
       {
         mistake: "Using too light a gear and spinning out rather than building force.",
         fix:
-          "Standing starts should begin in a genuinely heavy gear that forces you to recruit maximum muscle fibres. If you spin out within 5 seconds, the gear is too light to build peak force.",
+          "Standing starts should begin in a properly heavy gear that forces you to recruit maximum muscle fibres. If you spin out within 5 seconds, the gear is too light to build peak force.",
       },
       {
         mistake: "Doing too many sprints per session and degrading quality.",
@@ -791,7 +791,7 @@ export const highVolumeQuery7Answers: AnswerPage[] = [
           "Prepare food that is easy to consume one-handed: energy gels, soft bars, rice cakes. Take a gel at the top of each climb and eat solid food on the flat sections between climbs. Aim for at least one gel or equivalent (25-30 g carbohydrate) between each climb. Carry more food than you think you need — running out of fuel on a mountain ride has no fix.",
       },
       {
-        title: "Keep valley-road pace genuinely easy between climbs",
+        title: "Keep valley-road pace properly easy between climbs",
         detail:
           "Ride at 50-60% of FTP on the flat sections between climbs. This feels very easy and slower riders may pass you. Accept it. The purpose of the valley is to recover, not to make up time. Pedalling gently clears lactate and promotes recovery; riding at 75-80% FTP extends the fatigue debt and steals power from the next climb.",
       },
@@ -898,7 +898,7 @@ export const highVolumeQuery7Answers: AnswerPage[] = [
       {
         title: "Support TTE development with 2-3 hours of zone 2 riding per week",
         detail:
-          "Zone 2 training improves mitochondrial density and fat oxidation rate, both of which extend TTE by reducing reliance on glycogen at threshold intensity. These rides should be genuinely easy — you should be able to hold a conversation throughout. Even two 90-minute zone 2 sessions per week provides meaningful aerobic base development.",
+          "Zone 2 training improves mitochondrial density and fat oxidation rate, both of which extend TTE by reducing reliance on glycogen at threshold intensity. These rides should be properly easy — you should be able to hold a conversation throughout. Even two 90-minute zone 2 sessions per week provides meaningful aerobic base development.",
       },
     ],
     commonMistakes: [
@@ -998,7 +998,7 @@ export const highVolumeQuery7Answers: AnswerPage[] = [
       {
         title: "Build fatigue resistance with one long ride per week",
         detail:
-          "Increase your longest weekly ride by 15-20 minutes per week until you reach 3.5-4 hours. Ride at 60-70% of FTP — genuinely conversational pace. The duration is the stimulus, not the intensity. These rides develop fat oxidation, increase glycogen storage capacity, and train mental durability for sustained effort.",
+          "Increase your longest weekly ride by 15-20 minutes per week until you reach 3.5-4 hours. Ride at 60-70% of FTP — properly conversational pace. The duration is the stimulus, not the intensity. These rides develop fat oxidation, increase glycogen storage capacity, and train mental durability for sustained effort.",
       },
       {
         title: "Practise race-level carbohydrate intake on every long ride",
@@ -1020,7 +1020,7 @@ export const highVolumeQuery7Answers: AnswerPage[] = [
       {
         mistake: "Riding long training rides too hard and not building genuine aerobic base.",
         fix:
-          "Long rides at 75-80% FTP are not easy enough to build fat oxidation and not hard enough to build threshold — they sit in a metabolic no-man's-land. Keep long rides genuinely easy (60-70% FTP) so the body adapts to sustained duration and fat metabolism.",
+          "Long rides at 75-80% FTP are not easy enough to build fat oxidation and not hard enough to build threshold — they sit in a metabolic no-man's-land. Keep long rides properly easy (60-70% FTP) so the body adapts to sustained duration and fat metabolism.",
       },
     ],
     faq: [
@@ -1066,7 +1066,7 @@ export const highVolumeQuery7Answers: AnswerPage[] = [
       "Long slow distance (LSD) training is sustained riding at 55-70% of FTP — or roughly 60-75% of maximum heart rate — for 2-5 hours. It builds mitochondrial density, capillarisation, fat oxidation capacity, and connective tissue resilience. Research from the Norwegian University of Science and Technology shows that well-trained cyclists who maintain 75-80% of total training volume at this intensity improve threshold power and time to exhaustion more than cyclists who do the majority of their training at moderate intensity. LSD is the foundation upon which all other training adaptations are built.",
     keyTakeaways: [
       "LSD training at 55-70% FTP builds the aerobic infrastructure — mitochondria, capillaries, fat oxidation — that supports all higher-intensity work.",
-      "Training must be genuinely easy: conversational pace, nasal breathing, no burning in the legs. If in doubt, slow down.",
+      "Training must be properly easy: conversational pace, nasal breathing, no burning in the legs. If in doubt, slow down.",
       "Two to three LSD sessions per week of 2-4 hours is sufficient for most amateurs to build a strong aerobic base over 8-12 weeks.",
       "LSD is not the same as moderate intensity — riding at 75-80% FTP is too hard to build base and too easy to build threshold.",
     ],
@@ -1084,7 +1084,7 @@ export const highVolumeQuery7Answers: AnswerPage[] = [
     ],
     roadmanView: [
       "Long slow distance has a perception problem. It looks and feels unproductive. You are riding slowly, your average speed is embarrassing, and faster riders pass you with alarming frequency. Every instinct says to push harder. But LSD training works precisely because it targets the aerobic adaptations that only occur at low intensity — mitochondrial biogenesis, capillary growth, improved fat oxidation. These adaptations do not happen at tempo or sweetspot intensity.",
-      "The concept Anthony returns to repeatedly on the podcast is the polarised model: 80% of your training genuinely easy, 20% genuinely hard, and almost nothing in between. The problem is that most amateurs ride at 72-78% of FTP most of the time — too hard to be LSD, too easy to be threshold. This grey zone feels productive but drives neither the aerobic adaptations of easy riding nor the lactate-clearance adaptations of hard riding. LSD done properly should feel almost embarrassingly easy. If it does not feel easy, you are going too hard.",
+      "The concept Anthony returns to repeatedly on the podcast is the polarised model: 80% of your training properly easy, 20% properly hard, and almost nothing in between. The problem is that most amateurs ride at 72-78% of FTP most of the time — too hard to be LSD, too easy to be threshold. This grey zone feels productive but drives neither the aerobic adaptations of easy riding nor the lactate-clearance adaptations of hard riding. LSD done properly should feel almost embarrassingly easy. If it does not feel easy, you are going too hard.",
     ],
     expertEvidence: [
       {
@@ -1115,7 +1115,7 @@ export const highVolumeQuery7Answers: AnswerPage[] = [
       {
         mistake: "Riding LSD sessions too fast because easy feels unproductive.",
         fix:
-          "The adaptations from LSD are intensity-specific — they only occur below the first ventilatory threshold. Riding 10-15% too hard shifts the training effect away from aerobic base building and toward glycolytic work that does not serve the same purpose. Slow down until it genuinely feels easy.",
+          "The adaptations from LSD are intensity-specific — they only occur below the first ventilatory threshold. Riding 10-15% too hard shifts the training effect away from aerobic base building and toward glycolytic work that does not serve the same purpose. Slow down until it actually feels easy.",
       },
       {
         mistake: "Replacing all LSD with sweetspot training to be more time-efficient.",
@@ -1132,7 +1132,7 @@ export const highVolumeQuery7Answers: AnswerPage[] = [
       {
         question: "How slow is slow enough for LSD training?",
         answer:
-          "If you can breathe exclusively through your nose, you are in the right zone. If you need to open your mouth to breathe, you are too hard. On a power meter, stay at or below 70% of FTP. On heart rate, stay at or below 75% of maximum. The perceived effort should be 3-4 out of 10 — genuinely easy.",
+          "If you can breathe exclusively through your nose, you are in the right zone. If you need to open your mouth to breathe, you are too hard. On a power meter, stay at or below 70% of FTP. On heart rate, stay at or below 75% of maximum. The perceived effort should be 3-4 out of 10 — properly easy.",
       },
       {
         question: "Is LSD training necessary if I am time-crunched?",
@@ -1168,7 +1168,7 @@ export const highVolumeQuery7Answers: AnswerPage[] = [
       "Beginner cyclists should start with 15-30 km rides and increase distance by 10-15% per week. Here is the evidence-based progression from first ride to first 100 km event.",
     pillar: "coaching",
     directAnswer:
-      "Beginners should start with rides of 15-30 km (roughly 45-90 minutes) and increase total weekly distance by no more than 10-15% per week. Most previously inactive adults can comfortably ride 20-25 km within their first two weeks if they keep intensity genuinely easy. Reaching a 100 km ride typically takes 10-14 weeks of consistent progression. The limiting factor for most beginners is not cardiovascular fitness but saddle comfort, hand numbness, and neck discomfort — issues that resolve with bike fit adjustments, padded shorts, and progressive adaptation.",
+      "Beginners should start with rides of 15-30 km (roughly 45-90 minutes) and increase total weekly distance by no more than 10-15% per week. Most previously inactive adults can comfortably ride 20-25 km within their first two weeks if they keep intensity properly easy. Reaching a 100 km ride typically takes 10-14 weeks of consistent progression. The limiting factor for most beginners is not cardiovascular fitness but saddle comfort, hand numbness, and neck discomfort — issues that resolve with bike fit adjustments, padded shorts, and progressive adaptation.",
     keyTakeaways: [
       "Start with 15-30 km rides at an intensity where you can hold a conversation — fitness improves rapidly in the first 6-8 weeks.",
       "Increase total weekly distance by 10-15% per week to avoid overuse injuries, particularly to the knees and Achilles tendons.",
@@ -1503,7 +1503,7 @@ export const highVolumeQuery7Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "A helmet is the one piece of cycling equipment where false economy is genuinely dangerous. Every other component on your bike can be nursed, repaired, or ridden past its optimal life without serious consequence. A degraded helmet provides the illusion of protection while failing to deliver it. The EPS foam — the material that actually absorbs the impact in a crash — degrades invisibly over time and compresses permanently after any impact.",
+      "A helmet is the one piece of cycling equipment where false economy is legitimately dangerous. Every other component on your bike can be nursed, repaired, or ridden past its optimal life without serious consequence. A degraded helmet provides the illusion of protection while failing to deliver it. The EPS foam — the material that actually absorbs the impact in a crash — degrades invisibly over time and compresses permanently after any impact.",
       "Anthony's rule is simple: if the helmet is over four years old, replace it. If it has been in any crash or significant drop, replace it immediately. A quality helmet costs less than a single A&E visit, and the manufacturing date is printed inside every helmet. The riders who baulk at replacing a five-year-old helmet are often the same riders who spend hundreds on carbon bottle cages. The priorities need recalibrating.",
     ],
     expertEvidence: [
@@ -1818,7 +1818,7 @@ export const highVolumeQuery7Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Cold-weather dehydration is the invisible performance thief. In summer, the cue is obvious — you are hot, you are sweating, you reach for the bottle. In winter, none of those cues fire. You are cold, your bottles are cold, your hands are too numb to reach for them, and you genuinely do not feel thirsty. But you are still losing fluid — through every exhaled breath (visible as condensation), through sweat trapped under your thermal layers, and through the cold-induced increase in urine production that your body generates to manage blood pressure in the cold.",
+      "Cold-weather dehydration is the invisible performance thief. In summer, the cue is obvious — you are hot, you are sweating, you reach for the bottle. In winter, none of those cues fire. You are cold, your bottles are cold, your hands are too numb to reach for them, and you really do not feel thirsty. But you are still losing fluid — through every exhaled breath (visible as condensation), through sweat trapped under your thermal layers, and through the cold-induced increase in urine production that your body generates to manage blood pressure in the cold.",
       "Anthony's practical fix is simple: set a timer on your bike computer to remind you to drink every 15-20 minutes regardless of thirst. Fill one bottle with a warm electrolyte drink — warm fluid is dramatically easier to drink in the cold than ice-cold water. And if you arrive home from a winter ride with full bottles and a headache, dehydration is almost certainly the cause.",
     ],
     expertEvidence: [
@@ -2053,7 +2053,7 @@ export const highVolumeQuery7Answers: AnswerPage[] = [
       {
         title: "Practise crosswind riding technique on a quiet road",
         detail:
-          "On a moderately windy day, find a quiet exposed road and practise riding in the drops with a slight lean into the wind. Maintain a firm but relaxed grip — a death grip transmits every gust directly into your steering. Let the bike move slightly beneath you while keeping your body weight centred. This technique becomes instinctive with practice but must be developed before you encounter genuinely dangerous conditions.",
+          "On a moderately windy day, find a quiet exposed road and practise riding in the drops with a slight lean into the wind. Maintain a firm but relaxed grip — a death grip transmits every gust directly into your steering. Let the bike move slightly beneath you while keeping your body weight centred. This technique becomes instinctive with practice but must be developed before you encounter properly dangerous conditions.",
       },
     ],
     commonMistakes: [

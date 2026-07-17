@@ -65,7 +65,7 @@ function wellFormed(overrides: Partial<Breakdown> = {}): string {
       {
         step: 2,
         title: "Flip the load.",
-        detail: "Two hard days a week for eight weeks. Everything else genuinely easy.",
+        detail: "Two hard days a week for eight weeks. Everything else properly easy.",
       },
       {
         step: 3,

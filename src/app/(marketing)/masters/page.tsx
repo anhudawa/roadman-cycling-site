@@ -73,7 +73,7 @@ const METHODOLOGY = [
   {
     number: "02",
     title: "Polarise the week, not just the season",
-    body: "Seiler's 80/20, applied to how an over-40 rider actually lives. Two genuinely hard sessions. Everything else easy enough that you'd be a little embarrassed by the speed. The grey zone — that flattering not-quite-hard pace — is where masters riders bury themselves: too taxing to recover from, too soft to drive adaptation.",
+    body: "Seiler's 80/20, applied to how an over-40 rider actually lives. Two properly hard sessions. Everything else easy enough that you'd be a little embarrassed by the speed. The grey zone — that flattering not-quite-hard pace — is where masters riders bury themselves: too taxing to recover from, too soft to drive adaptation.",
     href: "/topics/ftp-training",
     hrefLabel: "FTP & intensity hub",
   },
@@ -113,7 +113,7 @@ const EXPERTS = [
     credential: "Exercise physiologist, polarised-training researcher",
     episode: "80/20 Training to Ride Faster",
     position:
-      "The 80/20 split isn't a beginner's compromise — it's the model the best endurance athletes in the world actually train on. For masters riders the point lands harder: the grey zone costs you more after 40 because your recovery budget is smaller. Keep 80% genuinely easy and you free the headroom to go truly hard on the other 20%.",
+      "The 80/20 split isn't a beginner's compromise — it's the model the best endurance athletes in the world actually train on. For masters riders the point lands harder: the grey zone costs you more after 40 because your recovery budget is smaller. Keep 80% properly easy and you free the headroom to go truly hard on the other 20%.",
     pillar: "Training",
   },
   {
@@ -355,7 +355,7 @@ const FAQ = [
   },
   {
     q: "What's different about masters cycling training versus general training?",
-    a: "Three things change. One: recovery windows are longer, so two genuinely hard sessions a week beats three almost-hard ones. Two: strength work moves from optional to non-negotiable — a 2025 meta-analysis of 17 studies showed structured strength training improves cycling performance after 40 with no cost to VO2 max. Three: fuelling and protein become load-bearing, at 1.6 to 2.2 g/kg a day, spread across meals, not skipped at breakfast. Most masters riders fall behind because they keep doing what worked at 30 with less recovery and worse fuel. The fix is rarely 'train harder'.",
+    a: "Three things change. One: recovery windows are longer, so two properly hard sessions a week beats three almost-hard ones. Two: strength work moves from optional to non-negotiable — a 2025 meta-analysis of 17 studies showed structured strength training improves cycling performance after 40 with no cost to VO2 max. Three: fuelling and protein become load-bearing, at 1.6 to 2.2 g/kg a day, spread across meals, not skipped at breakfast. Most masters riders fall behind because they keep doing what worked at 30 with less recovery and worse fuel. The fix is rarely 'train harder'.",
   },
   {
     q: "Is strength training really necessary for cyclists over 40?",
@@ -363,7 +363,7 @@ const FAQ = [
   },
   {
     q: "How much should a masters cyclist train each week?",
-    a: "Most serious masters riders are in the 6 to 12 hour range, and that's plenty if it's structured. The shape matters more than the total: two genuinely hard sessions, the rest easy enough to recover from, two strength sessions, and a deload every three to four weeks. Piling on volume you can't recover from is how riders over 40 stall. Run the Masters Recovery Score if you want to see whether your current load is one you can actually absorb.",
+    a: "Most serious masters riders are in the 6 to 12 hour range, and that's plenty if it's structured. The shape matters more than the total: two properly hard sessions, the rest easy enough to recover from, two strength sessions, and a deload every three to four weeks. Piling on volume you can't recover from is how riders over 40 stall. Run the Masters Recovery Score if you want to see whether your current load is one you can actually absorb.",
   },
   {
     q: "Do I need a coach, or can I figure this out from the podcast and the blog?",

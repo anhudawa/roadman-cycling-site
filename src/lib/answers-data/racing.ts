@@ -170,8 +170,8 @@ export const racingAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Most sportive training advice misses the point because it treats the event like a race. For the majority of serious amateur cyclists, a sportive is a long, hard endurance effort — the limiting factor isn't top-end power, it's sustained aerobic capacity and the ability to fuel and pace over 4–6 hours. That means the training has to be built on a genuinely large base, not sessions designed to raise FTP.",
-      "The single most important session in any sportive training week is the long ride. Not the interval session. Not the threshold work. The long ride — done at a genuinely sustainable pace — is where you build the endurance engine that gets you through hour four and five without falling apart. Everything else sits on top of that.",
+      "Most sportive training advice misses the point because it treats the event like a race. For the majority of serious amateur cyclists, a sportive is a long, hard endurance effort — the limiting factor isn't top-end power, it's sustained aerobic capacity and the ability to fuel and pace over 4–6 hours. That means the training has to be built on a properly large base, not sessions designed to raise FTP.",
+      "The single most important session in any sportive training week is the long ride. Not the interval session. Not the threshold work. The long ride — done at a truly sustainable pace — is where you build the endurance engine that gets you through hour four and five without falling apart. Everything else sits on top of that.",
       "Week 5 onwards is when structured intensity earns its place. A single threshold session per week from mid-block builds the power to push through the hillier sections without blowing up. But if the aerobic base isn't there first, intervals become a ceiling rather than a booster.",
     ],
     expertEvidence: [
@@ -303,7 +303,7 @@ export const racingAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "The most expensive mistake in any gran fondo or long sportive is going out with the fast group at the start. It feels fine for the first 30 minutes — everyone is fresh, the roads are closed, the adrenaline is up. Then hour four arrives and the riders who went out steady start passing you. Anthony has ridden enough of these events to know: ego at kilometre 10 costs you at kilometre 130.",
-      "Pacing a gran fondo is genuinely different from pacing a shorter ride. Fatigue accumulates non-linearly — the effort required to hold the same power at hour five is roughly 15–20% higher than at hour one. That means the power you hold early has to be conservative enough to account for the drift later. 70–75% of FTP in the first hour feels almost too slow. That's the correct feeling.",
+      "Pacing a gran fondo is fundamentally different from pacing a shorter ride. Fatigue accumulates non-linearly — the effort required to hold the same power at hour five is roughly 15–20% higher than at hour one. That means the power you hold early has to be conservative enough to account for the drift later. 70–75% of FTP in the first hour feels almost too slow. That's the correct feeling.",
       "The other lever most riders underestimate is nutrition. Even perfect pacing falls apart without consistent fuelling. You can't outride a calorie deficit over 160km. Treat feeding as a session-within-the-session: 60g of carbohydrate per hour minimum, starting at 30 minutes, regardless of whether you feel hungry.",
     ],
     expertEvidence: [
@@ -1240,7 +1240,7 @@ export const racingAnswers: AnswerPage[] = [
         name: "Joe Friel",
         credential: "Author of The Cyclist's Training Bible; co-founder of TrainingPeaks",
         insight:
-          "Peaking requires planning fitness to arrive on a specific date. That means the base phase is genuinely aerobic, the build phase adds event-specific stress, and the taper is respected as a performance tool rather than wasted with continued hard training.",
+          "Peaking requires planning fitness to arrive on a specific date. That means the base phase is truly aerobic, the build phase adds event-specific stress, and the taper is respected as a performance tool rather than wasted with continued hard training.",
         episodeSlug: "ep-40-how-joe-friel-structures-the-ideal-cycling-training-week",
         guestSlug: "joe-friel",
       },
@@ -1364,7 +1364,7 @@ export const racingAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "Unbound 200 is not a long gran fondo with gravel. It's a different category of event. The flat Kansas Flint Hills look unremarkable on paper — no mountain cols, no 3000m of climbing — but 200 miles of chunky gravel, unpredictable weather and extreme heat creates a sufferance that pure road fitness cannot prepare you for. Rosa Klöser's approach was methodical and unglamorous: massive base, specific long rides, equipment tested to death, and heat prep done before travelling.",
-      "Matt Beers and Keegan Swenson's preparation shared the same DNA from a different angle: the aerobic base has to be enormous, and the long rides have to get genuinely long — 160km, 180km, 200km in the saddle. Nothing replaces time on the bike at Unbound distances. An athlete who peaks at 100km long rides in preparation is not prepared for what hours 8–14 feel like.",
+      "Matt Beers and Keegan Swenson's preparation shared the same DNA from a different angle: the aerobic base has to be enormous, and the long rides have to get properly long — 160km, 180km, 200km in the saddle. Nothing replaces time on the bike at Unbound distances. An athlete who peaks at 100km long rides in preparation is not prepared for what hours 8–14 feel like.",
       "The heat piece is consistently underestimated by European and northern hemisphere athletes. Kansas in early June is hot in a way that erodes performance more than almost any other variable. A 10-day heat protocol — simple sauna exposure or indoor trainer sessions in extra layers — can shift your plasma volume enough to meaningfully protect power output in the heat.",
     ],
     expertEvidence: [
@@ -1438,7 +1438,7 @@ export const racingAnswers: AnswerPage[] = [
       {
         question: "Should I do a training camp before Unbound?",
         answer:
-          "A gravel-specific training camp in the 6–10 weeks before Unbound is genuinely valuable — particularly one that includes long days on mixed terrain. More important than a formal camp is simply getting your long rides done and testing your setup.",
+          "A gravel-specific training camp in the 6–10 weeks before Unbound is really valuable — particularly one that includes long days on mixed terrain. More important than a formal camp is simply getting your long rides done and testing your setup.",
       },
       {
         question: "How important is the bike setup for Unbound?",
@@ -1521,7 +1521,7 @@ export const racingAnswers: AnswerPage[] = [
       {
         title: "10 minutes easy: raise core temperature",
         detail:
-          "Spin at 50–60% FTP — genuinely easy. No hard efforts, no surges. The goal is to raise muscle temperature and get blood flowing. This takes 10 full minutes; don't rush it.",
+          "Spin at 50–60% FTP — properly easy. No hard efforts, no surges. The goal is to raise muscle temperature and get blood flowing. This takes 10 full minutes; don't rush it.",
       },
       {
         title: "3–4 openers: prime the neuromuscular system",
@@ -1819,7 +1819,7 @@ export const racingAnswers: AnswerPage[] = [
       {
         question: "How hard is the Marmotte compared to the Etape?",
         answer:
-          "Both are genuinely demanding Alpine events. The Marmotte is a fixed route (160km, ~5200m climbing, including Alpe d'Huez); the Etape varies by year but typically covers one or two stages from the Tour de France. Both require similar preparation — sustained climbing ability, 6–9 hours of fuelling, and event-specific training.",
+          "Both are seriously demanding Alpine events. The Marmotte is a fixed route (160km, ~5200m climbing, including Alpe d'Huez); the Etape varies by year but typically covers one or two stages from the Tour de France. Both require similar preparation — sustained climbing ability, 6–9 hours of fuelling, and event-specific training.",
       },
       {
         question: "What FTP do I need for the Etape or Marmotte?",
@@ -2037,7 +2037,7 @@ export const racingAnswers: AnswerPage[] = [
     roadmanView: [
       "Here's the thing nobody tells you about racing with power: the meter isn't there to make you go harder. It's there to stop you wasting energy you'll need later. Most amateurs treat the number as a target to chase. The riders who actually win treat it as a ceiling that keeps them out of trouble. Anthony has made this point repeatedly on the podcast — the data is only useful if it changes a decision, and the decision it should change most often is when to back off.",
       "When Alex Welburn came on the show to talk about the metrics Pogačar's level of rider actually uses, the takeaway wasn't some exotic number. It was that the best riders understand their own critical power and W' — how much work they can do above threshold before the tank runs dry — and they manage it deliberately. Every surge out of a corner, every gap you close, every time you sit on the front for an extra minute is a withdrawal from an account that doesn't refill mid-race.",
-      "The good news is this is genuinely fixable in a single race. Set your zones, write two numbers on your stem — your bunch ceiling and your climb ceiling — and ride to them. The first time you do it, you'll feel like you're holding back. Then the decisive move goes on the final climb and you've got the matches to follow it. That's the whole game.",
+      "The good news is this is actually fixable in a single race. Set your zones, write two numbers on your stem — your bunch ceiling and your climb ceiling — and ride to them. The first time you do it, you'll feel like you're holding back. Then the decisive move goes on the final climb and you've got the matches to follow it. That's the whole game.",
     ],
     expertEvidence: [
       {
@@ -2379,7 +2379,7 @@ export const racingAnswers: AnswerPage[] = [
       {
         question: "Should I do anything active on rest days or between stages?",
         answer:
-          "Light active recovery — 30–45 minutes of very easy spinning — can help clear the legs and aid blood flow. But it should be genuinely easy. The priority between stages is food, hydration and sleep; active recovery is a minor addition, not the main event.",
+          "Light active recovery — 30–45 minutes of very easy spinning — can help clear the legs and aid blood flow. But it should be properly easy. The priority between stages is food, hydration and sleep; active recovery is a minor addition, not the main event.",
       },
       {
         question: "How do I pick which stages to target?",

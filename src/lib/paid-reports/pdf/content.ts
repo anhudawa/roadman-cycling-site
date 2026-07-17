@@ -263,7 +263,7 @@ function renderSection(
         ],
         bullets: [
           "Zone 2 volume per week: Serious amateurs 45–55% of hours · World Tour riders 75–80%",
-          "Genuinely hard sessions/week: Amateurs often 3–5 · World Tour 2–3 (the rest is genuinely easy)",
+          "Properly hard sessions/week: Amateurs often 3–5 · World Tour 2–3 (the rest is properly easy)",
           "Recovery weeks: Amateurs often skip or delay · World Tour mandatory every 3–4 weeks, always",
           "Sleep per night: Amateurs average 6.5–7 hrs · World Tour 9–10 hrs including afternoon nap",
           "In-ride carb intake: Amateurs 20–40g/hr · World Tour 90–120g/hr (gut-trained over years)",
@@ -298,7 +298,7 @@ function renderSection(
             sessions = [
               "Threshold: 2×20 min at 95–100% FTP. Can't hold it? Drop to 3×15 or 4×10 — total time at threshold matters more than rep shape.",
               "VO2 Max: 5×3 min at 107–110% FTP. 3 min full recovery. Build to 5×4 min over 4 weeks.",
-              "Long ride: 2.5–4 hr, genuinely easy. No pushing on climbs. If you finish tired, it was too hard.",
+              "Long ride: 2.5–4 hr, really easy. No pushing on climbs. If you finish tired, it was too hard.",
               "Strength (weekly): Goblet squat 3×10 · Single-leg deadlift 3×8 each · Step-up 3×10 each · Plank 3×45s.",
             ];
         }
@@ -307,7 +307,7 @@ function renderSection(
         switch (categoryKey) {
           case "underRecovered":
             sessions = [
-              "Recovery spin: 30–40 min at 55–65% FTP. This is the hard one — genuinely not a workout. Your brain will want to push. Don't.",
+              "Recovery spin: 30–40 min at 55–65% FTP. This is the hard one — really not a workout. Your brain will want to push. Don't.",
               "Zone 2 base: 60–90 min at 65–75% FTP. Conversational pace — you should be able to say a full sentence without pausing.",
               "Strength (once rested): Bodyweight only for week 1 — split squat 3×10 each, single-leg hinge 3×10 each, core 3×30s. Add load from week 2 onward.",
               "What to skip for 7 days: all intervals, all threshold work, all racing. One recovery week costs nothing; persistent under-recovery costs months.",
@@ -527,7 +527,7 @@ function renderSection(
         ],
         bullets: [
           "1. Stale zones — Training to zones that are 3–6 months old makes every session wrong. If your last FTP test was more than 12 weeks ago, your zones are stale. Re-test now.",
-          "2. Grey-zone trap — If 50%+ of your sessions sit at 75–88% FTP, you're neither recovering well nor adapting fast. Too hard to be easy, not hard enough to drive threshold. The fix: hard sessions harder, easy sessions genuinely easy.",
+          "2. Grey-zone trap — If 50%+ of your sessions sit at 75–88% FTP, you're neither recovering well nor adapting fast. Too hard to be easy, not hard enough to drive threshold. The fix: hard sessions harder, easy sessions properly easy.",
           "3. No strength work — Cyclists who add two properly-dosed S&C sessions per week see 3–7% FTP gains in 12 weeks. Cycling-specific strength patterns (split squats, hip hinges, single-leg work) drive neuromuscular recruitment the bike can't.",
           "4. Under-fuelling — FTP cannot increase in a caloric deficit. Carb restriction + high intensity = cortisol spike + suppressed adaptation. If you're restricting food and wondering why FTP is flat, here's your answer.",
           "5. Skipping recovery weeks — Week 4 must be easy (30–40% volume reduction). The adaptation from the previous three weeks consolidates here. A 4th hard week on top of three already-hard weeks doesn't add fitness — it stalls it.",

@@ -59,7 +59,7 @@ export const mastersAnswers: AnswerPage[] = [
       {
         title: "Run a 6-week polarised block",
         detail:
-          "80% of rides genuinely easy (conversational, nose-breathing), 20% genuinely hard (VO2 max intervals or threshold). Cut the grey-zone sessions entirely. Measure power at the end of the block.",
+          "80% of rides properly easy (conversational, nose-breathing), 20% properly hard (VO2 max intervals or threshold). Cut the grey-zone sessions entirely. Measure power at the end of the block.",
       },
       {
         title: "Add strength training twice a week",
@@ -371,7 +371,7 @@ export const mastersAnswers: AnswerPage[] = [
       {
         question: "How long does recovery take after a hard ride at 50?",
         answer:
-          "A genuinely hard session — VO2 max intervals or a hard group ride — typically needs 48 hours of easy riding before the next hard effort for most riders over 50. After a very hard race or sportive, 72 hours or more is realistic.",
+          "A really hard session — VO2 max intervals or a hard group ride — typically needs 48 hours of easy riding before the next hard effort for most riders over 50. After a very hard race or sportive, 72 hours or more is realistic.",
       },
       {
         question: "Does sleep really affect cycling recovery that much?",
@@ -435,7 +435,7 @@ export const mastersAnswers: AnswerPage[] = [
       "Two structured sessions a week is the target — one maintains, two build.",
       "Focus on compound, single-leg patterns: split squats, hip hinges, single-leg deadlifts, presses.",
       "Use meaningful load — 6–10 reps where the last two require real focus. Band-only work won't arrest fast-twitch decline.",
-      "Stack lifting on hard ride days so easy days stay genuinely easy.",
+      "Stack lifting on hard ride days so easy days stay actually easy.",
     ],
     whoFor: [
       {
@@ -486,7 +486,7 @@ export const mastersAnswers: AnswerPage[] = [
       {
         title: "Schedule on hard ride days, not easy days",
         detail:
-          "Lift after a hard ride, or do your hard ride after a lift — concentrating the load so easy days remain genuinely easy. Stack Tuesday hard ride + evening strength, not Thursday easy ride + strength.",
+          "Lift after a hard ride, or do your hard ride after a lift — concentrating the load so easy days remain truly easy. Stack Tuesday hard ride + evening strength, not Thursday easy ride + strength.",
       },
     ],
     commonMistakes: [
@@ -776,7 +776,7 @@ export const mastersAnswers: AnswerPage[] = [
       {
         mistake: "Starting VO2 max sessions without adequate aerobic base.",
         fix:
-          "High-intensity work sits on an aerobic foundation. Ensure the bulk of training is genuinely easy before stacking hard intervals on top.",
+          "High-intensity work sits on an aerobic foundation. Ensure the bulk of training is properly easy before stacking hard intervals on top.",
       },
       {
         mistake: "Not allowing longer recovery between VO2 max sessions after 50.",
@@ -844,10 +844,10 @@ export const mastersAnswers: AnswerPage[] = [
     question: "How Should a Masters Cyclist Structure Their Week?",
     seoTitle: "How Should a Masters Cyclist Structure Their Training Week?",
     seoDescription:
-      "Masters cyclists should run two hard sessions, two strength sessions, and keep everything else genuinely easy. The weekly structure that works after 40 — with recovery built in.",
+      "Masters cyclists should run two hard sessions, two strength sessions, and keep everything else properly easy. The weekly structure that works after 40 — with recovery built in.",
     pillar: "coaching",
     directAnswer:
-      "A masters cyclist's week should include two hard cycling sessions (one threshold, one VO2 max), two structured strength sessions, at least one full rest day, and genuinely easy riding filling the rest. Space hard sessions with two easy days between them. The plan that works at 45 is not the one that worked at 30 — fewer sessions, better recovery, and strength twice a week are the structural changes that separate riders who keep improving from those who quietly decline.",
+      "A masters cyclist's week should include two hard cycling sessions (one threshold, one VO2 max), two structured strength sessions, at least one full rest day, and properly easy riding filling the rest. Space hard sessions with two easy days between them. The plan that works at 45 is not the one that worked at 30 — fewer sessions, better recovery, and strength twice a week are the structural changes that separate riders who keep improving from those who quietly decline.",
     keyTakeaways: [
       "Two hard cycling sessions per week: one threshold, one VO2 max. Three is the ceiling.",
       "Two strength sessions per week: 40 minutes of cycling-specific compound work.",
@@ -867,8 +867,8 @@ export const mastersAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Joe Friel's ideal training week for a masters cyclist is not complicated. Anthony went through it in detail on the podcast: two genuinely hard bike sessions (don't add a third), two strength sessions, everything else easy. The simplicity is the point — mastering the basics delivers more improvement at 50 than chasing complexity.",
-      "Where masters riders most commonly go wrong is distributing intensity too evenly across the week. Instead of two hard sessions and the rest genuinely easy, they end up with five medium-hard ones. That feels productive; it's actually the training pattern that produces the most fatigue for the least adaptation. The grey zone again.",
+      "Joe Friel's ideal training week for a masters cyclist is not complicated. Anthony went through it in detail on the podcast: two properly hard bike sessions (don't add a third), two strength sessions, everything else easy. The simplicity is the point — mastering the basics delivers more improvement at 50 than chasing complexity.",
+      "Where masters riders most commonly go wrong is distributing intensity too evenly across the week. Instead of two hard sessions and the rest actually easy, they end up with five medium-hard ones. That feels productive; it's actually the training pattern that produces the most fatigue for the least adaptation. The grey zone again.",
       "The strength sessions get dropped first when life gets busy, which is exactly the wrong priority call. Riding is replaceable with easier variation; strength is not. You can swap a Tuesday threshold ride for a long easy ride and lose little. You can't swap a Tuesday strength session for a ride and maintain what the strength was preserving.",
     ],
     expertEvidence: [
@@ -876,7 +876,7 @@ export const mastersAnswers: AnswerPage[] = [
         name: "Joe Friel",
         credential: "Author of Fast After 50 and The Cyclist's Training Bible",
         insight:
-          "The ideal masters training week is built around two hard cycling sessions and two strength sessions, with everything else kept genuinely easy. Adding a third hard session almost always increases fatigue more than fitness at this age. Simplicity and consistency outperform complexity and variety.",
+          "The ideal masters training week is built around two hard cycling sessions and two strength sessions, with everything else kept properly easy. Adding a third hard session almost always increases fatigue more than fitness at this age. Simplicity and consistency outperform complexity and variety.",
         episodeSlug: "ep-40-how-joe-friel-structures-the-ideal-cycling-training-week",
         guestSlug: "joe-friel",
       },
@@ -942,7 +942,7 @@ export const mastersAnswers: AnswerPage[] = [
       {
         question: "How should I fit strength training into a busy week?",
         answer:
-          "Stack it on the same day as a hard ride — hard ride in the morning, strength in the evening, or vice versa. This concentrates fatigue and keeps easy days genuinely easy. Two 40-minute sessions are manageable even in a busy schedule.",
+          "Stack it on the same day as a hard ride — hard ride in the morning, strength in the evening, or vice versa. This concentrates fatigue and keeps easy days properly easy. Two 40-minute sessions are manageable even in a busy schedule.",
       },
       {
         question: "Should masters cyclists do a long ride every week?",
@@ -952,7 +952,7 @@ export const mastersAnswers: AnswerPage[] = [
       {
         question: "Can I use group rides as hard sessions?",
         answer:
-          "Yes, if the group ride genuinely delivers threshold-level or higher intensity for a meaningful portion. The risk is that group rides are unpredictable — they can be harder than intended and blow the recovery structure for the week. Count them as hard sessions and plan accordingly.",
+          "Yes, if the group ride actually delivers threshold-level or higher intensity for a meaningful portion. The risk is that group rides are unpredictable — they can be harder than intended and blow the recovery structure for the week. Count them as hard sessions and plan accordingly.",
       },
     ],
     relatedEpisodes: [
@@ -1284,7 +1284,7 @@ export const mastersAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "Anthony has put this question directly to Joe Friel and to the World Tour coaches who've been on the podcast, and the answer from every one of them is the same: most masters amateurs are doing too many hard sessions, not too few. The typical training week is not polarised — it's medium. Four or five sessions where nothing is easy enough to be truly easy and nothing is hard enough to be truly hard. That's the grey zone, and it's where most masters riders are stuck.",
-      "Two properly hard sessions — genuinely at threshold or VO2 max, well-fuelled, fully recovered — deliver more adaptation than four medium grinds. The evidence base for this from Seiler's polarised training research is strong and the masters coaches on the podcast reinforce it. But accepting it requires trusting that rest days and easy days are doing something. They are.",
+      "Two properly hard sessions — properly at threshold or VO2 max, well-fuelled, fully recovered — deliver more adaptation than four medium grinds. The evidence base for this from Seiler's polarised training research is strong and the masters coaches on the podcast reinforce it. But accepting it requires trusting that rest days and easy days are doing something. They are.",
       "After 50, the recovery math is also different. A 45-year-old can sometimes squeeze three hard sessions in a good week. A 55-year-old trying the same schedule will notice the third session starts undermining the quality of the first two. The plan has to match the biology, not the ambition.",
     ],
     expertEvidence: [
@@ -1300,7 +1300,7 @@ export const mastersAnswers: AnswerPage[] = [
         name: "Why cyclists over 40 slow down",
         credential: "Roadman podcast — hard truths for masters athletes",
         insight:
-          "Masters athletes who accumulate too many hard sessions compound fatigue without accumulating adaptation. The weekly load pattern that separates improving masters cyclists from declining ones is not total volume — it's the ratio of genuinely hard to genuinely easy, with recovery baked in rather than bolted on.",
+          "Masters athletes who accumulate too many hard sessions compound fatigue without accumulating adaptation. The weekly load pattern that separates improving masters cyclists from declining ones is not total volume — it's the ratio of properly hard to properly easy, with recovery baked in rather than bolted on.",
         episodeSlug: "ep-2200-hard-truth-why-cyclists-over-40-slow-down-how-to-beat-it-rdm",
       },
     ],
@@ -1367,7 +1367,7 @@ export const mastersAnswers: AnswerPage[] = [
       {
         question: "What if two hard sessions isn't enough to improve?",
         answer:
-          "Two hard sessions is enough if each one is properly hard — genuinely at threshold or above — and the recovery between them is real. If sessions are medium-hard, the issue is intensity quality, not frequency. Make the hard days actually hard before adding more.",
+          "Two hard sessions is enough if each one is properly hard — actually at threshold or above — and the recovery between them is real. If sessions are medium-hard, the issue is intensity quality, not frequency. Make the hard days actually hard before adding more.",
       },
     ],
     relatedEpisodes: [
@@ -1818,7 +1818,7 @@ export const mastersAnswers: AnswerPage[] = [
       "No — 50 is a fine age to start training seriously. Beginners see the biggest gains, and the aerobic system responds at any age. What to prioritise so you progress without breaking down.",
     pillar: "coaching",
     directAnswer:
-      "No. Fifty is a fine age to start training seriously, and in some ways it's the best time — beginners get the largest, fastest fitness gains, and the aerobic system responds to training at any age. You won't have the absolute ceiling of someone who started at 20, but that's irrelevant to your own progress. Build an easy base, add strength twice a week, and respect recovery, and you'll get genuinely fast.",
+      "No. Fifty is a fine age to start training seriously, and in some ways it's the best time — beginners get the largest, fastest fitness gains, and the aerobic system responds to training at any age. You won't have the absolute ceiling of someone who started at 20, but that's irrelevant to your own progress. Build an easy base, add strength twice a week, and respect recovery, and you'll get properly fast.",
     keyTakeaways: [
       "Beginners gain the fastest — starting later means more low-hanging fruit, not less.",
       "The aerobic system adapts to training at any age; consistency drives it.",
@@ -1903,7 +1903,7 @@ export const mastersAnswers: AnswerPage[] = [
       {
         question: "Can you build real fitness starting cycling at 50?",
         answer:
-          "Yes, and quickly. Untrained beginners see the largest fitness gains of anyone, and the aerobic system responds to training throughout life. With a consistent easy base plus a little intensity, most new riders at 50 get genuinely fit within a year.",
+          "Yes, and quickly. Untrained beginners see the largest fitness gains of anyone, and the aerobic system responds to training throughout life. With a consistent easy base plus a little intensity, most new riders at 50 get really fit within a year.",
       },
       {
         question: "Is 50 too old to be competitive in cycling?",
@@ -2124,7 +2124,7 @@ export const mastersAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "There's a comfortable myth in masters cycling that you should ride easy and ease off the hard stuff as you age. It's half right and badly wrong. The easy part is right — most of your volume should be genuinely easy. But easing off VO2 max work is exactly the wrong call, because it's the single session that pushes back hardest against the decline that's coming whether you like it or not.",
+      "There's a comfortable myth in masters cycling that you should ride easy and ease off the hard stuff as you age. It's half right and badly wrong. The easy part is right — most of your volume should be properly easy. But easing off VO2 max work is exactly the wrong call, because it's the single session that pushes back hardest against the decline that's coming whether you like it or not.",
       "Anthony has had this out with Joe Friel and Dr David Lipman on the podcast, and they land in the same place: VO2 max is the strongest predictor of masters endurance performance, and it's trainable at any age. Even riders in their 60s and 70s improve VO2 max in response to structured intervals. Drop the hard sessions and you hand back the one adaptation that's most worth fighting for.",
       "What changes after 40 is the dosing, not the existence of the session. You need more recovery between reps and more easy days around the session. So instead of five reps with three-minute rests three times a week, it might be four reps with five-minute rests once or twice a week, flanked by easy days. Same stimulus, more respect for the recovery curve. That's the fixable bit — keep the work, fix the spacing.",
     ],
@@ -2160,7 +2160,7 @@ export const mastersAnswers: AnswerPage[] = [
       {
         title: "Flank VO2 sessions with easy days",
         detail:
-          "Put two genuinely easy days either side of a VO2 max session so it lands fresh and clears properly. Stacking it next to threshold work or a hard group ride blunts both.",
+          "Put two properly easy days either side of a VO2 max session so it lands fresh and clears properly. Stacking it next to threshold work or a hard group ride blunts both.",
       },
     ],
     commonMistakes: [
@@ -2550,8 +2550,8 @@ export const mastersAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "The honest answer is yes, and the podcast is full of evidence for it. Anthony spoke to Andrew Feather — a 40-something amateur who finished ahead of Tadej Pogacar at a hill climb challenge — and the through-line of those conversations is always the same: most of your competition isn't training well. In masters racing, the field is full of riders relying on natural talent and old fitness, which means a deliberately trained rider over 50 is often punching well above what the calendar suggests.",
-      "What you can't do is pretend the engine hasn't changed. Top-end power softens, recovery between efforts lengthens, and you can't dig into the red as often in a race and come back. So the training shifts — two genuinely hard sessions, strength twice a week, real recovery — and the racing shifts too. You ride smarter. Positioning, drafting, timing your one big effort instead of burning matches early. The riders who keep winning masters races are usually the tactically sharpest, not the ones with the biggest raw numbers.",
-      "This is the Not Done Yet identity in its clearest form. Racing after 50 isn't a consolation category — it's a real competitive arena where smart training and experience genuinely pay off. Anthony's framing is that the rider who keeps showing up, trains with structure, and races with their head usually finds they're more competitive at 53 than they were as a chaotic 35-year-old. The decline is real; so is the edge that experience and structure give you.",
+      "What you can't do is pretend the engine hasn't changed. Top-end power softens, recovery between efforts lengthens, and you can't dig into the red as often in a race and come back. So the training shifts — two really hard sessions, strength twice a week, real recovery — and the racing shifts too. You ride smarter. Positioning, drafting, timing your one big effort instead of burning matches early. The riders who keep winning masters races are usually the tactically sharpest, not the ones with the biggest raw numbers.",
+      "This is the Not Done Yet identity in its clearest form. Racing after 50 isn't a consolation category — it's a real competitive arena where smart training and experience actually pay off. Anthony's framing is that the rider who keeps showing up, trains with structure, and races with their head usually finds they're more competitive at 53 than they were as a chaotic 35-year-old. The decline is real; so is the edge that experience and structure give you.",
     ],
     expertEvidence: [
       {
@@ -2575,7 +2575,7 @@ export const mastersAnswers: AnswerPage[] = [
       {
         title: "Train two quality hard sessions, not five medium ones",
         detail:
-          "One threshold, one VO2 max session a week, executed properly, with everything else genuinely easy. Quality concentrated into fewer sessions beats spreading hard efforts thin across the week.",
+          "One threshold, one VO2 max session a week, executed properly, with everything else properly easy. Quality concentrated into fewer sessions beats spreading hard efforts thin across the week.",
       },
       {
         title: "Lift twice a week to defend race-winning power",
@@ -2693,7 +2693,7 @@ export const mastersAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "People treat 'masters' as one block, but a 42-year-old and a 56-year-old are training in genuinely different contexts. Anthony has unpacked this across the podcast with Joe Friel and Andy Galpin, and the cleanest way to think about it is this: your 40s are about adding what you've been getting away with skipping, and your 50s are about respecting recovery as the thing that now governs everything.",
+      "People treat 'masters' as one block, but a 42-year-old and a 56-year-old are training in properly different contexts. Anthony has unpacked this across the podcast with Joe Friel and Andy Galpin, and the cleanest way to think about it is this: your 40s are about adding what you've been getting away with skipping, and your 50s are about respecting recovery as the thing that now governs everything.",
       "In your 40s, the engine is still close to its peak. You can usually hold the volume and intensity you did at 35 — the difference is that the things you ignored start to cost you. Strength training stops being optional, because fast-twitch fibre is already going. Recovery gaps you blew off start to matter. The 40s are the decade to build the habits — strength, deloads, protein — that will carry you. Get them in now and the 50s are far kinder.",
       "In your 50s, recovery moves to centre stage. The hard sessions don't disappear — VO2 max work matters more than ever — but you can't run them as tightly. Two easy days between hard efforts becomes the default, deloads come every third week instead of fourth, and protein climbs toward the top of the range. It's not that you train easy; it's that you earn each hard session with more recovery around it. Same intensity, more space. That's the decade shift, and it's entirely manageable if you stop comparing yourself to the rider you were.",
     ],
@@ -3485,7 +3485,7 @@ export const mastersAnswers: AnswerPage[] = [
       {
         mistake: "Treating off-season like a smaller version of the race season.",
         fix:
-          "Off-season is strength-and-base dominant. The mix is genuinely different from in-season, and the masters body responds to it.",
+          "Off-season is strength-and-base dominant. The mix is actually different from in-season, and the masters body responds to it.",
       },
       {
         mistake: "Doing VO2max work all winter.",
@@ -3497,7 +3497,7 @@ export const mastersAnswers: AnswerPage[] = [
       {
         question: "How long should the masters off-season be?",
         answer:
-          "Roughly 10–14 weeks for most masters cyclists, ideally aligned with autumn and early winter. Long enough to genuinely rebuild strength and base, short enough to keep ride-specific fitness from drifting too far.",
+          "Roughly 10–14 weeks for most masters cyclists, ideally aligned with autumn and early winter. Long enough to properly rebuild strength and base, short enough to keep ride-specific fitness from drifting too far.",
       },
       {
         question: "Should masters cyclists ride less in the off-season?",
@@ -3562,7 +3562,7 @@ export const mastersAnswers: AnswerPage[] = [
     keyTakeaways: [
       "Zone 2 should be the majority of a masters week — but majority is not the whole.",
       "What declines fastest after 40 is the top end, and only hard sessions defend it.",
-      "The polarised model still holds at 50: a big easy base, a small slice of genuinely hard work.",
+      "The polarised model still holds at 50: a big easy base, a small slice of properly hard work.",
       "Dropping intensity to 'protect recovery' is the most common way masters riders quietly slow down.",
     ],
     whoFor: [
@@ -3578,8 +3578,8 @@ export const mastersAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Zone 2 has become the headline of amateur training, and for good reason — most riders genuinely do too much of their easy riding too hard. But the message got flattened on the way down. 'Ride Zone 2' turned into 'only ride Zone 2', and for masters cyclists that is a slow-motion mistake. The base is the foundation. It is not the house.",
-      "Anthony has put this directly to Stephen Seiler on the podcast, and the model that comes back is consistent: the best aerobic athletes spend around 80% of their time easy and about 20% genuinely hard. The 80 is what makes the 20 repeatable. But the 20 is not optional padding — it is the part that lifts your ceiling, and the ceiling is exactly what age erodes. A masters rider who keeps the 80 and quietly drops the 20 is training the one quality that holds up well with age and neglecting the one that does not.",
+      "Zone 2 has become the headline of amateur training, and for good reason — most riders really do too much of their easy riding too hard. But the message got flattened on the way down. 'Ride Zone 2' turned into 'only ride Zone 2', and for masters cyclists that is a slow-motion mistake. The base is the foundation. It is not the house.",
+      "Anthony has put this directly to Stephen Seiler on the podcast, and the model that comes back is consistent: the best aerobic athletes spend around 80% of their time easy and about 20% properly hard. The 80 is what makes the 20 repeatable. But the 20 is not optional padding — it is the part that lifts your ceiling, and the ceiling is exactly what age erodes. A masters rider who keeps the 80 and quietly drops the 20 is training the one quality that holds up well with age and neglecting the one that does not.",
       "The honest answer is that 'is Zone 2 enough' is the wrong question. The right one is 'is my easy easy enough, and is my hard hard enough, and are both still in the plan after 40?' Get the distribution right and Zone 2 becomes the engine that lets you keep doing the hard sessions that actually defend your speed. Skip the hard work and all the base in the world will not stop your top end fading.",
     ],
     expertEvidence: [
@@ -3602,7 +3602,7 @@ export const mastersAnswers: AnswerPage[] = [
     ],
     practicalApplication: [
       {
-        title: "Make your easy days genuinely easy",
+        title: "Make your easy days properly easy",
         detail:
           "Hold Zone 2 at 56–75% of FTP — a pace where you can talk in full sentences and breathe mostly through your nose. If you are mouth-breathing on a 'recovery' ride, you have drifted into the grey zone and you are stealing from your hard days.",
       },
@@ -3638,7 +3638,7 @@ export const mastersAnswers: AnswerPage[] = [
       {
         question: "How much of a masters cyclist's week should be Zone 2?",
         answer:
-          "Around 80% of training time should be genuinely easy aerobic riding, with the remaining 20% as hard, structured intensity. The exact split flexes with your hours, but the principle — mostly easy, a little properly hard — holds at every age.",
+          "Around 80% of training time should be properly easy aerobic riding, with the remaining 20% as hard, structured intensity. The exact split flexes with your hours, but the principle — mostly easy, a little properly hard — holds at every age.",
       },
       {
         question: "Will Zone 2 alone make me faster after 40?",
@@ -3648,7 +3648,7 @@ export const mastersAnswers: AnswerPage[] = [
       {
         question: "How many hard sessions can a masters cyclist handle?",
         answer:
-          "Most masters riders do best with two genuinely hard sessions a week, occasionally three in a focused block. The limit is recovery, not motivation — quality each session matters more than the count.",
+          "Most masters riders do best with two properly hard sessions a week, occasionally three in a focused block. The limit is recovery, not motivation — quality each session matters more than the count.",
       },
       {
         question: "Is polarised training still right for older cyclists?",
@@ -3663,7 +3663,7 @@ export const mastersAnswers: AnswerPage[] = [
       {
         question: "Does Zone 2 help recovery for masters riders?",
         answer:
-          "Yes — genuinely easy riding promotes blood flow and aerobic adaptation without adding meaningful fatigue, which makes it ideal between hard sessions. That recovery role is one of the reasons it should dominate the week.",
+          "Yes — truly easy riding promotes blood flow and aerobic adaptation without adding meaningful fatigue, which makes it ideal between hard sessions. That recovery role is one of the reasons it should dominate the week.",
       },
     ],
     relatedEpisodes: [

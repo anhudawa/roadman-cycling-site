@@ -163,7 +163,7 @@ export const metricsAnswers: AnswerPage[] = [
       {
         label: "The rider building toward an event",
         detail:
-          "You want to know whether your fitness is genuinely climbing as your event approaches.",
+          "You want to know whether your fitness is actually climbing as your event approaches.",
       },
       {
         label: "The data-curious amateur",
@@ -181,7 +181,7 @@ export const metricsAnswers: AnswerPage[] = [
         name: "Joe Friel",
         credential: "Co-founder of TrainingPeaks, author of The Cyclist's Training Bible",
         insight:
-          "Fitness is built slowly and consistently, which is exactly what a long rolling average captures. The value of a chronic-load line is that it ignores the noise of any single ride and shows whether the training is genuinely accumulating over time.",
+          "Fitness is built slowly and consistently, which is exactly what a long rolling average captures. The value of a chronic-load line is that it ignores the noise of any single ride and shows whether the training is actually accumulating over time.",
         episodeSlug: "ep-2205-the-training-secret-to-going-faster-after-40-joe-friel",
         guestSlug: "joe-friel",
       },
@@ -419,7 +419,7 @@ export const metricsAnswers: AnswerPage[] = [
       "Decoupling is the drift between your power-to-heart-rate ratio in the first half of a ride versus the second.",
       "Under about 5% drift signals good aerobic durability; more than that means you faded.",
       "Measure it on steady aerobic or tempo rides — not variable, stop-start, or all-out efforts.",
-      "Falling decoupling over a base block is proof your endurance is genuinely improving.",
+      "Falling decoupling over a base block is proof your endurance is properly improving.",
     ],
     whoFor: [
       {
@@ -629,7 +629,7 @@ export const metricsAnswers: AnswerPage[] = [
       {
         question: "How accurate is RPE without a power meter?",
         answer:
-          "With a little practice, RPE is a genuinely useful guide to intensity — riders learn to map ratings onto their zones reliably. It's less precise than power for hitting exact targets, but for managing overall effort and load it's effective and always available.",
+          "With a little practice, RPE is a really useful guide to intensity — riders learn to map ratings onto their zones reliably. It's less precise than power for hitting exact targets, but for managing overall effort and load it's effective and always available.",
       },
       {
         question: "What is a good RPE for an easy ride?",

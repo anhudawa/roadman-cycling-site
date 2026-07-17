@@ -299,7 +299,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     problem: [
       "The cycling internet is overwhelming. Sweet spot, polarised, FTP, w/kg, Zone 2, Zwift races, intervals, structured plans — and somewhere in there is the actual question: what do I do this Tuesday?",
       "Most new cyclists default to one of two patterns. Either they ride hard every time they go out (because slow feels like wasted time) or they buy a 12-week training plan and lose interest by week four because nothing in it is built around them.",
-      "Neither builds the engine that lasts. The right way to spend your first two years on the bike is genuinely simple — and exactly what we coach beginners through.",
+      "Neither builds the engine that lasts. The right way to spend your first two years on the bike is really simple — and exactly what we coach beginners through.",
     ],
     whatChanges: [
       "Time spent learning Zone 2 properly — most beginners never learn what easy actually feels like",
@@ -1297,7 +1297,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
       {
         question: "How many hard sessions a week is right after 50?",
         answer:
-          "For most over-50 cyclists, two genuinely hard sessions a week is the upper limit — and only when fully recovered for. The third hard session that worked at 35 is now the one that creates more cost than benefit. Quality over quantity, with real recovery between, is the framework. We use HRV trends to confirm whether each hard day actually lands.",
+          "For most over-50 cyclists, two properly hard sessions a week is the upper limit — and only when fully recovered for. The third hard session that worked at 35 is now the one that creates more cost than benefit. Quality over quantity, with real recovery between, is the framework. We use HRV trends to confirm whether each hard day actually lands.",
       },
       {
         question: "Will I lose fitness if I take more rest days?",
@@ -1613,7 +1613,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
         number: "05",
         title: "Long-Term Mindset",
         description:
-          "The comeback is measured in months. The first 4 weeks are foundation. Weeks 4-12 are progressive load. Months 3-6 are when fitness genuinely returns. Riders who try to compress this window typically reset themselves to month one. Patience is the most powerful protocol.",
+          "The comeback is measured in months. The first 4 weeks are foundation. Weeks 4-12 are progressive load. Months 3-6 are when fitness actually returns. Riders who try to compress this window typically reset themselves to month one. Patience is the most powerful protocol.",
       },
     ],
     sampleWeekHours: "5-7 hrs/week (varies by stage)",

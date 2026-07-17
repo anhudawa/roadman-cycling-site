@@ -1457,7 +1457,7 @@ export const highVolumeQuery10Answers: AnswerPage[] = [
       {
         question: "Should I ride in heavy rain?",
         answer:
-          "Light to moderate rain is manageable with the right kit and technique. Heavy rain, standing water, and strong crosswinds increase risk substantially. If visibility drops below 50-100 metres, consider cutting the ride short. Indoor training is always an option when conditions are genuinely dangerous.",
+          "Light to moderate rain is manageable with the right kit and technique. Heavy rain, standing water, and strong crosswinds increase risk substantially. If visibility drops below 50-100 metres, consider cutting the ride short. Indoor training is always an option when conditions are properly dangerous.",
       },
     ],
     relatedEpisodes: [],
@@ -1552,7 +1552,7 @@ export const highVolumeQuery10Answers: AnswerPage[] = [
       {
         question: "At what wind speed should I not ride?",
         answer:
-          "There is no universal threshold, but sustained winds above 50 km/h (30 mph) with gusts higher make road cycling genuinely risky, particularly for lighter riders and those on exposed roads. At those speeds, the risk of being blown into traffic or losing control on exposed sections outweighs the training benefit. Indoor training is a better option.",
+          "There is no universal threshold, but sustained winds above 50 km/h (30 mph) with gusts higher make road cycling seriously risky, particularly for lighter riders and those on exposed roads. At those speeds, the risk of being blown into traffic or losing control on exposed sections outweighs the training benefit. Indoor training is a better option.",
       },
       {
         question: "What is an echelon in cycling?",
@@ -1645,7 +1645,7 @@ export const highVolumeQuery10Answers: AnswerPage[] = [
       {
         mistake: "Making every ride moderately hard because it feels productive.",
         fix:
-          "The grey zone — too hard to be recovery, too easy to drive adaptation — is the most fatiguing, least productive intensity. Keep easy rides genuinely easy and hard rides genuinely hard. The gap between them should be obvious.",
+          "The grey zone — too hard to be recovery, too easy to drive adaptation — is the most fatiguing, least productive intensity. Keep easy rides properly easy and hard rides properly hard. The gap between them should be obvious.",
       },
       {
         mistake: "Sacrificing family time for training and creating resentment.",

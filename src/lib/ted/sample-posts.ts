@@ -42,7 +42,7 @@ If you had to pick one — your Z2 rides done properly, or your intervals done p
 
 Seiler said on the podcast that amateurs get it backwards. Grind the easy days. Coast the hard ones.
 
-Curious what you'd do if you genuinely had to choose. And why.
+Curious what you'd do if you actually had to choose. And why.
 
 — Ted`,
   },

@@ -728,7 +728,7 @@ export const highVolumeQuery15Answers: AnswerPage[] = [
         name: "Jason Smith",
         credential: "Friction Facts / CeramicSpeed drivetrain efficiency researcher",
         insight:
-          "Drivetrain friction testing shows that a clean, properly lubricated chain produces 3-5 watts less friction than a contaminated chain at 250 watts rider output. The key finding is that lubricant type matters less than chain cleanliness — any quality lubricant applied to a genuinely clean chain outperforms premium lubricant applied over existing grime. Cleaning method matters more than lubricant brand.",
+          "Drivetrain friction testing shows that a clean, properly lubricated chain produces 3-5 watts less friction than a contaminated chain at 250 watts rider output. The key finding is that lubricant type matters less than chain cleanliness — any quality lubricant applied to a properly clean chain outperforms premium lubricant applied over existing grime. Cleaning method matters more than lubricant brand.",
       },
       {
         name: "Calvin Jones",
@@ -855,7 +855,7 @@ export const highVolumeQuery15Answers: AnswerPage[] = [
     ],
     roadmanView: [
       "There is no shortcut to FTP improvement, but there is a fastest path. That path is not more riding — it is more specific riding. Most riders who feel stuck are training in the grey zone: too hard to recover from, too easy to drive adaptation. They ride at 80-85% of FTP for two hours and call it a hard ride. It is not hard enough to stimulate threshold adaptation and not easy enough to build aerobic base.",
-      "The fastest FTP gains come from polarised training. Two to three sessions per week at or above threshold, everything else genuinely easy. The threshold work needs to be uncomfortable — 95-105% of FTP for sustained periods. The easy work needs to be genuinely easy — 55-75% of FTP, conversational pace, no ego.",
+      "The fastest FTP gains come from polarised training. Two to three sessions per week at or above threshold, everything else properly easy. The threshold work needs to be uncomfortable — 95-105% of FTP for sustained periods. The easy work needs to be truly easy — 55-75% of FTP, conversational pace, no ego.",
       "Block periodisation — concentrating threshold work into a single week — can accelerate gains further. Ronnestad's research showed 4.6% FTP improvement in 12 days using this approach. But the recovery week after the block is non-negotiable. You absorb the training during rest, not during the work.",
     ],
     expertEvidence: [

@@ -64,7 +64,7 @@ const APPS: readonly AppEntry[] = [
     name: "Garmin Connect",
     role: "Head-unit and recovery layer",
     strength:
-      "The ride captures itself, syncs everywhere, and the Body Battery / sleep / HRV data is genuinely useful as a trend line. The Edge head-unit is the workhorse of structured outdoor training.",
+      "The ride captures itself, syncs everywhere, and the Body Battery / sleep / HRV data is really useful as a trend line. The Edge head-unit is the workhorse of structured outdoor training.",
     cost: "Free with hardware",
   },
   {
@@ -181,7 +181,7 @@ const FAQ = [
   },
   {
     q: "Can't TrainerRoad's adaptive AI do what a coach does?",
-    a: "It can do part of the job — it's genuinely good at progressing a workout difficulty curve and detecting an FTP shift from indoor sessions. What it can't do is decide whether the right answer this Tuesday is to back off because your sleep tanked, swap the prescribed VO2 block for sweet spot because your A-event moved, or call you on the phone when you're three weeks from a goal race and the file says one thing but the chat says another. Adaptive software is a useful piece of the stack. It's not the layer above it.",
+    a: "It can do part of the job — it's really good at progressing a workout difficulty curve and detecting an FTP shift from indoor sessions. What it can't do is decide whether the right answer this Tuesday is to back off because your sleep tanked, swap the prescribed VO2 block for sweet spot because your A-event moved, or call you on the phone when you're three weeks from a goal race and the file says one thing but the chat says another. Adaptive software is a useful piece of the stack. It's not the layer above it.",
   },
   {
     q: "I have a coach already and I'm thinking about leaving. What's different here?",
@@ -197,7 +197,7 @@ const FAQ = [
   },
   {
     q: "Why not just read the podcast archive and the blog and self-coach?",
-    a: "A lot of riders do — and the free archive is genuinely the most-cited resource members reference once they're inside the paid programme. The two things self-coaching can't give you are the second pair of eyes on your specific data and the accountability that holds the block together when life gets in the way. If you're early in the work, self-coach with the free archive. If you've been doing it for years and your FTP has stalled, the diagnostic at /plateau will tell you which of four common patterns you're caught in.",
+    a: "A lot of riders do — and the free archive is easily the most-cited resource members reference once they're inside the paid programme. The two things self-coaching can't give you are the second pair of eyes on your specific data and the accountability that holds the block together when life gets in the way. If you're early in the work, self-coach with the free archive. If you've been doing it for years and your FTP has stalled, the diagnostic at /plateau will tell you which of four common patterns you're caught in.",
   },
   {
     q: "Is this a fit for triathletes, gravel riders, or only road racers?",

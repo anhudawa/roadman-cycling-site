@@ -1,0 +1,27 @@
+ROADMAN OS — QUESTIONS BEFORE I BUILD
+======================================
+
+Got the spec. It's thorough and well thought out. Four questions
+before I start architecting:
+
+1. WHERE DOES THIS LIVE?
+   Built into the existing roadmancycling.com Next.js site as an
+   internal admin area? Or a standalone app with its own domain?
+
+2. WHO NEEDS ACCOUNTS AT LAUNCH?
+   Just you for now, or do Sarah/Sinead/Wes need access from day one?
+
+3. DATABASE PREFERENCE?
+   You're on Vercel already. Supabase (Postgres) fits naturally.
+   Or do you have something else in mind?
+
+4. TIMELINE?
+   Build it right over the next few weeks, or is there a hard date
+   you need the MVP working by?
+
+These answers shape whether I build this as a new standalone app or
+a module within your existing stack, and how I scope Phase 1.
+
+NOTE: The Dispatch chat display bug is still active. You're not
+seeing my chat messages. Reply in chat and I'll pick it up, or
+restart the Dispatch session to fix the display.

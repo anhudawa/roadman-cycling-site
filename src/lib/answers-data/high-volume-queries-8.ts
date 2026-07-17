@@ -251,7 +251,7 @@ export const highVolumeQuery8Answers: AnswerPage[] = [
         name: "Prof Stephen Seiler",
         credential: "Exercise physiologist, University of Agder",
         insight:
-          "The first lactate threshold (LT1) is the most important intensity boundary for endurance athletes because it defines the ceiling for genuinely aerobic training. Athletes who train above LT1 on their easy days accumulate unnecessary fatigue without additional aerobic stimulus. Identifying LT1 through blood lactate testing allows athletes to calibrate Zone 2 with precision rather than guesswork.",
+          "The first lactate threshold (LT1) is the most important intensity boundary for endurance athletes because it defines the ceiling for truly aerobic training. Athletes who train above LT1 on their easy days accumulate unnecessary fatigue without additional aerobic stimulus. Identifying LT1 through blood lactate testing allows athletes to calibrate Zone 2 with precision rather than guesswork.",
       },
     ],
     practicalApplication: [
@@ -285,7 +285,7 @@ export const highVolumeQuery8Answers: AnswerPage[] = [
       {
         mistake: "Only testing LT2 and ignoring LT1.",
         fix:
-          "LT1 defines the top of your genuinely aerobic zone. Without it, you are guessing at Zone 2 intensity. Specifically ask for both thresholds if doing a lab test.",
+          "LT1 defines the top of your properly aerobic zone. Without it, you are guessing at Zone 2 intensity. Specifically ask for both thresholds if doing a lab test.",
       },
     ],
     faq: [

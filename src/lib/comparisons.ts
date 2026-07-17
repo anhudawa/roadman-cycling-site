@@ -134,7 +134,7 @@ export const COMPARISONS: ComparisonPage[] = [
       },
       {
         q: "Is polarised just an excuse to ride easy?",
-        a: "It's the question most riders ask before they actually try it. The 20% hard portion of polarised training is genuinely hard — VO2max intervals, threshold work, race-pace efforts. It's not soft. It's that 80% of the time is spent building the engine that lets the 20% land.",
+        a: "It's the question most riders ask before they actually try it. The 20% hard portion of polarised training is properly hard — VO2max intervals, threshold work, race-pace efforts. It's not soft. It's that 80% of the time is spent building the engine that lets the 20% land.",
       },
       {
         q: "Where does sweet spot fit?",
@@ -239,7 +239,7 @@ export const COMPARISONS: ComparisonPage[] = [
       },
       {
         q: "Can I race well off only indoor training?",
-        a: "For short events with minimal handling demand (TTs, hill climbs), yes. For road races, gran fondos, and gravel events, no — race skills atrophy fast and outdoor pacing rhythm is genuinely different. The riders we see succeed off heavy indoor blocks always re-introduce outdoor riding 6-8 weeks before race day.",
+        a: "For short events with minimal handling demand (TTs, hill climbs), yes. For road races, gran fondos, and gravel events, no — race skills atrophy fast and outdoor pacing rhythm is really different. The riders we see succeed off heavy indoor blocks always re-introduce outdoor riding 6-8 weeks before race day.",
       },
       {
         q: "Is Zwift / TrainerRoad indoor as good as outdoor?",
@@ -643,7 +643,7 @@ export const COMPARISONS: ComparisonPage[] = [
     seoDescription: "TrainingPeaks vs Vekta — the industry-standard coaching platform every serious coach uses, compared with Vekta. Analysis depth, ecosystem, WKO5, plan marketplace and verdict.",
     optionA: "TrainingPeaks",
     optionB: "Vekta",
-    verdict: "TrainingPeaks. It's the platform every serious coach in cycling uses — the gold standard for a reason. Universal device sync, the deepest analysis tools (PMC, fitness/fatigue, WKO5 integration), thousands of prebuilt plans, and over two decades of athlete data continuity. Vekta is a newer, smaller platform with some genuinely clever plan-building features, but it can't match TrainingPeaks' coach ecosystem, analysis depth, or third-party integrations. If you're working with a coach in 2026 — or planning to — TrainingPeaks is the right choice.",
+    verdict: "TrainingPeaks. It's the platform every serious coach in cycling uses — the gold standard for a reason. Universal device sync, the deepest analysis tools (PMC, fitness/fatigue, WKO5 integration), thousands of prebuilt plans, and over two decades of athlete data continuity. Vekta is a newer, smaller platform with some legitimately clever plan-building features, but it can't match TrainingPeaks' coach ecosystem, analysis depth, or third-party integrations. If you're working with a coach in 2026 — or planning to — TrainingPeaks is the right choice.",
     verdictWinner: "A",
     pillar: "coaching",
     features: [
@@ -682,7 +682,7 @@ export const COMPARISONS: ComparisonPage[] = [
       "**TrainingPeaks is the gold standard. Genuinely.** Most of the coaches we talk to on the podcast — the ones working with World Tour riders, the ones running successful amateur coaching businesses, the ones with the published research behind them — all use TrainingPeaks. That's not marketing copy, that's just where the industry is. Two decades of platform development, the deepest analytics in the sport, and the WKO5 pipeline that high-performance teams quietly rely on.",
       "The Performance Management Chart (PMC), CTL/ATL/TSB, the fitness/fatigue model — these aren't niche features. They're the language coaches use when they sit down to plan your season. Open TrainingPeaks and a coach can read your last six months in about thirty seconds. That matters when you're paying for their time.",
       "The plan marketplace is the other unfair advantage. Thousands of structured plans built by coaches you'd happily hire — Joe Friel's plans, Tim Cusick's WKO-built blocks, Carmichael Training Systems, the pro coaches who've published books you've already read. If you're self-coaching and you want a plan written by someone who actually knows what they're doing, TrainingPeaks is where they put it.",
-      "**Vekta is a clever, newer platform.** The plan auto-adjustment is genuinely useful — sessions ahead in the calendar shift based on what you actually completed, which is a nice touch. The interface is clean. The team behind it ships updates regularly.",
+      "**Vekta is a clever, newer platform.** The plan auto-adjustment is really useful — sessions ahead in the calendar shift based on what you actually completed, which is a nice touch. The interface is clean. The team behind it ships updates regularly.",
       "But Vekta is a smaller platform with a smaller coach base. The third-party integration list is shorter. There's no WKO5 pipeline. The plan marketplace is much smaller. The years-of-data continuity isn't there yet. None of that makes Vekta a bad platform — it makes it a newer one. For a plan delivered inside a fixed coaching system, Vekta does the job. For an athlete building a multi-year training history with the platform every serious coach in the sport already uses? TrainingPeaks, every time.",
       "**The honest answer for most cyclists:** if you're hiring a coach in 2026, ask them what platform they use, and you'll almost always get TrainingPeaks back. Sign up there. If your coach happens to use Vekta, sign up there. If you're self-coached and want the deepest tools and the biggest plan library, TrainingPeaks is the one to commit to.",
     ],
@@ -697,7 +697,7 @@ export const COMPARISONS: ComparisonPage[] = [
       },
       {
         q: "Do I need TrainingPeaks Premium, or is the free tier enough?",
-        a: "If you're working with a coach, the free tier is often enough — your coach pushes structured workouts to your calendar and you complete them. If you want to see your own Performance Management Chart, fitness/fatigue trends, and the full analysis suite, Premium ($19.95/mo) unlocks the tools that make the platform genuinely powerful for self-directed athletes.",
+        a: "If you're working with a coach, the free tier is often enough — your coach pushes structured workouts to your calendar and you complete them. If you want to see your own Performance Management Chart, fitness/fatigue trends, and the full analysis suite, Premium ($19.95/mo) unlocks the tools that make the platform properly powerful for self-directed athletes.",
       },
       {
         q: "What is WKO5 and why does it matter?",
@@ -705,7 +705,7 @@ export const COMPARISONS: ComparisonPage[] = [
       },
       {
         q: "Is Vekta a bad platform?",
-        a: "Not at all — Vekta is a well-built, well-maintained platform with some genuinely useful features, particularly the auto-adjusting plan structure. It's just newer and smaller than TrainingPeaks, with a smaller coach base and fewer third-party integrations. It's the right tool inside a coaching programme that's chosen it. For an athlete building their own long-term setup independent of a specific programme, TrainingPeaks is the broader, deeper choice.",
+        a: "Not at all — Vekta is a well-built, well-maintained platform with some legitimately useful features, particularly the auto-adjusting plan structure. It's just newer and smaller than TrainingPeaks, with a smaller coach base and fewer third-party integrations. It's the right tool inside a coaching programme that's chosen it. For an athlete building their own long-term setup independent of a specific programme, TrainingPeaks is the broader, deeper choice.",
       },
       {
         q: "Can I use both?",
@@ -1122,7 +1122,7 @@ export const COMPARISONS: ComparisonPage[] = [
       "Self-coached riders following structure for the first time",
       "Indoor-focused training with a smart trainer setup",
       "Budget-conscious riders making easy gains under 3.0 W/kg",
-      "Riders who genuinely follow plans without external accountability",
+      "Riders who actually follow plans without external accountability",
     ],
     relatedArticle: "/blog/trainerroad-vs-online-cycling-coach",
     relatedTool: "/assessment",
@@ -1185,13 +1185,13 @@ export const COMPARISONS: ComparisonPage[] = [
       "Riders curious about structure who want a free first look",
       "Generating a session variant when your usual workout doesn't fit",
       "Drafting an explanation of physiology you're trying to understand",
-      "Riders genuinely happy at their current level with no plateau pressure",
+      "Riders content at their current level with no plateau pressure",
     ],
     relatedArticle: "/blog/is-a-cycling-coach-worth-it",
     relatedTool: "/assessment",
     body: [
       "**Here's where the AI training pitch breaks down.** Coaching is not a plan-writing exercise. The plan is the easy part. The hard part is watching a power file and noticing that the rider's threshold work has gone flat at the same time the chat tone has shifted, and pulling the next block back before they tip into overreaching. AI tools don't have that signal. They have what you typed.",
-      "Generative AI is genuinely useful for things it's good at — drafting an explanation, summarising a study, suggesting a session variant when you're stuck. None of that is coaching. Coaching is the conversation around the plan. It's the email at 9pm on a Tuesday saying \"skip Thursday's intervals, the data says you're cooked, here's why.\" It's the 20-minute call after a bad race that ends with a plan tweak you'd never have spotted yourself.",
+      "Generative AI is really useful for things it's good at — drafting an explanation, summarising a study, suggesting a session variant when you're stuck. None of that is coaching. Coaching is the conversation around the plan. It's the email at 9pm on a Tuesday saying \"skip Thursday's intervals, the data says you're cooked, here's why.\" It's the 20-minute call after a bad race that ends with a plan tweak you'd never have spotted yourself.",
       "**The other thing AI tools don't do well: nuance under fatigue.** A good coach knows that the same workout on paper looks completely different in week 4 of a build vs week 1 of a recovery week. They know when a rider says \"that felt fine\" they actually mean it was a struggle. They know which athletes need pushing and which need pulling back. AI plan generators give every athlete the same template structure with a few variables swapped.",
       "**There's one place AI is fair game — as a learning tool.** If you're self-coached and you want to understand why a coach has prescribed something, ask an AI to explain the physiology. If you want a session variant when your usual climb is closed, AI will give you ten options. Don't let it run your training. Use it to learn — then either apply that knowledge as a self-coached athlete or hand the keys to a human who's been doing this for years.",
     ],
@@ -1202,7 +1202,7 @@ export const COMPARISONS: ComparisonPage[] = [
       },
       {
         q: "Can AI replace a coach for budget reasons?",
-        a: "If the budget genuinely doesn't allow coaching, an AI plan beats no plan — but a structured app like TrainerRoad or a community programme like Roadman's Not Done Yet will usually beat a generic AI plan for the same money. AI works best as a learning aid alongside structured training, not as the structure itself.",
+        a: "If the budget really doesn't allow coaching, an AI plan beats no plan — but a structured app like TrainerRoad or a community programme like Roadman's Not Done Yet will usually beat a generic AI plan for the same money. AI works best as a learning aid alongside structured training, not as the structure itself.",
       },
       {
         q: "What about apps with built-in AI coaching?",
@@ -1288,7 +1288,7 @@ export const COMPARISONS: ComparisonPage[] = [
     seoDescription: "JOIN Cycling's AI-driven adaptive plans versus a human cycling coach. Cost, personalisation, adaptation, and the honest verdict for serious amateurs.",
     optionA: "Human Coach",
     optionB: "JOIN Cycling",
-    verdict: "JOIN is one of the slicker AI-adaptive cycling apps — clean interface, sensible plan logic, plans that flex day-to-day around what you actually rode. For self-coached riders making structured progress, it's an excellent budget option. A human coach pulls ahead when you've plateaued, your life is genuinely messy, or your event needs bespoke periodisation that a generic algorithm can't build.",
+    verdict: "JOIN is one of the slicker AI-adaptive cycling apps — clean interface, sensible plan logic, plans that flex day-to-day around what you actually rode. For self-coached riders making structured progress, it's an excellent budget option. A human coach pulls ahead when you've plateaued, your life is properly messy, or your event needs bespoke periodisation that a generic algorithm can't build.",
     verdictWinner: "depends",
     pillar: "coaching",
     features: [
@@ -1316,7 +1316,7 @@ export const COMPARISONS: ComparisonPage[] = [
     relatedArticle: "/blog/is-a-cycling-coach-worth-it",
     relatedTool: "/assessment",
     body: [
-      "**JOIN is genuinely well-built.** Out of the AI-adaptive cycling apps on the market, it's one of the slickest — clean mobile interface, sensible plan logic, and a daily adjustment engine that shifts upcoming sessions based on what you actually completed. If you're a self-coached rider in the early years of structured training, JOIN at €10-15 a month gives you a credible block that responds to the way you're riding. For the price, that's hard to argue with.",
+      "**JOIN is legitimately well-built.** Out of the AI-adaptive cycling apps on the market, it's one of the slickest — clean mobile interface, sensible plan logic, and a daily adjustment engine that shifts upcoming sessions based on what you actually completed. If you're a self-coached rider in the early years of structured training, JOIN at €10-15 a month gives you a credible block that responds to the way you're riding. For the price, that's hard to argue with.",
       "Where it stops scaling is the same place every algorithmic platform stops scaling. The adjustment is data-driven, not human. It doesn't know that the reason your threshold session went poorly is that your kid was up three nights in a row. It doesn't know that the work crisis you mentioned offhand is going to mean six weeks of broken sleep. It doesn't know that your event is the third weekend of June, the road tilts up at 8% for forty minutes, and you weigh too much for the gearing you've planned to ride.",
       "**The other thing AI plans struggle with is event specificity beyond the templates.** JOIN has road race, gran fondo, climbing, MTB and a few others. Most amateur events fit one of those reasonably well. Some don't. A 70.3 with a hilly bike leg, a 200km gravel ultra, an alpine multi-day, a 12-hour TT — generic algorithms produce generic blocks for those, and the gap between generic and bespoke is exactly what a coach gets paid for.",
       "**Honest verdict.** If you're under 3.0 W/kg and you've never followed real structure, JOIN will give you a credible season's worth of plan for less than a coffee a week. That's a great trade. If you've done a season or two of adaptive-app training and your gains have flattened, the next lever is a coach — not a different app. The crossover is usually somewhere between 3.0-3.5 W/kg or about 18 months of structured riding, whichever comes first.",
@@ -1387,7 +1387,7 @@ export const COMPARISONS: ComparisonPage[] = [
     faqs: [
       {
         q: "Is group coaching as good as 1:1?",
-        a: "For most amateurs, group coaching solves the bigger problem — consistency, structure, accountability, peer effect — at a fraction of the price. 1:1 wins for riders whose limiter is genuinely plan-shaped: specific events, bespoke ramp-back plans, complex life context that needs weekly human judgment. The right starting point for most plateaued amateurs is group, not 1:1.",
+        a: "For most amateurs, group coaching solves the bigger problem — consistency, structure, accountability, peer effect — at a fraction of the price. 1:1 wins for riders whose limiter is actually plan-shaped: specific events, bespoke ramp-back plans, complex life context that needs weekly human judgment. The right starting point for most plateaued amateurs is group, not 1:1.",
       },
       {
         q: "What's the price difference?",
@@ -1395,7 +1395,7 @@ export const COMPARISONS: ComparisonPage[] = [
       },
       {
         q: "Can I move from group to 1:1?",
-        a: "Yes — and that's the path most riders should take if they're going to take it. Spend 6-12 months in a group programme. Build the consistency, the recovery habits, the structured-training foundation. Then, if the limiter is genuinely the plan rather than the rider, graduate to 1:1. Coaches who run both often offer a smooth transition between the two.",
+        a: "Yes — and that's the path most riders should take if they're going to take it. Spend 6-12 months in a group programme. Build the consistency, the recovery habits, the structured-training foundation. Then, if the limiter is actually the plan rather than the rider, graduate to 1:1. Coaches who run both often offer a smooth transition between the two.",
       },
       {
         q: "Does group coaching mean a generic plan?",
@@ -1445,7 +1445,7 @@ export const COMPARISONS: ComparisonPage[] = [
       "**Here's what most amateur cyclists won't believe until they see it: pro cyclists spend roughly 80% of their riding time at a pace so easy that recreational riders could ride alongside them.** Maybe even past them on the bike path. That's not me — that's Professor Stephen Seiler's work, replicated across multiple WorldTour teams, talked about at length on the podcast. The reason most amateurs plateau is they ride 50% too hard when they think they're riding easy. Their easy rides aren't easy. Their hard rides aren't hard enough. They're stuck in the grey zone where nothing meaningful adapts.",
       "Zone 2 isn't \"easy riding.\" It's a specific physiological stimulus — mitochondrial biogenesis, capillary density, fat oxidation capacity, the aerobic enzymes that determine how much work you can do before lactate stops you. None of those adaptations come from sweet spot work. They come from time at low intensity. The rider who skips Zone 2 because it feels like they're not training is the rider who can't hold 250W for three hours when it matters.",
       "**Where sweet spot earns its place.** Sweet spot is a high-stimulus, moderate-fatigue session — useful for time-crunched riders who can't do 90 minutes of Zone 2 mid-week, and useful inside build phases where you want to push the FTP ceiling without wrecking the next two days. Coaches like John Wakefield and Tim Kerrison use sweet spot strategically, not constantly. The mistake amateurs make is treating it as the whole programme. Three sweet spot sessions a week with no Zone 2 base is the fastest way to plateau and burn out simultaneously.",
-      "**The honest read.** If you're picking one to do this season, do Zone 2. It's the foundation. Sweet spot built on no Zone 2 plateaus inside a season; Zone 2 built on its own keeps producing for years. If you have time for both — and any rider with 8+ hours a week does — keep the polarised distribution: roughly 80% of your time in Zone 2, the remaining 20% in genuinely hard work, with sweet spot used inside build phases rather than as the default intensity.",
+      "**The honest read.** If you're picking one to do this season, do Zone 2. It's the foundation. Sweet spot built on no Zone 2 plateaus inside a season; Zone 2 built on its own keeps producing for years. If you have time for both — and any rider with 8+ hours a week does — keep the polarised distribution: roughly 80% of your time in Zone 2, the remaining 20% in properly hard work, with sweet spot used inside build phases rather than as the default intensity.",
     ],
     faqs: [
       {
@@ -1466,7 +1466,7 @@ export const COMPARISONS: ComparisonPage[] = [
       },
       {
         q: "When does sweet spot become the right tool?",
-        a: "Build phases — 6-12 weeks before an A-race — and time-crunched windows where you genuinely can't fit a 2-hour Zone 2 ride. Sweet spot blocks of 3x15 or 2x20 minutes deliver real FTP stimulus inside an hour. Used strategically inside a polarised year, sweet spot earns its keep. Used as the default intensity for every session, it's the grey-zone trap with a fancier name.",
+        a: "Build phases — 6-12 weeks before an A-race — and time-crunched windows where you really can't fit a 2-hour Zone 2 ride. Sweet spot blocks of 3x15 or 2x20 minutes deliver real FTP stimulus inside an hour. Used strategically inside a polarised year, sweet spot earns its keep. Used as the default intensity for every session, it's the grey-zone trap with a fancier name.",
       },
     ],
   },

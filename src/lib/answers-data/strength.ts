@@ -175,7 +175,7 @@ export const strengthAnswers: AnswerPage[] = [
     roadmanView: [
       "The question Anthony hears most often from cyclists who want to start lifting is 'how often?' And the answer is simpler than most people expect: twice a week for most of the year, once a week when you're in peak race season. That's the minimum effective dose, and it's where the research and the coaches converge.",
       "Derek Teel has made this point clearly: the error cyclists make is thinking more gym sessions means more benefit. For an amateur doing 8–12 hours on the bike per week, three or four strength sessions is starting to compete with the riding. You're not a powerlifter — the gym is a support tool, not the main event.",
-      "The scheduling matters almost as much as the frequency. Stack your gym sessions on the same days as your hard rides. That way, your easy recovery days stay genuinely easy and your body can adapt to the combined load from one stress hit rather than two spread across the week.",
+      "The scheduling matters almost as much as the frequency. Stack your gym sessions on the same days as your hard rides. That way, your easy recovery days stay properly easy and your body can adapt to the combined load from one stress hit rather than two spread across the week.",
     ],
     expertEvidence: [
       {
@@ -233,7 +233,7 @@ export const strengthAnswers: AnswerPage[] = [
       {
         question: "Can I do strength and cycling on the same day?",
         answer:
-          "Yes, and this is the recommended approach. Lifting after a hard ride concentrates the training stress and keeps your easy days genuinely easy. Fuel properly between the ride and the gym session to support the second effort.",
+          "Yes, and this is the recommended approach. Lifting after a hard ride concentrates the training stress and keeps your easy days actually easy. Fuel properly between the ride and the gym session to support the second effort.",
       },
       {
         question: "Is 1 strength session a week enough?",
@@ -427,7 +427,7 @@ export const strengthAnswers: AnswerPage[] = [
     directAnswer:
       "Cyclists should lift heavier than most expect — working primarily in the 4–8 rep range for strength, progressing load over time. Light, high-rep work (15–20 reps) trains muscular endurance you already get from hours on the bike. The adaptation you're missing is maximal strength and neuromuscular efficiency, which only comes from heavier loading. This means the last reps of each set require genuine focus.",
     keyTakeaways: [
-      "Work in the 4–8 rep range with loads that make the last 2 reps genuinely challenging.",
+      "Work in the 4–8 rep range with loads that make the last 2 reps properly challenging.",
       "Light, high-rep work replicates what cycling already does — it's not the missing adaptation.",
       "Heavier loading builds neuromuscular efficiency and fast-twitch activation that riding alone does not.",
       "Progress the load weekly. A programme where the weight never changes doesn't build strength.",
@@ -580,7 +580,7 @@ export const strengthAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Every autumn, cyclists do 3–4 months of solid strength work and genuinely change their bodies. Then spring arrives and they stop lifting entirely to 'focus on the bike'. By June, most of those gains are gone. Anthony has seen this pattern dozens of times, and it's the single most frustrating waste in the amateur strength conversation.",
+      "Every autumn, cyclists do 3–4 months of solid strength work and actually change their bodies. Then spring arrives and they stop lifting entirely to 'focus on the bike'. By June, most of those gains are gone. Anthony has seen this pattern dozens of times, and it's the single most frustrating waste in the amateur strength conversation.",
       "The fix is not complicated. One session a week — 30 minutes, the same exercises you built, just fewer sets — maintains what you built. It doesn't take much to hold strength; it takes much more to rebuild it. The rule is: build in the off-season, maintain in season, never stop entirely.",
       "In practice, the in-season session needs to be lower intensity than your off-season work. You're not trying to set new personal bests in April. Two sets of 5–6 reps on your main lifts, a couple of core exercises, done in 35 minutes — that's enough. Time it after a hard ride day and it doesn't interfere with anything.",
     ],
@@ -982,7 +982,7 @@ export const strengthAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "The scheduling of strength work in a cycling week matters almost as much as the exercises themselves. The two principles that Anthony keeps coming back to are simple: hard day hard, easy day easy. Distributing strength sessions across every day of the week — in search of 'balance' — is exactly the wrong approach. It means every day is slightly fatigued and no day is genuinely easy.",
+      "The scheduling of strength work in a cycling week matters almost as much as the exercises themselves. The two principles that Anthony keeps coming back to are simple: hard day hard, easy day easy. Distributing strength sessions across every day of the week — in search of 'balance' — is exactly the wrong approach. It means every day is slightly fatigued and no day is truly easy.",
       "The two-a-day model solves this. On your hard ride day, do the ride first in the morning, eat a proper meal, and do strength in the afternoon or early evening. The body handles this surprisingly well once adapted. Your easy recovery days stay completely clear, your sleep-and-recovery nights do their full job, and your next hard ride day arrives with legs that actually feel fresh.",
       "The one timing rule that almost nobody follows: never lift legs heavily within 24 hours of your key interval session. The microscopic muscle damage from a hard set of split squats is measurable for 36–48 hours. You won't always feel it, but it's there, capping the quality of the work you're trying to do on the bike.",
     ],
@@ -991,7 +991,7 @@ export const strengthAnswers: AnswerPage[] = [
         name: "Derek Teel",
         credential: "Strength coach for cyclists (Dialed Health)",
         insight:
-          "The same-day model — ride in the morning, lift in the afternoon — is the scheduling approach that works best for most cyclists who are training more than 8 hours a week. It keeps the stress consolidated on one day and leaves recovery days genuinely easy. Trying to fit strength on days between rides almost always turns easy days into moderate days.",
+          "The same-day model — ride in the morning, lift in the afternoon — is the scheduling approach that works best for most cyclists who are training more than 8 hours a week. It keeps the stress consolidated on one day and leaves recovery days properly easy. Trying to fit strength on days between rides almost always turns easy days into moderate days.",
         episodeSlug: "ep-2183-strength-training-for-cycling-simplified-derek-teel",
         guestSlug: "derek-teel",
       },
@@ -1164,12 +1164,12 @@ export const strengthAnswers: AnswerPage[] = [
       {
         mistake: "Doing 30 bodyweight squats and calling it a strength session.",
         fix:
-          "High-rep bodyweight work is cardiovascular, not strength training. Aim for a load where 8–10 reps is genuinely challenging. Add a rucksack with weight if needed.",
+          "High-rep bodyweight work is cardiovascular, not strength training. Aim for a load where 8–10 reps is actually challenging. Add a rucksack with weight if needed.",
       },
       {
         mistake: "Skipping resistance bands as 'not serious enough'.",
         fix:
-          "Bands are genuinely useful for glute activation (clamshells, banded walks), upper body pulling when you don't have a pull-up bar, and adding resistance to bodyweight exercises.",
+          "Bands are legitimately useful for glute activation (clamshells, banded walks), upper body pulling when you don't have a pull-up bar, and adding resistance to bodyweight exercises.",
       },
     ],
     faq: [
@@ -1681,7 +1681,7 @@ export const strengthAnswers: AnswerPage[] = [
       {
         title: "Weeks 1–4: movement quality at low load",
         detail:
-          "Goblet squat, Romanian deadlift, single-arm row, dead bug. 3 sets of 10 per exercise. Choose a weight that feels genuinely easy — you should be able to talk through the last rep. Film each exercise from the side at least once to check your form.",
+          "Goblet squat, Romanian deadlift, single-arm row, dead bug. 3 sets of 10 per exercise. Choose a weight that feels comfortably easy — you should be able to talk through the last rep. Film each exercise from the side at least once to check your form.",
       },
       {
         title: "Weeks 5–8: introduce progressive overload",
@@ -2155,7 +2155,7 @@ export const strengthAnswers: AnswerPage[] = [
       {
         question: "How long until strength training reduces my injury risk?",
         answer:
-          "Most riders notice fewer niggles within 6–8 weeks of consistent twice-weekly work. The structural and neuromuscular adaptations that genuinely lower injury risk build over a full block — this is prevention, so the benefit is something not happening rather than a number jumping.",
+          "Most riders notice fewer niggles within 6–8 weeks of consistent twice-weekly work. The structural and neuromuscular adaptations that actually lower injury risk build over a full block — this is prevention, so the benefit is something not happening rather than a number jumping.",
       },
       {
         question: "Can strength training cause cycling injuries if done wrong?",
@@ -2227,7 +2227,7 @@ export const strengthAnswers: AnswerPage[] = [
     roadmanView: [
       "There's an episode Anthony made about the five things pros secretly do in winter, and the through-line is that the off-season isn't time off — it's when the foundations get laid. The riders who show up flying in spring didn't get there by doing nothing in December. They used the months when racing stopped to build the things you can't build when you're racing. Heavy strength sits right at the top of that list.",
       "This is the only time of year the gym gets to be the priority. In season, strength is squeezed into one maintenance session because the riding comes first. In the off-season, that flips — bike volume drops, the pressure's off, and you can actually load the gym hard enough to change your baseline. Squander it on more junk miles in the cold and you arrive at spring no stronger than you left.",
-      "The plan itself isn't complicated. Four weeks easing in — learning the patterns, building tissue resilience at higher reps — then eight weeks of genuinely heavy work where the load is high and the reps are low. Two to three sessions a week. Keep some easy aerobic riding ticking over so you don't lose the engine, but let the gym lead. By the time you're building toward events, you'll have strength in the bank that protects your power for the rest of the year.",
+      "The plan itself isn't complicated. Four weeks easing in — learning the patterns, building tissue resilience at higher reps — then eight weeks of properly heavy work where the load is high and the reps are low. Two to three sessions a week. Keep some easy aerobic riding ticking over so you don't lose the engine, but let the gym lead. By the time you're building toward events, you'll have strength in the bank that protects your power for the rest of the year.",
     ],
     expertEvidence: [
       {
@@ -2518,7 +2518,7 @@ export const strengthAnswers: AnswerPage[] = [
     roadmanView: [
       "When Anthony had Cory Williams on the podcast, one number stuck: Cory talked about putting out around 1,640 watts in a sprint but only needing about 1,100 to actually win a race. That gap is the whole point. The sprint isn't just bike fitness — it's a force-production event, and force production is built in the gym as much as on the road. You don't get to 1,600 watts by doing more endurance riding. You get there by being strong, and then being able to express that strength fast.",
       "The physics is simple enough to be useful. Power is force times velocity. A sprint is a huge amount of force produced in a very short window. Heavy strength training builds the force half — it raises the maximum your muscles can produce. Then explosive work, the lighter and faster stuff, trains you to produce that force quickly rather than slowly. Skip the heavy block and you've nothing to make explosive; skip the explosive block and you're strong but slow to fire. You need both, in that order.",
-      "André Greipel built a career on this — 158 professional wins, eleven of them Tour de France stages, all decided in the last few hundred metres. That kind of top-end doesn't come from the road alone. The encouraging part for an amateur is that the same principles scale down: get genuinely strong in the off-season, convert it to power before your racing, and pair it with actual sprint efforts on the bike. Your finishing kick has a ceiling, and the gym is how you lift it.",
+      "André Greipel built a career on this — 158 professional wins, eleven of them Tour de France stages, all decided in the last few hundred metres. That kind of top-end doesn't come from the road alone. The encouraging part for an amateur is that the same principles scale down: get truly strong in the off-season, convert it to power before your racing, and pair it with actual sprint efforts on the bike. Your finishing kick has a ceiling, and the gym is how you lift it.",
     ],
     expertEvidence: [
       {
@@ -2643,7 +2643,7 @@ export const strengthAnswers: AnswerPage[] = [
       "Cyclists should squat heavy enough to work in the 4–6 rep range — roughly 75–85% of one-rep max — with clean form. Why moderate loads in the 12–15 rep range miss the adaptation cycling needs.",
     pillar: "strength",
     directAnswer:
-      "Heavy enough to work in the 4–6 rep range, which is roughly 75–85% of your one-rep maximum, with technique that stays clean throughout. That sounds intimidating but it's a controlled working load, not a maximal grind. Lighter 12–15 rep squats train muscular endurance you already get from riding. The adaptation cyclists are missing — maximal force and fast-twitch recruitment — only comes from genuinely heavy loading.",
+      "Heavy enough to work in the 4–6 rep range, which is roughly 75–85% of your one-rep maximum, with technique that stays clean throughout. That sounds intimidating but it's a controlled working load, not a maximal grind. Lighter 12–15 rep squats train muscular endurance you already get from riding. The adaptation cyclists are missing — maximal force and fast-twitch recruitment — only comes from really heavy loading.",
     keyTakeaways: [
       "Squat in the 4–6 rep range — about 75–85% of your one-rep max — with form that holds.",
       "'Heavy' means the last 2 reps need real focus, not a maximal one-rep grind.",

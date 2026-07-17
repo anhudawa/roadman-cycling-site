@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Faster After 40 — Free Guide by Roadman Cycling</title>
+    <meta name="description" content="A free 30-page guide on what World Tour coaches actually prescribe to riders over 40. The 5-pillar system behind every cyclist who got quicker when everyone said they wouldn't.">
+    <meta property="og:title" content="Faster After 40 — What World Tour Coaches Actually Prescribe to Riders Your Age">
+    <meta property="og:description" content="A free 30-page field manual built from conversations with Dan Lorang, Professor Seiler, and the coaches behind Grand Tour wins. For cyclists who refuse to slow down.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#210140">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* ========================================
+           RESET & VARIABLES
+           ======================================== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --deep-purple: #210140;
+            --purple: #4C1273;
+            --coral: #F16363;
+            --charcoal: #252526;
+            --off-white: #FAFAFA;
+            --mid-grey: #545559;
+            --coral-hover: #e04e4e;
+            --coral-glow: rgba(241, 99, 99, 0.35);
+            --purple-glow: rgba(76, 18, 115, 0.4);
+            --text-primary: #FAFAFA;
+            --text-secondary: rgba(250, 250, 250, 0.72);
+            --text-muted: rgba(250, 250, 250, 0.4);
+            --glass-bg: rgba(250, 250, 250, 0.03);
+            --glass-border: rgba(250, 250, 250, 0.07);
+            --glass-border-hover: rgba(250, 250, 250, 0.14);
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--charcoal);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-weight: 400;
+            overflow-x: hidden;
+        }
+
+        /* ========================================
+           GRAIN TEXTURE OVERLAY
+           ======================================== */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.028;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+        }
+
+        /* ========================================
+           TYPOGRAPHY
+           ======================================== */
+        h1, h2, h3, h4 {
+            font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            line-height: 1.05;
+            font-weight: 400;
+        }
+
+        /* ========================================
+           LAYOUT
+           ======================================== */
+        .container {
+            width: 100%;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        .container--wide {
+            max-width: 880px;
+        }
+
+        .container--narrow {
+            max-width: 600px;
+        }
+
+        section {
+            position: relative;
+            padding: 100px 0;
+        }
+
+        /* ========================================
+           DECORATIVE: SECTION ACCENT LINES
+           ======================================== */
+        .accent-line {
+            display: block;
+            width: 48px;
+            height: 2px;
+            background: var(--coral);
+            margin: 0 auto 32px;
+            border-radius: 1px;
+            opacity: 0.6;
+        }
+
+        .accent-line--left {
+            margin: 0 0 28px;
+        }
+
+        /* ========================================
+           HEADER
+           ======================================== */
+        .site-header {
+            padding: 24px 0;
+            text-align: center;
+            background: transparent;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--off-white);
+            text-decoration: none;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-text:hover { opacity: 0.85; }
+
+        /* ========================================
+           HERO — DRAMATIC
+           ======================================== */
+        .hero {
+            padding: 40px 0 100px;
+            text-align: center;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 30%, rgba(76, 18, 115, 0.25) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 40% at 50% 60%, rgba(241, 99, 99, 0.06) 0%, transparent 60%),
+                var(--charcoal);
+            overflow: hidden;
+        }
+
+        .hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 36px;
+            padding: 8px 20px;
+            border: 1px solid rgba(241, 99, 99, 0.2);
+            border-radius: 100px;
+            background: rgba(241, 99, 99, 0.04);
+        }
+
+        .hero__badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--coral);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        .hero__title {
+            font-size: clamp(3.2rem, 9vw, 5.5rem);
+            color: var(--off-white);
+            margin-bottom: 8px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 0.95;
+        }
+
+        .hero__title-sub {
+            display: block;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(1.3rem, 3.5vw, 1.9rem);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--coral);
+            line-height: 1.15;
+            margin-top: 12px;
+            margin-bottom: 36px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero__subtitle {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            max-width: 520px;
+            margin: 0 auto 48px;
+            font-weight: 300;
+        }
+
+        .hero__subtitle strong {
+            color: var(--off-white);
+            font-weight: 500;
+        }
+
+        /* ========================================
+           CTA FORM — PREMIUM
+           ======================================== */
+        .capture-form {
+            max-width: 420px;
+            margin: 0 auto;
+        }
+
+        .capture-form__fields {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .capture-form__input {
+            width: 100%;
+            padding: 16px 20px;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 400;
+            color: var(--off-white);
+            background: rgba(250, 250, 250, 0.04);
+            border: 1px solid rgba(250, 250, 250, 0.1);
+            border-radius: 10px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .capture-form__input::placeholder {
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .capture-form__input:focus {
+            border-color: rgba(241, 99, 99, 0.5);
+            background: rgba(250, 250, 250, 0.06);
+            box-shadow: 0 0 0 3px rgba(241, 99, 99, 0.08);
+        }
+
+        .capture-form__btn {
+            position: relative;
+            width: 100%;
+            padding: 18px 32px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.35rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--off-white);
+            background: linear-gradient(135deg, var(--coral) 0%, #d94f4f 100%);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 24px rgba(241, 99, 99, 0.2);
+            overflow: hidden;
+        }
+
+        .capture-form__btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .capture-form__btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 40px rgba(241, 99, 99, 0.35);
+        }
+
+        .capture-form__btn:hover::before { opacity: 1; }
+
+        .capture-form__btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 16px rgba(241, 99, 99, 0.2);
+        }
+
+        .capture-form__input--error {
+            border-color: var(--coral) !important;
+            box-shadow: 0 0 0 3px rgba(241, 99, 99, 0.15) !important;
+        }
+
+        .capture-form__error {
+            font-size: 0.78rem;
+            color: var(--coral);
+            text-align: center;
+            margin-top: 10px;
+            line-height: 1.5;
+            display: none;
+        }
+
+        .capture-form__error.is-visible {
+            display: block;
+        }
+
+        .capture-form__btn--loading {
+            opacity: 0.7 !important;
+            pointer-events: none;
+        }
+
+        .capture-form__btn--success {
+            background: transparent !important;
+            border: 1px solid rgba(250, 250, 250, 0.15) !important;
+            box-shadow: none !important;
+            pointer-events: none;
+        }
+
+        .capture-form__success {
+            display: none;
+            text-align: center;
+            padding: 24px 0 0;
+        }
+
+        .capture-form__success.is-visible {
+            display: block;
+        }
+
+        .capture-form__success-text {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .capture-form__download-btn {
+            display: inline-block;
+            padding: 14px 28px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.15rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--coral);
+            background: transparent;
+            border: 1px solid rgba(241, 99, 99, 0.3);
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .capture-form__download-btn:hover {
+            border-color: var(--coral);
+            background: rgba(241, 99, 99, 0.06);
+        }
+
+        .capture-form__note {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 16px;
+            line-height: 1.6;
+        }
+
+        /* ========================================
+           COVER MOCKUP — 3D BOOK
+           ======================================== */
+        .cover-section {
+            padding: 20px 0 120px;
+            text-align: center;
+            background:
+                radial-gradient(ellipse 60% 50% at 50% 40%, rgba(76, 18, 115, 0.12) 0%, transparent 70%),
+                var(--charcoal);
+        }
+
+        .cover-wrapper {
+            perspective: 1200px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .cover-mockup {
+            position: relative;
+            width: 380px;
+            max-width: 85vw;
+            border-radius: 4px 16px 16px 4px;
+            overflow: hidden;
+            background: linear-gradient(155deg, var(--deep-purple) 0%, #1a0a35 40%, var(--purple) 100%);
+            box-shadow:
+                -6px 0 0 0 rgba(33, 1, 64, 0.9),
+                -8px 2px 0 0 rgba(20, 0, 40, 0.7),
+                0 40px 80px -20px rgba(0, 0, 0, 0.6),
+                0 20px 40px -10px rgba(0, 0, 0, 0.4),
+                0 0 80px rgba(76, 18, 115, 0.15),
+                inset 0 0 80px rgba(76, 18, 115, 0.1);
+            aspect-ratio: 0.72;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 48px 36px;
+            transform: rotateY(-4deg) rotateX(1deg);
+            transition: transform 0.5s ease;
+        }
+
+        .cover-mockup:hover {
+            transform: rotateY(0deg) rotateX(0deg);
+        }
+
+        /* Spine highlight */
+        .cover-mockup::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, rgba(250,250,250,0.08), rgba(250,250,250,0.02), rgba(250,250,250,0.06));
+        }
+
+        /* Light sweep */
+        .cover-mockup::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(115deg, rgba(255,255,255,0.04) 0%, transparent 40%, transparent 60%, rgba(255,255,255,0.02) 100%);
+            pointer-events: none;
+        }
+
+        .cover-mockup__badge {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 32px;
+            opacity: 0.8;
+        }
+
+        .cover-mockup__title {
+            font-size: clamp(2.4rem, 7vw, 3.2rem);
+            color: var(--off-white);
+            text-align: center;
+            margin-bottom: 24px;
+            line-height: 0.95;
+        }
+
+        .cover-mockup__title span {
+            color: var(--coral);
+        }
+
+        .cover-mockup__divider {
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--coral), transparent);
+            margin: 0 auto 24px;
+        }
+
+        .cover-mockup__subtitle {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            text-align: center;
+            line-height: 1.65;
+            max-width: 280px;
+            font-weight: 300;
+            opacity: 0.85;
+        }
+
+        .cover-mockup__footer {
+            margin-top: auto;
+            padding-top: 28px;
+            text-align: center;
+        }
+
+        .cover-mockup__author-name {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .cover-mockup__logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 4px;
+            opacity: 0.6;
+        }
+
+        /* ========================================
+           SOCIAL PROOF — GLASS CARDS
+           ======================================== */
+        .proof-section {
+            background:
+                linear-gradient(180deg, var(--charcoal) 0%, var(--deep-purple) 100%);
+            padding: 80px 0;
+        }
+
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            text-align: center;
+        }
+
+        .proof-item {
+            padding: 32px 20px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+
+        .proof-item:hover {
+            border-color: var(--glass-border-hover);
+            background: rgba(250, 250, 250, 0.05);
+        }
+
+        .proof-item__number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.4rem, 6vw, 3.2rem);
+            color: var(--coral);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .proof-item__label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* ========================================
+           WHAT'S INSIDE — PILLARS
+           ======================================== */
+        .inside-section {
+            background:
+                radial-gradient(ellipse 70% 40% at 20% 50%, rgba(76, 18, 115, 0.15) 0%, transparent 70%),
+                var(--deep-purple);
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+            color: var(--off-white);
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .section-intro {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            text-align: center;
+            max-width: 520px;
+            margin: 0 auto 56px;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .pillars {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .pillar {
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            padding: 28px 28px;
+            border-radius: 14px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            transition: all 0.35s ease;
+        }
+
+        .pillar:hover {
+            border-color: rgba(241, 99, 99, 0.15);
+            background: rgba(250, 250, 250, 0.045);
+            transform: translateX(4px);
+        }
+
+        .pillar__number {
+            flex-shrink: 0;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            color: var(--coral);
+            border: 1px solid rgba(241, 99, 99, 0.2);
+            border-radius: 12px;
+            background: rgba(241, 99, 99, 0.05);
+        }
+
+        .pillar__content { flex: 1; }
+
+        .pillar__title {
+            font-size: 1.5rem;
+            color: var(--off-white);
+            margin-bottom: 8px;
+            letter-spacing: 0.04em;
+        }
+
+        .pillar__description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .pillar__description strong {
+            color: var(--off-white);
+            font-weight: 500;
+        }
+
+        /* ========================================
+           PULL QUOTE
+           ======================================== */
+        .quote-section {
+            background: var(--charcoal);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .pull-quote {
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        .pull-quote__mark {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            line-height: 1;
+            color: var(--coral);
+            opacity: 0.3;
+            margin-bottom: -20px;
+            display: block;
+        }
+
+        .pull-quote__text {
+            font-size: 1.25rem;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin-bottom: 20px;
+        }
+
+        .pull-quote__attr {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .pull-quote__attr span {
+            color: var(--coral);
+            opacity: 0.6;
+        }
+
+        /* ========================================
+           CHAPTERS BREAKDOWN
+           ======================================== */
+        .chapters-section {
+            background:
+                radial-gradient(ellipse 60% 30% at 80% 20%, rgba(76, 18, 115, 0.1) 0%, transparent 70%),
+                var(--charcoal);
+            padding: 100px 0;
+        }
+
+        .chapter-group {
+            margin-bottom: 40px;
+            padding: 28px 28px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .chapter-group:hover {
+            border-color: var(--glass-border-hover);
+        }
+
+        .chapter-group:last-child { margin-bottom: 0; }
+
+        .chapter-group__header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(241, 99, 99, 0.1);
+        }
+
+        .chapter-group__icon {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(241, 99, 99, 0.06);
+            border: 1px solid rgba(241, 99, 99, 0.12);
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .chapter-group__name {
+            font-size: 1.2rem;
+            color: var(--coral);
+            letter-spacing: 0.06em;
+        }
+
+        .chapter-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chapter-list li {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            padding-left: 18px;
+            position: relative;
+            font-weight: 300;
+        }
+
+        .chapter-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 5px;
+            height: 5px;
+            background: var(--coral);
+            border-radius: 50%;
+            opacity: 0.35;
+        }
+
+        /* ========================================
+           EXPERT ACCESS — GRADIENT BORDER CARDS
+           ======================================== */
+        .experts-section {
+            background:
+                radial-gradient(ellipse 50% 40% at 30% 60%, rgba(76, 18, 115, 0.2) 0%, transparent 70%),
+                var(--deep-purple);
+            padding: 100px 0;
+        }
+
+        .expert-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 48px;
+        }
+
+        .expert-card {
+            position: relative;
+            padding: 28px;
+            border-radius: 14px;
+            background: linear-gradient(160deg, rgba(250,250,250,0.04) 0%, rgba(250,250,250,0.01) 100%);
+            border: 1px solid var(--glass-border);
+            transition: all 0.35s ease;
+            overflow: hidden;
+        }
+
+        .expert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--coral), transparent);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .expert-card:hover {
+            border-color: rgba(241, 99, 99, 0.12);
+            background: rgba(250, 250, 250, 0.05);
+            transform: translateY(-3px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+        }
+
+        .expert-card:hover::before { opacity: 1; }
+
+        .expert-card__name {
+            font-size: 1.2rem;
+            color: var(--off-white);
+            margin-bottom: 6px;
+            letter-spacing: 0.03em;
+        }
+
+        .expert-card__role {
+            font-size: 0.76rem;
+            color: var(--coral);
+            font-weight: 500;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            letter-spacing: 0.02em;
+        }
+
+        .expert-card__detail {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+            font-weight: 300;
+        }
+
+        /* ========================================
+           WHO THIS IS FOR
+           ======================================== */
+        .for-section {
+            background:
+                radial-gradient(ellipse 50% 50% at 70% 40%, rgba(241, 99, 99, 0.04) 0%, transparent 70%),
+                var(--charcoal);
+            padding: 100px 0;
+        }
+
+        .for-list {
+            list-style: none;
+            max-width: 560px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .for-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            font-weight: 300;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(250, 250, 250, 0.04);
+        }
+
+        .for-list li:last-child { border-bottom: none; }
+
+        .for-list__check {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1px;
+            border-radius: 8px;
+            background: rgba(241, 99, 99, 0.06);
+            border: 1px solid rgba(241, 99, 99, 0.15);
+        }
+
+        .for-list__check svg {
+            width: 14px;
+            height: 14px;
+            color: var(--coral);
+        }
+
+        /* ========================================
+           ABOUT ANTHONY
+           ======================================== */
+        .about-section {
+            background: var(--deep-purple);
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .about-content {
+            max-width: 540px;
+            margin: 0 auto;
+        }
+
+        .about-avatar {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--purple), var(--coral));
+            margin: 0 auto 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: var(--off-white);
+            box-shadow:
+                0 0 0 1px rgba(250, 250, 250, 0.06),
+                0 0 40px rgba(241, 99, 99, 0.1);
+        }
+
+        .about-text {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.85;
+            margin: 0 auto 28px;
+            font-weight: 300;
+        }
+
+        .about-text strong {
+            color: var(--off-white);
+            font-weight: 500;
+        }
+
+        .about-signature {
+            font-family: 'Work Sans', sans-serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        .about-role {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-weight: 600;
+            opacity: 0.5;
+        }
+
+        /* ========================================
+           BOTTOM CTA — DRAMATIC
+           ======================================== */
+        .cta-section {
+            background:
+                radial-gradient(ellipse 70% 50% at 50% 50%, rgba(241, 99, 99, 0.05) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 40% at 50% 40%, rgba(76, 18, 115, 0.15) 0%, transparent 60%),
+                var(--charcoal);
+            padding: 100px 0 120px;
+            text-align: center;
+        }
+
+        .cta-section .section-title {
+            margin-bottom: 12px;
+        }
+
+        .cta-section .section-intro {
+            margin-bottom: 48px;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .site-footer {
+            background: var(--deep-purple);
+            padding: 36px 0;
+            text-align: center;
+            border-top: 1px solid rgba(250, 250, 250, 0.04);
+        }
+
+        .footer-text {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            letter-spacing: 0.02em;
+        }
+
+        .footer-text a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-text a:hover { color: var(--text-secondary); }
+
+        .footer-links {
+            margin-top: 8px;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover { color: var(--coral); }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 768px) {
+            section { padding: 80px 0; }
+
+            .hero { padding: 32px 0 80px; }
+
+            .cover-mockup {
+                width: 320px;
+                padding: 40px 28px;
+                transform: rotateY(-2deg);
+            }
+
+            .proof-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .proof-item {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                text-align: left;
+                padding: 20px 24px;
+            }
+
+            .proof-item__number {
+                font-size: 2.2rem;
+                margin-bottom: 0;
+                min-width: 80px;
+            }
+
+            .pillar {
+                gap: 16px;
+                padding: 22px 20px;
+            }
+
+            .pillar__number {
+                width: 44px;
+                height: 44px;
+                font-size: 1.2rem;
+            }
+
+            .chapter-group {
+                padding: 22px 20px;
+            }
+
+            .expert-grid { grid-template-columns: 1fr; }
+
+            .about-text { font-size: 0.95rem; }
+        }
+
+        @media (max-width: 420px) {
+            .container { padding: 0 20px; }
+            .hero__title { font-size: 2.8rem; }
+            .hero__title-sub { font-size: 1.1rem; }
+            .cover-mockup { width: 280px; padding: 32px 24px; }
+        }
+
+        /* ========================================
+           SCROLL ANIMATIONS
+           ======================================== */
+        @media (prefers-reduced-motion: no-preference) {
+            .pillar,
+            .chapter-group,
+            .expert-card,
+            .for-list li,
+            .proof-item,
+            .pull-quote {
+                opacity: 0;
+                transform: translateY(24px);
+                transition: opacity 0.6s ease, transform 0.6s ease;
+            }
+
+            .pillar.is-visible,
+            .chapter-group.is-visible,
+            .expert-card.is-visible,
+            .for-list li.is-visible,
+            .proof-item.is-visible,
+            .pull-quote.is-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== HEADER ====== -->
+    <header class="site-header">
+        <div class="container">
+            <a href="https://www.skool.com/roadmancycling" class="logo-text">Roadman Cycling</a>
+        </div>
+    </header>
+
+    <!-- ====== HERO ====== -->
+    <section class="hero">
+        <div class="container">
+            <p class="hero__badge">A Free 30-Page Guide</p>
+            <h1 class="hero__title">Faster After 40</h1>
+            <p class="hero__title-sub">What World Tour Coaches Actually Prescribe to Riders Your Age</p>
+            <p class="hero__subtitle">
+                I distilled <strong>5 years of podcast conversations</strong> with Dan Lorang, Professor Seiler, and the coaches behind Grand Tour wins into a 30-page field manual for cyclists who refuse to slow down.
+            </p>
+            <form class="capture-form" id="capture-top" novalidate>
+                <div class="capture-form__fields">
+                    <input type="text" name="firstName" class="capture-form__input" placeholder="Your first name (optional)" aria-label="First name" autocomplete="given-name">
+                    <input type="email" name="email" class="capture-form__input" placeholder="Your email address" required aria-label="Email address" autocomplete="email">
+                    <button type="submit" class="capture-form__btn">Send Me the Guide</button>
+                </div>
+                <p class="capture-form__error" role="alert"></p>
+                <p class="capture-form__note">Delivered straight to your inbox. You'll also get Anthony's weekly riding notes. Unsubscribe any time.</p>
+                <div class="capture-form__success">
+                    <p class="capture-form__success-text">Check your inbox — the report is on its way.</p>
+                    <a href="/downloads/faster-after-40-report.pdf" class="capture-form__download-btn" download>Download Now (PDF)</a>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- ====== COVER MOCKUP ====== -->
+    <section class="cover-section">
+        <div class="container">
+            <div class="cover-wrapper">
+                <div class="cover-mockup">
+                    <p class="cover-mockup__badge">Roadman Cycling</p>
+                    <h2 class="cover-mockup__title">
+                        Faster<br>After <span>40</span>
+                    </h2>
+                    <div class="cover-mockup__divider"></div>
+                    <p class="cover-mockup__subtitle">
+                        The 5-pillar system World Tour coaches use &mdash; adapted for cyclists with real jobs, real families, and real ambitions on the bike.
+                    </p>
+                    <div class="cover-mockup__footer">
+                        <p class="cover-mockup__author-name">Anthony Walsh</p>
+                        <p class="cover-mockup__logo">Roadman Cycling</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== SOCIAL PROOF ====== -->
+    <section class="proof-section">
+        <div class="container container--wide">
+            <div class="proof-grid">
+                <div class="proof-item">
+                    <p class="proof-item__number">100M+</p>
+                    <p class="proof-item__label">Podcast Downloads</p>
+                </div>
+                <div class="proof-item">
+                    <p class="proof-item__number">5</p>
+                    <p class="proof-item__label">World Tour Coaches Interviewed</p>
+                </div>
+                <div class="proof-item">
+                    <p class="proof-item__number">30</p>
+                    <p class="proof-item__label">Pages of Distilled Coaching Intelligence</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== WHAT'S INSIDE: PILLARS ====== -->
+    <section class="inside-section">
+        <div class="container">
+            <span class="accent-line"></span>
+            <h2 class="section-title">What's Inside</h2>
+            <p class="section-intro">
+                Five pillars. Each one built from conversations with the coaches and scientists behind the best riders on earth. Each one written for the rider with a job, a family, and 8&ndash;12 hours a week to train.
+            </p>
+            <ol class="pillars">
+                <li class="pillar">
+                    <div class="pillar__number">01</div>
+                    <div class="pillar__content">
+                        <h3 class="pillar__title">Coaching</h3>
+                        <p class="pillar__description">
+                            Why 90% of age-group cyclists are stuck in the grey zone &mdash; and the <strong>polarised model</strong> that Seiler proved and Lorang applies to Grand Tour winners. Includes the exact sessions World Tour coaches prescribe for time-limited riders and the low-cadence torque protocol the science has finally validated.
+                        </p>
+                    </div>
+                </li>
+                <li class="pillar">
+                    <div class="pillar__number">02</div>
+                    <div class="pillar__content">
+                        <h3 class="pillar__title">Nutrition</h3>
+                        <p class="pillar__description">
+                            Why "eat less, ride more" is making you slower and fatter. The <strong>fuelling-first approach</strong> that helped me drop 7kg in 12 weeks while eating more food than ever. Plus the in-ride nutrition protocol the pros use &mdash; and why you're probably bonking at 60km from home.
+                        </p>
+                    </div>
+                </li>
+                <li class="pillar">
+                    <div class="pillar__number">03</div>
+                    <div class="pillar__content">
+                        <h3 class="pillar__title">Strength & Conditioning</h3>
+                        <p class="pillar__description">
+                            The exercises to avoid after 40 (and why heavy barbell work is a bad bet at this stage). Five movements adapted from <strong>Pogačar's own programme</strong> for amateur cyclists &mdash; designed to build power off the bike, prevent injury, and add years to your riding.
+                        </p>
+                    </div>
+                </li>
+                <li class="pillar">
+                    <div class="pillar__number">04</div>
+                    <div class="pillar__content">
+                        <h3 class="pillar__title">Recovery</h3>
+                        <p class="pillar__description">
+                            The over-40 recovery equation: why what worked at 30 doesn't work now. <strong>Sleep, stress, and HRV</strong> &mdash; the three metrics that determine whether your training is building you up or breaking you down. Plus the adaptation protocol for riders who can't afford to get this wrong.
+                        </p>
+                    </div>
+                </li>
+                <li class="pillar">
+                    <div class="pillar__number">05</div>
+                    <div class="pillar__content">
+                        <h3 class="pillar__title">Community &mdash; Le M&eacute;tier</h3>
+                        <p class="pillar__description">
+                            Why the lone wolf cyclist always plateaus. <strong>Le m&eacute;tier</strong> &mdash; the craft of being a cyclist &mdash; is more than watts and weight. What riding with serious cyclists actually does to your physiology, your motivation, and your ceiling. And how 113 riders are applying all five pillars together inside Not Done Yet.
+                        </p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- ====== PULL QUOTE ====== -->
+    <section class="quote-section">
+        <div class="container container--narrow">
+            <div class="pull-quote">
+                <span class="pull-quote__mark">&ldquo;</span>
+                <p class="pull-quote__text">
+                    I went from 84kg and an average wattage I'm embarrassed to mention, to a body fat percentage I haven't had since university and power numbers I didn't think were possible any more.
+                </p>
+                <p class="pull-quote__attr">
+                    Chris O'Connor <span>&mdash;</span> Not Done Yet Member
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== CHAPTER BREAKDOWN ====== -->
+    <section class="chapters-section">
+        <div class="container">
+            <span class="accent-line"></span>
+            <h2 class="section-title">The Full Breakdown</h2>
+            <p class="section-intro">
+                30 pages. No filler. Every chapter pairs the science with a specific framework you can apply this week.
+            </p>
+
+            <div class="chapter-group">
+                <div class="chapter-group__header">
+                    <div class="chapter-group__icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--coral)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                    </div>
+                    <h3 class="chapter-group__name">Coaching</h3>
+                </div>
+                <ul class="chapter-list">
+                    <li>Why 90% of age-group cyclists are training in the grey zone &mdash; and what it's costing them</li>
+                    <li>The polarised model: what Seiler proved and how Lorang applies it at Red Bull&ndash;Bora&ndash;Hansgrohe</li>
+                    <li>Periodisation for riders with real jobs &mdash; building a season plan around 8 hours a week</li>
+                    <li>The exact interval sessions World Tour coaches prescribe for time-limited athletes</li>
+                    <li>Low-cadence torque intervals: the most underrated session in cycling (and the 2024 study that proved it)</li>
+                    <li>Framework: your weekly training architecture &mdash; structured, specific, and built around your life</li>
+                </ul>
+            </div>
+
+            <div class="chapter-group">
+                <div class="chapter-group__header">
+                    <div class="chapter-group__icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--coral)"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                    </div>
+                    <h3 class="chapter-group__name">Nutrition</h3>
+                </div>
+                <ul class="chapter-list">
+                    <li>Why "eat less, ride more" is outdated, incomplete, and actively making you slower</li>
+                    <li>How I lost 7kg in 12 weeks while eating more food than I'd ever eaten in my life</li>
+                    <li>In-ride fuelling: what the pros actually consume and why you're bonking at 60km from home</li>
+                    <li>Protein timing: the new research every masters cyclist needs to understand</li>
+                    <li>Body composition vs. scale weight: the metric that actually determines your climbing speed</li>
+                    <li>Framework: the fuelling-first protocol &mdash; 12 weeks to race weight without restriction</li>
+                </ul>
+            </div>
+
+            <div class="chapter-group">
+                <div class="chapter-group__header">
+                    <div class="chapter-group__icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--coral)"><path d="M6 18L18 6"></path><path d="M8 6h10v10"></path></svg>
+                    </div>
+                    <h3 class="chapter-group__name">Strength & Conditioning</h3>
+                </div>
+                <ul class="chapter-list">
+                    <li>Why cyclists over 40 lose power year on year &mdash; and how S&C reverses it</li>
+                    <li>The exercises to AVOID: why heavy barbell work is a bad bet for this age group</li>
+                    <li>5 movements adapted from Pogačar's programme for amateur cyclists over 40</li>
+                    <li>Building functional power off the bike without adding bulk</li>
+                    <li>Injury-proofing your body for 20 more years of serious riding</li>
+                    <li>Framework: the 12-week S&C roadmap &mdash; designed to complement your time on the bike</li>
+                </ul>
+            </div>
+
+            <div class="chapter-group">
+                <div class="chapter-group__header">
+                    <div class="chapter-group__icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--coral)"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+                    </div>
+                    <h3 class="chapter-group__name">Recovery</h3>
+                </div>
+                <ul class="chapter-list">
+                    <li>The over-40 recovery equation: why the rules changed and nobody told you</li>
+                    <li>Sleep science for athletes: the single biggest performance lever most riders ignore</li>
+                    <li>Your body can't tell the difference between work stress and training stress &mdash; and that matters</li>
+                    <li>Active recovery vs. rest days: when to spin easy, when to do nothing</li>
+                    <li>HRV: the one metric that tells you when to push and when to back off</li>
+                    <li>Framework: the adaptation protocol &mdash; structured recovery for structured training</li>
+                </ul>
+            </div>
+
+            <div class="chapter-group">
+                <div class="chapter-group__header">
+                    <div class="chapter-group__icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--coral)"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <h3 class="chapter-group__name">Community &mdash; Le M&eacute;tier</h3>
+                </div>
+                <ul class="chapter-list">
+                    <li>Why the lone wolf cyclist always hits a ceiling (and the data behind group training effects)</li>
+                    <li>Le m&eacute;tier: the craft of being a cyclist &mdash; and why it matters as much as your FTP</li>
+                    <li>What riding with better cyclists actually does to your physiology and your race-day confidence</li>
+                    <li>Accountability structures that work for adults with careers and families</li>
+                    <li>The Not Done Yet effect: how 113 serious cyclists are applying all five pillars together</li>
+                    <li>Your next step: what it looks like to apply for the community</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== EXPERT ACCESS ====== -->
+    <section class="experts-section">
+        <div class="container">
+            <span class="accent-line"></span>
+            <h2 class="section-title">Built From Conversations With</h2>
+            <p class="section-intro">
+                This isn't theory pulled from textbooks. Every framework in this guide was shaped by direct conversations with the coaches and scientists behind the best riders on the planet.
+            </p>
+            <div class="expert-grid">
+                <div class="expert-card">
+                    <h3 class="expert-card__name">Dan Lorang</h3>
+                    <p class="expert-card__role">Head of Performance, Red Bull&ndash;Bora&ndash;Hansgrohe</p>
+                    <p class="expert-card__detail">Coached Pogačar and Vingegaard. His periodisation framework for time-limited athletes forms the backbone of the Coaching chapter.</p>
+                </div>
+                <div class="expert-card">
+                    <h3 class="expert-card__name">Prof. Stephen Seiler</h3>
+                    <p class="expert-card__role">Exercise Physiologist &amp; Polarised Training Pioneer</p>
+                    <p class="expert-card__detail">The researcher who proved the 80/20 intensity distribution. His work underpins every training recommendation in this guide.</p>
+                </div>
+                <div class="expert-card">
+                    <h3 class="expert-card__name">Dr. David Dunne</h3>
+                    <p class="expert-card__role">Sports Scientist</p>
+                    <p class="expert-card__detail">Evidence-based performance optimisation. His research on recovery and adaptation informs the Recovery and Nutrition chapters.</p>
+                </div>
+                <div class="expert-card">
+                    <h3 class="expert-card__name">Lachlan Morton</h3>
+                    <p class="expert-card__role">EF Education Pro Cyclist</p>
+                    <p class="expert-card__detail">World Tour rider and alt-racing pioneer. His perspective on what really matters in the sport shaped the Le M&eacute;tier chapter.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== WHO THIS IS FOR ====== -->
+    <section class="for-section">
+        <div class="container">
+            <span class="accent-line"></span>
+            <h2 class="section-title">This Guide Is For You If</h2>
+            <ul class="for-list">
+                <li>
+                    <span class="for-list__check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                    You're over 35, you train seriously, and you refuse to accept your best riding is behind you
+                </li>
+                <li>
+                    <span class="for-list__check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                    Your FTP has been stuck for months and you've tried everything the cycling internet told you to try
+                </li>
+                <li>
+                    <span class="for-list__check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                    You've got a real job, a real family, and 8&ndash;12 hours a week to train &mdash; not 25
+                </li>
+                <li>
+                    <span class="for-list__check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                    You want structure and clarity &mdash; not another YouTube rabbit hole of conflicting advice
+                </li>
+                <li>
+                    <span class="for-list__check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                    You know there's more in you &mdash; you just need the right system to get it out
+                </li>
+                <li>
+                    <span class="for-list__check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                    You'd rather hear from the coaches behind Pogačar than another Reddit thread
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ====== ABOUT ANTHONY ====== -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-avatar">AW</div>
+                <p class="about-text">
+                    I'm Anthony. I host the <strong>Roadman Cycling Podcast</strong> &mdash; 100 million downloads and counting. Over the past five years I've sat across from the coaches behind Grand Tour wins, Olympic medals, and World Championship jerseys. I've asked them the question every serious amateur wants answered: <strong>what would you actually prescribe to someone like us?</strong>
+                </p>
+                <p class="about-text">
+                    This guide is their answer. Distilled, structured, and written for the rider with a career, a family, and a quiet refusal to accept that the best days are done. I built it because I needed it myself &mdash; and because I know you do too.
+                </p>
+                <p class="about-signature">Anthony Walsh</p>
+                <p class="about-role">Roadman Cycling</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== BOTTOM CTA ====== -->
+    <section class="cta-section">
+        <div class="container">
+            <span class="accent-line"></span>
+            <h2 class="section-title">Get Your Free Copy</h2>
+            <p class="section-intro">
+                30 pages of World Tour coaching intelligence. Free. In your inbox in 60 seconds.
+            </p>
+            <form class="capture-form" id="capture-bottom" novalidate>
+                <div class="capture-form__fields">
+                    <input type="text" name="firstName" class="capture-form__input" placeholder="Your first name (optional)" aria-label="First name" autocomplete="given-name">
+                    <input type="email" name="email" class="capture-form__input" placeholder="Your email address" required aria-label="Email address" autocomplete="email">
+                    <button type="submit" class="capture-form__btn">Send Me the Guide</button>
+                </div>
+                <p class="capture-form__error" role="alert"></p>
+                <p class="capture-form__note">Delivered straight to your inbox. You'll also get Anthony's weekly riding notes. Unsubscribe any time.</p>
+                <div class="capture-form__success">
+                    <p class="capture-form__success-text">Check your inbox — the report is on its way.</p>
+                    <a href="/downloads/faster-after-40-report.pdf" class="capture-form__download-btn" download>Download Now (PDF)</a>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="site-footer">
+        <div class="container">
+            <p class="footer-text">&copy; 2026 Roadman Cycling. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="https://www.skool.com/roadmancycling">Community</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====== JS ====== -->
+    <script>
+        (function () {
+            'use strict';
+
+            // ── Config ──────────────────────────────────────────
+            // Use relative URL when the page is hosted on the same domain
+            // as the Next.js app. Use absolute URL when hosted elsewhere.
+            var API_URL = (window.location.hostname === 'roadmancycling.com' ||
+                           window.location.hostname === 'www.roadmancycling.com' ||
+                           window.location.hostname.endsWith('.vercel.app'))
+                ? '/api/faster-after-40'
+                : 'https://roadmancycling.com/api/faster-after-40';
+
+            var PDF_URL = '/downloads/faster-after-40-report.pdf';
+            var EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            // ── Form handler ────────────────────────────────────
+
+            function initForm(form) {
+                if (!form) return;
+
+                var emailInput = form.querySelector('input[name="email"]');
+                var firstNameInput = form.querySelector('input[name="firstName"]');
+                var btn = form.querySelector('.capture-form__btn');
+                var errorEl = form.querySelector('.capture-form__error');
+                var noteEl = form.querySelector('.capture-form__note');
+                var successEl = form.querySelector('.capture-form__success');
+                var fields = form.querySelector('.capture-form__fields');
+                var submitting = false;
+
+                function showError(msg) {
+                    errorEl.textContent = msg;
+                    errorEl.classList.add('is-visible');
+                    emailInput.classList.add('capture-form__input--error');
+                }
+
+                function clearError() {
+                    errorEl.classList.remove('is-visible');
+                    errorEl.textContent = '';
+                    emailInput.classList.remove('capture-form__input--error');
+                }
+
+                function showSuccess(downloadUrl) {
+                    fields.style.display = 'none';
+                    if (noteEl) noteEl.style.display = 'none';
+                    errorEl.classList.remove('is-visible');
+
+                    // Update download link if the API returned a URL
+                    if (downloadUrl) {
+                        var downloadBtn = successEl.querySelector('.capture-form__download-btn');
+                        if (downloadBtn) {
+                            var fullUrl = downloadUrl.startsWith('http')
+                                ? downloadUrl
+                                : 'https://roadmancycling.com' + downloadUrl;
+                            downloadBtn.href = fullUrl;
+                        }
+                    }
+
+                    successEl.classList.add('is-visible');
+                    btn.textContent = 'Done ✓';
+                    btn.classList.add('capture-form__btn--success');
+                    btn.disabled = true;
+                }
+
+                // Clear error on input
+                emailInput.addEventListener('input', clearError);
+
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    if (submitting) return;
+
+                    var email = (emailInput.value || '').trim();
+                    var firstName = (firstNameInput.value || '').trim();
+
+                    // Validate
+                    if (!email) {
+                        showError('Please enter your email address.');
+                        emailInput.focus();
+                        return;
+                    }
+                    if (!EMAIL_REGEX.test(email)) {
+                        showError('That doesn\'t look like a valid email. Give it another go.');
+                        emailInput.focus();
+                        return;
+                    }
+
+                    // Loading state
+                    submitting = true;
+                    clearError();
+                    btn.textContent = 'Sending…';
+                    btn.classList.add('capture-form__btn--loading');
+                    btn.disabled = true;
+
+                    // Submit
+                    fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            email: email,
+                            firstName: firstName || undefined
+                        })
+                    })
+                    .then(function (res) {
+                        return res.json().then(function (data) {
+                            return { ok: res.ok, status: res.status, data: data };
+                        });
+                    })
+                    .then(function (result) {
+                        if (result.ok && result.data.success) {
+                            showSuccess(result.data.downloadUrl || PDF_URL);
+
+                            // Mark the other form as complete too (avoid double subscribe)
+                            var otherId = form.id === 'capture-top' ? 'capture-bottom' : 'capture-top';
+                            var otherForm = document.getElementById(otherId);
+                            if (otherForm && !otherForm.querySelector('.capture-form__success.is-visible')) {
+                                var otherFields = otherForm.querySelector('.capture-form__fields');
+                                var otherNote = otherForm.querySelector('.capture-form__note');
+                                var otherSuccess = otherForm.querySelector('.capture-form__success');
+                                var otherBtn = otherForm.querySelector('.capture-form__btn');
+                                if (otherFields) otherFields.style.display = 'none';
+                                if (otherNote) otherNote.style.display = 'none';
+                                if (otherSuccess) otherSuccess.classList.add('is-visible');
+                                if (otherBtn) {
+                                    otherBtn.textContent = 'Done ✓';
+                                    otherBtn.classList.add('capture-form__btn--success');
+                                    otherBtn.disabled = true;
+                                }
+                            }
+                        } else {
+                            var msg = result.data.error || 'Something went wrong. Try again or email anthony@roadmancycling.com';
+                            showError(msg);
+                            btn.textContent = 'Send Me the Guide';
+                            btn.classList.remove('capture-form__btn--loading');
+                            btn.disabled = false;
+                            submitting = false;
+                        }
+                    })
+                    .catch(function () {
+                        showError('Something went wrong. Try again or email anthony@roadmancycling.com');
+                        btn.textContent = 'Send Me the Guide';
+                        btn.classList.remove('capture-form__btn--loading');
+                        btn.disabled = false;
+                        submitting = false;
+                    });
+                });
+            }
+
+            // Init both forms
+            initForm(document.getElementById('capture-top'));
+            initForm(document.getElementById('capture-bottom'));
+
+            // ── Scroll-reveal animations ────────────────────────
+            if ('IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            var siblings = entry.target.parentElement.children;
+                            var index = Array.from(siblings).indexOf(entry.target);
+                            entry.target.style.transitionDelay = index * 0.07 + 's';
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+                document.querySelectorAll('.pillar, .chapter-group, .expert-card, .for-list li, .proof-item, .pull-quote').forEach(function (el) {
+                    observer.observe(el);
+                });
+            }
+        })();
+    </script>
+
+</body>
+</html>

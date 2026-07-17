@@ -564,7 +564,7 @@ export const nutritionAnswers: AnswerPage[] = [
       "Is fasted riding worth it? For short easy sessions, modest benefit. For anything hard or long, the evidence is clear: under-fuelling wrecks quality and blocks adaptation. What the research says.",
     pillar: "nutrition",
     directAnswer:
-      "For short, genuinely easy rides under 90 minutes, occasional fasted sessions can modestly improve fat oxidation and metabolic flexibility. For anything hard, long, or where you want adaptation, riding fasted backfires — it drops session quality, suppresses protein synthesis, and the claimed metabolic benefit does not persist over a training block. Fuel the work that matters. Save fasted riding for easy spins only.",
+      "For short, properly easy rides under 90 minutes, occasional fasted sessions can modestly improve fat oxidation and metabolic flexibility. For anything hard, long, or where you want adaptation, riding fasted backfires — it drops session quality, suppresses protein synthesis, and the claimed metabolic benefit does not persist over a training block. Fuel the work that matters. Save fasted riding for easy spins only.",
     keyTakeaways: [
       "Fasted easy rides under 90 minutes have a modest, real metabolic stimulus.",
       "Fasted hard or long sessions drop power output and reduce the quality of the adaptation.",
@@ -586,7 +586,7 @@ export const nutritionAnswers: AnswerPage[] = [
     roadmanView: [
       "The fasted riding romance comes from a genuine metabolic fact — exercising without carbohydrate does shift your body toward fat oxidation. The problem is that the cycling world extrapolated a modest acute effect into a universal training principle, and it does not hold up. Anthony has tested it himself and discussed it with Dr Sam Impey on the podcast — when the sessions that matter get run on empty, they are slower, worse quality, and produce less adaptation than fuelled equivalents.",
       "The practical test is simple: check what your 'fasted' rides actually look like in your training files. Most riders who think they are doing easy fasted training are hovering in zone 3 because they cannot hold zone 2 without carbohydrate. At that intensity, you are not getting the fat-oxidation stimulus you are seeking; you are just doing suboptimal aerobic work on a short fuel supply.",
-      "There is a legitimate use case: a short, genuinely easy ride — 60 to 90 minutes, fully conversational, heart rate solidly in zone 2 — done fasted occasionally adds a meaningful metabolic stimulus without wrecking the session. The key word is occasional, easy, and short. It is a specific tool for a specific purpose, not a general training philosophy.",
+      "There is a legitimate use case: a short, truly easy ride — 60 to 90 minutes, fully conversational, heart rate solidly in zone 2 — done fasted occasionally adds a meaningful metabolic stimulus without wrecking the session. The key word is occasional, easy, and short. It is a specific tool for a specific purpose, not a general training philosophy.",
     ],
     expertEvidence: [
       {
@@ -609,7 +609,7 @@ export const nutritionAnswers: AnswerPage[] = [
       {
         title: "Limit fasted riding to easy sessions under 90 minutes",
         detail:
-          "If you want the metabolic stimulus, ride before breakfast on a genuinely easy day — zone 1 to low zone 2, fully conversational. Keep it under 90 minutes. This is the condition where fasted training delivers benefit without the cost.",
+          "If you want the metabolic stimulus, ride before breakfast on a properly easy day — zone 1 to low zone 2, fully conversational. Keep it under 90 minutes. This is the condition where fasted training delivers benefit without the cost.",
       },
       {
         title: "Fuel every hard session, regardless of timing",
@@ -631,7 +631,7 @@ export const nutritionAnswers: AnswerPage[] = [
       {
         mistake: "Riding 'easy' fasted but actually drifting into zone 3.",
         fix:
-          "True fasted-training benefit requires genuinely easy intensity. If you cannot hold zone 2 without carbs, eat something small and lower the expectation.",
+          "True fasted-training benefit requires actually easy intensity. If you cannot hold zone 2 without carbs, eat something small and lower the expectation.",
       },
       {
         mistake: "Fasting through long rides trying to burn more fat.",
@@ -851,7 +851,7 @@ export const nutritionAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "Alan Murchison spent years cooking for professional cycling teams as a Michelin-star chef before coming on the podcast, and his account of what pros actually eat upends the Instagram version. There is nothing exotic. Rice is the staple — in bidons during races, in bowls at the dinner table, in rice cakes made by the team chef. The volume is remarkable on training days, the restraint equally remarkable on rest days.",
-      "The concept that surprised Anthony most is how deliberately food is periodised. A pro's Tuesday rest day looks genuinely different nutritionally from their Wednesday five-hour training ride. The carbohydrate intake swings by 600–800g depending on what the work demands. That is the principle most amateurs get wrong — they eat roughly the same every day regardless of training load.",
+      "The concept that surprised Anthony most is how deliberately food is periodised. A pro's Tuesday rest day looks markedly different nutritionally from their Wednesday five-hour training ride. The carbohydrate intake swings by 600–800g depending on what the work demands. That is the principle most amateurs get wrong — they eat roughly the same every day regardless of training load.",
       "What pros do not do is restrict aggressively during racing or hard training. Dr Allen Lim has described the culture shift at WorldTour level over the last decade — teams moved away from weight obsession after seeing the performance cost of under-fuelled training. The riders who win today are fuelling hard and periodising the rest. The old 'lighter is faster at any cost' thinking has been replaced by 'fuel the work, manage the easy days'.",
     ],
     expertEvidence: [
@@ -1122,7 +1122,7 @@ export const nutritionAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Electrolyte marketing has created a world where riders are adding tablet after tablet to every water bottle on every ride, including a 45-minute commute in October. The truth is more targeted: for easy short rides, plain water is fine. For long rides, hot days, and high-intensity efforts where you are sweating significantly, sodium in your drink is genuinely important.",
+      "Electrolyte marketing has created a world where riders are adding tablet after tablet to every water bottle on every ride, including a 45-minute commute in October. The truth is more targeted: for easy short rides, plain water is fine. For long rides, hot days, and high-intensity efforts where you are sweating significantly, sodium in your drink is actually important.",
       "The mechanism is real. Sodium keeps you thirsty, so you drink more. It is retained with fluid, maintaining blood plasma volume. When sodium drops through heavy sweating and plain-water replacement, the hormonal drive to drink weakens, you stop retaining fluid efficiently, and power output drops faster than it should. The riders who manage this best — like Ben Healy with his extraordinary fuelling strategy — are precise about sodium intake on long and hot efforts.",
       "For most amateurs on normal four-season riding, the priority is simply getting sodium into your bottles on any ride over 90 minutes and on any ride where conditions are warm. Beyond that, potassium and magnesium are handled by eating a varied diet. The electrolyte complexity the supplement industry sells is largely unnecessary for riders who eat real food.",
     ],
@@ -2045,7 +2045,7 @@ export const nutritionAnswers: AnswerPage[] = [
       "High-carb wins for cycling performance: 5–12g/kg daily and 60–90g/hr in races. Why low-carb suits only short easy work, and the evidence on carbs vs fat adaptation for cyclists.",
     pillar: "nutrition",
     directAnswer:
-      "Eat high-carb if you care about cycling performance. Carbohydrate fuels every effort above easy pace, and the research is consistent: high-carb riders produce more power in hard and long efforts than fat-adapted ones. Target 5–12g of carbs per kg daily, scaled to training load, plus 60–90g per hour in racing. Low-carb suits only short, genuinely easy sessions — it cannot fuel intensity.",
+      "Eat high-carb if you care about cycling performance. Carbohydrate fuels every effort above easy pace, and the research is consistent: high-carb riders produce more power in hard and long efforts than fat-adapted ones. Target 5–12g of carbs per kg daily, scaled to training load, plus 60–90g per hour in racing. Low-carb suits only short, truly easy sessions — it cannot fuel intensity.",
     keyTakeaways: [
       "Carbohydrate is the limiter for any effort above easy pace — high-carb wins on performance.",
       "Periodise daily carbs from 5g/kg on easy days to 10–12g/kg on hard and race days.",
@@ -2101,7 +2101,7 @@ export const nutritionAnswers: AnswerPage[] = [
       {
         title: "Use lower-carb only on short, easy rides",
         detail:
-          "If you want the fat-oxidation stimulus, restrict carbs only on a short, genuinely easy zone 2 ride — under 90 minutes, fully conversational. Keep carbs high everywhere else. This captures the metabolic upside of low-carb without sacrificing the hard-day power that builds fitness.",
+          "If you want the fat-oxidation stimulus, restrict carbs only on a short, properly easy zone 2 ride — under 90 minutes, fully conversational. Keep carbs high everywhere else. This captures the metabolic upside of low-carb without sacrificing the hard-day power that builds fitness.",
       },
     ],
     commonMistakes: [
@@ -2339,12 +2339,12 @@ export const nutritionAnswers: AnswerPage[] = [
       {
         label: "The cyclist building a race-day fuelling plan",
         detail:
-          "You want to know when real food is enough and when high-carb sports products genuinely earn their place.",
+          "You want to know when real food is enough and when high-carb sports products actually earn their place.",
       },
     ],
     roadmanView: [
       "The sports nutrition industry has done a brilliant job convincing amateurs that fuelling means buying things. It does not, for the most part. Alan Murchison — a Michelin-star chef who cooked for professional teams — came on the podcast and made the point that pro fuelling is built on real food far more than the gel adverts suggest. Rice is the staple. Rice cakes, sandwiches, bananas, dates: that is what fills a lot of pockets at the highest level, not a bottomless supply of branded gels.",
-      "Where products genuinely earn their place is at the sharp end. Once you are fuelling above 60g an hour, or racing, or doing a session where you cannot afford a heavy stomach, the engineering matters — a precise glucose-fructose ratio, fast absorption, easy to carry, no prep. That is a real advantage in those settings, and Anthony does not pretend otherwise. The mistake is extending that race-day logic to every easy three-hour ride, where a sandwich would do the same job for a fraction of the cost.",
+      "Where products really earn their place is at the sharp end. Once you are fuelling above 60g an hour, or racing, or doing a session where you cannot afford a heavy stomach, the engineering matters — a precise glucose-fructose ratio, fast absorption, easy to carry, no prep. That is a real advantage in those settings, and Anthony does not pretend otherwise. The mistake is extending that race-day logic to every easy three-hour ride, where a sandwich would do the same job for a fraction of the cost.",
       "The honest framing is horses for courses. Build your everyday training fuelling on real food and save the products for when the situation actually calls for them — high intake, racing, or convenience under pressure. Your gut gets trained on real food just as well at moderate intake, your wallet survives, and you are not dependent on a product you forgot to pack. The fixable habit is treating gels as the default rather than the specialist tool they are.",
     ],
     expertEvidence: [
@@ -2360,7 +2360,7 @@ export const nutritionAnswers: AnswerPage[] = [
         name: "Dr Sam Impey",
         credential: "World Tour nutritionist",
         insight:
-          "The case for sports products strengthens as intake rises. Below about 60g per hour, real food fuels well and is well tolerated. Above that, the precise glucose-to-fructose ratios and rapid absorption of engineered products become genuinely useful for hitting high carbohydrate targets without gut distress — which is where they justify their cost.",
+          "The case for sports products strengthens as intake rises. Below about 60g per hour, real food fuels well and is well tolerated. Above that, the precise glucose-to-fructose ratios and rapid absorption of engineered products become properly useful for hitting high carbohydrate targets without gut distress — which is where they justify their cost.",
         episodeSlug: "ep-2035-world-tour-nutritionist-we-got-fuelling-wrong",
         guestSlug: "sam-impey",
       },
@@ -2379,7 +2379,7 @@ export const nutritionAnswers: AnswerPage[] = [
       {
         title: "Keep electrolytes and convenience in mind",
         detail:
-          "On long hot rides, a sports drink that combines carbohydrate and sodium can simplify fuelling and hydration in one bottle. Use products where the convenience genuinely helps — early morning sessions, races, or hot days — rather than as the automatic default.",
+          "On long hot rides, a sports drink that combines carbohydrate and sodium can simplify fuelling and hydration in one bottle. Use products where the convenience actually helps — early morning sessions, races, or hot days — rather than as the automatic default.",
       },
     ],
     commonMistakes: [

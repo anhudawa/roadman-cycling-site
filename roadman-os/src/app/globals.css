@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-charcoal text-off-white font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading uppercase tracking-wide;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-coral text-white px-4 py-2 rounded-lg font-body font-medium
+           hover:bg-coral/90 transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-coral/50 focus:ring-offset-2 focus:ring-offset-charcoal
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-purple text-white px-4 py-2 rounded-lg font-body font-medium
+           hover:bg-purple/90 transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-purple/50 focus:ring-offset-2 focus:ring-offset-charcoal
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent text-off-white px-4 py-2 rounded-lg font-body font-medium
+           hover:bg-white/10 transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-white/20
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .input-field {
+    @apply w-full bg-charcoal border border-mid-grey/30 rounded-lg px-3 py-2
+           text-off-white placeholder:text-mid-grey
+           focus:outline-none focus:ring-2 focus:ring-coral/50 focus:border-coral
+           transition-colors duration-200;
+  }
+
+  .card {
+    @apply bg-charcoal border border-mid-grey/20 rounded-xl p-6;
+  }
+}

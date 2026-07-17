@@ -356,7 +356,7 @@ export const TOUR_STAGES: Stage[] = [
     prediction:
       "A straightforward bunch sprint. The form sprinter of the first week confirms it on a finish that rarely springs a surprise.",
     roadmanTake:
-      "Flat stages are where recovery between hard days is won or lost. For the amateur chasing a multi-day event or a big sportive, the skill is riding easy genuinely easy — true zone 2, not grey-zone tempo that quietly digs a hole you pay for tomorrow.",
+      "Flat stages are where recovery between hard days is won or lost. For the amateur chasing a multi-day event or a big sportive, the skill is riding easy properly easy — true zone 2, not grey-zone tempo that quietly digs a hole you pay for tomorrow.",
     expertAngle: {
       expert: "Stephen Seiler",
       angle:

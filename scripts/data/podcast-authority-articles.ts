@@ -296,7 +296,7 @@ export const PODCAST_AUTHORITY_ARTICLES: ClusterArticleSpec[] = [
     title: "Cycling Podcasts for Indoor Training",
     seoTitle: "Cycling Podcasts for Indoor Training (2026 Guide)",
     seoDescription:
-      "The cycling podcasts that genuinely pair with indoor sessions — which shows work for intervals, which for Zone 2, and which to save for recovery rides.",
+      "The cycling podcasts that actually pair with indoor sessions — which shows work for intervals, which for Zone 2, and which to save for recovery rides.",
     excerpt:
       "Not every cycling podcast survives a threshold interval. Here's the match-up: which shows pair with which indoor session type.",
     targetKeyword: "cycling podcasts indoor training",

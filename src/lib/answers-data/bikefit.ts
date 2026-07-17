@@ -113,7 +113,7 @@ export const bikefitAnswers: AnswerPage[] = [
       {
         question: "Do I need a new bike or just a bike fit?",
         answer:
-          "Usually a fit first. Most issues can be resolved within the adjustment range of your current bike — stem length, saddle position, handlebar height. You may discover the frame is genuinely the wrong size, but that's the exception, not the rule.",
+          "Usually a fit first. Most issues can be resolved within the adjustment range of your current bike — stem length, saddle position, handlebar height. You may discover the frame is actually the wrong size, but that's the exception, not the rule.",
       },
       {
         question: "Should I get a fit for a new bike before I buy it?",
@@ -512,7 +512,7 @@ export const bikefitAnswers: AnswerPage[] = [
       {
         question: "Can I fix numb hands without changing my stem?",
         answer:
-          "Sometimes. If your reach is close to correct but bars are low, raising the bars alone may be enough. Adding core work so your hands carry less weight is another partial fix. But if the reach is genuinely too long, the stem change is the reliable solution.",
+          "Sometimes. If your reach is close to correct but bars are low, raising the bars alone may be enough. Adding core work so your hands carry less weight is another partial fix. But if the reach is actually too long, the stem change is the reliable solution.",
       },
     ],
     relatedEpisodes: [
@@ -1393,7 +1393,7 @@ export const bikefitAnswers: AnswerPage[] = [
       {
         title: "Test aerodynamics on event-specific courses, not every ride",
         detail:
-          "For a time trial or a flat gran fondo where aerodynamics genuinely matter, get a specific aero position assessment. For climbing events or long sportives with variable terrain, a more comfortable, upright position will produce better results. Not every ride justifies the same positional trade-offs.",
+          "For a time trial or a flat gran fondo where aerodynamics really matter, get a specific aero position assessment. For climbing events or long sportives with variable terrain, a more comfortable, upright position will produce better results. Not every ride justifies the same positional trade-offs.",
       },
     ],
     commonMistakes: [
@@ -1569,7 +1569,7 @@ export const bikefitAnswers: AnswerPage[] = [
       {
         question: "Should I size up in cycling shoes to prevent numbness?",
         answer:
-          "Maybe — if your shoes are genuinely too narrow or short. But more often the fix is a wider shoe in the same length, not a longer one. Many cyclists find half-width wider shoes (if available from their brand) resolve forefoot numbness without the power transfer implications of a longer shoe.",
+          "Maybe — if your shoes are actually too narrow or short. But more often the fix is a wider shoe in the same length, not a longer one. Many cyclists find half-width wider shoes (if available from their brand) resolve forefoot numbness without the power transfer implications of a longer shoe.",
       },
     ],
     relatedEpisodes: [
@@ -1623,7 +1623,7 @@ export const bikefitAnswers: AnswerPage[] = [
     roadmanView: [
       "The 'comfort vs power' framing is a false choice and Anthony has made this point repeatedly — usually referencing the conversation he had with Phil Burt. The question isn't comfort or power. The question is: what position allows you to produce the most power over the duration of your event? For a three-hour gran fondo, that answer almost always involves more comfort than most amateur cyclists currently have.",
       "The aerodynamic advantage of a 10mm lower bar position is small — roughly 1–2 watts at 35km/h. The power loss from spending the last 90 minutes of a five-hour ride fighting your back, unable to use your glutes properly, and gradually losing core position is far larger. The maths is simple and the evidence from professional fitting practice is unambiguous: for most amateur events, sustainable position wins.",
-      "Where the calculation changes is in short, flat, single-discipline efforts — time trials, flat criteriums, short course triathlons. Here, aerodynamics genuinely dominate and a more aggressive position is worth the discomfort trade-off because the duration is short enough that fatigue doesn't accumulate. But for anyone riding a 3–6 hour event, the aero position is almost never the faster position when you account for the power that's lost to fatigue, pain and compensation movements.",
+      "Where the calculation changes is in short, flat, single-discipline efforts — time trials, flat criteriums, short course triathlons. Here, aerodynamics truly dominate and a more aggressive position is worth the discomfort trade-off because the duration is short enough that fatigue doesn't accumulate. But for anyone riding a 3–6 hour event, the aero position is almost never the faster position when you account for the power that's lost to fatigue, pain and compensation movements.",
     ],
     expertEvidence: [
       {
@@ -2398,7 +2398,7 @@ export const bikefitAnswers: AnswerPage[] = [
       {
         question: "Can I fix reach by rotating my handlebars?",
         answer:
-          "Rotating the bars changes the angle and position of the hoods slightly, which can fine-tune reach by a few millimetres and adjust comfort. It's a useful small adjustment, but it can't fix a stem that's genuinely 10–20mm too long. Use bar rotation to refine, not to rescue a poorly sized stem.",
+          "Rotating the bars changes the angle and position of the hoods slightly, which can fine-tune reach by a few millimetres and adjust comfort. It's a useful small adjustment, but it can't fix a stem that's actually 10–20mm too long. Use bar rotation to refine, not to rescue a poorly sized stem.",
       },
       {
         question: "Does stem length affect handling?",
@@ -2467,7 +2467,7 @@ export const bikefitAnswers: AnswerPage[] = [
     roadmanView: [
       "Handlebar width used to be a settled question — match the bars to your shoulders and forget about it. Then the wind-tunnel era arrived and the whole peloton went narrow, and now the cycling internet is full of riders chopping their bars down to chase free watts. Anthony's covered this on the aero side of the podcast, and the honest answer is: yes, width matters, but the narrow trend isn't a free lunch for everyone.",
       "The aero case is real. Your frontal area is most of your drag, and bringing your hands and shoulders in narrows that area. For a flat, fast rider chasing every watt, dropping a bar size or two can be a genuine saving that costs nothing in power. Dan Bigham, who built his career on finding aero gains nobody else bothered with, is clear that the rider's own frontal area is where the big numbers hide — and bar width feeds straight into that.",
-      "But here's where the fixable framing comes in. Go too narrow and you pay for it in places that matter for amateur riding: breathing gets restricted because your chest can't open, climbing out of the saddle loses leverage, and descending and cornering get nervier because you've shortened your steering lever. For a time triallist on a flat course, narrow makes sense. For someone riding hilly sportives and technical descents, shoulder width or a touch narrower is usually the smart call. Start from your shoulders, narrow in small steps if aero genuinely matters to you, and test the handling before you commit.",
+      "But here's where the fixable framing comes in. Go too narrow and you pay for it in places that matter for amateur riding: breathing gets restricted because your chest can't open, climbing out of the saddle loses leverage, and descending and cornering get nervier because you've shortened your steering lever. For a time triallist on a flat course, narrow makes sense. For someone riding hilly sportives and technical descents, shoulder width or a touch narrower is usually the smart call. Start from your shoulders, narrow in small steps if aero really matters to you, and test the handling before you commit.",
     ],
     expertEvidence: [
       {
@@ -2598,7 +2598,7 @@ export const bikefitAnswers: AnswerPage[] = [
       {
         label: "The rider or partner shopping for a first proper bike",
         detail:
-          "You want to know what genuinely matters versus what's marketing, before spending money on a women's-specific frame.",
+          "You want to know what actually matters versus what's marketing, before spending money on a women's-specific frame.",
       },
     ],
     roadmanView: [
@@ -2961,7 +2961,7 @@ export const bikefitAnswers: AnswerPage[] = [
       {
         question: "Should I use a different saddle for the turbo?",
         answer:
-          "Usually no — keep the same saddle so your contact points stay consistent with outdoor riding. If the saddle is genuinely uncomfortable indoors, the better fix is usually a small bar-height change or a rocker plate to relieve pressure, rather than a separate turbo saddle that changes your position from the one you ride outside.",
+          "Usually no — keep the same saddle so your contact points stay consistent with outdoor riding. If the saddle is properly uncomfortable indoors, the better fix is usually a small bar-height change or a rocker plate to relieve pressure, rather than a separate turbo saddle that changes your position from the one you ride outside.",
       },
       {
         question: "Does indoor training affect my bike fit needs?",

@@ -309,7 +309,7 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Tubeless on road is one of those topics where half the internet says it is a revelation and the other half says it is a mess. Both sides are right. When tubeless works — and it works most of the time — it is genuinely brilliant. You ride over glass, thorns, and sharp debris that would have given you a flat with inner tubes, and the sealant handles it without you even knowing. The lower pressures mean the bike feels more planted in corners and more comfortable over rough surfaces, which is not just a feel-good thing — research on rolling resistance shows that lower pressure on rough roads is measurably faster.",
+      "Tubeless on road is one of those topics where half the internet says it is a revelation and the other half says it is a mess. Both sides are right. When tubeless works — and it works most of the time — it is properly brilliant. You ride over glass, thorns, and sharp debris that would have given you a flat with inner tubes, and the sealant handles it without you even knowing. The lower pressures mean the bike feels more planted in corners and more comfortable over rough surfaces, which is not just a feel-good thing — research on rolling resistance shows that lower pressure on rough roads is measurably faster.",
       "The mess comes at installation and maintenance. Getting a tubeless tyre seated on the rim for the first time can involve a compressor, a lot of sealant sprayed up the wall, and language your neighbours do not want to hear. And sealant dries out every 3–4 months, so you need to top it up or the system stops working. If you get a cut too large for the sealant to handle, you are fitting an inner tube by the roadside anyway — so carry one regardless.",
       "Anthony's practical position: if you ride three or more times a week and your local roads are puncture-prone, tubeless is worth the faff. If you ride once a week on clean roads and barely puncture anyway, the hassle and cost of conversion may not pay for itself. It is an improvement, not a necessity.",
     ],
@@ -447,7 +447,7 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
     roadmanView: [
       "The tyre-width debate was settled years ago by the data, but the cycling world is slow to let go of old beliefs. For decades, the assumption was thinner equals faster — less rubber, less drag, more speed. The problem is that assumption was tested on perfectly smooth steel drums in a laboratory. On actual roads, with their cracks, patches, chip-seal, and manhole covers, a wider tyre deforms less at the contact patch, absorbs surface imperfections instead of bouncing over them, and rolls measurably faster.",
       "The numbers are clear. Independent rolling resistance tests show that a 28mm tyre at the correct pressure is 2–4 watts faster than a 25mm tyre at the same effort on typical UK or European road surfaces. Go up to 30–32mm on rougher roads and the advantage grows. The comfort improvement is a bonus, not the point — you can hold position and power for longer when your hands and backside are not being jackhammered by road vibration.",
-      "Anthony's practical position is straightforward: if your frame clears 28mm, fit 28mm. If it clears 30 or 32mm and you ride mixed surfaces or poor tarmac, go wider still. The only riders who benefit from 25mm are those on glass-smooth roads or racing on closed circuits where the surface is immaculate. For everyone else, wider is genuinely faster, not just more comfortable.",
+      "Anthony's practical position is straightforward: if your frame clears 28mm, fit 28mm. If it clears 30 or 32mm and you ride mixed surfaces or poor tarmac, go wider still. The only riders who benefit from 25mm are those on glass-smooth roads or racing on closed circuits where the surface is immaculate. For everyone else, wider is actually faster, not just more comfortable.",
     ],
     expertEvidence: [
       {
@@ -583,7 +583,7 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
     roadmanView: [
       "This is one of those questions where the answer has been sitting in the research for twenty years, but most amateur riders ignore it because easy riding does not feel like training. Professor Seiler's work on intensity distribution is about as close to settled science as exercise physiology gets: across endurance sports — rowing, cross-country skiing, running, cycling — the best athletes do roughly 80% of their training at low intensity and 20% at high intensity. Not 50/50. Not 60/40. Eighty-twenty.",
       "For a cyclist riding 8 hours a week, that means about 6.5 hours of genuine Zone 2 and roughly 1.5 hours of hard work — which translates neatly to two structured interval sessions. One of those should target threshold (sweet spot or tempo intervals), and the other should target VO2max (3–5 minute efforts at 105–120% FTP). That combination stresses both the aerobic ceiling and the ability to sustain power below it.",
-      "The trap most riders fall into is doing three, four, or five hard sessions a week because easy riding feels like wasted time. Anthony has heard Joe Friel make the same point repeatedly: amateurs go too hard on their easy days and too easy on their hard days, ending up in a no-man's-land of moderate effort that produces moderate results. Two genuinely hard sessions, done properly, with the rest truly easy, will produce better results than five mediocre ones.",
+      "The trap most riders fall into is doing three, four, or five hard sessions a week because easy riding feels like wasted time. Anthony has heard Joe Friel make the same point repeatedly: amateurs go too hard on their easy days and too easy on their hard days, ending up in a no-man's-land of moderate effort that produces moderate results. Two properly hard sessions, done right, with the rest truly easy, will produce better results than five mediocre ones.",
     ],
     expertEvidence: [
       {
@@ -610,7 +610,7 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
           "Place one threshold session (e.g. 3x12 min at 90–95% FTP or 2x20 min sweet spot) and one VO2max session (e.g. 5x4 min at 105–120% FTP) with at least one easy day between them. A typical pattern: hard Tuesday, easy Wednesday–Thursday, hard Friday or Saturday, long easy Sunday.",
       },
       {
-        title: "Make easy days genuinely easy",
+        title: "Make easy days properly easy",
         detail:
           "Zone 2 means conversational pace — you should be able to speak full sentences. If your easy rides creep into Zone 3, you are eroding recovery and compromising tomorrow's hard session. Ride with friends who keep it steady, or set a heart rate ceiling alert at the top of Zone 2.",
       },
@@ -646,7 +646,7 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
       {
         question: "Is one interval session per week enough to improve?",
         answer:
-          "One high-quality session per week can maintain fitness, but two produces noticeably better improvement. If time is genuinely limited to one session, make it a VO2max workout — that gives the biggest return per minute of training time. Supplement with as much Zone 2 riding as you can fit in.",
+          "One high-quality session per week can maintain fitness, but two produces noticeably better improvement. If time is truly limited to one session, make it a VO2max workout — that gives the biggest return per minute of training time. Supplement with as much Zone 2 riding as you can fit in.",
       },
       {
         question: "Should I do the same interval session twice a week?",
@@ -1412,7 +1412,7 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Speed is what everyone asks about, but most riders chase it by doing the wrong thing harder. They ride every session at the same moderate-hard intensity, never truly easy and never properly hard. The result is a grey zone that grinds fatigue without producing adaptation. The single biggest change for most amateurs is not a new wheelset or more hours — it is polarising their training so the easy rides are genuinely easy and the hard days are structured and purposeful.",
+      "Speed is what everyone asks about, but most riders chase it by doing the wrong thing harder. They ride every session at the same moderate-hard intensity, never truly easy and never properly hard. The result is a grey zone that grinds fatigue without producing adaptation. The single biggest change for most amateurs is not a new wheelset or more hours — it is polarising their training so the easy rides are properly easy and the hard days are structured and purposeful.",
       "After training distribution, the next-biggest lever is aerodynamics — and it is the one almost nobody addresses. At 30 km/h, roughly 80% of the resistance you fight is air. A lower, narrower position on the hoods, tucking elbows in, wearing a tighter jersey, even shaving your legs — these are free watts. John Archibald has spoken about how a few centimetres of frontal area reduction can equal the output of months of interval training. Most amateurs ride bolt-upright with loose clothing and then wonder why the watt gains from their turbo sessions do not show up on the road.",
       "The remaining levers — raising FTP through threshold and VO2max work, managing body weight without starving yourself, and fuelling rides properly so you can actually complete hard sessions — are all interconnected. You cannot raise FTP if you are under-fuelled, and you cannot hold a good aero position if your core is weak and your hamstrings are tight. Speed is a system problem, not a single variable. Fix the biggest bottleneck first, and the rest follows.",
     ],
@@ -1438,7 +1438,7 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
       {
         title: "Audit your intensity distribution this week",
         detail:
-          "Review your last 4 weeks of ride data. If more than 25% of your time is in Zone 3 (tempo) and less than 75% is in Zones 1-2, your distribution is wrong. Slow your easy rides down — genuinely conversational pace — and redirect that saved energy into one or two properly structured hard sessions per week.",
+          "Review your last 4 weeks of ride data. If more than 25% of your time is in Zone 3 (tempo) and less than 75% is in Zones 1-2, your distribution is wrong. Slow your easy rides down — properly conversational pace — and redirect that saved energy into one or two properly structured hard sessions per week.",
       },
       {
         title: "Improve your riding position for free speed",
@@ -1448,7 +1448,7 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
       {
         title: "Add one structured session per week targeting your weakest limiter",
         detail:
-          "If your FTP is the bottleneck, add a threshold session (2x20 min at 95-105% FTP). If your VO2max ceiling is holding FTP down, add a VO2max session (5x4 min at 106-120% FTP). One quality session per week is enough to move the needle when the rest of your riding is genuinely easy.",
+          "If your FTP is the bottleneck, add a threshold session (2x20 min at 95-105% FTP). If your VO2max ceiling is holding FTP down, add a VO2max session (5x4 min at 106-120% FTP). One quality session per week is enough to move the needle when the rest of your riding is properly easy.",
       },
     ],
     commonMistakes: [
@@ -1460,7 +1460,7 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
       {
         mistake: "Riding every session at the same moderate pace.",
         fix:
-          "Grey-zone riding — too hard to recover from, too easy to produce adaptation — is the most common speed killer in amateur cycling. Polarise your week: genuinely easy rides and genuinely hard sessions, with very little in between.",
+          "Grey-zone riding — too hard to recover from, too easy to produce adaptation — is the most common speed killer in amateur cycling. Polarise your week: properly easy rides and properly hard sessions, with very little in between.",
       },
       {
         mistake: "Chasing speed by losing weight instead of building power.",
@@ -1775,7 +1775,7 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
       {
         question: "Is it rude to sit on the back and not take a turn at the front?",
         answer:
-          "On social and club rides, sitting on the back permanently is frowned upon because the group works best when effort is shared. However, if you are genuinely struggling, it is better to sit on the back than to take a turn at the front and blow up. Communicate — tell the group you are finding it hard and will take shorter turns or sit this one out.",
+          "On social and club rides, sitting on the back permanently is frowned upon because the group works best when effort is shared. However, if you are really struggling, it is better to sit on the back than to take a turn at the front and blow up. Communicate — tell the group you are finding it hard and will take shorter turns or sit this one out.",
       },
     ],
     relatedEpisodes: [
@@ -2360,12 +2360,12 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
     question: "Should I Cycle Every Day?",
     seoTitle: "Should I Cycle Every Day? Recovery, Frequency & What Works",
     seoDescription:
-      "You can ride every day if most days are genuinely easy, but at least one full rest day per week is better for most amateurs — especially over 40. Quality beats streak. Here is how to find the right frequency.",
+      "You can ride every day if most days are properly easy, but at least one full rest day per week is better for most amateurs — especially over 40. Quality beats streak. Here is how to find the right frequency.",
     pillar: "coaching",
     directAnswer:
-      "You can cycle every day if the majority of rides are genuinely easy (Zone 1-2), but at least one full rest day per week produces better adaptation for most amateurs — especially those over 40. Consecutive hard days without recovery accumulate fatigue that suppresses the very adaptations your training is meant to produce. Quality of training matters more than an unbroken streak: four well-structured rides per week with proper recovery will outperform seven mediocre rides with chronic low-grade fatigue.",
+      "You can cycle every day if the majority of rides are properly easy (Zone 1-2), but at least one full rest day per week produces better adaptation for most amateurs — especially those over 40. Consecutive hard days without recovery accumulate fatigue that suppresses the very adaptations your training is meant to produce. Quality of training matters more than an unbroken streak: four well-structured rides per week with proper recovery will outperform seven mediocre rides with chronic low-grade fatigue.",
     keyTakeaways: [
-      "Riding daily is possible if 80%+ of rides are genuinely easy — the problem is that most amateurs ride too hard on easy days.",
+      "Riding daily is possible if 80%+ of rides are properly easy — the problem is that most amateurs ride too hard on easy days.",
       "At least one full rest day per week is better for adaptation for most amateur riders, especially those over 40.",
       "Consecutive hard days without recovery lead to accumulated fatigue, suppressed immunity, and eventual performance decline.",
       "Four structured rides with rest days will outperform seven unstructured rides at moderate intensity.",
@@ -2383,9 +2383,9 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "The daily-ride question is one of the most common on the podcast, and the answer is always nuanced. Professional riders ride almost every day — but their easy days are genuinely easy (2-3 hours at Zone 1 with a coffee stop), and their entire life is built around recovery: naps, massage, controlled nutrition, nine hours of sleep. An amateur who works a desk job, sleeps six hours, and carries the stress of family and work is operating in a completely different recovery environment. What works for a professional does not automatically work for you.",
+      "The daily-ride question is one of the most common on the podcast, and the answer is always nuanced. Professional riders ride almost every day — but their easy days are actually easy (2-3 hours at Zone 1 with a coffee stop), and their entire life is built around recovery: naps, massage, controlled nutrition, nine hours of sleep. An amateur who works a desk job, sleeps six hours, and carries the stress of family and work is operating in a completely different recovery environment. What works for a professional does not automatically work for you.",
       "Joe Friel has been direct about this for masters riders: as you age past 40, your recovery capacity declines. The training stimulus you need is the same, but the recovery time between hard sessions increases. A 25-year-old can handle hard efforts on Tuesday and Thursday and race on Saturday. A 50-year-old doing the same schedule may need Wednesday and Friday completely off the bike — not easy spins, but actual rest. Dan Lorang has echoed this from his coaching of Roglic: even at the World Tour level, rest days are programmed deliberately. They are not wasted days — they are when the adaptation from the hard days actually occurs.",
-      "The practical rule is this: if you want to ride every day, make at least 5 of those 7 days genuinely Zone 1-2 — easy enough to hold a full conversation without any breathing difficulty. The other 2 days are your structured hard sessions. But for most amateurs with limited time and imperfect recovery conditions, 4-5 rides per week with 2-3 rest days produces better results than 7 days of moderate effort. The riders who improve fastest are not the ones who ride the most — they are the ones who recover best between their hard days.",
+      "The practical rule is this: if you want to ride every day, make at least 5 of those 7 days properly Zone 1-2 — easy enough to hold a full conversation without any breathing difficulty. The other 2 days are your structured hard sessions. But for most amateurs with limited time and imperfect recovery conditions, 4-5 rides per week with 2-3 rest days produces better results than 7 days of moderate effort. The riders who improve fastest are not the ones who ride the most — they are the ones who recover best between their hard days.",
     ],
     expertEvidence: [
       {
@@ -2426,7 +2426,7 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
       {
         mistake: "Riding every day at moderate intensity with no hard days and no rest days.",
         fix:
-          "This is the grey-zone trap: every ride is Zone 3 tempo, which is too hard to recover from and too easy to produce meaningful adaptation. Polarise your week — genuinely easy or genuinely hard — and take rest days to let the adaptation happen.",
+          "This is the grey-zone trap: every ride is Zone 3 tempo, which is too hard to recover from and too easy to produce meaningful adaptation. Polarise your week — properly easy or properly hard — and take rest days to let the adaptation happen.",
       },
       {
         mistake: "Equating rest days with lost fitness.",

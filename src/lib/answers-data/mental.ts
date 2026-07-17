@@ -118,7 +118,7 @@ export const mentalAnswers: AnswerPage[] = [
       {
         question: "Should I use a sports psychologist?",
         answer:
-          "If your head is genuinely limiting your performance, yes. A few sessions with a qualified sport psychologist can identify your specific mental exits and build a personal protocol far faster than trial and error. It's an investment, not a luxury.",
+          "If your head is actually limiting your performance, yes. A few sessions with a qualified sport psychologist can identify your specific mental exits and build a personal protocol far faster than trial and error. It's an investment, not a luxury.",
       },
     ],
     relatedEpisodes: [
@@ -310,17 +310,17 @@ export const mentalAnswers: AnswerPage[] = [
     ],
     expertEvidence: [
       {
-        name: "World Tour descending technique",
-        credential: "Roadman Cycling Podcast — how pro riders descend fast but safely",
+        name: "Anthony & Sarah",
+        credential: "Roadman Cycling Podcast hosts — Rider Support segment on descending technique",
         insight:
           "Professional riders describe descending confidence as a trainable skill built through repetition of specific technical cues, not raw courage. The key markers are vision (looking ahead), body position (weighted pedals, low torso), and trust in the braking system — specifically, that late hard braking is less stable than early progressive braking.",
         episodeSlug: "ep-2133-how-pro-riders-descend-really-fast-but-safely-rider-support",
       },
       {
-        name: "Fear override — the brain's descending response",
-        credential: "Roadman Cycling Podcast — descending fear override",
+        name: "Anthony Sheridan",
+        credential: "Roadman Cycling host, citing Otto Lappi's gaze-behaviour research",
         insight:
-          "The brain has a fear response to perceived descending risk that can be progressively deconditioned. The method is graduated exposure: small gains in speed and gradient across multiple sessions, with a specific focus on success cues rather than the fear response.",
+          "The brain has a fear response to perceived descending risk that can be progressively deconditioned. Anthony's breakdown of Otto Lappi's F1 gaze research explains why: the amygdala fires before the conscious mind votes, and Vincenzo Nibali descending at 70 km/h isn't braver — he has more stored visual patterns. The method is graduated exposure: small gains in speed and gradient across multiple sessions, with a specific focus on success cues rather than the fear response.",
         episodeSlug: "ep-5-your-brain-has-a-fear-off-switch-for-descending-here-s-how-t",
       },
     ],
@@ -362,7 +362,7 @@ export const mentalAnswers: AnswerPage[] = [
       {
         question: "Is it normal to be scared of descending?",
         answer:
-          "Very common, especially after a fall or near-miss. The protective response is rational — cycling at speed on tarmac is genuinely risky. The goal isn't to eliminate caution but to build sufficient skill and experience to descend at a competent pace without the fear dominating your attention.",
+          "Very common, especially after a fall or near-miss. The protective response is rational — cycling at speed on tarmac is legitimately risky. The goal isn't to eliminate caution but to build sufficient skill and experience to descend at a competent pace without the fear dominating your attention.",
       },
       {
         question: "Will a crash always make descending fear worse?",
@@ -470,7 +470,7 @@ export const mentalAnswers: AnswerPage[] = [
       {
         title: "Relabel the feeling",
         detail:
-          "In the two hours before the start, consciously replace the word 'nervous' with 'ready' or 'activated'. Say it out loud if needed. The reframe is evidence-based — it genuinely alters the neural interpretation of the arousal state.",
+          "In the two hours before the start, consciously replace the word 'nervous' with 'ready' or 'activated'. Say it out loud if needed. The reframe is evidence-based — it actually alters the neural interpretation of the arousal state.",
       },
       {
         title: "Use box breathing at the start line",
@@ -622,7 +622,7 @@ export const mentalAnswers: AnswerPage[] = [
           "Group rides are great, but add at least one solo structured session per week where you can't back off.",
       },
       {
-        mistake: "Backing off the moment the effort becomes genuinely uncomfortable.",
+        mistake: "Backing off the moment the effort becomes properly uncomfortable.",
         fix:
           "That discomfort IS the stimulus. Stay for 30–60 seconds past the first exit signal at least once per session. That's the rep that builds capacity.",
       },
@@ -1158,7 +1158,7 @@ export const mentalAnswers: AnswerPage[] = [
       {
         question: "What makes a good cycling goal?",
         answer:
-          "Specific, time-bounded, and meaningful to you — not to someone else. 'Get faster' is not a goal. 'Raise FTP from 240W to 260W in the next 12-week block' is. The emotional connection to the outcome matters too: goals that represent something you genuinely care about survive the hard days.",
+          "Specific, time-bounded, and meaningful to you — not to someone else. 'Get faster' is not a goal. 'Raise FTP from 240W to 260W in the next 12-week block' is. The emotional connection to the outcome matters too: goals that represent something you really care about survive the hard days.",
       },
       {
         question: "Should I share my cycling goals publicly?",
@@ -1475,7 +1475,7 @@ export const mentalAnswers: AnswerPage[] = [
       "Post-crash confidence loss is normal and treatable. The progressive 4-stage return protocol that rebuilds trust in the bike and the road — and the timelines riders can realistically expect.",
     pillar: "recovery",
     directAnswer:
-      "Confidence loss after a cycling crash is a predictable protective response — the brain is doing exactly what it's supposed to do. Rebuilding it requires a graduated return: start on roads and at speeds that feel genuinely safe, not merely tolerable, and stack up positive experiences before attempting the type of riding where the crash happened. Most riders who return to full confidence do so within 4–12 weeks of structured progressive exposure.",
+      "Confidence loss after a cycling crash is a predictable protective response — the brain is doing exactly what it's supposed to do. Rebuilding it requires a graduated return: start on roads and at speeds that feel properly safe, not merely tolerable, and stack up positive experiences before attempting the type of riding where the crash happened. Most riders who return to full confidence do so within 4–12 weeks of structured progressive exposure.",
     keyTakeaways: [
       "Post-crash confidence loss is a normal protective response — it does not mean you should stop cycling.",
       "Graduated return to riding, starting on roads and conditions well within your current comfort zone, is the evidence-based method.",
@@ -1763,7 +1763,7 @@ export const mentalAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Strava is brilliant and it's a trap, often in the same ride. You can do a genuinely strong session, feel fantastic, then open the app and watch someone smash your time on a segment — and the good feeling evaporates. That's not a fitness problem, it's a comparison problem, and it quietly drains the motivation that got you out the door in the first place.",
+      "Strava is brilliant and it's a trap, often in the same ride. You can do a really strong session, feel fantastic, then open the app and watch someone smash your time on a segment — and the good feeling evaporates. That's not a fitness problem, it's a comparison problem, and it quietly drains the motivation that got you out the door in the first place.",
       "The sport psychology Anthony has covered on the podcast, with people like Erin Ayala, keeps landing on the same distinction: extrinsic motivation — beating others, chasing the leaderboard — burns bright and burns out, while intrinsic motivation tied to your own goals and progress is what actually keeps riders consistent for years. And Dr Michael Gervais's point about managing the inner voice applies directly: the comparison isn't really about the other rider, it's about the story you tell yourself when you see their number. You can choose a better story.",
       "Practically, the data is still useful — just point it at yourself. Is your power up on this climb versus last year? Are your easy rides getting easier? That's the scoreboard that matters. Half those leaderboard times were set with a tailwind, in a group, on a different bike, by someone whose life looks nothing like yours. Ride your ride, use the numbers that are actually yours, and let the rest be other people's business.",
     ],
@@ -2176,7 +2176,7 @@ export const mentalAnswers: AnswerPage[] = [
       "Strava comparison pits your full reality against everyone else's highlight reel — it's a rigged contest.",
       "The only useful comparison is you versus your own past: 90-day trends and personal segment history.",
       "You can't see others' context — their rest, their tailwind, their years of training, their bike.",
-      "Curate the feed and mute leaderboards rather than quitting; the training data is genuinely useful.",
+      "Curate the feed and mute leaderboards rather than quitting; the training data is really useful.",
     ],
     whoFor: [
       {
@@ -2193,7 +2193,7 @@ export const mentalAnswers: AnswerPage[] = [
     roadmanView: [
       "This is one of the most common things landing in the Roadman inbox: riders who train well, ride well, and then have their day wrecked by a screen. Anthony's framing is blunt — when you compare your ride to someone else's on Strava, you're comparing your full reality to their highlight. You don't see that they were two weeks into a taper, on a closed road, with a tailwind, after fifteen years of training. You just see a number that's bigger than yours, and you let it tell you a story about yourself that isn't true.",
       "Benji Naesen's openness about imposter syndrome resonated so hard with the community precisely because Strava feeds it. The comparison error is the same one underneath imposter syndrome — measuring your private effort and doubt against everyone else's public performance. The rider who looks effortlessly fast on the leaderboard had their own grim morning getting out the door. You're just not seeing it.",
-      "The fix isn't to delete the app and pretend the data doesn't matter — the training information on Strava is genuinely useful. It's to change who you're competing with. The only honest comparison is you against your own past self: your trend over the last 90 days, your own time on a segment a year ago. That comparison tells you whether you're improving. Someone else's leaderboard position tells you nothing about your training except how to feel bad about it.",
+      "The fix isn't to delete the app and pretend the data doesn't matter — the training information on Strava is actually useful. It's to change who you're competing with. The only honest comparison is you against your own past self: your trend over the last 90 days, your own time on a segment a year ago. That comparison tells you whether you're improving. Someone else's leaderboard position tells you nothing about your training except how to feel bad about it.",
     ],
     expertEvidence: [
       {
@@ -2244,7 +2244,7 @@ export const mentalAnswers: AnswerPage[] = [
       {
         mistake: "Quitting Strava entirely to escape the comparison.",
         fix:
-          "You lose genuinely useful training data. Curate the feed and mute leaderboards instead, so you keep the value and lose the comparison trap.",
+          "You lose really useful training data. Curate the feed and mute leaderboards instead, so you keep the value and lose the comparison trap.",
       },
     ],
     faq: [
@@ -2256,7 +2256,7 @@ export const mentalAnswers: AnswerPage[] = [
       {
         question: "Should I just delete Strava?",
         answer:
-          "Only if curating it doesn't work for you. For most riders the training data — fitness trends, your own segment history, training load — is genuinely useful, and the problem is the comparison features. Muting leaderboards and trimming the feed usually solves it without losing the value.",
+          "Only if curating it doesn't work for you. For most riders the training data — fitness trends, your own segment history, training load — is actually useful, and the problem is the comparison features. Muting leaderboards and trimming the feed usually solves it without losing the value.",
       },
       {
         question: "Is it bad to be competitive on Strava?",
@@ -2903,7 +2903,7 @@ export const mentalAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "The Roadman podcast has a whole episode on making cycling suck less, and it exists because this is so common. You started riding because you loved it — the freedom, the coffee stops, the feeling of being fast. Then you got serious, structured it, started measuring everything, and at some point the love quietly turned into a duty. That's not a sign you're soft. It's a sign the structure has crowded out the reason you're doing this in the first place.",
-      "The first job is to tell fatigue from staleness, because they feel identical and need opposite fixes. If you're genuinely tired — heavy legs, poor sleep, declining numbers — the answer is rest, and pushing through makes it worse. If you're physically fine but mentally flat, the answer is variety and a reconnection to why you ride, and resting won't fix it. Erin Ayala's framing is useful here: motivation follows action, but only when the action still feels like something you'd choose. Restore the choice and the motivation tends to come back.",
+      "The first job is to tell fatigue from staleness, because they feel identical and need opposite fixes. If you're actually tired — heavy legs, poor sleep, declining numbers — the answer is rest, and pushing through makes it worse. If you're physically fine but mentally flat, the answer is variety and a reconnection to why you ride, and resting won't fix it. Erin Ayala's framing is useful here: motivation follows action, but only when the action still feels like something you'd choose. Restore the choice and the motivation tends to come back.",
       "The practical move is to deliberately put some unstructured, purposeless riding back in. Ride somewhere new with no computer. Do the café ride you keep skipping because it's 'not training'. Ride with people whose company you enjoy regardless of the pace. The Roadman ethos isn't grinding yourself into the ground — it's still being out there next year, and the next, because you kept it something you actually want to do. The chore feeling is the bike asking you to remember that.",
     ],
     expertEvidence: [

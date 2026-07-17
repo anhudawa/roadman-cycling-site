@@ -1167,7 +1167,7 @@ export function calculateMastersFtpBenchmark(input: MastersFtpInput): MastersFtp
   } else if (percentile >= 20) {
     bandLabel = "Building base";
     headline = "You're in the bottom 40% of trained masters cyclists in your age group.";
-    interpretation = `At ${wkg.toFixed(2)} W/kg you have meaningful headroom. The fastest gains tend to come from getting the easy rides genuinely easy, adding two true VO2max sessions a week, and starting heavy lower-body strength work. Masters cyclists routinely add 0.3–0.5 W/kg in a year with structured training.`;
+    interpretation = `At ${wkg.toFixed(2)} W/kg you have meaningful headroom. The fastest gains tend to come from getting the easy rides properly easy, adding two true VO2max sessions a week, and starting heavy lower-body strength work. Masters cyclists routinely add 0.3–0.5 W/kg in a year with structured training.`;
   } else {
     bandLabel = "Early masters";
     headline = "You're in the early stages relative to trained masters cyclists in your age group.";

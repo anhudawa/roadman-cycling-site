@@ -106,7 +106,7 @@ export const QUESTIONS: readonly Question[] = [
     key: "Q4",
     primary: "polarisation",
     prompt:
-      "What percentage of your weekly riding time is genuinely easy? (Easy meaning you could hold a full conversation, Zone 1–2.)",
+      "What percentage of your weekly riding time is properly easy? (Easy meaning you could hold a full conversation, Zone 1–2.)",
     options: [
       { id: "80plus", label: "80% or more", value: 0 },
       { id: "70to80", label: "70 to 80%", value: 1 },
@@ -118,7 +118,7 @@ export const QUESTIONS: readonly Question[] = [
     key: "Q5",
     primary: "polarisation",
     prompt:
-      "What percentage of your weekly time is at or above threshold — genuinely hard, not tempo?",
+      "What percentage of your weekly time is at or above threshold — properly hard, not tempo?",
     options: [
       {
         id: "10to20-recovered",

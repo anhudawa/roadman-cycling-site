@@ -172,7 +172,7 @@ export const recoveryAnswers: AnswerPage[] = [
     roadmanView: [
       "The most common mistake Anthony sees in self-coached amateurs is not overtraining the hard days — it is under-recovering the easy ones. A recovery week is not a concession to weakness. It is where the training you have already done turns into fitness. The adaptation happens in the recovery, not in the session.",
       "The typical pattern is three hard weeks and one recovery week, though for masters riders it often flips to two-and-one. Dan Lorang's position on the podcast was direct: an athlete who skips recovery weeks consistently is not training harder — they are stacking fatigue on top of fatigue and eventually seeing their numbers go flat or backwards.",
-      "What does it actually look like? Two to four easy spins of 30–60 minutes, genuinely easy, no hard efforts. Eat properly. Sleep. Let the legs feel flat for a few days — that flatness is not fitness leaving, it is fatigue clearing. By day four or five most riders start to feel better than they have in weeks. That feeling is the point.",
+      "What does it actually look like? Two to four easy spins of 30–60 minutes, properly easy, no hard efforts. Eat properly. Sleep. Let the legs feel flat for a few days — that flatness is not fitness leaving, it is fatigue clearing. By day four or five most riders start to feel better than they have in weeks. That feeling is the point.",
     ],
     expertEvidence: [
       {
@@ -250,7 +250,7 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         question: "How do I know when a recovery week is working?",
         answer:
-          "Most riders feel worse in the first 2–3 days as fatigue surfaces with the load removed — heavy legs, low motivation, flat power. By days 4–6, this shifts to feeling genuinely fresh. That transition is the signal the week is doing its job.",
+          "Most riders feel worse in the first 2–3 days as fatigue surfaces with the load removed — heavy legs, low motivation, flat power. By days 4–6, this shifts to feeling truly fresh. That transition is the signal the week is doing its job.",
       },
     ],
     relatedEpisodes: [
@@ -487,7 +487,7 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         mistake: "Substituting cross-training or long hikes on rest days and calling it recovery.",
         fix:
-          "A rest day should be genuinely low-stress. A three-hour mountain hike or a hard run is not recovery — it is added load that competes with your cycling sessions.",
+          "A rest day should be truly low-stress. A three-hour mountain hike or a hard run is not recovery — it is added load that competes with your cycling sessions.",
       },
       {
         mistake: "Taking more rest days when tired instead of fixing the training week structure.",
@@ -499,7 +499,7 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         question: "Can I ride every day and still recover?",
         answer:
-          "Pros do, but they ride most days at genuinely low intensity with highly controlled hard sessions. Amateur riders who ride every day without disciplined easy days accumulate fatigue rather than fitness. Daily riding is possible if zone 1 days are truly zone 1.",
+          "Pros do, but they ride most days at really low intensity with highly controlled hard sessions. Amateur riders who ride every day without disciplined easy days accumulate fatigue rather than fitness. Daily riding is possible if zone 1 days are truly zone 1.",
       },
       {
         question: "How do I know if I need more rest days?",
@@ -514,7 +514,7 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         question: "Is an active recovery ride better than complete rest?",
         answer:
-          "For most trained cyclists, yes. Easy spinning clears lactate and metabolic waste more efficiently than lying on the couch, keeps the aerobic system lightly activated, and maintains the daily training habit. The key is keeping it genuinely easy — zone 1, not zone 2.",
+          "For most trained cyclists, yes. Easy spinning clears lactate and metabolic waste more efficiently than lying on the couch, keeps the aerobic system lightly activated, and maintains the daily training habit. The key is keeping it actually easy — zone 1, not zone 2.",
       },
       {
         question: "How many rest days after a big event like a sportive?",
@@ -551,7 +551,7 @@ export const recoveryAnswers: AnswerPage[] = [
       "Active recovery (easy 30–45 min spin) beats passive rest for most trained cyclists. When each works best, and the line between active recovery and adding more fatigue.",
     pillar: "recovery",
     directAnswer:
-      "For trained cyclists, active recovery — a 30–45 minute easy spin at genuine zone 1 — is better than passive rest on most recovery days. Easy movement clears metabolic waste faster, maintains blood flow to working muscles, and preserves the aerobic habit. Passive rest is the right call after illness, extreme fatigue, or the first day post-event when the body signals it needs to stop. The deciding factor is how genuinely easy the active option actually is.",
+      "For trained cyclists, active recovery — a 30–45 minute easy spin at genuine zone 1 — is better than passive rest on most recovery days. Easy movement clears metabolic waste faster, maintains blood flow to working muscles, and preserves the aerobic habit. Passive rest is the right call after illness, extreme fatigue, or the first day post-event when the body signals it needs to stop. The deciding factor is how truly easy the active option actually is.",
     keyTakeaways: [
       "Active recovery (30–45 min zone 1) is better than full rest for most trained cyclists on recovery days.",
       "Zone 1 means truly easy — below conversational pace, low heart rate, no pushing.",
@@ -571,7 +571,7 @@ export const recoveryAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "The physiological case for active recovery is solid: gentle movement increases blood flow, accelerates clearance of inflammatory metabolites, and supports the lymphatic system in ways passive rest does not. That said, active recovery only works if it is genuinely active recovery — and most trained cyclists struggle to keep it there.",
+      "The physiological case for active recovery is solid: gentle movement increases blood flow, accelerates clearance of inflammatory metabolites, and supports the lymphatic system in ways passive rest does not. That said, active recovery only works if it is actually active recovery — and most trained cyclists struggle to keep it there.",
       "The danger is turning a 45-minute easy spin into a 60-minute zone 2 effort because the legs feel better after 20 minutes and the ego wants to capitalise. The moment you do that, you have added a training session. The recovery window closes. What looked like recovery was actually cost.",
       "Passive rest has its place. The day after a really hard race, or coming off illness, or any time the body is clearly telling you to stop — listen to it. Recovery is not a formula. It is a response to signals. The skill is reading those signals accurately rather than overriding them with a tidy protocol.",
     ],
@@ -588,7 +588,7 @@ export const recoveryAnswers: AnswerPage[] = [
         name: "Laurens ten Dam",
         credential: "16-year World Tour professional",
         insight:
-          "Pro riders ride on almost every day of a stage race, but the recovery stages are genuinely social-pace riding. The discipline of keeping those days truly easy is a practiced skill — not something that comes naturally, especially for competitive athletes.",
+          "Pro riders ride on almost every day of a stage race, but the recovery stages are legitimately social-pace riding. The discipline of keeping those days truly easy is a practiced skill — not something that comes naturally, especially for competitive athletes.",
         episodeSlug: "ep-2247-laurens-ten-dam-roadman-cycling-podcast",
         guestSlug: "laurens-ten-dam",
       },
@@ -619,7 +619,7 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         mistake: "Treating a 90-minute 'easy' outdoor ride as active recovery.",
         fix:
-          "Duration adds load regardless of intensity. Keep recovery rides short and genuinely slow. An hour of zone 1 may still add enough cumulative stress to blunt the day's purpose.",
+          "Duration adds load regardless of intensity. Keep recovery rides short and properly slow. An hour of zone 1 may still add enough cumulative stress to blunt the day's purpose.",
       },
       {
         mistake: "Avoiding active recovery entirely because 'rest means rest'.",
@@ -646,7 +646,7 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         question: "Should I do active recovery the morning of a hard afternoon session?",
         answer:
-          "A very short easy spin (20–30 minutes) is fine and may actually prime the system for the afternoon session. Keep it genuinely easy and short. If you are already fatigued from the week, the morning slot is better used for extra sleep.",
+          "A very short easy spin (20–30 minutes) is fine and may actually prime the system for the afternoon session. Keep it actually easy and short. If you are already fatigued from the week, the morning slot is better used for extra sleep.",
       },
       {
         question: "How do I know if my 'easy' ride is actually easy enough?",
@@ -835,7 +835,7 @@ export const recoveryAnswers: AnswerPage[] = [
     roadmanView: [
       "HRV has gone from niche physiology tool to consumer wearable standard in five years, and with that shift came the usual problem: tools used incorrectly. Anthony covered HRV on the podcast specifically because the confusion around it costs riders training time rather than saving it. People cancel sessions based on a single low HRV number when that number means nothing without context.",
       "The protocol that actually works is simple: measure every morning at the same time before getting up, for at least four to six weeks to establish a personal baseline. Then look at trends. A single low day might be alcohol, poor sleep, an empty stomach, or a sensor glitch. A week of readings 15% below your baseline, trending down, is a signal worth responding to — usually by cutting volume and removing intensity for 2–3 days.",
-      "Used that way, HRV is genuinely useful. It can catch overtraining 3–5 days before power output drops and mood changes become obvious. For a self-coached rider with no coach watching the data, that early warning is valuable. But it requires consistency and patience in the setup before it starts paying back.",
+      "Used that way, HRV is properly useful. It can catch overtraining 3–5 days before power output drops and mood changes become obvious. For a self-coached rider with no coach watching the data, that early warning is valuable. But it requires consistency and patience in the setup before it starts paying back.",
     ],
     expertEvidence: [
       {
@@ -965,7 +965,7 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "One of the patterns Anthony sees repeatedly in self-coached riders is stacking quality sessions too close together. The first hard session looks fine on the training file. The second is worse. The third is abandoned halfway. They call it bad legs. It is usually a 48-hour mismatch between what the plan says and what the physiology needs.",
-      "The recovery timeline is not fixed — it is a variable that training, fuelling, sleep, and age all move. A 38-year-old who fuels well, sleeps 8 hours, and eats carbohydrate and protein immediately post-ride might be genuinely ready in 30 hours. The same rider, under-slept and under-fuelled, might still be compromised at 60 hours. The session matters less than the context around it.",
+      "The recovery timeline is not fixed — it is a variable that training, fuelling, sleep, and age all move. A 38-year-old who fuels well, sleeps 8 hours, and eats carbohydrate and protein immediately post-ride might be actually ready in 30 hours. The same rider, under-slept and under-fuelled, might still be compromised at 60 hours. The session matters less than the context around it.",
       "For masters riders this conversation gets more urgent. The research is clear that recovery becomes slower after 40, and significantly slower after 50. That is not a reason to train less — it is a reason to plan the recovery windows more deliberately. If you are over 50 and backing up a hard effort 36 hours later, you are likely training in a hole.",
     ],
     expertEvidence: [
@@ -1122,7 +1122,7 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         title: "Audit your recovery basics before adding tools",
         detail:
-          "If you are sleeping under 8 hours, under-fuelling hard sessions, or skipping post-ride carbohydrates and protein, no recovery tool compensates meaningfully. Fix sleep and nutrition first. The tools become genuinely useful on top of a solid foundation.",
+          "If you are sleeping under 8 hours, under-fuelling hard sessions, or skipping post-ride carbohydrates and protein, no recovery tool compensates meaningfully. Fix sleep and nutrition first. The tools become really useful on top of a solid foundation.",
       },
       {
         title: "Use cold water immersion strategically, not daily",
@@ -1361,7 +1361,7 @@ export const recoveryAnswers: AnswerPage[] = [
     roadmanView: [
       "The post-race week is one of the most under-valued periods in amateur training. Anthony sees it consistently: riders train for 12 weeks for a target event, race it well, and then spend the next seven days fighting the urge to 'get back on it'. The riders who improve year over year are the ones who let the post-event recovery week land properly.",
       "The physiological case is simple. A race or hard sportive creates systemic stress that goes beyond the local muscle damage — immune markers are elevated, adrenal function is taxed, and glycogen may be significantly depleted. Jump back into intervals after 48 hours and you are training in a compromised state, which produces a worse response to the training and delays the full recovery.",
-      "What does a good post-race week look like? Day one off the bike or a 20-minute very easy spin. Day two and three, 30–45 minute easy rides. From day four, judge by how the legs feel on the easy rides — if they feel genuinely fresh, a light threshold effort on day five or six is fine. If they still feel heavy, give them another easy day. The goal is full recovery before the next block begins.",
+      "What does a good post-race week look like? Day one off the bike or a 20-minute very easy spin. Day two and three, 30–45 minute easy rides. From day four, judge by how the legs feel on the easy rides — if they feel properly fresh, a light threshold effort on day five or six is fine. If they still feel heavy, give them another easy day. The goal is full recovery before the next block begins.",
     ],
     expertEvidence: [
       {
@@ -1392,9 +1392,9 @@ export const recoveryAnswers: AnswerPage[] = [
           "The day after a hard race, the body is in active repair mode. A 20-minute walk-pace spin is the maximum meaningful activity. Complete rest is also valid. There is no training benefit to adding any stress in this window.",
       },
       {
-        title: "Return to structured training only when easy rides feel genuinely easy",
+        title: "Return to structured training only when easy rides feel truly easy",
         detail:
-          "Before starting the next training block, confirm readiness with two consecutive easy rides where power at a given heart rate is back to pre-event levels and perceived effort is genuinely low. If easy rides still feel hard, recovery is not complete.",
+          "Before starting the next training block, confirm readiness with two consecutive easy rides where power at a given heart rate is back to pre-event levels and perceived effort is properly low. If easy rides still feel hard, recovery is not complete.",
       },
     ],
     commonMistakes: [
@@ -1543,7 +1543,7 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         mistake: "Panicking at feeling flat or unmotivated during the deload.",
         fix:
-          "Feeling flat, heavy-legged, and low in motivation in the first 2–3 days of a deload is normal — it is fatigue surfacing with the load removed. By days 4–6 it should shift to feeling genuinely fresh. Trust the process.",
+          "Feeling flat, heavy-legged, and low in motivation in the first 2–3 days of a deload is normal — it is fatigue surfacing with the load removed. By days 4–6 it should shift to feeling actually fresh. Trust the process.",
       },
     ],
     faq: [
@@ -1623,7 +1623,7 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "The language matters here because the response to each state is completely different. Functional overreaching at the end of a hard training block is a deliberate strategy — you accumulate more fatigue than normal, then take a planned deload, and the super-compensation drives a fitness gain. That is how World Tour stage-race preparation works at a macro level. The key word is planned: you know the hole you are digging and you have planned the ladder out.",
-      "Non-functional overreaching is the unplanned version — the fatigue that does not clear after the usual 5–7 days of reduced load. At that point the hole is deeper than intended and the ladder is longer. The correct response is immediate and complete: cut load significantly, eat well, sleep maximally, and do not add intensity until easy riding feels genuinely easy again.",
+      "Non-functional overreaching is the unplanned version — the fatigue that does not clear after the usual 5–7 days of reduced load. At that point the hole is deeper than intended and the ladder is longer. The correct response is immediate and complete: cut load significantly, eat well, sleep maximally, and do not add intensity until easy riding feels properly easy again.",
       "Overtraining syndrome is a different conversation. It is not a training state — it is a medical condition characterised by hormonal, immune, and nervous system dysregulation that does not respond to normal recovery timelines. Laurens ten Dam described the psychology of it on the podcast — the dread before training, the inability to find meaning in riding, the months it took him to want to be on a bike again. If that sounds familiar, see a doctor before trying to train your way out of it.",
     ],
     expertEvidence: [
@@ -1648,7 +1648,7 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         title: "Test the state with a 7-day reduced-load window",
         detail:
-          "If you suspect overreaching, cut volume to 50% and remove intensity for 7 days. Check power on easy rides on day 7 compared to day 1. If the numbers have clearly improved and the legs feel genuinely fresh, it was functional overreaching. If the improvement is minimal or absent, non-functional overreaching is the diagnosis and a longer recovery period is needed.",
+          "If you suspect overreaching, cut volume to 50% and remove intensity for 7 days. Check power on easy rides on day 7 compared to day 1. If the numbers have clearly improved and the legs feel truly fresh, it was functional overreaching. If the improvement is minimal or absent, non-functional overreaching is the diagnosis and a longer recovery period is needed.",
       },
       {
         title: "Track the four overtraining indicators throughout every block",
@@ -1734,7 +1734,7 @@ export const recoveryAnswers: AnswerPage[] = [
       "Ice baths reduce next-day soreness and can help inside a hard race block, but used after training they can blunt the adaptations you're chasing. When cold water helps and when it costs you.",
     pillar: "recovery",
     directAnswer:
-      "Ice baths reduce soreness and perceived fatigue, which is genuinely useful during a multi-day race when tomorrow matters more than long-term gains. But used routinely after hard training, cold-water immersion can blunt the inflammation that drives adaptation — especially after strength work. So they're a race-week tool, not an everyday one. For day-to-day recovery, sleep and food beat any tub of ice.",
+      "Ice baths reduce soreness and perceived fatigue, which is legitimately useful during a multi-day race when tomorrow matters more than long-term gains. But used routinely after hard training, cold-water immersion can blunt the inflammation that drives adaptation — especially after strength work. So they're a race-week tool, not an everyday one. For day-to-day recovery, sleep and food beat any tub of ice.",
     keyTakeaways: [
       "Ice baths cut soreness — useful when you need to perform again tomorrow.",
       "Used after hard training, they can blunt the adaptation signal, particularly from strength work.",
@@ -1754,7 +1754,7 @@ export const recoveryAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Cold-water immersion is the classic example of a recovery tool that does something real — just not always the thing you want. After a hard effort an ice bath genuinely reduces next-day soreness and that heavy-legged feeling. If you're three days into a stage race or a training camp and tomorrow's ride matters more than next month's fitness, that's a real, usable benefit.",
+      "Cold-water immersion is the classic example of a recovery tool that does something real — just not always the thing you want. After a hard effort an ice bath actually reduces next-day soreness and that heavy-legged feeling. If you're three days into a stage race or a training camp and tomorrow's ride matters more than next month's fitness, that's a real, usable benefit.",
       "But here's the catch the gadget marketing skips: a lot of the adaptation you train for runs through the inflammatory signal you feel as soreness. Blunt that signal routinely — especially straight after strength work — and you can blunt the gains with it. So dunking yourself in ice after every hard session is quietly working against the reason you did the session.",
       "Anthony's framing on recovery, echoing what Dan Lorang describes from the World Tour, is a hierarchy: sleep first, food second, then the boring consistent stuff, and gadgets a distant last. An ice bath is a situational tool for when performance has to come before adaptation. For everyday recovery, the rider obsessing over cold plunges while sleeping six hours has it exactly backwards.",
     ],
@@ -1872,7 +1872,7 @@ export const recoveryAnswers: AnswerPage[] = [
       "Stack hard days well by front-loading carbs and protein within the hour, prioritising sleep, and keeping the second day's intensity honest. How to back up training without digging a hole.",
     pillar: "recovery",
     directAnswer:
-      "To back up two demanding days, refuel fast — aim for carbohydrate plus 25–40g of protein within an hour of finishing, then keep eating across the evening. Protect 7+ hours of sleep, because that's where the actual recovery happens. And be honest about the second day: if it's meant to be easy, ride it genuinely easy. Stacking two hard days only works if the easy days around them are truly easy.",
+      "To back up two demanding days, refuel fast — aim for carbohydrate plus 25–40g of protein within an hour of finishing, then keep eating across the evening. Protect 7+ hours of sleep, because that's where the actual recovery happens. And be honest about the second day: if it's meant to be easy, ride it truly easy. Stacking two hard days only works if the easy days around them are truly easy.",
     keyTakeaways: [
       "Refuel within the hour: carbs to restock glycogen, 25–40g protein for repair.",
       "Sleep is the highest-leverage recovery input between two hard days.",
@@ -1894,7 +1894,7 @@ export const recoveryAnswers: AnswerPage[] = [
     roadmanView: [
       "Backing up hard days is a fuelling and sleep problem before it's anything else. The window after a hard ride is when your muscles are most primed to restock glycogen, so the rider who gets carbohydrate and protein in quickly is already ahead of the one who showers, sits down, and eats properly three hours later. Joe Friel's whole approach to structuring a week leans on this — the recovery between sessions is part of the training, not an afterthought.",
       "Then there's sleep, which Anthony comes back to constantly because it's the input most amateurs sacrifice first. You don't recover from training during training — you recover overnight. Two hard days stacked on six hours of sleep is a hole you dig, not a block you build. Protect the night between them like it's a session, because it is.",
-      "And the quiet killer is the easy day that isn't. If you've planned hard-easy-hard, the easy day has to be genuinely easy or the second hard day arrives on tired legs and becomes a grey-zone grind. Backing up days successfully is less about heroics on the bike and more about discipline at the table, in bed, and on the soft days.",
+      "And the quiet killer is the easy day that isn't. If you've planned hard-easy-hard, the easy day has to be properly easy or the second hard day arrives on tired legs and becomes a grey-zone grind. Backing up days successfully is less about heroics on the bike and more about discipline at the table, in bed, and on the soft days.",
     ],
     expertEvidence: [
       {
@@ -1909,7 +1909,7 @@ export const recoveryAnswers: AnswerPage[] = [
         name: "Dan Lorang",
         credential: "Head of Performance, Red Bull–Bora–Hansgrohe",
         insight:
-          "Recovery is a trainable input. Pros backing up big days do it through aggressive refuelling and sleep, not gadgets — and they keep the easy days genuinely easy so the hard ones can be repeated.",
+          "Recovery is a trainable input. Pros backing up big days do it through aggressive refuelling and sleep, not gadgets — and they keep the easy days actually easy so the hard ones can be repeated.",
         episodeSlug: "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
         guestSlug: "dan-lorang",
       },
@@ -1950,7 +1950,7 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         mistake: "Riding the 'easy' middle day too hard.",
         fix:
-          "Keep it genuinely easy. Grey-zone riding on the recovery day leaves you flat for the next quality session.",
+          "Keep it really easy. Grey-zone riding on the recovery day leaves you flat for the next quality session.",
       },
     ],
     faq: [
@@ -1967,7 +1967,7 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         question: "Should I take a full rest day or an easy spin between hard days?",
         answer:
-          "Either works. A short, genuinely easy spin can help flush the legs; full rest is fine too. What matters is that it's not secretly another training day — keep any riding well below Zone 2.",
+          "Either works. A short, properly easy spin can help flush the legs; full rest is fine too. What matters is that it's not secretly another training day — keep any riding well below Zone 2.",
       },
       {
         question: "How much sleep do I need to back up training?",
@@ -2071,14 +2071,14 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         title: "Use easy days to protect hard days, not to add load",
         detail:
-          "The 80/20 distribution exists because the easy 80% is what allows the hard 20% to be genuinely hard and fully recovered from. Keep easy days at zone 1–2. Drifting them into zone 3 turns recovery days into low-grade stress and blunts the next adaptation.",
+          "The 80/20 distribution exists because the easy 80% is what allows the hard 20% to be properly hard and fully recovered from. Keep easy days at zone 1–2. Drifting them into zone 3 turns recovery days into low-grade stress and blunts the next adaptation.",
       },
     ],
     commonMistakes: [
       {
         mistake: "Treating every ride as a chance to push, so no session lands on a fresh body.",
         fix:
-          "Hard days only produce adaptation if they follow recovered days. Make the easy days genuinely easy so the hard days can be genuinely hard — that contrast is the engine of the loop.",
+          "Hard days only produce adaptation if they follow recovered days. Make the easy days truly easy so the hard days can be truly hard — that contrast is the engine of the loop.",
       },
       {
         mistake: "Stacking quality sessions on consecutive days to fit more in.",
@@ -2152,7 +2152,7 @@ export const recoveryAnswers: AnswerPage[] = [
       "You are recovered when 3 things line up: resting heart rate back to baseline, power normal at a given heart rate on an easy ride, and genuine motivation to train. Why one marker alone misleads, and how to read them together.",
     pillar: "recovery",
     directAnswer:
-      "You are fully recovered when three signals line up: your resting heart rate is back within 2–3 beats of baseline, your power at a given heart rate on an easy ride has returned to normal, and your motivation to train is genuinely there. No single marker is reliable on its own. When all three agree, you are ready for a hard session. When they conflict, default to the more conservative reading and ride easy.",
+      "You are fully recovered when three signals line up: your resting heart rate is back within 2–3 beats of baseline, your power at a given heart rate on an easy ride has returned to normal, and your motivation to train is actually there. No single marker is reliable on its own. When all three agree, you are ready for a hard session. When they conflict, default to the more conservative reading and ride easy.",
     keyTakeaways: [
       "Use three markers together: resting heart rate, power-at-heart-rate, and genuine motivation.",
       "Resting heart rate within 2–3 bpm of baseline is a reliable physiological green light.",
@@ -2357,7 +2357,7 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         mistake: "Using a brutal session to relieve psychological stress.",
         fix:
-          "An easy ride genuinely lowers stress and aids recovery; a hard session adds cortisol on top of cortisol. Use easy volume as the stress release and save intensity for weeks when the budget can cover it.",
+          "An easy ride really does lower stress and aids recovery; a hard session adds cortisol on top of cortisol. Use easy volume as the stress release and save intensity for weeks when the budget can cover it.",
       },
       {
         mistake: "Blaming flat power on the training when the cause is life load.",
@@ -2583,9 +2583,9 @@ export const recoveryAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "There is a lot of mythology around foam rolling and massage — talk of flushing lactic acid, breaking down adhesions, squeezing toxins out of the muscle. Most of that is not what the evidence shows. Anthony's take on the podcast is the honest one: these tools do something real, but it is not the something they are usually sold as. They make you feel better and move better. That is genuinely useful, but it is a different claim from accelerating recovery.",
+      "There is a lot of mythology around foam rolling and massage — talk of flushing lactic acid, breaking down adhesions, squeezing toxins out of the muscle. Most of that is not what the evidence shows. Anthony's take on the podcast is the honest one: these tools do something real, but it is not the something they are usually sold as. They make you feel better and move better. That has real value, but it is a different claim from accelerating recovery.",
       "What actually happens is mostly neural. Rolling or massaging a sore muscle reduces its sensitivity and improves the tissue's short-term compliance, so your range of motion improves and the soreness drops for a day or two. That is worth having. It is not the same as speeding up the glycogen replenishment and protein synthesis that the body uses to actually rebuild — those run on sleep, food, and time, and no amount of rolling changes their pace.",
-      "So use them for what they are good at. A few minutes of foam rolling before a session genuinely improves range of motion for the ride. A massage in a heavy block can reduce the soreness that interferes with training quality. Both are reasonable parts of a routine. The fixable mistake is the rider who rolls religiously while sleeping six hours — they have spent effort on the small lever and ignored the large one.",
+      "So use them for what they are good at. A few minutes of foam rolling before a session really does improve range of motion for the ride. A massage in a heavy block can reduce the soreness that interferes with training quality. Both are reasonable parts of a routine. The fixable mistake is the rider who rolls religiously while sleeping six hours — they have spent effort on the small lever and ignored the large one.",
     ],
     expertEvidence: [
       {
@@ -2619,7 +2619,7 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         title: "Sort sleep and fuelling before spending on either",
         detail:
-          "If you are sleeping under 8 hours or skipping post-ride nutrition, fix those first — they produce far larger recovery effects than any amount of rolling or massage. The tools become genuinely worthwhile only once the foundations are in place.",
+          "If you are sleeping under 8 hours or skipping post-ride nutrition, fix those first — they produce far larger recovery effects than any amount of rolling or massage. The tools become really worthwhile only once the foundations are in place.",
       },
     ],
     commonMistakes: [
@@ -2888,7 +2888,7 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         title: "When progress stalls, audit recovery before adding load",
         detail:
-          "Check sleep duration, post-ride fuelling, and whether easy days are genuinely easy. Most plateaus resolve by fixing one of those rather than by training harder. Adding load to a recovery deficit deepens the hole — fix the recovery first and the same sessions start working again.",
+          "Check sleep duration, post-ride fuelling, and whether easy days are actually easy. Most plateaus resolve by fixing one of those rather than by training harder. Adding load to a recovery deficit deepens the hole — fix the recovery first and the same sessions start working again.",
       },
       {
         title: "Treat sleep, fuel, and easy days as scheduled sessions",
@@ -2922,7 +2922,7 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         question: "Is my plateau a training problem or a recovery problem?",
         answer:
-          "Most amateur plateaus are recovery problems. If you are training consistently and hard but your numbers have stalled, check sleep, post-ride fuelling, and whether your easy days are genuinely easy before assuming you need more or harder training. Adding load to a recovery deficit usually makes the plateau worse.",
+          "Most amateur plateaus are recovery problems. If you are training consistently and hard but your numbers have stalled, check sleep, post-ride fuelling, and whether your easy days are truly easy before assuming you need more or harder training. Adding load to a recovery deficit usually makes the plateau worse.",
       },
       {
         question: "How much of fitness is recovery versus training?",

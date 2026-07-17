@@ -203,7 +203,7 @@ export const highVolumeQuery3Answers: AnswerPage[] = [
       {
         title: "Extend recovery windows between hard sessions",
         detail:
-          "Allow 48-72 hours between genuinely hard sessions after age 45. A typical week might be: hard Tuesday, easy Wednesday, hard Thursday only if well recovered (otherwise easy), long ride Saturday, rest or easy spin Sunday. Monitor morning HRV or resting heart rate to make these decisions data-driven rather than guesswork.",
+          "Allow 48-72 hours between properly hard sessions after age 45. A typical week might be: hard Tuesday, easy Wednesday, hard Thursday only if well recovered (otherwise easy), long ride Saturday, rest or easy spin Sunday. Monitor morning HRV or resting heart rate to make these decisions data-driven rather than guesswork.",
       },
       {
         title: "Get annual blood work and a bike fit review",
@@ -353,7 +353,7 @@ export const highVolumeQuery3Answers: AnswerPage[] = [
       {
         mistake: "Replacing structured intervals with extra easy miles.",
         fix:
-          "Volume without intensity produces diminishing returns, especially after 50. Two or three properly executed interval sessions per week stimulate adaptation that no amount of Zone 2 alone can match. Keep the hard sessions hard and the easy sessions genuinely easy.",
+          "Volume without intensity produces diminishing returns, especially after 50. Two or three properly executed interval sessions per week stimulate adaptation that no amount of Zone 2 alone can match. Keep the hard sessions hard and the easy sessions properly easy.",
       },
       {
         mistake: "Training through fatigue because 'rest feels lazy'.",
@@ -451,7 +451,7 @@ export const highVolumeQuery3Answers: AnswerPage[] = [
     roadmanView: [
       "VO2max is the number that terrifies ageing cyclists, and Anthony has addressed it head-on in multiple episodes. The headline figure — 10% decline per decade — sounds catastrophic. Over 30 years that is a 30% drop, which would take a fit 30-year-old's VO2max of 60 ml/kg/min down to 42 ml/kg/min by age 60. But that worst-case scenario only applies to people who stop exercising. For cyclists who keep training and, crucially, keep including high-intensity work, the decline is roughly halved. That same rider who trains consistently might be at 50-52 ml/kg/min at 60 — still enough to ride strongly in any masters field.",
       "The mechanisms behind the decline are worth understanding because some are fixable and some are not. Maximum heart rate drops at roughly one beat per year — you cannot train that back. But stroke volume (how much blood the heart pumps per beat) responds to training, and muscle mass — which determines how much oxygen your tissues can extract and use — is preserved through strength work and intensity. The riders who lose VO2max fastest are the ones who drop intervals, stop lifting, and ride only in Zone 2. They still ride, which is far better than nothing, but they surrender the two most trainable components of the VO2max equation.",
-      "The practical takeaway is straightforward: include VO2max-specific training year-round. Not every week — periodisation still applies — but do not go more than 2-3 weeks without a session that genuinely pushes you to 106-120% of FTP for 3-5 minute intervals. This single habit, more than any supplement or diet change, determines the trajectory of your aerobic fitness across decades. Anthony has spoken to riders in their 60s with VO2max values in the mid-50s, and every single one of them has maintained a consistent intensity habit throughout their cycling career.",
+      "The practical takeaway is straightforward: include VO2max-specific training year-round. Not every week — periodisation still applies — but do not go more than 2-3 weeks without a session that actually pushes you to 106-120% of FTP for 3-5 minute intervals. This single habit, more than any supplement or diet change, determines the trajectory of your aerobic fitness across decades. Anthony has spoken to riders in their 60s with VO2max values in the mid-50s, and every single one of them has maintained a consistent intensity habit throughout their cycling career.",
     ],
     expertEvidence: [
       {
@@ -588,8 +588,8 @@ export const highVolumeQuery3Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "The metabolism question comes up constantly in the Roadman community, especially from riders in their 40s and 50s who feel like their body has stopped cooperating. Anthony has discussed this with multiple nutritionists and the answer is genuinely encouraging, but it comes with caveats. Yes, cycling raises your metabolic rate. During a ride, you are burning 400-1,000 kcal per hour depending on intensity — that is a massive increase over sitting at a desk. After the ride, your body continues to burn energy at an elevated rate while it repairs muscle damage, replenishes glycogen, and clears metabolic byproducts. This EPOC effect is proportional to intensity: a 90-minute Zone 2 ride might elevate your resting metabolism for 6-8 hours; a hard interval session can keep it elevated for 24-48 hours.",
-      "The longer-term metabolic benefit comes from changes in body composition. Regular cycling builds or preserves lean muscle mass — particularly in the legs, glutes, and core — and every kilogram of muscle burns roughly 13 kcal per day at rest compared to about 4 kcal per day for fat tissue. Over 6-12 months of consistent riding and strength training, a rider who gains 2 kg of muscle and loses 3 kg of fat increases their resting metabolic rate by approximately 50-75 kcal per day. That sounds small, but over a year it adds up to nearly 25,000 kcal — roughly 3 kg of fat-equivalent energy. The mitochondrial adaptations from endurance training also improve the body's ability to oxidise fat at rest and during low-intensity activity, which is a genuinely meaningful metabolic shift.",
+      "The metabolism question comes up constantly in the Roadman community, especially from riders in their 40s and 50s who feel like their body has stopped cooperating. Anthony has discussed this with multiple nutritionists and the answer is actually encouraging, but it comes with caveats. Yes, cycling raises your metabolic rate. During a ride, you are burning 400-1,000 kcal per hour depending on intensity — that is a massive increase over sitting at a desk. After the ride, your body continues to burn energy at an elevated rate while it repairs muscle damage, replenishes glycogen, and clears metabolic byproducts. This EPOC effect is proportional to intensity: a 90-minute Zone 2 ride might elevate your resting metabolism for 6-8 hours; a hard interval session can keep it elevated for 24-48 hours.",
+      "The longer-term metabolic benefit comes from changes in body composition. Regular cycling builds or preserves lean muscle mass — particularly in the legs, glutes, and core — and every kilogram of muscle burns roughly 13 kcal per day at rest compared to about 4 kcal per day for fat tissue. Over 6-12 months of consistent riding and strength training, a rider who gains 2 kg of muscle and loses 3 kg of fat increases their resting metabolic rate by approximately 50-75 kcal per day. That sounds small, but over a year it adds up to nearly 25,000 kcal — roughly 3 kg of fat-equivalent energy. The mitochondrial adaptations from endurance training also improve the body's ability to oxidise fat at rest and during low-intensity activity, which is a really meaningful metabolic shift.",
       "Where the conversation goes wrong is when people treat the metabolic boost as a weight-loss strategy in isolation. The afterburn effect from a hard ride might account for 100-200 extra kcal over the following day — that is half a sandwich. It helps, but it does not compensate for a 500-calorie surplus from post-ride overfeeding. The metabolic benefits of cycling are real, well-documented, and cumulative over time, but they work best as part of a structured approach that includes sensible nutrition. Anthony's consistent message is to train for performance and let body composition follow — the metabolic improvements are a byproduct of good training, not a goal to chase independently.",
     ],
     expertEvidence: [
@@ -1755,7 +1755,7 @@ export const highVolumeQuery3Answers: AnswerPage[] = [
       {
         question: "Can I complete a 200 km sportive if my longest ride is 100 km?",
         answer:
-          "Not advisably — the jump from 100 km to 200 km is too large to bridge with event-day adrenaline alone. Build to at least 150-170 km in training over 16-24 weeks before attempting 200 km. Skipping the preparation risks injury, severe bonking, and a genuinely miserable experience that may put you off long-distance riding.",
+          "Not advisably — the jump from 100 km to 200 km is too large to bridge with event-day adrenaline alone. Build to at least 150-170 km in training over 16-24 weeks before attempting 200 km. Skipping the preparation risks injury, severe bonking, and a really miserable experience that may put you off long-distance riding.",
       },
       {
         question: "How many hours does a 200 km sportive take?",
@@ -1825,7 +1825,7 @@ export const highVolumeQuery3Answers: AnswerPage[] = [
       {
         label: "The cyclist considering upgrading from flat pedals",
         detail:
-          "You ride regularly on flat pedals and want to know whether clipless pedals will genuinely make you faster or whether the benefit is marginal.",
+          "You ride regularly on flat pedals and want to know whether clipless pedals will actually make you faster or whether the benefit is marginal.",
       },
       {
         label: "The clipless rider questioning whether the hassle is worth it",
@@ -2245,7 +2245,7 @@ export const highVolumeQuery3Answers: AnswerPage[] = [
     ],
     roadmanView: [
       "Anthony has ridden both extensively and discussed this with frame designers, pro mechanics, and riders who have made the switch. His view is practical: disc brakes are better for most riders in most conditions, and the industry has moved decisively in that direction. Nearly every new road bike above entry level is now disc-only, which tells you where the engineering consensus lies. The performance advantage in the wet is not marginal — it is transformative. On a rainy descent with rim brakes, you are squeezing the levers hard and hoping the pads find grip on the wet carbon rim surface. With discs, braking feels the same in the rain as it does in the sun.",
-      "The weight penalty is real but overstated. A disc brake system adds roughly 300-500g to a bike compared to an equivalent rim-brake setup. For a 75 kg rider on a 7.5 kg bike, that is a total system weight increase of less than 0.5%. On a 5% gradient at 3 W/kg, the weight penalty costs you approximately 1 second per kilometre of climbing. That is measurable but irrelevant for anyone outside the professional peloton. What is not irrelevant is the ability to stop safely on a wet descent at 60 km/h — and that is where disc brakes are genuinely superior.",
+      "The weight penalty is real but overstated. A disc brake system adds roughly 300-500g to a bike compared to an equivalent rim-brake setup. For a 75 kg rider on a 7.5 kg bike, that is a total system weight increase of less than 0.5%. On a 5% gradient at 3 W/kg, the weight penalty costs you approximately 1 second per kilometre of climbing. That is measurable but irrelevant for anyone outside the professional peloton. What is not irrelevant is the ability to stop safely on a wet descent at 60 km/h — and that is where disc brakes are clearly superior.",
       "The maintenance argument deserves attention because it affects running costs. Rim brake pads are cheap ($10-15 per set) and take 5 minutes to replace at home. Disc brake pads cost more ($20-35 per set), and rotors ($30-60 each) need replacing every 10,000-15,000 km. A disc brake bleed — required annually or when the lever feel becomes spongy — costs $30-50 at a shop. Over a year of regular riding, disc brakes cost roughly $50-100 more to maintain than rim brakes. For most riders, the improved safety and performance is worth that cost. For budget-conscious riders in dry climates, rim brakes remain perfectly adequate.",
     ],
     expertEvidence: [

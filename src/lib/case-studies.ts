@@ -511,7 +511,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       { label: "Goal", value: "Move FTP without burning out — and without falling sick again" },
     ],
     intervention: [
-      "We pulled the average intensity down. Most of his volume moved to genuinely easy — heart-rate-controlled, conversational. The hard sessions stayed hard but became fewer and more deliberate.",
+      "We pulled the average intensity down. Most of his volume moved to properly easy — heart-rate-controlled, conversational. The hard sessions stayed hard but became fewer and more deliberate.",
       "For a shift worker over 50, this is the only model that works. The body doesn't recover from chronic medium-intensity riding the way it did at 35. The polarised structure isn't a preference — it's a requirement.",
     ],
     weeklyStructure: [
@@ -582,7 +582,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       {
         label: "Time-crunched cyclist guide",
         href: "/blog/time-crunched-cyclist-8-hours-week",
-        description: "How to train when you genuinely don't have the hours.",
+        description: "How to train when you really don't have the hours.",
       },
     ],
     relatedCaseStudies: ["damien-maloney", "blair-corey", "rob-capps"],

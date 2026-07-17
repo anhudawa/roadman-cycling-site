@@ -721,7 +721,7 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
     roadmanView: [
       "Speed is the product riders obsess over, but it is actually an output of three inputs: the power your engine produces, how much drag your body creates, and how much resistance your tyres generate. Most riders focus exclusively on input one — more watts — and ignore the other two, where the cheapest and fastest gains live.",
       "Above 30 km/h, roughly 85% of the resistance you fight is aerodynamic. That means your body position matters more than your power meter number. A rider producing 250W in a tucked, elbows-in position will be faster than a rider producing 270W sitting upright with loose clothing flapping. Get a fit that optimises your aero position without destroying your power output.",
-      "On the training side, polarised is the approach with the strongest evidence for sustained speed gains. Keep 80% of your riding genuinely easy — zone 2, conversational — and make the other 20% purposefully hard. The mistake is riding moderate intensity all the time, which fatigues you without providing a strong enough stimulus.",
+      "On the training side, polarised is the approach with the strongest evidence for sustained speed gains. Keep 80% of your riding properly easy — zone 2, conversational — and make the other 20% purposefully hard. The mistake is riding moderate intensity all the time, which fatigues you without providing a strong enough stimulus.",
     ],
     expertEvidence: [
       {
@@ -1126,7 +1126,7 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
     roadmanView: [
       "Power is the currency of cycling performance. Everything — speed, climbing ability, time trial pacing, group ride survival — reduces to how many watts you produce relative to how long you can hold them. The good news: power is trainable at every age and every level. The bad news: it requires deliberate, structured work at specific intensities. Riding the same pace on the same route will not make you more powerful.",
       "The hierarchy of training interventions is clear from Seiler's research. Build a large aerobic base through zone 2 volume — this is the foundation that supports everything above it. Then layer in two to three high-intensity sessions per week, targeting the specific energy system you need: threshold for sustained power, VO2max for repeatability, neuromuscular for snap.",
-      "Where most riders go wrong is the middle ground. They ride zone 3 — too hard to recover from quickly, too easy to produce a strong adaptation. Polarise your training: make your easy days genuinely easy and your hard days genuinely hard. The contrast is what drives improvement.",
+      "Where most riders go wrong is the middle ground. They ride zone 3 — too hard to recover from quickly, too easy to produce a strong adaptation. Polarise your training: make your easy days truly easy and your hard days truly hard. The contrast is what drives improvement.",
     ],
     expertEvidence: [
       {
@@ -2212,7 +2212,7 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "The circadian argument for afternoon training is real — your body genuinely produces more power, reacts faster, and tolerates more pain between about two and six in the afternoon. Core temperature is higher, joints are more supple, and your nervous system is more awake. If all else were equal, you would train at four o'clock every day.",
+      "The circadian argument for afternoon training is real — your body actually produces more power, reacts faster, and tolerates more pain between about two and six in the afternoon. Core temperature is higher, joints are more supple, and your nervous system is more awake. If all else were equal, you would train at four o'clock every day.",
       "But all else is never equal. Most people work during the afternoon window. The choice is usually between a 06:00 ride and no ride. In that context, the circadian advantage is irrelevant — the best training effect comes from the session you actually do.",
       "The practical takeaway: if you have schedule flexibility, place your hardest session (intervals, threshold work) in the afternoon and your easy zone 2 rides whenever they fit. If you are locked into morning training, extend your warm-up by 10-15 minutes to raise core temperature and prime the neuromuscular system. You will close most of the circadian gap.",
     ],
@@ -2347,7 +2347,7 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Cycling is the best entry point to fitness for people who find running too brutal on the joints. It is low impact — the bike carries your weight, so your knees, hips, and ankles are loaded concentrically rather than eccentrically. You can ride at a genuinely easy pace, build a base, and progress to longer distances without the injury rates that plague new runners.",
+      "Cycling is the best entry point to fitness for people who find running too brutal on the joints. It is low impact — the bike carries your weight, so your knees, hips, and ankles are loaded concentrically rather than eccentrically. You can ride at a properly easy pace, build a base, and progress to longer distances without the injury rates that plague new runners.",
       "The key insight for beginners is that easy is productive. Zone 2 — where you can hold a conversation without gasping — is not a warm-up intensity to push through. It is the intensity that builds the cellular machinery for fitness: more mitochondria, better fat burning, denser capillary networks. Riding harder than this in your first months does not make you fitter faster — it just makes you tired and sore.",
       "Start with three rides per week of 30-45 minutes. That is it. No speed targets, no Strava segments, no group rides yet. Build the habit, build the base, let your body adapt. By week eight you will be covering distances that seemed impossible on day one, and your resting heart rate will be 5-10 beats per minute lower.",
     ],

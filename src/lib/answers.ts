@@ -252,7 +252,7 @@ const BASE_ANSWERS: AnswerPage[] = [
       "The fastest way to raise FTP for amateur cyclists: fix your intensity distribution, add targeted threshold and VO2max work, fuel it, and recover. What the World Tour coaches prescribe.",
     pillar: "coaching",
     directAnswer:
-      "Improve your FTP by getting your intensity distribution right first — roughly 80% of riding genuinely easy, 20% genuinely hard — then adding targeted threshold (2×20 min at 95–105% FTP) and VO2max intervals (5×4 min) once a week each. A structured amateur typically gains 5–15% in their first 12 weeks. The work that fails is grey-zone riding: too hard to recover from, too easy to adapt.",
+      "Improve your FTP by getting your intensity distribution right first — roughly 80% of riding properly easy, 20% properly hard — then adding targeted threshold (2×20 min at 95–105% FTP) and VO2max intervals (5×4 min) once a week each. A structured amateur typically gains 5–15% in their first 12 weeks. The work that fails is grey-zone riding: too hard to recover from, too easy to adapt.",
     keyTakeaways: [
       "Fix the easy/hard split before adding more intervals — grey-zone riding is the most common blocker.",
       "Two quality sessions a week (one threshold, one VO2max) beats four moderate ones.",
@@ -312,7 +312,7 @@ const BASE_ANSWERS: AnswerPage[] = [
       {
         title: "Fill the rest with zone 2",
         detail:
-          "Everything else is genuinely easy aerobic riding. If you can't hold a conversation, you're going too hard and stealing from your hard days.",
+          "Everything else is properly easy aerobic riding. If you can't hold a conversation, you're going too hard and stealing from your hard days.",
       },
     ],
     commonMistakes: [
@@ -401,7 +401,7 @@ const BASE_ANSWERS: AnswerPage[] = [
       "How much Zone 2 cyclists actually need — roughly 80% of weekly training time, in rides of 60–90 minutes or longer. What World Tour coaches prescribe, and the mistake amateurs make.",
     pillar: "coaching",
     directAnswer:
-      "Most cyclists should spend around 80% of their weekly training time in Zone 2 — easy aerobic riding you could hold a conversation through. In practice that's the bulk of your hours in rides of 60 minutes or longer, with only ~20% of time spent on genuinely hard intervals. The benefit comes from total time, not intensity: longer is better than harder.",
+      "Most cyclists should spend around 80% of their weekly training time in Zone 2 — easy aerobic riding you could hold a conversation through. In practice that's the bulk of your hours in rides of 60 minutes or longer, with only ~20% of time spent on really hard intervals. The benefit comes from total time, not intensity: longer is better than harder.",
     keyTakeaways: [
       "Target ~80% of weekly training time in Zone 2, ~20% hard. This is the 80/20 rule.",
       "Zone 2 means truly easy — most amateurs ride it 50% too hard.",
@@ -423,7 +423,7 @@ const BASE_ANSWERS: AnswerPage[] = [
     roadmanView: [
       "Here's what nobody tells you about pro cyclists: they spend about 80% of their time riding at a pace so slow that plenty of recreational riders could sit on their wheel. Anthony has said it on the podcast more than once, and Seiler's research backs it — the easy riding is not filler between the hard sessions. It is the training.",
       "The problem is ego. Riding slow feels like you're not working, so amateurs nudge the pace up until their 'easy' ride is actually a moderate one. That grey-zone riding is the single most common error trained amateurs make. It feels productive and it quietly blocks progress, because it's too hard to recover from and too easy to drive real adaptation.",
-      "So the honest prescription isn't a magic number of minutes — it's a ratio and a discipline. Keep roughly four-fifths of your weekly time genuinely easy, hold your hard days for the 20% that's meant to hurt, and let duration do the work. Zone 2 isn't a session you tick off. It's the base everything else stands on.",
+      "So the honest prescription isn't a magic number of minutes — it's a ratio and a discipline. Keep roughly four-fifths of your weekly time properly easy, hold your hard days for the 20% that's meant to hurt, and let duration do the work. Zone 2 isn't a session you tick off. It's the base everything else stands on.",
     ],
     expertEvidence: [
       {
@@ -438,7 +438,7 @@ const BASE_ANSWERS: AnswerPage[] = [
         name: "World Tour coaches",
         credential: "As discussed on the Roadman podcast",
         insight:
-          "The coaches behind Grand Tour riders prescribe huge volumes of properly easy riding. The amateur takeaway isn't to copy the hours — it's to copy the discipline of keeping easy days genuinely easy.",
+          "The coaches behind Grand Tour riders prescribe huge volumes of properly easy riding. The amateur takeaway isn't to copy the hours — it's to copy the discipline of keeping easy days actually easy.",
         episodeSlug: "ep-2-i-asked-world-tour-coaches-about-zone-2-heres-what-they-said",
       },
     ],
@@ -449,7 +449,7 @@ const BASE_ANSWERS: AnswerPage[] = [
           "Zone 2 is roughly 56–75% of FTP, or under ~75% of max heart rate. Use the lower half of that band. If your power meter says Z2 but you're breathing hard, trust your breathing and ease off.",
       },
       {
-        title: "Make your long ride genuinely long",
+        title: "Make your long ride properly long",
         detail:
           "One ride a week of 90 minutes to 3+ hours, all in Zone 2. Duration is the stimulus — the last hour of a long easy ride is where much of the aerobic adaptation happens.",
       },
@@ -1014,7 +1014,7 @@ const BASE_ANSWERS: AnswerPage[] = [
       {
         title: "Default to polarised if you have the hours",
         detail:
-          "Train more than ~6 hours a week? Build it polarised: most rides genuinely easy, two sessions properly hard (one threshold, one VO2max), nothing parked in the middle.",
+          "Train more than ~6 hours a week? Build it polarised: most rides properly easy, two sessions properly hard (one threshold, one VO2max), nothing parked in the middle.",
       },
       {
         title: "Use sweet spot in short, deliberate blocks",
@@ -1063,7 +1063,7 @@ const BASE_ANSWERS: AnswerPage[] = [
       {
         question: "Which is best for time-crunched cyclists?",
         answer:
-          "Sweet spot is genuinely efficient when you only have 4–6 hours a week, because it packs more useful work into limited time. Just keep blocks short and return to easier riding between them so you don't accumulate chronic fatigue.",
+          "Sweet spot is legitimately efficient when you only have 4–6 hours a week, because it packs more useful work into limited time. Just keep blocks short and return to easier riding between them so you don't accumulate chronic fatigue.",
       },
       {
         question: "Why do people say sweet spot is the 'grey zone'?",
@@ -1129,7 +1129,7 @@ const BASE_ANSWERS: AnswerPage[] = [
     roadmanView: [
       "The single biggest masters mistake is training at 45 the way you trained at 30. Recovery capacity declines after 40, muscle mass falls roughly 8% per decade without resistance work, and the same load now produces more fatigue. None of that means you're done — Roadman's whole identity is 'not done yet' — but it does mean the plan has to change.",
       "Three shifts separate masters riders who keep improving from those who decline. First, fewer but better hard sessions: the polarised approach Seiler describes fits the masters recovery curve even better than the younger one. Two well-executed hard rides a week beats four sweet-spot grinds. Second, strength work twice a week stops being optional — Joe Friel has been saying it for years and the recent research backs him. Third, recovery has to be scheduled, not assumed: a deload every third or fourth week, sleep treated as a session, hard rides dropped rather than forced when you're under-slept.",
-      "The riders who keep their racing power into their 60s aren't the ones grinding hardest. They're the ones who treat recovery like an athlete and protect their two genuinely hard sessions instead of diluting them across the week.",
+      "The riders who keep their racing power into their 60s aren't the ones grinding hardest. They're the ones who treat recovery like an athlete and protect their two properly hard sessions instead of diluting them across the week.",
     ],
     expertEvidence: [
       {
@@ -1152,7 +1152,7 @@ const BASE_ANSWERS: AnswerPage[] = [
       {
         title: "Cap hard sessions at two a week",
         detail:
-          "One threshold, one VO2max, both properly executed. Three is the ceiling, four guarantees accumulated fatigue. Fill the rest of the week with genuinely easy riding.",
+          "One threshold, one VO2max, both properly executed. Three is the ceiling, four guarantees accumulated fatigue. Fill the rest of the week with really easy riding.",
       },
       {
         title: "Add two strength sessions",
@@ -1196,7 +1196,7 @@ const BASE_ANSWERS: AnswerPage[] = [
       {
         question: "How many hard sessions per week over 40?",
         answer:
-          "Two is the sweet spot, three is the ceiling, four is a guarantee of accumulated fatigue. The pros Anthony has interviewed rarely exceed three genuinely hard sessions in a normal week, and amateurs over 40 should usually do fewer, not more.",
+          "Two is the sweet spot, three is the ceiling, four is a guarantee of accumulated fatigue. The pros Anthony has interviewed rarely exceed three properly hard sessions in a normal week, and amateurs over 40 should usually do fewer, not more.",
       },
       {
         question: "Is cycling enough exercise after 40?",
@@ -1564,7 +1564,7 @@ const BASE_ANSWERS: AnswerPage[] = [
     ],
     roadmanView: [
       "Riders ask 'how many hours?' hoping for a big number that justifies the suffering. The more useful question is 'how many hours can I repeat every week for a year without falling apart?' Anthony has interviewed coaches behind Grand Tour riders, and the through-line is consistency, not heroics — the rider who holds eight steady hours a week for a season beats the one who does fifteen in March and burns out by May.",
-      "For most serious amateurs, 6–10 hours a week is the productive range. You can get genuinely fitter on 4–6 if the structure is right — two quality sessions plus easy filler. Competitive amateurs push into 8–12. But more hours only help if you can recover from them, fuel them, and keep showing up. Volume you can't sustain isn't training, it's a countdown to a break.",
+      "For most serious amateurs, 6–10 hours a week is the productive range. You can actually get fitter on 4–6 if the structure is right — two quality sessions plus easy filler. Competitive amateurs push into 8–12. But more hours only help if you can recover from them, fuel them, and keep showing up. Volume you can't sustain isn't training, it's a countdown to a break.",
       "So set your weekly hours at a level you can defend through a busy week at work, not your best week ever. Then make those hours count: protect the easy ones, sharpen the hard ones, and let consistency do what a heroic block never will.",
     ],
     expertEvidence: [

@@ -2233,7 +2233,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-groupset-electronic-vs-mechanical-guide",
   ],
   "cycling-plateaus": [
-    "ftp-plateau-breakthrough",
     "why-your-ftp-is-stuck-five-causes",
     "cycling-training-plateaus-how-to-break-through-guide",
     "cycling-overtraining-signs-guide",
@@ -2795,7 +2794,6 @@ const TOPIC_ENRICHMENT: Record<string, {
     relatedTopics: ["ftp-training", "cycling-recovery", "cycling-coaching", "masters-cycling"],
     featuredPostSlugs: [
       "cycling-training-plateaus-how-to-break-through-guide",
-      "ftp-plateau-breakthrough",
       "more-volume-getting-slower-cycling-overtraining",
     ],
   },
@@ -2941,7 +2939,7 @@ const TOPIC_FAQS: Record<string, TopicFAQ[]> = {
     {
       question: "What is polarised training?",
       answer:
-        "Polarised training keeps most of your riding easy (around 80%) and a small portion genuinely hard (around 20%), with little time in the moderate middle. It's well supported by research and used widely by elite endurance athletes.",
+        "Polarised training keeps most of your riding easy (around 80%) and a small portion properly hard (around 20%), with little time in the moderate middle. It's well supported by research and used widely by elite endurance athletes.",
     },
     {
       question: "How many hours a week do I need to train?",
@@ -2990,7 +2988,7 @@ const TOPIC_FAQS: Record<string, TopicFAQ[]> = {
     {
       question: "How often should cyclists strength train?",
       answer:
-        "Two sessions a week is enough to build and maintain strength alongside riding, dropping to one in your hardest training or racing periods. Place gym work on harder ride days so easy days stay genuinely easy.",
+        "Two sessions a week is enough to build and maintain strength alongside riding, dropping to one in your hardest training or racing periods. Place gym work on harder ride days so easy days stay properly easy.",
     },
     {
       question: "Will lifting weights make me too heavy for climbing?",

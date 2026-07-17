@@ -810,7 +810,7 @@ export const highVolumeQuery13Answers: AnswerPage[] = [
       {
         question: "Does decoupling improve with age?",
         answer:
-          "Aerobic efficiency can improve at any age with consistent base training. Masters riders who prioritise zone 2 volume often achieve excellent decoupling numbers because experience teaches them to ride genuinely easy on easy days.",
+          "Aerobic efficiency can improve at any age with consistent base training. Masters riders who prioritise zone 2 volume often achieve excellent decoupling numbers because experience teaches them to ride properly easy on easy days.",
       },
     ],
     relatedEpisodes: [],
@@ -2223,7 +2223,7 @@ export const highVolumeQuery13Answers: AnswerPage[] = [
     ],
     roadmanView: [
       "Recovery nutrition is the most overthought and underdelivered aspect of cycling. Riders will spend 20 minutes researching the perfect recovery shake while ignoring the basics: get protein and carbs in within two hours of finishing. That is 80% of the job. The brand, the flavour, the superfood additives — none of that matters if you are not hitting the macros.",
-      "Chocolate milk genuinely works. Multiple peer-reviewed studies — including Karp et al. (2006) and Thomas et al. (2009) — compared it to commercial recovery drinks and found equivalent glycogen resynthesis and muscle recovery markers. At $2-3 per 500 ml serving, it is the most cost-effective recovery drink available. The only riders who should not use it are those who are lactose intolerant.",
+      "Chocolate milk actually works. Multiple peer-reviewed studies — including Karp et al. (2006) and Thomas et al. (2009) — compared it to commercial recovery drinks and found equivalent glycogen resynthesis and muscle recovery markers. At $2-3 per 500 ml serving, it is the most cost-effective recovery drink available. The only riders who should not use it are those who are lactose intolerant.",
       "If you want a step up from chocolate milk, mix 30 g whey protein with 300 ml fruit juice (or 40 g maltodextrin in water). That gives you the protein and carb targets with faster gastric emptying than milk-based options. But if the choice is between a fancy shake and eating nothing — the shake is not the priority, the eating is.",
     ],
     expertEvidence: [

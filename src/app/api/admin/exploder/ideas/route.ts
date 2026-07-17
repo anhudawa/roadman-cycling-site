@@ -56,7 +56,7 @@ export async function POST(request: Request) {
       messages: [
         {
           role: "user",
-          content: `YouTube video title: "${videoTitle}"\n\nGenerate 5 content ideas. Make each one genuinely different — different framework, different emotional register, different target within the audience. At least one should be slightly uncomfortable or provocative.`,
+          content: `YouTube video title: "${videoTitle}"\n\nGenerate 5 content ideas. Make each one truly different — different framework, different emotional register, different target within the audience. At least one should be slightly uncomfortable or provocative.`,
         },
       ],
     });

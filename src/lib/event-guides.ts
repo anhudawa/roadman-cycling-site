@@ -154,7 +154,7 @@ export const EVENT_GUIDES: EventGuide[] = [
     intent:
       "Help Irish riders show up to the Wicklow 200 in early June fit enough to enjoy it, with a clear plan for every weeks-out window.",
     weatherConditions:
-      "Early June in Wicklow is genuinely unpredictable. Expect anything from 22°C and dry to 8°C and horizontal rain on Sally Gap, sometimes inside the same hour. Wind off the Irish Sea adds 5-8 bpm of cardiac drift on the exposed sections.",
+      "Early June in Wicklow is notoriously unpredictable. Expect anything from 22°C and dry to 8°C and horizontal rain on Sally Gap, sometimes inside the same hour. Wind off the Irish Sea adds 5-8 bpm of cardiac drift on the exposed sections.",
     terrainSummary:
       "Five named climbs stitched together by long, undulating valley roads. None of the climbs are vertical-wall steep — the difficulty comes from doing all of them inside one 200km day with weather that punishes underdressed riders.",
     ftpRequirement: {
@@ -1747,7 +1747,7 @@ export const EVENT_GUIDES: EventGuide[] = [
     intent:
       "Help riders prepare for Ireland's Ring of Beara Cycle — 140km around the Beara Peninsula in May, with the Healy Pass as the day's defining climb.",
     weatherConditions:
-      "Early May on the Atlantic edge of Kerry is unpredictable. Expect anywhere from 10°C and dry to 6°C with horizontal rain off the bay. The exposed coastal sections add 5-10 km/h of crosswind even on a calm day, and the descent off Healy Pass is genuinely cold even when the valleys are warm.",
+      "Early May on the Atlantic edge of Kerry is unpredictable. Expect anywhere from 10°C and dry to 6°C with horizontal rain off the bay. The exposed coastal sections add 5-10 km/h of crosswind even on a calm day, and the descent off Healy Pass is properly cold even when the valleys are warm.",
     terrainSummary:
       "140km around the Beara Peninsula on quiet single-track lanes, with two named climbs and a steady drip of unnamed rises connecting them. Punchier than its distance suggests — the climbing is concentrated in the back half, and the surface includes potholed bog road on a couple of stretches.",
     ftpRequirement: {
@@ -1942,7 +1942,7 @@ export const EVENT_GUIDES: EventGuide[] = [
     weatherConditions:
       "Late April in Kielder is volatile. The forest sits at 200-400m altitude on the Scottish-English border, and the same day can deliver sun, sleet, hail, and snow within 90 minutes. Wind off the Cheviots adds 8-12 km/h of crosswind on the open fell crossings. The forestry sections are sheltered but the climbs out of them are exposed.",
     terrainSummary:
-      "200km on Kielder forestry roads, single track, and open fell crossings. Mostly fast-rolling gravel with sections of rougher fire road, occasional water crossings, and two genuinely rough fell-top stretches that punish under-tyred bikes. Borderline mountain-bike terrain in places — but rideable on a gravel bike with the right rubber.",
+      "200km on Kielder forestry roads, single track, and open fell crossings. Mostly fast-rolling gravel with sections of rougher fire road, occasional water crossings, and two legitimately rough fell-top stretches that punish under-tyred bikes. Borderline mountain-bike terrain in places — but rideable on a gravel bike with the right rubber.",
     ftpRequirement: {
       minimum: "2.4 W/kg",
       competitive: "3.2 W/kg",
@@ -2009,7 +2009,7 @@ export const EVENT_GUIDES: EventGuide[] = [
       },
     ],
     fuellingDeepDive:
-      "Self-supported means you pack it. Target 70-90g of carbohydrate per hour, more if it's cold (and at Kielder in April, it usually is — cold weather increases the calorie cost of staying warm). The mid-point feed stop is open in most years but not guaranteed; treat it as a bonus, not a plan. Real food works better than gels once the ride stretches past 8 hours — sandwiches in foil, malt loaf, flapjacks, soft bars that don't freeze. Hot tea or coffee at the feed if it's running is genuinely useful for both calories and morale. Sodium matters even in the cold: target 600-800mg/hour through electrolyte mix. The mistake we see most often: riders fuel well for the first 5 hours, then stop eating because they're 'not hungry' — which is exactly when the back-half bonk lands at km 160.",
+      "Self-supported means you pack it. Target 70-90g of carbohydrate per hour, more if it's cold (and at Kielder in April, it usually is — cold weather increases the calorie cost of staying warm). The mid-point feed stop is open in most years but not guaranteed; treat it as a bonus, not a plan. Real food works better than gels once the ride stretches past 8 hours — sandwiches in foil, malt loaf, flapjacks, soft bars that don't freeze. Hot tea or coffee at the feed if it's running is actually useful for both calories and morale. Sodium matters even in the cold: target 600-800mg/hour through electrolyte mix. The mistake we see most often: riders fuel well for the first 5 hours, then stop eating because they're 'not hungry' — which is exactly when the back-half bonk lands at km 160.",
     pacingDeepDive:
       "Gravel events punish overpacing because the surface varies. Target heart rate rather than power — aim for high Z2 / low Z3 as your all-day ceiling. Let faster riders go on the early forestry sections; you'll catch them when the rough stuff starts and they discover what their tyres weren't ready for. The first 80km are fast forestry; sit in a group if you can find one and ride at endurance heart rate. Bloody Bush at km 130 is the day's hidden test — the wind and the surface and the fatigue all land at once, and pacing it well is the difference between an 11-hour and a 13-hour finish. From km 165 onwards, the legs are heavier than the watts suggest; ride to feel rather than the head unit.",
     detailedMistakes: [
@@ -2031,7 +2031,7 @@ export const EVENT_GUIDES: EventGuide[] = [
       },
       {
         mistake: "No head torch in case the finish runs late",
-        fix: "Slower finishers regularly come in around dusk in low-light April. A small bar-mounted torch is mandatory in some years and useful in all of them. The forestry roads are unlit and the last 20km in fading light is genuinely dangerous without one.",
+        fix: "Slower finishers regularly come in around dusk in low-light April. A small bar-mounted torch is mandatory in some years and useful in all of them. The forestry roads are unlit and the last 20km in fading light is really dangerous without one.",
       },
     ],
   },
@@ -2044,7 +2044,7 @@ export const EVENT_GUIDES: EventGuide[] = [
     weatherConditions:
       "Late March in the Western Cape ranges from 18°C at the early stage starts to 35°C+ on the open Karoo sections. Heat compounds across the week — by stage 5 the cumulative dehydration is the silent race-killer. Dust on every stage. Occasional summer rain on the mountain stages. Altitude variations from sea level to 1,800m across the route.",
     terrainSummary:
-      "8 days of MTB stage racing across the Western Cape — fynbos singletrack, farm roads, technical mountain descents, and long sustained climbs. Each stage averages 90-100km with 2,000-2,500m climbing. Singletrack technicality varies from beginner-friendly to genuinely demanding; the climbing is where the race is decided.",
+      "8 days of MTB stage racing across the Western Cape — fynbos singletrack, farm roads, technical mountain descents, and long sustained climbs. Each stage averages 90-100km with 2,000-2,500m climbing. Singletrack technicality varies from beginner-friendly to properly demanding; the climbing is where the race is decided.",
     ftpRequirement: {
       minimum: "3.0 W/kg",
       competitive: "3.8 W/kg",
@@ -2217,7 +2217,7 @@ export const EVENT_GUIDES: EventGuide[] = [
     fuellingDeepDive:
       "No aid stations. Resupply at open shops, cafés, and petrol stations in valley towns — and the windows close in October as mountain villages shut for winter. Plan resupply by daylight and by altitude, not by hunger. On the bike: 80-100g carbs/hour while riding hard, 60-70g/hour during easier sections. Real food at cafés every 4-5 hours: hot meals, hot drinks, and the kind of calories supermarket bars cannot match. Hot drinks at altitude pass points are non-negotiable for both calories and core temperature management. Carry extra gels for nighttime emergencies and for the inevitable shop-closed-when-you-arrived problem. Sodium losses are higher than you'd expect even in cold weather — long-day cumulative sweating sneaks up on cold-weather riders. Sleep is fuel: aim for 5-7 hours per day for sustainable progress; less and the third-day cognitive failure rate climbs sharply.",
     pacingDeepDive:
-      "Trans Pyrenees is climbing-dominated. Pace on the climbs, not the flats. Target sub-threshold on every pass, regardless of time pressure — 55-65% FTP for HC cols, dropping to 50-55% in the second half of the event. Heart rate runs 5-10 bpm higher at altitude than at sea level for the same wattage; pace on power, accept the HR. The descents are recovery: eat, drink, freewheel where the gradient allows, and brake conservatively. October mountain descending is genuinely dangerous after dark in wet weather — pick safe sleep windows that bracket the longest exposed descents in daylight. Sleep 5-7 hours/day for sustainable progress; check weather nightly and pick tomorrow's start time accordingly. Riders who push past 18-hour days for more than two days in a row crash on day 4 — the cognitive failure precedes the physical one.",
+      "Trans Pyrenees is climbing-dominated. Pace on the climbs, not the flats. Target sub-threshold on every pass, regardless of time pressure — 55-65% FTP for HC cols, dropping to 50-55% in the second half of the event. Heart rate runs 5-10 bpm higher at altitude than at sea level for the same wattage; pace on power, accept the HR. The descents are recovery: eat, drink, freewheel where the gradient allows, and brake conservatively. October mountain descending is actually dangerous after dark in wet weather — pick safe sleep windows that bracket the longest exposed descents in daylight. Sleep 5-7 hours/day for sustainable progress; check weather nightly and pick tomorrow's start time accordingly. Riders who push past 18-hour days for more than two days in a row crash on day 4 — the cognitive failure precedes the physical one.",
     detailedMistakes: [
       {
         mistake: "Treating it like Badlands or other Mediterranean ultras",
@@ -2225,7 +2225,7 @@ export const EVENT_GUIDES: EventGuide[] = [
       },
       {
         mistake: "Underspeccing kit for October above 1,800m",
-        fix: "Waterproof jacket that genuinely seals, waterproof gloves, waterproof socks (not just water-resistant), insulating layer, and a bivvy + sleeping bag rated to 0°C. October at 2,000m can be -5°C with sleet. The riders who scratch at Trans Pyrenees almost never scratch from fitness — they scratch from being cold and wet, which is a kit problem.",
+        fix: "Waterproof jacket that actually seals, waterproof gloves, waterproof socks (not just water-resistant), insulating layer, and a bivvy + sleeping bag rated to 0°C. October at 2,000m can be -5°C with sleet. The riders who scratch at Trans Pyrenees almost never scratch from fitness — they scratch from being cold and wet, which is a kit problem.",
       },
       {
         mistake: "Sleep deprivation affecting descending safety on day 4+",

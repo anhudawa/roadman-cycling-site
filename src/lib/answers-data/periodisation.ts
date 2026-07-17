@@ -311,7 +311,7 @@ export const periodisationAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Reverse periodisation gets passed around as a shortcut for time-crunched riders, and in a narrow set of circumstances it has a case. If you genuinely cannot do three-hour zone 2 rides in winter but you can nail a hard hour on a smart trainer, shifting intensity earlier does at least produce some adaptation. The problem is that most riders who try it don't have the aerobic base to make the intensity land properly.",
+      "Reverse periodisation gets passed around as a shortcut for time-crunched riders, and in a narrow set of circumstances it has a case. If you truly cannot do three-hour zone 2 rides in winter but you can nail a hard hour on a smart trainer, shifting intensity earlier does at least produce some adaptation. The problem is that most riders who try it don't have the aerobic base to make the intensity land properly.",
       "High-intensity work without a solid aerobic engine produces fast early gains that plateau quickly and tends to leave riders with a fitness that feels sharp in February and brittle by May. The aerobic base is what gives intensity work somewhere to go. Without it, you're polishing a surface that has nothing underneath it.",
       "Anthony's view: if you have a strong multi-year aerobic base already built, a reverse-periodised winter can work as a change of stimulus. If you're in your first two years of structured training, do it the traditional way first. Build the foundation before you experiment with the roof.",
     ],
@@ -386,7 +386,7 @@ export const periodisationAnswers: AnswerPage[] = [
       {
         question: "How do I know if reverse periodisation is right for me?",
         answer:
-          "Ask three questions: Do I have a solid aerobic base already? Can I genuinely not ride long in winter? Does my target event reward early-season sharpness over long-distance durability? All three yes means it's worth considering.",
+          "Ask three questions: Do I have a solid aerobic base already? Can I really not ride long in winter? Does my target event reward early-season sharpness over long-distance durability? All three yes means it's worth considering.",
       },
       {
         question: "Will reverse periodisation help my FTP?",
@@ -425,12 +425,12 @@ export const periodisationAnswers: AnswerPage[] = [
       "Base training is the foundation phase of a periodised year: high-volume, low-intensity riding that builds mitochondrial density and fat oxidation. Why you can't skip it and what it actually does.",
     pillar: "coaching",
     directAnswer:
-      "Base training is the foundation phase of a cycling year — typically 12–16 weeks of high-volume, genuinely low-intensity riding in zone 2. It builds mitochondrial density, improves fat oxidation, and develops the cardiovascular capacity that all subsequent high-intensity work sits on. Skip or rush the base and your build phase lands on ground that can't absorb it. It's the least glamorous part of the year and the one most amateurs undervalue.",
+      "Base training is the foundation phase of a cycling year — typically 12–16 weeks of high-volume, properly low-intensity riding in zone 2. It builds mitochondrial density, improves fat oxidation, and develops the cardiovascular capacity that all subsequent high-intensity work sits on. Skip or rush the base and your build phase lands on ground that can't absorb it. It's the least glamorous part of the year and the one most amateurs undervalue.",
     keyTakeaways: [
       "Base training = 12–16 weeks of predominantly zone 2 riding, high volume, low intensity.",
       "The physiological goal is mitochondrial density and fat oxidation — the engine, not the ceiling.",
       "Without a proper base, high-intensity work produces shallow gains that plateau quickly.",
-      "Base riding must be genuinely easy — most amateurs ride it 30–50% too hard and lose the benefit.",
+      "Base riding must be properly easy — most amateurs ride it 30–50% too hard and lose the benefit.",
     ],
     whoFor: [
       {
@@ -454,7 +454,7 @@ export const periodisationAnswers: AnswerPage[] = [
         name: "Professor Stephen Seiler",
         credential: "Exercise physiologist, University of Agder",
         insight:
-          "Zone 2 base work builds the mitochondrial density and fat oxidation capacity that sustains high-intensity efforts later in the season. These adaptations are specific to genuinely low-intensity work and cannot be replicated by shortcutting to harder training.",
+          "Zone 2 base work builds the mitochondrial density and fat oxidation capacity that sustains high-intensity efforts later in the season. These adaptations are specific to truly low-intensity work and cannot be replicated by shortcutting to harder training.",
         episodeSlug: "ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler",
         guestSlug: "stephen-seiler",
       },
@@ -488,7 +488,7 @@ export const periodisationAnswers: AnswerPage[] = [
       {
         mistake: "Riding base too hard because slow feels unproductive.",
         fix:
-          "True base work is genuinely easy. Trust the process — the effort is cellular, not cardiovascular.",
+          "True base work is properly easy. Trust the process — the effort is cellular, not cardiovascular.",
       },
       {
         mistake: "Cutting the base phase to eight weeks to get to intervals sooner.",
@@ -581,7 +581,7 @@ export const periodisationAnswers: AnswerPage[] = [
     roadmanView: [
       "Riders consistently underestimate how long the base needs to be because the payoff isn't visible during the phase itself. You don't feel faster. Your test numbers don't move much. You just feel... fine, and a bit bored. The gains from base training are running in the background, and they only become visible once intensity starts in the build phase.",
       "Joe Friel's guidance is clear on this: don't rush to build. The base phase is not a waiting room before the real training starts — it is the real training. The mitochondrial density and fat oxidation you build in those 12–16 weeks are what allow threshold work to produce meaningful adaptation later. Cut the base to eight weeks and you'll get early build gains; cut it to four and you'll plateau by April wondering what happened.",
-      "If the calendar genuinely doesn't allow 16 weeks, protect 12. If it doesn't allow 12, protect 10. But never compress the base below 8 weeks and jump straight into full build intensity. You'd be better served staying in base a little longer and shortening the peak taper.",
+      "If the calendar really doesn't allow 16 weeks, protect 12. If it doesn't allow 12, protect 10. But never compress the base below 8 weeks and jump straight into full build intensity. You'd be better served staying in base a little longer and shortening the peak taper.",
     ],
     expertEvidence: [
       {
@@ -639,7 +639,7 @@ export const periodisationAnswers: AnswerPage[] = [
       {
         question: "Can I do base training in 8 weeks?",
         answer:
-          "Eight weeks produces some base adaptation, but it's the minimum. You'll see more limited gains and the build phase may feel harder than it should. If you genuinely have only 8 weeks, lower your build expectations and prioritise honest zone 2 throughout — don't try to compensate with intensity.",
+          "Eight weeks produces some base adaptation, but it's the minimum. You'll see more limited gains and the build phase may feel harder than it should. If you really have only 8 weeks, lower your build expectations and prioritise honest zone 2 throughout — don't try to compensate with intensity.",
       },
       {
         question: "What should the base phase look like on a weekly basis?",
@@ -856,7 +856,7 @@ export const periodisationAnswers: AnswerPage[] = [
         name: "Dan Lorang",
         credential: "Head of Performance, Red Bull–Bora–Hansgrohe",
         insight:
-          "Amateur riders typically err in the build by either introducing intensity too abruptly (no base underneath it) or adding too many hard sessions simultaneously. The World Tour model is disciplined about limiting genuinely hard sessions to two or three per week, with everything else supporting recovery and aerobic maintenance.",
+          "Amateur riders typically err in the build by either introducing intensity too abruptly (no base underneath it) or adding too many hard sessions simultaneously. The World Tour model is disciplined about limiting properly hard sessions to two or three per week, with everything else supporting recovery and aerobic maintenance.",
         episodeSlug: "ep-2134-roglics-coach-builds-a-training-plan-for-amateur-riders-dan",
         guestSlug: "dan-lorang",
       },
@@ -883,7 +883,7 @@ export const periodisationAnswers: AnswerPage[] = [
       {
         title: "Keep all other rides in zone 2",
         detail:
-          "Everything outside the two hard sessions stays genuinely easy. This is the same principle as the base phase, but it's harder to enforce because the fitness you've built makes zone 3 feel tempting. Protect the easy days.",
+          "Everything outside the two hard sessions stays properly easy. This is the same principle as the base phase, but it's harder to enforce because the fitness you've built makes zone 3 feel tempting. Protect the easy days.",
       },
     ],
     commonMistakes: [
@@ -907,7 +907,7 @@ export const periodisationAnswers: AnswerPage[] = [
       {
         question: "When should I start the build phase?",
         answer:
-          "After a minimum of 10–12 weeks of base work, ideally 12–16. The transition point is when your zone 2 fitness feels solid — your easy rides feel genuinely easy and your heart rate at a given power has dropped. That's the base doing its job; now you can layer intensity on top.",
+          "After a minimum of 10–12 weeks of base work, ideally 12–16. The transition point is when your zone 2 fitness feels solid — your easy rides feel truly easy and your heart rate at a given power has dropped. That's the base doing its job; now you can layer intensity on top.",
       },
       {
         question: "Should I continue zone 2 during the build phase?",
@@ -927,7 +927,7 @@ export const periodisationAnswers: AnswerPage[] = [
       {
         question: "What if my FTP doesn't improve during the build?",
         answer:
-          "Check the usual suspects: are you testing rested at the end of the block, not mid-block on fatigue? Is your fuelling adequate for the hard sessions? Are your easy days genuinely easy? If all those are right and FTP still stalls, shorten the intervals and add a third weekly quality session cautiously.",
+          "Check the usual suspects: are you testing rested at the end of the block, not mid-block on fatigue? Is your fuelling adequate for the hard sessions? Are your easy days actually easy? If all those are right and FTP still stalls, shorten the intervals and add a third weekly quality session cautiously.",
       },
     ],
     relatedEpisodes: [
@@ -961,7 +961,7 @@ export const periodisationAnswers: AnswerPage[] = [
       "How to structure a training week: hard days, easy days, and rest in the right order. The session placement Joe Friel recommends and the day-stacking error most amateurs make.",
     pillar: "coaching",
     directAnswer:
-      "A well-structured training week has two hard sessions placed 2–3 days apart, with easy zone 2 riding filling the remaining days and at least one full rest day. Hard sessions (threshold or VO2max) should not sit back-to-back; easy sessions should be genuinely easy. The most common amateur mistake is stacking hard sessions on consecutive days, which blunts quality and drags recovery through the whole week.",
+      "A well-structured training week has two hard sessions placed 2–3 days apart, with easy zone 2 riding filling the remaining days and at least one full rest day. Hard sessions (threshold or VO2max) should not sit back-to-back; easy sessions should be properly easy. The most common amateur mistake is stacking hard sessions on consecutive days, which blunts quality and drags recovery through the whole week.",
     keyTakeaways: [
       "Two hard sessions per week, placed 2–3 days apart, with easy days between.",
       "At least one full rest day per week — not an easy ride, an actual rest.",
@@ -1015,7 +1015,7 @@ export const periodisationAnswers: AnswerPage[] = [
           "Saturday or Sunday, zone 2, 90 minutes to 3+ hours depending on the phase. Weekend timing gives more recovery time around a longer effort. Pair it with a shorter easy ride the next day rather than rest.",
       },
       {
-        title: "Make every non-hard day genuinely easy",
+        title: "Make every non-hard day truly easy",
         detail:
           "Check your zone distribution for the easy days. If they're sitting in zone 3, dial them back. Protect the hard days by protecting the easy ones.",
       },
@@ -1056,7 +1056,7 @@ export const periodisationAnswers: AnswerPage[] = [
       {
         question: "Can I do strength training in the same week as hard cycling sessions?",
         answer:
-          "Yes — but stack strength sessions on the same day as hard cycling sessions, not on easy days. Doing strength after a threshold ride concentrates the fatigue load rather than spreading it, which keeps your easy and recovery days genuinely easy.",
+          "Yes — but stack strength sessions on the same day as hard cycling sessions, not on easy days. Doing strength after a threshold ride concentrates the fatigue load rather than spreading it, which keeps your easy and recovery days legitimately easy.",
       },
       {
         question: "What should a typical amateur training week look like?",
@@ -1116,7 +1116,7 @@ export const periodisationAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "Block periodisation gets a lot of attention because it sounds efficient — do all the threshold work in one concentrated dose, adapt, move on. And for certain riders in certain situations, that's exactly right. The problem is that it gets recommended to riders for whom traditional periodisation would produce better results with less injury risk. Concentrated blocks of high-intensity work without an adequate aerobic base are a reliable route to overreaching.",
-      "The model that makes block periodisation work is sequential: first a volume-heavy accumulation block that builds the aerobic base, then a transmutation block where the intensity is concentrated, then a realisation block that polishes event-specific fitness. The accumulation block has to be genuinely easy and genuinely long — if you try to skip it and go straight to concentrated intensity, you're just doing unstructured hard training.",
+      "The model that makes block periodisation work is sequential: first a volume-heavy accumulation block that builds the aerobic base, then a transmutation block where the intensity is concentrated, then a realisation block that polishes event-specific fitness. The accumulation block has to be truly easy and truly long — if you try to skip it and go straight to concentrated intensity, you're just doing unstructured hard training.",
       "Anthony's view: if you've done three or four years of traditional periodisation, have a solid base, and your gains have stalled, a block-periodised year is worth trying. If you're in your first or second year of structured training, stick with traditional. The physiological machinery for high-density intensity blocks takes years to build.",
     ],
     expertEvidence: [
@@ -1285,7 +1285,7 @@ export const periodisationAnswers: AnswerPage[] = [
       {
         title: "Get outside once a week for a longer easy ride",
         detail:
-          "A 2–3 hour outdoor zone 2 ride on the weekend builds durability that indoor sessions can't replicate. Dress for the weather and keep the power genuinely easy. Duration is the point, not the suffering.",
+          "A 2–3 hour outdoor zone 2 ride on the weekend builds durability that indoor sessions can't replicate. Dress for the weather and keep the power properly easy. Duration is the point, not the suffering.",
       },
     ],
     commonMistakes: [
@@ -1383,9 +1383,9 @@ export const periodisationAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Seiler's research on polarised training is the most cited finding in endurance science over the last 20 years, and it's genuinely useful for amateurs. But the nuance that gets lost in the cycling podcast space is that pyramidal training — where pros spend more time at threshold and less at the extremes — is also the dominant pattern at the very highest level when you look at the actual data. The two models are closer than the argument about them suggests.",
+      "Seiler's research on polarised training is the most cited finding in endurance science over the last 20 years, and it's really useful for amateurs. But the nuance that gets lost in the cycling podcast space is that pyramidal training — where pros spend more time at threshold and less at the extremes — is also the dominant pattern at the very highest level when you look at the actual data. The two models are closer than the argument about them suggests.",
       "What both models share, and what matters most, is the rejection of grey-zone riding. Neither says 'ride comfortably hard all the time'. Polarised says 'go easy or go very hard'. Pyramidal says 'go easy most of the time, threshold sometimes, very hard rarely'. The distribution is different at the top end; both models agree that moderate-intensity, medium-hard riding is where most amateur time gets wasted.",
-      "Anthony's practical take: if you have 10+ hours a week, polarised is the more achievable model — the intensity sessions stay small and the volume absorbs them. On 6–8 hours, including some pyramidal threshold work is defensible because you have fewer hours to fill with purely easy riding. The key is that your easy rides are genuinely easy regardless of which model you call it.",
+      "Anthony's practical take: if you have 10+ hours a week, polarised is the more achievable model — the intensity sessions stay small and the volume absorbs them. On 6–8 hours, including some pyramidal threshold work is defensible because you have fewer hours to fill with purely easy riding. The key is that your easy rides are actually easy regardless of which model you call it.",
     ],
     expertEvidence: [
       {
@@ -1409,7 +1409,7 @@ export const periodisationAnswers: AnswerPage[] = [
       {
         title: "Default to polarised if you train 10+ hours a week",
         detail:
-          "At higher volumes, the 80/20 split is achievable and produces the best long-term base. Make easy rides genuinely easy, limit hard sessions to two per week, and put nothing in the middle.",
+          "At higher volumes, the 80/20 split is achievable and produces the best long-term base. Make easy rides properly easy, limit hard sessions to two per week, and put nothing in the middle.",
       },
       {
         title: "Add some pyramidal threshold work if you train 6–8 hours a week",
@@ -1577,7 +1577,7 @@ export const periodisationAnswers: AnswerPage[] = [
       {
         question: "How do I know when I've peaked?",
         answer:
-          "Practical signs: easy rides feel genuinely effortless, hard efforts produce power you haven't seen recently, and your legs feel 'alive' without feeling anxious. On a training file, your CTL should be near its highest of the cycle and your ATL (acute fatigue) dropping. If both are dropping, you may be detraining, not peaking.",
+          "Practical signs: easy rides feel truly effortless, hard efforts produce power you haven't seen recently, and your legs feel 'alive' without feeling anxious. On a training file, your CTL should be near its highest of the cycle and your ATL (acute fatigue) dropping. If both are dropping, you may be detraining, not peaking.",
       },
       {
         question: "What if I can only start training 12 weeks before my event?",
@@ -1660,7 +1660,7 @@ export const periodisationAnswers: AnswerPage[] = [
         name: "David Dunne",
         credential: "Performance nutritionist to INEOS Grenadiers, EF Education, and Uno-X",
         insight:
-          "Fuelling for the work required means carbohydrate availability should match the intensity demands of the session. Low-carb strategies have a place in base training around genuinely easy rides. High-carb fuelling is non-negotiable in build and race phases where intensity and performance are the goal.",
+          "Fuelling for the work required means carbohydrate availability should match the intensity demands of the session. Low-carb strategies have a place in base training around truly easy rides. High-carb fuelling is non-negotiable in build and race phases where intensity and performance are the goal.",
         episodeSlug: "ep-2044-world-tour-nutritionist-we-got-weight-loss-wrong",
         guestSlug: "david-dunne",
       },
@@ -1677,7 +1677,7 @@ export const periodisationAnswers: AnswerPage[] = [
       {
         title: "Low-carb easy sessions in base only",
         detail:
-          "In the base phase, two or three easy zone 2 sessions per week can be done with low carbohydrate availability — morning fasted rides under 90 minutes, or rides where you deliberately reduce carb intake. Keep this to genuinely easy sessions only. Never do a threshold or VO2max session in a low-fuel state.",
+          "In the base phase, two or three easy zone 2 sessions per week can be done with low carbohydrate availability — morning fasted rides under 90 minutes, or rides where you deliberately reduce carb intake. Keep this to properly easy sessions only. Never do a threshold or VO2max session in a low-fuel state.",
       },
       {
         title: "Raise carb intake when the build starts",
@@ -1807,7 +1807,7 @@ export const periodisationAnswers: AnswerPage[] = [
         name: "Dan Lorang",
         credential: "Head of Performance, Red Bull–Bora–Hansgrohe",
         insight:
-          "At Grand Tour level the peak is engineered backwards from the event date, with volume dropping and quality being protected in the final weeks. Lorang's point for amateurs is that fatigue takes longer to clear than most riders assume — the peak phase has to start early enough that the legs are genuinely fresh on the day, not still emptying out.",
+          "At Grand Tour level the peak is engineered backwards from the event date, with volume dropping and quality being protected in the final weeks. Lorang's point for amateurs is that fatigue takes longer to clear than most riders assume — the peak phase has to start early enough that the legs are properly fresh on the day, not still emptying out.",
         episodeSlug: "ep-2134-roglics-coach-builds-a-training-plan-for-amateur-riders-dan",
         guestSlug: "dan-lorang",
       },
@@ -1982,14 +1982,14 @@ export const periodisationAnswers: AnswerPage[] = [
       {
         mistake: "Sneaking structure back in 'just to stay sharp'.",
         fix:
-          "The phase only works if it's genuinely unstructured. Adding intervals to protect fitness keeps the fatigue you're trying to clear.",
+          "The phase only works if it's truly unstructured. Adding intervals to protect fitness keeps the fatigue you're trying to clear.",
       },
     ],
     faq: [
       {
         question: "How long should the off-season be?",
         answer:
-          "Two to four weeks for most amateurs. Riders coming off a long, hard season or carrying niggling injuries lean toward four weeks; riders who raced lightly may need only two. The marker is mental — you're ready to end it when you genuinely want to train with structure again.",
+          "Two to four weeks for most amateurs. Riders coming off a long, hard season or carrying niggling injuries lean toward four weeks; riders who raced lightly may need only two. The marker is mental — you're ready to end it when you actually want to train with structure again.",
       },
       {
         question: "Will I lose all my fitness during the off-season?",
@@ -2094,7 +2094,7 @@ export const periodisationAnswers: AnswerPage[] = [
       {
         title: "Pick one or two A-events and mark them on a calendar",
         detail:
-          "These are the events you genuinely want to be at your best for. Two is ideal for most amateurs; three is the realistic maximum. Everything else in the year becomes a B-event (useful training race) or a C-event (a ride you complete without tapering).",
+          "These are the events you really want to be at your best for. Two is ideal for most amateurs; three is the realistic maximum. Everything else in the year becomes a B-event (useful training race) or a C-event (a ride you complete without tapering).",
       },
       {
         title: "Work backwards through the phases",
@@ -2192,7 +2192,7 @@ export const periodisationAnswers: AnswerPage[] = [
       "A-races get a full taper, B-races a 2–3 day mini-taper, C-races none. How to categorise your events so you peak for the ones that actually matter.",
     pillar: "coaching",
     directAnswer:
-      "Categorise your events into A, B and C races by priority. A-races — one or two per year — get a full 2–3 week peak and taper. B-races get a short 2–3 day mini-taper and are ridden as hard training or fitness checks. C-races get no taper at all; you train through them as part of your normal load. The mistake that wrecks seasons is tapering for everything, which means you never genuinely peak for anything.",
+      "Categorise your events into A, B and C races by priority. A-races — one or two per year — get a full 2–3 week peak and taper. B-races get a short 2–3 day mini-taper and are ridden as hard training or fitness checks. C-races get no taper at all; you train through them as part of your normal load. The mistake that wrecks seasons is tapering for everything, which means you never actually peak for anything.",
     keyTakeaways: [
       "A-races: one or two a year, full 2–3 week peak and taper, everything is built around them.",
       "B-races: a 2–3 day mini-taper, ridden hard as fitness checks or training stimulus.",
@@ -2214,7 +2214,7 @@ export const periodisationAnswers: AnswerPage[] = [
     roadmanView: [
       "The A-B-C system is one of those ideas that sounds obvious until you look at how most amateurs actually race. They enter ten events and treat all ten like they matter equally — easing off before each, getting nervous before each, trying to be fresh for each. The result is a season with no genuine peaks and no real training stimulus either, because you can't build fitness while perpetually tapering. Categorising your events ruthlessly is what fixes that.",
       "Here's the framing Anthony comes back to: B and C races aren't lesser events, they're tools. A B-race is a hard training session you happen to pin a number on — you ride it tired, you use it to sharpen race skills, you find out where your fitness actually is under pressure. A C-race is even more relaxed: you train through it entirely, no easing off, treating it as a fun hard day in the saddle. Neither gets a taper because neither is the point of your season.",
-      "The A-race is where the discipline pays off. Because you didn't taper for the other eight events, you arrive at your one or two A-races genuinely fresh, having used the rest of the calendar to build and sharpen. That's fixable for anyone — it just requires the honesty to admit, in advance, that not every event you've entered actually matters equally. Pick the one or two that do, and let the rest serve them.",
+      "The A-race is where the discipline pays off. Because you didn't taper for the other eight events, you arrive at your one or two A-races truly fresh, having used the rest of the calendar to build and sharpen. That's fixable for anyone — it just requires the honesty to admit, in advance, that not every event you've entered actually matters equally. Pick the one or two that do, and let the rest serve them.",
     ],
     expertEvidence: [
       {
@@ -2339,7 +2339,7 @@ export const periodisationAnswers: AnswerPage[] = [
       "Periodise on limited time by compressing the phases rather than abandoning them. On 6–8 hours a week, run a shorter base of 8–10 weeks, a focused build with two quality sessions per week, and a tight 7–10 day taper. The phases get shorter and the volume swings smaller, but the structure — base, build, peak — still produces far more than riding the same sessions year-round. Time-crunched doesn't mean structure-free.",
     keyTakeaways: [
       "Periodisation scales down: on 6–8 hours a week, compress the phases rather than dropping them.",
-      "Limited-time build phases lean on two quality sessions per week, with the easy riding genuinely easy.",
+      "Limited-time build phases lean on two quality sessions per week, with the easy riding properly easy.",
       "Protect the build and taper first; shorten the base when the calendar or weekly hours are tight.",
       "Intensity becomes proportionally more important at low volume — but easy days must still be easy.",
     ],
@@ -2357,7 +2357,7 @@ export const periodisationAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "The biggest myth about periodisation is that it's a high-volume sport's luxury — something only riders with 15-hour weeks can do. The opposite is true. The less time you have, the more it matters that every hour is doing a specific job. When Dan Lorang talked about building a plan for amateur riders on the podcast, the principles he applied to a time-crunched rider on six hours a week were the same ones he uses for Roglič — they were just compressed.",
-      "What changes at low volume is the ratio. A 15-hour rider can fill most of the week with easy zone 2 and still get plenty of total intensity. A six-hour rider can't afford to spend all six hours pottering — so the build phase leans harder on two genuinely quality sessions a week, and the easy riding that's left has to be properly easy to allow those sessions to land. The error time-crunched riders make is the opposite of what you'd expect: not too little intensity, but too much grey-zone riding that's neither easy enough to recover from nor hard enough to drive adaptation.",
+      "What changes at low volume is the ratio. A 15-hour rider can fill most of the week with easy zone 2 and still get plenty of total intensity. A six-hour rider can't afford to spend all six hours pottering — so the build phase leans harder on two truly quality sessions a week, and the easy riding that's left has to be properly easy to allow those sessions to land. The error time-crunched riders make is the opposite of what you'd expect: not too little intensity, but too much grey-zone riding that's neither easy enough to recover from nor hard enough to drive adaptation.",
       "Anthony's practical take is that the time-crunched rider should protect the build and the taper above all else, and shorten the base when something has to give. A compressed 8-week base into a sharp 6–8 week build into a tight taper produces a real peak on limited hours. It won't match what's possible on 12 hours a week — but it absolutely beats the alternative of riding the same moderate sessions every week and wondering why nothing changes. The structure is what makes the few hours count.",
     ],
     expertEvidence: [
@@ -2365,7 +2365,7 @@ export const periodisationAnswers: AnswerPage[] = [
         name: "Dan Lorang",
         credential: "Head of Performance, Red Bull–Bora–Hansgrohe",
         insight:
-          "The periodisation principles that apply to a Grand Tour rider apply to a time-crunched amateur on six hours a week — the phases simply compress. For limited-time riders, the priority is making each session count: a smaller number of well-placed quality sessions on a foundation of genuinely easy riding, rather than a week of moderate, undifferentiated efforts.",
+          "The periodisation principles that apply to a Grand Tour rider apply to a time-crunched amateur on six hours a week — the phases simply compress. For limited-time riders, the priority is making each session count: a smaller number of well-placed quality sessions on a foundation of properly easy riding, rather than a week of moderate, undifferentiated efforts.",
         episodeSlug: "ep-2134-roglics-coach-builds-a-training-plan-for-amateur-riders-dan",
         guestSlug: "dan-lorang",
       },
@@ -2373,7 +2373,7 @@ export const periodisationAnswers: AnswerPage[] = [
         name: "Professor Stephen Seiler",
         credential: "Exercise physiologist, University of Agder",
         insight:
-          "At low training volume the cost of grey-zone riding is even higher — there are fewer hours to waste on efforts that are too hard to recover from and too easy to drive adaptation. Time-crunched riders benefit from keeping a clear separation between genuinely easy aerobic work and a small dose of focused intensity, rather than spreading moderate effort across every session.",
+          "At low training volume the cost of grey-zone riding is even higher — there are fewer hours to waste on efforts that are too hard to recover from and too easy to drive adaptation. Time-crunched riders benefit from keeping a clear separation between truly easy aerobic work and a small dose of focused intensity, rather than spreading moderate effort across every session.",
         episodeSlug: "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
         guestSlug: "stephen-seiler",
       },
@@ -2390,7 +2390,7 @@ export const periodisationAnswers: AnswerPage[] = [
           "With limited hours, two focused quality sessions per week carry the build: one threshold (2×20 at 95–105% FTP) and one VO2max (5×4 min at 110–120% FTP). These are your highest-return hours. Place them on non-consecutive days so both land with quality.",
       },
       {
-        title: "Make every remaining hour genuinely easy",
+        title: "Make every remaining hour properly easy",
         detail:
           "The hours around your two quality sessions must be true zone 2 or recovery — not moderate. At low volume the temptation to make every ride 'count' by pushing the pace is exactly what blunts the quality sessions. Protect the easy riding so the hard riding can be hard.",
       },
@@ -2409,7 +2409,7 @@ export const periodisationAnswers: AnswerPage[] = [
       {
         mistake: "Filling limited hours with moderate grey-zone riding to 'make them count'.",
         fix:
-          "At low volume, grey-zone riding is the worst use of time. Keep easy rides genuinely easy and concentrate intensity in two focused quality sessions.",
+          "At low volume, grey-zone riding is the worst use of time. Keep easy rides actually easy and concentrate intensity in two focused quality sessions.",
       },
       {
         mistake: "Cutting the build or taper when time runs short.",
@@ -2426,12 +2426,12 @@ export const periodisationAnswers: AnswerPage[] = [
       {
         question: "How much of my limited time should be intensity?",
         answer:
-          "In a base phase, mostly easy with one modest quality session. In a build phase on 6–8 hours, two quality sessions a week is the sweet spot, with the remaining hours genuinely easy. Intensity becomes proportionally more important at low volume, but it still shouldn't dominate the week.",
+          "In a base phase, mostly easy with one modest quality session. In a build phase on 6–8 hours, two quality sessions a week is the sweet spot, with the remaining hours properly easy. Intensity becomes proportionally more important at low volume, but it still shouldn't dominate the week.",
       },
       {
         question: "Should a time-crunched rider use polarised or pyramidal training?",
         answer:
-          "At 6–8 hours a week, some pyramidal threshold work is defensible because you have fewer hours to fill with purely easy riding. Higher-volume riders can run a cleaner polarised split. Either way, the non-negotiable is that your easy rides stay genuinely easy.",
+          "At 6–8 hours a week, some pyramidal threshold work is defensible because you have fewer hours to fill with purely easy riding. Higher-volume riders can run a cleaner polarised split. Either way, the non-negotiable is that your easy rides stay truly easy.",
       },
       {
         question: "What should a limited-time build week look like?",

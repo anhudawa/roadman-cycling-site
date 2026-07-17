@@ -166,7 +166,7 @@ export async function POST(request: Request) {
       messages: [
         {
           role: "user",
-          content: `YouTube video: "${videoTitle}"\n\nContent angle: "${idea.title}"\nSpecific hook: ${idea.hook}\nFramework: ${idea.framework || "general"}\n\nWrite all 4 content pieces. Make each one genuinely useful — specific enough that the reader walks away knowing something they didn't before. Ground every claim. No filler paragraphs.`,
+          content: `YouTube video: "${videoTitle}"\n\nContent angle: "${idea.title}"\nSpecific hook: ${idea.hook}\nFramework: ${idea.framework || "general"}\n\nWrite all 4 content pieces. Make each one actually useful — specific enough that the reader walks away knowing something they didn't before. Ground every claim. No filler paragraphs.`,
         },
       ],
     });

@@ -34,7 +34,7 @@ export const powerAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "VO2 max gets talked about like it's fixed at birth. It isn't. Anthony covered the seven fixable reasons it's low on the podcast, and the list reads like a checklist of the most common amateur training errors: grey-zone riding, under-fuelling, never actually training at VO2max intensity. The ceiling is higher than most riders know because they've never actually tested it.",
-      "The physiology is simple enough. VO2 max is your body's maximum rate of oxygen uptake. The way to push that ceiling up is to repeatedly stress the system near its limit — long enough to force the heart rate to max and hold it there. That means 4–8 minute efforts where you're working genuinely hard, not hovering at sweet spot because it feels productive.",
+      "The physiology is simple enough. VO2 max is your body's maximum rate of oxygen uptake. The way to push that ceiling up is to repeatedly stress the system near its limit — long enough to force the heart rate to max and hold it there. That means 4–8 minute efforts where you're working properly hard, not hovering at sweet spot because it feels productive.",
       "John Archibald — national pursuit champion — has been clear on this in his podcast appearance: the riders who improve VO2 max most reliably are the ones willing to go uncomfortably hard for uncomfortably long, then recover properly and repeat. The gains are available. Most riders just avoid the sessions hard enough to unlock them.",
     ],
     expertEvidence: [
@@ -50,7 +50,7 @@ export const powerAnswers: AnswerPage[] = [
         name: "Professor Stephen Seiler",
         credential: "Exercise physiologist, polarised-training researcher",
         insight:
-          "VO2 max training works best when it's properly polarised — genuinely hard efforts above threshold, supported by a large base of genuinely easy aerobic work. Grey-zone riding in the middle suppresses adaptation without delivering the high-intensity stimulus the ceiling needs.",
+          "VO2 max training works best when it's properly polarised — truly hard efforts above threshold, supported by a large base of properly easy aerobic work. Grey-zone riding in the middle suppresses adaptation without delivering the high-intensity stimulus the ceiling needs.",
         episodeSlug: "ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler",
         guestSlug: "stephen-seiler",
       },
@@ -69,7 +69,7 @@ export const powerAnswers: AnswerPage[] = [
       {
         title: "Fix the base that the hard work stands on",
         detail:
-          "VO2max intervals only work if easy rides are genuinely easy. Pull all non-interval riding down to true zone 2 — conversational pace — so you arrive at each hard session fully recovered and able to hit the target power.",
+          "VO2max intervals only work if easy rides are actually easy. Pull all non-interval riding down to true zone 2 — conversational pace — so you arrive at each hard session fully recovered and able to hit the target power.",
       },
     ],
     commonMistakes: [
@@ -113,7 +113,7 @@ export const powerAnswers: AnswerPage[] = [
       {
         question: "How many VO2 max sessions per week is too many?",
         answer:
-          "Two hard VO2max sessions per week is the ceiling for most amateurs — three if the rest of your week is genuinely easy. Each session takes 48–72 hours to recover from properly. More than two without adequate recovery produces junk miles, not adaptation.",
+          "Two hard VO2max sessions per week is the ceiling for most amateurs — three if the rest of your week is truly easy. Each session takes 48–72 hours to recover from properly. More than two without adequate recovery produces junk miles, not adaptation.",
       },
       {
         question: "Does losing weight increase VO2 max?",
@@ -304,7 +304,7 @@ export const powerAnswers: AnswerPage[] = [
     roadmanView: [
       "Most amateur riders think of sprinting as something you either have or you don't — fast-twitch genetics handed out at birth. André Greipel addressed this directly on the podcast: the ability to sprint well at a high level is partly genetic, but the ability to improve your sprint from wherever you are now is available to almost everyone, and almost nobody trains it specifically.",
       "Cory Williams is the practical case study. He can produce over 1,600 watts — but he talked about the difference between raw sprint wattage and winning sprint wattage. You can have 1,640 watts and lose to someone with 1,100 if they arrive with better position, better timing and a faster initial acceleration. The physical and the tactical have to work together.",
-      "The training fix is simple and mostly avoided because it's genuinely uncomfortable: short, fully maximal efforts with long, genuine recovery. Eight to fifteen seconds all-out from a rolling start, then five full minutes of easy spinning before you do it again. Do that twice a week for six weeks and almost every rider sees peak power move. The discomfort is the point.",
+      "The training fix is simple and mostly avoided because it's properly uncomfortable: short, fully maximal efforts with long, genuine recovery. Eight to fifteen seconds all-out from a rolling start, then five full minutes of easy spinning before you do it again. Do that twice a week for six weeks and almost every rider sees peak power move. The discomfort is the point.",
     ],
     expertEvidence: [
       {
@@ -435,7 +435,7 @@ export const powerAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "The number means different things depending on where you are. For a complete beginner, 45 ml/kg/min is a solid starting point. For a serious club racer who's been training for five years, it should probably be higher than 55. Context is everything, and the benchmark that matters most is your own direction of travel — are you progressing or declining?",
-      "What the research shows clearly, and what Anthony has heard from coaches including Dan Lorang, is that most adult cyclists are performing well below their VO2 max potential because they've never specifically trained at those intensities. Grey-zone riding doesn't stress the system hard enough to drive maximum cardiac output. You need efforts of 4–8 minutes at genuinely high intensity — and most riders avoid exactly those.",
+      "What the research shows clearly, and what Anthony has heard from coaches including Dan Lorang, is that most adult cyclists are performing well below their VO2 max potential because they've never specifically trained at those intensities. Grey-zone riding doesn't stress the system hard enough to drive maximum cardiac output. You need efforts of 4–8 minutes at truly high intensity — and most riders avoid exactly those.",
       "The other useful number is the rate of decline with age. Without targeted high-intensity training, VO2 max falls roughly 1% per year after 30. With consistent VO2max intervals, masters cyclists can slow that to close to zero — and Joe Friel's work on the podcast makes the case that athletes who keep training hard into their 50s and 60s can maintain values that were competitive in their 30s.",
     ],
     expertEvidence: [
@@ -682,8 +682,8 @@ export const powerAnswers: AnswerPage[] = [
     keyTakeaways: [
       "4–8 minutes at 106–120% FTP is the effective intensity window — shorter doesn't reach VO2 max, longer drifts below it.",
       "Equal rest duration (rest = work interval length) is the standard recovery protocol.",
-      "The final 60–90 seconds of each effort should genuinely challenge completion — calibrate power to achieve this.",
-      "Two VO2max sessions per week is the maximum for most amateurs; the rest of the week must be genuinely easy.",
+      "The final 60–90 seconds of each effort should seriously challenge completion — calibrate power to achieve this.",
+      "Two VO2max sessions per week is the maximum for most amateurs; the rest of the week must be properly easy.",
     ],
     whoFor: [
       {
@@ -698,7 +698,7 @@ export const powerAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "The protocol matters more than most riders realise. Anthony covered this on the podcast with Vasilis Anastopoulos, the Astana head coach, who described how easy it is to waste a VO2max session by starting either too hard (blowing up in minute 3) or too easy (never actually getting to maximum oxygen uptake). The sweet spot is effort that builds through the interval and becomes genuinely hard in the final minute or two.",
+      "The protocol matters more than most riders realise. Anthony covered this on the podcast with Vasilis Anastopoulos, the Astana head coach, who described how easy it is to waste a VO2max session by starting either too hard (blowing up in minute 3) or too easy (never actually getting to maximum oxygen uptake). The sweet spot is effort that builds through the interval and becomes properly hard in the final minute or two.",
       "The recovery piece is equally neglected. Riders who take 90 seconds between 5-minute efforts aren't doing VO2max intervals — they're doing something between sweet spot and threshold with an incomplete recovery. The adaptation comes from the quality of each maximal effort, not the total time spent at a certain average power.",
       "Structure-wise: a reliable starting prescription for someone new to this work is 5×4 minutes at 110–115% FTP, with 4 minutes easy. If the 5th interval is nearly impossible, the power is right. If it's hard but completeable, that's the target. If they're all manageable, go 5% higher next session.",
     ],
@@ -707,7 +707,7 @@ export const powerAnswers: AnswerPage[] = [
         name: "Vasilis Anastopoulos",
         credential: "Head of Performance, Astana Pro Team",
         insight:
-          "Effective VO2 max work requires that each effort genuinely stresses the oxygen transport system near its limit. Starting too hard blows up the interval; starting too easy never reaches the stimulus. The calibration is in the final 90 seconds — that's where the adaptation signal is strongest.",
+          "Effective VO2 max work requires that each effort actually stresses the oxygen transport system near its limit. Starting too hard blows up the interval; starting too easy never reaches the stimulus. The calibration is in the final 90 seconds — that's where the adaptation signal is strongest.",
         episodeSlug: "ep-2-i-asked-astana-coach-about-zone-2-heres-what-he-said",
         guestSlug: "vasilis-anastopoulos",
       },
@@ -963,8 +963,8 @@ export const powerAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "Here's what most training plans miss: FTP tells you what you can sustain, VO2max tells you what your ceiling is — but anaerobic capacity tells you what you can do when neither of those things matters and someone just attacks out of the corner. That's the real-world energy system for most cycling situations, and it's systematically neglected.",
-      "Alex Welburn made a sharp point about this on the podcast. The metrics most amateurs track — FTP, TSS, CTL — don't capture W' (W prime), the anaerobic work capacity bucket that determines how many hard efforts you can make before you genuinely can't respond. A rider with a big W' can handle repeated attacks and still have legs for the final sprint. A rider with depleted W' is cooked the moment the second acceleration comes.",
-      "The fix is specific: short, hard efforts with enough recovery to go genuinely hard again. These sessions are uncomfortable enough that riders avoid them. But a 4-week block of twice-weekly anaerobic work typically makes the surge and attack response night-and-day different. Cory Williams trains this way explicitly — his ability to throw 1,600 watts repeatedly in a criterium comes from systematic anaerobic capacity work, not just natural talent.",
+      "Alex Welburn made a sharp point about this on the podcast. The metrics most amateurs track — FTP, TSS, CTL — don't capture W' (W prime), the anaerobic work capacity bucket that determines how many hard efforts you can make before you truly can't respond. A rider with a big W' can handle repeated attacks and still have legs for the final sprint. A rider with depleted W' is cooked the moment the second acceleration comes.",
+      "The fix is specific: short, hard efforts with enough recovery to go really hard again. These sessions are uncomfortable enough that riders avoid them. But a 4-week block of twice-weekly anaerobic work typically makes the surge and attack response night-and-day different. Cory Williams trains this way explicitly — his ability to throw 1,600 watts repeatedly in a criterium comes from systematic anaerobic capacity work, not just natural talent.",
     ],
     expertEvidence: [
       {
@@ -988,7 +988,7 @@ export const powerAnswers: AnswerPage[] = [
       {
         title: "Add a short-effort session twice a week",
         detail:
-          "After a 20-minute warm-up: 8–10 efforts of 30 seconds at maximal or near-maximal power, with 3 minutes easy spinning between each. Total hard work is only 4–5 minutes but each effort must be genuinely maximal to stress the anaerobic system.",
+          "After a 20-minute warm-up: 8–10 efforts of 30 seconds at maximal or near-maximal power, with 3 minutes easy spinning between each. Total hard work is only 4–5 minutes but each effort must be truly maximal to stress the anaerobic system.",
       },
       {
         title: "Introduce over-under intervals",
@@ -1042,7 +1042,7 @@ export const powerAnswers: AnswerPage[] = [
       {
         question: "How often should I train anaerobic capacity?",
         answer:
-          "Two sessions per week is effective for a focused 4–6 week block. Year-round, one session per week maintains the adaptation. These sessions are genuinely taxing — rest the day before and after each one.",
+          "Two sessions per week is effective for a focused 4–6 week block. Year-round, one session per week maintains the adaptation. These sessions are legitimately taxing — rest the day before and after each one.",
       },
     ],
     relatedEpisodes: [
@@ -1357,7 +1357,7 @@ export const powerAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Alistair Brownlee's episode on endurance lessons is one of the most practically useful episodes in the podcast archive. His framework is simple and consistent with everything the World Tour coaches have said: there's no substitute for time in the saddle at an honest easy pace. Not threshold, not sweet spot — genuinely easy, long, sustained riding.",
+      "Alistair Brownlee's episode on endurance lessons is one of the most practically useful episodes in the podcast archive. His framework is simple and consistent with everything the World Tour coaches have said: there's no substitute for time in the saddle at an honest easy pace. Not threshold, not sweet spot — properly easy, long, sustained riding.",
       "The problem most amateurs face isn't lack of motivation to do long rides. It's that their 'long zone 2 ride' is actually a moderate-intensity ride that creates too much fatigue to build from the following week. When John Wakefield and Dan Lorang talk about base building, they're consistent: the riders who build the best endurance bases are the ones disciplined enough to slow down even when it feels too easy.",
       "Progressive overload matters too. Adding 15 minutes to your long ride each week is a systematic stimulus. Most amateurs jump from a 2-hour ride to a 4-hour ride in one go because an event is approaching — and pay for it with a week of fatigue that wipes out the following week's sessions. Gradual, consistent progression over 8–12 weeks builds durable endurance without the boom-bust cycle.",
     ],
@@ -1671,7 +1671,7 @@ export const powerAnswers: AnswerPage[] = [
       {
         mistake: "Riding all efforts at moderate intensity because it 'feels like working'.",
         fix:
-          "Grey-zone riding produces fatigue without the specific adaptations that drive cycling speed. Follow the 80/20 split: most riding genuinely easy, a small dose genuinely hard.",
+          "Grey-zone riding produces fatigue without the specific adaptations that drive cycling speed. Follow the 80/20 split: most riding actually easy, a small dose really hard.",
       },
       {
         mistake: "Ignoring position because 'good riders ride any position'.",
@@ -1879,7 +1879,7 @@ export const powerAnswers: AnswerPage[] = [
       "Improve threshold power with 2 sessions a week of 2×20 minutes at 95–105% FTP, built on a genuine Zone 2 base. Most amateurs gain 5–10% in an 8-week block by training the right intensity, not more of it.",
     pillar: "coaching",
     directAnswer:
-      "Improve threshold power with two targeted sessions a week — long intervals of 10–20 minutes at 95–105% of FTP, with short recoveries — built on a base of genuinely easy aerobic riding. A focused 8-week block typically raises FTP 5–10% in amateurs who weren't already doing threshold work. The limiter is almost never effort. It's that most riders train just below threshold, in the grey zone, where the adaptation never properly arrives.",
+      "Improve threshold power with two targeted sessions a week — long intervals of 10–20 minutes at 95–105% of FTP, with short recoveries — built on a base of truly easy aerobic riding. A focused 8-week block typically raises FTP 5–10% in amateurs who weren't already doing threshold work. The limiter is almost never effort. It's that most riders train just below threshold, in the grey zone, where the adaptation never properly arrives.",
     keyTakeaways: [
       "2×20 minutes at 95–105% FTP, twice a week, is the highest-return threshold session for most amateurs.",
       "Threshold is your lactate-clearance ceiling — train it just at or fractionally above, not 10% below.",
@@ -1900,7 +1900,7 @@ export const powerAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "Threshold power is the number most amateurs obsess over and the one most of them train wrong. Here's the thing nobody tells you: the problem is rarely that you're not working hard enough. It's that you're working hard in the wrong place — somewhere between tempo and threshold, the grey zone that feels productive and delivers almost nothing. Anthony has come back to this on the podcast repeatedly, and the World Tour coaches all say a version of the same thing.",
-      "Stephen Seiler's research is the clearest frame for it. Threshold sits at the top of your sustainable aerobic range — the point where lactate production and clearance balance. To push it up, you have to spend time right at it or fractionally above, with the rest of your week genuinely easy so you arrive fresh enough to hit the target. John Wakefield, who coaches Roglič at Bora, describes the same pattern: hard days hard, easy days easy, and the threshold work protected by everything around it.",
+      "Stephen Seiler's research is the clearest frame for it. Threshold sits at the top of your sustainable aerobic range — the point where lactate production and clearance balance. To push it up, you have to spend time right at it or fractionally above, with the rest of your week actually easy so you arrive fresh enough to hit the target. John Wakefield, who coaches Roglič at Bora, describes the same pattern: hard days hard, easy days easy, and the threshold work protected by everything around it.",
       "The good news is that for a rider who's never done structured threshold work, the gains come fast. An 8-week block of two threshold sessions a week — 2×20 at FTP, building to 3×15 or over-unders — on top of an honest Zone 2 base will move most amateur FTPs 5–10%. That's a fixable problem. You don't need more hours. You need the right two sessions, and the discipline to keep everything else easy.",
     ],
     expertEvidence: [
@@ -1908,7 +1908,7 @@ export const powerAnswers: AnswerPage[] = [
         name: "Professor Stephen Seiler",
         credential: "Exercise physiologist, University of Agder; codified 80/20 polarised training",
         insight:
-          "Sustainable threshold power rises when you train at or just above it on a small number of quality days, supported by a large base of genuinely easy riding. The most common amateur error is filling the week with moderate-intensity efforts that fatigue the rider without delivering the specific threshold stimulus.",
+          "Sustainable threshold power rises when you train at or just above it on a small number of quality days, supported by a large base of properly easy riding. The most common amateur error is filling the week with moderate-intensity efforts that fatigue the rider without delivering the specific threshold stimulus.",
         episodeSlug: "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
         guestSlug: "stephen-seiler",
       },
@@ -1933,7 +1933,7 @@ export const powerAnswers: AnswerPage[] = [
           "After 3–4 weeks, swap one session for over-unders: 3×12 minutes alternating 2 minutes at 105% FTP with 2 minutes at 90% FTP. This trains lactate clearance while still riding hard — the specific demand that raises threshold faster than steady work alone.",
       },
       {
-        title: "Keep every other ride genuinely easy",
+        title: "Keep every other ride really easy",
         detail:
           "The threshold sessions only pay off if the rest of the week is true Zone 2 — conversational, nasal-breathing pace. If your easy rides creep into tempo, you arrive at the threshold sessions fatigued and unable to hold target power. Slow the easy days down.",
       },
@@ -1974,7 +1974,7 @@ export const powerAnswers: AnswerPage[] = [
       {
         question: "How many threshold intervals should I do per session?",
         answer:
-          "Aim for 30–40 minutes of total time at threshold per session — typically 2×20, 3×12, or 4×10 minutes. Beginners can start at 2×15. The total time at intensity matters more than the rep structure, as long as each rep is genuinely at threshold.",
+          "Aim for 30–40 minutes of total time at threshold per session — typically 2×20, 3×12, or 4×10 minutes. Beginners can start at 2×15. The total time at intensity matters more than the rep structure, as long as each rep is actually at threshold.",
       },
       {
         question: "Can I improve threshold power with Zone 2 alone?",
@@ -2038,7 +2038,7 @@ export const powerAnswers: AnswerPage[] = [
     roadmanView: [
       "Here's the gap most amateurs never train: you can hold one hard effort. The first attack goes, you grit your teeth, you bridge across, you're fine. Then the pace lifts again forty seconds later and you're done. That's not an FTP problem and it's not a sprint problem — it's repeatability, and the way you build it is by rehearsing the exact demand: clustered hard reps on deliberately incomplete recovery. The short rest is the whole point. Full recovery between reps just trains a single big effort.",
       "Cory Williams is the case study that makes it land. He talked on the podcast about criterium racing being decided by the rider who can produce a hard effort, recover just enough in the wheels, and produce another — corner after corner, lap after lap. His winning power isn't his peak number; it's his fifth and sixth effort still being good enough. And crucially, half of that is tactical. Knowing how to sit in the draft and let the bunch do the work between your surges is a skill you practise in racing, not something the turbo can teach you.",
-      "Alex Welburn's critical-power framing explains the physiology: each effort above threshold draws down a finite reserve, and the sessions that grow your ability to answer repeated surges are the ones that keep dragging you back into that depleted state and asking for more. The work is genuinely uncomfortable, which is exactly why it gets skipped. Four to six weeks of clustered repeats plus deliberate draft-recovery practice in group rides is the difference between surviving the surges and being the one making them.",
+      "Alex Welburn's critical-power framing explains the physiology: each effort above threshold draws down a finite reserve, and the sessions that grow your ability to answer repeated surges are the ones that keep dragging you back into that depleted state and asking for more. The work is legitimately uncomfortable, which is exactly why it gets skipped. Four to six weeks of clustered repeats plus deliberate draft-recovery practice in group rides is the difference between surviving the surges and being the one making them.",
     ],
     expertEvidence: [
       {
@@ -2312,7 +2312,7 @@ export const powerAnswers: AnswerPage[] = [
     roadmanView: [
       "Alex Welburn brought this to the podcast in a way that finally made it land. The metrics most amateurs live by — FTP, TSS, CTL — describe your sustainable engine. They tell you nothing about the bit that actually wins races: the finite reserve you can spend above that sustainable ceiling. That reserve has a name, W', and unlike a lot of sports-science jargon, it's a concrete, measurable number you can train.",
       "The model behind it is the critical power concept. Your power-duration curve has two parts: critical power, the asymptote you can theoretically hold for a long time, and W', the fixed pool of work you can do above it. Welburn's framing is the rechargeable battery — every attack, every surge, every effort over critical power draws the battery down, and it only recharges when you drop back below. Empty the battery and you're done, no matter how good your FTP looks on paper.",
-      "Here's where it gets genuinely useful. W'bal — the running calculation of how much battery you have left — turns this from theory into a race tool. Pacing a hard climb or a breakaway becomes a question of managing the battery, not just holding a power number. And the battery itself is trainable: repeated short maximal efforts enlarge it. We've covered the session side of this in the anaerobic capacity answer — this one is about understanding the number so you can actually use it.",
+      "Here's where it gets really useful. W'bal — the running calculation of how much battery you have left — turns this from theory into a race tool. Pacing a hard climb or a breakaway becomes a question of managing the battery, not just holding a power number. And the battery itself is trainable: repeated short maximal efforts enlarge it. We've covered the session side of this in the anaerobic capacity answer — this one is about understanding the number so you can actually use it.",
     ],
     expertEvidence: [
       {
@@ -2363,7 +2363,7 @@ export const powerAnswers: AnswerPage[] = [
       {
         mistake: "Assuming W' is fixed and untrainable.",
         fix:
-          "W' enlarges with repeated short maximal efforts over a focused block. It's one of the more trainable physiological qualities — the battery genuinely gets bigger with the right work.",
+          "W' enlarges with repeated short maximal efforts over a focused block. It's one of the more trainable physiological qualities — the battery actually gets bigger with the right work.",
       },
     ],
     faq: [
@@ -2447,16 +2447,16 @@ export const powerAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Five-minute power is one of the most race-relevant numbers most amateurs never train directly. It's the power that decides whether you make the breakaway, hold the wheel up a 4-minute climb, or get spat out the back when the pace lifts on a punchy finish. And it sits almost exactly at your VO2max — which means it responds to the specific intensity most riders avoid because it genuinely hurts.",
+      "Five-minute power is one of the most race-relevant numbers most amateurs never train directly. It's the power that decides whether you make the breakaway, hold the wheel up a 4-minute climb, or get spat out the back when the pace lifts on a punchy finish. And it sits almost exactly at your VO2max — which means it responds to the specific intensity most riders avoid because it properly hurts.",
       "John Archibald, the national pursuit champion, has been clear on the podcast about what it takes to lift power at this duration: long enough efforts to drive heart rate to its ceiling and hold it there, repeated, with proper recovery between. Three to five minutes is the window. Shorter and you never reach VO2max; longer and you've dropped below it into threshold territory. The riders who improve this number most reliably are the ones willing to go uncomfortably hard for uncomfortably long.",
-      "Vasilis Anastopoulos, the Astana head coach, has talked about the calibration that makes these sessions work — start controlled, let the effort build, and make the back half genuinely hard rather than blowing up in minute two. That's the difference between a 5-minute interval that drives adaptation and one that just produces fatigue. The encouraging part: for a rider who's never done this specifically, six weeks of two sessions a week typically moves the number 5–10%. It's fixable, and it's fast.",
+      "Vasilis Anastopoulos, the Astana head coach, has talked about the calibration that makes these sessions work — start controlled, let the effort build, and make the back half truly hard rather than blowing up in minute two. That's the difference between a 5-minute interval that drives adaptation and one that just produces fatigue. The encouraging part: for a rider who's never done this specifically, six weeks of two sessions a week typically moves the number 5–10%. It's fixable, and it's fast.",
     ],
     expertEvidence: [
       {
         name: "John Archibald",
         credential: "British national pursuit champion",
         insight:
-          "Power at the 3–5 minute mark is essentially VO2max power, and it improves through efforts long enough to drive maximum cardiac output — not short sprints, not steady sweet-spot work. The riders who raise it most reliably commit to genuinely hard efforts of several minutes, fully recovered between, repeated consistently.",
+          "Power at the 3–5 minute mark is essentially VO2max power, and it improves through efforts long enough to drive maximum cardiac output — not short sprints, not steady sweet-spot work. The riders who raise it most reliably commit to properly hard efforts of several minutes, fully recovered between, repeated consistently.",
         episodeSlug: "ep-2089-how-to-ride-faster-than-98-of-people-john-archibald",
         guestSlug: "john-archibald",
       },
@@ -2464,7 +2464,7 @@ export const powerAnswers: AnswerPage[] = [
         name: "Vasilis Anastopoulos",
         credential: "Head of Performance, Astana Pro Team",
         insight:
-          "The calibration of a multi-minute maximal interval decides whether it works. Start too hard and you implode before the adaptation signal arrives; start too easy and you never reach the stimulus. The target is an effort that builds and becomes genuinely hard in the final minute or two — that's where the gain lives.",
+          "The calibration of a multi-minute maximal interval decides whether it works. Start too hard and you implode before the adaptation signal arrives; start too easy and you never reach the stimulus. The target is an effort that builds and becomes really hard in the final minute or two — that's where the gain lives.",
         episodeSlug: "ep-2-i-asked-astana-coach-about-zone-2-heres-what-he-said",
         guestSlug: "vasilis-anastopoulos",
       },
@@ -2473,7 +2473,7 @@ export const powerAnswers: AnswerPage[] = [
       {
         title: "Run 4×4-minute VO2max intervals",
         detail:
-          "After a 20-minute warm-up with two short openers: 4 minutes at 110–115% FTP, 4 minutes easy, repeated four times. Pace each rep to build — controlled first minute, genuinely hard final minute. Heart rate should reach near-maximum by the end of each effort.",
+          "After a 20-minute warm-up with two short openers: 4 minutes at 110–115% FTP, 4 minutes easy, repeated four times. Pace each rep to build — controlled first minute, truly hard final minute. Heart rate should reach near-maximum by the end of each effort.",
       },
       {
         title: "Test and track the number specifically",

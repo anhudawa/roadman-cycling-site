@@ -15,7 +15,7 @@ export const ftpAnswers: AnswerPage[] = [
     directAnswer:
       "A good FTP depends on your level: recreational male cyclists typically sit at 2.0–3.0 W/kg (roughly 150–240 W), club racers at 3.0–4.0 W/kg, and cat 1–2 amateurs at 4.0–5.0 W/kg. For women, subtract roughly 10–15% from raw watts while W/kg benchmarks remain similar. The number only means something against your own body weight and your own history — not a leaderboard.",
     keyTakeaways: [
-      "3.0–4.0 W/kg is the club-racer range; anything above 4.5 W/kg is genuinely strong for an amateur.",
+      "3.0–4.0 W/kg is the club-racer range; anything above 4.5 W/kg is seriously strong for an amateur.",
       "Raw watts without body weight context is a meaningless number — use W/kg to compare yourself.",
       "FTP benchmarks vary by age: power typically peaks in the late 20s and declines roughly 1% per year after 35.",
       "A 'good' FTP is one that is improving consistently over time, not one that matches someone else's number.",
@@ -34,7 +34,7 @@ export const ftpAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "The question Anthony gets more than almost any other is some version of: 'Is my FTP good?' And the honest answer is that the raw watt number, on its own, tells you almost nothing. A 300 W FTP on a 90 kg rider is 3.3 W/kg — solid recreational. The same 300 W on a 65 kg rider is 4.6 W/kg and they're racing at the sharp end. The number without the weight is like knowing your speed without knowing the gradient.",
-      "The W/kg benchmarks are a useful reality check. Recreational riders who train inconsistently tend to land at 2.0–2.5 W/kg. Club racers who train 8–12 hours a week sit 3.0–4.0 W/kg. Beyond 4.5 W/kg for an amateur you're genuinely strong — the kind of rider who's competitive at Cat 2–1 level. The pros the podcast features are testing at 5.5–6.5 W/kg and higher.",
+      "The W/kg benchmarks are a useful reality check. Recreational riders who train inconsistently tend to land at 2.0–2.5 W/kg. Club racers who train 8–12 hours a week sit 3.0–4.0 W/kg. Beyond 4.5 W/kg for an amateur you're seriously strong — the kind of rider who's competitive at Cat 2–1 level. The pros the podcast features are testing at 5.5–6.5 W/kg and higher.",
       "But what actually matters is trajectory, not the number. Anthony has interviewed Stephen Barrett, World Tour coach at AG2R, and the point he keeps coming back to is that the riders who get faster are the ones tracking their own progress honestly — not the ones chasing someone else's ceiling. If your FTP is rising 5–10 W per training block, you're doing something right. That's the benchmark worth chasing.",
     ],
     expertEvidence: [
@@ -98,7 +98,7 @@ export const ftpAnswers: AnswerPage[] = [
       {
         question: "What is a good FTP for a 40-year-old male?",
         answer:
-          "Age-adjusted benchmarks shift by roughly 1% per year after 35. A fit 40-year-old club racer in the 3.2–3.8 W/kg range is performing well. Anything above 4.0 W/kg at 40 is genuinely strong.",
+          "Age-adjusted benchmarks shift by roughly 1% per year after 35. A fit 40-year-old club racer in the 3.2–3.8 W/kg range is performing well. Anything above 4.0 W/kg at 40 is seriously strong.",
       },
       {
         question: "Is 250 watts a good FTP?",
@@ -157,7 +157,7 @@ export const ftpAnswers: AnswerPage[] = [
       "Raw FTP (watts) determines flat-road and TT speed; W/kg determines climbing performance.",
       "Most amateur cyclists should prioritise W/kg over raw watts — climbs decide most sportive and race outcomes.",
       "You can improve W/kg by raising FTP, reducing body weight, or both — the lever depends on where you are.",
-      "For indoor training, track raw watts to know if your power is genuinely growing.",
+      "For indoor training, track raw watts to know if your power is actually growing.",
     ],
     whoFor: [
       {
@@ -335,7 +335,7 @@ export const ftpAnswers: AnswerPage[] = [
           "Map out your training blocks for the next 16 weeks. Mark the test days at the end of recovery weeks — not as optional additions but as part of the plan. Having the date set stops the temptation to test mid-block when you feel good.",
       },
       {
-        title: "Arrive rested: make the 2–3 days before genuinely easy",
+        title: "Arrive rested: make the 2–3 days before properly easy",
         detail:
           "Two short zone 2 rides before the test day. No long rides, no intensity. The prep is not tapering — it is the minimum to let the fatigue of the previous block dissipate enough to get an honest number.",
       },
@@ -446,7 +446,7 @@ export const ftpAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "An FTP that drops is alarming — but before you overhaul your training, step back and check the obvious things first. The most common explanation isn't overtraining or illness. It's a poorly prepped test: tested on a Friday after a big week, in the heat of summer, without a proper warm-up. The fix is two easy days and a retest. Most 'drops' disappear at that point.",
-      "If the number genuinely keeps declining despite a rested test, the culprits are almost always fuelling or recovery. Anthony has spoken to World Tour coaches who say the same thing repeatedly: amateurs fuel like they're doing zone 2 on days they're doing threshold, then wonder why the hard sessions aren't sticking. Fuelling the work properly is not optional — it's part of the training.",
+      "If the number actually keeps declining despite a rested test, the culprits are almost always fuelling or recovery. Anthony has spoken to World Tour coaches who say the same thing repeatedly: amateurs fuel like they're doing zone 2 on days they're doing threshold, then wonder why the hard sessions aren't sticking. Fuelling the work properly is not optional — it's part of the training.",
       "The one thing that catches people off guard is iron deficiency. It's particularly common in female cyclists and in masters athletes who train hard, and it presents as exactly this: performance that drifts down despite consistent training. A basic blood panel — ferritin, iron, haemoglobin — rules it in or out quickly. It's cheap, fast, and it's missed more often than you'd think.",
     ],
     expertEvidence: [
@@ -471,7 +471,7 @@ export const ftpAnswers: AnswerPage[] = [
       {
         title: "Take an honest recovery week before retesting",
         detail:
-          "Cut volume by 40–50% for one week: keep rides short and genuinely easy, no intensity. Retest at the end. If the number recovers, the issue was accumulated fatigue, not a structural problem.",
+          "Cut volume by 40–50% for one week: keep rides short and properly easy, no intensity. Retest at the end. If the number recovers, the issue was accumulated fatigue, not a structural problem.",
       },
       {
         title: "Audit your fuelling for one week of hard sessions",
@@ -505,7 +505,7 @@ export const ftpAnswers: AnswerPage[] = [
       {
         question: "Is it normal for FTP to drop in summer?",
         answer:
-          "Yes. Heat suppresses peak power output — the same effort in 30°C produces lower watts than in 15°C. Summer FTP tests often read 3–6% lower even when fitness is genuinely equal. This is a thermoregulation effect, not a training failure.",
+          "Yes. Heat suppresses peak power output — the same effort in 30°C produces lower watts than in 15°C. Summer FTP tests often read 3–6% lower even when fitness is actually equal. This is a thermoregulation effect, not a training failure.",
       },
       {
         question: "Can illness cause a long-term FTP drop?",
@@ -644,7 +644,7 @@ export const ftpAnswers: AnswerPage[] = [
       {
         question: "Does more volume break an FTP plateau?",
         answer:
-          "Sometimes — if you are genuinely under-trained and have room to absorb more load. But often plateau-stuck riders are already at their sustainable volume, and what they need is better quality and distribution rather than more hours.",
+          "Sometimes — if you are actually under-trained and have room to absorb more load. But often plateau-stuck riders are already at their sustainable volume, and what they need is better quality and distribution rather than more hours.",
       },
       {
         question: "Can strength training break an FTP plateau?",
@@ -713,7 +713,7 @@ export const ftpAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Sweet spot became the dominant amateur training prescription because it sits in a genuinely useful place on the effort spectrum. It is hard enough to build threshold fitness, it can be repeated more frequently than pure threshold work, and it gives time-crunched riders a strong aerobic dose in a single 60–75 minute ride. TrainerRoad built an empire on it, and for good reason.",
+      "Sweet spot became the dominant amateur training prescription because it sits in a really useful place on the effort spectrum. It is hard enough to build threshold fitness, it can be repeated more frequently than pure threshold work, and it gives time-crunched riders a strong aerobic dose in a single 60–75 minute ride. TrainerRoad built an empire on it, and for good reason.",
       "The caution is what happens when it becomes your only intensity mode. Stephen Seiler's research on polarised training points out that the zone sweet spot occupies — roughly zone 3 to low zone 4 — is the same grey zone that costs recovery without delivering the ceiling-lifting benefits of VO2max work. A training plan that is 80% sweet spot and 20% zone 2 produces a different athlete to one that is 70% zone 2, 20% sweet spot, and 10% VO2max. Both contain hard work. The outcomes diverge over time.",
       "Anthony's take, after conversations with coaches including Dan Lorang and Stephen Barrett, is that sweet spot is a tool with a specific application. Use it in base and early build when you are accumulating aerobic fitness and managing fatigue. Shift toward pure threshold and VO2max in the last 8–10 weeks before a target event. The mistake is using it year-round as a substitute for the full intensity spectrum.",
     ],
@@ -749,7 +749,7 @@ export const ftpAnswers: AnswerPage[] = [
       {
         title: "Pair sweet spot sessions with zone 2 — not more intensity",
         detail:
-          "Use sweet spot as your 2 quality sessions per week. Keep everything else genuinely zone 2. Adding a third sweet spot session pushes you into the grey zone and erodes the aerobic base the quality work needs.",
+          "Use sweet spot as your 2 quality sessions per week. Keep everything else properly zone 2. Adding a third sweet spot session pushes you into the grey zone and erodes the aerobic base the quality work needs.",
       },
     ],
     commonMistakes: [
@@ -778,7 +778,7 @@ export const ftpAnswers: AnswerPage[] = [
       {
         question: "How much sweet spot training should I do per week?",
         answer:
-          "For most amateur cyclists, two sweet spot sessions per week is the maximum. Beyond that, recovery is compromised and the quality of each session degrades. The remaining rides should be genuinely zone 2.",
+          "For most amateur cyclists, two sweet spot sessions per week is the maximum. Beyond that, recovery is compromised and the quality of each session degrades. The remaining rides should be actually zone 2.",
       },
       {
         question: "Is sweet spot better than zone 2 for FTP gains?",
@@ -986,7 +986,7 @@ export const ftpAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "One of the most important conversations Anthony has had on the podcast was with Joe Friel about the physiology of ageing and cycling performance. The headline is uncomfortable but also genuinely hopeful: yes, power declines with age, but the rate of decline for trained cyclists is dramatically lower than for their sedentary counterparts, and most of the age-related decline is fixable — not with more cycling, but with strength training.",
+      "One of the most important conversations Anthony has had on the podcast was with Joe Friel about the physiology of ageing and cycling performance. The headline is uncomfortable but also legitimately encouraging: yes, power declines with age, but the rate of decline for trained cyclists is dramatically lower than for their sedentary counterparts, and most of the age-related decline is fixable — not with more cycling, but with strength training.",
       "The research is clear: after 40, the mechanism behind FTP decline is primarily muscle mass loss (sarcopenia) rather than cardiovascular deterioration. The aerobic engine holds up remarkably well into the 50s and 60s with consistent riding. What degrades is the muscle that drives it. Two structured strength sessions a week largely arrest that. The riders Anthony knows who are still competitive in their 50s are almost universally still in the gym.",
       "Age-adjusted benchmarks are worth knowing for perspective, not for accepting. A 50-year-old male on a structured training programme should still be capable of 3.0–3.5 W/kg with proper training. The 'Not Done Yet' framing exists for exactly this reason: the biology of ageing is real, but the rate at which it takes your watts is largely within your control.",
     ],
@@ -1122,7 +1122,7 @@ export const ftpAnswers: AnswerPage[] = [
     roadmanView: [
       "Twenty watts sounds specific, and it is — but it is also one of those numbers that means very different things at different levels. A 20-watt gain from 180 to 200 W is 11% — absolutely achievable in 8 weeks for a relatively new structured rider. A 20-watt gain from 300 to 320 W is 6.7% — and at that level, with most of the easy gains already made, you're looking at 12–16 weeks of solid work minimum.",
       "The riders Anthony has followed who hit 20-watt gains in a single block nearly always have three things in common: they arrive at the block having taken a full recovery week, they execute quality sessions at the right intensity rather than heroically going over target, and they fuel those sessions properly. The ones who do not hit their target nearly always have one of those three missing.",
-      "The heat training episode is worth mentioning here — it documented a genuinely striking FTP jump from a dedicated protocol. That's a specific, scientifically-grounded stimulus with real evidence behind it. But the more durable answer is structured interval progression over 10–12 weeks with honest zone distribution. That's where the 20 watts reliably comes from.",
+      "The heat training episode is worth mentioning here — it documented a really striking FTP jump from a dedicated protocol. That's a specific, scientifically-grounded stimulus with real evidence behind it. But the more durable answer is structured interval progression over 10–12 weeks with honest zone distribution. That's where the 20 watts reliably comes from.",
     ],
     expertEvidence: [
       {
@@ -1333,7 +1333,7 @@ export const ftpAnswers: AnswerPage[] = [
       {
         question: "Does riding without a power meter actually hinder improvement?",
         answer:
-          "For most beginners and recreational cyclists, no. The structure of a training plan and the discipline of consistent effort matters more than precise power data. For athletes targeting specific performance outcomes and wanting to track small gains, power measurement is genuinely valuable.",
+          "For most beginners and recreational cyclists, no. The structure of a training plan and the discipline of consistent effort matters more than precise power data. For athletes targeting specific performance outcomes and wanting to track small gains, power measurement is really valuable.",
       },
     ],
     relatedEpisodes: [
@@ -1505,7 +1505,7 @@ export const ftpAnswers: AnswerPage[] = [
     keyTakeaways: [
       "Power is real-time and precise; heart rate lags by 30–90 seconds and varies with conditions.",
       "High heart rate at your normal FTP target is a warning signal — illness, fatigue, or heat — not a target to ignore.",
-      "Heart rate is the better tool for very easy zone 2 where keeping genuinely easy matters most.",
+      "Heart rate is the better tool for very easy zone 2 where keeping truly easy matters most.",
       "RPE alongside either metric gives the most complete picture of daily readiness.",
     ],
     whoFor: [
@@ -1522,7 +1522,7 @@ export const ftpAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "Power meters changed training feedback fundamentally — the data is real-time, objective, and immune to the noise that makes heart rate tricky. But the riders who get the most from power data are the ones who also pay attention to heart rate, because HR tells you something power cannot: how much the effort is costing your body today. If your 100% FTP intervals are running at 95% of your max HR when they normally sit at 88%, that's your body flagging something. Ignore it and you're training into fatigue.",
-      "Professor Seiler makes an interesting point about zone 2 specifically: HR may actually be the better marker for genuinely easy aerobic riding, because the precision of power matters less and HR gives you a direct physiological signal of how easy the session really is. Power in zone 2 that sits slightly too high produces the exact grey-zone drift he identifies as the most common amateur training problem. Some riders find it easier to stay genuinely easy by looking at heart rate rather than hitting a watt target.",
+      "Professor Seiler makes an interesting point about zone 2 specifically: HR may actually be the better marker for properly easy aerobic riding, because the precision of power matters less and HR gives you a direct physiological signal of how easy the session really is. Power in zone 2 that sits slightly too high produces the exact grey-zone drift he identifies as the most common amateur training problem. Some riders find it easier to stay actually easy by looking at heart rate rather than hitting a watt target.",
       "Anthony's practical experience after testing both: use power to prescribe and execute hard sessions, use heart rate as a daily readiness check and zone 2 governor. When power and HR diverge significantly from your baseline — higher HR for the same power than usual — that's a day to back off regardless of what the schedule says.",
     ],
     expertEvidence: [
@@ -1672,7 +1672,7 @@ export const ftpAnswers: AnswerPage[] = [
         name: "Professor Stephen Seiler",
         credential: "Exercise physiologist, University of Agder; polarised-training researcher",
         insight:
-          "From a polarised perspective, the multi-zone models can be simplified: below the first ventilatory threshold (roughly Zone 2 and below) is easy; above the second ventilatory threshold (roughly Zone 5 and above) is hard; everything between is the grey zone. The practical lesson is not that zones are wrong, but that the easy zone needs to be genuinely easy — lower than most amateurs actually ride.",
+          "From a polarised perspective, the multi-zone models can be simplified: below the first ventilatory threshold (roughly Zone 2 and below) is easy; above the second ventilatory threshold (roughly Zone 5 and above) is hard; everything between is the grey zone. The practical lesson is not that zones are wrong, but that the easy zone needs to be properly easy — lower than most amateurs actually ride.",
         episodeSlug: "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
         guestSlug: "stephen-seiler",
       },
@@ -1686,12 +1686,12 @@ export const ftpAnswers: AnswerPage[] = [
       {
         title: "Build your week around zones 2, 4, and 5",
         detail:
-          "The most productive structure for most amateur cyclists: 3–4 rides in zone 2 (60–90 min each), one zone 4 threshold session (2×20 min), and one zone 5 VO2max session (5×4 min). Everything else genuinely easy. This three-zone prescription produces consistent FTP gains for 6–10 months in most structured beginners.",
+          "The most productive structure for most amateur cyclists: 3–4 rides in zone 2 (60–90 min each), one zone 4 threshold session (2×20 min), and one zone 5 VO2max session (5×4 min). Everything else truly easy. This three-zone prescription produces consistent FTP gains for 6–10 months in most structured beginners.",
       },
       {
         title: "Verify your easy rides are actually in zone 2",
         detail:
-          "If your easy rides are hitting zone 3 (76–90% FTP), you are in the grey zone. Zone 3 is not 'easier threshold' — it is genuinely the least productive training intensity for most structured athletes. Slow down until you are below 75% FTP before calling a ride zone 2.",
+          "If your easy rides are hitting zone 3 (76–90% FTP), you are in the grey zone. Zone 3 is not 'easier threshold' — it is actually the least productive training intensity for most structured athletes. Slow down until you are below 75% FTP before calling a ride zone 2.",
       },
     ],
     commonMistakes: [
@@ -1735,7 +1735,7 @@ export const ftpAnswers: AnswerPage[] = [
       {
         question: "What zone should most of my training be in?",
         answer:
-          "Zone 2 (56–75% FTP) for roughly 80% of training time. That is the polarised principle — a large base of genuinely easy riding. The remaining 20% should be split between zone 4 threshold and zone 5 VO2max work. Very little productive time is spent in zone 3.",
+          "Zone 2 (56–75% FTP) for roughly 80% of training time. That is the polarised principle — a large base of properly easy riding. The remaining 20% should be split between zone 4 threshold and zone 5 VO2max work. Very little productive time is spent in zone 3.",
       },
       {
         question: "How often should I update my training zones?",
@@ -1933,8 +1933,8 @@ export const ftpAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "The 20-minute test is the most widely used FTP protocol for a reason: it's long enough to genuinely tax your threshold but short enough that most riders can mentally commit to it. The catch — and Anthony has watched this play out with club riders again and again — is that the test is almost always lost in the first five minutes. The adrenaline kicks in, the legs feel fresh, and people go out 20 watts above what they can hold. By minute twelve they're hanging on, the power's collapsing, and the average ends up lower than if they'd paced it honestly from the start.",
-      "The fix is to treat it like a controlled effort, not a heroic one. The opening five-minute hard effort before the test exists specifically to take the top-end sharpness off your legs so you don't sandbag the real 20 minutes by going anaerobic early. Then in the test itself, you start at a power you are genuinely confident you can sustain, settle in, and if anything is left in the tank you push in the final five minutes. A test that finishes strong almost always beats one that finishes clinging on.",
+      "The 20-minute test is the most widely used FTP protocol for a reason: it's long enough to properly tax your threshold but short enough that most riders can mentally commit to it. The catch — and Anthony has watched this play out with club riders again and again — is that the test is almost always lost in the first five minutes. The adrenaline kicks in, the legs feel fresh, and people go out 20 watts above what they can hold. By minute twelve they're hanging on, the power's collapsing, and the average ends up lower than if they'd paced it honestly from the start.",
+      "The fix is to treat it like a controlled effort, not a heroic one. The opening five-minute hard effort before the test exists specifically to take the top-end sharpness off your legs so you don't sandbag the real 20 minutes by going anaerobic early. Then in the test itself, you start at a power you are properly confident you can sustain, settle in, and if anything is left in the tank you push in the final five minutes. A test that finishes strong almost always beats one that finishes clinging on.",
       "And the prep matters as much as the protocol. Joe Friel's whole framing of testing is that the number only means something if you arrive rested and repeat the conditions. Test on a Friday after a big week and you'll read 5–10% low. Test rested, on the same trainer or the same climb, with the same warm-up, and you've got a number you can actually compare block to block. That comparison — the trend — is the entire point. One test in isolation tells you very little.",
     ],
     expertEvidence: [
@@ -1981,7 +1981,7 @@ export const ftpAnswers: AnswerPage[] = [
       {
         mistake: "Testing on accumulated fatigue and treating the low number as your real FTP.",
         fix:
-          "Take 2–3 genuinely easy days before testing. A fatigued test reads 5–10% low and sets your zones too soft for the next block.",
+          "Take 2–3 properly easy days before testing. A fatigued test reads 5–10% low and sets your zones too soft for the next block.",
       },
       {
         mistake: "Changing the course, trainer, or warm-up between tests.",
@@ -2072,7 +2072,7 @@ export const ftpAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "The ramp test earned its popularity for one honest reason: it removes the single hardest part of FTP testing, which is pacing. There's no judgement call, no risk of going out too hot and dying — the trainer simply ratchets the power up step by step and your only job is to keep turning the pedals until you physically can't. For riders who consistently butcher the 20-minute test by starting too hard, the ramp is genuinely the better tool. It meets you where you are.",
+      "The ramp test earned its popularity for one honest reason: it removes the single hardest part of FTP testing, which is pacing. There's no judgement call, no risk of going out too hot and dying — the trainer simply ratchets the power up step by step and your only job is to keep turning the pedals until you physically can't. For riders who consistently butcher the 20-minute test by starting too hard, the ramp is actually the better tool. It meets you where you are.",
       "The trade-off is that it's an estimate built on an assumption — that your FTP is 75% of your one-minute peak. That ratio holds up well for a lot of riders, but it's a generalisation. If you're a deeply aerobic diesel with a modest sprint, the ramp can under-read your true sustainable power because your one-minute peak is relatively low. If you're a punchy, anaerobic rider with a big top end, it can flatter you — your peak minute is high, but you couldn't hold anywhere near that ratio for an hour. Knowing which type you are tells you how much to trust the number.",
       "Anthony's practical take, after the conversations on the podcast about training metrics with people like Alex Welburn, is that the ramp test is a brilliant entry point and a fine ongoing tool if you're consistent with it — but it measures a slightly different thing to a 20-minute test. The cardinal rule applies here as much as anywhere: pick one protocol and stay with it. A ramp this block and a 20-minute test next block isn't tracking progress, it's comparing apples and oranges.",
     ],
@@ -2115,7 +2115,7 @@ export const ftpAnswers: AnswerPage[] = [
       {
         mistake: "Stopping the moment it gets hard rather than at true failure.",
         fix:
-          "The result is only valid if you ride to the point you genuinely cannot hold the step. Push through the final painful minutes — that's where the test actually measures you.",
+          "The result is only valid if you ride to the point you physically cannot hold the step. Push through the final painful minutes — that's where the test actually measures you.",
       },
       {
         mistake: "Switching between ramp and 20-minute tests across blocks.",
@@ -2137,7 +2137,7 @@ export const ftpAnswers: AnswerPage[] = [
       {
         question: "How long does a ramp test take?",
         answer:
-          "Usually 8–25 minutes including the build, depending on your fitness and the starting wattage. Stronger riders take longer to reach failure. The effort is only genuinely maximal for the final two or three minutes, which makes it less mentally daunting than a 20-minute test.",
+          "Usually 8–25 minutes including the build, depending on your fitness and the starting wattage. Stronger riders take longer to reach failure. The effort is only truly maximal for the final two or three minutes, which makes it less mentally daunting than a 20-minute test.",
       },
       {
         question: "Is a ramp test easier than a 20-minute test?",
@@ -2191,11 +2191,11 @@ export const ftpAnswers: AnswerPage[] = [
       "A sweet spot block runs 6 weeks: two sessions a week at 84–94% FTP, building from 2×15 to 3×20 minutes, with everything else easy. Here's the full structure.",
     pillar: "coaching",
     directAnswer:
-      "Build a sweet spot block over 6 weeks: two sessions a week at 84–94% of FTP, progressing from 2×15 minutes in week one to 3×20 minutes by week five, with a recovery week in week six. Keep every other ride genuinely easy zone 2. This delivers a strong threshold stimulus at a manageable fatigue cost — ideal for time-crunched riders building base before a sharper VO2max phase.",
+      "Build a sweet spot block over 6 weeks: two sessions a week at 84–94% of FTP, progressing from 2×15 minutes in week one to 3×20 minutes by week five, with a recovery week in week six. Keep every other ride properly easy zone 2. This delivers a strong threshold stimulus at a manageable fatigue cost — ideal for time-crunched riders building base before a sharper VO2max phase.",
     keyTakeaways: [
       "Two sweet spot sessions a week is the ceiling — more crowds out recovery and tips you into the grey zone.",
       "Progress duration, not intensity: build from 2×15 to 3×20 minutes over five weeks at the same 84–94% FTP.",
-      "Every non-sweet-spot ride must be genuinely easy zone 2, or the block becomes all grey-zone fatigue.",
+      "Every non-sweet-spot ride must be truly easy zone 2, or the block becomes all grey-zone fatigue.",
       "End the block with a recovery week and use sweet spot as a base-phase tool, not a year-round default.",
     ],
     whoFor: [
@@ -2211,16 +2211,16 @@ export const ftpAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Sweet spot became the default amateur training block because the maths works in your favour when time is tight. It sits at 84–94% of FTP — hard enough to build genuine threshold fitness, but recoverable enough that you can do it twice a week and still come back fresh. For a rider with six to eight hours, two focused sweet spot sessions plus a few easy rides is a genuinely productive week. TrainerRoad built a whole platform on this, and the reason it works is that it concentrates the stimulus where time-crunched riders can actually absorb it.",
+      "Sweet spot became the default amateur training block because the maths works in your favour when time is tight. It sits at 84–94% of FTP — hard enough to build genuine threshold fitness, but recoverable enough that you can do it twice a week and still come back fresh. For a rider with six to eight hours, two focused sweet spot sessions plus a few easy rides is a legitimately productive week. TrainerRoad built a whole platform on this, and the reason it works is that it concentrates the stimulus where time-crunched riders can actually absorb it.",
       "The way you build the block matters more than people think. The instinct is to make each session harder — to creep the power up week on week. Don't. You build a sweet spot block by adding duration at the same intensity, not by chasing watts. Start at 2×15 minutes, add five minutes to your blocks every couple of weeks, and by week five you're holding 3×20 — roughly an hour of productive sweet spot in a single session. That progression of time-in-zone is what drives the adaptation. The intensity stays put inside the band.",
-      "And here's the part that decides whether the block works: the easy rides. Stephen Seiler's research keeps hammering the same point, and it applies directly here — if your easy days drift up into zone 3, your sweet spot sessions never fully land because you're never properly recovered. Two quality sessions a week, everything else genuinely easy, one recovery week to close it out. Then move on. Sweet spot builds the base beautifully, but it's a phase, not a permanent home. The eight to ten weeks before a target event belong to threshold and VO2max work.",
+      "And here's the part that decides whether the block works: the easy rides. Stephen Seiler's research keeps hammering the same point, and it applies directly here — if your easy days drift up into zone 3, your sweet spot sessions never fully land because you're never properly recovered. Two quality sessions a week, everything else actually easy, one recovery week to close it out. Then move on. Sweet spot builds the base beautifully, but it's a phase, not a permanent home. The eight to ten weeks before a target event belong to threshold and VO2max work.",
     ],
     expertEvidence: [
       {
         name: "Professor Stephen Seiler",
         credential: "Exercise physiologist, University of Agder; polarised-training researcher",
         insight:
-          "Sweet spot can drive real threshold adaptation in a defined block, but only if the surrounding easy rides stay genuinely easy. The common failure is that the moderate intensity of sweet spot bleeds into the rest of the week, leaving the athlete chronically under-recovered and the quality sessions blunted. Protect the easy days and the block delivers.",
+          "Sweet spot can drive real threshold adaptation in a defined block, but only if the surrounding easy rides stay properly easy. The common failure is that the moderate intensity of sweet spot bleeds into the rest of the week, leaving the athlete chronically under-recovered and the quality sessions blunted. Protect the easy days and the block delivers.",
         episodeSlug: "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
         guestSlug: "stephen-seiler",
       },
@@ -2245,7 +2245,7 @@ export const ftpAnswers: AnswerPage[] = [
           "84–94% of current FTP. For a 250 W FTP, that's 210–235 W. Don't drift above 95% (that's threshold) or below 82% (that's tempo). On a smart trainer, ERG mode holds the band for you; outdoors, watch your power and resist the urge to push.",
       },
       {
-        title: "Keep every other ride genuinely zone 2",
+        title: "Keep every other ride properly zone 2",
         detail:
           "The two sweet spot sessions are your only quality work. Everything else stays under 75% FTP — easy enough to hold a conversation. Adding a third hard ride sabotages the recovery the block depends on.",
       },
@@ -2276,7 +2276,7 @@ export const ftpAnswers: AnswerPage[] = [
       {
         question: "What should the rest of my week look like during a sweet spot block?",
         answer:
-          "Two sweet spot sessions, then everything else genuinely easy zone 2 — short recovery spins and any longer endurance rides kept under 75% FTP. The total intensity load comes from the two quality sessions; the easy rides exist to let you recover and adapt, not to add more stress.",
+          "Two sweet spot sessions, then everything else truly easy zone 2 — short recovery spins and any longer endurance rides kept under 75% FTP. The total intensity load comes from the two quality sessions; the easy rides exist to let you recover and adapt, not to add more stress.",
       },
       {
         question: "Can I do a sweet spot block indoors?",

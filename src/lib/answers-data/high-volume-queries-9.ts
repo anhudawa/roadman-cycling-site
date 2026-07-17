@@ -573,9 +573,9 @@ export const highVolumeQuery9Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Sweet spot gets treated online as either a miracle zone or a trap, and the truth sits in between. It's an efficiency tool. You get most of the physiological benefit of threshold work with meaningfully less fatigue cost, which lets you do more of it across a week. For a rider training 6 hours who can't afford two full recovery days after a threshold session, that trade is genuinely useful.",
-      "The problem starts when sweet spot becomes the only intensity a rider ever does. Stephen Seiler's research on polarised distribution is a caution here — an entire training week built from sweet spot sessions, without genuinely easy days either side, quietly becomes a grey-zone plan. You're never hard enough to force the top-end adaptations and never easy enough to properly recover.",
-      "Used correctly, sweet spot is a tool for a specific problem: limited hours. It is not a replacement for either genuinely easy riding or genuinely hard threshold and VO2max work when you have the time to do them properly.",
+      "Sweet spot gets treated online as either a miracle zone or a trap, and the truth sits in between. It's an efficiency tool. You get most of the physiological benefit of threshold work with meaningfully less fatigue cost, which lets you do more of it across a week. For a rider training 6 hours who can't afford two full recovery days after a threshold session, that trade is really useful.",
+      "The problem starts when sweet spot becomes the only intensity a rider ever does. Stephen Seiler's research on polarised distribution is a caution here — an entire training week built from sweet spot sessions, without properly easy days either side, quietly becomes a grey-zone plan. You're never hard enough to force the top-end adaptations and never easy enough to properly recover.",
+      "Used correctly, sweet spot is a tool for a specific problem: limited hours. It is not a replacement for either properly easy riding or properly hard threshold and VO2max work when you have the time to do them properly.",
     ],
     expertEvidence: [
       {
@@ -602,7 +602,7 @@ export const highVolumeQuery9Answers: AnswerPage[] = [
       {
         title: "Cap sweet spot to two or three sessions a week",
         detail:
-          "Even though it's more repeatable than threshold work, sweet spot still accumulates fatigue. Two to three sessions a week with genuinely easy riding on the other days is a sustainable structure for most amateurs.",
+          "Even though it's more repeatable than threshold work, sweet spot still accumulates fatigue. Two to three sessions a week with properly easy riding on the other days is a sustainable structure for most amateurs.",
       },
       {
         title: "Keep your easy days actually easy",
@@ -614,7 +614,7 @@ export const highVolumeQuery9Answers: AnswerPage[] = [
       {
         mistake: "Making every training session sweet spot because it feels productive.",
         fix:
-          "Balance sweet spot sessions with genuinely easy riding. A week entirely at 85-90% FTP is a fatigue plan, not a training plan.",
+          "Balance sweet spot sessions with properly easy riding. A week entirely at 85-90% FTP is a fatigue plan, not a training plan.",
       },
       {
         mistake: "Treating sweet spot as interchangeable with threshold training.",
@@ -636,7 +636,7 @@ export const highVolumeQuery9Answers: AnswerPage[] = [
       {
         question: "How often should I do sweet spot sessions?",
         answer:
-          "Two to three sessions a week is a sustainable amount for most amateur riders, provided the remaining days include genuinely easy riding. More than that risks drifting into a constant moderate-intensity pattern that under-delivers on both recovery and top-end adaptation.",
+          "Two to three sessions a week is a sustainable amount for most amateur riders, provided the remaining days include properly easy riding. More than that risks drifting into a constant moderate-intensity pattern that under-delivers on both recovery and top-end adaptation.",
       },
       {
         question: "Can sweet spot training replace zone 2 riding?",
@@ -687,7 +687,7 @@ export const highVolumeQuery9Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "The question 'how long should my intervals be' is really the wrong question on its own — duration and intensity are a pair, not independent choices. A 4-minute interval at VO2max intensity and a 4-minute interval at threshold intensity train genuinely different systems. Get the pairing wrong and you get a session that's hard but not targeted.",
+      "The question 'how long should my intervals be' is really the wrong question on its own — duration and intensity are a pair, not independent choices. A 4-minute interval at VO2max intensity and a 4-minute interval at threshold intensity train meaningfully different systems. Get the pairing wrong and you get a session that's hard but not targeted.",
       "Anthony has heard this from multiple World Tour coaches on the podcast: amateurs tend to default to whatever interval length feels satisfying, usually somewhere in the 8-12 minute range at an intensity that's neither properly threshold nor properly VO2max. It's the interval version of grey-zone riding — moderately hard, moderately long, and moderately ineffective compared to a session built around a specific target.",
       "The fix isn't complicated. Decide what you're training — top-end ceiling, sustainable threshold power, or raw neuromuscular sprint capacity — and then pick the duration and intensity pairing that actually targets it, rather than picking a round number because it sounds like a proper workout.",
     ],
@@ -899,8 +899,8 @@ export const highVolumeQuery9Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Joe Friel has spent decades arguing for a periodised approach where winter genuinely means something different from summer — not a shutdown, but a shift in emphasis toward volume and base work with intensity dialled back, not eliminated. Most amateurs get this backwards: they either disappear from training entirely or try to keep doing the same intervals they were doing in August, in the cold and dark, and burn out on motivation by January.",
-      "The indoor trainer, used well, solves the consistency problem winter creates. An hour of structured indoor work is more valuable than a two-hour outdoor ride cut short by darkness and cold, or worse, skipped altogether because the conditions felt miserable. Smart trainers with structured workouts remove the guesswork and make short, focused indoor sessions genuinely productive.",
+      "Joe Friel has spent decades arguing for a periodised approach where winter actually means something different from summer — not a shutdown, but a shift in emphasis toward volume and base work with intensity dialled back, not eliminated. Most amateurs get this backwards: they either disappear from training entirely or try to keep doing the same intervals they were doing in August, in the cold and dark, and burn out on motivation by January.",
+      "The indoor trainer, used well, solves the consistency problem winter creates. An hour of structured indoor work is more valuable than a two-hour outdoor ride cut short by darkness and cold, or worse, skipped altogether because the conditions felt miserable. Smart trainers with structured workouts remove the guesswork and make short, focused indoor sessions properly productive.",
       "The riders who arrive at spring in the best shape aren't the ones who trained hardest through December — they're the ones who stayed consistently active through winter without forcing peak-season intensity onto a body that also needs the seasonal break.",
     ],
     expertEvidence: [
@@ -956,7 +956,7 @@ export const highVolumeQuery9Answers: AnswerPage[] = [
       {
         question: "Is it OK to take a complete break from cycling in winter?",
         answer:
-          "A short break of one to two weeks after the season ends is genuinely useful for physical and mental recovery. A multi-month complete stop, however, leads to significant fitness loss that has to be rebuilt each spring, which is a worse trade for most riders than staying lightly active.",
+          "A short break of one to two weeks after the season ends is really useful for physical and mental recovery. A multi-month complete stop, however, leads to significant fitness loss that has to be rebuilt each spring, which is a worse trade for most riders than staying lightly active.",
       },
       {
         question: "Should I do more strength work in winter?",
@@ -1327,12 +1327,12 @@ export const highVolumeQuery9Answers: AnswerPage[] = [
       {
         label: "The road rider curious about expanding into mixed-terrain riding",
         detail:
-          "You want to understand what you'd genuinely gain or lose by adding a gravel bike alongside or instead of a road bike.",
+          "You want to understand what you'd actually gain or lose by adding a gravel bike alongside or instead of a road bike.",
       },
     ],
     roadmanView: [
       "The gravel bike category exists because road bikes have a hard limit — tyre clearance — that stops them handling loose or rough surfaces safely. Once you need tyres wider than about 32mm for grip and comfort off tarmac, you're no longer really talking about a road bike, you're talking about a different tool built around a different problem.",
-      "Riders often overthink the trade-off. A well-built gravel bike with narrower, smoother tyres fitted rides closer to a road bike than most expect on tarmac — the geometry difference costs some efficiency but it's not dramatic for most amateur riders. The real difference shows up off-road, where the extra tyre volume and more stable geometry genuinely change what's possible.",
+      "Riders often overthink the trade-off. A well-built gravel bike with narrower, smoother tyres fitted rides closer to a road bike than most expect on tarmac — the geometry difference costs some efficiency but it's not dramatic for most amateur riders. The real difference shows up off-road, where the extra tyre volume and more stable geometry really change what's possible.",
       "For a rider who splits time between smooth club rides and rougher terrain — bridleways, gravel sportives, poorly maintained roads — a single gravel bike with two tyre setups is often more practical than owning two separate, more specialised bikes.",
     ],
     expertEvidence: [
@@ -1438,7 +1438,7 @@ export const highVolumeQuery9Answers: AnswerPage[] = [
     ],
     roadmanView: [
       "Groupset marketing leans heavily on the idea that higher tier automatically means better, and for racing at the sharp end that's often true. For most amateur riders, though, the gearing range matched to the climbs they actually ride matters more day to day than whether their groupset is the flagship or two tiers down.",
-      "The mechanical-versus-electronic debate gets treated as more consequential than it usually is in practice. Electronic shifting is genuinely nicer to use — consistent, precise, easy front shifts — but mechanical groupsets are reliable, cheaper to maintain, and easier to fix roadside if something goes wrong on a long ride. Neither choice is a mistake; it's a preference trade-off.",
+      "The mechanical-versus-electronic debate gets treated as more consequential than it usually is in practice. Electronic shifting is noticeably nicer to use — consistent, precise, easy front shifts — but mechanical groupsets are reliable, cheaper to maintain, and easier to fix roadside if something goes wrong on a long ride. Neither choice is a mistake; it's a preference trade-off.",
       "The detail riders miss most is compatibility. A groupset upgrade that requires a new wheel freehub body, a different crank standard, or isn't compatible with your existing frame turns a straightforward component swap into an expensive cascading upgrade. Check compatibility before falling in love with a specific groupset.",
     ],
     expertEvidence: [
@@ -1520,7 +1520,7 @@ export const highVolumeQuery9Answers: AnswerPage[] = [
     question: "Carbon or Aluminium Bike Frame — Which Should You Choose?",
     seoTitle: "Carbon vs Aluminium Bike Frame — What Actually Differs",
     seoDescription:
-      "Carbon frames offer lighter weight and tunable ride feel; aluminium offers durability and value. What genuinely differs between the two beyond marketing.",
+      "Carbon frames offer lighter weight and tunable ride feel; aluminium offers durability and value. What actually differs between the two beyond marketing.",
     pillar: "coaching",
     directAnswer:
       "Carbon frames offer lighter weight and more tunable ride characteristics — engineers can vary stiffness and compliance by layup in different frame areas — while aluminium frames offer greater impact durability, generally lower cost, and comparable stiffness at a given weight in many modern designs. For most amateur riders below a certain price point, a well-designed aluminium frame will outperform a poorly designed cheap carbon frame; the material alone doesn't guarantee the ride quality.",
@@ -1544,7 +1544,7 @@ export const highVolumeQuery9Answers: AnswerPage[] = [
     ],
     roadmanView: [
       "The carbon-versus-aluminium debate gets flattened into 'carbon is better' far too often, when the honest answer is that frame design and manufacturing quality matter more than the raw material at almost every price point. A well-engineered aluminium frame from a manufacturer that knows what they're doing will out-perform a cheap, poorly designed carbon frame in ride quality, weight, and durability.",
-      "Where carbon genuinely earns its reputation is at the higher end, where manufacturers can tune stiffness and compliance zone by zone across the frame in ways aluminium tubing can't easily replicate. That capability is real — it's just not universally present just because a frame is made of carbon.",
+      "Where carbon really earns its reputation is at the higher end, where manufacturers can tune stiffness and compliance zone by zone across the frame in ways aluminium tubing can't easily replicate. That capability is real — it's just not universally present just because a frame is made of carbon.",
       "For most amateur riders on a realistic budget, the practical question isn't 'which material' in the abstract — it's 'which specific frame, at this specific price point, rides and handles the way I need it to'. Test ride before deciding on material alone.",
     ],
     expertEvidence: [
@@ -1567,7 +1567,7 @@ export const highVolumeQuery9Answers: AnswerPage[] = [
           "If you ride on rough roads, in a bike-heavy commuting environment, or are prone to the occasional knock or drop, aluminium's greater impact resistance may be the more practical choice.",
       },
       {
-        title: "Test ride both if genuinely undecided",
+        title: "Test ride both if truly undecided",
         detail:
           "Ride feel differences between a good aluminium frame and a good carbon frame are often smaller in practice than spec sheets suggest. A back-to-back test ride settles the question faster than research alone.",
       },
@@ -1650,8 +1650,8 @@ export const highVolumeQuery9Answers: AnswerPage[] = [
     ],
     roadmanView: [
       "The trap most amateurs fall into after a big sportive is judging recovery by how their legs feel two days later. Legs often feel fine well before the deeper systems — glycogen stores, connective tissue, immune function — have actually caught up. Dan Lorang's approach with professional athletes treats the days after a major effort as part of the training block, not separate from it, and amateurs benefit from the same discipline.",
-      "Age changes this timeline meaningfully. A masters rider's recovery from the same relative effort typically takes longer than a rider in their twenties, not because of weakness but because of genuinely slower rates of muscle repair and glycogen resynthesis with age. Planning a shorter recovery window because 'that's what it used to take' sets up a fatigue spiral.",
-      "The practical mistake is jumping back into structured hard training within 2-3 days because the legs feel ready. Give the full window, use easy riding rather than complete rest to aid circulation and recovery, and resume intensity once you're genuinely restored rather than just no longer sore.",
+      "Age changes this timeline meaningfully. A masters rider's recovery from the same relative effort typically takes longer than a rider in their twenties, not because of weakness but because of measurably slower rates of muscle repair and glycogen resynthesis with age. Planning a shorter recovery window because 'that's what it used to take' sets up a fatigue spiral.",
+      "The practical mistake is jumping back into structured hard training within 2-3 days because the legs feel ready. Give the full window, use easy riding rather than complete rest to aid circulation and recovery, and resume intensity once you're properly restored rather than just no longer sore.",
     ],
     expertEvidence: [
       {
@@ -1672,7 +1672,7 @@ export const highVolumeQuery9Answers: AnswerPage[] = [
       {
         title: "Use easy riding rather than complete inactivity",
         detail:
-          "Light spinning in the days after supports circulation and glycogen resynthesis better than total rest for most riders, provided it stays genuinely easy rather than drifting into moderate effort.",
+          "Light spinning in the days after supports circulation and glycogen resynthesis better than total rest for most riders, provided it stays truly easy rather than drifting into moderate effort.",
       },
       {
         title: "Prioritise sleep and protein intake in the recovery window",
@@ -1694,14 +1694,14 @@ export const highVolumeQuery9Answers: AnswerPage[] = [
       {
         mistake: "Taking complete rest instead of light active recovery.",
         fix:
-          "Gentle movement typically aids recovery more than total inactivity for most riders. Keep any post-event riding genuinely easy rather than skipping the bike entirely.",
+          "Gentle movement typically aids recovery more than total inactivity for most riders. Keep any post-event riding truly easy rather than skipping the bike entirely.",
       },
     ],
     faq: [
       {
         question: "How long after a century ride should I avoid hard training?",
         answer:
-          "Most riders benefit from 5-7 days of easy riding or rest before resuming structured intensity after a genuinely hard century, with masters riders often needing closer to 7-10 days depending on how demanding the event was and their overall training load beforehand.",
+          "Most riders benefit from 5-7 days of easy riding or rest before resuming structured intensity after a particularly hard century, with masters riders often needing closer to 7-10 days depending on how demanding the event was and their overall training load beforehand.",
       },
       {
         question: "Why do my legs feel fine but I'm still exhausted a few days after a sportive?",
@@ -1711,7 +1711,7 @@ export const highVolumeQuery9Answers: AnswerPage[] = [
       {
         question: "Should I do a hard interval session the day after a sportive if I feel good?",
         answer:
-          "Generally no. Even if legs feel capable, deeper recovery is very likely incomplete, and a hard session at that point risks compounding fatigue rather than adding fitness. Save intensity for once the recovery window has genuinely passed.",
+          "Generally no. Even if legs feel capable, deeper recovery is very likely incomplete, and a hard session at that point risks compounding fatigue rather than adding fitness. Save intensity for once the recovery window has actually passed.",
       },
     ],
     relatedEpisodes: ["ep-2134-roglics-coach-builds-a-training-plan-for-amateur-riders-dan"],
@@ -2133,7 +2133,7 @@ export const highVolumeQuery9Answers: AnswerPage[] = [
       {
         question: "Do I need more sleep after a hard interval session than an easy ride?",
         answer:
-          "The repair demand from a genuinely hard session is greater, so yes — prioritising extra sleep, or at least protecting your normal target without compromise, matters more on nights following your hardest training days than after easy aerobic rides.",
+          "The repair demand from a particularly hard session is greater, so yes — prioritising extra sleep, or at least protecting your normal target without compromise, matters more on nights following your hardest training days than after easy aerobic rides.",
       },
       {
         question: "Is 9 hours of sleep excessive for an amateur cyclist?",

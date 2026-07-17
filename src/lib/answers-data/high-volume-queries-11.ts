@@ -274,7 +274,7 @@ export const highVolumeQuery11Answers: AnswerPage[] = [
     ],
     roadmanView: [
       "The registration process is the single biggest barrier to entry in amateur road racing, and it should not be. It is bureaucratic, poorly explained on most federation websites, and intimidating if you have never done it. But once you understand the steps, the whole thing takes twenty minutes.",
-      "Get a licence, find a local race, enter online, turn up early, pin your number on straight. That is genuinely it. The hardest part is clicking 'enter' — the racing itself is easier than you think.",
+      "Get a licence, find a local race, enter online, turn up early, pin your number on straight. That is really it. The hardest part is clicking 'enter' — the racing itself is easier than you think.",
     ],
     expertEvidence: [
       {
@@ -462,7 +462,7 @@ export const highVolumeQuery11Answers: AnswerPage[] = [
       {
         question: "What do I do if I feel sick on event morning?",
         answer:
-          "Nerves cause nausea in many riders. Sip a carbohydrate drink rather than forcing solid food. If you genuinely feel unwell — fever, vomiting, diarrhoea — do not ride. There will be other events.",
+          "Nerves cause nausea in many riders. Sip a carbohydrate drink rather than forcing solid food. If you actually feel unwell — fever, vomiting, diarrhoea — do not ride. There will be other events.",
       },
       {
         question: "When should I start eating during the event?",
@@ -994,7 +994,7 @@ export const highVolumeQuery11Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "The women-specific bike market is a mix of genuinely useful design and pure marketing. Shorter reach, wider saddles, and adjustable brake levers solve real problems that many women experience. Pink paint and a flower logo solve nothing.",
+      "The women-specific bike market is a mix of properly useful design and pure marketing. Shorter reach, wider saddles, and adjustable brake levers solve real problems that many women experience. Pink paint and a flower logo solve nothing.",
       "The most important thing a female rider can do is get a professional bike fit — not buy a women-specific frame. A well-fitted unisex bike with appropriate contact points will outperform a poorly-fitted women-specific bike every time. The contact points — saddle, bars, and levers — are where the real differences live.",
     ],
     expertEvidence: [
@@ -2074,7 +2074,7 @@ export const highVolumeQuery11Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "The cycling app market has become subscription-heavy, but the free tools available in 2026 are genuinely excellent. Intervals.icu gives you analytics that rival TrainingPeaks. Strava free still logs rides and shows your basic data. Komoot is a superb route planner even on one free region.",
+      "The cycling app market has become subscription-heavy, but the free tools available in 2026 are seriously good. Intervals.icu gives you analytics that rival TrainingPeaks. Strava free still logs rides and shows your basic data. Komoot is a superb route planner even on one free region.",
       "You do not need to spend 30-50 GBP per month on cycling apps to train effectively. A combination of Strava free, Intervals.icu, and one navigation app covers 90% of what any amateur needs. Save your money for tyres.",
     ],
     expertEvidence: [
@@ -2315,7 +2315,7 @@ export const highVolumeQuery11Answers: AnswerPage[] = [
     ],
     roadmanView: [
       "The indoor training app market is crowded, and every platform claims to be the best. The reality is simpler: if you need social motivation and virtual racing to stay on the trainer, you want Zwift or MyWhoosh. If you need structured training with clear progression, you want TrainerRoad. If you want a bit of both, Wahoo SYSTM tries to bridge the gap.",
-      "The most important thing is that you actually ride the trainer. The best app is the one that gets you to clip in on a dark Wednesday evening in January. If Zwift races do that, use Zwift. If following a structured plan does that, use TrainerRoad. If free is the deciding factor, MyWhoosh is genuinely good and costs nothing.",
+      "The most important thing is that you actually ride the trainer. The best app is the one that gets you to clip in on a dark Wednesday evening in January. If Zwift races do that, use Zwift. If following a structured plan does that, use TrainerRoad. If free is the deciding factor, MyWhoosh is legitimately good and costs nothing.",
     ],
     expertEvidence: [
       {

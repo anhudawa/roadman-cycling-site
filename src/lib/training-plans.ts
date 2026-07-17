@@ -263,7 +263,7 @@ export const EVENTS: TrainingEvent[] = [
     nutritionAngle:
       "8-10+ hours demands 90-110g carbs/hour minimum, and the gut has to be trained for it. Force-drink on a timer once the valley heat lands — Maurienne in July is brutal. Refill bottles at every feed; the climb to Alpe d'Huez is the worst place on earth to run dry.",
     kitAngle:
-      "34x32 minimum, 34x34 if you have it. Gilet and arm warmers stashed for the Galibier descent (genuinely cold even on 35°C days). Clear lenses for the descents. Sunscreen reapplied at every feed — Alpine UV plus an 8-hour day is a sunburn waiting to happen.",
+      "34x32 minimum, 34x34 if you have it. Gilet and arm warmers stashed for the Galibier descent (properly cold even on 35°C days). Clear lenses for the descents. Sunscreen reapplied at every feed — Alpine UV plus an 8-hour day is a sunburn waiting to happen.",
     blogSlug: "marmotte-training-plan",
   },
   {
@@ -357,7 +357,7 @@ export const EVENTS: TrainingEvent[] = [
     nutritionAngle:
       "A cold 8-12 hour day burns more than riders expect, and appetite drops in the cold, so you eat on a timer or not at all. Target 60-90g carbs/hour, front-loaded into the first half before the bergs come thick and fast — you cannot eat mid-cobble. Use the feed zones for real food and a warm drink; Flandrian classics culture runs on rice cake and waffle, not just gels. Insulate one bottle enough that you'll actually drink from it in April.",
     kitAngle:
-      "Tyre choice and pressure decide your day on the cobbles: 28-30mm run softer than you would on tarmac, tubeless if you have it. Compact gearing (34x30 minimum) for the Koppenberg's 22% ramp on wet stone. Pack a rain shell, full-finger gloves and a cap under the helmet — April in Flanders is genuinely cold and wet. Cushioned bar tape, or doubled-up tape, saves your hands across 35km+ of pavé.",
+      "Tyre choice and pressure decide your day on the cobbles: 28-30mm run softer than you would on tarmac, tubeless if you have it. Compact gearing (34x30 minimum) for the Koppenberg's 22% ramp on wet stone. Pack a rain shell, full-finger gloves and a cap under the helmet — April in Flanders is legitimately cold and wet. Cushioned bar tape, or doubled-up tape, saves your hands across 35km+ of pavé.",
   },
   {
     slug: "badlands",

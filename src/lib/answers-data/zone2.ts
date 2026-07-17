@@ -35,7 +35,7 @@ export const zone2Answers: AnswerPage[] = [
     roadmanView: [
       "The phrase gets thrown around constantly, but it's worth being precise about what Zone 2 actually is — because the definition matters. It's not just 'riding easy.' It's riding at an intensity where your aerobic system is the dominant energy source, where fat oxidation is running at near peak, and where you can sustain the effort for hours without significant central nervous system fatigue. That specificity is what makes it the foundation of endurance training.",
       "Anthony has asked this question directly to Stephen Seiler, Dan Lorang, and Vasilis Anastopoulos on the podcast. The answer is consistent: elite riders spend the vast majority of their time here, not because it's comfortable, but because the adaptive signal is real and the fatigue cost is low enough to repeat day after day. The cumulative effect of that is a deeper aerobic engine than any interval programme alone can build.",
-      "The reason amateurs underestimate it is simple: it feels too easy to be doing anything. That feeling is the point. The adaptations from Zone 2 are cellular — you can't feel mitochondria growing — but the payoff appears in how hard you can go when you're genuinely pushing, and how quickly you recover between efforts.",
+      "The reason amateurs underestimate it is simple: it feels too easy to be doing anything. That feeling is the point. The adaptations from Zone 2 are cellular — you can't feel mitochondria growing — but the payoff appears in how hard you can go when you're really pushing, and how quickly you recover between efforts.",
     ],
     expertEvidence: [
       {
@@ -86,7 +86,7 @@ export const zone2Answers: AnswerPage[] = [
       {
         mistake: "Doing only Zone 2 and wondering why fitness plateaus.",
         fix:
-          "Zone 2 is the base, not the whole plan. A trained rider needs a small dose of genuinely hard work — threshold or VO2max sessions — to keep the ceiling rising.",
+          "Zone 2 is the base, not the whole plan. A trained rider needs a small dose of properly hard work — threshold or VO2max sessions — to keep the ceiling rising.",
       },
     ],
     faq: [
@@ -321,7 +321,7 @@ export const zone2Answers: AnswerPage[] = [
         name: "Christian Schrot",
         credential: "Performance Coach, Team Jayco",
         insight:
-          "World Tour coaches consistently describe how even professional riders need constant reminders to keep easy days genuinely easy. The temptation to push harder is universal. Schrot has noted that the difference between pros and amateurs isn't the hard sessions — it's the discipline of actually holding Zone 2 when the legs feel good.",
+          "World Tour coaches consistently describe how even professional riders need constant reminders to keep easy days truly easy. The temptation to push harder is universal. Schrot has noted that the difference between pros and amateurs isn't the hard sessions — it's the discipline of actually holding Zone 2 when the legs feel good.",
         episodeSlug: "ep-2039-why-pros-train-so-easy-what-amateurs-dont-know",
         guestSlug: "christian-schrot",
       },
@@ -352,7 +352,7 @@ export const zone2Answers: AnswerPage[] = [
       {
         mistake: "Riding 'easy' in a group where the pace is socially set, not physiologically set.",
         fix:
-          "Group rides are almost never Zone 2 for all participants. If you want Zone 2, do it solo or with a partner who is genuinely slower than you.",
+          "Group rides are almost never Zone 2 for all participants. If you want Zone 2, do it solo or with a partner who is legitimately slower than you.",
       },
       {
         mistake: "Not noticing the drift — starting at Zone 2 and gradually creeping higher.",
@@ -420,7 +420,7 @@ export const zone2Answers: AnswerPage[] = [
     keyTakeaways: [
       "The talk test catches most Zone 2 drift: full sentences, easy breathing, nothing forced.",
       "Heart rate at 60–72% of max is reliable on normal days; on hot or fatigued days, use RPE instead.",
-      "RPE of 3–4 out of 10 maps closely to Zone 2 for most cyclists — effort present but genuinely sustainable.",
+      "RPE of 3–4 out of 10 maps closely to Zone 2 for most cyclists — effort present but truly sustainable.",
       "A smart trainer on Erg mode can simulate Zone 2 target power without owning a separate power meter.",
     ],
     whoFor: [
@@ -438,7 +438,7 @@ export const zone2Answers: AnswerPage[] = [
     roadmanView: [
       "Power meters became the default advice for Zone 2 partly because they're precise and partly because the cycling industry loves selling equipment. But riders were doing Zone 2 correctly for decades before power meters existed, using the same markers that are still valid today: breathing, talk test, and perceived effort. The tools aren't the training — the training is the training.",
       "The honest risk without a power meter is ego drift. On a good day, with fresh legs and a tailwind, the 'right' Zone 2 pace feels laughably slow. Without a number anchoring the ceiling, most riders gradually push harder without realising. The talk test is your anchor: force yourself to say a full sentence every 10–15 minutes and be honest about whether you're working to say it.",
-      "If you're serious about Zone 2 and genuinely don't want to buy a power meter, a heart rate strap and a free HR zone calculator give you everything you need. Set your Zone 2 ceiling at 72% of max HR and hold below it. On hot days or when fatigued, defer to RPE over HR — those are the days when both metrics lie in opposite directions.",
+      "If you're serious about Zone 2 and really don't want to buy a power meter, a heart rate strap and a free HR zone calculator give you everything you need. Set your Zone 2 ceiling at 72% of max HR and hold below it. On hot days or when fatigued, defer to RPE over HR — those are the days when both metrics lie in opposite directions.",
     ],
     expertEvidence: [
       {
@@ -570,7 +570,7 @@ export const zone2Answers: AnswerPage[] = [
     roadmanView: [
       "Indoor Zone 2 is where the biggest misread happens. A rider sets ERG mode to 65% of FTP, hops on the trainer, and by 45 minutes their HR has climbed 15 bpm above their Zone 2 ceiling even though the power hasn't moved. They conclude Zone 2 at this power is wrong, bump down, and end up doing recovery-pace riding that isn't doing much. The real problem is the room temperature.",
       "This is a well-documented effect: indoor training without adequate ventilation generates substantial heat, and the body's response — including elevated HR — is appropriate and unavoidable. The practical fix is simple and free: a floor fan aimed at the chest. With good airflow, indoor and outdoor cardiac responses at the same power come much closer together, and your Zone 2 sessions become what they're supposed to be.",
-      "The other indoor challenge is mental. Three hours on a trainer in Zone 2 is genuinely difficult to complete without drifting or cutting short. Build in long-form audio content — a podcast, audiobook, or film — before the session, not partway through when you're already bored. The best Zone 2 riders treat it as media consumption time and stop checking the clock.",
+      "The other indoor challenge is mental. Three hours on a trainer in Zone 2 is legitimately difficult to complete without drifting or cutting short. Build in long-form audio content — a podcast, audiobook, or film — before the session, not partway through when you're already bored. The best Zone 2 riders treat it as media consumption time and stop checking the clock.",
     ],
     expertEvidence: [
       {
@@ -731,7 +731,7 @@ export const zone2Answers: AnswerPage[] = [
       {
         title: "Lengthen your longest ride by 15 minutes per week",
         detail:
-          "The aerobic signal scales with duration. Build your weekly long ride from 60 minutes toward 3 hours over 8–10 weeks. Keep the pace genuinely easy throughout — the last 45 minutes of a long Zone 2 ride is where much of the fat-oxidation adaptation is triggered.",
+          "The aerobic signal scales with duration. Build your weekly long ride from 60 minutes toward 3 hours over 8–10 weeks. Keep the pace properly easy throughout — the last 45 minutes of a long Zone 2 ride is where much of the fat-oxidation adaptation is triggered.",
       },
       {
         title: "Do Zone 2 rides fasted once a week",
@@ -748,7 +748,7 @@ export const zone2Answers: AnswerPage[] = [
       {
         mistake: "Doing Zone 2 at Zone 3 pace and calling it base training.",
         fix:
-          "The specific benefits of Zone 2 — mitochondrial growth, fat oxidation — require the correct intensity. Zone 3 riding doesn't produce the same cellular signals. Keep it genuinely easy.",
+          "The specific benefits of Zone 2 — mitochondrial growth, fat oxidation — require the correct intensity. Zone 3 riding doesn't produce the same cellular signals. Keep it truly easy.",
       },
       {
         mistake: "Treating long rides as 'bonus' and skipping them when life is busy.",
@@ -836,7 +836,7 @@ export const zone2Answers: AnswerPage[] = [
     roadmanView: [
       "The question of how long matters because Zone 2 adaptation isn't a light switch — it's dose-dependent, and duration is the primary dial. The aerobic signal from Zone 2 builds throughout the ride, and the fat-oxidation machinery gets particularly active in the later stages of a long, easy effort. That's why a single 2-hour ride is not equivalent to four 30-minute rides even if the total time matches.",
       "The practical challenge is that a 90-minute Zone 2 ride takes scheduling, motivation, and — if it's indoors — serious mental fortitude. Anthony's honest advice on the podcast is to prioritise one long Zone 2 ride per week as the anchor session, and then let the remaining easy riding be whatever duration fits the week. Protect the long ride. Everything else is a bonus.",
-      "For riders with genuinely compressed schedules — four weekday rides of 45 minutes — the honest answer is that 45 minutes at Zone 2 is still useful as recovery-plus, but it's not building much aerobic base on its own. The weekend 2-hour ride becomes non-negotiable. The week is built around that session, not the reverse.",
+      "For riders with truly compressed schedules — four weekday rides of 45 minutes — the honest answer is that 45 minutes at Zone 2 is still useful as recovery-plus, but it's not building much aerobic base on its own. The weekend 2-hour ride becomes non-negotiable. The week is built around that session, not the reverse.",
     ],
     expertEvidence: [
       {
@@ -966,8 +966,8 @@ export const zone2Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Tempo training is not bad training — it's just the zone that amateurs live in when they haven't been honest about their intensity distribution. It's the pace that feels like 'real' training, that produces enough discomfort to feel productive, and that is genuinely too slow to drive the VO2max adaptations that hard intervals would. It costs significantly more to recover from than Zone 2, and it delivers a lower return on that recovery cost.",
-      "The polarised training model that Seiler's research describes explicitly identifies this middle zone as the problem area. Not because tempo riding never works, but because when it dominates your weekly time, it crowds out both the Zone 2 base work and the genuinely hard sessions that drive the adaptations at the extremes. You end up moderately fit and permanently moderately fatigued.",
+      "Tempo training is not bad training — it's just the zone that amateurs live in when they haven't been honest about their intensity distribution. It's the pace that feels like 'real' training, that produces enough discomfort to feel productive, and that is too slow to drive the VO2max adaptations that hard intervals would. It costs significantly more to recover from than Zone 2, and it delivers a lower return on that recovery cost.",
+      "The polarised training model that Seiler's research describes explicitly identifies this middle zone as the problem area. Not because tempo riding never works, but because when it dominates your weekly time, it crowds out both the Zone 2 base work and the properly hard sessions that drive the adaptations at the extremes. You end up moderately fit and permanently moderately fatigued.",
       "Tempo has a legitimate role — it's useful for building race-specific durability, and sweet-spot training that sits in the upper end of this zone is a practical tool for time-limited riders. The distinction is that tempo should be a deliberate choice, not an accidental default. Know when you're doing it, know why, and know that Zone 2 should still form the majority of your week.",
     ],
     expertEvidence: [
@@ -992,7 +992,7 @@ export const zone2Answers: AnswerPage[] = [
       {
         title: "Audit your last four weeks of riding intensity",
         detail:
-          "In TrainingPeaks or intervals.icu, pull up time in zone. If more than 30% of your total time is in Zone 3 or tempo, and less than 50% is genuinely in Zone 2 or below, your distribution needs recalibrating.",
+          "In TrainingPeaks or intervals.icu, pull up time in zone. If more than 30% of your total time is in Zone 3 or tempo, and less than 50% is truly in Zone 2 or below, your distribution needs recalibrating.",
       },
       {
         title: "Place tempo work strategically, not as default",
@@ -1078,7 +1078,7 @@ export const zone2Answers: AnswerPage[] = [
       "Zone 2 has a low overtraining risk, but doing only Zone 2 plateaus a trained cyclist within months. The real risk isn't too much Zone 2 — it's not enough intensity alongside it.",
     pillar: "coaching",
     directAnswer:
-      "You can't easily overtrain on Zone 2 — it's the lowest fatigue-cost zone by definition. But you can under-train by doing only Zone 2 and skipping hard work. A trained cyclist who removes all intensity will plateau within 8–12 weeks as fitness degrades at the ceiling. The right balance is roughly 80% Zone 2 with 20% genuinely hard work. More Zone 2 than that simply adds volume; it doesn't break you.",
+      "You can't easily overtrain on Zone 2 — it's the lowest fatigue-cost zone by definition. But you can under-train by doing only Zone 2 and skipping hard work. A trained cyclist who removes all intensity will plateau within 8–12 weeks as fitness degrades at the ceiling. The right balance is roughly 80% Zone 2 with 20% truly hard work. More Zone 2 than that simply adds volume; it doesn't break you.",
     keyTakeaways: [
       "Zone 2 has a very low overtraining risk — it is the recovery-friendly training stimulus by design.",
       "Doing only Zone 2 eventually plateaus a trained rider because threshold and VO2max work are needed to raise the ceiling.",
@@ -1100,7 +1100,7 @@ export const zone2Answers: AnswerPage[] = [
     roadmanView: [
       "The short answer is no — not in the way most people mean. Zone 2's fatigue cost is low enough that the body tolerates enormous amounts of it. Professional cyclists regularly accumulate 20–30 hours a week of almost exclusively Zone 2 during base phases. The limiting factor for them isn't overtraining — it's time. You'd need to be a full-time athlete to even approach the upper end of productive Zone 2 volume.",
       "For a serious amateur riding 8–12 hours a week, the practical concern is the opposite. Not too much Zone 2, but not enough intensity alongside it. Once you're past the first 12 weeks of base building, your ceiling will stop rising without threshold and VO2max work. The 80/20 rule exists precisely because neither extreme works alone.",
-      "The honest nuance here is that what people often call 'too much Zone 2 without progress' is actually 'too much Zone 3 without the specific adaptations of either Zone 2 or high intensity.' If your riding feels stuck and you're doing lots of 'easy' training, check whether that easy is actually Zone 2. For most riders, the fix is making the easy genuinely easy, not adding intensity.",
+      "The honest nuance here is that what people often call 'too much Zone 2 without progress' is actually 'too much Zone 3 without the specific adaptations of either Zone 2 or high intensity.' If your riding feels stuck and you're doing lots of 'easy' training, check whether that easy is actually Zone 2. For most riders, the fix is making the easy properly easy, not adding intensity.",
     ],
     expertEvidence: [
       {
@@ -1496,7 +1496,7 @@ export const zone2Answers: AnswerPage[] = [
     roadmanView: [
       "The hardest thing to sell to ambitious amateur cyclists is patience with the base. Anthony has heard this from every coach he's spoken to on the podcast — Dan Lorang, John Wakefield, Vasilis Anastopoulos — and the timeline never changes: the real aerobic base takes years, not weeks. The first 12 weeks lay foundations that aren't yet visible in your power numbers but are happening at the cellular level.",
       "The practical test that helps with the patience question is the efficiency factor: note the power you produce at a fixed low heart rate (say, 125 bpm) at the start of your base phase and every two weeks thereafter. If the base is building, that number creeps upward — more watts for the same cardiac effort. It moves slowly. But it moves. That's the evidence that the cellular work is happening.",
-      "The mistake is demanding visible progress within a month and abandoning the base when it doesn't appear. The riders who see the biggest long-term gains from Zone 2 work are the ones who ran a second and third base phase after the first one, building each season on the previous year's foundation. The compounding effect of consecutive winters in Zone 2 is what produces the riders who are genuinely faster at 45 than they were at 35.",
+      "The mistake is demanding visible progress within a month and abandoning the base when it doesn't appear. The riders who see the biggest long-term gains from Zone 2 work are the ones who ran a second and third base phase after the first one, building each season on the previous year's foundation. The compounding effect of consecutive winters in Zone 2 is what produces the riders who are legitimately faster at 45 than they were at 35.",
     ],
     expertEvidence: [
       {
@@ -1564,7 +1564,7 @@ export const zone2Answers: AnswerPage[] = [
       {
         question: "How do I know my aerobic base is strong enough to move to a build phase?",
         answer:
-          "Look for three signals: efficiency factor has risen over 8–10 weeks; 90-minute Zone 2 rides feel genuinely easy; interval quality is high when you introduce a test session. All three together suggest the base has sufficient depth for a build phase.",
+          "Look for three signals: efficiency factor has risen over 8–10 weeks; 90-minute Zone 2 rides feel properly easy; interval quality is high when you introduce a test session. All three together suggest the base has sufficient depth for a build phase.",
       },
       {
         question: "Does age affect how long it takes to build an aerobic base?",
@@ -1611,7 +1611,7 @@ export const zone2Answers: AnswerPage[] = [
       "Zone 2 that feels easy is Zone 2 done correctly — the adaptation is cellular, not perceptual.",
       "The metric to track is efficiency factor: more watts at the same low HR confirms the work is building.",
       "Riding harder to make Zone 2 'feel' like training converts it into Zone 3 — and breaks the specific adaptation.",
-      "Most riders abandon Zone 2 at the point when it starts working — when easy riding feels genuinely easy rather than like a sacrifice.",
+      "Most riders abandon Zone 2 at the point when it starts working — when easy riding feels truly easy rather than like a sacrifice.",
     ],
     whoFor: [
       {
@@ -1741,7 +1741,7 @@ export const zone2Answers: AnswerPage[] = [
       "A Zone 2 ride is a training session — roughly 56–75% of FTP, ridden long enough to build aerobic fitness. A recovery ride sits below that, under about 55% of FTP and usually under an hour, with one job: move blood through tired legs without adding stress. The mistake is riding recovery days in Zone 2, which quietly turns rest into another training load.",
     keyTakeaways: [
       "Zone 2 is a stimulus you adapt to; a recovery ride is rest with the wheels turning.",
-      "Recovery rides sit below Zone 2 — under ~55% FTP, short, and genuinely gentle.",
+      "Recovery rides sit below Zone 2 — under ~55% FTP, short, and properly gentle.",
       "If a recovery ride leaves you tired, it was a Zone 2 ride in disguise.",
       "On a true rest week, easy doesn't mean Zone 2 — it means easier than that.",
     ],
@@ -1775,7 +1775,7 @@ export const zone2Answers: AnswerPage[] = [
         name: "Christian Schrot",
         credential: "Performance Coach, Team Jayco",
         insight:
-          "Pros ride their easy days genuinely easy and their recovery days softer still. Amateurs lose progress by treating every ride as a chance to push — the recovery spin is supposed to feel almost too gentle.",
+          "Pros ride their easy days truly easy and their recovery days softer still. Amateurs lose progress by treating every ride as a chance to push — the recovery spin is supposed to feel almost too gentle.",
         episodeSlug: "ep-2039-why-pros-train-so-easy-what-amateurs-dont-know",
         guestSlug: "christian-schrot",
       },
@@ -1811,7 +1811,7 @@ export const zone2Answers: AnswerPage[] = [
       {
         mistake: "Skipping recovery rides and sitting fully still instead.",
         fix:
-          "For many riders gentle spinning clears the legs better than total rest — just keep it genuinely easy and brief.",
+          "For many riders gentle spinning clears the legs better than total rest — just keep it properly easy and brief.",
       },
     ],
     faq: [
@@ -1843,7 +1843,7 @@ export const zone2Answers: AnswerPage[] = [
       {
         question: "Can I do intervals and a recovery ride on the same day?",
         answer:
-          "You can, but it's rarely worth it. If you've done a hard session, a separate short spin later can help flush the legs. Just don't turn it into a second workout — keep it short and genuinely easy.",
+          "You can, but it's rarely worth it. If you've done a hard session, a separate short spin later can help flush the legs. Just don't turn it into a second workout — keep it short and truly easy.",
       },
     ],
     relatedEpisodes: [
@@ -1877,7 +1877,7 @@ export const zone2Answers: AnswerPage[] = [
       "Most amateurs should do 3–4 Zone 2 sessions a week, filling roughly 80% of total training time. Why total hours matter more than session count, and how to build the week.",
     pillar: "coaching",
     directAnswer:
-      "For most amateurs riding 6–10 hours a week, that means 3–4 Zone 2 sessions, with the rest of the week given to 1–2 genuinely hard sessions. But session count is the wrong unit to think in: aim for roughly 80% of your total weekly training time in Zone 2, anchored by one long ride. Two riders doing three Zone 2 sessions can have completely different weeks depending on duration.",
+      "For most amateurs riding 6–10 hours a week, that means 3–4 Zone 2 sessions, with the rest of the week given to 1–2 properly hard sessions. But session count is the wrong unit to think in: aim for roughly 80% of your total weekly training time in Zone 2, anchored by one long ride. Two riders doing three Zone 2 sessions can have completely different weeks depending on duration.",
     keyTakeaways: [
       "Target 80% of total weekly training time in Zone 2 — for most amateurs that's 3–4 sessions across a 6–10 hour week.",
       "Total Zone 2 hours matter more than session count: one 2-hour ride does more than three 40-minute spins.",
@@ -1955,14 +1955,14 @@ export const zone2Answers: AnswerPage[] = [
       {
         mistake: "Riding every day at moderate intensity because daily riding sounds disciplined.",
         fix:
-          "Daily riding is fine — but only if most of it is genuinely easy. Riding seven days a week in the grey zone is worse than riding four days with a clear easy/hard split.",
+          "Daily riding is fine — but only if most of it is really easy. Riding seven days a week in the grey zone is worse than riding four days with a clear easy/hard split.",
       },
     ],
     faq: [
       {
         question: "Can I do Zone 2 every day of the week?",
         answer:
-          "Yes, if your total volume and life allow it. Zone 2's low fatigue cost is exactly what makes daily riding sustainable for pros. The risk for amateurs is that daily riding tempts you to push the pace — keep every easy day genuinely easy and daily Zone 2 is one of the best things you can do for your aerobic base.",
+          "Yes, if your total volume and life allow it. Zone 2's low fatigue cost is exactly what makes daily riding sustainable for pros. The risk for amateurs is that daily riding tempts you to push the pace — keep every easy day properly easy and daily Zone 2 is one of the best things you can do for your aerobic base.",
       },
       {
         question: "Is two Zone 2 sessions a week enough?",
@@ -2043,7 +2043,7 @@ export const zone2Answers: AnswerPage[] = [
     roadmanView: [
       "This is one of the most common questions Anthony gets, and the honest answer frustrates people who want a single number to follow: it's not heart rate or power, it's both, doing different jobs. Power measures what you're putting out — the actual mechanical load, available instantly, identical whether it's January and freezing or August and 30 degrees. Heart rate measures what's happening inside you in response to that load, which is useful but contaminated by everything from your morning coffee to last night's sleep.",
       "Here's where it gets interesting. The two metrics drift apart over a long ride — power dead steady while HR climbs 10 beats. That's cardiac drift, and it's the single biggest source of confusion in Zone 2. A rider sees the HR creeping over the ceiling and slows down, when the power was telling the truth all along. The fix is to decide in advance which metric leads. For Zone 2, on a normal day, calibrate to HR; on a hot, fatigued, or high-altitude day, anchor to power and treat the high HR as information, not an instruction to back off.",
-      "And if you don't own a power meter, don't let this question stall you. Zone 2 is forgiving — it's the one intensity where being a few watts or beats off the target genuinely doesn't matter much. Heart rate plus the talk test will keep you honest. The riders who got fast in the decades before power meters existed weren't missing anything for their easy days. Power earns its keep on the hard sessions, where precision matters more.",
+      "And if you don't own a power meter, don't let this question stall you. Zone 2 is forgiving — it's the one intensity where being a few watts or beats off the target really doesn't matter much. Heart rate plus the talk test will keep you honest. The riders who got fast in the decades before power meters existed weren't missing anything for their easy days. Power earns its keep on the hard sessions, where precision matters more.",
     ],
     expertEvidence: [
       {
@@ -2106,7 +2106,7 @@ export const zone2Answers: AnswerPage[] = [
       {
         question: "Why is my heart rate high in Zone 2 even when my power is low?",
         answer:
-          "Usually heat, dehydration, caffeine, poor sleep, or accumulated fatigue. Any of these raises HR at a given power. If your power is genuinely in Zone 2 and HR is high, the power is telling the truth — treat the elevated HR as a signal about your condition, not a sign you're working too hard.",
+          "Usually heat, dehydration, caffeine, poor sleep, or accumulated fatigue. Any of these raises HR at a given power. If your power is properly in Zone 2 and HR is high, the power is telling the truth — treat the elevated HR as a signal about your condition, not a sign you're working too hard.",
       },
       {
         question: "Can I just use heart rate for Zone 2 and ignore power?",
@@ -2178,7 +2178,7 @@ export const zone2Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Fat oxidation is one of those topics where the internet has half the story and runs with it. 'Zone 2 burns fat' is true, but it gets mangled into 'Zone 2 is the fat-loss zone', which is a different and largely wrong claim. What Zone 2 actually does is train the machinery that lets you burn fat as a fuel at higher and higher intensities. That's a performance adaptation, not a weight-loss trick — and it's one of the genuinely important reasons easy riding earns its 80%.",
+      "Fat oxidation is one of those topics where the internet has half the story and runs with it. 'Zone 2 burns fat' is true, but it gets mangled into 'Zone 2 is the fat-loss zone', which is a different and largely wrong claim. What Zone 2 actually does is train the machinery that lets you burn fat as a fuel at higher and higher intensities. That's a performance adaptation, not a weight-loss trick — and it's one of the truly important reasons easy riding earns its 80%.",
       "Here's the mechanism, made simple. Every cell has mitochondria — the little engines that turn fuel into energy. Zone 2 riding is the strongest signal to build more of them, and to build more of the enzymes that ferry fat into them. After 8–12 weeks of consistent base work, the same rider at the same power is burning a higher proportion of fat and a lower proportion of carbohydrate. Since your fat stores are effectively bottomless and your carbohydrate stores run out, that shift is what lets you hold a hard pace deep into a long ride instead of cracking.",
       "The signal that it's working is subtle and slow, which is exactly why so many riders give up before the payoff. You won't feel your mitochondria multiplying. What you'll notice, months in, is that you stop needing a gel on the two-hour ride, that your power at the same heart rate has crept up, and that the back end of long efforts hurts less. That's fat oxidation improving. Anthony's conversations with the World Tour coaches keep landing on the same point: this is the adaptation hard intervals can't buy you.",
     ],
@@ -2204,7 +2204,7 @@ export const zone2Answers: AnswerPage[] = [
       {
         title: "Build duration in your Zone 2 rides",
         detail:
-          "Fat-oxidation adaptation scales with time under stimulus. Grow your longest weekly ride from 60 minutes toward 2–3 hours over 8–10 weeks. Much of the fat-burning signal is strongest in the final third of a long, genuinely easy effort.",
+          "Fat-oxidation adaptation scales with time under stimulus. Grow your longest weekly ride from 60 minutes toward 2–3 hours over 8–10 weeks. Much of the fat-burning signal is strongest in the final third of a long, properly easy effort.",
       },
       {
         title: "Hold the lower half of Zone 2 for fat-ox work",
@@ -2302,7 +2302,7 @@ export const zone2Answers: AnswerPage[] = [
       "Zone 2 alone makes most beginners faster for 8–12 weeks, then progress stalls without hard work. Why the base needs a 20% dose of intensity to keep raising your ceiling.",
     pillar: "coaching",
     directAnswer:
-      "For a while, yes — then no. An untrained or undertrained rider will get meaningfully faster on Zone 2 alone for the first 8–12 weeks, as the aerobic base builds from a low starting point. But the gains plateau without a small dose of genuinely hard work. Zone 2 builds the engine; threshold and VO2max sessions raise its ceiling. You need roughly 80% easy and 20% hard, not 100% easy.",
+      "For a while, yes — then no. An untrained or undertrained rider will get meaningfully faster on Zone 2 alone for the first 8–12 weeks, as the aerobic base builds from a low starting point. But the gains plateau without a small dose of truly hard work. Zone 2 builds the engine; threshold and VO2max sessions raise its ceiling. You need roughly 80% easy and 20% hard, not 100% easy.",
     keyTakeaways: [
       "Zone 2 alone produces real gains for 8–12 weeks in beginners and undertrained riders, then progress flattens.",
       "Zone 2 builds the aerobic base; high-intensity work raises VO2max and threshold — the ceiling the base sits under.",
@@ -2322,9 +2322,9 @@ export const zone2Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "This question deserves an honest answer rather than a slogan, because both extremes online are wrong. The 'just ride Zone 2' crowd oversells it, and the 'Zone 2 is junk, only intervals work' crowd has it backwards. The truth sits in the middle and depends entirely on where you're starting from. If you're undertrained, Zone 2 alone will make you faster — genuinely, measurably — for a couple of months, because you're building an aerobic base off a low floor. Enjoy that window. It's real.",
+      "This question deserves an honest answer rather than a slogan, because both extremes online are wrong. The 'just ride Zone 2' crowd oversells it, and the 'Zone 2 is junk, only intervals work' crowd has it backwards. The truth sits in the middle and depends entirely on where you're starting from. If you're undertrained, Zone 2 alone will make you faster — measurably — for a couple of months, because you're building an aerobic base off a low floor. Enjoy that window. It's real.",
       "But the window closes. Once the base is built, Zone 2 keeps maintaining it without continuing to raise your ceiling. To keep getting faster you need a small, deliberate dose of work that hurts — threshold efforts, VO2max intervals — the 20% that the 80/20 model is named for. Anthony has put this to coach after coach on the podcast and the answer never wavers: the base is the foundation, but a foundation isn't a house. The hard sessions are what build height on top of all that aerobic groundwork.",
-      "Here's the fixable mistake. Riders discover Zone 2, see early progress, and conclude that more Zone 2 is always better. So when they plateau, they add easy volume — and nothing changes, because volume wasn't the limiter. The limiter was the missing 20%. The fix isn't to abandon Zone 2; it's to keep the big easy base and bolt one or two genuinely hard sessions onto it each week. That's when the plateau breaks.",
+      "Here's the fixable mistake. Riders discover Zone 2, see early progress, and conclude that more Zone 2 is always better. So when they plateau, they add easy volume — and nothing changes, because volume wasn't the limiter. The limiter was the missing 20%. The fix isn't to abandon Zone 2; it's to keep the big easy base and bolt one or two truly hard sessions onto it each week. That's when the plateau breaks.",
     ],
     expertEvidence: [
       {
@@ -2348,7 +2348,7 @@ export const zone2Answers: AnswerPage[] = [
       {
         title: "Ride the first 8–12 weeks heavy on Zone 2",
         detail:
-          "If you're starting from low fitness, build the base first. Make 80%+ of early training Zone 2, with maybe one light intensity session a week. This is the one phase where near-pure easy riding genuinely drives progress.",
+          "If you're starting from low fitness, build the base first. Make 80%+ of early training Zone 2, with maybe one light intensity session a week. This is the one phase where near-pure easy riding really drives progress.",
       },
       {
         title: "Add the 20% hard work once the base is laid",
@@ -2407,7 +2407,7 @@ export const zone2Answers: AnswerPage[] = [
       {
         question: "Should beginners do any hard work in the first few weeks?",
         answer:
-          "A little is fine, but it isn't the priority. The early base block is the one time near-pure Zone 2 genuinely drives improvement, so beginners can keep intensity light at first and introduce structured hard sessions once the aerobic foundation is established.",
+          "A little is fine, but it isn't the priority. The early base block is the one time near-pure Zone 2 really drives improvement, so beginners can keep intensity light at first and introduce structured hard sessions once the aerobic foundation is established.",
       },
     ],
     relatedEpisodes: [
@@ -2585,7 +2585,7 @@ export const zone2Answers: AnswerPage[] = [
       "Yes — do the intervals first, then add Zone 2, or extend an interval session with easy riding. Combining them frees up easy days and concentrates hard work, but get the order and recovery right.",
     pillar: "coaching",
     directAnswer:
-      "Yes, and it's often smarter than splitting them. Do the hard intervals first, while you're fresh, then add 30–90 minutes of Zone 2 on the same ride — or extend an interval session with easy volume either side. Combining them concentrates your hard days and frees up genuinely easy days for recovery. The one rule: never do quality intervals at the fag end of a long Zone 2 ride when you're already tired.",
+      "Yes, and it's often smarter than splitting them. Do the hard intervals first, while you're fresh, then add 30–90 minutes of Zone 2 on the same ride — or extend an interval session with easy volume either side. Combining them concentrates your hard days and frees up truly easy days for recovery. The one rule: never do quality intervals at the fag end of a long Zone 2 ride when you're already tired.",
     keyTakeaways: [
       "Intervals first, Zone 2 after — do the quality work fresh, then add easy volume on the same ride.",
       "Combining hard and easy in one session concentrates hard days and protects easy days for true recovery.",
@@ -2605,16 +2605,16 @@ export const zone2Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "This is a really good question because the instinct — keep hard and easy completely separate — isn't actually how most well-built training weeks work. Combining Zone 2 and intervals in a single session is not only allowed, it's often the cleverer move, especially if you can't ride every day. The principle behind it is concentration: you want a few genuinely hard days and a few genuinely easy days, not a smear of moderate days. Stacking intervals and easy volume into the same ride keeps your hard days hard and leaves room for easy days that are actually easy.",
+      "This is a really good question because the instinct — keep hard and easy completely separate — isn't actually how most well-built training weeks work. Combining Zone 2 and intervals in a single session is not only allowed, it's often the cleverer move, especially if you can't ride every day. The principle behind it is concentration: you want a few properly hard days and a few truly easy days, not a smear of moderate days. Stacking intervals and easy volume into the same ride keeps your hard days hard and leaves room for easy days that are actually easy.",
       "But order matters, and this is where riders trip up. Do the quality first, while the legs are fresh — warm up, hit your intervals with full power, nail the targets — then drop into Zone 2 for the rest of the ride to add aerobic volume on top. What you must not do is the reverse: grind out a long Zone 2 ride and then try to do meaningful intervals at the end, when you're already cooked. The power won't be there, the session quality tanks, and you've turned a good idea into junk. Anthony's seen plenty of riders sabotage good intervals exactly this way.",
-      "Here's the fixable part most people miss. When you combine them, the whole session counts as a hard day. A two-hour ride with VO2max intervals in the first 40 minutes and easy spinning after is not a Zone 2 ride with a bit of intensity — it's a hard day with extra fatigue. Plan your recovery around that. Combine smartly and your week breathes: two or three hard-plus-easy days, the rest genuinely easy or off. Combine carelessly and every day becomes a tiring middle that builds nothing.",
+      "Here's the fixable part most people miss. When you combine them, the whole session counts as a hard day. A two-hour ride with VO2max intervals in the first 40 minutes and easy spinning after is not a Zone 2 ride with a bit of intensity — it's a hard day with extra fatigue. Plan your recovery around that. Combine smartly and your week breathes: two or three hard-plus-easy days, the rest really easy or off. Combine carelessly and every day becomes a tiring middle that builds nothing.",
     ],
     expertEvidence: [
       {
         name: "Professor Stephen Seiler",
         credential: "Exercise physiologist, polarised-training researcher",
         insight:
-          "Seiler's polarised approach concentrates intensity into distinct hard sessions while keeping the bulk of training easy — and combining intervals with surrounding easy volume in a single session is consistent with that. The key is preserving the quality of the hard efforts and keeping the easy portions genuinely easy, so the day stays clearly polarised rather than drifting into a moderate, grey-zone average.",
+          "Seiler's polarised approach concentrates intensity into distinct hard sessions while keeping the bulk of training easy — and combining intervals with surrounding easy volume in a single session is consistent with that. The key is preserving the quality of the hard efforts and keeping the easy portions truly easy, so the day stays clearly polarised rather than drifting into a moderate, grey-zone average.",
         episodeSlug: "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
         guestSlug: "stephen-seiler",
       },
@@ -2641,7 +2641,7 @@ export const zone2Answers: AnswerPage[] = [
       {
         title: "Count the combined ride as a hard day",
         detail:
-          "Whenever a ride contains real intervals, log it as a hard day regardless of how much easy riding is attached. Follow it with a genuinely easy day or rest — not another quality session — so the hard work is absorbed.",
+          "Whenever a ride contains real intervals, log it as a hard day regardless of how much easy riding is attached. Follow it with a properly easy day or rest — not another quality session — so the hard work is absorbed.",
       },
     ],
     commonMistakes: [
@@ -2658,7 +2658,7 @@ export const zone2Answers: AnswerPage[] = [
       {
         mistake: "Letting the easy portion drift into the grey zone after the intervals.",
         fix:
-          "Once the intervals are done, ride the rest genuinely easy. If the 'Zone 2' portion creeps into Zone 3, you've turned a polarised day into a moderate one that builds little.",
+          "Once the intervals are done, ride the rest truly easy. If the 'Zone 2' portion creeps into Zone 3, you've turned a polarised day into a moderate one that builds little.",
       },
     ],
     faq: [
@@ -2680,7 +2680,7 @@ export const zone2Answers: AnswerPage[] = [
       {
         question: "How much Zone 2 should I add after intervals?",
         answer:
-          "Anywhere from 30 to 90 minutes, depending on your goals and how the intervals went. Keep it genuinely easy — the work that mattered is already done, so the rest is aerobic volume, not more intensity. Don't let the easy portion creep up in effort.",
+          "Anywhere from 30 to 90 minutes, depending on your goals and how the intervals went. Keep it properly easy — the work that mattered is already done, so the rest is aerobic volume, not more intensity. Don't let the easy portion creep up in effort.",
       },
       {
         question: "Will adding Zone 2 after hard intervals slow my recovery?",

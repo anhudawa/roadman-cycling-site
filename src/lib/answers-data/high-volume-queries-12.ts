@@ -112,7 +112,7 @@ export const highVolumeQuery12Answers: AnswerPage[] = [
       {
         question: "Is riding every day better than three times a week?",
         answer:
-          "Not necessarily. Three quality sessions with rest days often produces better adaptation than seven mediocre sessions. Recovery is where fitness is built. If you ride daily, ensure at least three days are genuinely easy.",
+          "Not necessarily. Three quality sessions with rest days often produces better adaptation than seven mediocre sessions. Recovery is where fitness is built. If you ride daily, ensure at least three days are properly easy.",
       },
       {
         question: "Do older riders take longer to see fitness gains?",

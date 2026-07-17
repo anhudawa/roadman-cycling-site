@@ -40,7 +40,7 @@ function diagnose(
       summary:
         "The grey zone. You're riding too hard to recover, too easy to stimulate adaptation. Classic plateau pattern.",
       prescription:
-        "Cut the mid-intensity entirely for 4 weeks. 80% of rides genuinely easy (nose-breathing pace), 20% genuinely hard (4x8 min at VO2max).",
+        "Cut the mid-intensity entirely for 4 weeks. 80% of rides properly easy (nose-breathing pace), 20% properly hard (4x8 min at VO2max).",
       sessionName: "The Norwegian 4x8",
       sessionDetail:
         "Warm up 15 min. 4x8 min at the highest sustainable intensity, 2-min spin between. Cool down. Once a week. Ride everything else easy.",
@@ -80,7 +80,7 @@ function diagnose(
   if (volume === "high" && distribution === "mostly-easy") {
     return {
       summary:
-        "High volume, mostly easy — you have the base, but you're missing the ceiling work. Adding a small, precise dose of genuinely hard intensity is the next step.",
+        "High volume, mostly easy — you have the base, but you're missing the ceiling work. Adding a small, precise dose of actually hard intensity is the next step.",
       prescription:
         "Keep the volume. Add one weekly VO2 max session. That's it. Don't overthink the rest.",
       sessionName: "4x4 VO2 max",

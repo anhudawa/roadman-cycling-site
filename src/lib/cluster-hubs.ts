@@ -207,7 +207,7 @@ const ZONE_2: ClusterHubDef = {
   newArticleSlugs: ["find-your-zone-2-lactate-testing-san-millan"],
   pillarContent: `The cycling internet will tell you Zone 2 is "easy riding." That is true and useless in equal measure. Easy compared to what? Easy by whose heart rate? The reason most amateurs get nothing from their Zone 2 is that they ride it by feel, the feel is wrong, and they spend the whole session 15 watts into no-man's-land — too hard to build a base, too easy to build a top end. The grey zone. The single most common mistake in amateur training.
 
-Here is the position, and it comes straight from the people who coach the best riders in the world. Professor Stephen Seiler's research on training-intensity distribution showed that elite endurance athletes spend roughly 80% of their training time genuinely easy. Dan Lorang, who has coached Tadej Pogačar and Jonas Vingegaard, prescribes the same. The hard part isn't believing it — it's holding yourself to it. [The complete guide to Zone 2 training](/blog/zone-2-training-complete-guide) lays out the why and the how.
+Here is the position, and it comes straight from the people who coach the best riders in the world. Professor Stephen Seiler's research on training-intensity distribution showed that elite endurance athletes spend roughly 80% of their training time properly easy. Dan Lorang, who has coached Tadej Pogačar and Jonas Vingegaard, prescribes the same. The hard part isn't believing it — it's holding yourself to it. [The complete guide to Zone 2 training](/blog/zone-2-training-complete-guide) lays out the why and the how.
 
 ## Find YOUR Zone 2, not a textbook's
 
@@ -219,9 +219,9 @@ Power is precise, heart rate is honest, and RPE is the one that catches you drif
 
 ## Where Zone 2 sits in the bigger picture
 
-Zone 2 is not a training plan on its own — it is the broad base of a [polarised approach](/blog/polarised-training-cycling-complete-guide), where most riding is genuinely easy and the rest is genuinely hard, with very little in between. If you've ever wondered whether you should be doing sweet spot instead, [sweet spot vs threshold vs polarised](/blog/sweet-spot-vs-threshold-vs-polarised-comparison) is the decision tree. And because the words get used loosely, [Zone 2 vs endurance training](/blog/zone-2-vs-endurance-training) draws the line between the two — they are not the same thing.
+Zone 2 is not a training plan on its own — it is the broad base of a [polarised approach](/blog/polarised-training-cycling-complete-guide), where most riding is properly easy and the rest is properly hard, with very little in between. If you've ever wondered whether you should be doing sweet spot instead, [sweet spot vs threshold vs polarised](/blog/sweet-spot-vs-threshold-vs-polarised-comparison) is the decision tree. And because the words get used loosely, [Zone 2 vs endurance training](/blog/zone-2-vs-endurance-training) draws the line between the two — they are not the same thing.
 
-Log it in [TrainingPeaks](https://www.trainingpeaks.com) and watch your time-in-zone honestly. The riders who break through aren't doing anything exotic. They are just genuinely easy on the easy days, for the first time in their cycling lives.`,
+Log it in [TrainingPeaks](https://www.trainingpeaks.com) and watch your time-in-zone honestly. The riders who break through aren't doing anything exotic. They are just actually easy on the easy days, for the first time in their cycling lives.`,
   faqs: [
     {
       question: "What is Zone 2 in cycling?",
@@ -241,7 +241,7 @@ Log it in [TrainingPeaks](https://www.trainingpeaks.com) and watch your time-in-
     {
       question: "How much Zone 2 should I do?",
       answer:
-        "In a polarised model, roughly 80% of your weekly training time. For a time-crunched amateur that often means most weekday rides easy and one or two genuinely hard sessions, rather than every ride landing in the moderate middle.",
+        "In a polarised model, roughly 80% of your weekly training time. For a time-crunched amateur that often means most weekday rides easy and one or two properly hard sessions, rather than every ride landing in the moderate middle.",
     },
   ],
   relatedHubs: [
@@ -476,7 +476,7 @@ Here's the thing nobody tells you about indoor training. The reason your power f
 
 ## When indoor wins, and when it doesn't
 
-Indoor and outdoor aren't at war — they do different jobs. [Indoor vs outdoor: when each one actually wins](/blog/indoor-vs-outdoor-cycling-training-when-each-wins) gives the session-by-session split: precise interval work and time-crunched weekdays indoors, long endurance and bike-handling outdoors. And within the pain cave there's a second choice — [smart trainer vs rollers](/blog/indoor-trainer-vs-rollers) — because they train genuinely different things, from raw power to pedalling finesse.
+Indoor and outdoor aren't at war — they do different jobs. [Indoor vs outdoor: when each one actually wins](/blog/indoor-vs-outdoor-cycling-training-when-each-wins) gives the session-by-session split: precise interval work and time-crunched weekdays indoors, long endurance and bike-handling outdoors. And within the pain cave there's a second choice — [smart trainer vs rollers](/blog/indoor-trainer-vs-rollers) — because they train really different things, from raw power to pedalling finesse.
 
 ## Make winter the period you get fast
 

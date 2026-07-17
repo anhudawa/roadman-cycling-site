@@ -142,7 +142,7 @@ export const MEMBER_REVIEWS: MemberReview[] = [
     location: "Ireland",
     title: "Hands down one of the best cycling podcasts out there",
     quote:
-      "The Roadman Cycling Podcast is hands down one of the best cycling podcasts out there. What sets it apart is the quality of the guests and the depth of the discussions — practical, inspiring, and never superficial. You can tell Anthony and Sarah genuinely care about helping cyclists improve, not just creating content for clicks.",
+      "The Roadman Cycling Podcast is hands down one of the best cycling podcasts out there. What sets it apart is the quality of the guests and the depth of the discussions — practical, inspiring, and never superficial. You can tell Anthony and Sarah actually care about helping cyclists improve, not just creating content for clicks.",
     shortQuote:
       "Hands down one of the best cycling podcasts out there. Practical, inspiring, and never superficial.",
     audience: "podcast",
@@ -195,9 +195,9 @@ export const MEMBER_REVIEWS: MemberReview[] = [
     location: "Ireland",
     title: "Probably my favourite cycling podcast",
     quote:
-      "Probably my favourite cycling podcast right now. Feels super natural and easy to listen to, not too technical but still really interesting. Anthony Walsh has a great vibe and the episodes genuinely make me want to ride more. Perfect mix of cycling, motivation and good conversations.",
+      "Probably my favourite cycling podcast right now. Feels super natural and easy to listen to, not too technical but still really interesting. Anthony Walsh has a great vibe and the episodes actually make me want to ride more. Perfect mix of cycling, motivation and good conversations.",
     shortQuote:
-      "Probably my favourite cycling podcast right now. Anthony Walsh has a great vibe and the episodes genuinely make me want to ride more.",
+      "Probably my favourite cycling podcast right now. Anthony Walsh has a great vibe and the episodes actually make me want to ride more.",
     audience: "podcast",
   },
 ];

@@ -220,7 +220,7 @@ export const highVolumeQueryAnswers: AnswerPage[] = [
       {
         mistake: "Spending most training time in Zone 3 (tempo).",
         fix:
-          "Zone 3 is the grey zone — hard enough to cost recovery but not hard enough to produce meaningful threshold or VO2max adaptation. Limit it to 10–15% of weekly time and keep your easy rides genuinely easy.",
+          "Zone 3 is the grey zone — hard enough to cost recovery but not hard enough to produce meaningful threshold or VO2max adaptation. Limit it to 10–15% of weekly time and keep your easy rides properly easy.",
       },
       {
         mistake: "Ignoring power zones and training by speed instead.",
@@ -312,7 +312,7 @@ export const highVolumeQueryAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "Watts per kilogram is the honest number in cycling. It strips away the misleading comparisons that raw watts invite — the 95 kg rider boasting 300 watts is 3.15 W/kg, while the 62 kg rider at 260 watts is 4.19 W/kg and riding away on every climb. The lighter rider is categorically stronger in cycling terms. Until you express power relative to body weight, the number is meaningless.",
-      "Anthony uses W/kg as the primary benchmark when discussing performance on the podcast, and the coaches he interviews — Friel, Barrett, Wakefield — all frame amateur development in W/kg terms. The recreational rider who trains 5–6 hours a week and has been riding a couple of years will typically sit at 2.5–3.0 W/kg. The committed club racer training 8–12 hours sits at 3.0–4.0. The sharp end of amateur racing — Cat 1–2, the front of the sportive — is 4.0–4.5. And above 4.5 W/kg you are genuinely strong for an amateur.",
+      "Anthony uses W/kg as the primary benchmark when discussing performance on the podcast, and the coaches he interviews — Friel, Barrett, Wakefield — all frame amateur development in W/kg terms. The recreational rider who trains 5–6 hours a week and has been riding a couple of years will typically sit at 2.5–3.0 W/kg. The committed club racer training 8–12 hours sits at 3.0–4.0. The sharp end of amateur racing — Cat 1–2, the front of the sportive — is 4.0–4.5. And above 4.5 W/kg you are properly strong for an amateur.",
       "The two levers to improve W/kg are FTP (raise the numerator) and body composition (manage the denominator). The mistake is chasing the denominator by under-eating, which suppresses the training that raises the numerator. Build power first, let body composition follow from fuelled training and sensible nutrition, and the W/kg takes care of itself.",
     ],
     expertEvidence: [
@@ -381,7 +381,7 @@ export const highVolumeQueryAnswers: AnswerPage[] = [
       {
         question: "Is 4 W/kg good for an amateur cyclist?",
         answer:
-          "4.0 W/kg is genuinely strong for an amateur. It places you at the sharp end of club racing and competitive sportives. Reaching 4.0 typically requires 2–3 years of structured training at 8–12 hours a week, quality nutrition, and genuine consistency.",
+          "4.0 W/kg is legitimately strong for an amateur. It places you at the sharp end of club racing and competitive sportives. Reaching 4.0 typically requires 2–3 years of structured training at 8–12 hours a week, quality nutrition, and genuine consistency.",
       },
       {
         question: "What is a good W/kg for a female cyclist?",
@@ -507,7 +507,7 @@ export const highVolumeQueryAnswers: AnswerPage[] = [
       {
         question: "Should I change tyre pressure for wet roads?",
         answer:
-          "Drop pressure by 5–10 psi in wet conditions. Lower pressure increases the contact patch, which improves grip on slippery surfaces. The speed penalty is negligible and the safety gain is significant. Cornering in the wet on over-inflated tyres is genuinely dangerous.",
+          "Drop pressure by 5–10 psi in wet conditions. Lower pressure increases the contact patch, which improves grip on slippery surfaces. The speed penalty is negligible and the safety gain is significant. Cornering in the wet on over-inflated tyres is properly dangerous.",
       },
       {
         question: "What pressure should I run on a turbo trainer?",

@@ -11,7 +11,7 @@ export const EXPERT_SYNTHESIS_ARTICLES: ClusterArticleSpec[] = [
     supportingKeywords: ["what coaches say zone 2", "zone 2 consensus", "expert zone 2 advice", "professional zone 2 training"],
     angle: "Synthesis from Seiler, Lorang, Wakefield, Anastopoulos, and Friel episodes. Consensus + disagreements format.",
     pillar: "coaching",
-    requiredSections: ["The consensus: 80% of training should be genuinely easy", "Where coaches disagree: how easy is easy enough?", "The cross-training question", "What this means for 8-hour-a-week riders", "The one change every expert would make to your training", "How to apply this starting Monday"],
+    requiredSections: ["The consensus: 80% of training should be properly easy", "Where coaches disagree: how easy is easy enough?", "The cross-training question", "What this means for 8-hour-a-week riders", "The one change every expert would make to your training", "How to apply this starting Monday"],
     internalLinks: [{ href: "/blog/zone-2-training-complete-guide", anchor: "Zone 2 guide" }, { href: "/glossary/zone-2", anchor: "Zone 2 definition" }, { href: "/tools/hr-zones", anchor: "HR zone calculator" }],
     wordTarget: 2500,
     featuredImage: "/images/cycling/gravel-road-climb.jpg",

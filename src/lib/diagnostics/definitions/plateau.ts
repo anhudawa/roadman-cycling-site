@@ -53,7 +53,7 @@ export const plateauDefinition: DiagnosticDefinition = {
         "Too many sessions in the 75–85% grey zone. Seiler's work is clear: most endurance athletes need more Z2 and more hard days, not more moderate days.",
       nextSteps: [
         "Cap 80% of volume at Z1/Z2 (under 75% FTP).",
-        "Two genuinely hard sessions: one threshold, one VO2.",
+        "Two properly hard sessions: one threshold, one VO2.",
         "Stop grinding tempo on the other days.",
       ],
       recommendedResource: {

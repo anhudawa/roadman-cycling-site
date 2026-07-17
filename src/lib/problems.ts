@@ -205,7 +205,7 @@ export const PROBLEM_PAGES: ProblemPage[] = [
       name: "Professor Stephen Seiler",
       credential: "Exercise physiologist, University of Agder",
       insight:
-        "Seiler's point about riding fast at a low heart rate is that most amateurs let their easy rides drift up into the moderate zone, so they never fully recover and the aerobic base stops growing. A genuinely easy ride should feel almost too easy — when heart rate runs high for the power, the usual cause is accumulated fatigue from training that's never truly easy.",
+        "Seiler's point about riding fast at a low heart rate is that most amateurs let their easy rides drift up into the moderate zone, so they never fully recover and the aerobic base stops growing. A properly easy ride should feel almost too easy — when heart rate runs high for the power, the usual cause is accumulated fatigue from training that's never truly easy.",
       episodeSlug: "ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler",
       guestSlug: "stephen-seiler",
     },

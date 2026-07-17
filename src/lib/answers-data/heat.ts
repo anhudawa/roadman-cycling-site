@@ -13,7 +13,7 @@ export const heatAnswers: AnswerPage[] = [
       "Heat training works by triggering the same adaptations as altitude — more red blood cells, better plasma volume, lower resting heart rate. A 10–14 day protocol can add 15–30 watts. Here's the science.",
     pillar: "coaching",
     directAnswer:
-      "Heat training works. A 10–14 day protocol of riding or finishing sessions in a heated environment triggers measurable adaptations: plasma volume expands by 4–10%, red blood cell mass increases, and resting heart rate drops. The Roadman podcast covered how Remco Evenepoel's team used structured heat blocks to gain an estimated 20–30 watts. For amateurs without altitude access, it's the most accessible performance adaptation available.",
+      "Heat training works. A 10–14 day protocol of riding or finishing sessions in a heated environment triggers measurable adaptations: plasma volume expands by 4–10%, red blood cell mass increases, and resting heart rate drops. Ross McRae (VP, CORE) explained on the Roadman podcast how Remco Evenepoel's team used structured heat blocks to gain an estimated 20–30 watts. For amateurs without altitude access, it's the most accessible performance adaptation available.",
     keyTakeaways: [
       "A 10–14 day heat block can expand plasma volume by 4–10% and raise red blood cell count.",
       "Heat adaptation mimics altitude physiology — without the cost of a training camp.",
@@ -33,23 +33,23 @@ export const heatAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "When Remco Evenepoel started winning everything, one of the less-reported details was how his team was using structured heat blocks before major races. The Roadman podcast broke down why it works — it's not voodoo, it's basic physiology. Your body treats heat stress as an endurance demand. Plasma volume expands. Haemoglobin mass ticks up. Your cardiac output improves. The same signals that an altitude camp sends, heat training sends at home.",
+      "When Remco Evenepoel started winning everything, one of the less-reported details was how his team was using structured heat blocks before major races. Ross McRae from CORE broke it down on the podcast — it's not voodoo, it's basic physiology. Your body treats heat stress as an endurance demand. Plasma volume expands. Haemoglobin mass ticks up. Your cardiac output improves. The same signals that an altitude camp sends, heat training sends at home.",
       "The key word there is structured. Sitting in a hot bath and calling it training doesn't do it. The protocol is specific: complete your interval or endurance session, then stay in the heat for 20–30 minutes post-ride, body temperature elevated, while your core temperature stays high. Repeat daily for 10 to 14 days. That consistent thermal load is what drives the adaptation.",
-      "For most of the audience — serious amateurs with a turbo trainer and a heated room — this is genuinely one of the highest-leverage things you can do before a target event. It costs nothing beyond time and a bit of discomfort, and the research backs it.",
+      "For most of the audience — serious amateurs with a turbo trainer and a heated room — this is one of the most effective things you can do before a target event. It costs nothing beyond time and a bit of discomfort, and the research backs it.",
     ],
     expertEvidence: [
       {
-        name: "Roadman Podcast — Remco heat training breakdown",
-        credential: "Roadman Cycling analysis, coaching pillar",
+        name: "Ross McRae",
+        credential: "VP, CORE — heat-monitoring technology used by Soudal–Quick-Step and other WorldTour teams",
         insight:
-          "The episode broke down the heat protocol used by Evenepoel and other WorldTour teams: the mechanism is plasma volume expansion and increased red blood cell mass, both triggered by sustained thermal stress during or immediately after training. Gains of 20–30 watts in FTP have been documented in controlled settings.",
+          "Ross McRae explained on the podcast how Evenepoel and other WorldTour teams structure heat blocks: the mechanism is plasma volume expansion and increased red blood cell mass, both triggered by sustained thermal stress during or immediately after training. McRae cited a roughly 5% power loss per 1°C rise in core temperature and identified 38.5°C as the target core temperature for driving adaptation. Gains of 20–30 watts in FTP have been documented in controlled settings.",
         episodeSlug: "ep-2121-remcos-heat-training-why-it-works-how-to-gain-from-it",
       },
       {
-        name: "Roadman Podcast — heat training FTP protocol",
-        credential: "Roadman Cycling, +30 watts heat protocol",
+        name: "Anthony Sheridan",
+        credential: "Roadman Cycling host, citing Bent Rønnestad's heat-training research",
         insight:
-          "A dedicated episode on the heat-training protocol used at the Tour de France described how a 10–14 day block — completing sessions in controlled heat — can add an estimated 20–30 watts to FTP through the same haematological pathways as altitude training, but at a fraction of the cost.",
+          "Anthony broke down Bent Rønnestad's research showing how a 10–14 day heat block — completing sessions in controlled heat — can add an estimated 20–30 watts to FTP through the same haematological pathways as altitude training, but at a fraction of the cost. Rønnestad's work demonstrated that heat training locks in haemoglobin gains that altitude camps spend weeks and thousands of euros to produce.",
         episodeSlug: "ep-2026-ftp-jumped-30-watts-after-this-workout",
       },
     ],
@@ -243,7 +243,7 @@ export const heatAnswers: AnswerPage[] = [
       {
         question: "Can I do heat training in summer if I already live somewhere warm?",
         answer:
-          "If you're training outdoors in genuinely hot conditions (30°C+) every day, you're getting some of the adaptation passively. But a deliberate protocol — extending the post-ride heat exposure and keeping the environment consistently warm — still amplifies the adaptation beyond what incidental heat provides.",
+          "If you're training outdoors in properly hot conditions (30°C+) every day, you're getting some of the adaptation passively. But a deliberate protocol — extending the post-ride heat exposure and keeping the environment consistently warm — still amplifies the adaptation beyond what incidental heat provides.",
       },
       {
         question: "Will heat training affect my other sessions?",
@@ -442,7 +442,7 @@ export const heatAnswers: AnswerPage[] = [
     roadmanView: [
       "Hot-weather rides are the ones where form goes out the window and everyone either bonks or overheats. Anthony has covered this on the podcast and the pattern is consistent: riders who've done no preparation for heat ride at their normal pacing and hydration strategy, and it falls apart by the halfway point. The reason is simple — heat is an additional cardiovascular demand. Your heart rate climbs faster, your plasma volume shrinks as you sweat, and your perceived exertion at the same power is significantly higher.",
       "The four-lever approach is what coaches prescribe: pre-cool before you start, drink before you're thirsty, drop your power targets, and if you have two weeks before the event, do a heat acclimatisation block. You don't need all four to make a difference — even just one, applied consistently, changes the outcome.",
-      "The biggest single fix for most riders is pre-cooling. It sounds too simple to work. It isn't. Fifteen minutes with an ice vest or cold towels on your neck and forearms before a hot start genuinely lowers your core temperature baseline and buys you more runway before heat becomes a limiting factor. It's what the pros do before summer Grand Tour stages, and it costs nothing.",
+      "The biggest single fix for most riders is pre-cooling. It sounds too simple to work. It isn't. Fifteen minutes with an ice vest or cold towels on your neck and forearms before a hot start actually lowers your core temperature baseline and buys you more runway before heat becomes a limiting factor. It's what the pros do before summer Grand Tour stages, and it costs nothing.",
     ],
     expertEvidence: [
       {
@@ -575,7 +575,7 @@ export const heatAnswers: AnswerPage[] = [
     roadmanView: [
       "Saunas are one of those things that felt like wellness-industry noise until the physiology caught up with the claims. Anthony covered infrared saunas specifically on the podcast, and the picture that emerged was interesting: the cardiovascular stress of a post-ride sauna session is real, the plasma volume response is measurable, and the recovery benefits — particularly for sleep — are well supported.",
       "The key is post-ride. Using a sauna before training impairs performance and adds fatigue. After training, when you're already warm and your core temperature is elevated, extending that heat exposure in a sauna stacks the adaptation signal without adding much additional load. It's a way to get some of the benefit of a formal heat training block without restructuring your whole training environment.",
-      "For riders who have regular gym or health club access, this is genuinely low-hanging fruit. Three or four sauna sessions per week, 20–30 minutes each, positioned after training — not before, not as a standalone protocol — adds up over a season. It's not a substitute for proper heat training before a key event, but it's a consistent, low-effort adaptation stimulus that most people aren't using.",
+      "For riders who have regular gym or health club access, this is really low-hanging fruit. Three or four sauna sessions per week, 20–30 minutes each, positioned after training — not before, not as a standalone protocol — adds up over a season. It's not a substitute for proper heat training before a key event, but it's a consistent, low-effort adaptation stimulus that most people aren't using.",
     ],
     expertEvidence: [
       {
@@ -983,7 +983,7 @@ export const heatAnswers: AnswerPage[] = [
     roadmanView: [
       "Altitude tents occupy an interesting position in amateur cycling — too expensive to be casual, not professional enough to justify easily. The physiology is real. Sleeping at simulated altitude stimulates EPO production, and over several weeks the red blood cell mass response is measurable. But the gap between the research protocol and the practical reality for most amateur riders is significant.",
       "The research uses athletes who sleep consistently in the tent, every night, for the duration of the study. In practice, many amateur users report disrupted sleep — the air is drier, some find the confinement uncomfortable, and the oxygen restriction that drives EPO also impairs sleep quality at first. If you're sleeping 5–6 hours instead of 7–8 because of tent discomfort, you've likely given back some of the haematological gain in recovery quality.",
-      "The financial argument is also hard to ignore. A quality altitude tent system costs several thousand euros. A home heat training protocol costs nothing. Both trigger plasma volume expansion and haematological adaptation. For the small number of amateurs who genuinely can't do heat training and have realistic targets that justify the investment, a tent is a legitimate tool. For the majority, it's an expensive solution to a problem that a warm room and some discipline has already solved.",
+      "The financial argument is also hard to ignore. A quality altitude tent system costs several thousand euros. A home heat training protocol costs nothing. Both trigger plasma volume expansion and haematological adaptation. For the small number of amateurs who truly can't do heat training and have realistic targets that justify the investment, a tent is a legitimate tool. For the majority, it's an expensive solution to a problem that a warm room and some discipline has already solved.",
     ],
     expertEvidence: [
       {
@@ -1144,12 +1144,12 @@ export const heatAnswers: AnswerPage[] = [
       {
         title: "Prioritise extremities over torso",
         detail:
-          "Invest in genuinely warm gloves (not summer gloves with a liner) and neoprene overshoes or winter boots below 8°C. A neck gaiter that can be pulled up over the nose is more versatile than a balaclava. Cold feet and hands are the most common reason cold rides end early.",
+          "Invest in properly warm gloves (not summer gloves with a liner) and neoprene overshoes or winter boots below 8°C. A neck gaiter that can be pulled up over the nose is more versatile than a balaclava. Cold feet and hands are the most common reason cold rides end early.",
       },
       {
         title: "Trust the numbers, not the sensation",
         detail:
-          "Set your session intensity before leaving the house. In cold conditions, rely on your power meter or heart rate rather than perceived effort — particularly for zone 2 sessions. Cold legs feel harder at the same power. Let the data guide you for the first 15–20 minutes until you're genuinely warm.",
+          "Set your session intensity before leaving the house. In cold conditions, rely on your power meter or heart rate rather than perceived effort — particularly for zone 2 sessions. Cold legs feel harder at the same power. Let the data guide you for the first 15–20 minutes until you're properly warm.",
       },
     ],
     commonMistakes: [
@@ -2357,7 +2357,7 @@ export const heatAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "Here's the thing the temperature on your head unit doesn't tell you: humidity changes everything about how heat affects you. In dry air, your body's cooling system works the way it's meant to — you sweat, the sweat evaporates, and evaporation pulls heat off your skin. It's efficient. Now crank the humidity up past about 75% and that system stops working. The air is already so full of water that your sweat has nowhere to go. It pours off you, soaks your kit, and does almost nothing to cool you. Your core temperature keeps climbing even though you're sweating buckets.",
-      "This is why riders get caught out. A 28°C humid day feels worse than a 34°C dry day, and it genuinely is worse — the thermal load on your body is higher because the cooling mechanism has failed. Anthony has covered the heat side of this on the podcast through the acclimatisation work, and the practical upshot for amateurs is that you can't judge a hot day by temperature alone. Humidity is the hidden multiplier.",
+      "This is why riders get caught out. A 28°C humid day feels worse than a 34°C dry day, and it actually is worse — the thermal load on your body is higher because the cooling mechanism has failed. Anthony has covered the heat side of this on the podcast through the acclimatisation work, and the practical upshot for amateurs is that you can't judge a hot day by temperature alone. Humidity is the hidden multiplier.",
       "The free adaptation most amateurs skip here is specificity. If your event is humid, training in dry heat only gets you part of the way. The cardiovascular adaptations — the plasma volume, the lower heart rate — carry over. But the sweat-rate and cooling adaptations that matter most in humidity are best built by training in humid conditions, or by deliberately recreating them: less airflow, more layers, a humid room. Match the training to the race and you arrive prepared for the actual stress, not a drier version of it.",
     ],
     expertEvidence: [
@@ -2498,7 +2498,7 @@ export const heatAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "Altitude camps have a romance to them — the photos from Mount Teide, the pros stacked into a hotel at 2,000m, the sense that this is where the real work happens. And the work is real, but the structure behind it is far more disciplined than the postcards suggest. A camp is not three weeks of hammering yourself in thin air. The first week is mostly easy riding while your body adjusts — push hard in those first days and you dig a hole you never climb out of for the rest of the camp.",
-      "Anthony has unpacked the camp logic on the podcast through coaches like Dan Lorang, and the recurring theme is that amateurs get the intensity backwards. They arrive at altitude fired up, do their normal interval sessions in week one, feel terrible, and conclude altitude doesn't work. What the pros do is let the acclimatisation happen first, keep the early riding genuinely easy, and bring the quality sessions in later — often dropping to lower altitude for the hard efforts so the intensity is actually there.",
+      "Anthony has unpacked the camp logic on the podcast through coaches like Dan Lorang, and the recurring theme is that amateurs get the intensity backwards. They arrive at altitude fired up, do their normal interval sessions in week one, feel terrible, and conclude altitude doesn't work. What the pros do is let the acclimatisation happen first, keep the early riding properly easy, and bring the quality sessions in later — often dropping to lower altitude for the hard efforts so the intensity is actually there.",
       "The honest framing for amateurs is this: a camp is a serious commitment of time and money, and the adaptation only shows up if you give it the full 3–4 weeks and structure it properly. A week at altitude is a nice training holiday, not a haematological intervention. If the full camp isn't realistic, the free adaptation most amateurs skip — a 10–14 day heat block at home — gets you a meaningful share of the same red cell and plasma volume benefit without the flights.",
     ],
     expertEvidence: [
@@ -2643,7 +2643,7 @@ export const heatAnswers: AnswerPage[] = [
     roadmanView: [
       "This is where it gets really interesting, because heat and altitude aren't competing tools — they're hitting overlapping physiology from two directions. Both push your plasma volume up. Both nudge red blood cell mass higher. So the instinct that combining them should give you more is correct. The catch is in the how. Try to do a hard altitude camp and a daily heat block at the same time and you're not doubling the adaptation — you're doubling the stress, and your recovery can't keep up. You end up overreached, not over-adapted.",
       "The structure the pros use, which Anthony has covered through the altitude and heat conversations on the podcast, is sequencing. Altitude camp first — that's the heavier, longer stimulus that builds the ceiling. Come home, and rather than dropping the adaptation entirely, hold it with two or three heat maintenance sessions a week. Then, a couple of weeks before the target event, run a full 10–14 day heat block to re-peak everything. You get both pathways, layered in time, with recovery protected at each stage.",
-      "For most of the audience, the honest version is simpler. Altitude camps are expensive and hard to arrange, and the free adaptation most amateurs skip is just the heat block. If you can only do one, do heat — it gives you the larger share of the benefit for nothing. The combination is genuinely powerful, but it's the premium option for riders who already have altitude access, not a requirement for getting most of the gain.",
+      "For most of the audience, the honest version is simpler. Altitude camps are expensive and hard to arrange, and the free adaptation most amateurs skip is just the heat block. If you can only do one, do heat — it gives you the larger share of the benefit for nothing. The combination is seriously powerful, but it's the premium option for riders who already have altitude access, not a requirement for getting most of the gain.",
     ],
     expertEvidence: [
       {
@@ -2927,7 +2927,7 @@ export const heatAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "Most riders think heat training is only for hot races — sweat it out now so you don't blow up in a July sportive. That's a real benefit, but it undersells what's actually happening. The headline adaptation from a heat block is plasma volume expansion: your body responds to repeated heat stress by increasing the fluid portion of your blood, which improves cardiovascular efficiency. And crucially, that adaptation doesn't switch off when the weather cools.",
-      "This is why heat training has earned the nickname 'poor man's altitude'. Altitude camps aim to boost the oxygen-carrying side of your blood; heat work boosts the volume side, and both feed into the same goal of a more capable aerobic system. The podcast dug into exactly this with the breakdown of Remco's heat training and why it works — the gains are physiological, not just about tolerating temperature. For an amateur who can't disappear to a mountain for three weeks, a heat block done at home is one of the few genuinely accessible levers on aerobic performance.",
+      "This is why heat training has earned the nickname 'poor man's altitude'. Altitude camps aim to boost the oxygen-carrying side of your blood; heat work boosts the volume side, and both feed into the same goal of a more capable aerobic system. The podcast dug into exactly this with the breakdown of Remco's heat training and why it works — the gains are physiological, not just about tolerating temperature. For an amateur who can't disappear to a mountain for three weeks, a heat block done at home is one of the few truly accessible tools for aerobic performance.",
       "The honest caveat is that it's a real training stress, not a free hack. As the World Tour coaches Anthony has spoken to treat it, heat work is a dosed block — a set number of structured sessions, properly fuelled and hydrated, with recovery built in. Done randomly it just cooks you. Done deliberately in the weeks before a target — hot or cool — it can hand you an aerobic edge most amateurs leave on the table.",
     ],
     expertEvidence: [

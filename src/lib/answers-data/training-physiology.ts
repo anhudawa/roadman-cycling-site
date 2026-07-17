@@ -42,7 +42,7 @@ export const trainingPhysiologyAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Lactate threshold is the single most useful idea in endurance training, and it's quietly misunderstood because most riders think there's one threshold. There are two. LT1 is the top of genuinely easy — the intensity where lactate first lifts off baseline. LT2 is the ceiling — where it runs away from you and the effort has a short fuse. Everything you read about zones is really a story about where these two lines fall.",
+      "Lactate threshold is the single most useful idea in endurance training, and it's quietly misunderstood because most riders think there's one threshold. There are two. LT1 is the top of properly easy — the intensity where lactate first lifts off baseline. LT2 is the ceiling — where it runs away from you and the effort has a short fuse. Everything you read about zones is really a story about where these two lines fall.",
       "Lactate itself isn't the villain it was sold as for decades. It's a fuel your body recycles, and the threshold isn't a poison line — it's a marker of the point where production outruns clearance. That distinction matters, because it reframes the goal. You're not trying to avoid lactate. You're trying to push the intensity at which clearance can't keep up to a higher and higher power.",
       "The practical payoff is the reason we build Method plans around it: once you know roughly where LT1 and LT2 sit, the polarised model writes itself. Most of your riding lives below LT1, where you can accumulate hours without digging a hole. A smaller, deliberate share lives at or above LT2, where the adaptations that move the ceiling actually happen. The grey middle — comfortably hard, between the two — is where most amateurs spend their week and where the least adaptation per unit of fatigue lives.",
     ],
@@ -89,7 +89,7 @@ export const trainingPhysiologyAnswers: AnswerPage[] = [
       {
         question: "What's the difference between LT1 and LT2?",
         answer:
-          "LT1 is the first lift in blood lactate above resting levels — the top of genuinely easy, aerobic riding. LT2 (often called the anaerobic or second threshold) is where lactate rises steeply and the effort becomes unsustainable. LT2 is close to your FTP; LT1 sits well below it.",
+          "LT1 is the first lift in blood lactate above resting levels — the top of truly easy, aerobic riding. LT2 (often called the anaerobic or second threshold) is where lactate rises steeply and the effort becomes unsustainable. LT2 is close to your FTP; LT1 sits well below it.",
       },
       {
         question: "Is lactate threshold the same as FTP?",
@@ -141,10 +141,10 @@ export const trainingPhysiologyAnswers: AnswerPage[] = [
     question: "What Is Polarised Training for Cyclists?",
     seoTitle: "What Is Polarised Training for Cyclists? The 80/20 Model Explained",
     seoDescription:
-      "Polarised training means riding most of your volume easy and a small share genuinely hard, with little in between. What the 80/20 split means and why it works.",
+      "Polarised training means riding most of your volume easy and a small share properly hard, with little in between. What the 80/20 split means and why it works.",
     pillar: "coaching",
     directAnswer:
-      "Polarised training is an intensity distribution: roughly 80% of your riding is done easy, below the first lactate threshold, and roughly 20% is done genuinely hard, at or above the second threshold — with very little time spent in the comfortably-hard middle. The idea, formalised by physiologist Stephen Seiler from how elite endurance athletes actually train, is that easy volume builds the aerobic base cheaply while a small dose of hard work drives the high-end adaptations, and the grey-zone middle is rationed because it costs a lot of fatigue for modest return.",
+      "Polarised training is an intensity distribution: roughly 80% of your riding is done easy, below the first lactate threshold, and roughly 20% is done truly hard, at or above the second threshold — with very little time spent in the comfortably-hard middle. The idea, formalised by physiologist Stephen Seiler from how elite endurance athletes actually train, is that easy volume builds the aerobic base cheaply while a small dose of hard work drives the high-end adaptations, and the grey-zone middle is rationed because it costs a lot of fatigue for modest return.",
     keyTakeaways: [
       "Polarised means easy days truly easy, hard days truly hard, and very little in between.",
       "The headline split is about 80% low intensity, 20% high — measured by time or sessions.",
@@ -165,7 +165,7 @@ export const trainingPhysiologyAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "Polarised training is the model that quietly fixes more amateur plateaus than any single session ever will. The instinct, especially when time is short, is to make every ride count by riding it hard. The result is a week of comfortably-hard rides — the grey zone — that leaves you permanently a little fatigued and adapting to none of it well.",
-      "The polarised answer is counterintuitive: ride easy more often than feels productive, and when you do go hard, go genuinely hard. The easy volume is where the aerobic engine is built, and it's cheap — it barely costs you recovery, so you can stack a lot of it. The hard 20% is where the ceiling moves, but it only works if you arrive fresh enough to hit it properly, which the easy days protect.",
+      "The polarised answer is counterintuitive: ride easy more often than feels productive, and when you do go hard, go really hard. The easy volume is where the aerobic engine is built, and it's cheap — it barely costs you recovery, so you can stack a lot of it. The hard 20% is where the ceiling moves, but it only works if you arrive fresh enough to hit it properly, which the easy days protect.",
       "This is the spine of how we structure Method weeks. It isn't a magic ratio to obsess over to the decimal — the principle is what matters. Most of your time below the first threshold, a deliberate minority above the second, and a ruthless avoidance of the middle. The riders who get this right stop being tired all the time and start getting faster, often without adding a single hour.",
     ],
     expertEvidence: [
@@ -185,12 +185,12 @@ export const trainingPhysiologyAnswers: AnswerPage[] = [
           "Look at the last fortnight. If most of your sessions are comfortably hard rather than clearly easy or clearly hard, you're riding the grey zone. That's the first thing to fix.",
       },
       {
-        title: "Make easy genuinely easy",
+        title: "Make easy properly easy",
         detail:
           "Cap your endurance rides below the first lactate threshold — conversational, controlled, sometimes frustratingly slow. This is the half of polarised that amateurs get wrong.",
       },
       {
-        title: "Make hard genuinely hard",
+        title: "Make hard properly hard",
         detail:
           "When a session is meant to be hard, commit to it: threshold, VO2 or sprint work done properly. A handful of these a week, ridden fresh, do the heavy lifting.",
       },
@@ -291,7 +291,7 @@ export const trainingPhysiologyAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "HRV is one of the few consumer recovery metrics with real physiology behind it, and it's also one of the easiest to misuse. The number reflects the balance of your autonomic nervous system — the push and pull between stress and recovery. When you're rested, that balance shows up as more variation between beats. When you're buried, ill, under-slept or stressed at work, the variation collapses.",
-      "The mistake is reading a single morning number like a school grade. HRV is noisy day to day, it's deeply individual, and absolute values mean almost nothing across people. What it's genuinely good for is the trend against your own baseline: a reading that's drifted down and stayed there for several days, while training and life stress pile up, is the signal worth acting on.",
+      "The mistake is reading a single morning number like a school grade. HRV is noisy day to day, it's deeply individual, and absolute values mean almost nothing across people. What it's really good for is the trend against your own baseline: a reading that's drifted down and stayed there for several days, while training and life stress pile up, is the signal worth acting on.",
       "Where it earns its place is as a tie-breaker. On a morning when your legs feel flat and your HRV has dropped, that's two votes for an easier day. When the two disagree, trust how you feel over the gadget — HRV informs the decision, it doesn't make it. Used that way, it's a useful early-warning system, especially for older riders whose recovery margin is thinner.",
     ],
     expertEvidence: [
@@ -419,7 +419,7 @@ export const trainingPhysiologyAnswers: AnswerPage[] = [
         name: "Prof. Stephen Seiler",
         credential: "Exercise physiologist, originator of the polarised-training framework",
         insight:
-          "In the polarised model, VO2-level work is the deliberate hard minority that drives high-end adaptation — effective precisely because it's rationed and ridden fresh. The ceiling is raised by a small, well-placed dose of genuinely hard riding sitting on top of a large aerobic base, not by grinding the comfortably-hard middle.",
+          "In the polarised model, VO2-level work is the deliberate hard minority that drives high-end adaptation — effective precisely because it's rationed and ridden fresh. The ceiling is raised by a small, well-placed dose of legitimately hard riding sitting on top of a large aerobic base, not by grinding the comfortably-hard middle.",
         episodeSlug: "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
         guestSlug: "stephen-seiler",
       },
@@ -525,13 +525,13 @@ export const trainingPhysiologyAnswers: AnswerPage[] = [
       {
         label: "The time-crunched cyclist",
         detail:
-          "You have limited hours and want to know where tempo genuinely helps and where it quietly sabotages your week.",
+          "You have limited hours and want to know where tempo really helps and where it quietly sabotages your week.",
       },
     ],
     roadmanView: [
       "Tempo is the most seductive intensity in cycling. It feels like real work without the suffering of threshold, so it's where riders drift when left to their own devices — fast enough to feel productive, not so hard it hurts. That's exactly the problem. Tempo lives in the grey zone between your two lactate thresholds, and a week built around it accumulates fatigue without much of the adaptation that easy or hard work delivers.",
-      "That doesn't make it useless. Used on purpose, tempo builds muscular endurance and trains you to hold a firm, steady pace — genuinely valuable for sportives, long climbs and time-trial efforts where the demand is sustained rather than spiky. The key word is on purpose. Tempo should be a chosen tool for a specific job, not the default setting your rides slide into.",
-      "Inside the Method we use tempo deliberately and sparingly, usually in a block aimed at sustained-power events, and we guard against it leaking into the easy days. The discipline is the same one polarised training teaches: if tempo is crowding out your truly-easy volume and your genuinely-hard sessions, it's working against you. Choose it, don't default to it.",
+      "That doesn't make it useless. Used on purpose, tempo builds muscular endurance and trains you to hold a firm, steady pace — truly valuable for sportives, long climbs and time-trial efforts where the demand is sustained rather than spiky. The key word is on purpose. Tempo should be a chosen tool for a specific job, not the default setting your rides slide into.",
+      "Inside the Method we use tempo deliberately and sparingly, usually in a block aimed at sustained-power events, and we guard against it leaking into the easy days. The discipline is the same one polarised training teaches: if tempo is crowding out your truly-easy volume and your properly-hard sessions, it's working against you. Choose it, don't default to it.",
     ],
     expertEvidence: [
       {
@@ -550,7 +550,7 @@ export const trainingPhysiologyAnswers: AnswerPage[] = [
           "Reach for tempo when you're building toward sustained efforts — long climbs, sportives, time trials. Block it deliberately rather than sprinkling it through every ride.",
       },
       {
-        title: "Hold it genuinely steady",
+        title: "Hold it truly steady",
         detail:
           "Tempo is about control: a firm, even effort you can hold for 20–60 minutes, not a surging grind. If it keeps creeping toward threshold, you've left the zone.",
       },
@@ -596,7 +596,7 @@ export const trainingPhysiologyAnswers: AnswerPage[] = [
       {
         question: "How often should I do tempo training?",
         answer:
-          "Sparingly and on purpose, usually within a block aimed at sustained-effort events. The exact frequency depends on your goals, but it should never crowd out your easy volume or your genuinely hard sessions.",
+          "Sparingly and on purpose, usually within a block aimed at sustained-effort events. The exact frequency depends on your goals, but it should never crowd out your easy volume or your properly hard sessions.",
       },
     ],
     relatedEpisodes: [
