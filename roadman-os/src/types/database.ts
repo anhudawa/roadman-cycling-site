@@ -153,8 +153,39 @@ export type ProductType =
   | 'sponsorship'
   | 'other'
 
+export type TrendConfidence = 'noise' | 'emerging' | 'probable' | 'established'
+
+export type InsightType =
+  | 'seasonal_peak'
+  | 'timing_recommendation'
+  | 'format_effectiveness'
+  | 'audience_affinity'
+  | 'demand_gap'
+  | 'decay_seasonal'
+  | 'anomaly'
+  | 'manual'
+
+export type InsightStatus =
+  | 'candidate'
+  | 'validated'
+  | 'dismissed'
+  | 'archived'
+  | 'actioned'
+
+export type CalendarEventType =
+  | 'race'
+  | 'grand_tour'
+  | 'classic'
+  | 'sportive_season'
+  | 'industry_launch'
+  | 'resolution_period'
+  | 'holiday'
+  | 'weather_phase'
+  | 'roadman_event'
+  | 'other'
+
 // ==========================================================================
-// Row Types (27 tables)
+// Row Types (44 tables)
 // ==========================================================================
 
 // 1. profiles
@@ -194,6 +225,9 @@ export type Topic = {
   description: string | null
   parent_id: string | null
   sort_order: number
+  is_trend_tracked: boolean
+  centroid_embedding: number[] | null
+  commercial_category: string | null
   created_at: string
   updated_at: string
 }
@@ -577,6 +611,264 @@ export type Notification = {
 }
 
 // ==========================================================================
+// Intelligence Layer Row Types (17 tables — migration 00004)
+// ==========================================================================
+
+// 29. topic_aliases
+export type TopicAlias = {
+  id: string
+  topic_id: string
+  alias: string
+  source: string
+  created_at: string
+}
+
+// 30. performance_daily
+export type PerformanceDaily = {
+  id: string
+  publication_id: string
+  source: MetricSource
+  date: string
+  views: number
+  impressions: number
+  clicks: number
+  likes: number
+  comments: number
+  shares: number
+  saves: number
+  watch_time_seconds: number
+  subscribers_gained: number
+  revenue_cents: number
+  is_measured: boolean
+  custom_metrics: Record<string, unknown>
+  created_at: string
+}
+
+// 31. audience_demographics
+export type AudienceDemographic = {
+  id: string
+  source: MetricSource
+  scope: 'asset' | 'channel'
+  asset_id: string | null
+  period_start: string
+  period_end: string
+  age_bracket: string
+  gender: string
+  country: string | null
+  share_pct: number
+  absolute_value: number | null
+  created_at: string
+}
+
+// 32. search_console_daily
+export type SearchConsoleDaily = {
+  id: string
+  date: string
+  page_url: string
+  query: string
+  asset_id: string | null
+  topic_id: string | null
+  clicks: number
+  impressions: number
+  position: number | null
+  created_at: string
+}
+
+// 33. keyword_metrics
+export type KeywordMetric = {
+  id: string
+  keyword: string
+  topic_id: string | null
+  month: string
+  search_volume: number | null
+  cpc_cents: number | null
+  competition: number | null
+  provider: string
+  created_at: string
+}
+
+// 34. community_snapshots
+export type CommunitySnapshot = {
+  id: string
+  community: 'free' | 'ndy'
+  week_start: string
+  total_members: number
+  new_members: number
+  churned_members: number
+  active_members: number | null
+  posts_count: number
+  comments_count: number
+  entered_by: string | null
+  notes: string | null
+  created_at: string
+}
+
+// 35. community_posts
+export type CommunityPost = {
+  id: string
+  community: 'free' | 'ndy'
+  posted_at: string
+  title: string
+  author_type: string
+  topic_id: string | null
+  comments_count: number
+  likes_count: number
+  created_at: string
+}
+
+// 36. revenue_events
+export type RevenueEvent = {
+  id: string
+  occurred_at: string
+  product_id: string | null
+  amount_cents: number
+  currency: string
+  event_type: string
+  attributed_asset_id: string | null
+  attributed_topic_id: string | null
+  attribution_method: string | null
+  source_detail: Record<string, unknown>
+  created_at: string
+}
+
+// 37. calendar_events
+export type CalendarEvent = {
+  id: string
+  name: string
+  event_type: CalendarEventType
+  starts_on: string
+  ends_on: string
+  recurs_annually: boolean
+  related_topic_ids: string[]
+  notes: string | null
+  created_at: string
+}
+
+// 38. topic_daily_metrics
+export type TopicDailyMetric = {
+  id: string
+  topic_id: string
+  source: MetricSource | null
+  date: string
+  live_asset_count: number
+  views: number
+  engagement: number
+  search_clicks: number
+  search_impressions: number
+  email_opens: number
+  email_clicks: number
+  community_posts: number
+  revenue_cents: number
+  relative_interest: number | null
+  created_at: string
+}
+
+// 39. seasonal_indices
+export type SeasonalIndex = {
+  id: string
+  topic_id: string
+  source: MetricSource | null
+  metric: string
+  iso_week: number
+  index_value: number
+  per_year_values: Record<string, number>
+  years_observed: number
+  sample_assets: number
+  confidence_score: number
+  confidence: TrendConfidence
+  computed_at: string
+}
+
+// 40. anomalies (at least one of topic_id or asset_id is always set)
+export type Anomaly = {
+  id: string
+  topic_id: string | null
+  asset_id: string | null
+  source: MetricSource | null
+  detected_on: string
+  metric: string
+  expected_value: number
+  actual_value: number
+  z_score: number
+  direction: 'above' | 'below'
+  is_acknowledged: boolean
+  promoted_insight_id: string | null  // FK to insights
+  created_at: string
+}
+
+// 41. forecasts
+export type Forecast = {
+  id: string
+  topic_id: string
+  source: MetricSource | null
+  metric: string
+  target_week: string
+  forecast_value: number
+  lower_bound: number | null
+  upper_bound: number | null
+  actual_value: number | null
+  abs_pct_error: number | null
+  model: string
+  computed_at: string
+}
+
+// 42. insights
+export type Insight = {
+  id: string
+  type: InsightType
+  status: InsightStatus
+  statement: string
+  topic_id: string | null
+  commercial_category: string | null
+  evidence: Record<string, unknown>
+  confidence_score: number
+  confidence: TrendConfidence
+  valid_from: string | null
+  valid_until: string | null
+  reviewed_by: string | null
+  reviewed_at: string | null
+  actioned_asset_id: string | null
+  sponsor_safe: boolean
+  created_at: string
+  updated_at: string
+}
+
+// 43. audience_segments
+export type AudienceSegment = {
+  id: string
+  name: string
+  description: string | null
+  discovery_method: string
+  member_count: number
+  topic_affinities: Record<string, number>
+  seasonal_profile: Record<string, unknown>
+  revenue_rate: number | null
+  is_active: boolean
+  computed_at: string
+  created_at: string
+}
+
+// 44. segment_members
+export type SegmentMember = {
+  segment_id: string
+  member_key: string
+  member_source: string
+  affinity: number
+  computed_at: string
+}
+
+export type DataQualityStatus = 'pass' | 'warn' | 'fail'
+
+// 45. data_quality_log
+export type DataQualityLog = {
+  id: string
+  check_name: string
+  status: DataQualityStatus
+  details: Record<string, unknown>
+  checked_at: string
+}
+
+// ==========================================================================
 // Insert Types (auto-generated columns omitted)
 // ==========================================================================
 
@@ -654,6 +946,29 @@ export type ContentEmbeddingInsert = Omit<ContentEmbedding, 'id' | 'created_at'>
 
 export type NotificationInsert = Omit<Notification, 'id' | 'created_at'>
 export type NotificationUpdate = Partial<Pick<Notification, 'is_read'>>
+
+// Intelligence layer Insert/Update types
+export type TopicAliasInsert = Omit<TopicAlias, 'id' | 'created_at'>
+export type PerformanceDailyInsert = Omit<PerformanceDaily, 'id' | 'created_at'>
+export type AudienceDemographicInsert = Omit<AudienceDemographic, 'id' | 'created_at'>
+export type SearchConsoleDailyInsert = Omit<SearchConsoleDaily, 'id' | 'created_at'>
+export type KeywordMetricInsert = Omit<KeywordMetric, 'id' | 'created_at'>
+export type CommunitySnapshotInsert = Omit<CommunitySnapshot, 'id' | 'created_at'>
+export type CommunityPostInsert = Omit<CommunityPost, 'id' | 'created_at'>
+export type RevenueEventInsert = Omit<RevenueEvent, 'id' | 'created_at'>
+export type CalendarEventInsert = Omit<CalendarEvent, 'id' | 'created_at'>
+export type TopicDailyMetricInsert = Omit<TopicDailyMetric, 'id' | 'created_at'>
+export type SeasonalIndexInsert = Omit<SeasonalIndex, 'id' | 'computed_at'>
+export type AnomalyInsert = Omit<Anomaly, 'id' | 'created_at'>
+export type AnomalyUpdate = Partial<Pick<Anomaly, 'is_acknowledged' | 'promoted_insight_id'>>
+export type ForecastInsert = Omit<Forecast, 'id' | 'computed_at'>
+export type ForecastUpdate = Partial<Pick<Forecast, 'actual_value' | 'abs_pct_error'>>
+export type InsightInsert = Omit<Insight, 'id' | 'created_at' | 'updated_at'>
+export type InsightUpdate = Partial<Omit<Insight, 'id' | 'created_at'>>
+export type AudienceSegmentInsert = Omit<AudienceSegment, 'id' | 'created_at' | 'computed_at'>
+export type AudienceSegmentUpdate = Partial<Omit<AudienceSegment, 'id' | 'created_at'>>
+export type SegmentMemberInsert = Omit<SegmentMember, 'computed_at'>
+export type DataQualityLogInsert = Omit<DataQualityLog, 'id' | 'checked_at'>
 
 // ==========================================================================
 // Database type for Supabase client
@@ -830,6 +1145,109 @@ export type Database = {
         Update: NotificationUpdate
         Relationships: []
       }
+      // Intelligence layer tables (migration 00004)
+      topic_aliases: {
+        Row: TopicAlias
+        Insert: TopicAliasInsert
+        Update: never
+        Relationships: []
+      }
+      performance_daily: {
+        Row: PerformanceDaily
+        Insert: PerformanceDailyInsert
+        Update: never
+        Relationships: []
+      }
+      audience_demographics: {
+        Row: AudienceDemographic
+        Insert: AudienceDemographicInsert
+        Update: never
+        Relationships: []
+      }
+      search_console_daily: {
+        Row: SearchConsoleDaily
+        Insert: SearchConsoleDailyInsert
+        Update: never
+        Relationships: []
+      }
+      keyword_metrics: {
+        Row: KeywordMetric
+        Insert: KeywordMetricInsert
+        Update: never
+        Relationships: []
+      }
+      community_snapshots: {
+        Row: CommunitySnapshot
+        Insert: CommunitySnapshotInsert
+        Update: never
+        Relationships: []
+      }
+      community_posts: {
+        Row: CommunityPost
+        Insert: CommunityPostInsert
+        Update: never
+        Relationships: []
+      }
+      revenue_events: {
+        Row: RevenueEvent
+        Insert: RevenueEventInsert
+        Update: never
+        Relationships: []
+      }
+      calendar_events: {
+        Row: CalendarEvent
+        Insert: CalendarEventInsert
+        Update: never
+        Relationships: []
+      }
+      topic_daily_metrics: {
+        Row: TopicDailyMetric
+        Insert: TopicDailyMetricInsert
+        Update: never
+        Relationships: []
+      }
+      seasonal_indices: {
+        Row: SeasonalIndex
+        Insert: SeasonalIndexInsert
+        Update: never
+        Relationships: []
+      }
+      anomalies: {
+        Row: Anomaly
+        Insert: AnomalyInsert
+        Update: AnomalyUpdate
+        Relationships: []
+      }
+      forecasts: {
+        Row: Forecast
+        Insert: ForecastInsert
+        Update: ForecastUpdate
+        Relationships: []
+      }
+      insights: {
+        Row: Insight
+        Insert: InsightInsert
+        Update: InsightUpdate
+        Relationships: []
+      }
+      audience_segments: {
+        Row: AudienceSegment
+        Insert: AudienceSegmentInsert
+        Update: AudienceSegmentUpdate
+        Relationships: []
+      }
+      segment_members: {
+        Row: SegmentMember
+        Insert: SegmentMemberInsert
+        Update: never
+        Relationships: []
+      }
+      data_quality_log: {
+        Row: DataQualityLog
+        Insert: DataQualityLogInsert
+        Update: never
+        Relationships: []
+      }
     }
     Views: Record<string, never>
     Functions: Record<string, never>
@@ -849,6 +1267,10 @@ export type Database = {
       metric_source: MetricSource
       sponsor_status: SponsorStatus
       product_type: ProductType
+      trend_confidence: TrendConfidence
+      insight_type: InsightType
+      insight_status: InsightStatus
+      calendar_event_type: CalendarEventType
     }
   }
 }

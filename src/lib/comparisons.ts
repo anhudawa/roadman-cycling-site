@@ -108,7 +108,7 @@ export const COMPARISONS: ComparisonPage[] = [
     ],
     relatedArticle: "/blog/polarised-vs-sweet-spot-training",
     body: [
-      "**The honest read.** Polarised training has the strongest research base for amateur cyclists, and it's not close. Professor Stephen Seiler's two decades of work on intensity distribution kicked this off, and successive studies have replicated the finding: roughly 80% easy, 20% hard, almost nothing in the middle, beats most other distributions for amateurs with limited training time.",
+      "Polarised training has the strongest research base for amateur cyclists, and it's not close. Professor Stephen Seiler's two decades of work on intensity distribution kicked this off, and successive studies have replicated the finding: roughly 80% easy, 20% hard, almost nothing in the middle, beats most other distributions for amateurs with limited training time.",
       "**Pyramidal works too — particularly at high volume.** Many World Tour pros train pyramidally because they have the hours to absorb the Zone 3 work without it bleeding into recovery. Dan Lorang's Bora-Hansgrohe periodisation under Roglič, and the on-the-road setup John Wakefield runs at the same team — they're more pyramidal in base, then sharpen toward polarised through build and into race weeks. Volume is what makes pyramidal viable.",
       "**The amateur trap is neither.** Most age-group cyclists ride neither polarised nor pyramidal — they ride threshold-grey, sitting at 75-85% FTP for most of every session. Too hard to be truly easy, too easy to be truly hard. The result is fatigue without adaptation. Both polarised and pyramidal beat the grey zone — the choice between them matters less than getting out of the middle.",
       "**Limitations of each, plainly.** Polarised at high volume can leave riders under-cooked at threshold — a small dose of Zone 3 sweet-spot work usually has to come back in for build phases. Pyramidal at low volume (under 8 hours/week) doesn't give the body enough time to recover from the larger Zone 3 component, and adaptations stall. The model has to fit the volume.",
@@ -223,7 +223,7 @@ export const COMPARISONS: ComparisonPage[] = [
     bestForB: ["Weekends and longer rides", "Group ride and race skills", "Mental freshness", "Race-specific preparation"],
     relatedArticle: "/blog/cycling-indoor-training-tips",
     body: [
-      "**The honest read.** This isn't a winner. Indoor and outdoor training do different things, and the cyclists making real progress are doing both. The mistake is treating them as substitutes — riders who only train indoors lose race skills and mental freshness, riders who only train outdoors lose workout precision and time efficiency.",
+      "This isn't a winner. Indoor and outdoor training do different things, and the cyclists making real progress are doing both. The mistake is treating them as substitutes — riders who only train indoors lose race skills and mental freshness, riders who only train outdoors lose workout precision and time efficiency.",
       "**Where indoor wins, plainly.** A 60-minute indoor session typically delivers what a 90-minute outdoor session does for fitness — no traffic lights, no descents, no coasting. ERG mode holds the exact watts you're prescribed. Weather doesn't disrupt the plan. For midweek structured sessions where every minute has to count, indoor wins on efficiency and precision.",
       "**Where outdoor wins, plainly.** Race specificity. Bike handling. Mental health. Variable terrain that forces real-world surge management. Group ride dynamics. Cornering, descending, drafting — none of which exist on a smart trainer. Long aerobic rides in fresh air do something for adaptation and adherence indoor work never replicates.",
       "**Limitations of each.** Indoor only: skills atrophy, race performance suffers, mental burnout is real by month four. Outdoor only: workout quality is hostage to terrain, traffic, and weather; midweek structure is hard to execute; winter in northern Europe makes consistent training brutal.",
@@ -395,7 +395,7 @@ export const COMPARISONS: ComparisonPage[] = [
     bestForB: ["Plateaued riders (2+ years structured)", "Time-crunched professionals", "Riders with specific event goals", "Anyone who needs accountability"],
     relatedArticle: "/blog/zwift-vs-cycling-coach",
     body: [
-      "**The honest read.** Zwift's training plans are good — particularly for what they cost. Fifteen quid a month gets you a structured plan, the workout library, ERG mode, and the social fabric that keeps a lot of riders consistent through winter. For riders in their first 1-2 years of structured training, Zwift can take you a long way.",
+      "Zwift's training plans are good — particularly for what they cost. Fifteen quid a month gets you a structured plan, the workout library, ERG mode, and the social fabric that keeps a lot of riders consistent through winter. For riders in their first 1-2 years of structured training, Zwift can take you a long way.",
       "**Where Zwift plans hit limits** is the same place every static plan hits limits. The plan is fixed. It doesn't read your sleep, your fuelling, your work week, your fatigue. It doesn't know whether you're cooked. It can't adjust when life goes sideways. Most riders who follow a Zwift plan for 12-16 weeks and then stall out aren't doing the wrong work — they're following a plan that has nothing left to teach them.",
       "**What a coach actually does** that Zwift plans can't. Reads the file every week. Asks about sleep and stress. Pulls a session when you're cooked. Pushes a session when you've got more than you think. Builds nutrition and strength around the bike work. Adjusts mid-block when an event changes. Holds you accountable when motivation flags.",
       "**The cost reality.** Zwift is around $20/month. Personal coaching is $150-300/month. The honest comparison isn't dollar-for-dollar — Zwift gives you a plan, a coach gives you a plan plus everything around it. The right question isn't 'which is cheaper' but 'which solves the problem you actually have.'",
@@ -631,7 +631,7 @@ export const COMPARISONS: ComparisonPage[] = [
       "Cyclists in long winters or patchy riding climates (UK, Ireland, Scandinavia)",
       "Time-crunched riders who need structured sessions on demand",
       "Beginners who benefit from erg mode taking pacing out of the equation",
-      "Riders who prioritise Zwift / TrainerRoad / Rouvy as their main training tool",
+      "Riders who prioritise TrainingPeaks Virtual / Zwift / TrainerRoad as their main training tool",
     ],
     relatedArticle: "/blog/power-meter-vs-smart-trainer",
     relatedTool: "/tools/ftp-zones",
@@ -676,15 +676,15 @@ export const COMPARISONS: ComparisonPage[] = [
     relatedTool: "/tools/ftp-zones",
     intro: [
       "If you landed here looking for Today's Plan — here's the bad news: it's shut down. Today's Plan has been retired and is no longer available as a product. So if you were weighing TrainingPeaks against Today's Plan, the comparison that actually matters now is TrainingPeaks vs Vekta — the two cycling-coaching platforms most riders end up choosing between in 2026.",
-      "Here's the good news: this one's a lot more clear-cut than it used to be. Let me break it down.",
+      "The good news: this one's a lot more clear-cut than it used to be.",
     ],
     body: [
-      "**TrainingPeaks is the gold standard. Genuinely.** Most of the coaches we talk to on the podcast — the ones working with World Tour riders, the ones running successful amateur coaching businesses, the ones with the published research behind them — all use TrainingPeaks. That's not marketing copy, that's just where the industry is. Two decades of platform development, the deepest analytics in the sport, and the WKO5 pipeline that high-performance teams quietly rely on.",
+      "**TrainingPeaks is the gold standard.** Most of the coaches we talk to on the podcast — the ones working with World Tour riders, the ones running successful amateur coaching businesses, the ones with the published research behind them — all use TrainingPeaks. That's not marketing copy, that's just where the industry is. Two decades of platform development, the deepest analytics in the sport, and the WKO5 pipeline that high-performance teams quietly rely on.",
       "The Performance Management Chart (PMC), CTL/ATL/TSB, the fitness/fatigue model — these aren't niche features. They're the language coaches use when they sit down to plan your season. Open TrainingPeaks and a coach can read your last six months in about thirty seconds. That matters when you're paying for their time.",
       "The plan marketplace is the other unfair advantage. Thousands of structured plans built by coaches you'd happily hire — Joe Friel's plans, Tim Cusick's WKO-built blocks, Carmichael Training Systems, the pro coaches who've published books you've already read. If you're self-coaching and you want a plan written by someone who actually knows what they're doing, TrainingPeaks is where they put it.",
       "**Vekta is a clever, newer platform.** The plan auto-adjustment is really useful — sessions ahead in the calendar shift based on what you actually completed, which is a nice touch. The interface is clean. The team behind it ships updates regularly.",
       "But Vekta is a smaller platform with a smaller coach base. The third-party integration list is shorter. There's no WKO5 pipeline. The plan marketplace is much smaller. The years-of-data continuity isn't there yet. None of that makes Vekta a bad platform — it makes it a newer one. For a plan delivered inside a fixed coaching system, Vekta does the job. For an athlete building a multi-year training history with the platform every serious coach in the sport already uses? TrainingPeaks, every time.",
-      "**The honest answer for most cyclists:** if you're hiring a coach in 2026, ask them what platform they use, and you'll almost always get TrainingPeaks back. Sign up there. If your coach happens to use Vekta, sign up there. If you're self-coached and want the deepest tools and the biggest plan library, TrainingPeaks is the one to commit to.",
+      "**For most cyclists:** if you're hiring a coach in 2026, ask them what platform they use, and you'll almost always get TrainingPeaks back. Sign up there. If your coach happens to use Vekta, sign up there. If you're self-coached and want the deepest tools and the biggest plan library, TrainingPeaks is the one to commit to.",
     ],
     faqs: [
       {
@@ -1256,7 +1256,7 @@ export const COMPARISONS: ComparisonPage[] = [
       "**FasCat is one of the better stock-plan operations.** Frank Overton's been doing this a long time. The plans are credible, the methodology is consistent, and the delivery sits inside TrainingPeaks where every coach in the sport already lives. For a self-coached rider who wants more than free PDFs and YouTube workout videos, a FasCat plan is a real upgrade.",
       "The trade-off is the trade-off with any stock plan. The plan doesn't know you. It doesn't know that you're a Cat 3 who climbs above your weight, or a 47-year-old who needs more recovery than your training partner, or a shift worker whose Tuesdays look like everyone else's Sundays. The plan was designed for the average rider in your category. You're not the average rider.",
       "**On the methodology question.** FasCat plans lean sweet-spot-heavy, which is a defensible position — sweet spot delivers a strong stimulus per unit of fatigue. It's also a position that gets debated in cycling. Polarised training (80/20, more low-end Zone 2, fewer middle hours) has more recent research support, particularly for time-crunched amateurs. We've had Professor Stephen Seiler on the podcast unpacking the case for polarised at length. Whether sweet-spot or polarised is right for you depends on volume, recovery, and where your limiters sit — and that's a coaching conversation, not a stock-plan decision.",
-      "**The honest read.** Buy a FasCat plan if you've never followed real structure and want a credible block to work through. Hire a coach if you've done a couple of seasons of structured training, you've plateaued, your life is messy, or your event isn't covered well in the library. If you want FasCat methodology specifically, FasCat themselves run 1:1 coaching at their premium tier — at that point you're choosing between coaches based on philosophy and fit, which is the right way to choose a coach anyway.",
+      "Buy a FasCat plan if you've never followed real structure and want a credible block to work through. Hire a coach if you've done a couple of seasons of structured training, you've plateaued, your life is messy, or your event isn't covered well in the library. If you want FasCat methodology specifically, FasCat themselves run 1:1 coaching at their premium tier — at that point you're choosing between coaches based on philosophy and fit, which is the right way to choose a coach anyway.",
     ],
     faqs: [
       {
@@ -1445,7 +1445,7 @@ export const COMPARISONS: ComparisonPage[] = [
       "**Here's what most amateur cyclists won't believe until they see it: pro cyclists spend roughly 80% of their riding time at a pace so easy that recreational riders could ride alongside them.** Maybe even past them on the bike path. That's not me — that's Professor Stephen Seiler's work, replicated across multiple WorldTour teams, talked about at length on the podcast. The reason most amateurs plateau is they ride 50% too hard when they think they're riding easy. Their easy rides aren't easy. Their hard rides aren't hard enough. They're stuck in the grey zone where nothing meaningful adapts.",
       "Zone 2 isn't \"easy riding.\" It's a specific physiological stimulus — mitochondrial biogenesis, capillary density, fat oxidation capacity, the aerobic enzymes that determine how much work you can do before lactate stops you. None of those adaptations come from sweet spot work. They come from time at low intensity. The rider who skips Zone 2 because it feels like they're not training is the rider who can't hold 250W for three hours when it matters.",
       "**Where sweet spot earns its place.** Sweet spot is a high-stimulus, moderate-fatigue session — useful for time-crunched riders who can't do 90 minutes of Zone 2 mid-week, and useful inside build phases where you want to push the FTP ceiling without wrecking the next two days. Coaches like John Wakefield and Tim Kerrison use sweet spot strategically, not constantly. The mistake amateurs make is treating it as the whole programme. Three sweet spot sessions a week with no Zone 2 base is the fastest way to plateau and burn out simultaneously.",
-      "**The honest read.** If you're picking one to do this season, do Zone 2. It's the foundation. Sweet spot built on no Zone 2 plateaus inside a season; Zone 2 built on its own keeps producing for years. If you have time for both — and any rider with 8+ hours a week does — keep the polarised distribution: roughly 80% of your time in Zone 2, the remaining 20% in properly hard work, with sweet spot used inside build phases rather than as the default intensity.",
+      "If you're picking one to do this season, do Zone 2. It's the foundation. Sweet spot built on no Zone 2 plateaus inside a season; Zone 2 built on its own keeps producing for years. If you have time for both — and any rider with 8+ hours a week does — keep the polarised distribution: roughly 80% of your time in Zone 2, the remaining 20% in properly hard work, with sweet spot used inside build phases rather than as the default intensity.",
     ],
     faqs: [
       {
@@ -1575,10 +1575,10 @@ export const COMPARISONS: ComparisonPage[] = [
     relatedTool: "/plateau",
     intro: [
       "Sweet spot has a long marketing tail. It became the default amateur prescription because it feels productive — every session is hard enough to feel real, easy enough to do back-to-back. For a 32-year-old with eight hours of training in him, that's a workable framing. For a 48-year-old training around a job and a family, the maths breaks.",
-      "The honest read for the masters cyclist is that polarised — Stephen Seiler's 80/20 model — is the more sustainable structure. Sweet spot still has a role, but as a tool inside a build block, not as the year-round operating system. This page is the head-to-head, anchored in what Seiler, John Wakefield, Dan Lorang, and the Roadman masters cohort actually do.",
+      "For the masters cyclist, polarised — Stephen Seiler's 80/20 model — is the more sustainable structure. Sweet spot still has a role, but as a tool inside a build block, not as the year-round operating system. This page is the head-to-head, anchored in what Seiler, John Wakefield, Dan Lorang, and the Roadman masters cohort actually do.",
     ],
     body: [
-      "**The honest read.** Polarised is the better default for masters cyclists, and the gap widens with age. Seiler's research on intensity distribution shows trained endurance athletes adapt best when ~80% of training time is below ventilatory threshold and ~15-20% is well above it. Sweet spot — sitting at 88-94% FTP — is exactly in the middle that polarised explicitly avoids. For an under-40 with deep recovery capacity, that mid-zone work can land. For an over-40, it accumulates fatigue faster than the body can clear it.",
+      "Polarised is the better default for masters cyclists, and the gap widens with age. Seiler's research on intensity distribution shows trained endurance athletes adapt best when ~80% of training time is below ventilatory threshold and ~15-20% is well above it. Sweet spot — sitting at 88-94% FTP — is exactly in the middle that polarised explicitly avoids. For an under-40 with deep recovery capacity, that mid-zone work can land. For an over-40, it accumulates fatigue faster than the body can clear it.",
       "**Where sweet spot still earns its place.** Sweet spot isn't broken; it's misapplied. As a 6-8 week build block ahead of a specific event — a sportive with sustained climbs, a Cat 3 race calendar, a Mallorca 312 — sweet spot work raises threshold durability in ways that pure polarised rarely matches. The pattern Roadman runs inside Not Done Yet for over-40 riders is polarised base for 16-24 weeks, a sharper sweet-spot or threshold block for 6-8 weeks pre-event, then back to polarised. The mistake is treating sweet spot as the default rather than the tool.",
       "**The recovery argument.** John Wakefield has been clear on the podcast that the over-40 cohort needs 72-96 hours between hard sessions, not the 48-72 standard for younger amateurs. Sweet spot at three days a week — the most common amateur sweet-spot prescription — leaves no real recovery window. Within 8-12 weeks, the masters rider is running a chronic fatigue debt that caps the very FTP gains the block was meant to deliver. Polarised at the same volume produces less acute discomfort but more cumulative adaptation.",
       "**The grey-zone trap.** Most masters cyclists don't actually run sweet spot — they run a confused middle. They start a session aiming for sweet spot, drift into threshold on the climbs, drop into tempo on the flats, and call it a workout. That's not sweet spot. That's the grey zone. It's what kills more amateur FTP gains than any other single mistake, and it's the precise thing polarised structure prevents. If you can't honestly hold sweet spot at 90% FTP for the full prescribed duration, the data says you'd benefit more from rebuilding the base than from another grey-zone block.",
@@ -1609,6 +1609,122 @@ export const COMPARISONS: ComparisonPage[] = [
       {
         q: "Where does this leave threshold work?",
         a: "In a polarised week, threshold (around 95-100% FTP) lives in the 20% hard portion, alongside VO2max work — but in tighter, sharper doses than sweet spot allows. Think 3 x 8 minutes at threshold once a week, not 3 x 20 minutes at sweet spot three times a week. [Sweet spot vs threshold has more depth here](/compare/sweet-spot-vs-threshold).",
+      },
+    ],
+  },
+  {
+    slug: "trainingpeaks-virtual-vs-zwift",
+    title: "TrainingPeaks Virtual vs Zwift — Indoor Training Platforms",
+    seoTitle: "TrainingPeaks Virtual vs Zwift: Which Indoor Platform?",
+    seoDescription: "TrainingPeaks Virtual vs Zwift compared. Structured training integration, social features, coaching connectivity, and which platform fits your training approach.",
+    optionA: "TrainingPeaks Virtual",
+    optionB: "Zwift",
+    verdict: "TrainingPeaks Virtual wins for coached athletes and structured-training purists — your indoor rides sync directly to your training calendar alongside outdoor work, giving your coach (or you) a unified view. Zwift wins for social motivation, racing, and riders who need the gamification layer to stay consistent. If your indoor training needs to integrate with a periodised plan, TPV. If you need group rides and virtual races to get on the trainer, Zwift.",
+    verdictWinner: "depends",
+    pillar: "coaching",
+    features: [
+      { feature: "Plan integration", optionA: "Native — syncs structured workouts from TrainingPeaks calendar", optionB: "Separate — workouts don't feed your outdoor training plan" },
+      { feature: "Coach visibility", optionA: "Full — coach sees indoor and outdoor sessions in one place", optionB: "Limited — coach needs separate sync or manual import" },
+      { feature: "Structured workouts", optionA: "Full TrainingPeaks workout library, auto-loaded", optionB: "Extensive built-in library, TrainerRoad-style authoring" },
+      { feature: "Social/group rides", optionA: "Minimal — built for focused work", optionB: "Massive — thousands of daily group rides and races" },
+      { feature: "Racing", optionA: "Not a primary feature", optionB: "Huge racing scene across categories" },
+      { feature: "Visual experience", optionA: "Clean, workout-focused interface", optionB: "Virtual worlds (Watopia, France, NYC)" },
+      { feature: "Data continuity", optionA: "Seamless — TSS, CTL, ATL unified across indoor/outdoor", optionB: "Requires third-party sync for unified analytics" },
+      { feature: "Monthly cost", optionA: "Included with TrainingPeaks Premium", optionB: "~$20/month" },
+    ],
+    bestForA: [
+      "Coached athletes who want indoor sessions in the same calendar as outdoor rides",
+      "Structured-training purists who want every session to count toward the plan",
+      "Riders already using TrainingPeaks for analytics and planning",
+      "Athletes who value unified data over social features",
+    ],
+    bestForB: [
+      "Riders who need social motivation and group rides to stay consistent",
+      "Racers who want to compete virtually multiple times a week",
+      "Riders who thrive on gamification, achievements, and virtual worlds",
+      "Cyclists who prioritise community over plan integration",
+    ],
+    relatedArticle: "/blog/zwift-vs-trainerroad",
+    body: [
+      "**The difference isn't features — it's philosophy.** TrainingPeaks Virtual exists to make your indoor sessions part of a unified training system. Zwift exists to make indoor training fun enough that you actually do it. Both are valid approaches, and which one matters more depends on how you're wired.",
+      "If you're following a structured plan — whether from a coach or self-built in TrainingPeaks — TPV removes the fragmentation that trips up serious amateurs. Your Tuesday indoor session shows up in the same calendar as your Saturday outdoor ride. Your TSS, CTL, and fitness tracking don't break because half your data lives in a different ecosystem. Your coach doesn't have to chase Zwift exports to see what you actually did.",
+      "Zwift's strength is the social layer. Group rides with hundreds of riders. Racing at any hour. Route variety that makes the trainer less monotonous. For riders whose biggest training problem is getting on the bike at all, Zwift solves the motivation gap that no structured plan can fix.",
+      "**Many serious riders combine both.** TrainingPeaks Virtual for structured midweek sessions — threshold intervals, tempo work, anything prescribed from the plan. Zwift for weekend group rides or when the training calls for an unstructured easy spin and you want company. The key is that your structured work integrates with your plan, and your social riding adds volume without fragmenting your data.",
+    ],
+    faqs: [
+      {
+        q: "Is TrainingPeaks Virtual included with TrainingPeaks?",
+        a: "TrainingPeaks Virtual is included with TrainingPeaks Premium ($19.95/month). If you're already paying for TrainingPeaks analytics, you get the indoor training platform at no extra cost — which makes the value proposition strong against a separate $20/month Zwift subscription.",
+      },
+      {
+        q: "Can I use both TPV and Zwift?",
+        a: "Yes, and many riders do. Use TPV for structured sessions that need to sync to your training plan, and Zwift for social rides and races. The structured work stays integrated; the fun riding adds volume.",
+      },
+      {
+        q: "Does TPV have group rides like Zwift?",
+        a: "No — TPV is focused on structured, plan-integrated training rather than social riding. If group rides are essential to your motivation, Zwift is the better platform for that. TPV is for riders who want every indoor session to count toward a cohesive training plan.",
+      },
+      {
+        q: "Which is better for coached athletes?",
+        a: "TrainingPeaks Virtual, clearly. Your coach can prescribe workouts that auto-load onto the trainer, and the completed sessions sync back to the same calendar as your outdoor rides. With Zwift, your coach has to work around a separate ecosystem.",
+      },
+    ],
+  },
+  {
+    slug: "trainingpeaks-virtual-vs-rouvy",
+    title: "TrainingPeaks Virtual vs Rouvy — Indoor Cycling Compared",
+    seoTitle: "TrainingPeaks Virtual vs Rouvy: Which Indoor Platform?",
+    seoDescription: "TrainingPeaks Virtual vs Rouvy compared. Structured training, real-world routes, coaching integration, and which platform fits coached and event-focused cyclists.",
+    optionA: "TrainingPeaks Virtual",
+    optionB: "Rouvy",
+    verdict: "TrainingPeaks Virtual wins for coached athletes and structured-training integration — indoor sessions sync natively to your training calendar. Rouvy wins for event-specific course simulation and riders who want augmented-reality video of real roads. If your training is plan-led, TPV. If you're targeting a specific event and want to ride the actual course, Rouvy.",
+    verdictWinner: "depends",
+    pillar: "coaching",
+    features: [
+      { feature: "Plan integration", optionA: "Native — workouts sync from TrainingPeaks calendar", optionB: "Limited — separate from training plan ecosystem" },
+      { feature: "Coach visibility", optionA: "Full — indoor and outdoor in one dashboard", optionB: "Requires manual sync or third-party tools" },
+      { feature: "Real-world courses", optionA: "Workout-focused, not course-based", optionB: "1000+ AR video courses including Tour stages, Ironman courses" },
+      { feature: "Structured workouts", optionA: "Full TrainingPeaks library, auto-loaded", optionB: "Basic library, less intuitive to author" },
+      { feature: "Event-specific training", optionA: "Not course-specific", optionB: "Best in class — ride the real course you're targeting" },
+      { feature: "Visual experience", optionA: "Clean, data-focused", optionB: "Augmented-reality video of real roads" },
+      { feature: "Data continuity", optionA: "Seamless with TrainingPeaks ecosystem", optionB: "Standard device sync" },
+      { feature: "Monthly cost", optionA: "Included with TrainingPeaks Premium", optionB: "$12-15/month" },
+    ],
+    bestForA: [
+      "Coached athletes who need indoor sessions in the training calendar",
+      "Riders following structured plans who want unified data",
+      "Athletes already in the TrainingPeaks ecosystem",
+      "Riders who value training integration over course visuals",
+    ],
+    bestForB: [
+      "Riders targeting a specific real event (Étape du Tour, Ironman, Unbound)",
+      "Cyclists who prefer real-world video over abstract workout screens",
+      "Course reconnaissance — riding the actual gradients before race day",
+      "Budget-focused riders who want immersive visuals at lower cost",
+    ],
+    relatedArticle: "/blog/rouvy-vs-zwift",
+    body: [
+      "**These platforms solve different problems.** TrainingPeaks Virtual makes indoor training part of your structured plan. Rouvy lets you ride real courses from your garage. The overlap is smaller than you'd expect.",
+      "If you're eight weeks out from the Étape du Tour and want to ride the actual stage profile with AR video of the real road, Rouvy is the only platform that does this well. You see the switchbacks, the gradient changes, the finish. It's the closest you'll get to course reconnaissance without buying a plane ticket.",
+      "If you're a coached athlete who needs every session — indoor and outdoor — to land in TrainingPeaks under your coach's eye, TPV removes the integration tax. The workout loads automatically from your calendar. The TSS credits to the right day. Your fitness tracking stays consistent. No exports, no manual sync, no split data.",
+      "**For event-focused riders:** use Rouvy for the 2-3 course-specific sessions per week in the final build, and TPV for all other structured indoor work. Your training plan stays intact and you get the course familiarity where it matters most.",
+    ],
+    faqs: [
+      {
+        q: "Can I use both TPV and Rouvy?",
+        a: "Yes — and that's a strong combination for event-focused cyclists. Use TPV for structured sessions that integrate with your training plan, and Rouvy for course-specific sessions when you want to ride the real route of your target event.",
+      },
+      {
+        q: "Is Rouvy better than TPV for course simulation?",
+        a: "Yes, significantly. Rouvy's AR video library of real-world courses is unmatched. TPV isn't built for course simulation — it's built for structured training integration. They solve different problems.",
+      },
+      {
+        q: "Which is cheaper?",
+        a: "Rouvy at $12-15/month is cheaper standalone. But if you're already paying for TrainingPeaks Premium ($19.95/month), TPV is included at no additional cost — making it effectively free for existing TrainingPeaks users.",
+      },
+      {
+        q: "Which is better for a coach to prescribe?",
+        a: "TrainingPeaks Virtual. Coaches can prescribe workouts that auto-load onto the trainer, and completed sessions sync back to the same dashboard as outdoor rides. Rouvy doesn't have this level of coaching integration.",
       },
     ],
   },
