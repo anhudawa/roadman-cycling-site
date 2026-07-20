@@ -25,7 +25,7 @@ export interface RiderSettings {
   goal: GoalKey;
 }
 
-export type ActivitySource = "strava" | "demo" | "manual";
+export type ActivitySource = "strava" | "trainingpeaks" | "demo" | "manual";
 
 export interface Activity {
   id: string;

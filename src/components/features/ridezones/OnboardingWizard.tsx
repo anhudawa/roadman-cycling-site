@@ -1,11 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui";
 import { DEMO_SETTINGS, generateDemoHistory } from "@/lib/ridezones/demo";
 import { isoDate } from "@/lib/ridezones/load";
-import { parseStravaActivitiesCsv } from "@/lib/ridezones/strava";
 import type { Activity, GoalKey, RiderSettings } from "@/lib/ridezones/types";
+import { ImportPanel } from "./ImportPanel";
 
 const GOALS: Array<{ value: GoalKey; label: string; detail: string }> = [
   { value: "gran-fondo", label: "Gran fondo / sportive", detail: "Perform on the big day, not just survive it" },
@@ -25,8 +25,6 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
   const [weeklyHours, setWeeklyHours] = useState("8");
   const [goal, setGoal] = useState<GoalKey>("gran-fondo");
   const [error, setError] = useState<string | null>(null);
-  const [importSummary, setImportSummary] = useState<string | null>(null);
-  const fileRef = useRef<HTMLInputElement>(null);
 
   const settings = (): RiderSettings | null => {
     const ftpNum = Number(ftp);
@@ -62,20 +60,16 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
     );
   };
 
-  const handleFile = async (file: File) => {
-    setError(null);
+  const handleImport = (activities: Activity[]) => {
     const s = settings();
     if (!s) return;
-    const text = await file.text();
-    const result = parseStravaActivitiesCsv(text);
-    if (result.errors.length > 0 && result.activities.length === 0) {
-      setError(result.errors[0]);
-      return;
-    }
-    setImportSummary(
-      `${result.activities.length} rides imported${result.skipped > 0 ? `, ${result.skipped} non-ride activities skipped` : ""}.`
-    );
-    onComplete(s, result.activities);
+    onComplete(s, activities);
+  };
+
+  const handleManualStart = () => {
+    const s = settings();
+    if (!s) return;
+    onComplete(s, []);
   };
 
   return (
@@ -170,30 +164,7 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
             browser — your data never leaves this device.
           </p>
 
-          <button
-            type="button"
-            onClick={() => fileRef.current?.click()}
-            className="w-full rounded-lg border border-dashed border-white/25 bg-white/[0.03] px-5 py-6 text-left transition-colors hover:border-coral/60"
-          >
-            <span className="block font-heading text-xl uppercase tracking-wide text-off-white">
-              Import your Strava export
-            </span>
-            <span className="mt-1 block text-sm text-foreground-muted">
-              Upload the <code className="text-off-white">activities.csv</code> from your Strava
-              archive (Settings → My Account → Download or Delete Your Account → Request Your
-              Archive). Rides only — runs and swims are ignored.
-            </span>
-          </button>
-          <input
-            ref={fileRef}
-            type="file"
-            accept=".csv,text/csv"
-            className="hidden"
-            onChange={(e) => {
-              const file = e.target.files?.[0];
-              if (file) void handleFile(file);
-            }}
-          />
+          <ImportPanel onImport={handleImport} />
 
           <button
             type="button"
@@ -210,16 +181,24 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
             </span>
           </button>
 
-          {importSummary ? <p className="text-sm text-[#5FD4C8]">{importSummary}</p> : null}
           {error ? <p className="text-sm text-coral">{error}</p> : null}
 
-          <button
-            type="button"
-            onClick={() => setStep(1)}
-            className="text-sm text-foreground-muted hover:text-off-white"
-          >
-            ← Back to your numbers
-          </button>
+          <div className="flex items-center justify-between">
+            <button
+              type="button"
+              onClick={() => setStep(1)}
+              className="text-sm text-foreground-muted hover:text-off-white"
+            >
+              ← Back to your numbers
+            </button>
+            <button
+              type="button"
+              onClick={handleManualStart}
+              className="text-sm text-foreground-muted underline-offset-2 hover:text-off-white hover:underline"
+            >
+              Skip — I&apos;ll add rides manually
+            </button>
+          </div>
         </div>
       )}
     </div>

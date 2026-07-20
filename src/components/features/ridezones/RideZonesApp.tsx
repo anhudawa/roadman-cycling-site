@@ -4,7 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui";
 import { buildAnalysis } from "@/lib/ridezones/engine";
 import { isoDate } from "@/lib/ridezones/load";
-import { SYSTEM_LABELS } from "@/lib/ridezones/profile";
+import { mergeActivities } from "@/lib/ridezones/merge";
+import { computeWindowStats, SYSTEM_LABELS } from "@/lib/ridezones/profile";
 import {
   clearStoredState,
   loadStoredState,
@@ -13,13 +14,18 @@ import {
 import type { Activity, RiderSettings } from "@/lib/ridezones/types";
 import { ActivityList } from "./ActivityList";
 import { FormChart } from "./FormChart";
+import { ImportPanel } from "./ImportPanel";
+import { ManualRideForm } from "./ManualRideForm";
 import { OnboardingWizard } from "./OnboardingWizard";
 import { RecipeCompare } from "./RecipeCompare";
 import { SystemBars } from "./SystemBars";
 import { WeekPlanView } from "./WeekPlanView";
+import { WeeklyLoadChart } from "./WeeklyLoadChart";
 import { ZonesCard } from "./ZonesCard";
 
-type Tab = "overview" | "profile" | "rides" | "recipe" | "plan";
+const SKOOL_URL = "https://www.skool.com/roadmancycling";
+
+type Tab = "overview" | "profile" | "rides" | "recipe" | "plan" | "import";
 
 const TABS: Array<{ key: Tab; label: string }> = [
   { key: "overview", label: "Overview" },
@@ -27,6 +33,7 @@ const TABS: Array<{ key: Tab; label: string }> = [
   { key: "rides", label: "Rides" },
   { key: "recipe", label: "Race recipe" },
   { key: "plan", label: "This week" },
+  { key: "import", label: "Add rides" },
 ];
 
 interface AppState {
@@ -55,7 +62,23 @@ export function RideZonesApp() {
   const handleComplete = (settings: RiderSettings, activities: Activity[]) => {
     saveStoredState(settings, activities);
     setState({ settings, activities });
-    setTab("overview");
+    setTab(activities.length === 0 ? "import" : "overview");
+  };
+
+  const [importNote, setImportNote] = useState<string | null>(null);
+
+  const handleMergeImport = (incoming: Activity[], summary: string) => {
+    if (!state) return;
+    const { merged, duplicates } = mergeActivities(state.activities, incoming);
+    saveStoredState(state.settings, merged);
+    setState({ settings: state.settings, activities: merged });
+    setImportNote(
+      duplicates > 0 ? `${summary} ${duplicates} already on file — kept the richer copy.` : summary
+    );
+  };
+
+  const handleManualAdd = (activity: Activity) => {
+    handleMergeImport([activity], `Added ${activity.name} on ${activity.date}.`);
   };
 
   const handleReset = () => {
@@ -77,6 +100,8 @@ export function RideZonesApp() {
 
   const lastPoint = analysis.load[analysis.load.length - 1];
   const { profile, recipe, plan } = analysis;
+  const windowStats = computeWindowStats(analysis.activities, analysis.asOf);
+  const honestShare = Math.round((1 - windowStats.greyLeak) * 100);
 
   return (
     <div>
@@ -118,7 +143,7 @@ export function RideZonesApp() {
 
       {tab === "overview" ? (
         <div className="space-y-10">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             <StatTile
               label="Fitness (CTL)"
               value={lastPoint ? Math.round(lastPoint.ctl).toString() : "—"}
@@ -143,6 +168,15 @@ export function RideZonesApp() {
               }
             />
             <StatTile
+              label="Easy days honest"
+              value={windowStats.rideCount > 0 ? `${honestShare}%` : "—"}
+              detail={
+                honestShare >= 85
+                  ? "Your easy time stays in Zone 2"
+                  : "Share of easy-ride time that stays easy"
+              }
+            />
+            <StatTile
               label="Rides analysed"
               value={analysis.activities.length.toString()}
               detail={`Focus: ${SYSTEM_LABELS[profile.focus.system]}`}
@@ -154,6 +188,13 @@ export function RideZonesApp() {
               Fitness, fatigue &amp; form
             </h3>
             <FormChart load={analysis.load} />
+          </div>
+
+          <div>
+            <h3 className="mb-3 font-heading text-2xl uppercase tracking-wide text-off-white">
+              Weekly training load
+            </h3>
+            <WeeklyLoadChart activities={analysis.activities} asOf={analysis.asOf} />
           </div>
 
           <div>
@@ -192,7 +233,40 @@ export function RideZonesApp() {
 
       {tab === "recipe" ? <RecipeCompare recipe={recipe} /> : null}
 
-      {tab === "plan" ? <WeekPlanView plan={plan} /> : null}
+      {tab === "plan" ? (
+        <div>
+          <WeekPlanView plan={plan} />
+          <div className="mt-10 rounded-lg border border-coral/30 bg-coral/[0.06] p-6 md:flex md:items-center md:justify-between md:gap-6">
+            <div>
+              <h3 className="font-heading text-2xl uppercase tracking-wide text-off-white">
+                Software reads the data. Humans close the loop.
+              </h3>
+              <p className="mt-2 max-w-xl text-sm leading-relaxed text-foreground-muted">
+                Bring this profile to the weekly live call in the Not Done Yet community and
+                Anthony&apos;s coaches will pressure-test it — the plan, the pacing, the parts a
+                dashboard can&apos;t see.
+              </p>
+            </div>
+            <div className="mt-4 shrink-0 md:mt-0">
+              <Button href={SKOOL_URL} external variant="outline" dataTrack="ridezones_app_ndy">
+                Join Not Done Yet
+              </Button>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      {tab === "import" ? (
+        <div className="max-w-xl space-y-6">
+          <p className="text-sm leading-relaxed text-foreground-muted">
+            Import from both platforms freely — rides that appear twice are detected by date and
+            duration, and the richer record wins. Everything stays in this browser.
+          </p>
+          {importNote ? <p className="text-sm text-[#5FD4C8]">{importNote}</p> : null}
+          <ImportPanel compact onImport={handleMergeImport} />
+          <ManualRideForm onAdd={handleManualAdd} />
+        </div>
+      ) : null}
 
       <div className="mt-14 flex flex-wrap items-center gap-4 border-t border-white/10 pt-6">
         <p className="flex-1 text-xs text-foreground-subtle">

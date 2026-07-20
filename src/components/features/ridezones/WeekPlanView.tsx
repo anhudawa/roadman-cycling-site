@@ -2,15 +2,27 @@
 
 import { useState } from "react";
 import { PURPOSE_LABELS } from "@/lib/ridezones/classify";
+import { formatWeekPlanText } from "@/lib/ridezones/plan";
 import { SYSTEM_LABELS } from "@/lib/ridezones/profile";
 import type { WeekPlan } from "@/lib/ridezones/types";
 
 export function WeekPlanView({ plan }: { plan: WeekPlan }) {
   const [openId, setOpenId] = useState<string | null>(plan.sessions[0]?.id ?? null);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(formatWeekPlanText(plan));
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard unavailable (permissions/http) — quietly do nothing.
+    }
+  };
 
   return (
     <div>
-      <div className="mb-5 flex flex-wrap items-center gap-x-6 gap-y-1 text-sm text-foreground-muted">
+      <div className="mb-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-foreground-muted">
         <span>
           Focus: <span className="text-off-white">{SYSTEM_LABELS[plan.focusSystem]}</span>
         </span>
@@ -18,6 +30,14 @@ export function WeekPlanView({ plan }: { plan: WeekPlan }) {
           Total: <span className="text-off-white">{plan.totalHours}h</span> across{" "}
           <span className="text-off-white">{plan.sessions.length} sessions</span>
         </span>
+        <button
+          type="button"
+          onClick={handleCopy}
+          data-track="ridezones_copy_week"
+          className="rounded-md border border-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-foreground-muted transition-colors hover:border-coral/60 hover:text-off-white"
+        >
+          {copied ? "Copied" : "Copy week as text"}
+        </button>
       </div>
       <p className="mb-6 max-w-2xl text-sm leading-relaxed text-foreground-muted">{plan.weekNote}</p>
 

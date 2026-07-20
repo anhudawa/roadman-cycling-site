@@ -1,5 +1,8 @@
 export { ActivityList } from "./ActivityList";
 export { FormChart } from "./FormChart";
+export { ImportPanel } from "./ImportPanel";
+export { ManualRideForm } from "./ManualRideForm";
+export { WeeklyLoadChart } from "./WeeklyLoadChart";
 export { OnboardingWizard } from "./OnboardingWizard";
 export { RecipeCompare } from "./RecipeCompare";
 export { RideZonesApp } from "./RideZonesApp";

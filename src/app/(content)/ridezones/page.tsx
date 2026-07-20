@@ -36,7 +36,7 @@ const FAQS = [
   {
     question: "What data does RideZones need?",
     answer:
-      "Your FTP, your weekly training hours, and your ride history. The quickest import is the activities.csv from a Strava bulk export (Settings → My Account → Download or Delete Your Account → Request Your Archive). Rides with power get the most accurate analysis; rides with only heart rate still work if you add your threshold heart rate.",
+      "Your FTP, your weekly training hours, and your ride history. Import the activities.csv from a Strava bulk export, the workouts CSV from a TrainingPeaks export, or add rides manually — you can combine all three, and duplicate rides are detected automatically. Rides with power get the most accurate analysis; rides with only heart rate still work if you add your threshold heart rate.",
   },
   {
     question: "Is this an AI coach?",
@@ -81,7 +81,7 @@ const STEPS = [
     number: "01",
     title: "Import your history",
     detail:
-      "Drop in your Strava export, or start with demo data. Rides only — power if you have it, heart rate if you don't.",
+      "Drop in your Strava or TrainingPeaks export, add rides by hand, or start with demo data. Power if you have it, heart rate if you don't.",
   },
   {
     number: "02",

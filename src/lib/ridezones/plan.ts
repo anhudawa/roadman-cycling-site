@@ -308,3 +308,20 @@ export function buildWeekPlan(
 }
 
 export const SESSION_LIBRARY = LIBRARY;
+
+/** Plain-text week for pasting into a training diary, TrainingPeaks note, or the club chat. */
+export function formatWeekPlanText(plan: WeekPlan): string {
+  const lines: string[] = [
+    `RideZones training week — ${plan.totalHours}h across ${plan.sessions.length} sessions`,
+    `Focus: ${plan.focusSystem.replace(/-/g, " ")}`,
+    "",
+  ];
+  for (const session of plan.sessions) {
+    lines.push(`${session.day} — ${session.title} (${session.durationMin} min)`);
+    lines.push(`  ${session.structure}`);
+    lines.push(`  Targets: ${session.targets.map((t) => t.text).join(" · ")}`);
+    lines.push("");
+  }
+  lines.push("Built with RideZones — roadmancycling.com/ridezones");
+  return lines.join("\n");
+}
