@@ -157,6 +157,8 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/plateau`, lastModified: new Date("2026-04-22"), changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}/ask`, lastModified: new Date("2026-04-24"), changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE_URL}/predict`, lastModified: new Date("2026-04-24"), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE_URL}/ridezones`, lastModified: new Date("2026-07-20"), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE_URL}/ridezones/app`, lastModified: new Date("2026-07-20"), changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/predict/courses`, lastModified: new Date("2026-04-24"), changeFrequency: "weekly", priority: 0.8 },
     ...Array.from(
       new Set(

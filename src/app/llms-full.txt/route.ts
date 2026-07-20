@@ -264,6 +264,7 @@ Each has unique local content (climbs, events, clubs, regional racing scene):
 
 - Race Predictor / Plan My Race: ${tag(`${BASE_URL}/predict`)} — GPX-driven physics-based finish-time and pacing simulator. Two modes: "Plan My Race" (target time) and "Can I Make It?" (cutoff feasibility). Outputs split-by-split power, pace, and fuelling targets.
 - Race Course Library: ${tag(`${BASE_URL}/predict/courses`)} — Curated GPX-verified race courses (Etape du Tour, Ring of Beara, Traka, Wicklow 200, Ride London, and more) with elevation profiles and ready-to-simulate pages.
+- RideZones: ${tag(`${BASE_URL}/ridezones`)} — Training-history analysis app: eight-system fitness profile, per-ride execution scoring, race-recipe comparison of your best six-week block vs now, and a goal-specific training week with watt targets. Browser-local Strava import; deterministic coaching logic from the podcast's expert network.
 - Masters Plateau Diagnostic: ${tag(`${BASE_URL}/plateau`)} — 12-question diagnostic that identifies which of 4 plateau profiles is limiting your FTP progress.
 - Ask Roadman: ${tag(`${BASE_URL}/ask`)} — Cited cycling-performance assistant grounded in the Roadman podcast catalogue.
 - Find Your Fit: ${tag(`${BASE_URL}/find-your-fit`)} — Coaching pathway finder for new riders.

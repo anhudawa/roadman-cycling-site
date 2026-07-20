@@ -31,6 +31,7 @@ const footerColumns = {
       { label: "Training Plans", href: "/plan" },
       { label: "Newsletter", href: "/newsletter" },
       { label: "Plateau Diagnostic", href: "/plateau" },
+      { label: "RideZones", href: "/ridezones" },
       { label: "Ask Roadman", href: "/ask" },
       { label: "Coaching Assessment", href: "/assessment" },
       { label: "Glossary", href: "/glossary" },

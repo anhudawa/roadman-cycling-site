@@ -158,6 +158,7 @@ export const NAV_ITEMS: NavItem[] = [
     href: "/tools",
     children: [
       { label: "Race Predictor", href: "/predict" },
+      { label: "RideZones", href: "/ridezones" },
       { label: "FTP Zones", href: "/tools/ftp-zones" },
       { label: "HR Zones", href: "/tools/hr-zones" },
       { label: "W/kg Calculator", href: "/tools/wkg" },
