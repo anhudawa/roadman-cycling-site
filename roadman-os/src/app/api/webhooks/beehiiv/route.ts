@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import crypto from 'crypto'
 import { createClient } from '@/lib/supabase/server'
+import { logWebhookFailure } from '@/lib/webhooks/webhook-utils'
 import type { AssetInsert } from '@/types/database'
 
 // ─── Webhook payload types ──────────────────────────────────────────────────
@@ -269,8 +270,9 @@ export async function POST(request: Request) {
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Webhook processing error'
     // Return 200 to prevent Beehiiv from retrying on internal errors.
-    // The error is logged server-side.
+    // Log the failure for the sync status dashboard.
     console.error(`[beehiiv webhook] Error processing ${event.type}:`, message)
+    await logWebhookFailure('beehiiv', `${event.type}: ${message}`, rawBody)
     return NextResponse.json({ received: true, error: message })
   }
 

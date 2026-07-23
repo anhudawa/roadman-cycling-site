@@ -1,8 +1,13 @@
+import Link from 'next/link'
 import { PageHeader } from '@/components/ui/PageHeader'
+import { Button } from '@/components/ui/Button'
 import { ConnectionCard } from '@/components/integrations/ConnectionCard'
 import { ApiKeyForm } from '@/components/integrations/ApiKeyForm'
+import { SyncStatusDashboard } from '@/components/integrations/SyncStatusDashboard'
+import { SyncHistory } from '@/components/integrations/SyncHistory'
 import { getConnections } from '@/lib/queries/integrations'
 import { getPlatforms } from '@/lib/queries/platforms'
+import { getPlatformSyncSummaries, getSyncJobs } from '@/lib/queries/sync'
 import type { PlatformConnection } from '@/types/database'
 
 export const metadata = {
@@ -28,6 +33,18 @@ const INTEGRATION_PLATFORMS = [
     name: 'LinkedIn',
     authType: 'oauth' as const,
     description: 'Org posts, follower stats, and impressions',
+  },
+  {
+    slug: 'tiktok',
+    name: 'TikTok',
+    authType: 'oauth' as const,
+    description: 'Video views, engagement, and follower growth',
+  },
+  {
+    slug: 'twitter',
+    name: 'X / Twitter',
+    authType: 'oauth' as const,
+    description: 'Tweet impressions, engagement, and follower stats',
   },
   {
     slug: 'spotify',
@@ -64,6 +81,20 @@ const INTEGRATION_PLATFORMS = [
     ],
   },
   {
+    slug: 'gsc',
+    name: 'Google Search Console',
+    authType: 'api_key' as const,
+    description: 'Search query impressions, clicks, and ranking positions — 16-month rolling window',
+    extraFields: [
+      {
+        name: 'site_url',
+        label: 'Site URL',
+        placeholder: 'https://roadmancycling.com',
+        hint: 'Exactly as verified in GSC',
+      },
+    ],
+  },
+  {
     slug: 'skool',
     name: 'Skool',
     authType: 'manual' as const,
@@ -72,9 +103,11 @@ const INTEGRATION_PLATFORMS = [
 ]
 
 export default async function IntegrationsSettingsPage() {
-  const [connections, platforms] = await Promise.all([
+  const [connections, platforms, syncSummaries, recentSyncJobs] = await Promise.all([
     getConnections(),
     getPlatforms(),
+    getPlatformSyncSummaries(),
+    getSyncJobs({ limit: 50 }),
   ])
 
   // Map connections by platform_id for quick lookup
@@ -96,7 +129,20 @@ export default async function IntegrationsSettingsPage() {
       <PageHeader
         title="Integrations"
         description="Connect your platforms to automatically sync analytics data."
+        actions={
+          <Link href="/settings/import">
+            <Button variant="outline" size="sm">
+              Import Content
+            </Button>
+          </Link>
+        }
       />
+
+      {/* Sync Status Dashboard */}
+      <section className="mb-8">
+        <SyncStatusDashboard summaries={syncSummaries} />
+      </section>
+
 
       {/* OAuth-based integrations */}
       <section className="mb-8">
@@ -173,7 +219,7 @@ export default async function IntegrationsSettingsPage() {
       </section>
 
       {/* Manual entry (Skool) */}
-      <section>
+      <section className="mb-8">
         <h2 className="text-lg font-medium text-off-white mb-4">
           Manual Entry
         </h2>
@@ -192,6 +238,11 @@ export default async function IntegrationsSettingsPage() {
             ),
           )}
         </div>
+      </section>
+
+      {/* Sync History */}
+      <section className="mb-8">
+        <SyncHistory initialJobs={recentSyncJobs} />
       </section>
     </div>
   )

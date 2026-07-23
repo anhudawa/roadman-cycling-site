@@ -49,6 +49,14 @@ const PLATFORM_OAUTH_CONFIG: Record<string, () => OAuthConfig> = {
     authUrl: 'https://accounts.spotify.com/authorize',
     scopes: ['user-read-playback-position', 'user-read-email'],
   }),
+  // TODO: Add GSC OAuth config when credentials are available
+  // gsc: () => ({
+  //   clientId: process.env.GOOGLE_CLIENT_ID!,
+  //   clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+  //   tokenUrl: 'https://oauth2.googleapis.com/token',
+  //   authUrl: 'https://accounts.google.com/o/oauth2/v2/auth',
+  //   scopes: ['https://www.googleapis.com/auth/webmasters.readonly'],
+  // }),
 }
 
 /**

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import Link from 'next/link'
 import {
   RefreshCw,
   AlertTriangle,
@@ -12,6 +13,7 @@ import {
   Shield,
   Clock,
   Zap,
+  ArrowRight,
 } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner'
@@ -835,10 +837,29 @@ export function IntelligenceOps() {
       {/* 4. Pipeline Stats */}
       <PipelineStatsCards stats={data.pipeline_stats} />
 
-      {/* 5. Sync Job Status */}
+      {/* 5. Historical Backfill link */}
+      <Link
+        href="/intelligence/backfill"
+        className="flex items-center justify-between rounded-lg border border-mid-grey/20 bg-charcoal/50 p-4 group hover:border-coral/30 transition-colors"
+      >
+        <div className="flex items-center gap-3">
+          <Database className="h-5 w-5 text-coral" />
+          <div>
+            <p className="text-sm font-medium text-off-white group-hover:text-coral transition-colors">
+              Historical Backfill Programme
+            </p>
+            <p className="text-xs text-mid-grey mt-0.5">
+              Import historical performance data from YouTube, Beehiiv, and GA4
+            </p>
+          </div>
+        </div>
+        <ArrowRight className="h-4 w-4 text-mid-grey group-hover:text-coral transition-colors" />
+      </Link>
+
+      {/* 6. Sync Job Status */}
       <SyncJobStatus groups={data.sync_job_status} />
 
-      {/* 6. Data Quality Log */}
+      {/* 7. Data Quality Log */}
       <QualityCheckLog checks={data.quality_checks} />
     </div>
   )

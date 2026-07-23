@@ -23,6 +23,12 @@ import type {
   CampaignPublication,
   CampaignActivity,
 } from '@/lib/queries/campaigns'
+import type {
+  CampaignPerformanceSummary,
+  CampaignROI,
+  CampaignComparison,
+} from '@/lib/queries/campaign-performance'
+import { CampaignScorecard } from '@/components/campaigns/CampaignScorecard'
 
 // ---------------------------------------------------------------------------
 // Badge variant maps
@@ -74,12 +80,16 @@ interface CampaignTabsProps {
   tasks: CampaignTask[]
   publications: CampaignPublication[]
   activity: CampaignActivity[]
+  performance?: CampaignPerformanceSummary
+  roi?: CampaignROI | null
+  comparisons?: CampaignComparison[]
 }
 
 const TABS = [
   { key: 'assets', label: 'Assets' },
   { key: 'tasks', label: 'Tasks' },
   { key: 'publications', label: 'Publications' },
+  { key: 'performance', label: 'Performance' },
   { key: 'activity', label: 'Activity' },
 ] as const
 
@@ -95,6 +105,9 @@ export function CampaignTabs({
   tasks,
   publications,
   activity,
+  performance,
+  roi,
+  comparisons,
 }: CampaignTabsProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -136,6 +149,14 @@ export function CampaignTabs({
       {activeTab === 'tasks' && <TasksTab tasks={tasks} />}
       {activeTab === 'publications' && (
         <PublicationsTab publications={publications} />
+      )}
+      {activeTab === 'performance' && performance && (
+        <CampaignScorecard
+          campaignId={campaignId}
+          performance={performance}
+          roi={roi ?? null}
+          comparisons={comparisons ?? []}
+        />
       )}
       {activeTab === 'activity' && <ActivityTab activity={activity} />}
     </div>

@@ -12,6 +12,11 @@ import {
   getPublicationsByCampaign,
   getActivityByCampaign,
 } from '@/lib/queries/campaigns'
+import {
+  getCampaignPerformance,
+  getCampaignROI,
+  compareCampaigns,
+} from '@/lib/queries/campaign-performance'
 import { CAMPAIGN_TYPES, CAMPAIGN_STATUSES, CONTENT_PILLARS } from '@/lib/constants'
 import { CampaignArchiveButton } from '@/components/campaigns/CampaignArchiveButton'
 import { CampaignTabs } from '@/components/campaigns/CampaignTabs'
@@ -58,6 +63,17 @@ export default async function CampaignDetailPage({ params }: CampaignDetailPageP
     getTasksByCampaign(params.id),
     getPublicationsByCampaign(params.id),
     getActivityByCampaign(params.id),
+  ])
+
+  // Fetch performance data in parallel (for the Performance tab)
+  const performancePromise = getCampaignPerformance(params.id)
+  const roiPromise = campaign?.sponsor_id ? getCampaignROI(params.id) : Promise.resolve(null)
+  const comparisonsPromise = campaign ? compareCampaigns(params.id, campaign.type) : Promise.resolve([])
+
+  const [performance, roi, comparisons] = await Promise.all([
+    performancePromise,
+    roiPromise,
+    comparisonsPromise,
   ])
 
   if (!campaign) {
@@ -292,6 +308,9 @@ export default async function CampaignDetailPage({ params }: CampaignDetailPageP
         tasks={tasks}
         publications={publications}
         activity={activity}
+        performance={performance}
+        roi={roi}
+        comparisons={comparisons}
       />
     </div>
   )

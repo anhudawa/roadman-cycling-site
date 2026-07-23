@@ -1,8 +1,9 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { Menu, Search } from 'lucide-react'
+import { Menu } from 'lucide-react'
 import { NotificationBell } from '@/components/notifications/NotificationBell'
+import { SearchBar } from '@/components/search/SearchBar'
 import type { Profile } from '@/types/database'
 
 const pathLabels: Record<string, string> = {
@@ -15,6 +16,7 @@ const pathLabels: Record<string, string> = {
   '/transcripts': 'Transcripts',
   '/performance': 'Performance',
   '/settings': 'Settings',
+  '/search': 'Search',
 }
 
 function toTitleCase(segment: string): string {
@@ -69,16 +71,8 @@ export function Header({ profile: _profile }: { profile: Profile }) {
 
       {/* Right: Search, Notifications, Mobile menu */}
       <div className="flex items-center gap-3">
-        {/* Search placeholder */}
-        <div className="relative hidden md:block">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-mid-grey/50" />
-          <input
-            type="text"
-            placeholder="Search..."
-            disabled
-            className="w-64 rounded-lg border border-mid-grey/30 bg-charcoal py-1.5 pl-10 pr-4 font-body text-sm text-off-white placeholder:text-mid-grey/50 disabled:cursor-not-allowed disabled:opacity-50"
-          />
-        </div>
+        {/* Global search bar with typeahead */}
+        <SearchBar />
 
         {/* Notification bell */}
         <NotificationBell />

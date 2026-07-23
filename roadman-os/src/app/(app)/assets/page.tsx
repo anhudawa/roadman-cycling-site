@@ -3,6 +3,10 @@ import { Suspense } from 'react'
 import { Plus } from 'lucide-react'
 import { formatDistanceToNow, parseISO } from 'date-fns'
 
+export const metadata = {
+  title: 'Assets — Roadman OS',
+}
+
 import { requireAuth } from '@/lib/utils/auth'
 import { getFilteredAssets, getDropdownData } from '@/lib/queries/assets'
 import { ASSET_TYPES, ASSET_STATUSES, CONTENT_PILLARS } from '@/lib/constants'

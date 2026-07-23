@@ -19,7 +19,8 @@ export type LeadMagnetId =
   | "masters-checklist"
   | "fuelling-guide"
   | "strength-2day"
-  | "episode-playlist";
+  | "episode-playlist"
+  | "faster-after-40";
 
 export interface LeadMagnetDefinition {
   id: LeadMagnetId;
@@ -84,6 +85,13 @@ export const LEAD_MAGNETS: Record<LeadMagnetId, LeadMagnetDefinition> = {
       "You're in. The curated playlist is on its way — first email lands in a few minutes.",
     acceptsContext: true,
     contextFieldName: "playlist_topic",
+  },
+  "faster-after-40": {
+    id: "faster-after-40",
+    label: "Faster After 40 Guide",
+    beehiivTags: ["lm-faster-after-40", "intent-masters"],
+    successMessage:
+      "Check your inbox — the report is on its way.",
   },
 };
 

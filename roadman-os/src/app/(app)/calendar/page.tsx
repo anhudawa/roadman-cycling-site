@@ -6,6 +6,10 @@ import {
   format,
 } from 'date-fns'
 
+export const metadata = {
+  title: 'Calendar — Roadman OS',
+}
+
 import { requireAuth } from '@/lib/utils/auth'
 import { getPublicationsForDateRange } from '@/lib/queries/publications'
 import { getActivePlatforms } from '@/lib/queries/platforms'

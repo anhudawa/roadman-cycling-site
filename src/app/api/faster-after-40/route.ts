@@ -7,9 +7,11 @@ import { subscribeToBeehiiv } from "@/lib/integrations/beehiiv";
 import { getResendClient } from "@/lib/integrations/resend";
 import { rateLimitOr429 } from "@/lib/rate-limit/ip-rate-limit";
 import { clampString, LIMITS, normaliseEmail } from "@/lib/validation";
+import { getLeadMagnet } from "@/lib/cta/lead-magnets";
 
+const MAGNET = getLeadMagnet("faster-after-40");
 const RESEND_FROM_ADDRESS = "Roadman Cycling <noreply@roadmancycling.com>";
-const SOURCE = "faster-after-40";
+const SOURCE = "lead-magnet-faster-after-40";
 
 /**
  * Faster After 40 squeeze page — subscribe + asset delivery.
@@ -100,6 +102,10 @@ export async function POST(request: Request) {
 
     const firstName = clampString(raw.firstName, LIMITS.name) ?? undefined;
 
+    const customFields: Record<string, string> = {
+      last_lead_magnet: "faster-after-40",
+    };
+
     // ── Analytics + CRM subscriber (non-fatal) ──────────────
 
     try {
@@ -122,11 +128,11 @@ export async function POST(request: Request) {
         email,
         name: firstName,
         source: "subscribers",
-        customFields: { last_lead_magnet: "faster-after-40" },
+        customFields,
       });
       await addActivity(contact.id, {
         type: "tag_added",
-        title: "Requested lead magnet: Faster After 40",
+        title: `Requested lead magnet: ${MAGNET.label}`,
         meta: { magnet: "faster-after-40" },
         authorName: "system",
       });
@@ -139,15 +145,12 @@ export async function POST(request: Request) {
     const result = await subscribeToBeehiiv({
       email,
       name: firstName,
-      tags: ["faster-after-40", "intent-masters"],
-      customFields: {
-        lead_magnet: "faster-after-40",
-        ...(firstName ? { first_name: firstName } : {}),
-      },
+      tags: MAGNET.beehiivTags,
+      customFields,
       sendWelcomeEmail: false,
       utm: {
-        source: "website",
-        medium: "squeeze-page",
+        source: "site",
+        medium: "lead-magnet",
         campaign: "faster-after-40",
       },
     });

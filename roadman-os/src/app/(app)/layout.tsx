@@ -3,6 +3,7 @@ import { getCurrentProfile } from '@/lib/utils/auth'
 import { Sidebar } from '@/components/layout/Sidebar'
 import { Header } from '@/components/layout/Header'
 import { MobileNav } from '@/components/layout/MobileNav'
+import { ToastWrapper } from '@/components/providers/ToastWrapper'
 
 export default async function AppLayout({
   children,
@@ -16,15 +17,17 @@ export default async function AppLayout({
   }
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      <Sidebar profile={profile} />
-      <div className="flex flex-1 flex-col overflow-hidden">
-        <Header profile={profile} />
-        <main className="flex-1 overflow-y-auto p-6">
-          {children}
-        </main>
+    <ToastWrapper>
+      <div className="flex h-screen overflow-hidden">
+        <Sidebar profile={profile} />
+        <div className="flex flex-1 flex-col overflow-hidden">
+          <Header profile={profile} />
+          <main className="flex-1 overflow-y-auto p-6">
+            {children}
+          </main>
+        </div>
+        <MobileNav profile={profile} />
       </div>
-      <MobileNav profile={profile} />
-    </div>
+    </ToastWrapper>
   )
 }

@@ -13,7 +13,7 @@ export async function GET(
 ) {
   const { platform } = await params
 
-  const validPlatforms = ['youtube', 'meta', 'linkedin', 'spotify']
+  const validPlatforms = ['youtube', 'meta', 'linkedin', 'spotify', 'tiktok', 'twitter', 'gsc']
   if (!validPlatforms.includes(platform)) {
     return NextResponse.json(
       { error: `Unknown platform: ${platform}` },

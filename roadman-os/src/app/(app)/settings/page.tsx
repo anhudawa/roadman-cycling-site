@@ -1,5 +1,9 @@
 import Link from 'next/link'
-import { Layers } from 'lucide-react'
+import { Layers, Zap, GitBranch, BookOpen } from 'lucide-react'
+
+export const metadata = {
+  title: 'Settings — Roadman OS',
+}
 
 const SETTINGS_SECTIONS = [
   {
@@ -7,6 +11,24 @@ const SETTINGS_SECTIONS = [
     href: '/settings/clusters',
     description: 'Group related content for SEO topic authority.',
     icon: Layers,
+  },
+  {
+    label: 'Tagging Rules',
+    href: '/settings/rules',
+    description: 'Auto-tag assets based on field conditions.',
+    icon: Zap,
+  },
+  {
+    label: 'Workflow Templates',
+    href: '/settings/workflows',
+    description: 'Pre-built task templates for common workflows.',
+    icon: GitBranch,
+  },
+  {
+    label: 'Conventions',
+    href: '/settings/conventions',
+    description: 'Team conventions for status flows, naming, and tagging.',
+    icon: BookOpen,
   },
 ] as const
 
