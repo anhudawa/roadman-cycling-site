@@ -1,39 +1,32 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui";
 import { GlitchHero } from "./GlitchHero";
 
 /**
- * Homepage hero — Direction 3 "Hero Crop", unified across all viewports.
+ * Homepage hero — coaching-first redesign.
  *
- * Mobile (`<md`):    single column. Glitch portrait first (visitor sees
- *                    the brand face on first paint), then eyebrow,
- *                    4-line headline, coral hairline, CTAs, proof line.
- * Tablet (`md`):     single column (same stack as mobile, larger type).
- * Desktop (`lg+`):   2-column split — text in cols 1-5, portrait in
- *                    cols 7-12. `order-*` classes flip the DOM-first
- *                    portrait to the right rail without re-ordering
- *                    source.
+ * One message above the fold: Not Done Yet coaching is the primary offer.
+ * The podcast is proof, not the product — that positioning lives in the
+ * Proof Engine section further down the page.
  *
- * Portrait is hard-capped at 640px (via GlitchHero.module.css), safely
- * below the 801×801 source so no upscaling; a soft bottom mask fade
- * dissolves it into the section's deep-purple bg.
+ * Structure:
+ *   Eyebrow → massive "YOU'RE NOT DONE YET." headline → value-prop
+ *   subheadline → dual CTAs (Apply / Diagnostic) → social proof strip
+ *   → scroll indicator.
  *
- * Headline copy is "YOUR BEST NUMBERS AREN'T BEHIND YOU." broken across
- * 4 lines as YOUR BEST / NUMBERS / AREN'T / BEHIND YOU. Line breaks are
- * hand-tuned — if the copy changes, rebalance manually. Do not auto-wrap.
+ * Anthony's glitch portrait stays as the visual anchor. Dark charcoal /
+ * deep purple background. Coral #F16363 for the primary CTA.
+ *
+ * Mobile:  single column, portrait above text.
+ * Desktop: 2-column — text left (cols 1-6), portrait right (cols 7-12).
  */
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [scrolled, setScrolled] = useState(false);
 
-  // Plain scroll listener for the scroll-indicator fade. Replaces
-  // framer-motion's useScroll/useSpring/useMotionValueEvent — those hooks
-  // were adding measurable hydration cost to the LCP critical path
-  // (lighthouse 2026-04-30: portrait render delay 2,053 ms).
   useEffect(() => {
     const handler = () => {
       const el = sectionRef.current;
@@ -48,17 +41,10 @@ export function HeroSection() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  const headlineLines = [
-    { text: "YOUR BEST", accent: false },
-    { text: "NUMBERS", accent: false },
-    { text: "AREN'T", accent: false },
-    { text: "BEHIND YOU.", accent: true },
-  ];
-
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-deep-purple"
+      className="relative overflow-hidden bg-deep-purple min-h-screen flex items-center"
     >
       {/* Top-edge coral seam */}
       <div
@@ -66,27 +52,20 @@ export function HeroSection() {
         className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-coral/70 to-transparent"
       />
 
-      <div className="relative z-10 pt-[calc(5rem+var(--cohort-banner-height,0px))] md:pt-[calc(6rem+var(--cohort-banner-height,0px))] pb-16 md:pb-24">
-        <div className="mx-auto max-w-[1200px] px-5 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
+      <div className="relative z-10 pt-[calc(5rem+var(--cohort-banner-height,0px))] md:pt-[calc(6rem+var(--cohort-banner-height,0px))] pb-16 md:pb-24 w-full">
+        <div className="mx-auto max-w-[1200px] px-5 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* ── GLITCH PORTRAIT ──────────────────────────────
-              DOM-first so it shows first on mobile (the brand face
-              is the visual anchor). On lg+ it's placed in cols 7-12
-              and explicitly pinned to row 1 so it sits on the right
-              rail with the text on the left.
-
-              LCP element on mobile (DOM-first) and a major LCP element on
-              desktop. Render as a plain <div> — the previous motion.div
-              wrapper added framer-motion mount cost on the LCP critical
-              path. Lighthouse (2026-04-30) reported portrait render delay
-              of 2,053 ms; removing the motion wrapper here drops that. */}
+              DOM-first so it loads first on mobile. On lg+ it's
+              placed in cols 7-12 on the right rail. */}
           <div className="lg:col-start-7 lg:col-span-6 lg:row-start-1 w-full flex justify-center lg:justify-end">
             <GlitchHero />
           </div>
 
-          {/* ── TEXT RAIL: eyebrow / headline / hairline / CTAs / proof ── */}
-          <div className="lg:col-start-1 lg:col-span-5 lg:row-start-1 text-center lg:text-left lg:pt-8">
+          {/* ── TEXT RAIL ── */}
+          <div className="lg:col-start-1 lg:col-span-6 lg:row-start-1 text-center lg:text-left lg:pt-4">
+            {/* Eyebrow */}
             <motion.p
-              className="font-body text-[11px] md:text-xs tracking-[0.3em] uppercase mb-6 md:mb-8"
+              className="font-heading text-[11px] md:text-xs tracking-[0.3em] uppercase text-off-white/50 mb-6 md:mb-8"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -95,37 +74,24 @@ export function HeroSection() {
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
-              <Link
-                href="/podcast"
-                className="text-off-white/50 hover:text-off-white transition-colors"
-                style={{ transitionDuration: "var(--duration-fast)" }}
-                data-track="home_hero_eyebrow_podcast"
-              >
-                PODCAST
-              </Link>
-              <span className="inline-block mx-2 text-off-white/70" aria-hidden="true">·</span>
-              <Link
-                href="/coaching"
-                className="text-coral/85 hover:text-coral transition-colors"
-                style={{ transitionDuration: "var(--duration-fast)" }}
-                data-track="home_hero_eyebrow_coaching"
-              >
-                COACHING
-              </Link>
+              THE COACHING COMMUNITY FOR SERIOUS CYCLISTS
             </motion.p>
 
+            {/* Headline */}
             <h1
               className="font-heading text-off-white mb-6 md:mb-8"
               style={{
-                fontSize: "clamp(2.75rem, 8vw, 7rem)",
+                fontSize: "clamp(3rem, 9vw, 7.5rem)",
                 lineHeight: 0.9,
                 letterSpacing: "-0.025em",
                 textShadow: "0 4px 30px rgba(0,0,0,0.55)",
               }}
             >
-              {/* Headline is a strong LCP candidate — render visible from SSR.
-                  Keep the slide-in via translate only; no opacity gate. */}
-              {headlineLines.map((line, i) => (
+              {[
+                { text: "YOU'RE", accent: false },
+                { text: "NOT DONE", accent: false },
+                { text: "YET.", accent: true },
+              ].map((line, i) => (
                 <motion.span
                   key={line.text}
                   className={line.accent ? "text-coral block" : "block"}
@@ -147,9 +113,10 @@ export function HeroSection() {
               ))}
             </h1>
 
+            {/* Coral hairline */}
             <motion.div
               aria-hidden="true"
-              className="w-6 h-px bg-coral mx-auto lg:mx-0 mb-6 md:mb-7"
+              className="w-8 h-px bg-coral mx-auto lg:mx-0 mb-6 md:mb-7"
               initial={{ scaleX: 0, opacity: 0 }}
               animate={{ scaleX: 1, opacity: 1 }}
               transition={{
@@ -160,8 +127,9 @@ export function HeroSection() {
               style={{ transformOrigin: "left" }}
             />
 
+            {/* Subheadline */}
             <motion.p
-              className="text-foreground-muted text-base md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mb-7 md:mb-9"
+              className="text-foreground-muted text-base md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mb-8 md:mb-10"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -170,13 +138,14 @@ export function HeroSection() {
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
-              Built for serious amateurs who&apos;ve been on the same
-              numbers for a year. Twelve questions. Four minutes.
-              One specific answer.
+              The five-pillar coaching system built on 100M+ podcast downloads
+              and conversations with the coaches behind Grand Tour wins.
+              For cyclists 35–55 who refuse to plateau.
             </motion.p>
 
+            {/* Dual CTAs */}
             <motion.div
-              className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-6 sm:gap-5"
+              className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 sm:gap-5"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -186,24 +155,24 @@ export function HeroSection() {
               }}
             >
               <Button
-                href="/plateau"
+                href="/apply"
                 className="shadow-[0_12px_40px_-8px_rgba(241,99,99,0.55)] hover:shadow-[0_16px_50px_-6px_rgba(241,99,99,0.7)] transition-shadow"
+                dataTrack="home_hero_apply"
+              >
+                Apply for Coaching
+              </Button>
+              <Button
+                href="/plateau"
+                variant="ghost"
                 dataTrack="home_hero_plateau"
               >
-                Take the Plateau Diagnostic →
+                Take the Diagnostic
               </Button>
-              <Link
-                href="/masters-report"
-                className="font-heading text-sm tracking-[0.18em] uppercase text-off-white/75 hover:text-coral hover:underline underline-offset-4 transition-colors py-3"
-                style={{ transitionDuration: "var(--duration-fast)" }}
-                data-track="home_hero_masters_report"
-              >
-                get the masters report <span aria-hidden="true">→</span>
-              </Link>
             </motion.div>
 
+            {/* Social proof strip */}
             <motion.p
-              className="mt-8 md:mt-10 text-[10px] md:text-[11px] tracking-[0.18em] uppercase text-off-white/65"
+              className="mt-8 md:mt-10 text-[10px] md:text-[11px] tracking-[0.18em] uppercase text-off-white/55"
               style={{
                 fontFamily:
                   "var(--font-jetbrains-mono), ui-monospace, monospace",
@@ -212,17 +181,17 @@ export function HeroSection() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.95 }}
             >
-              <span>100M+ downloads</span>
-              <span className="mx-2 opacity-50">·</span>
-              <span>30,000+ newsletter</span>
-              <span className="mx-2 opacity-50">·</span>
-              <span>1,400+ episodes</span>
+              <span>113 coached athletes</span>
+              <span className="mx-2 opacity-50">&middot;</span>
+              <span>Cat 3→Cat 1 results</span>
+              <span className="mx-2 opacity-50">&middot;</span>
+              <span>$195/month</span>
             </motion.p>
           </div>
         </div>
       </div>
 
-      {/* Animated scroll indicator — md+ only */}
+      {/* Scroll indicator — md+ only */}
       <motion.div
         className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}

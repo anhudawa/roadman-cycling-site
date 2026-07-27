@@ -3,8 +3,6 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, ParallaxImage, GradientText, GuestMarquee } from "@/components/ui";
 import Link from "next/link";
 import { HeroSection } from "@/components/features/home/HeroSection";
-import { TourHomeHero } from "@/components/features/tour";
-import { getTourPhase } from "@/lib/tour";
 import { StatsSection } from "@/components/features/home/StatsSection";
 import { PersonaRouter } from "@/components/features/home/PersonaRouter";
 import { PillarIcon } from "@/components/features/home/PillarIcon";
@@ -23,12 +21,10 @@ export const metadata: Metadata = {
   alternates: { canonical: SITE_ORIGIN },
 };
 
-// Short ISR window so the date-driven Tour overlay flips phase
-// (countdown → live → fade-out → off) without a redeploy.
 export const revalidate = 900;
 
 const marqueeGuests = [
-  { name: "Greg LeMond", credential: "3× Tour de France winner", href: "https://www.youtube.com/watch?v=_kFSe3VxS10" },
+  { name: "Greg LeMond", credential: "3× Tour champion, cycling legend", href: "https://www.youtube.com/watch?v=_kFSe3VxS10" },
   { name: "Professor Seiler", credential: "Polarised training pioneer", href: "https://www.youtube.com/watch?v=j443DjmheHw" },
   { name: "Dan Lorang", credential: "Red Bull–Bora–Hansgrohe", href: "https://www.youtube.com/watch?v=Qbub4VwLHW4" },
   { name: "Lachlan Morton", credential: "EF Education, alt-racing pioneer", href: "https://www.youtube.com/watch?v=-X-Owk2VOoM" },
@@ -36,7 +32,7 @@ const marqueeGuests = [
   { name: "Alistair Brownlee", credential: "2× Olympic triathlon gold", href: "https://www.youtube.com/watch?v=gZEl_NCr5_I" },
   { name: "Valtteri Bottas", credential: "F1 driver & cyclist", href: "https://www.youtube.com/watch?v=F9Fnts3Cv_U" },
   { name: "Alex Dowsett", credential: "Former Hour Record holder, TT specialist", href: "https://www.youtube.com/watch?v=DnGKpEPEdUM" },
-  { name: "George Hincapie", credential: "17× Tour de France starter", href: "https://www.youtube.com/watch?v=nEBqxv2WZVs" },
+  { name: "George Hincapie", credential: "17× Grand Tour veteran", href: "https://www.youtube.com/watch?v=nEBqxv2WZVs" },
   { name: "André Greipel", credential: "22 Grand Tour stage wins", href: "https://www.youtube.com/watch?v=aLrD94_D13Y" },
   { name: "Joe Friel", credential: "Author, Cyclist's Training Bible", href: "https://www.youtube.com/watch?v=ov9qv73_lH4" },
   { name: "Hannah Grant", credential: "Pro team chef", href: "https://www.youtube.com/watch?v=fAvIMy4UQu4" },
@@ -112,24 +108,15 @@ export default function HomePage() {
     fetchPriority: "high",
   });
 
-  // Tour de France facade: during the race window (countdown → live →
-  // fade-out) the hero is replaced by the Tour overlay. Outside it, the
-  // normal hero shows and the overlay leaves no trace.
-  const tourActive = getTourPhase() !== "off";
-
   return (
     <>
       <Header />
 
       <main id="main-content">
-        {/* HERO — leads with the rider problem ("Stop plateauing. Start
-            progressing.") and routes the highest-intent visitor straight
-            into the Plateau Diagnostic. Secondary CTA hands the Masters
-            Cycling Training Report to lower-intent visitors as a
-            lead-magnet entry point. Apply lives further down the page
-            in the offer ladder. During the Tour, TourHomeHero takes the
-            top slot instead. */}
-        {tourActive ? <TourHomeHero /> : <HeroSection />}
+        {/* HERO — coaching-first. "You're Not Done Yet" positions NDY
+            as the primary offer above the fold, with Apply and Plateau
+            Diagnostic as the two conversion paths. */}
+        <HeroSection />
 
         {/* MANIFESTO — positioning. We are not a media brand. We are the
             clearest path back to progress for serious amateurs who
@@ -729,7 +716,7 @@ export default function HomePage() {
                   name: "Who has been on the Roadman Cycling Podcast?",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: "Notable guests include Professor Stephen Seiler (polarised training pioneer), Dan Lorang (Head of Performance at Red Bull–Bora–Hansgrohe, Primož Roglič's team; long-time coach to Jan Frodeno), Greg LeMond (3× Tour de France winner), Joe Friel (author of The Cyclist's Training Bible), Lachlan Morton (EF Education), Dan Bigham (former Hour Record holder), Ben Healy (pro cyclist), Michael Matthews (sprinter, 15+ years in the peloton), John Wakefield (Bora-Hansgrohe coach), Tim Kerrison (ex-Team Sky head of performance), and Tim Spector (ZOE founder).",
+                    text: "Notable guests include Professor Stephen Seiler (polarised training pioneer), Dan Lorang (Head of Performance at Red Bull–Bora–Hansgrohe, Primož Roglič's team; long-time coach to Jan Frodeno), Greg LeMond (3× Tour champion, cycling legend), Joe Friel (author of The Cyclist's Training Bible), Lachlan Morton (EF Education), Dan Bigham (former Hour Record holder), Ben Healy (pro cyclist), Michael Matthews (sprinter, 15+ years in the peloton), John Wakefield (Bora-Hansgrohe coach), Tim Kerrison (ex-Team Sky head of performance), and Tim Spector (ZOE founder).",
                   },
                 },
                 {

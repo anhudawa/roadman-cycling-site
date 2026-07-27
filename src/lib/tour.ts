@@ -27,7 +27,7 @@ export type TourPhase = "countdown" | "live" | "fadeout" | "off";
  * The overlay lingers for ~2 weeks after the finish to carry the result,
  * then removes itself. Bump this to extend the post-race summary window.
  */
-export const OVERLAY_END = "2026-08-09";
+export const OVERLAY_END = "2026-07-26";
 
 /** CEST is UTC+2 in July. We pin the race clock to it so day boundaries
  *  are stable no matter the server/visitor timezone. */
