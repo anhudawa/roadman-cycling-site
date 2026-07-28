@@ -363,7 +363,7 @@ export function getRelatedEpisodes(
   limit: number = 3
 ): EpisodeMeta[] {
   const allEpisodes = getAllEpisodes();
-  const inputKeywords = keywords.map((k) => k.toLowerCase());
+  const inputKeywords = (keywords ?? []).map((k) => k.toLowerCase());
 
   // Extract meaningful words from title (>3 chars, lowercased)
   const titleWords = title
@@ -381,7 +381,7 @@ export function getRelatedEpisodes(
       if (ep.pillar === pillar) score += 10;
 
       // Keyword overlap
-      const epKeywords = ep.keywords.map((k) => k.toLowerCase());
+      const epKeywords = (ep.keywords ?? []).map((k) => k.toLowerCase());
       for (const inputKw of inputKeywords) {
         for (const epKw of epKeywords) {
           if (epKw === inputKw) {

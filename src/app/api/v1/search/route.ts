@@ -48,7 +48,7 @@ function scoreHit(
 ): number {
   let score = 0;
   const title = parts.title.toLowerCase();
-  const keywords = parts.keywords.map((k) => k.toLowerCase());
+  const keywords = (parts.keywords ?? []).map((k) => k.toLowerCase());
   const body = parts.body.toLowerCase();
 
   for (const t of tokens) {

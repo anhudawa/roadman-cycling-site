@@ -187,7 +187,7 @@ function scoreEpisode(ep: EpisodeMeta, input: JourneyInput): number {
   if (ep.pillar === input.pillar) score += 10;
 
   const inputKeywords = (input.keywords ?? []).map((k) => k.toLowerCase());
-  const epKeywords = ep.keywords.map((k) => k.toLowerCase());
+  const epKeywords = (ep.keywords ?? []).map((k) => k.toLowerCase());
   for (const a of inputKeywords) {
     for (const b of epKeywords) {
       if (a === b) score += 3;

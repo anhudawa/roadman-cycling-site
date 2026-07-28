@@ -65,7 +65,7 @@ export async function generateMetadata({
   return {
     title: cleanTitle,
     description: post.seoDescription,
-    keywords: post.keywords,
+    keywords: post.keywords ?? [],
     alternates: {
       canonical: `https://roadmancycling.com/blog/${slug}`,
     },
@@ -77,7 +77,7 @@ export async function generateMetadata({
       modifiedTime: post.updatedDate,
       authors: [post.author],
       url: `https://roadmancycling.com/blog/${slug}`,
-      tags: post.keywords,
+      tags: post.keywords ?? [],
       // NB: og:image is injected automatically by Next.js from
       // src/app/(content)/blog/[slug]/opengraph-image.tsx (a
       // Satori-backed 1200×630 branded card). Do NOT hardcode
@@ -114,7 +114,7 @@ export default async function BlogPostPage({
   const relatedPosts = getRelatedPosts(
     slug,
     post.pillar,
-    post.keywords,
+    post.keywords ?? [],
     3,
     post.relatedPosts,
   );
@@ -173,7 +173,7 @@ export default async function BlogPostPage({
   // the inference and let pillar fallback fire so the headline doesn't
   // read "Download your training plan" with nothing in the slot.
   const inferredCategory = inferIntentCategory({
-    keywords: post.keywords,
+    keywords: post.keywords ?? [],
     title: post.title,
     excerpt: post.excerpt,
     pillar: post.pillar,
@@ -989,7 +989,7 @@ export default async function BlogPostPage({
               currentSlug={slug}
               currentType="blog"
               pillar={post.pillar}
-              keywords={post.keywords}
+              keywords={post.keywords ?? []}
               className="mt-16"
             />
 
@@ -1006,7 +1006,7 @@ export default async function BlogPostPage({
               currentSlug={slug}
               currentTitle={post.title}
               pillar={post.pillar}
-              keywords={post.keywords}
+              keywords={post.keywords ?? []}
               source={`blog-${slug}`}
               className="mt-16"
             />
