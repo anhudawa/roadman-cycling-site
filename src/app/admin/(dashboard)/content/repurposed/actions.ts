@@ -20,9 +20,14 @@ const isVercel = !!process.env.VERCEL;
  */
 async function writeFileToRepo(filePath: string, content: string) {
   if (!isVercel) {
-    const dir = path.dirname(path.join(process.cwd(), filePath));
+    const dir = path.dirname(
+      path.join(/* turbopackIgnore: true */ process.cwd(), filePath),
+    );
     fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(path.join(process.cwd(), filePath), content);
+    fs.writeFileSync(
+      path.join(/* turbopackIgnore: true */ process.cwd(), filePath),
+      content,
+    );
     return;
   }
 
@@ -72,7 +77,10 @@ async function writeFileToRepo(filePath: string, content: string) {
  * Read a file from the repo — locally in dev, via GitHub API on Vercel.
  */
 async function readFileFromRepo(filePath: string): Promise<string | null> {
-  const fullPath = path.join(process.cwd(), filePath);
+  const fullPath = path.join(
+    /* turbopackIgnore: true */ process.cwd(),
+    filePath,
+  );
   if (!isVercel) {
     if (fs.existsSync(fullPath)) return fs.readFileSync(fullPath, "utf-8");
     return null;
