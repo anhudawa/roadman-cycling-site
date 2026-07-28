@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useScroll, useSpring, useTransform, useMotionValueEvent } from "framer-motion";
-import { NAV_ITEMS } from "@/types";
+import { NAV_ITEMS, type NavItem } from "@/types";
 import { Container } from "./Container";
 import { SearchTrigger } from "@/components/features/search/SearchTrigger";
 
@@ -27,13 +27,13 @@ const REVENUE_PATH_PREFIXES = [
   "/inner-circle",
 ];
 
-const COACHING_NAV_ITEMS = [
+const COACHING_NAV_ITEMS: NavItem[] = [
   { label: "Results", href: "/#results" },
   { label: "What You Get", href: "/#system" },
   { label: "Method", href: "/methodology" },
   { label: "Podcast", href: "/podcast" },
   { label: "About", href: "/about" },
-] as const;
+];
 
 function shouldShowApplyCta(pathname: string | null): boolean {
   if (!pathname) return false;
@@ -58,13 +58,16 @@ export function Header({
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const navigationItems =
     variant === "coaching" ? COACHING_NAV_ITEMS : NAV_ITEMS;
   const showApply = shouldShowApplyCta(pathname);
   const ctaHref = showApply ? "/apply" : "/community/clubhouse";
-  const ctaLabel = showApply ? "APPLY" : "JOIN FREE";
-  const ctaLabelMobile = showApply ? "APPLY NOW" : "JOIN THE CLUBHOUSE";
+  const ctaLabel =
+    showApply && variant === "coaching" ? "START APPLICATION" : showApply ? "APPLY" : "JOIN FREE";
+  const ctaLabelMobile = showApply ? "START APPLICATION" : "JOIN THE CLUBHOUSE";
 
   // Scroll progress — single listener for both progress bar and header style
   const { scrollY, scrollYProgress } = useScroll();
@@ -84,24 +87,67 @@ export function Header({
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
-      setExpandedMenu(null);
     }
     return () => {
       document.body.style.overflow = "";
     };
   }, [isMobileMenuOpen]);
 
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    const focusFrame = requestAnimationFrame(() => {
+      mobileMenuRef.current
+        ?.querySelector<HTMLElement>("a[href], button:not([disabled])")
+        ?.focus();
+    });
+
+    const manageKeyboard = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMobileMenuOpen(false);
+        setExpandedMenu(null);
+        mobileMenuButtonRef.current?.focus();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+      const menuFocusables = Array.from(
+        mobileMenuRef.current?.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ) ?? [],
+      );
+      const focusables = [
+        ...(mobileMenuButtonRef.current ? [mobileMenuButtonRef.current] : []),
+        ...menuFocusables,
+      ];
+      if (focusables.length === 0) return;
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    window.addEventListener("keydown", manageKeyboard);
+    return () => {
+      cancelAnimationFrame(focusFrame);
+      window.removeEventListener("keydown", manageKeyboard);
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <>
-      <SearchTrigger />
+      {variant !== "coaching" && <SearchTrigger />}
       {/* Scroll progress bar */}
       <motion.div
         className="scroll-progress-bar"
         style={{ width: progressWidth }}
-        role="progressbar"
-        aria-label="Reading progress"
-        aria-valuemin={0}
-        aria-valuemax={100}
+        aria-hidden="true"
       />
 
       <header
@@ -109,16 +155,21 @@ export function Header({
           fixed left-0 right-0 z-50 transition-all
           ${
             isScrolled
-              ? "bg-charcoal/95 backdrop-blur-md border-b border-white/5 py-3"
+              ? `${
+                  variant === "coaching" ? "bg-[#171419]/95" : "bg-charcoal/95"
+                } backdrop-blur-md border-b border-white/5 py-3`
               : "bg-transparent py-5"
           }
         `}
         style={{
           transitionDuration: "var(--duration-normal)",
-          top: "var(--cohort-banner-height, 0px)",
+          top:
+            variant === "coaching"
+              ? "0px"
+              : "var(--cohort-banner-height, 0px)",
         }}
       >
-        <Container>
+        <Container width={variant === "coaching" ? "wide" : "default"}>
           <nav aria-label="Main navigation" className="flex items-center justify-between">
             {/* Logo */}
             <Link
@@ -137,7 +188,7 @@ export function Header({
                 // docs/seo/cwv-audit-2026-04-23.md.
                 sizes="200px"
                 className="max-w-none h-10 md:h-14 w-auto"
-                priority
+                loading="eager"
               />
             </Link>
 
@@ -151,13 +202,13 @@ export function Header({
                     style={{ transitionDuration: "var(--duration-fast)" }}
                   >
                     {item.label}
-                    {item.children && (
+                    {"children" in item && item.children && (
                       <span className="ml-1 text-xs opacity-50" aria-hidden="true">&#9662;</span>
                     )}
                     {/* Animated underline */}
                     <span className="absolute bottom-[-4px] left-0 h-[1.5px] w-0 group-hover:w-full bg-gradient-to-r from-coral to-coral/50 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
                   </Link>
-                  {item.children && (
+                  {"children" in item && item.children && (
                     <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all" style={{ transitionDuration: "var(--duration-normal)" }}>
                       <motion.div
                         className="bg-charcoal/95 backdrop-blur-md border border-white/10 rounded-lg p-2 min-w-[200px] shadow-[var(--shadow-elevated)]"
@@ -221,13 +272,20 @@ export function Header({
               )}
               <Link
                 href={ctaHref}
-                className="
+                className={`
                   font-heading text-xs tracking-wide whitespace-nowrap
                   bg-coral hover:bg-coral-hover
-                  text-off-white px-4 py-2 rounded-md
+                  text-deep-purple px-4 min-h-11 inline-flex items-center ${
+                    variant === "coaching" ? "rounded-none" : "rounded-md"
+                  }
                   transition-all hover:shadow-[var(--shadow-glow-coral)]
-                "
+                `}
                 style={{ transitionDuration: "var(--duration-fast)" }}
+                data-track={
+                  showApply && variant === "coaching"
+                    ? "home_nav_apply"
+                    : undefined
+                }
               >
                 {ctaLabel}
               </Link>
@@ -235,8 +293,13 @@ export function Header({
 
             {/* Mobile Menu Button */}
             <button
+              ref={mobileMenuButtonRef}
               className="lg:hidden relative z-10 w-10 h-10 flex flex-col items-center justify-center gap-1.5"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => {
+                const nextOpen = !isMobileMenuOpen;
+                setIsMobileMenuOpen(nextOpen);
+                if (!nextOpen) setExpandedMenu(null);
+              }}
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
@@ -274,6 +337,7 @@ export function Header({
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            ref={mobileMenuRef}
             id="mobile-menu"
             className="fixed inset-0 z-40 bg-deep-purple/98 backdrop-blur-lg overflow-y-auto overscroll-contain lg:hidden"
             initial={{ opacity: 0 }}
@@ -395,14 +459,21 @@ export function Header({
               >
                 <Link
                   href={ctaHref}
-                  className="
+                  className={`
                     font-heading text-xl tracking-wider text-center
                     bg-coral hover:bg-coral-hover
-                    text-off-white px-6 py-4 rounded-md
+                    text-deep-purple px-6 py-4 ${
+                      variant === "coaching" ? "rounded-none" : "rounded-md"
+                    }
                     transition-all
-                  "
+                  `}
                   onClick={() => setIsMobileMenuOpen(false)}
                   style={{ transitionDuration: "var(--duration-fast)" }}
+                  data-track={
+                    showApply && variant === "coaching"
+                      ? "home_mobile_nav_apply"
+                      : undefined
+                  }
                 >
                   {ctaLabelMobile}
                 </Link>
