@@ -168,6 +168,37 @@ function ensureBlogDir() {
 // reflects content edits without a restart; callers get a shallow copy.
 let allPostsCache: BlogPostMeta[] | null = null;
 
+function normalizeStringList(value: unknown): string[] | undefined {
+  if (!Array.isArray(value)) return undefined;
+  const normalized = value.flatMap((item) => {
+    if (typeof item === "string") return [item];
+    if (item && typeof item === "object") {
+      return Object.entries(item).map(([lead, tail]) =>
+        typeof tail === "string" ? `${lead}: ${tail}` : lead,
+      );
+    }
+    return [];
+  });
+  return normalized.length > 0 ? normalized : undefined;
+}
+
+function normalizeSlugList(value: unknown): string[] | undefined {
+  if (!Array.isArray(value)) return undefined;
+  const normalized = value.flatMap((item) => {
+    if (typeof item === "string") return [item];
+    if (
+      item &&
+      typeof item === "object" &&
+      "slug" in item &&
+      typeof item.slug === "string"
+    ) {
+      return [item.slug];
+    }
+    return [];
+  });
+  return normalized.length > 0 ? normalized : undefined;
+}
+
 export function getAllPosts(): BlogPostMeta[] {
   if (allPostsCache) return allPostsCache.slice();
 
@@ -184,6 +215,13 @@ export function getAllPosts(): BlogPostMeta[] {
 
     return {
       ...frontmatter,
+      keywords: normalizeStringList(frontmatter.keywords) ?? [],
+      relatedEpisodes: normalizeSlugList(frontmatter.relatedEpisodes),
+      relatedPosts: normalizeSlugList(frontmatter.relatedPosts),
+      featuredEntities: normalizeSlugList(frontmatter.featuredEntities),
+      whoFor: normalizeStringList(frontmatter.whoFor),
+      roadmanView: normalizeStringList(frontmatter.roadmanView),
+      keyTakeaways: normalizeStringList(frontmatter.keyTakeaways),
       featuredImage: resolveFeaturedImage(frontmatter.featuredImage),
       slug,
       readTime: stats.text,
@@ -214,6 +252,13 @@ export function getPostBySlug(slug: string): BlogPostFull | null {
 
   return {
     ...frontmatter,
+    keywords: normalizeStringList(frontmatter.keywords) ?? [],
+    relatedEpisodes: normalizeSlugList(frontmatter.relatedEpisodes),
+    relatedPosts: normalizeSlugList(frontmatter.relatedPosts),
+    featuredEntities: normalizeSlugList(frontmatter.featuredEntities),
+    whoFor: normalizeStringList(frontmatter.whoFor),
+    roadmanView: normalizeStringList(frontmatter.roadmanView),
+    keyTakeaways: normalizeStringList(frontmatter.keyTakeaways),
     featuredImage: resolveFeaturedImage(frontmatter.featuredImage),
     slug,
     readTime: stats.text,
@@ -264,7 +309,7 @@ export function getRelatedPosts(
       const postKeywords = new Set(
         (post.keywords ?? []).map((k) => k.toLowerCase()),
       );
-      for (const kw of keywords) {
+      for (const kw of keywords ?? []) {
         if (postKeywords.has(kw.toLowerCase())) score += 3;
       }
       return { post, score };
