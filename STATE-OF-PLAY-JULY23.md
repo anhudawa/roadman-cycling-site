@@ -1,4 +1,26 @@
-# State of Play — July 23 (afternoon update)
+# State of Play — July 28
+
+## CRITICAL: Site hasn't deployed since July 8
+
+Every Vercel build since Jul 10 has FAILED. The live site is stuck on the Jul 8 build — 20 days behind. The FA40 funnel, homepage redesign, S&C product, and everything since Jul 8 is NOT live.
+
+**Root cause:** The `roadman-os` sub-project has its own dependencies (e.g. `lucide-react`) but the root `tsconfig.json` was type-checking its files during the main site build. Since roadman-os deps aren't installed at root level, TypeScript fails.
+
+**Fix committed:** Added `"roadman-os"` to the `exclude` array in `tsconfig.json`. Just needs a push:
+
+```bash
+cd ~/Desktop/roadman-cycling-site
+rm -f .git/index.lock .git/HEAD.lock
+git push origin main
+```
+
+Once pushed, Vercel should deploy and EVERYTHING from the past 20 days goes live at once: FA40 funnel, homepage redesign, S&C product, 1,010 blog posts, Tour overlay removal, all of it.
+
+⚠️ **Dispatch reprompt loop is active again** — messages deliver but don't render. Check this file in Finder for updates. Restart session to continue.
+
+---
+
+# Previous: State of Play — July 23 (afternoon update)
 
 ## FA40 Funnel — COMPLETE, READY TO PUSH
 

@@ -76,6 +76,17 @@ export function ConversionChrome() {
   // cohort apply banner) — see BannerStack.tsx.
   const pathname = usePathname();
   if (isLeanRoute(pathname)) return null;
+  // The homepage is now a focused coaching application surface. Keep the
+  // useful application banner and thumb-reachable mobile CTA, but remove the
+  // custom cursor and newsletter exit popup so neither competes with /apply.
+  if (pathname === "/") {
+    return (
+      <>
+        <BannerStack />
+        <MobileStickyApply />
+      </>
+    );
+  }
   return (
     <>
       <SmoothCursorWrapper />

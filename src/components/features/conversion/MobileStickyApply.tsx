@@ -30,6 +30,7 @@ const HIDE_ON_PATH_PREFIXES = ["/apply", "/admin"];
 
 function shouldShow(pathname: string | null): boolean {
   if (!pathname) return false;
+  if (pathname === "/") return true;
   if (
     HIDE_ON_PATH_PREFIXES.some(
       (prefix) => pathname === prefix || pathname.startsWith(prefix + "/"),

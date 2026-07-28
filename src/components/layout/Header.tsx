@@ -27,6 +27,14 @@ const REVENUE_PATH_PREFIXES = [
   "/inner-circle",
 ];
 
+const COACHING_NAV_ITEMS = [
+  { label: "Results", href: "/#results" },
+  { label: "What You Get", href: "/#system" },
+  { label: "Method", href: "/methodology" },
+  { label: "Podcast", href: "/podcast" },
+  { label: "About", href: "/about" },
+] as const;
+
 function shouldShowApplyCta(pathname: string | null): boolean {
   if (!pathname) return false;
   if (pathname === "/") return true;
@@ -42,11 +50,17 @@ function shouldShowApplyCta(pathname: string | null): boolean {
  * - Animated underline on active/hover
  * - Dramatic mobile menu with staggered reveals
  */
-export function Header() {
+export function Header({
+  variant = "default",
+}: {
+  variant?: "default" | "coaching";
+}) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
   const pathname = usePathname();
+  const navigationItems =
+    variant === "coaching" ? COACHING_NAV_ITEMS : NAV_ITEMS;
   const showApply = shouldShowApplyCta(pathname);
   const ctaHref = showApply ? "/apply" : "/community/clubhouse";
   const ctaLabel = showApply ? "APPLY" : "JOIN FREE";
@@ -129,7 +143,7 @@ export function Header() {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-8">
-              {NAV_ITEMS.map((item) => (
+              {navigationItems.map((item) => (
                 <div key={item.href} className="relative group">
                   <Link
                     href={item.href}
@@ -182,27 +196,29 @@ export function Header() {
                   )}
                 </div>
               ))}
-              <Link
-                href="/search"
-                className="relative text-foreground-muted hover:text-off-white transition-colors p-2"
-                style={{ transitionDuration: "var(--duration-fast)" }}
-                aria-label="Search"
-              >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  aria-hidden="true"
+              {variant !== "coaching" && (
+                <Link
+                  href="/search"
+                  className="relative text-foreground-muted hover:text-off-white transition-colors p-2"
+                  style={{ transitionDuration: "var(--duration-fast)" }}
+                  aria-label="Search"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                  />
-                </svg>
-              </Link>
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                    />
+                  </svg>
+                </Link>
+              )}
               <Link
                 href={ctaHref}
                 className="
@@ -269,7 +285,7 @@ export function Header() {
               aria-label="Mobile navigation"
               className="flex flex-col items-stretch gap-1 px-6 pt-24 pb-12"
             >
-              {NAV_ITEMS.map((item, i) => {
+              {navigationItems.map((item, i) => {
                 const isExpanded = expandedMenu === item.href;
                 const hasChildren = !!item.children?.length;
                 return (
@@ -372,7 +388,7 @@ export function Header() {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{
                   duration: 0.35,
-                  delay: 0.04 + NAV_ITEMS.length * 0.05,
+                  delay: 0.04 + navigationItems.length * 0.05,
                   ease: [0.16, 1, 0.3, 1],
                 }}
                 className="flex flex-col items-stretch gap-4 pt-8"
@@ -390,28 +406,30 @@ export function Header() {
                 >
                   {ctaLabelMobile}
                 </Link>
-                <Link
-                  href="/search"
-                  className="inline-flex items-center justify-center gap-2 font-body text-sm text-foreground-muted hover:text-coral transition-colors min-h-[44px] py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  style={{ transitionDuration: "var(--duration-fast)" }}
-                >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                    aria-hidden="true"
+                {variant !== "coaching" && (
+                  <Link
+                    href="/search"
+                    className="inline-flex items-center justify-center gap-2 font-body text-sm text-foreground-muted hover:text-coral transition-colors min-h-[44px] py-2"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    style={{ transitionDuration: "var(--duration-fast)" }}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                    />
-                  </svg>
-                  Search
-                </Link>
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                      />
+                    </svg>
+                    Search
+                  </Link>
+                )}
               </motion.div>
             </nav>
           </motion.div>

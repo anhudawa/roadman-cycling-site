@@ -125,7 +125,7 @@ export function BlogSearch({ posts }: BlogSearchProps) {
         let score = 0;
         const titleLower = post.title.toLowerCase();
         const excerptLower = post.excerpt.toLowerCase();
-        const keywordsLower = post.keywords.join(" ").toLowerCase();
+        const keywordsLower = (post.keywords ?? []).join(" ").toLowerCase();
 
         for (const term of terms) {
           if (titleLower.includes(term)) score += 10;

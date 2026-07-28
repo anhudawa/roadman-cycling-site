@@ -232,7 +232,7 @@ export default async function BlogPostPage({
             "@type": "WebPage",
             "@id": `${SITE_ORIGIN}/blog/${slug}`,
           },
-          keywords: post.keywords.join(", "),
+          keywords: (post.keywords ?? []).join(", "),
           // isPartOf: WebSite (always) + every parent topic hub (when the
           // article appears in one). Topic hubs emit a matching `@id` of
           // `<origin>/topics/<slug>#topic` so the references resolve into
