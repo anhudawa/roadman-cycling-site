@@ -4,10 +4,19 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence, useScroll, useSpring, useTransform, useMotionValueEvent } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  MotionConfig,
+  useScroll,
+  useSpring,
+  useTransform,
+  useMotionValueEvent,
+} from "framer-motion";
 import { NAV_ITEMS, type NavItem } from "@/types";
 import { Container } from "./Container";
 import { SearchTrigger } from "@/components/features/search/SearchTrigger";
+import { isBannerlessRoute } from "./ConversionChrome";
 
 /**
  * Pages where we show APPLY (high-intent CTA) instead of JOIN FREE
@@ -35,6 +44,20 @@ const COACHING_NAV_ITEMS: NavItem[] = [
   { label: "About", href: "/about" },
 ];
 
+const APPLICATION_NAV_ITEMS: NavItem[] = [
+  { label: "Results", href: "#proof-heading" },
+  { label: "What You Get", href: "#delivery-heading" },
+  { label: "Your Coach", href: "#coach-heading" },
+  { label: "FAQ", href: "#faq-heading" },
+];
+
+const DIAGNOSTIC_NAV_ITEMS: NavItem[] = [
+  { label: "Your Result", href: "#diagnostic-result" },
+  { label: "How It Works", href: "/community/not-done-yet" },
+  { label: "Method", href: "/methodology" },
+  { label: "About", href: "/about" },
+];
+
 function shouldShowApplyCta(pathname: string | null): boolean {
   if (!pathname) return false;
   if (pathname === "/") return true;
@@ -52,8 +75,10 @@ function shouldShowApplyCta(pathname: string | null): boolean {
  */
 export function Header({
   variant = "default",
+  applicationContext,
 }: {
   variant?: "default" | "coaching";
+  applicationContext?: "form" | "diagnostic";
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -61,13 +86,55 @@ export function Header({
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  const reserveBannerSpace =
+    variant !== "coaching" && !isBannerlessRoute(pathname);
   const navigationItems =
-    variant === "coaching" ? COACHING_NAV_ITEMS : NAV_ITEMS;
+    variant !== "coaching"
+      ? NAV_ITEMS
+      : applicationContext === "form"
+        ? APPLICATION_NAV_ITEMS
+        : applicationContext === "diagnostic"
+          ? DIAGNOSTIC_NAV_ITEMS
+          : COACHING_NAV_ITEMS;
   const showApply = shouldShowApplyCta(pathname);
-  const ctaHref = showApply ? "/apply" : "/community/clubhouse";
+  const ctaHref =
+    applicationContext === "form"
+      ? "#application-form"
+      : applicationContext === "diagnostic"
+        ? "#recommended-path"
+        : showApply
+          ? "/apply"
+          : "/community/clubhouse";
   const ctaLabel =
-    showApply && variant === "coaching" ? "START APPLICATION" : showApply ? "APPLY" : "JOIN FREE";
-  const ctaLabelMobile = showApply ? "START APPLICATION" : "JOIN THE CLUBHOUSE";
+    applicationContext === "diagnostic"
+      ? "VIEW NEXT STEP"
+      : showApply && variant === "coaching"
+        ? "START APPLICATION"
+        : showApply
+          ? "APPLY"
+          : "JOIN FREE";
+  const ctaLabelMobile =
+    applicationContext === "diagnostic"
+      ? "VIEW YOUR NEXT STEP"
+      : showApply
+        ? "START APPLICATION"
+        : "JOIN THE CLUBHOUSE";
+  const desktopCtaTrack =
+    applicationContext === "form"
+      ? "apply_nav_form"
+      : applicationContext === "diagnostic"
+        ? "diagnostic_nav_next_step"
+        : showApply && variant === "coaching"
+          ? "home_nav_apply"
+          : undefined;
+  const mobileCtaTrack =
+    applicationContext === "form"
+      ? "apply_mobile_nav_form"
+      : applicationContext === "diagnostic"
+        ? "diagnostic_mobile_nav_next_step"
+        : showApply && variant === "coaching"
+          ? "home_mobile_nav_apply"
+          : undefined;
 
   // Scroll progress — single listener for both progress bar and header style
   const { scrollY, scrollYProgress } = useScroll();
@@ -141,7 +208,8 @@ export function Header({
   }, [isMobileMenuOpen]);
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
+      <>
       {variant !== "coaching" && <SearchTrigger />}
       {/* Scroll progress bar */}
       <motion.div
@@ -166,10 +234,12 @@ export function Header({
           top:
             variant === "coaching"
               ? "0px"
-              : "var(--cohort-banner-height, 0px)",
+              : reserveBannerSpace
+                ? "var(--cohort-banner-height, 44px)"
+                : "0px",
         }}
       >
-        <Container width={variant === "coaching" ? "wide" : "default"}>
+        <Container width={variant === "coaching" ? "coaching" : "default"}>
           <nav aria-label="Main navigation" className="flex items-center justify-between">
             {/* Logo */}
             <Link
@@ -186,9 +256,10 @@ export function Header({
                 // Without `sizes`, next/image ships the 1920w source on every
                 // pageview — ~80-200KB of wasted bytes per load. See
                 // docs/seo/cwv-audit-2026-04-23.md.
-                sizes="200px"
+                sizes="(max-width: 767px) 89px, 124px"
                 className="max-w-none h-10 md:h-14 w-auto"
                 loading="eager"
+                fetchPriority="high"
               />
             </Link>
 
@@ -281,11 +352,7 @@ export function Header({
                   transition-all hover:shadow-[var(--shadow-glow-coral)]
                 `}
                 style={{ transitionDuration: "var(--duration-fast)" }}
-                data-track={
-                  showApply && variant === "coaching"
-                    ? "home_nav_apply"
-                    : undefined
-                }
+                data-track={desktopCtaTrack}
               >
                 {ctaLabel}
               </Link>
@@ -469,11 +536,7 @@ export function Header({
                   `}
                   onClick={() => setIsMobileMenuOpen(false)}
                   style={{ transitionDuration: "var(--duration-fast)" }}
-                  data-track={
-                    showApply && variant === "coaching"
-                      ? "home_mobile_nav_apply"
-                      : undefined
-                  }
+                  data-track={mobileCtaTrack}
                 >
                   {ctaLabelMobile}
                 </Link>
@@ -506,6 +569,7 @@ export function Header({
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+      </>
+    </MotionConfig>
   );
 }

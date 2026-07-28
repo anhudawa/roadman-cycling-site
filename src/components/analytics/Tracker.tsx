@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import {
   ensureAIReferrerPersisted,
@@ -61,12 +61,15 @@ function sendEvent(type: string, data: Record<string, string> = {}) {
 
   const variantId = readGoHeroVariantCookie();
 
+  const { email, source, ...eventMeta } = data;
   const payload: Record<string, unknown> = {
     type,
     page: window.location.pathname,
     referrer: document.referrer || undefined,
     session_id: getSessionId(),
-    ...data,
+    ...(email ? { email } : {}),
+    ...(source ? { source } : {}),
+    ...(Object.keys(eventMeta).length > 0 ? { meta: eventMeta } : {}),
   };
   if (aiReferrer) {
     payload.ai_referrer = aiReferrer;
@@ -150,7 +153,6 @@ function useTimeOnPage(consented: boolean) {
 
 // ── Tracker Component ─────────────────────────────────────
 export function Tracker() {
-  const pathname = usePathname();
   // Initialise from localStorage synchronously so the first render
   // already knows consent state (avoids a flash of no-tracking).
   const [consented, setConsented] = useState(() => hasAnalyticsConsent());
@@ -181,44 +183,11 @@ export function Tracker() {
     ensureAIReferrerPersisted();
   }, [consented]);
 
-  // Fire pageview when consent is given (or on navigation if already consented)
-  const hasFiredRef = useRef<string | null>(null);
-  useEffect(() => {
-    if (!consented) return;
-    if (pathname.startsWith("/admin")) return;
-    // Avoid duplicate pageview for same path
-    if (hasFiredRef.current === pathname) return;
-    hasFiredRef.current = pathname;
-
-    sendEvent("pageview");
-  }, [pathname, consented]);
-
   // Expose global tracking function for form submissions
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (window as any).__roadmanTrack = sendEvent;
   }, []);
-
-  // Global click delegate — fires a `cta_click` event for any anchor or
-  // button carrying `data-track="<event-name>"`. Lets us tag conversion
-  // CTAs on any page without wiring bespoke onClick handlers through the
-  // Button/Link components. The beacon pattern in sendEvent handles the
-  // page-navigation race (the event fires before the new page loads).
-  useEffect(() => {
-    if (!consented) return;
-    function onClick(e: MouseEvent) {
-      const target = e.target;
-      if (!(target instanceof HTMLElement)) return;
-      const trackEl = target.closest<HTMLElement>("[data-track]");
-      if (!trackEl) return;
-      const trackId = trackEl.getAttribute("data-track");
-      if (!trackId) return;
-      const href = trackEl.getAttribute("href") || "";
-      sendEvent("cta_click", { track_id: trackId, destination: href });
-    }
-    document.addEventListener("click", onClick, { capture: true });
-    return () => document.removeEventListener("click", onClick, { capture: true });
-  }, [consented]);
 
   return null;
 }

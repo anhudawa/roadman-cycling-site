@@ -186,7 +186,8 @@ export default function InnerCircleApplyPage() {
             <ScrollReveal direction="up" delay={0.05}>
               <p className="text-foreground-subtle text-xs text-center mt-8 max-w-md mx-auto leading-relaxed">
                 Your application goes straight to Anthony. We don&apos;t share
-                applications outside the Roadman coaching team.
+                applications outside the Roadman coaching team. An unfinished
+                draft stays on this device for up to 24 hours.
               </p>
             </ScrollReveal>
           </Container>

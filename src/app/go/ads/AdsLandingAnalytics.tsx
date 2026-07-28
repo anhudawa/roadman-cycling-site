@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { trackConsentedGoogleEvent } from "@/lib/analytics/third-party-tags";
 
 /**
  * Fires the Google Ads "Ads Landing Page View" conversion once per
@@ -14,30 +15,18 @@ import { useEffect } from "react";
 
 const GADS_CONVERSION_SEND_TO = "AW-18123737652/up0JCJqHxKwcELSUicJD";
 
-interface GtagFn {
-  (command: string, action: string, params?: Record<string, unknown>): void;
-}
-
 export function AdsLandingAnalytics() {
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    const w = window as unknown as {
-      gtag?: GtagFn;
-      dataLayer?: IArguments[];
-    };
     try {
-      if (typeof w.gtag !== "function") {
-        w.dataLayer = w.dataLayer || [];
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        w.gtag = function gtag(...args: any[]) {
-          (w.dataLayer as unknown as unknown[][]).push(args);
-        } as unknown as GtagFn;
-      }
-      w.gtag("event", "conversion", {
-        send_to: GADS_CONVERSION_SEND_TO,
-        value: 1.0,
-        currency: "EUR",
-      });
+      trackConsentedGoogleEvent(
+        "conversion",
+        {
+          send_to: GADS_CONVERSION_SEND_TO,
+          value: 1.0,
+          currency: "EUR",
+        },
+        "marketing",
+      );
     } catch {
       // analytics never breaks user flow
     }

@@ -19,6 +19,10 @@ function setConsentCookie(value: string) {
   document.cookie = `${COOKIE_NAME}=${value}; path=/; max-age=${COOKIE_MAX_AGE}; SameSite=Lax`;
 }
 
+function deleteFirstPartyCookie(name: string) {
+  document.cookie = `${name}=; path=/; max-age=0; SameSite=Lax`;
+}
+
 function saveConsent(prefs: ConsentPreferences) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
 
@@ -33,6 +37,42 @@ function saveConsent(prefs: ConsentPreferences) {
     setConsentCookie(parts.join("+"));
   }
 
+  const gtag = (
+    window as unknown as {
+      gtag?: (...args: unknown[]) => void;
+    }
+  ).gtag;
+  if (typeof gtag === "function") {
+    gtag("consent", "update", {
+      analytics_storage: prefs.analytics ? "granted" : "denied",
+      ad_storage: prefs.marketing ? "granted" : "denied",
+      ad_user_data: prefs.marketing ? "granted" : "denied",
+      ad_personalization: prefs.marketing ? "granted" : "denied",
+    });
+  }
+
+  const fbq = (
+    window as unknown as {
+      fbq?: (...args: unknown[]) => void;
+    }
+  ).fbq;
+  if (typeof fbq === "function") {
+    fbq("consent", prefs.marketing ? "grant" : "revoke");
+  }
+
+  if (!prefs.analytics) {
+    for (const cookie of document.cookie.split(";")) {
+      const name = cookie.split("=")[0]?.trim();
+      if (name === "_ga" || name?.startsWith("_ga_")) {
+        deleteFirstPartyCookie(name);
+      }
+    }
+  }
+  if (!prefs.marketing) {
+    deleteFirstPartyCookie("_fbp");
+    deleteFirstPartyCookie("_fbc");
+  }
+
   window.dispatchEvent(new CustomEvent("consent-updated", { detail: prefs }));
 }
 
@@ -43,6 +83,39 @@ export function CookieConsent() {
   const [analytics, setAnalytics] = useState(false);
   const [marketing, setMarketing] = useState(false);
   const [animateIn, setAnimateIn] = useState(false);
+
+  const closeBanner = useCallback(() => {
+    setAnimateIn(false);
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    window.setTimeout(() => setVisible(false), reducedMotion ? 0 : 300);
+  }, []);
+
+  useEffect(() => {
+    const openSettings = () => {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          const preferences = JSON.parse(stored) as ConsentPreferences;
+          setAnalytics(preferences.analytics === true);
+          setMarketing(preferences.marketing === true);
+        }
+      } catch {
+        setAnalytics(false);
+        setMarketing(false);
+      }
+      setShowPrefs(true);
+      setVisible(true);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => setAnimateIn(true));
+      });
+    };
+
+    window.addEventListener("open-cookie-settings", openSettings);
+    return () =>
+      window.removeEventListener("open-cookie-settings", openSettings);
+  }, []);
 
   useEffect(() => {
     // Don't show on admin pages or embeddable widget routes — embed
@@ -90,9 +163,8 @@ export function CookieConsent() {
       marketing: true,
       timestamp: new Date().toISOString(),
     });
-    setAnimateIn(false);
-    setTimeout(() => setVisible(false), 300);
-  }, []);
+    closeBanner();
+  }, [closeBanner]);
 
   const handleRejectNonEssential = useCallback(() => {
     saveConsent({
@@ -101,9 +173,8 @@ export function CookieConsent() {
       marketing: false,
       timestamp: new Date().toISOString(),
     });
-    setAnimateIn(false);
-    setTimeout(() => setVisible(false), 300);
-  }, []);
+    closeBanner();
+  }, [closeBanner]);
 
   const handleSavePreferences = useCallback(() => {
     saveConsent({
@@ -112,9 +183,35 @@ export function CookieConsent() {
       marketing,
       timestamp: new Date().toISOString(),
     });
-    setAnimateIn(false);
-    setTimeout(() => setVisible(false), 300);
-  }, [analytics, marketing]);
+    closeBanner();
+  }, [analytics, closeBanner, marketing]);
+
+  useEffect(() => {
+    if (!visible) return;
+    const root = document.documentElement;
+    root.dataset.cookieConsentVisible = "true";
+    const obscuredElements = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-cookie-obscurable='true']"),
+    );
+    const previousState = obscuredElements.map((element) => ({
+      inert: element.inert,
+      ariaHidden: element.getAttribute("aria-hidden"),
+    }));
+    obscuredElements.forEach((element) => {
+      element.inert = true;
+      element.setAttribute("aria-hidden", "true");
+    });
+
+    return () => {
+      delete root.dataset.cookieConsentVisible;
+      obscuredElements.forEach((element, index) => {
+        element.inert = previousState[index].inert;
+        const ariaHidden = previousState[index].ariaHidden;
+        if (ariaHidden === null) element.removeAttribute("aria-hidden");
+        else element.setAttribute("aria-hidden", ariaHidden);
+      });
+    };
+  }, [visible]);
 
   // Publish the visible banner height as a CSS variable so layouts that
   // are viewport-locked (e.g. /ask, where main is `height: 100svh` with
@@ -151,10 +248,11 @@ export function CookieConsent() {
   return (
     <div
       ref={bannerRef}
+      data-mobile-auxiliary-surface="true"
       className={`
-        fixed bottom-0 left-0 right-0 z-50
+        fixed bottom-0 left-0 right-0 z-[10000]
         bg-[#2E2E30] border-t border-white/10
-        transition-all duration-300 ease-out
+        transition-all duration-300 ease-out motion-reduce:transform-none motion-reduce:transition-none
         ${animateIn ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}
       `}
       role="dialog"

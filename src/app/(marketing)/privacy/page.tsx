@@ -72,6 +72,14 @@ export default function PrivacyPolicyPage() {
                   </li>
                   <li>
                     <span className="text-off-white font-medium">
+                      Coaching application data
+                    </span>{" "}
+                    — your name, email, training goal, weekly training hours,
+                    optional FTP, and the answers you provide about your current
+                    training constraints.
+                  </li>
+                  <li>
+                    <span className="text-off-white font-medium">
                       Analytics data
                     </span>{" "}
                     — page views, scroll depth, time on page, and navigation
@@ -88,7 +96,9 @@ export default function PrivacyPolicyPage() {
                     <span className="text-off-white font-medium">
                       Referrer data
                     </span>{" "}
-                    — the website or source that directed you to our site.
+                    — the website or source that directed you to our site,
+                    along with standard campaign parameters when you submit a
+                    coaching application.
                   </li>
                 </ul>
               </div>
@@ -114,6 +124,14 @@ export default function PrivacyPolicyPage() {
                     — we use analytics data to understand how visitors interact
                     with our site, identify popular content, and improve the user
                     experience.
+                  </li>
+                  <li>
+                    <span className="text-off-white font-medium">
+                      Coaching applications
+                    </span>{" "}
+                    — we use your answers to assess fit, respond to you, manage
+                    the application in our internal CRM, and maintain a history
+                    if you choose to apply again.
                   </li>
                   <li>
                     <span className="text-off-white font-medium">
@@ -162,6 +180,18 @@ export default function PrivacyPolicyPage() {
                     Facebook and Instagram.
                   </li>
                   <li>
+                    <span className="text-off-white font-medium">
+                      Google Ads
+                    </span>{" "}
+                    — advertising conversion measurement, loaded only after you
+                    accept marketing cookies.
+                  </li>
+                  <li>
+                    <span className="text-off-white font-medium">Resend</span>{" "}
+                    — transactional email delivery for coaching application
+                    confirmations and replies.
+                  </li>
+                  <li>
                     <span className="text-off-white font-medium">Vercel</span>{" "}
                     — website hosting and analytics. Our site is hosted on Vercel,
                     which may collect standard server logs including IP addresses,
@@ -206,10 +236,8 @@ export default function PrivacyPolicyPage() {
                     <span className="text-off-white font-medium">
                       A/B testing cookies
                     </span>{" "}
-                    — <code className="text-coral text-sm">ab_variant</code>{" "}
-                    (30-day duration) and{" "}
-                    <code className="text-coral text-sm">roadman_ab_*</code>{" "}
-                    (90-day duration per experiment) cookies are used to assign
+                    — <code className="text-coral text-sm">roadman_ab_*</code>{" "}
+                    cookies (90-day duration per experiment) are used to assign
                     and remember your test group for ongoing experiments.
                   </li>
                   <li>
@@ -219,6 +247,13 @@ export default function PrivacyPolicyPage() {
                     — including <code className="text-coral text-sm">_fbp</code>{" "}
                     and <code className="text-coral text-sm">_fbc</code> cookies
                     set by Meta for advertising attribution and tracking.
+                  </li>
+                  <li>
+                    <span className="text-off-white font-medium">
+                      Google measurement cookies
+                    </span>{" "}
+                    — Google Analytics and Google Ads identifiers are loaded
+                    only after the relevant analytics or marketing consent.
                   </li>
                 </ul>
                 <p className="mt-4">
@@ -315,6 +350,22 @@ export default function PrivacyPolicyPage() {
                     </span>{" "}
                     — retained for 12 months, after which it is aggregated or
                     deleted.
+                  </li>
+                  <li>
+                    <span className="text-off-white font-medium">
+                      Coaching applications
+                    </span>{" "}
+                    — retained in our CRM while needed to review your
+                    application, respond, and maintain an accurate relationship
+                    history. You can request deletion at any time, subject to
+                    legal or operational record-keeping requirements.
+                  </li>
+                  <li>
+                    <span className="text-off-white font-medium">
+                      Unfinished application drafts
+                    </span>{" "}
+                    — stored only in your browser for up to 24 hours and removed
+                    after successful submission.
                   </li>
                 </ul>
               </div>

@@ -3,6 +3,18 @@
 import { useReportWebVitals } from "next/web-vitals";
 
 function sendVital(metric: Parameters<Parameters<typeof useReportWebVitals>[0]>[0]) {
+  try {
+    const stored = localStorage.getItem("roadman_cookie_consent");
+    if (
+      !stored ||
+      (JSON.parse(stored) as { analytics?: boolean }).analytics !== true
+    ) {
+      return;
+    }
+  } catch {
+    return;
+  }
+
   const body = JSON.stringify({
     type: "web_vital",
     page: window.location.pathname,

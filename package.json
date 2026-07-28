@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "check:coral": "node scripts/check-coral.mjs",
+    "check:ndy-release": "tsx scripts/check-ndy-release.ts",
     "method:protocols": "tsx scripts/generate-method-protocols.ts",
     "audit:links": "tsx scripts/dump-route-inventory.ts > scripts/route-inventory.json && node scripts/audit-links.mjs",
     "audit:links:offline": "tsx scripts/dump-route-inventory.ts > scripts/route-inventory.json && node scripts/audit-links.mjs --no-external",

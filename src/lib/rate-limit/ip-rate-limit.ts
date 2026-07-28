@@ -112,7 +112,17 @@ export async function rateLimitOr429(
   req: Request,
   cfg: IpRateLimitConfig,
 ): Promise<Response | null> {
-  const result = await checkIpRateLimit(req, cfg);
+  let result: IpRateLimitResult;
+  try {
+    result = await checkIpRateLimit(req, cfg);
+  } catch (error) {
+    // Rate limiting is defence in depth. If the limiter provider has an
+    // outage, fail open so public forms and first-party measurement do not
+    // disappear with it; endpoint validation, honeypots and DB constraints
+    // still apply.
+    console.error(`[rate-limit:${cfg.namespace}] check failed:`, error);
+    return null;
+  }
   if (result.success) return null;
   const retry = result.retryAfterSeconds ?? 60;
   return new Response(

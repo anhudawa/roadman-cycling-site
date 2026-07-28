@@ -233,10 +233,17 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Default height reserved for the cohort banner. CohortBanner.tsx
-     updates this on mount to 0px when the banner is dismissed, past
-     deadline, or on /apply and /admin pages. */
-  --cohort-banner-height: 40px;
+  /* --cohort-banner-height is intentionally unset until BannerStack mounts.
+     Header reserves 44px only on banner-eligible routes; lean/application
+     routes remain at 0px without waiting for client effects. */
+}
+
+/* Consent controls take priority over optional bottom-of-screen surfaces.
+   Those surfaces are also made inert in CookieConsent for keyboard/AT users. */
+html[data-cookie-consent-visible="true"] [data-cookie-obscurable="true"] {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

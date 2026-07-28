@@ -3,11 +3,8 @@ import { Bebas_Neue, Work_Sans, Space_Grotesk, JetBrains_Mono } from "next/font/
 import { PodcastPlayerShell } from "@/components/features/podcast/PodcastPlayerShell";
 import { ConversionChrome } from "@/components/layout/ConversionChrome";
 import { LazyCookieConsent } from "@/components/features/consent/LazyCookieConsent";
-import { Tracker } from "@/components/analytics/Tracker";
-import { ConsentAwarePixel } from "@/components/analytics/ConsentAwarePixel";
-import { GoogleAdsTag } from "@/components/analytics/GoogleAdsTag";
-import { WebVitalsReporter } from "@/components/analytics/WebVitalsReporter";
-import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
+import { ConsentRuntimeLoader } from "@/components/analytics/ConsentRuntimeLoader";
+import { ApplicationAttributionCapture } from "@/components/analytics/ApplicationAttributionCapture";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
 import { RouteBreadcrumbJsonLd } from "@/components/seo/RouteBreadcrumbJsonLd";
 import { ServiceWorkerRegister } from "@/components/pwa/ServiceWorkerRegister";
@@ -148,8 +145,6 @@ export default function RootLayout({
         {/* Preconnect to critical third-party origins */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://connect.facebook.net" />
-        <link rel="dns-prefetch" href="https://www.facebook.com" />
         <link rel="dns-prefetch" href="https://www.youtube.com" />
         <link rel="dns-prefetch" href="https://i.ytimg.com" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
@@ -171,20 +166,17 @@ export default function RootLayout({
         <RouteBreadcrumbJsonLd />
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-coral focus:text-off-white focus:px-4 focus:py-2 focus:rounded-md focus:font-heading focus:text-sm focus:tracking-wider"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-coral focus:text-deep-purple focus:px-4 focus:py-2 focus:rounded-md focus:font-heading focus:text-sm focus:tracking-wider"
         >
           Skip to content
         </a>
         <PodcastPlayerShell>
           {children}
         </PodcastPlayerShell>
+        <ApplicationAttributionCapture />
         <ConversionChrome />
         <LazyCookieConsent />
-        <Tracker />
-        <ConsentAwarePixel />
-        <GoogleAdsTag />
-        <WebVitalsReporter />
-        <VercelAnalytics />
+        <ConsentRuntimeLoader />
         <ServiceWorkerRegister />
       </body>
     </html>

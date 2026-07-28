@@ -1,14 +1,25 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { readApplicationAttribution } from "@/lib/analytics/application-attribution";
+import { trackAnalyticsEvent } from "@/lib/analytics/client";
+import { readClientConsent } from "@/lib/analytics/consent-client";
+import {
+  trackConsentedGoogleEvent,
+  trackConsentedMetaEvent,
+} from "@/lib/analytics/third-party-tags";
 import { getCohortState } from "@/lib/cohort";
 
 /** RFC-5322 lite — rejects `foo@`, `@bar`, and other common fat-finger failures. */
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /** localStorage key for persisting in-progress application answers. */
-const DRAFT_KEY = "roadman-cohort-draft-v1";
+const DRAFT_KEY = "roadman-cohort-draft-v2";
+const LEGACY_DRAFT_KEY = "roadman-cohort-draft-v1";
+const DRAFT_TTL_MS = 24 * 60 * 60 * 1000;
+const NDY_GOOGLE_ADS_SEND_TO =
+  process.env.NEXT_PUBLIC_GOOGLE_ADS_NDY_APPLICATION_SEND_TO?.trim();
 
 interface DraftState {
   step: Step;
@@ -18,14 +29,26 @@ interface DraftState {
   name: string;
   email: string;
   ftp: string;
+  submissionId?: string;
 }
 
 function loadDraft(): Partial<DraftState> | null {
   if (typeof window === "undefined") return null;
   try {
+    localStorage.removeItem(LEGACY_DRAFT_KEY);
     const raw = localStorage.getItem(DRAFT_KEY);
     if (!raw) return null;
-    return JSON.parse(raw) as Partial<DraftState>;
+    const parsed = JSON.parse(raw) as Partial<DraftState> & {
+      savedAt?: unknown;
+    };
+    if (
+      typeof parsed.savedAt !== "number" ||
+      Date.now() - parsed.savedAt > DRAFT_TTL_MS
+    ) {
+      localStorage.removeItem(DRAFT_KEY);
+      return null;
+    }
+    return parsed;
   } catch {
     return null;
   }
@@ -34,7 +57,10 @@ function loadDraft(): Partial<DraftState> | null {
 function saveDraft(state: DraftState) {
   if (typeof window === "undefined") return;
   try {
-    localStorage.setItem(DRAFT_KEY, JSON.stringify(state));
+    localStorage.setItem(
+      DRAFT_KEY,
+      JSON.stringify({ ...state, savedAt: Date.now() }),
+    );
   } catch {
     /* quota exceeded or storage unavailable — ignore */
   }
@@ -55,45 +81,102 @@ function clearDraft() {
  * Silently no-ops if fbq isn't loaded yet (ad blocker, consent denied,
  * DNT etc.).
  */
-function trackLead(email: string, persona: string | undefined) {
+function trackLead(
+  persona: string | undefined,
+  submissionId: string | null,
+) {
   if (typeof window === "undefined") return;
-  const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq;
-  if (typeof fbq !== "function") return;
+  const consent = readClientConsent();
+  if (consent.marketing) {
+    try {
+      trackConsentedMetaEvent("Lead", {
+        content_name: "NDY Application",
+        content_category: "coaching",
+        ...(persona ? { content_type: persona } : {}),
+      });
+    } catch {
+      /* pixel failure never blocks UX */
+    }
+  }
+
+  if (consent.analytics) {
+    try {
+      trackConsentedGoogleEvent(
+        "ndy_application_submit",
+        {
+          event_category: "coaching",
+          persona,
+        },
+        "analytics",
+      );
+    } catch {
+      /* ignore */
+    }
+  }
+
+  if (consent.marketing) {
+    try {
+      if (
+        NDY_GOOGLE_ADS_SEND_TO &&
+        /^AW-\d+\/[A-Za-z0-9_-]+$/.test(NDY_GOOGLE_ADS_SEND_TO)
+      ) {
+        trackConsentedGoogleEvent(
+          "conversion",
+          {
+            send_to: NDY_GOOGLE_ADS_SEND_TO,
+            value: 1,
+            currency: "USD",
+            transaction_id: submissionId ?? undefined,
+          },
+          "marketing",
+        );
+      }
+    } catch {
+      /* ignore */
+    }
+  }
+}
+
+function trackFunnel(
+  event: string,
+  meta: Record<string, string | number | boolean | undefined> = {},
+) {
+  if (typeof window === "undefined") return;
   try {
-    fbq("track", "Lead", {
-      content_name: "NDY Application",
-      content_category: "coaching",
-      ...(persona ? { content_type: persona } : {}),
-      value: 195,
-      currency: "USD",
+    const track = (
+      window as unknown as {
+        __roadmanTrack?: (
+          eventName: string,
+          eventMeta?: Record<string, unknown>,
+        ) => void;
+      }
+    ).__roadmanTrack;
+    if (typeof track === "function") {
+      track(event, meta);
+      return;
+    }
+    trackAnalyticsEvent({
+      type: event,
+      page: window.location.pathname,
+      meta: Object.fromEntries(
+        Object.entries(meta)
+          .filter((entry): entry is [string, string | number | boolean] =>
+            entry[1] !== undefined,
+          )
+          .map(([key, value]) => [key, String(value)]),
+      ),
     });
   } catch {
-    /* pixel failure never blocks UX */
-  }
-  // Additionally: a plausible/GA-compatible custom event if either is loaded.
-  try {
-    const gtag = (window as unknown as {
-      gtag?: (...args: unknown[]) => void;
-    }).gtag;
-    if (typeof gtag === "function") {
-      gtag("event", "ndy_application_submit", {
-        event_category: "coaching",
-        value: 195,
-        persona,
-        email_hash: email.length, // privacy-safe signal; swap for sha256 later
-      });
-    }
-  } catch {
-    /* ignore */
+    // Analytics must never interrupt the application.
   }
 }
 
 const GOALS = [
-  { value: "Race or event with a date", emoji: "🏁" },
-  { value: "Hit a specific power number", emoji: "⚡" },
-  { value: "Stop getting dropped on group rides", emoji: "💨" },
-  { value: "Lose weight without losing power", emoji: "⚖️" },
-  { value: "Get structured after years of winging it", emoji: "📋" },
+  "Race or event with a date",
+  "Hit a specific power number",
+  "Stop getting dropped on group rides",
+  "Lose weight without losing power",
+  "Get structured after years of winging it",
 ];
 
 const HOURS = [
@@ -105,11 +188,11 @@ const HOURS = [
 ];
 
 const FRUSTRATIONS = [
-  { value: "Plateaued — stuck at a number I can't shift", emoji: "📉" },
-  { value: "No structure — making it up as I go", emoji: "🎲" },
-  { value: "Lost motivation — can't stay consistent", emoji: "😩" },
-  { value: "Injury or comeback — trying to get back", emoji: "🩹" },
-  { value: "Training hard but not seeing results", emoji: "😤" },
+  "Plateaued — stuck at a number I can't shift",
+  "No structure — making it up as I go",
+  "Lost motivation — can't stay consistent",
+  "Injury or comeback — trying to get back",
+  "Training hard but not seeing results",
 ];
 
 type Step = "goal" | "hours" | "frustration" | "details" | "submitted";
@@ -122,8 +205,16 @@ export function CohortApplicationForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [ftp, setFtp] = useState("");
+  const [website, setWebsite] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [errorField, setErrorField] = useState<"name" | "email" | null>(null);
+  const formRootRef = useRef<HTMLDivElement>(null);
+  const errorRef = useRef<HTMLParagraphElement>(null);
+  const submissionIdRef = useRef<string | null>(null);
+  const previousStepRef = useRef<Step>("goal");
+  const formStartedRef = useRef(false);
+  const prefersReducedMotion = useReducedMotion();
 
   const cohortState = getCohortState();
   const cohortCopy = cohortState.form;
@@ -141,29 +232,111 @@ export function CohortApplicationForm() {
     if (draft.name) setName(draft.name);
     if (draft.email) setEmail(draft.email);
     if (draft.ftp) setFtp(draft.ftp);
+    if (
+      draft.submissionId &&
+      /^[A-Za-z0-9_-]{8,100}$/.test(draft.submissionId)
+    ) {
+      submissionIdRef.current = draft.submissionId;
+    }
   }, []);
 
   // Persist answers as the user moves through the form.
   useEffect(() => {
     if (step === "submitted") return;
-    saveDraft({ step, goal, hours, frustration, name, email, ftp });
+    saveDraft({
+      step,
+      goal,
+      hours,
+      frustration,
+      name,
+      email,
+      ftp,
+      submissionId: submissionIdRef.current ?? undefined,
+    });
   }, [step, goal, hours, frustration, name, email, ftp]);
 
   const stepIndex = ["goal", "hours", "frustration", "details", "submitted"].indexOf(step);
 
+  useEffect(() => {
+    if (previousStepRef.current === step) return;
+    previousStepRef.current = step;
+
+    const focusDelay = prefersReducedMotion ? 0 : 340;
+    const timer = window.setTimeout(() => {
+      const target =
+        step === "details"
+          ? formRootRef.current?.querySelector<HTMLElement>(
+              "#application-name",
+            )
+          : formRootRef.current?.querySelector<HTMLElement>(
+              `[data-application-step="${step}"]`,
+            );
+      target?.focus();
+    }, focusDelay);
+
+    return () => window.clearTimeout(timer);
+  }, [step, prefersReducedMotion]);
+
+  function trackFormStartOnce() {
+    if (formStartedRef.current) return;
+    formStartedRef.current = true;
+    trackFunnel("apply_form_start", {
+      source: "ndy-application",
+    });
+  }
+
   async function handleSubmit() {
     const trimmedEmail = email.trim();
     if (!name.trim() || !trimmedEmail) {
+      const missingField = !name.trim() ? "name" : "email";
       setError("Name and email are required.");
+      setErrorField(missingField);
+      window.setTimeout(() => {
+        formRootRef.current
+          ?.querySelector<HTMLInputElement>(`#application-${missingField}`)
+          ?.focus();
+      }, 0);
+      trackFunnel("apply_submit_error", {
+        source: "ndy-application",
+        reason: "missing_details",
+      });
       return;
     }
     if (!EMAIL_REGEX.test(trimmedEmail)) {
       setError("Please enter a valid email address.");
+      setErrorField("email");
+      window.setTimeout(() => {
+        formRootRef.current
+          ?.querySelector<HTMLInputElement>("#application-email")
+          ?.focus();
+      }, 0);
+      trackFunnel("apply_submit_error", {
+        source: "ndy-application",
+        reason: "invalid_email",
+      });
       return;
     }
 
+    trackFunnel("apply_step_completed", {
+      source: "ndy-application",
+      step: "details",
+    });
     setSubmitting(true);
     setError("");
+    setErrorField(null);
+    if (!submissionIdRef.current) {
+      submissionIdRef.current = crypto.randomUUID();
+      saveDraft({
+        step,
+        goal,
+        hours,
+        frustration,
+        name,
+        email,
+        ftp,
+        submissionId: submissionIdRef.current,
+      });
+    }
 
     try {
       const res = await fetch("/api/cohort/apply", {
@@ -176,6 +349,9 @@ export function CohortApplicationForm() {
           hours,
           ftp: ftp.trim(),
           frustration,
+          website,
+          submissionId: submissionIdRef.current,
+          attribution: readApplicationAttribution(),
         }),
       });
 
@@ -187,53 +363,87 @@ export function CohortApplicationForm() {
       const data = (await res.json().catch(() => ({}))) as {
         success?: boolean;
         persona?: string;
+        duplicate?: boolean;
+        discarded?: boolean;
       };
-      // Lead event (FB Pixel + GA) — attribution for ad spend
-      trackLead(trimmedEmail, data.persona);
-      // Internal funnel event (DEV-DATA-01): terminal step of the
-      // content -> coaching funnel on the measurement dashboard.
-      try {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const track = (window as any).__roadmanTrack;
-        if (typeof track === "function") {
-          track("coaching_apply_submitted", { source: "cohort-apply" });
-        }
-      } catch {
-        // analytics never breaks UX
+      if (data.discarded) {
+        setWebsite("");
+        setError(
+          "We couldn't send that application. Please try once more — your answers are still saved.",
+        );
+        window.setTimeout(() => errorRef.current?.focus(), 0);
+        return;
+      }
+      if (!data.duplicate && !data.discarded) {
+        // Lead event (Meta + Google Ads) — attribution for ad spend.
+        trackLead(data.persona, submissionIdRef.current);
+        trackFunnel("apply_submit_success", {
+          source: "ndy-application",
+          persona: data.persona,
+        });
+        trackFunnel("coaching_apply_submitted", { source: "cohort-apply" });
       }
       // Success — wipe the draft so next visit starts fresh
       clearDraft();
+      submissionIdRef.current = null;
       setStep("submitted");
     } catch (err) {
       const msg =
         err instanceof Error ? err.message : "Something went wrong. Please try again.";
       setError(msg);
+      setErrorField(null);
+      window.setTimeout(() => errorRef.current?.focus(), 0);
+      trackFunnel("apply_submit_error", {
+        source: "ndy-application",
+        reason: "request_failed",
+      });
     } finally {
       setSubmitting(false);
     }
   }
 
-  const slideVariants = {
-    enter: { opacity: 0, x: 40, filter: "blur(4px)" },
-    center: { opacity: 1, x: 0, filter: "blur(0px)" },
-    exit: { opacity: 0, x: -40, filter: "blur(4px)" },
-  };
+  const slideVariants = prefersReducedMotion
+    ? {
+        enter: { opacity: 1, x: 0, filter: "blur(0px)" },
+        center: { opacity: 1, x: 0, filter: "blur(0px)" },
+        exit: { opacity: 1, x: 0, filter: "blur(0px)" },
+      }
+    : {
+        enter: { opacity: 0, x: 40, filter: "blur(4px)" },
+        center: { opacity: 1, x: 0, filter: "blur(0px)" },
+        exit: { opacity: 0, x: -40, filter: "blur(4px)" },
+      };
+  const slideTransition = { duration: prefersReducedMotion ? 0 : 0.3 };
 
   return (
-    <div className="relative">
+    <div ref={formRootRef} className="relative">
       {/* Progress dots */}
       {step !== "submitted" && (
-        <div className="flex items-center justify-center gap-2 mb-8">
-          {["goal", "hours", "frustration", "details"].map((s, i) => (
-            <div
-              key={s}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                i <= stepIndex
-                  ? "bg-coral w-8"
-                  : "bg-white/10 w-4"
-              }`}
-            />
-          ))}
+        <div
+          className="mb-8"
+          role="progressbar"
+          aria-label="Application progress"
+          aria-valuemin={1}
+          aria-valuemax={4}
+          aria-valuenow={stepIndex + 1}
+          aria-valuetext={`Step ${stepIndex + 1} of 4`}
+        >
+          <div
+            className="flex items-center justify-center gap-2"
+            aria-hidden="true"
+          >
+            {["goal", "hours", "frustration", "details"].map((s, i) => (
+              <div
+                key={s}
+                className={`h-1.5 rounded-full transition-all duration-300 motion-reduce:transition-none ${
+                  i <= stepIndex ? "bg-coral w-8" : "bg-white/10 w-4"
+                }`}
+              />
+            ))}
+          </div>
+          <p className="mt-3 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-foreground-subtle">
+            Step {stepIndex + 1} of 4
+          </p>
         </div>
       )}
 
@@ -245,27 +455,47 @@ export function CohortApplicationForm() {
             initial="enter"
             animate="center"
             exit="exit"
-            transition={{ duration: 0.3 }}
+            transition={slideTransition}
           >
-            <h3 className="font-heading text-off-white text-2xl md:text-3xl text-center mb-2">
+            <h3
+              id="goal-question"
+              data-application-step="goal"
+              tabIndex={-1}
+              className="font-heading text-off-white text-2xl md:text-3xl text-center mb-2"
+            >
               WHAT&apos;S YOUR #1 GOAL?
             </h3>
             <p className="text-foreground-muted text-center mb-8 text-sm">
               Pick the one that resonates most
             </p>
-            <div className="grid gap-3 max-w-md mx-auto">
-              {GOALS.map((g) => (
+            <div
+              className="grid gap-3 max-w-md mx-auto"
+              role="group"
+              aria-labelledby="goal-question"
+            >
+              {GOALS.map((goalOption, index) => (
                 <button
-                  key={g.value}
+                  type="button"
+                  key={goalOption}
                   onClick={() => {
-                    setGoal(g.value);
+                    setGoal(goalOption);
+                    trackFormStartOnce();
+                    trackFunnel("apply_step_completed", {
+                      source: "ndy-application",
+                      step: "goal",
+                    });
                     setStep("hours");
                   }}
-                  className="flex items-center gap-3 w-full text-left px-5 py-4 rounded-xl border border-white/10 bg-white/[0.03] hover:border-coral/40 hover:bg-coral/5 transition-all duration-200 group"
+                  className="flex items-center gap-3 w-full text-left px-5 py-4 rounded-md border border-white/10 bg-white/[0.03] hover:border-coral/40 hover:bg-coral/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2 focus-visible:ring-offset-deep-purple transition-all duration-200 group"
                 >
-                  <span className="text-xl">{g.emoji}</span>
+                  <span
+                    aria-hidden="true"
+                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/15 text-[10px] font-semibold text-coral"
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                   <span className="text-off-white text-sm font-medium group-hover:text-coral transition-colors">
-                    {g.value}
+                    {goalOption}
                   </span>
                 </button>
               ))}
@@ -280,23 +510,38 @@ export function CohortApplicationForm() {
             initial="enter"
             animate="center"
             exit="exit"
-            transition={{ duration: 0.3 }}
+            transition={slideTransition}
           >
-            <h3 className="font-heading text-off-white text-2xl md:text-3xl text-center mb-2">
+            <h3
+              id="hours-question"
+              data-application-step="hours"
+              tabIndex={-1}
+              className="font-heading text-off-white text-2xl md:text-3xl text-center mb-2"
+            >
               HOURS PER WEEK?
             </h3>
             <p className="text-foreground-muted text-center mb-8 text-sm">
               Your real number, not your fantasy number
             </p>
-            <div className="flex gap-3 justify-center flex-wrap max-w-md mx-auto">
+            <div
+              className="flex gap-3 justify-center flex-wrap max-w-md mx-auto"
+              role="group"
+              aria-labelledby="hours-question"
+            >
               {HOURS.map((h) => (
                 <button
+                  type="button"
                   key={h.value}
                   onClick={() => {
+                    trackFormStartOnce();
                     setHours(h.value);
+                    trackFunnel("apply_step_completed", {
+                      source: "ndy-application",
+                      step: "hours",
+                    });
                     setStep("frustration");
                   }}
-                  className="px-6 py-4 rounded-xl border border-white/10 bg-white/[0.03] hover:border-coral/40 hover:bg-coral/5 transition-all duration-200 group min-w-[72px]"
+                  className="px-6 py-4 rounded-md border border-white/10 bg-white/[0.03] hover:border-coral/40 hover:bg-coral/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2 focus-visible:ring-offset-deep-purple transition-all duration-200 group min-w-[72px]"
                 >
                   <span className="text-off-white font-heading text-lg group-hover:text-coral transition-colors">
                     {h.label}
@@ -304,6 +549,13 @@ export function CohortApplicationForm() {
                 </button>
               ))}
             </div>
+            <button
+              type="button"
+              onClick={() => setStep("goal")}
+              className="mx-auto mt-7 block min-h-11 px-3 text-xs font-semibold uppercase tracking-widest text-foreground-muted transition-colors hover:text-off-white"
+            >
+              ← Back
+            </button>
           </motion.div>
         )}
 
@@ -314,31 +566,58 @@ export function CohortApplicationForm() {
             initial="enter"
             animate="center"
             exit="exit"
-            transition={{ duration: 0.3 }}
+            transition={slideTransition}
           >
-            <h3 className="font-heading text-off-white text-2xl md:text-3xl text-center mb-2">
+            <h3
+              id="frustration-question"
+              data-application-step="frustration"
+              tabIndex={-1}
+              className="font-heading text-off-white text-2xl md:text-3xl text-center mb-2"
+            >
               WHAT&apos;S ACTUALLY DOING YOUR HEAD IN?
             </h3>
             <p className="text-foreground-muted text-center mb-8 text-sm">
               The thing that made you click this page
             </p>
-            <div className="grid gap-3 max-w-md mx-auto">
-              {FRUSTRATIONS.map((f) => (
+            <div
+              className="grid gap-3 max-w-md mx-auto"
+              role="group"
+              aria-labelledby="frustration-question"
+            >
+              {FRUSTRATIONS.map((frustrationOption, index) => (
                 <button
-                  key={f.value}
+                  type="button"
+                  key={frustrationOption}
                   onClick={() => {
-                    setFrustration(f.value);
+                    trackFormStartOnce();
+                    setFrustration(frustrationOption);
+                    trackFunnel("apply_step_completed", {
+                      source: "ndy-application",
+                      step: "frustration",
+                    });
                     setStep("details");
                   }}
-                  className="flex items-center gap-3 w-full text-left px-5 py-4 rounded-xl border border-white/10 bg-white/[0.03] hover:border-coral/40 hover:bg-coral/5 transition-all duration-200 group"
+                  className="flex items-center gap-3 w-full text-left px-5 py-4 rounded-md border border-white/10 bg-white/[0.03] hover:border-coral/40 hover:bg-coral/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2 focus-visible:ring-offset-deep-purple transition-all duration-200 group"
                 >
-                  <span className="text-xl">{f.emoji}</span>
+                  <span
+                    aria-hidden="true"
+                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/15 text-[10px] font-semibold text-coral"
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                   <span className="text-off-white text-sm font-medium group-hover:text-coral transition-colors">
-                    {f.value}
+                    {frustrationOption}
                   </span>
                 </button>
               ))}
             </div>
+            <button
+              type="button"
+              onClick={() => setStep("hours")}
+              className="mx-auto mt-7 block min-h-11 px-3 text-xs font-semibold uppercase tracking-widest text-foreground-muted transition-colors hover:text-off-white"
+            >
+              ← Back
+            </button>
           </motion.div>
         )}
 
@@ -349,51 +628,147 @@ export function CohortApplicationForm() {
             initial="enter"
             animate="center"
             exit="exit"
-            transition={{ duration: 0.3 }}
+            transition={slideTransition}
           >
-            <h3 className="font-heading text-off-white text-2xl md:text-3xl text-center mb-2">
+            <h3
+              data-application-step="details"
+              tabIndex={-1}
+              className="font-heading text-off-white text-2xl md:text-3xl text-center mb-2"
+            >
               LAST STEP
             </h3>
             <p className="text-foreground-muted text-center mb-8 text-sm">
               So we can review your application
             </p>
-            <div className="max-w-sm mx-auto space-y-4">
-              <input
-                type="text"
-                placeholder="Your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-off-white caret-coral placeholder:text-foreground-subtle focus:border-coral/50 focus:outline-none focus:ring-1 focus:ring-coral/20 transition-colors"
-                autoFocus
-              />
-              <input
-                type="email"
-                placeholder="Your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-off-white caret-coral placeholder:text-foreground-subtle focus:border-coral/50 focus:outline-none focus:ring-1 focus:ring-coral/20 transition-colors"
-              />
-              <input
-                type="text"
-                placeholder="Current FTP (optional)"
-                value={ftp}
-                onChange={(e) => setFtp(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-off-white caret-coral placeholder:text-foreground-subtle focus:border-coral/50 focus:outline-none focus:ring-1 focus:ring-coral/20 transition-colors"
-              />
+            <form
+              className="max-w-sm mx-auto space-y-4"
+              onFocusCapture={trackFormStartOnce}
+              onSubmit={(event) => {
+                event.preventDefault();
+                void handleSubmit();
+              }}
+              noValidate
+            >
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -left-[10000px] top-auto h-px w-px overflow-hidden"
+              >
+                <label htmlFor="application-website">Website</label>
+                <input
+                  id="application-website"
+                  name="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  data-1p-ignore
+                  data-lpignore="true"
+                  data-bwignore
+                  value={website}
+                  onChange={(event) => setWebsite(event.target.value)}
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="application-name"
+                  className="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-foreground-muted"
+                >
+                  Your name
+                </label>
+                <input
+                  id="application-name"
+                  name="name"
+                  type="text"
+                  autoComplete="name"
+                  required
+                  placeholder="e.g. Sam Murphy"
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                    if (errorField === "name") setErrorField(null);
+                  }}
+                  aria-invalid={errorField === "name"}
+                  aria-describedby={
+                    errorField === "name" ? "application-error" : undefined
+                  }
+                  className="w-full px-4 py-3 rounded-md bg-white/10 border border-white/15 text-off-white caret-coral placeholder:text-foreground-subtle focus:border-coral focus:outline-none focus:ring-2 focus:ring-coral focus:ring-offset-2 focus:ring-offset-deep-purple transition-colors"
+                  autoFocus
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="application-email"
+                  className="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-foreground-muted"
+                >
+                  Email address
+                </label>
+                <input
+                  id="application-email"
+                  name="email"
+                  type="email"
+                  inputMode="email"
+                  autoComplete="email"
+                  required
+                  placeholder="you@example.com"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (errorField === "email") setErrorField(null);
+                  }}
+                  aria-invalid={errorField === "email"}
+                  aria-describedby={
+                    errorField === "email" ? "application-error" : undefined
+                  }
+                  className="w-full px-4 py-3 rounded-md bg-white/10 border border-white/15 text-off-white caret-coral placeholder:text-foreground-subtle focus:border-coral focus:outline-none focus:ring-2 focus:ring-coral focus:ring-offset-2 focus:ring-offset-deep-purple transition-colors"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="application-ftp"
+                  className="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-foreground-muted"
+                >
+                  Current FTP <span className="normal-case tracking-normal">(optional)</span>
+                </label>
+                <input
+                  id="application-ftp"
+                  name="ftp"
+                  type="text"
+                  inputMode="numeric"
+                  placeholder="e.g. 245W"
+                  value={ftp}
+                  onChange={(e) => setFtp(e.target.value)}
+                  className="w-full px-4 py-3 rounded-md bg-white/10 border border-white/15 text-off-white caret-coral placeholder:text-foreground-subtle focus:border-coral focus:outline-none focus:ring-2 focus:ring-coral focus:ring-offset-2 focus:ring-offset-deep-purple transition-colors"
+                />
+              </div>
               {error && (
-                <p className="text-red-400 text-sm text-center">{error}</p>
+                <p
+                  id="application-error"
+                  ref={errorRef}
+                  role="alert"
+                  tabIndex={-1}
+                  className="text-red-300 text-sm text-center focus:outline-none"
+                >
+                  {error}
+                </p>
               )}
               <button
-                onClick={handleSubmit}
+                type="submit"
                 disabled={submitting}
-                className="w-full py-4 rounded-xl bg-coral text-off-white font-heading text-lg tracking-wider hover:bg-coral/90 disabled:opacity-50 transition-all duration-200 shadow-lg shadow-coral/20"
+                className="w-full py-4 rounded-md bg-coral text-deep-purple font-heading text-lg tracking-wider hover:bg-coral/90 disabled:opacity-50 transition-all duration-200 shadow-lg shadow-coral/20"
               >
                 {submitting ? "SUBMITTING..." : cohortCopy.buttonText}
               </button>
               <p className="text-foreground-subtle text-xs text-center">
-                We review every application. You&apos;ll hear back within 24 hours.
+                Anthony reviews every application. You&apos;ll hear back within
+                48 hours.
               </p>
-            </div>
+              <button
+                type="button"
+                onClick={() => setStep("frustration")}
+                className="mx-auto block min-h-11 px-3 text-xs font-semibold uppercase tracking-widest text-foreground-muted transition-colors hover:text-off-white"
+              >
+                ← Back
+              </button>
+            </form>
           </motion.div>
         )}
 
@@ -404,19 +779,29 @@ export function CohortApplicationForm() {
             initial="enter"
             animate="center"
             exit="exit"
-            transition={{ duration: 0.3 }}
+            transition={slideTransition}
             className="text-center py-8"
           >
-            <div className="text-5xl mb-4">🎯</div>
-            <h3 className="font-heading text-off-white text-3xl mb-3">
+            <div
+              aria-hidden="true"
+              className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-coral/35 bg-coral/10 text-2xl text-coral"
+            >
+              ✓
+            </div>
+            <h3
+              data-application-step="submitted"
+              tabIndex={-1}
+              className="font-heading text-off-white text-3xl mb-3"
+            >
               {cohortCopy.submittedHeadline}
             </h3>
             <p className="text-foreground-muted max-w-sm mx-auto mb-6">
               {cohortCopy.submittedBody}
-              {" "}Confirmation at <span className="text-coral">{email}</span>.
+              {" "}We&apos;ll reply to{" "}
+              <span className="text-coral">{email}</span>.
             </p>
             <p className="text-foreground-subtle text-sm">
-              Only 30 spots. Apply now.
+              Nothing else to do right now.
             </p>
           </motion.div>
         )}

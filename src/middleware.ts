@@ -117,6 +117,18 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(cleanUrl, 308);
   }
 
+  // Keep the public application page static and cacheable. Legacy diagnostic
+  // links are normalised to a dedicated personalised route before rendering.
+  if (pathname === "/apply") {
+    const submissionSlug = request.nextUrl.searchParams.get("from")?.trim();
+    if (submissionSlug) {
+      const personalisedUrl = request.nextUrl.clone();
+      personalisedUrl.pathname = `/apply/from/${encodeURIComponent(submissionSlug)}`;
+      personalisedUrl.searchParams.delete("from");
+      return NextResponse.redirect(personalisedUrl, 308);
+    }
+  }
+
   /* ────────────────────────────────────────────────────────────
    * 3. A/B TEST VARIANT ASSIGNMENT
    * ──────────────────────────────────────────────────────────── */
@@ -154,16 +166,6 @@ export async function middleware(request: NextRequest) {
       path: "/",
       httpOnly: false,
       maxAge: 60 * 60 * 24 * 90,
-      sameSite: "lax",
-    });
-  }
-
-  // Global visitor variant cookie
-  if (!request.cookies.get("ab_variant")?.value) {
-    response.cookies.set("ab_variant", crypto.randomUUID(), {
-      path: "/",
-      httpOnly: false,
-      maxAge: 60 * 60 * 24 * 30,
       sameSite: "lax",
     });
   }
@@ -208,9 +210,8 @@ export const config = {
     // Previously only the literal `sitemap.xml` was excluded, so the
     // generateSitemaps() children (/sitemap/0.xml … /sitemap/6.xml) still
     // ran through middleware: every crawler fetch came back with a
-    // Set-Cookie (ab_variant) and was forced dynamic, and Vercel even
-    // cached the cookie'd response. Crawlers must get clean, cookie-free,
-    // cacheable XML.
+    // Set-Cookie headers and was forced dynamic, and Vercel even cached
+    // cookie'd responses. Crawlers must get clean, cookie-free, cacheable XML.
     "/((?!admin|api|_next/static|_next/image|favicon.ico|icon.svg|sitemap|robots.txt).*)",
   ],
 };

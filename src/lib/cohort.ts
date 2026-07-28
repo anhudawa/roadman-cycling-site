@@ -24,21 +24,22 @@ export interface CohortState {
   submissionTag: string;
   /** UI strings — keep editorial copy in one place so we don't drift. */
   banner: {
-    eyebrow: string;        // "APPLY NOW"
-    detail: string;          // "30 places · 7-day free trial"
-    cta: string;            // "APPLY" / "APPLY NOW"
+    eyebrow: string;        // "NOT DONE YET COACHING"
+    detail: string;         // price + trial + coaching context
+    cta: string;            // "START APPLICATION"
     ctaHref: string;        // "/apply"
   };
   form: {
     kicker: string;         // "APPLY NOW"
     subheading: string;     // pricing + trial line
-    buttonText: string;     // "APPLY FOR YOUR SPOT"
+    buttonText: string;     // "SEND MY APPLICATION"
     submittedHeadline: string;
     submittedBody: string;
   };
 }
 
 export function getCohortState(_now: Date = new Date()): CohortState {
+  void _now;
   return applyNow();
 }
 
@@ -52,18 +53,19 @@ function applyNow(): CohortState {
     nextStarts: null,
     submissionTag: "ndy-applicant",
     banner: {
-      eyebrow: "APPLY NOW",
-      detail: "Not Done Yet coaching · personalised training with Anthony",
-      cta: "APPLY",
+      eyebrow: "NOT DONE YET COACHING",
+      detail:
+        "Personalised weekly plan · $195 USD/month · first 7 days free",
+      cta: "START APPLICATION",
       ctaHref: "/apply",
     },
     form: {
-      kicker: "APPLY NOW",
-      subheading: "7-day free trial. $195/mo. Cancel anytime.",
-      buttonText: "APPLY FOR YOUR SPOT",
+      kicker: "START YOUR APPLICATION",
+      subheading: "$195 USD/month. First 7 days free. Cancel anytime.",
+      buttonText: "SEND MY APPLICATION",
       submittedHeadline: "APPLICATION RECEIVED",
       submittedBody:
-        "We'll review your application and get back to you within 24 hours.",
+        "Your application is safely with the Roadman coaching team. We will reply within 48 hours.",
     },
   };
 }

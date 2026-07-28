@@ -1,10 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { readApplicationAttribution } from "@/lib/analytics/application-attribution";
+import { trackAnalyticsEvent } from "@/lib/analytics/client";
+import { readClientConsent } from "@/lib/analytics/consent-client";
+import {
+  trackConsentedGoogleEvent,
+  trackConsentedMetaEvent,
+} from "@/lib/analytics/third-party-tags";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const DRAFT_KEY = "roadman-inner-circle-draft-v1";
+const DRAFT_KEY = "roadman-inner-circle-draft-v2";
+const LEGACY_DRAFT_KEY = "roadman-inner-circle-draft-v1";
+const DRAFT_TTL_MS = 24 * 60 * 60 * 1000;
 
 type Step =
   | "intro"
@@ -37,14 +46,26 @@ interface DraftState {
   goal: string;
   triedBefore: string;
   whyInnerCircle: string;
+  submissionId?: string;
 }
 
 function loadDraft(): Partial<DraftState> | null {
   if (typeof window === "undefined") return null;
   try {
+    localStorage.removeItem(LEGACY_DRAFT_KEY);
     const raw = localStorage.getItem(DRAFT_KEY);
     if (!raw) return null;
-    return JSON.parse(raw) as Partial<DraftState>;
+    const parsed = JSON.parse(raw) as Partial<DraftState> & {
+      savedAt?: unknown;
+    };
+    if (
+      typeof parsed.savedAt !== "number" ||
+      Date.now() - parsed.savedAt > DRAFT_TTL_MS
+    ) {
+      localStorage.removeItem(DRAFT_KEY);
+      return null;
+    }
+    return parsed;
   } catch {
     return null;
   }
@@ -53,7 +74,10 @@ function loadDraft(): Partial<DraftState> | null {
 function saveDraft(state: DraftState) {
   if (typeof window === "undefined") return;
   try {
-    localStorage.setItem(DRAFT_KEY, JSON.stringify(state));
+    localStorage.setItem(
+      DRAFT_KEY,
+      JSON.stringify({ ...state, savedAt: Date.now() }),
+    );
   } catch {
     /* quota / privacy mode — fail silently */
   }
@@ -68,43 +92,37 @@ function clearDraft() {
   }
 }
 
-function trackLead(email: string) {
+function trackLead() {
   if (typeof window === "undefined") return;
-  const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq;
-  if (typeof fbq === "function") {
+  const consent = readClientConsent();
+  if (consent.marketing) {
     try {
-      fbq("track", "Lead", {
+      trackConsentedMetaEvent("Lead", {
         content_name: "Inner Circle Application",
         content_category: "premium-coaching",
-        value: 525,
-        currency: "USD",
       });
     } catch {
       /* pixel never blocks UX */
     }
   }
-  try {
-    const gtag = (window as unknown as {
-      gtag?: (...args: unknown[]) => void;
-    }).gtag;
-    if (typeof gtag === "function") {
-      gtag("event", "inner_circle_application_submit", {
-        event_category: "premium-coaching",
-        value: 525,
-        email_hash: email.length,
-      });
+  if (consent.analytics) {
+    try {
+      trackConsentedGoogleEvent(
+        "inner_circle_application_submit",
+        { event_category: "premium-coaching" },
+        "analytics",
+      );
+    } catch {
+      /* ignore */
     }
-  } catch {
-    /* ignore */
   }
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const internal = (window as any).__roadmanTrack;
-    if (typeof internal === "function") {
-      internal("inner_circle_application_submitted", { source: "inner-circle-apply" });
-    }
-  } catch {
-    /* ignore */
+
+  if (consent.analytics) {
+    trackAnalyticsEvent({
+      type: "inner_circle_application_submitted",
+      page: window.location.pathname,
+      meta: { source: "inner-circle-apply" },
+    });
   }
 }
 
@@ -125,8 +143,10 @@ export function InnerCircleApplicationForm() {
   const [goal, setGoal] = useState("");
   const [triedBefore, setTriedBefore] = useState("");
   const [whyInnerCircle, setWhyInnerCircle] = useState("");
+  const [website, setWebsite] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const submissionIdRef = useRef<string | null>(null);
 
   // Restore in-progress draft on mount.
   useEffect(() => {
@@ -140,16 +160,31 @@ export function InnerCircleApplicationForm() {
     if (draft.goal) setGoal(draft.goal);
     if (draft.triedBefore) setTriedBefore(draft.triedBefore);
     if (draft.whyInnerCircle) setWhyInnerCircle(draft.whyInnerCircle);
+    if (
+      draft.submissionId &&
+      /^[A-Za-z0-9_-]{8,100}$/.test(draft.submissionId)
+    ) {
+      submissionIdRef.current = draft.submissionId;
+    }
   }, []);
 
   // Persist as the user fills the form.
   useEffect(() => {
     if (step === "submitted") return;
-    saveDraft({ step, name, email, ftp, hours, goal, triedBefore, whyInnerCircle });
+    saveDraft({
+      step,
+      name,
+      email,
+      ftp,
+      hours,
+      goal,
+      triedBefore,
+      whyInnerCircle,
+      submissionId: submissionIdRef.current ?? undefined,
+    });
   }, [step, name, email, ftp, hours, goal, triedBefore, whyInnerCircle]);
 
   const stepIndex = STEP_ORDER.indexOf(step);
-  const totalSteps = STEP_ORDER.length - 1; // exclude intro from progress
 
   function go(next: Step) {
     setError("");
@@ -193,6 +228,20 @@ export function InnerCircleApplicationForm() {
     }
 
     setSubmitting(true);
+    if (!submissionIdRef.current) {
+      submissionIdRef.current = crypto.randomUUID();
+      saveDraft({
+        step,
+        name,
+        email,
+        ftp,
+        hours,
+        goal,
+        triedBefore,
+        whyInnerCircle,
+        submissionId: submissionIdRef.current,
+      });
+    }
     try {
       const res = await fetch("/api/cohort/apply", {
         method: "POST",
@@ -207,6 +256,9 @@ export function InnerCircleApplicationForm() {
           triedBefore: trimmedTried,
           whyInnerCircle: trimmedWhy,
           cohort: "inner-circle",
+          website,
+          submissionId: submissionIdRef.current,
+          attribution: readApplicationAttribution(),
         }),
       });
 
@@ -214,8 +266,20 @@ export function InnerCircleApplicationForm() {
         const data = (await res.json().catch(() => ({}))) as { error?: string };
         throw new Error(data.error || "Failed to submit");
       }
-      trackLead(trimmedEmail);
+      const data = (await res.json().catch(() => ({}))) as {
+        duplicate?: boolean;
+        discarded?: boolean;
+      };
+      if (data.discarded) {
+        setWebsite("");
+        setError(
+          "We couldn't send that application. Please try once more — your answers are still saved.",
+        );
+        return;
+      }
+      if (!data.duplicate && !data.discarded) trackLead();
       clearDraft();
+      submissionIdRef.current = null;
       setStep("submitted");
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Something went wrong. Please try again.";
@@ -242,6 +306,24 @@ export function InnerCircleApplicationForm() {
 
   return (
     <div className="relative">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-[10000px] top-auto h-px w-px overflow-hidden"
+      >
+        <label htmlFor="inner-circle-website">Website</label>
+        <input
+          id="inner-circle-website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          data-1p-ignore
+          data-lpignore="true"
+          data-bwignore
+          value={website}
+          onChange={(event) => setWebsite(event.target.value)}
+        />
+      </div>
       {step !== "intro" && step !== "submitted" && (
         <div className="flex items-center justify-center gap-1.5 mb-8">
           {STEP_ORDER.slice(1).map((s, i) => {

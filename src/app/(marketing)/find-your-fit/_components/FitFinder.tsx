@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { trackAnalyticsEvent } from "@/lib/analytics/client";
+import { trackConsentedMetaEvent } from "@/lib/analytics/third-party-tags";
 
 type TierId = "clubhouse" | "notDoneYet" | "innerCircle" | "oneOnOne";
 
@@ -325,11 +326,8 @@ function computeWinner(answers: Answers): TierId {
 }
 
 function fireLeadPixel(tier: TierId): void {
-  if (typeof window === "undefined") return;
-  const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq;
-  if (!fbq) return;
   const t = TIERS[tier];
-  fbq("track", "Lead", {
+  trackConsentedMetaEvent("Lead", {
     content_name: t.name,
     content_category: "find-your-fit",
     value: t.pixelValue,

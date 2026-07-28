@@ -9,7 +9,7 @@ const PAGE_URL = `${SITE_ORIGIN}/entity/not-done-yet`;
 const PRODUCT_URL = `${SITE_ORIGIN}/community/not-done-yet`;
 
 const NDY_DESCRIPTION =
-  "Not Done Yet is Roadman Cycling's coaching product — personalised training plans, weekly coaching calls with Anthony Walsh, expert masterclasses, and a private group of serious amateur cyclists who refuse to accept their best days are behind them.";
+  "Not Done Yet is Roadman Cycling's coaching product — personalised plans reviewed weekly by the Roadman coaching team, live group coaching led by Anthony Walsh, expert masterclasses, and a private group of serious amateur cyclists.";
 
 export const metadata: Metadata = {
   title: "Not Done Yet — The Roadman Coaching Community",
@@ -50,9 +50,9 @@ const whatYouGet = [
       "A members-only space for accountability, ride reports, race plans, and direct peer support from cyclists at every level — Cat 4 to Cat 1, gran fondo to ultra-distance.",
   },
   {
-    title: "1:1 plan reviews",
+    title: "Individual plan reviews",
     body:
-      "Direct review of your training plan, race calendar, and progression — adjusted to fit how life and fatigue actually unfold across a season.",
+      "The Roadman coaching team reviews your training plan, race calendar, and progression, adjusting it to fit how life and fatigue actually unfold across a season.",
   },
 ];
 
@@ -83,12 +83,14 @@ const tiers = [
   {
     name: "Not Done Yet Coaching",
     price: "$195/mo",
-    detail: "Personalised coaching across the five pillars. 7-day free trial.",
+    detail:
+      "Personalised weekly planning, plan reviews and group coaching. 7-day free trial.",
   },
   {
-    name: "1:1 Coaching",
-    price: "$1,950/yr",
-    detail: "Direct 1:1 access to Anthony with quarterly strategy calls. Application only.",
+    name: "Roadman Inner Circle",
+    price: "$525/mo",
+    detail:
+      "High-touch 1:1 coaching with daily session review and direct accountability. Application only.",
   },
 ];
 
@@ -151,19 +153,19 @@ export default function NotDoneYetEntityPage() {
             },
             {
               "@type": "Offer",
-              name: "VIP",
-              price: "1950",
+              name: "Roadman Inner Circle",
+              price: "525",
               priceCurrency: "USD",
               description:
-                "Annual VIP tier. Direct 1:1 access to Anthony with quarterly strategy calls.",
+                "Monthly high-touch 1:1 coaching with daily session review, weekly written check-ins, monthly video review and performance-health tracking.",
               priceSpecification: {
                 "@type": "UnitPriceSpecification",
-                price: "1950",
+                price: "525",
                 priceCurrency: "USD",
-                billingDuration: "P1Y",
-                unitText: "YEAR",
+                billingDuration: "P1M",
+                unitText: "MONTH",
               },
-              category: "Cycling coaching annual",
+              category: "Premium 1:1 cycling coaching",
             },
           ],
         }}

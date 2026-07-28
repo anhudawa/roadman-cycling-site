@@ -142,6 +142,8 @@ export function MiniPlayer() {
 
   return (
     <div
+      data-mobile-auxiliary-surface="true"
+      data-cookie-obscurable="true"
       className={`fixed bottom-0 left-0 right-0 z-[9998] transition-transform duration-300 ${
         isMinimised ? "translate-y-[calc(100%-48px)]" : "translate-y-0"
       }`}

@@ -21,6 +21,7 @@
 
 import type { EventType } from "@/lib/admin/events-store";
 import { track as vercelTrack } from "@vercel/analytics";
+import { hasAnalyticsConsent } from "./consent-client";
 
 // Funnel events — the named subset the conversion dashboard cares about.
 // All of these are part of `EventType`; this is just the friendlier surface.
@@ -106,7 +107,7 @@ function postInternal(payload: {
   email?: string;
   source?: string;
 }): void {
-  if (typeof window === "undefined") return;
+  if (typeof window === "undefined" || !hasAnalyticsConsent()) return;
   try {
     fetch(INTERNAL_ENDPOINT, {
       method: "POST",
@@ -127,7 +128,7 @@ interface AnalyticsWindow extends Window {
 }
 
 function postVercel(name: string, props: Props | undefined): void {
-  if (typeof window === "undefined") return;
+  if (typeof window === "undefined" || !hasAnalyticsConsent()) return;
   // Vercel Analytics accepts string/number/boolean/null only — drop any
   // undefined properties so the SDK doesn't choke on optional fields.
   const safe: Record<string, string | number | boolean | null> = {};
@@ -143,7 +144,7 @@ function postVercel(name: string, props: Props | undefined): void {
 }
 
 function postGa4(name: string, props: Props | undefined): void {
-  if (typeof window === "undefined") return;
+  if (typeof window === "undefined" || !hasAnalyticsConsent()) return;
   const w = window as AnalyticsWindow;
   if (typeof w.gtag !== "function") return;
   try {

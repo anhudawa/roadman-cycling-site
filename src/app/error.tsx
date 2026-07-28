@@ -1,7 +1,8 @@
 'use client'
 
 import { useEffect } from 'react'
-import { Button } from '@/components/ui'
+import { Button } from '@/components/ui/Button'
+import { hasAnalyticsConsent } from '@/lib/analytics/consent-client'
 
 export default function Error({
   error,
@@ -15,7 +16,11 @@ export default function Error({
     // Fire-and-forget beacon to our own /api/events. Using sendBeacon
     // means the request survives navigation (user clicking "Try Again"
     // or "Back to Home") and doesn't block rendering of this page.
-    if (typeof navigator !== 'undefined' && 'sendBeacon' in navigator) {
+    if (
+      typeof navigator !== 'undefined' &&
+      'sendBeacon' in navigator &&
+      hasAnalyticsConsent()
+    ) {
       try {
         const payload = {
           type: 'error_report',

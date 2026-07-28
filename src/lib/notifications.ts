@@ -385,6 +385,7 @@ export async function notifyCohortApplication(data: {
   frustration: string;
   persona: string;
   isInnerCircle?: boolean;
+  attribution?: Record<string, string>;
 }) {
   const isInnerCircle = data.isInnerCircle === true;
   const typeLabel = isInnerCircle ? "INNER CIRCLE APPLICATION" : "APPLICATION";
@@ -397,6 +398,13 @@ export async function notifyCohortApplication(data: {
   };
 
   const heading = isInnerCircle ? `🥇 NEW ${typeLabel}` : `NEW NDY ${typeLabel}`;
+  const source =
+    [data.attribution?.utmSource, data.attribution?.utmMedium]
+      .filter(Boolean)
+      .join(" / ") ||
+    data.attribution?.aiReferrer ||
+    data.attribution?.referrer ||
+    "Direct / unknown";
 
   const html = emailWrapper(
     heading,
@@ -408,7 +416,14 @@ export async function notifyCohortApplication(data: {
       row("Hours/week", data.hours) +
       row("FTP", data.ftp || "Not provided") +
       row(isInnerCircle ? "Detail" : "Frustration", data.frustration) +
-      row("Persona", personaLabels[data.persona] ?? data.persona)
+      row("Persona", personaLabels[data.persona] ?? data.persona) +
+      row("Acquisition source", source) +
+      (data.attribution?.utmCampaign
+        ? row("Campaign", data.attribution.utmCampaign)
+        : "") +
+      (data.attribution?.landingPath
+        ? row("Landing page", data.attribution.landingPath)
+        : "")
     ) +
     `<p style="margin-top: 16px;">
       <a href="https://roadmancycling.com/admin/applications${isInnerCircle ? "?cohort=inner-circle" : ""}" style="color: #F16363; text-decoration: underline;">

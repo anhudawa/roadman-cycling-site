@@ -34,10 +34,10 @@ const tiers = [
     description: "Personalised coaching across the five pillars. 7-day free trial. Cancel anytime.",
     features: [
       "Personalised TrainingPeaks plans",
-      "Weekly coaching calls with Anthony",
+      "Weekly live group coaching led by Anthony",
       "Cycling-specific strength programme",
       "Race weight & nutrition guidance",
-      "1:1 plan reviews",
+      "Individual plan reviews by the Roadman coaching team",
       "Riders training alongside you, not beginners",
     ],
     cta: "Apply for Coaching",
@@ -45,21 +45,22 @@ const tiers = [
     highlight: true,
   },
   {
-    name: "VIP",
-    price: "$1,950",
-    period: "/year",
+    name: "Inner Circle",
+    price: "$525",
+    period: "/month",
     annual: null,
-    description: "For cyclists who want the full system with direct 1:1 access to Anthony.",
+    description:
+      "High-touch 1:1 coaching with daily review and integrated performance health.",
     features: [
       "Everything in Not Done Yet Coaching",
-      "Direct 1:1 access to Anthony",
-      "Quarterly strategy calls",
-      "Priority event support",
-      "Exclusive VIP content",
-      "Early access to new features",
+      "Daily session review and feedback",
+      "Weekly written coaching check-in",
+      "Monthly 45-minute video review",
+      "Quarterly blood-work analysis",
+      "Performance health and biomarker tracking",
     ],
-    cta: "Apply for VIP",
-    href: "/apply",
+    cta: "Apply for Inner Circle",
+    href: "/inner-circle/apply",
     highlight: false,
   },
 ];
@@ -210,7 +211,8 @@ export default function NotDoneYetPage() {
                 week by the coach who had every single one of them on his show.
               </p>
               <p className="text-foreground-subtle text-sm">
-                For cyclists who refuse to plateau &middot; 7-day free trial &middot; 30-day money-back guarantee
+                For cyclists who refuse to plateau &middot; 7-day free trial
+                &middot; cancel anytime
               </p>
             </ScrollReveal>
           </Container>
@@ -370,7 +372,7 @@ export default function NotDoneYetPage() {
         {/* Pricing */}
         <Section background="charcoal">
           <Container>
-            <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto items-start">
+            <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto items-start">
               {tiers.map((tier, i) => (
                 <ScrollReveal key={tier.name} direction="up" delay={i * 0.1}>
                 <div id={`tier-${tier.name.toLowerCase()}`} className={`relative ${tier.highlight ? "md:-mt-4 md:mb-4 ring-1 ring-coral/30 md:ring-0 rounded-2xl" : ""}`}>
@@ -426,7 +428,6 @@ export default function NotDoneYetPage() {
 
                   <Button
                     href={tier.href}
-                    external
                     variant={tier.highlight ? "primary" : "ghost"}
                     size="lg"
                     className="w-full"
@@ -506,11 +507,10 @@ export default function NotDoneYetPage() {
                   knowledge. Same coaching. Your turn.
                 </p>
                 <Button
-                  href="https://www.skool.com/roadmancycling"
-                  external
+                  href="/apply"
                   size="lg"
                 >
-                  Join Not Done Yet
+                  Apply for Not Done Yet
                 </Button>
                 <p className="text-foreground-subtle text-xs mt-4">
                   7-day free trial. Cancel anytime. No contracts.

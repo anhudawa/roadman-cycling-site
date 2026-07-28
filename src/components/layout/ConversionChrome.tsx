@@ -1,6 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import { useEffect, useState, type ComponentType } from "react";
 import { usePathname } from "next/navigation";
 
 /**
@@ -27,72 +27,71 @@ const LEAN_PATH_PREFIXES = [
   // Lead-magnet squeeze page for the Masters Cycling Training Report.
   // Same single-purpose rationale as /go — the form is the page.
   "/masters-report",
+  // Authenticated/admin and self-contained product areas do not use the
+  // public acquisition overlays.
+  "/admin",
+  "/method",
 ];
 
-function isLeanRoute(pathname: string | null): boolean {
+export function isLeanRoute(pathname: string | null): boolean {
   if (!pathname) return false;
   return LEAN_PATH_PREFIXES.some(
     (prefix) => pathname === prefix || pathname.startsWith(prefix + "/"),
   );
 }
 
-const SmoothCursorWrapper = dynamic(
-  () =>
-    import("@/components/ui/SmoothCursorWrapper").then(
-      (mod) => mod.SmoothCursorWrapper,
-    ),
-  { ssr: false },
-);
+export function isApplicationRoute(pathname: string | null): boolean {
+  return pathname === "/apply" || pathname?.startsWith("/apply/") === true;
+}
 
-// Single top-banner slot. BannerStack renders the yellow Tour banner during
-// the Tour window and the cohort apply banner otherwise — ssr:false so the
-// date-driven choice never causes a hydration mismatch.
-const BannerStack = dynamic(
-  () =>
-    import("@/components/features/tour/BannerStack").then(
-      (mod) => mod.BannerStack,
-    ),
-  { ssr: false },
-);
-
-const MobileStickyApply = dynamic(
-  () =>
-    import("@/components/features/conversion/MobileStickyApply").then(
-      (mod) => mod.MobileStickyApply,
-    ),
-  { ssr: false },
-);
-
-const LazyExitIntent = dynamic(
-  () =>
-    import("@/components/features/conversion/LazyExitIntent").then(
-      (mod) => mod.LazyExitIntent,
-    ),
-  { ssr: false },
-);
+export function isBannerlessRoute(pathname: string | null): boolean {
+  if (!pathname) return true;
+  if (isLeanRoute(pathname) || isApplicationRoute(pathname)) return true;
+  return (
+    pathname === "/inner-circle" || pathname.startsWith("/inner-circle/")
+  );
+}
 
 export function ConversionChrome() {
-  // Tour overlay: BannerStack occupies the top banner slot (Tour banner vs
-  // cohort apply banner) — see BannerStack.tsx.
   const pathname = usePathname();
+  const [loaded, setLoaded] = useState<{
+    variant: "home" | "full";
+    Component: ComponentType;
+  } | null>(null);
+
+  const applicationRoute = isApplicationRoute(pathname);
+  const skipChrome = isLeanRoute(pathname) || applicationRoute;
+  const variant = pathname === "/" ? "home" : "full";
+  const canLoad = Boolean(pathname) && !skipChrome;
+
+  useEffect(() => {
+    if (!canLoad) return;
+
+    let active = true;
+    const componentPromise =
+      variant === "home"
+        ? import("@/components/features/conversion/MobileStickyApply").then(
+            (mod) => mod.MobileStickyApply,
+          )
+        : import("./FullConversionChrome").then(
+            (mod) => mod.FullConversionChrome,
+          );
+
+    componentPromise
+      .then((Component) => {
+        if (active) setLoaded({ variant, Component });
+      })
+      .catch(() => {
+        // Optional conversion chrome must never take down a page.
+      });
+    return () => {
+      active = false;
+    };
+  }, [canLoad, variant]);
+
   if (isLeanRoute(pathname)) return null;
-  // The homepage is now a focused coaching application surface. Keep the
-  // useful application banner and thumb-reachable mobile CTA, but remove the
-  // custom cursor and newsletter exit popup so neither competes with /apply.
-  if (pathname === "/") {
-    return (
-      <>
-        <BannerStack />
-        <MobileStickyApply />
-      </>
-    );
-  }
-  return (
-    <>
-      <SmoothCursorWrapper />
-      <BannerStack />
-      <MobileStickyApply />
-      <LazyExitIntent />
-    </>
-  );
+  if (skipChrome || !pathname || loaded?.variant !== variant) return null;
+
+  const LoadedChrome = loaded.Component;
+  return <LoadedChrome />;
 }

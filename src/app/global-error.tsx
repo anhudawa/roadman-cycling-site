@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { hasAnalyticsConsent } from '@/lib/analytics/consent-client'
 
 /**
  * Global error boundary — catches errors thrown in the root layout
@@ -22,7 +23,11 @@ export default function GlobalError({
 }) {
   useEffect(() => {
     console.error('[global-error]', error)
-    if (typeof navigator !== 'undefined' && 'sendBeacon' in navigator) {
+    if (
+      typeof navigator !== 'undefined' &&
+      'sendBeacon' in navigator &&
+      hasAnalyticsConsent()
+    ) {
       try {
         const payload = {
           type: 'error_report',

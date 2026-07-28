@@ -60,6 +60,10 @@ export type EventType =
   | "race_page_viewed"
   | "share_clicked"
   // ── Coaching funnel ────────────────────────────────────
+  | "apply_form_start"
+  | "apply_step_completed"
+  | "apply_submit_error"
+  | "apply_submit_success"
   | "coaching_apply_submitted"
   // ── Micro-events (engagement signal layer) ─────────────
   // Fired client-side from Tracker.tsx + per-page hooks. These are
@@ -77,7 +81,8 @@ export type EventType =
   | "link_click_external"
   | "form_start"
   | "error_boundary"
-  | "time_on_page";
+  | "time_on_page"
+  | "web_vital";
 
 export interface TrackingEvent {
   id: string;

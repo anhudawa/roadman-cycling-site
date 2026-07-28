@@ -25,6 +25,7 @@ import {
   type TrackContext,
 } from "@/lib/analytics/events";
 import type { EventType } from "@/lib/admin/events-store";
+import { hasAnalyticsConsent } from "@/lib/analytics/consent-client";
 
 const SID_KEY = "roadman_funnel_sid";
 
@@ -82,6 +83,7 @@ export function useTrack(): TrackFunction {
 
   const track = useCallback(
     (name: string, props?: Record<string, unknown>, ctx?: Partial<TrackContext>) => {
+      if (!hasAnalyticsConsent()) return;
       const search =
         typeof window !== "undefined" && window.location.search
           ? window.location.search

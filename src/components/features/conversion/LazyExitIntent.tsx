@@ -18,7 +18,13 @@ const ExitIntentPopup = dynamic(
 // "the site is broken" rather than "we have a newsletter offer". Tool and
 // utility surfaces are excluded; landing pages keep the popup.
 const POPUP_EXCLUDED_PATHS = ["/apply", "/predict", "/ask", "/tools"];
-const POPUP_EXCLUDED_PREFIXES = ["/admin", "/predict/", "/ask/", "/tools/"];
+const POPUP_EXCLUDED_PREFIXES = [
+  "/admin",
+  "/apply/",
+  "/predict/",
+  "/ask/",
+  "/tools/",
+];
 
 export function LazyExitIntent() {
   const pathname = usePathname();

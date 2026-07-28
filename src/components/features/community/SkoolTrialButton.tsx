@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { track } from "@/lib/analytics/events";
+import { trackAnalyticsEvent } from "@/lib/analytics/client";
 
 type Variant = "primary" | "secondary" | "ghost" | "outline";
 type Size = "sm" | "md" | "lg";
@@ -46,24 +47,14 @@ export function SkoolTrialButton({
 }: Props) {
   function handleClick() {
     try {
-      const payload = {
-        type: "skool_trial" as const,
+      trackAnalyticsEvent({
+        type: "skool_trial",
         page:
           typeof window !== "undefined"
             ? window.location.pathname
             : "/community/clubhouse",
-        referrer:
-          typeof document !== "undefined" ? document.referrer || undefined : undefined,
-        source: source ?? "clubhouse_cta",
-        meta: { href },
-      };
-      // keepalive lets the request survive a tab switch / navigation.
-      void fetch("/api/events", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-        keepalive: true,
-      }).catch(() => {});
+        meta: { href, source: source ?? "clubhouse_cta" },
+      });
       // Fan out the same click as a funnel event so the acquisition
       // dashboard's Community Signup stage and CTA-source breakdowns
       // stay accurate without a second backend hop.

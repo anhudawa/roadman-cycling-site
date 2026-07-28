@@ -1,23 +1,26 @@
+import type { CSSProperties, ReactNode } from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Footer, Header } from "@/components/layout";
+import { CoachingFooter } from "@/components/layout/CoachingFooter";
+import { CoachingHeader } from "@/components/layout/CoachingHeader";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ScrollReveal } from "@/components/ui";
-import { BRAND_STATS, ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
+import { BRAND, BRAND_STATS, ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 import {
   FIVE_PILLARS,
-  FOUNDER_AUTHORITY,
   MESSAGING_BLOCKS,
   NAMED_EXPERTS,
 } from "@/lib/brand-messaging";
+import { CASE_STUDIES } from "@/lib/case-studies";
 import { TESTIMONIALS } from "@/lib/testimonials";
 import styles from "./HomePage.module.css";
 
 export const metadata: Metadata = {
-  title: "Not Done Yet Cycling Coaching | Roadman Cycling",
+  title: {
+    absolute: "Roadman Cycling | Cycling Coaching, Podcast & Training",
+  },
   description:
-    "Stop plateauing. Start progressing. Personalised cycling coaching with Anthony Walsh: a TrainingPeaks plan, weekly coaching, and five connected performance pillars.",
+    "Personalised cycling coaching for riders not done yet, plus the Roadman Podcast, evidence-led training guides, free cycling tools and training camps.",
   alternates: { canonical: SITE_ORIGIN },
   openGraph: {
     type: "website",
@@ -70,11 +73,15 @@ const results = resultProfiles.map((profile) => {
   const testimonial = TESTIMONIALS.find(
     (candidate) => candidate.name === profile.name,
   );
+  const caseStudy = CASE_STUDIES.find(
+    (study) => study.testimonialName === profile.name,
+  );
 
   return {
     ...profile,
     quote: testimonial?.shortQuote ?? testimonial?.quote ?? "",
     detail: testimonial?.detail ?? "",
+    href: caseStudy ? `/case-studies/${caseStudy.slug}` : "/case-studies",
   };
 });
 
@@ -104,8 +111,8 @@ const delivery = [
   },
   {
     number: "02",
-    title: "A coach reading the signals",
-    copy: "Weekly live coaching with Anthony turns the numbers, fatigue and real-life context into clear decisions.",
+    title: "A team reading the signals",
+    copy: "The Roadman coaching team reviews your plan each week. Anthony leads the live group call that turns data, fatigue and real-life context into clear decisions.",
   },
   {
     number: "03",
@@ -138,11 +145,11 @@ const applicationSteps = [
 ] as const;
 
 const offerInclusions = [
-  "Personalised TrainingPeaks plan",
-  "Weekly live coaching with Anthony",
-  "Nutrition, strength and recovery guidance",
-  "Private serious-cyclist community",
-  "Plan reviews and real-life adjustments",
+  "Personalised TrainingPeaks plan, reviewed every week",
+  "Weekly live group coaching with Anthony — recordings included",
+  "Individual plan adjustments when training or life changes",
+  "Nutrition and strength guidance matched to your training",
+  "Private Not Done Yet rider community",
 ] as const;
 
 const faqs = [
@@ -152,9 +159,9 @@ const faqs = [
       "Not Done Yet is built for serious amateurs with real lives. Most riders have 6–12 hours a week. The point is to make those hours work together, not to pretend you have a professional schedule.",
   },
   {
-    question: "Is this a generic group training plan?",
+    question: "How personal is the coaching?",
     answer:
-      "No. Your plan is built around your goal, history, data and week, then delivered through TrainingPeaks. The community adds access and accountability; it does not replace personalisation.",
+      "Your individual TrainingPeaks plan is reviewed every week by the Roadman coaching team. Anthony leads the live group coaching call, with recordings included, and your plan is adjusted individually when training, recovery or life changes. The community adds access and accountability; it does not replace personalisation.",
   },
   {
     question: "Do I need to race?",
@@ -164,7 +171,7 @@ const faqs = [
   {
     question: "What happens after I apply?",
     answer:
-      "Anthony reviews your application personally. If the coaching matches your needs, you will be invited to start a 7-day free trial. If it does not, you will get an honest answer.",
+      "Anthony reviews your application personally and replies within 48 hours. If the coaching matches your needs, you will be invited to start a 7-day free trial. If it does not, you will get an honest answer.",
   },
   {
     question: "Can I cancel?",
@@ -173,10 +180,73 @@ const faqs = [
   },
 ] as const;
 
+const discoveryPaths = [
+  {
+    number: "01",
+    category: "Listen",
+    title: "The Roadman Podcast",
+    href: "/podcast",
+    copy: "1,400+ conversations with world-class coaches, athletes and researchers.",
+    secondaryLabel: "Meet the guests",
+    secondaryHref: "/guests",
+    track: "home_discovery_podcast",
+  },
+  {
+    number: "02",
+    category: "Learn",
+    title: "Training knowledge, made useful",
+    href: "/blog",
+    copy: "Evidence-led guidance on training, fuelling, recovery and performance.",
+    secondaryLabel: "Browse training plans",
+    secondaryHref: "/plan",
+    track: "home_discovery_blog",
+  },
+  {
+    number: "03",
+    category: "Use",
+    title: "Free cycling tools",
+    href: "/tools",
+    copy: "Calculators and diagnostics that turn your data into a clear next step.",
+    secondaryLabel: "Diagnose your plateau",
+    secondaryHref: "/plateau",
+    track: "home_discovery_tools",
+  },
+  {
+    number: "04",
+    category: "Ride",
+    title: "Roadman training camps",
+    href: "/training-camps",
+    copy: "Focused riding experiences that bring the Roadman method beyond the screen.",
+    secondaryLabel: "Explore the free Clubhouse",
+    secondaryHref: "/community/clubhouse",
+    track: "home_discovery_camps",
+  },
+] as const;
+
+function ScrollReveal({
+  children,
+  className = "",
+  delay = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  direction?: "up";
+  delay?: number;
+}) {
+  return (
+    <div
+      className={`${styles.reveal} ${className}`.trim()}
+      style={{ "--reveal-delay": `${delay}s` } as CSSProperties}
+    >
+      {children}
+    </div>
+  );
+}
+
 export default function HomePage() {
   return (
     <>
-      <Header variant="coaching" />
+      <CoachingHeader />
 
       <main id="main-content" className={styles.home}>
         <section className={styles.hero} aria-labelledby="home-heading">
@@ -198,16 +268,14 @@ export default function HomePage() {
                 <span className={styles.heroTitleAccent}>START</span>
                 <span className={styles.heroTitleAccent}>PROGRESSING.</span>
               </h1>
-              <p className={styles.heroLead}>
-                {MESSAGING_BLOCKS.hero.subhead}
-              </p>
+              <p className={styles.heroLead}>{MESSAGING_BLOCKS.hero.subhead}</p>
               <div className={styles.heroActions}>
                 <Link
                   href="/apply"
                   className={styles.primaryCta}
                   data-track="home_hero_apply"
                 >
-                  Apply for coaching
+                  Start the 2-minute application
                   <span aria-hidden="true">↗</span>
                 </Link>
                 <Link
@@ -233,7 +301,7 @@ export default function HomePage() {
                   fill
                   sizes="(max-width: 767px) 86vw, (max-width: 1200px) 43vw, 520px"
                   className={styles.heroPortrait}
-                  fetchPriority="high"
+                  preload
                 />
               </div>
               <div className={styles.heroCoachTag}>
@@ -241,9 +309,9 @@ export default function HomePage() {
                 <strong>SINCE 2013</strong>
               </div>
               <div className={styles.heroResultCard}>
-                <span className={styles.heroResultValue}>+90W</span>
-                <span>Damien&apos;s FTP</span>
-                <small>205W → 295W</small>
+                <span className={styles.heroResultValue}>WEEKLY</span>
+                <span>Plan review</span>
+                <small>Adjusted around real life</small>
               </div>
             </div>
           </div>
@@ -299,6 +367,16 @@ export default function HomePage() {
                         <span>{result.detail}</span>
                       </footer>
                     </blockquote>
+                    <Link
+                      href={result.href}
+                      className={styles.resultCaseStudy}
+                      data-track={`home_case_study_${result.name
+                        .toLowerCase()
+                        .replaceAll(" ", "_")}`}
+                    >
+                      Read the verified case study{" "}
+                      <span aria-hidden="true">→</span>
+                    </Link>
                   </article>
                 </ScrollReveal>
               ))}
@@ -306,7 +384,7 @@ export default function HomePage() {
 
             <div className={styles.inlineAction}>
               <Link href="/apply" data-track="home_results_apply">
-                See if the coaching fits you <span aria-hidden="true">→</span>
+                Start the 2-minute application <span aria-hidden="true">→</span>
               </Link>
             </div>
           </div>
@@ -321,14 +399,16 @@ export default function HomePage() {
               <p className={`${styles.eyebrow} ${styles.eyebrowDark}`}>
                 THE PLATEAU IS NOT A PERSONALITY FLAW
               </p>
-              <h2 className={`${styles.sectionTitle} ${styles.sectionTitleDark}`}>
+              <h2
+                className={`${styles.sectionTitle} ${styles.sectionTitleDark}`}
+              >
                 YOU TRAIN HARD.
                 <br />
                 THE NUMBERS STOPPED MOVING.
               </h2>
               <p className={styles.problemLead}>
-                You do not need more motivation. You need an outside read on
-                the system — and a coach willing to change it.
+                You do not need more motivation. You need an outside read on the
+                system — and a coach willing to change it.
               </p>
               <div className={styles.fitNote}>
                 <strong>BUILT FOR:</strong>
@@ -359,7 +439,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="system" className={styles.systemSection}>
+        <section className={styles.systemSection}>
           <div className={`${styles.container} ${styles.systemLayout}`}>
             <ScrollReveal direction="up" className={styles.systemVisual}>
               <div className={styles.systemImage}>
@@ -376,7 +456,7 @@ export default function HomePage() {
               </div>
             </ScrollReveal>
 
-            <div className={styles.systemContent}>
+            <div id="system" className={styles.systemContent}>
               <ScrollReveal direction="up">
                 <p className={styles.eyebrow}>WHAT YOU ACTUALLY GET</p>
                 <h2 className={styles.sectionTitle}>
@@ -408,7 +488,10 @@ export default function HomePage() {
                 ))}
               </div>
 
-              <div className={styles.pillarRail} aria-label="Five coaching pillars">
+              <div
+                className={styles.pillarRail}
+                aria-label="Five coaching pillars"
+              >
                 {FIVE_PILLARS.map((pillar, index) => (
                   <span key={pillar}>
                     <small>{String(index + 1).padStart(2, "0")}</small>
@@ -423,7 +506,7 @@ export default function HomePage() {
         <section className={styles.authoritySection}>
           <div className={styles.authorityImage}>
             <Image
-              src="/images/about/anthony-walsh-podcast.jpg"
+              src="/images/about/anthony-walsh-podcast-home.avif"
               alt="Anthony Walsh recording the Roadman Cycling Podcast"
               fill
               sizes="(max-width: 959px) 100vw, 54vw"
@@ -440,8 +523,9 @@ export default function HomePage() {
                 <span>APPLIED TO YOUR WEEK.</span>
               </h2>
               <p>
-                {FOUNDER_AUTHORITY.short} Not Done Yet turns the strongest ideas
-                into decisions you can use Monday morning.
+                Anthony Walsh turns lessons from World Tour coaches, sports
+                scientists and pros into decisions you can use Monday morning.
+                Not Done Yet is where that knowledge becomes your training week.
               </p>
               <div className={styles.authorityStats}>
                 <div>
@@ -453,7 +537,9 @@ export default function HomePage() {
                   <span>Recorded episodes</span>
                 </div>
                 <div>
-                  <strong>13</strong>
+                  <strong>
+                    {new Date().getFullYear() - BRAND.coachingSince}
+                  </strong>
                   <span>Years coaching</span>
                 </div>
               </div>
@@ -467,7 +553,10 @@ export default function HomePage() {
             </ScrollReveal>
           </div>
 
-          <div className={styles.expertRail} aria-label="Roadman expert network">
+          <div
+            className={styles.expertRail}
+            aria-label="Roadman expert network"
+          >
             {NAMED_EXPERTS.map((expert) => (
               <span key={expert}>{expert}</span>
             ))}
@@ -540,7 +629,7 @@ export default function HomePage() {
                   className={styles.offerCta}
                   data-track="home_offer_apply"
                 >
-                  Apply for Not Done Yet
+                  Start the 2-minute application
                   <span aria-hidden="true">↗</span>
                 </Link>
                 <p className={styles.offerMicrocopy}>
@@ -596,9 +685,90 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className={styles.finalCta}>
+        <section
+          className={styles.exploreSection}
+          aria-labelledby="explore-roadman-heading"
+          data-sticky-apply-stop
+        >
+          <div className={styles.container}>
+            <div className={styles.exploreIntro}>
+              <ScrollReveal direction="up">
+                <p className={styles.eyebrow}>OTHER WAYS INTO ROADMAN</p>
+                <h2
+                  id="explore-roadman-heading"
+                  className={styles.exploreTitle}
+                >
+                  KEEP LEARNING.
+                  <br />
+                  KEEP MOVING.
+                </h2>
+              </ScrollReveal>
+              <ScrollReveal direction="up" delay={0.06}>
+                <p className={styles.exploreLead}>
+                  Not ready for coaching today? Start with the route that fits
+                  where you are now — and come back when you want a team behind
+                  the next move.
+                </p>
+              </ScrollReveal>
+            </div>
+
+            <div className={styles.exploreGrid}>
+              {discoveryPaths.map((path, index) => (
+                <ScrollReveal
+                  key={path.href}
+                  direction="up"
+                  delay={index * 0.05}
+                >
+                  <article className={styles.exploreCard}>
+                    <div className={styles.exploreCardMeta}>
+                      <span>{path.number}</span>
+                      <span>{path.category}</span>
+                    </div>
+                    <h3>
+                      <Link
+                        href={path.href}
+                        prefetch={false}
+                        data-track={path.track}
+                      >
+                        {path.title}
+                        <span aria-hidden="true">↗</span>
+                      </Link>
+                    </h3>
+                    <p>{path.copy}</p>
+                    <Link
+                      href={path.secondaryHref}
+                      prefetch={false}
+                      className={styles.exploreSecondary}
+                      data-track={`${path.track}_secondary`}
+                    >
+                      {path.secondaryLabel}
+                      <span aria-hidden="true">→</span>
+                    </Link>
+                  </article>
+                </ScrollReveal>
+              ))}
+            </div>
+
+            <div className={styles.newsletterRail}>
+              <p>
+                <span>A sharper cycling idea, every Saturday.</span>
+                Join 30,000+ riders reading the Saturday Spin.
+              </p>
+              <Link
+                href="/newsletter"
+                prefetch={false}
+                data-track="home_discovery_newsletter"
+              >
+                GET THE SATURDAY SPIN
+                <span aria-hidden="true">↗</span>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.finalCta} data-sticky-apply-stop>
           <Image
-            src="/images/cycling/gravel-road-climb.jpg"
+            src="/images/cycling/gravel-road-climb-home.avif"
             alt="Two cyclists climbing a steep open road"
             fill
             sizes="100vw"
@@ -622,7 +792,7 @@ export default function HomePage() {
                 className={styles.primaryCta}
                 data-track="home_final_apply"
               >
-                Apply for coaching
+                Start the 2-minute application
                 <span aria-hidden="true">↗</span>
               </Link>
             </ScrollReveal>
@@ -630,7 +800,7 @@ export default function HomePage() {
         </section>
       </main>
 
-      <Footer />
+      <CoachingFooter expanded />
 
       <JsonLd
         data={{
@@ -640,9 +810,9 @@ export default function HomePage() {
               "@type": "WebPage",
               "@id": `${SITE_ORIGIN}/#webpage`,
               url: SITE_ORIGIN,
-              name: "Not Done Yet Cycling Coaching | Roadman Cycling",
+              name: "Roadman Cycling | Cycling Coaching, Podcast & Training",
               description:
-                "Personalised cycling coaching for serious amateur and masters cyclists who want to stop plateauing and start progressing.",
+                "Personalised cycling coaching for serious amateur and masters cyclists, alongside the Roadman Podcast, training guides, free tools and cycling camps.",
               isPartOf: { "@id": ENTITY_IDS.website },
               about: { "@id": ENTITY_IDS.organization },
               primaryImageOfPage: `${SITE_ORIGIN}/og-ndy.png`,
@@ -654,6 +824,10 @@ export default function HomePage() {
                 `${SITE_ORIGIN}/methodology`,
                 `${SITE_ORIGIN}/proof`,
                 `${SITE_ORIGIN}/plateau`,
+                `${SITE_ORIGIN}/podcast`,
+                `${SITE_ORIGIN}/blog`,
+                `${SITE_ORIGIN}/tools`,
+                `${SITE_ORIGIN}/training-camps`,
               ],
             },
             {

@@ -2,16 +2,27 @@ import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 
-vi.mock("@/components/layout", () => ({
-  Header: () => <div data-testid="header">HEADER</div>,
-  Footer: () => <div data-testid="footer">FOOTER</div>,
+vi.mock("@/components/layout/CoachingHeader", () => ({
+  CoachingHeader: () => (
+    <div data-testid="header" data-variant="coaching">
+      HEADER
+    </div>
+  ),
+}));
+
+vi.mock("@/components/layout/CoachingFooter", () => ({
+  CoachingFooter: () => (
+    <div data-testid="footer" data-variant="coaching">
+      FOOTER
+    </div>
+  ),
 }));
 
 vi.mock("@/components/seo/JsonLd", () => ({
   JsonLd: () => <script type="application/ld+json" />,
 }));
 
-vi.mock("@/components/ui", () => ({
+vi.mock("@/components/ui/ScrollReveal", () => ({
   ScrollReveal: ({
     children,
     className,
@@ -33,13 +44,14 @@ async function renderHomepage() {
 }
 
 describe("Roadman coaching homepage", () => {
-  it("uses coaching-first metadata and the bespoke social card", async () => {
+  it("uses hybrid brand metadata and the bespoke coaching social card", async () => {
     const { metadata } = await import("./page");
 
-    expect(metadata.title).toBe(
-      "Not Done Yet Cycling Coaching | Roadman Cycling",
-    );
-    expect(metadata.description).toContain("Stop plateauing");
+    expect(metadata.title).toEqual({
+      absolute: "Roadman Cycling | Cycling Coaching, Podcast & Training",
+    });
+    expect(metadata.description).toContain("Personalised cycling coaching");
+    expect(metadata.description).toContain("free cycling tools");
     expect(metadata.openGraph).toMatchObject({
       images: [
         {
@@ -56,11 +68,20 @@ describe("Roadman coaching homepage", () => {
     const applicationLinks = html.match(/href="\/apply"/g) ?? [];
 
     expect(applicationLinks.length).toBeGreaterThanOrEqual(4);
-    expect(html).toContain("Apply for Not Done Yet");
+    expect(html).toContain("Start the 2-minute application");
     expect(html).toContain("$195");
     expect(html).toContain("7-day free trial");
-    expect(html).not.toContain('href="/tools"');
-    expect(html).not.toContain('href="/newsletter"');
+    expect(html).toContain('data-variant="coaching"');
+    expect(html).toContain('href="/tools"');
+    expect(html).toContain('href="/blog"');
+    expect(html).toContain('href="/training-camps"');
+    expect(html).toContain('href="/newsletter"');
+    expect(html.indexOf("OTHER WAYS INTO ROADMAN")).toBeGreaterThan(
+      html.indexOf("STRAIGHT"),
+    );
+    expect(html.indexOf("OTHER WAYS INTO ROADMAN")).toBeLessThan(
+      html.indexOf("YOUR NEXT BEST SEASON"),
+    );
   });
 
   it("puts named coaching outcomes before media authority", async () => {
@@ -72,6 +93,21 @@ describe("Roadman coaching homepage", () => {
     expect(html.indexOf("Damien Maloney")).toBeLessThan(
       html.indexOf("1,400+ CONVERSATIONS"),
     );
+    expect(html).toContain('href="/case-studies/damien-maloney"');
+    expect(html).toContain("Read the verified case study");
+  });
+
+  it("states the exact coaching cadence without unsupported scarcity", async () => {
+    const html = await renderHomepage();
+
+    expect(html).toContain(
+      "Personalised TrainingPeaks plan, reviewed every week",
+    );
+    expect(html).toContain(
+      "Weekly live group coaching with Anthony — recordings included",
+    );
+    expect(html).toContain("replies within 48 hours");
+    expect(html).not.toMatch(/30 (places|spots)/i);
   });
 
   it("renders the conversion copy before the coach portrait on mobile DOM order", async () => {

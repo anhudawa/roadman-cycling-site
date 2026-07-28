@@ -1,6 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { trackAnalyticsEvent } from "@/lib/analytics/client";
+import {
+  trackConsentedGoogleEvent,
+  trackConsentedMetaEvent,
+} from "@/lib/analytics/third-party-tags";
 
 interface CheckoutButtonProps {
   priceId?: string;
@@ -56,28 +61,26 @@ function trackInitiateCheckout(
 ) {
   if (typeof window === "undefined") return;
   try {
-    const fbq = (window as unknown as { fbq?: (...a: unknown[]) => void }).fbq;
-    if (typeof fbq === "function") {
-      fbq("track", "InitiateCheckout", {
-        content_name: productName,
-        content_category: "digital_product",
-        content_ids: [product],
-        value,
-        currency: "USD",
-      });
-    }
+    trackConsentedMetaEvent("InitiateCheckout", {
+      content_name: productName,
+      content_category: "digital_product",
+      content_ids: [product],
+      value,
+      currency: "USD",
+    });
   } catch {
     /* pixel failure never blocks checkout */
   }
   try {
-    const gtag = (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag;
-    if (typeof gtag === "function") {
-      gtag("event", "begin_checkout", {
+    trackConsentedGoogleEvent(
+      "begin_checkout",
+      {
         currency: "USD",
         value,
         items: [{ id: product, name: productName, quantity: 1, price: value }],
-      });
-    }
+      },
+      "analytics",
+    );
   } catch {
     /* ignore */
   }
@@ -91,14 +94,11 @@ function trackInitiateCheckout(
 function logCheckoutAttempt(product: string) {
   if (typeof window === "undefined") return;
   try {
-    navigator.sendBeacon?.(
-      "/api/events",
-      JSON.stringify({
-        type: "checkout_initiated",
-        page: window.location.pathname,
-        product,
-      }),
-    );
+    trackAnalyticsEvent({
+      type: "checkout_initiated",
+      page: window.location.pathname,
+      meta: { product },
+    });
   } catch {
     /* sendBeacon not supported — skip, not fatal */
   }

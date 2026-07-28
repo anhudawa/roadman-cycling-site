@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { trackConsentedMetaEvent } from "@/lib/analytics/third-party-tags";
 
 /**
  * Fire a Meta Pixel standard event on mount. Does NOT initialise the
@@ -25,11 +26,7 @@ export function MetaPixel({
 }) {
   useEffect(() => {
     if (!event) return;
-    if (typeof window === "undefined") return;
-    const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void })
-      .fbq;
-    if (typeof fbq !== "function") return;
-    fbq("track", event, eventParams ?? {});
+    trackConsentedMetaEvent(event, eventParams);
   }, [event, eventParams]);
 
   // No markup — init + PageView + noscript fallback all live in

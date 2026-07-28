@@ -1,177 +1,148 @@
 import type { Metadata } from "next";
-import { Header, Footer, Section, Container } from "@/components/layout";
-import { Card, ScrollReveal } from "@/components/ui";
+import Image from "next/image";
+import Link from "next/link";
+import { CoachingFooter } from "@/components/layout/CoachingFooter";
+import { CoachingHeader } from "@/components/layout/CoachingHeader";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { SocialProof } from "@/components/proof";
+import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
+import { CASE_STUDIES } from "@/lib/case-studies";
+import { TESTIMONIALS } from "@/lib/testimonials";
+import type { StoredSubmission } from "@/lib/diagnostic/store";
 import { CohortApplicationForm } from "./CohortApplicationForm";
 import { PersonalisedDiagnosticBlock } from "./PersonalisedDiagnosticBlock";
-import {
-  TESTIMONIALS,
-  getTestimonialsByName,
-} from "@/lib/testimonials";
-import { getCohortState } from "@/lib/cohort";
-import { getSubmissionBySlug } from "@/lib/diagnostic/store";
+import styles from "./ApplyPage.module.css";
 
-/**
- * Diagnostic riders who land here via /apply?from=<slug> have already
- * qualified themselves by completing the Plateau Diagnostic. We swap
- * the cold-traffic hero + cohort application for a personalised summary
- * and route them straight to the Skool free trial. Unknown or missing
- * slugs silently fall back to the direct-visitor variant so stale links
- * still work.
- */
-const SKOOL_TRIAL_URL =
-  "https://www.skool.com/roadmancycling?utm_source=diagnostic&utm_medium=apply&utm_campaign=apply-bottom";
+const title = "Apply for Not Done Yet Cycling Coaching";
+const description =
+  "Apply for a personalised plan reviewed weekly by the Roadman coaching team, plus live group coaching led by Anthony Walsh. $195 USD/month, first 7 days free.";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const title = "Apply for Not Done Yet — Cycling Coaching with Anthony";
-  const description =
-    "30 places, five pillars, $195/month. Personalised cycling coaching with Anthony Walsh — TrainingPeaks plans, weekly live calls, the riders breaking through right now.";
-  return {
+export const APPLY_METADATA: Metadata = {
+  title,
+  description,
+  alternates: {
+    canonical: `${SITE_ORIGIN}/apply`,
+  },
+  openGraph: {
     title,
     description,
-    alternates: {
-      canonical: "https://roadmancycling.com/apply",
-    },
-    openGraph: {
-      title,
-      description,
-      type: "website",
-      url: "https://roadmancycling.com/apply",
-    },
-  };
-}
+    type: "website",
+    url: `${SITE_ORIGIN}/apply`,
+    images: [
+      {
+        url: `${SITE_ORIGIN}/og-ndy.png`,
+        width: 1200,
+        height: 630,
+        alt: "Not Done Yet cycling coaching by Roadman Cycling",
+      },
+    ],
+  },
+};
 
-// ── Testimonials (existing members + screenshots) ──────────────────
+export const metadata = APPLY_METADATA;
 
-const heroStats = [
-  { value: "+90w", label: "Damien's FTP gain" },
-  { value: "3→1", label: "Daniel's cat jump in one season" },
-  { value: "-16kg", label: "Chris's weight loss" },
-  { value: "+15%", label: "Brian's FTP at age 52" },
-];
+const featuredNames = [
+  "Damien Maloney",
+  "Daniel Stone",
+  "Brian Morrissey",
+] as const;
 
-// "Wins this week" wall — pulled from the central testimonials library
-// in editorial order. David Lundy leads (comeback fits the "not done yet"
-// angle most directly), then the power-PR quotes.
-const communityWins = getTestimonialsByName([
-  "David Lundy",
-  "Blair Corey",
-  "Vern Locke",
-  "Quinton Gothard",
-  "Gregory Gross",
-  "John Devlin",
-  "David Corrigan",
-  "Keano Donne",
-]);
+const proof = featuredNames.map((name) => {
+  const testimonial = TESTIMONIALS.find((item) => item.name === name);
+  const caseStudy = CASE_STUDIES.find(
+    (item) => item.testimonialName === name,
+  );
 
-// Featured results — quote + stat pulled from the central library;
-// FTP-before/after bars are page-specific visuals so they stay local.
-const featuredResults = (
-  [
-    { name: "Daniel Stone", ftpBefore: null, ftpAfter: null },
-    { name: "Brian Morrissey", ftpBefore: 230, ftpAfter: 265 },
-    { name: "Damien Maloney", ftpBefore: 205, ftpAfter: 295 },
-  ] as const
-).map(({ name, ftpBefore, ftpAfter }) => {
-  const t = TESTIMONIALS.find((x) => x.name === name);
   return {
     name,
-    context: t?.detail ?? "",
-    statLabel: (t?.statLabel ?? "").toUpperCase(),
-    statValue: t?.stat ?? "",
-    quote: t?.quote ?? "",
-    ftpBefore,
-    ftpAfter,
+    detail: testimonial?.detail ?? "",
+    quote: testimonial?.shortQuote ?? testimonial?.quote ?? "",
+    stat: testimonial?.stat ?? "",
+    label: testimonial?.statLabel ?? "",
+    href: caseStudy ? `/case-studies/${caseStudy.slug}` : "/case-studies",
   };
 });
 
-const pillars = [
+const delivery = [
   {
-    icon: "🎯",
-    name: "Training",
-    description: "Personalised TrainingPeaks plans built by Anthony's coaching methodology",
+    number: "01",
+    title: "Your plan",
+    body: "A personalised TrainingPeaks plan, reviewed every week.",
   },
   {
-    icon: "🍎",
-    name: "Nutrition",
-    description: "Race weight, fuelling strategy, and body composition — not calorie counting",
+    number: "02",
+    title: "Your coaching",
+    body: "Weekly live group coaching with Anthony — recordings included.",
   },
   {
-    icon: "💪",
-    name: "Strength",
-    description: "Cycling-specific S&C programme that transfers to the bike",
+    number: "03",
+    title: "Your adjustments",
+    body: "Individual plan changes when training, recovery or life changes.",
   },
   {
-    icon: "😴",
-    name: "Recovery",
-    description: "Sleep, stress management, and adaptation protocols",
+    number: "04",
+    title: "Your full system",
+    body: "Nutrition and strength guidance matched to your training.",
   },
   {
-    icon: "🤝",
-    name: "Community",
-    description: "Weekly coaching calls, a private group of serious cyclists, and 1:1 plan reviews",
-  },
-];
-
-const objections = [
-  {
-    q: "Is this just another online coaching programme?",
-    a: "No. It's a system built from 1,400+ conversations with the coaches, nutritionists, and scientists at the top of the sport. Not recycled content — structured, applied knowledge with accountability.",
-  },
-  {
-    q: "Can I cancel anytime?",
-    a: "Yes. Month-to-month. No contracts. No lock-in. We keep you because the system works, not because you're stuck.",
-  },
-  {
-    q: "I only have 6 hours a week — is that enough?",
-    a: "That's our sweet spot. Most members are professionals training 4-9 hours a week. The plans are built for real life, not the fantasy schedule you'll never follow.",
-  },
-  {
-    q: "Why do I need to apply?",
-    a: "We keep cohorts small (30 people) so the coaching stays personal. We want to make sure you're a fit — and that we can actually help you with where you are right now.",
+    number: "05",
+    title: "Your people",
+    body: "A private Not Done Yet community of serious amateur riders.",
   },
 ];
 
-export default async function ApplyPage({
-  searchParams,
+const questions = [
+  {
+    q: "How personal is the coaching?",
+    a: "Your individual TrainingPeaks plan is reviewed every week by the Roadman coaching team. Anthony leads the live group coaching call, with recordings included, and your plan is adjusted individually when training, recovery or life changes. This is personalised programming with group coaching and community — not generic training content.",
+  },
+  {
+    q: "How much time do I need?",
+    a: "Most Not Done Yet riders train 6–12 hours a week. The plan is built around the hours you genuinely have, so work and family constraints are part of the programme rather than treated as a failure.",
+  },
+  {
+    q: "What happens after I apply?",
+    a: "Anthony reviews every application personally and replies within 48 hours. If the coaching fits, you'll receive the next steps to begin your first seven days. No credit card is needed to apply.",
+  },
+  {
+    q: "What does it cost?",
+    a: "$195 USD per month. Your first seven days are free, then the membership continues month to month. You can cancel anytime.",
+  },
+  {
+    q: "Is this right for a newer cyclist?",
+    a: "It can be once you are riding consistently and have a measurable goal. It is not designed for someone starting from zero. The application helps us check whether the coaching is the right next move for your current experience, constraints and ambition.",
+  },
+];
+
+export default function ApplyPage() {
+  return <ApplyPageView submission={null} />;
+}
+
+export function ApplyPageView({
+  submission,
 }: {
-  searchParams: Promise<{ from?: string }>;
+  submission: StoredSubmission | null;
 }) {
-  const cohortState = getCohortState();
-  const { from } = await searchParams;
-  // Stale/missing slugs and DB hiccups silently fall back to the
-  // cold-traffic variant — a broken share link should never 500 /apply.
-  let submission: Awaited<ReturnType<typeof getSubmissionBySlug>> = null;
-  if (from) {
-    try {
-      submission = await getSubmissionBySlug(from);
-    } catch {
-      submission = null;
-    }
-  }
   const personalised = submission !== null;
+
   return (
     <>
       <JsonLd
         data={{
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "Not Done Yet Coaching — Personalised Cycling Coaching",
-          description: "1:1 personalised cycling coaching across five pillars: training, nutrition, strength, recovery, and community. $195/month with 7-day free trial.",
+          "@id": `${SITE_ORIGIN}/#not-done-yet-coaching`,
+          name: "Not Done Yet Cycling Coaching",
+          description:
+            "Personalised TrainingPeaks programming, weekly group coaching with Anthony Walsh, individual plan adjustments, nutrition and strength guidance, and a private rider community.",
           serviceType: "Online Cycling Coaching",
-          provider: {
-            "@type": "Person",
-            name: "Anthony Walsh",
-            url: "https://roadmancycling.com/about",
-          },
+          provider: { "@id": ENTITY_IDS.organization },
           offers: {
             "@type": "Offer",
             price: "195",
             priceCurrency: "USD",
             availability: "https://schema.org/InStock",
           },
-          url: "https://roadmancycling.com/apply",
+          url: `${SITE_ORIGIN}/apply`,
         }}
       />
       <JsonLd
@@ -179,425 +150,276 @@ export default async function ApplyPage({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://roadmancycling.com" },
-            { "@type": "ListItem", position: 2, name: "Apply", item: "https://roadmancycling.com/apply" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: SITE_ORIGIN,
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Apply",
+              item: `${SITE_ORIGIN}/apply`,
+            },
           ],
         }}
       />
-      <Header />
-
-      <main id="main-content">
-        {personalised && submission ? (
-          <PersonalisedDiagnosticBlock submission={submission} />
-        ) : (
-          /* ── Hero ───────────────────────────────────────── */
-          <Section background="deep-purple" grain className="pt-32 pb-16 relative overflow-hidden">
-          {/* Animated gradient orb behind text */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-coral/5 blur-[120px] pointer-events-none" />
-
-          <Container className="text-center relative z-10">
-            <ScrollReveal direction="up">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-coral/10 border border-coral/20 mb-6">
-                <span className="w-2 h-2 rounded-full bg-coral animate-pulse" />
-                <span className="text-coral text-sm font-medium tracking-wide">
-                  APPLICATIONS OPEN — 30 PLACES
-                </span>
-              </div>
-
-              <h1
-                className="font-heading text-off-white text-gradient-animated"
-                style={{ fontSize: "clamp(2.5rem, 8vw, 5rem)" }}
-              >
-                NOT DONE YET
-              </h1>
-              <p className="font-heading text-coral tracking-[0.25em] uppercase mt-1 mb-4 text-sm md:text-base">
-                Coaching Community
-              </p>
-              <p
-                className="font-heading text-off-white/60 mb-4 tracking-widest"
-                style={{ fontSize: "clamp(0.9rem, 2vw, 1.2rem)" }}
-              >
-                COACHING PROGRAM
-              </p>
-              <p className="text-foreground-muted text-lg max-w-md mx-auto mb-6">
-                7-day free trial. 5 pillars. $195/mo. Cancel anytime.
-              </p>
-
-              <a
-                href="#apply"
-                className="inline-flex items-center px-8 py-4 rounded-xl bg-coral text-off-white font-heading text-lg tracking-wider hover:bg-coral/90 transition-all shadow-lg shadow-coral/20 mb-10"
-              >
-                {"APPLY NOW"}
-              </a>
-            </ScrollReveal>
-
-            {/* Quick stats ticker */}
-            <ScrollReveal direction="up" delay={0.2}>
-              <div className="flex flex-wrap justify-center gap-6 md:gap-10">
-                {heroStats.map((s) => (
-                  <div key={s.label} className="text-center">
-                    <p className="font-heading text-coral text-2xl md:text-3xl">{s.value}</p>
-                    <p className="text-foreground-subtle text-xs mt-1">{s.label}</p>
-                  </div>
-                ))}
-              </div>
-            </ScrollReveal>
-          </Container>
-        </Section>
-        )}
-
-        {/* ── YouTube intro video ────────────────────────── */}
-        <Section background="charcoal">
-          <Container width="narrow">
-            <ScrollReveal direction="up">
-              <div className="relative aspect-video rounded-xl overflow-hidden border border-white/10 bg-background-elevated shadow-2xl">
-                <iframe
-                  src="https://www.youtube-nocookie.com/embed/mQJuKIjXxXg"
-                  title="Not Done Yet — Roadman Cycling"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full"
-                />
-              </div>
-            </ScrollReveal>
-          </Container>
-        </Section>
-
-        {/* ── Five Pillars ───────────────────────────────── */}
-        <Section background="charcoal">
-          <Container>
-            <ScrollReveal direction="up">
-              <p className="text-coral font-heading text-lg text-center mb-3 tracking-widest">
-                THE SYSTEM
-              </p>
-              <h2
-                className="font-heading text-off-white text-center mb-12"
-                style={{ fontSize: "var(--text-section)" }}
-              >
-                FIVE PILLARS
-              </h2>
-            </ScrollReveal>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto">
-              {pillars.map((p, i) => (
-                <ScrollReveal key={p.name} direction="up" delay={i * 0.08}>
-                  <div className="text-center p-5 rounded-xl border border-white/5 bg-white/[0.02] hover:border-coral/20 transition-colors">
-                    <span className="text-3xl block mb-3">{p.icon}</span>
-                    <p className="font-heading text-off-white text-sm mb-1">
-                      {p.name.toUpperCase()}
-                    </p>
-                    <p className="text-foreground-subtle text-xs leading-relaxed">
-                      {p.description}
-                    </p>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </Container>
-        </Section>
-
-        {/* ── Gradient divider ──────────────────────────── */}
-        <div className="gradient-divider" />
-
-        {/* ── Featured Results ───────────────────────────── */}
-        <Section background="deep-purple" grain>
-          <Container>
-            <ScrollReveal direction="up">
-              <p className="text-coral font-heading text-lg text-center mb-3 tracking-widest">
-                PAST COHORT RESULTS
-              </p>
-              <h2
-                className="font-heading text-off-white text-center mb-12"
-                style={{ fontSize: "var(--text-section)" }}
-              >
-                THE NUMBERS DON&apos;T LIE
-              </h2>
-            </ScrollReveal>
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {featuredResults.map((r, i) => (
-                <ScrollReveal key={r.name} direction="up" delay={i * 0.12}>
-                  <Card className="p-8 card-shimmer h-full" glass hoverable={false}>
-                    <div className="text-center mb-6">
-                      <p className="text-foreground-subtle text-xs tracking-widest mb-1">
-                        {r.statLabel}
-                      </p>
-                      <p className="font-heading text-coral" style={{ fontSize: "2.5rem" }}>
-                        {r.statValue}
-                      </p>
-                    </div>
-                    {r.ftpBefore && r.ftpAfter && (
-                      <div className="mb-6 space-y-3">
-                        <div>
-                          <div className="flex justify-between text-xs text-foreground-subtle mb-1">
-                            <span>Before</span>
-                            <span>{r.ftpBefore}w</span>
-                          </div>
-                          <div className="h-3 rounded-full bg-white/5 overflow-hidden">
-                            <div
-                              className="h-full rounded-full bg-foreground-subtle/40"
-                              style={{ width: `${(r.ftpBefore / 320) * 100}%` }}
-                            />
-                          </div>
-                        </div>
-                        <div>
-                          <div className="flex justify-between text-xs text-foreground-subtle mb-1">
-                            <span>After</span>
-                            <span>{r.ftpAfter}w</span>
-                          </div>
-                          <div className="h-3 rounded-full bg-white/5 overflow-hidden">
-                            <div
-                              className="h-full rounded-full bg-gradient-to-r from-coral to-coral/70"
-                              style={{ width: `${(r.ftpAfter / 320) * 100}%` }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                    <p className="font-heading text-off-white text-lg mb-1">{r.name}</p>
-                    <p className="text-foreground-subtle text-xs tracking-wider mb-3">
-                      {r.context.toUpperCase()}
-                    </p>
-                    <p className="text-foreground-muted text-sm leading-relaxed italic">
-                      &ldquo;{r.quote}&rdquo;
-                    </p>
-                  </Card>
-                </ScrollReveal>
-              ))}
-            </div>
-          </Container>
-        </Section>
-
-        {/* ── Gradient divider ──────────────────────────── */}
-        <div className="gradient-divider" />
-
-        {/* ── Community Wins Wall ─────────────────────────── */}
-        <Section background="charcoal">
-          <Container>
-            <ScrollReveal direction="up">
-              <p className="text-coral font-heading text-lg text-center mb-3 tracking-widest">
-                FROM THE COMMUNITY
-              </p>
-              <h2
-                className="font-heading text-off-white text-center mb-4"
-                style={{ fontSize: "var(--text-section)" }}
-              >
-                WINS THIS WEEK
-              </h2>
-              <p className="text-foreground-muted text-center max-w-lg mx-auto mb-12">
-                Real posts from real members. No cherry-picking.
-              </p>
-            </ScrollReveal>
-            <div className="columns-1 md:columns-2 lg:columns-3 gap-4 max-w-6xl mx-auto">
-              {communityWins.map((w, i) => (
-                <ScrollReveal key={w.name} direction="up" delay={i * 0.06}>
-                  <Card
-                    className="p-6 card-shimmer mb-4 break-inside-avoid"
-                    glass
-                    hoverable={false}
-                  >
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-8 h-8 rounded-full bg-coral/10 flex items-center justify-center shrink-0">
-                        <span className="font-heading text-coral text-xs">
-                          {w.name.split(" ").map((n) => n[0]).join("")}
-                        </span>
-                      </div>
-                      <div>
-                        <p className="text-off-white text-sm font-medium">{w.name}</p>
-                        <p className="text-foreground-subtle text-xs">{w.detail}</p>
-                      </div>
-                    </div>
-                    <p className="text-foreground-muted text-sm leading-relaxed mb-3">
-                      &ldquo;{w.quote}&rdquo;
-                    </p>
-                    {w.stat && (
-                      <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-coral/10 border border-coral/20">
-                        <span className="text-coral text-xs font-heading tracking-wider">
-                          {w.stat.toUpperCase()}
-                        </span>
-                        {w.statLabel && (
-                          <span className="text-coral/70 text-[10px] font-body tracking-widest uppercase">
-                            {w.statLabel}
-                          </span>
-                        )}
-                      </div>
-                    )}
-                  </Card>
-                </ScrollReveal>
-              ))}
-            </div>
-          </Container>
-        </Section>
-
-        {/* ── Gradient divider ──────────────────────────── */}
-        <div className="gradient-divider" />
-
-        {/* ── Social proof ───────────────────────────────── */}
-        <Section background="charcoal">
-          <Container>
-            <ScrollReveal direction="up">
-              <SocialProof
-                audience="coaching"
-                heading="WHAT OUR MEMBERS SAY"
-                subheading="Coaching reviews from Not Done Yet members and 1:1 athletes — in their own words."
-              />
-            </ScrollReveal>
-          </Container>
-        </Section>
-
-        {/* ── Gradient divider ──────────────────────────── */}
-        <div className="gradient-divider" />
-
-        {/* ── Application Form (cold visitors only) ────────── */}
-        {!personalised && (
-        <Section background="deep-purple" grain className="relative overflow-hidden">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-coral/5 blur-[150px] pointer-events-none" />
-
-          <Container width="narrow" className="relative z-10">
-            <ScrollReveal direction="up">
-              <div className="text-center mb-10" id="apply">
-                <h2
-                  className="font-heading text-off-white mb-3"
-                  style={{ fontSize: "var(--text-section)" }}
-                >
-                  {cohortState.form.kicker}
-                </h2>
-                <p className="text-foreground-muted max-w-md mx-auto">
-                  {cohortState.form.subheading}
-                </p>
-              </div>
-            </ScrollReveal>
-
-            {/* What happens next — reduces apprehension before the form.
-                Prospects are much more likely to submit when they know a
-                real human (Anthony) is on the other end and what the
-                concrete next step looks like. */}
-            <ScrollReveal direction="up" delay={0.05}>
-              <div className="mb-10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-2xl mx-auto">
-                {[
-                  {
-                    n: "01",
-                    t: "Answer four questions",
-                    d: "Takes under 2 minutes. No credit card.",
-                  },
-                  {
-                    n: "02",
-                    t: "Anthony reviews it personally",
-                    d: "Usually within 48 hours. You get a reply from Anthony, not an autoresponder.",
-                  },
-                  {
-                    n: "03",
-                    t: "Start your 7-day trial",
-                    d: "Onboarding call, your first plan, full access to the community. Cancel inside the week if it isn't for you.",
-                  },
-                ].map((step) => (
-                  <div
-                    key={step.n}
-                    className="rounded-xl border border-white/10 bg-white/[0.02] p-5 text-left"
-                  >
-                    <p className="font-heading text-coral text-sm tracking-widest mb-2">
-                      STEP {step.n}
-                    </p>
-                    <p className="font-heading text-off-white text-base leading-tight mb-2">
-                      {step.t.toUpperCase()}
-                    </p>
-                    <p className="text-foreground-muted text-xs leading-relaxed">
-                      {step.d}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal direction="up" delay={0.1}>
-              <div className="bg-white/[0.03] rounded-2xl border border-white/10 p-8 md:p-12 backdrop-blur-sm">
-                <CohortApplicationForm />
-                <p className="text-center text-foreground-subtle text-xs mt-6">
-                  Your application goes straight to Anthony. No spam, no
-                  upsell emails &mdash; just a personal reply.
-                </p>
-              </div>
-            </ScrollReveal>
-          </Container>
-        </Section>
-        )}
-
-        {/* ── FAQ with schema ───────────────────────────── */}
+      {!personalised && (
         <JsonLd
           data={{
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            mainEntity: objections.map((obj) => ({
+            mainEntity: questions.map((item) => ({
               "@type": "Question",
-              name: obj.q,
+              name: item.q,
               acceptedAnswer: {
                 "@type": "Answer",
-                text: obj.a,
+                text: item.a,
               },
             })),
           }}
         />
-        <Section background="charcoal">
-          <Container width="narrow">
-            <ScrollReveal direction="up">
-              <h2
-                className="font-heading text-off-white text-center mb-12"
-                style={{ fontSize: "var(--text-section)" }}
-              >
-                COMMON QUESTIONS
-              </h2>
-            </ScrollReveal>
-            <div className="space-y-4">
-              {objections.map((obj) => (
-                <div
-                  key={obj.q}
-                  className="bg-background-elevated rounded-lg border border-white/5 p-6"
-                >
-                  <h3 className="font-heading text-lg text-off-white mb-2">
-                    {obj.q.toUpperCase()}
-                  </h3>
-                  <p className="text-foreground-muted text-sm leading-relaxed">
-                    {obj.a}
+      )}
+
+      <CoachingHeader
+        applicationContext={personalised ? "diagnostic" : "form"}
+      />
+
+      <main id="main-content" className={styles.page}>
+        {personalised && submission ? (
+          <PersonalisedDiagnosticBlock submission={submission} />
+        ) : (
+          <>
+            <section className={styles.hero}>
+              <div className={styles.heroGlow} aria-hidden="true" />
+              <div className={styles.heroGrid}>
+                <div className={styles.heroCopy}>
+                  <p className={styles.status}>
+                    <span aria-hidden="true" />
+                    APPLICATIONS OPEN · REVIEWED PERSONALLY
+                  </p>
+                  <p className={styles.kicker}>NOT DONE YET COACHING</p>
+                  <h1>
+                    YOUR NEXT BEST SEASON
+                    <span> STARTS HERE.</span>
+                  </h1>
+                  <p className={styles.heroLead}>
+                    A personalised TrainingPeaks plan reviewed weekly by the
+                    Roadman coaching team, live group coaching led by Anthony,
+                    and one connected system for training, nutrition, strength
+                    and recovery.
+                  </p>
+
+                  <div className={styles.offerLine}>
+                    <strong>$195 USD / MONTH</strong>
+                    <span>FIRST 7 DAYS FREE</span>
+                    <span>CANCEL ANYTIME</span>
+                  </div>
+
+                  <a
+                    href="#application-form"
+                    className={styles.heroCta}
+                    data-track="apply_hero_start"
+                  >
+                    START THE 2-MINUTE APPLICATION
+                    <span aria-hidden="true">↓</span>
+                  </a>
+
+                  <div className={styles.heroProof} aria-label="Member outcomes">
+                    {proof.map((result) => (
+                      <div key={result.name}>
+                        <strong>{result.stat}</strong>
+                        <span>{result.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className={styles.formShell} id="application-form">
+                  <div className={styles.formHeading}>
+                    <p>2-MINUTE APPLICATION</p>
+                    <h2>TELL US WHERE YOU&apos;RE STUCK.</h2>
+                    <span>
+                      Four quick questions. No credit card. Anthony replies
+                      within 48 hours.
+                    </span>
+                  </div>
+                  <CohortApplicationForm />
+                  <p className={styles.formPrivacy}>
+                    Your application goes straight to Anthony. No spam. Just a
+                    personal reply about whether the coaching fits. An unfinished
+                    draft stays on this device for up to 24 hours.
                   </p>
                 </div>
-              ))}
-            </div>
-
-            {/* Final urgency CTA — cold visitors apply, diagnostic
-                visitors go straight to the Skool free trial. */}
-            <ScrollReveal direction="up">
-              <div className="mt-16 text-center bg-coral/5 rounded-xl border border-coral/20 p-10">
-                <h2 className="font-heading text-3xl text-off-white mb-3">
-                  YOU&apos;RE NOT DONE YET.
-                </h2>
-                <p className="text-foreground-muted mb-6 max-w-md mx-auto">
-                  {personalised
-                    ? "Same coaches. Same system. 7 days free to see if it fits."
-                    : "30 places. Same coaches. Same system. Your turn."}
-                </p>
-                {personalised ? (
-                  <a
-                    href={SKOOL_TRIAL_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-8 py-4 rounded-xl bg-coral text-off-white font-heading text-lg tracking-wider hover:bg-coral/90 transition-all shadow-lg shadow-coral/20"
-                  >
-                    START YOUR 7-DAY FREE TRIAL →
-                  </a>
-                ) : (
-                  <a
-                    href="#apply"
-                    className="inline-flex items-center px-8 py-4 rounded-xl bg-coral text-off-white font-heading text-lg tracking-wider hover:bg-coral/90 transition-all shadow-lg shadow-coral/20"
-                  >
-                    {"APPLY NOW"}
-                  </a>
-                )}
               </div>
-            </ScrollReveal>
-          </Container>
-        </Section>
+            </section>
+
+            <section className={styles.proofSection} aria-labelledby="proof-heading">
+              <div className={styles.sectionFrame}>
+                <div className={styles.proofIntro}>
+                  <p className={styles.sectionKicker}>MEASURED MEMBER OUTCOMES</p>
+                  <h2 id="proof-heading">
+                    THE WORK SHOWS UP
+                    <br />
+                    <span>IN THE DATA.</span>
+                  </h2>
+                </div>
+
+                <div className={styles.proofGrid}>
+                  {proof.map((result) => (
+                    <Link
+                      href={result.href}
+                      className={styles.proofCard}
+                      key={result.name}
+                      data-track={`apply_case_study_${result.name
+                        .toLowerCase()
+                        .replaceAll(" ", "_")}`}
+                    >
+                      <div className={styles.proofMetric}>
+                        <strong>{result.stat}</strong>
+                        <span>{result.label}</span>
+                      </div>
+                      <blockquote>“{result.quote}”</blockquote>
+                      <footer>
+                        <strong>{result.name}</strong>
+                        <span>{result.detail}</span>
+                      </footer>
+                      <p>READ THE CASE STUDY →</p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            <section className={styles.deliverySection} aria-labelledby="delivery-heading">
+              <div className={styles.sectionFrame}>
+                <div className={styles.deliveryIntro}>
+                  <div>
+                    <p className={styles.sectionKicker}>WHAT YOU ACTUALLY GET</p>
+                    <h2 id="delivery-heading">
+                      PERSONAL ENOUGH TO CHANGE.
+                      <span> STRUCTURED ENOUGH TO LAST.</span>
+                    </h2>
+                  </div>
+                  <p>
+                    No template library. No disconnected advice. Your training,
+                    recovery, nutrition and strength move together, with a
+                    coach reviewing the signal every week.
+                  </p>
+                </div>
+
+                <ol className={styles.deliveryList}>
+                  {delivery.map((item) => (
+                    <li key={item.number}>
+                      <span>{item.number}</span>
+                      <div>
+                        <h3>{item.title}</h3>
+                        <p>{item.body}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+
+                <div className={styles.offerCard}>
+                  <div>
+                    <p>NOT DONE YET COACHING</p>
+                    <strong>$195</strong>
+                    <span>USD / MONTH</span>
+                  </div>
+                  <ul>
+                    <li>First 7 days free</li>
+                    <li>6–12 hours a week works for most riders</li>
+                    <li>Month to month · cancel anytime</li>
+                  </ul>
+                  <a
+                    href="#application-form"
+                    data-track="apply_offer_return_to_form"
+                  >
+                    START APPLICATION <span aria-hidden="true">↑</span>
+                  </a>
+                </div>
+              </div>
+            </section>
+
+            <section className={styles.coachSection} aria-labelledby="coach-heading">
+              <div className={styles.coachGrid}>
+                <div className={styles.coachImage}>
+                  <Image
+                    src="/images/about/anthony-walsh-podcast-home.avif"
+                    alt="Anthony Walsh, founder and cycling coach at Roadman Cycling"
+                    fill
+                    sizes="(max-width: 899px) 100vw, 50vw"
+                  />
+                </div>
+                <div className={styles.coachCopy}>
+                  <p className={styles.sectionKicker}>THE COACH BEHIND THE SYSTEM</p>
+                  <h2 id="coach-heading">
+                    REVIEWED BY A PERSON.
+                    <span> NOT A PLATFORM.</span>
+                  </h2>
+                  <p>
+                    Anthony Walsh has spent more than a decade coaching riders
+                    and 1,400+ podcast conversations learning from the best
+                    minds in endurance sport. Your application and your weekly
+                    training signal get human attention.
+                  </p>
+                  <blockquote>
+                    “The goal is not to squeeze training into the edges of your
+                    life. It is to build the smartest plan your real life can
+                    absorb.”
+                  </blockquote>
+                  <Link href="/about" data-track="apply_about_anthony">
+                    MEET ANTHONY →
+                  </Link>
+                </div>
+              </div>
+            </section>
+
+            <section className={styles.faqSection} aria-labelledby="faq-heading">
+              <div className={styles.faqGrid}>
+                <div className={styles.faqIntro}>
+                  <p className={styles.sectionKicker}>BEFORE YOU APPLY</p>
+                  <h2 id="faq-heading">
+                    STRAIGHT
+                    <br />
+                    ANSWERS.
+                  </h2>
+                  <p>
+                    No manufactured urgency. No hidden contract. Decide with
+                    the full picture.
+                  </p>
+                  <a
+                    href="#application-form"
+                    data-track="apply_faq_return_to_form"
+                  >
+                    START THE APPLICATION ↑
+                  </a>
+                </div>
+
+                <div className={styles.questions}>
+                  {questions.map((item, index) => (
+                    <details key={item.q} open={index === 0}>
+                      <summary>
+                        <span className={styles.questionIndex}>
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <span className={styles.questionText}>{item.q}</span>
+                        <span className={styles.faqIcon} aria-hidden="true">
+                          +
+                        </span>
+                      </summary>
+                      <p>{item.a}</p>
+                    </details>
+                  ))}
+                </div>
+              </div>
+            </section>
+          </>
+        )}
       </main>
 
-      <Footer />
+      <CoachingFooter />
     </>
   );
 }

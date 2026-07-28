@@ -19,16 +19,28 @@ const cookieTable = [
     duration: "Browser session",
   },
   {
-    name: "ab_variant",
+    name: "roadman_consent",
     provider: "Roadman Cycling",
-    purpose: "A/B test variant assignment for the current experiment",
-    duration: "30 days",
+    purpose: "Remembers your analytics and marketing preferences",
+    duration: "1 year",
   },
   {
     name: "roadman_ab_*",
     provider: "Roadman Cycling",
     purpose: "Per-experiment A/B test variant assignment",
     duration: "90 days",
+  },
+  {
+    name: "_ga / _ga_*",
+    provider: "Google",
+    purpose: "Analytics measurement after you accept analytics cookies",
+    duration: "Up to 2 years",
+  },
+  {
+    name: "_gcl_au",
+    provider: "Google Ads",
+    purpose: "Advertising conversion attribution after marketing consent",
+    duration: "Up to 90 days",
   },
   {
     name: "_fbp",
@@ -67,7 +79,7 @@ export default function CookiePolicyPage() {
               COOKIE POLICY
             </h1>
             <p className="text-foreground-muted text-center">
-              Last updated: April 2026
+              Last updated: July 2026
             </p>
           </Container>
         </Section>
@@ -149,11 +161,6 @@ export default function CookiePolicyPage() {
                 </p>
                 <ul className="list-disc pl-6 space-y-3 mt-4">
                   <li>
-                    <code className="text-coral text-sm">ab_variant</code> — a
-                    general A/B test cookie that stores your assigned variant.
-                    Expires after 30 days.
-                  </li>
-                  <li>
                     <code className="text-coral text-sm">roadman_ab_*</code> —
                     per-experiment cookies (where * is the experiment name) that
                     track your variant assignment for specific tests. Each
@@ -168,9 +175,10 @@ export default function CookiePolicyPage() {
                   MARKETING COOKIES
                 </h2>
                 <p>
-                  We use the Meta (Facebook) Pixel to measure the effectiveness
-                  of our advertising campaigns and to build audiences for
-                  targeted advertising on Facebook and Instagram.
+                  We use Google Ads and the Meta (Facebook) Pixel, only after
+                  marketing consent, to measure the effectiveness of advertising
+                  campaigns and attribute applications to the campaigns that
+                  generated them.
                 </p>
                 <p className="mt-3">The Meta Pixel sets the following cookies:</p>
                 <ul className="list-disc pl-6 space-y-3 mt-4">
@@ -197,6 +205,33 @@ export default function CookiePolicyPage() {
                     Meta&apos;s Privacy Policy
                   </a>
                   .
+                </p>
+                <p className="mt-3">
+                  Google may set <code className="text-coral text-sm">_gcl_au</code>{" "}
+                  and related first-party identifiers for conversion attribution.
+                  Google&apos;s handling of this data is described in its{" "}
+                  <a
+                    href="https://policies.google.com/privacy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-coral hover:underline"
+                  >
+                    Privacy Policy
+                  </a>
+                  .
+                </p>
+              </div>
+
+              <div>
+                <h2 className="font-heading text-off-white text-2xl mb-4 tracking-wider">
+                  LOCAL STORAGE
+                </h2>
+                <p>
+                  The coaching application saves an unfinished draft in your
+                  browser so an accidental refresh does not erase your answers.
+                  The draft can include your name, email, training hours, goal,
+                  FTP and application answers. It expires after 24 hours and is
+                  deleted immediately after a successful submission.
                 </p>
               </div>
 

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Container } from "./Container";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { CookieSettingsButton } from "@/components/features/consent/CookieSettingsButton";
 
 const footerColumns = {
   podcast: {
@@ -120,7 +121,84 @@ const socialLinks = [
   },
 ];
 
-export function Footer() {
+export function Footer({
+  variant = "default",
+}: {
+  variant?: "default" | "coaching";
+}) {
+  if (variant === "coaching") {
+    const coachingLinks = [
+      { label: "Methodology", href: "/methodology" },
+      { label: "Podcast", href: "/podcast" },
+      { label: "About", href: "/about" },
+      { label: "Privacy", href: "/privacy" },
+      { label: "Terms", href: "/terms" },
+    ];
+
+    return (
+      <footer
+        aria-label="Site footer"
+        data-sticky-apply-stop
+        className="relative overflow-hidden border-t border-white/10 bg-deep-purple"
+      >
+        <Container width="coaching">
+          <div className="flex flex-col gap-8 py-12 md:flex-row md:items-end md:justify-between md:py-14">
+            <div>
+              <Link href="/" className="inline-block mb-4">
+                <Image
+                  src="/images/logo-white.png"
+                  alt="Roadman Cycling"
+                  width={763}
+                  height={345}
+                  sizes="160px"
+                  className="h-10 w-auto max-w-none"
+                />
+              </Link>
+              <p className="font-heading text-2xl tracking-wide text-off-white">
+                STOP PLATEAUING. <span className="text-coral">START PROGRESSING.</span>
+              </p>
+              <p className="mt-2 max-w-xl text-sm leading-relaxed text-foreground-muted">
+                Personalised cycling coaching for serious amateur and masters
+                riders who know they are not done yet.
+              </p>
+            </div>
+
+            <nav aria-label="Footer navigation">
+              <ul className="flex flex-wrap gap-x-6 gap-y-3 md:justify-end">
+                {coachingLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-foreground-muted transition-colors hover:text-coral"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+
+          <div className="flex flex-col gap-2 border-t border-white/10 py-5 text-xs text-foreground-subtle sm:flex-row sm:items-center sm:justify-between">
+            <p>
+              &copy; {new Date().getFullYear()} Roadman Cycling · Dublin,
+              Ireland
+            </p>
+            <div className="flex flex-wrap gap-x-4 gap-y-2">
+              <CookieSettingsButton className="transition-colors hover:text-coral" />
+              <a
+                href="mailto:anthony@roadmancycling.com"
+                className="transition-colors hover:text-coral"
+              >
+                anthony@roadmancycling.com
+              </a>
+            </div>
+          </div>
+        </Container>
+      </footer>
+    );
+  }
+
   return (
     <footer aria-label="Site footer" className="relative bg-deep-purple grain-overlay overflow-hidden">
       {/* Gradient divider line at top */}
@@ -263,6 +341,8 @@ export function Footer() {
               >
                 anthony@roadmancycling.com
               </a>
+              <span aria-hidden="true" className="hidden md:inline">·</span>
+              <CookieSettingsButton className="hover:text-coral transition-colors" />
             </p>
             <p className="italic">
               Built for cyclists who are &apos;not done yet&apos;.

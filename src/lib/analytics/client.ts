@@ -19,6 +19,17 @@ export interface TrackEventInput {
 export function trackAnalyticsEvent(input: TrackEventInput): void {
   if (typeof window === "undefined") return;
   try {
+    const stored = localStorage.getItem("roadman_cookie_consent");
+    if (
+      !stored ||
+      (JSON.parse(stored) as { analytics?: unknown }).analytics !== true
+    ) {
+      return;
+    }
+  } catch {
+    return;
+  }
+  try {
     fetch("/api/events", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

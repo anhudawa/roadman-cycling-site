@@ -101,7 +101,7 @@ const pillars = [
     number: "05",
     title: "Community",
     description:
-      "Weekly coaching calls, a private group of serious cyclists, and 1:1 plan reviews. The reason this works when apps and solo plans don't — you're surrounded by people who know your situation and are watching.",
+      "Weekly live group coaching, a private group of serious cyclists, and individual plan reviews by the Roadman coaching team. The reason this works when apps and solo plans don't — you're surrounded by people who know your situation and are watching.",
   },
 ];
 
@@ -114,12 +114,12 @@ const faqItems = [
   {
     question: "How does online cycling coaching work?",
     answer:
-      "You get a personalised training plan on TrainingPeaks that adapts weekly based on your data, life context, and how you responded to the previous week. This includes weekly coaching calls, 1:1 plan reviews, nutrition guidance, strength programming, and access to a private community of serious cyclists. Everything is remote — your coach sees more of your training data than an in-person coach ever could.",
+      "You get a personalised training plan on TrainingPeaks that adapts weekly based on your data, life context, and how you responded to the previous week. This includes weekly live group coaching led by Anthony, individual plan reviews by the Roadman coaching team, nutrition guidance, strength programming, and access to a private community of serious cyclists. Everything is remote, so the team can review your training data wherever you ride.",
   },
   {
     question: "How much does a cycling coach cost?",
     answer:
-      "Coaching is $195 per month and includes 1:1 personalised coaching with Anthony Walsh across all five pillars — training, nutrition, strength, recovery, and community. You get a personalised TrainingPeaks plan, weekly coaching calls, and a private community of serious cyclists. Includes a 7-day free trial.",
+      "Not Done Yet is $195 per month and includes an individual TrainingPeaks plan reviewed weekly by the Roadman coaching team, an Anthony-led live group coaching call, nutrition and strength guidance, and a private community of serious cyclists. Your first seven days are free and you can cancel anytime.",
   },
   {
     question:

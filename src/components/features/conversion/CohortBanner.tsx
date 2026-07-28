@@ -110,7 +110,7 @@ export function CohortBanner() {
 
   return (
     <div
-      className="fixed top-0 left-0 right-0 bg-coral text-off-white h-11 flex items-center"
+      className="fixed top-0 left-0 right-0 bg-coral text-deep-purple h-11 flex items-center"
       // `contain: layout` isolates the banner from forcing surrounding
       // layout work when its content (countdown text, ticker) updates,
       // and helps the browser skip recalculations elsewhere when the
@@ -135,7 +135,8 @@ export function CohortBanner() {
         <div className="flex items-center gap-2 shrink-0">
           <Link
             href={state.banner.ctaHref}
-            className="font-heading text-xs sm:text-sm tracking-wider bg-off-white text-coral px-3 sm:px-4 min-h-[40px] flex items-center rounded-md hover:bg-off-white/90 transition-colors whitespace-nowrap"
+            data-track="cohort_banner_start_application"
+            className="font-heading text-xs sm:text-sm tracking-wider bg-deep-purple text-off-white px-3 sm:px-4 min-h-[40px] flex items-center rounded-md hover:bg-deep-purple/90 transition-colors whitespace-nowrap"
           >
             {state.banner.cta} <span aria-hidden="true">→</span>
           </Link>

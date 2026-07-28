@@ -22,7 +22,7 @@ interface SummaryTileProps {
 
 function SummaryTile({ label, value }: SummaryTileProps) {
   return (
-    <div className="rounded-xl border border-coral/20 bg-white/[0.03] p-5 text-left">
+    <div className="rounded-md border border-coral/20 bg-white/[0.03] p-5 text-left">
       <p className="font-heading text-coral text-xs tracking-widest mb-2">
         {label.toUpperCase()}
       </p>
@@ -47,6 +47,7 @@ export function PersonalisedDiagnosticBlock({
 
   return (
     <Section
+      id="diagnostic-result"
       background="deep-purple"
       grain
       className="pt-32 pb-16 relative overflow-hidden"
@@ -56,8 +57,8 @@ export function PersonalisedDiagnosticBlock({
       <Container width="narrow" className="relative z-10">
         <ScrollReveal direction="up">
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-coral/10 border border-coral/20 mb-6">
-              <span className="w-2 h-2 rounded-full bg-coral animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-md bg-coral/10 border border-coral/20 mb-6">
+              <span className="w-2 h-2 rounded-full bg-coral animate-pulse motion-reduce:animate-none" />
               <span className="text-coral text-sm font-medium tracking-wide">
                 YOUR DIAGNOSTIC RESULT
               </span>
@@ -80,7 +81,11 @@ export function PersonalisedDiagnosticBlock({
         </ScrollReveal>
 
         <ScrollReveal direction="up" delay={0.1}>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
+          <div
+            className={`grid grid-cols-1 ${
+              goal ? "md:grid-cols-3" : "md:grid-cols-2"
+            } gap-4 mt-10`}
+          >
             <SummaryTile label="Your profile" value={profileLabel} />
             {goal && <SummaryTile label="Your goal" value={goal} />}
             <SummaryTile label="Training hours" value={`${hours} hrs/wk`} />
@@ -88,17 +93,18 @@ export function PersonalisedDiagnosticBlock({
         </ScrollReveal>
 
         <ScrollReveal direction="up" delay={0.2}>
-          <div className="mt-12 text-center">
+          <div id="recommended-path" className="mt-12 scroll-mt-28 text-center">
             <a
               href={ctaHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-8 py-4 rounded-xl bg-coral text-off-white font-heading text-lg tracking-wider hover:bg-coral/90 transition-all shadow-lg shadow-coral/20"
+              data-track="diagnostic_recommended_ndy_trial"
+              className="inline-flex items-center px-8 py-4 rounded-md bg-coral text-deep-purple font-heading text-lg tracking-wider hover:bg-coral/90 transition-all shadow-lg shadow-coral/20"
             >
               START YOUR 7-DAY FREE TRIAL →
             </a>
             <p className="text-foreground-subtle text-sm mt-4">
-              $195/month after trial · cancel anytime · 113 riders inside
+              $195 USD/month after trial · cancel anytime
             </p>
           </div>
         </ScrollReveal>

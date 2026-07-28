@@ -29,7 +29,7 @@ export type OfferSurface =
   | "cold"        // Homepage, ungated SEO landing pages, glossary
   | "content"     // Blog, podcast episodes, guides, topic hubs
   | "commercial"  // /coaching, NDY page, comparison pages
-  | "premium";    // /apply, premium pages, high-intent surfaces
+  | "premium";    // Inner Circle and other high-intent premium surfaces
 
 export interface OfferPricing {
   kind: "free" | "subscription" | "application";
@@ -131,12 +131,12 @@ const TIER_NOT_DONE_YET: OfferTier = {
   oneLiner:
     "Anthony's coaching system for serious amateur and masters cyclists — personalised plans, weekly calls, the full method.",
   description:
-    "The Roadman coaching system delivered as a monthly programme: personalised TrainingPeaks plans, weekly coaching calls with Anthony, the cycling-specific strength roadmap, race-weight and fuelling guidance, and ongoing 1:1 plan reviews. Built for cyclists who are training 6–12 hours a week and aren't done yet.",
+    "The Roadman coaching system delivered as a monthly programme: a personalised TrainingPeaks plan reviewed every week, weekly live group coaching with Anthony, cycling-specific strength, nutrition and fuelling guidance, and a private rider community. Built for cyclists who are training 6–12 hours a week and aren't done yet.",
   productKind: "coaching",
   cta: {
-    label: "Join Not Done Yet",
-    shortLabel: "Join NDY",
-    href: "/community/not-done-yet",
+    label: "Start the 2-minute application",
+    shortLabel: "Start application",
+    href: "/apply",
   },
   pricing: {
     kind: "subscription",
@@ -162,14 +162,14 @@ const TIER_ONE_TO_ONE: OfferTier = {
   cta: {
     label: "Apply for 1:1 Coaching",
     shortLabel: "Apply",
-    href: "/apply",
+    href: "/inner-circle/apply",
   },
   pricing: {
     kind: "application",
-    display: "By application",
-    annualUsd: 1950,
+    display: "$525/month",
+    monthlyUsd: 525,
   },
-  route: "/apply",
+  route: "/inner-circle",
 };
 
 export const OFFER_TIERS = {

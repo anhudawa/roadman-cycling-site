@@ -1,20 +1,11 @@
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import type { StoredSubmission } from "@/lib/diagnostic/store";
 import type { Answers, Breakdown } from "@/lib/diagnostic/types";
 
-// We mock the store so the page-under-test never touches the DB.
 // The CohortApplicationForm is a client component with state; mock it
 // down to a recognisable marker so we can assert on its presence.
-const getSubmissionBySlugMock = vi.fn<
-  (slug: string) => Promise<StoredSubmission | null>
->();
-
-vi.mock("@/lib/diagnostic/store", () => ({
-  getSubmissionBySlug: (slug: string) => getSubmissionBySlugMock(slug),
-}));
-
 vi.mock("./CohortApplicationForm", () => ({
   CohortApplicationForm: () => (
     <div data-testid="cohort-form-marker">COHORT_FORM</div>
@@ -94,64 +85,68 @@ function makeSubmission(
   };
 }
 
-async function renderApplyPage(searchParams: { from?: string }) {
+async function renderApplyPage() {
   const mod = await import("./page");
   const ApplyPage = mod.default;
-  const element = await ApplyPage({
-    searchParams: Promise.resolve(searchParams),
-  });
+  const element = ApplyPage();
   return renderToStaticMarkup(element);
 }
 
-afterEach(() => {
-  getSubmissionBySlugMock.mockReset();
-});
+async function renderApplyView(submission: StoredSubmission | null) {
+  const mod = await import("./page");
+  return renderToStaticMarkup(
+    <mod.ApplyPageView submission={submission} />,
+  );
+}
 
 describe("ApplyPage", () => {
-  it("renders the cohort form when no `from` param is given", async () => {
-    const html = await renderApplyPage({});
+  it("renders the cohort form on the public application route", async () => {
+    const html = await renderApplyPage();
     expect(html).toContain("COHORT_FORM");
     expect(html).not.toContain("BASED ON YOUR DIAGNOSTIC");
-    expect(getSubmissionBySlugMock).not.toHaveBeenCalled();
   });
 
-  it("renders the cohort form when `from` matches no submission", async () => {
-    getSubmissionBySlugMock.mockResolvedValue(null);
-    const html = await renderApplyPage({ from: "unknown123" });
-    expect(html).toContain("COHORT_FORM");
-    expect(html).not.toContain("BASED ON YOUR DIAGNOSTIC");
-    expect(getSubmissionBySlugMock).toHaveBeenCalledWith("unknown123");
-  });
-
-  it("renders the personalised block and hides the cohort form when `from` resolves", async () => {
-    getSubmissionBySlugMock.mockResolvedValue(
-      makeSubmission({ email: "anthony@roadmancycling.com" })
+  it("puts the cold application before secondary proof and removes fake scarcity", async () => {
+    const html = await renderApplyPage();
+    expect(html.indexOf("COHORT_FORM")).toBeGreaterThan(-1);
+    expect(html.indexOf("COHORT_FORM")).toBeLessThan(
+      html.indexOf("MEASURED MEMBER OUTCOMES"),
     );
-    const html = await renderApplyPage({ from: "abc123xyz0" });
+    expect(html).not.toMatch(/30 (places|spots)/i);
+    expect(html).toContain("REVIEWED PERSONALLY");
+    expect(html).toContain("within 48 hours");
+  });
+
+  it("keeps delivery, hours and commercial terms consistent", async () => {
+    const html = await renderApplyPage();
+    expect(html).toContain(
+      "A personalised TrainingPeaks plan, reviewed every week.",
+    );
+    expect(html).toContain("Weekly live group coaching with Anthony");
+    expect(html).toContain("6–12 hours");
+    expect(html).toContain("$195");
+    expect(html).toContain("First 7 days free");
+    expect(html).toContain("cancel anytime");
+  });
+
+  it("uses the focused coaching footer on the cold application path", async () => {
+    const html = await renderApplyPage();
+    expect(html).toContain("STOP PLATEAUING.");
+    expect(html).not.toContain("THE SATURDAY SPIN NEWSLETTER");
+  });
+
+  it("renders the personalised block and hides the cohort form for a resolved submission", async () => {
+    const html = await renderApplyView(
+      makeSubmission({ email: "anthony@roadmancycling.com" }),
+    );
     expect(html).toContain("BASED ON YOUR DIAGNOSTIC");
     expect(html).toContain("Anthony");
     expect(html).not.toContain("COHORT_FORM");
   });
 
   it("uses the Skool CTA at the bottom of the page when personalised", async () => {
-    getSubmissionBySlugMock.mockResolvedValue(makeSubmission());
-    const html = await renderApplyPage({ from: "abc123xyz0" });
+    const html = await renderApplyView(makeSubmission());
     expect(html).toContain("https://www.skool.com/roadmancycling");
     expect(html).not.toContain("skool.com/roadmancycling/about");
-  });
-
-  it("ignores empty `from` and falls back to the cohort form", async () => {
-    const html = await renderApplyPage({ from: "" });
-    expect(html).toContain("COHORT_FORM");
-    expect(getSubmissionBySlugMock).not.toHaveBeenCalled();
-  });
-
-  it("falls back to the cohort form when the store throws", async () => {
-    getSubmissionBySlugMock.mockRejectedValue(
-      new Error("DB connection lost")
-    );
-    const html = await renderApplyPage({ from: "abc123xyz0" });
-    expect(html).toContain("COHORT_FORM");
-    expect(html).not.toContain("BASED ON YOUR DIAGNOSTIC");
   });
 });
