@@ -59,7 +59,7 @@ const TOPIC_FILTERS: Array<{
     id: "mtb",
     label: "Mountain Biking",
     match: (p) => {
-      const haystack = `${p.title} ${p.keywords.join(" ")} ${p.excerpt}`.toLowerCase();
+      const haystack = `${p.title} ${(p.keywords ?? []).join(" ")} ${p.excerpt}`.toLowerCase();
       return /\bmtb\b|mountain.?bik|fork.?setup|suspension.?setup|dropper|trail.?rid|enduro|shock.?pressur|tyre.?pressure.?mtb|rostrevor|ballinastoe|mtb.?trail|mountain.?bike.?trail/.test(haystack);
     },
   },
@@ -67,7 +67,7 @@ const TOPIC_FILTERS: Array<{
     id: "triathlon",
     label: "Triathlon",
     match: (p) => {
-      const haystack = `${p.title} ${p.keywords.join(" ")} ${p.excerpt}`.toLowerCase();
+      const haystack = `${p.title} ${(p.keywords ?? []).join(" ")} ${p.excerpt}`.toLowerCase();
       return /triath|ironman|70\.3|bike.?leg|tri.?bike/.test(haystack);
     },
   },
@@ -81,7 +81,7 @@ const TOPIC_FILTERS: Array<{
     id: "watches",
     label: "Watches",
     match: (p) => {
-      const haystack = `${p.title} ${p.keywords.join(" ")} ${p.excerpt}`.toLowerCase();
+      const haystack = `${p.title} ${(p.keywords ?? []).join(" ")} ${p.excerpt}`.toLowerCase();
       return /\bwatches\b|cycling watch|wristwatch|smartwatch|chronograph|horolog|\btudor\b|breitling|richard mille|\brolex\b|\bcasio\b|\bbravur\b|omega (olympic|velodrome|timekeep)|f-?91w|black bay/.test(haystack);
     },
   },
