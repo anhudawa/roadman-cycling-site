@@ -272,24 +272,26 @@ export default function CoachingPage() {
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "Service",
+          "@type": "Product",
           "@id": `${SITE_ORIGIN}/#coaching-service`,
           name: "Roadman Cycling Coaching",
           description:
             "Personalised online cycling coaching across five pillars: training, nutrition, strength, recovery, and community. Built on 1,400+ expert podcast conversations.",
-          serviceType: "Online Cycling Coaching",
-          // The service is offered by the Roadman Cycling organisation;
+          category: "Online Cycling Coaching",
+          // The coaching is offered by the Roadman Cycling organisation;
           // the head coach (Anthony) is the named provider of the Course
           // schema below. Splitting org/coach by relationship lets Google
           // resolve the brand entity for SERP and the human expert for
           // E-E-A-T separately.
-          provider: { "@id": ENTITY_IDS.organization },
+          //
+          // NOTE: Google requires Review snippets to sit under a supported
+          // parent type (Product, LocalBusiness, Organization, etc.).
+          // `Service` is NOT a valid parent — it triggers the
+          // "Invalid object type for field '<parent_node>'" error in
+          // Search Console. `Product` is the correct choice here and
+          // matches the /community/not-done-yet schema.
           brand: { "@id": ENTITY_IDS.organization },
-          areaServed: [
-            { "@type": "Country", name: "Ireland" },
-            { "@type": "Country", name: "United Kingdom" },
-            { "@type": "Country", name: "United States" },
-          ],
+          image: ["https://roadmancycling.com/og-image.jpg"],
           offers: {
             "@type": "Offer",
             name: "Not Done Yet Coaching Community — Personalised Coaching",

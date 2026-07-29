@@ -371,12 +371,16 @@ export default function ProofLibraryPage() {
               ),
             },
             {
-              "@type": "Service",
+              // NOTE: Google requires Review snippets under a supported
+              // parent type. `Service` triggers "Invalid object type for
+              // field '<parent_node>'" — `Product` is valid and matches
+              // the coaching and /community/not-done-yet schemas.
+              "@type": "Product",
               "@id": serviceId,
               name: "Roadman Cycling Coaching",
-              serviceType: "Cycling coaching",
-              provider: { "@id": ENTITY_IDS.organization },
-              areaServed: "Worldwide",
+              category: "Cycling coaching",
+              brand: { "@id": ENTITY_IDS.organization },
+              image: ["https://roadmancycling.com/og-image.jpg"],
               description:
                 "Personalised cycling coaching from Anthony Walsh and the Roadman team — Not Done Yet group coaching ($195/month) and Inner Circle 1:1 coaching ($525/month).",
               url: `${SITE_ORIGIN}/coaching`,
