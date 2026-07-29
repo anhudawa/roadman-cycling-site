@@ -1,0 +1,2 @@
+network,transaction_id,transaction_at,retailer,product_slug,offer_id,click_id,sale_amount,commission_amount,currency,status
+example-network,replace-with-network-transaction-id,2026-07-28T12:00:00Z,Example Retailer,replace-with-product-slug,,,99.99,7.50,EUR,pending

@@ -26,6 +26,10 @@ import {
   getExpertsWithTopics,
 } from "@/lib/experts";
 import { getAllPillarSlugs } from "@/lib/pillars";
+import {
+  getPublicRecommendationCategories,
+  getPublicRecommendationProducts,
+} from "@/lib/recommends/queries";
 
 const BASE_URL = "https://roadmancycling.com";
 
@@ -46,6 +50,7 @@ const BASE_URL = "https://roadmancycling.com";
  *   /sitemap/4.xml — plan pages (event hubs + phase pages)
  *   /sitemap/5.xml — topics + glossary + comparisons + best-for + problems + questions
  *   /sitemap/6.xml — expert × topic pages (/experts, /experts/[slug], /experts/[slug]/[topic])
+ *   /sitemap/7.xml — Roadman Recommends categories and published products
  *
  * Per-issue newsletter URLs (/newsletter/{slug}) are intentionally NOT in
  * the sitemap. Each issue page sets robots:noindex (one-time email
@@ -54,7 +59,7 @@ const BASE_URL = "https://roadmancycling.com";
  * stays in /sitemap/0.xml.
  */
 
-const SITEMAP_IDS = [0, 1, 2, 3, 4, 5, 6] as const;
+const SITEMAP_IDS = [0, 1, 2, 3, 4, 5, 6, 7] as const;
 
 export async function generateSitemaps() {
   return SITEMAP_IDS.map((id) => ({ id }));
@@ -95,7 +100,35 @@ export default async function sitemap(props: {
   if (numId === 4) return buildPlanSitemap();
   if (numId === 5) return buildTopicAndMoreSitemap();
   if (numId === 6) return buildExpertSitemap();
+  if (numId === 7) return buildRecommendationSitemap();
   return [];
+}
+
+async function buildRecommendationSitemap(): Promise<MetadataRoute.Sitemap> {
+  const [categories, products] = await Promise.all([
+    getPublicRecommendationCategories(),
+    getPublicRecommendationProducts(),
+  ]);
+  return [
+    {
+      url: `${BASE_URL}/recommends`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    ...categories.map((category) => ({
+      url: `${BASE_URL}/recommends/${category.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.72,
+    })),
+    ...products.map((product) => ({
+      url: `${BASE_URL}/recommends/${product.categorySlug ?? "gear"}/${product.slug}`,
+      lastModified: product.updatedAt,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+  ];
 }
 
 function buildStaticSitemap(): MetadataRoute.Sitemap {

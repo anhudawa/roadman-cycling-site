@@ -17,7 +17,13 @@ import { getCohortState, type CohortPhase } from "@/lib/cohort";
  *  - on /admin/*
  */
 
-const HIDE_ON_PATH_PREFIXES = ["/apply", "/admin", "/inner-circle", "/method"];
+const HIDE_ON_PATH_PREFIXES = [
+  "/apply",
+  "/admin",
+  "/inner-circle",
+  "/method",
+  "/recommends",
+];
 
 /**
  * Paths where the banner cannot be dismissed. The homepage is our

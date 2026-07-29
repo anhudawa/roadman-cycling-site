@@ -2323,3 +2323,242 @@ export const fantasyAuditLog = pgTable(
   },
   (t) => [index("fantasy_audit_log_entity_idx").on(t.entity, t.entityId)]
 );
+
+// --- Roadman Recommends: editorial affiliate library ---
+export const recommendationBrands = pgTable("recommendation_brands", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  slug: text("slug").notNull().unique(),
+  websiteUrl: text("website_url"),
+  logoUrl: text("logo_url"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+export const recommendationCategories = pgTable(
+  "recommendation_categories",
+  {
+    id: serial("id").primaryKey(),
+    name: text("name").notNull(),
+    slug: text("slug").notNull().unique(),
+    description: text("description"),
+    icon: text("icon").notNull().default("gear"),
+    sortOrder: integer("sort_order").notNull().default(0),
+    active: boolean("active").notNull().default(true),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [
+    index("recommendation_categories_active_sort_idx").on(t.active, t.sortOrder),
+  ],
+);
+
+export const recommendationCollections = pgTable(
+  "recommendation_collections",
+  {
+    id: serial("id").primaryKey(),
+    name: text("name").notNull(),
+    slug: text("slug").notNull().unique(),
+    description: text("description"),
+    rule: text("rule")
+      .notNull()
+      .default("manual")
+      .$type<"manual" | "featured" | "best_value">(),
+    active: boolean("active").notNull().default(true),
+    sortOrder: integer("sort_order").notNull().default(0),
+    startsAt: timestamp("starts_at", { withTimezone: true }),
+    endsAt: timestamp("ends_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [
+    index("recommendation_collections_active_sort_idx").on(
+      t.active,
+      t.sortOrder,
+    ),
+  ],
+);
+
+export const recommendationProducts = pgTable(
+  "recommendation_products",
+  {
+    id: serial("id").primaryKey(),
+    brandId: integer("brand_id").references(() => recommendationBrands.id, {
+      onDelete: "set null",
+    }),
+    categoryId: integer("category_id").references(
+      () => recommendationCategories.id,
+      { onDelete: "set null" },
+    ),
+    name: text("name").notNull(),
+    slug: text("slug").notNull().unique(),
+    status: text("status")
+      .notNull()
+      .default("draft")
+      .$type<"draft" | "scheduled" | "published" | "archived">(),
+    badge: text("badge"),
+    evidenceStatus: text("evidence_status")
+      .notNull()
+      .default("editorial")
+      .$type<"personally_used" | "team_tested" | "research_based" | "community_favourite" | "editorial">(),
+    verdict: text("verdict").notNull(),
+    shortDescription: text("short_description").notNull(),
+    whyRecommend: text("why_recommend").notNull(),
+    whoFor: text("who_for").notNull(),
+    whoSkip: text("who_skip"),
+    strengths: jsonb("strengths").$type<string[]>().notNull().default([]),
+    limitations: jsonb("limitations").$type<string[]>().notNull().default([]),
+    specifications: jsonb("specifications")
+      .$type<Record<string, string>>()
+      .notNull()
+      .default({}),
+    useCases: jsonb("use_cases").$type<string[]>().notNull().default([]),
+    tags: jsonb("tags").$type<string[]>().notNull().default([]),
+    disciplines: jsonb("disciplines").$type<string[]>().notNull().default([]),
+    seasons: jsonb("seasons").$type<string[]>().notNull().default([]),
+    priceBand: text("price_band"),
+    imageUrl: text("image_url"),
+    imageAlt: text("image_alt"),
+    relatedArticleUrl: text("related_article_url"),
+    featured: boolean("featured").notNull().default(false),
+    bestValue: boolean("best_value").notNull().default(false),
+    sortOrder: integer("sort_order").notNull().default(0),
+    scheduledAt: timestamp("scheduled_at", { withTimezone: true }),
+    publishedAt: timestamp("published_at", { withTimezone: true }),
+    lastReviewedAt: timestamp("last_reviewed_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [
+    index("recommendation_products_status_idx").on(t.status),
+    index("recommendation_products_category_idx").on(t.categoryId),
+    index("recommendation_products_featured_idx").on(t.featured, t.sortOrder),
+  ],
+);
+
+export const recommendationCollectionProducts = pgTable(
+  "recommendation_collection_products",
+  {
+    id: serial("id").primaryKey(),
+    collectionId: integer("collection_id")
+      .notNull()
+      .references(() => recommendationCollections.id, { onDelete: "cascade" }),
+    productId: integer("product_id")
+      .notNull()
+      .references(() => recommendationProducts.id, { onDelete: "cascade" }),
+    sortOrder: integer("sort_order").notNull().default(0),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [
+    uniqueIndex("recommendation_collection_products_uniq").on(
+      t.collectionId,
+      t.productId,
+    ),
+    index("recommendation_collection_products_collection_idx").on(
+      t.collectionId,
+      t.sortOrder,
+    ),
+  ],
+);
+
+export const recommendationOffers = pgTable(
+  "recommendation_offers",
+  {
+    id: serial("id").primaryKey(),
+    productId: integer("product_id")
+      .notNull()
+      .references(() => recommendationProducts.id, { onDelete: "cascade" }),
+    retailerName: text("retailer_name").notNull(),
+    affiliateProgram: text("affiliate_program"),
+    destinationUrl: text("destination_url").notNull(),
+    regions: jsonb("regions").$type<string[]>().notNull().default(["IE", "GB", "US", "EU"]),
+    currency: text("currency"),
+    priceLabel: text("price_label"),
+    promoCode: text("promo_code"),
+    priority: integer("priority").notNull().default(0),
+    active: boolean("active").notNull().default(true),
+    lastCheckedAt: timestamp("last_checked_at", { withTimezone: true }),
+    validUntil: timestamp("valid_until", { withTimezone: true }),
+    lastHttpStatus: integer("last_http_status"),
+    lastError: text("last_error"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [
+    index("recommendation_offers_product_idx").on(t.productId),
+    index("recommendation_offers_active_priority_idx").on(t.active, t.priority),
+  ],
+);
+
+export const recommendationSettings = pgTable("recommendation_settings", {
+  key: text("key").primaryKey(),
+  value: text("value").notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+export const affiliateClickEvents = pgTable(
+  "affiliate_click_events",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    offerId: integer("offer_id")
+      .notNull()
+      .references(() => recommendationOffers.id, { onDelete: "cascade" }),
+    productId: integer("product_id")
+      .notNull()
+      .references(() => recommendationProducts.id, { onDelete: "cascade" }),
+    sessionId: text("session_id"),
+    page: text("page"),
+    placement: text("placement"),
+    campaign: text("campaign"),
+    region: text("region"),
+    device: text("device"),
+    referrer: text("referrer"),
+    userAgent: text("user_agent"),
+    affiliateClickId: text("affiliate_click_id"),
+    bot: boolean("bot").notNull().default(false),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [
+    index("affiliate_click_events_created_idx").on(t.createdAt),
+    index("affiliate_click_events_offer_idx").on(t.offerId),
+    index("affiliate_click_events_product_idx").on(t.productId),
+  ],
+);
+
+export const affiliateConversions = pgTable(
+  "affiliate_conversions",
+  {
+    id: serial("id").primaryKey(),
+    network: text("network").notNull(),
+    externalTransactionId: text("external_transaction_id").notNull(),
+    offerId: integer("offer_id").references(() => recommendationOffers.id, {
+      onDelete: "set null",
+    }),
+    productId: integer("product_id").references(() => recommendationProducts.id, {
+      onDelete: "set null",
+    }),
+    clickId: uuid("click_id").references(() => affiliateClickEvents.id, {
+      onDelete: "set null",
+    }),
+    retailerName: text("retailer_name"),
+    saleAmount: numeric("sale_amount", { precision: 12, scale: 2 }),
+    commissionAmount: numeric("commission_amount", { precision: 12, scale: 2 }),
+    currency: text("currency").notNull().default("EUR"),
+    status: text("status")
+      .notNull()
+      .default("pending")
+      .$type<"pending" | "approved" | "rejected" | "cancelled" | "returned" | "paid">(),
+    transactionAt: timestamp("transaction_at", { withTimezone: true }).notNull(),
+    importedAt: timestamp("imported_at", { withTimezone: true }).notNull().defaultNow(),
+    rawData: jsonb("raw_data").$type<Record<string, unknown>>(),
+  },
+  (t) => [
+    uniqueIndex("affiliate_conversions_network_transaction_uniq").on(
+      t.network,
+      t.externalTransactionId,
+    ),
+    index("affiliate_conversions_transaction_idx").on(t.transactionAt),
+    index("affiliate_conversions_status_idx").on(t.status),
+    index("affiliate_conversions_product_idx").on(t.productId),
+  ],
+);

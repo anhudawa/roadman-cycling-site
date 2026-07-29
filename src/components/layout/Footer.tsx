@@ -36,6 +36,7 @@ const footerColumns = {
       { label: "Coaching Assessment", href: "/assessment" },
       { label: "Glossary", href: "/glossary" },
       { label: "All Tools", href: "/tools" },
+      { label: "Roadman Recommends", href: "/recommends" },
     ],
   },
   coaching: {

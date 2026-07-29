@@ -330,6 +330,20 @@
       "when": 1785259800000,
       "tag": "0052_roadman_recommends",
       "breakpoints": true
+    },
+    {
+      "idx": 47,
+      "version": "7",
+      "when": 1785322800000,
+      "tag": "0053_recommends_partner_catalog",
+      "breakpoints": true
+    },
+    {
+      "idx": 48,
+      "version": "7",
+      "when": 1785326400000,
+      "tag": "0054_recommends_collections_settings",
+      "breakpoints": true
     }
   ]
 }

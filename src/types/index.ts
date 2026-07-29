@@ -169,6 +169,10 @@ export const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
+    label: "Recommends",
+    href: "/recommends",
+  },
+  {
     label: "Plateau Diagnostic",
     href: "/plateau",
   },

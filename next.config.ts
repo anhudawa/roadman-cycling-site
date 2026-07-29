@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ["127.0.0.1"],
   trailingSlash: false,
   // MDX-heavy podcast and blog pages (especially ones with long
   // transcripts) routinely brush against the 60s default on Vercel's
@@ -22,6 +23,34 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "i.ytimg.com",
+      },
+      {
+        protocol: "https",
+        hostname: "pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.shopify.com",
+      },
+      {
+        protocol: "https",
+        hostname: "maap-product-images.b-cdn.net",
+      },
+      {
+        protocol: "https",
+        hostname: "static.biketiresdirect.com",
+      },
+      {
+        protocol: "https",
+        hostname: "eu.zwift.com",
+      },
+      {
+        protocol: "https",
+        hostname: "muc-off.com",
+      },
+      {
+        protocol: "https",
+        hostname: "eu.muc-off.com",
       },
     ],
     formats: ["image/avif", "image/webp"],

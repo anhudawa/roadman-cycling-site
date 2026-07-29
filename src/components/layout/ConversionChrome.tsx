@@ -16,6 +16,9 @@ const LEAN_PATH_PREFIXES = [
   "/predict",
   "/ask",
   "/tools",
+  // Self-contained affiliate discovery surface. Exit-intent and sticky
+  // coaching CTAs compete with product comparison and retailer actions.
+  "/recommends",
   // Public embeddable widgets rendered inside third-party iframes —
   // exit-intent / cohort banner / sticky-apply CTAs do not belong here.
   "/embed",

@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { usePathname } from "next/navigation";
 import { isTourActive } from "@/lib/tour";
 
 /**
@@ -27,5 +28,9 @@ const CohortBanner = dynamic(
 );
 
 export function BannerStack() {
+  const pathname = usePathname();
+  if (pathname === "/recommends" || pathname.startsWith("/recommends/")) {
+    return null;
+  }
   return isTourActive() ? <TourBanner /> : <CohortBanner />;
 }
