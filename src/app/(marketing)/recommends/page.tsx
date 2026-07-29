@@ -13,6 +13,8 @@ import { LocalNav } from "./_components/LocalNav";
 import { RecommendsBrowser } from "./_components/RecommendsBrowser";
 import styles from "./Recommends.module.css";
 
+export const revalidate = 300;
+
 export const metadata: Metadata = {
   title: "Roadman Recommends — Cycling Gear That Earns Its Place",
   description:
