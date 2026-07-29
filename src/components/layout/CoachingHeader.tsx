@@ -68,7 +68,7 @@ const EXPLORE_ITEMS = [
   },
   {
     label: "Training Camps",
-    href: "/training-camps",
+    href: "https://roadmancycling.com/training-camps",
     description: "Ride and progress with Roadman in Girona",
     track: "home_nav_explore_camps",
   },
