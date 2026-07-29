@@ -326,7 +326,7 @@ export const FALLBACK_PUBLIC_PRODUCTS: RecommendationProduct[] = [
     seasons: ["Summer"],
     priceBand: "Premium",
     imageUrl:
-      "https://maap-product-images.b-cdn.net//1431/8222/files/MPMJE221924_GHST.Evade-Pro-Base-Jersey-2.0_GREY_PDP_01.jpg?v=1728451724",
+      "https://maap-product-images.b-cdn.net/0510/7809/files/MPMJE221924_GHST.Evade-Pro-Base-Jersey-2.0_GREY_PDP_01.jpg?height=1436&v=1728451834",
     imageAlt: "MAAP Evade Pro Base Jersey 2.0 in Ghost Grey",
     relatedArticleUrl: null,
     featured: false,
