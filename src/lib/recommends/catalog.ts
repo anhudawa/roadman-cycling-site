@@ -2,6 +2,10 @@ import type {
   RecommendationOffer,
   RecommendationProduct,
 } from "./types";
+import {
+  ADDITIONAL_MAAP_AFFILIATE_DESTINATIONS,
+  ADDITIONAL_MAAP_PRODUCTS,
+} from "./maap-catalog";
 
 export const HEXIS_FALLBACK_OFFER_ID = 900_000_001;
 export const HEXIS_AFFILIATE_URL =
@@ -86,6 +90,7 @@ const affiliateDestinations = {
     "muc-off-8-in-1-cleaning-kit",
     "https://muc-off.com/products/8-in-1-bicycle-cleaning-kit",
   ),
+  ...ADDITIONAL_MAAP_AFFILIATE_DESTINATIONS,
 } as const;
 
 export const FALLBACK_AFFILIATE_DESTINATIONS: Readonly<
@@ -343,6 +348,7 @@ export const FALLBACK_PUBLIC_PRODUCTS: RecommendationProduct[] = [
       ),
     ],
   }),
+  ...ADDITIONAL_MAAP_PRODUCTS,
   product({
     id: -1201,
     name: "Continental Grand Prix 5000 S TR",

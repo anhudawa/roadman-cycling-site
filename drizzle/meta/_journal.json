@@ -351,6 +351,13 @@
       "when": 1785327300000,
       "tag": "0055_recommends_maap_image",
       "breakpoints": true
+    },
+    {
+      "idx": 50,
+      "version": "7",
+      "when": 1785402000000,
+      "tag": "0056_recommends_maap_catalog_expansion",
+      "breakpoints": true
     }
   ]
 }

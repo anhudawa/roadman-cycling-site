@@ -56,4 +56,30 @@ describe("affiliate catalogue entries", () => {
       expect(destination.searchParams.get("u")).toMatch(/^https:\/\//);
     }
   });
+
+  it("provides a useful MAAP kit range rather than isolated products", () => {
+    const maapProducts = FALLBACK_PUBLIC_PRODUCTS.filter(
+      (product) => product.brandSlug === "maap",
+    );
+
+    expect(maapProducts).toHaveLength(14);
+    expect(
+      maapProducts.some((product) => product.slug.includes("womens")),
+    ).toBe(true);
+    expect(
+      maapProducts.some((product) => product.tags.includes("cargo bib")),
+    ).toBe(true);
+    expect(
+      maapProducts.some((product) => product.tags.includes("cycling jacket")),
+    ).toBe(true);
+    expect(
+      maapProducts.every(
+        (product) =>
+          Boolean(product.imageUrl) &&
+          product.offers.every((offer) =>
+            Boolean(FALLBACK_AFFILIATE_DESTINATIONS[offer.id]),
+          ),
+      ),
+    ).toBe(true);
+  });
 });
