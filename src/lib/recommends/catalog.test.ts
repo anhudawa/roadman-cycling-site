@@ -63,7 +63,7 @@ describe("affiliate catalogue entries", () => {
       (product) => product.brandSlug === "maap",
     );
 
-    expect(maapProducts).toHaveLength(14);
+    expect(maapProducts).toHaveLength(16);
     expect(
       maapProducts.some((product) => product.slug.includes("womens")),
     ).toBe(true);
@@ -93,7 +93,7 @@ describe("affiliate catalogue entries", () => {
       "mucoff.sjv.io",
     ]);
 
-    expect(FALLBACK_PUBLIC_PRODUCTS).toHaveLength(45);
+    expect(FALLBACK_PUBLIC_PRODUCTS).toHaveLength(52);
 
     for (const product of FALLBACK_PUBLIC_PRODUCTS) {
       expect(product.imageUrl).toMatch(/^https:\/\//);
@@ -105,5 +105,19 @@ describe("affiliate catalogue entries", () => {
         expect(approvedHosts.has(new URL(destination).hostname)).toBe(true);
       }
     }
+  });
+
+  it("fills the winter and new-rider training gaps", () => {
+    const slugs = new Set(
+      FALLBACK_PUBLIC_PRODUCTS.map((product) => product.slug),
+    );
+
+    expect(slugs.has("continental-grand-prix-5000-as-tr")).toBe(true);
+    expect(slugs.has("pdw-poncho-recycled-fenders")).toBe(true);
+    expect(slugs.has("maap-apex-deep-winter-glove")).toBe(true);
+    expect(slugs.has("maap-apex-deep-winter-tight-2")).toBe(true);
+    expect(slugs.has("wahoo-kickr-headwind")).toBe(true);
+    expect(slugs.has("wahoo-trackr-heart-rate")).toBe(true);
+    expect(slugs.has("garmin-edge-540")).toBe(true);
   });
 });

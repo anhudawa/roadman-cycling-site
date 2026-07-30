@@ -365,6 +365,13 @@
       "when": 1785439800000,
       "tag": "0057_recommends_road_catalog_expansion",
       "breakpoints": true
+    },
+    {
+      "idx": 52,
+      "version": "7",
+      "when": 1785448800000,
+      "tag": "0058_recommends_intent_collections",
+      "breakpoints": true
     }
   ]
 }

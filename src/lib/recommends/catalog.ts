@@ -7,6 +7,10 @@ import {
   ADDITIONAL_MAAP_PRODUCTS,
 } from "./maap-catalog";
 import {
+  INTENT_AFFILIATE_DESTINATIONS,
+  INTENT_PRODUCTS,
+} from "./intent-catalog";
+import {
   ROAD_EXPANSION_AFFILIATE_DESTINATIONS,
   ROAD_EXPANSION_PRODUCTS,
 } from "./road-catalog-expansion";
@@ -96,6 +100,7 @@ const affiliateDestinations = {
   ),
   ...ADDITIONAL_MAAP_AFFILIATE_DESTINATIONS,
   ...ROAD_EXPANSION_AFFILIATE_DESTINATIONS,
+  ...INTENT_AFFILIATE_DESTINATIONS,
 } as const;
 
 export const FALLBACK_AFFILIATE_DESTINATIONS: Readonly<
@@ -355,6 +360,7 @@ export const FALLBACK_PUBLIC_PRODUCTS: RecommendationProduct[] = [
   }),
   ...ADDITIONAL_MAAP_PRODUCTS,
   ...ROAD_EXPANSION_PRODUCTS,
+  ...INTENT_PRODUCTS,
   product({
     id: -1201,
     name: "Continental Grand Prix 5000 S TR",

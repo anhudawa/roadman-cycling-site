@@ -174,6 +174,83 @@
   gap: 0.8rem;
 }
 
+.intentGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.intentCard {
+  position: relative;
+  min-height: 330px;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(1.35rem, 3vw, 2rem);
+  border: 1px solid var(--recommend-line);
+  border-radius: 1rem;
+  color: #fff;
+  transition: border 160ms ease, transform 160ms ease;
+}
+
+.intentCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(120deg, transparent 0 32px, rgba(255, 255, 255, 0.025) 33px 34px);
+  pointer-events: none;
+}
+
+.intentWinter {
+  background:
+    radial-gradient(circle at 85% 10%, rgba(147, 199, 231, 0.34), transparent 16rem),
+    linear-gradient(145deg, #162635, #29242b 70%);
+}
+
+.intentNdy {
+  background:
+    radial-gradient(circle at 85% 10%, rgba(241, 99, 99, 0.32), transparent 16rem),
+    linear-gradient(145deg, #210140, #39213d 70%);
+}
+
+.intentCard:hover {
+  border-color: rgba(241, 99, 99, 0.62);
+  transform: translateY(-3px);
+}
+
+.intentCard > * {
+  position: relative;
+}
+
+.intentCard > span {
+  color: #f7b0b0;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+}
+
+.intentCard h3 {
+  max-width: 34rem;
+  margin: 0.65rem 0 0;
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 6vw, 5.2rem);
+  line-height: 0.86;
+}
+
+.intentCard p {
+  max-width: 34rem;
+  margin: 1rem 0 0;
+  color: var(--recommend-muted);
+  line-height: 1.55;
+}
+
+.intentCard strong {
+  margin-top: 1.4rem;
+  font-size: 0.82rem;
+}
+
 .categoryCard {
   position: relative;
   min-height: 210px;
@@ -850,6 +927,7 @@
 
 @media (max-width: 980px) {
   .categoryGrid,
+  .intentGrid,
   .productGrid,
   .editGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -895,6 +973,10 @@
     min-height: 175px;
   }
 
+  .intentCard {
+    min-height: 290px;
+  }
+
   .categoryCard h3 {
     margin-top: 2.4rem;
   }
@@ -912,6 +994,7 @@
 @media (prefers-reduced-motion: reduce) {
   .primaryAction,
   .secondaryAction,
+  .intentCard,
   .categoryCard,
   .productCard {
     transition: none;

@@ -43,12 +43,16 @@ export default async function RecommendsPage() {
         right.updatedAt.getTime() - left.updatedAt.getTime(),
     )
     .slice(0, 4);
+  const intentCollections = collections.filter((collection) =>
+    ["winter-riding", "new-to-ndy"].includes(collection.slug),
+  );
   const problemLinks = [
     ["I need faster tyres", "/recommends?q=fast%20road%20riding#recommendations"],
     ["I keep puncturing", "/recommends?q=tubeless#recommendations"],
     ["I struggle to fuel long rides", "/recommends?q=fuel#recommendations"],
-    ["I need kit for bad weather", "/recommends?q=all%20weather#recommendations"],
-    ["I want to train indoors", "/recommends?q=indoor#recommendations"],
+    ["I need to get through winter", "/recommends?collection=winter-riding#recommendations"],
+    ["I want to train indoors", "/recommends?collection=indoor-setup#recommendations"],
+    ["I am new to NDY", "/recommends?collection=new-to-ndy#recommendations"],
     ["I need better visibility", "/recommends?q=visibility#recommendations"],
     ["I want the best option on a budget", "/recommends?collection=best-value#recommendations"],
   ];
@@ -96,6 +100,44 @@ export default async function RecommendsPage() {
       </section>
 
       <LocalNav categories={categories} collections={collections} />
+
+      {intentCollections.length ? (
+        <section className={`${styles.section} ${styles.sectionAlt}`}>
+          <div className={styles.sectionInner}>
+            <div className={styles.sectionHeader}>
+              <h2>START WITH THE RIDE AHEAD.</h2>
+              <p>
+                Complete setups for the moments riders actually ask about—not
+                another wall of product categories.
+              </p>
+            </div>
+            <div className={styles.intentGrid}>
+              {intentCollections.map((collection) => {
+                const isWinter = collection.slug === "winter-riding";
+                return (
+                  <Link
+                    key={collection.slug}
+                    href={`/recommends?collection=${collection.slug}#recommendations`}
+                    className={`${styles.intentCard} ${
+                      isWinter ? styles.intentWinter : styles.intentNdy
+                    }`}
+                  >
+                    <span>{isWinter ? "RIDE THROUGH IT" : "BUILD YOUR SETUP"}</span>
+                    <h3>{collection.name.toUpperCase()}</h3>
+                    <p>{collection.description}</p>
+                    <strong>
+                      {isWinter
+                        ? "Grip · warmth · rain · indoor"
+                        : "Computer · heart rate · trainer · power"}
+                      <span aria-hidden="true"> →</span>
+                    </strong>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className={styles.section}>
         <div className={styles.sectionInner}>
