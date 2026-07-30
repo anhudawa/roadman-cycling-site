@@ -30,6 +30,7 @@ describe("affiliate catalogue entries", () => {
         "MAAP",
         "Competitive Cyclist",
         "Zwift",
+        "Zwift US",
         "Muc-Off",
       ]),
     );
@@ -81,5 +82,28 @@ describe("affiliate catalogue entries", () => {
           ),
       ),
     ).toBe(true);
+  });
+
+  it("keeps the expanded catalogue entirely on approved affiliate routes", () => {
+    const approvedHosts = new Set([
+      "www.gj4bt5vt.com",
+      "maap.sjv.io",
+      "competitivecyclist.g39l.net",
+      "zwiftinc.sjv.io",
+      "mucoff.sjv.io",
+    ]);
+
+    expect(FALLBACK_PUBLIC_PRODUCTS).toHaveLength(45);
+
+    for (const product of FALLBACK_PUBLIC_PRODUCTS) {
+      expect(product.imageUrl).toMatch(/^https:\/\//);
+      expect(product.offers.length).toBeGreaterThan(0);
+
+      for (const offer of product.offers) {
+        const destination = FALLBACK_AFFILIATE_DESTINATIONS[offer.id];
+        expect(destination).toBeTruthy();
+        expect(approvedHosts.has(new URL(destination).hostname)).toBe(true);
+      }
+    }
   });
 });

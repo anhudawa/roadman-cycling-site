@@ -42,6 +42,7 @@ export const FALLBACK_CATEGORIES: RecommendationCategory[] = [
   { id: -3, name: "Clothing", slug: "clothing", description: "Cycling kit that earns its place across the seasons.", icon: "jersey", sortOrder: 30, active: true },
   { id: -4, name: "Indoor Training", slug: "indoor-training", description: "Trainers, fans and accessories for effective indoor work.", icon: "trainer", sortOrder: 40, active: true },
   { id: -5, name: "Tech & GPS", slug: "tech-gps", description: "Computers, sensors and technology worth paying for.", icon: "gps", sortOrder: 50, active: true },
+  { id: -9, name: "Components & Upgrades", slug: "components-upgrades", description: "Pedals, saddles and performance upgrades that make a meaningful difference on the road.", icon: "tool", sortOrder: 55, active: true },
   { id: -6, name: "Tools & Accessories", slug: "tools-accessories", description: "Workshop and ride essentials without the clutter.", icon: "tool", sortOrder: 60, active: true },
   { id: -7, name: "Safety & Visibility", slug: "safety-visibility", description: "Helmets, lights and visibility equipment for everyday riding.", icon: "light", sortOrder: 70, active: true },
   { id: -8, name: "Recovery", slug: "recovery", description: "Practical recovery tools for riders balancing training and life.", icon: "recovery", sortOrder: 80, active: true },

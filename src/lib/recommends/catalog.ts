@@ -6,6 +6,10 @@ import {
   ADDITIONAL_MAAP_AFFILIATE_DESTINATIONS,
   ADDITIONAL_MAAP_PRODUCTS,
 } from "./maap-catalog";
+import {
+  ROAD_EXPANSION_AFFILIATE_DESTINATIONS,
+  ROAD_EXPANSION_PRODUCTS,
+} from "./road-catalog-expansion";
 
 export const HEXIS_FALLBACK_OFFER_ID = 900_000_001;
 export const HEXIS_AFFILIATE_URL =
@@ -91,6 +95,7 @@ const affiliateDestinations = {
     "https://muc-off.com/products/8-in-1-bicycle-cleaning-kit",
   ),
   ...ADDITIONAL_MAAP_AFFILIATE_DESTINATIONS,
+  ...ROAD_EXPANSION_AFFILIATE_DESTINATIONS,
 } as const;
 
 export const FALLBACK_AFFILIATE_DESTINATIONS: Readonly<
@@ -349,6 +354,7 @@ export const FALLBACK_PUBLIC_PRODUCTS: RecommendationProduct[] = [
     ],
   }),
   ...ADDITIONAL_MAAP_PRODUCTS,
+  ...ROAD_EXPANSION_PRODUCTS,
   product({
     id: -1201,
     name: "Continental Grand Prix 5000 S TR",

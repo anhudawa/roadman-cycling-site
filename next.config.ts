@@ -42,6 +42,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "content.competitivecyclist.com",
+      },
+      {
+        protocol: "https",
         hostname: "eu.zwift.com",
       },
       {
