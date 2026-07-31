@@ -385,6 +385,8 @@ export function ContactDetail({
   const [tasks, setTasks] = useState(initialTasks);
   const [noteTitle, setNoteTitle] = useState("");
   const [noteBody, setNoteBody] = useState("");
+  const [noteError, setNoteError] = useState<string | null>(null);
+  const [noteSaving, setNoteSaving] = useState(false);
   const [newTag, setNewTag] = useState("");
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDue, setTaskDue] = useState("");
@@ -692,7 +694,8 @@ export function ContactDetail({
 
   async function addNote() {
     if (!noteTitle.trim() && !noteBody.trim()) return;
-    setBusy(true);
+    setNoteSaving(true);
+    setNoteError(null);
     try {
       const res = await fetch(`/api/admin/crm/contacts/${contact.id}/activities`, {
         method: "POST",
@@ -703,14 +706,17 @@ export function ContactDetail({
           body: noteBody.trim() || null,
         }),
       });
-      if (res.ok) {
-        const data = await res.json();
-        setActivities((prev) => [data.activity, ...prev]);
-        setNoteTitle("");
-        setNoteBody("");
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(data.error ?? `Failed to save note (${res.status})`);
       }
+      setActivities((prev) => [data.activity, ...prev]);
+      setNoteTitle("");
+      setNoteBody("");
+    } catch (err) {
+      setNoteError(err instanceof Error ? err.message : "Failed to save note");
     } finally {
-      setBusy(false);
+      setNoteSaving(false);
     }
   }
 
@@ -800,6 +806,7 @@ export function ContactDetail({
   }
 
   const openTasks = tasks.filter((t) => !t.completedAt);
+  const recentNotes = activities.filter((activity) => activity.type === "note").slice(0, 3);
   const customFieldEntries = Object.entries(contact.customFields ?? {}).filter(
     ([k]) => k !== "enrichment"
   );
@@ -1017,6 +1024,74 @@ export function ContactDetail({
             {apps.length > 0 && (
               <ApplicationsSection applications={apps} />
             )}
+
+            <div className="bg-background-elevated rounded-xl border border-white/5 p-4">
+              <div className="flex items-center justify-between gap-3 mb-3">
+                <p className="text-[10px] uppercase tracking-widest text-foreground-subtle font-medium">
+                  Athlete Notes
+                </p>
+                {recentNotes.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => selectTab("timeline")}
+                    className="text-xs text-foreground-muted hover:text-off-white transition-colors"
+                  >
+                    View full timeline
+                  </button>
+                )}
+              </div>
+              <textarea
+                aria-label="Add athlete note"
+                placeholder="Add context from an email exchange or phone call..."
+                value={noteBody}
+                onChange={(e) => setNoteBody(e.target.value)}
+                onKeyDown={(e) => {
+                  if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
+                    e.preventDefault();
+                    void addNote();
+                  }
+                }}
+                rows={4}
+                className="w-full px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)] resize-y"
+              />
+              <div className="flex items-center justify-between gap-3 mt-2">
+                {noteError ? (
+                  <p role="alert" className="text-xs text-red-400">
+                    {noteError}
+                  </p>
+                ) : (
+                  <span />
+                )}
+                <button
+                  type="button"
+                  onClick={addNote}
+                  disabled={noteSaving || !noteBody.trim()}
+                  className="px-3 py-1.5 font-body font-semibold text-[13px] bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] hover:bg-[var(--color-elevated)] disabled:opacity-50"
+                >
+                  {noteSaving ? "Saving..." : "Add Note"}
+                </button>
+              </div>
+
+              {recentNotes.length > 0 && (
+                <ol className="mt-4 pt-4 border-t border-white/5 space-y-3">
+                  {recentNotes.map((note) => (
+                    <li key={note.id} className="border-l-2 border-blue-400/40 pl-3">
+                      {note.title !== "Note" && (
+                        <p className="text-sm font-medium text-off-white">{note.title}</p>
+                      )}
+                      {note.body && (
+                        <p className="text-sm text-off-white/90 leading-relaxed">
+                          {renderNoteBody(note.body)}
+                        </p>
+                      )}
+                      <p className="text-[11px] text-foreground-subtle mt-1">
+                        {note.authorName ?? "Team"} · {relativeTime(note.createdAt)}
+                      </p>
+                    </li>
+                  ))}
+                </ol>
+              )}
+            </div>
 
             {diagnosticSubmissions.length > 0 && (
               <DiagnosticSection submissions={diagnosticSubmissions} />
@@ -1409,7 +1484,7 @@ export function ContactDetail({
             />
             <button
               onClick={addNote}
-              disabled={busy}
+              disabled={noteSaving}
               className="px-3 py-1.5 font-body font-semibold text-[13px] bg-[var(--color-raised)] text-[var(--color-fg)] border border-[var(--color-border-strong)] rounded-[var(--radius-admin-md)] hover:bg-[var(--color-elevated)] disabled:opacity-50"
             >
               Add Note
