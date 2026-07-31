@@ -386,6 +386,13 @@
       "when": 1785484800000,
       "tag": "0060_application_signed_up",
       "breakpoints": true
+    },
+    {
+      "idx": 55,
+      "version": "7",
+      "when": 1785517200000,
+      "tag": "0061_application_outreach_stages",
+      "breakpoints": true
     }
   ]
 }

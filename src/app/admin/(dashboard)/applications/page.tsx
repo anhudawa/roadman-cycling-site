@@ -6,7 +6,7 @@ import { requireAuth } from "@/lib/admin/auth";
 import { isApplicationMonth } from "@/lib/crm/application-month";
 import {
   APPLICATION_STAGES,
-  isApplicationStage,
+  normalizeApplicationStage,
   type ApplicationStage,
 } from "@/lib/crm/pipeline";
 import { getOrCreateContactForApplication } from "@/lib/crm/contacts";
@@ -93,9 +93,9 @@ export default async function ApplicationsPage({ searchParams }: PageProps) {
 
   const initialStages: StageMap = {
     awaiting_response: [],
-    contacted: [],
-    offered: [],
-    accepted: [],
+    contacted_once: [],
+    contacted_twice: [],
+    final_outreach: [],
     signed_up: [],
     rejected: [],
   };
@@ -134,9 +134,7 @@ export default async function ApplicationsPage({ searchParams }: PageProps) {
     }
 
     for (const r of rows) {
-      const stage: ApplicationStage = isApplicationStage(r.status)
-        ? r.status
-        : "awaiting_response";
+      const stage: ApplicationStage = normalizeApplicationStage(r.status);
       const cid = emailToContactId.get(r.email.toLowerCase()) ?? null;
       const owner = cid !== null ? ownerById.get(cid) ?? null : null;
       initialStages[stage].push(serialize(r, cid, owner));

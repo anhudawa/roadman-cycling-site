@@ -7,7 +7,7 @@ import {
   STAGE_COLORS,
   STAGE_LABELS,
   type ApplicationStage,
-  isApplicationStage,
+  normalizeApplicationStage,
 } from "@/lib/crm/pipeline";
 
 export interface Application {
@@ -95,9 +95,7 @@ export function ApplicationsList({ initialApplications }: Props) {
         {/* List */}
         <div className="w-1/3 overflow-y-auto space-y-1 pr-2">
           {applications.map((app) => {
-            const stageKey: ApplicationStage = isApplicationStage(app.status)
-              ? app.status
-              : "awaiting_response";
+            const stageKey = normalizeApplicationStage(app.status);
             const sc = STAGE_COLORS[stageKey];
             return (
               <button
@@ -187,9 +185,7 @@ export function ApplicationsList({ initialApplications }: Props) {
                   {APPLICATION_STAGES.map((stage) => {
                     const sc = STAGE_COLORS[stage];
                     const active =
-                      (isApplicationStage(selected.status)
-                        ? selected.status
-                        : "awaiting_response") === stage;
+                      normalizeApplicationStage(selected.status) === stage;
                     return (
                       <button
                         key={stage}

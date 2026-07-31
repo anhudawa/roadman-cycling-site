@@ -7,7 +7,11 @@ import {
   teamUsers,
 } from "@/lib/db/schema";
 import { and, desc, eq, gte, isNull, isNotNull, sql } from "drizzle-orm";
-import { APPLICATION_STAGES, type ApplicationStage } from "./pipeline";
+import {
+  APPLICATION_STAGES,
+  normalizeApplicationStage,
+  type ApplicationStage,
+} from "./pipeline";
 import { DEAL_STAGES, type DealStage, isDealStage } from "./deals";
 
 export interface PipelineFunnelRow {
@@ -62,7 +66,10 @@ export async function getPipelineFunnel(): Promise<PipelineFunnelRow[]> {
     .groupBy(cohortApplications.status);
 
   const byStatus = new Map<string, number>();
-  for (const r of rows) byStatus.set(r.status, r.count);
+  for (const r of rows) {
+    const stage = normalizeApplicationStage(r.status);
+    byStatus.set(stage, (byStatus.get(stage) ?? 0) + r.count);
+  }
 
   const result: PipelineFunnelRow[] = [];
   let prev: number | null = null;
@@ -142,9 +149,9 @@ export async function getOwnerBreakdown(): Promise<OwnerBreakdownRow[]> {
         total: 0,
         perStage: {
           awaiting_response: 0,
-          contacted: 0,
-          offered: 0,
-          accepted: 0,
+          contacted_once: 0,
+          contacted_twice: 0,
+          final_outreach: 0,
           signed_up: 0,
           rejected: 0,
         },
@@ -152,9 +159,7 @@ export async function getOwnerBreakdown(): Promise<OwnerBreakdownRow[]> {
     }
     const row = bySlug.get(slug)!;
     row.total += r.count;
-    if ((APPLICATION_STAGES as readonly string[]).includes(r.status)) {
-      row.perStage[r.status as ApplicationStage] += r.count;
-    }
+    row.perStage[normalizeApplicationStage(r.status)] += r.count;
   }
 
   return Array.from(bySlug.values()).sort((a, b) => b.total - a.total);

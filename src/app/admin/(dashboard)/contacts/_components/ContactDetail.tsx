@@ -9,6 +9,12 @@ import { ContactCustomFields } from "./ContactCustomFields";
 import { ContactTrainingPeaksSection } from "./ContactTrainingPeaksSection";
 import type { TrainingPeaksAssignmentRow } from "@/lib/crm/trainingpeaks-assignments";
 import { Button } from "@/components/admin/ui";
+import {
+  APPLICATION_STAGES,
+  STAGE_LABELS,
+  normalizeApplicationStage,
+  type ApplicationStage,
+} from "@/lib/crm/pipeline";
 
 type CustomFieldType = "text" | "longtext" | "number" | "date" | "url" | "select" | "boolean";
 
@@ -30,7 +36,7 @@ const OWNERS = [
   { value: "ted", label: "Ted" },
 ];
 
-const STAGES = [
+const CONTACT_STAGES = [
   { value: "lead", label: "Lead" },
   { value: "contacted", label: "Contacted" },
   { value: "qualified", label: "Qualified" },
@@ -353,6 +359,7 @@ export function ContactDetail({
   initialCustomValues = {},
   initialEmails = [],
   applications = [],
+  initialSelectedApplicationId = null,
   trainingPeaksAssignments = [],
   diagnosticSubmissions = [],
 }: {
@@ -368,6 +375,7 @@ export function ContactDetail({
   initialCustomValues?: Record<string, unknown>;
   initialEmails?: EmailRow[];
   applications?: ApplicationRow[];
+  initialSelectedApplicationId?: number | null;
   trainingPeaksAssignments?: TrainingPeaksAssignmentRow[];
   diagnosticSubmissions?: DiagnosticSubmissionRow[];
 }) {
@@ -514,6 +522,44 @@ export function ContactDetail({
   const [apps, setApps] = useState<ApplicationRow[]>(applications);
   const [confirmDeleteApps, setConfirmDeleteApps] = useState(false);
   const [deletingApps, setDeletingApps] = useState(false);
+  const selectedApplication =
+    apps.find((app) => app.id === initialSelectedApplicationId) ?? apps[0] ?? null;
+
+  async function updateApplicationStage(stage: ApplicationStage) {
+    if (!selectedApplication) return;
+    const previous = apps;
+    setBusy(true);
+    setApps((current) =>
+      current.map((app) =>
+        app.id === selectedApplication.id ? { ...app, status: stage } : app
+      )
+    );
+    try {
+      const res = await fetch(
+        `/api/admin/applications/${selectedApplication.id}/stage`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ stage }),
+        }
+      );
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(data.error ?? `HTTP ${res.status}`);
+      }
+      setEmailToast(`Application moved to ${STAGE_LABELS[stage]}`);
+      window.setTimeout(() => setEmailToast(null), 3000);
+      router.refresh();
+    } catch (err) {
+      setApps(previous);
+      setEmailError(
+        err instanceof Error ? err.message : "Failed to update application stage"
+      );
+      window.setTimeout(() => setEmailError(null), 4000);
+    } finally {
+      setBusy(false);
+    }
+  }
 
   async function deleteAllApplications() {
     if (apps.length === 0) return;
@@ -1080,20 +1126,39 @@ export function ContactDetail({
 
               <div>
                 <label className="block text-[10px] uppercase tracking-widest text-foreground-subtle font-medium mb-1">
-                  Stage
+                  {selectedApplication ? "Application Stage" : "Stage"}
                 </label>
-                <select
-                  value={contact.lifecycleStage}
-                  onChange={(e) => patchContact({ lifecycleStage: e.target.value })}
-                  disabled={busy}
-                  className="w-full px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
-                >
-                  {STAGES.map((s) => (
-                    <option key={s.value} value={s.value}>
-                      {s.label}
-                    </option>
-                  ))}
-                </select>
+                {selectedApplication ? (
+                  <select
+                    value={normalizeApplicationStage(selectedApplication.status)}
+                    onChange={(e) =>
+                      updateApplicationStage(e.target.value as ApplicationStage)
+                    }
+                    disabled={busy}
+                    className="w-full px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
+                  >
+                    {APPLICATION_STAGES.map((stage) => (
+                      <option key={stage} value={stage}>
+                        {STAGE_LABELS[stage]}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <select
+                    value={contact.lifecycleStage}
+                    onChange={(e) =>
+                      patchContact({ lifecycleStage: e.target.value })
+                    }
+                    disabled={busy}
+                    className="w-full px-3 py-2 text-sm bg-[var(--color-sunken)] border border-[var(--color-border-strong)] text-[var(--color-fg)] rounded-[var(--radius-admin-md)] focus-ring focus:border-[var(--color-border-focus)]"
+                  >
+                    {CONTACT_STAGES.map((stage) => (
+                      <option key={stage.value} value={stage.value}>
+                        {stage.label}
+                      </option>
+                    ))}
+                  </select>
+                )}
               </div>
 
               <div>

@@ -22,11 +22,14 @@ export default async function ContactDetailPage({
   searchParams,
 }: {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ email?: string }>;
+  searchParams: Promise<{ email?: string; application?: string }>;
 }) {
   const user = await requireAuth();
   const { id: idStr } = await params;
   const sp = await searchParams;
+  const selectedApplicationId = sp.application
+    ? Number.parseInt(sp.application, 10)
+    : null;
   const id = parseInt(idStr, 10);
   if (Number.isNaN(id)) notFound();
 
@@ -88,6 +91,11 @@ export default async function ContactDetailPage({
     <ContactDetail
       currentUser={{ slug: user.slug, name: user.name, email: user.email, role: user.role }}
       initialEmailTemplateSlug={sp.email ?? null}
+      initialSelectedApplicationId={
+        selectedApplicationId !== null && Number.isFinite(selectedApplicationId)
+          ? selectedApplicationId
+          : null
+      }
       potentialDuplicates={duplicateCandidates}
       customFieldDefs={customFieldDefsList}
       initialCustomValues={customValues}

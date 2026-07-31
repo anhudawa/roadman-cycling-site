@@ -2,7 +2,11 @@ import Link from "next/link";
 import { requireAuth } from "@/lib/admin/auth";
 import { getAllReports } from "@/lib/crm/reports";
 import { getScoreBandDistribution, bandBadgeClass } from "@/lib/crm/scoring";
-import { STAGE_COLORS, STAGE_LABELS } from "@/lib/crm/pipeline";
+import {
+  APPLICATION_STAGES,
+  STAGE_COLORS,
+  STAGE_LABELS,
+} from "@/lib/crm/pipeline";
 import {
   STAGE_LABELS as DEAL_STAGE_LABELS,
   STAGE_COLORS as DEAL_STAGE_COLORS,
@@ -162,16 +166,7 @@ export default async function ReportsPage() {
                 <tr className="text-[10px] uppercase tracking-widest text-foreground-subtle">
                   <th className="text-left py-2 font-medium">Owner</th>
                   <th className="text-right py-2 font-medium">Total</th>
-                  {(
-                    [
-                      "awaiting_response",
-                      "contacted",
-                      "offered",
-                      "accepted",
-                      "signed_up",
-                      "rejected",
-                    ] as const
-                  ).map((s) => (
+                  {APPLICATION_STAGES.map((s) => (
                     <th key={s} className="text-right py-2 font-medium">
                       {STAGE_LABELS[s]}
                     </th>
@@ -188,16 +183,7 @@ export default async function ReportsPage() {
                     <td className="text-right tabular-nums font-medium">
                       {o.total}
                     </td>
-                    {(
-                      [
-                        "awaiting_response",
-                        "contacted",
-                        "offered",
-                        "accepted",
-                        "signed_up",
-                        "rejected",
-                      ] as const
-                    ).map((s) => (
+                    {APPLICATION_STAGES.map((s) => (
                       <td
                         key={s}
                         className="text-right tabular-nums text-foreground-muted"

@@ -157,7 +157,17 @@ export async function scoreContact(contactId: number): Promise<number> {
           (meta.to as string | undefined) ??
           (meta.next as string | undefined) ??
           (meta.toStage as string | undefined);
-        if (to && ["qualified", "offered", "accepted"].includes(to)) {
+        if (
+          to &&
+          [
+            "qualified",
+            "contacted_twice",
+            "final_outreach",
+            "signed_up",
+            "offered",
+            "accepted",
+          ].includes(to)
+        ) {
           qualifiedOfferedAcceptedStageChanges += 1;
         }
         break;
@@ -222,7 +232,7 @@ export async function scoreAllContacts(): Promise<ScoreAllResult> {
       emailOpens90d: sql<number>`COUNT(*) FILTER (WHERE ${contactActivities.type} = 'email_opened' AND ${contactActivities.createdAt} >= ${since90})::int`,
       emailClicks90d: sql<number>`COUNT(*) FILTER (WHERE ${contactActivities.type} = 'email_clicked' AND ${contactActivities.createdAt} >= ${since90})::int`,
       notesEver: sql<number>`COUNT(*) FILTER (WHERE ${contactActivities.type} = 'note')::int`,
-      stageBumps: sql<number>`COUNT(*) FILTER (WHERE ${contactActivities.type} = 'stage_change' AND (${contactActivities.meta}->>'to' IN ('qualified','offered','accepted') OR ${contactActivities.meta}->>'next' IN ('qualified','offered','accepted') OR ${contactActivities.meta}->>'toStage' IN ('qualified','offered','accepted')))::int`,
+      stageBumps: sql<number>`COUNT(*) FILTER (WHERE ${contactActivities.type} = 'stage_change' AND (${contactActivities.meta}->>'to' IN ('qualified','contacted_twice','final_outreach','signed_up','offered','accepted') OR ${contactActivities.meta}->>'next' IN ('qualified','contacted_twice','final_outreach','signed_up','offered','accepted') OR ${contactActivities.meta}->>'toStage' IN ('qualified','contacted_twice','final_outreach','signed_up','offered','accepted')))::int`,
     })
     .from(contactActivities)
     .groupBy(contactActivities.contactId);

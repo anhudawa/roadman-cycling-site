@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { APPLICATION_STAGES } from "@/lib/crm/pipeline";
 
 type TriggerType =
   | "application.stage_changed"
@@ -34,19 +35,11 @@ const TRIGGER_LABELS: Record<TriggerType, string> = {
   "contact.lifecycle_changed": "Contact lifecycle changed",
 };
 
-const APPLICATION_STAGES = [
-  "awaiting_response",
-  "contacted",
-  "offered",
-  "accepted",
-  "signed_up",
-  "rejected",
-];
 const DEAL_STAGES = ["qualified", "proposal", "negotiation", "won", "lost"];
 const LIFECYCLE_STAGES = ["lead", "prospect", "customer", "evangelist", "archived"];
 const TEAM_SLUGS = ["ted", "sarah", "wes", "matthew"];
 
-function stageOptionsFor(trigger: TriggerType): string[] {
+function stageOptionsFor(trigger: TriggerType): readonly string[] {
   if (trigger === "application.stage_changed") return APPLICATION_STAGES;
   if (trigger === "deal.stage_changed") return DEAL_STAGES;
   if (trigger === "contact.lifecycle_changed") return LIFECYCLE_STAGES;

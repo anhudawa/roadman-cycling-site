@@ -7,7 +7,7 @@ import { isApplicationMonth } from "@/lib/crm/application-month";
 import {
   APPLICATION_STAGES,
   type ApplicationStage,
-  isApplicationStage,
+  normalizeApplicationStage,
 } from "@/lib/crm/pipeline";
 import { getOrCreateContactForApplication } from "@/lib/crm/contacts";
 
@@ -108,16 +108,14 @@ export async function GET(request: Request) {
       (ApplicationRow & { contactId: number | null; owner: string | null })[]
     > = {
       awaiting_response: [],
-      contacted: [],
-      offered: [],
-      accepted: [],
+      contacted_once: [],
+      contacted_twice: [],
+      final_outreach: [],
       signed_up: [],
       rejected: [],
     };
     for (const r of rows) {
-      const stage: ApplicationStage = isApplicationStage(r.status)
-        ? r.status
-        : "awaiting_response";
+      const stage: ApplicationStage = normalizeApplicationStage(r.status);
       const cid = emailToContactId.get(r.email.toLowerCase()) ?? null;
       stages[stage].push({
         ...r,
@@ -166,13 +164,19 @@ export async function PATCH(request: Request) {
   const updates: Record<string, unknown> = {};
 
   if (status) {
-    // Accept both legacy statuses and the new pipeline stages.
-    const legacyStatuses = ["awaiting_response", "responded", "follow_up"];
+    // Accept stale clients, but only persist the current workflow values.
+    const legacyStatuses = [
+      "contacted",
+      "responded",
+      "offered",
+      "follow_up",
+      "accepted",
+    ];
     const validStatuses = new Set<string>([...legacyStatuses, ...APPLICATION_STAGES]);
     if (!validStatuses.has(status)) {
       return NextResponse.json({ error: "Invalid status" }, { status: 400 });
     }
-    updates.status = status;
+    updates.status = normalizeApplicationStage(status);
   }
 
   // Always mark as read when patching

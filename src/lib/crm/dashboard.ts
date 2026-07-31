@@ -121,7 +121,12 @@ export interface MyDayData {
 }
 
 const STALE_DAYS = 7;
-const WAITING_STATUSES = ["awaiting_response", "contacted", "qualified", "offered"] as const;
+const WAITING_STATUSES = [
+  "awaiting_response",
+  "contacted_once",
+  "contacted_twice",
+  "final_outreach",
+] as const;
 
 function startOfToday(): Date {
   const d = new Date();

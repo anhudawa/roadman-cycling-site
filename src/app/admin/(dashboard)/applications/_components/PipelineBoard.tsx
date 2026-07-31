@@ -182,7 +182,7 @@ export function PipelineBoard({ initialStages }: Props) {
 
   function openCard(app: KanbanApplication) {
     if (app.contactId) {
-      router.push(`/admin/contacts/${app.contactId}`);
+      router.push(`/admin/contacts/${app.contactId}?application=${app.id}`);
     } else {
       setDetail(app);
     }
@@ -322,7 +322,7 @@ export function PipelineBoard({ initialStages }: Props) {
                           openCard(app);
                         }
                       }}
-                      className={`group relative block w-full text-left p-3 rounded-lg border bg-[var(--color-elevated)] hover:bg-white/[0.04] transition cursor-grab active:cursor-grabbing ${
+                      className={`group relative block w-full text-left p-3 rounded-lg border bg-[var(--color-elevated)] hover:bg-white/[0.04] transition cursor-grab active:cursor-grabbing before:absolute before:inset-y-2 before:left-0 before:w-1 before:rounded-r-full ${color.cardAccent} ${
                         isInnerCircle
                           ? "border-amber-400/60 ring-1 ring-amber-400/30 shadow-[0_0_18px_rgba(251,191,36,0.18)] hover:border-amber-400/80"
                           : "border-[var(--color-border)] hover:border-[var(--color-border-strong)]"
