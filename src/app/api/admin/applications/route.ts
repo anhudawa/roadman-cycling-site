@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { cohortApplications, contacts } from "@/lib/db/schema";
-import { desc, isNull, eq, inArray } from "drizzle-orm";
+import { and, desc, isNull, eq, inArray, sql, type SQL } from "drizzle-orm";
 import { requireAuth } from "@/lib/admin/auth";
+import { isApplicationMonth } from "@/lib/crm/application-month";
 import {
   APPLICATION_STAGES,
   type ApplicationStage,
@@ -11,6 +12,22 @@ import {
 import { getOrCreateContactForApplication } from "@/lib/crm/contacts";
 
 type ApplicationRow = typeof cohortApplications.$inferSelect;
+
+function getApplicationFilters(
+  cohort: string | null,
+  month: string | null,
+): SQL[] {
+  const filters: SQL[] = [];
+  if (cohort && cohort !== "all") {
+    filters.push(eq(cohortApplications.cohort, cohort));
+  }
+  if (isApplicationMonth(month)) {
+    filters.push(
+      sql`to_char(${cohortApplications.createdAt} AT TIME ZONE 'Europe/Dublin', 'YYYY-MM') = ${month}`,
+    );
+  }
+  return filters;
+}
 
 // GET /api/admin/applications — list applications + unread count
 export async function GET(request: Request) {
@@ -24,6 +41,8 @@ export async function GET(request: Request) {
   const countOnly = searchParams.get("count") === "1";
   const view = searchParams.get("view");
   const cohort = searchParams.get("cohort");
+  const month = searchParams.get("month");
+  const filters = getApplicationFilters(cohort, month);
 
   if (countOnly) {
     const [unread, awaiting] = await Promise.all([
@@ -47,9 +66,10 @@ export async function GET(request: Request) {
       .select()
       .from(cohortApplications)
       .orderBy(desc(cohortApplications.createdAt));
-    const rows = await (cohort && cohort !== "all"
-      ? rowsQuery.where(eq(cohortApplications.cohort, cohort))
-      : rowsQuery);
+    const rows =
+      filters.length > 0
+        ? await rowsQuery.where(and(...filters))
+        : await rowsQuery;
 
     // Build contact ids for each email (one upsert per distinct email).
     const emailToContactId = new Map<string, number>();
@@ -91,6 +111,7 @@ export async function GET(request: Request) {
       contacted: [],
       offered: [],
       accepted: [],
+      signed_up: [],
       rejected: [],
     };
     for (const r of rows) {
@@ -117,11 +138,14 @@ export async function GET(request: Request) {
     });
   }
 
-  const applications = await db
+  const applicationsQuery = db
     .select()
     .from(cohortApplications)
-    .orderBy(desc(cohortApplications.createdAt))
-    .limit(100);
+    .orderBy(desc(cohortApplications.createdAt));
+  const applications =
+    filters.length > 0
+      ? await applicationsQuery.where(and(...filters))
+      : await applicationsQuery;
 
   return NextResponse.json({ applications });
 }
@@ -143,7 +167,7 @@ export async function PATCH(request: Request) {
 
   if (status) {
     // Accept both legacy statuses and the new pipeline stages.
-    const legacyStatuses = ["awaiting_response", "responded", "follow_up", "signed_up"];
+    const legacyStatuses = ["awaiting_response", "responded", "follow_up"];
     const validStatuses = new Set<string>([...legacyStatuses, ...APPLICATION_STAGES]);
     if (!validStatuses.has(status)) {
       return NextResponse.json({ error: "Invalid status" }, { status: 400 });

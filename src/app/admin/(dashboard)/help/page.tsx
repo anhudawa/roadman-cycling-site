@@ -147,7 +147,8 @@ export default async function HelpPage() {
         <P>
           <C>/admin/applications</C> is a kanban board of <B>cohort applications</B> only. Stages:{" "}
           <B>new</B> (just submitted, unread) → <B>reviewing</B> (you&apos;ve read it) →{" "}
-          <B>awaiting_response</B> (ball is in their court) → <B>accepted</B> / <B>rejected</B>.
+          <B>awaiting_response</B> → <B>contacted</B> → <B>offered</B> →{" "}
+          <B>accepted</B> → <B>signed_up</B>, or <B>rejected</B>.
           Drag cards to change stage. Each app has an <B>owner</B> — assign yourself when you pick
           it up, so My Day surfaces it.
         </P>

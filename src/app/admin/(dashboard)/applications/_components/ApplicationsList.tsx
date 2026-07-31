@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { UnreadDot } from "@/components/admin/ui";
 import {
   APPLICATION_STAGES,
@@ -10,7 +10,7 @@ import {
   isApplicationStage,
 } from "@/lib/crm/pipeline";
 
-interface Application {
+export interface Application {
   id: number;
   name: string;
   email: string;
@@ -23,6 +23,10 @@ interface Application {
   status: string;
   readAt: string | null;
   createdAt: string;
+}
+
+interface Props {
+  initialApplications: Application[];
 }
 
 const PERSONA_COLORS: Record<string, string> = {
@@ -41,20 +45,10 @@ function timeAgo(dateStr: string): string {
   return `${Math.floor(hrs / 24)}d ago`;
 }
 
-export function ApplicationsList() {
-  const [applications, setApplications] = useState<Application[]>([]);
+export function ApplicationsList({ initialApplications }: Props) {
+  const [applications, setApplications] =
+    useState<Application[]>(initialApplications);
   const [selected, setSelected] = useState<Application | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch("/api/admin/applications")
-      .then((r) => r.json())
-      .then((data) => {
-        setApplications(data.applications || []);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, []);
 
   async function markRead(app: Application) {
     setSelected(app);
@@ -88,10 +82,6 @@ export function ApplicationsList() {
     } catch {
       setApplications(prev);
     }
-  }
-
-  if (loading) {
-    return <div className="p-8 text-foreground-muted">Loading applications...</div>;
   }
 
   const unreadCount = applications.filter((a) => !a.readAt).length;

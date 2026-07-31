@@ -181,6 +181,12 @@ describe("POST /api/cohort/apply", () => {
       gclid: "click-1",
       gbraid: "braid-1",
       wbraid: "braid-2",
+      lastLandingPath: "/apply",
+      lastUtmSource: "facebook",
+      lastUtmMedium: "paid_social",
+      lastUtmCampaign: "retargeting",
+      lastFbclid: "meta-1",
+      lastCapturedAt: "2026-07-30T19:30:00.000Z",
     };
     const { POST } = await import("./route");
     const response = await POST(request({ ...VALID_BODY, attribution }));

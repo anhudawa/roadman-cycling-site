@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { desc, eq, inArray } from "drizzle-orm";
+import { and, desc, eq, inArray, sql } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { cohortApplications, contacts } from "@/lib/db/schema";
 import { requireAuth } from "@/lib/admin/auth";
+import { isApplicationMonth } from "@/lib/crm/application-month";
 import {
   APPLICATION_STAGES,
   isApplicationStage,
@@ -11,6 +12,7 @@ import {
 import { getOrCreateContactForApplication } from "@/lib/crm/contacts";
 import { PipelineBoard, type KanbanApplication, type StageMap } from "./_components/PipelineBoard";
 import { ApplicationsList } from "./_components/ApplicationsList";
+import { ApplicationsFilters } from "./_components/ApplicationsFilters";
 
 export const dynamic = "force-dynamic";
 
@@ -53,28 +55,52 @@ export default async function ApplicationsPage({ searchParams }: PageProps) {
   const cohort = Array.isArray(cohortRaw) ? cohortRaw[0] : cohortRaw;
   const currentCohort = cohort && cohort.trim() ? cohort : "all";
 
-  const cohortsRows = await db
-    .selectDistinct({ cohort: cohortApplications.cohort })
-    .from(cohortApplications);
+  const monthRaw = sp.month;
+  const month = Array.isArray(monthRaw) ? monthRaw[0] : monthRaw;
+  const currentMonth = isApplicationMonth(month) ? month : "all";
+
+  const monthExpression = sql<string>`to_char(${cohortApplications.createdAt} AT TIME ZONE 'Europe/Dublin', 'YYYY-MM')`;
+  const [cohortsRows, monthsRows] = await Promise.all([
+    db
+      .selectDistinct({ cohort: cohortApplications.cohort })
+      .from(cohortApplications),
+    db
+      .selectDistinct({ month: monthExpression })
+      .from(cohortApplications)
+      .orderBy(desc(monthExpression)),
+  ]);
   const cohorts = cohortsRows.map((c) => c.cohort).filter(Boolean) as string[];
+  const months = monthsRows
+    .map((row) => row.month)
+    .filter(isApplicationMonth);
+
+  const filters = [];
+  if (currentCohort !== "all") {
+    filters.push(eq(cohortApplications.cohort, currentCohort));
+  }
+  if (currentMonth !== "all") {
+    filters.push(sql<boolean>`${monthExpression} = ${currentMonth}`);
+  }
+
+  const baseQuery = db
+    .select()
+    .from(cohortApplications)
+    .orderBy(desc(cohortApplications.createdAt));
+  const rows =
+    filters.length > 0
+      ? await baseQuery.where(and(...filters))
+      : await baseQuery;
 
   const initialStages: StageMap = {
     awaiting_response: [],
     contacted: [],
     offered: [],
     accepted: [],
+    signed_up: [],
     rejected: [],
   };
 
   if (currentView === "kanban") {
-    const baseQuery = db
-      .select()
-      .from(cohortApplications)
-      .orderBy(desc(cohortApplications.createdAt));
-    const rows = await (currentCohort !== "all"
-      ? baseQuery.where(eq(cohortApplications.cohort, currentCohort))
-      : baseQuery);
-
     const emailToContactId = new Map<string, number>();
     for (const r of rows) {
       const key = r.email.toLowerCase();
@@ -121,6 +147,11 @@ export default async function ApplicationsPage({ searchParams }: PageProps) {
     (sum, s) => sum + initialStages[s].length,
     0
   );
+  const visibleCount = currentView === "kanban" ? totalCount : rows.length;
+  const preservedFilters = {
+    ...(currentCohort !== "all" ? { cohort: currentCohort } : {}),
+    ...(currentMonth !== "all" ? { month: currentMonth } : {}),
+  };
 
   return (
     <div className="p-6">
@@ -131,14 +162,15 @@ export default async function ApplicationsPage({ searchParams }: PageProps) {
               Submissions
             </h1>
             <p className="text-foreground-muted text-sm mt-1.5">
-              {currentView === "kanban"
-                ? `${totalCount} /apply submission${totalCount === 1 ? "" : "s"}`
-                : "/apply submissions · list view"}
+              {visibleCount} /apply submission{visibleCount === 1 ? "" : "s"}
             </p>
           </div>
           <div className="inline-flex rounded-lg border border-white/10 bg-background-elevated p-0.5 text-[11px] shrink-0">
             <Link
-              href={{ pathname: "/admin/applications", query: { view: "kanban" } }}
+              href={{
+                pathname: "/admin/applications",
+                query: preservedFilters,
+              }}
               aria-current={currentView === "kanban" ? "page" : undefined}
               className={`px-3 h-8 inline-flex items-center rounded-md font-heading tracking-wider uppercase transition-colors ${
                 currentView === "kanban"
@@ -149,7 +181,10 @@ export default async function ApplicationsPage({ searchParams }: PageProps) {
               Board
             </Link>
             <Link
-              href={{ pathname: "/admin/applications", query: { view: "list" } }}
+              href={{
+                pathname: "/admin/applications",
+                query: { ...preservedFilters, view: "list" },
+              }}
               aria-current={currentView === "list" ? "page" : undefined}
               className={`px-3 h-8 inline-flex items-center rounded-md font-heading tracking-wider uppercase transition-colors ${
                 currentView === "list"
@@ -178,14 +213,28 @@ export default async function ApplicationsPage({ searchParams }: PageProps) {
         </div>
       </div>
 
+      <div className="mb-4">
+        <ApplicationsFilters
+          view={currentView}
+          cohorts={cohorts}
+          months={months}
+          cohort={currentCohort}
+          month={currentMonth}
+        />
+      </div>
+
       {currentView === "kanban" ? (
         <PipelineBoard
+          key={`${currentCohort}:${currentMonth}`}
           initialStages={initialStages}
-          cohorts={cohorts}
-          initialCohort={currentCohort}
         />
       ) : (
-        <ApplicationsList />
+        <ApplicationsList
+          key={`${currentCohort}:${currentMonth}`}
+          initialApplications={rows.map((row) =>
+            serialize(row, null, null)
+          )}
+        />
       )}
     </div>
   );

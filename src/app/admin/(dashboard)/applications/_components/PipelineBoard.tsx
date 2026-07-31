@@ -38,8 +38,6 @@ export type StageMap = Record<ApplicationStage, KanbanApplication[]>;
 
 interface Props {
   initialStages: StageMap;
-  cohorts: string[];
-  initialCohort: string;
 }
 
 const PERSONA_COLORS: Record<string, string> = {
@@ -64,16 +62,14 @@ function truncate(s: string, n: number): string {
   return s.length <= n ? s : s.slice(0, n - 1).trimEnd() + "…";
 }
 
-export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) {
+export function PipelineBoard({ initialStages }: Props) {
   const router = useRouter();
   const [stages, setStages] = useState<StageMap>(initialStages);
-  const [cohort, setCohort] = useState(initialCohort);
   const [dragId, setDragId] = useState<number | null>(null);
   const [dragFrom, setDragFrom] = useState<ApplicationStage | null>(null);
   const [hoverStage, setHoverStage] = useState<ApplicationStage | null>(null);
   const [detail, setDetail] = useState<KanbanApplication | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [loadingCohort, setLoadingCohort] = useState(false);
   const [ownerMenuFor, setOwnerMenuFor] = useState<number | null>(null);
   const [assigningId, setAssigningId] = useState<number | null>(null);
   const [deletingId, setDeletingId] = useState<number | null>(null);
@@ -135,24 +131,6 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
     [stages]
   );
 
-  async function changeCohort(next: string) {
-    setCohort(next);
-    setLoadingCohort(true);
-    try {
-      const url = `/api/admin/applications?view=kanban${
-        next !== "all" ? `&cohort=${encodeURIComponent(next)}` : ""
-      }`;
-      const res = await fetch(url);
-      if (!res.ok) throw new Error("Failed to load");
-      const data = await res.json();
-      setStages(data.stages as StageMap);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to load");
-    } finally {
-      setLoadingCohort(false);
-    }
-  }
-
   function findCard(id: number): { stage: ApplicationStage; card: KanbanApplication } | null {
     for (const s of APPLICATION_STAGES) {
       const c = stages[s].find((x) => x.id === id);
@@ -187,9 +165,10 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
       }
       setError(null);
 
-      // Suggest an email template when moving to accepted/rejected.
-      if ((to === "accepted" || to === "rejected") && found.card.contactId) {
-        const templateSlug = to === "accepted" ? "cohort-welcome" : "cohort-rejection";
+      // Suggest the relevant email only when the outcome is definitive.
+      if ((to === "signed_up" || to === "rejected") && found.card.contactId) {
+        const templateSlug =
+          to === "signed_up" ? "cohort-welcome" : "cohort-rejection";
         router.push(
           `/admin/contacts/${found.card.contactId}?email=${encodeURIComponent(templateSlug)}`
         );
@@ -242,32 +221,7 @@ export function PipelineBoard({ initialStages, cohorts, initialCohort }: Props) 
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex items-center gap-3 flex-wrap">
-        <label className="text-foreground-subtle text-xs tracking-widest uppercase">
-          Cohort
-        </label>
-        <select
-          value={cohort}
-          onChange={(e) => changeCohort(e.target.value)}
-          disabled={loadingCohort}
-          className={`bg-[var(--color-sunken)] border text-sm rounded-[var(--radius-admin-md)] px-3 py-1.5 focus-ring focus:border-[var(--color-border-focus)] ${
-            cohort === "inner-circle"
-              ? "border-amber-400/70 text-amber-200 shadow-[0_0_12px_rgba(251,191,36,0.18)]"
-              : "border-[var(--color-border-strong)] text-[var(--color-fg)]"
-          }`}
-        >
-          <option value="all">All cohorts</option>
-          {cohorts.map((c) => (
-            <option key={c} value={c}>
-              {c === "inner-circle" ? "★ inner-circle" : c}
-            </option>
-          ))}
-        </select>
-        {cohort === "inner-circle" && (
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-heading tracking-[0.18em] uppercase bg-gradient-to-r from-amber-300 to-amber-500 text-[#1a0535] shadow-md">
-            ★ Inner Circle &middot; $525/mo
-          </span>
-        )}
+      <div className="flex items-center min-h-6">
         <span className="sr-only">{totalCount} applications</span>
         {error && (
           <span className="ml-auto text-xs text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-lg">

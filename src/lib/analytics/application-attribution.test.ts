@@ -66,6 +66,10 @@ describe("application attribution", () => {
       gclid: "click-1",
       gbraid: "braid-1",
       wbraid: "braid-2",
+      lastLandingPath: "/",
+      lastUtmSource: "google",
+      lastUtmCampaign: "summer",
+      lastGclid: "click-1",
     });
   });
 
@@ -85,16 +89,53 @@ describe("application attribution", () => {
     expect(readApplicationAttribution()).toMatchObject({
       landingPath: "/",
       utmSource: "podcast",
+      lastLandingPath: "/",
+      lastUtmSource: "podcast",
     });
   });
 
-  it("restores first-touch click IDs onto /apply before tags load", () => {
+  it("keeps first touch while replacing last touch with a later campaign", () => {
     const sessionStorage = createSessionStorage();
-    const { location, replaceState } = stubLocation(
-      "https://roadmancycling.com/?utm_source=google&gclid=click-1&fbclid=meta-1",
+    const { location } = stubLocation(
+      "https://roadmancycling.com/?utm_source=google&utm_medium=cpc&utm_campaign=search&gclid=click-1",
       sessionStorage,
     );
     vi.stubGlobal("document", { referrer: "" });
+    captureApplicationAttribution();
+
+    location.href =
+      "https://roadmancycling.com/coaching?utm_source=facebook&utm_medium=paid_social&utm_campaign=retargeting&fbclid=meta-1";
+    location.pathname = "/coaching";
+    location.search =
+      "?utm_source=facebook&utm_medium=paid_social&utm_campaign=retargeting&fbclid=meta-1";
+
+    expect(captureApplicationAttribution()).toMatchObject({
+      utmSource: "google",
+      utmCampaign: "search",
+      gclid: "click-1",
+      lastLandingPath: "/coaching",
+      lastUtmSource: "facebook",
+      lastUtmMedium: "paid_social",
+      lastUtmCampaign: "retargeting",
+      lastFbclid: "meta-1",
+    });
+    expect(readApplicationAttribution()).not.toHaveProperty("lastGclid");
+  });
+
+  it("restores last-touch click IDs onto /apply before tags load", () => {
+    const sessionStorage = createSessionStorage();
+    const { location, replaceState } = stubLocation(
+      "https://roadmancycling.com/?utm_source=google&gclid=click-1",
+      sessionStorage,
+    );
+    vi.stubGlobal("document", { referrer: "" });
+    captureApplicationAttribution();
+
+    location.href =
+      "https://roadmancycling.com/coaching?utm_source=facebook&utm_medium=paid_social&fbclid=meta-1";
+    location.pathname = "/coaching";
+    location.search =
+      "?utm_source=facebook&utm_medium=paid_social&fbclid=meta-1";
     captureApplicationAttribution();
 
     location.href = "https://roadmancycling.com/apply";
@@ -103,8 +144,8 @@ describe("application attribution", () => {
 
     expect(restoreAttributionToApplicationUrl()).toBe(true);
     expect(replaceState).toHaveBeenCalledOnce();
-    expect(location.search).toContain("utm_source=google");
-    expect(location.search).toContain("gclid=click-1");
+    expect(location.search).toContain("utm_source=facebook");
     expect(location.search).toContain("fbclid=meta-1");
+    expect(location.search).not.toContain("gclid=click-1");
   });
 });

@@ -5,6 +5,12 @@
  * All emails come from: Roadman Cycling <noreply@roadmancycling.com>
  */
 
+import {
+  classifyMarketingAttribution,
+  getAttributionTouch,
+  MARKETING_CHANNEL_LABELS,
+} from "@/lib/marketing/attribution";
+
 const FROM_ADDRESS = "Roadman Cycling <noreply@roadmancycling.com>";
 
 const RECIPIENTS = {
@@ -398,13 +404,35 @@ export async function notifyCohortApplication(data: {
   };
 
   const heading = isInnerCircle ? `🥇 NEW ${typeLabel}` : `NEW NDY ${typeLabel}`;
-  const source =
-    [data.attribution?.utmSource, data.attribution?.utmMedium]
-      .filter(Boolean)
-      .join(" / ") ||
-    data.attribution?.aiReferrer ||
-    data.attribution?.referrer ||
-    "Direct / unknown";
+  const firstTouch = getAttributionTouch(data.attribution, "first");
+  const lastTouch = getAttributionTouch(data.attribution, "last");
+  const firstChannel = classifyMarketingAttribution(
+    data.attribution,
+    "first",
+  );
+  const lastChannel = classifyMarketingAttribution(data.attribution, "last");
+  const describeTouch = (
+    channel: keyof typeof MARKETING_CHANNEL_LABELS,
+    source?: string,
+    medium?: string,
+  ) => {
+    const detail = [source, medium].filter(Boolean).join(" / ");
+    return `${MARKETING_CHANNEL_LABELS[channel]}${detail ? ` (${detail})` : ""}`;
+  };
+  const firstSource = describeTouch(
+    firstChannel,
+    firstTouch.source,
+    firstTouch.medium,
+  );
+  const lastSource = describeTouch(
+    lastChannel,
+    lastTouch.source,
+    lastTouch.medium,
+  );
+  const touchesDiffer =
+    firstSource !== lastSource ||
+    firstTouch.campaign !== lastTouch.campaign ||
+    firstTouch.landingPath !== lastTouch.landingPath;
 
   const html = emailWrapper(
     heading,
@@ -417,12 +445,16 @@ export async function notifyCohortApplication(data: {
       row("FTP", data.ftp || "Not provided") +
       row(isInnerCircle ? "Detail" : "Frustration", data.frustration) +
       row("Persona", personaLabels[data.persona] ?? data.persona) +
-      row("Acquisition source", source) +
-      (data.attribution?.utmCampaign
-        ? row("Campaign", data.attribution.utmCampaign)
+      row(touchesDiffer ? "Last-touch source" : "Acquisition source", lastSource) +
+      (touchesDiffer ? row("First-touch source", firstSource) : "") +
+      (lastTouch.campaign
+        ? row("Last-touch campaign", lastTouch.campaign)
         : "") +
-      (data.attribution?.landingPath
-        ? row("Landing page", data.attribution.landingPath)
+      (touchesDiffer && firstTouch.campaign
+        ? row("First-touch campaign", firstTouch.campaign)
+        : "") +
+      (lastTouch.landingPath
+        ? row("Application journey landed on", lastTouch.landingPath)
         : "")
     ) +
     `<p style="margin-top: 16px;">

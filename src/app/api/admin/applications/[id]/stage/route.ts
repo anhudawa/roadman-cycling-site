@@ -66,7 +66,14 @@ export async function PATCH(
   const fromStage = existing.status;
   const updated = await db
     .update(cohortApplications)
-    .set({ status: nextStage, readAt: existing.readAt ?? new Date() })
+    .set({
+      status: nextStage,
+      readAt: existing.readAt ?? new Date(),
+      signedUpAt:
+        nextStage === "signed_up"
+          ? existing.signedUpAt ?? new Date()
+          : existing.signedUpAt,
+    })
     .where(eq(cohortApplications.id, id))
     .returning();
 

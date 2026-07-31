@@ -34,7 +34,14 @@ const TRIGGER_LABELS: Record<TriggerType, string> = {
   "contact.lifecycle_changed": "Contact lifecycle changed",
 };
 
-const APPLICATION_STAGES = ["awaiting_response", "contacted", "qualified", "accepted", "rejected"];
+const APPLICATION_STAGES = [
+  "awaiting_response",
+  "contacted",
+  "offered",
+  "accepted",
+  "signed_up",
+  "rejected",
+];
 const DEAL_STAGES = ["qualified", "proposal", "negotiation", "won", "lost"];
 const LIFECYCLE_STAGES = ["lead", "prospect", "customer", "evangelist", "archived"];
 const TEAM_SLUGS = ["ted", "sarah", "wes", "matthew"];

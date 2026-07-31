@@ -168,6 +168,7 @@ export default async function ReportsPage() {
                       "contacted",
                       "offered",
                       "accepted",
+                      "signed_up",
                       "rejected",
                     ] as const
                   ).map((s) => (
@@ -193,6 +194,7 @@ export default async function ReportsPage() {
                         "contacted",
                         "offered",
                         "accepted",
+                        "signed_up",
                         "rejected",
                       ] as const
                     ).map((s) => (

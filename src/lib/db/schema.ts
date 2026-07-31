@@ -207,6 +207,7 @@ export const cohortApplications = pgTable(
     submissionKey: text("submission_key"),
     attribution: jsonb("attribution").$type<Record<string, string>>(),
     status: text("status").notNull().default("awaiting_response"),
+    signedUpAt: timestamp("signed_up_at", { withTimezone: true }),
     readAt: timestamp("read_at", { withTimezone: true }),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   },
@@ -214,12 +215,35 @@ export const cohortApplications = pgTable(
     index("cohort_applications_created_at_idx").on(table.createdAt),
     index("cohort_applications_cohort_idx").on(table.cohort),
     index("cohort_applications_read_at_idx").on(table.readAt),
+    index("cohort_applications_signed_up_at_idx").on(table.signedUpAt),
     // One application per email per cohort — prevents duplicate kanban cards.
     uniqueIndex("cohort_applications_email_cohort_idx").on(
       table.email,
       table.cohort,
     ),
   ]
+);
+
+// --- Marketing Spend ---
+export const marketingSpend = pgTable(
+  "marketing_spend",
+  {
+    id: serial("id").primaryKey(),
+    spendDate: date("spend_date").notNull(),
+    channel: text("channel").notNull(),
+    campaign: text("campaign"),
+    amountCents: integer("amount_cents").notNull(),
+    currency: text("currency").notNull().default("EUR"),
+    notes: text("notes"),
+    source: text("source").notNull().default("manual"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    index("marketing_spend_date_idx").on(table.spendDate),
+    index("marketing_spend_channel_idx").on(table.channel),
+  ],
 );
 
 // --- CRM: Contacts ---

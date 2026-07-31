@@ -51,6 +51,7 @@ const NAV_SECTIONS: NavSection[] = [
     title: "Growth",
     items: [
       { href: "/admin/measurement", label: "Measurement", icon: "pulse" },
+      { href: "/admin/marketing", label: "Marketing", icon: "trending" },
       { href: "/admin/funnel", label: "Funnel", icon: "funnel" },
       { href: "/admin/health", label: "Health", icon: "heart" },
       { href: "/admin/newsletter", label: "Newsletter", icon: "newspaper" },

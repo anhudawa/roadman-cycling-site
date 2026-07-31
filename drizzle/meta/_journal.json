@@ -372,6 +372,20 @@
       "when": 1785448800000,
       "tag": "0058_recommends_intent_collections",
       "breakpoints": true
+    },
+    {
+      "idx": 53,
+      "version": "7",
+      "when": 1785448800001,
+      "tag": "0059_marketing_attribution_dashboard",
+      "breakpoints": true
+    },
+    {
+      "idx": 54,
+      "version": "7",
+      "when": 1785484800000,
+      "tag": "0060_application_signed_up",
+      "breakpoints": true
     }
   ]
 }

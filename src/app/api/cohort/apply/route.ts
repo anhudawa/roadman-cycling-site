@@ -27,6 +27,20 @@ const ATTRIBUTION_FIELDS = new Set([
   "msclkid",
   "aiReferrer",
   "capturedAt",
+  "lastLandingPath",
+  "lastReferrer",
+  "lastUtmSource",
+  "lastUtmMedium",
+  "lastUtmCampaign",
+  "lastUtmContent",
+  "lastUtmTerm",
+  "lastGclid",
+  "lastGbraid",
+  "lastWbraid",
+  "lastFbclid",
+  "lastMsclkid",
+  "lastAiReferrer",
+  "lastCapturedAt",
 ]);
 
 function sanitiseAttribution(
@@ -47,10 +61,16 @@ function sanitiseAttribution(
   }
 
   if (clean.landingPath && !clean.landingPath.startsWith("/")) return null;
+  if (clean.lastLandingPath && !clean.lastLandingPath.startsWith("/")) {
+    return null;
+  }
   if (
     clean.referrer &&
     !/^https?:\/\//i.test(clean.referrer)
   ) {
+    return null;
+  }
+  if (clean.lastReferrer && !/^https?:\/\//i.test(clean.lastReferrer)) {
     return null;
   }
   return clean;
