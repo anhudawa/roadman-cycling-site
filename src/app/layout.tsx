@@ -4,6 +4,7 @@ import { PodcastPlayerShell } from "@/components/features/podcast/PodcastPlayerS
 import { ConversionChrome } from "@/components/layout/ConversionChrome";
 import { LazyCookieConsent } from "@/components/features/consent/LazyCookieConsent";
 import { ConsentRuntimeLoader } from "@/components/analytics/ConsentRuntimeLoader";
+import { GoogleConsentMode } from "@/components/analytics/GoogleConsentMode";
 import { ApplicationAttributionCapture } from "@/components/analytics/ApplicationAttributionCapture";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
 import { RouteBreadcrumbJsonLd } from "@/components/seo/RouteBreadcrumbJsonLd";
@@ -142,6 +143,7 @@ export default function RootLayout({
       className={`${bebasNeue.variable} ${workSans.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} dark`}
     >
       <head>
+        <GoogleConsentMode />
         {/* Preconnect to critical third-party origins */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

@@ -41,6 +41,8 @@ const ATTRIBUTION_FIELDS = new Set([
   "lastMsclkid",
   "lastAiReferrer",
   "lastCapturedAt",
+  "adUserDataConsent",
+  "adPersonalizationConsent",
 ]);
 
 function sanitiseAttribution(
@@ -253,6 +255,7 @@ export async function POST(request: Request) {
           submissionKey,
           attribution,
           status: "awaiting_response",
+          signedUpAt: null,
           readAt: null,
           createdAt: new Date(),
         })

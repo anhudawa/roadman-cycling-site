@@ -1,13 +1,13 @@
 import {
   hasMarketingConsent,
   readClientConsent,
+  type ClientConsentPreferences,
 } from "./consent-client";
 
 export const GOOGLE_ADS_ID = "AW-18123737652";
 export const META_PIXEL_ID = "649389789190949";
 
 const configuredGoogleIds = new Set<string>();
-let googleBootstrapped = false;
 let metaInitialised = false;
 
 type TagFunction = (...args: unknown[]) => void;
@@ -47,38 +47,26 @@ export function ensureGtagQueue(): TagFunction | undefined {
   return trackingWindow.gtag;
 }
 
-function loadGoogleScript(id: string) {
-  if (document.querySelector('script[data-roadman-google-tag="true"]')) return;
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}`;
-  script.dataset.roadmanGoogleTag = "true";
-  document.head.appendChild(script);
+export function getGoogleConsentUpdate(consent: ClientConsentPreferences) {
+  return {
+    analytics_storage: consent.analytics ? "granted" : "denied",
+    ad_storage: consent.marketing ? "granted" : "denied",
+    ad_user_data: consent.marketing ? "granted" : "denied",
+    ad_personalization: consent.marketing ? "granted" : "denied",
+  } as const;
 }
 
 export function configureConsentedGoogleTags() {
-  if (typeof window === "undefined" || typeof document === "undefined") return;
+  if (typeof window === "undefined") return;
   const consent = readClientConsent();
   const ga4Id = consent.analytics ? getGa4Id() : undefined;
-  const adsId = consent.marketing ? GOOGLE_ADS_ID : undefined;
-  const primaryId = ga4Id ?? adsId;
-  if (!primaryId) return;
 
   const gtag = ensureGtagQueue();
   if (!gtag) return;
-  loadGoogleScript(primaryId);
-
-  if (!googleBootstrapped) {
-    googleBootstrapped = true;
-    gtag("js", new Date());
-  }
+  gtag("consent", "update", getGoogleConsentUpdate(consent));
   if (ga4Id && !configuredGoogleIds.has(ga4Id)) {
     configuredGoogleIds.add(ga4Id);
     gtag("config", ga4Id, { send_page_view: false });
-  }
-  if (adsId && !configuredGoogleIds.has(adsId)) {
-    configuredGoogleIds.add(adsId);
-    gtag("config", adsId);
   }
 }
 

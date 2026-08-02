@@ -19,7 +19,6 @@ export function GoogleConsentRuntime({
   const lastPageViewRef = useRef<string | null>(null);
 
   useEffect(() => {
-    if (!analytics && !marketing) return;
     configureConsentedGoogleTags();
   }, [analytics, marketing]);
 

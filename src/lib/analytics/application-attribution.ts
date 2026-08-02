@@ -34,6 +34,8 @@ export interface ApplicationAttribution {
   lastMsclkid?: string;
   lastAiReferrer?: string;
   lastCapturedAt?: string;
+  adUserDataConsent?: "granted" | "denied";
+  adPersonalizationConsent?: "granted" | "denied";
 }
 
 const ATTRIBUTION_QUERY_FIELDS = {

@@ -339,6 +339,12 @@ export function CohortApplicationForm() {
     }
 
     try {
+      const consent = readClientConsent();
+      const attribution = {
+        ...readApplicationAttribution(),
+        adUserDataConsent: consent.marketing ? "granted" : "denied",
+        adPersonalizationConsent: consent.marketing ? "granted" : "denied",
+      };
       const res = await fetch("/api/cohort/apply", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -351,7 +357,7 @@ export function CohortApplicationForm() {
           frustration,
           website,
           submissionId: submissionIdRef.current,
-          attribution: readApplicationAttribution(),
+          attribution,
         }),
       });
 
