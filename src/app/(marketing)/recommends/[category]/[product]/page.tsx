@@ -61,6 +61,27 @@ export default async function RecommendationProductPage({
         item.id !== product.id && item.categorySlug === product.categorySlug,
     )
     .slice(0, 3);
+  const setupCollection = collections.find(
+    (collection) =>
+      collection.rule === "manual" && collection.productIds.includes(product.id),
+  );
+  const setupProducts = setupCollection
+    ? setupCollection.productIds
+        .map((id) => allProducts.find((item) => item.id === id))
+        .filter(
+          (item): item is (typeof allProducts)[number] =>
+            item !== undefined && item.id !== product.id,
+        )
+        .reduce<(typeof allProducts)[number][]>((items, item) => {
+          if (
+            items.length < 3 &&
+            !items.some((existing) => existing.categorySlug === item.categorySlug)
+          ) {
+            items.push(item);
+          }
+          return items;
+        }, [])
+    : [];
   const canonical = `https://roadmancycling.com/recommends/${category}/${slug}`;
 
   return (
@@ -78,6 +99,20 @@ export default async function RecommendationProductPage({
             name: "Anthony Walsh",
             url: "https://roadmancycling.com/author/anthony-walsh",
           },
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: product.name,
+          description: product.shortDescription,
+          image: product.imageUrl || undefined,
+          category: product.categoryName || undefined,
+          brand: product.brandName
+            ? { "@type": "Brand", name: product.brandName }
+            : undefined,
+          url: canonical,
         }}
       />
       <JsonLd
@@ -198,6 +233,43 @@ export default async function RecommendationProductPage({
           </aside>
         </div>
       </section>
+
+      {setupProducts.length ? (
+        <section className={`${styles.section} ${styles.sectionAlt}`}>
+          <div className={styles.sectionInner}>
+            <div className={styles.sectionHeader}>
+              <div>
+                <h2>COMPLETE THE SETUP.</h2>
+                <p>
+                  These picks make the most sense alongside {product.name} in the {setupCollection?.name} edit.
+                </p>
+              </div>
+            </div>
+            <div className={styles.editGrid}>
+              {setupProducts.map((item) => (
+                <Link
+                  key={item.id}
+                  href={`/recommends/${item.categorySlug}/${item.slug}`}
+                  className={styles.editCard}
+                >
+                  {item.imageUrl ? (
+                    <Image
+                      src={item.imageUrl}
+                      alt={item.imageAlt || item.name}
+                      width={720}
+                      height={540}
+                      sizes="(max-width: 640px) 100vw, (max-width: 980px) 50vw, 25vw"
+                    />
+                  ) : null}
+                  <span>{item.brandName ?? item.categoryName}</span>
+                  <h3>{item.name}</h3>
+                  <p>{item.verdict}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {alternatives.length ? (
         <section className={`${styles.section} ${styles.sectionAlt}`}>

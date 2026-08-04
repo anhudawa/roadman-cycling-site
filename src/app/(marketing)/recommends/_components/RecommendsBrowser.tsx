@@ -12,6 +12,12 @@ import styles from "../Recommends.module.css";
 
 const SAVED_KEY = "roadman_recommends_saved";
 const REGION_KEY = "roadman_recommends_region";
+const REGION_LABELS: Record<string, string> = {
+  IE: "Ireland",
+  GB: "the United Kingdom",
+  EU: "Europe",
+  US: "the United States",
+};
 
 function matches(product: RecommendationProduct, query: string): boolean {
   if (!query) return true;
@@ -81,6 +87,16 @@ function selectedOffer(product: RecommendationProduct, region: string) {
   );
 }
 
+function availableRegions(product: RecommendationProduct): string[] {
+  return [
+    ...new Set(
+      product.offers
+        .filter((offer) => offer.active)
+        .flatMap((offer) => offer.regions),
+    ),
+  ];
+}
+
 export function RecommendsBrowser({
   products,
   collections,
@@ -96,14 +112,18 @@ export function RecommendsBrowser({
   const [query, setQuery] = useState(searchParams.get("q") ?? "");
   const [collection, setCollection] = useState(searchParams.get("collection") ?? "all");
   const [region, setRegion] = useState("IE");
-  const [category, setCategory] = useState("all");
-  const [brand, setBrand] = useState("all");
-  const [useCase, setUseCase] = useState("all");
-  const [discipline, setDiscipline] = useState("all");
-  const [season, setSeason] = useState("all");
-  const [evidence, setEvidence] = useState("all");
+  const [category, setCategory] = useState(
+    initialCategory ?? searchParams.get("category") ?? "all",
+  );
+  const [brand, setBrand] = useState(searchParams.get("brand") ?? "all");
+  const [useCase, setUseCase] = useState(searchParams.get("use") ?? "all");
+  const [discipline, setDiscipline] = useState(searchParams.get("discipline") ?? "all");
+  const [season, setSeason] = useState(searchParams.get("season") ?? "all");
+  const [evidence, setEvidence] = useState(searchParams.get("evidence") ?? "all");
   const [saved, setSaved] = useState<number[]>([]);
   const [compare, setCompare] = useState<number[]>([]);
+  const [showRefinements, setShowRefinements] = useState(false);
+  const [availableOnly, setAvailableOnly] = useState(false);
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
@@ -124,14 +144,51 @@ export function RecommendsBrowser({
       else next.delete("q");
       if (collection !== "all") next.set("collection", collection);
       else next.delete("collection");
+      if (!initialCategory && category !== "all") next.set("category", category);
+      else next.delete("category");
+      if (brand !== "all") next.set("brand", brand);
+      else next.delete("brand");
+      if (useCase !== "all") next.set("use", useCase);
+      else next.delete("use");
+      if (discipline !== "all") next.set("discipline", discipline);
+      else next.delete("discipline");
+      if (season !== "all") next.set("season", season);
+      else next.delete("season");
+      if (evidence !== "all") next.set("evidence", evidence);
+      else next.delete("evidence");
       const nextQuery = next.toString();
       if (nextQuery === searchParams.toString()) return;
-      router.replace(nextQuery ? `${pathname}?${nextQuery}` : pathname, {
+      const hash = window.location.hash;
+      router.replace(nextQuery ? `${pathname}?${nextQuery}${hash}` : `${pathname}${hash}`, {
         scroll: false,
       });
     }, 250);
     return () => window.clearTimeout(timeout);
-  }, [collection, pathname, query, router, searchParams]);
+  }, [
+    brand,
+    category,
+    collection,
+    discipline,
+    evidence,
+    initialCategory,
+    pathname,
+    query,
+    router,
+    searchParams,
+    season,
+    useCase,
+  ]);
+
+  useEffect(() => {
+    setQuery(searchParams.get("q") ?? "");
+    setCollection(searchParams.get("collection") ?? "all");
+    setCategory(initialCategory ?? searchParams.get("category") ?? "all");
+    setBrand(searchParams.get("brand") ?? "all");
+    setUseCase(searchParams.get("use") ?? "all");
+    setDiscipline(searchParams.get("discipline") ?? "all");
+    setSeason(searchParams.get("season") ?? "all");
+    setEvidence(searchParams.get("evidence") ?? "all");
+  }, [initialCategory, searchParams]);
 
   const visible = useMemo(
     () =>
@@ -219,6 +276,26 @@ export function RecommendsBrowser({
     .map((id) => products.find((product) => product.id === id))
     .filter((product): product is RecommendationProduct => Boolean(product));
 
+  const availableCount = useMemo(
+    () => visible.filter((product) => Boolean(selectedOffer(product, region))).length,
+    [region, visible],
+  );
+  const displayedProducts = useMemo(
+    () =>
+      availableOnly
+        ? visible.filter((product) => Boolean(selectedOffer(product, region)))
+        : visible,
+    [availableOnly, region, visible],
+  );
+  const activeRefinementCount = [
+    !initialCategory && category !== "all",
+    brand !== "all",
+    useCase !== "all",
+    discipline !== "all",
+    season !== "all",
+    evidence !== "all",
+  ].filter(Boolean).length;
+
   function toggleSaved(id: number) {
     const next = saved.includes(id) ? saved.filter((item) => item !== id) : [...saved, id];
     setSaved(next);
@@ -231,6 +308,21 @@ export function RecommendsBrowser({
       if (current.length >= 3) return current;
       return [...current, id];
     });
+  }
+
+  function updateRegion(nextRegion: string) {
+    setRegion(nextRegion);
+    localStorage.setItem(REGION_KEY, nextRegion);
+  }
+
+  function clearRefinements() {
+    setCategory("all");
+    setBrand("all");
+    setUseCase("all");
+    setDiscipline("all");
+    setSeason("all");
+    setEvidence("all");
+    setAvailableOnly(false);
   }
 
   return (
@@ -263,11 +355,14 @@ export function RecommendsBrowser({
             </datalist>
           </label>
           <p className={styles.resultCount} aria-live="polite">
-            {visible.length} {visible.length === 1 ? "recommendation" : "recommendations"}
+            {displayedProducts.length} {displayedProducts.length === 1 ? "recommendation" : "recommendations"}
+            {visible.length > 0 && availableCount < visible.length
+              ? ` · ${availableCount} ready to shop in ${REGION_LABELS[region]}`
+              : ""}
           </p>
         </div>
 
-        <div className={styles.filterRow} aria-label="Recommendation filters">
+        <div className={styles.filterRow} role="group" aria-label="Recommendation filters">
           {[
             ["all", "All"],
             ...collections.map((item) => [item.slug, item.name]),
@@ -287,10 +382,7 @@ export function RecommendsBrowser({
             <select
               className={styles.filter}
               value={region}
-              onChange={(event) => {
-                setRegion(event.target.value);
-                localStorage.setItem(REGION_KEY, event.target.value);
-              }}
+              onChange={(event) => updateRegion(event.target.value)}
             >
               <option value="IE">Ireland</option>
               <option value="GB">United Kingdom</option>
@@ -298,115 +390,110 @@ export function RecommendsBrowser({
               <option value="US">United States</option>
             </select>
           </label>
-          {!initialCategory ? (
-            <label>
-              <span className="sr-only">Category</span>
-              <select
-                className={styles.filter}
-                value={category}
-                onChange={(event) => setCategory(event.target.value)}
-              >
-                <option value="all">All categories</option>
-                {filterOptions.categories.map(([slug, name]) => (
-                  <option key={slug} value={slug}>{name}</option>
-                ))}
-              </select>
-            </label>
-          ) : null}
-          <label>
-            <span className="sr-only">Brand</span>
-            <select
-              className={styles.filter}
-              value={brand}
-              onChange={(event) => setBrand(event.target.value)}
-            >
-              <option value="all">All brands</option>
-              {filterOptions.brands.map(([slug, name]) => (
-                <option key={slug} value={slug}>{name}</option>
-              ))}
-            </select>
-          </label>
-          <label>
-            <span className="sr-only">Intended use</span>
-            <select
-              className={styles.filter}
-              value={useCase}
-              onChange={(event) => setUseCase(event.target.value)}
-            >
-              <option value="all">Any use</option>
-              {filterOptions.useCases.map((value) => (
-                <option key={value} value={value}>{value}</option>
-              ))}
-            </select>
-          </label>
-          <label>
-            <span className="sr-only">Cycling discipline</span>
-            <select
-              className={styles.filter}
-              value={discipline}
-              onChange={(event) => setDiscipline(event.target.value)}
-            >
-              <option value="all">Any discipline</option>
-              {filterOptions.disciplines.map((value) => (
-                <option key={value} value={value}>{value}</option>
-              ))}
-            </select>
-          </label>
-          <label>
-            <span className="sr-only">Season</span>
-            <select
-              className={styles.filter}
-              value={season}
-              onChange={(event) => setSeason(event.target.value)}
-            >
-              <option value="all">Any season</option>
-              {filterOptions.seasons.map((value) => (
-                <option key={value} value={value}>{value}</option>
-              ))}
-            </select>
-          </label>
-          <label>
-            <span className="sr-only">Evidence</span>
-            <select
-              className={styles.filter}
-              value={evidence}
-              onChange={(event) => setEvidence(event.target.value)}
-            >
-              <option value="all">Any evidence</option>
-              <option value="personally_used">Personally used</option>
-              <option value="team_tested">Team tested</option>
-              <option value="research_based">Research-based</option>
-              <option value="community_favourite">Community favourite</option>
-              <option value="editorial">Roadman editorial</option>
-            </select>
-          </label>
-          {(category !== "all" ||
-            brand !== "all" ||
-            useCase !== "all" ||
-            discipline !== "all" ||
-            season !== "all" ||
-            evidence !== "all") ? (
+          <button
+            type="button"
+            className={showRefinements || activeRefinementCount ? styles.filterActive : styles.filter}
+            onClick={() => setShowRefinements((current) => !current)}
+            aria-expanded={showRefinements}
+            aria-controls="recommendation-refinements"
+          >
+            Refine{activeRefinementCount ? ` (${activeRefinementCount})` : ""}
+          </button>
+          {activeRefinementCount ? (
             <button
               type="button"
               className={styles.filter}
-              onClick={() => {
-                setCategory("all");
-                setBrand("all");
-                setUseCase("all");
-                setDiscipline("all");
-                setSeason("all");
-                setEvidence("all");
-              }}
+              onClick={clearRefinements}
             >
-              Clear filters
+              Clear refine
             </button>
           ) : null}
         </div>
 
+        {showRefinements ? (
+          <div id="recommendation-refinements" className={styles.refinementPanel}>
+            {!initialCategory ? (
+              <label className={styles.refineControl}>
+                <span>Category</span>
+                <select value={category} onChange={(event) => setCategory(event.target.value)}>
+                  <option value="all">All categories</option>
+                  {filterOptions.categories.map(([slug, name]) => (
+                    <option key={slug} value={slug}>{name}</option>
+                  ))}
+                </select>
+              </label>
+            ) : null}
+            <label className={styles.refineControl}>
+              <span>Brand</span>
+              <select value={brand} onChange={(event) => setBrand(event.target.value)}>
+                <option value="all">All brands</option>
+                {filterOptions.brands.map(([slug, name]) => (
+                  <option key={slug} value={slug}>{name}</option>
+                ))}
+              </select>
+            </label>
+            <label className={styles.refineControl}>
+              <span>What are you doing?</span>
+              <select value={useCase} onChange={(event) => setUseCase(event.target.value)}>
+                <option value="all">Any use</option>
+                {filterOptions.useCases.map((value) => (
+                  <option key={value} value={value}>{value}</option>
+                ))}
+              </select>
+            </label>
+            <label className={styles.refineControl}>
+              <span>Discipline</span>
+              <select value={discipline} onChange={(event) => setDiscipline(event.target.value)}>
+                <option value="all">Any discipline</option>
+                {filterOptions.disciplines.map((value) => (
+                  <option key={value} value={value}>{value}</option>
+                ))}
+              </select>
+            </label>
+            <label className={styles.refineControl}>
+              <span>Season</span>
+              <select value={season} onChange={(event) => setSeason(event.target.value)}>
+                <option value="all">Any season</option>
+                {filterOptions.seasons.map((value) => (
+                  <option key={value} value={value}>{value}</option>
+                ))}
+              </select>
+            </label>
+            <label className={styles.refineControl}>
+              <span>Recommendation basis</span>
+              <select value={evidence} onChange={(event) => setEvidence(event.target.value)}>
+                <option value="all">Any basis</option>
+                <option value="personally_used">Personally used</option>
+                <option value="team_tested">Team tested</option>
+                <option value="research_based">Research-based</option>
+                <option value="community_favourite">Community favourite</option>
+                <option value="editorial">Roadman editorial</option>
+              </select>
+            </label>
+          </div>
+        ) : null}
+
+        {visible.length > 0 && availableCount < visible.length ? (
+          <div className={styles.availabilityBar}>
+            <p>
+              {availableCount} of {visible.length} picks have an approved retailer in {REGION_LABELS[region]}.
+            </p>
+            <button
+              type="button"
+              className={availableOnly ? styles.filterActive : styles.filter}
+              onClick={() => setAvailableOnly((current) => !current)}
+            >
+              {availableOnly ? "Show every recommendation" : `Show ${availableCount} ready to shop`}
+            </button>
+          </div>
+        ) : null}
+
         <div className={styles.productGrid}>
-          {visible.map((product) => {
+          {displayedProducts.map((product) => {
             const offer = selectedOffer(product, region);
             const categoryPath = product.categorySlug ?? "gear";
+            const otherRegions = availableRegions(product).filter((item) => item !== region);
+            const alternateRegion = otherRegions[0];
             return (
               <article key={product.id} className={styles.productCard}>
                 <div className={styles.productImage}>
@@ -444,10 +531,15 @@ export function RecommendsBrowser({
                   <p className={styles.offerLine}>
                     {offer
                       ? `${offer.priceLabel || "Check current price"} · ${offer.retailerName}`
-                      : `No approved retailer for ${region}`}
+                      : otherRegions.length
+                        ? `Available in ${otherRegions.map((item) => REGION_LABELS[item]).join(" or ")}`
+                        : `No approved retailer in ${REGION_LABELS[region]} yet`}
                   </p>
                   <div className={styles.cardActions}>
-                    <Link className={styles.cardLink} href={`/recommends/${categoryPath}/${product.slug}`}>
+                    <Link
+                      className={`${styles.cardLink} ${!offer ? styles.cardLinkFull : ""}`}
+                      href={`/recommends/${categoryPath}/${product.slug}`}
+                    >
                       Read verdict
                     </Link>
                     {offer ? (
@@ -461,6 +553,14 @@ export function RecommendsBrowser({
                           ? `Use ${offer.promoCode} at ${offer.retailerName}`
                           : `View at ${offer.retailerName}`}
                       </a>
+                    ) : alternateRegion ? (
+                      <button
+                        type="button"
+                        className={styles.regionSwitch}
+                        onClick={() => updateRegion(alternateRegion)}
+                      >
+                        Shop in {REGION_LABELS[alternateRegion]}
+                      </button>
                     ) : null}
                   </div>
                   <label className={styles.compareControl}>
@@ -477,13 +577,15 @@ export function RecommendsBrowser({
             );
           })}
 
-          {visible.length === 0 ? (
+          {displayedProducts.length === 0 ? (
             <div className={styles.empty}>
-              <h3>{products.length === 0 ? "THE LIBRARY IS BEING STOCKED." : "NO GEAR MATCHES THAT SEARCH."}</h3>
+              <h3>{products.length === 0 ? "THE LIBRARY IS BEING STOCKED." : availableOnly ? "NOTHING TO SHOP IN THIS REGION." : "NO GEAR MATCHES THAT SEARCH."}</h3>
               <p>
                 {products.length === 0
                   ? "Recommendations only appear after they have been reviewed and published. Check back shortly, or ask Roadman for an answer now."
-                  : "Try a broader search, clear the collection filter, or browse a different category."}
+                  : availableOnly
+                    ? "Try showing every recommendation, or choose another shopping region."
+                    : "Try a broader search, clear the collection filter, or browse a different category."}
               </p>
               <div className={styles.heroActions}>
                 <Link className={styles.secondaryAction} href="/ask">Ask Roadman</Link>
@@ -494,6 +596,7 @@ export function RecommendsBrowser({
                     onClick={() => {
                       setQuery("");
                       setCollection("all");
+                      clearRefinements();
                     }}
                   >
                     Clear filters

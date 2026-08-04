@@ -43,9 +43,44 @@ export default async function RecommendsPage() {
         right.updatedAt.getTime() - left.updatedAt.getTime(),
     )
     .slice(0, 4);
-  const intentCollections = collections.filter((collection) =>
-    ["winter-riding", "new-to-ndy"].includes(collection.slug),
-  );
+  const rideGuides = [
+    {
+      eyebrow: "RIDE THROUGH IT",
+      title: "WINTER-PROOF YOUR RIDING",
+      description:
+        "Grip, warmth, rain protection, bike care and an indoor fallback for the months that test motivation.",
+      detail: "Grip · warmth · rain · indoor",
+      href: "/recommends?collection=winter-riding#recommendations",
+      tone: styles.intentWinter,
+    },
+    {
+      eyebrow: "TRAIN WITH PURPOSE",
+      title: "BUILD AN INDOOR SETUP",
+      description:
+        "The trainer, controls and cooling that turn spare time at home into sessions you actually want to do.",
+      detail: "Trainer · Zwift · fan · control",
+      href: "/recommends?collection=indoor-setup#recommendations",
+      tone: styles.intentIndoor,
+    },
+    {
+      eyebrow: "START STRONG",
+      title: "NEW TO NDY",
+      description:
+        "The useful first purchases for coached riding, from heart rate and structured sessions to a sensible power upgrade.",
+      detail: "Computer · heart rate · trainer · power",
+      href: "/recommends?collection=new-to-ndy#recommendations",
+      tone: styles.intentNdy,
+    },
+    {
+      eyebrow: "FEEL THE DIFFERENCE",
+      title: "MAKE THE BIKE FASTER",
+      description:
+        "Start with the upgrades that change how a road bike feels: tyres, pressure, contact points and smart training data.",
+      detail: "Tyres · pedals · saddle · power",
+      href: "/recommends/tyres-tubes",
+      tone: styles.intentSpeed,
+    },
+  ];
   const problemLinks = [
     ["I need faster tyres", "/recommends?q=fast%20road%20riding#recommendations"],
     ["I keep puncturing", "/recommends?q=tubeless#recommendations"],
@@ -89,11 +124,11 @@ export default async function RecommendsPage() {
             you ride better and waste less money.
           </p>
           <div className={styles.heroActions}>
-            <a className={styles.primaryAction} href="#recommendations">
-              Browse recommendations
+            <a className={styles.primaryAction} href="#ride-guides">
+              Find my setup
             </a>
             <a className={styles.secondaryAction} href="#recommendations">
-              Search for a product
+              Search the edit
             </a>
           </div>
         </div>
@@ -101,51 +136,41 @@ export default async function RecommendsPage() {
 
       <LocalNav categories={categories} collections={collections} />
 
-      {intentCollections.length ? (
-        <section className={`${styles.section} ${styles.sectionAlt}`}>
+      <section id="ride-guides" className={`${styles.section} ${styles.sectionAlt}`}>
           <div className={styles.sectionInner}>
             <div className={styles.sectionHeader}>
               <h2>START WITH THE RIDE AHEAD.</h2>
               <p>
-                Complete setups for the moments riders actually ask about—not
-                another wall of product categories.
+                Pick the situation first. Every route lands on a tight edit of
+                recommendations that work together.
               </p>
             </div>
             <div className={styles.intentGrid}>
-              {intentCollections.map((collection) => {
-                const isWinter = collection.slug === "winter-riding";
-                return (
-                  <Link
-                    key={collection.slug}
-                    href={`/recommends?collection=${collection.slug}#recommendations`}
-                    className={`${styles.intentCard} ${
-                      isWinter ? styles.intentWinter : styles.intentNdy
-                    }`}
-                  >
-                    <span>{isWinter ? "RIDE THROUGH IT" : "BUILD YOUR SETUP"}</span>
-                    <h3>{collection.name.toUpperCase()}</h3>
-                    <p>{collection.description}</p>
-                    <strong>
-                      {isWinter
-                        ? "Grip · warmth · rain · indoor"
-                        : "Computer · heart rate · trainer · power"}
-                      <span aria-hidden="true"> →</span>
-                    </strong>
-                  </Link>
-                );
-              })}
+              {rideGuides.map((guide) => (
+                <Link
+                  key={guide.title}
+                  href={guide.href}
+                  className={`${styles.intentCard} ${guide.tone}`}
+                >
+                  <span>{guide.eyebrow}</span>
+                  <h3>{guide.title}</h3>
+                  <p>{guide.description}</p>
+                  <strong>
+                    {guide.detail}<span aria-hidden="true"> →</span>
+                  </strong>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
-      ) : null}
 
       <section className={styles.section}>
         <div className={styles.sectionInner}>
           <div className={styles.sectionHeader}>
             <h2>SHOP BY WHAT MATTERS.</h2>
             <p>
-              Start with the job the product needs to do. No endless catalogue,
-              no paid placement disguised as advice.
+              Start with the job the product needs to do. A focused edit instead
+              of an endless catalogue.
             </p>
           </div>
           <div className={styles.categoryGrid}>

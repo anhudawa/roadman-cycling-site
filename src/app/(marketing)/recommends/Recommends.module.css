@@ -215,6 +215,18 @@
     linear-gradient(145deg, #210140, #39213d 70%);
 }
 
+.intentIndoor {
+  background:
+    radial-gradient(circle at 82% 8%, rgba(244, 176, 72, 0.3), transparent 16rem),
+    linear-gradient(145deg, #342014, #29242b 72%);
+}
+
+.intentSpeed {
+  background:
+    radial-gradient(circle at 85% 10%, rgba(107, 222, 185, 0.27), transparent 16rem),
+    linear-gradient(145deg, #142d2b, #252b30 72%);
+}
+
 .intentCard:hover {
   border-color: rgba(241, 99, 99, 0.62);
   transform: translateY(-3px);
@@ -362,6 +374,55 @@
   border-color: #f16363;
   background: rgba(241, 99, 99, 0.12);
   color: #fff;
+}
+
+.refinementPanel {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: -0.85rem 0 1.4rem;
+  padding: 1rem;
+  border: 1px solid var(--recommend-line);
+  border-radius: 0.7rem;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.refineControl {
+  display: grid;
+  gap: 0.42rem;
+  min-width: 0;
+  color: var(--recommend-muted);
+  font-size: 0.73rem;
+  font-weight: 600;
+}
+
+.refineControl select {
+  width: 100%;
+  min-height: 42px;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--recommend-line);
+  border-radius: 0.4rem;
+  background: #171518;
+  color: #fff;
+  font-size: 0.82rem;
+}
+
+.availabilityBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: -0.65rem 0 1.5rem;
+  padding: 0.75rem 0.85rem;
+  border-left: 2px solid #f16363;
+  background: rgba(241, 99, 99, 0.07);
+}
+
+.availabilityBar p {
+  margin: 0;
+  color: var(--recommend-muted);
+  font-size: 0.8rem;
+  line-height: 1.4;
 }
 
 .productGrid {
@@ -607,7 +668,8 @@
 }
 
 .cardLink,
-.retailerLink {
+.retailerLink,
+.regionSwitch {
   min-height: 42px;
   display: inline-flex;
   align-items: center;
@@ -627,6 +689,18 @@
   padding-inline: 0.8rem;
   background: #f16363;
   color: #210140;
+}
+
+.regionSwitch {
+  padding-inline: 0.8rem;
+  border: 1px solid rgba(241, 99, 99, 0.52);
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.cardLinkFull {
+  grid-column: 1 / -1;
 }
 
 .compareControl {
@@ -938,6 +1012,10 @@
     grid-template-columns: 1fr;
   }
 
+  .refinementPanel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .detailImage {
     min-height: 380px;
   }
@@ -966,7 +1044,8 @@
   .problemGrid,
   .splitEdits,
   .trustGrid,
-  .compareGrid {
+  .compareGrid,
+  .refinementPanel {
     grid-template-columns: 1fr;
   }
 
@@ -987,6 +1066,11 @@
   }
 
   .offerRow {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .availabilityBar {
     align-items: flex-start;
     flex-direction: column;
   }
