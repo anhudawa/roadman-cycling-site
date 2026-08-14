@@ -87,7 +87,7 @@ npm run predict:calibration
 Before production release, review and apply the migration, seed or refresh the event catalog, then complete one Stripe test-mode purchase in staging:
 
 ```bash
-npm run db:migrate
+npm run db:migrate:predict
 npm run seed:race-events
 ```
 
@@ -96,6 +96,6 @@ Confirm checkout, webhook receipt, report generation, Resend delivery, private r
 ## Honest Remaining Risks
 
 - Most named event routes are event-shaped profile approximations, not final organiser GPX files. The UI now says so, confidence bands widen automatically, and `npm run routes:import` is the replacement path. Accuracy claims must stay conservative until sourced routes and actual-result cohorts exist.
-- Migration `0062_prediction_result_idempotency.sql` has not been applied by this local code change. It intentionally keeps the newest duplicate result before adding the unique constraint, so production data should be reviewed before migration.
+- Migration `0062_prediction_result_idempotency.sql` has not been applied by this local code change. The dedicated command refuses to proceed if duplicates exist and never deletes result data. Do not use the broad migration command against the current production database because its historical migration ledger is empty.
 - Calibration code is complete, but the current four-result cohort has 16.5% MAPE and is not large or representative enough for a public accuracy claim. Verified routes and substantially more post-event submissions are the next accuracy priority.
 - Garmin/Wahoo execution export and FIT upload remain future integrations; neither is claimed in the current product.

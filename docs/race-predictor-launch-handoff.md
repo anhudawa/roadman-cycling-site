@@ -25,13 +25,13 @@ Never commit real values. `.env.example` is the canonical name list.
 
 ## Database And Catalog
 
-Apply migrations before release:
+The current production database has an empty Drizzle migration ledger despite having the historical schema. Do not run the broad `npm run db:migrate` command against it. Apply only the predictor integrity change:
 
 ```bash
-npm run db:migrate
+npm run db:migrate:predict
 ```
 
-Migration `0062_prediction_result_idempotency.sql` keeps the newest actual-result submission per prediction and adds the uniqueness constraint used by the application upsert.
+This command runs in a transaction, refuses to proceed if duplicates exist, deletes no result data, and adds the uniqueness constraint used by the application upsert.
 
 Seed the event catalog:
 
