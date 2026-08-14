@@ -396,9 +396,9 @@ export default function CoachingPage() {
                 className="font-heading text-off-white mb-6"
                 style={{ fontSize: "var(--text-hero)" }}
               >
-                STOP GUESSING.
+                ONLINE CYCLING COACHING
                 <br />
-                <span className="text-coral">START PROGRESSING.</span>
+                <span className="text-coral">THAT MOVES THE NUMBERS.</span>
               </h1>
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
                 Evidence-based coaching for serious amateur and masters

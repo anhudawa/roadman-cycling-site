@@ -89,4 +89,21 @@ describe("GET /llms.txt", () => {
     const text = await res.text();
     expect(text).toContain("MCP Server");
   });
+  it("declares canonical owners for the five priority search categories", async () => {
+    const { GET } = await import("./route");
+    const res = await GET();
+    const text = await res.text();
+
+    expect(text).toContain("Core search ownership — canonical entry points");
+    for (const path of [
+      "/podcast",
+      "/coaching",
+      "/masters",
+      "/training-plans",
+      "/training-camps",
+    ]) {
+      expect(text).toContain(`https://roadmancycling.com${path}?utm=test`);
+    }
+  });
+
 });

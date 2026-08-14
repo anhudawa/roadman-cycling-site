@@ -9,10 +9,8 @@ describe("/robots.ts", () => {
     expect(result.sitemap).toContain(`${SITE_ORIGIN}/sitemap-index.xml`);
   });
 
-  it("references all 6 split sitemaps (0..5)", () => {
-    for (let i = 0; i <= 5; i++) {
-      expect(result.sitemap).toContain(`${SITE_ORIGIN}/sitemap/${i}.xml`);
-    }
+  it("uses the sitemap index as the single crawler discovery point", () => {
+    expect(result.sitemap).toBe(`${SITE_ORIGIN}/sitemap-index.xml`);
   });
 
   it("allows the wildcard userAgent at root and on /_next/static/", () => {

@@ -48,10 +48,9 @@ describe("robots()", () => {
     }
   });
 
-  it("sitemap array contains sitemap-index.xml", async () => {
+  it("advertises only the canonical sitemap index", async () => {
     const { default: robots } = await import("./robots");
     const result = robots();
-    const sitemaps = result.sitemap as string[];
-    expect(sitemaps.some((s) => s.includes("sitemap-index.xml"))).toBe(true);
+    expect(result.sitemap).toBe("https://roadmancycling.com/sitemap-index.xml");
   });
 });

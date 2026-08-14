@@ -212,9 +212,9 @@ export default function TrainingCampsLandingPage() {
                 className="font-heading text-off-white leading-[0.95] mb-5 md:mb-6 text-center"
                 style={{ fontSize: "clamp(3rem, 13vw, 6rem)" }}
               >
-                SIX DAYS IN
+                CYCLING TRAINING CAMPS
                 <br />
-                <span className="text-coral">GIRONA.</span>
+                <span className="text-coral">IN GIRONA.</span>
               </h1>
               <p
                 className="text-foreground-muted mx-auto mb-8 md:mb-10 leading-relaxed font-light text-center"
