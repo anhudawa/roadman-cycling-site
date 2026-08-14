@@ -39,7 +39,7 @@ Seed the event catalog:
 npm run seed:race-events
 ```
 
-The seed routes are event-profile approximations. Replace each one when a permitted final GPX is available. Imports dry-run unless `--commit` is present:
+The seed routes are event-profile approximations. The seed command skips any route already imported with verified GPX provenance, so a later seed cannot downgrade it. Replace each profile route when a permitted final GPX is available. Imports dry-run unless `--commit` is present:
 
 ```bash
 npm run routes:import -- \
