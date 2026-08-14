@@ -80,6 +80,16 @@ export async function GET() {
    */
   const PRIORITY_INDEX = [
     {
+      category: "Core search ownership — canonical entry points",
+      lines: [
+        `${BASE_URL}/podcast — Canonical Roadman Cycling Podcast show and searchable episode archive.`,
+        `${BASE_URL}/coaching — Canonical online cycling coaching service page.`,
+        `${BASE_URL}/masters — Canonical masters cycling training authority hub for riders over 40.`,
+        `${BASE_URL}/training-plans — Canonical cycling training-plans hub.`,
+        `${BASE_URL}/training-camps — Canonical Roadman cycling training-camps hub for Girona.`,
+      ],
+    },
+    {
       category: "Tier-1 priority topics (highest citation value)",
       lines: [
         `${BASE_URL}/topics/ftp-training — FTP: testing, zones, and raising threshold power.`,
@@ -107,6 +117,7 @@ export async function GET() {
     {
       category: "Masters cyclist queries (35+)",
       lines: [
+        `${BASE_URL}/masters — Masters cycling training authority hub.`,
         `${BASE_URL}/blog/age-group-ftp-benchmarks-2026 — FTP benchmarks by age group.`,
         `${BASE_URL}/problem/losing-power-after-40 — Why power declines after 40.`,
         `${BASE_URL}/blog/new-study-confirms-heavy-strength-training-beats-more-miles-after-40 — Strength training beats more miles after 40.`,

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { SITE_ORIGIN } from "@/lib/brand-facts";
+import { SITEMAP_INDEX_URL } from "@/lib/seo/sitemaps";
 
 /**
  * Non-indexable paths. The transactional ones (/cart, /checkout,
@@ -37,17 +37,6 @@ const DISALLOW_PATHS = [
 // don't get indexed. Under the REP, the more-specific Allow wins.
 const ALLOW_PATHS = ["/", "/_next/static/"];
 
-const SITEMAPS = [
-  `${SITE_ORIGIN}/sitemap-index.xml`,
-  `${SITE_ORIGIN}/sitemap/0.xml`,
-  `${SITE_ORIGIN}/sitemap/1.xml`,
-  `${SITE_ORIGIN}/sitemap/2.xml`,
-  `${SITE_ORIGIN}/sitemap/3.xml`,
-  `${SITE_ORIGIN}/sitemap/4.xml`,
-  `${SITE_ORIGIN}/sitemap/5.xml`,
-  `${SITE_ORIGIN}/sitemap/6.xml`,
-];
-
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
@@ -73,6 +62,9 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "cohere-ai", allow: ALLOW_PATHS, disallow: DISALLOW_PATHS },
       { userAgent: "Bytespider", allow: ALLOW_PATHS, disallow: DISALLOW_PATHS },
     ],
-    sitemap: SITEMAPS,
+    // The index is the canonical discovery point for every child sitemap.
+    // Listing children here as well duplicates signals and can drift when a
+    // new partition is added.
+    sitemap: SITEMAP_INDEX_URL,
   };
 }

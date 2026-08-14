@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 describe("GET /sitemap-index.xml", () => {
-  it("returns valid XML sitemap-index pointing at all 7 split sitemaps", async () => {
+  it("returns valid XML sitemap-index pointing at all 8 split sitemaps", async () => {
     const { GET } = await import("@/app/sitemap-index.xml/route");
     const res = await GET();
     expect(res.status).toBe(200);
@@ -11,13 +11,14 @@ describe("GET /sitemap-index.xml", () => {
     expect(body).toMatch(/^<\?xml /);
     expect(body).toContain("<sitemapindex");
     expect(body).toContain("</sitemapindex>");
-    for (let i = 0; i <= 6; i++) {
+    for (let i = 0; i <= 7; i++) {
       expect(body).toContain(`https://roadmancycling.com/sitemap/${i}.xml`);
     }
-    // 7 <sitemap> child elements (id 6 = expert × topic pages)
+    // IDs 0..7, including expert × topic pages and Roadman Recommends.
     const childCount = (body.match(/<sitemap>/g) ?? []).length;
-    expect(childCount).toBe(7);
-    // Every sitemap entry has a lastmod ISO date
-    expect(body).toMatch(/<lastmod>\d{4}-\d{2}-\d{2}T/);
+    expect(childCount).toBe(8);
+    // The index has no trustworthy per-partition change timestamp, so it
+    // must not pretend every child changed at request time.
+    expect(body).not.toContain("<lastmod>");
   });
 });

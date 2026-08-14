@@ -163,11 +163,11 @@ export default async function PodcastPage({ searchParams }: PodcastPageProps) {
               className="font-heading text-off-white mb-4"
               style={{ fontSize: "var(--text-hero)" }}
             >
-              THE ARCHIVE
+              THE CYCLING PODCAST
             </h1>
             <p className="text-foreground-muted max-w-xl mx-auto text-lg mb-2">
-              Every conversation. Every insight. Searchable, filterable, and
-              ready for you.
+              The Roadman archive. Every conversation and training insight,
+              searchable and ready for you.
             </p>
             <p className="text-coral font-heading text-xl">
               100M+ PODCAST DOWNLOADS

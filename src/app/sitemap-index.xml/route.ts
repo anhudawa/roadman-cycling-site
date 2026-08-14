@@ -1,14 +1,12 @@
-const BASE_URL = "https://roadmancycling.com";
-const SITEMAP_IDS = [0, 1, 2, 3, 4, 5, 6] as const;
+import { getChildSitemapUrl, SITEMAP_IDS } from "@/lib/seo/sitemaps";
 
 export async function GET() {
-  const now = new Date().toISOString();
   const body =
     `<?xml version="1.0" encoding="UTF-8"?>\n` +
     `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
     SITEMAP_IDS.map(
       (id) =>
-        `  <sitemap>\n    <loc>${BASE_URL}/sitemap/${id}.xml</loc>\n    <lastmod>${now}</lastmod>\n  </sitemap>\n`,
+        `  <sitemap>\n    <loc>${getChildSitemapUrl(id)}</loc>\n  </sitemap>\n`,
     ).join("") +
     `</sitemapindex>\n`;
 
