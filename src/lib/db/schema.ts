@@ -1641,7 +1641,7 @@ export const predictionResults = pgTable(
     submittedAt: timestamp("submitted_at", { withTimezone: true }).notNull().defaultNow(),
   },
   (table) => [
-    index("prediction_results_prediction_id_idx").on(table.predictionId),
+    uniqueIndex("prediction_results_prediction_id_idx").on(table.predictionId),
   ]
 );
 

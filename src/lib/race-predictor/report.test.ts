@@ -29,7 +29,7 @@ const environment: Environment = {
 };
 
 describe("renderRaceReportHtml", () => {
-  it("includes premium tyre pressure and gearing guidance", () => {
+  it("includes the complete premium race-day guidance", () => {
     const fixture = getFixtureCourseBySlug("fred-whitton-challenge");
     expect(fixture).not.toBeNull();
 
@@ -63,6 +63,11 @@ describe("renderRaceReportHtml", () => {
 
     expect(html).toContain("<h3>Tyre pressure</h3>");
     expect(html).toContain("<h3>Gearing</h3>");
+    expect(html).toContain("<h3>Hydration target</h3>");
+    expect(html).toContain("<h3>Feed station strategy</h3>");
+    expect(html).toContain("<h2>Descending and technical sections</h2>");
+    expect(html).toContain("<h2>Training priorities</h2>");
+    expect(html).toContain("@media print");
     expect(html).toContain("bailout gearing");
     expect(html).toContain("83 kg rider+bike system");
     expect(html).toContain("<h2>Model assumptions</h2>");

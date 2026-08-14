@@ -12,9 +12,16 @@
  * Idempotent — re-running updates existing rows by slug.
  */
 
+import { config } from "dotenv";
 import { buildCourse } from "../src/lib/race-predictor/gpx";
+import { routeProvenanceFromSource } from "../src/lib/race-predictor/route-provenance";
 import type { TrackPoint } from "../src/lib/race-predictor/types";
-import { upsertCourseBySlug } from "../src/lib/race-predictor/store";
+import {
+  getCourseBySlug,
+  upsertCourseBySlug,
+} from "../src/lib/race-predictor/store";
+
+config({ path: ".env.local", quiet: true });
 
 interface ProfileSegment {
   km: number;
@@ -544,6 +551,12 @@ function generateGpxPoints(spec: EventSpec): TrackPoint[] {
 
 async function main() {
   for (const spec of EVENTS) {
+    const existing = await getCourseBySlug(spec.slug);
+    if (routeProvenanceFromSource(existing?.source).quality === "verified_gpx") {
+      console.log(`[seed] ${spec.slug.padEnd(36)}  skipped verified GPX`);
+      continue;
+    }
+
     const points = generateGpxPoints(spec);
     const course = buildCourse(points, { name: spec.name });
     const inserted = await upsertCourseBySlug(spec.slug, {
@@ -560,7 +573,7 @@ async function main() {
       courseData: course,
       eventDates: spec.eventDates ?? [],
       verified: true,
-      source: spec.source,
+      source: `event_profile:${spec.source}`,
     });
     console.log(
       `[seed] ${spec.slug.padEnd(36)}  ${(inserted.distanceM / 1000).toFixed(1).padStart(6)} km  ${String(inserted.elevationGainM).padStart(5)} m  ${String(course.climbs.length).padStart(2)} climbs`,

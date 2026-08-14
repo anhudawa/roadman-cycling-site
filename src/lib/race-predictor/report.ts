@@ -290,6 +290,7 @@ interface ReportAssumptions {
   drivetrainEfficiency?: number | null;
   cdaSource?: string | null;
   crrSource?: string | null;
+  routeQuality?: string | null;
 }
 
 function getReportAssumptions(summary: Record<string, unknown> | null): ReportAssumptions | null {
@@ -303,6 +304,7 @@ function buildAssumptionRows(assumptions: ReportAssumptions | null, rider: Rider
     ["Event type", compactLabel(assumptions?.eventType)],
     ["Drafting", compactLabel(assumptions?.drafting)],
     ["Surface input", compactLabel(assumptions?.surface)],
+    ["Route quality", compactLabel(assumptions?.routeQuality)],
     [
       "Rider height",
       typeof assumptions?.heightCm === "number" ? `${Math.round(assumptions.heightCm)} cm` : "not supplied",
@@ -515,6 +517,94 @@ function windStrategy(environment: Environment): string {
   return "Strong wind: ride by power, not speed. In headwinds, keep pressure steady and use groups wisely; in tailwinds and descents, eat, drink, and conserve.";
 }
 
+function hydrationGuidance(
+  environment: Environment,
+  predictedTimeS: number,
+): string {
+  const hours = predictedTimeS / 3600;
+  const temperature = environment.airTemperature;
+  const lowMlPerHour = temperature >= 25 ? 650 : temperature >= 15 ? 500 : 400;
+  const highMlPerHour = temperature >= 25 ? 900 : temperature >= 15 ? 750 : 650;
+  const lowTotalLitres = (lowMlPerHour * hours) / 1000;
+  const highTotalLitres = (highMlPerHour * hours) / 1000;
+
+  return `Start with ${lowMlPerHour}-${highMlPerHour} ml/hour in the expected ${Math.round(temperature)}°C conditions (${lowTotalLitres.toFixed(1)}-${highTotalLitres.toFixed(1)} L across the predicted ride). Use 500-900 mg sodium per litre as a practical starting range, then adjust from a tested sweat-rate and sodium plan. This is a planning range, not a requirement to force fluid when conditions or your stomach say otherwise.`;
+}
+
+function feedStationStrategy(predictedTimeS: number): string {
+  const hours = predictedTimeS / 3600;
+  if (hours <= 3) {
+    return "Carry the calories you know you can eat and use stops only for an unplanned refill. A short queue can cost more time than a small aero gain saves.";
+  }
+  if (hours <= 6) {
+    return "Plan one decisive refill around halfway. Arrive with bottles ready to swap, take only familiar food, and leave with enough carbohydrate to cover the next two hours plus one emergency serving.";
+  }
+  return "Treat feed stations as scheduled logistics: aim to refill every 2-2.5 hours, identify one priority stop before race day, and carry a full extra hour of carbohydrate in case a station is crowded, empty, or missed. Keep moving past the first table when the entrance is blocked.";
+}
+
+function descendingGuidance(course: Course | null): string {
+  if (!course || course.segments.length === 0) {
+    return "No reliable descent geometry is available. Inspect the route briefing and recce any technical descent before race day; the model does not infer corner severity from elevation alone.";
+  }
+
+  const descendingDistance = course.segments
+    .filter((segment) => Math.tan(segment.gradient) <= -0.03)
+    .reduce((sum, segment) => sum + segment.distance, 0);
+  const descentShare = descendingDistance / Math.max(1, course.totalDistance);
+  const roughDescent = course.segments.some(
+    (segment) =>
+      Math.tan(segment.gradient) <= -0.03 &&
+      ["tarmac_rough", "chip_seal", "gravel_smooth", "gravel_rough", "cobbles"].includes(
+        segment.surface ?? "",
+      ),
+  );
+
+  const surfaceNote = roughDescent
+    ? "Some descending is on a rough or loose surface, so grip, line choice, and puncture margin take priority over an aggressive pressure target."
+    : "The route data does not flag rough descending surface, but GPX geometry cannot tell us whether a corner is blind, off-camber, or exposed.";
+  if (descentShare >= 0.2) {
+    return `${Math.round(descentShare * 100)}% of the course is descending at 3% or steeper. Use those kilometres to lower effort, eat only where the road is straight and stable, and brake before corners rather than through them. ${surfaceNote}`;
+  }
+  return `Descending is not the main time block in this route model. Carry speed over crests, keep effort light once gravity is doing the work, and do not trade race completion for marginal seconds. ${surfaceNote}`;
+}
+
+function trainingPriorities(
+  course: Course | null,
+  predictedTimeS: number,
+  rider: RiderProfile,
+): string[] {
+  const priorities: string[] = [];
+  const ftp = deriveFtp(rider);
+  const hours = predictedTimeS / 3600;
+  const climbDensity = course
+    ? course.totalElevationGain / Math.max(1, course.totalDistance / 1000)
+    : 0;
+  const longestClimbM = Math.max(0, ...(course?.climbs.map((climb) => climb.length) ?? []));
+
+  if (climbDensity >= 20 || longestClimbM >= 8_000) {
+    priorities.push(
+      `Build repeatable climbing at ${Math.round(ftp * 0.78)}-${Math.round(ftp * 0.9)} W, finishing sessions with the same cadence and control you started with.`,
+    );
+  } else {
+    priorities.push(
+      "Build long, uninterrupted tempo blocks in your race position so aero posture remains cheap when fatigue arrives.",
+    );
+  }
+  if (hours >= 5) {
+    priorities.push(
+      "Progress one weekly endurance ride toward race duration and rehearse the exact carbohydrate and fluid routine under load.",
+    );
+  } else {
+    priorities.push(
+      "Practise the event's likely surges without turning every session into a race; recover quickly back to sustainable power.",
+    );
+  }
+  priorities.push(
+    "Use one race-specific rehearsal to validate tyres, pressure, gearing, bottles, computer screens, and what you can eat at target intensity.",
+  );
+  return priorities;
+}
+
 function tyrePressureGuidance(course: Course | null, rider: RiderProfile): string {
   const systemMass = rider.bodyMass + rider.bikeMass;
   const roughSurface =
@@ -594,6 +684,10 @@ export function renderRaceReportHtml(p: RenderHtmlArgs): string {
     rider: p.rider,
   });
   const windNote = windStrategy(p.environment);
+  const hydrationNote = hydrationGuidance(p.environment, p.predictedTimeS);
+  const feedStationNote = feedStationStrategy(p.predictedTimeS);
+  const descendingNote = descendingGuidance(course);
+  const trainingNotes = trainingPriorities(course, p.predictedTimeS, p.rider);
   const tyreNote = tyrePressureGuidance(course, p.rider);
   const gearingNote = gearingGuidance(course);
 
@@ -655,6 +749,14 @@ export function renderRaceReportHtml(p: RenderHtmlArgs): string {
   .footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid #ddd; font-size: 13px; color: ${MID_GREY}; }
   .cta { background: ${CORAL}; color: white; padding: 14px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 16px; }
   @media (max-width: 700px) { .hero-grid, .two-col, .stat-grid { grid-template-columns: 1fr 1fr; } h1 { font-size: 42px; } }
+  @page { size: A4; margin: 14mm; }
+  @media print {
+    body { background: white; }
+    .wrap { max-width: none; padding: 0; }
+    .hero, .block, .insight, .premium, table { break-inside: avoid; }
+    .premium { display: none; }
+    h2, h3 { break-after: avoid; }
+  }
 </style>
 </head>
 <body>
@@ -727,15 +829,31 @@ export function renderRaceReportHtml(p: RenderHtmlArgs): string {
       : ""
   }
 
-  <h2>Fuelling target</h2>
+  <h2>Fuelling, hydration and stops</h2>
+  <div class="two-col">
+    <div class="block">
+      <h3>Carbohydrate target</h3>
+      <p>${escape(fuellingNote)}</p>
+      <p><strong>Rule for the day:</strong> start eating in the first 20 minutes, then keep the drip feed going. If you wait until you feel low, you are already paying interest.</p>
+    </div>
+    <div class="block">
+      <h3>Hydration target</h3>
+      <p>${escape(hydrationNote)}</p>
+    </div>
+  </div>
   <div class="block">
-    <p>${escape(fuellingNote)}</p>
-    <p><strong>Rule for the day:</strong> start eating in the first 20 minutes, then keep the drip feed going. If you wait until you feel low, you are already paying interest.</p>
+    <h3>Feed station strategy</h3>
+    <p>${escape(feedStationNote)}</p>
   </div>
 
   <h2>Wind strategy</h2>
   <div class="block">
     <p>${escape(windNote)}</p>
+  </div>
+
+  <h2>Descending and technical sections</h2>
+  <div class="block">
+    <p>${escape(descendingNote)}</p>
   </div>
 
   <h2>Equipment and course levers</h2>
@@ -788,6 +906,11 @@ export function renderRaceReportHtml(p: RenderHtmlArgs): string {
         <li>Begin fuelling before you feel like you need it.</li>
       </ul>
     </div>
+  </div>
+
+  <h2>Training priorities</h2>
+  <div class="block">
+    <ul class="coach-list">${listItems(trainingNotes)}</ul>
   </div>
 
   <h2>What this report bakes in</h2>

@@ -33,8 +33,8 @@ export async function POST(request: Request) {
     const moduleSlug = STR(body.moduleSlug, 200);
     const action = body.action === "uncomplete" ? "uncomplete" : "complete";
 
-    const module = METHOD_MODULE_BY_SLUG.get(moduleSlug);
-    if (!module) {
+    const methodModule = METHOD_MODULE_BY_SLUG.get(moduleSlug);
+    if (!methodModule) {
       return NextResponse.json(
         { error: "Unknown module." },
         { status: 400 },
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     }
 
     if (action === "complete") {
-      const availability = isModuleUnlocked(session.enrollment, module);
+      const availability = isModuleUnlocked(session.enrollment, methodModule);
       if (!availability.unlocked) {
         return NextResponse.json(
           { error: "Module is not yet unlocked." },

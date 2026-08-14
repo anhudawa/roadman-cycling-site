@@ -393,6 +393,13 @@
       "when": 1785517200000,
       "tag": "0061_application_outreach_stages",
       "breakpoints": true
+    },
+    {
+      "idx": 56,
+      "version": "7",
+      "when": 1786706609000,
+      "tag": "0062_prediction_result_idempotency",
+      "breakpoints": true
     }
   ]
 }

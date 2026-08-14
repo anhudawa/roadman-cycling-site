@@ -24,6 +24,7 @@ import type {
   RidingPosition,
   SurfaceType,
 } from "./types";
+import type { RouteDataQuality } from "./route-provenance";
 
 export interface RiderInputDTO {
   bodyMass: number;
@@ -84,6 +85,7 @@ export interface RunPredictArgs {
   rider: RiderInputDTO;
   environment?: EnvironmentInputDTO;
   mode: PredictMode;
+  routeQuality?: RouteDataQuality;
 }
 
 export interface PredictionRunResult {
@@ -147,7 +149,17 @@ export function buildRiderProfile(input: RiderInputDTO): RiderProfile {
  * with default position → ±3 %. The defaults must under-promise: riders
  * forgive a prediction they beat far more readily than one they miss.
  */
-function inferPrecision(rider: RiderInputDTO): Precision {
+function inferPrecision(
+  rider: RiderInputDTO,
+  routeQuality?: RouteDataQuality,
+): Precision {
+  if (
+    routeQuality === "event_profile" ||
+    routeQuality === "public_provisional" ||
+    routeQuality === "unknown"
+  ) {
+    return "low";
+  }
   if (rider.drafting && rider.drafting !== "solo") return "low";
   if (rider.eventType === "road_race" || rider.eventType === "gravel") {
     return "low";
@@ -233,7 +245,7 @@ export function runPrediction(args: RunPredictArgs): PredictionRunResult {
           pacing: adjustedPacing,
         });
 
-  const precision = inferPrecision(args.rider);
+  const precision = inferPrecision(args.rider, args.routeQuality);
   const confidence = confidenceBracket(result.totalTime, { precision });
   const insight = pickKeyInsight({ course: args.course, result, rider });
 

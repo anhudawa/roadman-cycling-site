@@ -268,6 +268,28 @@ describe("runPrediction", () => {
     );
   });
 
+  it("widens confidence for an event-profile route", () => {
+    const course = flatCourse(40);
+    const common = {
+      course,
+      rider: {
+        bodyMass: 75,
+        bikeMass: 8,
+        position: "aero_hoods" as const,
+        cda: 0.31,
+        crr: 0.0032,
+        powerProfile: { p20min: 285, p60min: 260 },
+      },
+      mode: "plan_my_race" as const,
+    };
+    const verified = runPrediction({ ...common, routeQuality: "verified_gpx" });
+    const profile = runPrediction({ ...common, routeQuality: "event_profile" });
+
+    expect(profile.confidence.high - profile.confidence.low).toBeGreaterThan(
+      verified.confidence.high - verified.confidence.low,
+    );
+  });
+
   it("buildEnvironment fills sane defaults", () => {
     const env = buildEnvironment();
     expect(env.airTemperature).toBe(15);

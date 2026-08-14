@@ -1,8 +1,15 @@
 import { NextResponse } from "next/server";
 import { listVerifiedCourses } from "@/lib/race-predictor/store";
 import type { Climb, Segment } from "@/lib/race-predictor/types";
+import { routeProvenanceFromSource } from "@/lib/race-predictor/route-provenance";
 
 export const runtime = "nodejs";
+
+const RESPONSE_HEADERS = {
+  "Cache-Control":
+    "public, max-age=60, s-maxage=3600, stale-while-revalidate=86400",
+};
+const MEMORY_CACHE_MS = 15 * 60 * 1000;
 
 /**
  * Downsample a segment list to a fixed sample count, returned as a compact
@@ -39,13 +46,14 @@ function compactProfile(segments: Segment[], targetSamples = 120): number[][] {
  * course-picker thumbnails. Full course geometry is loaded by the predict
  * endpoint when a prediction is run.
  */
-export async function GET() {
+async function loadCatalog() {
   const courses = await listVerifiedCourses();
-  return NextResponse.json({
+  return {
     courses: courses.map((c) => {
       const climbs = c.courseData.climbs as Climb[];
       const hcCount = climbs.filter((cl) => cl.category === "hc").length;
-      return {
+      const provenance = routeProvenanceFromSource(c.source);
+        return {
         slug: c.slug,
         name: c.name,
         country: c.country,
@@ -55,6 +63,10 @@ export async function GET() {
         elevationGainM: c.elevationGainM,
         surfaceSummary: c.surfaceSummary,
         eventDates: c.eventDates ?? [],
+        routeQuality: provenance.quality,
+        routeQualityLabel: provenance.label,
+        routeQualityDetail: provenance.detail,
+        routeSourceUrl: provenance.sourceUrl,
         climbCount: climbs.length,
         hcCount,
         profile: compactProfile(c.courseData.segments),
@@ -66,7 +78,20 @@ export async function GET() {
           elevationGain: cl.elevationGain,
           category: cl.category,
         })),
-      };
+        };
     }),
-  });
+  };
+}
+
+let catalogCache:
+  | { expiresAt: number; payload: Awaited<ReturnType<typeof loadCatalog>> }
+  | null = null;
+
+export async function GET() {
+  if (catalogCache && catalogCache.expiresAt > Date.now()) {
+    return NextResponse.json(catalogCache.payload, { headers: RESPONSE_HEADERS });
+  }
+  const payload = await loadCatalog();
+  catalogCache = { expiresAt: Date.now() + MEMORY_CACHE_MS, payload };
+  return NextResponse.json(payload, { headers: RESPONSE_HEADERS });
 }

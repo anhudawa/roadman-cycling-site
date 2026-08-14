@@ -174,7 +174,7 @@ export default async function PillarPage({
                   START HERE
                 </h2>
                 <p className="text-foreground-muted mt-2 max-w-lg mx-auto">
-                  The articles serious cyclists wish they'd found first. Read
+                  The articles serious cyclists wish they&apos;d found first. Read
                   these before anything else.
                 </p>
               </ScrollReveal>

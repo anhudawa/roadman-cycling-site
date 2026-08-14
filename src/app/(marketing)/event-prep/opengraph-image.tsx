@@ -87,7 +87,7 @@ export default function Image() {
             }}
           >
             Training plans, fuelling math, pacing strategy and taper protocol —
-            built around the events you're actually riding.
+            built around the events you&apos;re actually riding.
           </div>
           <div
             style={{

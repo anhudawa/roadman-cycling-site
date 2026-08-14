@@ -1,6 +1,6 @@
 # Roadman Race Predictor Audit
 
-Last updated: 2026-05-05
+Last updated: 2026-08-14
 
 ## Scope
 
@@ -270,3 +270,35 @@ This audit covers the current `/predict` product in the local Roadman Cycling Ne
 - Added a content-type gate to `/api/predict/parse-gpx` so the server accepts GPX/XML uploads and rejects unsupported file types with a clear 415 response.
 - Added direct API route tests for unsupported file type, empty GPX, huge GPX, malformed GPX, sparse/too-short tracks, and a valid GPX response with profile, points, quality counts, warnings, and course stats.
 - Re-ran the parser test suite alongside the new API tests, strengthening the GPX hardening coverage requested in Phase 3.
+
+## Twenty-Third Chunk Implemented
+
+- Expanded the paid Race Report with explicit hydration, feed-station, descending/technical-section, and course-specific training guidance.
+- Added print-safe A4 CSS and a private-view `Print / Save as PDF` action.
+
+## Twenty-Fourth Chunk Implemented
+
+- Added deterministic calibration metrics for MAPE, signed bias, median/P90 error, and the percentage of predictions within 5% and 10%.
+- Added cohort breakdowns by course type, rider W/kg group, and event type, plus `npm run predict:calibration` for anonymous operational reporting.
+- Made actual-result submissions idempotent through migration `0062` and a database upsert so repeat submissions cannot inflate accuracy evidence.
+
+## Twenty-Fifth Chunk Implemented
+
+- Added route provenance states for verified GPX, public provisional routes, event-profile approximations, and user uploads.
+- Event-profile and provisional routes now widen confidence automatically, and the selection UI explains the route basis plainly.
+- Added a dry-run-first `npm run routes:import` command that validates GPX quality and records source URL plus SHA-256 before a verified route can replace a profile approximation.
+
+## Twenty-Sixth Chunk Implemented
+
+- Removed the finish-time count-up animation after mobile QA showed it briefly displayed a false intermediate time.
+- Rebuilt the time display as a stable three-column layout with an exact accessible label and verified zero horizontal overflow at 390 px and desktop widths.
+
+## Twenty-Seventh Chunk Implemented
+
+- Reduced course-catalog database transfer by excluding full GPX payloads from picker queries.
+- Added in-process caching and Vercel edge-cache headers; a warm local response fell from seconds to approximately 9 ms.
+
+## Twenty-Eighth Chunk Implemented
+
+- Added `ROADMAN_PREDICT_COMPLETION_CHECKLIST.md` with prompt-to-artifact evidence, release gates, and honest remaining risks.
+- Added `docs/race-predictor-launch-handoff.md` with local run, environment, migration, route import, calibration, staging purchase, and rollback procedures.

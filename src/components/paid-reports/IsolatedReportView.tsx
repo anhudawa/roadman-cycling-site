@@ -61,16 +61,31 @@ export function IsolatedReportView({ html, title }: IsolatedReportViewProps) {
   }, [html]);
 
   return (
-    <iframe
-      ref={iframeRef}
-      title={title}
-      srcDoc={html}
-      // `allow-same-origin` lets us read contentDocument for sizing; we omit
-      // `allow-scripts` because saved reports are pure HTML/CSS and we never
-      // want untrusted script execution from cached content.
-      sandbox="allow-same-origin"
-      className="block w-full rounded-xl border border-white/5 bg-off-white"
-      style={{ height: `${height}px` }}
-    />
+    <div>
+      <div className="mb-4 flex justify-end print:hidden">
+        <button
+          type="button"
+          onClick={() => {
+            const frameWindow = iframeRef.current?.contentWindow;
+            frameWindow?.focus();
+            frameWindow?.print();
+          }}
+          className="inline-flex min-h-11 items-center rounded-md border border-white/20 px-4 py-2 text-sm font-heading uppercase tracking-wider text-off-white transition-colors hover:border-coral hover:text-coral"
+        >
+          Print / Save as PDF
+        </button>
+      </div>
+      <iframe
+        ref={iframeRef}
+        title={title}
+        srcDoc={html}
+        // `allow-same-origin` lets us read contentDocument for sizing; we omit
+        // `allow-scripts` because saved reports are pure HTML/CSS and we never
+        // want untrusted script execution from cached content.
+        sandbox="allow-same-origin"
+        className="block w-full rounded-xl border border-white/5 bg-off-white"
+        style={{ height: `${height}px` }}
+      />
+    </div>
   );
 }

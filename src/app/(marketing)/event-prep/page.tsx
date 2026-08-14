@@ -265,7 +265,7 @@ export default function EventPrepPage() {
               <p className="text-foreground-muted text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
                 Bucket-list sportives reward riders who showed up with a plan
                 and a fuelling strategy. They eat everyone else alive. This is
-                where you turn a date on the calendar into a finish you're
+                where you turn a date on the calendar into a finish you&apos;re
                 proud of.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-10">
@@ -296,7 +296,7 @@ export default function EventPrepPage() {
                 className="font-heading text-off-white uppercase"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                Your event is X weeks away — here's what to focus on
+                Your event is X weeks away — here&apos;s what to focus on
               </h2>
               <p className="text-foreground-muted text-base md:text-lg leading-relaxed max-w-2xl mx-auto mt-5">
                 Every Roadman plan moves through the same four phases. Where
@@ -525,7 +525,7 @@ export default function EventPrepPage() {
               <div className="rounded-2xl border border-coral/30 bg-gradient-to-br from-coral/10 via-deep-purple/40 to-charcoal p-8 md:p-12">
                 <div className="text-center mb-10">
                   <p className="font-heading text-coral text-xs tracking-widest mb-3">
-                    WHEN GUESSING ISN'T GOOD ENOUGH
+                    WHEN GUESSING ISN&apos;T GOOD ENOUGH
                   </p>
                   <h2
                     className="font-heading text-off-white uppercase"
