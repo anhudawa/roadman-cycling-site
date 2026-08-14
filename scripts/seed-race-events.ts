@@ -12,13 +12,16 @@
  * Idempotent — re-running updates existing rows by slug.
  */
 
+import { config } from "dotenv";
 import { buildCourse } from "../src/lib/race-predictor/gpx";
-import { decodeRouteProvenance } from "../src/lib/race-predictor/route-provenance";
+import { routeProvenanceFromSource } from "../src/lib/race-predictor/route-provenance";
 import type { TrackPoint } from "../src/lib/race-predictor/types";
 import {
   getCourseBySlug,
   upsertCourseBySlug,
 } from "../src/lib/race-predictor/store";
+
+config({ path: ".env.local", quiet: true });
 
 interface ProfileSegment {
   km: number;
@@ -549,7 +552,7 @@ function generateGpxPoints(spec: EventSpec): TrackPoint[] {
 async function main() {
   for (const spec of EVENTS) {
     const existing = await getCourseBySlug(spec.slug);
-    if (decodeRouteProvenance(existing?.source).quality === "verified_gpx") {
+    if (routeProvenanceFromSource(existing?.source).quality === "verified_gpx") {
       console.log(`[seed] ${spec.slug.padEnd(36)}  skipped verified GPX`);
       continue;
     }
