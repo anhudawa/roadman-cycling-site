@@ -19,9 +19,9 @@ import {
   type AgeGroup,
   FTP_BY_AGE,
   FTP_IMPROVEMENT_RATES,
+  getBenchmarkDataset,
   type PercentileRow,
   REPORT_META,
-  SPORTIVE_TIERS,
   TRAINING_HOURS_BY_GOAL,
   WKG_BY_AGE,
 } from "@/data/benchmarks";
@@ -530,15 +530,7 @@ export function ImprovementChart() {
 }
 
 function buildDownload() {
-  const payload = {
-    report: REPORT_META,
-    ftpByAge: FTP_BY_AGE,
-    wkgByAge: WKG_BY_AGE,
-    trainingHoursByGoal: TRAINING_HOURS_BY_GOAL,
-    sportiveTiers: SPORTIVE_TIERS,
-    ftpImprovementRates: FTP_IMPROVEMENT_RATES,
-  };
-  return JSON.stringify(payload, null, 2);
+  return JSON.stringify(getBenchmarkDataset(), null, 2);
 }
 
 export function DownloadShareBar() {

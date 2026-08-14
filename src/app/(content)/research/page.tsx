@@ -134,6 +134,34 @@ export default function ResearchPage() {
 
         <Section background="charcoal">
           <Container>
+            <div className="max-w-4xl mx-auto mb-8 rounded-xl border border-coral/30 bg-coral/[0.05] p-6 md:p-8">
+              <p className="text-coral font-heading text-xs tracking-widest mb-2">
+                ORIGINAL ROADMAN DATA
+              </p>
+              <h2 className="font-heading text-off-white text-xl md:text-2xl mb-3">
+                AMATEUR CYCLING PERFORMANCE REPORT 2026
+              </h2>
+              <p className="text-foreground-muted text-sm leading-relaxed mb-5">
+                FTP, watts-per-kilo, training-hours, sportive-time and
+                improvement benchmarks, with the population, inclusion
+                criteria, source notes and limitations published alongside the
+                figures.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/benchmarks"
+                  className="inline-flex items-center rounded-md bg-coral px-4 py-2 font-heading text-sm text-off-white hover:bg-coral/90 transition-colors"
+                >
+                  Explore the report →
+                </Link>
+                <a
+                  href="/feeds/research.json"
+                  className="inline-flex items-center rounded-md border border-white/15 px-4 py-2 font-heading text-sm text-off-white hover:border-coral/50 transition-colors"
+                >
+                  Machine-readable dataset →
+                </a>
+              </div>
+            </div>
             <div className="space-y-8 max-w-4xl mx-auto">
               {RESEARCH_AREAS.map((area, i) => (
                 <ScrollReveal key={area.title} direction="up" delay={i * 0.04}>

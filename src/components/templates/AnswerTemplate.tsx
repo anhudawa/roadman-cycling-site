@@ -4,9 +4,11 @@ import { Badge, Button } from "@/components/ui";
 import { AnswerCapsule } from "@/components/ui/AnswerCapsule";
 import { EvidenceLevel } from "@/components/ui/EvidenceLevel";
 import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
+import { SearchOwnerLink } from "@/components/seo/SearchOwnerLink";
 import { AuthorBio } from "@/components/features/blog/AuthorBio";
 import { CONTENT_PILLARS } from "@/types";
 import { type AnswerPage } from "@/lib/answers";
+import { resolveSearchOwner } from "@/lib/seo/search-ownership";
 
 interface ResolvedEpisode {
   title: string;
@@ -53,6 +55,12 @@ export function AnswerTemplate({
 }: AnswerTemplateProps) {
   const { color } = CONTENT_PILLARS[answer.pillar];
   const updated = answer.updatedDate || answer.publishDate;
+  const searchOwner = resolveSearchOwner([
+    answer.question,
+    answer.seoTitle,
+    answer.seoDescription,
+    ...answer.relatedTopics.map((topic) => topic.label),
+  ]);
 
   return (
     <main id="main-content">
@@ -91,6 +99,8 @@ export function AnswerTemplate({
             pillar={answer.pillar}
             keyTakeaways={answer.keyTakeaways}
           />
+
+          {searchOwner && <SearchOwnerLink owner={searchOwner} />}
 
           {/* Evidence grade */}
           <EvidenceLevel

@@ -12,6 +12,7 @@ import { COMPARISONS } from "@/lib/comparisons";
 import { BEST_FOR_PAGES } from "@/lib/best-for";
 import { PROBLEM_PAGES } from "@/lib/problems";
 import { CAMP_LIST, formatCampDates } from "@/lib/camps/camps";
+import { serialiseSearchOwners } from "@/lib/seo/search-ownership";
 
 const BASE_URL = SITE_ORIGIN;
 
@@ -44,6 +45,7 @@ export async function GET() {
   const posts = getAllPosts();
   const episodes = getAllEpisodes();
   const transcriptSlugs = new Set(getTranscriptSlugs());
+  const searchOwners = serialiseSearchOwners();
 
   // Every blog post is included as title + URL + answer capsule + summary
   // (no FAQ — see scope note above). They're authored long-form content
@@ -81,13 +83,9 @@ export async function GET() {
   const PRIORITY_INDEX = [
     {
       category: "Core search ownership — canonical entry points",
-      lines: [
-        `${BASE_URL}/podcast — Canonical Roadman Cycling Podcast show and searchable episode archive.`,
-        `${BASE_URL}/coaching — Canonical online cycling coaching service page.`,
-        `${BASE_URL}/masters — Canonical masters cycling training authority hub for riders over 40.`,
-        `${BASE_URL}/training-plans — Canonical cycling training-plans hub.`,
-        `${BASE_URL}/training-camps — Canonical Roadman cycling training-camps hub for Girona.`,
-      ],
+      lines: searchOwners.map(
+        (owner) => `${owner.url} — ${owner.description}`,
+      ),
     },
     {
       category: "Tier-1 priority topics (highest citation value)",
@@ -313,7 +311,10 @@ For programmatic ingestion, prefer these endpoints over scraping HTML.
 - ${BASE_URL}/feed/podcast — Podcast RSS feed
 - ${BASE_URL}/feed/blog — Blog RSS 2.0 feed (latest 50 posts)
 - ${BASE_URL}/feeds/episodes.json — JSON episode feed (includes hasTranscript flag and transcriptUrl per episode)
+- ${BASE_URL}/feeds/podcast-knowledge.json — Evidence-aware podcast catalogue with transcript, takeaways, reviewed claims/citations, and citation-readiness coverage
 - ${BASE_URL}/feeds/articles.json — All blog posts as JSON (slug, title, pillar, dates, answer capsule, FAQ, related episodes)
+- ${BASE_URL}/feeds/research.json — Reusable Roadman benchmark dataset with methodology, sources, limitations, and license
+- ${BASE_URL}/search-ownership.json — Canonical owner registry for priority broad search intents
 - ${BASE_URL}/feeds/guests.json — Every podcast guest with episode counts, credentials, pillars covered
 - ${BASE_URL}/feeds/topics.json — Topic hubs with related topics, articles, episodes, tools
 - ${BASE_URL}/feeds/tools.json — Public calculator tools with API endpoints and input schemas
