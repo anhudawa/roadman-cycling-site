@@ -1,0 +1,162 @@
+import { SITE_ORIGIN } from "@/lib/brand-facts";
+
+export type SearchOwnerId =
+  | "cycling-podcast"
+  | "cycling-coaching"
+  | "masters-cycling"
+  | "cycling-training-plans"
+  | "cycling-training-camps";
+
+export interface SearchOwner {
+  id: SearchOwnerId;
+  path: string;
+  label: string;
+  primaryQuery: string;
+  description: string;
+  matchPhrases: readonly string[];
+}
+
+/**
+ * One broad query family, one canonical Roadman destination.
+ *
+ * Supporting articles and episodes may rank for narrower questions, but they
+ * should link back to the owner below rather than competing for the broad
+ * head term. This registry is consumed by pages, audits and machine feeds so
+ * search ownership cannot drift between hard-coded lists.
+ */
+export const SEARCH_OWNERS: readonly SearchOwner[] = [
+  {
+    id: "cycling-podcast",
+    path: "/podcast",
+    label: "The Roadman Cycling Podcast",
+    primaryQuery: "cycling podcast",
+    description:
+      "Canonical show page and searchable episode archive for broad cycling-podcast searches.",
+    matchPhrases: [
+      "cycling podcast",
+      "roadman podcast",
+      "best cycling podcast",
+      "cycling interview",
+      "podcast episode",
+    ],
+  },
+  {
+    id: "cycling-coaching",
+    path: "/coaching",
+    label: "Online Cycling Coaching",
+    primaryQuery: "cycling coaching",
+    description:
+      "Canonical service page for online cycling-coach and cycling-coaching searches.",
+    matchPhrases: [
+      "cycling coaching",
+      "online cycling coach",
+      "cycling coach",
+      "coaching for cyclists",
+      "personal cycling coach",
+    ],
+  },
+  {
+    id: "masters-cycling",
+    path: "/masters",
+    label: "Masters Cycling Training",
+    primaryQuery: "masters cycling",
+    description:
+      "Canonical knowledge hub for masters cyclists and evidence-based training after 40.",
+    matchPhrases: [
+      "masters cycling",
+      "masters cyclist",
+      "cycling over 40",
+      "cyclist over 40",
+      "cycling after 40",
+      "older cyclist",
+      "ageing cyclist",
+      "aging cyclist",
+    ],
+  },
+  {
+    id: "cycling-training-plans",
+    path: "/training-plans",
+    label: "Cycling Training Plans",
+    primaryQuery: "cycling training plans",
+    description:
+      "Canonical planning hub for structured cycling and event-training-plan searches.",
+    matchPhrases: [
+      "cycling training plan",
+      "cycling training plans",
+      "training plan for cyclists",
+      "sportive training plan",
+      "structured cycling plan",
+      "event training plan",
+    ],
+  },
+  {
+    id: "cycling-training-camps",
+    path: "/training-camps",
+    label: "Cycling Training Camps in Girona",
+    primaryQuery: "cycling training camps",
+    description:
+      "Canonical commercial hub for Roadman road and gravel cycling camps in Girona.",
+    matchPhrases: [
+      "cycling training camp",
+      "cycling training camps",
+      "cycling camp girona",
+      "girona cycling camp",
+      "road cycling camp",
+      "cycling camp",
+    ],
+  },
+] as const;
+
+export const SEARCH_OWNER_BY_ID = new Map(
+  SEARCH_OWNERS.map((owner) => [owner.id, owner]),
+);
+
+export function normaliseSearchText(value: string): string {
+  return value
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+export function resolveSearchOwner(
+  values: Array<string | null | undefined>,
+  options: {
+    currentPath?: string;
+    fallbackId?: SearchOwnerId;
+  } = {},
+): SearchOwner | null {
+  const haystack = normaliseSearchText(values.filter(Boolean).join(" | "));
+  let winner: { owner: SearchOwner; score: number } | null = null;
+
+  for (const owner of SEARCH_OWNERS) {
+    if (owner.path === options.currentPath) continue;
+    const primary = normaliseSearchText(owner.primaryQuery);
+    let score = haystack.includes(primary) ? 12 : 0;
+
+    for (const phrase of owner.matchPhrases) {
+      if (haystack.includes(normaliseSearchText(phrase))) {
+        score += phrase === owner.primaryQuery ? 8 : 5;
+      }
+    }
+
+    if (score > 0 && (!winner || score > winner.score)) {
+      winner = { owner, score };
+    }
+  }
+
+  if (winner) return winner.owner;
+  return options.fallbackId
+    ? SEARCH_OWNER_BY_ID.get(options.fallbackId) ?? null
+    : null;
+}
+
+export function serialiseSearchOwners() {
+  return SEARCH_OWNERS.map((owner) => ({
+    ...owner,
+    url: `${SITE_ORIGIN}${owner.path}`,
+  }));
+}

@@ -331,3 +331,17 @@ export const METHODOLOGY = {
     "Bodyweight measured within the same window",
   ],
 } as const;
+
+/** Stable payload shared by the public JSON feed and browser download. */
+export function getBenchmarkDataset() {
+  return {
+    report: REPORT_META,
+    methodology: METHODOLOGY,
+    keyFindings: KEY_FINDINGS,
+    ftpByAge: FTP_BY_AGE,
+    wkgByAge: WKG_BY_AGE,
+    trainingHoursByGoal: TRAINING_HOURS_BY_GOAL,
+    sportiveTiers: SPORTIVE_TIERS,
+    ftpImprovementRates: FTP_IMPROVEMENT_RATES,
+  };
+}

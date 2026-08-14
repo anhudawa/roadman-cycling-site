@@ -25,6 +25,7 @@ import { getClusterHubForArticle } from "@/lib/cluster-hubs";
 import { FeaturedExperts } from "@/components/features/blog/FeaturedExperts";
 import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import { ArticleCitationBlock } from "@/components/seo/ArticleCitationBlock";
+import { SearchOwnerLink } from "@/components/seo/SearchOwnerLink";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { queryContentGraph } from "@/lib/content-graph";
 import { RelatedContent } from "@/components/features/RelatedContent";
@@ -43,6 +44,7 @@ import { ReadingTime } from "@/components/ui/ReadingTime";
 import { SeriesNav } from "@/components/features/blog/SeriesNav";
 import { getSeriesPosts } from "@/lib/blog";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
+import { resolveSearchOwner } from "@/lib/seo/search-ownership";
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -165,6 +167,12 @@ export default async function BlogPostPage({
       : "");
 
   const publishDate = new Date(post.publishDate);
+  const searchOwner = resolveSearchOwner([
+    post.title,
+    post.seoTitle,
+    post.seoDescription,
+    ...(post.keywords ?? []),
+  ]);
 
   // Pick the intent CTA off the article's metadata. When inference
   // turns up "event" we need a concrete event name for the variant —
@@ -501,6 +509,8 @@ export default async function BlogPostPage({
                 />
               </div>
             )}
+
+            {searchOwner && <SearchOwnerLink owner={searchOwner} />}
 
             {post.evidenceLevel && (
               <EvidenceLevel

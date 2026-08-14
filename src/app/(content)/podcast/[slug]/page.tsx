@@ -9,6 +9,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
+import { SearchOwnerLink } from "@/components/seo/SearchOwnerLink";
 import { ENTITY_IDS, SITE_ORIGIN, FOUNDER, SAME_AS } from "@/lib/brand-facts";
 import {
   getEpisodeBySlug,
@@ -39,6 +40,7 @@ import { getRelevantTools } from "@/lib/podcast-tools";
 import { RelevantTools } from "@/components/features/podcast/RelevantTools";
 import Link from "next/link";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
+import { resolveSearchOwner } from "@/lib/seo/search-ownership";
 
 export async function generateStaticParams() {
   return getAllEpisodeSlugs().map((slug) => ({ slug }));
@@ -114,6 +116,16 @@ export default async function EpisodePage({
 
   const publishDate = new Date(episode.publishDate);
   const episodeUrl = `https://roadmancycling.com/podcast/${slug}`;
+  const searchOwner = resolveSearchOwner(
+    [
+      episode.title,
+      episode.seoTitle,
+      episode.seoDescription,
+      ...(episode.keywords ?? []),
+      ...(episode.topicTags ?? []),
+    ],
+    { fallbackId: "cycling-podcast" },
+  );
 
   // Resolve topic-tag slugs into hub objects so we can render labels
   // and emit `about` schema entries. Skips slugs that don't match a
@@ -662,6 +674,8 @@ export default async function EpisodePage({
                 pillar={episode.pillar}
               />
             )}
+
+            {searchOwner && <SearchOwnerLink owner={searchOwner} />}
 
             {/* Key takeaways — skim-first summary above show notes so a
                 rushed reader walks away with the value in seconds. */}

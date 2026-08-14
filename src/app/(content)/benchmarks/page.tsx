@@ -97,7 +97,7 @@ export default function BenchmarksPage() {
             {
               "@type": "DataDownload",
               encodingFormat: "application/json",
-              contentUrl: REPORT_META.url,
+              contentUrl: "https://roadmancycling.com/feeds/research.json",
               name: "Roadman Cycling Benchmarks 2026 (JSON)",
             },
           ],

@@ -9,26 +9,36 @@ on:
       - "src/lib/topics.ts"
       - "src/lib/glossary.ts"
       - "src/lib/comparisons.ts"
+      - "src/lib/seo/**"
+      - "scripts/seo-qa-audit.ts"
+      - "scripts/audit-search-ownership.ts"
   pull_request:
     paths:
       - "content/blog/**"
       - "content/podcast/**"
+      - "src/lib/seo/**"
+      - "scripts/seo-qa-audit.ts"
+      - "scripts/audit-search-ownership.ts"
 
 jobs:
   seo-qa:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
       - run: npm ci
-      - name: Run SEO QA audit
+      - name: Validate editorial search quality
         run: npx tsx scripts/seo-qa-audit.ts
+      - name: Validate canonical ownership
+        run: npx tsx scripts/audit-search-ownership.ts --strict
       - name: Upload audit results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: seo-qa-results
-          path: docs/seo/qa-audit-results.csv
+          path: seo-reports/

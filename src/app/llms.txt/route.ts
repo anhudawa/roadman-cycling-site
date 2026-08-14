@@ -16,6 +16,7 @@ import {
   ANSWER_CLUSTERS,
   getAnswersByCluster,
 } from "@/lib/answers";
+import { serialiseSearchOwners } from "@/lib/seo/search-ownership";
 
 const BASE_URL = SITE_ORIGIN;
 
@@ -50,6 +51,7 @@ const tag = (url: string) => tagUrlForAICrawler(url, "llms-txt");
 export async function GET() {
   const posts = getAllPosts();
   const episodes = getAllEpisodes();
+  const searchOwners = serialiseSearchOwners();
 
   // Curated high-value articles that should ALWAYS appear regardless of
   // recency. These are the pillar-supporting content and linkable assets.
@@ -107,38 +109,11 @@ export async function GET() {
       title: "Core search ownership — canonical entry points",
       description:
         "Use these canonical hubs for broad cycling podcast, coaching, masters training, training-plan, and cycling-camp queries. Supporting articles and episodes provide evidence; these pages own the broad intent.",
-      pages: [
-        {
-          url: `${BASE_URL}/podcast`,
-          title: "The Roadman Cycling Podcast",
-          description:
-            "Canonical show and searchable episode archive for broad cycling podcast queries.",
-        },
-        {
-          url: `${BASE_URL}/coaching`,
-          title: "Online Cycling Coaching",
-          description:
-            "Canonical service page for online cycling coach and cycling coaching queries.",
-        },
-        {
-          url: `${BASE_URL}/masters`,
-          title: "Masters Cycling Training",
-          description:
-            "Canonical authority hub for masters cyclists and evidence-based cycling training after 40.",
-        },
-        {
-          url: `${BASE_URL}/training-plans`,
-          title: "Cycling Training Plans",
-          description:
-            "Canonical planning hub for structured cycling training-plan queries.",
-        },
-        {
-          url: `${BASE_URL}/training-camps`,
-          title: "Cycling Training Camps in Girona",
-          description:
-            "Canonical commercial hub for Roadman road and gravel cycling camps in Girona.",
-        },
-      ],
+      pages: searchOwners.map((owner) => ({
+        url: owner.url,
+        title: owner.label,
+        description: owner.description,
+      })),
     },
     {
       title: "Commercial intent — coaching decisions",
@@ -518,6 +493,9 @@ For programmatic ingestion, prefer these endpoints over scraping HTML. All are p
 - [Full Content for LLMs](${BASE_URL}/llms-full.txt): Curated full-text export of canonical pages, blog posts, and episode summaries.
 - [Articles JSON Feed](${BASE_URL}/feeds/articles.json): All blog posts as JSON — slug, title, pillar, publish/updated dates, answer capsule, FAQ, related episodes.
 - [Episodes JSON Feed](${BASE_URL}/feeds/episodes.json): All podcast episodes as JSON — guest, credential, transcript URL where available, pillar, topic tags.
+- [Podcast Knowledge Feed](${BASE_URL}/feeds/podcast-knowledge.json): Evidence-aware episode catalogue with transcript status, takeaways, reviewed claims, citations, chapters, and citation-readiness coverage.
+- [Research Dataset Feed](${BASE_URL}/feeds/research.json): Roadman's reusable benchmark dataset with methodology, source notes, limitations, and CC BY 4.0 licensing.
+- [Search Ownership Registry](${BASE_URL}/search-ownership.json): Canonical owner for each priority broad query family, plus the phrases routed to it.
 - [Guests JSON Feed](${BASE_URL}/feeds/guests.json): Every podcast guest with episode counts, credentials, and pillars covered.
 - [Topics JSON Feed](${BASE_URL}/feeds/topics.json): Topic hubs with pillar tags, related topics, articles, episodes, and tools.
 - [Tools JSON Feed](${BASE_URL}/feeds/tools.json): Public calculator tools with API endpoints and input schemas where exposed.

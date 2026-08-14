@@ -109,12 +109,18 @@ interface CoverageRow {
 
 function checkCoverage(
   fm: EpisodeFrontmatter,
+  slug: string,
 ): { has: Record<CoverageField, boolean>; missing: CoverageField[] } {
   const claims = Array.isArray(fm.claims) ? fm.claims : [];
   const citations = Array.isArray(fm.citations) ? fm.citations : [];
 
   const has: Record<CoverageField, boolean> = {
-    transcript: !!(fm.transcript && fm.transcript.length > 200),
+    // Transcripts live in content/podcast/transcripts/<slug>.txt. The old
+    // check only inspected a legacy frontmatter field and therefore marked
+    // the entire real transcript library as missing.
+    transcript:
+      fs.existsSync(path.join(PODCAST_DIR, "transcripts", `${slug}.txt`)) ||
+      !!(fm.transcript && fm.transcript.length > 200),
     answerCapsule: !!(fm.answerCapsule && fm.answerCapsule.length > 30),
     keyTakeaways: Array.isArray(fm.keyTakeaways) && fm.keyTakeaways.length >= 3,
     segmentTitles:
@@ -364,7 +370,7 @@ async function main() {
 
   // Coverage rows
   const rows: CoverageRow[] = episodes.map((ep) => {
-    const { has, missing } = checkCoverage(ep);
+    const { has, missing } = checkCoverage(ep, ep.slug);
     const cta = getEpisodeCta(ep);
     const total = COVERAGE_FIELDS.length;
     const present = COVERAGE_FIELDS.filter((f) => has[f]).length;

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAllEpisodes, getTranscriptSlugs } from "@/lib/podcast";
 import { FEED_BASE_URL, FEED_CACHE_HEADERS, feedUrl, summarise } from "@/lib/feeds";
+import { evaluatePodcastKnowledge } from "@/lib/podcast/knowledge";
 
 const PILLAR_TOOL: Record<string, string> = {
   coaching: "ftp-zones",
@@ -28,6 +29,7 @@ export function GET() {
       new Set([...(ep.keywords ?? []), ...(ep.topicTags ?? [])]),
     );
     const hasTranscript = transcriptSlugs.has(ep.slug);
+    const knowledge = evaluatePodcastKnowledge(ep, hasTranscript);
 
     return {
       id: ep.slug,
@@ -51,6 +53,9 @@ export function GET() {
       transcriptUrl: hasTranscript
         ? feedUrl(`/podcast/${ep.slug}/transcript`)
         : null,
+      canonicalSearchOwner: feedUrl("/podcast"),
+      knowledgeStatus: knowledge.status,
+      knowledgeCoveragePercent: knowledge.coveragePercent,
     };
   });
 
