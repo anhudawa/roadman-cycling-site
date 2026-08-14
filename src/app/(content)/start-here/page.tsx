@@ -229,7 +229,7 @@ export default function StartHerePage() {
                 <p className="text-foreground-muted text-base md:text-lg leading-relaxed">
                   Roadman started with a podcast and a question — what do the best
                   coaches and riders in the world actually do, and how can the rest
-                  of us apply it? I'm Anthony Walsh. Over 1,400 episodes I've sat
+                  of us apply it? I&apos;m Anthony Walsh. Over 1,400 episodes I&apos;ve sat
                   down with World Tour coaches like Dan Lorang and Tim Kerrison,
                   sports scientists like Prof. Stephen Seiler, and riders like
                   Lachlan Morton and Greg LeMond. Not to name-drop — because the

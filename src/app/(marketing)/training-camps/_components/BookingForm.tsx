@@ -74,7 +74,11 @@ export function BookingForm({ defaultCamp, camps }: Props) {
   const [errorKind, setErrorKind] = useState<
     "validation" | "soldOut" | "paymentUnavailable" | "network" | "generic"
   >("generic");
-  const [cancelledNotice, setCancelledNotice] = useState(false);
+  const [cancelledNotice, setCancelledNotice] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      new URLSearchParams(window.location.search).get("cancelled") === "1",
+  );
 
   useEffect(() => {
     let aborted = false;
@@ -91,17 +95,6 @@ export function BookingForm({ defaultCamp, camps }: Props) {
     return () => {
       aborted = true;
     };
-  }, []);
-
-  // If the rider clicked "cancel" on Stripe Checkout, the cancel_url
-  // routes them back here with ?cancelled=1. Surface that as a friendly
-  // notice so they know we kept their details and they can retry.
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("cancelled") === "1") {
-      setCancelledNotice(true);
-    }
   }, []);
 
   function set<K extends keyof FormState>(key: K, value: FormState[K]) {

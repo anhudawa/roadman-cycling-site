@@ -21,6 +21,7 @@ import {
   type Race,
 } from "@/data/races";
 import type { Course, SurfaceType } from "@/lib/race-predictor/types";
+import type { RouteDataQuality } from "@/lib/race-predictor/route-provenance";
 
 type Mode = "plan_my_race" | "can_i_make_it";
 type Drafting = "solo" | "small_group" | "large_group";
@@ -44,6 +45,10 @@ interface CourseAPIItem {
   elevationGainM: number;
   surfaceSummary: string | null;
   eventDates: string[];
+  routeQuality: RouteDataQuality;
+  routeQualityLabel: string;
+  routeQualityDetail: string;
+  routeSourceUrl: string | null;
   climbCount: number;
   hcCount: number;
   profile: number[][];
@@ -594,6 +599,13 @@ export default function PredictPage() {
                         : selectedCourse
                           ? `${selectedCourse.distanceKm.toFixed(0)} km · ${selectedCourse.elevationGainM.toLocaleString()} m climbing`
                           : selectedRace?.location}
+                    </p>
+                    <p className="mt-2 max-w-2xl text-xs leading-relaxed text-foreground-subtle">
+                      {gpx
+                        ? "Your cleaned GPX is used for this prediction."
+                        : selectedCourse
+                          ? `${selectedCourse.routeQualityLabel}. ${selectedCourse.routeQualityDetail}`
+                          : null}
                     </p>
                   </div>
                   <span

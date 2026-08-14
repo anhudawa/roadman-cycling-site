@@ -12,6 +12,10 @@ import { createPrediction, getCourseBySlug, gpxHash } from "@/lib/race-predictor
 import type { Course, TrackPoint } from "@/lib/race-predictor/types";
 import { getOrCreateAnonSessionKey } from "@/lib/rider-profile/anon-session";
 import { checkPredictRateLimit } from "@/lib/race-predictor/rate-limit";
+import {
+  routeProvenanceFromSource,
+  type RouteDataQuality,
+} from "@/lib/race-predictor/route-provenance";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -188,6 +192,7 @@ export async function POST(request: Request) {
   let course: Course | null = null;
   let courseId: number | null = null;
   let courseGpxHashStr: string | null = null;
+  let routeQuality: RouteDataQuality = "user_upload";
 
   if (body.courseSlug) {
     const row = await getCourseBySlug(body.courseSlug);
@@ -196,6 +201,7 @@ export async function POST(request: Request) {
     }
     course = row.courseData;
     courseId = row.id;
+    routeQuality = routeProvenanceFromSource(row.source).quality;
   } else if (Array.isArray(body.gpxPoints) && body.gpxPoints.length >= 50) {
     try {
       course = buildCourse(body.gpxPoints);
@@ -221,6 +227,7 @@ export async function POST(request: Request) {
     rider: riderInput,
     environment: body.environment,
     mode,
+    routeQuality,
   });
 
   const prediction = await createPrediction({
@@ -255,6 +262,7 @@ export async function POST(request: Request) {
             : riderInput.surface
               ? "surface"
               : "default",
+        routeQuality,
       },
     },
     email,

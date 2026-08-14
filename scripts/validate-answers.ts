@@ -8,11 +8,23 @@ import { getAllComparisonSlugs } from "@/lib/comparisons";
 // real MDX frontmatter (scripts/build-citation-pack.mjs). Topic, comparison
 // and tool slugs are derived from the live route sources so the validator can
 // never drift from what actually ships — no hand-maintained namespace list.
-const pack = JSON.parse(fs.readFileSync("/tmp/citation-pack.json", "utf8"));
+interface CitationPackEntry {
+  slug: string;
+}
 
-const episodeSet = new Set<string>(pack.episodes.map((e: any) => e.slug));
-const guestSet = new Set<string>(pack.guests.map((g: any) => g.slug));
-const blogSet = new Set<string>(pack.blog.map((b: any) => b.slug));
+interface CitationPack {
+  episodes: CitationPackEntry[];
+  guests: CitationPackEntry[];
+  blog: CitationPackEntry[];
+}
+
+const pack = JSON.parse(
+  fs.readFileSync("/tmp/citation-pack.json", "utf8"),
+) as CitationPack;
+
+const episodeSet = new Set<string>(pack.episodes.map((e) => e.slug));
+const guestSet = new Set<string>(pack.guests.map((g) => g.slug));
+const blogSet = new Set<string>(pack.blog.map((b) => b.slug));
 const hubSet = new Set<string>(getAllTopicSlugs());
 const compareSet = new Set<string>(getAllComparisonSlugs());
 

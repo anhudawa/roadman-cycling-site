@@ -369,12 +369,12 @@ export default async function EventGuidePage({
                 className="font-heading text-off-white mb-4"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                WHERE YOU'LL LAND.
+                WHERE YOU&apos;LL LAND.
               </h2>
               <p className="text-foreground-muted text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
                 Use these bands to set a realistic goal. Pick the band closest
                 to your current fitness — not the one above it. Pacing a band
-                you haven't earned is the fastest way to a back-half blow-up.
+                you haven&apos;t earned is the fastest way to a back-half blow-up.
               </p>
             </ScrollReveal>
 
@@ -611,7 +611,7 @@ export default async function EventGuidePage({
                 className="font-heading text-off-white mb-4"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                DON'T DO THIS.
+                DON&apos;T DO THIS.
               </h2>
               <p className="text-foreground-muted text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
                 Patterns we see at the {trainingEvent.shortName} every year.
@@ -664,7 +664,7 @@ export default async function EventGuidePage({
                       The Plateau Diagnostic is a 5-minute assessment that
                       identifies the specific reason your training has stopped
                       producing results. Built for riders 35+ who have been
-                      doing the work but watching the numbers stall. You'll
+                      doing the work but watching the numbers stall. You&apos;ll
                       get a profile-matched recommendation in your inbox.
                     </p>
                   </div>

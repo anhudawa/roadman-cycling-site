@@ -27,6 +27,8 @@
     "seed:inventory": "tsx src/lib/inventory/seed.ts",
     "seed:inventory:dry": "tsx src/lib/inventory/seed.ts --dry-run",
     "seed:race-events": "tsx scripts/seed-race-events.ts",
+    "routes:import": "tsx scripts/import-race-route.ts",
+    "predict:calibration": "tsx scripts/race-predictor-calibration.ts",
     "fantasy:seed": "tsx scripts/fantasy/seed-fantasy.ts",
     "fantasy:seed:dry": "tsx scripts/fantasy/seed-fantasy.ts --dry-run",
     "fantasy:import-startlist": "tsx scripts/fantasy/import-startlist.ts",

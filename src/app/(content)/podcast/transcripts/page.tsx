@@ -116,7 +116,7 @@ export default function PodcastTranscriptsPage() {
                 {episodes.length}{" "}
                 {episodes.length === 1 ? "transcript" : "transcripts"}
               </span>
-              . More are added as they're processed — bookmark this page or
+              . More are added as they&apos;re processed — bookmark this page or
               follow{" "}
               <Link
                 href="/feeds/episodes.json"

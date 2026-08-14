@@ -32,6 +32,29 @@ export interface CourseRow {
   uploaderEmail: string | null;
 }
 
+export type CourseCatalogRow = Omit<CourseRow, "gpxData" | "uploaderEmail">;
+
+function fixtureToCatalog(
+  course: ReturnType<typeof getFixtureCourses>[number],
+): CourseCatalogRow {
+  return {
+    id: course.id,
+    slug: course.slug,
+    name: course.name,
+    country: course.country,
+    region: course.region,
+    discipline: course.discipline,
+    distanceM: course.distanceM,
+    elevationGainM: course.elevationGainM,
+    elevationLossM: course.elevationLossM,
+    surfaceSummary: course.surfaceSummary,
+    courseData: course.courseData,
+    eventDates: course.eventDates,
+    verified: course.verified,
+    source: course.source,
+  };
+}
+
 function rowToCourse(row: typeof courses.$inferSelect): CourseRow {
   return {
     id: row.id,
@@ -70,18 +93,40 @@ function canUseFixtureFallback(err: unknown): boolean {
   );
 }
 
-/** List all verified curated courses, newest first. */
-export async function listVerifiedCourses(): Promise<CourseRow[]> {
-  if (shouldUseFixtures()) return getFixtureCourses() as CourseRow[];
+/** List verified catalog courses without transferring their full GPX payloads. */
+export async function listVerifiedCourses(): Promise<CourseCatalogRow[]> {
+  if (shouldUseFixtures()) {
+    return getFixtureCourses().map(fixtureToCatalog);
+  }
   try {
     const rows = await db
-      .select()
+      .select({
+        id: courses.id,
+        slug: courses.slug,
+        name: courses.name,
+        country: courses.country,
+        region: courses.region,
+        discipline: courses.discipline,
+        distanceM: courses.distanceM,
+        elevationGainM: courses.elevationGainM,
+        elevationLossM: courses.elevationLossM,
+        surfaceSummary: courses.surfaceSummary,
+        courseData: courses.courseData,
+        eventDates: courses.eventDates,
+        verified: courses.verified,
+        source: courses.source,
+      })
       .from(courses)
       .where(eq(courses.verified, true))
       .orderBy(desc(courses.createdAt));
-    return rows.map(rowToCourse);
+    return rows.map((row) => ({
+      ...row,
+      courseData: row.courseData as Course,
+    }));
   } catch (err) {
-    if (canUseFixtureFallback(err)) return getFixtureCourses() as CourseRow[];
+    if (canUseFixtureFallback(err)) {
+      return getFixtureCourses().map(fixtureToCatalog);
+    }
     throw err;
   }
 }
@@ -488,7 +533,7 @@ export async function recordActualResult(args: {
   modelErrorPct?: number;
   submittedEmail?: string;
 }): Promise<void> {
-  await db.insert(predictionResults).values({
+  const values = {
     predictionId: args.predictionId,
     actualTimeS: args.actualTimeS,
     averagePower: args.averagePower ?? null,
@@ -497,7 +542,15 @@ export async function recordActualResult(args: {
     analysis: args.analysis ?? null,
     modelErrorPct: args.modelErrorPct ?? null,
     submittedEmail: args.submittedEmail ?? null,
-  });
+    submittedAt: new Date(),
+  };
+  await db
+    .insert(predictionResults)
+    .values(values)
+    .onConflictDoUpdate({
+      target: predictionResults.predictionId,
+      set: values,
+    });
 }
 
 /** Aggregate model accuracy for a course — drives the "validated against N actual rides" badge. */

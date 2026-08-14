@@ -560,7 +560,7 @@ async function main() {
       courseData: course,
       eventDates: spec.eventDates ?? [],
       verified: true,
-      source: spec.source,
+      source: `event_profile:${spec.source}`,
     });
     console.log(
       `[seed] ${spec.slug.padEnd(36)}  ${(inserted.distanceM / 1000).toFixed(1).padStart(6)} km  ${String(inserted.elevationGainM).padStart(5)} m  ${String(course.climbs.length).padStart(2)} climbs`,

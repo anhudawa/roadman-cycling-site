@@ -1,7 +1,3 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
 interface PredictedTimeHeroProps {
   /** Final predicted time in seconds. */
   predictedTimeS: number;
@@ -33,23 +29,7 @@ export function PredictedTimeHero({
   variabilityIndex,
   mode,
 }: PredictedTimeHeroProps) {
-  const [animated, setAnimated] = useState(0);
-
-  useEffect(() => {
-    let raf = 0;
-    const start = performance.now();
-    const duration = 1100;
-    const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - t, 3);
-      setAnimated(predictedTimeS * eased);
-      if (t < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [predictedTimeS]);
-
-  const { h, m, s } = formatHMS(animated);
+  const { h, m, s } = formatHMS(predictedTimeS);
   const lowDelta = Math.abs(predictedTimeS - confidenceLowS);
   const highDelta = Math.abs(confidenceHighS - predictedTimeS);
   const tolerance = ((Math.max(lowDelta, highDelta) / predictedTimeS) * 100).toFixed(1);
@@ -60,18 +40,6 @@ export function PredictedTimeHero({
 
   return (
     <div className="relative rounded-2xl overflow-hidden border border-coral/30 bg-gradient-to-br from-deep-purple via-charcoal to-charcoal p-6 md:p-10">
-      {/* Aurora wash */}
-      <div className="absolute inset-0 pointer-events-none opacity-60">
-        <div
-          className="absolute -top-24 -left-12 w-[480px] h-[480px] rounded-full blur-[120px]"
-          style={{ background: "radial-gradient(circle, rgba(241,99,99,0.35), transparent 65%)" }}
-        />
-        <div
-          className="absolute -bottom-24 -right-12 w-[420px] h-[420px] rounded-full blur-[110px]"
-          style={{ background: "radial-gradient(circle, rgba(76,18,115,0.55), transparent 65%)" }}
-        />
-      </div>
-
       <div className="relative">
         <div className="flex items-center justify-between flex-wrap gap-2 mb-4">
           <p
@@ -89,7 +57,11 @@ export function PredictedTimeHero({
         </div>
 
         {/* The big time */}
-        <div className="flex items-baseline gap-3 mb-3 flex-wrap">
+        <div
+          className="grid items-baseline justify-start gap-2 sm:gap-3 mb-3"
+          style={{ gridTemplateColumns: "auto auto auto" }}
+          aria-label={`Predicted finish ${h} hours ${m} minutes ${s} seconds`}
+        >
           <TimeBlock value={h} label="H" big />
           <TimeBlock value={m} label="M" big pad />
           <TimeBlock value={s} label="S" pad muted />

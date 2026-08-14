@@ -1,6 +1,11 @@
 "use client";
 
-import { useState, useEffect, type FormEvent, type ReactNode } from "react";
+import {
+  useState,
+  useSyncExternalStore,
+  type FormEvent,
+  type ReactNode,
+} from "react";
 import { track } from "@/lib/analytics/events";
 
 /**
@@ -35,25 +40,28 @@ function getCookie(name: string): string | null {
   return match ? decodeURIComponent(match[1]) : null;
 }
 
+const subscribeToCookie = () => () => {};
+const getUnlockedSnapshot = () => getCookie(COOKIE_NAME) === "1";
+const getUnlockedServerSnapshot = () => true;
+
 interface ContentGateProps {
   children: ReactNode;
 }
 
 export function ContentGate({ children }: ContentGateProps) {
-  // Start `null` so the first render (SSR) shows everything — crawlers
-  // get the full content. Client hydration then reads the cookie and
-  // decides whether to gate.
-  const [unlocked, setUnlocked] = useState<boolean | null>(null);
+  const cookieUnlocked = useSyncExternalStore(
+    subscribeToCookie,
+    getUnlockedSnapshot,
+    getUnlockedServerSnapshot,
+  );
+  const [unlockedThisVisit, setUnlockedThisVisit] = useState(false);
+  const unlocked = cookieUnlocked || unlockedThisVisit;
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
   const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    setUnlocked(getCookie(COOKIE_NAME) === "1");
-  }, []);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -89,7 +97,7 @@ export function ContentGate({ children }: ContentGateProps) {
         });
         setCookie(COOKIE_NAME, "1", COOKIE_DAYS);
         setStatus("success");
-        setUnlocked(true);
+        setUnlockedThisVisit(true);
       } else {
         const data = (await res.json().catch(() => ({}))) as {
           error?: string;
@@ -105,7 +113,7 @@ export function ContentGate({ children }: ContentGateProps) {
 
   // SSR / first paint: show everything (crawlers).
   // Client with cookie: show everything.
-  if (unlocked === null || unlocked) {
+  if (unlocked) {
     return <>{children}</>;
   }
 

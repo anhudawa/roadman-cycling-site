@@ -293,8 +293,8 @@ export default function SweetSpotCalculatorPage() {
             </h1>
             <p className="text-foreground-muted text-lg">
               Enter your FTP and get your sweet spot power range, ready-made
-              interval sessions, and weekly volume guidance. Based on Coggan's
-              power zones and Seiler's intensity distribution research.
+              interval sessions, and weekly volume guidance. Based on Coggan&apos;s
+              power zones and Seiler&apos;s intensity distribution research.
             </p>
           </Container>
         </Section>

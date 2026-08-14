@@ -798,7 +798,7 @@ export function calculateTrainingPlan(input: TrainingPlanInput): TrainingPlanRes
   const minWeeks = Math.max(weeks, 1);
   let baseWeeks = Math.max(1, Math.floor(minWeeks * 0.5));
   let buildWeeks = Math.max(0, Math.floor(minWeeks * 0.3));
-  let peakWeeks = Math.max(0, Math.floor(minWeeks * 0.15));
+  const peakWeeks = Math.max(0, Math.floor(minWeeks * 0.15));
   let taperWeeks = minWeeks - baseWeeks - buildWeeks - peakWeeks;
   if (taperWeeks < 1) {
     const need = 1 - taperWeeks;

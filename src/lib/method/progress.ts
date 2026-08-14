@@ -85,8 +85,8 @@ export async function getProgressSummary(
   const percentComplete = Math.round((completedCount / totalCount) * 100);
 
   let inOrderStreak = 0;
-  for (const module of METHOD_MODULES) {
-    if (completedSlugs.has(module.slug)) {
+  for (const methodModule of METHOD_MODULES) {
+    if (completedSlugs.has(methodModule.slug)) {
       inOrderStreak += 1;
     } else {
       break;
@@ -95,8 +95,10 @@ export async function getProgressSummary(
 
   let totalMinutesInvested = 0;
   for (const slug of completedSlugs) {
-    const module = METHOD_MODULE_BY_SLUG.get(slug);
-    if (module) totalMinutesInvested += module.estimatedReadMinutes;
+    const methodModule = METHOD_MODULE_BY_SLUG.get(slug);
+    if (methodModule) {
+      totalMinutesInvested += methodModule.estimatedReadMinutes;
+    }
   }
 
   return {
