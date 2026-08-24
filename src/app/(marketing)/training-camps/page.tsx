@@ -4,8 +4,11 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 import { CAMP_LIST, formatCampDates } from "@/lib/camps/camps";
+import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
+import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
   title: "Cycling Training Camps in Girona, Spain — October 2026",
@@ -58,8 +61,43 @@ const CAMP_CARD_IMAGES: Record<"road" | "gravel", string> = {
   gravel: "/images/camps/girona-gravel-landing.webp",
 };
 
-const BUNDLE_PRICE = 1700;
-const BUNDLE_SAVINGS = 995 * 2 - BUNDLE_PRICE; // €290
+const CAMP_GUIDES = [
+  {
+    href: "/blog/what-to-expect-cycling-training-camp",
+    label: "First camp",
+    title: "What a real training-camp week looks like",
+  },
+  {
+    href: "/blog/cycling-training-camp-preparation-guide",
+    label: "Before you travel",
+    title: "How to prepare, train and pack",
+  },
+  {
+    href: "/blog/cycling-training-camps-what-to-expect-guide",
+    label: "Make it count",
+    title: "How to structure the load and recovery",
+  },
+] as const;
+
+function CampCardWrapper({
+  soldOut,
+  href,
+  className,
+  children,
+}: {
+  soldOut: boolean;
+  href: string;
+  className: string;
+  children: ReactNode;
+}) {
+  return soldOut ? (
+    <div className={className}>{children}</div>
+  ) : (
+    <Link href={href} className={className}>
+      {children}
+    </Link>
+  );
+}
 
 export default function TrainingCampsLandingPage() {
   return (
@@ -68,11 +106,12 @@ export default function TrainingCampsLandingPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "CollectionPage",
+          "@id": "https://roadmancycling.com/training-camps#webpage",
           name: "Cycling Training Camps in Girona — Roadman 2026",
           url: "https://roadmancycling.com/training-camps",
           description:
             "Road and gravel cycling training camps in Girona, October 2026. Led by Anthony Walsh from a private Catalan farmhouse. Sixteen riders per camp, two pace groups, follow car, €995 per camp.",
-          isPartOf: { "@id": "https://roadmancycling.com#website" },
+          ...buildSearchOwnerTrustProperties("cycling-training-camps"),
           about: {
             "@type": "Place",
             name: "Girona, Catalunya, Spain",
@@ -110,6 +149,7 @@ export default function TrainingCampsLandingPage() {
           "@graph": CAMP_LIST.flatMap((c) => [
             {
               "@type": "Event",
+              "@id": `https://roadmancycling.com${c.href}#event`,
               name: c.name,
               description: c.description,
               startDate: c.startDate,
@@ -258,6 +298,31 @@ export default function TrainingCampsLandingPage() {
         {/* CAMP CARDS ───────────────────────────────────────── */}
         <Section background="charcoal" className="!py-16 md:!py-28">
           <Container>
+            <div className="max-w-5xl mx-auto mb-14 md:mb-20">
+              <p className="text-foreground-muted text-center leading-relaxed max-w-3xl mx-auto mb-7">
+                A cycling training camp is a supported multi-day training block,
+                not just a holiday with rides. Roadman camps combine progressive
+                routes, matched pace groups, follow-car support, on-bike fuelling,
+                and planned recovery from one Girona base.
+              </p>
+              <div className="grid gap-3 md:grid-cols-3">
+                {CAMP_GUIDES.map((guide) => (
+                  <Link
+                    key={guide.href}
+                    href={guide.href}
+                    className="group rounded-xl border border-white/10 bg-white/[0.03] p-5 hover:border-coral/40 hover:bg-coral/[0.06] transition-all"
+                  >
+                    <p className="font-heading text-[10px] tracking-[0.25em] uppercase text-coral mb-2">
+                      {guide.label}
+                    </p>
+                    <p className="font-heading text-base text-off-white group-hover:text-coral transition-colors leading-snug">
+                      {guide.title.toUpperCase()} →
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
             <ScrollReveal direction="up">
               <p className="font-heading text-coral text-[11px] md:text-xs tracking-[0.35em] md:tracking-[0.4em] mb-4 text-center">
                 PICK YOUR FORMAT
@@ -277,15 +342,12 @@ export default function TrainingCampsLandingPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
               {CAMP_LIST.map((camp, i) => {
                 const isSoldOut = camp.soldOut === true;
-                const CardWrapper = isSoldOut ? "div" : Link;
-                const cardProps = isSoldOut
-                  ? {}
-                  : { href: camp.href };
 
                 return (
                   <ScrollReveal key={camp.slug} direction="up" delay={i * 0.08}>
-                    <CardWrapper
-                      {...cardProps}
+                    <CampCardWrapper
+                      soldOut={isSoldOut}
+                      href={camp.href}
                       className={`group block rounded-2xl border overflow-hidden transition-all ${
                         isSoldOut
                           ? "border-white/5 bg-white/[0.01] opacity-75 cursor-default"
@@ -379,7 +441,7 @@ export default function TrainingCampsLandingPage() {
                           )}
                         </div>
                       </div>
-                    </CardWrapper>
+                    </CampCardWrapper>
                   </ScrollReveal>
                 );
               })}
@@ -515,7 +577,16 @@ export default function TrainingCampsLandingPage() {
           </Container>
         </Section>
 
-        {/* CLOSING CTA ──────────────────────────────────────── */}
+        {/* REVIEW + CLOSING CTA ─────────────────────────────── */}
+        <Section background="charcoal" className="!py-12">
+          <Container width="narrow">
+            <EvidenceBlock
+              lastReviewed="24 August 2026"
+              reviewedBy="Roadman Cycling operations and coaching team"
+            />
+          </Container>
+        </Section>
+
         <Section background="deep-purple" grain className="!py-16 md:!py-28">
           <Container width="narrow" className="text-center">
             <ScrollReveal direction="up">
