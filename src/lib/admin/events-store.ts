@@ -4,6 +4,10 @@ import { eq, and, gte, lte, sql, count, desc } from "drizzle-orm";
 import { startOfDay, startOfWeek, startOfMonth, subDays } from "./time-ranges";
 import { calculateChiSquared } from "@/lib/ab/statistics";
 import type { ABResult } from "@/lib/ab/types";
+import {
+  SEARCH_OWNER_BY_ID,
+  type SearchOwnerId,
+} from "@/lib/seo/search-ownership";
 
 // ── Types ──────────────────────────────────────────────────
 export type EventType =
@@ -968,4 +972,68 @@ export async function getContentCoachingFunnel(
     applyPageViews: Number(applyViewsRow?.c ?? 0),
     applySubmits: Number(applySubmitsRow?.c ?? 0),
   };
+}
+
+// ── Supporting content → canonical search owner ─────────────────
+export interface SearchOwnerClickStats {
+  ownerId: SearchOwnerId;
+  destination: string;
+  clicks: number;
+  sourcePages: number;
+}
+
+const SEARCH_OWNER_TRACK_PREFIX = "search_owner_";
+
+/**
+ * Counts consented clicks from supporting articles and episodes into their
+ * canonical search owner. The source page is stored on the event itself, so
+ * this measures whether organic knowledge content is moving readers towards
+ * Roadman's definitive guides and commercial destinations.
+ */
+export async function getSearchOwnerClickStats(
+  from: Date,
+  to: Date,
+): Promise<SearchOwnerClickStats[]> {
+  const trackId = sql<string>`${events.meta}->>'track_id'`;
+
+  const rows = await db
+    .select({
+      trackId: trackId.as("track_id"),
+      destination:
+        sql<string>`max(coalesce(${events.meta}->>'destination', ''))`.as(
+          "destination",
+        ),
+      clicks: sql<number>`count(*)::int`.as("clicks"),
+      sourcePages: sql<number>`count(distinct ${events.page})::int`.as(
+        "source_pages",
+      ),
+    })
+    .from(events)
+    .where(
+      and(
+        gte(events.timestamp, from),
+        lte(events.timestamp, to),
+        eq(events.type, "cta_click"),
+        sql`left(${events.meta}->>'track_id', ${SEARCH_OWNER_TRACK_PREFIX.length}) = ${SEARCH_OWNER_TRACK_PREFIX}`,
+      ),
+    )
+    .groupBy(trackId)
+    .orderBy(desc(sql<number>`count(*)`));
+
+  return rows.flatMap((row) => {
+    const ownerId = row.trackId.slice(
+      SEARCH_OWNER_TRACK_PREFIX.length,
+    ) as SearchOwnerId;
+
+    if (!SEARCH_OWNER_BY_ID.has(ownerId)) return [];
+
+    return [
+      {
+        ownerId,
+        destination: row.destination,
+        clicks: Number(row.clicks),
+        sourcePages: Number(row.sourcePages),
+      },
+    ];
+  });
 }

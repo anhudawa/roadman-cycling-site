@@ -15,6 +15,7 @@ export function SearchOwnerLink({ owner }: { owner: SearchOwner }) {
       </p>
       <Link
         href={owner.path}
+        data-track={`search_owner_${owner.id}`}
         className="font-heading text-off-white text-base hover:text-coral transition-colors"
       >
         {owner.label} <span aria-hidden="true">→</span>

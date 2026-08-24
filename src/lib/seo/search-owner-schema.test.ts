@@ -70,4 +70,13 @@ describe("priority search-owner schema", () => {
       expect(source).toContain("getSearchOwnerWebPageId(searchOwner)");
     }
   });
+
+  it("tracks supporting-content clicks into every canonical owner", () => {
+    const source = readFileSync(
+      resolve(process.cwd(), "src/components/seo/SearchOwnerLink.tsx"),
+      "utf8",
+    );
+
+    expect(source).toContain('data-track={`search_owner_${owner.id}`}');
+  });
 });
