@@ -96,7 +96,7 @@ Re-check these exact queries 28 days after deployment and compare:
 2. impressions transferred toward the intended hub;
 3. the number of Roadman URLs shown for each exact query;
 4. generative-AI impressions for the upgraded podcast pages;
-5. consented assisted clicks from the ranking article into the canonical owner or commercial destination.
+5. consented assisted clicks from each named ranking article or episode into the canonical owner or commercial destination.
 
 The assisted-click baseline is unknown because owner-link tracking starts with the measurement release; it must be recorded as `null`, not zero.
 

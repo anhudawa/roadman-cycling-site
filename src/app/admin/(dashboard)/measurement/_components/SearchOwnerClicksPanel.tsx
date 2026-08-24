@@ -25,6 +25,18 @@ export async function SearchOwnerClicksPanel({
 
   const byOwner = new Map(stats.map((row) => [row.ownerId, row]));
   const total = stats.reduce((sum, row) => sum + row.clicks, 0);
+  const ownerLabels = new Map(
+    SEARCH_OWNERS.map((owner) => [owner.id, owner.label]),
+  );
+  const topSources = stats
+    .flatMap((row) =>
+      row.sources.map((source) => ({
+        ...source,
+        ownerId: row.ownerId,
+      })),
+    )
+    .sort((a, b) => b.clicks - a.clicks || a.page.localeCompare(b.page))
+    .slice(0, 10);
 
   return (
     <Card as="section">
@@ -83,6 +95,43 @@ export async function SearchOwnerClicksPanel({
                 })}
               </tbody>
             </table>
+
+            <div className="mt-6">
+              <h3 className={SECTION_H2}>Top assisted source pages</h3>
+              <p className="text-xs text-[var(--color-fg-subtle)] mt-1 mb-2">
+                The article or episode where a reader clicked into a definitive
+                guide.
+              </p>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-[var(--color-border)] text-left text-xs text-[var(--color-fg-subtle)]">
+                      <th className="font-medium py-2 pr-3">Source page</th>
+                      <th className="font-medium py-2 px-3">Definitive guide</th>
+                      <th className="font-medium py-2 pl-3 text-right">Clicks</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {topSources.map((source) => (
+                      <tr
+                        key={`${source.ownerId}:${source.page}`}
+                        className="border-b border-[var(--color-border)] last:border-0"
+                      >
+                        <td className="py-2.5 pr-3 font-mono text-xs text-[var(--color-fg)] break-all">
+                          {source.page}
+                        </td>
+                        <td className="py-2.5 px-3 text-xs text-[var(--color-fg-muted)]">
+                          {ownerLabels.get(source.ownerId)}
+                        </td>
+                        <td className="py-2.5 pl-3 text-right font-mono tabular-nums text-[var(--color-fg)]">
+                          {source.clicks.toLocaleString()}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         )}
       </CardBody>

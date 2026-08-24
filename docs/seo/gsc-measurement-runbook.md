@@ -20,7 +20,7 @@ The machine-readable baseline is [`data/gsc-priority-28d-2026-08-22.json`](data/
 3. Use **Exact query** for every priority query except `training camp`, which must use **Queries containing**.
 4. For `cycling coach`, `cycling training plan` and the `training camp` family, open the Pages tab. Record the reported URL count and all visible rows, including the intended owner even when it has zero clicks.
 5. Open the Generative AI report with the same period. Record total impressions and exact-page impressions for the five owner paths in the baseline.
-6. In Roadman Admin → Measurement, use the same date range and record the “Supporting content → definitive guides” total and per-owner clicks.
+6. In Roadman Admin → Measurement, use the same date range and record the “Supporting content → definitive guides” total, per-owner clicks and every row in “Top assisted source pages.” In particular, preserve the source rows for the existing GSC winners: the 60-day training article, the online-coach selection article and the best-podcasts article.
 
 Search Console may label filtered chart totals and page tables as partial. That is expected. Use the same filters both times and compare directionally: intended-owner impression share, number of competing URLs, clicks, CTR and position.
 
