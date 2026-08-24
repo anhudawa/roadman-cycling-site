@@ -1,4 +1,4 @@
-import type { SearchOwnerId } from "./search-ownership";
+import { SEARCH_OWNERS, type SearchOwnerId } from "./search-ownership";
 
 export type GscQueryMatch = "exact" | "contains";
 
@@ -39,6 +39,7 @@ export interface SearchOwnerClickSnapshot {
   trackingStartedAt: string;
   total: number;
   byOwner: { ownerId: SearchOwnerId; clicks: number }[];
+  bySource: { ownerId: SearchOwnerId; path: string; clicks: number }[];
 }
 
 export interface GscSnapshot {
@@ -107,6 +108,17 @@ export interface GscComparison {
     baselineTotal: number | null;
     currentTotal: number | null;
     totalDelta: number | null;
+    owners: Array<{
+      ownerId: SearchOwnerId;
+      baselineClicks: number | null;
+      currentClicks: number | null;
+      delta: number | null;
+    }>;
+    currentSources: Array<{
+      ownerId: SearchOwnerId;
+      path: string;
+      clicks: number;
+    }>;
   };
 }
 
@@ -144,9 +156,7 @@ function compareMetric(
 function ownerImpressionShare(split: GscUrlSplit): number {
   if (split.aggregate.impressions === 0) return 0;
   const ownerPath = normalisePath(split.expectedOwner);
-  const owner = split.rows.find(
-    (row) => normalisePath(row.path) === ownerPath,
-  );
+  const owner = split.rows.find((row) => normalisePath(row.path) === ownerPath);
   return (owner?.impressions ?? 0) / split.aggregate.impressions;
 }
 
@@ -224,6 +234,29 @@ export function compareGscSnapshots(
 
   const baselineTotal = baseline.ownerLinkClicks?.total ?? null;
   const currentTotal = current.ownerLinkClicks?.total ?? null;
+  const baselineOwnerClicks = new Map(
+    baseline.ownerLinkClicks?.byOwner.map((row) => [row.ownerId, row.clicks]) ??
+      [],
+  );
+  const currentOwnerClicks = new Map(
+    current.ownerLinkClicks?.byOwner.map((row) => [row.ownerId, row.clicks]) ??
+      [],
+  );
+  const ownerClicks = SEARCH_OWNERS.map((owner) => {
+    const before = baseline.ownerLinkClicks
+      ? (baselineOwnerClicks.get(owner.id) ?? 0)
+      : null;
+    const after = current.ownerLinkClicks
+      ? (currentOwnerClicks.get(owner.id) ?? 0)
+      : null;
+
+    return {
+      ownerId: owner.id,
+      baselineClicks: before,
+      currentClicks: after,
+      delta: before === null || after === null ? null : after - before,
+    };
+  });
 
   return {
     baseline,
@@ -246,6 +279,8 @@ export function compareGscSnapshots(
         baselineTotal === null || currentTotal === null
           ? null
           : currentTotal - baselineTotal,
+      owners: ownerClicks,
+      currentSources: current.ownerLinkClicks?.bySource ?? [],
     },
   };
 }
@@ -263,9 +298,7 @@ function relative(value: number | null): string {
   return value === null ? "n/a" : `${signed(value * 100, 1)}%`;
 }
 
-export function renderGscComparisonMarkdown(
-  comparison: GscComparison,
-): string {
+export function renderGscComparisonMarkdown(comparison: GscComparison): string {
   const { baseline, current } = comparison;
   const lines = [
     "# Roadman search comparison",
@@ -317,6 +350,31 @@ export function renderGscComparisonMarkdown(
     comparison.ownerLinkClicks.baselineAvailable
       ? `Consented clicks: ${comparison.ownerLinkClicks.baselineTotal ?? 0} → ${comparison.ownerLinkClicks.currentTotal ?? 0} (${signed(comparison.ownerLinkClicks.totalDelta ?? 0)}).`
       : `Tracking did not exist in the baseline window. The current window recorded ${comparison.ownerLinkClicks.currentTotal ?? 0} consented clicks; treat this as a new signal, not a before/after lift.`,
+    "",
+    "| Definitive guide | Before | After | Change |",
+    "| --- | ---: | ---: | ---: |",
+    ...comparison.ownerLinkClicks.owners.map((row) => {
+      const before = row.baselineClicks?.toLocaleString() ?? "n/a";
+      const after = row.currentClicks?.toLocaleString() ?? "n/a";
+      const change = row.delta === null ? "n/a" : signed(row.delta);
+      return `| ${row.ownerId} | ${before} | ${after} | ${change} |`;
+    }),
+    "",
+    "### Current assisted source pages",
+    "",
+    ...(comparison.ownerLinkClicks.currentSources.length > 0
+      ? [
+          "| Source page | Definitive guide | Clicks |",
+          "| --- | --- | ---: |",
+          ...comparison.ownerLinkClicks.currentSources
+            .slice()
+            .sort((a, b) => b.clicks - a.clicks || a.path.localeCompare(b.path))
+            .map(
+              (row) =>
+                `| \`${row.path}\` | ${row.ownerId} | ${row.clicks.toLocaleString()} |`,
+            ),
+        ]
+      : ["No source-page clicks were recorded in the current window."]),
     "",
   ];
 

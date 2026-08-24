@@ -96,12 +96,21 @@ describe("GSC measurement", () => {
       ],
       ai: {
         impressions: 1_500,
-        pages: [{ path: "https://roadmancycling.com/coaching", impressions: 50 }],
+        pages: [
+          { path: "https://roadmancycling.com/coaching", impressions: 50 },
+        ],
       },
       ownerLinkClicks: {
         trackingStartedAt: "2026-08-24T15:00:00.000Z",
         total: 12,
         byOwner: [{ ownerId: "cycling-coaching", clicks: 12 }],
+        bySource: [
+          {
+            ownerId: "cycling-coaching",
+            path: "/blog/best-online-cycling-coach-how-to-choose",
+            clicks: 12,
+          },
+        ],
       },
     });
 
@@ -117,6 +126,19 @@ describe("GSC measurement", () => {
     expect(result.ai.pages[0].impressions.absolute).toBe(30);
     expect(result.ownerLinkClicks.baselineAvailable).toBe(false);
     expect(result.ownerLinkClicks.currentTotal).toBe(12);
+    expect(result.ownerLinkClicks.owners).toContainEqual({
+      ownerId: "cycling-coaching",
+      baselineClicks: null,
+      currentClicks: 12,
+      delta: null,
+    });
+    expect(result.ownerLinkClicks.currentSources).toEqual([
+      {
+        ownerId: "cycling-coaching",
+        path: "/blog/best-online-cycling-coach-how-to-choose",
+        clicks: 12,
+      },
+    ]);
   });
 
   it("renders an audit-ready Markdown scorecard", () => {
@@ -131,16 +153,17 @@ describe("GSC measurement", () => {
 
     expect(markdown).toContain("# Roadman search comparison");
     expect(markdown).toContain("## URL ownership");
-    expect(markdown).toContain(
-      "Tracking did not exist in the baseline window",
-    );
+    expect(markdown).toContain("Tracking did not exist in the baseline window");
+    expect(markdown).toContain("### Current assisted source pages");
   });
 
   it("refuses comparisons with mismatched periods or missing queries", () => {
     expect(() =>
       compareGscSnapshots(
         snapshot(),
-        snapshot({ period: { start: "2026-08-01", end: "2026-08-07", days: 7 } }),
+        snapshot({
+          period: { start: "2026-08-01", end: "2026-08-07", days: 7 },
+        }),
       ),
     ).toThrow("same length");
 
