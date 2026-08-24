@@ -61,6 +61,24 @@ const CAMP_CARD_IMAGES: Record<"road" | "gravel", string> = {
 const BUNDLE_PRICE = 1700;
 const BUNDLE_SAVINGS = 995 * 2 - BUNDLE_PRICE; // €290
 
+const CAMP_GUIDES = [
+  {
+    href: "/blog/what-to-expect-cycling-training-camp",
+    label: "First camp",
+    title: "What a real training-camp week looks like",
+  },
+  {
+    href: "/blog/cycling-training-camp-preparation-guide",
+    label: "Before you travel",
+    title: "How to prepare, train and pack",
+  },
+  {
+    href: "/blog/cycling-training-camps-what-to-expect-guide",
+    label: "Make it count",
+    title: "How to structure the load and recovery",
+  },
+] as const;
+
 export default function TrainingCampsLandingPage() {
   return (
     <>
@@ -254,6 +272,31 @@ export default function TrainingCampsLandingPage() {
         {/* CAMP CARDS ───────────────────────────────────────── */}
         <Section background="charcoal" className="!py-16 md:!py-28">
           <Container>
+            <div className="max-w-5xl mx-auto mb-14 md:mb-20">
+              <p className="text-foreground-muted text-center leading-relaxed max-w-3xl mx-auto mb-7">
+                A cycling training camp is a supported multi-day training block,
+                not just a holiday with rides. Roadman camps combine progressive
+                routes, matched pace groups, follow-car support, on-bike fuelling,
+                and planned recovery from one Girona base.
+              </p>
+              <div className="grid gap-3 md:grid-cols-3">
+                {CAMP_GUIDES.map((guide) => (
+                  <Link
+                    key={guide.href}
+                    href={guide.href}
+                    className="group rounded-xl border border-white/10 bg-white/[0.03] p-5 hover:border-coral/40 hover:bg-coral/[0.06] transition-all"
+                  >
+                    <p className="font-heading text-[10px] tracking-[0.25em] uppercase text-coral mb-2">
+                      {guide.label}
+                    </p>
+                    <p className="font-heading text-base text-off-white group-hover:text-coral transition-colors leading-snug">
+                      {guide.title.toUpperCase()} →
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
             <ScrollReveal direction="up">
               <p className="font-heading text-coral text-[11px] md:text-xs tracking-[0.35em] md:tracking-[0.4em] mb-4 text-center">
                 PICK YOUR FORMAT

@@ -14,6 +14,11 @@ export interface SearchOwner {
   primaryQuery: string;
   description: string;
   matchPhrases: readonly string[];
+  supportingDestinations: readonly {
+    path: string;
+    label: string;
+    intent: string;
+  }[];
 }
 
 /**
@@ -39,6 +44,18 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
       "cycling interview",
       "podcast episode",
     ],
+    supportingDestinations: [
+      {
+        path: "/blog/best-cycling-podcasts-2026",
+        label: "Best Cycling Podcasts 2026",
+        intent: "Independent category comparison and listening recommendations",
+      },
+      {
+        path: "/guests",
+        label: "Cycling Expert Directory",
+        intent: "Named-expert and guest discovery",
+      },
+    ],
   },
   {
     id: "cycling-coaching",
@@ -53,6 +70,18 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
       "cycling coach",
       "coaching for cyclists",
       "personal cycling coach",
+    ],
+    supportingDestinations: [
+      {
+        path: "/topics/cycling-coaching",
+        label: "Cycling Coaching Knowledge Guide",
+        intent: "Informational guide to coaching, cost, fit and methodology",
+      },
+      {
+        path: "/blog/best-online-cycling-coach-how-to-choose",
+        label: "How to Choose an Online Cycling Coach",
+        intent: "Coach-selection framework and red flags",
+      },
     ],
   },
   {
@@ -72,6 +101,18 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
       "ageing cyclist",
       "aging cyclist",
     ],
+    supportingDestinations: [
+      {
+        path: "/blog/cycling-masters-racing-getting-started-guide",
+        label: "Masters Cycling Age Groups and Racing Guide",
+        intent: "Masters age-category and first-race questions",
+      },
+      {
+        path: "/blog/masters-cycling-training-report-2026",
+        label: "Masters Cycling Training Report 2026",
+        intent: "Evidence and original research for cyclists over 40",
+      },
+    ],
   },
   {
     id: "cycling-training-plans",
@@ -88,6 +129,18 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
       "structured cycling plan",
       "event training plan",
     ],
+    supportingDestinations: [
+      {
+        path: "/topics/cycling-training-plans",
+        label: "Cycling Training Plan Methodology",
+        intent: "Informational guide to periodisation and weekly structure",
+      },
+      {
+        path: "/blog/how-pro-cyclist-trains-60-days",
+        label: "Pro Training Principles: 60-Day Case Study",
+        intent: "First-person training-plan experiment and results",
+      },
+    ],
   },
   {
     id: "cycling-training-camps",
@@ -103,6 +156,18 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
       "girona cycling camp",
       "road cycling camp",
       "cycling camp",
+    ],
+    supportingDestinations: [
+      {
+        path: "/blog/what-to-expect-cycling-training-camp",
+        label: "What to Expect at a Cycling Training Camp",
+        intent: "First-timer expectations, fitness and packing questions",
+      },
+      {
+        path: "/blog/cycling-training-camp-preparation-guide",
+        label: "Cycling Training Camp Preparation Guide",
+        intent: "Pre-camp training, equipment and travel preparation",
+      },
     ],
   },
 ] as const;
@@ -158,5 +223,9 @@ export function serialiseSearchOwners() {
   return SEARCH_OWNERS.map((owner) => ({
     ...owner,
     url: `${SITE_ORIGIN}${owner.path}`,
+    supportingDestinations: owner.supportingDestinations.map((destination) => ({
+      ...destination,
+      url: `${SITE_ORIGIN}${destination.path}`,
+    })),
   }));
 }

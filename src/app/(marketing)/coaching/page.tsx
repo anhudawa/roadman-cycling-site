@@ -61,6 +61,30 @@ const results = [
   },
 ];
 
+const COACHING_INTENT_PATHS = [
+  {
+    href: "/topics/cycling-coaching",
+    eyebrow: "LEARN",
+    title: "Understand cycling coaching",
+    description:
+      "What a coach does, when coaching is worth it, how online coaching works, and what it should cost.",
+  },
+  {
+    href: "/blog/best-online-cycling-coach-how-to-choose",
+    eyebrow: "COMPARE",
+    title: "Choose the right coach",
+    description:
+      "A practical selection framework, the questions to ask, and the red flags that expose plan-delivery services.",
+  },
+  {
+    href: "/apply",
+    eyebrow: "START",
+    title: "Apply for Roadman coaching",
+    description:
+      "Tell us your goal, your available hours, and what has stopped moving. We will tell you honestly if the programme fits.",
+  },
+] as const;
+
 // Editorial choice — four different persona angles for the 'IN THEIR
 // WORDS' row (plateau, comeback, body composition, data-backed
 // expertise). Pulled from the central testimonials library so any quote
@@ -460,6 +484,41 @@ export default function CoachingPage() {
 
         {/* Gradient divider */}
         <div className="gradient-divider" />
+
+        {/* Search-intent router: keeps the commercial service page distinct
+            from the knowledge guide and coach-selection article. */}
+        <Section background="charcoal" className="!py-12 md:!py-16">
+          <Container>
+            <div className="max-w-5xl mx-auto">
+              <p className="text-center text-foreground-muted leading-relaxed max-w-3xl mx-auto mb-8">
+                Online cycling coaching is a coach-managed training system: a
+                plan built around your available hours, reviewed against your
+                completed data, and adjusted when fitness, fatigue, work, or
+                life changes. Choose the route that matches what you need now.
+              </p>
+              <div className="grid gap-4 md:grid-cols-3">
+                {COACHING_INTENT_PATHS.map((path) => (
+                  <Link
+                    key={path.href}
+                    href={path.href}
+                    className="group rounded-xl border border-white/10 bg-white/[0.03] p-6 transition-all hover:border-coral/40 hover:bg-coral/[0.06]"
+                    data-track={`coaching_intent_${path.eyebrow.toLowerCase()}`}
+                  >
+                    <p className="font-heading text-xs tracking-[0.25em] text-coral mb-3">
+                      {path.eyebrow}
+                    </p>
+                    <h2 className="font-heading text-xl text-off-white mb-3 group-hover:text-coral transition-colors">
+                      {path.title.toUpperCase()}
+                    </h2>
+                    <p className="text-sm text-foreground-muted leading-relaxed">
+                      {path.description}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </Container>
+        </Section>
 
         {/* Results */}
         <Section background="charcoal" id="real-results">

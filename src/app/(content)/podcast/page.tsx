@@ -67,6 +67,29 @@ export async function generateMetadata({
   };
 }
 
+const PODCAST_START_PATHS = [
+  {
+    href: "/blog/best-cycling-podcasts-2026",
+    label: "New listener",
+    title: "Best cycling podcasts and where Roadman fits",
+  },
+  {
+    href: "/topics/cycling-training-plans",
+    label: "Train smarter",
+    title: "Episodes and experts on training plans",
+  },
+  {
+    href: "/masters",
+    label: "Ride faster after 40",
+    title: "The masters cycling knowledge hub",
+  },
+  {
+    href: "/guests",
+    label: "Find an expert",
+    title: "Browse every named podcast guest",
+  },
+] as const;
+
 export default async function PodcastPage({ searchParams }: PodcastPageProps) {
   const { page: rawPage } = await searchParams;
   const page = parsePage(rawPage);
@@ -220,6 +243,37 @@ export default async function PodcastPage({ searchParams }: PodcastPageProps) {
             </p>
           </Container>
         </Section>
+
+        {page === 1 && (
+          <Section background="charcoal" className="!py-10 md:!py-14">
+            <Container>
+              <div className="max-w-5xl mx-auto">
+                <p className="text-foreground-muted text-center leading-relaxed max-w-3xl mx-auto mb-7">
+                  The Roadman Cycling Podcast is a searchable cycling knowledge
+                  archive: interviews with WorldTour coaches, sports scientists,
+                  professional riders, and practitioners, plus solo episodes that
+                  turn those conversations into answers for amateur cyclists.
+                </p>
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                  {PODCAST_START_PATHS.map((path) => (
+                    <Link
+                      key={path.href}
+                      href={path.href}
+                      className="group rounded-xl border border-white/10 bg-white/[0.03] p-5 transition-all hover:border-coral/40 hover:bg-coral/[0.06]"
+                    >
+                      <p className="font-heading text-[10px] tracking-[0.22em] uppercase text-coral mb-2">
+                        {path.label}
+                      </p>
+                      <h2 className="font-heading text-base text-off-white leading-snug group-hover:text-coral transition-colors">
+                        {path.title.toUpperCase()} →
+                      </h2>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </Container>
+          </Section>
+        )}
 
         {/* Search + Episodes (Client Component) */}
         <Section background="charcoal">
