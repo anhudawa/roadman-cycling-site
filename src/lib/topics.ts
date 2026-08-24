@@ -107,7 +107,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   {
     slug: "cycling-training-plans",
     title: "Cycling Training Plans — How to Structure Your Training Year",
-    headline: "TRAIN WITH PURPOSE",
+    headline: "HOW CYCLING TRAINING PLANS WORK",
     ctaHeadline: "A PLAN BUILT AROUND YOUR LIFE.",
     description:
       "How to build a cycling training plan that actually works. Periodisation, weekly structure, time-crunched plans, event preparation, and the framework used by World Tour coaches — adapted for amateurs.",
@@ -233,7 +233,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   {
     slug: "cycling-coaching",
     title: "Cycling Coaching — Online & In-Person",
-    headline: "THE COMPLETE GUIDE TO CYCLING COACHING",
+    headline: "HOW CYCLING COACHING WORKS",
     ctaHeadline: "STOP GUESSING. START PROGRESSING.",
     description:
       "The complete guide to cycling coaching. When to get a coach, what to look for, how online coaching works, and why most cyclists plateau without structured guidance. Built from 1,400+ podcast conversations with the coaches behind World Tour teams.",
@@ -271,7 +271,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   {
     slug: "masters-cycling",
     title: "Masters Cycling — Training, Recovery & Performance After 40",
-    headline: "STILL GETTING FASTER",
+    headline: "MASTERS CYCLING AFTER 40",
     ctaHeadline: "COACHING BUILT FOR THE OVER-40 RIDER.",
     description:
       "Masters cycling done right: how to train, recover, lift and fuel after 40 so you keep getting faster. Built for the serious amateur the whole Roadman method is designed around.",
@@ -2306,6 +2306,41 @@ const TOPIC_ENRICHMENT: Record<string, {
       "masters-cycling-training-plan-over-40",
       "cycling-after-40-faster-science",
     ],
+    claimsHeading: "THE MASTERS TRAINING POSITION",
+    claimsCaption:
+      "The recurring conclusions across Roadman's masters interviews, published research and coached-athlete practice — graded by evidence strength.",
+    citedClaims: [
+      {
+        claim: "Performance decline after 40 is trainable, not fixed",
+        roadmanPosition:
+          "Age changes the recovery budget before it removes the ability to improve. Trained masters riders can still raise power, durability and race performance with the right stimulus.",
+        evidenceSource:
+          "Published masters-athlete research plus Roadman conversations with Andy Galpin, Joe Friel and David Lipman.",
+        practicalImplication:
+          "Keep an annual thread of high-intensity work and judge progress against age-appropriate trends, not younger-rider norms.",
+        evidenceLevel: "strong",
+      },
+      {
+        claim: "Hard-session spacing matters more with age",
+        roadmanPosition:
+          "Most masters riders need 48–72 hours between demanding sessions. Adding another medium-hard day usually reduces adaptation rather than accelerating it.",
+        evidenceSource:
+          "Convergent coaching practice across Friel, Seiler and Roadman masters cases; supported by age-related recovery research.",
+        practicalImplication:
+          "Cap most weeks at two hard bike sessions and add recovery before adding volume or intensity.",
+        evidenceLevel: "moderate",
+      },
+      {
+        claim: "Strength training is a core masters intervention",
+        roadmanPosition:
+          "Heavy, progressive strength work helps defend force, lean mass and fast-twitch capacity that endurance riding alone does not preserve well.",
+        evidenceSource:
+          "Cycling strength-training studies and Roadman interviews with Andy Galpin and Derek Teel.",
+        practicalImplication:
+          "Lift twice weekly in the build phase and retain one maintenance session during the riding season.",
+        evidenceLevel: "strong",
+      },
+    ],
   },
   "ftp-training": {
     tools: [
@@ -2396,6 +2431,41 @@ const TOPIC_ENRICHMENT: Record<string, {
       "polarised-training-cycling-guide",
       "how-to-structure-cycling-training-plan",
       "zone-2-training-complete-guide",
+    ],
+    claimsHeading: "THE TRAINING-PLAN POSITION",
+    claimsCaption:
+      "What Roadman treats as settled, what still depends on the rider, and how each conclusion changes the week you should actually ride.",
+    citedClaims: [
+      {
+        claim: "A plan must progress, recover and peak",
+        roadmanPosition:
+          "Repeating a workout library is not periodisation. A useful plan sequences base, build, event-specific work, taper and recovery so each phase prepares the next.",
+        evidenceSource:
+          "Established periodisation practice, Joe Friel's framework and WorldTour coaching conversations in the Roadman archive.",
+        practicalImplication:
+          "Plan backward from the target event and give every four-to-six-week block one primary adaptation goal.",
+        evidenceLevel: "strong",
+      },
+      {
+        claim: "Two quality sessions are enough for most amateurs",
+        roadmanPosition:
+          "For riders training six to twelve hours, two genuinely demanding sessions usually provide enough stimulus when the remaining riding stays easy.",
+        evidenceSource:
+          "Polarised-training research and convergent practice across Seiler, Lorang, Wakefield and Roadman coaching cases.",
+        practicalImplication:
+          "Protect two quality days, a long aerobic ride and the recovery that lets those sessions land.",
+        evidenceLevel: "moderate",
+      },
+      {
+        claim: "Available hours should shape the plan",
+        roadmanPosition:
+          "A six-hour week cannot be a twelve-hour plan compressed into fewer days. Volume, intensity density and recovery have to be rebuilt around the rider's real calendar.",
+        evidenceSource:
+          "Roadman coached-athlete practice and time-crunched training principles across the expert archive.",
+        practicalImplication:
+          "Choose the hours you can repeat for sixteen weeks, then scale the training stress inside that ceiling.",
+        evidenceLevel: "moderate",
+      },
     ],
   },
   "cycling-recovery": {
@@ -2499,6 +2569,41 @@ const TOPIC_ENRICHMENT: Record<string, {
       "is-a-cycling-coach-worth-it",
       "cycling-coaching-results-before-and-after",
       "not-done-yet-coaching-review",
+    ],
+    claimsHeading: "THE COACHING POSITION",
+    claimsCaption:
+      "The tests Roadman uses to distinguish real coaching from plan delivery, grounded in expert interviews and documented athlete outcomes.",
+    citedClaims: [
+      {
+        claim: "Coaching is an adjustment loop, not a document",
+        roadmanPosition:
+          "A coach earns the fee by reviewing completed work, interpreting fatigue and life context, and changing what comes next. A static plan is a different product.",
+        evidenceSource:
+          "Roadman interviews with Dan Lorang, John Wakefield and Joe Friel, plus the Roadman coaching workflow.",
+        practicalImplication:
+          "Before hiring, ask exactly how often your data is reviewed and what triggers a plan change.",
+        evidenceLevel: "moderate",
+      },
+      {
+        claim: "Coach fit matters more than proximity",
+        roadmanPosition:
+          "For most amateur cyclists, relevant athlete experience, communication and decision quality matter more than the coach living nearby.",
+        evidenceSource:
+          "Modern TrainingPeaks delivery practice and Roadman's online work with riders across Ireland, the UK and the USA.",
+        practicalImplication:
+          "Shortlist coaches by discipline, life constraints and communication standard before filtering by location.",
+        evidenceLevel: "moderate",
+      },
+      {
+        claim: "Beginners do not always need a coach",
+        roadmanPosition:
+          "A reliable training plan or app is often enough during the first easy-gain phase. Coaching becomes higher value when progress stalls or the athlete's context becomes complex.",
+        evidenceSource:
+          "Roadman athlete cases and coaching-selection guidance across the cycling-coaching archive.",
+        practicalImplication:
+          "Buy coaching for judgement, accountability and adaptation — not because basic workouts are unavailable elsewhere.",
+        evidenceLevel: "moderate",
+      },
     ],
   },
   "against-the-clock": {

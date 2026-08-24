@@ -97,3 +97,23 @@ Re-check these exact queries 28 days after deployment and compare:
 5. assisted clicks from the ranking article into the commercial destination.
 
 Do not redirect a page solely because it appears in the same query report. Redirect only when the content intent is genuinely duplicative and the weaker URL has no independent demand.
+
+## Phase 2 execution log — 24 August 2026
+
+Search Console indexing work completed after the first production deployment:
+
+- The previously submitted child sitemaps (`/sitemap/0.xml` through `/sitemap/5.xml`) were still recorded as “Couldn't fetch” from 23 April 2026.
+- The live child sitemaps returned valid XML with HTTP 200 responses.
+- Submitted the canonical `https://roadmancycling.com/sitemap.xml` index to the domain property.
+- Google accepted and read the index on 24 August 2026 with status `Success`.
+- Confirmed that `/coaching`, `/training-camps`, `/podcast`, `/topics/cycling-training-plans`, and `/topics/masters-cycling` were already indexed.
+- Added all five URLs to Google's priority crawl queue after the production content changes.
+
+The second implementation batch then:
+
+- moved the three high-impression coaching comparison articles from “best coach” title intent to explicit “how to choose” intent;
+- reinforced `/coaching`, `/coaching/uk`, and `/coaching/usa` as service destinations;
+- added exact-query headings to the training-plan and masters owner pages;
+- added evidence-graded claim tables to the coaching, training-plan, and masters knowledge hubs;
+- added visible author, reviewer, named-source, editorial-standard, and corrections signals to the three core performance pages; and
+- updated priority-page sitemap modification dates to 24 August 2026.

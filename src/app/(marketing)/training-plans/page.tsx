@@ -4,6 +4,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
+import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import {
   BRAND_STATS,
   ENTITY_IDS,
@@ -379,9 +380,9 @@ export default function TrainingPlansPage() {
                 className="font-heading text-off-white mb-6 leading-[0.95]"
                 style={{ fontSize: "var(--text-hero)" }}
               >
-                STOP GUESSING YOUR SEASON.
+                CYCLING TRAINING PLANS
                 <br />
-                <span className="text-coral">START TRAINING IT.</span>
+                <span className="text-coral">BUILT AROUND YOUR LIFE.</span>
               </h1>
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
                 Periodised cycling plans built by coaches, delivered through
@@ -875,6 +876,32 @@ export default function TrainingPlansPage() {
                 </details>
               ))}
             </div>
+          </Container>
+        </Section>
+
+        <Section background="charcoal" className="!py-12">
+          <Container width="narrow">
+            <EvidenceBlock
+              lastReviewed="24 August 2026"
+              reviewedBy="Roadman Cycling coaching team"
+              experts={[
+                {
+                  name: "Prof. Stephen Seiler",
+                  role: "Exercise physiologist and polarised-training researcher",
+                  href: "/guests/stephen-seiler",
+                },
+                {
+                  name: "Dan Lorang",
+                  role: "Head of Performance, Red Bull–Bora–Hansgrohe",
+                  href: "/guests/dan-lorang",
+                },
+                {
+                  name: "Joe Friel",
+                  role: "Author, The Cyclist's Training Bible",
+                  href: "/guests/joe-friel",
+                },
+              ]}
+            />
           </Container>
         </Section>
 
