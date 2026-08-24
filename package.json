@@ -95,6 +95,7 @@
     "seo:audit:quality": "tsx scripts/seo-qa-audit.ts",
     "seo:audit:ownership": "tsx scripts/audit-search-ownership.ts",
     "seo:audit:ownership:strict": "tsx scripts/audit-search-ownership.ts --strict",
+    "seo:gsc:compare": "tsx scripts/compare-gsc-snapshots.ts",
     "seed:mcp:community-stats": "tsx scripts/seed-mcp-community-stats.ts",
     "seed:mcp:content": "tsx scripts/seed-mcp-content.ts",
     "seed:mcp:products": "tsx scripts/seed-mcp-products.ts",

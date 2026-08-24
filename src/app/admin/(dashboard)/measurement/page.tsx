@@ -8,16 +8,18 @@ import { OrganicSearchPanel } from "./_components/OrganicSearchPanel";
 import { AIReferralPanel } from "./_components/AIReferralPanel";
 import { CitationsPanel } from "./_components/CitationsPanel";
 import { ContentCoachingFunnel } from "./_components/ContentCoachingFunnel";
+import { SearchOwnerClicksPanel } from "./_components/SearchOwnerClicksPanel";
 
 export const dynamic = "force-dynamic";
 
 /**
- * /admin/measurement — single page surfacing the four signals from
+ * /admin/measurement — single page surfacing the five signals from
  * Workstream 5 (DEV-DATA-01):
  *   1. Organic search (GA4)
  *   2. AI referrals (events.ai_referrer)
  *   3. Answer-engine citations (brand_citation_runs)
- *   4. Content -> coaching funnel (events)
+ *   4. Supporting content -> canonical search owners (events)
+ *   5. Content -> coaching funnel (events)
  *
  * Each panel renders graceful "no data" / "not configured" states so the
  * page is useful from day one (before GA4 OAuth is hooked up, before the
@@ -55,6 +57,8 @@ export default async function MeasurementPage({
       </div>
 
       <CitationsPanel />
+
+      <SearchOwnerClicksPanel from={from} to={to} />
 
       <ContentCoachingFunnel from={from} to={to} />
     </div>

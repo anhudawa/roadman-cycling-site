@@ -2,6 +2,8 @@
 
 Source: Google Search Console, `sc-domain:roadmancycling.com`, Web search, 23 May–22 August 2026. This is the baseline for the first data-led search consolidation batch.
 
+For the release measurement, use the non-overlapping, machine-readable 28-day baseline in [`data/gsc-priority-28d-2026-08-22.json`](data/gsc-priority-28d-2026-08-22.json) and follow [`gsc-measurement-runbook.md`](gsc-measurement-runbook.md). The three-month figures below remain useful context but must not be used as the post-release comparison window.
+
 ## Site baseline
 
 | Metric | Value |
@@ -94,7 +96,9 @@ Re-check these exact queries 28 days after deployment and compare:
 2. impressions transferred toward the intended hub;
 3. the number of Roadman URLs shown for each exact query;
 4. generative-AI impressions for the upgraded podcast pages;
-5. assisted clicks from the ranking article into the commercial destination.
+5. consented assisted clicks from the ranking article into the canonical owner or commercial destination.
+
+The assisted-click baseline is unknown because owner-link tracking starts with the measurement release; it must be recorded as `null`, not zero.
 
 Do not redirect a page solely because it appears in the same query report. Redirect only when the content intent is genuinely duplicative and the weaker URL has no independent demand.
 
@@ -108,6 +112,7 @@ Search Console indexing work completed after the first production deployment:
 - Google accepted and read the index on 24 August 2026 with status `Success`.
 - Confirmed that `/coaching`, `/training-camps`, `/podcast`, `/topics/cycling-training-plans`, and `/topics/masters-cycling` were already indexed.
 - Added all five URLs to Google's priority crawl queue after the production content changes.
+- Confirmed separately that the canonical `/training-plans` and `/masters` owner pages were indexed, and added both to the priority crawl queue when the matched 28-day measurement baseline was captured.
 
 The second implementation batch then:
 
