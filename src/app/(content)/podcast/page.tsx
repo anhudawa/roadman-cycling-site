@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import { SocialProof } from "@/components/proof";
 import { ScrollReveal } from "@/components/ui";
 import { getAllEpisodes } from "@/lib/podcast";
@@ -13,6 +14,7 @@ import {
   EPISODES_PER_PAGE,
 } from "@/components/features/podcast/PodcastPagination";
 import { ENTITY_IDS, SITE_ORIGIN, BRAND_STATS, PODCAST } from "@/lib/brand-facts";
+import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
 
 interface PodcastPageProps {
   searchParams: Promise<{ page?: string }>;
@@ -112,6 +114,23 @@ export default async function PodcastPage({ searchParams }: PodcastPageProps) {
           same-as links). Same @id so crawlers merge this into one entity. */}
       {page === 1 && (
         <>
+          <JsonLd
+            data={{
+              "@context": "https://schema.org",
+              "@type": "CollectionPage",
+              "@id": `${SITE_ORIGIN}/podcast#webpage`,
+              url: `${SITE_ORIGIN}/podcast`,
+              name: "The Roadman Cycling Podcast Archive",
+              description:
+                "The searchable Roadman Cycling Podcast archive: conversations with coaches, sports scientists, professional riders and practitioners.",
+              ...buildSearchOwnerTrustProperties("cycling-podcast"),
+              mainEntity: { "@id": ENTITY_IDS.podcast },
+              primaryImageOfPage: {
+                "@type": "ImageObject",
+                url: `${SITE_ORIGIN}/og-image.jpg`,
+              },
+            }}
+          />
           <JsonLd
             data={{
               "@context": "https://schema.org",
@@ -364,6 +383,17 @@ export default async function PodcastPage({ searchParams }: PodcastPageProps) {
             </div>
           </Container>
         </Section>
+
+        {page === 1 && (
+          <Section background="charcoal" className="!py-12">
+            <Container width="narrow">
+              <EvidenceBlock
+                lastReviewed="24 August 2026"
+                reviewedBy="Roadman Cycling editorial team"
+              />
+            </Container>
+          </Section>
+        )}
       </main>
       <Footer />
     </>

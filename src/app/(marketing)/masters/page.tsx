@@ -5,8 +5,9 @@ import { Button, Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
-import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
+import { SITE_ORIGIN } from "@/lib/brand-facts";
 import { getTestimonialsByName } from "@/lib/testimonials";
+import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
 
 /**
  * /masters — The Masters Cycling Authority.
@@ -454,8 +455,7 @@ export default function MastersHubPage() {
     name: "Masters Cycling Training — The Roadman Cycling Authority on Getting Faster After 40",
     description:
       "The definitive masters cycling resource. Evidence-based training, strength, recovery and nutrition for serious cyclists over 40, grounded in the Roadman podcast archive.",
-    isPartOf: { "@id": ENTITY_IDS.website },
-    publisher: { "@id": ENTITY_IDS.organization },
+    ...buildSearchOwnerTrustProperties("masters-cycling"),
     about: {
       "@type": "Thing",
       name: "Masters Cycling Training",
@@ -468,7 +468,6 @@ export default function MastersHubPage() {
       suggestedMaxAge: 75,
       audienceType: "Masters cyclists",
     },
-    inLanguage: "en",
     primaryImageOfPage: {
       "@type": "ImageObject",
       url: `${HUB_URL}/opengraph-image`,
