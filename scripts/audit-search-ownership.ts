@@ -4,8 +4,10 @@ import path from "path";
 import matter from "gray-matter";
 import {
   SEARCH_OWNERS,
+  hasDistinctSupportingIntent,
   normaliseSearchText,
   resolveSearchOwner,
+  stripRoadmanBrandSuffix,
 } from "../src/lib/seo/search-ownership";
 
 type Severity = "error" | "warning";
@@ -36,13 +38,16 @@ function loadDocuments(): Document[] {
       .map((entry) => {
         const slug = entry.name.replace(/\.mdx$/, "");
         const { data } = matter(fs.readFileSync(path.join(dir, entry.name), "utf8"));
+        const title = stripRoadmanBrandSuffix(String(data.title ?? slug));
         return {
           path: `/${type}/${slug}`,
           type,
-          title: String(data.title ?? slug),
+          title,
           searchText: [
-            data.title,
-            data.seoTitle,
+            title,
+            typeof data.seoTitle === "string"
+              ? stripRoadmanBrandSuffix(data.seoTitle)
+              : data.seoTitle,
             data.seoDescription,
             ...(Array.isArray(data.keywords) ? data.keywords : []),
             ...(Array.isArray(data.topicTags) ? data.topicTags : []),
@@ -88,6 +93,12 @@ const findings: Finding[] = [];
 const ownerPaths = new Set<string>();
 const primaryQueries = new Set<string>();
 
+function resolveDocumentOwner(document: Document) {
+  return resolveSearchOwner(document.searchText, {
+    fallbackId: document.type === "podcast" ? "cycling-podcast" : undefined,
+  });
+}
+
 for (const owner of SEARCH_OWNERS) {
   if (ownerPaths.has(owner.path)) {
     findings.push({ severity: "error", rule: "duplicate-owner-path", owner: owner.id, pages: [owner.path], detail: "Two search families declare the same canonical path." });
@@ -112,14 +123,20 @@ for (const document of documents) {
     intentGroups.set(key, [...(intentGroups.get(key) ?? []), document]);
   }
 
-  const owner = resolveSearchOwner(document.searchText);
-  if (owner && normaliseSearchText(document.title).includes(normaliseSearchText(owner.primaryQuery))) {
+  const owner = resolveDocumentOwner(document);
+  if (
+    owner &&
+    normaliseSearchText(document.title).includes(
+      normaliseSearchText(owner.primaryQuery),
+    ) &&
+    !hasDistinctSupportingIntent(document.title, owner)
+  ) {
     findings.push({
       severity: "warning",
-      rule: "head-term-in-supporting-title",
+      rule: "undifferentiated-head-term-title",
       owner: owner.id,
       pages: [owner.path, document.path],
-      detail: `Supporting title directly targets the broad owner phrase “${owner.primaryQuery}”.`,
+      detail: `Supporting title targets “${owner.primaryQuery}” without a distinct segment, format, comparison, duration or question intent.`,
     });
   }
 }
@@ -141,7 +158,7 @@ const ownerSupport = SEARCH_OWNERS.map((owner) => ({
   path: owner.path,
   primaryQuery: owner.primaryQuery,
   supportingPages: documents
-    .filter((document) => resolveSearchOwner(document.searchText)?.id === owner.id)
+    .filter((document) => resolveDocumentOwner(document)?.id === owner.id)
     .map((document) => document.path),
 }));
 const errors = findings.filter((finding) => finding.severity === "error");

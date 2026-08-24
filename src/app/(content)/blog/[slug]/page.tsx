@@ -44,14 +44,15 @@ import { ReadingTime } from "@/components/ui/ReadingTime";
 import { SeriesNav } from "@/components/features/blog/SeriesNav";
 import { getSeriesPosts } from "@/lib/blog";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
-import { resolveSearchOwner } from "@/lib/seo/search-ownership";
+import {
+  getSearchOwnerWebPageId,
+  resolveSearchOwner,
+  stripRoadmanBrandSuffix,
+} from "@/lib/seo/search-ownership";
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
 }
-
-const stripBrandSuffix = (t: string) =>
-  t.replace(/\s*\|\s*Roadman\b.*$/i, "").trim();
 
 export async function generateMetadata({
   params,
@@ -62,7 +63,7 @@ export async function generateMetadata({
   const post = getPostBySlug(slug);
   if (!post) return { title: "Post Not Found" };
 
-  const cleanTitle = stripBrandSuffix(post.seoTitle || post.title);
+  const cleanTitle = stripRoadmanBrandSuffix(post.seoTitle || post.title);
 
   return {
     title: cleanTitle,
@@ -241,12 +242,15 @@ export default async function BlogPostPage({
             "@id": `${SITE_ORIGIN}/blog/${slug}`,
           },
           keywords: (post.keywords ?? []).join(", "),
-          // isPartOf: WebSite (always) + every parent topic hub (when the
-          // article appears in one). Topic hubs emit a matching `@id` of
-          // `<origin>/topics/<slug>#topic` so the references resolve into
-          // the same Thing/CollectionPage on the hub page.
+          // isPartOf: WebSite (always), the canonical priority search owner
+          // selected from the article metadata, and every parent topic hub.
+          // This mirrors the visible SearchOwnerLink below in machine-readable
+          // form so link equity and entity membership point to the same owner.
           isPartOf: [
             { "@id": ENTITY_IDS.website },
+            ...(searchOwner
+              ? [{ "@id": getSearchOwnerWebPageId(searchOwner) }]
+              : []),
             ...parentTopics.map((t) => ({
               "@id": `${SITE_ORIGIN}/topics/${t.slug}#topic`,
             })),
