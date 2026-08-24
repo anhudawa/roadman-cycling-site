@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 import { getTestimonialsByName } from "@/lib/testimonials";
@@ -507,7 +508,7 @@ export default function MastersHubPage() {
                   className="font-heading text-off-white uppercase leading-[0.95] mb-6"
                   style={{ fontSize: "var(--text-hero)" }}
                 >
-                  Cycling over 40,
+                  Masters cycling over 40,
                   <br />
                   <span className="text-coral">done properly</span>.
                 </h1>
@@ -1243,6 +1244,32 @@ export default function MastersHubPage() {
                 </ScrollReveal>
               ))}
             </div>
+          </Container>
+        </Section>
+
+        <Section background="charcoal" className="!py-12">
+          <Container width="narrow">
+            <EvidenceBlock
+              lastReviewed="24 August 2026"
+              reviewedBy="Roadman Cycling coaching team"
+              experts={[
+                {
+                  name: "Dr Andy Galpin",
+                  role: "Muscle physiologist and human-performance researcher",
+                  href: "/guests/andy-galpin",
+                },
+                {
+                  name: "Joe Friel",
+                  role: "Author, Fast After 50 and The Cyclist's Training Bible",
+                  href: "/guests/joe-friel",
+                },
+                {
+                  name: "Dr David Lipman",
+                  role: "Endurance physician and masters-performance researcher",
+                  href: "/guests/dr-david-lipman",
+                },
+              ]}
+            />
           </Container>
         </Section>
 

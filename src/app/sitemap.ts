@@ -149,6 +149,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
       const totalPages = Math.max(1, Math.ceil(totalEpisodes / EPISODES_PER_PAGE));
       return Array.from({ length: totalPages }, (_, i) => ({
         url: i === 0 ? `${BASE_URL}/podcast` : `${BASE_URL}/podcast?page=${i + 1}`,
+        ...(i === 0 ? { lastModified: new Date("2026-08-24") } : {}),
         changeFrequency: "weekly" as const,
         priority: i === 0 ? 0.8 : 0.6,
       }));
@@ -226,7 +227,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
       priority: 0.65,
     })),
     { url: `${BASE_URL}/apply`, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${BASE_URL}/coaching`, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/coaching`, lastModified: new Date("2026-08-24"), changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/coaching/triathletes`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/coaching/ireland`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/coaching/uk`, changeFrequency: "monthly", priority: 0.7 },
@@ -295,7 +296,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     // brand pages, not content-driven dynamic routes.
     { url: `${BASE_URL}/proof`, lastModified: new Date("2026-04-30"), changeFrequency: "weekly", priority: 0.85 },
     { url: `${BASE_URL}/find-your-fit`, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${BASE_URL}/masters`, changeFrequency: "weekly", priority: 0.85 },
+    { url: `${BASE_URL}/masters`, lastModified: new Date("2026-08-24"), changeFrequency: "weekly", priority: 0.85 },
     { url: `${BASE_URL}/apps-vs-coaching`, changeFrequency: "monthly", priority: 0.75 },
     { url: `${BASE_URL}/event-prep`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/wrapped`, changeFrequency: "weekly", priority: 0.7 },
@@ -306,6 +307,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     // pages, while /training-plans is the marketing pillar above them.
     {
       url: `${BASE_URL}/training-plans`,
+      lastModified: new Date("2026-08-24"),
       changeFrequency: "weekly" as const,
       priority: 0.85,
     },
@@ -314,7 +316,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     // CAMP_LIST so we can't drift from the canonical config.
     {
       url: `${BASE_URL}/training-camps`,
-      lastModified: new Date("2026-05-08"),
+      lastModified: new Date("2026-08-24"),
       changeFrequency: "weekly" as const,
       priority: 0.9,
     },
@@ -419,6 +421,9 @@ function buildPlanSitemap(): MetadataRoute.Sitemap {
 function buildTopicAndMoreSitemap(): MetadataRoute.Sitemap {
   const topicPages = getAllTopicSlugs().map((slug) => ({
     url: `${BASE_URL}/topics/${slug}`,
+    ...(["cycling-coaching", "cycling-training-plans", "masters-cycling"].includes(slug)
+      ? { lastModified: new Date("2026-08-24") }
+      : {}),
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));

@@ -5,6 +5,7 @@ import { Button, Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 import { FAQSchema } from "@/components/seo/FAQSchema";
+import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import { SocialProof } from "@/components/proof";
 import { TESTIMONIALS, getTestimonialsByName } from "@/lib/testimonials";
 import { getMemberReviews } from "@/lib/member-reviews";
@@ -1120,6 +1121,36 @@ export default function CoachingPage() {
                 </ScrollReveal>
               ))}
             </div>
+          </Container>
+        </Section>
+
+        {/* Visible author, expert-source and editorial-review signals for the
+            commercial owner page. This mirrors the trust treatment used on
+            Roadman's editorial guides without pretending the service page is
+            an independent review. */}
+        <Section background="charcoal" className="!py-12">
+          <Container width="narrow">
+            <EvidenceBlock
+              lastReviewed="24 August 2026"
+              reviewedBy="Roadman Cycling coaching team"
+              experts={[
+                {
+                  name: "Prof. Stephen Seiler",
+                  role: "Exercise physiologist and polarised-training researcher",
+                  href: "/guests/stephen-seiler",
+                },
+                {
+                  name: "Dan Lorang",
+                  role: "Head of Performance, Red Bull–Bora–Hansgrohe",
+                  href: "/guests/dan-lorang",
+                },
+                {
+                  name: "Joe Friel",
+                  role: "Author, The Cyclist's Training Bible",
+                  href: "/guests/joe-friel",
+                },
+              ]}
+            />
           </Container>
         </Section>
 
