@@ -17,6 +17,7 @@ const mocks = vi.hoisted(() => ({
   generateBreakdown: vi.fn(),
   insertSubmission: vi.fn(),
   countPriorSubmissions: vi.fn(),
+  listSubmissionsByEmail: vi.fn(),
   attachBeehiivId: vi.fn(),
   attachRiderProfileId: vi.fn(),
   recordEvent: vi.fn(),
@@ -40,6 +41,7 @@ vi.mock("@/lib/diagnostic/generator", () => ({
 vi.mock("@/lib/diagnostic/store", () => ({
   insertSubmission: mocks.insertSubmission,
   countPriorSubmissions: mocks.countPriorSubmissions,
+  listSubmissionsByEmail: mocks.listSubmissionsByEmail,
   attachBeehiivId: mocks.attachBeehiivId,
   attachRiderProfileId: mocks.attachRiderProfileId,
 }));
@@ -162,6 +164,7 @@ describe("POST /api/diagnostic/submit", () => {
       errors: [],
     });
     mocks.countPriorSubmissions.mockResolvedValue(0);
+    mocks.listSubmissionsByEmail.mockResolvedValue([]);
     mocks.insertSubmission.mockResolvedValue({
       id: 1,
       slug: "abc1234567",
@@ -193,6 +196,7 @@ describe("POST /api/diagnostic/submit", () => {
   });
 
   afterEach(() => {
+    vi.unstubAllEnvs();
     vi.restoreAllMocks();
   });
 
@@ -266,6 +270,92 @@ describe("POST /api/diagnostic/submit", () => {
     const tags = mocks.subscribeToBeehiiv.mock.calls[0][0].tags as string[];
     expect(tags).toContain("retake");
     expect(tags).toContain("retake-3");
+  });
+
+  it("enrols a first standard result in its matching Add-by-API journey", async () => {
+    vi.stubEnv("BEEHIIV_AUTOMATION_UNDER_RECOVERED_ID", "aut_under");
+    const { POST } = await import("./route");
+    await POST(req(VALID_BODY));
+    await flushAfter();
+    expect(mocks.subscribeToBeehiiv).toHaveBeenCalledWith(
+      expect.objectContaining({ automationIds: ["aut_under"] }),
+    );
+  });
+
+  it("does not enrol excluded close-to-breakthrough or multi-system results", async () => {
+    vi.stubEnv("BEEHIIV_AUTOMATION_UNDER_RECOVERED_ID", "aut_under");
+    mocks.scoreDiagnostic.mockReturnValue({
+      primary: "underRecovered",
+      secondary: null,
+      scores: {
+        underRecovered: 5,
+        polarisation: 4,
+        strengthGap: 4,
+        fuelingDeficit: 3,
+      },
+      severeMultiSystem: false,
+      closeToBreakthrough: true,
+    });
+    const { POST } = await import("./route");
+    await POST(req(VALID_BODY));
+    await flushAfter();
+    expect(mocks.subscribeToBeehiiv).toHaveBeenCalledWith(
+      expect.objectContaining({ automationIds: undefined }),
+    );
+
+    mocks.scoreDiagnostic.mockReturnValue({
+      primary: "underRecovered",
+      secondary: null,
+      scores: {
+        underRecovered: 9,
+        polarisation: 7,
+        strengthGap: 6,
+        fuelingDeficit: 6,
+      },
+      severeMultiSystem: true,
+      closeToBreakthrough: false,
+    });
+    await POST(req({ ...VALID_BODY, email: "second@example.com" }));
+    await flushAfter();
+    expect(mocks.subscribeToBeehiiv).toHaveBeenLastCalledWith(
+      expect.objectContaining({ automationIds: undefined }),
+    );
+  });
+
+  it("suppresses overlapping retakes until the Day-10 journey has finished", async () => {
+    vi.stubEnv("BEEHIIV_AUTOMATION_UNDER_RECOVERED_ID", "aut_under");
+    mocks.countPriorSubmissions.mockResolvedValue(1);
+    mocks.listSubmissionsByEmail.mockResolvedValue([
+      {
+        closeToBreakthrough: false,
+        severeMultiSystem: false,
+        createdAt: new Date(),
+      },
+    ]);
+    const { POST } = await import("./route");
+    await POST(req(VALID_BODY));
+    await flushAfter();
+    expect(mocks.subscribeToBeehiiv).toHaveBeenCalledWith(
+      expect.objectContaining({ automationIds: undefined }),
+    );
+  });
+
+  it("allows a standard retake after the ten-day journey window", async () => {
+    vi.stubEnv("BEEHIIV_AUTOMATION_UNDER_RECOVERED_ID", "aut_under");
+    mocks.countPriorSubmissions.mockResolvedValue(1);
+    mocks.listSubmissionsByEmail.mockResolvedValue([
+      {
+        closeToBreakthrough: false,
+        severeMultiSystem: false,
+        createdAt: new Date(Date.now() - 11 * 24 * 60 * 60 * 1_000),
+      },
+    ]);
+    const { POST } = await import("./route");
+    await POST(req(VALID_BODY));
+    await flushAfter();
+    expect(mocks.subscribeToBeehiiv).toHaveBeenCalledWith(
+      expect.objectContaining({ automationIds: ["aut_under"] }),
+    );
   });
 
   it("tags Beehiiv with multi-system when severeMultiSystem is true", async () => {

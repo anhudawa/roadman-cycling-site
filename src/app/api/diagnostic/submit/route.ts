@@ -11,6 +11,7 @@ import {
   attachRiderProfileId,
   countPriorSubmissions,
   insertSubmission,
+  listSubmissionsByEmail,
 } from "@/lib/diagnostic/store";
 import { parseAnswers, parseUtm } from "@/lib/diagnostic/parse";
 import { PROFILE_LABELS } from "@/lib/diagnostic/profiles";
@@ -22,6 +23,54 @@ import {
 import { checkRateLimit } from "@/lib/diagnostic/rate-limit";
 import { upsertByEmail as upsertRiderProfile } from "@/lib/rider-profile/store";
 import { riderProfilePatchFromDiagnostic } from "@/lib/diagnostic/rider-profile-patch";
+
+function beehiivAutomationIdForProfile(profile: string): string | null {
+  const id =
+    profile === "underRecovered"
+      ? process.env.BEEHIIV_AUTOMATION_UNDER_RECOVERED_ID
+      : profile === "polarisation"
+        ? process.env.BEEHIIV_AUTOMATION_POLARISATION_ID
+        : profile === "strengthGap"
+          ? process.env.BEEHIIV_AUTOMATION_STRENGTH_GAP_ID
+          : profile === "fuelingDeficit"
+            ? process.env.BEEHIIV_AUTOMATION_FUELING_DEFICIT_ID
+            : undefined;
+  return id?.trim() || null;
+}
+
+const PROFILE_JOURNEY_COOLDOWN_MS = 10 * 24 * 60 * 60 * 1_000;
+
+type PreviousDiagnostic = Awaited<
+  ReturnType<typeof listSubmissionsByEmail>
+>[number];
+
+function shouldEnterProfileJourney({
+  scoring,
+  retakeNumber,
+  previousDiagnostic,
+}: {
+  scoring: ReturnType<typeof scoreDiagnostic>;
+  retakeNumber: number;
+  previousDiagnostic: PreviousDiagnostic | null;
+}): boolean {
+  if (scoring.closeToBreakthrough || scoring.severeMultiSystem) return false;
+  if (retakeNumber === 1) return true;
+
+  // A standard profile journey runs through Day 10. Starting another one
+  // before it finishes can send duplicate or contradictory advice. The
+  // subscriber field and tags are still refreshed on every retake; only the
+  // overlapping automation enrolment is suppressed.
+  if (!previousDiagnostic) return false;
+  const previousHadStandardJourney =
+    !previousDiagnostic.closeToBreakthrough &&
+    !previousDiagnostic.severeMultiSystem;
+  if (!previousHadStandardJourney) return true;
+
+  return (
+    Date.now() - previousDiagnostic.createdAt.getTime() >=
+    PROFILE_JOURNEY_COOLDOWN_MS
+  );
+}
 
 /**
  * Masters Plateau Diagnostic — submission endpoint.
@@ -133,10 +182,27 @@ export async function POST(request: Request) {
   // retake_number = 1, second is 2, etc. Counted before insert so we
   // have the right number to store + tag Beehiiv with.
   let retakeNumber = 1;
-  try {
-    retakeNumber = (await countPriorSubmissions(email)) + 1;
-  } catch (err) {
-    console.error("[Diagnostic] countPriorSubmissions failed:", err);
+  let previousDiagnostic: PreviousDiagnostic | null = null;
+  const [priorCountResult, previousDiagnosticResult] =
+    await Promise.allSettled([
+      countPriorSubmissions(email),
+      listSubmissionsByEmail(email, 1),
+    ]);
+  if (priorCountResult.status === "fulfilled") {
+    retakeNumber = priorCountResult.value + 1;
+  } else {
+    console.error(
+      "[Diagnostic] countPriorSubmissions failed:",
+      priorCountResult.reason,
+    );
+  }
+  if (previousDiagnosticResult.status === "fulfilled") {
+    previousDiagnostic = previousDiagnosticResult.value[0] ?? null;
+  } else {
+    console.error(
+      "[Diagnostic] listSubmissionsByEmail failed:",
+      previousDiagnosticResult.reason,
+    );
   }
 
   let submission;
@@ -174,6 +240,7 @@ export async function POST(request: Request) {
     userAgent,
     utm,
     retakeNumber,
+    previousDiagnostic,
   }));
 
   return NextResponse.json({
@@ -193,6 +260,7 @@ type SideEffectArgs = {
   userAgent: string | null;
   utm: ReturnType<typeof parseUtm>;
   retakeNumber: number;
+  previousDiagnostic: PreviousDiagnostic | null;
 };
 
 async function runSideEffects({
@@ -205,6 +273,7 @@ async function runSideEffects({
   userAgent,
   utm,
   retakeNumber,
+  previousDiagnostic,
 }: SideEffectArgs): Promise<void> {
   const profileLabel = PROFILE_LABELS[scoring.primary];
 
@@ -342,9 +411,18 @@ async function runSideEffects({
         ...(retakeNumber > 1 ? ["retake", `retake-${retakeNumber}`] : []),
       ],
       sendWelcomeEmail: false,
+      automationIds: (() => {
+        const automationId = shouldEnterProfileJourney({
+          scoring,
+          retakeNumber,
+          previousDiagnostic,
+        })
+          ? beehiivAutomationIdForProfile(scoring.primary)
+          : null;
+        return automationId ? [automationId] : undefined;
+      })(),
       customFields: {
         diagnostic_profile: profileLabel,
-        diagnostic_slug: submission.slug,
       },
       utm: {
         source: utm.utmSource ?? "diagnostic",
