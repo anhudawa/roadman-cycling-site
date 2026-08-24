@@ -13,6 +13,7 @@ import { BeforeAfterMetrics, type MetricRow } from "@/components/proof";
 import { JourneyBlock } from "@/components/journey";
 import { SEGMENT_DISPLAY_ORDER } from "@/lib/coaching-segments";
 import { ChoosePath } from "@/components/features/routing/ChoosePath";
+import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
 
 export const metadata: Metadata = {
   title: "Online Cycling Coach — Coaching for Serious Amateurs",
@@ -294,6 +295,23 @@ const reviewSchema = [
 export default function CoachingPage() {
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "@id": `${SITE_ORIGIN}/coaching#webpage`,
+          url: `${SITE_ORIGIN}/coaching`,
+          name: "Online Cycling Coaching — Roadman Cycling",
+          description:
+            "Evidence-based online cycling coaching for serious amateur and masters cyclists, with personalised TrainingPeaks plans and weekly review.",
+          ...buildSearchOwnerTrustProperties("cycling-coaching"),
+          mainEntity: { "@id": `${SITE_ORIGIN}/#coaching-service` },
+          primaryImageOfPage: {
+            "@type": "ImageObject",
+            url: `${SITE_ORIGIN}/og-image.jpg`,
+          },
+        }}
+      />
       <JsonLd
         data={{
           "@context": "https://schema.org",

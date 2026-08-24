@@ -4,8 +4,10 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 import { CAMP_LIST, formatCampDates } from "@/lib/camps/camps";
+import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
 
 export const metadata: Metadata = {
   title: "Cycling Training Camps in Girona, Spain — October 2026",
@@ -86,11 +88,12 @@ export default function TrainingCampsLandingPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "CollectionPage",
+          "@id": "https://roadmancycling.com/training-camps#webpage",
           name: "Cycling Training Camps in Girona — Roadman 2026",
           url: "https://roadmancycling.com/training-camps",
           description:
             "Road and gravel cycling training camps in Girona, October 2026. Led by Anthony Walsh from a private Catalan farmhouse. Sixteen riders per camp, two pace groups, follow car, €995 per camp.",
-          isPartOf: { "@id": "https://roadmancycling.com#website" },
+          ...buildSearchOwnerTrustProperties("cycling-training-camps"),
           about: {
             "@type": "Place",
             name: "Girona, Catalunya, Spain",
@@ -128,6 +131,7 @@ export default function TrainingCampsLandingPage() {
           "@graph": CAMP_LIST.flatMap((c) => [
             {
               "@type": "Event",
+              "@id": `https://roadmancycling.com${c.href}#event`,
               name: c.name,
               description: c.description,
               startDate: c.startDate,
@@ -532,6 +536,15 @@ export default function TrainingCampsLandingPage() {
         </Section>
 
         {/* CLOSING CTA ──────────────────────────────────────── */}
+        <Section background="charcoal" className="!py-12">
+          <Container width="narrow">
+            <EvidenceBlock
+              lastReviewed="24 August 2026"
+              reviewedBy="Roadman Cycling operations and coaching team"
+            />
+          </Container>
+        </Section>
+
         <Section background="deep-purple" grain className="!py-16 md:!py-28">
           <Container width="narrow" className="text-center">
             <ScrollReveal direction="up">

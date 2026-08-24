@@ -11,6 +11,7 @@ import {
   SITE_ORIGIN,
 } from "@/lib/brand-facts";
 import { getTestimonialsByName } from "@/lib/testimonials";
+import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
 
 /**
  * /training-plans — pillar hub for the "cycling training plans" topic
@@ -319,9 +320,7 @@ export default function TrainingPlansPage() {
     name: "Cycling Training Plans — Roadman Cycling",
     description:
       "Periodised, coach-designed cycling training plans delivered through TrainingPeaks. 16-week periodisation across 6, 8, 10 and 12 hours per week, matched to one of four plateau profiles.",
-    isPartOf: { "@id": ENTITY_IDS.website },
-    publisher: { "@id": ENTITY_IDS.organization },
-    inLanguage: "en",
+    ...buildSearchOwnerTrustProperties("cycling-training-plans"),
     primaryImageOfPage: {
       "@type": "ImageObject",
       url: `${SITE_ORIGIN}/training-plans/opengraph-image`,
