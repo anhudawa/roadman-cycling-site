@@ -1,8 +1,12 @@
 import { describe, expect, it } from "vitest";
 import {
+  getSearchOwnerWebPageId,
+  hasDistinctSupportingIntent,
   SEARCH_OWNERS,
+  SEARCH_OWNER_BY_ID,
   resolveSearchOwner,
   serialiseSearchOwners,
+  stripRoadmanBrandSuffix,
 } from "./search-ownership";
 
 describe("search ownership registry", () => {
@@ -26,6 +30,44 @@ describe("search ownership registry", () => {
 
   it("does not manufacture a match for unrelated content", () => {
     expect(resolveSearchOwner(["How much carbohydrate should I eat?"])).toBeNull();
+  });
+
+  it("evaluates the visible title rather than a legacy Roadman suffix", () => {
+    expect(
+      stripRoadmanBrandSuffix(
+        "Why Your FTP Hasn't Moved | Roadman Cycling Podcast",
+      ),
+    ).toBe("Why Your FTP Hasn't Moved");
+    expect(stripRoadmanBrandSuffix("Roadman Method Review")).toBe(
+      "Roadman Method Review",
+    );
+  });
+
+  it("returns the canonical WebPage node for a search owner", () => {
+    expect(getSearchOwnerWebPageId(SEARCH_OWNERS[1])).toBe(
+      "https://roadmancycling.com/coaching#webpage",
+    );
+  });
+
+  it("distinguishes narrow supporting intent from a generic head-term guide", () => {
+    const coaching = SEARCH_OWNER_BY_ID.get("cycling-coaching")!;
+    const podcast = SEARCH_OWNER_BY_ID.get("cycling-podcast")!;
+
+    expect(
+      hasDistinctSupportingIntent(
+        "Cycling Coaching: The Complete Guide",
+        coaching,
+      ),
+    ).toBe(false);
+    expect(
+      hasDistinctSupportingIntent(
+        "Cycling Coaching Results: Before and After From Real Riders",
+        coaching,
+      ),
+    ).toBe(true);
+    expect(
+      hasDistinctSupportingIntent("Best Cycling Podcasts 2026", podcast),
+    ).toBe(true);
   });
 
   it("exposes absolute canonical URLs for agents", () => {

@@ -187,6 +187,68 @@ export function normaliseSearchText(value: string): string {
     .trim();
 }
 
+/**
+ * Remove the legacy pipe-delimited Roadman brand suffix from a page title.
+ * The suffix is useful in old frontmatter but is not rendered in search
+ * metadata, so ownership and cannibalisation checks must evaluate the title
+ * a searcher actually sees.
+ */
+export function stripRoadmanBrandSuffix(value: string): string {
+  return value.replace(/\s*\|\s*Roadman\b.*$/i, "").trim();
+}
+
+export function getSearchOwnerWebPageId(
+  owner: Pick<SearchOwner, "path">,
+): string {
+  return `${SITE_ORIGIN}${owner.path}#webpage`;
+}
+
+/**
+ * True when a supporting title adds a real search-intent modifier beyond the
+ * owner's head term. "Best", a rider segment, a duration, a report or a
+ * comparison are distinct intents; generic wrappers such as "complete guide"
+ * are not. This keeps the review queue focused on genuine broad-title overlap.
+ */
+export function hasDistinctSupportingIntent(
+  title: string,
+  owner: Pick<SearchOwner, "primaryQuery">,
+): boolean {
+  const generic = new Set([
+    "a",
+    "an",
+    "and",
+    "are",
+    "complete",
+    "definitive",
+    "for",
+    "guide",
+    "how",
+    "in",
+    "of",
+    "the",
+    "to",
+    "what",
+    "why",
+    "with",
+  ]);
+  const stem = (token: string) =>
+    token.length > 4 && token.endsWith("s") ? token.slice(0, -1) : token;
+  const ownerTokens = new Set(
+    normaliseSearchText(owner.primaryQuery).split(" ").map(stem),
+  );
+
+  return normaliseSearchText(stripRoadmanBrandSuffix(title))
+    .split(" ")
+    .map(stem)
+    .some(
+      (token) =>
+        token.length > 0 &&
+        !ownerTokens.has(token) &&
+        !generic.has(token) &&
+        !/^20\d{2}$/.test(token),
+    );
+}
+
 export function resolveSearchOwner(
   values: Array<string | null | undefined>,
   options: {

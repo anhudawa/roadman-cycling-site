@@ -40,14 +40,15 @@ import { getRelevantTools } from "@/lib/podcast-tools";
 import { RelevantTools } from "@/components/features/podcast/RelevantTools";
 import Link from "next/link";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
-import { resolveSearchOwner } from "@/lib/seo/search-ownership";
+import {
+  getSearchOwnerWebPageId,
+  resolveSearchOwner,
+  stripRoadmanBrandSuffix,
+} from "@/lib/seo/search-ownership";
 
 export async function generateStaticParams() {
   return getAllEpisodeSlugs().map((slug) => ({ slug }));
 }
-
-const stripBrandSuffix = (t: string) =>
-  t.replace(/\s*\|\s*Roadman\b.*$/i, "").trim();
 
 export async function generateMetadata({
   params,
@@ -58,7 +59,7 @@ export async function generateMetadata({
   const episode = getEpisodeBySlug(slug);
   if (!episode) return { title: "Episode Not Found" };
 
-  const cleanTitle = stripBrandSuffix(episode.seoTitle || episode.title);
+  const cleanTitle = stripRoadmanBrandSuffix(episode.seoTitle || episode.title);
 
   return {
     title: cleanTitle,
@@ -255,14 +256,15 @@ export default async function EpisodePage({
             ? `https://img.youtube.com/vi/${episode.youtubeId}/maxresdefault.jpg`
             : `${SITE_ORIGIN}/images/podcast-cover.jpg`,
           partOfSeries: { "@id": ENTITY_IDS.podcast },
-          // isPartOf: PodcastSeries (redundant with partOfSeries — schema.org
-          // recognises both, and some consumers favour one over the other)
-          // plus every topic hub the episode is tagged with, so the episode
-          // becomes a member of each hub's CollectionPage. Topic hubs emit a
-          // matching `@id` of `<origin>/topics/<slug>#topic` so these
-          // references resolve to the same node on the hub page.
+          // isPartOf: PodcastSeries, the priority search owner selected from
+          // the episode metadata, and every tagged topic hub. The search-owner
+          // node mirrors the visible SearchOwnerLink below so humans and
+          // crawlers receive the same canonical destination.
           isPartOf: [
             { "@id": ENTITY_IDS.podcast },
+            ...(searchOwner
+              ? [{ "@id": getSearchOwnerWebPageId(searchOwner) }]
+              : []),
             ...resolvedTopicTags.map((t) => ({
               "@id": `${SITE_ORIGIN}/topics/${t.slug}#topic`,
             })),

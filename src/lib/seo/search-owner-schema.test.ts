@@ -56,4 +56,18 @@ describe("priority search-owner schema", () => {
       expect(source).toContain("<EvidenceBlock");
     }
   });
+
+  it("keeps visible and structured owner backlinks on both content templates", () => {
+    const templates = [
+      "src/app/(content)/blog/[slug]/page.tsx",
+      "src/app/(content)/podcast/[slug]/page.tsx",
+    ];
+
+    for (const pagePath of templates) {
+      const source = readFileSync(resolve(process.cwd(), pagePath), "utf8");
+
+      expect(source).toContain("<SearchOwnerLink owner={searchOwner} />");
+      expect(source).toContain("getSearchOwnerWebPageId(searchOwner)");
+    }
+  });
 });
