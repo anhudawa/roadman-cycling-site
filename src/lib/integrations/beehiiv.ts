@@ -513,6 +513,13 @@ export interface SubscribeOptions {
   email: string;
   name?: string | null;
   tags?: string[];
+  /**
+   * Optional Beehiiv automations to enrol this subscriber into after the
+   * subscription has been created or resolved. Each automation must use an
+   * active "Add by API" trigger. This works for existing subscribers too,
+   * unlike create-time `automation_ids`.
+   */
+  automationIds?: string[];
   customFields?: Record<string, string | number | null | undefined>;
   utm?: {
     source?: string;
@@ -611,6 +618,34 @@ export async function subscribeToBeehiiv(
     return { subscriberId: null, created: false };
   }
 
+  // Beehiiv's create endpoint returns 409 for an existing subscriber and does
+  // not update the custom fields supplied in that create request. Most
+  // diagnostic takers are already on the Roadman list, so explicitly PATCH
+  // their latest profile fields after resolving the subscriber id.
+  if (subscriberId && !created && custom.length > 0) {
+    try {
+      const updateRes = await fetchWithTimeout(
+        `${BASE_URL}/publications/${pubId}/subscriptions/${subscriberId}`,
+        {
+          method: "PATCH",
+          headers,
+          body: JSON.stringify({ custom_fields: custom }),
+        },
+      );
+      if (!updateRes.ok) {
+        console.error(
+          "[Beehiiv] subscription custom-field update non-ok:",
+          updateRes.status,
+          await updateRes.text().catch(() => ""),
+        );
+      }
+    } catch (err) {
+      console.error("[Beehiiv] subscription custom-field update failed:", err);
+    }
+  }
+
+  // Apply trigger tags only after the latest custom fields are present. This
+  // ordering matters while legacy tag-triggered automations are finishing.
   if (subscriberId && options.tags && options.tags.length > 0) {
     try {
       const tagRes = await fetchWithTimeout(
@@ -632,6 +667,38 @@ export async function subscribeToBeehiiv(
       console.error("[Beehiiv] tag apply failed:", err);
       // still return the subscriberId — tagging failure is non-fatal
     }
+  }
+
+  if (subscriberId && options.automationIds?.length) {
+    const automationIds = [...new Set(options.automationIds.filter(Boolean))];
+    await Promise.all(
+      automationIds.map(async (automationId) => {
+        try {
+          const journeyRes = await fetchWithTimeout(
+            `${BASE_URL}/publications/${pubId}/automations/${automationId}/journeys`,
+            {
+              method: "POST",
+              headers,
+              body: JSON.stringify({ subscription_id: subscriberId }),
+            },
+          );
+          if (!journeyRes.ok) {
+            console.error(
+              "[Beehiiv] automation enrolment non-ok:",
+              automationId,
+              journeyRes.status,
+              await journeyRes.text().catch(() => ""),
+            );
+          }
+        } catch (err) {
+          console.error(
+            "[Beehiiv] automation enrolment failed:",
+            automationId,
+            err,
+          );
+        }
+      }),
+    );
   }
 
   return { subscriberId, created };
