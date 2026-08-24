@@ -29,8 +29,12 @@ describe("search ownership registry", () => {
   });
 
   it("exposes absolute canonical URLs for agents", () => {
-    expect(serialiseSearchOwners()[0].url).toBe(
+    const podcastOwner = serialiseSearchOwners()[0];
+    expect(podcastOwner.url).toBe(
       "https://roadmancycling.com/podcast",
+    );
+    expect(podcastOwner.supportingDestinations[0].url).toBe(
+      "https://roadmancycling.com/blog/best-cycling-podcasts-2026",
     );
   });
 });
