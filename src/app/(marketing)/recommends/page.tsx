@@ -38,10 +38,7 @@ export default async function RecommendsPage() {
   const featured = products.filter((product) => product.featured).slice(0, 4);
   const bestValue = products.filter((product) => product.bestValue).slice(0, 4);
   const updated = [...products]
-    .sort(
-      (left, right) =>
-        right.updatedAt.getTime() - left.updatedAt.getTime(),
-    )
+    .sort((left, right) => right.updatedAt.getTime() - left.updatedAt.getTime())
     .slice(0, 4);
   const rideGuides = [
     {
@@ -80,16 +77,54 @@ export default async function RecommendsPage() {
       href: "/recommends/tyres-tubes",
       tone: styles.intentSpeed,
     },
+    {
+      eyebrow: "GO LONGER",
+      title: "BUILD AN ALL-DAY KIT",
+      description:
+        "Comfort that lasts, simple fuel and the small carry essentials that stop a good long ride becoming a short one.",
+      detail: "Bib · jersey · fuel · repair",
+      href: "/recommends?collection=all-day-road-kit#recommendations",
+      tone: styles.intentEndurance,
+    },
+    {
+      eyebrow: "THE FIVE-MINUTE WIN",
+      title: "KEEP THE BIKE SWEET",
+      description:
+        "A clean drivetrain, the right lube and a little protection: the easy maintenance that keeps your bike quiet and ready.",
+      detail: "Clean · degrease · lube · protect",
+      href: "/recommends?collection=keep-the-bike-sweet#recommendations",
+      tone: styles.intentCare,
+    },
   ];
   const problemLinks = [
-    ["I need faster tyres", "/recommends?q=fast%20road%20riding#recommendations"],
+    [
+      "I need faster tyres",
+      "/recommends?q=fast%20road%20riding#recommendations",
+    ],
     ["I keep puncturing", "/recommends?q=tubeless#recommendations"],
     ["I struggle to fuel long rides", "/recommends?q=fuel#recommendations"],
-    ["I need to get through winter", "/recommends?collection=winter-riding#recommendations"],
-    ["I want to train indoors", "/recommends?collection=indoor-setup#recommendations"],
+    [
+      "I need to get through winter",
+      "/recommends?collection=winter-riding#recommendations",
+    ],
+    [
+      "I want to train indoors",
+      "/recommends?collection=indoor-setup#recommendations",
+    ],
     ["I am new to NDY", "/recommends?collection=new-to-ndy#recommendations"],
+    [
+      "I need a kit for long rides",
+      "/recommends?collection=all-day-road-kit#recommendations",
+    ],
+    [
+      "My bike needs some care",
+      "/recommends?collection=keep-the-bike-sweet#recommendations",
+    ],
     ["I need better visibility", "/recommends?q=visibility#recommendations"],
-    ["I want the best option on a budget", "/recommends?collection=best-value#recommendations"],
+    [
+      "I want the best option on a budget",
+      "/recommends?collection=best-value#recommendations",
+    ],
   ];
 
   return (
@@ -120,8 +155,8 @@ export default async function RecommendsPage() {
           <h1>GEAR THAT EARNS ITS PLACE.</h1>
           <p className={styles.heroLead}>
             The answer to the question I get asked every day: what should I buy?
-            Tyres, fuel, clothing, trainers and cycling technology—chosen to help
-            you ride better and waste less money.
+            Tyres, fuel, clothing, trainers and cycling technology—chosen to
+            help you ride better and waste less money.
           </p>
           <div className={styles.heroActions}>
             <a className={styles.primaryAction} href="#ride-guides">
@@ -136,33 +171,37 @@ export default async function RecommendsPage() {
 
       <LocalNav categories={categories} collections={collections} />
 
-      <section id="ride-guides" className={`${styles.section} ${styles.sectionAlt}`}>
-          <div className={styles.sectionInner}>
-            <div className={styles.sectionHeader}>
-              <h2>START WITH THE RIDE AHEAD.</h2>
-              <p>
-                Pick the situation first. Every route lands on a tight edit of
-                recommendations that work together.
-              </p>
-            </div>
-            <div className={styles.intentGrid}>
-              {rideGuides.map((guide) => (
-                <Link
-                  key={guide.title}
-                  href={guide.href}
-                  className={`${styles.intentCard} ${guide.tone}`}
-                >
-                  <span>{guide.eyebrow}</span>
-                  <h3>{guide.title}</h3>
-                  <p>{guide.description}</p>
-                  <strong>
-                    {guide.detail}<span aria-hidden="true"> →</span>
-                  </strong>
-                </Link>
-              ))}
-            </div>
+      <section
+        id="ride-guides"
+        className={`${styles.section} ${styles.sectionAlt}`}
+      >
+        <div className={styles.sectionInner}>
+          <div className={styles.sectionHeader}>
+            <h2>START WITH THE RIDE AHEAD.</h2>
+            <p>
+              Pick the situation first. Every route lands on a tight edit of
+              recommendations that work together.
+            </p>
           </div>
-        </section>
+          <div className={styles.intentGrid}>
+            {rideGuides.map((guide) => (
+              <Link
+                key={guide.title}
+                href={guide.href}
+                className={`${styles.intentCard} ${guide.tone}`}
+              >
+                <span>{guide.eyebrow}</span>
+                <h3>{guide.title}</h3>
+                <p>{guide.description}</p>
+                <strong>
+                  {guide.detail}
+                  <span aria-hidden="true"> →</span>
+                </strong>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className={styles.section}>
         <div className={styles.sectionInner}>
@@ -230,11 +269,7 @@ export default async function RecommendsPage() {
           </div>
           <div className={styles.problemGrid}>
             {problemLinks.map(([label, href]) => (
-              <Link
-                key={label}
-                href={href}
-                className={styles.problemLink}
-              >
+              <Link key={label} href={href} className={styles.problemLink}>
                 {label} <span aria-hidden="true">→</span>
               </Link>
             ))}
@@ -242,11 +277,17 @@ export default async function RecommendsPage() {
         </div>
       </section>
 
-      <Suspense fallback={<section id="recommendations" className={styles.browser}>Loading recommendations…</section>}>
+      <Suspense
+        fallback={
+          <section id="recommendations" className={styles.browser}>
+            Loading recommendations…
+          </section>
+        }
+      >
         <RecommendsBrowser products={products} collections={collections} />
       </Suspense>
 
-      {(bestValue.length || updated.length) ? (
+      {bestValue.length || updated.length ? (
         <section className={styles.section}>
           <div className={styles.sectionInner}>
             <div className={styles.splitEdits}>
@@ -279,10 +320,12 @@ export default async function RecommendsPage() {
                   >
                     <strong>{product.name}</strong>
                     <span>
-                      {(product.lastReviewedAt ?? product.updatedAt).toLocaleDateString(
-                        "en-IE",
-                        { day: "numeric", month: "short" },
-                      )}
+                      {(
+                        product.lastReviewedAt ?? product.updatedAt
+                      ).toLocaleDateString("en-IE", {
+                        day: "numeric",
+                        month: "short",
+                      })}
                     </span>
                   </Link>
                 ))}
@@ -304,15 +347,24 @@ export default async function RecommendsPage() {
           <div className={styles.trustGrid}>
             <div className={styles.trustCard}>
               <h3>GOOD ON THE BIKE.</h3>
-              <p>Gear that works where it matters: on real roads, real rides and long days in the saddle.</p>
+              <p>
+                Gear that works where it matters: on real roads, real rides and
+                long days in the saddle.
+              </p>
             </div>
             <div className={styles.trustCard}>
               <h3>RIGHT FOR THE RIDER.</h3>
-              <p>Clear advice on who it suits, what it does brilliantly and anything worth knowing before you buy.</p>
+              <p>
+                Clear advice on who it suits, what it does brilliantly and
+                anything worth knowing before you buy.
+              </p>
             </div>
             <div className={styles.trustCard}>
               <h3>WORTH YOUR MONEY.</h3>
-              <p>Clear value, honest trade-offs and no reason to spend more when a simpler option does the job.</p>
+              <p>
+                Clear value, honest trade-offs and no reason to spend more when
+                a simpler option does the job.
+              </p>
             </div>
           </div>
           <p className={styles.disclosure} style={{ marginTop: "1.5rem" }}>

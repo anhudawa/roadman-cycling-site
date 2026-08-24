@@ -51,8 +51,7 @@ function matches(product: RecommendationProduct, query: string): boolean {
       haystack.includes(term) ||
       words.some(
         (word) =>
-          Math.abs(word.length - term.length) <= 1 &&
-          oneEditApart(word, term),
+          Math.abs(word.length - term.length) <= 1 && oneEditApart(word, term),
       ),
   );
 }
@@ -78,7 +77,9 @@ function oneEditApart(left: string, right: string): boolean {
       rightIndex += 1;
     }
   }
-  return edits + Number(leftIndex < left.length || rightIndex < right.length) <= 1;
+  return (
+    edits + Number(leftIndex < left.length || rightIndex < right.length) <= 1
+  );
 }
 
 function selectedOffer(product: RecommendationProduct, region: string) {
@@ -110,20 +111,26 @@ export function RecommendsBrowser({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [query, setQuery] = useState(searchParams.get("q") ?? "");
-  const [collection, setCollection] = useState(searchParams.get("collection") ?? "all");
+  const [collection, setCollection] = useState(
+    searchParams.get("collection") ?? "all",
+  );
   const [region, setRegion] = useState("IE");
   const [category, setCategory] = useState(
     initialCategory ?? searchParams.get("category") ?? "all",
   );
   const [brand, setBrand] = useState(searchParams.get("brand") ?? "all");
   const [useCase, setUseCase] = useState(searchParams.get("use") ?? "all");
-  const [discipline, setDiscipline] = useState(searchParams.get("discipline") ?? "all");
+  const [discipline, setDiscipline] = useState(
+    searchParams.get("discipline") ?? "all",
+  );
   const [season, setSeason] = useState(searchParams.get("season") ?? "all");
-  const [evidence, setEvidence] = useState(searchParams.get("evidence") ?? "all");
+  const [evidence, setEvidence] = useState(
+    searchParams.get("evidence") ?? "all",
+  );
   const [saved, setSaved] = useState<number[]>([]);
   const [compare, setCompare] = useState<number[]>([]);
   const [showRefinements, setShowRefinements] = useState(false);
-  const [availableOnly, setAvailableOnly] = useState(false);
+  const [availableOnly, setAvailableOnly] = useState(true);
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
@@ -144,7 +151,8 @@ export function RecommendsBrowser({
       else next.delete("q");
       if (collection !== "all") next.set("collection", collection);
       else next.delete("collection");
-      if (!initialCategory && category !== "all") next.set("category", category);
+      if (!initialCategory && category !== "all")
+        next.set("category", category);
       else next.delete("category");
       if (brand !== "all") next.set("brand", brand);
       else next.delete("brand");
@@ -159,9 +167,12 @@ export function RecommendsBrowser({
       const nextQuery = next.toString();
       if (nextQuery === searchParams.toString()) return;
       const hash = window.location.hash;
-      router.replace(nextQuery ? `${pathname}?${nextQuery}${hash}` : `${pathname}${hash}`, {
-        scroll: false,
-      });
+      router.replace(
+        nextQuery ? `${pathname}?${nextQuery}${hash}` : `${pathname}${hash}`,
+        {
+          scroll: false,
+        },
+      );
     }, 250);
     return () => window.clearTimeout(timeout);
   }, [
@@ -193,36 +204,35 @@ export function RecommendsBrowser({
   const visible = useMemo(
     () =>
       products.filter((product) => {
-        if (initialCategory && product.categorySlug !== initialCategory) return false;
+        if (initialCategory && product.categorySlug !== initialCategory)
+          return false;
         if (
           !initialCategory &&
           category !== "all" &&
           product.categorySlug !== category
-        ) return false;
+        )
+          return false;
         const selectedCollection = collections.find(
           (item) => item.slug === collection,
         );
-        if (
-          selectedCollection?.rule === "featured" &&
-          !product.featured
-        ) return false;
-        if (
-          selectedCollection?.rule === "best_value" &&
-          !product.bestValue
-        ) return false;
+        if (selectedCollection?.rule === "featured" && !product.featured)
+          return false;
+        if (selectedCollection?.rule === "best_value" && !product.bestValue)
+          return false;
         if (
           selectedCollection?.rule === "manual" &&
           !selectedCollection.productIds.includes(product.id)
-        ) return false;
+        )
+          return false;
         if (collection === "saved" && !saved.includes(product.id)) return false;
         if (brand !== "all" && product.brandSlug !== brand) return false;
-        if (useCase !== "all" && !product.useCases.includes(useCase)) return false;
-        if (
-          discipline !== "all" &&
-          !product.disciplines.includes(discipline)
-        ) return false;
+        if (useCase !== "all" && !product.useCases.includes(useCase))
+          return false;
+        if (discipline !== "all" && !product.disciplines.includes(discipline))
+          return false;
         if (season !== "all" && !product.seasons.includes(season)) return false;
-        if (evidence !== "all" && product.evidenceStatus !== evidence) return false;
+        if (evidence !== "all" && product.evidenceStatus !== evidence)
+          return false;
         return matches(product, query);
       }),
     [
@@ -277,7 +287,9 @@ export function RecommendsBrowser({
     .filter((product): product is RecommendationProduct => Boolean(product));
 
   const availableCount = useMemo(
-    () => visible.filter((product) => Boolean(selectedOffer(product, region))).length,
+    () =>
+      visible.filter((product) => Boolean(selectedOffer(product, region)))
+        .length,
     [region, visible],
   );
   const displayedProducts = useMemo(
@@ -297,7 +309,9 @@ export function RecommendsBrowser({
   ].filter(Boolean).length;
 
   function toggleSaved(id: number) {
-    const next = saved.includes(id) ? saved.filter((item) => item !== id) : [...saved, id];
+    const next = saved.includes(id)
+      ? saved.filter((item) => item !== id)
+      : [...saved, id];
     setSaved(next);
     localStorage.setItem(SAVED_KEY, JSON.stringify(next));
   }
@@ -328,10 +342,25 @@ export function RecommendsBrowser({
   return (
     <section id="recommendations" className={styles.browser}>
       <div className={styles.sectionInner}>
+        <div className={styles.browserIntro}>
+          <div>
+            <p className={styles.browserEyebrow}>THE SHOP-READY EDIT</p>
+            <h2>START WITH WHAT YOU CAN GET.</h2>
+          </div>
+          <p>
+            Your local retailers come first. Switch region any time, or open the
+            full library when you are researching a future upgrade.
+          </p>
+        </div>
         <div className={styles.browserTop}>
           <label className={styles.searchWrap}>
             <span className="sr-only">Search recommendations</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
               <circle cx="11" cy="11" r="7" />
               <path d="m20 20-4-4" />
             </svg>
@@ -345,24 +374,33 @@ export function RecommendsBrowser({
               list="recommendation-search-options"
             />
             <datalist id="recommendation-search-options">
-              {[...new Set([
-                ...products.map((product) => product.name),
-                ...filterOptions.brands.map(([, name]) => name),
-                ...filterOptions.useCases,
-              ])].map((value) => (
+              {[
+                ...new Set([
+                  ...products.map((product) => product.name),
+                  ...filterOptions.brands.map(([, name]) => name),
+                  ...filterOptions.useCases,
+                ]),
+              ].map((value) => (
                 <option key={value} value={value} />
               ))}
             </datalist>
           </label>
           <p className={styles.resultCount} aria-live="polite">
-            {displayedProducts.length} {displayedProducts.length === 1 ? "recommendation" : "recommendations"}
+            {displayedProducts.length}{" "}
+            {displayedProducts.length === 1
+              ? "recommendation"
+              : "recommendations"}
             {visible.length > 0 && availableCount < visible.length
               ? ` · ${availableCount} ready to shop in ${REGION_LABELS[region]}`
               : ""}
           </p>
         </div>
 
-        <div className={styles.filterRow} role="group" aria-label="Recommendation filters">
+        <div
+          className={styles.filterRow}
+          role="group"
+          aria-label="Recommendation filters"
+        >
           {[
             ["all", "All"],
             ...collections.map((item) => [item.slug, item.name]),
@@ -371,7 +409,9 @@ export function RecommendsBrowser({
             <button
               key={value}
               type="button"
-              className={collection === value ? styles.filterActive : styles.filter}
+              className={
+                collection === value ? styles.filterActive : styles.filter
+              }
               onClick={() => setCollection(value)}
             >
               {label}
@@ -392,7 +432,11 @@ export function RecommendsBrowser({
           </label>
           <button
             type="button"
-            className={showRefinements || activeRefinementCount ? styles.filterActive : styles.filter}
+            className={
+              showRefinements || activeRefinementCount
+                ? styles.filterActive
+                : styles.filter
+            }
             onClick={() => setShowRefinements((current) => !current)}
             aria-expanded={showRefinements}
             aria-controls="recommendation-refinements"
@@ -411,57 +455,88 @@ export function RecommendsBrowser({
         </div>
 
         {showRefinements ? (
-          <div id="recommendation-refinements" className={styles.refinementPanel}>
+          <div
+            id="recommendation-refinements"
+            className={styles.refinementPanel}
+          >
             {!initialCategory ? (
               <label className={styles.refineControl}>
                 <span>Category</span>
-                <select value={category} onChange={(event) => setCategory(event.target.value)}>
+                <select
+                  value={category}
+                  onChange={(event) => setCategory(event.target.value)}
+                >
                   <option value="all">All categories</option>
                   {filterOptions.categories.map(([slug, name]) => (
-                    <option key={slug} value={slug}>{name}</option>
+                    <option key={slug} value={slug}>
+                      {name}
+                    </option>
                   ))}
                 </select>
               </label>
             ) : null}
             <label className={styles.refineControl}>
               <span>Brand</span>
-              <select value={brand} onChange={(event) => setBrand(event.target.value)}>
+              <select
+                value={brand}
+                onChange={(event) => setBrand(event.target.value)}
+              >
                 <option value="all">All brands</option>
                 {filterOptions.brands.map(([slug, name]) => (
-                  <option key={slug} value={slug}>{name}</option>
+                  <option key={slug} value={slug}>
+                    {name}
+                  </option>
                 ))}
               </select>
             </label>
             <label className={styles.refineControl}>
               <span>What are you doing?</span>
-              <select value={useCase} onChange={(event) => setUseCase(event.target.value)}>
+              <select
+                value={useCase}
+                onChange={(event) => setUseCase(event.target.value)}
+              >
                 <option value="all">Any use</option>
                 {filterOptions.useCases.map((value) => (
-                  <option key={value} value={value}>{value}</option>
+                  <option key={value} value={value}>
+                    {value}
+                  </option>
                 ))}
               </select>
             </label>
             <label className={styles.refineControl}>
               <span>Discipline</span>
-              <select value={discipline} onChange={(event) => setDiscipline(event.target.value)}>
+              <select
+                value={discipline}
+                onChange={(event) => setDiscipline(event.target.value)}
+              >
                 <option value="all">Any discipline</option>
                 {filterOptions.disciplines.map((value) => (
-                  <option key={value} value={value}>{value}</option>
+                  <option key={value} value={value}>
+                    {value}
+                  </option>
                 ))}
               </select>
             </label>
             <label className={styles.refineControl}>
               <span>Season</span>
-              <select value={season} onChange={(event) => setSeason(event.target.value)}>
+              <select
+                value={season}
+                onChange={(event) => setSeason(event.target.value)}
+              >
                 <option value="all">Any season</option>
                 {filterOptions.seasons.map((value) => (
-                  <option key={value} value={value}>{value}</option>
+                  <option key={value} value={value}>
+                    {value}
+                  </option>
                 ))}
               </select>
             </label>
             <label className={styles.refineControl}>
               <span>Recommendation basis</span>
-              <select value={evidence} onChange={(event) => setEvidence(event.target.value)}>
+              <select
+                value={evidence}
+                onChange={(event) => setEvidence(event.target.value)}
+              >
                 <option value="all">Any basis</option>
                 <option value="personally_used">Personally used</option>
                 <option value="team_tested">Team tested</option>
@@ -476,14 +551,17 @@ export function RecommendsBrowser({
         {visible.length > 0 && availableCount < visible.length ? (
           <div className={styles.availabilityBar}>
             <p>
-              {availableCount} of {visible.length} picks have an approved retailer in {REGION_LABELS[region]}.
+              {availableCount} of {visible.length} picks have an approved
+              retailer in {REGION_LABELS[region]}.
             </p>
             <button
               type="button"
               className={availableOnly ? styles.filterActive : styles.filter}
               onClick={() => setAvailableOnly((current) => !current)}
             >
-              {availableOnly ? "Show every recommendation" : `Show ${availableCount} ready to shop`}
+              {availableOnly
+                ? `Show the full edit (${visible.length})`
+                : `Show ${availableCount} ready to shop`}
             </button>
           </div>
         ) : null}
@@ -492,17 +570,25 @@ export function RecommendsBrowser({
           {displayedProducts.map((product) => {
             const offer = selectedOffer(product, region);
             const categoryPath = product.categorySlug ?? "gear";
-            const otherRegions = availableRegions(product).filter((item) => item !== region);
+            const otherRegions = availableRegions(product).filter(
+              (item) => item !== region,
+            );
             const alternateRegion = otherRegions[0];
             return (
               <article key={product.id} className={styles.productCard}>
                 <div className={styles.productImage}>
-                  {product.badge ? <span className={styles.cardBadge}>{product.badge}</span> : null}
+                  {product.badge ? (
+                    <span className={styles.cardBadge}>{product.badge}</span>
+                  ) : null}
                   <button
                     type="button"
                     className={`${styles.saveButton} ${saved.includes(product.id) ? styles.saveButtonActive : ""}`}
                     onClick={() => toggleSaved(product.id)}
-                    aria-label={saved.includes(product.id) ? `Remove ${product.name} from saved items` : `Save ${product.name}`}
+                    aria-label={
+                      saved.includes(product.id)
+                        ? `Remove ${product.name} from saved items`
+                        : `Save ${product.name}`
+                    }
                     aria-pressed={saved.includes(product.id)}
                   >
                     {saved.includes(product.id) ? "♥" : "♡"}
@@ -521,10 +607,16 @@ export function RecommendsBrowser({
                   )}
                 </div>
                 <div className={styles.productBody}>
-                  <p className={styles.brand}>{product.brandName ?? product.categoryName ?? "ROADMAN PICK"}</p>
+                  <p className={styles.brand}>
+                    {product.brandName ??
+                      product.categoryName ??
+                      "ROADMAN PICK"}
+                  </p>
                   <h3>{product.name}</h3>
                   <p className={styles.verdict}>{product.verdict}</p>
-                  <p className={styles.description}>{product.shortDescription}</p>
+                  <p className={styles.description}>
+                    {product.shortDescription}
+                  </p>
                   <p className={styles.bestFor}>
                     <strong>Best for:</strong> {product.whoFor}
                   </p>
@@ -567,7 +659,9 @@ export function RecommendsBrowser({
                     <input
                       type="checkbox"
                       checked={compare.includes(product.id)}
-                      disabled={!compare.includes(product.id) && compare.length >= 3}
+                      disabled={
+                        !compare.includes(product.id) && compare.length >= 3
+                      }
                       onChange={() => toggleCompare(product.id)}
                     />
                     Compare
@@ -579,7 +673,13 @@ export function RecommendsBrowser({
 
           {displayedProducts.length === 0 ? (
             <div className={styles.empty}>
-              <h3>{products.length === 0 ? "THE LIBRARY IS BEING STOCKED." : availableOnly ? "NOTHING TO SHOP IN THIS REGION." : "NO GEAR MATCHES THAT SEARCH."}</h3>
+              <h3>
+                {products.length === 0
+                  ? "THE LIBRARY IS BEING STOCKED."
+                  : availableOnly
+                    ? "NOTHING TO SHOP IN THIS REGION."
+                    : "NO GEAR MATCHES THAT SEARCH."}
+              </h3>
               <p>
                 {products.length === 0
                   ? "Recommendations only appear after they have been reviewed and published. Check back shortly, or ask Roadman for an answer now."
@@ -588,7 +688,9 @@ export function RecommendsBrowser({
                     : "Try a broader search, clear the collection filter, or browse a different category."}
               </p>
               <div className={styles.heroActions}>
-                <Link className={styles.secondaryAction} href="/ask">Ask Roadman</Link>
+                <Link className={styles.secondaryAction} href="/ask">
+                  Ask Roadman
+                </Link>
                 {products.length > 0 ? (
                   <button
                     type="button"
@@ -612,7 +714,9 @@ export function RecommendsBrowser({
         <aside className={styles.compareTray} aria-label="Product comparison">
           <div className={styles.compareHeader}>
             <strong>COMPARE {comparedProducts.length}/3</strong>
-            <button type="button" onClick={() => setCompare([])}>Clear</button>
+            <button type="button" onClick={() => setCompare([])}>
+              Clear
+            </button>
           </div>
           <div className={styles.compareGrid}>
             {comparedProducts.map((product) => (

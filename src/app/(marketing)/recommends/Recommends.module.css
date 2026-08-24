@@ -5,7 +5,11 @@
   --recommend-line: rgba(255, 255, 255, 0.12);
   min-height: 100vh;
   background:
-    radial-gradient(circle at 78% 12%, rgba(241, 99, 99, 0.14), transparent 30rem),
+    radial-gradient(
+      circle at 78% 12%,
+      rgba(241, 99, 99, 0.14),
+      transparent 30rem
+    ),
     #211f22;
   color: var(--recommend-ink);
 }
@@ -23,7 +27,11 @@
   inset: 0;
   background:
     linear-gradient(110deg, rgba(33, 1, 64, 0.76), rgba(33, 1, 64, 0.08)),
-    repeating-linear-gradient(120deg, transparent 0 34px, rgba(255, 255, 255, 0.018) 35px 36px);
+    repeating-linear-gradient(
+      120deg,
+      transparent 0 34px,
+      rgba(255, 255, 255, 0.018) 35px 36px
+    );
   pointer-events: none;
 }
 
@@ -88,7 +96,10 @@
   font-family: var(--font-heading);
   font-size: 1rem;
   letter-spacing: 0.06em;
-  transition: transform 160ms ease, background 160ms ease, border 160ms ease;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    border 160ms ease;
 }
 
 .primaryAction {
@@ -191,40 +202,81 @@
   border: 1px solid var(--recommend-line);
   border-radius: 1rem;
   color: #fff;
-  transition: border 160ms ease, transform 160ms ease;
+  transition:
+    border 160ms ease,
+    transform 160ms ease;
 }
 
 .intentCard::before {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    repeating-linear-gradient(120deg, transparent 0 32px, rgba(255, 255, 255, 0.025) 33px 34px);
+  background: repeating-linear-gradient(
+    120deg,
+    transparent 0 32px,
+    rgba(255, 255, 255, 0.025) 33px 34px
+  );
   pointer-events: none;
 }
 
 .intentWinter {
   background:
-    radial-gradient(circle at 85% 10%, rgba(147, 199, 231, 0.34), transparent 16rem),
+    radial-gradient(
+      circle at 85% 10%,
+      rgba(147, 199, 231, 0.34),
+      transparent 16rem
+    ),
     linear-gradient(145deg, #162635, #29242b 70%);
 }
 
 .intentNdy {
   background:
-    radial-gradient(circle at 85% 10%, rgba(241, 99, 99, 0.32), transparent 16rem),
+    radial-gradient(
+      circle at 85% 10%,
+      rgba(241, 99, 99, 0.32),
+      transparent 16rem
+    ),
     linear-gradient(145deg, #210140, #39213d 70%);
 }
 
 .intentIndoor {
   background:
-    radial-gradient(circle at 82% 8%, rgba(244, 176, 72, 0.3), transparent 16rem),
+    radial-gradient(
+      circle at 82% 8%,
+      rgba(244, 176, 72, 0.3),
+      transparent 16rem
+    ),
     linear-gradient(145deg, #342014, #29242b 72%);
 }
 
 .intentSpeed {
   background:
-    radial-gradient(circle at 85% 10%, rgba(107, 222, 185, 0.27), transparent 16rem),
+    radial-gradient(
+      circle at 85% 10%,
+      rgba(107, 222, 185, 0.27),
+      transparent 16rem
+    ),
     linear-gradient(145deg, #142d2b, #252b30 72%);
+}
+
+.intentEndurance {
+  background:
+    radial-gradient(
+      circle at 85% 10%,
+      rgba(204, 150, 255, 0.3),
+      transparent 16rem
+    ),
+    linear-gradient(145deg, #2b1a3d, #29242b 72%);
+}
+
+.intentCare {
+  background:
+    radial-gradient(
+      circle at 82% 8%,
+      rgba(127, 217, 194, 0.25),
+      transparent 16rem
+    ),
+    linear-gradient(145deg, #15342f, #29242b 72%);
 }
 
 .intentCard:hover {
@@ -271,9 +323,15 @@
   border: 1px solid var(--recommend-line);
   border-radius: 0.75rem;
   background:
-    radial-gradient(circle at 90% 0%, rgba(241, 99, 99, 0.18), transparent 9rem),
+    radial-gradient(
+      circle at 90% 0%,
+      rgba(241, 99, 99, 0.18),
+      transparent 9rem
+    ),
     var(--recommend-panel);
-  transition: border 160ms ease, transform 160ms ease;
+  transition:
+    border 160ms ease,
+    transform 160ms ease;
 }
 
 .categoryCard:hover {
@@ -306,6 +364,36 @@
 
 .browser {
   padding: clamp(3.5rem, 8vw, 6.5rem) 1.25rem 7rem;
+}
+
+.browserIntro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.58fr);
+  align-items: end;
+  gap: 2rem;
+  margin-bottom: 1.75rem;
+}
+
+.browserEyebrow {
+  margin: 0 0 0.65rem;
+  color: #f16363;
+  font-family: var(--font-heading);
+  font-size: 0.76rem;
+  letter-spacing: 0.15em;
+}
+
+.browserIntro h2 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  line-height: 0.95;
+}
+
+.browserIntro > p {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--recommend-muted);
+  line-height: 1.55;
 }
 
 .browserTop {
@@ -451,7 +539,11 @@
   aspect-ratio: 4 / 3;
   object-fit: contain;
   padding: 1rem;
-  background: linear-gradient(145deg, rgba(76, 18, 115, 0.8), rgba(241, 99, 99, 0.18));
+  background: linear-gradient(
+    145deg,
+    rgba(76, 18, 115, 0.8),
+    rgba(241, 99, 99, 0.18)
+  );
 }
 
 .editCard span,
@@ -537,7 +629,9 @@
   border: 1px solid var(--recommend-line);
   border-radius: 0.8rem;
   background: #2b282c;
-  transition: border 160ms ease, transform 160ms ease;
+  transition:
+    border 160ms ease,
+    transform 160ms ease;
 }
 
 .productCard:hover {
@@ -823,7 +917,11 @@
   padding: clamp(10rem, 18vw, 13rem) 1.25rem 4rem;
   border-bottom: 1px solid var(--recommend-line);
   background:
-    radial-gradient(circle at 80% 20%, rgba(241, 99, 99, 0.18), transparent 25rem),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(241, 99, 99, 0.18),
+      transparent 25rem
+    ),
     #210140;
 }
 
@@ -1008,7 +1106,8 @@
   }
 
   .detailGrid,
-  .editorialGrid {
+  .editorialGrid,
+  .browserIntro {
     grid-template-columns: 1fr;
   }
 
@@ -1028,11 +1127,13 @@
   }
 
   .sectionHeader,
-  .browserTop {
+  .browserTop,
+  .browserIntro {
     display: block;
   }
 
   .sectionHeader p,
+  .browserIntro > p,
   .resultCount {
     margin-top: 0.75rem;
   }

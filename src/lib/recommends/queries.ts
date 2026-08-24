@@ -37,15 +37,91 @@ import {
 } from "./catalog";
 
 export const FALLBACK_CATEGORIES: RecommendationCategory[] = [
-  { id: -1, name: "Tyres & Tubes", slug: "tyres-tubes", description: "Faster rolling, fewer punctures and the right setup for your roads.", icon: "tyre", sortOrder: 10, active: true },
-  { id: -2, name: "Nutrition & Hydration", slug: "nutrition-hydration", description: "Fuel and hydration choices that work on real rides.", icon: "bottle", sortOrder: 20, active: true },
-  { id: -3, name: "Clothing", slug: "clothing", description: "Cycling kit that earns its place across the seasons.", icon: "jersey", sortOrder: 30, active: true },
-  { id: -4, name: "Indoor Training", slug: "indoor-training", description: "Trainers, fans and accessories for effective indoor work.", icon: "trainer", sortOrder: 40, active: true },
-  { id: -5, name: "Tech & GPS", slug: "tech-gps", description: "Computers, sensors and technology worth paying for.", icon: "gps", sortOrder: 50, active: true },
-  { id: -9, name: "Components & Upgrades", slug: "components-upgrades", description: "Pedals, saddles and performance upgrades that make a meaningful difference on the road.", icon: "tool", sortOrder: 55, active: true },
-  { id: -6, name: "Tools & Accessories", slug: "tools-accessories", description: "Workshop and ride essentials without the clutter.", icon: "tool", sortOrder: 60, active: true },
-  { id: -7, name: "Safety & Visibility", slug: "safety-visibility", description: "Helmets, lights and visibility equipment for everyday riding.", icon: "light", sortOrder: 70, active: true },
-  { id: -8, name: "Recovery", slug: "recovery", description: "Practical recovery tools for riders balancing training and life.", icon: "recovery", sortOrder: 80, active: true },
+  {
+    id: -1,
+    name: "Tyres & Tubes",
+    slug: "tyres-tubes",
+    description:
+      "Faster rolling, fewer punctures and the right setup for your roads.",
+    icon: "tyre",
+    sortOrder: 10,
+    active: true,
+  },
+  {
+    id: -2,
+    name: "Nutrition & Hydration",
+    slug: "nutrition-hydration",
+    description: "Fuel and hydration choices that work on real rides.",
+    icon: "bottle",
+    sortOrder: 20,
+    active: true,
+  },
+  {
+    id: -3,
+    name: "Clothing",
+    slug: "clothing",
+    description: "Cycling kit that earns its place across the seasons.",
+    icon: "jersey",
+    sortOrder: 30,
+    active: true,
+  },
+  {
+    id: -4,
+    name: "Indoor Training",
+    slug: "indoor-training",
+    description: "Trainers, fans and accessories for effective indoor work.",
+    icon: "trainer",
+    sortOrder: 40,
+    active: true,
+  },
+  {
+    id: -5,
+    name: "Tech & GPS",
+    slug: "tech-gps",
+    description: "Computers, sensors and technology worth paying for.",
+    icon: "gps",
+    sortOrder: 50,
+    active: true,
+  },
+  {
+    id: -9,
+    name: "Components & Upgrades",
+    slug: "components-upgrades",
+    description:
+      "Pedals, saddles and performance upgrades that make a meaningful difference on the road.",
+    icon: "tool",
+    sortOrder: 55,
+    active: true,
+  },
+  {
+    id: -6,
+    name: "Tools & Accessories",
+    slug: "tools-accessories",
+    description: "Workshop and ride essentials without the clutter.",
+    icon: "tool",
+    sortOrder: 60,
+    active: true,
+  },
+  {
+    id: -7,
+    name: "Safety & Visibility",
+    slug: "safety-visibility",
+    description:
+      "Helmets, lights and visibility equipment for everyday riding.",
+    icon: "light",
+    sortOrder: 70,
+    active: true,
+  },
+  {
+    id: -8,
+    name: "Recovery",
+    slug: "recovery",
+    description:
+      "Practical recovery tools for riders balancing training and life.",
+    icon: "recovery",
+    sortOrder: 80,
+    active: true,
+  },
 ];
 
 export const FALLBACK_COLLECTIONS: RecommendationCollection[] = [
@@ -65,7 +141,8 @@ export const FALLBACK_COLLECTIONS: RecommendationCollection[] = [
     id: -102,
     name: "Best Value",
     slug: "best-value",
-    description: "Products that deliver the most useful performance for the money.",
+    description:
+      "Products that deliver the most useful performance for the money.",
     rule: "best_value",
     active: true,
     sortOrder: 20,
@@ -77,7 +154,8 @@ export const FALLBACK_COLLECTIONS: RecommendationCollection[] = [
     id: -103,
     name: "Indoor Setup",
     slug: "indoor-setup",
-    description: "The trainer, controls and cooling that make indoor sessions work.",
+    description:
+      "The trainer, controls and cooling that make indoor sessions work.",
     rule: "manual",
     active: true,
     sortOrder: 30,
@@ -89,7 +167,8 @@ export const FALLBACK_COLLECTIONS: RecommendationCollection[] = [
     id: -104,
     name: "Winter-Proof Your Riding",
     slug: "winter-riding",
-    description: "Grip, warmth, rain protection, bike care and an indoor fallback for the months that test motivation.",
+    description:
+      "Grip, warmth, rain protection, bike care and an indoor fallback for the months that test motivation.",
     rule: "manual",
     active: true,
     sortOrder: 40,
@@ -101,13 +180,42 @@ export const FALLBACK_COLLECTIONS: RecommendationCollection[] = [
     id: -105,
     name: "New to NDY",
     slug: "new-to-ndy",
-    description: "The useful first purchases for coached riding, from heart rate and structured sessions to a sensible power upgrade.",
+    description:
+      "The useful first purchases for coached riding, from heart rate and structured sessions to a sensible power upgrade.",
     rule: "manual",
     active: true,
     sortOrder: 50,
     startsAt: null,
     endsAt: null,
-    productIds: [-1807, -1803, -1301, -1503, -1506, -1511, -1606, -1001, -1103, -1106],
+    productIds: [
+      -1807, -1803, -1301, -1503, -1506, -1511, -1606, -1001, -1103, -1106,
+    ],
+  },
+  {
+    id: -106,
+    name: "All-Day Road Kit",
+    slug: "all-day-road-kit",
+    description:
+      "The clothing, fuel and small ride essentials that keep a long road day comfortable and moving.",
+    rule: "manual",
+    active: true,
+    sortOrder: 60,
+    startsAt: null,
+    endsAt: null,
+    productIds: [-1001, -1101, -1103, -1111, -1113, -1114, -1606],
+  },
+  {
+    id: -107,
+    name: "Keep the Bike Sweet",
+    slug: "keep-the-bike-sweet",
+    description:
+      "The low-fuss cleaning, chain care and protection kit that makes every ride feel better.",
+    rule: "manual",
+    active: true,
+    sortOrder: 70,
+    startsAt: null,
+    endsAt: null,
+    productIds: [-1601, -1602, -1401, -1603, -1608, -1402, -1403],
   },
 ];
 
@@ -169,10 +277,23 @@ async function loadProductRows(statuses?: RecommendationStatus[]) {
   return db
     .select(productSelection)
     .from(recommendationProducts)
-    .leftJoin(recommendationBrands, eq(recommendationProducts.brandId, recommendationBrands.id))
-    .leftJoin(recommendationCategories, eq(recommendationProducts.categoryId, recommendationCategories.id))
-    .where(statuses?.length ? inArray(recommendationProducts.status, statuses) : undefined)
-    .orderBy(asc(recommendationProducts.sortOrder), desc(recommendationProducts.updatedAt));
+    .leftJoin(
+      recommendationBrands,
+      eq(recommendationProducts.brandId, recommendationBrands.id),
+    )
+    .leftJoin(
+      recommendationCategories,
+      eq(recommendationProducts.categoryId, recommendationCategories.id),
+    )
+    .where(
+      statuses?.length
+        ? inArray(recommendationProducts.status, statuses)
+        : undefined,
+    )
+    .orderBy(
+      asc(recommendationProducts.sortOrder),
+      desc(recommendationProducts.updatedAt),
+    );
 }
 
 async function attachOffers(
@@ -199,37 +320,55 @@ async function attachOffers(
     current.push(offer);
     byProduct.set(offer.productId, current);
   }
-  return rows.map((row) => mapProductRow(row, byProduct.get(row.product.id) ?? []));
+  return rows.map((row) =>
+    mapProductRow(row, byProduct.get(row.product.id) ?? []),
+  );
 }
 
-export const getPublicRecommendationCategories = cache(async (): Promise<RecommendationCategory[]> => {
-  try {
-    const rows = await db
-      .select()
-      .from(recommendationCategories)
-      .where(eq(recommendationCategories.active, true))
-      .orderBy(asc(recommendationCategories.sortOrder), asc(recommendationCategories.name));
-    return rows.length ? rows : FALLBACK_CATEGORIES;
-  } catch {
-    return FALLBACK_CATEGORIES;
-  }
-});
+export const getPublicRecommendationCategories = cache(
+  async (): Promise<RecommendationCategory[]> => {
+    try {
+      const rows = await db
+        .select()
+        .from(recommendationCategories)
+        .where(eq(recommendationCategories.active, true))
+        .orderBy(
+          asc(recommendationCategories.sortOrder),
+          asc(recommendationCategories.name),
+        );
+      return rows.length ? rows : FALLBACK_CATEGORIES;
+    } catch {
+      return FALLBACK_CATEGORIES;
+    }
+  },
+);
 
-export const getPublicRecommendationProducts = cache(async (): Promise<RecommendationProduct[]> => {
-  try {
-    const rows = await db
-      .select(productSelection)
-      .from(recommendationProducts)
-      .leftJoin(recommendationBrands, eq(recommendationProducts.brandId, recommendationBrands.id))
-      .leftJoin(recommendationCategories, eq(recommendationProducts.categoryId, recommendationCategories.id))
-      .where(publicProductCondition())
-      .orderBy(asc(recommendationProducts.sortOrder), desc(recommendationProducts.updatedAt));
-    const products = await attachOffers(rows, true);
-    return products.length ? products : FALLBACK_PUBLIC_PRODUCTS;
-  } catch {
-    return FALLBACK_PUBLIC_PRODUCTS;
-  }
-});
+export const getPublicRecommendationProducts = cache(
+  async (): Promise<RecommendationProduct[]> => {
+    try {
+      const rows = await db
+        .select(productSelection)
+        .from(recommendationProducts)
+        .leftJoin(
+          recommendationBrands,
+          eq(recommendationProducts.brandId, recommendationBrands.id),
+        )
+        .leftJoin(
+          recommendationCategories,
+          eq(recommendationProducts.categoryId, recommendationCategories.id),
+        )
+        .where(publicProductCondition())
+        .orderBy(
+          asc(recommendationProducts.sortOrder),
+          desc(recommendationProducts.updatedAt),
+        );
+      const products = await attachOffers(rows, true);
+      return products.length ? products : FALLBACK_PUBLIC_PRODUCTS;
+    } catch {
+      return FALLBACK_PUBLIC_PRODUCTS;
+    }
+  },
+);
 
 export const getPublicRecommendationCollections = cache(
   async (): Promise<RecommendationCollection[]> => {
@@ -313,13 +452,16 @@ export const getPublicRecommendationBySlug = cache(
       const rows = await db
         .select(productSelection)
         .from(recommendationProducts)
-        .leftJoin(recommendationBrands, eq(recommendationProducts.brandId, recommendationBrands.id))
-        .leftJoin(recommendationCategories, eq(recommendationProducts.categoryId, recommendationCategories.id))
+        .leftJoin(
+          recommendationBrands,
+          eq(recommendationProducts.brandId, recommendationBrands.id),
+        )
+        .leftJoin(
+          recommendationCategories,
+          eq(recommendationProducts.categoryId, recommendationCategories.id),
+        )
         .where(
-          and(
-            eq(recommendationProducts.slug, slug),
-            publicProductCondition(),
-          ),
+          and(eq(recommendationProducts.slug, slug), publicProductCondition()),
         )
         .limit(1);
       const products = await attachOffers(rows, true);
@@ -341,11 +483,17 @@ export async function getAdminRecommendationCategories() {
   return db
     .select()
     .from(recommendationCategories)
-    .orderBy(asc(recommendationCategories.sortOrder), asc(recommendationCategories.name));
+    .orderBy(
+      asc(recommendationCategories.sortOrder),
+      asc(recommendationCategories.name),
+    );
 }
 
 export async function getAdminRecommendationBrands() {
-  return db.select().from(recommendationBrands).orderBy(asc(recommendationBrands.name));
+  return db
+    .select()
+    .from(recommendationBrands)
+    .orderBy(asc(recommendationBrands.name));
 }
 
 export async function getAdminRecommendationCollections(): Promise<
@@ -404,7 +552,9 @@ export async function getAdminRecommendationOffers() {
     );
 }
 
-export async function getAdminRecommendationProducts(): Promise<RecommendationProduct[]> {
+export async function getAdminRecommendationProducts(): Promise<
+  RecommendationProduct[]
+> {
   const rows = await loadProductRows();
   return attachOffers(rows, false);
 }
@@ -415,8 +565,14 @@ export async function getAdminRecommendationProduct(
   const rows = await db
     .select(productSelection)
     .from(recommendationProducts)
-    .leftJoin(recommendationBrands, eq(recommendationProducts.brandId, recommendationBrands.id))
-    .leftJoin(recommendationCategories, eq(recommendationProducts.categoryId, recommendationCategories.id))
+    .leftJoin(
+      recommendationBrands,
+      eq(recommendationProducts.brandId, recommendationBrands.id),
+    )
+    .leftJoin(
+      recommendationCategories,
+      eq(recommendationProducts.categoryId, recommendationCategories.id),
+    )
     .where(eq(recommendationProducts.id, id))
     .limit(1);
   const products = await attachOffers(rows, false);
@@ -431,42 +587,42 @@ async function recommendationStaleCutoff() {
     .limit(1);
   const days = Math.max(
     1,
-    Number(row[0]?.value) ||
-      FALLBACK_RECOMMENDATION_SETTINGS.staleOfferDays,
+    Number(row[0]?.value) || FALLBACK_RECOMMENDATION_SETTINGS.staleOfferDays,
   );
   return new Date(Date.now() - days * 24 * 60 * 60 * 1000);
 }
 
 export async function getRecommendationDashboardStats(): Promise<RecommendationDashboardStats> {
   const cutoff = await recommendationStaleCutoff();
-  const [productStats, clickStats, conversionStats, staleStats] = await Promise.all([
-    db
-      .select({
-        total: sql<number>`count(*)::int`,
-        published: sql<number>`count(*) filter (where ${recommendationProducts.status} = 'published')::int`,
-      })
-      .from(recommendationProducts),
-    db
-      .select({ total: sql<number>`count(*)::int` })
-      .from(affiliateClickEvents)
-      .where(eq(affiliateClickEvents.bot, false)),
-    db
-      .select({
-        total: sql<number>`count(*)::int`,
-        pending: sql<string>`coalesce(sum(${affiliateConversions.commissionAmount}) filter (where ${affiliateConversions.status} = 'pending'), 0)::text`,
-        approved: sql<string>`coalesce(sum(${affiliateConversions.commissionAmount}) filter (where ${affiliateConversions.status} in ('approved', 'paid')), 0)::text`,
-      })
-      .from(affiliateConversions),
-    db
-      .select({ total: sql<number>`count(*)::int` })
-      .from(recommendationOffers)
-      .where(
-        and(
-          eq(recommendationOffers.active, true),
-          sql`(${recommendationOffers.lastCheckedAt} is null or ${recommendationOffers.lastCheckedAt} < ${cutoff})`,
+  const [productStats, clickStats, conversionStats, staleStats] =
+    await Promise.all([
+      db
+        .select({
+          total: sql<number>`count(*)::int`,
+          published: sql<number>`count(*) filter (where ${recommendationProducts.status} = 'published')::int`,
+        })
+        .from(recommendationProducts),
+      db
+        .select({ total: sql<number>`count(*)::int` })
+        .from(affiliateClickEvents)
+        .where(eq(affiliateClickEvents.bot, false)),
+      db
+        .select({
+          total: sql<number>`count(*)::int`,
+          pending: sql<string>`coalesce(sum(${affiliateConversions.commissionAmount}) filter (where ${affiliateConversions.status} = 'pending'), 0)::text`,
+          approved: sql<string>`coalesce(sum(${affiliateConversions.commissionAmount}) filter (where ${affiliateConversions.status} in ('approved', 'paid')), 0)::text`,
+        })
+        .from(affiliateConversions),
+      db
+        .select({ total: sql<number>`count(*)::int` })
+        .from(recommendationOffers)
+        .where(
+          and(
+            eq(recommendationOffers.active, true),
+            sql`(${recommendationOffers.lastCheckedAt} is null or ${recommendationOffers.lastCheckedAt} < ${cutoff})`,
+          ),
         ),
-      ),
-  ]);
+    ]);
   return {
     products: productStats[0]?.total ?? 0,
     published: productStats[0]?.published ?? 0,
@@ -486,7 +642,10 @@ export async function getRecentAffiliateConversions(limit = 30) {
       productName: recommendationProducts.name,
     })
     .from(affiliateConversions)
-    .leftJoin(recommendationProducts, eq(affiliateConversions.productId, recommendationProducts.id))
+    .leftJoin(
+      recommendationProducts,
+      eq(affiliateConversions.productId, recommendationProducts.id),
+    )
     .orderBy(desc(affiliateConversions.transactionAt))
     .limit(limit);
 }
@@ -537,7 +696,10 @@ export async function getOfferForRedirect(id: number) {
       product: recommendationProducts,
     })
     .from(recommendationOffers)
-    .innerJoin(recommendationProducts, eq(recommendationOffers.productId, recommendationProducts.id))
+    .innerJoin(
+      recommendationProducts,
+      eq(recommendationOffers.productId, recommendationProducts.id),
+    )
     .where(
       and(
         eq(recommendationOffers.id, id),
