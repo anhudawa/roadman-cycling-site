@@ -32,6 +32,8 @@ export interface CampConfig {
   /** In-page hero image on the detail page (also used for OG/Schema.org). */
   heroImage: string;
   heroImageAlt: string;
+  /** When true, the camp is sold out and booking is disabled site-wide. */
+  soldOut?: boolean;
   /** Per-camp headline for the summary block on the detail page. */
   summaryHeading: HeadingPair;
   /** Per-camp headline for the itinerary block on the detail page. */
@@ -63,6 +65,7 @@ export const CAMPS: Record<CampSlug, CampConfig> = {
     heroImage: "/images/camps/girona-road-coast.jpeg",
     heroImageAlt:
       "Group of road cyclists on a coastal road above a turquoise Costa Brava cove",
+    soldOut: true,
     summaryHeading: {
       main: "BIG CLIMBS. PROPER ROADS.",
       accent: "— THE GIRONA THE PROS RIDE.",

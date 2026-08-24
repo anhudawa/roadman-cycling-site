@@ -4,10 +4,8 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 import { CAMP_LIST, formatCampDates } from "@/lib/camps/camps";
-import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
 
 export const metadata: Metadata = {
   title: "Cycling Training Camps in Girona, Spain — October 2026",
@@ -63,24 +61,6 @@ const CAMP_CARD_IMAGES: Record<"road" | "gravel", string> = {
 const BUNDLE_PRICE = 1700;
 const BUNDLE_SAVINGS = 995 * 2 - BUNDLE_PRICE; // €290
 
-const CAMP_GUIDES = [
-  {
-    href: "/blog/what-to-expect-cycling-training-camp",
-    label: "First camp",
-    title: "What a real training-camp week looks like",
-  },
-  {
-    href: "/blog/cycling-training-camp-preparation-guide",
-    label: "Before you travel",
-    title: "How to prepare, train and pack",
-  },
-  {
-    href: "/blog/cycling-training-camps-what-to-expect-guide",
-    label: "Make it count",
-    title: "How to structure the load and recovery",
-  },
-] as const;
-
 export default function TrainingCampsLandingPage() {
   return (
     <>
@@ -88,12 +68,11 @@ export default function TrainingCampsLandingPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "CollectionPage",
-          "@id": "https://roadmancycling.com/training-camps#webpage",
           name: "Cycling Training Camps in Girona — Roadman 2026",
           url: "https://roadmancycling.com/training-camps",
           description:
             "Road and gravel cycling training camps in Girona, October 2026. Led by Anthony Walsh from a private Catalan farmhouse. Sixteen riders per camp, two pace groups, follow car, €995 per camp.",
-          ...buildSearchOwnerTrustProperties("cycling-training-camps"),
+          isPartOf: { "@id": "https://roadmancycling.com#website" },
           about: {
             "@type": "Place",
             name: "Girona, Catalunya, Spain",
@@ -131,7 +110,6 @@ export default function TrainingCampsLandingPage() {
           "@graph": CAMP_LIST.flatMap((c) => [
             {
               "@type": "Event",
-              "@id": `https://roadmancycling.com${c.href}#event`,
               name: c.name,
               description: c.description,
               startDate: c.startDate,
@@ -161,7 +139,9 @@ export default function TrainingCampsLandingPage() {
                 "@type": "Offer",
                 price: String(c.pricePerPerson),
                 priceCurrency: "EUR",
-                availability: "https://schema.org/InStock",
+                availability: c.soldOut
+                  ? "https://schema.org/SoldOut"
+                  : "https://schema.org/InStock",
                 url: `https://roadmancycling.com${c.href}`,
                 validFrom: "2026-05-04",
                 validThrough: c.startDate,
@@ -194,7 +174,9 @@ export default function TrainingCampsLandingPage() {
                 "@type": "Offer",
                 price: String(c.pricePerPerson),
                 priceCurrency: "EUR",
-                availability: "https://schema.org/InStock",
+                availability: c.soldOut
+                  ? "https://schema.org/SoldOut"
+                  : "https://schema.org/InStock",
                 url: `https://roadmancycling.com${c.href}`,
                 validFrom: "2026-05-04",
               },
@@ -276,31 +258,6 @@ export default function TrainingCampsLandingPage() {
         {/* CAMP CARDS ───────────────────────────────────────── */}
         <Section background="charcoal" className="!py-16 md:!py-28">
           <Container>
-            <div className="max-w-5xl mx-auto mb-14 md:mb-20">
-              <p className="text-foreground-muted text-center leading-relaxed max-w-3xl mx-auto mb-7">
-                A cycling training camp is a supported multi-day training block,
-                not just a holiday with rides. Roadman camps combine progressive
-                routes, matched pace groups, follow-car support, on-bike fuelling,
-                and planned recovery from one Girona base.
-              </p>
-              <div className="grid gap-3 md:grid-cols-3">
-                {CAMP_GUIDES.map((guide) => (
-                  <Link
-                    key={guide.href}
-                    href={guide.href}
-                    className="group rounded-xl border border-white/10 bg-white/[0.03] p-5 hover:border-coral/40 hover:bg-coral/[0.06] transition-all"
-                  >
-                    <p className="font-heading text-[10px] tracking-[0.25em] uppercase text-coral mb-2">
-                      {guide.label}
-                    </p>
-                    <p className="font-heading text-base text-off-white group-hover:text-coral transition-colors leading-snug">
-                      {guide.title.toUpperCase()} →
-                    </p>
-                  </Link>
-                ))}
-              </div>
-            </div>
-
             <ScrollReveal direction="up">
               <p className="font-heading text-coral text-[11px] md:text-xs tracking-[0.35em] md:tracking-[0.4em] mb-4 text-center">
                 PICK YOUR FORMAT
@@ -318,94 +275,117 @@ export default function TrainingCampsLandingPage() {
             </ScrollReveal>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-              {CAMP_LIST.map((camp, i) => (
-                <ScrollReveal key={camp.slug} direction="up" delay={i * 0.08}>
-                  <Link
-                    href={camp.href}
-                    className="group block rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] hover:border-coral/40 transition-all overflow-hidden"
-                  >
-                    <div className="relative aspect-[4/3] sm:aspect-[16/10]">
-                      <Image
-                        src={CAMP_CARD_IMAGES[camp.slug]}
-                        alt={`${camp.name} — Girona`}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-700"
-                      />
-                      <div
-                        aria-hidden
-                        className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/30 to-transparent"
-                      />
-                      <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-coral/90 backdrop-blur-sm text-off-white font-heading text-xs tracking-[0.2em]">
-                        {camp.type.toUpperCase()}
-                      </div>
-                    </div>
-                    <div className="p-5 sm:p-6 md:p-8">
-                      <p className="font-heading text-foreground-subtle text-[11px] md:text-xs tracking-[0.3em] uppercase mb-3">
-                        {formatCampDates(camp)}
-                      </p>
-                      <h3
-                        className="font-heading text-off-white text-[2rem] sm:text-3xl md:text-4xl leading-[1.05] mb-4 group-hover:text-coral transition-colors"
-                      >
-                        {camp.shortName.toUpperCase()}
-                        <br />
-                        CAMP.
-                      </h3>
-                      <p className="text-foreground-muted leading-relaxed mb-5 text-[15px] md:text-sm">
-                        {camp.description}
-                      </p>
-                      <div className="flex items-center justify-between border-t border-white/10 pt-4">
-                        <div>
-                          <p className="font-heading text-off-white text-2xl">
-                            €{camp.pricePerPerson}
-                          </p>
-                          <p className="text-foreground-subtle text-[10px] tracking-[0.2em] uppercase mt-0.5">
-                            per person &middot; {camp.capacity} spots
-                          </p>
+              {CAMP_LIST.map((camp, i) => {
+                const isSoldOut = camp.soldOut === true;
+                const CardWrapper = isSoldOut ? "div" : Link;
+                const cardProps = isSoldOut
+                  ? {}
+                  : { href: camp.href };
+
+                return (
+                  <ScrollReveal key={camp.slug} direction="up" delay={i * 0.08}>
+                    <CardWrapper
+                      {...cardProps}
+                      className={`group block rounded-2xl border overflow-hidden transition-all ${
+                        isSoldOut
+                          ? "border-white/5 bg-white/[0.01] opacity-75 cursor-default"
+                          : "border-white/10 bg-white/[0.02] hover:bg-white/[0.05] hover:border-coral/40"
+                      }`}
+                    >
+                      <div className="relative aspect-[4/3] sm:aspect-[16/10]">
+                        <Image
+                          src={CAMP_CARD_IMAGES[camp.slug]}
+                          alt={`${camp.name} — Girona`}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          className={`object-cover transition-transform duration-700 ${
+                            isSoldOut ? "grayscale-[40%]" : "group-hover:scale-105"
+                          }`}
+                        />
+                        <div
+                          aria-hidden
+                          className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/30 to-transparent"
+                        />
+                        {/* Type badge */}
+                        <div className={`absolute top-4 left-4 px-3 py-1 rounded-full backdrop-blur-sm font-heading text-xs tracking-[0.2em] ${
+                          isSoldOut
+                            ? "bg-white/20 text-white/70"
+                            : "bg-coral/90 text-off-white"
+                        }`}>
+                          {camp.type.toUpperCase()}
                         </div>
-                        <span className="font-heading text-coral text-sm tracking-[0.2em] uppercase">
-                          See camp →
-                        </span>
+                        {/* SOLD OUT banner — angled across the card image */}
+                        {isSoldOut && (
+                          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                            <div
+                              className="bg-deep-purple/90 backdrop-blur-sm py-3 px-16 font-heading text-off-white tracking-[0.3em] text-3xl sm:text-4xl md:text-5xl shadow-[0_4px_30px_rgba(0,0,0,0.5)] border-y-2 border-coral/60"
+                              style={{ transform: "rotate(-12deg)" }}
+                            >
+                              SOLD OUT
+                            </div>
+                          </div>
+                        )}
+                        {/* Limited places badge for active camps */}
+                        {!isSoldOut && (
+                          <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-coral backdrop-blur-sm text-off-white font-heading text-[10px] tracking-[0.2em] animate-pulse">
+                            LIMITED PLACES
+                          </div>
+                        )}
                       </div>
-                    </div>
-                  </Link>
-                </ScrollReveal>
-              ))}
+                      <div className="p-5 sm:p-6 md:p-8">
+                        <p className="font-heading text-foreground-subtle text-[11px] md:text-xs tracking-[0.3em] uppercase mb-3">
+                          {formatCampDates(camp)}
+                        </p>
+                        <h3
+                          className={`font-heading text-[2rem] sm:text-3xl md:text-4xl leading-[1.05] mb-4 transition-colors ${
+                            isSoldOut
+                              ? "text-foreground-subtle"
+                              : "text-off-white group-hover:text-coral"
+                          }`}
+                        >
+                          {camp.shortName.toUpperCase()}
+                          <br />
+                          CAMP.
+                        </h3>
+                        <p className="text-foreground-muted leading-relaxed mb-5 text-[15px] md:text-sm">
+                          {camp.description}
+                        </p>
+                        <div className="flex items-center justify-between border-t border-white/10 pt-4">
+                          <div>
+                            {isSoldOut ? (
+                              <>
+                                <p className="font-heading text-foreground-subtle text-2xl line-through">
+                                  €{camp.pricePerPerson}
+                                </p>
+                                <p className="text-coral text-[10px] tracking-[0.2em] uppercase mt-0.5 font-heading">
+                                  SOLD OUT
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                <p className="font-heading text-off-white text-2xl">
+                                  €{camp.pricePerPerson}
+                                </p>
+                                <p className="text-foreground-subtle text-[10px] tracking-[0.2em] uppercase mt-0.5">
+                                  per person &middot; {camp.capacity} spots
+                                </p>
+                              </>
+                            )}
+                          </div>
+                          {!isSoldOut && (
+                            <span className="font-heading text-coral text-sm tracking-[0.2em] uppercase">
+                              See camp →
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </CardWrapper>
+                  </ScrollReveal>
+                );
+              })}
             </div>
 
-            {/* BOTH CAMPS BUNDLE ──────────────────────────────── */}
-            <ScrollReveal direction="up" delay={0.16}>
-              <div className="mt-6 md:mt-8 rounded-2xl border border-coral/40 bg-gradient-to-br from-coral/[0.07] to-transparent p-5 sm:p-6 md:p-8 backdrop-blur-sm flex flex-col md:flex-row md:items-center md:justify-between gap-5 md:gap-6">
-                <div className="md:max-w-xl">
-                  <p className="font-heading text-coral text-[11px] md:text-xs tracking-[0.3em] mb-3">
-                    SAVE €{BUNDLE_SAVINGS} &middot; BOTH CAMPS
-                  </p>
-                  <h3 className="font-heading text-off-white text-2xl md:text-3xl leading-tight mb-3">
-                    DO BOTH WEEKS BACK-TO-BACK.
-                  </h3>
-                  <p className="text-foreground-muted text-[15px] md:text-sm leading-relaxed">
-                    Ten days. Two formats. Same farmhouse, no airport transfer
-                    in between. €{BUNDLE_PRICE.toLocaleString("en-IE")} for the
-                    pair — €{BUNDLE_SAVINGS} less than booking each camp on its
-                    own.
-                  </p>
-                </div>
-                <div className="flex flex-col items-start md:items-end gap-2 w-full md:w-auto">
-                  <p className="font-heading text-off-white text-3xl md:text-4xl leading-none">
-                    €{BUNDLE_PRICE.toLocaleString("en-IE")}
-                  </p>
-                  <p className="text-foreground-subtle text-[10px] tracking-[0.2em] uppercase">
-                    Both Camps &middot; per person
-                  </p>
-                  <Link
-                    href="/training-camps/girona-road#book"
-                    className="mt-3 md:mt-2 w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-off-white bg-coral hover:bg-coral-hover transition-all text-sm shadow-[0_10px_30px_-12px_rgba(241,99,99,0.55)]"
-                  >
-                    Book Both →
-                  </Link>
-                </div>
-              </div>
-            </ScrollReveal>
+            {/* BOTH CAMPS BUNDLE — hidden while road camp is sold out */}
           </Container>
         </Section>
 
@@ -536,15 +516,6 @@ export default function TrainingCampsLandingPage() {
         </Section>
 
         {/* CLOSING CTA ──────────────────────────────────────── */}
-        <Section background="charcoal" className="!py-12">
-          <Container width="narrow">
-            <EvidenceBlock
-              lastReviewed="24 August 2026"
-              reviewedBy="Roadman Cycling operations and coaching team"
-            />
-          </Container>
-        </Section>
-
         <Section background="deep-purple" grain className="!py-16 md:!py-28">
           <Container width="narrow" className="text-center">
             <ScrollReveal direction="up">
@@ -552,30 +523,27 @@ export default function TrainingCampsLandingPage() {
                 className="font-heading text-off-white leading-[1.05] mb-5 md:mb-6"
                 style={{ fontSize: "clamp(2.125rem, 4vw, 3.25rem)" }}
               >
-                SIXTEEN SPOTS.
+                GRAVEL CAMP.
                 <br />
-                <span className="text-coral">FIRST-COME.</span>
+                <span className="text-coral">LIMITED PLACES.</span>
               </h2>
               <p className="text-foreground-muted leading-relaxed mb-8 md:mb-10 max-w-md mx-auto text-[15px] md:text-base">
-                Pick your format and book. Payment is taken in full through
-                Stripe — your spot is locked the moment it clears.
+                The road camp is sold out. Gravel still has places — pick your
+                spot and book. Payment through Stripe, locked the moment it
+                clears.
               </p>
               <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center gap-3">
-                {CAMP_LIST.map((c) => (
-                  <Link
-                    key={c.slug}
-                    href={`${c.href}#book`}
-                    className="inline-flex items-center justify-center gap-2 px-7 py-4 sm:py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-off-white bg-coral hover:bg-coral-hover transition-all shadow-[0_10px_30px_-12px_rgba(241,99,99,0.55)]"
-                  >
-                    Book {c.shortName}
-                  </Link>
-                ))}
                 <Link
-                  href="/training-camps/girona-road#book"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-4 sm:py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-off-white border border-coral/60 hover:bg-coral/10 transition-all"
+                  href="/training-camps/girona-gravel#book"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-4 sm:py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-off-white bg-coral hover:bg-coral-hover transition-all shadow-[0_10px_30px_-12px_rgba(241,99,99,0.55)]"
                 >
-                  Book Both &middot; €{BUNDLE_PRICE.toLocaleString("en-IE")}
+                  Book Girona Gravel →
                 </Link>
+                <span
+                  className="inline-flex items-center justify-center gap-2 px-7 py-4 sm:py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-foreground-subtle border border-white/10 cursor-default opacity-50"
+                >
+                  Road Camp — Sold Out
+                </span>
               </div>
             </ScrollReveal>
           </Container>

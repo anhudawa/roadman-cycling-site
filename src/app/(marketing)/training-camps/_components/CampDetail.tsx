@@ -74,6 +74,7 @@ const NOT_INCLUDED = [
 ];
 
 export function CampDetail({ camp }: Props) {
+  const isSoldOut = camp.soldOut === true;
   const days = ITINERARIES[camp.slug];
   const totalDistance = days.reduce(
     (acc, d) => acc + parseInt(d.distance.replace(/\D/g, ""), 10) || 0,
@@ -114,7 +115,9 @@ export function CampDetail({ camp }: Props) {
             "@type": "Offer",
             price: String(camp.pricePerPerson),
             priceCurrency: "EUR",
-            availability: "https://schema.org/InStock",
+            availability: isSoldOut
+              ? "https://schema.org/SoldOut"
+              : "https://schema.org/InStock",
             url: `https://roadmancycling.com${camp.href}`,
             validFrom: "2026-05-04",
             validThrough: camp.startDate,
@@ -159,7 +162,9 @@ export function CampDetail({ camp }: Props) {
             "@type": "Offer",
             price: String(camp.pricePerPerson),
             priceCurrency: "EUR",
-            availability: "https://schema.org/InStock",
+            availability: isSoldOut
+              ? "https://schema.org/SoldOut"
+              : "https://schema.org/InStock",
             url: `https://roadmancycling.com${camp.href}#book`,
             validFrom: "2026-05-04",
           },
@@ -238,9 +243,19 @@ export function CampDetail({ camp }: Props) {
                   alt={camp.heroImageAlt}
                   fill
                   sizes="(max-width: 1024px) 100vw, 1024px"
-                  className="object-cover"
+                  className={`object-cover ${isSoldOut ? "grayscale-[30%]" : ""}`}
                   priority
                 />
+                {isSoldOut && (
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div
+                      className="bg-deep-purple/90 backdrop-blur-sm py-4 px-20 font-heading text-off-white tracking-[0.35em] text-4xl sm:text-5xl md:text-6xl shadow-[0_4px_40px_rgba(0,0,0,0.6)] border-y-2 border-coral/60"
+                      style={{ transform: "rotate(-12deg)" }}
+                    >
+                      SOLD OUT
+                    </div>
+                  </div>
+                )}
               </div>
             </ScrollReveal>
 
@@ -276,12 +291,18 @@ export function CampDetail({ camp }: Props) {
             </ScrollReveal>
 
             <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center gap-3 mt-8 md:mt-10">
-              <a
-                href="#book"
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 sm:py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-off-white bg-coral hover:bg-coral-hover transition-all shadow-[0_10px_30px_-12px_rgba(241,99,99,0.55)]"
-              >
-                Book now &middot; €{camp.pricePerPerson}
-              </a>
+              {isSoldOut ? (
+                <span className="inline-flex items-center justify-center gap-2 px-7 py-4 sm:py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-foreground-subtle border border-white/10 cursor-default opacity-60">
+                  Sold Out
+                </span>
+              ) : (
+                <a
+                  href="#book"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-4 sm:py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-off-white bg-coral hover:bg-coral-hover transition-all shadow-[0_10px_30px_-12px_rgba(241,99,99,0.55)]"
+                >
+                  Book now &middot; €{camp.pricePerPerson}
+                </a>
+              )}
               <a
                 href="#itinerary"
                 className="inline-flex items-center justify-center gap-2 px-7 py-4 sm:py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-foreground-muted border border-white/15 hover:text-off-white hover:border-white/30 transition-colors"
@@ -562,39 +583,76 @@ export function CampDetail({ camp }: Props) {
           className="!py-16 md:!py-28 relative"
         >
           <Container width="narrow" className="relative">
-            <ScrollReveal direction="up">
-              <p className="font-heading text-coral text-[11px] md:text-xs tracking-[0.35em] md:tracking-[0.4em] mb-4 text-center">
-                RESERVE YOUR SPOT
-              </p>
-              <h2
-                className="font-heading text-off-white leading-[1.05] mb-4 text-center"
-                style={{ fontSize: "clamp(2.125rem, 4vw, 3.25rem)" }}
-              >
-                BOOK THE {camp.shortName.toUpperCase()} CAMP.
-              </h2>
-              <p className="text-foreground-muted text-center max-w-xl mx-auto leading-relaxed mb-8 md:mb-10 text-[15px] md:text-base">
-                Sixteen spots, first-come. Fill the form, pay through Stripe,
-                and the spot is yours the moment the payment clears.
-              </p>
-            </ScrollReveal>
-            <ScrollReveal direction="up" delay={0.05}>
-              <div className="rounded-xl md:rounded-2xl border border-white/10 bg-charcoal/60 backdrop-blur-sm p-5 sm:p-7 md:p-10">
-                <BookingForm defaultCamp={camp.slug} camps={CAMPS} />
-              </div>
-            </ScrollReveal>
+            {isSoldOut ? (
+              <ScrollReveal direction="up">
+                <div className="text-center">
+                  <p className="font-heading text-coral text-[11px] md:text-xs tracking-[0.35em] md:tracking-[0.4em] mb-4">
+                    SOLD OUT
+                  </p>
+                  <h2
+                    className="font-heading text-off-white leading-[1.05] mb-5 md:mb-6"
+                    style={{ fontSize: "clamp(2.125rem, 4vw, 3.25rem)" }}
+                  >
+                    THE {camp.shortName.toUpperCase()} CAMP
+                    <br />
+                    <span className="text-coral">IS SOLD OUT.</span>
+                  </h2>
+                  <p className="text-foreground-muted max-w-lg mx-auto leading-relaxed mb-8 text-[15px] md:text-base">
+                    All sixteen spots are taken. The{" "}
+                    <Link
+                      href={otherCamp.href}
+                      className="text-coral hover:underline"
+                    >
+                      {otherCamp.shortName} camp
+                    </Link>{" "}
+                    still has limited places — same farmhouse, same team, the
+                    week after.
+                  </p>
+                  <Link
+                    href={`${otherCamp.href}#book`}
+                    className="inline-flex items-center justify-center gap-2 px-7 py-4 sm:py-3.5 rounded-md font-heading tracking-[0.15em] uppercase text-off-white bg-coral hover:bg-coral-hover transition-all shadow-[0_10px_30px_-12px_rgba(241,99,99,0.55)]"
+                  >
+                    Book {otherCamp.shortName} →
+                  </Link>
+                </div>
+              </ScrollReveal>
+            ) : (
+              <>
+                <ScrollReveal direction="up">
+                  <p className="font-heading text-coral text-[11px] md:text-xs tracking-[0.35em] md:tracking-[0.4em] mb-4 text-center">
+                    RESERVE YOUR SPOT
+                  </p>
+                  <h2
+                    className="font-heading text-off-white leading-[1.05] mb-4 text-center"
+                    style={{ fontSize: "clamp(2.125rem, 4vw, 3.25rem)" }}
+                  >
+                    BOOK THE {camp.shortName.toUpperCase()} CAMP.
+                  </h2>
+                  <p className="text-foreground-muted text-center max-w-xl mx-auto leading-relaxed mb-8 md:mb-10 text-[15px] md:text-base">
+                    Sixteen spots, first-come. Fill the form, pay through Stripe,
+                    and the spot is yours the moment the payment clears.
+                  </p>
+                </ScrollReveal>
+                <ScrollReveal direction="up" delay={0.05}>
+                  <div className="rounded-xl md:rounded-2xl border border-white/10 bg-charcoal/60 backdrop-blur-sm p-5 sm:p-7 md:p-10">
+                    <BookingForm defaultCamp={camp.slug} camps={CAMPS} />
+                  </div>
+                </ScrollReveal>
 
-            <ScrollReveal direction="up" delay={0.1}>
-              <p className="text-foreground-subtle text-xs text-center mt-8 max-w-md mx-auto leading-relaxed">
-                Want both formats? You can book{" "}
-                <Link
-                  href={otherCamp.href}
-                  className="text-coral hover:underline"
-                >
-                  the {otherCamp.type.toLowerCase()} camp
-                </Link>{" "}
-                back-to-back — same farmhouse, no airport transfer in between.
-              </p>
-            </ScrollReveal>
+                <ScrollReveal direction="up" delay={0.1}>
+                  <p className="text-foreground-subtle text-xs text-center mt-8 max-w-md mx-auto leading-relaxed">
+                    Want both formats? You can book{" "}
+                    <Link
+                      href={otherCamp.href}
+                      className="text-coral hover:underline"
+                    >
+                      the {otherCamp.type.toLowerCase()} camp
+                    </Link>{" "}
+                    back-to-back — same farmhouse, no airport transfer in between.
+                  </p>
+                </ScrollReveal>
+              </>
+            )}
           </Container>
         </Section>
 

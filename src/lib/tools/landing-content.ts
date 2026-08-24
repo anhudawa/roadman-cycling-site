@@ -1194,6 +1194,174 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
       "Experience level filtering (beginner, intermediate, advanced)",
     ],
   },
+
+  "pre-ride-fuel": {
+    slug: "pre-ride-fuel",
+    title: "Pre-Ride Fuel Calculator",
+    description:
+      "Calculate your pre-ride meal macros based on body weight, FTP, session type, and start time. Powered by the Hexis/Impey FFTWR methodology, verified against live accounts.",
+    url: `${ROADMAN_BASE}/tools/pre-ride-fuel`,
+    breadcrumbName: "Pre-Ride Fuel Calculator",
+    answerSummary:
+      "Enter your weight, FTP, session type and start time. The calculator returns your pre-ride meal macros (carbs, protein, fat in grams), a timing window of 2–3 hours before the session, example foods, and your in-ride carb target per hour — all built on the Hexis/Impey Fuel For The Work Required methodology verified against live athlete accounts.",
+    whatItDoes:
+      "Most cyclists either eat too much before easy rides or too little before hard ones. This calculator fixes that by matching your pre-ride meal to the session you're about to do. A rest-day spin and a three-hour threshold session need fundamentally different fuel — the calculator tells you exactly how much, what ratio, and when to eat it.",
+    whoItsFor: [
+      "Cyclists who want to stop guessing what to eat before training",
+      "Riders following a structured plan who want nutrition matched to session type",
+      "Athletes preparing for events who need pre-ride fuelling dialled in",
+      "Anyone who has bonked because they ate the wrong breakfast before a hard ride",
+      "Riders curious about periodised nutrition before committing to Hexis",
+    ],
+    howItWorks:
+      "The engine calculates your daily energy expenditure using the Mifflin-St Jeor equation, applies your body composition goal (lose, maintain, or gain), then adds exercise energy for the session you've selected. Carbohydrate scaling follows the FFTWR fuel-category system — low-intensity sessions get fewer carbs, high-intensity sessions get more. The pre-workout meal receives a 15% carb bump to top off glycogen stores. Meal distribution follows the verified Hexis model: breakfast ~24%, lunch ~30%, PM snack ~15%, dinner ~30%, with the pre-workout window adjusted to your session start time.",
+    howToSteps: [
+      { name: "Enter your body weight in kilograms", text: "Your weight drives the protein target (1.8 g/kg) and resting metabolic rate. Use your current morning weight, not a target." },
+      { name: "Enter your FTP in watts", text: "FTP determines exercise energy expenditure. If you haven't tested recently, use the most recent value from TrainingPeaks, Zwift, or TrainerRoad." },
+      { name: "Select your session type", text: "Choose from 21 session templates — recovery spin, Z2 endurance, sweet spot, threshold intervals, VO2max repeats, and more. Each has a fuel category that determines carb scaling." },
+      { name: "Set your session start time", text: "This determines when to eat. The calculator prescribes a 2–3 hour pre-ride window and identifies which meal slot the pre-ride food falls into." },
+      { name: "Choose your body composition goal", text: "Lose, maintain, or gain. A weight-loss goal applies a modest deficit to rest-day calories without under-fuelling training sessions — the core FFTWR principle." },
+      { name: "Read your pre-ride prescription", text: "You get pre-ride macros in grams (carbs, protein, fat), a timing window, example foods for that macro profile, and your in-ride carb-per-hour target based on session intensity." },
+    ],
+    howToTotalTime: "PT2M",
+    limitations:
+      "The calculator uses population-level metabolic equations (Mifflin-St Jeor) — individual metabolic rates vary by ±10%. Gut tolerance to pre-ride carbs is personal and takes time to train. The 15% pre-workout carb bump is a methodology default, not an individually calibrated value. Session templates use typical intensity factors — your actual session may differ. For fully individualised periodised nutrition with food logging and daily adjustment, Hexis automates the full FFTWR methodology.",
+    whenToSeeACoach:
+      "If you regularly experience GI distress during rides, have a history of disordered eating, struggle with fuelling around early-morning sessions, or need race-day nutrition planning for events over four hours — a sports dietitian or the full Hexis platform will serve you better than a single-meal calculator.",
+    examples: [
+      {
+        scenario: "82kg rider, 250W FTP, 90-min Z2 endurance ride at 7am",
+        inputs: ["Weight: 82kg", "FTP: 250W", "Session: Z2 Endurance (≤75min)", "Start: 07:00", "Goal: Maintain"],
+        output: "Pre-ride meal (05:00): 48g carbs, 37g protein, 18g fat (~500 kcal). Examples: porridge with banana and a scoop of whey. In-ride carbs: 0 g/hr (low fuel category — water only).",
+      },
+      {
+        scenario: "75kg rider, 280W FTP, threshold intervals at 18:00",
+        inputs: ["Weight: 75kg", "FTP: 280W", "Session: 2×20 Threshold", "Start: 18:00", "Goal: Lose"],
+        output: "Pre-ride meal (15:30): 62g carbs, 34g protein, 15g fat (~520 kcal). Examples: rice cakes with chicken and a banana. In-ride carbs: 60 g/hr (moderate-high fuel category).",
+      },
+    ],
+    faqs: [
+      {
+        question: "What should I eat before a cycling session?",
+        answer: "A meal 2–3 hours before riding, weighted toward carbohydrates with moderate protein and low fat. The exact amounts depend on your body weight, the session intensity, and your body composition goal. A 75kg rider doing threshold intervals needs roughly 60g of carbs pre-ride; the same rider doing a recovery spin needs closer to 35g. The calculator gives you the specific numbers for your session.",
+      },
+      {
+        question: "How many hours before cycling should I eat?",
+        answer: "Two to three hours gives most riders enough time to digest a full meal without GI discomfort. If you ride early morning and can't eat three hours before, a smaller carb-focused snack 60–90 minutes out works — think a banana and a handful of cereal, not a full breakfast. The key is getting some glycogen on board without sitting heavy in your stomach.",
+      },
+      {
+        question: "How many carbs should I eat before a long ride?",
+        answer: "For rides over 90 minutes at moderate intensity, aim for 1–2 g of carbs per kilogram of body weight in your pre-ride meal. For a 75kg rider, that's 75–150g of carbs depending on session intensity and duration. The calculator narrows this range based on the specific session template — a four-hour endurance ride needs more pre-ride fuel than a 90-minute tempo session.",
+      },
+      {
+        question: "Should I eat before a Zone 2 ride?",
+        answer: "For Zone 2 rides under 75 minutes, eating before is optional — the body's glycogen stores handle the workload. For Zone 2 rides over 90 minutes, eat. The FFTWR model prescribes a smaller, carb-moderate meal for low-intensity sessions and a larger, carb-heavy meal for high-intensity ones. Chronic fasted training at any intensity risks under-recovery and hormone disruption.",
+      },
+      {
+        question: "What is the difference between pre-ride fuel for training and racing?",
+        answer: "Racing gets more carbs. The FFTWR competition-day protocol increases carbohydrate restoration to near 100% of exercise calories (versus ~77% on training days) and adds a 40g carb-loading bonus. Pre-ride meals on competition days are larger and more carb-dominant. The competition day fuel planner handles this in detail — this calculator covers standard training-day pre-ride meals.",
+      },
+    ],
+    related: [
+      { label: "In-Ride Fuelling Calculator", href: "/tools/fuelling", kind: "tool" },
+      { label: "FFTWR Complete Guide", href: "/blog/fuel-for-the-work-required-guide", kind: "article" },
+      { label: "Hexis Review", href: "/blog/hexis-review", kind: "article" },
+      { label: "Fuelled vs Fasted Sessions", href: "/compare/fueled-vs-fasted-sessions", kind: "topic" },
+      { label: "Hexis vs MyFitnessPal", href: "/compare/hexis-vs-myfitnesspal", kind: "article" },
+      { label: "Nutrition topic hub", href: "/topics/cycling-nutrition", kind: "topic" },
+    ],
+    webAppFeatures: [
+      "Pre-ride meal macros (carbs, protein, fat) from 21 session templates",
+      "Timing window based on session start time",
+      "Fuel-category-aware carb scaling (FFTWR methodology)",
+      "In-ride carb-per-hour target by session intensity",
+      "Body composition goal integration (lose, maintain, gain)",
+      "Example food suggestions for each macro profile",
+      "Verified against live Hexis accounts (May 2026)",
+    ],
+  },
+
+  "indoor-platform-compare": {
+    slug: "indoor-platform-compare",
+    title: "Indoor Cycling Platform Comparison Tool",
+    description:
+      "Compare TrainingPeaks Virtual, Zwift, Rouvy, and TrainerRoad side by side. Select your priorities — structured training, social features, racing, coaching — and get a personalised recommendation.",
+    url: `${ROADMAN_BASE}/tools/indoor-platform-compare`,
+    breadcrumbName: "Indoor Platform Comparison",
+    answerSummary:
+      "Select two or three indoor cycling platforms from TrainingPeaks Virtual, Zwift, Rouvy, and TrainerRoad, then rate your priorities across structured training, social features, racing, coach integration, event simulation, and cost. The tool returns a weighted recommendation with a side-by-side feature matrix and pricing breakdown.",
+    whatItDoes:
+      "Four major indoor cycling platforms, each built around a different philosophy. TrainingPeaks Virtual for coached, plan-integrated training. Zwift for social riding and racing. Rouvy for real-world course simulation. TrainerRoad for self-coached adaptive plans. This tool helps you cut through the marketing and find the platform that matches how you actually train.",
+    whoItsFor: [
+      "Cyclists deciding between indoor platforms for the first time",
+      "Riders considering a switch from one platform to another",
+      "Coached athletes evaluating whether TPV fits their training setup",
+      "Riders who use multiple platforms and want to optimise which sessions go where",
+    ],
+    howItWorks:
+      "The tool uses a weighted scoring model across six training priorities. Each platform has pre-scored values for structured training quality, social/group riding, racing depth, coach integration, event-specific simulation, and monthly cost. You rate which priorities matter most to you, and the tool returns a ranked recommendation. The feature matrix gives you the raw comparison; the recommendation tells you what that data means for your riding.",
+    howToSteps: [
+      { name: "Select platforms to compare", text: "Choose two or three platforms from TrainingPeaks Virtual, Zwift, Rouvy, and TrainerRoad. Comparing all four at once also works." },
+      { name: "Rate your training priorities", text: "Rank how much each factor matters to you: structured training, social features, racing, coach integration, event simulation, and cost. The tool weights your recommendation accordingly." },
+      { name: "Review the feature matrix", text: "A side-by-side comparison of every major feature: workout delivery, ERG mode, group rides, racing, course library, analytics, and pricing." },
+      { name: "Read your recommendation", text: "The tool explains which platform fits your priorities and why. Where two platforms are close, it suggests how to combine them for the best result." },
+    ],
+    howToTotalTime: "PT3M",
+    limitations:
+      "Platform features change — pricing and feature sets were last verified in August 2026. The tool captures features available to most users; some platforms have beta features, regional variations, or hardware-specific capabilities not included. The scoring model is editorial, based on hands-on testing and coaching experience, not a perfectly objective algorithm. Your personal experience with each platform's UI, community, and workout feel can't be captured in a feature matrix.",
+    whenToSeeACoach:
+      "If you're unsure whether your indoor training is actually translating to outdoor performance, or you're doing plenty of indoor work without seeing results, the problem is probably your training plan — not your platform. A coach can audit your week and tell you whether the platform is the issue or the programming behind it.",
+    examples: [
+      {
+        scenario: "Coached cyclist, 8 hrs/week, uses TrainingPeaks",
+        inputs: ["Platforms: TPV, Zwift", "Priorities: Coach integration (high), Structured training (high), Social (low)"],
+        output: "Recommendation: TrainingPeaks Virtual. Your structured workouts sync from the TP calendar, your coach sees every session, and your TSS/CTL stays unified. Add Zwift for occasional weekend group rides if you want the social layer.",
+      },
+      {
+        scenario: "Self-coached rider, trains alone, wants AI plan adjustment",
+        inputs: ["Platforms: TrainerRoad, TPV, Zwift", "Priorities: Structured training (high), Cost (medium), Social (medium)"],
+        output: "Recommendation: TrainerRoad. Adaptive Training adjusts your plan based on completed sessions, and the AI Training Simulation optimises your next four weeks. TrainerRoad is built for riders who want the plan to think for them.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Which indoor cycling platform is best?",
+        answer: "It depends on how you train. TrainingPeaks Virtual is best for coached athletes who want indoor sessions integrated with their training plan. Zwift is best for social riders who need group rides and races to stay motivated. TrainerRoad is best for self-coached riders who want adaptive AI-driven plans. Rouvy is best for event-specific preparation on real-world course simulations.",
+      },
+      {
+        question: "Is TrainingPeaks Virtual included with TrainingPeaks?",
+        answer: "Yes. TrainingPeaks Virtual is included with TrainingPeaks Premium at $19.95 per month. If you're already paying for TrainingPeaks analytics and structured workout delivery, you get the indoor training platform at no additional cost — which makes it significantly better value than paying for a separate indoor platform alongside your TP subscription.",
+      },
+      {
+        question: "Can I use multiple indoor platforms?",
+        answer: "Yes, and many serious cyclists do. A common setup: TrainingPeaks Virtual or TrainerRoad for structured midweek sessions, Zwift for social group rides or races on weekends, and Rouvy for event-specific course simulation in the final build before a target event. The key is ensuring your structured work stays integrated with your training plan.",
+      },
+      {
+        question: "Which platform is best for coached cyclists?",
+        answer: "TrainingPeaks Virtual, by a clear margin. Your coach prescribes workouts in TrainingPeaks, and TPV loads them automatically on the trainer. Completed sessions sync back to the same calendar as your outdoor rides. Your coach sees everything in one place — no data fragmentation, no manual imports. No other indoor platform offers this level of coaching integration.",
+      },
+      {
+        question: "Is TrainerRoad or Zwift better for getting faster?",
+        answer: "TrainerRoad, if you follow the plan. Its Adaptive Training system adjusts workout difficulty based on your responses, and the AI Training Simulation optimises your plan over four-week windows. Zwift's workout library is solid but doesn't adapt to you. However, Zwift's social layer keeps many riders more consistent than they'd be alone — and consistency beats optimisation every time. The fastest platform is the one you actually use.",
+      },
+    ],
+    related: [
+      { label: "TPV vs Zwift", href: "/compare/trainingpeaks-virtual-vs-zwift", kind: "article" },
+      { label: "TPV vs Rouvy", href: "/compare/trainingpeaks-virtual-vs-rouvy", kind: "article" },
+      { label: "TPV vs TrainerRoad", href: "/compare/trainingpeaks-virtual-vs-trainerroad", kind: "article" },
+      { label: "Rouvy vs Zwift", href: "/compare/rouvy-vs-zwift-platform", kind: "article" },
+      { label: "Indoor vs Outdoor Training", href: "/compare/indoor-vs-outdoor-training", kind: "article" },
+      { label: "FTP Zone Calculator", href: "/tools/ftp-zones", kind: "tool" },
+    ],
+    webAppFeatures: [
+      "Side-by-side comparison of TPV, Zwift, Rouvy, and TrainerRoad",
+      "Priority-weighted recommendation engine",
+      "Feature matrix across structured training, racing, social, and coaching",
+      "Pricing comparison with value analysis",
+      "Platform combination suggestions for multi-platform setups",
+      "Personalised recommendation based on your training style",
+    ],
+  },
 };
 
 /** Helper for components that look up a tool by slug. */
