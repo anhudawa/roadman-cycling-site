@@ -125,7 +125,10 @@ export default async function EpisodePage({
       ...(episode.keywords ?? []),
       ...(episode.topicTags ?? []),
     ],
-    { fallbackId: "cycling-podcast" },
+    {
+      currentPath: `/podcast/${slug}`,
+      fallbackId: "cycling-podcast",
+    },
   );
 
   // Resolve topic-tag slugs into hub objects so we can render labels

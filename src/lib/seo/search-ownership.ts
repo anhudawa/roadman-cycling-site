@@ -256,11 +256,25 @@ export function resolveSearchOwner(
     fallbackId?: SearchOwnerId;
   } = {},
 ): SearchOwner | null {
+  const currentPath = options.currentPath?.replace(/\/$/, "") || undefined;
+  const declaredOwner = currentPath
+    ? SEARCH_OWNERS.find((owner) =>
+        owner.supportingDestinations.some(
+          (destination) => destination.path.replace(/\/$/, "") === currentPath,
+        ),
+      )
+    : undefined;
+
+  // Registry declarations are deliberate editorial decisions and therefore
+  // outrank fuzzy metadata matching. This also guarantees that the visible
+  // backlink and structured isPartOf relationship agree for priority pages.
+  if (declaredOwner) return declaredOwner;
+
   const haystack = normaliseSearchText(values.filter(Boolean).join(" | "));
   let winner: { owner: SearchOwner; score: number } | null = null;
 
   for (const owner of SEARCH_OWNERS) {
-    if (owner.path === options.currentPath) continue;
+    if (owner.path === currentPath) continue;
     const primary = normaliseSearchText(owner.primaryQuery);
     let score = haystack.includes(primary) ? 12 : 0;
 

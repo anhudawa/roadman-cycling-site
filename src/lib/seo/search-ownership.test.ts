@@ -28,6 +28,20 @@ describe("search ownership registry", () => {
     );
   });
 
+  it("uses explicit supporting-route ownership before fuzzy metadata", () => {
+    expect(
+      resolveSearchOwner(["Training Like a Pro Cyclist for 60 Days"], {
+        currentPath: "/blog/how-pro-cyclist-trains-60-days",
+      })?.path,
+    ).toBe("/training-plans");
+
+    expect(
+      resolveSearchOwner(["cycling coaching"], {
+        currentPath: "/coaching/",
+      }),
+    ).toBeNull();
+  });
+
   it("does not manufacture a match for unrelated content", () => {
     expect(resolveSearchOwner(["How much carbohydrate should I eat?"])).toBeNull();
   });

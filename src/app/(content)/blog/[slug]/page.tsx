@@ -168,12 +168,15 @@ export default async function BlogPostPage({
       : "");
 
   const publishDate = new Date(post.publishDate);
-  const searchOwner = resolveSearchOwner([
-    post.title,
-    post.seoTitle,
-    post.seoDescription,
-    ...(post.keywords ?? []),
-  ]);
+  const searchOwner = resolveSearchOwner(
+    [
+      post.title,
+      post.seoTitle,
+      post.seoDescription,
+      ...(post.keywords ?? []),
+    ],
+    { currentPath: `/blog/${slug}` },
+  );
 
   // Pick the intent CTA off the article's metadata. When inference
   // turns up "event" we need a concrete event name for the variant —

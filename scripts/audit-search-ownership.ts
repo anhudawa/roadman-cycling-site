@@ -95,6 +95,7 @@ const primaryQueries = new Set<string>();
 
 function resolveDocumentOwner(document: Document) {
   return resolveSearchOwner(document.searchText, {
+    currentPath: document.path,
     fallbackId: document.type === "podcast" ? "cycling-podcast" : undefined,
   });
 }
