@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { HowToSchema } from "@/components/seo/HowToSchema";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
-import { ENTITY_IDS } from "@/lib/brand-facts";
+import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
   title: "Masters FTP Benchmark — Where Your Watts Place You by Age",
@@ -41,6 +41,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           identifier: "roadman-masters-ftp-benchmarks-2026",
           creator: { "@id": ENTITY_IDS.organization },
           publisher: { "@id": ENTITY_IDS.organization },
+          isPartOf: { "@id": `${SITE_ORIGIN}/masters#webpage` },
           isAccessibleForFree: true,
           license: "https://creativecommons.org/licenses/by/4.0/",
           variableMeasured: [

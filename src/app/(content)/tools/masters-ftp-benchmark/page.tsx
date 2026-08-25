@@ -480,6 +480,18 @@ export default function MastersFtpBenchmarkPage() {
                 accuracy is the biggest variable in the result — if your last test was over
                 three months ago, retest first.
               </p>
+              <p>
+                For the training, recovery and strength recommendations behind these age
+                bands, continue to the{" "}
+                <Link
+                  href="/masters"
+                  data-track="tool_mastersftp_owner"
+                  className="text-coral hover:text-coral/80 underline-offset-4 hover:underline transition-colors"
+                >
+                  Masters Cycling Training knowledge hub
+                </Link>
+                .
+              </p>
               <p className="text-xs text-foreground-subtle">
                 Last updated: April 2026 · Tool version 1.0
               </p>

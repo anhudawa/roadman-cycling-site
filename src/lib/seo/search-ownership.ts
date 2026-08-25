@@ -131,6 +131,11 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
         label: "Cycling Over 50 Training Guide",
         intent: "Evidence-based training and recovery framework for riders over 50",
       },
+      {
+        path: "/tools/masters-ftp-benchmark",
+        label: "Masters FTP Benchmark Calculator",
+        intent: "Age-graded FTP and W/kg benchmarking for masters cyclists",
+      },
     ],
   },
   {
