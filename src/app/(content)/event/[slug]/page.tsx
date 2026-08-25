@@ -822,11 +822,10 @@ export default async function EventGuidePage({
                 </h2>
                 <p className="text-foreground-muted text-base md:text-lg mb-6 max-w-xl mx-auto leading-relaxed">
                   The framework here gets you in the right territory. Inside
-                  the Not Done Yet community ($195/mo), the plan gets built
-                  around your FTP, your week, your weeks remaining, and your
-                  delivery via TrainingPeaks — with a weekly call where
-                  Anthony walks through the questions members are bringing
-                  in.
+                  Not Done Yet group coaching ($195/mo), the Roadman coaching
+                  team builds the plan around your FTP, your week, your weeks
+                  remaining, and your delivery via TrainingPeaks — with a
+                  weekly live group-coaching call led by Anthony.
                 </p>
                 <Button
                   href="/apply"

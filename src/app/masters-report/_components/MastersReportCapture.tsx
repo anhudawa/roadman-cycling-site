@@ -17,7 +17,7 @@ import { track } from "@/lib/analytics/events";
  *
  * TODO (Beehiiv): once this surface has volume, set up a
  * "masters-report" segment + welcome automation inside Beehiiv that
- * follows up with the supporting CSVs, the Cohort 3 application link,
+ * follows up with the supporting CSVs, the current coaching application,
  * and a curated 3-email sequence pulling from the report's sections.
  * The signup tag is already being applied via the source field; the
  * automation just needs to be wired on the Beehiiv side.

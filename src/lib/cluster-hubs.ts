@@ -161,7 +161,7 @@ The headline is simple, and it is the Roadman position: your top end is not a fi
   ],
   ctaHeadline: "TRAIN YOUR TOP END WITH A PLAN.",
   ctaSubhead:
-    "The Not Done Yet community builds your intervals, recovery and progression around a masters recovery rate — not a 25-year-old's. Serious cyclists, real structure.",
+    "The Not Done Yet coaching team builds your intervals, recovery and progression around a masters recovery rate — not a 25-year-old's. Serious cyclists, real structure.",
 };
 
 /* ------------------------------------------------------------------ */
