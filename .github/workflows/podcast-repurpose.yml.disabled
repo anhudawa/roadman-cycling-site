@@ -1,4 +1,4 @@
-# Podcast Content Repurpose Pipeline
+# Podcast Content Repurpose Pipeline (disabled template)
 # ===================================
 # Uncomment this workflow to automate content generation.
 # It runs daily, syncs new episodes from YouTube, generates
