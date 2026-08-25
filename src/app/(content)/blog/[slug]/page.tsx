@@ -45,6 +45,7 @@ import { SeriesNav } from "@/components/features/blog/SeriesNav";
 import { getSeriesPosts } from "@/lib/blog";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
 import {
+  getSearchOwnerFallbackForTopicHub,
   getSearchOwnerWebPageId,
   resolveSearchOwner,
   stripRoadmanBrandSuffix,
@@ -175,7 +176,14 @@ export default async function BlogPostPage({
       post.seoDescription,
       ...(post.keywords ?? []),
     ],
-    { currentPath: `/blog/${slug}` },
+    {
+      currentPath: `/blog/${slug}`,
+      // Editorial hub membership supplies the broad owner only when the
+      // article metadata does not identify a narrower family. For example,
+      // a training-camp preparation article remains owned by camps even
+      // though its methodology lives in the training-plan topic hub.
+      fallbackId: getSearchOwnerFallbackForTopicHub(primaryHubSlug),
+    },
   );
 
   // Pick the intent CTA off the article's metadata. When inference

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  getSearchOwnerFallbackForTopicHub,
   getSearchOwnerWebPageId,
   hasDistinctSupportingIntent,
   SEARCH_OWNERS,
@@ -40,6 +41,27 @@ describe("search ownership registry", () => {
         currentPath: "/coaching/",
       }),
     ).toBeNull();
+  });
+
+  it("uses editorial topic ownership only as a broad fallback", () => {
+    const trainingPlanFallback = getSearchOwnerFallbackForTopicHub(
+      "cycling-training-plans",
+    );
+
+    expect(trainingPlanFallback).toBe("cycling-training-plans");
+    expect(
+      resolveSearchOwner(["Amstel Gold Race Sportive Guide"], {
+        fallbackId: trainingPlanFallback,
+      })?.path,
+    ).toBe("/training-plans");
+    expect(
+      resolveSearchOwner(["Cycling Training Camp Preparation"], {
+        fallbackId: trainingPlanFallback,
+      })?.path,
+    ).toBe("/training-camps");
+    expect(
+      getSearchOwnerFallbackForTopicHub("cycling-nutrition"),
+    ).toBeUndefined();
   });
 
   it("does not manufacture a match for unrelated content", () => {

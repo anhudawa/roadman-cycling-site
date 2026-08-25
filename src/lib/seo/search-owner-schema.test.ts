@@ -76,6 +76,17 @@ describe("priority search-owner schema", () => {
     }
   });
 
+  it("uses explicit editorial topic hubs to backfill blog ownership", () => {
+    const source = readFileSync(
+      resolve(process.cwd(), "src/app/(content)/blog/[slug]/page.tsx"),
+      "utf8",
+    );
+
+    expect(source).toContain(
+      "fallbackId: getSearchOwnerFallbackForTopicHub(primaryHubSlug)",
+    );
+  });
+
   it("tracks supporting-content clicks into every canonical owner", () => {
     const source = readFileSync(
       resolve(process.cwd(), "src/components/seo/SearchOwnerLink.tsx"),
