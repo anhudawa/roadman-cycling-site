@@ -51,6 +51,10 @@ describe("LLM discovery content budgets", () => {
     expect(fullText).toContain("## Selected Blog Posts");
     expect(fullText).toContain("/feeds/articles.json");
     expect(fullText).toContain("/feeds/episodes.json");
+    expect(fullText).toContain(
+      "/sitemap.xml — Full canonical sitemap index for the live site",
+    );
+    expect(fullText).not.toContain("sitemap (~540 URLs)");
 
     for (const path of OWNER_PATHS) {
       expect(shortText).toContain(`https://roadmancycling.com${path}`);

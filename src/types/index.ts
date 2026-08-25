@@ -144,9 +144,9 @@ export const NAV_ITEMS: NavItem[] = [
     label: "Topics",
     href: "/topics",
     children: [
-      { label: "Training Plans", href: "/topics/cycling-training-plans" },
-      { label: "Cycling Coaching", href: "/topics/cycling-coaching" },
-      { label: "Masters Cycling", href: "/topics/masters-cycling" },
+      { label: "Training Plan Guides", href: "/topics/cycling-training-plans" },
+      { label: "Cycling Coaching Guides", href: "/topics/cycling-coaching" },
+      { label: "Masters Cycling Guides", href: "/topics/masters-cycling" },
       { label: "Cycling Nutrition", href: "/topics/cycling-nutrition" },
       { label: "FTP Training", href: "/topics/ftp-training" },
       { label: "Running for Cyclists", href: "/topics/running-for-cyclists" },
