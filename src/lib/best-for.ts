@@ -176,24 +176,6 @@ export const BEST_FOR_PAGES: BestForPage[] = [
       { question: "Is MyFitnessPal good enough?", answer: "For basic macros, yes. But it doesn't understand periodisation — same targets on rest day and 5-hour ride day. For fuel-for-the-work-required, you need something that reads your training calendar." },
     ],
   },
-  {
-    slug: "best-turbo-trainers-2026",
-    title: "Best Smart Turbo Trainers in 2026",
-    seoTitle: "Best Smart Turbo Trainers 2026",
-    seoDescription: "Best smart turbo trainers for 2026. Direct drive, budget, premium — compared by accuracy, noise, and ride feel.",
-    pillar: "community",
-    intro: "A smart trainer is the single best indoor training investment. ERG mode, accurate power, and platform compatibility turn winter training from junk miles into structured gains.",
-    picks: [
-      { name: "Wahoo KICKR v6", verdict: "Best overall smart trainer", bestFor: "Riders wanting the best ride feel, accuracy, and ecosystem integration", href: "/blog/zwift-vs-trainerroad" },
-      { name: "Tacx NEO 3M", verdict: "Best for road feel and silence", bestFor: "Apartment riders needing near-silent operation", href: "/compare/indoor-vs-outdoor-training" },
-      { name: "Elite Suito-T", verdict: "Best value direct-drive trainer", bestFor: "Budget riders wanting direct-drive accuracy", href: "/compare/indoor-vs-outdoor-training" },
-      { name: "Wahoo KICKR CORE", verdict: "Best mid-range direct drive", bestFor: "Riders wanting Wahoo quality at a lower price", href: "/blog/zwift-vs-trainerroad" },
-    ],
-    faq: [
-      { question: "Direct-drive or wheel-on?", answer: "Direct-drive recommended for serious training. Wheel-on trainers slip at high power, wear tyres, and are less accurate. A budget direct-drive (Elite Suito-T) beats a premium wheel-on." },
-      { question: "Smart trainer or power meter first?", answer: "Mostly indoors: smart trainer. Mostly outdoors: power meter. 50/50: power meter — it works in both environments." },
-    ],
-  },
 ];
 
 export function getBestForBySlug(slug: string): BestForPage | null {
