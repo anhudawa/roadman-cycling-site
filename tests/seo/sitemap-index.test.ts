@@ -1,7 +1,12 @@
 import { describe, expect, it } from "vitest";
+import {
+  SITEMAP_IDS,
+  VIDEO_SITEMAP_URL,
+  getChildSitemapUrl,
+} from "@/lib/seo/sitemaps";
 
 describe("GET /sitemap-index.xml", () => {
-  it("returns valid XML sitemap-index pointing at all 8 split sitemaps", async () => {
+  it("returns valid XML pointing at every declared child and video sitemap", async () => {
     const { GET } = await import("@/app/sitemap-index.xml/route");
     const res = await GET();
     expect(res.status).toBe(200);
@@ -11,12 +16,13 @@ describe("GET /sitemap-index.xml", () => {
     expect(body).toMatch(/^<\?xml /);
     expect(body).toContain("<sitemapindex");
     expect(body).toContain("</sitemapindex>");
-    for (let i = 0; i <= 7; i++) {
-      expect(body).toContain(`https://roadmancycling.com/sitemap/${i}.xml`);
+    for (const id of SITEMAP_IDS) {
+      expect(body).toContain(`<loc>${getChildSitemapUrl(id)}</loc>`);
     }
-    // IDs 0..7, including expert × topic pages and Roadman Recommends.
+    expect(body).toContain(`<loc>${VIDEO_SITEMAP_URL}</loc>`);
+    // Eight metadata partitions plus the dedicated Google video sitemap.
     const childCount = (body.match(/<sitemap>/g) ?? []).length;
-    expect(childCount).toBe(8);
+    expect(childCount).toBe(SITEMAP_IDS.length + 1);
     // The index has no trustworthy per-partition change timestamp, so it
     // must not pretend every child changed at request time.
     expect(body).not.toContain("<lastmod>");

@@ -72,6 +72,8 @@ interface IndexedAnswer {
   page: AnswerPage;
   /** token → best (highest) field weight that token appears under. */
   tokenWeights: Map<string, number>;
+  /** Topic-defining tokens that prove the query belongs with this page. */
+  anchorTokens: Set<string>;
   /** Lowercased question text, for the whole-phrase boost. */
   questionLower: string;
 }
@@ -107,7 +109,24 @@ function buildIndex(): IndexedAnswer[] {
     add(page.roadmanView.join(" "), FIELD_WEIGHTS.roadmanView);
     add(page.relatedTopics.map((r) => r.label).join(" "), FIELD_WEIGHTS.relatedTopics);
 
-    return { page, tokenWeights, questionLower: page.question.toLowerCase() };
+    const anchorTokens = new Set(
+      tokenize(
+        [
+          page.question,
+          page.cluster,
+          CLUSTER_LABEL.get(page.cluster) ?? "",
+          page.pillar,
+          page.relatedTopics.map((topic) => topic.label).join(" "),
+        ].join(" "),
+      ),
+    );
+
+    return {
+      page,
+      tokenWeights,
+      anchorTokens,
+      questionLower: page.question.toLowerCase(),
+    };
   });
 }
 
@@ -131,7 +150,21 @@ function scoreAnswer(
       matched += 1;
     }
   }
-  if (matched === 0) return 0;
+  // A single accidental word overlap is not enough evidence for a multi-term
+  // query. Requiring both a minimum count and minimum coverage keeps ambiguous
+  // words such as "stock" or "market" from pulling cycling pages into an
+  // off-domain answer while preserving deliberate one-word searches like
+  // "training" or "FTP".
+  const minimumMatches =
+    queryTokens.length === 1
+      ? 1
+      : Math.max(2, Math.ceil(queryTokens.length * 0.4));
+  if (matched < minimumMatches) return 0;
+  const anchorMatches = queryTokens.filter((token) =>
+    entry.anchorTokens.has(token),
+  ).length;
+  const minimumAnchorMatches = queryTokens.length === 1 ? 1 : 2;
+  if (anchorMatches < minimumAnchorMatches) return 0;
 
   // Normalise against the best case (every query token landing in the
   // question), then reward how much of the query was covered so a page that
@@ -163,7 +196,7 @@ export async function searchContentChunks(
   query: string,
   limit = 4,
 ): Promise<RetrievedChunk[]> {
-  const queryTokens = tokenize(query);
+  const queryTokens = Array.from(new Set(tokenize(query)));
   if (queryTokens.length === 0) return [];
   const normalisedQuery = queryTokens.join(" ");
 

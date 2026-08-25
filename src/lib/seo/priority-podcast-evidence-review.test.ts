@@ -54,7 +54,7 @@ describe("priority podcast evidence review queue", () => {
     expect(pageSource).toContain("<time dateTime={episode.updatedDate}>");
     expect(
       sitemapSource.match(/ep\.updatedDate \?\? ep\.publishDate/g),
-    ).toHaveLength(2);
+    ).toHaveLength(3);
   });
 
   it.each(PRIORITY_EPISODES)(

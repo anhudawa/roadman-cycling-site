@@ -50,6 +50,14 @@ describe("ask/retrieval/content-chunks", () => {
     expect(res).toEqual([]);
   });
 
+  it("still supports deliberate single-term cycling searches", async () => {
+    const res = await searchContentChunks("FTP", 4);
+    expect(res.length).toBeGreaterThan(0);
+    expect(res.some((chunk) => chunk.sourceId === "how-to-improve-ftp")).toBe(
+      true,
+    );
+  });
+
   it("rebuilds the index after a reset without changing output", async () => {
     const before = await searchContentChunks("strength training for cyclists", 4);
     __resetContentChunkIndex();

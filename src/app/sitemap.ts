@@ -38,7 +38,7 @@ const PRIORITY_OWNER_RELEASE_DATE = new Date("2026-08-25");
 /**
  * Split sitemaps by page type for GSC monitoring.
  *
- * Generates child sitemaps at /sitemap/0.xml through /sitemap/5.xml.
+ * Generates child sitemaps at /sitemap/0.xml through /sitemap/7.xml.
  * The canonical index lives at /sitemap-index.xml (a route handler), and
  * /sitemap.xml is rewritten to it via next.config.ts — Next.js 16 does
  * not auto-emit a /sitemap.xml when using generateSitemaps() and adding
