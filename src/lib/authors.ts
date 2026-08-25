@@ -45,10 +45,10 @@ export const AUTHORS: AuthorRecord[] = [
     jobTitle: "Cycling Coach & Podcast Host",
     tagline:
       "Founder of Roadman Cycling. Cycling coach. Host of a 1,400+ episode podcast catalogue featuring leading coaches and scientists.",
-    bio: "Anthony Walsh founded Roadman Cycling in Dublin in 2021. He coaches cyclists and triathletes across Ireland, the UK and the US through the Not Done Yet coaching community. Anthony hosts the Roadman Cycling Podcast — a 1,400+ episode catalogue featuring on-the-record conversations with World Tour coaches, sports scientists and pro riders including Greg LeMond, Prof. Stephen Seiler, Dan Lorang, Lachlan Morton and Joe Friel.",
+    bio: "Anthony Walsh founded Roadman Cycling in Dublin in 2021. He coaches cyclists and triathletes across Ireland, the UK and the US through Not Done Yet group coaching. Anthony hosts the Roadman Cycling Podcast — a 1,400+ episode catalogue featuring on-the-record conversations with World Tour coaches, sports scientists and pro riders including Greg LeMond, Prof. Stephen Seiler, Dan Lorang, Lachlan Morton and Joe Friel.",
     image: "/images/about/anthony-profile-closeup-v2.jpg",
     credentials: [
-      "Cycling coach — Not Done Yet coaching community",
+      "Cycling coach — Not Done Yet group coaching",
       "Host of the Roadman Cycling Podcast (100M+ podcast downloads)",
       "Host of a 1,400+ episode catalogue featuring World Tour coaches, sports scientists, and professional riders",
       "Guests include Prof. Stephen Seiler, Dan Lorang, Greg LeMond, Joe Friel, Tim Spector, Lachlan Morton",

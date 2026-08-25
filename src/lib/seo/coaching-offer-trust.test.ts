@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { GET as getFullLlms } from "@/app/llms-full.txt/route";
@@ -7,6 +7,8 @@ import { OFFER_TIERS } from "@/lib/offer-ladder";
 
 const COACHING_TRUST_SURFACES = [
   "scripts/seed-mcp-products.ts",
+  "scripts/generate-cluster-articles.ts",
+  "scripts/generate-masters-report-pdf.ts",
   "src/app/(content)/topics/[slug]/page.tsx",
   "src/app/(marketing)/author/anthony-walsh/page.tsx",
   "src/app/(marketing)/coaching/[location]/page.tsx",
@@ -19,6 +21,7 @@ const COACHING_TRUST_SURFACES = [
   "src/app/llms-full.txt/route.ts",
   "src/app/llms.txt/route.ts",
   "src/components/segments/SegmentPage.tsx",
+  "src/components/proof/SocialProof.tsx",
   "src/lib/brand-facts.ts",
   "src/lib/mcp/resources.ts",
   "src/lib/mcp/server.ts",
@@ -54,6 +57,24 @@ const CORRECTED_ARTICLE_PATHS = [
   "content/blog/what-experts-say-about-zone-2-training.mdx",
   "content/blog/what-pros-say-about-amateur-training.mdx",
   "content/blog/what-stephen-seiler-says-about-polarised-training.mdx",
+  "content/blog/stephen-seiler-research-polarised-training-lessons.mdx",
+  "content/blog/why-cycling-needed-wout-to-win-roubaix.mdx",
+  "content/blog/zwift-vs-trainerroad.mdx",
+] as const;
+
+const PRODUCT_CLASSIFICATION_SURFACES = [
+  "src/app/(content)/plan/[event]/[weeksOut]/page.tsx",
+  "src/app/(content)/plan/page.tsx",
+  "src/app/(marketing)/coaching/page.tsx",
+  "src/app/(marketing)/entity/roadman-cycling/page.tsx",
+  "src/app/(marketing)/training-plans/page.tsx",
+  "src/components/features/blog/AuthorBio.tsx",
+  "src/components/features/conversion/NextStepBlock.tsx",
+  "src/components/features/events/EventsClient.tsx",
+  "src/lib/authors.ts",
+  "src/lib/case-studies.ts",
+  "src/lib/personas.ts",
+  "src/lib/tools/reports.ts",
 ] as const;
 
 const INACCURATE_NOT_DONE_YET_CLAIMS = [
@@ -112,6 +133,17 @@ describe("coaching offer trust", () => {
     expect(combined).not.toContain("Not Done Yet coaching tiers");
   });
 
+  it("classifies Not Done Yet as group coaching on shared search surfaces", () => {
+    const combined = PRODUCT_CLASSIFICATION_SURFACES.map((path) =>
+      readFileSync(resolve(process.cwd(), path), "utf8"),
+    ).join("\n");
+
+    expect(combined).not.toContain("Not Done Yet coaching community");
+    expect(combined).not.toContain("Not Done Yet Coaching Community");
+    expect(combined).not.toContain("Not Done Yet — coaching community");
+    expect(combined).toContain("Not Done Yet group coaching");
+  });
+
   it("corrects and freshness-stamps the indexed articles that carried the old claim", () => {
     const articles = CORRECTED_ARTICLE_PATHS.map((path) => ({
       path,
@@ -130,6 +162,30 @@ describe("coaching offer trust", () => {
     expect(combined).toContain("Not Done Yet group coaching");
     expect(combined).toContain("Roadman Inner Circle");
     expect(combined).toContain("$525/month");
+  });
+
+  it("keeps expired cohort-launch language out of indexed articles", () => {
+    const blogDirectory = resolve(process.cwd(), "content/blog");
+    const blogSources = readdirSync(blogDirectory)
+      .filter((file) => file.endsWith(".mdx"))
+      .map((file) => readFileSync(resolve(blogDirectory, file), "utf8"))
+      .join("\n")
+      .toLowerCase();
+
+    expect(blogSources).not.toContain("cohort 3");
+    expect(blogSources).not.toContain("24-hour early access");
+  });
+
+  it("keeps every corrected article in the recurring IndexNow set", () => {
+    const indexNowSource = readFileSync(
+      resolve(process.cwd(), "scripts/submit-indexnow.ts"),
+      "utf8",
+    );
+
+    for (const path of CORRECTED_ARTICLE_PATHS) {
+      const slug = path.split("/").at(-1)?.replace(/\.mdx$/, "");
+      expect(indexNowSource, path).toContain(`"${slug}"`);
+    }
   });
 
   it("teaches AI crawlers which programme is group coaching and which is 1:1", async () => {

@@ -48,7 +48,7 @@ export function AuthorBio() {
               href="/coaching"
               className="text-coral hover:text-coral/80 transition-colors"
             >
-              Not Done Yet coaching community
+              Not Done Yet group coaching
             </Link>
             .
           </p>

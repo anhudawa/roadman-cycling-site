@@ -149,6 +149,43 @@ const COACHING_CLUSTER = [
   "power-meter-training-plan-week-by-week",
 ];
 
+// Indexed pages freshness-stamped after the canonical coaching-offer audit.
+// Keep these in the recurring submission set so search engines see the
+// corrected distinction between Not Done Yet group coaching and Inner Circle
+// 1:1 coaching promptly after each relevant release.
+const COACHING_OFFER_TRUST_CLUSTER = [
+  "70-3-bike-training-plan-12-weeks",
+  "aero-position-training-for-triathletes",
+  "alex-larson-body-composition-cyclists",
+  "best-cycling-coach-guide",
+  "best-cycling-coach-ireland",
+  "best-cycling-coach-masters-riders",
+  "best-cycling-coach-uk",
+  "best-cycling-coach-usa",
+  "best-roadman-episodes-masters",
+  "best-roadman-episodes-time-crunched",
+  "biggest-training-mistakes-from-coaches",
+  "cycling-after-40-recovery-report-2026",
+  "cycling-coaching-free-trial",
+  "cycling-coaching-results-before-and-after",
+  "cycling-coaching-testimonials",
+  "cycling-training-plan-masters-over-40",
+  "cycling-vo2max-intervals",
+  "how-much-does-online-cycling-coach-cost-2026",
+  "masters-cycling-training-report-2026",
+  "menopause-cycling-performance",
+  "not-done-yet-coaching-review",
+  "stephen-seiler-research-polarised-training-lessons",
+  "trainerroad-vs-online-cycling-coach",
+  "what-25-top-coaches-agree-on-about-ftp",
+  "what-experts-say-about-strength-training-cyclists",
+  "what-experts-say-about-zone-2-training",
+  "what-pros-say-about-amateur-training",
+  "what-stephen-seiler-says-about-polarised-training",
+  "why-cycling-needed-wout-to-win-roubaix",
+  "zwift-vs-trainerroad",
+];
+
 const COMPARISON_CLUSTER = [
   "zwift-vs-trainerroad",
   "wahoo-vs-garmin-cycling-computers",
@@ -273,6 +310,7 @@ async function main() {
   blogArchiveUrls().forEach((u) => urls.add(u));
   clusterUrls(TRIATHLON_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(COACHING_CLUSTER).forEach((u) => urls.add(u));
+  clusterUrls(COACHING_OFFER_TRUST_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(PODCAST_AUTHORITY_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(TRAINING_CAMP_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(COMPARISON_CLUSTER).forEach((u) => urls.add(u));

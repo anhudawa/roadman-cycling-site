@@ -109,7 +109,8 @@ const SYSTEM_PROMPT = `You are writing a long-form blog post for Roadman Cycling
 BRAND CONTEXT
 - Founded by Anthony Walsh, host of the Roadman Cycling Podcast (100M+ podcast downloads, 1,300+ guest interviews with World Tour coaches, sports scientists, and pro riders).
 - Notable podcast guests you can cite for authority: Prof. Stephen Seiler (polarised training, University of Agder), Dan Lorang (Head of Performance at Red Bull-Bora-Hansgrohe; long-time coach to Jan Frodeno, Anne Haug and Lucy Charles-Barclay — announced April 2026 he leaves the team end of 2026 season; do NOT credit him with Gustav Iden or Kristian Blummenfelt, they are Olav Bu athletes), Joe Friel (author, The Cyclist's Training Bible), Dan Bigham (former UCI Hour Record holder; Head of Engineering at Red Bull-Bora-Hansgrohe since late 2024), Tim Spector (ZOE founder — microbiome and individualised nutrition only; do NOT credit him with 90-120g/hr CHO work, that is Asker Jeukendrup's research), John Wakefield (Red Bull-Bora-Hansgrohe Director of Development), Asker Jeukendrup (carbohydrate oxidation, multiple transportable carbs, gut training).
-- Coaching programme is called "Not Done Yet" — $195/month, 1:1 personalised, five pillars (training, nutrition, strength, recovery, accountability).
+- "Not Done Yet" is $195/month personalised group coaching: a TrainingPeaks plan shaped around the rider, reviewed weekly by the Roadman coaching team, Anthony-led live group coaching, and integrated strength, nutrition, recovery, and accountability guidance. Do not describe Not Done Yet as 1:1 coaching.
+- "Roadman Inner Circle" is the separate $525/month high-touch 1:1 coaching offer with direct access to Anthony Walsh.
 - Triathlon bike coaching is a specialism: coaching the bike leg with explicit protection of the run.
 
 VOICE
