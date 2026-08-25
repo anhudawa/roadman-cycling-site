@@ -53,14 +53,13 @@ Top 15 by relevance:
 - `masters-cycling-training-plan-over-40`
 - `masters-cyclist-guide-getting-faster-after-40`
 - `cycling-over-40-getting-faster`
-- `cycling-over-50-evidence-based-training-guide`
+- `cycling-over-50-training`
 - `strength-training-cyclists-over-40-what-works`
 - `vo2max-decline-reversibility-masters-cyclists`
 - `joe-friel-fast-after-50-cycling-method`
 - `what-experts-say-about-masters-cycling`
 - `masters-recovery-audit-seven-things-to-check`
 - `masters-cycling-recovery-after-40-guide`
-- `cycling-over-50-training`
 
 Full cluster: 94 blog posts mapped in `TOPIC_POST_MAP["masters-cycling"]`. FTP-by-age benchmark intent belongs to the maintained `age-group-ftp-benchmarks-2026` evidence page below.
 

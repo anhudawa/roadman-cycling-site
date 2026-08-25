@@ -194,6 +194,16 @@ This is the highest-risk cluster. Multiple pages target essentially the same hea
 
 **Risk:** The short blog and the evidence-based guide both target "cycling over 50 training." Two answer pages also compete for the "faster after 50" variant.
 
+**Resolved 25 August 2026:** Google Search Console showed the established
+`/blog/cycling-over-50-training` URL at 78 clicks and 3,290 impressions over
+three months, compared with 4 clicks and 411 impressions for the July
+evidence-guide duplicate. Their body-text cosine similarity was 0.656. The
+evidence material was merged into the established URL, the health claims were
+re-reviewed against primary sources, and the weaker URL now permanently
+redirects. The Joe Friel method page remains separate because it owns a named
+expert/book-method intent. See
+`docs/seo/gsc-cycling-over-50-overlap-2026-08-25.md` for the decision record.
+
 ---
 
 ### GROUP 4 — HIGH: "Strength training cyclists over 40/50" (4 pages)
