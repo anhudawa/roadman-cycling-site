@@ -921,7 +921,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "leadville-100-training-guide",
     "leroica-training-guide",
     "low-cadence-training-cycling-torque-intervals",
-    "low-cadence-training-world-tour-coaches",
     "mallorca-312-training-guide",
     "maratona-dles-dolomites-training-guide",
     "masters-cycling-training-report-2026",
@@ -1412,7 +1411,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "john-wakefield-team-bora-endurance-blueprint",
     "john-wakefield-team-bora-endurance-training",
     "low-cadence-training-cycling-torque-intervals",
-    "low-cadence-training-world-tour-coaches",
     "mads-pedersen-training-what-amateurs-can-learn",
     "not-done-yet-coaching-review",
     "polarised-training-cycling-world-tour-prescription",
@@ -2059,7 +2057,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-cadence-by-age-masters",
     "best-cadence-for-climbing",
     "low-cadence-training-cycling-torque-intervals",
-    "low-cadence-training-world-tour-coaches",
     "john-wakefield-team-bora-endurance-training",
     "cadence-training-cycling-complete-guide",
     "cycling-pedal-stroke-efficiency-guide",
@@ -3533,7 +3530,7 @@ const TOPIC_FAQS: Record<string, TopicFAQ[]> = {
     {
       question: "Should I do low-cadence training?",
       answer:
-        "Yes. Low-cadence intervals (40-60 RPM) force type 2 muscle fibres to develop aerobic capacity and build neuromuscular strength. A 2024 study showed they improved VO2max by 8.7% compared to 4.6% for freely chosen cadence. John Wakefield and Tim Kerrison both prescribe them to World Tour riders.",
+        "Only for a defined training purpose. Low cadence raises crank torque per stroke at a given power. A small 2024 trial in 24 well-trained female cyclists aged 17-20 found promising gains inside a demanding eight-week programme, while other protocols have produced null or mixed results. Start conservatively, control power and stop if pain or position loss develops.",
     },
     {
       question: "Does optimal cadence change with age?",

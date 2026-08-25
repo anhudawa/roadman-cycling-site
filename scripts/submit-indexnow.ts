@@ -107,6 +107,7 @@ const CURATED: string[] = [
   `https://${HOST}/blog/cycling-cadence-optimal-guide`,
   `https://${HOST}/blog/cycling-cadence-by-age-masters`,
   `https://${HOST}/blog/cycling-cadence-drills-finding-optimal-guide`,
+  `https://${HOST}/blog/low-cadence-training-cycling-torque-intervals`,
   `https://${HOST}/tools/cadence`,
 
   // Persona routes (shipped on main)
