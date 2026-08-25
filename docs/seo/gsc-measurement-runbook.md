@@ -28,6 +28,19 @@ Copy the matching baseline for the current period and replace every measured val
 
 ## Capture checklist
 
+Before capturing either checkpoint, verify that the live owner graph still
+resolves end to end:
+
+```bash
+npm run seo:audit:owners:live
+```
+
+The command must report five owner pages, every related resource and entity
+reference resolving, and zero errors. It also fails on a missing canonical,
+duplicate breadcrumb graph, missing visible review trail, or missing canonical
+owner node. Treat a failure as a release/indexing defect before interpreting
+performance movement.
+
 1. In the `sc-domain:roadmancycling.com` Search results report, choose the checkpoint's exact post period and enable clicks, impressions, CTR and average position.
 2. Record the site totals.
 3. Use **Exact query** for every priority query except `training camp`, which must use **Queries containing**.
