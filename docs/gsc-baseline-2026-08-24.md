@@ -114,6 +114,37 @@ Google last crawled all five on 24 August 2026 as Googlebot smartphone. The
 canonical sitemap index at `https://roadmancycling.com/sitemap.xml` was
 successfully resubmitted on 25 August after the production releases.
 
+## Internal-link authority baseline
+
+The Search Console Links report was captured on 25 August before Google had
+recrawled the sitewide search-owner navigation releases. The report showed
+247,146 total internal links. Search Console does not expose a last-updated
+date for this report, so these counts are a directional pre-release baseline,
+not a same-day crawl inventory.
+
+| Destination                  | Internal links reported |
+| ---------------------------- | ----------------------: |
+| `/coaching`                  |                   3,467 |
+| `/masters`                   |                   3,392 |
+| `/training-camps`            |                   3,394 |
+| `/podcast`                   |                   3,337 |
+| `/training-plans`            |                       0 |
+| `/plan`                      |                   3,458 |
+| `/community/not-done-yet`    |                   3,384 |
+
+The zero for `/training-plans` was confirmed with an exact target-page filter;
+it did not merely fall below the first page of results. This exposed a
+sitewide authority mismatch: generic "Training Plans" navigation linked to
+the narrower event directory at `/plan`, while the broad owner had no global
+navigation path. The 25 August release routes generic training-plan links to
+`/training-plans`, retains `/plan` as the explicitly labelled event-plan
+finder, and routes the top-level "Coaching" item to `/coaching` rather than the
+Not Done Yet programme page.
+
+Recheck the same seven exact targets at both fixed measurement checkpoints.
+The expected direction is growth for `/training-plans` while `/plan` and
+`/community/not-done-yet` remain discoverable through narrower labels.
+
 ## Indexing inventory and defects
 
 Search Console reported 3,718 indexed pages and 4,327 not-indexed URLs. The
