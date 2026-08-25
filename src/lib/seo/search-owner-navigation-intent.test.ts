@@ -13,6 +13,10 @@ describe("search-owner navigation intent", () => {
     expect(navigation).toContain(
       '{ label: "Cycling Training Plans", href: "/training-plans" }',
     );
+    expect(navigation).toContain('label: "Coaching",\n    href: "/coaching"');
+    expect(navigation).toContain(
+      '{ label: "Cycling Coaching Overview", href: "/coaching" }',
+    );
     expect(navigation).toContain(
       '{ label: "Training Plan Guides", href: "/topics/cycling-training-plans" }',
     );
@@ -31,6 +35,9 @@ describe("search-owner navigation intent", () => {
     );
     expect(navigation).not.toContain(
       '{ label: "Masters Cycling", href: "/topics/masters-cycling" }',
+    );
+    expect(navigation).not.toContain(
+      'label: "Coaching",\n    href: "/community/not-done-yet"',
     );
   });
 });
