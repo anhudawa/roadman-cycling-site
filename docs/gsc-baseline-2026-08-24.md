@@ -1,7 +1,9 @@
 # Google Search Console baseline — 24 August 2026
 
-Captured in the verified `roadmancycling.com` domain property on 25 August
-2026. Search Console's latest complete day was 22 August 2026.
+Captured in the verified `roadmancycling.com` domain property on 24–25 August
+2026. The decision-grade 28-day view runs through 22 August; the later frozen
+seven-day snapshot runs through 23 August. Use the machine-readable snapshots
+linked below for post-release comparisons.
 
 This is the frozen baseline for the Phase 2 search-owner, evidence, freshness,
 and internal-linking releases shipped on 24–25 August 2026.
@@ -10,9 +12,16 @@ and internal-linking releases shipped on 24–25 August 2026.
 
 | Window | Complete dates | Clicks | Impressions | CTR | Average position |
 | --- | --- | ---: | ---: | ---: | ---: |
-| 7 days | 16–22 Aug 2026 | 10,571 | 769,396 | 1.4% | 8.0 |
+| 7 days | 17–23 Aug 2026 | 10,636 | 776,834 | 1.4% | 8.2 |
 | 28 days | 26 Jul–22 Aug 2026 | 40,654 | 2,980,008 | 1.4% | 7.9 |
 | 3 months | 23 May–22 Aug 2026 | 99,314 | 7,954,205 | 1.2% | 7.4 |
+
+The canonical comparison inputs are
+[`gsc-priority-7d-2026-08-23.json`](seo/data/gsc-priority-7d-2026-08-23.json)
+and
+[`gsc-priority-28d-2026-08-22.json`](seo/data/gsc-priority-28d-2026-08-22.json).
+The fixed post windows and capture procedure are in the
+[`GSC measurement runbook`](seo/gsc-measurement-runbook.md).
 
 ## Google generative-AI search baseline
 
@@ -111,13 +120,23 @@ The concrete remediation is to return route-level 404s for guest slugs absent
 from the curated guest corpus, noindex the transactional checkout, and send an
 `X-Robots-Tag` on generated social images and raw feeds.
 
-## Video-search opportunity
+## Video-search opportunity and remediation
 
 Google reported one indexed video and 352 videos excluded because the video
-"isn't on a watch page." The examples are podcast episode pages with valid
-YouTube videos. This is a meaningful discovery/search opportunity, but it
-needs a deliberate watch-page architecture or a verified episode-page layout
-test rather than simply creating 352 duplicate URLs.
+"isn't on a watch page." The examples were podcast episode pages with valid
+YouTube videos.
+
+On 25 August, Roadman deployed a finite watch-page architecture and a dedicated
+video sitemap. The live site exposes 349 self-canonical, indexable `/watch/`
+pages with the video as the primary content, `VideoObject` markup, and links to
+the companion episode notes. Search Console accepted both `/sitemap.xml` and
+`/video-sitemap.xml` with `Success`, reporting 349 discovered pages and 349
+discovered videos for each submission. Validation of the old 352-URL exclusion
+was started on 25 August. The old count is expected to remain visible until
+Google recrawls and processes the new watch URLs. Because those 352 examples
+are companion show-note pages, some can remain excluded even when their
+dedicated watch URLs are indexed; growth in indexed `/watch/` pages is the
+decision metric.
 
 ## Measurement schedule
 

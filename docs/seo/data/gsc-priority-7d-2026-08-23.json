@@ -290,6 +290,18 @@
     "impressions": 175000,
     "pages": []
   },
+  "videoIndex": {
+    "lastUpdated": "2026-08-24",
+    "indexed": 1,
+    "notIndexed": 352,
+    "issues": [
+      {
+        "reason": "Video isn't on a watch page",
+        "videos": 352,
+        "validation": "Not Started"
+      }
+    ]
+  },
   "ownerLinkClicks": null,
   "notes": [
     "Captured manually from the signed-in Google Search Console domain property using Web search and the fixed 17-23 August 2026 range.",
@@ -297,6 +309,7 @@
     "The Generative AI total was displayed as the compact value 175K, stored here as 175,000; repeat the same card-reading method for the seven-day comparison.",
     "The seven-day checkpoint intentionally measures total AI impressions but not per-page AI impressions. The canonical 28-day scorecard retains the five fixed AI owner pages.",
     "Filtered page tables can be partial. The stored rows are the rows Search Console exposed during capture, while reportedUrlCount preserves Google's own URL count.",
-    "Search-owner click tracking did not exist during this pre-deployment period, so its baseline is null rather than zero."
+    "Search-owner click tracking did not exist during this pre-deployment period, so its baseline is null rather than zero.",
+    "Video indexing is a point-in-time report rather than a date-filtered performance metric. Its baseline was last updated by Google on 24 August: 1 indexed video and 352 companion podcast pages excluded because the video was not on a watch page."
   ]
 }

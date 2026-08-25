@@ -33,7 +33,8 @@ Copy the matching baseline for the current period and replace every measured val
 3. Use **Exact query** for every priority query except `training camp`, which must use **Queries containing**.
 4. For `cycling coach`, `cycling training plan` and the `training camp` family, open the Pages tab. Record the reported URL count and all visible rows, preserving the intended owner when Google exposes it even if it has zero clicks. Do not invent a zero-impression row when Google omits the owner; its absence correctly produces zero owner share.
 5. Open the Generative AI report with the same period. For the seven-day checkpoint, record the total card using the same compact-card method as the baseline. For the 28-day checkpoint, also record exact-page impressions for the five owner paths in its baseline.
-6. In Roadman Admin → Measurement, use the same date range and record the “Supporting content → definitive guides” total, per-owner clicks and every row in “Top assisted source pages.” In particular, preserve the source rows for the existing GSC winners: the 60-day training article, the online-coach selection article and the best-podcasts article.
+6. Open **Video indexing** and record its `Last update`, `Video indexed`, `No video indexed`, and every reason/count/validation row. This report is point-in-time rather than date-filtered, so preserve Google's displayed update date. Keep the baseline reason even if it disappears by recording zero videos and `Not present` in the current snapshot.
+7. In Roadman Admin → Measurement, use the same date range and record the “Supporting content → definitive guides” total, per-owner clicks and every row in “Top assisted source pages.” In particular, preserve the source rows for the existing GSC winners: the 60-day training article, the online-coach selection article and the best-podcasts article.
 
 Search Console may label filtered chart totals and page tables as partial. That is expected. Use the same filters both times and compare directionally: intended-owner impression share, number of competing URLs, clicks, CTR and position.
 
@@ -66,3 +67,4 @@ The comparison fails on invalid inclusive day counts, overlapping windows, deplo
 - Treat a lower average position number as a gain.
 - Treat owner-link clicks as a new signal in the first post period. Historical tracking did not exist, so the baseline is unknown—not zero.
 - Use the five canonical owner pages as the knowledge-layer score: `/podcast`, `/coaching`, `/training-camps`, `/training-plans` and `/masters`. The topic guides support those owners; they do not replace them in the scorecard.
+- Judge the video release by growth in indexed `/watch/` pages. Companion podcast pages can remain excluded as “Video isn't on a watch page” because their primary purpose is show notes and evidence; that exclusion does not invalidate an indexed dedicated watch URL.
