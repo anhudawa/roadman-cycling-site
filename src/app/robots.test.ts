@@ -53,6 +53,6 @@ describe("robots()", () => {
   it("advertises only the canonical sitemap index", async () => {
     const { default: robots } = await import("./robots");
     const result = robots();
-    expect(result.sitemap).toBe("https://roadmancycling.com/sitemap-index.xml");
+    expect(result.sitemap).toBe("https://roadmancycling.com/sitemap.xml");
   });
 });
