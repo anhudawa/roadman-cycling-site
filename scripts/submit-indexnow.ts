@@ -147,6 +147,7 @@ const TRIATHLON_CLUSTER = [
 ];
 
 const COACHING_CLUSTER = [
+  "best-online-cycling-coach-how-to-choose",
   "how-much-does-online-cycling-coach-cost-2026",
   "is-a-cycling-coach-worth-it-case-study",
   "polarised-vs-sweet-spot-training",

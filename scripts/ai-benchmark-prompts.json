@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 215,
+    "prompt_count": 216,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -1746,6 +1746,14 @@
       "category": "cycling-training-camps",
       "intent": "education",
       "target_page": "/blog/cycling-training-camp-nutrition-guide",
+      "priority": "high"
+    },
+    {
+      "id": 216,
+      "prompt": "how do I choose the best online cycling coach and what red flags should I check",
+      "category": "cycling-coaching",
+      "intent": "evaluation",
+      "target_page": "/blog/best-online-cycling-coach-how-to-choose",
       "priority": "high"
     }
   ]
