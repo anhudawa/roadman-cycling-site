@@ -35,6 +35,24 @@ export interface GscAiSnapshot {
   pages: { path: string; impressions: number }[];
 }
 
+export interface GscVideoIndexIssue {
+  reason: string;
+  videos: number;
+  validation: string;
+}
+
+/**
+ * Point-in-time Video indexing report state. Unlike Search performance, this
+ * report is not filtered to the snapshot period; `lastUpdated` preserves the
+ * reporting date so checkpoint comparisons remain honest about Google lag.
+ */
+export interface GscVideoIndexSnapshot {
+  lastUpdated: string;
+  indexed: number;
+  notIndexed: number;
+  issues: GscVideoIndexIssue[];
+}
+
 export interface SearchOwnerClickSnapshot {
   trackingStartedAt: string;
   total: number;
@@ -56,6 +74,7 @@ export interface GscSnapshot {
   queries: GscQueryMetric[];
   urlSplits: GscUrlSplit[];
   ai: GscAiSnapshot;
+  videoIndex: GscVideoIndexSnapshot;
   /** Null means tracking did not exist, which is different from zero clicks. */
   ownerLinkClicks: SearchOwnerClickSnapshot | null;
   notes?: string[];
@@ -103,6 +122,17 @@ export interface GscComparison {
       impressions: NumericDelta;
     }>;
   };
+  videoIndex: {
+    baselineLastUpdated: string;
+    currentLastUpdated: string;
+    indexed: NumericDelta;
+    notIndexed: NumericDelta;
+    issues: Array<{
+      reason: string;
+      videos: NumericDelta;
+      currentValidation: string;
+    }>;
+  };
   ownerLinkClicks: {
     baselineAvailable: boolean;
     baselineTotal: number | null;
@@ -124,6 +154,10 @@ export interface GscComparison {
 
 function keyForQuery(query: string, match: GscQueryMatch): string {
   return `${match}:${query.trim().toLowerCase()}`;
+}
+
+function keyForVideoIssue(reason: string): string {
+  return reason.trim().toLowerCase();
 }
 
 function normalisePath(path: string): string {
@@ -311,6 +345,42 @@ function validateSnapshot(snapshot: GscSnapshot, label: string): void {
       );
     }
   });
+
+  parseCalendarDate(
+    snapshot.videoIndex.lastUpdated,
+    `${label} video index lastUpdated`,
+  );
+  for (const [name, value] of [
+    ["indexed", snapshot.videoIndex.indexed],
+    ["notIndexed", snapshot.videoIndex.notIndexed],
+  ] as const) {
+    if (!Number.isInteger(value) || value < 0) {
+      throw new Error(
+        `${label} video index ${name} must be a non-negative integer.`,
+      );
+    }
+  }
+  assertUniqueKeys(
+    `${label} video index issues`,
+    snapshot.videoIndex.issues.map((issue) => keyForVideoIssue(issue.reason)),
+  );
+  snapshot.videoIndex.issues.forEach((issue, index) => {
+    if (!issue.reason.trim()) {
+      throw new Error(
+        `${label} video index issues[${index}].reason must not be empty.`,
+      );
+    }
+    if (!Number.isInteger(issue.videos) || issue.videos < 0) {
+      throw new Error(
+        `${label} video index issues[${index}].videos must be a non-negative integer.`,
+      );
+    }
+    if (!issue.validation.trim()) {
+      throw new Error(
+        `${label} video index issues[${index}].validation must not be empty.`,
+      );
+    }
+  });
 }
 
 function assertComparable(baseline: GscSnapshot, current: GscSnapshot): void {
@@ -450,6 +520,34 @@ export function compareGscSnapshots(
     };
   });
 
+  const baselineVideoIssues = new Map(
+    baseline.videoIndex.issues.map((issue) => [
+      keyForVideoIssue(issue.reason),
+      issue,
+    ]),
+  );
+  const currentVideoIssues = new Map(
+    current.videoIndex.issues.map((issue) => [
+      keyForVideoIssue(issue.reason),
+      issue,
+    ]),
+  );
+  const videoIssueKeys = new Set([
+    ...baselineVideoIssues.keys(),
+    ...currentVideoIssues.keys(),
+  ]);
+  const videoIssues = [...videoIssueKeys]
+    .map((key) => {
+      const before = baselineVideoIssues.get(key);
+      const after = currentVideoIssues.get(key);
+      return {
+        reason: after?.reason ?? before?.reason ?? key,
+        videos: numericDelta(before?.videos ?? 0, after?.videos ?? 0),
+        currentValidation: after?.validation ?? "Not present",
+      };
+    })
+    .sort((left, right) => left.reason.localeCompare(right.reason));
+
   const baselineTotal = baseline.ownerLinkClicks?.total ?? null;
   const currentTotal = current.ownerLinkClicks?.total ?? null;
   const baselineOwnerClicks = new Map(
@@ -488,6 +586,19 @@ export function compareGscSnapshots(
         current.ai.impressions,
       ),
       pages: aiPages,
+    },
+    videoIndex: {
+      baselineLastUpdated: baseline.videoIndex.lastUpdated,
+      currentLastUpdated: current.videoIndex.lastUpdated,
+      indexed: numericDelta(
+        baseline.videoIndex.indexed,
+        current.videoIndex.indexed,
+      ),
+      notIndexed: numericDelta(
+        baseline.videoIndex.notIndexed,
+        current.videoIndex.notIndexed,
+      ),
+      issues: videoIssues,
     },
     ownerLinkClicks: {
       baselineAvailable: baseline.ownerLinkClicks !== null,
@@ -561,6 +672,22 @@ export function renderGscComparisonMarkdown(comparison: GscComparison): string {
     ...comparison.ai.pages.map(
       (row) =>
         `| \`${row.path}\` | ${row.impressions.before.toLocaleString()} | ${row.impressions.after.toLocaleString()} | ${signed(row.impressions.absolute)} (${relative(row.impressions.relative)}) |`,
+    ),
+    "",
+    "## Video indexing",
+    "",
+    `Point-in-time report dates: ${comparison.videoIndex.baselineLastUpdated} → ${comparison.videoIndex.currentLastUpdated}. Video indexing is not filtered to the Search performance period.`,
+    "",
+    "| Signal | Before | After | Change |",
+    "| --- | ---: | ---: | ---: |",
+    `| Video indexed | ${comparison.videoIndex.indexed.before.toLocaleString()} | ${comparison.videoIndex.indexed.after.toLocaleString()} | ${signed(comparison.videoIndex.indexed.absolute)} |`,
+    `| No video indexed | ${comparison.videoIndex.notIndexed.before.toLocaleString()} | ${comparison.videoIndex.notIndexed.after.toLocaleString()} | ${signed(comparison.videoIndex.notIndexed.absolute)} |`,
+    "",
+    "| Video indexing reason | Before | After | Change | Current validation |",
+    "| --- | ---: | ---: | ---: | --- |",
+    ...comparison.videoIndex.issues.map(
+      (issue) =>
+        `| ${issue.reason} | ${issue.videos.before.toLocaleString()} | ${issue.videos.after.toLocaleString()} | ${signed(issue.videos.absolute)} | ${issue.currentValidation} |`,
     ),
     "",
     "## Assisted guide clicks",

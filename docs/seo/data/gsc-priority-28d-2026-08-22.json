@@ -381,11 +381,24 @@
       }
     ]
   },
+  "videoIndex": {
+    "lastUpdated": "2026-08-24",
+    "indexed": 1,
+    "notIndexed": 352,
+    "issues": [
+      {
+        "reason": "Video isn't on a watch page",
+        "videos": 352,
+        "validation": "Not Started"
+      }
+    ]
+  },
   "ownerLinkClicks": null,
   "notes": [
     "Captured manually from the signed-in Google Search Console domain property using Web search and a fixed 28-day range.",
     "Google warns that chart totals and page-table rows can be partial when filters are applied; reported URL counts and owner shares should be compared using the same filters, not summed as accounting totals.",
     "The URL split rows contain the visible first page of results where Google reported more than ten URLs.",
-    "Search-owner click tracking did not exist during this period, so its baseline is null rather than zero."
+    "Search-owner click tracking did not exist during this period, so its baseline is null rather than zero.",
+    "Video indexing is a point-in-time report rather than a date-filtered performance metric. Its baseline was last updated by Google on 24 August: 1 indexed video and 352 companion podcast pages excluded because the video was not on a watch page."
   ]
 }

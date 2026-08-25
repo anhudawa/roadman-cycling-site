@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   compareGscSnapshots,
@@ -47,6 +49,18 @@ function snapshot(overrides: Partial<GscSnapshot> = {}): GscSnapshot {
       impressions: 1_000,
       pages: [{ path: "/coaching", impressions: 20 }],
     },
+    videoIndex: {
+      lastUpdated: "2026-08-24",
+      indexed: 1,
+      notIndexed: 352,
+      issues: [
+        {
+          reason: "Video isn't on a watch page",
+          videos: 352,
+          validation: "Not Started",
+        },
+      ],
+    },
     ownerLinkClicks: null,
     ...overrides,
   };
@@ -61,6 +75,32 @@ function currentSnapshot(overrides: Partial<GscSnapshot> = {}): GscSnapshot {
 }
 
 describe("GSC measurement", () => {
+  it("keeps both frozen baselines valid for their fixed post windows", () => {
+    const fixtures = [
+      {
+        path: "docs/seo/data/gsc-priority-7d-2026-08-23.json",
+        period: { start: "2026-08-25", end: "2026-08-31", days: 7 },
+      },
+      {
+        path: "docs/seo/data/gsc-priority-28d-2026-08-22.json",
+        period: { start: "2026-08-25", end: "2026-09-21", days: 28 },
+      },
+    ] as const;
+
+    for (const fixture of fixtures) {
+      const baseline = JSON.parse(
+        readFileSync(resolve(process.cwd(), fixture.path), "utf8"),
+      ) as GscSnapshot;
+      const current: GscSnapshot = {
+        ...baseline,
+        capturedAt: "2026-09-24T12:00:00.000Z",
+        period: fixture.period,
+      };
+
+      expect(() => compareGscSnapshots(baseline, current)).not.toThrow();
+    }
+  });
+
   it("compares site, query, ownership and AI signals", () => {
     const baseline = snapshot();
     const current = currentSnapshot({
@@ -106,6 +146,18 @@ describe("GSC measurement", () => {
           { path: "https://roadmancycling.com/coaching", impressions: 50 },
         ],
       },
+      videoIndex: {
+        lastUpdated: "2026-09-21",
+        indexed: 100,
+        notIndexed: 253,
+        issues: [
+          {
+            reason: "Video isn't on a watch page",
+            videos: 253,
+            validation: "Started",
+          },
+        ],
+      },
       ownerLinkClicks: {
         trackingStartedAt: "2026-08-24T15:00:00.000Z",
         total: 12,
@@ -130,6 +182,18 @@ describe("GSC measurement", () => {
     expect(result.urlSplits[0].ownerImpressionShareAfter).toBeCloseTo(0.4);
     expect(result.ai.impressions.absolute).toBe(500);
     expect(result.ai.pages[0].impressions.absolute).toBe(30);
+    expect(result.videoIndex.indexed.absolute).toBe(99);
+    expect(result.videoIndex.notIndexed.absolute).toBe(-99);
+    expect(result.videoIndex.issues[0]).toEqual({
+      reason: "Video isn't on a watch page",
+      videos: {
+        before: 352,
+        after: 253,
+        absolute: -99,
+        relative: -99 / 352,
+      },
+      currentValidation: "Started",
+    });
     expect(result.ownerLinkClicks.baselineAvailable).toBe(false);
     expect(result.ownerLinkClicks.currentTotal).toBe(12);
     expect(result.ownerLinkClicks.owners).toContainEqual({
@@ -157,8 +221,37 @@ describe("GSC measurement", () => {
 
     expect(markdown).toContain("# Roadman search comparison");
     expect(markdown).toContain("## URL ownership");
+    expect(markdown).toContain("## Video indexing");
+    expect(markdown).toContain("Video isn't on a watch page");
     expect(markdown).toContain("Tracking did not exist in the baseline window");
     expect(markdown).toContain("### Current assisted source pages");
+  });
+
+  it("records a disappeared video issue as zero rather than dropping it", () => {
+    const result = compareGscSnapshots(
+      snapshot(),
+      currentSnapshot({
+        videoIndex: {
+          lastUpdated: "2026-09-21",
+          indexed: 353,
+          notIndexed: 0,
+          issues: [],
+        },
+      }),
+    );
+
+    expect(result.videoIndex.issues).toEqual([
+      {
+        reason: "Video isn't on a watch page",
+        videos: {
+          before: 352,
+          after: 0,
+          absolute: -352,
+          relative: -1,
+        },
+        currentValidation: "Not present",
+      },
+    ]);
   });
 
   it("refuses comparisons with mismatched periods or query scopes", () => {
@@ -287,5 +380,19 @@ describe("GSC measurement", () => {
         currentSnapshot({ deploymentDate: "2026-08-25" }),
       ),
     ).toThrow("same deployment date");
+
+    expect(() =>
+      compareGscSnapshots(
+        snapshot(),
+        currentSnapshot({
+          videoIndex: {
+            lastUpdated: "2026-09-21",
+            indexed: -1,
+            notIndexed: 352,
+            issues: [],
+          },
+        }),
+      ),
+    ).toThrow("video index indexed must be a non-negative integer");
   });
 });
