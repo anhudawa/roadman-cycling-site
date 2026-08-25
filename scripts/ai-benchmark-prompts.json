@@ -43,7 +43,7 @@
       "prompt": "losing power on the bike after turning 50",
       "category": "masters-cycling",
       "intent": "problem-aware",
-      "target_page": "/blog/cycling-over-50-evidence-based-training-guide",
+      "target_page": "/blog/cycling-over-50-training",
       "priority": "high"
     },
     {

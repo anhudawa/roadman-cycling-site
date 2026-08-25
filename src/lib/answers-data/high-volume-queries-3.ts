@@ -406,7 +406,7 @@ export const highVolumeQuery3Answers: AnswerPage[] = [
     relatedTopics: [
       { label: "Masters FTP Benchmark", href: "/tools/masters-ftp-benchmark" },
       { label: "Training Readiness Score", href: "/tools/training-readiness" },
-      { label: "Cycling Over 50 Guide", href: "/blog/cycling-over-50-evidence-based-training-guide" },
+      { label: "Cycling Over 50 Guide", href: "/blog/cycling-over-50-training" },
       { label: "Strength Training for Cyclists Over 50", href: "/blog/strength-training-cyclists-over-50" },
       { label: "Masters Cycling Hub", href: "/topics/masters-cycling" },
     ],

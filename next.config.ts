@@ -346,6 +346,15 @@ const nextConfig: NextConfig = {
         destination: "/blog/age-group-ftp-benchmarks-2026",
         permanent: true,
       },
+      // Cycling-over-50 consolidation (Aug 2026). Search Console showed the
+      // established January guide at 78 clicks / 3,290 impressions over three
+      // months versus 4 clicks / 411 impressions for the July near-duplicate.
+      // The useful evidence and source material now live on the incumbent URL.
+      {
+        source: "/blog/cycling-over-50-evidence-based-training-guide",
+        destination: "/blog/cycling-over-50-training",
+        permanent: true,
+      },
       // Carbs-per-hour cannibalisation fix — two posts targeted the same
       // "carbs per hour cycling" query. The longer, expert-cited
       // carbohydrate-per-hour-cyclists is canonical; the "fuel like a pro"
