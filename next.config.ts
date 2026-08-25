@@ -355,6 +355,16 @@ const nextConfig: NextConfig = {
         destination: "/blog/cycling-over-50-training",
         permanent: true,
       },
+      // VO2max diagnostic consolidation (Aug 2026). Search Console showed the
+      // established March diagnostic at 38 clicks / 6,920 impressions over 28
+      // days versus 27 clicks / 3,930 impressions for the later 65%-similar
+      // "seven reasons" article. Measurement, interval and masters guides keep
+      // their distinct intent; the true diagnostic duplicate resolves here.
+      {
+        source: "/blog/vo2max-training-cyclists-seven-reasons",
+        destination: "/blog/vo2max-cycling-fixable-reasons-low",
+        permanent: true,
+      },
       // Carbs-per-hour cannibalisation fix — two posts targeted the same
       // "carbs per hour cycling" query. The longer, expert-cited
       // carbohydrate-per-hour-cyclists is canonical; the "fuel like a pro"
