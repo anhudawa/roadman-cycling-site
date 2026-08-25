@@ -119,6 +119,8 @@ const NAME_ALIASES: Record<string, string> = {
   "Dr. Christian Schrot": "Christian Schrot",
   "Dr Christian Schrot": "Christian Schrot",
   "Darren Raferty": "Darren Rafferty",
+  "Yori Carlson": "Uri Carlson",
+  "Yuri Carlson": "Uri Carlson",
   // Case-only variants that previously slipped through dedup because
   // the Map keys on the (case-sensitive) display name, while the slug
   // is lower-cased — without these aliases the same person emitted two
@@ -215,6 +217,7 @@ const KNOWN_CREDENTIALS: Record<string, string> = {
   "Tayler Wiles": "Former Trek-Segafredo pro cyclist",
   "Ted King": "Former WorldTour professional and gravel racer",
   "Tyler Hamilton": "Olympic time-trial champion, Tour de France stage winner, author of The Secret Race",
+  "Uri Carlson": "Registered dietitian nutritionist, founder of Inner Wild Nutrition",
   "Steve Cummings": "Olympic medallist, two-time Tour de France stage winner",
   "Tim Spector": "Professor of genetic epidemiology, ZOE founder",
   "Uli Schoberer": "Inventor of the SRM power meter",

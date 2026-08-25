@@ -177,6 +177,13 @@ function filterReviewed<T extends { reviewed?: boolean }>(
 function applyReviewGate(frontmatter: EpisodeFrontmatter): EpisodeFrontmatter {
   return {
     ...frontmatter,
+    // Known ASR alias: Uriell "Uri" Carlson is repeatedly transcribed as
+    // Yori/Yuri. Normalise the displayed/retrieved transcript without
+    // rewriting the archived source wording in every episode file.
+    transcript: frontmatter.transcript?.replace(
+      /\b(?:Yori|Yuri) Carlson\b/g,
+      "Uri Carlson",
+    ),
     claims: filterReviewed(frontmatter.claims),
     citations: filterReviewed(frontmatter.citations),
   };
