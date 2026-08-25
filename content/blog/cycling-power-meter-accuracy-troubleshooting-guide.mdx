@@ -1,242 +1,241 @@
 ---
-title: "Power Meter Accuracy: When Your Numbers Lie and How to Fix It"
-seoTitle: "Power Meter Accuracy — Troubleshooting Guide"
-seoDescription: "When your cycling power meter gives wrong numbers. Calibration, temperature drift, battery effects, indoor vs outdoor discrepancies, and a diagnostic checklist."
-excerpt: "You did the same climb, the same effort, the same everything. Your power was twenty watts lower. Before you panic about lost fitness, check whether the problem is you or the thing measuring you."
-pillar: "coaching"
-primaryHub: "power-meter-training"
-author: "anthony-walsh"
-publishDate: "2026-07-10"
+title: 'Power Meter Accuracy Troubleshooting: A Model-Specific Checklist'
+seoTitle: 'Power Meter Accuracy: Troubleshooting Checklist'
+seoDescription: >-
+  Diagnose high, low, erratic or mismatched cycling power using installation,
+  crank length, firmware, battery and model-specific calibration checks.
+excerpt: >-
+  A surprising watt number is not a diagnosis. Preserve the ride, check the
+  exact meter and setup, follow its own calibration guidance, then compare a
+  repeatable effort before changing FTP or training zones.
+pillar: coaching
+primaryHub: power-meter-training
+author: Anthony Walsh
+publishDate: '2026-07-10'
+updatedDate: '2026-08-25'
+lastReviewed: '2026-08-25'
+reviewedBy: 'Anthony Walsh, with editorial fact-checking against current Favero, Garmin and SRAM/Quarq support documentation'
+featuredImage: /images/cycling/gravel-road-climb.jpg
+keywords:
+  - power meter accuracy troubleshooting
+  - power meter reading too high
+  - power meter reading too low
+  - power meter calibration cycling
+  - power meter vs smart trainer different watts
+  - power meter dropouts
 answerCapsule: >-
-  Zero-offset calibration before every ride eliminates the most common source of
-  power meter error — skipping it, particularly after temperature changes, can
-  introduce 5-15 watts of systematic drift. Low battery voltage causes erratic
-  readings before the meter dies; replace batteries on a fixed schedule. Indoor
-  trainer and crank meter readings typically differ by 3-10 per cent due to
-  drivetrain losses, which is physics, not a fault. Pick one source and use it
-  consistently.
+  If cycling power looks wrong, do not change FTP from one ride. Record the meter,
+  firmware, battery or charge, crank length, installation and connection used.
+  Then follow that model's current calibration instructions: Favero Assioma uses
+  automatic calibration after a manual calibration on first or new installation;
+  Garmin Rally 110/210 calibrates automatically while idle and uses Pedal IQ to
+  request a manual calibration when needed; compatible Quarq meters can use
+  MagicZero, while DUB-PWR requires its documented manual procedure. Compare a
+  steady repeatable effort from one source. A trainer and bike meter can disagree
+  because of measurement location and separate tolerances, but there is no universal
+  percentage or direction. If the problem repeats after the documented checks,
+  save the file and diagnostic values and contact the manufacturer.
 keyTakeaways:
-  - "Zero-offset calibration before every ride is the single most impactful habit for power meter accuracy. The strain gauge in your power meter drifts with temperature, humidity, and mechanical stress. A pre-ride zero resets the baseline so the meter measures from the correct starting point. Skipping calibration — particularly if your bike has been sitting in a cold garage or hot car — can introduce 5-15 watts of systematic error."
-  - "Temperature drift is the largest source of power meter error in real-world conditions. A power meter calibrated in a 5-degree garage will read differently on a 30-degree afternoon. Most modern meters have internal temperature compensation, but it is not perfect. Studies on consumer power meters show drift of 1-3 per cent across a 25-degree temperature swing — which for a 250-watt rider is 2.5 to 7.5 watts of invisible error."
-  - "Low battery voltage causes erratic and unreliable power data before the meter actually dies. A power meter running on a battery at 20-30 per cent of its life may still turn on, pair with your head unit, and display numbers — but those numbers become increasingly noisy and can drift high or low unpredictably. Replace batteries on a fixed schedule rather than waiting for a low battery warning."
-  - "Single-sided power meters assume a 50/50 left-right power split and double the measured leg's output. If your actual split is 48/52 or 45/55 — which is common and not a problem — the reported total power will be systematically wrong by 2-5 per cent. This error is consistent and does not affect training zone accuracy if you always test and train with the same meter, but it makes comparisons with other riders or other meters unreliable."
-  - "Indoor trainer power and on-bike power meter readings rarely agree. Differences of 3-10 per cent are normal and do not indicate a fault with either device. Smart trainers measure power at the rear axle after drivetrain losses. Crank and pedal meters measure before those losses. The result is that your crank meter will almost always read higher than your trainer for the same effort. Pick one source for indoor training and stick with it."
-  - "Firmware updates can silently change your power readings. Manufacturers occasionally adjust calibration algorithms, temperature compensation curves, or signal processing in firmware updates. If your power numbers shift suddenly after an update, it may be the firmware, not your fitness. Check manufacturer release notes and consider re-testing your FTP after any major firmware change."
-  - "The diagnostic checklist when power feels wrong: calibrate and re-ride. Replace the battery and re-ride. Check for firmware updates. Compare against heart rate and RPE on a known effort. If the discrepancy persists across multiple rides with fresh batteries and proper calibration, the strain gauge may be failing — contact the manufacturer for warranty assessment."
+  - "One surprising ride is a reason to check the system, not proof of lost fitness or failed hardware."
+  - "Calibration is model-specific. A universal instruction to zero every power meter before every ride is wrong for current auto-calibrating products."
+  - "Check crank length on pedal meters, installation, firmware, battery or charge, sensor identity and connection before interpreting the watts."
+  - "Low charge can cause a connection problem on some products, but Roadman does not claim every low battery makes watts drift or prescribes an invented replacement schedule."
+  - "Single-sided meters estimate total from one side; a change in left-right contribution can therefore change the estimate even when true total power does not move in the same way."
+  - "There is no universal 3-10% trainer-to-meter offset. The direction and size depend on the exact devices, measurement points, tolerances and setup."
+  - "Do not diagnose strain-gauge failure from a ride file. Repeat the documented checks, preserve evidence and let the manufacturer assess the hardware."
 faq:
-  - question: "How often should I calibrate my power meter?"
-    answer: "Before every ride. It takes 10 seconds on your head unit and eliminates the most common source of power meter error. At minimum, calibrate whenever the ambient temperature has changed significantly since your last ride — cold morning starts, hot afternoon rides, and transitions between indoor and outdoor riding all warrant a fresh zero-offset."
-  - question: "Why does my trainer power not match my power meter?"
-    answer: "Smart trainers measure power at the rear hub, after drivetrain friction losses. Crank and pedal power meters measure before those losses. The difference — typically 3-8 per cent — is real physics, not a fault. Additionally, trainers and power meters use different strain gauge designs with different accuracy tolerances. Pick one power source for indoor training and use it consistently for FTP tests and training zones."
-  - question: "Can a dying battery affect power meter accuracy?"
-    answer: "Yes. Low voltage causes the strain gauge excitation signal to weaken, producing noisy and unreliable readings. You may see unexplained power spikes, dropouts, or a gradual drift in readings before the meter actually shuts off. Replace batteries every 150-200 hours of riding or every 3-4 months, whichever comes first, rather than waiting for a low battery warning."
-  - question: "Is a single-sided power meter accurate enough for training?"
-    answer: "Yes, for setting and following training zones. The 50/50 assumption introduces a systematic offset, but that offset is consistent. If you test your FTP on the same meter and train with the same meter, your zones are internally consistent. The error matters only when comparing your power to another rider's power or to a different measurement device."
-  - question: "How do I know if my power meter is failing?"
-    answer: "Watch for these signs: unexplained power spikes or drops that do not match effort, readings that drift progressively higher or lower over the course of a ride, zero-offset values that change significantly between calibrations on the same ride, or persistent discrepancies with heart rate and RPE on efforts you know well. If fresh batteries and proper calibration do not resolve the issue, the strain gauge may be degrading."
+  - question: How often should I calibrate my cycling power meter?
+    answer: >-
+      Follow the exact model's current manual. Favero says Assioma needs a manual
+      calibration at first installation and after moving to a new bike, then uses
+      automatic calibration. Garmin says Rally 110/210 calibrates automatically
+      while idle and Pedal IQ prompts when a manual calibration is needed. SRAM says
+      compatible Quarq meters can use MagicZero; DUB-PWR uses Manual Zero. Another
+      model may have different instructions.
+  - question: Why does my smart trainer not match my bike power meter?
+    answer: >-
+      They may measure at different points and each has a separate tolerance,
+      calibration process and signal treatment. That can create a stable difference,
+      but it does not justify a universal correction factor. Confirm both setups,
+      compare steady efforts after any required warm-up and select one consistent
+      source for FTP tests and workout targets.
+  - question: Can low battery make power readings wrong?
+    answer: >-
+      Follow the product's warning and troubleshooting guidance. Low charge can stop
+      a sensor waking or connecting—for example Garmin documents this for a missing
+      right Rally pedal—but that does not prove a universal pattern of high, low or
+      drifting watts. Charge or replace the battery as instructed, then repeat the
+      same check before drawing a conclusion.
+  - question: Is a single-sided power meter accurate enough?
+    answer: >-
+      It can provide a useful repeatable training signal, but it measures one leg and
+      estimates total power by doubling it. If left-right contribution changes, the
+      estimate changes. Test and set zones from one consistent source, and avoid
+      treating its number as interchangeable with a dual-sided or spider meter.
+  - question: How do I know whether a power meter has failed?
+    answer: >-
+      You cannot confirm internal sensor failure from one anomalous ride. Save the
+      file, note firmware, battery, installation, calibration result and any error
+      code, then repeat the manufacturer's documented troubleshooting. If the issue
+      persists, send that evidence to the maker or authorised service centre for a
+      hardware assessment.
 relatedPosts:
-  - "power-meter-buying-guide-cyclists"
-  - "cycling-ftp-test-protocols-compared-guide"
-  - "cycling-indoor-vs-outdoor-training-guide"
-  - "cycling-data-analysis-basics-guide"
-  - "cycling-data-overload-what-to-track-guide"
+  - power-meter-buying-guide-cyclists
+  - power-meter-vs-smart-trainer
+  - power-meter-training-cyclists-how-to-use
+  - cycling-ftp-test-protocols-compared-guide
+  - cycling-data-analysis-basics-guide
 relatedTools:
-  - "ftp-test"
-  - "ftp-zones"
-  - "training-load"
-  - "tss"
+  - ftp-test
+  - ftp-zones
+  - training-load
+  - tss
 whoFor:
-  - "Riders who just lost twenty watts on a familiar climb and are panicking about lost fitness before checking their equipment"
-  - "Anyone comparing indoor trainer power to outdoor power meter numbers and getting confused by the mismatch"
-  - "Cyclists whose data suddenly changed after a firmware update and need to know whether the problem is them or the meter"
-  - "Plateau-stuck racers making training decisions on unreliable data without realising the numbers are lying to them"
+  - "Riders whose familiar effort suddenly shows a different watt number"
+  - "Cyclists comparing a bike-mounted meter with a direct-drive trainer"
+  - "Owners seeing dropouts, missing right-side data or an unexpected calibration message"
+  - "Coaches who need a repeatable evidence trail before changing zones or escalating to support"
 roadmanView:
-  - "If you are not calibrating before every ride, you are not using a power meter. You are using an expensive random number generator. That is not a joke — it is the single biggest accuracy issue I see."
-  - "I have had riders come to me convinced their FTP had dropped ten watts. Turned out their battery was dying. Fresh CR2032, problem solved."
-  - "Your trainer and your crank meter will never agree. That is physics, not a fault. Pick one source for indoor work and stop comparing the two."
+  - "A watt number is evidence, not a verdict. Preserve the file and check the system before changing the athlete's plan."
+  - "The product manual outranks a generic calibration ritual. Auto-calibration, smart prompts and manual zero procedures now differ materially by model."
+  - "Roadman does not declare sensor failure, battery-induced drift or a fixed trainer offset without model-specific evidence. The checklist is designed to separate what you can verify from what the manufacturer must diagnose."
 ---
 
-Power meters lie. Not maliciously. Not all the time. But often enough that if you don't understand why, you'll spend weeks chasing phantom fitness losses — or worse, making training decisions based on data that isn't telling you the truth.
+When power suddenly looks high, low or erratic, the first job is to preserve evidence—not to retest FTP, change zones or declare that the sensor has failed. One ride can be affected by a saved sensor setting, an installation change, a missed right-side connection, a different power source or a genuine change in the rider.
 
-You did the same climb, same legs, same effort. Twenty watts lower. Your first instinct is that you've lost fitness. Your second instinct is to do another FTP test. Both instincts are wrong. The problem might be the thing measuring you, not the thing producing the watts.
+This guide gives you a repeatable order of checks. It uses current manufacturer guidance where products behave differently and avoids universal percentages, battery rules or failure diagnoses that cannot be supported from a ride file.
 
-This is the troubleshooting guide I wish someone had written ten years ago. Every source of power meter error, how to identify it, and how to fix it. Most of this is fixable. Some of it just needs to be understood and accounted for.
+## The first five-minute check
 
-## Zero-Offset Calibration: The Ten-Second Habit That Fixes Half of Everything
+Before another hard effort, record these details:
 
-Let me be really clear about this: if you are not calibrating your power meter before every ride, you are not using a power meter. You are using an expensive random number generator.
+| Check | What to capture | Why it matters |
+| --- | --- | --- |
+| Exact power source | Pedal, crank arm, spider or trainer model and sensor ID | A head unit or app may be recording a different nearby sensor |
+| Firmware | Meter, head unit, trainer and app versions | Release notes can explain a connection or calibration change |
+| Battery or charge | The product's reported state and warning | Low charge can prevent a sensor waking or linking correctly |
+| Installation | Recent pedal, crank, chainring, cassette or bike move | Several makers specify calibration or torque checks after installation |
+| Configuration | Crank length, single/dual status and selected source | Wrong crank length changes pedal-power calculation; a missing right sensor changes the data available |
+| Calibration state | Automatic, prompted or manual result for this model | “Calibrate every ride” is not the correct instruction for every current meter |
 
-A zero-offset calibration — sometimes called a "zero reset" — tells the power meter what "zero" looks like right now. No force on the pedals, no torque on the crank. This is the baseline from which every watt is measured. If that baseline is wrong, every single number in your ride file is wrong by the same amount.
+Save the original `.FIT` file and take a screenshot of any error code or calibration value. A manufacturer can use those details; a memory that “the watts felt wrong” is harder to diagnose.
 
-Here's where it gets really interesting. The zero-offset value drifts. It changes with temperature. It changes with humidity. It changes when you tighten your pedals or adjust your crank bolts. It changes if the bike has been sitting in a cold garage overnight or baking in a hot car for two hours. The strain gauge is a physical thing, and physical things respond to their environment.
+## Step 1: confirm which sensor supplied the watts
 
-Hunter Allen and Andrew Coggan made this point years ago in *Training and Racing with a Power Meter* — the zero-offset is the single most overlooked source of error in power data. It takes ten seconds on your head unit. Garmin, Wahoo, Hammerhead — they all have a calibration option in the sensor menu. Use it.
+Indoor setups can broadcast power from the bike meter and trainer at the same time. Dual-sided pedals may also use the left sensor as the connection presented to the head unit while the right communicates through it. Make sure the sensor ID in the head unit or app matches the intended device.
 
-**The protocol is simple:**
+Remove an unintended saved power source or select the desired source in the training app. Do not compare files until you know the same device supplied the number throughout the test.
 
-1. Clip in and unclip. Let the crank arm hang vertically under its own weight with no foot on the pedal.
-2. Go to your head unit's sensor menu and select "Calibrate" for the power meter.
-3. Wait for the confirmation number.
-4. Ride.
+For a missing right-side Garmin Rally reading, Garmin's official process starts by waking the pedals with several crank revolutions and checking the sensor details. Garmin also says low charge in the right Rally 210 pedal can prevent it connecting to the left. See the [Garmin right-sensor troubleshooting page](https://support.garmin.com/en-US/?faq=ph1MWBYk3V8gj8TSaoWiN7&productID=699171&tab=topics).
 
-If the number is dramatically different from your usual zero-offset value — say, more than 50 counts off from your norm — something else is going on. We'll get to that.
+## Step 2: check installation and configuration
 
-## Temperature Drift: The Invisible Error You Cannot Feel
+### Pedal meters
 
-Temperature is the single biggest environmental factor affecting power meter accuracy. And it's the one most riders don't account for.
+Confirm the pedal is installed to the manufacturer's torque and orientation instructions. Check the crank-length value in the meter app or head unit. Favero notes that a head-unit crank-length setting can overwrite the app value; Garmin also identifies crank length as a core check when Rally data looks high, low or erratic.
 
-Every strain gauge has a temperature coefficient. As the gauge warms up or cools down, its resistance changes, and that change gets interpreted as force — even when there's no force being applied. Modern power meters have internal temperature compensation algorithms that try to correct for this, but the compensation is never perfect.
+After moving a Favero Assioma to another bike, Favero specifies a manual calibration followed by a few dozen seated, even pedal strokes on flat terrain for internal self-calibration. Use the [Favero Assioma FAQ](https://cycling.favero.com/faq/) rather than a generic pedal routine.
 
-Here's what that looks like in practice. You calibrate in a 5-degree garage at 6am. You ride for forty minutes, the ambient temperature climbs to 15 degrees, and the power meter warms from pedalling. The meter's internal temperature has shifted 15-20 degrees from the calibration point. If the temperature compensation is off by even a fraction, you're looking at 1-3 per cent drift. On a 250-watt effort, that's 2.5 to 7.5 watts of error that you cannot feel and cannot see on a single ride.
+### Crank-arm and spider meters
 
-Comparative testing — the kind that Shane Miller (GP Lama), Ray Maker (DC Rainmaker), and others have done extensively — shows that this drift is real and measurable. When they run multiple power meters simultaneously on the same bike, the divergence between devices often correlates with temperature changes during the ride rather than actual power production differences.
+Confirm crank bolts, chainrings and any installation-specific preload or torque using the component manual. Do not tighten a part simply because a generic article says so. An integrated power meter is also a structural bicycle component; use the correct procedure or a qualified mechanic.
 
-**What you can do about it:**
+### Smart trainers
 
-- Calibrate after the bike has been at riding temperature for five minutes. If you've just wheeled the bike out of a cold shed, ride easy for five minutes, then calibrate.
-- On days with extreme temperature swings — a cold start warming into a hot afternoon — consider re-calibrating at a natural stop point.
-- Be aware of the effect when comparing data across seasons. Your winter numbers and summer numbers may not be directly comparable if you're calibrating in vastly different ambient temperatures.
+Confirm axle, cassette or Cog, freehub and bike installation. Then follow the trainer's model-specific calibration and warm-up instructions. Some current direct-drive trainers require no manual calibration, some calibrate automatically and some still specify a spindown in particular circumstances. The [current smart-trainer guide](/blog/best-indoor-smart-trainers-2026) links each manufacturer's exact documentation.
 
-The good news: for most riders, in most conditions, temperature drift is small enough that it doesn't change your training decisions. But if you're chasing a specific FTP number or comparing data across months, it's worth knowing the error exists.
+## Step 3: follow the meter's calibration behaviour
 
-## Battery Voltage: The Silent Data Killer
+“Zero-offset before every ride” was once common advice. It is not a safe universal instruction in 2026.
 
-This one catches people every time. Your power meter is still turning on. It pairs with your head unit. It shows numbers. So it must be working, right?
+### Favero Assioma
 
-Not necessarily. As battery voltage drops below the optimal range, the excitation signal to the strain gauge weakens. The meter still functions — it still measures something — but what it measures becomes progressively less reliable. You'll see it as noise: unexplained spikes of 50-100 watts on flat roads, sudden drops to near zero during efforts, or a slow drift in readings that doesn't correlate with anything you're doing on the bike.
+Favero says current Assioma firmware provides automatic calibration. A manual calibration is required on first installation and when the pedals are installed on a new bike. Favero says daily manual calibration is not necessary. Store the bike upright with no load on the pedals so the automatic process can occur. See [Favero's calibration FAQ](https://cycling.favero.com/faq/) and [PRO installation instructions](https://cycling.favero.com/blog/how-to-install-assioma-pro/).
 
-Here's where most riders go wrong. They wait for the low battery warning on their head unit. But by the time that warning fires, the data has often been unreliable for several rides. The threshold for the warning is set at a voltage that keeps the meter operational, not at the voltage that keeps it accurate.
+### Garmin Rally 110 and 210
 
-**The fix is boring and it works:** replace batteries on a fixed schedule. Every 150-200 hours of riding, or every 3-4 months, whichever comes first. For coin cell batteries (CR2032, commonly used in Stages, 4iiii, and others), that's a cost of about two quid and five minutes of your time. For rechargeable units (Favero Assioma, Garmin Rally), charge before every ride or at least every two rides.
+Garmin says the current Rally 110/210 pedals calibrate automatically by default while idle. Pedal IQ considers temperature, time since calibration and a changed installation angle, then prompts through a compatible Edge or watch when a manual calibration is needed. When prompted, keep the bike upright and still with nothing touching the pedals and follow the on-screen steps. See [Garmin's Pedal IQ guidance](https://support.garmin.com/en-PH/?faq=EBHEIxmxyS30KMSMcCwC46).
 
-If you're seeing erratic data and you suspect batteries, this is the first thing to rule out. Fresh battery, calibrate, ride a known route at a known effort, and see if the numbers stabilise. If they do, it was the battery. If they don't, keep reading.
+Do not apply that behaviour to the older Rally 100/200 or Vector generation. Garmin's older-product support can specify a pre-ride static calibration. Product generation matters.
 
-## The Single-Sided Assumption: When 50/50 Isn't 50/50
+### SRAM/Quarq
 
-Single-sided power meters — Stages, 4iiii single-leg, Favero Assioma Uno — measure force from one leg and double it. The assumption is that your left and right legs produce equal power. Fifty-fifty.
+SRAM describes **MagicZero** as automatic zero-offset management while riding. Its current manual says power meters released from 2016 onward support MagicZero except DUB-PWR; DUB-PWR uses Manual Zero. MagicZero must be enabled in the SRAM AXS app. See the [SRAM MagicZero explanation](https://www.sram.com/en/quarq/campaigns/magiczero-auto-calibration) and [Quarq user manual](https://www.sram.com/globalassets/document-hierarchy/user-manuals/quarq/power-meters/quarq-power-meter-user-manual.pdf).
 
-The assumption is almost always wrong.
+For any other brand or generation, open the exact manual. Do not infer behaviour from the word “power meter”.
 
-Most riders have a measurable left-right imbalance, typically in the range of 48/52 to 46/54. This is normal. It doesn't mean anything is wrong with you. It doesn't need fixing. But it does mean your single-sided power meter is systematically over- or under-reporting your total power by 2-5 per cent, depending on which leg is measured and how asymmetric you are.
+## Step 4: charge or replace the battery as instructed
 
-Let's put numbers on it. Say your true total power output is 300 watts. Your actual split is 46/54 — your left leg produces 138 watts and your right produces 162 watts. A left-side-only meter reads 138, doubles it to 276. That's 24 watts below your actual output. Every ride. Every interval. Every test.
+Battery troubleshooting should be specific and boring. Check the reported charge, warnings, contacts or compartment only where the manual tells you to. Fully charge a rechargeable product or fit the specified replacement cell, then repeat the same test.
 
-**Here's the critical distinction:** this error is consistent. If you test your [FTP](/blog/ftp-training-zones-cycling-complete-guide) on a single-sided meter and train with the same meter, your [training zones](/tools/ftp-zones) are internally correct. You'll still be training at the right intensity. The numbers might not match what a dual-sided meter would say, but that doesn't matter — you're measuring from the same reference point every time.
+Avoid two common overclaims:
 
-Where it breaks down:
+- A low battery can prevent a sensor waking or connecting, but that does not prove every low battery creates a predictable high, low or drifting power trace.
+- There is no universal “replace every 150–200 hours” rule. Current products use different batteries, battery-life estimates, warning thresholds and charging systems.
 
-- **Comparing your power to someone else's.** Their meter measures differently. Their leg balance is different. Raw watt comparisons between riders on different equipment are meaningless.
-- **Swapping between a single-sided meter and a trainer.** Your trainer measures total power. Your single-sided meter estimates it. They won't agree.
-- **After an injury or change in bike fit.** If your leg balance shifts — which can happen after a knee injury, a cleat change, or a saddle height adjustment — your single-sided meter will reflect that shift as a power change, even if your total output hasn't changed.
+If the problem disappears after the supported battery step, record the resolution. If it persists, continue; do not keep changing several variables at once.
 
-If you own a single-sided meter, it's a perfectly good training tool. Just understand what it's measuring and what it's assuming.
+## Step 5: update firmware deliberately
 
-## Indoor vs Outdoor: Why Your Trainer and Your Power Meter Disagree
+Read the release notes before updating and keep the previous version in your notes. Firmware can fix auto-zero, missing-sensor, connection or reporting behaviour. Garmin's Rally 110/210 release notes, for example, have included changes to auto-zero behaviour and false missing-right-pedal errors.
 
-This is possibly the most common source of confusion in cycling data. You ride indoors at 250 watts. You go outside and the same effort reads 265 watts on your crank meter. Or vice versa. Something must be broken.
+An update is not proof that your historical FTP is invalid. After updating, repeat a known steady effort. Change zones only if a stable, repeatable difference affects the source used for testing and training—not because a version number changed.
 
-Nothing is broken. The discrepancy is physics.
+## Step 6: compare a repeatable effort
 
-A smart trainer measures power at the rear axle — after your chain, cassette, derailleur, and bottom bracket bearings have all extracted their share of friction. A crank or pedal power meter measures before those losses. The difference between the two — called drivetrain loss — is typically 3-8 per cent, depending on chain condition, lubricant, derailleur alignment, and temperature.
+Use a steady effort that is long enough to avoid sprint timing and smoothing differences. Follow any required trainer warm-up. Record both sources simultaneously if the equipment supports it, then compare the same time window rather than two display snapshots.
 
-That means if your crank meter reads 260 watts, the trainer might see 245-252 watts of that arriving at the rear axle. Both numbers are correct. They're measuring at different points in the system.
+Check for three different patterns:
 
-**There are additional factors:**
+1. **Stable offset:** one device remains consistently above or below the other.
+2. **Changing offset:** the gap grows or shrinks during the effort.
+3. **Dropout or spike:** one trace loses data or shows an abrupt change not present in the other.
 
-- **Tyre pressure and roller contact.** Wheel-on trainers are particularly sensitive to tyre pressure and how firmly the roller contacts the tyre. Small changes produce measurable power differences.
-- **Calibration state of the trainer itself.** Most smart trainers have their own spindown calibration. If you haven't done one recently, the trainer's power reading may have drifted.
-- **Heat.** Trainers generate significant heat during long sessions. Internal resistance in the brake mechanism changes as the unit warms up. Some trainers compensate for this better than others.
-- **Power smoothing.** Some trainers apply aggressive smoothing to the power signal, which affects how power is reported moment to moment — though it shouldn't change the average over a full interval.
+Those patterns help manufacturer support, but they do not identify a failed internal component by themselves.
 
-**The practical solution is simple:** pick one power source for [indoor training](/blog/cycling-indoor-training-tips) and stick with it. If you use your trainer's power for indoor sessions, test your FTP indoors and set your indoor zones from that number. If you prefer your on-bike meter's numbers, use ANT+ or Bluetooth to transmit from the meter to your training app and ignore the trainer's reading. Don't mix sources. Don't try to apply a correction factor. Just be consistent.
+## Why trainer and bike power may differ
 
-If you are specifically trying to compare indoor and outdoor performance — say, to check whether your indoor FTP and outdoor FTP are actually different or just a measurement artefact — the best approach is to ride a sustained effort at the same target RPE and [heart rate](/blog/cycling-hrv-training-guide) both indoors and outdoors, using the same power meter, and compare.
+A pedal, crank or spider meter and a direct-drive trainer measure at different points. They also have separate tolerances, calibration behaviour, temperature compensation and signal processing. Drivetrain losses can contribute to a difference when comparing upstream and downstream measurement, but they do not produce one universal percentage for every chain, gear, trainer and power meter.
 
-## Firmware Updates: The Hidden Variable
+Do not assume that the bike meter must read higher. Do not apply a generic 3%, 5% or 10% correction. Verify the actual pair and pick one consistent source for FTP testing and workout control.
 
-This is the one that will make you properly paranoid, and rightly so.
+The [power meter vs smart trainer guide](/blog/power-meter-vs-smart-trainer) helps choose the primary source. If the training app supports using a bike meter to control the trainer, check the exact feature and device compatibility before relying on it.
 
-Power meter manufacturers push firmware updates that can change how your power is calculated. Not the hardware — the software that interprets the strain gauge signal. Temperature compensation curves, signal filtering, cadence detection, zero-offset algorithms — all of these live in firmware and all of them affect the final watt number.
+## Single-sided estimates can change
 
-Most of the time, firmware updates improve accuracy. But "improve" means "change," and a change means your numbers shift. If you've been training with a meter that consistently read 3 per cent high due to a firmware quirk, and the update corrects that, your FTP just dropped by 3 per cent overnight. Your fitness didn't change. Your training zones didn't change. The number changed.
+A single-sided meter measures one leg and doubles it. If the measured leg contributes a different share because of fatigue, position, injury, cadence or normal variation, the estimated total changes even if true combined output does not move by the same amount.
 
-Favero, Garmin, Stages, 4iiii, SRAM — they've all pushed updates over the years that affected reported power. Some were documented in release notes. Some weren't.
+That does not make the device useless. It means its estimate is not interchangeable with actual dual-sided or spider total power. Test and set zones with one consistent source, and treat an unexpected change as a reason to examine the complete context rather than inventing a “typical” left-right split.
 
-**How to handle this:**
+## When the rider, not the meter, changed
 
-- **Read the release notes before updating.** If the notes mention calibration changes, power calculation adjustments, or temperature compensation improvements, treat the update as a potential FTP-altering event.
-- **Re-test after major firmware updates.** Run a benchmark effort on a known climb or a controlled indoor test. Compare to your recent data. If there's a meaningful shift, adjust your zones.
-- **Don't update the morning before a race.** Obvious, but people do it.
-- **Keep a record of firmware versions.** When you look back at your training data in six months and wonder why there was a sudden shift in August, the firmware log will save you hours of confusion.
+Power is the external workload, not a complete diagnosis of the athlete. Lower watts at a higher perceived effort can reflect fatigue, heat, illness, fuelling, sleep, pacing or environment. Normal power with an unusually high heart rate or RPE also deserves attention.
 
-## Crank-Based vs Pedal-Based vs Hub-Based: Accuracy Differences That Actually Matter
+Use a repeatable comparison and more than one signal. One familiar climb is not a controlled laboratory test: wind, traffic, surface, position and pacing can all differ.
 
-Not all power meter types are created equal in terms of where they sit in the measurement chain, and that affects what they're actually measuring.
+## What to send manufacturer support
 
-**Crank-based** (Stages, 4iiii, Quarq, SRM): Measures deflection of the crank arm or spider under load. Well-proven, good temperature stability in high-end units (SRM is still the reference standard for a reason), and positioned early in the drivetrain. Spider-based meters measure total power directly and are inherently dual-sided. Arm-based meters are typically single-sided.
+If the same issue persists after documented setup, calibration, battery and firmware checks, send:
 
-**Pedal-based** (Favero Assioma, Garmin Rally): Measures force at the pedal spindle — the earliest possible measurement point. The advantage is portability between bikes. The challenge is that pedal meters live in a mechanically complex environment — pedal bearings, cleat float, and installation torque all affect the measurement. Favero has established a reputation for exceptional consistency at a reasonable price. Garmin's Rally series has improved significantly with firmware updates.
+- exact model, serial number and purchase date;
+- firmware and app or head-unit version;
+- battery or charge state;
+- crank length and installation details;
+- the calibration result or error code;
+- the original ride file and time stamps of the problem;
+- a simultaneous comparison file if one was recorded correctly;
+- the steps already completed from the maker's support guide.
 
-**Hub-based** (PowerTap): Measures at the rear hub, after all drivetrain losses. This gives you the truest picture of what's actually reaching the road, but the trade-off is that any efficiency gains from a new chain or better lube won't show up in the power number. Hub-based meters are less common now but were the benchmark for total power accuracy for years.
+Do not open sealed electronics, alter a strain gauge or declare internal failure unless the manufacturer directs the service. A precise evidence package is the fastest route to a warranty or repair decision.
 
-**Smart trainers** (Wahoo KICKR, Tacx NEO, Elite Drivo): Measure at the resistance unit. Modern direct-drive trainers are accurate to within 1-2 per cent, but they're measuring something slightly different again — power absorbed by the trainer's braking mechanism, corrected for flywheel inertia.
+## How this guide was checked
 
-The practical takeaway: the differences between meter types are smaller than the differences caused by poor calibration habits. A well-calibrated Stages will give you better data than a poorly calibrated SRM. Choose your meter based on budget, convenience, and bike compatibility — then calibrate it properly.
+Roadman reviewed this page on 25 August 2026 against current Favero Assioma calibration and installation guidance, Garmin Rally 110/210 Pedal IQ and right-sensor support, and SRAM/Quarq MagicZero documentation.
 
-## When to Ignore Your Power Data and Ride by Feel
+The old version's universal daily-calibration rule, 5–15 W temperature-drift claim, fixed battery schedule, 3–10% trainer offset, guaranteed direction, zero-count thresholds and strain-gauge-failure diagnoses were removed because they were either model-specific, unsupported or too precise for a general guide. Submit a correction with primary documentation through the [Roadman corrections page](/about/corrections).
 
-Here's a sentence you won't read often on cycling data websites: sometimes the right thing to do is ignore your power meter entirely.
+## Return to training only when the source is stable
 
-Power data is a tool. It gives you precision and repeatability. But it can also become a cage — a number you chase at the expense of listening to the actual signals your body is sending.
+Once the issue is resolved, repeat the same check and record the result. Then use the [FTP test tool](/tools/ftp-test) and [FTP Zone Calculator](/tools/ftp-zones) from the power source you will actually use.
 
-**Situations where RPE and heart rate should override power:**
-
-- **You're ill or coming back from illness.** Your power output will be reduced but your RPE at any given wattage will be elevated. The power meter doesn't know you have a cold. Ride to RPE.
-- **Extreme heat.** Cardiac drift will push your heart rate up while your power output drops. The power meter says you're underperforming. Your body says it's 38 degrees and you're doing exactly what you should be doing.
-- **Late in a long event.** After five or six hours, the relationship between power and RPE shifts. Holding your target watts starts costing more perceived effort. If you're locked to the number, you'll blow up. If you're reading your body, you'll adjust.
-- **Early season or after a break.** Your FTP may be temporarily depressed. Riding to stale power zones will either be too easy or too hard. Ride by feel for two to three weeks, then retest.
-- **When the data looks wrong and you can't fix it mid-ride.** If you've noticed erratic numbers and can't diagnose the issue on the road, just ride. Log the ride for heart rate and RPE analysis later. Bad power data is worse than no power data because it leads to bad decisions.
-
-The ability to ride without data — to know what threshold feels like, to sense when you're in Zone 2 versus Zone 3, to pace by breathing and muscle sensation — is a skill. It's a skill that gets weaker the more you depend on the screen. Practice riding without the data page occasionally. It'll make you a better cyclist when the meter works and when it doesn't.
-
-## How to Spot a Dying Power Meter
-
-Power meters don't usually fail catastrophically. They degrade. The readings get noisier. The zero-offset drifts further between calibrations. The data starts telling a story that doesn't match what your legs and heart rate are saying.
-
-**Warning signs, roughly in order of seriousness:**
-
-1. **Increasing zero-offset variability.** Your zero-offset value should be fairly consistent day to day (within 20-30 counts on most units). If it's jumping around by 100+ counts between rides, something is changing mechanically or the strain gauge is degrading.
-2. **Unexplained power spikes.** Sudden jumps of 200-500 watts on flat, steady riding — not sprint efforts, not accelerations, just phantom spikes that don't correspond to anything physical. This is usually a failing strain gauge or a connection issue.
-3. **Progressive drift during rides.** Power that slowly climbs or falls over the course of a ride without corresponding changes in effort, heart rate, or terrain. The meter is drifting and not self-correcting.
-4. **Dropouts.** Intermittent loss of signal — zero-watt readings for a few seconds followed by a return to normal. Can be a battery issue, but if fresh batteries don't fix it, it's likely a communication or sensor failure.
-5. **Gross inaccuracy against a known reference.** If your crank meter suddenly reads 15 per cent different from your trainer on a controlled effort — and it didn't used to — something has changed in one of them.
-
-If you've ruled out batteries, calibration, firmware, and environmental factors, and the problem persists across multiple rides, the meter likely needs servicing or replacement. Most reputable manufacturers offer warranty support and will either repair or replace a failing unit.
-
-## The Diagnostic Checklist: When Power Feels Wrong
-
-Print this. Stick it on the wall of your pain cave. Run through it before you start questioning your fitness.
-
-**Step 1 — Calibrate and re-ride.** Zero-offset the meter. Ride a known effort — a climb you've done fifty times, a flat segment at threshold, a controlled indoor test. Compare to recent data from the same effort.
-
-**Step 2 — Replace the battery.** Fresh CR2032 or a full charge on rechargeable units. Calibrate again. Ride the same effort.
-
-**Step 3 — Check for firmware updates.** Go to the manufacturer's app. If there's an update, read the notes. Update if appropriate. Calibrate. Ride.
-
-**Step 4 — Compare against heart rate and RPE.** On a sustained effort — ten minutes at [threshold](/blog/ftp-training-zones-cycling-complete-guide), say — your heart rate and perceived exertion should align with power in a way that's familiar to you. If power says 250 watts but your heart rate is where it usually is at 280 watts and you feel like you're at 280 watts, the power meter is the problem.
-
-**Step 5 — Check the hardware.** Is the crank arm tight? Are the pedals properly torqued? Is there any visible damage to the strain gauge housing? Is the battery compartment seal intact and free of moisture?
-
-**Step 6 — Dual-reference test.** If you have access to a second power source — a trainer, a second meter, a friend's meter you can borrow — ride the same effort on both simultaneously. A consistent offset is normal. An erratic or changing offset suggests a fault in one of them.
-
-**Step 7 — Contact the manufacturer.** If Steps 1-6 don't resolve the issue, the strain gauge may be degrading. Most power meters carry a two-year warranty. Even outside warranty, manufacturers often offer discounted service or replacement for units with confirmed sensor failure.
-
-## The Bottom Line
-
-Power meter accuracy is not a binary state. Your meter is not simply "accurate" or "inaccurate." It's producing data that's shaped by calibration habits, temperature, battery state, firmware, measurement position, and the inherent assumptions built into the device. Understanding these factors doesn't make you paranoid — it makes you a better user of the tool.
-
-Calibrate before every ride. Replace batteries on schedule. Read firmware release notes. Pick one power source per environment and stay consistent. And when the numbers don't match how you feel, trust the process of elimination before you trust the screen.
-
-Most power problems are fixable in five minutes. The ones that aren't are still diagnosable. And the rare case where the meter is actually failing? That's what warranties are for.
-
-If you want to talk through your own power data — whether something looks off, how to set up your tracking properly, or just to get a second opinion on what the numbers mean — the [Roadman Cycling community on Skool](https://www.skool.com/roadmancycling) is where those conversations happen daily. Coaches, physiologists, and riders who've been through every one of these issues. Come ask.
+If you want help turning stable data into a plan, [Not Done Yet group coaching](/coaching) combines a personalised TrainingPeaks plan, weekly review, live group coaching, strength and nutrition guidance, and a private rider community.
