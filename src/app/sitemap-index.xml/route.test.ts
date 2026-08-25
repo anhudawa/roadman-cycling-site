@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
+import { SITEMAP_IDS, VIDEO_SITEMAP_URL } from "@/lib/seo/sitemaps";
 
 vi.mock("@/lib/brand-facts", () => ({
   SITE_ORIGIN: "https://roadmancycling.com",
@@ -10,13 +11,14 @@ describe("sitemap index", () => {
     const response = await GET();
     const xml = await response.text();
 
-    for (let id = 0; id <= 7; id += 1) {
+    for (const id of SITEMAP_IDS) {
       expect(xml).toContain(
         `<loc>https://roadmancycling.com/sitemap/${id}.xml</loc>`,
       );
     }
 
-    expect(xml.match(/<sitemap>/g)).toHaveLength(8);
+    expect(xml).toContain(`<loc>${VIDEO_SITEMAP_URL}</loc>`);
+    expect(xml.match(/<sitemap>/g)).toHaveLength(SITEMAP_IDS.length + 1);
   });
 
   it("does not claim that every child sitemap changed at request time", async () => {
