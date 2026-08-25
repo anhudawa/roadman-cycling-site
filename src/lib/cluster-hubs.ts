@@ -100,7 +100,6 @@ const MASTERS_VO2MAX: ClusterHubDef = {
   articleSlugs: [
     "cycling-vo2max-intervals",
     "vo2-max-workouts-cyclists-over-40",
-    "vo2max-training-cyclists-seven-reasons",
     "vo2max-cycling-fixable-reasons-low",
     "andy-galpin-fast-twitch-fibres-cyclist-after-40",
     "cycling-over-40-getting-faster",
@@ -126,7 +125,7 @@ The fix is uncomfortable and specific. You have to spend time at 90% of max hear
 
 There is no single right session, but there is a right shape. [The three VO2max workouts that work for cyclists over 40](/blog/vo2-max-workouts-cyclists-over-40) covers the classics — 5×5, 4×4, and the under-recovered "30/15" — and explains why the masters version uses fewer reps and more recovery than the plan you ran at 30. When even those stall, [sprint-interval training](/blog/sprint-interval-training-cyclists-masters) — six all-out 30-second efforts — moves FTP through a different door, recruiting the high-threshold fibres Galpin warns about.
 
-If your number is stubbornly low, it is almost never genetics. [Seven fixable reasons your VO2max is low](/blog/vo2max-training-cyclists-seven-reasons) and the [step-by-step fix](/blog/vo2max-cycling-fixable-reasons-low) walk through the usual culprits — too much grey-zone riding, intervals that never reach the intensity that counts, recovery that never lands.
+If your number is stubbornly low, verify the measurement before prescribing more work. [Why your VO2max may be low](/blog/vo2max-cycling-fixable-reasons-low) separates wearable error, genetics, training consistency, recovery, iron and health signals before routing a rider into the right intervention.
 
 ## Putting it in a masters week
 

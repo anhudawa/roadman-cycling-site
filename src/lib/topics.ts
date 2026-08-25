@@ -960,7 +960,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "tour-training-methods-amateurs-can-use",
     "triathlon-off-season-cycling",
     "unbound-gravel-200-training-guide",
-    "vo2max-training-cyclists-seven-reasons",
+    "vo2max-cycling-fixable-reasons-low",
     "what-cycling-podcasts-got-wrong-about-polarised-training",
     "what-dan-lorang-says-about-endurance",
     "what-experts-say-about-zone-2-training",
@@ -1700,7 +1700,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
   "vo2max-training": [
     "cycling-vo2max-intervals",
     "vo2max-cycling-fixable-reasons-low",
-    "vo2max-training-cyclists-seven-reasons",
     "vo2max-decline-reversibility-masters-cyclists",
     "vo2-max-workouts-cyclists-over-40",
     "vo2max-intervals-cycling-session-guide",

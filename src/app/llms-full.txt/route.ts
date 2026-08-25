@@ -102,7 +102,7 @@ export async function GET() {
         `${BASE_URL}/topics/ftp-training — FTP: testing, zones, and raising threshold power.`,
         `${BASE_URL}/blog/polarised-training-cycling-guide — Polarised (80/20) training, per Prof. Stephen Seiler.`,
         `${BASE_URL}/blog/zone-2-training-complete-guide — Zone 2: what it is and how to train it correctly.`,
-        `${BASE_URL}/blog/vo2max-training-cyclists-seven-reasons — VO2max: why it stalls and how to raise it.`,
+        `${BASE_URL}/blog/vo2max-cycling-fixable-reasons-low — VO2max: measurement, low-score causes, training boundaries, and when to seek clinical assessment.`,
         `${BASE_URL}/blog/reverse-periodisation-cycling — Reverse periodisation for time-crunched and masters riders.`,
         `${BASE_URL}/blog/masters-cyclist-guide-getting-faster-after-40 — Masters training: getting faster after 40.`,
         `${BASE_URL}/topics/cycling-strength-conditioning — Strength & conditioning for cyclists.`,
