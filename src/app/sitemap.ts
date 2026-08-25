@@ -155,6 +155,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
       }));
     })(),
     { url: `${BASE_URL}/podcast/transcripts`, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${BASE_URL}/watch`, changeFrequency: "weekly", priority: 0.75 },
     { url: `${BASE_URL}/blog`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/tools`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/guests`, changeFrequency: "weekly", priority: 0.8 },
@@ -374,6 +375,17 @@ function buildPodcastSitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  // Dedicated watch pages give each YouTube episode a single-video landing
+  // page eligible for Google's video results without changing the richer,
+  // text-first podcast page or competing with its show-note intent.
+  const watchEntries: MetadataRoute.Sitemap = episodes
+    .filter((ep) => Boolean(ep.youtubeId))
+    .map((ep) => ({
+      url: `${BASE_URL}/watch/${ep.slug}`,
+      ...freshness(ep.updatedDate ?? ep.publishDate),
+      priority: 0.55,
+    }));
+
   // Dedicated transcript pages get the same lastModified as the parent
   // episode and a slightly lower priority — they're a deeper view of
   // the same content, so they shouldn't outrank the episode itself.
@@ -385,7 +397,7 @@ function buildPodcastSitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     }));
 
-  return [...episodeEntries, ...transcriptEntries];
+  return [...episodeEntries, ...watchEntries, ...transcriptEntries];
 }
 
 function buildGuestSitemap(): MetadataRoute.Sitemap {

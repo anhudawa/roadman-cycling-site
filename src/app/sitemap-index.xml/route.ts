@@ -1,12 +1,20 @@
-import { getChildSitemapUrl, SITEMAP_IDS } from "@/lib/seo/sitemaps";
+import {
+  getChildSitemapUrl,
+  SITEMAP_IDS,
+  VIDEO_SITEMAP_URL,
+} from "@/lib/seo/sitemaps";
 
 export async function GET() {
+  const sitemapUrls = [
+    ...SITEMAP_IDS.map((id) => getChildSitemapUrl(id)),
+    VIDEO_SITEMAP_URL,
+  ];
   const body =
     `<?xml version="1.0" encoding="UTF-8"?>\n` +
     `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-    SITEMAP_IDS.map(
-      (id) =>
-        `  <sitemap>\n    <loc>${getChildSitemapUrl(id)}</loc>\n  </sitemap>\n`,
+    sitemapUrls.map(
+      (url) =>
+        `  <sitemap>\n    <loc>${url}</loc>\n  </sitemap>\n`,
     ).join("") +
     `</sitemapindex>\n`;
 

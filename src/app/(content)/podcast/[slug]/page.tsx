@@ -632,6 +632,14 @@ export default async function EpisodePage({
                   title={`Watch ${episode.title}`}
                 />
               </div>
+              <div className="mt-4 text-center">
+                <Link
+                  href={`/watch/${episode.slug}`}
+                  className="font-heading text-sm tracking-wider text-coral hover:text-off-white transition-colors"
+                >
+                  OPEN FOCUSED VIDEO PAGE →
+                </Link>
+              </div>
             </Container>
           </Section>
         )}
