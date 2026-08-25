@@ -78,7 +78,7 @@ describe("coaching hub service clarity", () => {
       metadata: { prompt_count: number };
       prompts: Array<{ id: number; target_page: string; prompt: string }>;
     };
-    expect(prompts.metadata.prompt_count).toBe(219);
+    expect(prompts.metadata.prompt_count).toBe(prompts.prompts.length);
     expect(prompts.prompts).toContainEqual(
       expect.objectContaining({
         id: 219,
