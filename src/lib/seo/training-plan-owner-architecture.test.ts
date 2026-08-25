@@ -8,6 +8,10 @@ import {
 } from "./search-ownership";
 import { buildSearchOwnerTrustProperties } from "./search-owner-schema";
 
+function source(path: string) {
+  return readFileSync(resolve(process.cwd(), path), "utf8");
+}
+
 describe("training-plan owner architecture", () => {
   it("registers the event directory as a distinct supporting destination", () => {
     const owner = SEARCH_OWNER_BY_ID.get("cycling-training-plans");
@@ -58,6 +62,38 @@ describe("training-plan owner architecture", () => {
     );
     expect(directorySource).toContain(
       "getSearchOwnerWebPageId(TRAINING_PLAN_OWNER)",
+    );
+  });
+
+  it("routes generic sitewide training-plan links to the canonical owner", () => {
+    const sources = [
+      source("src/types/index.ts"),
+      source("src/components/layout/Footer.tsx"),
+      source("src/components/layout/CoachingHeader.tsx"),
+      source("src/components/layout/CoachingFooter.tsx"),
+      source("src/app/page.tsx"),
+    ];
+
+    for (const sitewideSource of sources) {
+      expect(sitewideSource).toContain('"/training-plans"');
+    }
+
+    expect(sources[0]).toContain(
+      '{ label: "Cycling Training Plans", href: "/training-plans" }',
+    );
+    expect(sources[0]).toContain(
+      '{ label: "Event Plan Finder", href: "/plan" }',
+    );
+    expect(sources[1]).toContain(
+      '{ label: "Masters Cycling", href: "/masters" }',
+    );
+    expect(sources[1]).toContain(
+      '{ label: "Cycling Training Camps", href: "/training-camps" }',
+    );
+    expect(sources[2]).toContain('href: "/masters"');
+    expect(sources[2]).toContain('href: "/training-camps"');
+    expect(sources[2]).not.toContain(
+      'href: "https://roadmancycling.com/training-camps"',
     );
   });
 });

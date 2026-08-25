@@ -198,7 +198,7 @@ const discoveryPaths = [
     href: "/blog",
     copy: "Evidence-led guidance on training, fuelling, recovery and performance.",
     secondaryLabel: "Browse training plans",
-    secondaryHref: "/plan",
+    secondaryHref: "/training-plans",
     track: "home_discovery_blog",
   },
   {
