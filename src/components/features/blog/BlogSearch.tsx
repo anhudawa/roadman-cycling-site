@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Badge } from "@/components/ui";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { BlogPagination } from "@/components/features/blog/BlogPagination";
 import { isGenericImage } from "@/lib/blog-images";
 import { type ContentPillar, CONTENT_PILLARS } from "@/types";
 
@@ -47,6 +48,9 @@ interface BlogSearchItem {
 
 interface BlogSearchProps {
   posts: BlogSearchItem[];
+  archivePosts: BlogSearchItem[];
+  currentPage: number;
+  totalPages: number;
 }
 
 /** Topic filters — keyword-based filters that cut across pillars */
@@ -59,15 +63,19 @@ const TOPIC_FILTERS: Array<{
     id: "mtb",
     label: "Mountain Biking",
     match: (p) => {
-      const haystack = `${p.title} ${(p.keywords ?? []).join(" ")} ${p.excerpt}`.toLowerCase();
-      return /\bmtb\b|mountain.?bik|fork.?setup|suspension.?setup|dropper|trail.?rid|enduro|shock.?pressur|tyre.?pressure.?mtb|rostrevor|ballinastoe|mtb.?trail|mountain.?bike.?trail/.test(haystack);
+      const haystack =
+        `${p.title} ${(p.keywords ?? []).join(" ")} ${p.excerpt}`.toLowerCase();
+      return /\bmtb\b|mountain.?bik|fork.?setup|suspension.?setup|dropper|trail.?rid|enduro|shock.?pressur|tyre.?pressure.?mtb|rostrevor|ballinastoe|mtb.?trail|mountain.?bike.?trail/.test(
+        haystack,
+      );
     },
   },
   {
     id: "triathlon",
     label: "Triathlon",
     match: (p) => {
-      const haystack = `${p.title} ${(p.keywords ?? []).join(" ")} ${p.excerpt}`.toLowerCase();
+      const haystack =
+        `${p.title} ${(p.keywords ?? []).join(" ")} ${p.excerpt}`.toLowerCase();
       return /triath|ironman|70\.3|bike.?leg|tri.?bike/.test(haystack);
     },
   },
@@ -81,13 +89,21 @@ const TOPIC_FILTERS: Array<{
     id: "watches",
     label: "Watches",
     match: (p) => {
-      const haystack = `${p.title} ${(p.keywords ?? []).join(" ")} ${p.excerpt}`.toLowerCase();
-      return /\bwatches\b|cycling watch|wristwatch|smartwatch|chronograph|horolog|\btudor\b|breitling|richard mille|\brolex\b|\bcasio\b|\bbravur\b|omega (olympic|velodrome|timekeep)|f-?91w|black bay/.test(haystack);
+      const haystack =
+        `${p.title} ${(p.keywords ?? []).join(" ")} ${p.excerpt}`.toLowerCase();
+      return /\bwatches\b|cycling watch|wristwatch|smartwatch|chronograph|horolog|\btudor\b|breitling|richard mille|\brolex\b|\bcasio\b|\bbravur\b|omega (olympic|velodrome|timekeep)|f-?91w|black bay/.test(
+        haystack,
+      );
     },
   },
 ];
 
-export function BlogSearch({ posts }: BlogSearchProps) {
+export function BlogSearch({
+  posts,
+  archivePosts,
+  currentPage,
+  totalPages,
+}: BlogSearchProps) {
   const [query, setQuery] = useState("");
   const [pillarFilter, setPillarFilter] = useState<string>("");
   const [topicFilter, setTopicFilter] = useState<string>("");
@@ -98,7 +114,8 @@ export function BlogSearch({ posts }: BlogSearchProps) {
   // The 4 most recent posts are the editorial picks (pinned via publishDate).
   // Hidden when any filter or search is active so the featured row stays
   // coherent rather than drifting off-topic.
-  const featured = posts.slice(0, FEATURED_POST_COUNT);
+  const featured =
+    currentPage === 1 ? archivePosts.slice(0, FEATURED_POST_COUNT) : [];
 
   const filtered = useMemo(() => {
     let results = posts;
@@ -149,10 +166,13 @@ export function BlogSearch({ posts }: BlogSearchProps) {
   // When browsing the unfiltered catalogue, drop the 4 featured posts from
   // the main grid so they don't duplicate the featured row above.
   const gridPool = isBrowsingAll
-    ? filtered.slice(FEATURED_POST_COUNT)
+    ? archivePosts.slice(featured.length)
     : filtered;
-  const visible = gridPool.slice(0, visibleCount);
-  const hasMore = visible.length < gridPool.length;
+  // The unfiltered archive is fully rendered so crawlers receive every link
+  // on the current page. Search/filter mode keeps the progressive disclosure
+  // used by the existing client-side catalogue.
+  const visible = isBrowsingAll ? gridPool : gridPool.slice(0, visibleCount);
+  const hasMore = !isBrowsingAll && visible.length < gridPool.length;
 
   // Reset pagination whenever filters change so the user doesn't see
   // more-than-expected (or an empty load-more button).
@@ -239,9 +259,16 @@ export function BlogSearch({ posts }: BlogSearchProps) {
       </div>
 
       {/* Pillar Filters */}
-      <div className="flex flex-nowrap overflow-x-auto gap-2 justify-center pb-2 -mx-5 px-5 md:flex-wrap md:overflow-visible md:pb-0 md:mx-0 md:px-0 mb-3" role="group" aria-label="Filter by pillar">
+      <div
+        className="flex flex-nowrap overflow-x-auto gap-2 justify-center pb-2 -mx-5 px-5 md:flex-wrap md:overflow-visible md:pb-0 md:mx-0 md:px-0 mb-3"
+        role="group"
+        aria-label="Filter by pillar"
+      >
         <button
-          onClick={() => { setPillarFilter(""); setTopicFilter(""); }}
+          onClick={() => {
+            setPillarFilter("");
+            setTopicFilter("");
+          }}
           aria-pressed={!pillarFilter && !topicFilter}
           className={`px-4 py-2 rounded-full text-sm font-body transition-colors cursor-pointer whitespace-nowrap ${
             !pillarFilter && !topicFilter
@@ -274,7 +301,11 @@ export function BlogSearch({ posts }: BlogSearchProps) {
       </div>
 
       {/* Topic Filters */}
-      <div className="flex flex-nowrap overflow-x-auto gap-2 justify-center pb-2 -mx-5 px-5 md:flex-wrap md:overflow-visible md:pb-0 md:mx-0 md:px-0 mb-8" role="group" aria-label="Filter by topic">
+      <div
+        className="flex flex-nowrap overflow-x-auto gap-2 justify-center pb-2 -mx-5 px-5 md:flex-wrap md:overflow-visible md:pb-0 md:mx-0 md:px-0 mb-8"
+        role="group"
+        aria-label="Filter by topic"
+      >
         {TOPIC_FILTERS.map((topic) => {
           const count = posts.filter(topic.match).length;
           if (count === 0) return null;
@@ -305,7 +336,9 @@ export function BlogSearch({ posts }: BlogSearchProps) {
             THE FULL CATALOGUE
           </h2>
           <span className="text-xs text-foreground-subtle">
-            {gridPool.length} more article{gridPool.length === 1 ? "" : "s"}
+            {posts.length - featured.length} article
+            {posts.length - featured.length === 1 ? "" : "s"} across{" "}
+            {totalPages} pages
           </span>
         </div>
       )}
@@ -375,11 +408,14 @@ export function BlogSearch({ posts }: BlogSearchProps) {
 
                     <div className="mt-4 flex items-center justify-between">
                       <span className="text-xs text-foreground-subtle">
-                        {new Date(post.publishDate).toLocaleDateString("en-GB", {
-                          day: "numeric",
-                          month: "short",
-                          year: "numeric",
-                        })}
+                        {new Date(post.publishDate).toLocaleDateString(
+                          "en-GB",
+                          {
+                            day: "numeric",
+                            month: "short",
+                            year: "numeric",
+                          },
+                        )}
                       </span>
                       <span className="text-coral text-sm font-body font-medium">
                         Read &rarr;
@@ -438,6 +474,10 @@ export function BlogSearch({ posts }: BlogSearchProps) {
                 LOAD MORE ({gridPool.length - visible.length} REMAINING)
               </button>
             </div>
+          )}
+
+          {isBrowsingAll && (
+            <BlogPagination currentPage={currentPage} totalPages={totalPages} />
           )}
         </>
       )}
