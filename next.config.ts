@@ -574,6 +574,31 @@ const nextConfig: NextConfig = {
     ].join(", ");
 
     return [
+      // Next.js generates fingerprinted Open Graph image URLs such as
+      // /blog/<slug>/opengraph-image-<hash>. They are social-share assets,
+      // not search landing pages. GSC was classifying more than a thousand
+      // of these binary URLs as "Crawled - currently not indexed".
+      {
+        source: "/:path*/opengraph-image:hash(.*)",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow",
+          },
+        ],
+      },
+      // Public feeds remain crawlable for apps and AI agents, while the
+      // response header prevents raw JSON/XML documents becoming search
+      // results or polluting GSC's HTML indexing reports.
+      {
+        source: "/feeds/:path*",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow",
+          },
+        ],
+      },
       // Default security headers — applied to every path EXCEPT the public
       // /embed routes, which need to be framable on third-party sites.
       // path-to-regexp v8 supports regex constraints via :name(pattern); the
