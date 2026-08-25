@@ -97,6 +97,7 @@ const CURATED: string[] = [
   `https://${HOST}/blog/knee-pain-cycling-what-to-check-first`,
   `https://${HOST}/blog/cycling-knee-pain-prevention-treatment-guide`,
   `https://${HOST}/blog/cycling-knee-tracking-cleat-setup-guide`,
+  `https://${HOST}/blog/cycling-ankle-mobility-calf-strength-guide`,
   `https://${HOST}/tools/masters-ftp-benchmark`,
   `https://${HOST}/answers/ftp-by-age`,
 
