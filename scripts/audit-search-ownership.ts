@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import {
+  getSearchOwnerFallbackForTopicHub,
   SEARCH_OWNERS,
   hasDistinctSupportingIntent,
   normaliseSearchText,
@@ -22,6 +23,7 @@ interface Document {
   path: string;
   type: "blog" | "podcast";
   title: string;
+  primaryHub?: string;
   searchText: string[];
 }
 
@@ -43,6 +45,8 @@ function loadDocuments(): Document[] {
           path: `/${type}/${slug}`,
           type,
           title,
+          primaryHub:
+            typeof data.primaryHub === "string" ? data.primaryHub : undefined,
           searchText: [
             title,
             typeof data.seoTitle === "string"
@@ -96,7 +100,10 @@ const primaryQueries = new Set<string>();
 function resolveDocumentOwner(document: Document) {
   return resolveSearchOwner(document.searchText, {
     currentPath: document.path,
-    fallbackId: document.type === "podcast" ? "cycling-podcast" : undefined,
+    fallbackId:
+      document.type === "podcast"
+        ? "cycling-podcast"
+        : getSearchOwnerFallbackForTopicHub(document.primaryHub),
   });
 }
 

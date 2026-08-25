@@ -13,6 +13,11 @@ export interface SearchOwner {
   label: string;
   primaryQuery: string;
   description: string;
+  /**
+   * Editorial topic hubs whose articles support this canonical owner when
+   * their page metadata does not identify a more specific search family.
+   */
+  primaryHubSlugs: readonly string[];
   matchPhrases: readonly string[];
   supportingDestinations: readonly {
     path: string;
@@ -37,6 +42,7 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
     primaryQuery: "cycling podcast",
     description:
       "Canonical show page and searchable episode archive for broad cycling-podcast searches.",
+    primaryHubSlugs: [],
     matchPhrases: [
       "cycling podcast",
       "roadman podcast",
@@ -64,6 +70,7 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
     primaryQuery: "cycling coaching",
     description:
       "Canonical service page for online cycling-coach and cycling-coaching searches.",
+    primaryHubSlugs: ["cycling-coaching"],
     matchPhrases: [
       "cycling coaching",
       "online cycling coach",
@@ -91,6 +98,7 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
     primaryQuery: "masters cycling",
     description:
       "Canonical knowledge hub for masters cyclists and evidence-based training after 40.",
+    primaryHubSlugs: ["masters-cycling"],
     matchPhrases: [
       "masters cycling",
       "masters cyclist",
@@ -132,6 +140,7 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
     primaryQuery: "cycling training plans",
     description:
       "Canonical planning hub for structured cycling and event-training-plan searches.",
+    primaryHubSlugs: ["cycling-training-plans"],
     matchPhrases: [
       "cycling training plan",
       "cycling training plans",
@@ -165,6 +174,7 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
     primaryQuery: "cycling training camps",
     description:
       "Canonical commercial hub for Roadman road and gravel cycling camps in Girona.",
+    primaryHubSlugs: [],
     matchPhrases: [
       "cycling training camp",
       "cycling training camps",
@@ -191,6 +201,22 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
 export const SEARCH_OWNER_BY_ID = new Map(
   SEARCH_OWNERS.map((owner) => [owner.id, owner]),
 );
+
+/**
+ * Convert an article's explicit editorial hub into a search-owner fallback.
+ * This is deliberately a fallback: a narrower metadata match such as
+ * "cycling training camp" must still resolve to the camp owner even when the
+ * article lives in the broader training-plan topic hub.
+ */
+export function getSearchOwnerFallbackForTopicHub(
+  topicHubSlug: string | null | undefined,
+): SearchOwnerId | undefined {
+  if (!topicHubSlug) return undefined;
+
+  return SEARCH_OWNERS.find((owner) =>
+    owner.primaryHubSlugs.includes(topicHubSlug),
+  )?.id;
+}
 
 export function normaliseSearchText(value: string): string {
   return value

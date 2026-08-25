@@ -8,10 +8,11 @@ export function SearchOwnerLink({ owner }: { owner: SearchOwner }) {
       className="not-prose mb-8 rounded-xl border border-coral/20 bg-coral/[0.04] px-5 py-4"
     >
       <p className="font-heading text-coral text-xs tracking-[0.3em] mb-1">
-        START WITH THE DEFINITIVE GUIDE
+        EXPLORE THE MAIN ROADMAN RESOURCE
       </p>
       <p className="text-foreground-muted text-sm leading-relaxed mb-2">
-        This page supports Roadman&apos;s broader guide to {owner.primaryQuery}.
+        This page is part of Roadman&apos;s broader coverage of{" "}
+        {owner.primaryQuery}.
       </p>
       <Link
         href={owner.path}
