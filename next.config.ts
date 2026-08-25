@@ -187,6 +187,15 @@ const nextConfig: NextConfig = {
       { source: "/shop", destination: "/tools", permanent: true },
       { source: "/store", destination: "/tools", permanent: true },
       { source: "/products", destination: "/tools", permanent: true },
+      // Consolidated after the 25 Aug 2026 GSC review: this prevention and
+      // treatment article duplicated the stronger cycling-knee-pain owner.
+      // The canonical guide now contains the useful evidence and safety
+      // boundaries from both pages.
+      {
+        source: "/blog/cycling-knee-pain-prevention-treatment-guide",
+        destination: "/blog/cycling-knee-pain-causes-fixes",
+        permanent: true,
+      },
       // ClickFunnels "Roadman Toolkit" pillar-suffix variants. The bare
       // /toolkit + /the-toolkit redirects live further down with the other
       // ClickFunnels P1 rules; these catch the per-pillar lead magnets

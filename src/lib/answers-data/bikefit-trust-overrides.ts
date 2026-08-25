@@ -499,6 +499,14 @@ const OVERRIDES: Record<string, Partial<AnswerPage>> = {
   },
   "why-do-my-knees-hurt-cycling": kneePainTrust,
   "cycling-knee-pain-causes-and-fixes": kneePainTrust,
+  "how-to-manage-knee-pain-from-cycling": {
+    ...kneePainTrust,
+    seoTitle: "How to Manage Cycling Knee Pain Safely",
+    seoDescription:
+      "Manage cycling knee pain by reducing the aggravating load, recording training and equipment changes, and knowing when symptoms need clinical care.",
+    directAnswer:
+      "Manage cycling knee pain by reducing the ride or effort that reliably aggravates it, then recording the exact onset, recent training load and every equipment or position change. Pain location helps describe the symptom but cannot diagnose one cause or prescribe a saddle move. Restore a documented recent fit change when safe, and use a fitter for position. Seek clinical assessment for trauma, persistent or worsening pain, marked swelling, weakness, locking, giving way or symptoms away from cycling.",
+  },
   "how-to-fix-lower-back-pain-cycling": symptomTrust({
     symptom: "Lower-back pain while cycling",
     seoTitle: "Cycling Lower-Back Pain: Fit, Load and Warning Signs",
@@ -1695,6 +1703,107 @@ const OVERRIDES: Record<string, Partial<AnswerPage>> = {
   },
   "how-to-choose-the-right-saddle": saddleChoiceTrust,
   "how-to-choose-a-saddle": saddleChoiceTrust,
+  "cycling-with-bad-knees": {
+    seoTitle: "Cycling With Knee Pain or Osteoarthritis: A Safe Guide",
+    seoDescription:
+      "Cycling may suit some people with knee osteoarthritis or previous knee problems, but diagnosis, current symptoms and load matter. How to start safely.",
+    directAnswer:
+      "Cycling can be an exercise option for some people with knee osteoarthritis or a previous knee problem, but ‘bad knees’ is not a diagnosis and cycling is not automatically safe for every condition. A meta-analysis found stationary cycling reduced pain in knee-osteoarthritis trials, while several other outcomes did not exceed minimal clinically important differences. Ask a clinician about acute injury, surgery or unstable symptoms, start with a tolerable dose, and adjust the bicycle from measured response rather than a universal cadence or saddle rule.",
+    keyTakeaways: [
+      "Knee osteoarthritis, an acute injury, post-operative rehabilitation and unexplained pain require different advice.",
+      "Stationary cycling reduced pain in knee-osteoarthritis trials, but not every measured benefit was clinically important.",
+      "A professional fit can assess position; it cannot diagnose the knee or guarantee pain relief.",
+      "Build from a dose the individual tolerates and use clinical guidance for diagnosed conditions or rehabilitation.",
+    ],
+    whoFor: [
+      {
+        label: "The rider with diagnosed knee osteoarthritis",
+        detail:
+          "You want to discuss cycling as one exercise option inside a clinician-led plan.",
+      },
+      {
+        label: "The rider returning after a knee problem",
+        detail:
+          "You need current clearance and a progressive, symptom-informed return rather than generic setup advice.",
+      },
+    ],
+    roadmanView: [
+      "Cycling can be useful exercise without being a universal treatment for every knee labelled ‘bad’.",
+      "The safe sequence is diagnosis and clinical guidance when needed, then tolerable load, recorded position and progressive exposure.",
+    ],
+    expertEvidence: [
+      {
+        name: "Luan and colleagues",
+        credential:
+          "Authors of a systematic review and meta-analysis of stationary cycling for knee osteoarthritis",
+        insight:
+          "Across the included trials, stationary cycling reduced pain and improved sport function versus no exercise, while several stiffness, daily-living, function and quality-of-life outcomes did not exceed minimal clinically important differences.",
+      },
+    ],
+    practicalApplication: [
+      {
+        title: "Name the condition",
+        detail:
+          "Separate diagnosed osteoarthritis or a clinician-led rehabilitation plan from a new unexplained symptom. Do not use one article for all three.",
+      },
+      {
+        title: "Agree the starting dose",
+        detail:
+          "After appropriate clinical guidance, begin with duration and resistance that are tolerable during and after the session. There is no universal cadence or weekly increment.",
+      },
+      {
+        title: "Record the bicycle",
+        detail:
+          "Preserve saddle, cleat, crank and shoe coordinates. Use a qualified fitter when several variables interact or the position cannot be sustained.",
+      },
+      {
+        title: "Watch the response",
+        detail:
+          "Track symptoms, swelling, function and the following day. Escalate worsening, unstable or persistent symptoms instead of adding several fit changes.",
+      },
+    ],
+    commonMistakes: [
+      {
+        mistake: "Treating ‘bad knees’ as one diagnosis.",
+        fix: "Base the plan on the actual condition, current symptoms and clinical advice.",
+      },
+      {
+        mistake: "Assuming low impact means no meaningful knee load.",
+        fix: "Choose tolerable resistance and duration, then assess the individual response.",
+      },
+      {
+        mistake: "Buying a fit as a substitute for rehabilitation.",
+        fix: "Use fit for the rider-bicycle relationship and a clinician for diagnosis, treatment and return-to-sport decisions.",
+      },
+    ],
+    faq: [
+      {
+        question: "Is cycling good for knee osteoarthritis?",
+        answer:
+          "It can be one exercise option. A stationary-cycling meta-analysis found reduced pain, but several other outcomes did not exceed minimal clinically important differences. Suitability and dose remain individual.",
+      },
+      {
+        question: "Can I cycle after knee surgery?",
+        answer:
+          "Use the surgeon or rehabilitation clinician's restrictions and progression. Procedure, healing, range of motion, swelling and strength matter; a generic week or saddle-height rule is not safe.",
+      },
+      {
+        question: "Do I need a professional bike fit?",
+        answer:
+          "A fit can help when position or equipment limits a tolerable cycling setup. It does not diagnose the knee and should not replace clinical assessment for persistent, unstable or post-operative symptoms.",
+      },
+      {
+        question: "What symptoms should stop the session?",
+        answer:
+          "Stop and seek appropriate advice for severe or escalating pain, marked swelling, locking, giving way, inability to bear weight, or a hot red knee with fever or feeling unwell.",
+      },
+    ],
+    evidenceLevel: "strong",
+    evidenceNote:
+      "A meta-analysis of stationary cycling for knee osteoarthritis found reduced pain, while several other outcomes did not exceed minimal clinically important differences (PMID 33167714). This does not establish suitability for every knee condition.",
+    updatedDate: "2026-08-25",
+    reviewedBy: REVIEWER,
+  },
 };
 
 OVERRIDES["signs-your-bike-doesnt-fit-properly"] = {

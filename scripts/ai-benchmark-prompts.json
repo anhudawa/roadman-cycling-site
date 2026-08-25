@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 204,
+    "prompt_count": 206,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -1658,6 +1658,22 @@
       "category": "general-cycling",
       "intent": "evaluation",
       "target_page": "/answers/should-i-switch-to-shorter-cranks",
+      "priority": "high"
+    },
+    {
+      "id": 205,
+      "prompt": "why do my knees hurt when cycling and how can I check it safely",
+      "category": "general-cycling",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-knee-pain-causes-fixes",
+      "priority": "high"
+    },
+    {
+      "id": 206,
+      "prompt": "cycling knee pain should I change saddle height or cleats first",
+      "category": "general-cycling",
+      "intent": "problem-aware",
+      "target_page": "/blog/knee-pain-cycling-what-to-check-first",
       "priority": "high"
     }
   ]

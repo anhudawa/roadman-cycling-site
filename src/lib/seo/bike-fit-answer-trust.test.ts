@@ -4,12 +4,15 @@ import { describe, expect, it } from "vitest";
 import { ANSWER_PAGES } from "@/lib/answers";
 import { bikefitAnswers } from "@/lib/answers-data/bikefit";
 import { highVolumeQuery4Answers } from "@/lib/answers-data/high-volume-queries-4";
+import { highVolumeQuery12Answers } from "@/lib/answers-data/high-volume-queries-12";
+import { highVolumeQuery14Answers } from "@/lib/answers-data/high-volume-queries-14";
 
 const governedSlugs = [
   "signs-you-need-a-bike-fit",
   "signs-your-bike-doesnt-fit-properly",
   "why-do-my-knees-hurt-cycling",
   "cycling-knee-pain-causes-and-fixes",
+  "how-to-manage-knee-pain-from-cycling",
   "how-to-fix-lower-back-pain-cycling",
   "why-do-my-hands-go-numb-cycling",
   "how-to-stop-neck-pain-cycling",
@@ -32,6 +35,7 @@ const governedSlugs = [
   "how-to-prevent-saddle-sores",
   "how-to-choose-the-right-saddle",
   "how-to-choose-a-saddle",
+  "cycling-with-bad-knees",
 ] as const;
 
 const governed = governedSlugs.map((slug) => {
@@ -42,9 +46,17 @@ const governed = governedSlugs.map((slug) => {
 
 describe("bike-fit answer extraction trust", () => {
   it("applies a reviewed override to every priority answer", () => {
-    const sourceSlugs = [...bikefitAnswers, ...highVolumeQuery4Answers]
-      .filter((page) => page.cluster === "bikefit")
-      .map((page) => page.slug);
+    const sourceSlugs = [
+      ...[...bikefitAnswers, ...highVolumeQuery4Answers]
+        .filter((page) => page.cluster === "bikefit")
+        .map((page) => page.slug),
+      ...highVolumeQuery12Answers
+        .filter((page) => page.slug === "cycling-with-bad-knees")
+        .map((page) => page.slug),
+      ...highVolumeQuery14Answers
+        .filter((page) => page.slug === "how-to-manage-knee-pain-from-cycling")
+        .map((page) => page.slug),
+    ];
 
     expect(new Set(governedSlugs)).toEqual(new Set(sourceSlugs));
     expect(governed).toHaveLength(governedSlugs.length);
@@ -95,6 +107,11 @@ describe("bike-fit answer extraction trust", () => {
       "Sit bone width plus 20–30mm is the starting number",
       "More padding usually means more pressure",
       "A central cut-out or channel relieves perineal pressure for most riders",
+      "Dr Andy Pruitt's clinical data from 30,000+ bike fits",
+      "85% of cycling knee pain resolves",
+      "Reduce training volume by 30% for two to three weeks",
+      "Nine times out of ten, a small adjustment",
+      "A professional bike fit is essential for riders with existing knee conditions",
     ]) {
       expect(rendered).not.toContain(staleClaim);
     }
@@ -118,6 +135,12 @@ describe("bike-fit answer extraction trust", () => {
     expect(bySlug["how-often-update-bike-fit"].directAnswer).toContain(
       "There is no evidence-backed rule",
     );
+    expect(bySlug["cycling-with-bad-knees"].evidenceNote).toContain(
+      "PMID 33167714",
+    );
+    expect(
+      bySlug["how-to-manage-knee-pain-from-cycling"].directAnswer,
+    ).toContain("Pain location helps describe the symptom");
     expect(
       bySlug["how-to-adjust-handlebar-height-cycling"].directAnswer,
     ).toContain("Carbon steerers, integrated cockpits");

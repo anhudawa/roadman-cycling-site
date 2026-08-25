@@ -93,6 +93,9 @@ const CURATED: string[] = [
   `https://${HOST}/blog/ftp-benchmarks-by-age-and-experience`,
   `https://${HOST}/blog/bike-fit-guide-cyclists`,
   `https://${HOST}/topics/bike-fitting`,
+  `https://${HOST}/blog/cycling-knee-pain-causes-fixes`,
+  `https://${HOST}/blog/knee-pain-cycling-what-to-check-first`,
+  `https://${HOST}/blog/cycling-knee-pain-prevention-treatment-guide`,
   `https://${HOST}/tools/masters-ftp-benchmark`,
   `https://${HOST}/answers/ftp-by-age`,
 
@@ -250,6 +253,7 @@ const BIKE_FIT_ANSWER_TRUST_CLUSTER = [
   "signs-your-bike-doesnt-fit-properly",
   "why-do-my-knees-hurt-cycling",
   "cycling-knee-pain-causes-and-fixes",
+  "how-to-manage-knee-pain-from-cycling",
   "how-to-fix-lower-back-pain-cycling",
   "why-do-my-hands-go-numb-cycling",
   "how-to-stop-neck-pain-cycling",
@@ -272,6 +276,7 @@ const BIKE_FIT_ANSWER_TRUST_CLUSTER = [
   "how-to-prevent-saddle-sores",
   "how-to-choose-the-right-saddle",
   "how-to-choose-a-saddle",
+  "cycling-with-bad-knees",
 ];
 
 function clusterUrls(slugs: string[]): string[] {
