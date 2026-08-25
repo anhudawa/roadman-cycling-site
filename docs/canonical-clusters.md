@@ -60,10 +60,9 @@ Top 15 by relevance:
 - `what-experts-say-about-masters-cycling`
 - `masters-recovery-audit-seven-things-to-check`
 - `masters-cycling-recovery-after-40-guide`
-- `masters-ftp-benchmarks-cycling-guide`
 - `cycling-over-50-training`
 
-Full cluster: 95 blog posts mapped in `TOPIC_POST_MAP["masters-cycling"]` (topics.ts line 1567).
+Full cluster: 94 blog posts mapped in `TOPIC_POST_MAP["masters-cycling"]`. FTP-by-age benchmark intent belongs to the maintained `age-group-ftp-benchmarks-2026` evidence page below.
 
 ### Decision pages
 
