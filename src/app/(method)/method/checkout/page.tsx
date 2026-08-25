@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Join · The Roadman Method",
   description:
     "Twelve weeks. Five pillars. One framework. Built on 1,400+ conversations with World Tour coaches and sport scientists.",
+  // Transactional URLs (including tier/cancelled query variants) should not
+  // compete with the canonical Method sales page in organic search.
+  robots: { index: false, follow: true },
 };
 
 export default async function MethodCheckoutPage({

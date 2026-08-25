@@ -10,6 +10,11 @@ import { getGuestProfileOverride } from "@/lib/guests/profiles";
 import { getPostBySlug } from "@/lib/blog";
 import { PlateauCTA } from "@/components/cta";
 
+// Guest profiles are generated from a curated, build-time corpus. Reject
+// unknown slugs at the route boundary so retired junk guest names return a
+// real 404 instead of a streamed 200 "Guest Not Found" soft-404 page.
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return getAllGuestSlugs().map((slug) => ({ slug }));
 }
@@ -21,7 +26,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const guest = getGuestBySlug(slug);
-  if (!guest) return { title: "Guest Not Found" };
+  if (!guest) notFound();
 
   const description = guest.credential
     ? `${guest.name} — ${guest.credential}. ${guest.episodeCount} episode${guest.episodeCount > 1 ? "s" : ""} on The Roadman Cycling Podcast.`
