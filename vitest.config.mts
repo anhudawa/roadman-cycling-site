@@ -1,8 +1,15 @@
-import { defineConfig } from 'vitest/config'
+import { fileURLToPath } from "node:url";
+import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   resolve: {
-    tsconfigPaths: true,
+    // Tests cover code under agents/, which is intentionally excluded from
+    // the Next.js tsconfig. Resolve the application's @ alias explicitly so
+    // those integration tests load the same canonical entity registry as the
+    // production extraction scripts.
+    alias: {
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+    },
   },
   test: {
     environment: 'node',
