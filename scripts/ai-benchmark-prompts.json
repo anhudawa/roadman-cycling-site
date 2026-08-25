@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 209,
+    "prompt_count": 210,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -1699,6 +1699,14 @@
       "intent": "evaluation",
       "target_page": "/blog/bike-fit-one-change-amateurs-should-make",
       "priority": "high"
+    },
+    {
+      "id": 210,
+      "prompt": "what did Daryl Fitzgerald say about cycling saddle height",
+      "category": "general-cycling",
+      "intent": "education",
+      "target_page": "/blog/daryl-fitzgerald-saddle-height-one-change",
+      "priority": "medium"
     }
   ]
 }
