@@ -16,6 +16,7 @@ import { AskRoadmanCTA } from "@/components/features/aeo/AskRoadmanCTA";
 import { getTopicBySlug, getAllTopicSlugs, getTopicTitleBySlug } from "@/lib/topics";
 import { queryContentGraph } from "@/lib/content-graph";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
+import { OFFER_TIERS } from "@/lib/offer-ladder";
 
 export async function generateStaticParams() {
   return getAllTopicSlugs().map((slug) => ({ slug }));
@@ -584,9 +585,9 @@ export default async function TopicPage({
                     READY FOR A REAL COACH?
                   </h2>
                   <p className="text-foreground-muted max-w-lg mx-auto mb-6">
-                    The Not Done Yet coaching community is 1:1 personalised
-                    cycling coaching — training, nutrition, strength, recovery,
-                    and accountability. $195/month with a 7-day free trial.
+                    {OFFER_TIERS.notDoneYet.description}{" "}
+                    {OFFER_TIERS.notDoneYet.pricing.display} with a {" "}
+                    {OFFER_TIERS.notDoneYet.pricing.trial}.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
                     <Button href="/apply">Apply Now — 7-Day Free Trial</Button>

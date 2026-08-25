@@ -5,6 +5,7 @@ import { Button, Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 import { FAQSchema } from "@/components/seo/FAQSchema";
+import { OFFER_TIERS } from "@/lib/offer-ladder";
 
 export const metadata: Metadata = {
   title: "Cycling Coach for Triathletes — Bike-Leg Power for 70.3 & Ironman",
@@ -190,11 +191,11 @@ export default function TriathlonCoachingPage() {
           ],
           offers: {
             "@type": "Offer",
-            name: "Not Done Yet Coaching Community — Triathlon Bike Coaching",
+            name: "Not Done Yet Coaching — Triathlon Bike Coaching",
             price: "195",
             priceCurrency: "USD",
             description:
-              "1:1 bike-leg coaching for triathletes — power, pacing, bricks, fuelling, strength",
+              `${OFFER_TIERS.notDoneYet.description} Adapted for triathletes with bike-leg power, pacing, brick, fuelling, and strength guidance.`,
           },
           // NOTE: no Review markup here. These are narrative testimonials
           // with no star ratings, and Google requires a `reviewRating` on
@@ -212,7 +213,7 @@ export default function TriathlonCoachingPage() {
           "@type": "Course",
           name: "Triathlon Bike Coaching Programme",
           description:
-            "Structured online coaching programme for triathletes focused on the bike leg. Periodised over race-specific build cycles with weekly 1:1 coaching, personalised TrainingPeaks plans, brick workouts, and race-day pacing protocols.",
+            "Structured online coaching programme for triathletes focused on the bike leg. Periodised over race-specific build cycles with a personalised TrainingPeaks plan reviewed weekly, live group coaching, individual plan reviews, brick workouts, and race-day pacing protocols.",
           provider: { "@id": ENTITY_IDS.organization },
           hasCourseInstance: {
             "@type": "CourseInstance",

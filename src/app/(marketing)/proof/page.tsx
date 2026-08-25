@@ -584,7 +584,7 @@ export default function ProofLibraryPage() {
           metricsTitle="Race-day proof"
           metricsSubtitle="Category upgrades, power PRs, race wins."
           ctaHeading="WANT TO RACE WITH A REAL PLAN BEHIND YOU?"
-          ctaBody="Inner Circle is the small-group coaching room for serious racers and event riders. Weekly check-ins with Anthony, TrainingPeaks training plans, and the same five-pillar system that put Daniel Stone in Cat 1 in one season."
+          ctaBody="Inner Circle is Roadman's high-touch 1:1 coaching service for serious racers and event riders. Direct access, bespoke programming, and the same integrated performance system behind the results on this page."
           ctaPrimaryLabel="Apply for Inner Circle"
           ctaPrimaryHref="/inner-circle/apply"
           ctaSecondaryLabel="Apply for Not Done Yet"
@@ -756,8 +756,9 @@ export default function ProofLibraryPage() {
               </Link>
             </div>
             <p className="text-off-white/55 text-xs mt-6 max-w-md mx-auto">
-              All coaching reviewed personally by Anthony Walsh. $195/month.
-              7-day free trial. Cancel anytime.
+              Not Done Yet plans are reviewed weekly by the Roadman coaching
+              team, with live group coaching led by Anthony. $195/month. 7-day
+              free trial. Cancel anytime.
             </p>
           </Container>
         </Section>

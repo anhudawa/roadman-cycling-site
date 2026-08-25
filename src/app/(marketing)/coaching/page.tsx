@@ -14,6 +14,7 @@ import { JourneyBlock } from "@/components/journey";
 import { SEGMENT_DISPLAY_ORDER } from "@/lib/coaching-segments";
 import { ChoosePath } from "@/components/features/routing/ChoosePath";
 import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
+import { OFFER_TIERS } from "@/lib/offer-ladder";
 
 export const metadata: Metadata = {
   // Keep the complete search title compact. Google already displays the
@@ -340,11 +341,10 @@ export default function CoachingPage() {
           image: ["https://roadmancycling.com/og-image.jpg"],
           offers: {
             "@type": "Offer",
-            name: "Not Done Yet Coaching Community — Personalised Coaching",
+            name: "Not Done Yet Coaching — Personalised Group Coaching",
             price: "195",
             priceCurrency: "USD",
-            description:
-              "1:1 personalised coaching across training, nutrition, strength, recovery, and community",
+            description: OFFER_TIERS.notDoneYet.description,
             availability: "https://schema.org/InStock",
             url: "https://roadmancycling.com/apply",
             priceSpecification: {
