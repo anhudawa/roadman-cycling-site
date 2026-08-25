@@ -1707,9 +1707,9 @@ export const ANSWER_PAGES: AnswerPage[] = [
   ...highVolumeQuery9Answers,
   ...highVolumeQuery10Answers,
   ...highVolumeQuery11Answers,
-  ...highVolumeQuery12Answers,
+  ...highVolumeQuery12Answers.map(applyBikeFitTrustOverride),
   ...highVolumeQuery13Answers,
-  ...highVolumeQuery14Answers,
+  ...highVolumeQuery14Answers.map(applyBikeFitTrustOverride),
   ...highVolumeQuery15Answers,
 ];
 
