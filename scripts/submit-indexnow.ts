@@ -51,6 +51,10 @@ const CURATED: string[] = [
   `https://${HOST}/about`,
   `https://${HOST}/about/press`,
   `https://${HOST}/podcast`,
+  `https://${HOST}/masters`,
+  `https://${HOST}/training-plans`,
+  `https://${HOST}/training-camps`,
+  `https://${HOST}/watch`,
 
   // Geo coaching
   `https://${HOST}/coaching/ireland`,

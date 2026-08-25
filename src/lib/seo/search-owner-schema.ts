@@ -4,7 +4,7 @@ import {
   type SearchOwnerId,
 } from "@/lib/seo/search-ownership";
 
-export const SEARCH_OWNER_LAST_REVIEWED = "2026-08-24";
+export const SEARCH_OWNER_LAST_REVIEWED = "2026-08-25";
 
 /**
  * Shared WebPage trust properties for Roadman's five priority search owners.
