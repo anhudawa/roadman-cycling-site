@@ -108,6 +108,7 @@ const SKIP_PATTERNS: RegExp[] = [
   /^\/proof(\/|$)/,
   /^\/strength-training$/, // root only — /success below has no own
   /^\/training-camps$/, // root only — sub-routes below have no own
+  /^\/training-plans$/, // root has a hand-authored two-level trail
 
   // Tools with their own breadcrumb (via ToolSchemas wrapper or layout.tsx)
   /^\/tools\/(energy-availability|ftp-zones|fuelling|hr-zones|race-weight|shock-pressure|tyre-pressure|wkg|masters-ftp-benchmark|masters-recovery-score)/,
