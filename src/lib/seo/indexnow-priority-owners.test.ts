@@ -12,6 +12,17 @@ const PRIORITY_DISCOVERY_PATHS = [
   "/watch",
 ] as const;
 
+const TRAINING_CAMP_DISCOVERY_PATHS = [
+  "/blog/best-cycling-holidays-europe-2026",
+  "/blog/cycling-training-camp-nutrition-guide",
+  "/blog/cycling-training-camp-preparation-guide",
+  "/blog/cycling-training-camps-what-to-expect-guide",
+  "/blog/girona-training-camps-2026",
+  "/blog/mallorca-cycling-training-camp-guide",
+  "/blog/what-to-expect-cycling-training-camp",
+  "/podcast/ep-2175-lessons-from-riding-in-mallorca",
+] as const;
+
 describe("IndexNow priority search owners", () => {
   it("keeps every priority discovery surface in the curated submission", () => {
     const source = readFileSync(
@@ -21,6 +32,21 @@ describe("IndexNow priority search owners", () => {
 
     for (const path of PRIORITY_DISCOVERY_PATHS) {
       expect(source).toContain(`\`https://\${HOST}${path}\``);
+    }
+  });
+
+  it("keeps the training-camp authority cluster in repeatable discovery", () => {
+    const source = readFileSync(
+      resolve(process.cwd(), "scripts/submit-indexnow.ts"),
+      "utf8",
+    );
+
+    for (const path of TRAINING_CAMP_DISCOVERY_PATHS) {
+      if (path.startsWith("/blog/")) {
+        expect(source).toContain(`"${path.slice("/blog/".length)}"`);
+      } else {
+        expect(source).toContain(`\`https://\${HOST}${path}\``);
+      }
     }
   });
 });
