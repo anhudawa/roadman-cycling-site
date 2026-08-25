@@ -59,6 +59,7 @@ describe("priority search-owner schema", () => {
       );
       expect(source).toContain("<EvidenceBlock");
       expect(source).toContain('lastReviewed="25 August 2026"');
+      expect(source).toContain('"@type": "BreadcrumbList"');
     }
   });
 
