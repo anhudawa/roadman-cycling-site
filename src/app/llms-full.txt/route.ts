@@ -12,6 +12,11 @@ import { COMPARISONS } from "@/lib/comparisons";
 import { BEST_FOR_PAGES } from "@/lib/best-for";
 import { PROBLEM_PAGES } from "@/lib/problems";
 import { CAMP_LIST, formatCampDates } from "@/lib/camps/camps";
+import {
+  LLMS_FULL_EPISODE_LIMIT,
+  LLMS_FULL_RECENT_POST_LIMIT,
+  selectPriorityAndRecent,
+} from "@/lib/seo/llms-content";
 import { serialiseSearchOwners } from "@/lib/seo/search-ownership";
 
 const BASE_URL = SITE_ORIGIN;
@@ -28,14 +33,14 @@ const tag = (url: string) => tagUrlForAICrawler(url, "llms-txt");
  * /llms-full.txt — the fuller AI-crawler export.
  *
  * Where /llms.txt is a navigation map, /llms-full.txt is a curated
- * full-text document: every canonical page + every blog post's answer
- * capsule + every recent episode's TL;DR, concatenated into one text
- * file LLMs can ingest in a single fetch.
+ * full-text document: every canonical priority page + a curated set of blog
+ * answer capsules + recent episode TL;DRs, concatenated into one text file an
+ * LLM can ingest in a single fetch.
  *
  * Scope decision: we include each entry's answer capsule (the citation-
  * ready TL;DR) plus its seoDescription — and deliberately NOT the full
- * FAQ lists, blog-post bodies, or transcripts. With 350+ blog posts the
- * FAQ blocks alone ran to ~790KB and pushed the file past 1.2MB, which
+ * FAQ lists, blog-post bodies, or transcripts. Large unbounded inventories
+ * push the file past 1MB, which
  * hurts crawler ingestion economics without improving citation quality
  * (the per-page URL carries the FAQPage schema). Capsules + summaries are
  * the high-value chunk an LLM lifts; the page URL is the retrieval target
@@ -46,11 +51,15 @@ export async function GET() {
   const episodes = getAllEpisodes();
   const transcriptSlugs = new Set(getTranscriptSlugs());
   const searchOwners = serialiseSearchOwners();
+  const selectedPosts = selectPriorityAndRecent(
+    posts,
+    LLMS_FULL_RECENT_POST_LIMIT,
+  );
 
-  // Every blog post is included as title + URL + answer capsule + summary
-  // (no FAQ — see scope note above). They're authored long-form content
-  // with curated answer capsules, so this is net-positive for AI retrieval.
-  const blogSections = posts
+  // Curated posts include every evergreen priority plus the latest publishing
+  // window as title + URL + answer capsule + summary (no FAQ — see above).
+  // The complete inventory remains available through /feeds/articles.json.
+  const blogSections = selectedPosts
     .map((postMeta) => {
       const post = getPostBySlug(postMeta.slug);
       if (!post) return null;
@@ -69,10 +78,9 @@ export async function GET() {
     .filter(Boolean)
     .join("\n---\n\n");
 
-  // Cap episodes at the 80 most recent — earlier episodes are still in the
-  // sitemap and /llms.txt, but keeping this file under ~500KB matters for
-  // crawler ingestion economics.
-  const recentEpisodes = episodes.slice(0, 80);
+  // Earlier episodes remain in the podcast feed, JSON feed, knowledge graph
+  // and sitemap. The context export keeps only the newest evidence window.
+  const recentEpisodes = episodes.slice(0, LLMS_FULL_EPISODE_LIMIT);
 
   /**
    * AEO priority pages (DEV-AEO-03). The same priority taxonomy used in
@@ -294,11 +302,11 @@ Price: €${c.pricePerPerson} per person (single supplement €${c.singleSupplem
 ${c.description}`,
 ).join("\n\n")}
 
-## Blog Posts (${posts.length} total)
+## Selected Blog Posts (${selectedPosts.length} of ${posts.length} total — evergreen priorities plus ${LLMS_FULL_RECENT_POST_LIMIT} recent)
 
 ${blogSections}
 
-## Podcast Episodes (80 most recent of ${episodes.length} total — full list in sitemap.xml)
+## Podcast Episodes (${recentEpisodes.length} most recent of ${episodes.length} total — full list in /feeds/episodes.json)
 
 ${episodeSections}
 

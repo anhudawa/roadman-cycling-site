@@ -16,6 +16,11 @@ import {
   ANSWER_CLUSTERS,
   getAnswersByCluster,
 } from "@/lib/answers";
+import {
+  LLMS_SHORT_EPISODE_LIMIT,
+  LLMS_SHORT_RECENT_POST_LIMIT,
+  selectPriorityAndRecent,
+} from "@/lib/seo/llms-content";
 import { serialiseSearchOwners } from "@/lib/seo/search-ownership";
 
 const BASE_URL = SITE_ORIGIN;
@@ -53,40 +58,14 @@ export async function GET() {
   const episodes = getAllEpisodes();
   const searchOwners = serialiseSearchOwners();
 
-  // Curated high-value articles that should ALWAYS appear regardless of
-  // recency. These are the pillar-supporting content and linkable assets.
-  const PINNED_SLUGS = new Set([
-    "age-group-ftp-benchmarks-2026",
-    "bike-leg-of-triathlon-why-age-groupers-get-it-wrong",
-    "ironman-bike-training-plan-16-weeks",
-    "polarised-vs-sweet-spot-training",
-    "best-online-cycling-coach-how-to-choose",
-    "is-a-cycling-coach-worth-it-case-study",
-    "best-cycling-podcasts-2026",
-    "fast-talk-vs-cycling-podcast-vs-roadman",
-    "how-to-structure-cycling-training-plan",
-    "cycling-coach-vs-triathlon-coach",
-    "zwift-vs-trainerroad",
-    "wahoo-vs-garmin-cycling-computers",
-    "fasted-vs-fueled-cycling",
-    "zone-2-vs-endurance-training",
-    "aero-vs-weight-cyclist",
-    "tubeless-vs-clincher-tyres",
-    "cycling-over-40-complete-guide",
-    "masters-cycling-training-plan-over-40",
-    "polarised-training-cycling-complete-guide",
-    "sweet-spot-training-cycling-guide",
-    "bike-fit-guide-cyclists",
-  ]);
-
-  // Pinned posts first (stable high-value articles), then every remaining
-  // post in reverse-chronological order. No cap — llms.txt is the
-  // comprehensive machine-readable index, so every post must appear.
-  const pinnedPosts = posts.filter((p) => PINNED_SLUGS.has(p.slug));
-  const otherPosts = posts.filter((p) => !PINNED_SLUGS.has(p.slug));
-  const allBlogPosts = [...pinnedPosts, ...otherPosts];
-  // All episodes, most-recent-first (already sorted by getAllEpisodes).
-  const allEpisodes = episodes;
+  // The short form is a priority map, not a second sitemap. Keep the curated
+  // evergreen set plus a small recency window; complete inventories remain in
+  // the sitemap, knowledge graph and JSON feeds linked below.
+  const selectedBlogPosts = selectPriorityAndRecent(
+    posts,
+    LLMS_SHORT_RECENT_POST_LIMIT,
+  );
+  const recentEpisodes = episodes.slice(0, LLMS_SHORT_EPISODE_LIMIT);
 
   /**
    * AEO category priorities — DEV-AEO-03.
@@ -457,16 +436,16 @@ Focused clusters that interlink a definitive guide with its supporting articles.
 - [Coming back after a break?](${tag(`${BASE_URL}/you/comeback`)}): For returning cyclists rebuilding fitness.
 - [Podcast listener, not yet coaching?](${tag(`${BASE_URL}/you/listener`)}): For regular listeners considering coaching.
 
-## All Blog Posts (${allBlogPosts.length} articles — pinned high-value first, then reverse-chronological)
-${allBlogPosts
+## Selected Blog Posts (${selectedBlogPosts.length} of ${posts.length} articles — evergreen priorities first, then ${LLMS_SHORT_RECENT_POST_LIMIT} recent)
+${selectedBlogPosts
   .map(
     (p) =>
       `- [${p.title}](${tag(`${BASE_URL}/blog/${p.slug}`)}): ${p.seoDescription}`,
   )
   .join("\n")}
 
-## All Podcast Episodes (${allEpisodes.length} episodes — most-recent-first)
-${allEpisodes
+## Recent Podcast Episodes (${recentEpisodes.length} of ${episodes.length} episodes — complete catalogue in /feeds/episodes.json)
+${recentEpisodes
   .map(
     (e) =>
       `- [${e.title}](${tag(`${BASE_URL}/podcast/${e.slug}`)})${e.guest ? ` — guest: ${e.guest}${e.guestCredential ? ` (${e.guestCredential})` : ""}` : ""}: ${e.seoDescription}`,
@@ -489,7 +468,7 @@ AI agents and assistants can connect to query live data directly — no scraping
 For programmatic ingestion, prefer these endpoints over scraping HTML. All are public, cached, and stable.
 
 - [Knowledge Graph (JSON)](${BASE_URL}/knowledge-graph.json): Single-document property graph of every first-class entity on the site (people, topics, tools, episodes, articles, glossary terms, events, comparisons, problems, questions, best-for picks) plus typed relationships between them — guest_on, authored_by, mentions_expert, about_topic, features_article, related_to, uses_tool, defined_in, recommends, etc. Node ids are namespaced (\`type:slug\`) for direct loading into a property graph store. Schema version 1.
-- [Full Sitemap](${BASE_URL}/sitemap.xml): Machine-readable sitemap (~540 URLs).
+- [Full Sitemap](${BASE_URL}/sitemap.xml): Machine-readable index of every canonical public URL.
 - [Full Content for LLMs](${BASE_URL}/llms-full.txt): Curated full-text export of canonical pages, blog posts, and episode summaries.
 - [Articles JSON Feed](${BASE_URL}/feeds/articles.json): All blog posts as JSON — slug, title, pillar, publish/updated dates, answer capsule, FAQ, related episodes.
 - [Episodes JSON Feed](${BASE_URL}/feeds/episodes.json): All podcast episodes as JSON — guest, credential, transcript URL where available, pillar, topic tags.
