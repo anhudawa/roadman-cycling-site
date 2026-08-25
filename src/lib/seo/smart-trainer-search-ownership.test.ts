@@ -73,6 +73,27 @@ describe("smart-trainer search ownership", () => {
       .toContain('"indoor-trainer-vs-rollers"');
   });
 
+  it("keeps the indoor hub aligned with the current owner pages", () => {
+    const hub = read("content/topics/indoor-training.mdx");
+
+    expect(hub).toContain("Wahoo KICKR CORE 2");
+    expect(hub).toContain(
+      "[current smart trainer guide](/blog/best-indoor-smart-trainers-2026)",
+    );
+    expect(hub).toContain(
+      "TrainerRoad for the plan and Zwift for the virtual environment",
+    );
+
+    for (const staleClaim of [
+      "~$15/month",
+      "$700-$1,000",
+      "+/- 1-2%",
+      "Any trainer supporting both will connect to everything",
+    ]) {
+      expect(hub).not.toContain(staleClaim);
+    }
+  });
+
   it("keeps the category comparison current and distinct from model selection", () => {
     const source = read("content/blog/indoor-trainer-vs-rollers.mdx");
     const { data, content } = matter(source);
