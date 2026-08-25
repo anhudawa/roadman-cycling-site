@@ -131,6 +131,11 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
     ],
     supportingDestinations: [
       {
+        path: "/plan",
+        label: "Cycling Training Plans by Event",
+        intent: "Event-specific plan directory organised by weeks remaining",
+      },
+      {
         path: "/topics/cycling-training-plans",
         label: "Cycling Training Plan Methodology",
         intent: "Informational guide to periodisation and weekly structure",

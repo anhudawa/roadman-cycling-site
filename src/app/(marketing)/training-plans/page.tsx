@@ -11,6 +11,7 @@ import {
   SITE_ORIGIN,
 } from "@/lib/brand-facts";
 import { getTestimonialsByName } from "@/lib/testimonials";
+import { EVENTS } from "@/lib/training-plans";
 import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
 
 /**
@@ -550,6 +551,31 @@ export default function TrainingPlansPage() {
                 actually have. Pick the number you can defend for the whole
                 block — not the one that sounds the most serious.
               </p>
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" className="max-w-6xl mx-auto mb-8">
+              <Link
+                href="/plan"
+                data-track="training_plans_event_directory"
+                className="group flex flex-col gap-3 rounded-xl border border-coral/25 bg-coral/[0.05] p-6 transition-colors hover:border-coral/50 md:flex-row md:items-center md:justify-between"
+              >
+                <div>
+                  <p className="text-coral font-heading text-xs tracking-widest mb-2">
+                    TRAINING FOR A SPECIFIC EVENT?
+                  </p>
+                  <h3 className="font-heading text-xl text-off-white uppercase tracking-wide mb-2 group-hover:text-coral transition-colors">
+                    Browse {EVENTS.length} event-specific plan frameworks
+                  </h3>
+                  <p className="text-foreground-muted text-sm leading-relaxed max-w-2xl">
+                    Choose your sportive and the weeks you have left. Get the
+                    right base, build, peak or taper framework for that point in
+                    the calendar.
+                  </p>
+                </div>
+                <span className="font-heading text-coral tracking-wide uppercase shrink-0">
+                  Find my event →
+                </span>
+              </Link>
             </ScrollReveal>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-6xl mx-auto">

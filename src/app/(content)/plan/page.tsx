@@ -3,13 +3,24 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SearchOwnerLink } from "@/components/seo/SearchOwnerLink";
 import { EVENTS, PHASES } from "@/lib/training-plans";
 import { getAllPosts } from "@/lib/blog";
+import {
+  getSearchOwnerWebPageId,
+  SEARCH_OWNER_BY_ID,
+} from "@/lib/seo/search-ownership";
+
+const TRAINING_PLAN_OWNER = (() => {
+  const owner = SEARCH_OWNER_BY_ID.get("cycling-training-plans");
+  if (!owner) throw new Error("Missing cycling training plans search owner");
+  return owner;
+})();
 
 export const metadata: Metadata = {
-  title: "Cycling Training Plans by Event — Étape, Marmotte, Fred Whitton",
+  title: { absolute: `Cycling Event Training Plans — ${EVENTS.length} Sportives` },
   description:
-    "Event-specific cycling training plans. Wicklow 200, Ride London, Fred Whitton, Étape du Tour, Maratona Dolomites. Structured by weeks out — base, build, peak, taper.",
+    `Free cycling event training plans for ${EVENTS.length} sportives, structured by 16, 12, 8 or 4 weeks out. Choose the right base, build, peak or taper framework.`,
   alternates: {
     canonical: "https://roadmancycling.com/plan",
   },
@@ -29,10 +40,12 @@ export default function PlanIndexPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "CollectionPage",
+          "@id": "https://roadmancycling.com/plan#webpage",
           name: "Cycling Training Plans",
           description:
             "Structured training plans for specific cycling sportives and events, organised by weeks remaining.",
           url: "https://roadmancycling.com/plan",
+          isPartOf: { "@id": getSearchOwnerWebPageId(TRAINING_PLAN_OWNER) },
           hasPart: EVENTS.map((e) => ({
             "@type": "WebPage",
             name: `${e.name} Training Plan`,
@@ -54,7 +67,13 @@ export default function PlanIndexPage() {
             {
               "@type": "ListItem",
               position: 2,
-              name: "Training Plans",
+              name: "Cycling Training Plans",
+              item: "https://roadmancycling.com/training-plans",
+            },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: "Event Training Plans",
               item: "https://roadmancycling.com/plan",
             },
           ],
@@ -87,6 +106,7 @@ export default function PlanIndexPage() {
         {/* Events grid */}
         <Section background="charcoal">
           <Container>
+            <SearchOwnerLink owner={TRAINING_PLAN_OWNER} />
             <ScrollReveal direction="up" className="mb-10 text-center">
               <p className="font-heading text-coral text-xs tracking-widest mb-3">
                 BY EVENT
