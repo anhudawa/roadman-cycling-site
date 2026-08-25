@@ -21,6 +21,8 @@ describe("training-camp authority cluster enrichment", () => {
       expect(new Date(data.updatedDate).toISOString().slice(0, 10)).toBe(
         "2026-08-25",
       );
+      expect(data.seoDescription.length).toBeGreaterThanOrEqual(120);
+      expect(data.seoDescription.length).toBeLessThanOrEqual(160);
       expect(data.featuredImage).toMatch(/^\/images\//);
       expect(
         existsSync(resolve(process.cwd(), `public${data.featuredImage}`)),
