@@ -33,6 +33,7 @@ import {
 import { SITEMAP_IDS } from "@/lib/seo/sitemaps";
 
 const BASE_URL = "https://roadmancycling.com";
+const PRIORITY_OWNER_RELEASE_DATE = new Date("2026-08-25");
 
 /**
  * Split sitemaps by page type for GSC monitoring.
@@ -149,7 +150,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
       const totalPages = Math.max(1, Math.ceil(totalEpisodes / EPISODES_PER_PAGE));
       return Array.from({ length: totalPages }, (_, i) => ({
         url: i === 0 ? `${BASE_URL}/podcast` : `${BASE_URL}/podcast?page=${i + 1}`,
-        ...(i === 0 ? { lastModified: new Date("2026-08-24") } : {}),
+        ...(i === 0 ? { lastModified: PRIORITY_OWNER_RELEASE_DATE } : {}),
         changeFrequency: "weekly" as const,
         priority: i === 0 ? 0.8 : 0.6,
       }));
@@ -228,7 +229,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
       priority: 0.65,
     })),
     { url: `${BASE_URL}/apply`, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${BASE_URL}/coaching`, lastModified: new Date("2026-08-24"), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/coaching`, lastModified: PRIORITY_OWNER_RELEASE_DATE, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/coaching/triathletes`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/coaching/ireland`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/coaching/uk`, changeFrequency: "monthly", priority: 0.7 },
@@ -258,7 +259,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/you/event`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/you/comeback`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/you/listener`, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${BASE_URL}/plan`, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/plan`, lastModified: PRIORITY_OWNER_RELEASE_DATE, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/community/clubhouse`, changeFrequency: "weekly", priority: 0.7 },
     { url: `${BASE_URL}/community/not-done-yet`, changeFrequency: "weekly", priority: 0.7 },
     { url: `${BASE_URL}/community/not-done-yet/fit`, changeFrequency: "monthly", priority: 0.7 },
@@ -297,7 +298,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     // brand pages, not content-driven dynamic routes.
     { url: `${BASE_URL}/proof`, lastModified: new Date("2026-04-30"), changeFrequency: "weekly", priority: 0.85 },
     { url: `${BASE_URL}/find-your-fit`, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${BASE_URL}/masters`, lastModified: new Date("2026-08-24"), changeFrequency: "weekly", priority: 0.85 },
+    { url: `${BASE_URL}/masters`, lastModified: PRIORITY_OWNER_RELEASE_DATE, changeFrequency: "weekly", priority: 0.85 },
     { url: `${BASE_URL}/apps-vs-coaching`, changeFrequency: "monthly", priority: 0.75 },
     { url: `${BASE_URL}/event-prep`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/wrapped`, changeFrequency: "weekly", priority: 0.7 },
@@ -308,7 +309,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     // pages, while /training-plans is the marketing pillar above them.
     {
       url: `${BASE_URL}/training-plans`,
-      lastModified: new Date("2026-08-24"),
+      lastModified: PRIORITY_OWNER_RELEASE_DATE,
       changeFrequency: "weekly" as const,
       priority: 0.85,
     },
@@ -317,7 +318,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     // CAMP_LIST so we can't drift from the canonical config.
     {
       url: `${BASE_URL}/training-camps`,
-      lastModified: new Date("2026-08-24"),
+      lastModified: PRIORITY_OWNER_RELEASE_DATE,
       changeFrequency: "weekly" as const,
       priority: 0.9,
     },
