@@ -10,6 +10,7 @@ import {
   ENTITY_IDS,
   FOUNDER,
   PODCAST,
+  PODCAST_HISTORY,
   SAME_AS,
   SITE_ORIGIN,
 } from "@/lib/brand-facts";
@@ -39,8 +40,7 @@ const claims: { stat: string; label: string; evidence: string; href?: string }[]
   {
     stat: BRAND_STATS.episodeCountLabel,
     label: "Podcast episodes published",
-    evidence:
-      "Weekly long-form interviews with World Tour coaches, sports scientists, and pro riders since 2021.",
+    evidence: PODCAST_HISTORY.summary,
     href: "/podcast",
   },
   {
@@ -150,16 +150,16 @@ export default function RoadmanCyclingEntityPage() {
                 Originally founded as {BRAND.predecessorName} in{" "}
                 {BRAND.coachingSince}, the coaching business rebranded to{" "}
                 {BRAND.name} in {BRAND.foundedYear}
-                {" "}when the podcast launched — consolidating
-                Anthony&apos;s coaching practice and media output under a
-                single brand.
+                {" "}— bringing Anthony&apos;s existing podcast feed and coaching
+                practice under a single brand.
               </p>
               <p className="text-foreground-muted leading-relaxed">
-                The brand operates {PODCAST.name} — the world&apos;s largest
-                cycling performance podcast — alongside the Not Done Yet
-                coaching community, the Saturday Spin newsletter, an AI cycling
-                assistant, and a free library of browser-based calculators for
-                serious amateur cyclists.
+                The brand operates {PODCAST.name} — a cycling performance
+                podcast with {BRAND_STATS.podcastDownloadsLabel} lifetime
+                downloads — alongside the Not Done Yet coaching community, the
+                Saturday Spin newsletter, an AI cycling assistant, and a free
+                library of browser-based calculators for serious amateur
+                cyclists.
               </p>
             </ScrollReveal>
           </Container>
@@ -325,7 +325,7 @@ export default function RoadmanCyclingEntityPage() {
             </h2>
             <p className="text-off-white/80 max-w-md mx-auto mb-6 text-sm">
               1:1 cycling coaching across training, nutrition, strength, and
-              recovery — built on 1,400+ conversations with the best coaches
+              recovery — informed by 1,400+ podcast episodes and interviews with coaches
               and scientists in the sport.
             </p>
             <Button

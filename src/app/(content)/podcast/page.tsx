@@ -13,7 +13,13 @@ import {
   PodcastPagination,
   EPISODES_PER_PAGE,
 } from "@/components/features/podcast/PodcastPagination";
-import { ENTITY_IDS, SITE_ORIGIN, BRAND_STATS, PODCAST } from "@/lib/brand-facts";
+import {
+  ENTITY_IDS,
+  SITE_ORIGIN,
+  BRAND_STATS,
+  PODCAST,
+  PODCAST_HISTORY,
+} from "@/lib/brand-facts";
 import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
 
 interface PodcastPageProps {
@@ -142,6 +148,7 @@ export default async function PodcastPage({ searchParams }: PodcastPageProps) {
               "@context": "https://schema.org",
               "@type": "PodcastSeries",
               "@id": ENTITY_IDS.podcast,
+              datePublished: PODCAST_HISTORY.feedStartedDate,
               webFeed: `${SITE_ORIGIN}/feed/podcast`,
               author: { "@id": ENTITY_IDS.person },
               publisher: { "@id": ENTITY_IDS.organization },
@@ -283,7 +290,8 @@ export default async function PodcastPage({ searchParams }: PodcastPageProps) {
                   The Roadman Cycling Podcast is a searchable cycling knowledge
                   archive: interviews with WorldTour coaches, sports scientists,
                   professional riders, and practitioners, plus solo episodes that
-                  turn those conversations into answers for amateur cyclists.
+                  turn those conversations into answers for amateur cyclists. {" "}
+                  {PODCAST_HISTORY.summary}
                 </p>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                   {PODCAST_START_PATHS.map((path) => (

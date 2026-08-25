@@ -224,7 +224,7 @@ export function Footer({
                 />
               </Link>
               <p className="text-foreground-muted leading-relaxed mb-2">
-                The world&apos;s largest cycling performance podcast. Translating
+                A 100M-download cycling performance podcast. Translating
                 conversations with Greg LeMond, Professor Seiler, Dan Lorang, and
                 1,400+ episodes of world-class expertise into content that makes you
                 faster.

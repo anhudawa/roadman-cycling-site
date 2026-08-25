@@ -32,7 +32,7 @@ export function Hero() {
         <Reveal delay={160}>
           <p className="mt-8 max-w-[58ch] text-lg md:text-xl text-foreground-muted leading-relaxed">
             You&apos;re training hard. You&apos;re just not getting faster. The Roadman Method is the
-            12-week system that fixes that — five pillars, built from 1,400+ conversations
+            12-week system that fixes that — five pillars, built from 1,400+ podcast episodes
             with the coaches, scientists and pros who move the World Tour. Six hours a week.
             Lifetime access. Yours to keep.
           </p>

@@ -25,7 +25,7 @@ const PRICE = "297";
 const CURRENCY = "USD";
 
 const COURSE_DESCRIPTION =
-  "The Roadman Method is a 12-week structured training course for serious amateur and masters cyclists. Across five pillars — coaching, nutrition, strength, recovery and the craft of riding — it turns 1,400+ Roadman Cycling Podcast conversations with World Tour coaches and sport scientists into a self-coaching system you run week by week. Hosted by Anthony Walsh, with lifetime access and weekly module unlocks.";
+  "The Roadman Method is a 12-week structured training course for serious amateur and masters cyclists. Across five pillars — coaching, nutrition, strength, recovery and the craft of riding — it turns a 1,400+ episode Roadman Cycling Podcast catalogue featuring World Tour coaches and sport scientists into a self-coaching system you run week by week. Hosted by Anthony Walsh, with lifetime access and weekly module unlocks.";
 
 const provider = {
   "@type": "Organization",

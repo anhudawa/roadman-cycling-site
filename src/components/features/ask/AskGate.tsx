@@ -115,7 +115,7 @@ export function AskGate({ onSubmitted, initialError }: AskGateProps) {
           ENTER YOUR EMAIL TO GET STARTED.
         </h2>
         <p className="text-foreground-muted text-base leading-relaxed mb-6 max-w-2xl">
-          You get on-the-record answers grounded in 1,400+ podcast conversations
+          You get answers grounded in a 1,400+ episode podcast catalogue
           with World Tour coaches, sports scientists, and pro cyclists. We add
           you to the Saturday Spin newsletter — straight talk on training,
           fuelling, and recovery, once a week.

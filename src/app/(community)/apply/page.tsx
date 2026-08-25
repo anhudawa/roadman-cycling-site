@@ -360,7 +360,7 @@ export function ApplyPageView({
                   </h2>
                   <p>
                     Anthony Walsh has spent more than a decade coaching riders
-                    and 1,400+ podcast conversations learning from the best
+                    and hosts a 1,400+ episode podcast catalogue featuring the best
                     minds in endurance sport. Your application and your weekly
                     training signal get human attention.
                   </p>

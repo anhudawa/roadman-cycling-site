@@ -8,6 +8,7 @@ import {
   OrganizationJsonLd,
   PodcastEpisodeJsonLd,
 } from "./JsonLd";
+import { PODCAST_HISTORY } from "@/lib/brand-facts";
 
 function extractJsonLd(html: string): Record<string, unknown> {
   const match = html.match(
@@ -45,6 +46,16 @@ describe("OrganizationJsonLd", () => {
       (e) => e["@type"] === "Organization",
     );
     expect(org?.founder).toHaveProperty("@id");
+  });
+
+  it("publishes the verified podcast-feed start date", () => {
+    const html = renderToStaticMarkup(<OrganizationJsonLd />);
+    const data = extractJsonLd(html);
+    const podcast = (data["@graph"] as Array<Record<string, unknown>>).find(
+      (entity) => entity["@type"] === "PodcastSeries",
+    );
+
+    expect(podcast?.datePublished).toBe(PODCAST_HISTORY.feedStartedDate);
   });
 });
 

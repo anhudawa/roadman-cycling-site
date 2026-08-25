@@ -236,7 +236,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
     headline: "HOW CYCLING COACHING WORKS",
     ctaHeadline: "STOP GUESSING. START PROGRESSING.",
     description:
-      "The complete guide to cycling coaching. When to get a coach, what to look for, how online coaching works, and why most cyclists plateau without structured guidance. Built from 1,400+ podcast conversations with the coaches behind World Tour teams.",
+      "The complete guide to cycling coaching. When to get a coach, what to look for, how online coaching works, and why most cyclists plateau without structured guidance. Built from a 1,400+ episode podcast catalogue featuring coaches behind World Tour teams.",
     pillar: "coaching",
     keywords: [
       "cycling coach",

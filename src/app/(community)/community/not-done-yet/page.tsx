@@ -205,10 +205,10 @@ export default function NotDoneYetPage() {
               </p>
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-6">
                 Training. Nutrition. Strength. Recovery. Community.
-                Five pillars, one system — built from 1,400+ conversations
-                with the coaches, scientists, and riders at the top of the
-                sport. Not summarised. Not repackaged. Structured into your
-                week by the coach who had every single one of them on his show.
+                Five pillars, one system — informed by a 1,400+ episode podcast
+                catalogue featuring coaches, scientists, and riders at the top
+                of the sport. Not summarised. Not repackaged. Structured into
+                your week by the host who built the archive.
               </p>
               <p className="text-foreground-subtle text-sm">
                 For cyclists who refuse to plateau &middot; 7-day free trial

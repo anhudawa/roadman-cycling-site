@@ -127,8 +127,8 @@ export function buildMastersReportWelcomeEmail(): MastersReportWelcomeEmail {
               </p>
               <p style="margin:0 0 14px 0;font-size:16px;line-height:1.6;color:rgba(250,250,250,0.86);">
                 The PDF below is the 2026 reference for training after 40 &mdash;
-                built from 1,400+ conversations with World Tour coaches and the
-                peer-reviewed evidence behind them. 18 sections, 40+ citations,
+                informed by a 1,400+ episode podcast catalogue and the
+                peer-reviewed evidence behind it. 18 sections, 40+ citations,
                 five named coaching case studies, and a 12-week sample block
                 you can run on Monday.
               </p>

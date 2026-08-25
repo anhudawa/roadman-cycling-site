@@ -51,7 +51,7 @@ export const BRAND = {
   // Short, press-ready description reused by Organization schema,
   // root layout metadata, llms.txt preamble, and press pages.
   description:
-    "The world's largest cycling performance podcast. Evidence-based coaching, nutrition, strength, recovery, and community for serious amateur cyclists. Founded in Dublin in 2021 by Anthony Walsh (rebranded from A1 Coaching, est. 2013), Roadman's podcast has surpassed 100M+ lifetime downloads across 1,400+ episodes.",
+    "A cycling performance podcast and evidence-based coaching platform for serious amateur cyclists. Founded in Dublin in 2021 by Anthony Walsh (rebranded from A1 Coaching, est. 2013), Roadman's podcast has surpassed 100M+ lifetime downloads across 1,400+ episodes.",
 } as const;
 
 /**
@@ -133,6 +133,25 @@ export const PODCAST = {
     "https://podcasts.apple.com/us/podcast/the-roadman-cycling-podcast/id1224143549",
   spotifyUrl: "https://open.spotify.com/show/2oCs3N4ahypwzzUrFqgUmC",
   youtubeUrl: "https://youtube.com/@theroadmanpodcast",
+} as const;
+
+/**
+ * The podcast feed predates the Roadman Cycling brand. Apple Podcasts lists
+ * this exact show/feed as active from 2017, while Podchaser dates the feed to
+ * 31 March 2017. A1 Coaching and the existing media output were brought under
+ * the Roadman Cycling name in 2021. Keep both dates explicit: collapsing them
+ * into a single "launch" date creates conflicting entity histories.
+ */
+export const PODCAST_HISTORY = {
+  feedStartedDate: "2017-03-31",
+  feedStartedYear: 2017,
+  roadmanBrandSinceYear: BRAND.foundedYear,
+  summary:
+    "The podcast feed has been active since 2017 and has published under the Roadman Cycling brand since the 2021 rebrand.",
+  evidenceUrls: [
+    PODCAST.appleUrl,
+    "https://www.podchaser.com/podcasts/the-roadman-cycling-podcast-516594",
+  ],
 } as const;
 
 /**

@@ -211,7 +211,7 @@ const faqs = [
   {
     question: "Who actually coaches me?",
     answer:
-      "Anthony and the Roadman coaching team. The same methodology Anthony has built from 1,400+ podcast conversations with World Tour coaches and sports scientists — Seiler, Lorang, Wakefield, Kerrison, Friel — applied to your data, your week, your races. You're coached by people who know your name, your numbers, and your race calendar.",
+      "Anthony and the Roadman coaching team. The same methodology Anthony has built from a 1,400+ episode podcast catalogue featuring World Tour coaches and sports scientists — Seiler, Lorang, Wakefield, Kerrison, Friel — applied to your data, your week, your races. You're coached by people who know your name, your numbers, and your race calendar.",
   },
   {
     question: "Why $525 a month?",

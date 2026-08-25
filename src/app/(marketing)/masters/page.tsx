@@ -5,7 +5,7 @@ import { Button, Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
-import { SITE_ORIGIN } from "@/lib/brand-facts";
+import { PODCAST_HISTORY, SITE_ORIGIN } from "@/lib/brand-facts";
 import { getTestimonialsByName } from "@/lib/testimonials";
 import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
 
@@ -512,8 +512,9 @@ export default function MastersHubPage() {
                   <span className="text-coral">done properly</span>.
                 </h1>
                 <p className="text-foreground-muted text-lg md:text-xl leading-relaxed mb-4">
-                  For four years Roadman has put the people who actually study
-                  and coach masters performance on the mic — Stephen Seiler,
+                  Since {PODCAST_HISTORY.feedStartedYear}, Anthony has put the
+                  people who actually study and coach masters performance on
+                  the podcast — Stephen Seiler,
                   Andy Galpin, Joe Friel, David Lipman, Derek Teel. This is
                   everything they taught us about getting faster after 40,
                   pulled into one place.

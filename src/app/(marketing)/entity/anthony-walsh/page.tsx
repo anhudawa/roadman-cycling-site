@@ -16,7 +16,7 @@ import {
 const PAGE_URL = `${SITE_ORIGIN}/entity/anthony-walsh`;
 
 const PERSON_DESCRIPTION =
-  "Anthony Walsh is a cycling coach, the host of The Roadman Cycling Podcast, and the founder of Roadman Cycling. Based in Dublin, Ireland, he has recorded over 1,400 on-the-record interviews with World Tour coaches, sports scientists, and pro cyclists.";
+  "Anthony Walsh is a cycling coach, the host of The Roadman Cycling Podcast, and the founder of Roadman Cycling. Based in Dublin, Ireland, he hosts a 1,400+ episode catalogue featuring interviews with World Tour coaches, sports scientists, and pro cyclists.";
 
 export const metadata: Metadata = {
   title: "Anthony Walsh — Cycling Coach & Roadman Podcast Host",

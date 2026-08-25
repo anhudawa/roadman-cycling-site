@@ -9,6 +9,7 @@ import {
   ENTITY_IDS,
   FOUNDER,
   PODCAST,
+  PODCAST_HISTORY,
   SAME_AS,
   SITE_ORIGIN,
 } from "@/lib/brand-facts";
@@ -42,6 +43,10 @@ const namingFacts: { label: string; value: string }[] = [
   { label: "Founding location", value: BRAND.locationName },
   { label: "Founder", value: FOUNDER.name },
   { label: "Founder role", value: FOUNDER.jobTitle },
+  {
+    label: "Podcast feed active since",
+    value: String(PODCAST_HISTORY.feedStartedYear),
+  },
   { label: "Contact email", value: FOUNDER.email },
 ];
 
@@ -77,7 +82,7 @@ const numberFacts: { label: string; value: string; note?: string }[] = [
   {
     label: "Total podcast episodes",
     value: BRAND_STATS.episodeCountLabel,
-    note: "Recorded weekly since 2021",
+    note: PODCAST_HISTORY.summary,
   },
   {
     label: "Indexed episode pages on-site",

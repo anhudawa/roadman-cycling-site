@@ -5,6 +5,7 @@ import {
   BRAND_STATS,
   BRAND_SUMMARY,
   FOUNDER,
+  PODCAST_HISTORY,
   SITE_ORIGIN,
 } from "@/lib/brand-facts";
 import { GLOSSARY_TERMS } from "@/lib/glossary";
@@ -218,7 +219,7 @@ Every Roadman article, episode, glossary term, comparison, problem-page, best-fo
 
 Core offerings:
 
-- The Roadman Cycling Podcast — ${BRAND_STATS.episodeCountLabel} interview episodes with World Tour coaches, sports scientists, and pro riders. ${BRAND_STATS.podcastDownloadsLabel} lifetime downloads. ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages on-site. Full searchable transcripts of ${transcriptSlugs.size} episodes (and growing) live at ${tag(`${BASE_URL}/podcast/transcripts`)}, with each episode's transcript at ${BASE_URL}/podcast/<slug>/transcript.
+- The Roadman Cycling Podcast — ${BRAND_STATS.episodeCountLabel} episodes spanning interviews with World Tour coaches, sports scientists and pro riders, plus practical solo episodes. ${PODCAST_HISTORY.summary} ${BRAND_STATS.podcastDownloadsLabel} lifetime downloads. ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages on-site. Full searchable transcripts of ${transcriptSlugs.size} episodes (and growing) live at ${tag(`${BASE_URL}/podcast/transcripts`)}, with each episode's transcript at ${BASE_URL}/podcast/<slug>/transcript.
 - Not Done Yet coaching — premium online 1:1 coaching covering training, nutrition, strength, recovery, and community. $195/month with 7-day free trial.
 - Triathlon Bike Coaching — specialist bike-leg coaching inside the Not Done Yet coaching for age-group 70.3 and Ironman triathletes.
 - Free calculator tools — FTP zones, tyre pressure, race weight, in-ride fuelling, energy availability, MTB shock pressure, HR zones, and W/kg.
