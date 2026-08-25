@@ -8,6 +8,7 @@ import { ENTITY_IDS, BRAND_STATS, FOUNDER } from "@/lib/brand-facts";
 import { getSiteStats } from "@/lib/content-graph";
 import { getAllPosts } from "@/lib/blog";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { OFFER_TIERS } from "@/lib/offer-ladder";
 
 export const metadata: Metadata = {
   title: "Anthony Walsh — Cycling Coach, Author & Roadman Founder",
@@ -240,12 +241,12 @@ export default function AuthorPage() {
           <Container width="narrow">
             <div className="flex flex-col items-center text-center">
               <h2 className="font-heading text-xl text-off-white tracking-wide mb-3">
-                WORK WITH ANTHONY
+                WORK WITH ROADMAN
               </h2>
               <p className="text-foreground-muted text-sm max-w-md mb-6">
-                1:1 personalised coaching across five pillars: training,
-                nutrition, strength, recovery, and accountability. $195/month
-                with a 7-day free trial.
+                {OFFER_TIERS.notDoneYet.description}{" "}
+                {OFFER_TIERS.notDoneYet.pricing.display} with a {" "}
+                {OFFER_TIERS.notDoneYet.pricing.trial}.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button href="/apply">Apply for Coaching</Button>

@@ -5,6 +5,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, GradientText } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
+import { OFFER_TIERS } from "@/lib/offer-ladder";
 
 interface LocationData {
   title: string;
@@ -291,7 +292,7 @@ const LOCATIONS: Record<string, LocationData> = {
       {
         question: "Can I join Roadman CC club rides in Dublin?",
         answer:
-          "Yes. Roadman CC runs weekly rides from Dublin and Premium coaching members are welcome to join. Club rides are one way we build community — coaching is the 1:1 plan, the club is the shared ride. Both operate out of Dublin.",
+          "Yes. Roadman CC runs weekly rides from Dublin and coaching members are welcome to join. Club rides are one way we build community; Not Done Yet provides personalised TrainingPeaks planning and live group coaching, while the club provides the shared ride. Both operate out of Dublin.",
       },
       {
         question: "Do you coach Dublin-based riders for Wicklow 200 and local leagues?",
@@ -877,11 +878,10 @@ export default async function CoachingLocationPage({ params }: Props) {
           },
           offers: {
             "@type": "Offer",
-            name: "Not Done Yet Coaching Community — Personalised Coaching",
+            name: "Not Done Yet Coaching — Personalised Group Coaching",
             price: "195",
             priceCurrency: "USD",
-            description:
-              "1:1 personalised coaching across training, nutrition, strength, recovery, and community",
+            description: OFFER_TIERS.notDoneYet.description,
           },
         }}
       />

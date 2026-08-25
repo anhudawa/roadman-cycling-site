@@ -17,7 +17,8 @@ Roadman Cycling is a cycling media and coaching brand built around the serious a
 - **Podcast:** 1,400+ episodes, 311+ on YouTube video, 100M+ podcast downloads. The catalogue spans interviews with World Tour coaches, sports scientists and pro riders, plus practical solo episodes.
 - **YouTube:** 74K combined subscribers (main channel: 61K, clips: 13K)
 - **Free Community (Clubhouse):** 2,100+ members on Skool
-- **Paid Community (Not Done Yet):** 113 active members across Not Done Yet Coaching ($195/mo) and VIP ($1,950/yr)
+- **Not Done Yet Coaching:** $195/month group coaching with a personalised TrainingPeaks plan reviewed weekly, Anthony-led live group coaching, and a private rider community
+- **Roadman Inner Circle:** $525/month high-touch 1:1 coaching; application only
 - **Email List:** 29,782 contacts
 
 ## Voice

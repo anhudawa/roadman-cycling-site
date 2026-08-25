@@ -52,7 +52,7 @@ const tools = [
   {
     title: "Coaching Assessment",
     description:
-      "Ten questions to surface the right coaching pathway for where you are now — Clubhouse, Not Done Yet, or 1:1.",
+      "Ten questions to surface the right coaching pathway for where you are now — Clubhouse, Not Done Yet group coaching, or Roadman Inner Circle 1:1.",
     href: "/assessment",
     status: "live" as const,
   },

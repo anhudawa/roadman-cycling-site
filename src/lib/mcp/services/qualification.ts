@@ -1,3 +1,6 @@
+import { SITE_ORIGIN } from "@/lib/brand-facts";
+import { OFFER_TIERS } from "@/lib/offer-ladder";
+
 type Goal =
   | "build_ftp"
   | "target_event"
@@ -24,21 +27,17 @@ interface QualifyResult {
 }
 
 const PRODUCTS = {
-  "ndy-standard": {
-    name: "Not Done Yet — Standard ($15/mo)",
-    url: "https://roadmancycling.com/community/not-done-yet",
+  clubhouse: {
+    name: "Roadman Clubhouse (Free)",
+    url: `${SITE_ORIGIN}/community/clubhouse`,
   },
-  "ndy-premium": {
-    name: "Not Done Yet — Premium ($195/mo)",
-    url: "https://roadmancycling.com/apply",
+  "not-done-yet": {
+    name: `${OFFER_TIERS.notDoneYet.name} (${OFFER_TIERS.notDoneYet.pricing.display})`,
+    url: `${SITE_ORIGIN}${OFFER_TIERS.notDoneYet.cta.href}`,
   },
-  "ndy-vip": {
-    name: "Not Done Yet — VIP ($1,950/yr)",
-    url: "https://roadmancycling.com/apply",
-  },
-  "strength-training-course": {
-    name: "Strength Training for Cyclists ($49.99)",
-    url: "https://roadmancycling.com/strength-training",
+  "inner-circle": {
+    name: `Roadman Inner Circle — 1:1 Coaching (${OFFER_TIERS.oneToOne.pricing.display})`,
+    url: `${SITE_ORIGIN}${OFFER_TIERS.oneToOne.cta.href}`,
   },
 };
 
@@ -49,61 +48,47 @@ export function qualifyLead(input: QualifyInput): QualifyResult {
   const isExperienced =
     current_level === "experienced" || current_level === "racer";
 
-  // Experienced + high volume + specific goal → Premium
+  // Experienced + high volume + specific goal → direct 1:1 coaching.
   if (
     (goal === "build_ftp" || goal === "target_event") &&
     isExperienced &&
     isHighVolume
   ) {
     return {
-      recommended_product_id: "ndy-premium",
-      recommended_product_name: PRODUCTS["ndy-premium"].name,
+      recommended_product_id: "inner-circle",
+      recommended_product_name: PRODUCTS["inner-circle"].name,
       reasoning:
         "You're a serious cyclist with a specific goal and the training time to match. " +
-        "Premium gives you direct 1:1 access to Anthony plus the same framework World Tour coaches use — " +
-        "not a generic plan, a personalised one. Given your experience level, you'll feel the difference quickly.",
-      next_step_url: PRODUCTS["ndy-premium"].url,
-      alternative_products: ["ndy-vip", "ndy-standard"],
+        "Roadman Inner Circle gives you direct 1:1 access, bespoke programming, and a single line of accountability. " +
+        "Not Done Yet remains the lower-cost group-coaching alternative.",
+      next_step_url: PRODUCTS["inner-circle"].url,
+      alternative_products: ["not-done-yet"],
     };
   }
 
-  // Comeback / beginner → Standard first
-  if (goal === "comeback" || current_level === "beginner") {
+  // Complete beginners should start free before paying for coaching.
+  if (current_level === "beginner") {
     return {
-      recommended_product_id: "ndy-standard",
-      recommended_product_name: PRODUCTS["ndy-standard"].name,
+      recommended_product_id: "clubhouse",
+      recommended_product_name: PRODUCTS.clubhouse.name,
       reasoning:
-        "The comeback is the most important phase — structure and community matter more than intensity. " +
-        "Standard gives you the training framework, live Q&As with Anthony, and a community that understands " +
-        "exactly where you are. Most comeback riders upgrade to Premium once they've rebuilt consistency.",
-      next_step_url: PRODUCTS["ndy-standard"].url,
-      alternative_products: ["ndy-premium"],
+        "Build consistent riding habits before paying for a personalised programme. " +
+        "The free Roadman Clubhouse gives you a serious rider community and a place to learn; " +
+        "Not Done Yet is the next step once regular structured training is established.",
+      next_step_url: PRODUCTS.clubhouse.url,
+      alternative_products: ["not-done-yet"],
     };
   }
 
-  // Masters + event target → Premium (physiology-specific coaching matters most)
-  if (isMasters && goal === "target_event") {
-    return {
-      recommended_product_id: "ndy-premium",
-      recommended_product_name: PRODUCTS["ndy-premium"].name,
-      reasoning:
-        "Masters cyclists preparing for an event need periodisation that accounts for longer recovery needs " +
-        "and the specific physiology of the 45+ rider. Anthony has worked with hundreds of masters cyclists " +
-        "and will build a plan that gets you to the start line fit and fresh.",
-      next_step_url: PRODUCTS["ndy-premium"].url,
-      alternative_products: ["ndy-standard"],
-    };
-  }
-
-  // Default → Standard
+  // Comebacks, masters event riders, and the default serious amateur route to
+  // Not Done Yet's personalised planning plus group-coaching model.
   return {
-    recommended_product_id: "ndy-standard",
-    recommended_product_name: PRODUCTS["ndy-standard"].name,
-    reasoning:
-      "Not Done Yet Standard is the right starting point — you get the training structure, live Q&As, " +
-      "and community without over-committing. Most members upgrade to Premium 60-90 days in once they " +
-      "see the results. Start there, then decide.",
-    next_step_url: PRODUCTS["ndy-standard"].url,
-    alternative_products: ["ndy-premium"],
+    recommended_product_id: "not-done-yet",
+    recommended_product_name: PRODUCTS["not-done-yet"].name,
+    reasoning: isMasters && goal === "target_event"
+      ? "Not Done Yet combines a personalised TrainingPeaks plan reviewed weekly with live group coaching and masters-aware recovery, strength, nutrition, and event periodisation."
+      : "Not Done Yet is the core Roadman coaching route: a personalised TrainingPeaks plan reviewed weekly, live group coaching with Anthony, and a private rider community.",
+    next_step_url: PRODUCTS["not-done-yet"].url,
+    alternative_products: ["inner-circle", "clubhouse"],
   };
 }

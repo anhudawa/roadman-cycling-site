@@ -16,6 +16,7 @@ config({ path: ".env.local" });
 import { db } from "../src/lib/db";
 import { mcpProducts } from "../src/lib/db/schema";
 import { SITE_ORIGIN } from "../src/lib/brand-facts";
+import { OFFER_TIERS } from "../src/lib/offer-ladder";
 
 async function main() {
   await db.delete(mcpProducts);
@@ -23,42 +24,27 @@ async function main() {
   await db.insert(mcpProducts).values([
     // ─── Paid coaching tiers ──────────────────────────────────
     {
-      productKey: "ndy-standard",
-      name: "Not Done Yet — Standard",
-      priceCents: 1500,
+      productKey: "not-done-yet",
+      name: OFFER_TIERS.notDoneYet.name,
+      priceCents: OFFER_TIERS.notDoneYet.pricing.monthlyUsd * 100,
       currency: "USD",
       billingPeriod: "monthly",
-      description:
-        "The paid Not Done Yet community tier. Weekly live Q&A with Anthony, Vekta training plans, a growing library of coaching masterclasses, and access to the private members' channels. The entry point into Roadman's paid ecosystem for cyclists who want structure without 1:1 coaching yet.",
+      description: OFFER_TIERS.notDoneYet.description,
       whoItsFor:
-        "Cyclists who want structured training guidance, a serious community of peers, and weekly access to Anthony — but aren't ready for premium 1:1 coaching.",
-      url: `${SITE_ORIGIN}/community/not-done-yet`,
+        "Serious amateur and masters cyclists training 6–12 hours per week who want personalised planning, weekly review, live group coaching, and accountability.",
+      url: `${SITE_ORIGIN}${OFFER_TIERS.notDoneYet.cta.href}`,
       isActive: true,
     },
     {
-      productKey: "ndy-premium",
-      name: "Not Done Yet — Premium (1:1 Coaching)",
-      priceCents: 19500,
+      productKey: "inner-circle",
+      name: "Roadman Inner Circle — 1:1 Coaching",
+      priceCents: OFFER_TIERS.oneToOne.pricing.monthlyUsd * 100,
       currency: "USD",
       billingPeriod: "monthly",
-      description:
-        "The flagship Roadman coaching programme. Everything in Standard plus 1:1 coaching calls with Anthony, personalised training plan review on TrainingPeaks, nutrition and strength integration, and priority support. 7-day free trial. Cancel anytime.",
+      description: OFFER_TIERS.oneToOne.description,
       whoItsFor:
-        "Serious amateur cyclists who want real 1:1 attention — Cat 3-4 racers, gran fondo riders with a specific event, masters riders fighting a plateau, or anyone who's out-grown a self-made plan.",
-      url: `${SITE_ORIGIN}/apply`,
-      isActive: true,
-    },
-    {
-      productKey: "ndy-vip",
-      name: "Not Done Yet — VIP (Annual)",
-      priceCents: 195000,
-      currency: "USD",
-      billingPeriod: "yearly",
-      description:
-        "The full VIP experience: every Premium benefit plus exclusive VIP-only events, private rides, direct WhatsApp access to Anthony, and a significant annual discount over month-to-month Premium. 12-month commitment.",
-      whoItsFor:
-        "Cyclists who want the deepest integration with Anthony and the Roadman community and can commit annually — usually riders with multi-year performance goals or high-stakes events.",
-      url: `${SITE_ORIGIN}/apply`,
+        "Cyclists with specific, high-stakes goals who need direct 1:1 access, bespoke programming, and a single line of accountability.",
+      url: `${SITE_ORIGIN}${OFFER_TIERS.oneToOne.cta.href}`,
       isActive: true,
     },
 

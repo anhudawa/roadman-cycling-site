@@ -22,25 +22,38 @@ import { listUpcomingEvents } from "@/lib/mcp/services/events";
 import { qualifyLead } from "@/lib/mcp/services/qualification";
 
 describe("list_products service", () => {
-  it("returns array (empty when no products)", async () => {
+  it("returns the two canonical coaching products even when the database is empty", async () => {
     const products = await listProducts();
-    expect(Array.isArray(products)).toBe(true);
+    expect(products.map((product) => product.product_id)).toEqual([
+      "not-done-yet",
+      "inner-circle",
+    ]);
+    expect(products[0]).toMatchObject({
+      price: 195,
+      billing_period: "monthly",
+    });
+    expect(products[0].description).toContain("weekly live group coaching");
+    expect(products[1]).toMatchObject({
+      price: 525,
+      billing_period: "monthly",
+    });
+    expect(products[1].name).toContain("1:1 Coaching");
   });
 
-  it("maps product shape correctly", async () => {
+  it("keeps non-coaching database products alongside the canonical ladder", async () => {
     vi.mocked(
       (await import("@/lib/db")).db.select().from({} as never).where
     ).mockResolvedValueOnce([
       {
         id: 1,
-        productKey: "ndy-standard",
-        name: "Not Done Yet — Standard",
-        priceCents: 1500,
+        productKey: "strength-training-course",
+        name: "Strength Training for Cyclists",
+        priceCents: 4999,
         currency: "USD",
-        billingPeriod: "monthly",
-        description: "Community + coaching",
-        whoItsFor: "Serious amateurs",
-        url: "https://roadmancycling.com/community/not-done-yet",
+        billingPeriod: null,
+        description: "Cycling-specific strength course",
+        whoItsFor: "Cyclists who want to lift well",
+        url: "https://roadmancycling.com/strength-training",
         isActive: true,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -48,11 +61,13 @@ describe("list_products service", () => {
     ] as never[]);
 
     const products = await listProducts();
-    expect(products).toHaveLength(1);
-    expect(products[0].product_id).toBe("ndy-standard");
-    expect(products[0].price).toBe(15);
-    expect(products[0].currency).toBe("USD");
-    expect(products[0].billing_period).toBe("monthly");
+    expect(products).toHaveLength(3);
+    expect(products[2]).toMatchObject({
+      product_id: "strength-training-course",
+      price: 49.99,
+      currency: "USD",
+      billing_period: null,
+    });
   });
 });
 
@@ -97,7 +112,7 @@ describe("list_upcoming_events service", () => {
 });
 
 describe("qualify_lead service", () => {
-  it("recommends ndy-premium for experienced high-volume racer with specific goal", () => {
+  it("recommends Inner Circle for an experienced high-volume racer with a specific goal", () => {
     const result = qualifyLead({
       goal: "build_ftp",
       hours_per_week: 12,
@@ -105,12 +120,12 @@ describe("qualify_lead service", () => {
       age_bracket: "35_44",
       primary_challenge: "FTP plateau",
     });
-    expect(result.recommended_product_id).toBe("ndy-premium");
+    expect(result.recommended_product_id).toBe("inner-circle");
     expect(Array.isArray(result.alternative_products)).toBe(true);
     expect(result.next_step_url).toContain("apply");
   });
 
-  it("recommends ndy-standard for comeback cyclist", () => {
+  it("recommends Not Done Yet for a comeback cyclist", () => {
     const result = qualifyLead({
       goal: "comeback",
       hours_per_week: 5,
@@ -118,10 +133,10 @@ describe("qualify_lead service", () => {
       age_bracket: "45_54",
       primary_challenge: "Returning after injury",
     });
-    expect(result.recommended_product_id).toBe("ndy-standard");
+    expect(result.recommended_product_id).toBe("not-done-yet");
   });
 
-  it("recommends ndy-standard for beginner regardless of other factors", () => {
+  it("recommends the free Clubhouse for a beginner regardless of other factors", () => {
     const result = qualifyLead({
       goal: "target_event",
       hours_per_week: 10,
@@ -129,10 +144,10 @@ describe("qualify_lead service", () => {
       age_bracket: "35_44",
       primary_challenge: "Just starting out",
     });
-    expect(result.recommended_product_id).toBe("ndy-standard");
+    expect(result.recommended_product_id).toBe("clubhouse");
   });
 
-  it("recommends ndy-premium for masters cyclist targeting an event", () => {
+  it("recommends Not Done Yet for a masters cyclist targeting an event", () => {
     const result = qualifyLead({
       goal: "target_event",
       hours_per_week: 6,
@@ -140,10 +155,10 @@ describe("qualify_lead service", () => {
       age_bracket: "55_plus",
       primary_challenge: "Want to finish Marmotte",
     });
-    expect(result.recommended_product_id).toBe("ndy-premium");
+    expect(result.recommended_product_id).toBe("not-done-yet");
   });
 
-  it("defaults to ndy-standard for general improvement", () => {
+  it("defaults to Not Done Yet for general improvement", () => {
     const result = qualifyLead({
       goal: "general_improvement",
       hours_per_week: 6,
@@ -151,7 +166,7 @@ describe("qualify_lead service", () => {
       age_bracket: "35_44",
       primary_challenge: "Just want to get fitter",
     });
-    expect(result.recommended_product_id).toBe("ndy-standard");
+    expect(result.recommended_product_id).toBe("not-done-yet");
   });
 
   it("returns all required fields", () => {

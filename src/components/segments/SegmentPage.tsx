@@ -8,6 +8,7 @@ import {
   type SegmentData,
   SEGMENT_DISPLAY_ORDER,
 } from "@/lib/coaching-segments";
+import { OFFER_TIERS } from "@/lib/offer-ladder";
 
 interface Props {
   data: SegmentData;
@@ -41,11 +42,10 @@ export function SegmentPage({ data }: Props) {
           ],
           offers: {
             "@type": "Offer",
-            name: "Not Done Yet Coaching Community — Personalised Coaching",
+            name: "Not Done Yet Coaching — Personalised Group Coaching",
             price: "195",
             priceCurrency: "USD",
-            description:
-              "1:1 personalised coaching across training, nutrition, strength, recovery, and community",
+            description: OFFER_TIERS.notDoneYet.description,
           },
         }}
       />

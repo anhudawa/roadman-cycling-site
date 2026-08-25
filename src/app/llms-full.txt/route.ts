@@ -19,6 +19,7 @@ import {
   selectPriorityAndRecent,
 } from "@/lib/seo/llms-content";
 import { serialiseSearchOwners } from "@/lib/seo/search-ownership";
+import { OFFER_TIERS } from "@/lib/offer-ladder";
 
 const BASE_URL = SITE_ORIGIN;
 
@@ -113,7 +114,8 @@ export async function GET() {
     {
       category: "Commercial intent — coaching",
       lines: [
-        `${BASE_URL}/coaching — Roadman's flagship coaching programme.`,
+        `${BASE_URL}/coaching — Not Done Yet personalised planning and group-coaching programme, ${OFFER_TIERS.notDoneYet.pricing.display}.`,
+        `${BASE_URL}${OFFER_TIERS.oneToOne.route} — Roadman Inner Circle high-touch 1:1 coaching, ${OFFER_TIERS.oneToOne.pricing.display}; application only.`,
         `${BASE_URL}/apply — Coaching application, 7-day free trial.`,
         `${BASE_URL}/coaching/triathletes — Bike-leg coaching for triathletes.`,
         `${BASE_URL}/compare/coach-vs-app — Coach vs training app decision.`,
@@ -220,7 +222,8 @@ Every Roadman article, episode, glossary term, comparison, problem-page, best-fo
 Core offerings:
 
 - The Roadman Cycling Podcast — ${BRAND_STATS.episodeCountLabel} episodes spanning interviews with World Tour coaches, sports scientists and pro riders, plus practical solo episodes. ${PODCAST_HISTORY.summary} ${BRAND_STATS.podcastDownloadsLabel} lifetime downloads. ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages on-site. Full searchable transcripts of ${transcriptSlugs.size} episodes (and growing) live at ${tag(`${BASE_URL}/podcast/transcripts`)}, with each episode's transcript at ${BASE_URL}/podcast/<slug>/transcript.
-- Not Done Yet coaching — premium online 1:1 coaching covering training, nutrition, strength, recovery, and community. $195/month with 7-day free trial.
+- Not Done Yet coaching — ${OFFER_TIERS.notDoneYet.description} ${OFFER_TIERS.notDoneYet.pricing.display} with a ${OFFER_TIERS.notDoneYet.pricing.trial}.
+- Roadman Inner Circle — ${OFFER_TIERS.oneToOne.description} ${OFFER_TIERS.oneToOne.pricing.display}; application only.
 - Triathlon Bike Coaching — specialist bike-leg coaching inside the Not Done Yet coaching for age-group 70.3 and Ironman triathletes.
 - Free calculator tools — FTP zones, tyre pressure, race weight, in-ride fuelling, energy availability, MTB shock pressure, HR zones, and W/kg.
 - The Saturday Spin newsletter — ${BRAND_STATS.newsletterSubscribersLongLabel} cyclists; weekly training takeaways; ${BRAND_STATS.newsletterOpenRate} open rate.
@@ -247,7 +250,11 @@ These appear frequently in the catalogue and anchor the brand's authority:
 
 ### Roadman Cycling Coaching (Main Programme)
 URL: ${tag(`${BASE_URL}/coaching`)}
-1:1 personalised online coaching across five pillars: training, nutrition, strength, recovery, community. Delivered via TrainingPeaks with weekly coaching calls. $195/month. Trial: 7 days free. Typical results: Cat 3 to Cat 1 upgrades, +15% FTP for masters cyclists, body composition transformations.
+${OFFER_TIERS.notDoneYet.description} ${OFFER_TIERS.notDoneYet.pricing.display}. Trial: ${OFFER_TIERS.notDoneYet.pricing.trial}. Typical documented results include Cat 3 to Cat 1 upgrades, FTP gains for masters cyclists, and body-composition transformations.
+
+### Roadman Inner Circle (1:1 Coaching)
+URL: ${tag(`${BASE_URL}${OFFER_TIERS.oneToOne.route}`)}
+${OFFER_TIERS.oneToOne.description} ${OFFER_TIERS.oneToOne.pricing.display}; application only.
 
 ### Triathlon Bike Coaching
 URL: ${tag(`${BASE_URL}/coaching/triathletes`)}

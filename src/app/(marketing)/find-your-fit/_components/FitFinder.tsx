@@ -5,7 +5,7 @@ import Link from "next/link";
 import { trackAnalyticsEvent } from "@/lib/analytics/client";
 import { trackConsentedMetaEvent } from "@/lib/analytics/third-party-tags";
 
-type TierId = "clubhouse" | "notDoneYet" | "innerCircle" | "oneOnOne";
+type TierId = "clubhouse" | "notDoneYet" | "innerCircle";
 
 type Scores = Record<TierId, number>;
 
@@ -53,7 +53,7 @@ const QUESTIONS: Question[] = [
         id: "transform",
         label: "Total transformation — full custom programming, all-in",
         blurb: "You want a coach who knows your training, life, and ambitions cold.",
-        scores: { oneOnOne: 3, innerCircle: 1 },
+        scores: { innerCircle: 4 },
       },
     ],
   },
@@ -79,13 +79,13 @@ const QUESTIONS: Question[] = [
         id: "9-12",
         label: "9 to 12 hours",
         blurb: "Real volume. Worth real coaching.",
-        scores: { innerCircle: 3, oneOnOne: 1 },
+        scores: { innerCircle: 4 },
       },
       {
         id: "13-plus",
         label: "13 or more hours",
         blurb: "You're training like the goal is genuine performance.",
-        scores: { oneOnOne: 3, innerCircle: 2 },
+        scores: { innerCircle: 5 },
       },
     ],
   },
@@ -110,13 +110,13 @@ const QUESTIONS: Question[] = [
         id: "plateau",
         label: "Stuck on a plateau — I need someone reading my data",
         blurb: "You've trained hard. The numbers haven't moved. You want eyes on it.",
-        scores: { innerCircle: 3, oneOnOne: 1 },
+        scores: { innerCircle: 4 },
       },
       {
         id: "high-stakes",
         label: "I'm chasing a serious goal and can't afford to get it wrong",
         blurb: "The window matters. You want a coach fully bought into your result.",
-        scores: { oneOnOne: 3, innerCircle: 1 },
+        scores: { innerCircle: 4 },
       },
     ],
   },
@@ -141,13 +141,13 @@ const QUESTIONS: Question[] = [
         id: "weekly-coach",
         label: "A coach guiding me weekly with personal feedback",
         blurb: "You want someone reviewing the work and adjusting it.",
-        scores: { innerCircle: 3, oneOnOne: 1 },
+        scores: { innerCircle: 4 },
       },
       {
         id: "full-1to1",
         label: "Full 1:1 — programming everything around me",
         blurb: "Calls, custom plans, a coach who knows your life.",
-        scores: { oneOnOne: 3 },
+        scores: { innerCircle: 4 },
       },
     ],
   },
@@ -164,8 +164,8 @@ const QUESTIONS: Question[] = [
         scores: { clubhouse: 5 },
       },
       {
-        id: "under-100",
-        label: "Up to about $100 a month",
+        id: "under-200",
+        label: "Up to about $200 a month",
         blurb: "A real system without a 1:1 price tag.",
         scores: { notDoneYet: 4 },
       },
@@ -173,13 +173,13 @@ const QUESTIONS: Question[] = [
         id: "300-600",
         label: "$300 to $600 a month for a real coach",
         blurb: "Daily coach feedback territory.",
-        scores: { innerCircle: 4, oneOnOne: 1 },
+        scores: { innerCircle: 5 },
       },
       {
         id: "premium",
         label: "Whatever it takes — premium 1:1",
         blurb: "Top-end coaching, fully bespoke.",
-        scores: { oneOnOne: 4, innerCircle: 1 },
+        scores: { innerCircle: 5 },
       },
     ],
   },
@@ -246,45 +246,27 @@ const TIERS: Record<
     track: "find_your_fit_result_inner_circle",
     pixelValue: 525,
   },
-  oneOnOne: {
-    name: "1:1 Coaching",
-    price: "By application",
-    href: "/apply",
-    tagline:
-      "Premium private coaching. Custom programming around your life and your goal.",
-    bullets: [
-      "Application-only — small cohorts, real fit conversations",
-      "Custom training, nutrition, and strength programming",
-      "Direct line to your coach for the work that actually matters",
-      "Built for riders chasing a specific, time-bound result",
-    ],
-    cta: "Start your application",
-    track: "find_your_fit_result_one_on_one",
-    pixelValue: 525,
-  },
 };
 
 const EMPTY_SCORES: Scores = {
   clubhouse: 0,
   notDoneYet: 0,
   innerCircle: 0,
-  oneOnOne: 0,
 };
 
 type Answers = Partial<Record<Question["id"], string>>;
 
 const TIER_CEILING_BY_INVESTMENT: Record<string, TierId> = {
   free: "clubhouse",
-  "under-100": "notDoneYet",
+  "under-200": "notDoneYet",
   "300-600": "innerCircle",
-  premium: "oneOnOne",
+  premium: "innerCircle",
 };
 
 const TIER_RANK: TierId[] = [
   "clubhouse",
   "notDoneYet",
   "innerCircle",
-  "oneOnOne",
 ];
 
 function computeWinner(answers: Answers): TierId {
@@ -647,7 +629,7 @@ function buildReasons(tier: TierId, answers: Answers): string[] {
     reasons.push("You want a structured plan with people pulling alongside you — that's exactly the Not Done Yet model.");
   if (tier === "innerCircle" && goal === "peak")
     reasons.push("You've got a peak event on the calendar. Daily coach feedback is what gets you to the start line ready.");
-  if (tier === "oneOnOne" && goal === "transform")
+  if (tier === "innerCircle" && goal === "transform")
     reasons.push("You're after total transformation — that needs a coach who knows your training, life, and ambitions cold.");
 
   const hours = answers.hours;
@@ -657,7 +639,7 @@ function buildReasons(tier: TierId, answers: Answers): string[] {
     reasons.push("Five to eight hours is the sweet spot for a structured plan you can actually follow.");
   if (hours === "9-12" && tier === "innerCircle")
     reasons.push("Nine to twelve hours of training a week deserves a coach reading every session.");
-  if (hours === "13-plus" && (tier === "oneOnOne" || tier === "innerCircle"))
+  if (hours === "13-plus" && tier === "innerCircle")
     reasons.push("At thirteen-plus hours a week you're training like a serious athlete — coaching should match.");
 
   const frustration = answers.frustration;
@@ -665,7 +647,7 @@ function buildReasons(tier: TierId, answers: Answers): string[] {
     reasons.push("You're tired of conflicting advice. One trusted system beats ten half-followed ones.");
   if (frustration === "plateau" && tier === "innerCircle")
     reasons.push("If you're stuck on a plateau, the fix usually isn't more effort — it's another set of eyes on your data.");
-  if (frustration === "high-stakes" && tier === "oneOnOne")
+  if (frustration === "high-stakes" && tier === "innerCircle")
     reasons.push("You said you can't afford to get this wrong — that's exactly when 1:1 coaching earns its keep.");
   if (frustration === "none" && tier === "clubhouse")
     reasons.push("Nothing's broken — you just want quality cycling chat. The Clubhouse is the room for that.");
@@ -677,17 +659,17 @@ function buildReasons(tier: TierId, answers: Answers): string[] {
     reasons.push("Structure plus community — Not Done Yet is built around exactly that combination.");
   if (style === "weekly-coach" && tier === "innerCircle")
     reasons.push("You want weekly personal feedback — Inner Circle gives you that, and same-day reviews on top.");
-  if (style === "full-1to1" && tier === "oneOnOne")
+  if (style === "full-1to1" && tier === "innerCircle")
     reasons.push("Full 1:1 is the only setup that gives you a coach building everything around you.");
 
   const investment = answers.investment;
   if (investment === "free" && tier === "clubhouse")
     reasons.push("Free for now — start here, prove the system to yourself, and ascend when you're ready.");
-  if (investment === "under-100" && tier === "notDoneYet")
+  if (investment === "under-200" && tier === "notDoneYet")
     reasons.push("At $195 a month, Not Done Yet is the most coaching you can get short of a 1:1 seat.");
   if (investment === "300-600" && tier === "innerCircle")
     reasons.push("Inner Circle sits in your investment range and gives you daily coach feedback for it.");
-  if (investment === "premium" && tier === "oneOnOne")
+  if (investment === "premium" && tier === "innerCircle")
     reasons.push("You're willing to invest in premium — 1:1 coaching is the most hands-on seat we offer.");
 
   // Always include at least two reasons so the result never feels
@@ -702,8 +684,6 @@ function buildReasons(tier: TierId, answers: Answers): string[] {
         "It's the sweet spot — a real coaching system, a real community, without a 1:1 price tag.",
       innerCircle:
         "Inner Circle gives you everything Not Done Yet does, with a coach reading your data daily.",
-      oneOnOne:
-        "1:1 coaching is the right call when the goal is specific, time-bound, and you want full ownership of the plan.",
     };
     reasons.push(fallback[tier]);
   }

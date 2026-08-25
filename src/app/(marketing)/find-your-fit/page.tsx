@@ -10,8 +10,7 @@ import { FitFinder } from "./_components/FitFinder";
  * riders at the right Roadman product:
  *   • Free Clubhouse
  *   • Not Done Yet ($195/month)
- *   • Inner Circle ($525/month)
- *   • 1:1 Coaching (application)
+ *   • Roadman Inner Circle 1:1 Coaching ($525/month, application only)
  *
  * Goal: cut the "which one is for me?" ambiguity that quietly kills
  * conversions across the funnel. Quiz lives client-side, fires a
@@ -22,14 +21,14 @@ import { FitFinder } from "./_components/FitFinder";
 export const metadata: Metadata = {
   title: "Find Your Fit — Which Roadman Option Suits How You Train",
   description:
-    "Five questions. Two minutes. One specific recommendation — free Clubhouse, Not Done Yet, Inner Circle, or 1:1. The path that fits how you actually train right now.",
+    "Five questions. Two minutes. One specific recommendation — free Clubhouse, Not Done Yet group coaching, or Roadman Inner Circle 1:1 coaching.",
   alternates: {
     canonical: `${SITE_ORIGIN}/find-your-fit`,
   },
   openGraph: {
     title: "Find Your Fit — Which Roadman Option Suits How You Train",
     description:
-      "Five questions, one clear recommendation. The Roadman path that fits how you actually train right now — free Clubhouse, Not Done Yet, Inner Circle, or 1:1.",
+      "Five questions, one clear recommendation: free Clubhouse, Not Done Yet group coaching, or Roadman Inner Circle 1:1 coaching.",
     type: "website",
     url: `${SITE_ORIGIN}/find-your-fit`,
     images: [
@@ -85,7 +84,7 @@ export default function FindYourFitPage() {
     url: `${SITE_ORIGIN}/find-your-fit`,
     name: "Which Roadman Option Fits You?",
     description:
-      "Five-question interactive quiz that recommends the right Roadman product: Free Clubhouse, Not Done Yet, Inner Circle, or 1:1 Coaching.",
+      "Five-question interactive quiz that recommends the right Roadman product: Free Clubhouse, Not Done Yet group coaching, or Roadman Inner Circle 1:1 coaching.",
     isPartOf: { "@id": ENTITY_IDS.website },
     publisher: { "@id": ENTITY_IDS.organization },
     inLanguage: "en",

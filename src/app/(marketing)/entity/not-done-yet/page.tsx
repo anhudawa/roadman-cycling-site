@@ -151,22 +151,6 @@ export default function NotDoneYetEntityPage() {
               },
               category: "Cycling coaching subscription",
             },
-            {
-              "@type": "Offer",
-              name: "Roadman Inner Circle",
-              price: "525",
-              priceCurrency: "USD",
-              description:
-                "Monthly high-touch 1:1 coaching with daily session review, weekly written check-ins, monthly video review and performance-health tracking.",
-              priceSpecification: {
-                "@type": "UnitPriceSpecification",
-                price: "525",
-                priceCurrency: "USD",
-                billingDuration: "P1M",
-                unitText: "MONTH",
-              },
-              category: "Premium 1:1 cycling coaching",
-            },
           ],
         }}
       />
@@ -316,10 +300,12 @@ export default function NotDoneYetEntityPage() {
           <Container width="narrow">
             <ScrollReveal direction="up">
               <h2 className="font-heading text-2xl text-off-white tracking-wide mb-3">
-                MEMBERSHIP
+                COACHING OPTIONS
               </h2>
               <p className="text-foreground-muted text-sm mb-6">
-                Two tiers. 7-day free trial on the main coaching community.
+                Two distinct offers: Not Done Yet group coaching and Roadman
+                Inner Circle 1:1 coaching. The 7-day free trial applies to Not
+                Done Yet.
               </p>
             </ScrollReveal>
             <div className="grid sm:grid-cols-2 gap-3">
