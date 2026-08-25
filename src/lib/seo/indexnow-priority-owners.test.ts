@@ -23,6 +23,13 @@ const TRAINING_CAMP_DISCOVERY_PATHS = [
   "/podcast/ep-2175-lessons-from-riding-in-mallorca",
 ] as const;
 
+const FTP_BENCHMARK_DISCOVERY_PATHS = [
+  "/blog/age-group-ftp-benchmarks-2026",
+  "/blog/ftp-benchmarks-by-age-and-experience",
+  "/tools/masters-ftp-benchmark",
+  "/answers/ftp-by-age",
+] as const;
+
 describe("IndexNow priority search owners", () => {
   it("keeps every priority discovery surface in the curated submission", () => {
     const source = readFileSync(
@@ -47,6 +54,17 @@ describe("IndexNow priority search owners", () => {
       } else {
         expect(source).toContain(`\`https://\${HOST}${path}\``);
       }
+    }
+  });
+
+  it("keeps both FTP benchmark intents and their utilities discoverable", () => {
+    const source = readFileSync(
+      resolve(process.cwd(), "scripts/submit-indexnow.ts"),
+      "utf8",
+    );
+
+    for (const path of FTP_BENCHMARK_DISCOVERY_PATHS) {
+      expect(source).toContain(`\`https://\${HOST}${path}\``);
     }
   });
 });

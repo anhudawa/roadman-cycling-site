@@ -52,7 +52,7 @@
 
 | # | Pages | Issue | Resolution |
 |---|---|---|---|
-| 1 | `/blog/ftp-benchmarks-by-age-and-experience` vs `/blog/age-group-ftp-benchmarks-2026` | Same intent: "FTP benchmarks by age". Two URLs split rankings. | **Action:** keep `age-group-ftp-benchmarks-2026` as canonical primary (annual-refresh format wins SERP). The older `ftp-benchmarks-by-age-and-experience` should reposition as the *experience-level* benchmark (recreational → competitive → elite at any age) and add an `→` link to the 2026 age-banded version. |
+| 1 | `/blog/ftp-benchmarks-by-age-and-experience` vs `/blog/age-group-ftp-benchmarks-2026` | Formerly split "FTP benchmarks by age" intent. | **Resolved 25 August 2026:** `age-group-ftp-benchmarks-2026` owns age-banded benchmark intent. The 103-click incumbent keeps its URL but now owns experience-level intent only; its duplicate age tables, FAQ targets and age-focused keywords were removed. Three weaker duplicates permanently redirect to the maintained report. |
 | 2 | `/problem/stuck-on-plateau` + `/problem/flat-ftp` + `/problem/not-getting-faster` | Three diagnostic pages all triggered by similar symptom ("my FTP isn't moving"). | **Action:** declare `/problem/stuck-on-plateau` the primary; have `flat-ftp` and `not-getting-faster` cross-link to it as the canonical diagnostic. Differentiate by sub-symptom (flat-ftp = numerical evidence; not-getting-faster = perceived feel; stuck-on-plateau = both + fix system). |
 | 3 | `/blog/ftp-plateau-breakthrough` + `/problem/stuck-on-plateau` + `/plateau` (marketing) | Three pages for "FTP plateau". | **Resolved by intent layering:** blog = practical framework, problem = diagnostic Q&A, marketing = quiz + email capture. Each must end with a link to the next stage. |
 | 4 | `/blog/what-25-top-coaches-agree-on-about-ftp` + `/blog/what-worldtour-coaches-agree-on-ftp` | Same intent: "what coaches agree on about FTP". | **Action:** consolidate. Pick one — `what-25-top-coaches-agree-on-about-ftp` (broader, more citable) and have `what-worldtour-coaches-agree-on-ftp` redirect to it OR re-pitch as a tighter "World Tour pros only" angle distinct from the broader expert roundup. Flag for editorial decision. |
@@ -309,7 +309,7 @@ These need human review before mechanical action:
 
 1. **Consolidate `/best/best-cycling-training-apps` and `/best/best-cycling-apps-structured-training`** — same intent, near-identical picks. Recommended: keep `/best/best-cycling-training-apps` as canonical, redirect the second slug.
 2. **Consolidate `/blog/what-25-top-coaches-agree-on-about-ftp` and `/blog/what-worldtour-coaches-agree-on-ftp`** — pick one as the canonical FTP-coach-consensus piece.
-3. **Consolidate or differentiate `/blog/ftp-benchmarks-by-age-and-experience` and `/blog/age-group-ftp-benchmarks-2026`** — annual-refresh is the safer canonical.
+3. **Resolved 25 August 2026:** `/blog/age-group-ftp-benchmarks-2026` now owns age-banded FTP intent; `/blog/ftp-benchmarks-by-age-and-experience` is differentiated around training maturity.
 4. **Decide whether `content/drafts/hubs/cycling-weight-loss.mdx` is a planned republish** or should be deleted to prevent duplicate-content risk.
 5. **Add missing glossary entries:** `red-s`, `energy-availability`, `hrv`, `overtraining`, `adaptation`, `recovery-week`, `deadlift`, `squat`, `mobility-cycling`.
 6. **Add missing event hubs:** `/event/ring-of-beara`, `/event/dirty-reiver`, `/event/cape-epic`, `/event/trans-pyrenees` (plans exist but the hub layer is missing).

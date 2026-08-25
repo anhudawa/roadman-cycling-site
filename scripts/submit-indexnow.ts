@@ -84,6 +84,9 @@ const CURATED: string[] = [
 
   // Fresh flagship content
   `https://${HOST}/blog/age-group-ftp-benchmarks-2026`,
+  `https://${HOST}/blog/ftp-benchmarks-by-age-and-experience`,
+  `https://${HOST}/tools/masters-ftp-benchmark`,
+  `https://${HOST}/answers/ftp-by-age`,
 
   // Persona routes (shipped on main)
   `https://${HOST}/you/plateau`,

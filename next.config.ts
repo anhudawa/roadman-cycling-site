@@ -326,6 +326,26 @@ const nextConfig: NextConfig = {
         destination: "/blog/best-cycling-podcasts-2026",
         permanent: true,
       },
+      // FTP-by-age consolidation (Aug 2026). Search Console showed the
+      // maintained annual report earning 66 clicks / 3,695 impressions while
+      // these later near-duplicates had 5 clicks or fewer and one was unknown
+      // to Google. Preserve every old URL while concentrating benchmark intent
+      // and link equity in the maintained report.
+      {
+        source: "/blog/good-ftp-for-my-age",
+        destination: "/blog/age-group-ftp-benchmarks-2026",
+        permanent: true,
+      },
+      {
+        source: "/blog/cycling-what-is-a-good-ftp-by-age-guide",
+        destination: "/blog/age-group-ftp-benchmarks-2026",
+        permanent: true,
+      },
+      {
+        source: "/blog/masters-ftp-benchmarks-cycling-guide",
+        destination: "/blog/age-group-ftp-benchmarks-2026",
+        permanent: true,
+      },
       // Carbs-per-hour cannibalisation fix — two posts targeted the same
       // "carbs per hour cycling" query. The longer, expert-cited
       // carbohydrate-per-hour-cyclists is canonical; the "fuel like a pro"

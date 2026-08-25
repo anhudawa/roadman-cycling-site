@@ -264,6 +264,8 @@ This is the highest-risk cluster. Multiple pages target essentially the same hea
 
 **Risk:** Two blog posts and a tool all target "FTP benchmarks by age for masters cyclists." The blog posts in particular likely have very similar content.
 
+**Resolved 25 August 2026:** `/blog/masters-ftp-benchmarks-cycling-guide` permanently redirects to the maintained `/blog/age-group-ftp-benchmarks-2026` report. The calculator retains tool intent. Google Search Console showed the retired masters article at zero impressions and URL Inspection reported it as unknown to Google, so the consolidation sacrifices no measured search demand.
+
 ---
 
 ### GROUP 9 — MODERATE: "Body composition masters cyclists" (2 pages)
