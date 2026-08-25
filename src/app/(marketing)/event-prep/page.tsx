@@ -8,6 +8,8 @@ import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 import { EVENTS, PHASES, getEvent } from "@/lib/training-plans";
 import { getAllPosts } from "@/lib/blog";
 
+const STRUCTURED_IMAGE_URL = `${SITE_ORIGIN}/api/og/blog-hero?title=${encodeURIComponent("Cycling Event Preparation")}&pillar=coaching`;
+
 /**
  * /event-prep — front door for the bucket-list gran fondo achiever.
  * Pulls the existing /plan event data, the tools shelf, and curated
@@ -31,14 +33,6 @@ export const metadata: Metadata = {
       "Training plan, fuelling maths, pacing strategy and taper for your target event. Étape, Marmotte, Ride London, Fred Whitton, Mallorca 312.",
     type: "website",
     url: `${SITE_ORIGIN}/event-prep`,
-    images: [
-      {
-        url: `${SITE_ORIGIN}/event-prep/opengraph-image`,
-        width: 1200,
-        height: 630,
-        alt: "Roadman Cycling — Event Prep Hub",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -230,7 +224,7 @@ export default function EventPrepPage() {
     inLanguage: "en",
     primaryImageOfPage: {
       "@type": "ImageObject",
-      url: `${SITE_ORIGIN}/event-prep/opengraph-image`,
+      url: STRUCTURED_IMAGE_URL,
     },
     hasPart: featuredWithCountdown.map((row) => ({
       "@type": "WebPage",

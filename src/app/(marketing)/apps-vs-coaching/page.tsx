@@ -21,6 +21,7 @@ import { getTestimonialsByName } from "@/lib/testimonials";
 
 const PAGE_PATH = "/apps-vs-coaching";
 const PAGE_URL = `${SITE_ORIGIN}${PAGE_PATH}`;
+const STRUCTURED_IMAGE_URL = `${SITE_ORIGIN}/api/og/blog-hero?title=${encodeURIComponent("Cycling Apps vs Coaching")}&pillar=coaching`;
 
 type AppEntry = {
   name: string;
@@ -279,21 +280,12 @@ export const metadata: Metadata = {
       "Apps deliver the workout. Coaching writes it. Honest comparison of TrainingPeaks, Zwift, TrainerRoad, Strava, Garmin and Whoop — and where a coach sits above the stack.",
     type: "website",
     url: PAGE_URL,
-    images: [
-      {
-        url: `${PAGE_URL}/opengraph-image`,
-        width: 1200,
-        height: 630,
-        alt: "Apps vs Coaching — Roadman Cycling",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Apps vs Coaching — TrainingPeaks, Zwift, Whoop, and the Layer Above",
     description:
       "Apps deliver the work. Coaching writes it. An honest comparison of the cycling app stack.",
-    images: [`${PAGE_URL}/opengraph-image`],
   },
   robots: { index: true, follow: true },
 };
@@ -338,7 +330,7 @@ export default function AppsVsCoachingPage() {
     inLanguage: "en",
     primaryImageOfPage: {
       "@type": "ImageObject",
-      url: `${PAGE_URL}/opengraph-image`,
+      url: STRUCTURED_IMAGE_URL,
     },
   };
 

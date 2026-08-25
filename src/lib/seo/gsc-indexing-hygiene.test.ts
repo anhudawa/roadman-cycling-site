@@ -34,4 +34,29 @@ describe("GSC indexing hygiene", () => {
     expect(nextConfig).toContain('source: "/feeds/:path*"');
     expect(nextConfig.match(/value: "noindex, nofollow"/g)?.length).toBeGreaterThanOrEqual(2);
   });
+
+  it("keeps structured images crawlable without emitting unhashed metadata URLs", () => {
+    const robots = source("src/app/robots.ts");
+    const blogPage = source("src/app/(content)/blog/[slug]/page.tsx");
+    const structuredImagePages = [
+      "src/app/(marketing)/training-plans/page.tsx",
+      "src/app/(marketing)/event-prep/page.tsx",
+      "src/app/(marketing)/apps-vs-coaching/page.tsx",
+      "src/app/(marketing)/masters/page.tsx",
+    ].map(source);
+
+    expect(robots).toContain('"/api/og/blog-hero"');
+    expect(blogPage).toContain(
+      '`${SITE_ORIGIN}/api/og/blog-hero?slug=${encodeURIComponent(slug)}`',
+    );
+    expect(blogPage).not.toContain(
+      '`${SITE_ORIGIN}/blog/${slug}/opengraph-image`',
+    );
+
+    for (const page of structuredImagePages) {
+      expect(page).toContain("/api/og/blog-hero?title=");
+      expect(page).not.toContain("/opengraph-image`");
+      expect(page).not.toContain('/opengraph-image"');
+    }
+  });
 });

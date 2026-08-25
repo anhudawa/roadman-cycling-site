@@ -14,6 +14,8 @@ import { getTestimonialsByName } from "@/lib/testimonials";
 import { EVENTS } from "@/lib/training-plans";
 import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
 
+const STRUCTURED_IMAGE_URL = `${SITE_ORIGIN}/api/og/blog-hero?title=${encodeURIComponent("Cycling Training Plans")}&pillar=coaching`;
+
 /**
  * /training-plans — pillar hub for the "cycling training plans" topic
  * cluster.
@@ -54,14 +56,6 @@ export const metadata: Metadata = {
       "16-week periodised cycling plans built around 6 to 12 hours a week and tuned to one of four plateau profiles. No shelf templates.",
     type: "website",
     url: `${SITE_ORIGIN}/training-plans`,
-    images: [
-      {
-        url: `${SITE_ORIGIN}/training-plans/opengraph-image`,
-        width: 1200,
-        height: 630,
-        alt: "Roadman Cycling — Training Plans",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -323,7 +317,7 @@ export default function TrainingPlansPage() {
     ...buildSearchOwnerTrustProperties("cycling-training-plans"),
     primaryImageOfPage: {
       "@type": "ImageObject",
-      url: `${SITE_ORIGIN}/training-plans/opengraph-image`,
+      url: STRUCTURED_IMAGE_URL,
     },
     about: {
       "@type": "Thing",

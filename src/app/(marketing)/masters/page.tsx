@@ -30,6 +30,7 @@ import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
 
 const HUB_PATH = "/masters";
 const HUB_URL = `${SITE_ORIGIN}${HUB_PATH}`;
+const STRUCTURED_IMAGE_URL = `${SITE_ORIGIN}/api/og/blog-hero?title=${encodeURIComponent("Masters Cycling Training After 40")}&pillar=coaching`;
 
 const REPORT_HREF = "/blog/masters-cycling-training-report-2026";
 
@@ -418,21 +419,12 @@ export const metadata: Metadata = {
       "Training, strength, recovery and nutrition for serious cyclists over 40. The Roadman archive, the 2026 Masters Report, and the tools to run it next Monday.",
     type: "website",
     url: HUB_URL,
-    images: [
-      {
-        url: `${HUB_URL}/opengraph-image`,
-        width: 1200,
-        height: 630,
-        alt: "The Masters Cycling Authority — Roadman Cycling",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Masters Cycling Training — Getting Faster Over 40, 45, 50+",
     description:
       "The definitive, evidence-based resource for cyclists over 40. Training, strength, recovery, nutrition.",
-    images: [`${HUB_URL}/opengraph-image`],
   },
   robots: { index: true, follow: true },
 };
@@ -470,7 +462,7 @@ export default function MastersHubPage() {
     },
     primaryImageOfPage: {
       "@type": "ImageObject",
-      url: `${HUB_URL}/opengraph-image`,
+      url: STRUCTURED_IMAGE_URL,
     },
   };
 
