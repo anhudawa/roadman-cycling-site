@@ -28,10 +28,9 @@ import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
  */
 
 export const metadata: Metadata = {
-  title:
-    "Cycling Training Plans — Periodised, Coach-Designed, TrainingPeaks-Delivered",
+  title: { absolute: "Cycling Training Plans for 6–12 Hours a Week" },
   description:
-    "Structured cycling training plans for serious amateur and masters cyclists. 16-week periodisation, 6 to 12 hours a week, delivered on TrainingPeaks. Coach-designed against the four reasons amateur cyclists actually plateau — not pulled off a shelf.",
+    "16-week cycling training plans for 6, 8, 10 or 12 hours a week, delivered in TrainingPeaks and matched to your goal, fitness and available time.",
   keywords: [
     "cycling training plans",
     "structured cycling training",

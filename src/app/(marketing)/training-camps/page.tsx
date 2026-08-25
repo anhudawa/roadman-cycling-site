@@ -11,9 +11,9 @@ import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Cycling Training Camps in Girona, Spain — October 2026",
+  title: { absolute: "Cycling Training Camps in Girona — October 2026" },
   description:
-    "Road and gravel cycling camps in Girona, October 2026. Six days each, sixteen riders, two pace groups, follow car, Anthony in the group every day. €995 each or €1,700 for both.",
+    "Six-day road and gravel cycling camps in Girona, Spain. Two pace groups, follow car and coaching. October 2026, 16 riders, from €995.",
   keywords: [
     "cycling training camp",
     "cycling training camps",
