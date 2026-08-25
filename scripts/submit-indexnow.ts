@@ -203,6 +203,7 @@ const COMPARISON_CLUSTER = [
   "best-cycling-computers-2026",
   "best-indoor-smart-trainers-2026",
   "power-meter-buying-guide-cyclists",
+  "cycling-power-meter-accuracy-troubleshooting-guide",
   "zwift-vs-trainerroad",
   "wahoo-vs-garmin-cycling-computers",
   "power-meter-vs-smart-trainer",
