@@ -1152,7 +1152,7 @@ export default function CoachingPage() {
         <Section background="charcoal" className="!py-12">
           <Container width="narrow">
             <EvidenceBlock
-              lastReviewed="24 August 2026"
+              lastReviewed="25 August 2026"
               reviewedBy="Roadman Cycling coaching team"
               experts={[
                 {

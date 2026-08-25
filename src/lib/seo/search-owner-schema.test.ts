@@ -9,6 +9,10 @@ import {
 } from "./search-owner-schema";
 
 describe("priority search-owner schema", () => {
+  it("uses the verified owner-page release date", () => {
+    expect(SEARCH_OWNER_LAST_REVIEWED).toBe("2026-08-25");
+  });
+
   it("gives every owner the same entity, author and review contract", () => {
     for (const owner of SEARCH_OWNERS) {
       const schema = buildSearchOwnerTrustProperties(owner.id);
@@ -54,6 +58,7 @@ describe("priority search-owner schema", () => {
         `buildSearchOwnerTrustProperties("${ownerId}")`,
       );
       expect(source).toContain("<EvidenceBlock");
+      expect(source).toContain('lastReviewed="25 August 2026"');
     }
   });
 
