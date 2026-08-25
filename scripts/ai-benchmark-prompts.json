@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 201,
+    "prompt_count": 204,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -1634,6 +1634,30 @@
       "category": "general-cycling",
       "intent": "education",
       "target_page": "/blog/bike-fit-guide-cyclists",
+      "priority": "high"
+    },
+    {
+      "id": 202,
+      "prompt": "how often should I repeat a professional bike fit",
+      "category": "general-cycling",
+      "intent": "education",
+      "target_page": "/answers/how-often-update-bike-fit",
+      "priority": "high"
+    },
+    {
+      "id": 203,
+      "prompt": "does pain at the front of my knee mean my cycling saddle is too low",
+      "category": "general-cycling",
+      "intent": "problem-aware",
+      "target_page": "/answers/why-do-my-knees-hurt-cycling",
+      "priority": "high"
+    },
+    {
+      "id": 204,
+      "prompt": "should I switch to shorter cranks for cycling comfort",
+      "category": "general-cycling",
+      "intent": "evaluation",
+      "target_page": "/answers/should-i-switch-to-shorter-cranks",
       "priority": "high"
     }
   ]

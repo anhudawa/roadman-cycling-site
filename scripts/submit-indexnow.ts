@@ -242,12 +242,48 @@ const TRAINING_CAMP_CLUSTER = [
   "what-to-expect-cycling-training-camp",
 ];
 
+// Reviewed, evidence-bounded answers that support the canonical bike-fit
+// guide. These URLs target narrow questions without competing for the guide's
+// head term, and should be recrawled together when their answer data changes.
+const BIKE_FIT_ANSWER_TRUST_CLUSTER = [
+  "signs-you-need-a-bike-fit",
+  "signs-your-bike-doesnt-fit-properly",
+  "why-do-my-knees-hurt-cycling",
+  "cycling-knee-pain-causes-and-fixes",
+  "how-to-fix-lower-back-pain-cycling",
+  "why-do-my-hands-go-numb-cycling",
+  "how-to-stop-neck-pain-cycling",
+  "why-do-my-feet-go-numb-cycling",
+  "how-to-set-saddle-height",
+  "is-a-professional-bike-fit-worth-it",
+  "how-to-set-cleat-position",
+  "should-i-switch-to-shorter-cranks",
+  "how-often-update-bike-fit",
+  "how-to-check-saddle-fore-aft-position",
+  "how-to-adjust-handlebar-height-cycling",
+  "how-aggressive-should-my-position-be",
+  "bike-fit-comfort-vs-power",
+  "aero-without-losing-power",
+  "does-bike-fit-change-with-age",
+  "womens-bike-fit",
+  "handlebar-width-cycling",
+  "handlebar-reach-and-stem",
+  "indoor-training-position",
+  "how-to-prevent-saddle-sores",
+  "how-to-choose-the-right-saddle",
+  "how-to-choose-a-saddle",
+];
+
 function clusterUrls(slugs: string[]): string[] {
   return slugs.map((slug) => `https://${HOST}/blog/${slug}`);
 }
 
 function podcastUrls(slugs: string[]): string[] {
   return slugs.map((slug) => `https://${HOST}/podcast/${slug}`);
+}
+
+function answerUrls(slugs: string[]): string[] {
+  return slugs.map((slug) => `https://${HOST}/answers/${slug}`);
 }
 
 function eventGuideUrls(): string[] {
@@ -346,6 +382,7 @@ async function main() {
   clusterUrls(PODCAST_AUTHORITY_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(TRAINING_CAMP_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(COMPARISON_CLUSTER).forEach((u) => urls.add(u));
+  answerUrls(BIKE_FIT_ANSWER_TRUST_CLUSTER).forEach((u) => urls.add(u));
   urls.add(`https://${HOST}/podcast/ep-2175-lessons-from-riding-in-mallorca`);
 
   if (all) {
