@@ -395,6 +395,22 @@ const nextConfig: NextConfig = {
         destination: "/blog/age-group-ftp-benchmarks-2026",
         permanent: true,
       },
+      // General cycling-cadence consolidation (Aug 2026). Search Console
+      // showed the established general guide at 239 clicks / 33,311
+      // impressions over three months. The two July near-duplicates recorded
+      // 23 / 4,280 and 10 / 2,040 respectively, shared 0.86–0.92 cosine body
+      // similarity, and targeted the same optimal-RPM questions. Preserve both
+      // URLs while concentrating general cadence intent in the incumbent.
+      {
+        source: "/blog/cycling-cadence-optimal-rpm-guide",
+        destination: "/blog/cycling-cadence-optimal-guide",
+        permanent: true,
+      },
+      {
+        source: "/blog/cycling-cadence-finding-your-optimal-rpm-guide",
+        destination: "/blog/cycling-cadence-optimal-guide",
+        permanent: true,
+      },
       // Cycling-over-50 consolidation (Aug 2026). Search Console showed the
       // established January guide at 78 clicks / 3,290 impressions over three
       // months versus 4 clicks / 411 impressions for the July near-duplicate.

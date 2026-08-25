@@ -839,7 +839,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
   ],
   "cycling-training-plans": [
     "training-load-ctl-atl-tsb-explained-cyclists",
-    "cycling-cadence-optimal-rpm-guide",
     "ftp-test-protocols-compared-cycling",
     "cycling-taper-pmc-performance-management-chart",
     "efficiency-factor-trainingpeaks-tracking",
@@ -1492,7 +1491,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-working-with-a-coach-guide",
     "cycling-negative-splitting-guide",
     "cycling-what-pros-do-differently-guide",
-    "cycling-cadence-finding-your-optimal-rpm-guide",
     "cycling-zone-2-how-to-do-it-properly-guide",
     "cycling-blood-lactate-testing-guide",
     "cycling-why-training-alone-doesnt-work-guide",
@@ -2066,7 +2064,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cadence-training-cycling-complete-guide",
     "cycling-pedal-stroke-efficiency-guide",
     "cycling-cadence-drills-finding-optimal-guide",
-    "cycling-cadence-finding-your-optimal-rpm-guide",
   ],
   "ultra-endurance": [
     "badlands-training-guide",
@@ -2179,7 +2176,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "running-cycling-crossover-training-guide",
   ],
   "cycling-tech": [
-    "cycling-cadence-optimal-rpm-guide",
     "cycling-gearing-explained-chainrings-cassettes",
     "gps-watches-cycling-running-guide",
     "wahoo-vs-garmin-cycling-computers",
