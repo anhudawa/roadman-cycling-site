@@ -9,7 +9,8 @@
 //
 // Validates every link against:
 //   - Static page routes from src/app/**/page.tsx
-//   - Dynamic route slugs (blog/podcast/topics/entities from MDX filenames;
+//   - Dynamic route slugs (blog/podcast/answers/watch/topics/entities from
+//     production loaders;
 //     comparisons/case-studies/best-for/problems/questions/event-guides/glossary/
 //     coaching-segments/races/paid-reports from TS source arrays)
 //   - public/** static assets (images, csv, pdf)
@@ -112,6 +113,24 @@ const CASE_STUDY_SLUGS = new Set(INVENTORY.caseStudies);
 const BEST_FOR_SLUGS = new Set(INVENTORY.bestFor);
 const PROBLEM_SLUGS = new Set(INVENTORY.problems);
 const QUESTION_SLUGS = new Set(INVENTORY.questions);
+const ANSWER_SLUGS = new Set(INVENTORY.answers || []);
+const WATCH_SLUGS = new Set(INVENTORY.watch || []);
+const TOUR_STAGE_SLUGS = new Set(INVENTORY.tourStages || []);
+const TOUR_HISTORY_SLUGS = new Set(INVENTORY.tourHistory || []);
+const EXPERT_TOPIC_PATHS = new Set(
+  (INVENTORY.expertTopicPairs || []).map(
+    ({ expertSlug, topicSlug }) => `${expertSlug}/${topicSlug}`,
+  ),
+);
+const EXPERT_SLUGS = new Set(
+  (INVENTORY.expertTopicPairs || []).map(({ expertSlug }) => expertSlug),
+);
+const RECOMMENDATION_CATEGORY_SLUGS = new Set(
+  INVENTORY.recommendationCategories || [],
+);
+const RECOMMENDATION_PRODUCT_PATHS = new Set(
+  INVENTORY.recommendationProducts || [],
+);
 const EVENT_GUIDE_SLUGS = new Set(INVENTORY.eventGuides);
 const GLOSSARY_SLUGS = new Set(INVENTORY.glossary);
 const RACE_SLUGS = new Set(INVENTORY.races);
@@ -231,6 +250,12 @@ const DYNAMIC_ROUTE_VALIDATORS = [
   ["/best/", BEST_FOR_SLUGS],
   ["/problem/", PROBLEM_SLUGS],
   ["/question/", QUESTION_SLUGS],
+  ["/answers/", ANSWER_SLUGS],
+  ["/watch/", WATCH_SLUGS],
+  ["/tour-de-france/history/", TOUR_HISTORY_SLUGS],
+  ["/tour-de-france/stage/", TOUR_STAGE_SLUGS],
+  ["/experts/", null, false, "experts"],
+  ["/recommends/", null, false, "recommends"],
   ["/you/", PERSONA_SLUGS],
   ["/event/", EVENT_GUIDE_SLUGS],
   ["/plan/", EVENT_PLAN_SLUGS, /* allow /[weeksOut] */ true, "plan"],
@@ -346,6 +371,27 @@ function classifyInternalPath(rawPath) {
     if (kind === "results-tool") {
       // /results/<tool> AND /results/<tool>/<slug>
       if (TOOL_SLUGS.has(slug)) return { ok: true, type: "dynamic-tool", slug };
+      return { ok: false, type: "broken-dynamic", prefix, slug };
+    }
+    if (kind === "experts") {
+      if (segments.length === 1 && EXPERT_SLUGS.has(slug)) {
+        return { ok: true, type: "dynamic-expert", slug };
+      }
+      if (segments.length === 2 && EXPERT_TOPIC_PATHS.has(remainder)) {
+        return { ok: true, type: "dynamic-expert-topic", path: remainder };
+      }
+      return { ok: false, type: "broken-dynamic", prefix, slug };
+    }
+    if (kind === "recommends") {
+      if (segments.length === 1 && RECOMMENDATION_CATEGORY_SLUGS.has(slug)) {
+        return { ok: true, type: "dynamic-recommendation-category", slug };
+      }
+      if (
+        segments.length === 2 &&
+        RECOMMENDATION_PRODUCT_PATHS.has(remainder)
+      ) {
+        return { ok: true, type: "dynamic-recommendation-product", path: remainder };
+      }
       return { ok: false, type: "broken-dynamic", prefix, slug };
     }
     if (kind === "podcast") {
@@ -560,7 +606,10 @@ function processFile(filePath) {
   if (ext === ".mdx" || ext === ".md") {
     for (const m of body.matchAll(MD_LINK_RE)) {
       const url = m[1].split(/\s+/)[0];
-      if (!url || url.startsWith("#")) continue;
+      // Documentation templates occasionally use literal `(url)` as a field
+      // placeholder. It is not a deployed link and should not pollute the
+      // site-quality report.
+      if (!url || url === "url" || url.startsWith("#")) continue;
       pushLink({
         source: rel,
         line: findLineNumber(text, bodyStart + m.index),
@@ -876,7 +925,28 @@ for (const ref of links) {
   if (isInternal(url)) {
     const norm = normalizeInternal(url);
     const fragment = extractFragment(url);
-    const cls = classifyInternalPath(norm);
+    let cls = classifyInternalPath(norm);
+    // Blog loading sanitises a missing local featuredImage to `undefined`,
+    // which activates the guaranteed per-post Satori hero/OG fallback. Keep
+    // the source reference visible in the full report, but do not call the
+    // deployed page broken when the runtime deliberately replaces it.
+    if (
+      !cls.ok &&
+      ref.kind === "frontmatter-image" &&
+      ref.source.startsWith("content/blog/")
+    ) {
+      cls = { ok: true, type: "sanitized-blog-image-fallback" };
+    }
+    // These plan identifiers are inventory rows, not links: ResourceList
+    // renders them as non-navigable COMING SOON items unless the href is an
+    // absolute TrainingPeaks URL. Constrain the exception to that source.
+    if (
+      !cls.ok &&
+      ref.source === "src/lib/method/modules.ts" &&
+      norm.startsWith("/method/training-peaks/")
+    ) {
+      cls = { ok: true, type: "non-navigable-training-peaks-placeholder" };
+    }
     let issue = null;
     let suggestion = null;
     if (!cls.ok) {
@@ -955,6 +1025,16 @@ function suggestInternalFix(p) {
     const slug = p.slice("/guests/".length).split("/")[0];
     const close = closestSlug(slug, loadGuestSlugs());
     if (close) return `/guests/${close}`;
+  }
+  if (p.startsWith("/answers/")) {
+    const slug = p.slice("/answers/".length).split("/")[0];
+    const close = closestSlug(slug, ANSWER_SLUGS);
+    if (close) return `/answers/${close}`;
+  }
+  if (p.startsWith("/watch/")) {
+    const slug = p.slice("/watch/".length).split("/")[0];
+    const close = closestSlug(slug, WATCH_SLUGS);
+    if (close) return `/watch/${close}`;
   }
   return null;
 }
@@ -1102,6 +1182,13 @@ const report = {
     bestForSlugs: BEST_FOR_SLUGS.size,
     problemSlugs: PROBLEM_SLUGS.size,
     questionSlugs: QUESTION_SLUGS.size,
+    answerSlugs: ANSWER_SLUGS.size,
+    watchSlugs: WATCH_SLUGS.size,
+    tourStageSlugs: TOUR_STAGE_SLUGS.size,
+    tourHistorySlugs: TOUR_HISTORY_SLUGS.size,
+    expertTopicPaths: EXPERT_TOPIC_PATHS.size,
+    recommendationCategorySlugs: RECOMMENDATION_CATEGORY_SLUGS.size,
+    recommendationProductPaths: RECOMMENDATION_PRODUCT_PATHS.size,
     eventGuideSlugs: EVENT_GUIDE_SLUGS.size,
     raceSlugs: RACE_SLUGS.size,
     coachingLocationSlugs: COACHING_LOCATION_SLUGS.size,

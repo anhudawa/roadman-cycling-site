@@ -175,7 +175,7 @@ There is a reason LeMond's story sits naturally inside the Roadman frame. He was
 So take the literal lesson and the larger one together. Get aero — it is the cheapest speed you will ever buy. And the next time someone tells you the best is behind you, remember a man with pellets near his heart, on a borrowed idea of handlebars, winning the Tour de France by the length of a sprint.`,
     related: [
       { label: "Race Predictor — model your time trial", href: "/predict" },
-      { label: "Against the Clock", href: "/against-the-clock" },
+      { label: "Against the Clock", href: "/entity/against-the-clock" },
       { label: "Cycling time trial tips", href: "/blog/cycling-time-trial-tips" },
     ],
   },
@@ -449,7 +449,7 @@ There is a rider's lesson buried in the team time trial that opens it all, and i
       { label: "Stage 1 — the Barcelona team time trial", href: "/tour-de-france/stage/1" },
       { label: "The full 2026 race hub", href: "/tour-de-france" },
       { label: "Race Predictor — model your time trial", href: "/predict" },
-      { label: "Against the Clock", href: "/against-the-clock" },
+      { label: "Against the Clock", href: "/entity/against-the-clock" },
     ],
   },
 ];

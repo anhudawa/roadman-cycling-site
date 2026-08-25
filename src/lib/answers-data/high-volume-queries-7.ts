@@ -99,7 +99,7 @@ export const highVolumeQuery7Answers: AnswerPage[] = [
     relatedTopics: [
       { label: "FTP Zones Calculator", href: "/tools/ftp-zones" },
       { label: "Interval Builder", href: "/tools/interval-builder" },
-      { label: "What Is Watts per Kilo?", href: "/answers/what-is-watts-per-kilo" },
+      { label: "What Is a Good Watts per Kilo?", href: "/answers/what-is-a-good-watts-per-kg" },
     ],
     evidenceLevel: "moderate",
     publishDate: "2026-07-10",

@@ -131,9 +131,9 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
     ],
     relatedEpisodes: [],
     relatedTopics: [
-      { label: "Sleep and cycling performance", href: "/answers/sleep-and-cycling-performance" },
-      { label: "How to fuel long rides", href: "/answers/how-to-fuel-long-rides" },
-      { label: "Overtraining syndrome in cyclists", href: "/answers/overtraining-syndrome-cyclists" },
+      { label: "How much sleep cyclists need", href: "/answers/how-much-sleep-do-cyclists-need" },
+      { label: "Long-ride nutrition strategy", href: "/answers/cycling-long-ride-nutrition-strategy" },
+      { label: "Signs of overtraining in cyclists", href: "/answers/signs-of-overtraining-cycling" },
     ],
     evidenceLevel: "strong",
     publishDate: "2026-07-10",
@@ -266,8 +266,8 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
     ],
     relatedEpisodes: [],
     relatedTopics: [
-      { label: "How to fuel long rides", href: "/answers/how-to-fuel-long-rides" },
-      { label: "Hydration for cyclists", href: "/answers/hydration-for-cyclists" },
+      { label: "Long-ride nutrition strategy", href: "/answers/cycling-long-ride-nutrition-strategy" },
+      { label: "How much to drink while cycling", href: "/answers/how-much-to-drink-cycling" },
       { label: "How to recover faster after cycling", href: "/answers/how-to-recover-faster-after-cycling" },
     ],
     evidenceLevel: "strong",
@@ -401,8 +401,8 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
     ],
     relatedEpisodes: [],
     relatedTopics: [
-      { label: "Bike fit fundamentals", href: "/answers/bike-fit-fundamentals" },
-      { label: "Saddle discomfort and numbness", href: "/answers/saddle-discomfort-and-numbness" },
+      { label: "Signs you need a bike fit", href: "/answers/signs-you-need-a-bike-fit" },
+      { label: "How to choose a bike saddle", href: "/answers/how-to-choose-a-bike-saddle" },
       { label: "How to recover faster after cycling", href: "/answers/how-to-recover-faster-after-cycling" },
     ],
     evidenceLevel: "moderate",
@@ -536,9 +536,9 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
     ],
     relatedEpisodes: [],
     relatedTopics: [
-      { label: "Motivation and mental resilience", href: "/answers/motivation-and-mental-resilience" },
+      { label: "Mental toughness for cycling", href: "/answers/how-to-build-mental-toughness-cycling" },
       { label: "How to recover faster after cycling", href: "/answers/how-to-recover-faster-after-cycling" },
-      { label: "Zone 2 training explained", href: "/answers/zone-2-training-explained" },
+      { label: "What is Zone 2 training?", href: "/answers/what-is-zone-2-training" },
     ],
     evidenceLevel: "strong",
     publishDate: "2026-07-10",
@@ -671,9 +671,9 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
     ],
     relatedEpisodes: [],
     relatedTopics: [
-      { label: "Bike fit fundamentals", href: "/answers/bike-fit-fundamentals" },
-      { label: "Cleat setup and adjustment", href: "/answers/cleat-setup-and-adjustment" },
-      { label: "Strength training for cyclists", href: "/answers/strength-training-for-cyclists" },
+      { label: "Signs you need a bike fit", href: "/answers/signs-you-need-a-bike-fit" },
+      { label: "How to set cleat position", href: "/answers/how-to-set-cleat-position" },
+      { label: "Strength training for beginner cyclists", href: "/answers/strength-training-for-beginner-cyclists" },
     ],
     evidenceLevel: "strong",
     publishDate: "2026-07-10",
@@ -811,7 +811,7 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
     relatedEpisodes: [],
     relatedTopics: [
       { label: "How to improve FTP", href: "/answers/how-to-improve-ftp" },
-      { label: "Bike fit fundamentals", href: "/answers/bike-fit-fundamentals" },
+      { label: "Signs you need a bike fit", href: "/answers/signs-you-need-a-bike-fit" },
       { label: "How to ride faster uphill", href: "/answers/how-to-ride-faster-uphill" },
     ],
     evidenceLevel: "strong",
@@ -1082,7 +1082,7 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
     relatedTopics: [
       { label: "How to improve FTP", href: "/answers/how-to-improve-ftp" },
       { label: "How to build cycling speed", href: "/answers/how-to-build-cycling-speed" },
-      { label: "Power-to-weight ratio explained", href: "/answers/power-to-weight-ratio-explained" },
+      { label: "What is a good power-to-weight ratio?", href: "/answers/what-is-a-good-power-to-weight-ratio" },
     ],
     evidenceLevel: "strong",
     publishDate: "2026-07-10",
@@ -1216,7 +1216,7 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
     relatedEpisodes: [],
     relatedTopics: [
       { label: "How to improve FTP", href: "/answers/how-to-improve-ftp" },
-      { label: "Zone 2 training explained", href: "/answers/zone-2-training-explained" },
+      { label: "What is Zone 2 training?", href: "/answers/what-is-zone-2-training" },
       { label: "How to build cycling speed", href: "/answers/how-to-build-cycling-speed" },
     ],
     evidenceLevel: "strong",
@@ -1351,8 +1351,8 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
     relatedEpisodes: [],
     relatedTopics: [
       { label: "How to improve cycling power", href: "/answers/how-to-improve-cycling-power" },
-      { label: "Bike fit fundamentals", href: "/answers/bike-fit-fundamentals" },
-      { label: "Zone 2 training explained", href: "/answers/zone-2-training-explained" },
+      { label: "Signs you need a bike fit", href: "/answers/signs-you-need-a-bike-fit" },
+      { label: "What is Zone 2 training?", href: "/answers/what-is-zone-2-training" },
     ],
     evidenceLevel: "strong",
     publishDate: "2026-07-10",
@@ -1491,7 +1491,7 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
     relatedTopics: [
       { label: "What to carry on a bike ride", href: "/answers/what-to-carry-on-a-bike-ride" },
       { label: "How to fix a dropped chain", href: "/answers/how-to-fix-a-dropped-chain" },
-      { label: "Tubeless tyre setup guide", href: "/answers/tubeless-tyre-setup-guide" },
+      { label: "How to set up tubeless tyres", href: "/answers/how-to-set-up-tubeless-tyres" },
     ],
     evidenceLevel: "moderate",
     publishDate: "2026-07-10",
@@ -1760,7 +1760,7 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
     relatedEpisodes: [],
     relatedTopics: [
       { label: "How to change a bike tyre", href: "/answers/how-to-change-a-bike-tyre" },
-      { label: "How to fuel long rides", href: "/answers/how-to-fuel-long-rides" },
+      { label: "Long-ride nutrition strategy", href: "/answers/cycling-long-ride-nutrition-strategy" },
       { label: "How to fix a dropped chain", href: "/answers/how-to-fix-a-dropped-chain" },
     ],
     evidenceLevel: "moderate",
@@ -1896,7 +1896,7 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
     relatedTopics: [
       { label: "What to carry on a bike ride", href: "/answers/what-to-carry-on-a-bike-ride" },
       { label: "How to start cycling for fitness", href: "/answers/how-to-start-cycling-for-fitness" },
-      { label: "Cycling commuting tips", href: "/answers/cycling-commuting-tips" },
+      { label: "Use a cycling commute as training", href: "/answers/cycling-commute-as-training" },
     ],
     evidenceLevel: "strong",
     publishDate: "2026-07-10",
@@ -2169,7 +2169,7 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
     relatedEpisodes: [],
     relatedTopics: [
       { label: "How to start cycling for fitness", href: "/answers/how-to-start-cycling-for-fitness" },
-      { label: "Zone 2 training explained", href: "/answers/zone-2-training-explained" },
+      { label: "What is Zone 2 training?", href: "/answers/what-is-zone-2-training" },
       { label: "How to set cycling goals", href: "/answers/how-to-set-cycling-goals" },
     ],
     evidenceLevel: "strong",
@@ -2304,7 +2304,7 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
     relatedEpisodes: [],
     relatedTopics: [
       { label: "How to start cycling for fitness", href: "/answers/how-to-start-cycling-for-fitness" },
-      { label: "Sleep and cycling performance", href: "/answers/sleep-and-cycling-performance" },
+      { label: "How much sleep cyclists need", href: "/answers/how-much-sleep-do-cyclists-need" },
       { label: "How to set cycling goals", href: "/answers/how-to-set-cycling-goals" },
     ],
     evidenceLevel: "strong",
@@ -2438,7 +2438,7 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
     ],
     relatedEpisodes: [],
     relatedTopics: [
-      { label: "Zone 2 training explained", href: "/answers/zone-2-training-explained" },
+      { label: "What is Zone 2 training?", href: "/answers/what-is-zone-2-training" },
       { label: "How many miles should a beginner cycle", href: "/answers/how-many-miles-should-a-beginner-cycle" },
       { label: "Is cycling good for mental health", href: "/answers/is-cycling-good-for-mental-health" },
     ],
@@ -2575,7 +2575,7 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
     relatedTopics: [
       { label: "Is cycling good for mental health", href: "/answers/is-cycling-good-for-mental-health" },
       { label: "How to start cycling for fitness", href: "/answers/how-to-start-cycling-for-fitness" },
-      { label: "Strength training for cyclists", href: "/answers/strength-training-for-cyclists" },
+      { label: "Strength training for beginner cyclists", href: "/answers/strength-training-for-beginner-cyclists" },
     ],
     evidenceLevel: "strong",
     publishDate: "2026-07-10",

@@ -139,7 +139,7 @@ export const TOUR_STAGES: Stage[] = [
     },
     related: [
       { label: "Race Predictor — model your own TT", href: "/predict" },
-      { label: "Against the Clock — the TT mindset", href: "/against-the-clock" },
+      { label: "Against the Clock — the TT mindset", href: "/entity/against-the-clock" },
       { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
     ],
   },
@@ -696,7 +696,7 @@ export const TOUR_STAGES: Stage[] = [
     },
     related: [
       { label: "Race Predictor — model your TT", href: "/predict" },
-      { label: "Against the Clock", href: "/against-the-clock" },
+      { label: "Against the Clock", href: "/entity/against-the-clock" },
       { label: "Cycling time trial tips", href: "/blog/cycling-time-trial-tips" },
     ],
   },

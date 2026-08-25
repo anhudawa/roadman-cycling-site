@@ -16,6 +16,7 @@ import { getAllCaseStudySlugs } from "@/lib/case-studies";
 import { getAllBestForSlugs } from "@/lib/best-for";
 import { getAllProblemSlugs } from "@/lib/problems";
 import { getAllQuestionSlugs } from "@/lib/questions";
+import { getAllAnswerSlugs } from "@/lib/answers";
 import { getAllEventGuideSlugs } from "@/lib/event-guides";
 import { getAllPersonaSlugs } from "@/lib/personas";
 import { GIRONA_ROUTE_LIST } from "@/lib/girona/routes";
@@ -28,6 +29,12 @@ import {
 import { plateauDefinition } from "@/lib/diagnostics/definitions/plateau";
 import { fuellingDefinition } from "@/lib/diagnostics/definitions/fuelling";
 import { ftpZonesDefinition } from "@/lib/diagnostics/definitions/ftp-zones";
+import { getVideoEpisodes } from "@/lib/seo/video-watch";
+import { TOUR_STAGES } from "@/data/tour-de-france-2026";
+import { getAllHistorySlugs } from "@/data/tour-history";
+import { getAllExpertTopicPairs } from "@/lib/experts";
+import { FALLBACK_CATEGORIES } from "@/lib/recommends/queries";
+import { FALLBACK_PUBLIC_PRODUCTS } from "@/lib/recommends/catalog";
 import fs from "fs";
 import path from "path";
 
@@ -61,6 +68,15 @@ const inventory = {
   bestFor: getAllBestForSlugs(),
   problems: getAllProblemSlugs(),
   questions: getAllQuestionSlugs(),
+  answers: getAllAnswerSlugs(),
+  watch: getVideoEpisodes().map((episode) => episode.slug),
+  tourStages: TOUR_STAGES.map((stage) => String(stage.number)),
+  tourHistory: getAllHistorySlugs(),
+  expertTopicPairs: getAllExpertTopicPairs(),
+  recommendationCategories: FALLBACK_CATEGORIES.map((category) => category.slug),
+  recommendationProducts: FALLBACK_PUBLIC_PRODUCTS.map(
+    (product) => `${product.categorySlug}/${product.slug}`,
+  ),
   eventGuides: getAllEventGuideSlugs(),
   coachingSegments: Object.keys(COACHING_SEGMENTS),
   coachingLocations,
