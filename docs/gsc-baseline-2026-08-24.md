@@ -158,7 +158,7 @@ alternates, redirects, noindex pages, robots exclusions, or generated assets.
 | Page with redirect                        |   492 | Generally expected consolidation                                                                                           |
 | Not found (404)                            |   377 | Samples dominated by unhashed Open Graph image references; source references corrected, GSC reprocessing pending           |
 | Excluded by `noindex`                     |   264 | Generally intentional private/thin pages                                                                                   |
-| Blocked by robots.txt                     |   255 | Requires periodic audit, not blanket removal                                                                               |
+| Blocked by robots.txt                     |   255 | Samples were the structured-image endpoint; narrow crawl exception deployed, GSC reprocessing pending                      |
 | Soft 404                                  |   103 | Route-level 404 remediation deployed and production-verified; GSC reprocessing pending                                     |
 | Duplicate without user-selected canonical |    20 | Transactional checkout now `noindex`; obsolete guest routes hard-404; GSC reprocessing pending                             |
 | Access forbidden (403)                    |     1 | Isolated; inspect if it persists                                                                                           |
@@ -169,12 +169,13 @@ on 25 August: guest slugs absent from the curated corpus return route-level
 images plus raw feeds emit `X-Robots-Tag: noindex, nofollow`. The table retains
 the frozen baseline counts until Search Console recrawls and reprocesses them.
 
-Search Console separately reported 302 URLs as "Indexed, though blocked by
-robots.txt". Its examples were the stable `/api/og/blog-hero?...` image
-endpoint referenced by article structured data. The generated-image cleanup
-keeps the broader `/api/` tree blocked while explicitly allowing that one
-high-resolution image endpoint. This lets Google fetch the intended structured
-image as an image instead of retaining a URL it knows about but cannot crawl.
+The 255 "Blocked by robots.txt" examples and a separate 302-URL "Indexed,
+though blocked by robots.txt" warning both sampled the stable
+`/api/og/blog-hero?...` image endpoint referenced by article structured data.
+The generated-image cleanup keeps the broader `/api/` tree blocked while
+explicitly allowing that one high-resolution image endpoint. This lets Google
+fetch the intended structured image as an image instead of retaining a URL it
+knows about but cannot crawl.
 
 The 404 examples were the opposite side of the same defect: unhashed
 `/blog/<slug>/opengraph-image` references do not exist because Next.js serves
