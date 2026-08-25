@@ -16,9 +16,12 @@ import { ChoosePath } from "@/components/features/routing/ChoosePath";
 import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
 
 export const metadata: Metadata = {
-  title: "Online Cycling Coach — Coaching for Serious Amateurs",
+  // Keep the complete search title compact. Google already displays the
+  // Roadman site name separately, so repeating it through the root template
+  // weakens the service proposition on narrow result pages.
+  title: { absolute: "Online Cycling Coaching for Serious Amateur Riders" },
   description:
-    "Cycling coaching for serious amateurs whose FTP hasn't moved in a year. Five pillars, weekly live calls with Anthony, a plan built around your week. From $195/month.",
+    "Personalised online cycling coaching with a TrainingPeaks plan, weekly review, strength and nutrition support. For serious amateur riders. From $195/month.",
   keywords: [
     "cycling coach",
     "cycling coaching",

@@ -394,9 +394,9 @@ const mastersTestimonials = getTestimonialsByName([
 /* ------------------------------------------------------------------ */
 
 export const metadata: Metadata = {
-  title: "Masters Cycling Training — Getting Faster Over 40, 45, 50+",
+  title: { absolute: "Masters Cycling Training: Get Faster After 40" },
   description:
-    "The definitive resource for masters cycling training. Evidence-based training, strength, recovery and nutrition for cyclists over 40 — Galpin, Seiler, Friel, the 2026 Masters Report, and the tools to run it next Monday.",
+    "Evidence-based cycling training for riders over 40: weekly structure, strength, recovery, nutrition, expert interviews and the 2026 Masters Report.",
   keywords: [
     "masters cycling training",
     "cycling over 40",
