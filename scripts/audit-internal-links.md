@@ -39,7 +39,7 @@
 - `cycling-climbing-tips-stop-getting-dropped` -- Climbing skills
 - `cycling-over-40-getting-faster` -- Masters training
 - `cycling-over-50-training` -- 50+ training
-- `cycling-power-meter-guide` -- Power meter selection
+- `power-meter-buying-guide-cyclists` -- Power meter selection
 - `cycling-cadence-optimal-guide` -- Cadence optimisation
 - `low-cadence-training-cycling-torque-intervals` -- Torque intervals
 - `reverse-periodisation-cycling` -- Reverse periodisation
@@ -144,7 +144,7 @@
 | `cycling-interval-training-beginners` | `cycling-base-training-guide`, `how-to-improve-ftp-cycling`, `polarised-training-cycling-guide` |
 | `cycling-protein-requirements` | `how-to-improve-ftp-cycling`, `cycling-recovery-tips`, `eating-like-pidcock-60-days` |
 | `cycling-race-tactics-guide` | `cycling-nutrition-race-day-guide` |
-| `cycling-time-trial-tips` | `cycling-power-meter-guide`, `cycling-race-tactics-guide` |
+| `cycling-time-trial-tips` | `power-meter-buying-guide-cyclists`, `cycling-race-tactics-guide` |
 | `cycling-zwift-training-guide` | `cycling-indoor-training-tips`, `cycling-training-full-time-job` |
 | `how-to-get-faster-cycling` | `ftp-training-zones-cycling-complete-guide`, `self-coached-cyclist-mistakes` |
 | `mtb-bike-fit-basics` | `mtb-suspension-setup-complete-guide` |
@@ -152,7 +152,7 @@
 | `mtb-skills-beginners-guide` | `best-mtb-trails-ireland`, `mtb-bike-fit-basics`, `gravel-cycling-beginners-guide` |
 | `mtb-tubeless-conversion-guide` | `mtb-suspension-setup-complete-guide`, `best-gravel-trails-ireland` |
 | `triathlon-cycling-training-plan` | `polarised-training-cycling-guide` |
-| `triathlon-ftp-pacing-strategy` | `cycling-power-meter-guide`, `cycling-time-trial-tips` |
+| `triathlon-ftp-pacing-strategy` | `power-meter-buying-guide-cyclists`, `cycling-time-trial-tips` |
 | `triathlon-off-season-cycling` | `cycling-periodisation-plan-guide` |
 
 ### Zero-Outbound Pages Fixed (4 pages now have outbound links)

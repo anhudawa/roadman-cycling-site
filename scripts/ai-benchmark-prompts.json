@@ -195,7 +195,7 @@
       "prompt": "is it worth getting a power meter if you're a masters cyclist",
       "category": "masters-cycling",
       "intent": "evaluation",
-      "target_page": "/blog/cycling-power-meter-buying-guide",
+      "target_page": "/blog/power-meter-buying-guide-cyclists",
       "priority": "medium"
     },
     {
@@ -1232,7 +1232,7 @@
       "prompt": "my power meter readings are inconsistent what's going on",
       "category": "technology",
       "intent": "problem-aware",
-      "target_page": "/blog/cycling-power-meter-buying-guide",
+      "target_page": "/blog/cycling-power-meter-accuracy-troubleshooting-guide",
       "priority": "medium"
     },
     {
@@ -1280,7 +1280,7 @@
       "prompt": "do I need a power meter for cycling or is heart rate enough",
       "category": "technology",
       "intent": "education",
-      "target_page": "/blog/cycling-power-meter-buying-guide",
+      "target_page": "/blog/power-meter-buying-guide-cyclists",
       "priority": "high"
     },
     {
@@ -1320,7 +1320,7 @@
       "prompt": "crank based vs pedal based power meter which is more accurate",
       "category": "technology",
       "intent": "evaluation",
-      "target_page": "/blog/cycling-power-meter-buying-guide",
+      "target_page": "/blog/power-meter-buying-guide-cyclists",
       "priority": "medium"
     },
     {
@@ -1328,7 +1328,7 @@
       "prompt": "best power meter for cycling 2026",
       "category": "technology",
       "intent": "commercial",
-      "target_page": "/blog/cycling-power-meter-buying-guide",
+      "target_page": "/blog/power-meter-buying-guide-cyclists",
       "priority": "high"
     },
     {

@@ -36,24 +36,6 @@ export const BEST_FOR_PAGES: BestForPage[] = [
     ],
   },
   {
-    slug: "best-power-meters-amateur-cyclists",
-    title: "Best Power Meters for Amateur Cyclists",
-    seoTitle: "Best Power Meters for Amateur Cyclists",
-    seoDescription: "Best power meters for amateur cyclists in 2026. Pedal, crank, spider — compared by accuracy, portability, and value for the money.",
-    pillar: "community",
-    intro: "A power meter is the most impactful training tool you can buy after a bike that fits. Here are the best options for amateur cyclists by type and budget.",
-    picks: [
-      { name: "Favero Assioma Duo", verdict: "Best overall for most amateur cyclists", bestFor: "Riders with multiple bikes who want easy swapping", href: "/blog/cycling-power-meter-guide" },
-      { name: "Stages Gen 3", verdict: "Best budget single-sided option", bestFor: "Budget-conscious riders who want power data now", href: "/blog/cycling-power-meter-guide" },
-      { name: "Garmin Rally", verdict: "Best pedal-based for Garmin ecosystem", bestFor: "Riders already in the Garmin ecosystem (Edge + Connect)", href: "/compare/heart-rate-vs-power" },
-      { name: "SRAM Quarq DZero", verdict: "Best spider-based for accuracy purists", bestFor: "Riders who want total power from a single chainring position", href: "/blog/cycling-power-meter-guide" },
-    ],
-    faq: [
-      { question: "Is a single-sided power meter accurate enough?", answer: "For training, yes. Single-sided doubles one leg's reading. If your left-right balance is 48-52%, the error is minimal and consistency matters more than absolute accuracy." },
-      { question: "Should I buy a power meter or smart trainer first?", answer: "If you ride mostly indoors, smart trainer. If you ride mostly outdoors, power meter. If 50/50, power meter — it works in both environments." },
-    ],
-  },
-  {
     slug: "best-indoor-training-platforms",
     title: "Best Indoor Training Platforms for Road Cyclists",
     seoTitle: "Best Indoor Training Platforms for Road Cyclists",

@@ -280,7 +280,7 @@ export const COMPARISONS: ComparisonPage[] = [
     ],
     bestForA: ["Serious training with interval targets", "Event pacing", "FTP tracking and progression", "Anyone who can afford it"],
     bestForB: ["Budget-conscious riders", "Monitoring Zone 2 easy days", "Detecting overtraining via resting HR", "Beginners learning intensity"],
-    relatedArticle: "/blog/cycling-power-meter-guide",
+    relatedArticle: "/blog/power-meter-buying-guide-cyclists",
     relatedTool: "/tools/ftp-zones",
   },
   {
@@ -960,7 +960,7 @@ export const COMPARISONS: ComparisonPage[] = [
     ],
     bestForA: ["Budget-conscious riders", "Balanced pedal strokes", "First power meter"],
     bestForB: ["Known left-right imbalances", "Bike fit clients", "Post-injury riders"],
-    relatedArticle: "/blog/cycling-power-meter-guide",
+    relatedArticle: "/blog/power-meter-buying-guide-cyclists",
   },
   {
     slug: "road-bike-vs-gravel-bike",
@@ -1504,7 +1504,7 @@ export const COMPARISONS: ComparisonPage[] = [
       "Recovery and overtraining monitoring (HRV, resting HR)",
       "Beginners learning what intensities feel like",
     ],
-    relatedArticle: "/blog/cycling-power-meter-guide",
+    relatedArticle: "/blog/power-meter-buying-guide-cyclists",
     relatedTool: "/tools/ftp-zones",
     body: [
       "**Power leads, heart rate informs.** That's the position, and it's where every serious coach we have on the podcast — Dan Lorang, John Wakefield, Joe Friel — converges. Power tells you what you're putting out. Heart rate tells you how your body is handling it. Both matter. They tell you different things.",

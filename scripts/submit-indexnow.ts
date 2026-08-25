@@ -202,6 +202,7 @@ const PRODUCT_IDENTITY_PODCAST_CLUSTER = [
 const COMPARISON_CLUSTER = [
   "best-cycling-computers-2026",
   "best-indoor-smart-trainers-2026",
+  "power-meter-buying-guide-cyclists",
   "zwift-vs-trainerroad",
   "wahoo-vs-garmin-cycling-computers",
   "power-meter-vs-smart-trainer",
