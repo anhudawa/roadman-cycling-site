@@ -370,7 +370,7 @@ function buildPodcastSitemap(): MetadataRoute.Sitemap {
 
   const episodeEntries: MetadataRoute.Sitemap = episodes.map((ep) => ({
     url: `${BASE_URL}/podcast/${ep.slug}`,
-    ...freshness(ep.publishDate),
+    ...freshness(ep.updatedDate ?? ep.publishDate),
     priority: 0.6,
   }));
 
@@ -381,7 +381,7 @@ function buildPodcastSitemap(): MetadataRoute.Sitemap {
     .filter((ep) => transcriptSlugs.has(ep.slug))
     .map((ep) => ({
       url: `${BASE_URL}/podcast/${ep.slug}/transcript`,
-      ...freshness(ep.publishDate),
+      ...freshness(ep.updatedDate ?? ep.publishDate),
       priority: 0.5,
     }));
 

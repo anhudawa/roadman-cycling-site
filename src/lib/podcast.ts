@@ -13,6 +13,8 @@ export interface EpisodeFrontmatter {
   guestCredential?: string;
   description: string;
   publishDate: string;
+  /** Last material editorial update, used by metadata, schema and sitemaps. */
+  updatedDate?: string;
   duration: string;
   spotifyId?: string;
   youtubeId?: string;
