@@ -31,6 +31,10 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import {
+  getBlogArchiveHref,
+  getBlogArchivePageCount,
+} from "../src/lib/seo/blog-archive-pagination";
 
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry") || args.includes("--dry-run");
@@ -195,6 +199,14 @@ function allBlogUrls(): string[] {
     .map((f) => `https://${HOST}/blog/${f.replace(/\.mdx$/, "")}`);
 }
 
+function blogArchiveUrls(): string[] {
+  const totalPages = getBlogArchivePageCount(allBlogUrls().length);
+  return Array.from(
+    { length: totalPages },
+    (_, index) => `https://${HOST}${getBlogArchiveHref(index + 1)}`,
+  );
+}
+
 function allEpisodeUrls(): string[] {
   const PODCAST_DIR = path.join(process.cwd(), "content/podcast");
   if (!fs.existsSync(PODCAST_DIR)) return [];
@@ -258,6 +270,7 @@ async function main() {
   const urls = new Set<string>();
 
   CURATED.forEach((u) => urls.add(u));
+  blogArchiveUrls().forEach((u) => urls.add(u));
   clusterUrls(TRIATHLON_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(COACHING_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(PODCAST_AUTHORITY_CLUSTER).forEach((u) => urls.add(u));

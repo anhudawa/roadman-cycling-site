@@ -4,7 +4,9 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { generateMetadata } from "@/app/(content)/blog/page";
+import sitemap from "@/app/sitemap";
 import { BlogPagination } from "@/components/features/blog/BlogPagination";
+import { getAllPosts } from "@/lib/blog";
 import {
   BLOG_POSTS_PER_PAGE,
   getBlogArchiveHref,
@@ -54,6 +56,25 @@ describe("crawlable blog archive", () => {
     expect(html).toContain('aria-current="page"');
   });
 
+  it("lists every self-canonical archive page in the XML sitemap", async () => {
+    const entries = await sitemap({ id: Promise.resolve("0") });
+    const blogArchiveEntries = entries.filter(
+      (entry) =>
+        entry.url === "https://roadmancycling.com/blog" ||
+        entry.url.startsWith("https://roadmancycling.com/blog?page="),
+    );
+    const expectedPages = getBlogArchivePageCount(getAllPosts().length);
+
+    expect(blogArchiveEntries).toHaveLength(expectedPages);
+    expect(blogArchiveEntries[0]?.url).toBe("https://roadmancycling.com/blog");
+    expect(blogArchiveEntries.at(-1)?.url).toBe(
+      `https://roadmancycling.com/blog?page=${expectedPages}`,
+    );
+    expect(new Set(blogArchiveEntries.map((entry) => entry.url)).size).toBe(
+      expectedPages,
+    );
+  });
+
   it("keeps pagination server-rendered and removes redirected body links", () => {
     const pageSource = readFileSync(
       resolve(process.cwd(), "src/app/(content)/blog/page.tsx"),
@@ -71,10 +92,15 @@ describe("crawlable blog archive", () => {
         readFileSync(resolve(process.cwd(), `content/blog/${file}`), "utf8"),
       )
       .join("\n");
+    const indexNowSource = readFileSync(
+      resolve(process.cwd(), "scripts/submit-indexnow.ts"),
+      "utf8",
+    );
 
     expect(pageSource).toContain("getBlogArchivePage(posts, page)");
     expect(searchSource).toContain("<BlogPagination");
     expect(searchSource).toContain("const visible = isBrowsingAll");
+    expect(indexNowSource).toContain("blogArchiveUrls().forEach");
     expect(content).not.toContain(
       "/blog/cycling-carbs-per-hour-fuel-like-a-pro",
     );
