@@ -12,6 +12,7 @@ import { BEST_FOR_PAGES } from "@/lib/best-for";
 import { EVENTS } from "@/lib/training-plans";
 import { getAllTools } from "@/lib/tools-registry";
 import { getExpertsWithTopics, getExpertTopic } from "@/lib/experts";
+import { SEARCH_OWNERS } from "@/lib/seo/search-ownership";
 import {
   FEED_BASE_URL,
   FEED_CACHE_HEADERS,
@@ -81,6 +82,9 @@ interface GraphEdge {
    *   - recommends              (problem|best-for → any)
    *   - covered_by_article      (event → article)
    *   - about_expert            (expert-topic page → person)
+   *   - maintained_by           (search owner → person)
+   *   - supported_by            (search owner → supporting evidence)
+   *   - supports_owner          (supporting evidence → search owner)
    */
   relationship: string;
 }
@@ -97,6 +101,11 @@ function pathSlug(path: string | null | undefined, prefix: string): string | nul
  *  edges emitted by problems, questions, best-for picks, etc. */
 function nodeIdFromPath(path: string | null | undefined): string | null {
   if (!path) return null;
+  const normalisedPath = path.replace(/^https?:\/\/[^/]+/i, "").replace(/\/$/, "") || "/";
+  const owner = SEARCH_OWNERS.find(
+    (candidate) => candidate.path.replace(/\/$/, "") === normalisedPath,
+  );
+  if (owner) return `entity:search-owner:${owner.id}`;
   const blog = pathSlug(path, "/blog");
   if (blog) return `article:${blog}`;
   const podcast = pathSlug(path, "/podcast");
@@ -159,6 +168,31 @@ export function GET() {
     description:
       "Host of the Roadman Cycling Podcast and founder of Roadman Cycling.",
   });
+
+  // ----- CANONICAL SEARCH OWNERS -----
+  // Broad podcast, coaching, masters, plan and camp intent must resolve to a
+  // first-class owner before an agent traverses the thousands of supporting
+  // documents. Bidirectional edges preserve both discovery directions:
+  // owner → evidence and ranking/supporting page → definitive owner.
+  for (const owner of SEARCH_OWNERS) {
+    const ownerNodeId = `entity:search-owner:${owner.id}`;
+    upsertNode({
+      id: ownerNodeId,
+      type: "entity",
+      subtype: "search-owner",
+      name: owner.label,
+      url: feedUrl(owner.path),
+      description: owner.description,
+    });
+    pushEdge(ownerNodeId, "person:anthony-walsh", "maintained_by");
+
+    for (const destination of owner.supportingDestinations) {
+      const supportingNodeId = nodeIdFromPath(destination.path);
+      if (!supportingNodeId) continue;
+      pushEdge(ownerNodeId, supportingNodeId, "supported_by");
+      pushEdge(supportingNodeId, ownerNodeId, "supports_owner");
+    }
+  }
 
   // ----- TOPICS -----
   const topicSlugSet = new Set(getAllTopicSlugs());
