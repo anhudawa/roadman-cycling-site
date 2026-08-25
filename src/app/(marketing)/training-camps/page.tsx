@@ -77,6 +77,11 @@ const CAMP_GUIDES = [
     label: "Make it count",
     title: "How to structure the load and recovery",
   },
+  {
+    href: "/blog/cycling-training-camp-nutrition-guide",
+    label: "Fuel the week",
+    title: "Plan food, fluids and back-to-back ride days",
+  },
 ] as const;
 
 function CampCardWrapper({
@@ -121,6 +126,9 @@ export default function TrainingCampsLandingPage() {
               longitude: 2.8214,
             },
           },
+          hasPart: CAMP_LIST.map((camp) => ({
+            "@id": `https://roadmancycling.com${camp.href}#event`,
+          })),
         }}
       />
       <JsonLd
@@ -305,7 +313,7 @@ export default function TrainingCampsLandingPage() {
                 routes, matched pace groups, follow-car support, on-bike fuelling,
                 and planned recovery from one Girona base.
               </p>
-              <div className="grid gap-3 md:grid-cols-3">
+              <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
                 {CAMP_GUIDES.map((guide) => (
                   <Link
                     key={guide.href}
@@ -582,7 +590,7 @@ export default function TrainingCampsLandingPage() {
           <Container width="narrow">
             <EvidenceBlock
               lastReviewed="25 August 2026"
-              reviewedBy="Roadman Cycling operations and coaching team"
+              reviewedBy="Anthony Walsh (camp lead), Sarah Ann Egan (operations), and Matthew Devins (coaching and support)"
             />
           </Container>
         </Section>
