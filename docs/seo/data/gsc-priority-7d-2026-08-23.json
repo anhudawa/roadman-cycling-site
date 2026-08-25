@@ -1,0 +1,302 @@
+{
+  "schemaVersion": 1,
+  "property": "sc-domain:roadmancycling.com",
+  "capturedAt": "2026-08-25T11:59:31Z",
+  "deploymentDate": "2026-08-24",
+  "period": {
+    "start": "2026-08-17",
+    "end": "2026-08-23",
+    "days": 7
+  },
+  "site": {
+    "clicks": 10636,
+    "impressions": 776834,
+    "ctr": 0.014,
+    "position": 8.2
+  },
+  "queries": [
+    {
+      "query": "cycling podcast",
+      "match": "exact",
+      "clicks": 0,
+      "impressions": 83,
+      "ctr": 0,
+      "position": 8.5
+    },
+    {
+      "query": "cycling podcasts",
+      "match": "exact",
+      "clicks": 1,
+      "impressions": 32,
+      "ctr": 0.031,
+      "position": 2.6
+    },
+    {
+      "query": "best cycling podcasts",
+      "match": "exact",
+      "clicks": 3,
+      "impressions": 39,
+      "ctr": 0.077,
+      "position": 1.4
+    },
+    {
+      "query": "cycling coach",
+      "match": "exact",
+      "clicks": 2,
+      "impressions": 174,
+      "ctr": 0.011,
+      "position": 20.9
+    },
+    {
+      "query": "online cycling coach",
+      "match": "exact",
+      "clicks": 1,
+      "impressions": 56,
+      "ctr": 0.018,
+      "position": 11.8
+    },
+    {
+      "query": "cycling coaching",
+      "match": "exact",
+      "clicks": 1,
+      "impressions": 82,
+      "ctr": 0.012,
+      "position": 16.3
+    },
+    {
+      "query": "cycling training plan",
+      "match": "exact",
+      "clicks": 12,
+      "impressions": 229,
+      "ctr": 0.052,
+      "position": 6.8
+    },
+    {
+      "query": "road cycling training plan",
+      "match": "exact",
+      "clicks": 2,
+      "impressions": 75,
+      "ctr": 0.027,
+      "position": 7.5
+    },
+    {
+      "query": "training camp",
+      "match": "contains",
+      "clicks": 0,
+      "impressions": 51,
+      "ctr": 0,
+      "position": 21.7
+    },
+    {
+      "query": "masters cycling age groups",
+      "match": "exact",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 15
+    }
+  ],
+  "urlSplits": [
+    {
+      "id": "cycling-coach",
+      "label": "Cycling coach",
+      "query": "cycling coach",
+      "match": "exact",
+      "expectedOwner": "/coaching",
+      "reportedUrlCount": 13,
+      "aggregate": {
+        "clicks": 2,
+        "impressions": 174,
+        "ctr": 0.011,
+        "position": 20.9
+      },
+      "rows": [
+        {
+          "path": "/blog/best-online-cycling-coach-how-to-choose",
+          "clicks": 1,
+          "impressions": 68,
+          "ctr": 0.015,
+          "position": 8.9
+        },
+        {
+          "path": "/coaching/dublin",
+          "clicks": 1,
+          "impressions": 3,
+          "ctr": 0.333,
+          "position": 1.7
+        },
+        {
+          "path": "/blog/best-cycling-coach-uk",
+          "clicks": 0,
+          "impressions": 39,
+          "ctr": 0,
+          "position": 25
+        },
+        {
+          "path": "/topics/cycling-coaching",
+          "clicks": 0,
+          "impressions": 29,
+          "ctr": 0,
+          "position": 19.4
+        },
+        {
+          "path": "/blog/best-cycling-coach-usa",
+          "clicks": 0,
+          "impressions": 24,
+          "ctr": 0,
+          "position": 28.2
+        },
+        {
+          "path": "/coaching",
+          "clicks": 0,
+          "impressions": 19,
+          "ctr": 0,
+          "position": 45.6
+        },
+        {
+          "path": "/coaching/uk",
+          "clicks": 0,
+          "impressions": 13,
+          "ctr": 0,
+          "position": 74.5
+        },
+        {
+          "path": "/blog/best-cycling-coach-ireland",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 3
+        },
+        {
+          "path": "/blog/trainerroad-vs-online-cycling-coach",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 3
+        }
+      ]
+    },
+    {
+      "id": "cycling-training-plan",
+      "label": "Cycling training plan",
+      "query": "cycling training plan",
+      "match": "exact",
+      "expectedOwner": "/training-plans",
+      "reportedUrlCount": 1,
+      "aggregate": {
+        "clicks": 12,
+        "impressions": 229,
+        "ctr": 0.052,
+        "position": 6.8
+      },
+      "rows": [
+        {
+          "path": "/blog/how-pro-cyclist-trains-60-days",
+          "clicks": 12,
+          "impressions": 220,
+          "ctr": 0.055,
+          "position": 5.3
+        }
+      ]
+    },
+    {
+      "id": "training-camp",
+      "label": "Queries containing training camp",
+      "query": "training camp",
+      "match": "contains",
+      "expectedOwner": "/training-camps",
+      "reportedUrlCount": 12,
+      "aggregate": {
+        "clicks": 0,
+        "impressions": 51,
+        "ctr": 0,
+        "position": 21.7
+      },
+      "rows": [
+        {
+          "path": "/blog/what-to-expect-cycling-training-camp",
+          "clicks": 0,
+          "impressions": 33,
+          "ctr": 0,
+          "position": 29.5
+        },
+        {
+          "path": "/blog/cycling-training-camps-what-to-expect-guide",
+          "clicks": 0,
+          "impressions": 12,
+          "ctr": 0,
+          "position": 14.3
+        },
+        {
+          "path": "/blog/cycling-training-camp-preparation-guide",
+          "clicks": 0,
+          "impressions": 9,
+          "ctr": 0,
+          "position": 10.4
+        },
+        {
+          "path": "/training-camps",
+          "clicks": 0,
+          "impressions": 5,
+          "ctr": 0,
+          "position": 17.8
+        },
+        {
+          "path": "/training-camps/girona-road",
+          "clicks": 0,
+          "impressions": 4,
+          "ctr": 0,
+          "position": 13
+        },
+        {
+          "path": "/answers/altitude-training-camps",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 15.3
+        },
+        {
+          "path": "/blog/girona-training-camps-2026",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 5.5
+        },
+        {
+          "path": "/blog/mallorca-cycling-training-camp-guide",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 15
+        },
+        {
+          "path": "/plan/leadville-100",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 69
+        },
+        {
+          "path": "/answers/masters-cyclist-training-week",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 2
+        }
+      ]
+    }
+  ],
+  "ai": {
+    "impressions": 175000,
+    "pages": []
+  },
+  "ownerLinkClicks": null,
+  "notes": [
+    "Captured manually from the signed-in Google Search Console domain property using Web search and the fixed 17-23 August 2026 range.",
+    "Search Console reported data through 23 August and showed the site totals as 10,636 clicks, 776,834 impressions, 1.4% CTR and average position 8.2.",
+    "The Generative AI total was displayed as the compact value 175K, stored here as 175,000; repeat the same card-reading method for the seven-day comparison.",
+    "The seven-day checkpoint intentionally measures total AI impressions but not per-page AI impressions. The canonical 28-day scorecard retains the five fixed AI owner pages.",
+    "Filtered page tables can be partial. The stored rows are the rows Search Console exposed during capture, while reportedUrlCount preserves Google's own URL count.",
+    "Search-owner click tracking did not exist during this pre-deployment period, so its baseline is null rather than zero."
+  ]
+}

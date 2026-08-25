@@ -52,12 +52,18 @@ function snapshot(overrides: Partial<GscSnapshot> = {}): GscSnapshot {
   };
 }
 
+function currentSnapshot(overrides: Partial<GscSnapshot> = {}): GscSnapshot {
+  return snapshot({
+    capturedAt: "2026-09-22T12:00:00.000Z",
+    period: { start: "2026-08-25", end: "2026-09-21", days: 28 },
+    ...overrides,
+  });
+}
+
 describe("GSC measurement", () => {
   it("compares site, query, ownership and AI signals", () => {
     const baseline = snapshot();
-    const current = snapshot({
-      capturedAt: "2026-09-22T12:00:00.000Z",
-      period: { start: "2026-08-25", end: "2026-09-21", days: 28 },
+    const current = currentSnapshot({
       site: { clicks: 120, impressions: 1_100, ctr: 0.109, position: 9 },
       queries: [
         {
@@ -143,9 +149,7 @@ describe("GSC measurement", () => {
 
   it("renders an audit-ready Markdown scorecard", () => {
     const baseline = snapshot();
-    const current = snapshot({
-      period: { start: "2026-08-25", end: "2026-09-21", days: 28 },
-    });
+    const current = currentSnapshot();
 
     const markdown = renderGscComparisonMarkdown(
       compareGscSnapshots(baseline, current),
@@ -157,7 +161,7 @@ describe("GSC measurement", () => {
     expect(markdown).toContain("### Current assisted source pages");
   });
 
-  it("refuses comparisons with mismatched periods or missing queries", () => {
+  it("refuses comparisons with mismatched periods or query scopes", () => {
     expect(() =>
       compareGscSnapshots(
         snapshot(),
@@ -168,7 +172,120 @@ describe("GSC measurement", () => {
     ).toThrow("same length");
 
     expect(() =>
-      compareGscSnapshots(snapshot(), snapshot({ queries: [] })),
-    ).toThrow("missing exact query: cycling coach");
+      compareGscSnapshots(snapshot(), currentSnapshot({ queries: [] })),
+    ).toThrow("has no matching priority query");
+
+    const baseline = snapshot();
+    const containsQuery = {
+      ...baseline.queries[0],
+      match: "contains" as const,
+    };
+    expect(() =>
+      compareGscSnapshots(
+        baseline,
+        currentSnapshot({
+          queries: [containsQuery],
+          urlSplits: [
+            {
+              ...baseline.urlSplits[0],
+              match: "contains",
+            },
+          ],
+        }),
+      ),
+    ).toThrow("same priority query filters");
+  });
+
+  it("refuses extra, duplicate or changed measurement filters", () => {
+    const baseline = snapshot();
+
+    expect(() =>
+      compareGscSnapshots(
+        baseline,
+        currentSnapshot({
+          queries: [
+            ...baseline.queries,
+            { ...baseline.queries[0], query: "online cycling coach" },
+          ],
+        }),
+      ),
+    ).toThrow("same priority query filters");
+
+    expect(() =>
+      compareGscSnapshots(
+        baseline,
+        currentSnapshot({
+          queries: [...baseline.queries, { ...baseline.queries[0] }],
+        }),
+      ),
+    ).toThrow("duplicate key");
+
+    expect(() =>
+      compareGscSnapshots(
+        baseline,
+        currentSnapshot({
+          urlSplits: [
+            {
+              ...baseline.urlSplits[0],
+              expectedOwner: "/blog/best-online-cycling-coach-how-to-choose",
+            },
+          ],
+        }),
+      ),
+    ).toThrow("same expected owner");
+
+    expect(() =>
+      compareGscSnapshots(
+        baseline,
+        currentSnapshot({
+          urlSplits: [
+            ...baseline.urlSplits,
+            { ...baseline.urlSplits[0], id: "cycling-coach-secondary" },
+          ],
+        }),
+      ),
+    ).toThrow("same URL split IDs");
+
+    expect(() =>
+      compareGscSnapshots(
+        baseline,
+        currentSnapshot({
+          ai: {
+            impressions: 1_000,
+            pages: [
+              ...baseline.ai.pages,
+              { path: "/training-plans", impressions: 1 },
+            ],
+          },
+        }),
+      ),
+    ).toThrow("same AI page filters");
+  });
+
+  it("refuses invalid, overlapping or deployment-misaligned windows", () => {
+    expect(() =>
+      compareGscSnapshots(
+        snapshot(),
+        currentSnapshot({
+          period: { start: "2026-08-25", end: "2026-09-20", days: 28 },
+        }),
+      ),
+    ).toThrow("dates span 27");
+
+    expect(() =>
+      compareGscSnapshots(
+        snapshot(),
+        currentSnapshot({
+          period: { start: "2026-08-20", end: "2026-09-16", days: 28 },
+        }),
+      ),
+    ).toThrow("must not overlap");
+
+    expect(() =>
+      compareGscSnapshots(
+        snapshot(),
+        currentSnapshot({ deploymentDate: "2026-08-25" }),
+      ),
+    ).toThrow("same deployment date");
   });
 });
