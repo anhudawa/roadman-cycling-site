@@ -58,6 +58,22 @@ The Phase 2 objective is to make the five owner pages the authoritative
 conversion layer while the existing tools, answers, articles, and episodes
 continue to capture long-tail demand.
 
+### Exact 28-day owner-page baseline
+
+| Owner page | Clicks | Impressions | CTR | Average position |
+| --- | ---: | ---: | ---: | ---: |
+| `/coaching` | 26 | 903 | 2.9% | 23.5 |
+| `/masters` | 2 | 106 | 1.9% | 19.5 |
+| `/training-plans` | 2 | 49 | 4.1% | 6.5 |
+| `/training-camps` | 9 | 276 | 3.3% | 6.5 |
+| `/podcast` | 17 | 1,323 | 1.3% | 6.5 |
+
+The immediate constraints differ by page: coaching and masters need material
+ranking improvement; training plans needs far more query coverage while
+holding its position; podcast needs a stronger click proposition at an already
+competitive average position; and training camps needs more impressions from
+the supporting Girona/camp cluster.
+
 ## Priority owner-page index validation
 
 All five pages were inspected individually in Search Console on 25 August:
