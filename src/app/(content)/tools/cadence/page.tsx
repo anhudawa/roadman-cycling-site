@@ -463,7 +463,7 @@ export default function CadencePage() {
                       <ul className="space-y-2">
                         <li><Link href="/tools/gear-ratio" className="text-coral hover:text-coral/80 text-sm transition-colors">Gear Ratio Calculator</Link></li>
                         <li><Link href="/tools/power-speed" className="text-coral hover:text-coral/80 text-sm transition-colors">Power and Speed Calculator</Link></li>
-                        <li><Link href="/blog/cycling-cadence-optimal-rpm-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">Cycling Cadence: What RPM Should You Actually Pedal At?</Link></li>
+                        <li><Link href="/blog/cycling-cadence-optimal-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">Cycling Cadence Chart: What RPM Should You Pedal At?</Link></li>
                         <li><Link href="/blog/low-cadence-training-cycling-torque-intervals" className="text-coral hover:text-coral/80 text-sm transition-colors">Low Cadence Training: Torque Intervals</Link></li>
                       </ul>
                     </div>

@@ -103,6 +103,11 @@ const CURATED: string[] = [
   `https://${HOST}/podcast/ep-1-pro-bike-fitter-reveals-the-1-change-amateurs-should-make`,
   `https://${HOST}/tools/masters-ftp-benchmark`,
   `https://${HOST}/answers/ftp-by-age`,
+  `https://${HOST}/topics/cycling-cadence`,
+  `https://${HOST}/blog/cycling-cadence-optimal-guide`,
+  `https://${HOST}/blog/cycling-cadence-by-age-masters`,
+  `https://${HOST}/blog/cycling-cadence-drills-finding-optimal-guide`,
+  `https://${HOST}/tools/cadence`,
 
   // Persona routes (shipped on main)
   `https://${HOST}/you/plateau`,
