@@ -52,18 +52,21 @@ const results = [
     label: "FTP gain",
     name: "Damien Maloney",
     detail: "205w → 295w",
+    href: "/case-studies/damien-maloney",
   },
   {
     stat: "3 → 1",
     label: "Category jump",
     name: "Daniel Stone",
     detail: "Roadman Cycling Club",
+    href: "/case-studies/daniel-stone",
   },
   {
     stat: "+15%",
     label: "FTP gain at age 52",
     name: "Brian Morrissey",
     detail: "230w → 265w",
+    href: "/case-studies/brian-morrissey",
   },
 ];
 
@@ -83,11 +86,47 @@ const COACHING_INTENT_PATHS = [
       "A practical selection framework, the questions to ask, and the red flags that expose plan-delivery services.",
   },
   {
+    href: "/blog/how-much-does-online-cycling-coach-cost-2026",
+    eyebrow: "PRICE",
+    title: "Audit coaching costs",
+    description:
+      "A dated audit of public coaching prices, billing periods, review cadence, contact and contract terms.",
+  },
+  {
     href: "/apply",
     eyebrow: "START",
     title: "Apply for Roadman coaching",
     description:
       "Tell us your goal, your available hours, and what has stopped moving. We will tell you honestly if the programme fits.",
+  },
+] as const;
+
+const COACHING_SERVICE_FACTS = [
+  {
+    label: "Programme",
+    value: OFFER_TIERS.notDoneYet.name,
+  },
+  {
+    label: "Best fit",
+    value: "Serious amateur and masters cyclists training 6–12 hours a week",
+  },
+  {
+    label: "Plan and review",
+    value: "Personalised TrainingPeaks plan reviewed every week",
+  },
+  {
+    label: "Human contact",
+    value:
+      "Weekly Anthony-led live group coaching, a recording, and individual plan review by the Roadman coaching team",
+  },
+  {
+    label: "Included scope",
+    value:
+      "Cycling training, cycling-specific strength, nutrition and fuelling guidance, recovery, and a private rider community",
+  },
+  {
+    label: "Price and terms",
+    value: `${OFFER_TIERS.notDoneYet.pricing.display}; ${OFFER_TIERS.notDoneYet.pricing.trial}; cancel anytime`,
   },
 ] as const;
 
@@ -139,7 +178,7 @@ const faqItems = [
   {
     question: "Is a cycling coach worth it?",
     answer:
-      "A cycling coach is worth it when you have been training consistently for 1-2 years and stopped improving, when you cannot figure out why your FTP has plateaued, or when you need structured accountability. Our members typically see measurable improvements within 8-12 weeks. At $195 per month, coaching costs less than a single bike upgrade and delivers better long-term results.",
+      "A cycling coach can be worth it when you have trained consistently for one or two years but stopped improving, cannot explain a repeated plateau, or need a plan that changes with work, recovery and completed data. It is not a guaranteed shortcut: fit depends on the coach's scope, review cadence, communication and your ability to complete and recover from the work. Roadman publishes named case studies with each rider's starting point, intervention, timeframe, outcome and caveats so you can judge the evidence directly.",
   },
   {
     question: "How does online cycling coaching work?",
@@ -155,7 +194,7 @@ const faqItems = [
     question:
       "What is the difference between a cycling app and a cycling coach?",
     answer:
-      "A cycling app gives you workouts. A coach gives you a system. Apps cannot adjust for a bad night of sleep, a stressful week at work, or the fact that your knee has been sore since Tuesday. A coach builds your plan around your actual life and adjusts it in real time. That is why our members consistently outperform their app-trained years.",
+      "A training app mainly automates workouts and progression rules. A human coach can interpret completed data alongside sleep, work, travel, feedback and goals, then change the next decision. Coaching is not clinical care: persistent pain, illness, disordered eating or injury should be referred to an appropriately qualified health professional rather than diagnosed by a cycling coach.",
   },
   {
     question: "Do I need a power meter for coaching?",
@@ -165,12 +204,12 @@ const faqItems = [
   {
     question: "Can I get coaching if I only ride 6-8 hours per week?",
     answer:
-      "Yes — in fact, time-limited cyclists benefit the most from coaching. When you only have 6-8 hours, every session needs to count. A coach ensures you are doing the right work at the right intensity instead of accumulating junk miles. Several of our strongest results come from riders training under 8 hours per week.",
+      "Yes. Roadman coaching is designed for serious amateurs with real-life constraints, and the normal fit is six to twelve training hours per week. With six to eight hours, the plan prioritises the sessions that match your goal and protects enough easy riding and recovery to absorb them. Your application is reviewed before purchase so the team can say whether the available time and goal are compatible.",
   },
   {
     question: "Do you coach cyclists in Ireland, the UK, and the USA?",
     answer:
-      "Yes. Roadman Cycling is based in Dublin, Ireland, and coaches cyclists across Ireland, the UK, the USA, and worldwide. All coaching is delivered online through TrainingPeaks, Zoom, and our private community platform. Time zones are never an issue — coaching calls are scheduled flexibly and all communication is message-based — on your schedule.",
+      "Yes. Roadman Cycling is based in Dublin, Ireland, and the service is delivered online to cyclists in Ireland, the UK, the USA and other countries. Plans and completed rides are managed in TrainingPeaks. Weekly live group coaching includes a recording; the application process confirms whether the communication cadence and service are a practical fit for your location and schedule.",
   },
 ];
 
@@ -325,6 +364,16 @@ export default function CoachingPage() {
           description:
             "Personalised online cycling coaching across five pillars: training, nutrition, strength, recovery, and community. Informed by a 1,400+ episode expert podcast catalogue.",
           category: "Online Cycling Coaching",
+          audience: {
+            "@type": "PeopleAudience",
+            audienceType:
+              "Serious amateur and masters cyclists training 6–12 hours per week",
+          },
+          additionalProperty: COACHING_SERVICE_FACTS.map((fact) => ({
+            "@type": "PropertyValue",
+            name: fact.label,
+            value: fact.value,
+          })),
           // The coaching is offered by the Roadman Cycling organisation;
           // the head coach (Anthony) is the named provider of the Course
           // schema below. Splitting org/coach by relationship lets Google
@@ -379,6 +428,10 @@ export default function CoachingPage() {
           description:
             "Structured online cycling coaching programme covering training, nutrition, strength, recovery, and community. Delivered via TrainingPeaks, weekly coaching calls, and a private community of serious cyclists.",
           provider: { "@id": ENTITY_IDS.organization },
+          audience: {
+            "@type": "PeopleAudience",
+            audienceType: "Serious amateur and masters cyclists",
+          },
           hasCourseInstance: {
             "@type": "CourseInstance",
             courseMode: "Online",
@@ -518,7 +571,7 @@ export default function CoachingPage() {
                 completed data, and adjusted when fitness, fatigue, work, or
                 life changes. Choose the route that matches what you need now.
               </p>
-              <div className="grid gap-4 md:grid-cols-3">
+              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                 {COACHING_INTENT_PATHS.map((path) => (
                   <Link
                     key={path.href}
@@ -538,7 +591,84 @@ export default function CoachingPage() {
                   </Link>
                 ))}
               </div>
+              <p className="text-center text-foreground-subtle text-xs leading-relaxed max-w-3xl mx-auto mt-7">
+                Commercial disclosure: Roadman Cycling sells the coaching
+                service described here. The{" "}
+                <Link
+                  href="/blog/best-online-cycling-coach-how-to-choose"
+                  className="text-coral hover:underline underline-offset-4"
+                >
+                  coach-selection checklist
+                </Link>{" "}
+                and{" "}
+                <Link
+                  href="/blog/how-much-does-online-cycling-coach-cost-2026"
+                  className="text-coral hover:underline underline-offset-4"
+                >
+                  2026 price audit
+                </Link>{" "}
+                state that conflict and separate public market comparisons from
+                the Roadman offer.
+              </p>
             </div>
+          </Container>
+        </Section>
+
+        {/* Extractable service facts for riders, search engines and answer
+            systems. These values mirror the central offer definition. */}
+        <Section background="deep-purple" grain id="service-facts">
+          <Container width="narrow">
+            <ScrollReveal direction="up" className="text-center mb-10">
+              <p className="text-coral font-heading text-xs tracking-widest mb-3">
+                SERVICE FACTS · REVIEWED 25 AUGUST 2026
+              </p>
+              <h2
+                className="font-heading text-off-white mb-4"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                WHAT ROADMAN COACHING INCLUDES
+              </h2>
+              <p className="text-foreground-muted max-w-2xl mx-auto leading-relaxed">
+                The current delivery model, cadence, scope and terms in one
+                place. Applications are reviewed before purchase; results vary
+                by starting point, consistency, recovery, available time and
+                goal.
+              </p>
+            </ScrollReveal>
+
+            <dl className="grid gap-4 md:grid-cols-2">
+              {COACHING_SERVICE_FACTS.map((fact, index) => (
+                <ScrollReveal
+                  key={fact.label}
+                  direction="up"
+                  delay={index * 0.04}
+                >
+                  <Card className="p-6 h-full" hoverable={false}>
+                    <dt className="font-heading text-xs tracking-[0.2em] text-coral mb-3">
+                      {fact.label.toUpperCase()}
+                    </dt>
+                    <dd className="text-sm text-off-white leading-relaxed">
+                      {fact.value}
+                    </dd>
+                  </Card>
+                </ScrollReveal>
+              ))}
+            </dl>
+
+            <p className="text-foreground-subtle text-xs leading-relaxed mt-6 text-center">
+              Scope boundary: Roadman provides cycling performance coaching and
+              general strength, recovery, nutrition and fuelling guidance. It
+              does not diagnose or treat injury, illness, disordered eating or
+              other medical conditions; those are referred to an appropriately
+              qualified professional. Read{" "}
+              <Link
+                href="/about/how-we-coach"
+                className="text-coral hover:underline underline-offset-4"
+              >
+                how Roadman coaches
+              </Link>
+              .
+            </p>
           </Container>
         </Section>
 
@@ -574,6 +704,13 @@ export default function CoachingPage() {
                     </p>
                     <p className="text-xs text-foreground-subtle">{r.name}</p>
                     <p className="text-xs text-foreground-subtle">{r.detail}</p>
+                    <Link
+                      href={r.href}
+                      className="inline-block text-xs text-coral mt-4 hover:underline underline-offset-4"
+                      data-track={`coaching_result_case_${r.name.toLowerCase().replaceAll(" ", "_")}`}
+                    >
+                      Read the named case study →
+                    </Link>
                   </Card>
                 </ScrollReveal>
               ))}
@@ -635,8 +772,8 @@ export default function CoachingPage() {
               <BeforeAfterMetrics
                 metrics={memberMetrics}
                 eyebrow="MEASURED CHANGE"
-                title="What members move in their first 6-12 months"
-                subtitle="Personal records, race categories, body composition. Plus the bit that's harder to measure — getting their cycling identity back."
+                title="Selected member outcomes, with individual timeframes"
+                subtitle="These are named individual results, not an average or a promise. Open the case studies for starting points, interventions, timeframes and caveats."
               />
             </ScrollReveal>
           </Container>
@@ -1153,7 +1290,7 @@ export default function CoachingPage() {
           <Container width="narrow">
             <EvidenceBlock
               lastReviewed="25 August 2026"
-              reviewedBy="Roadman Cycling coaching team"
+              reviewedBy="Anthony Walsh, founder and head coach"
               experts={[
                 {
                   name: "Prof. Stephen Seiler",
