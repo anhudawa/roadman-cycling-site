@@ -73,6 +73,7 @@ export async function generateMetadata({
       description: episode.seoDescription,
       type: "article",
       publishedTime: episode.publishDate,
+      modifiedTime: episode.updatedDate,
       url: `https://roadmancycling.com/podcast/${slug}`,
       images: episode.youtubeId
         ? [
@@ -249,6 +250,7 @@ export default async function EpisodePage({
           // emitting it as a series ordinal would mislead crawlers about
           // the show's true episode count and an episode's position in it.
           datePublished: episode.publishDate,
+          dateModified: episode.updatedDate || episode.publishDate,
           timeRequired: (() => {
             const parts = episode.duration.split(":").map(Number);
             if (parts.length === 3) return `PT${parts[0]}H${parts[1]}M${parts[2]}S`;
@@ -555,7 +557,7 @@ export default async function EpisodePage({
               </p>
             )}
 
-            <div className="flex items-center justify-center gap-4 text-sm text-foreground-subtle mb-6">
+            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-foreground-subtle mb-6">
               <span>{episode.duration}</span>
               <span>&middot;</span>
               <time dateTime={episode.publishDate}>
@@ -565,6 +567,25 @@ export default async function EpisodePage({
                   year: "numeric",
                 })}
               </time>
+              {episode.updatedDate &&
+                episode.updatedDate !== episode.publishDate && (
+                  <>
+                    <span>&middot;</span>
+                    <span>
+                      Updated{" "}
+                      <time dateTime={episode.updatedDate}>
+                        {new Date(episode.updatedDate).toLocaleDateString(
+                          "en-GB",
+                          {
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric",
+                          },
+                        )}
+                      </time>
+                    </span>
+                  </>
+                )}
             </div>
 
             {episode.youtubeId && (
