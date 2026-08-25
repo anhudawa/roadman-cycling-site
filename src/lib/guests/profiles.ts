@@ -1872,16 +1872,16 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   "daryl-fitzgerald": {
     featuredArticles: ["daryl-fitzgerald-saddle-height-one-change"],
     description:
-      "World Tour bike fitter at Science to Sport. Works with professional and amateur riders on position, comfort and power transfer.",
+      "Bike fitter and coach at Science to Sport. In his Roadman interviews, he discusses rider position, training structure and practitioner case testing.",
     whyMatters:
-      "Daryl Fitzgerald fits riders at the sharp end of the World Tour and brings that same eye to amateurs. His recurring point on the podcast is that the single highest-return change most amateurs can make isn't a power upgrade — it's a position that stops fighting them. A good bike fit protects the knees, lower back and hands that take the beating over long rides, and it quietly unlocks an aerodynamic position the rider can actually hold. He's the practitioner's counterweight to the kit-buying instinct: fit first, then everything else.",
+      "Daryl Fitzgerald brings a practitioner's view of bike fitting and coaching to two Roadman interviews. In the bike-fit episode he explains the position checks he prioritises, describes individual saddle-height and crank-length cases, and repeatedly favours small tests over copying a trend. Those observations are useful because the full transcript lets riders inspect his reasoning; Roadman labels them as practice experience or anecdotes rather than injury-prevention guarantees or universal prescriptions.",
     keyIdeas: [
-      "The one change most amateurs should make is a proper bike fit — saddle height and cleat position fix more problems than any component upgrade.",
-      "An aggressive aerodynamic position is worthless if you can't hold it — fit determines how much aero you can actually keep.",
-      "Knee pain, lower-back pain and numb hands are usually fit problems, not weakness problems — chase the position before the physio.",
-      "Comfort and power are the same conversation: a rider who isn't fighting the bike puts more of their training into the pedals.",
+      "In his Roadman interview, Fitzgerald said saddle height was the first common amateur-fit issue he checked and that too high was the usual direction in his practice.",
+      "He advised testing saddle height in small 1–2mm steps rather than making an unrecorded 5–10mm jump.",
+      "His 7mm saddle-height and 20–30W crank-length stories are individual practitioner cases, useful for forming hypotheses rather than setting population rules.",
+      "Fitzgerald treats aero, comfort and power as rider-specific constraints that should be tested together, not copied from a professional position.",
     ],
-    relatedHubs: ["cycling-strength-conditioning", "ftp-training"],
+    relatedHubs: ["bike-fitting", "cycling-strength-conditioning"],
   },
 
   "sam-calder": {

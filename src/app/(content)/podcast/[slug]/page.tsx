@@ -911,7 +911,7 @@ export default async function EpisodePage({
                     ]
                   : undefined
               }
-              lastReviewed={episode.publishDate}
+              lastReviewed={episode.updatedDate ?? episode.publishDate}
             />
 
             {/* Ask Roadman handoff — episode-specific question seed so a
