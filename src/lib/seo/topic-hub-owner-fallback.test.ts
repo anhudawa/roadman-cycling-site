@@ -24,6 +24,9 @@ function resolveArticleOwner(slug: string) {
 describe("topic-hub search-owner fallback", () => {
   it.each([
     ["amstel-gold-race-sportive-training-guide", "/training-plans"],
+    ["70-3-bike-training-plan-12-weeks", "/training-plans"],
+    ["ironman-bike-training-plan-16-weeks", "/training-plans"],
+    ["age-group-ftp-benchmarks-2026", "/masters"],
     ["cycling-blood-pressure-cardiovascular-health-guide", "/masters"],
     ["cornering-confidence-road-bike-technique", "/coaching"],
   ])("routes %s through its editorial hub to %s", (slug, ownerPath) => {

@@ -5,12 +5,12 @@ import { SITE_ORIGIN } from "@/lib/brand-facts";
 describe("/robots.ts", () => {
   const result = robots();
 
-  it("includes the canonical sitemap-index.xml", () => {
-    expect(result.sitemap).toContain(`${SITE_ORIGIN}/sitemap-index.xml`);
+  it("includes the canonical sitemap.xml", () => {
+    expect(result.sitemap).toContain(`${SITE_ORIGIN}/sitemap.xml`);
   });
 
   it("uses the sitemap index as the single crawler discovery point", () => {
-    expect(result.sitemap).toBe(`${SITE_ORIGIN}/sitemap-index.xml`);
+    expect(result.sitemap).toBe(`${SITE_ORIGIN}/sitemap.xml`);
   });
 
   it("allows the wildcard userAgent at root and on /_next/static/", () => {
