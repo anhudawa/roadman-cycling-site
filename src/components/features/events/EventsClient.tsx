@@ -31,7 +31,7 @@ const weeklyEvents: RecurringEvent[] = [
     hours: 19,
     minutes: 30,
     title: "LIVE COACHING CALL",
-    subtitle: "Not Done Yet Coaching Community Members",
+    subtitle: "Not Done Yet Group Coaching Riders",
     description:
       "Weekly live Q&A and coaching session with Anthony Walsh. Bring your questions on training, nutrition, race prep — anything. This is where the five-pillar system comes alive.",
     type: "call",
@@ -135,7 +135,6 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
 
   useEffect(() => {
     if (prevRef.current !== value) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect -- client-side filter init
       setAnimate(true);
       prevRef.current = value;
       const t = setTimeout(() => setAnimate(false), 300);

@@ -62,7 +62,7 @@ const DEFAULTS: Record<
   coaching: {
     heading: "WHAT OUR MEMBERS SAY",
     subheading:
-      "Real words from Not Done Yet members and the athletes we coach 1:1.",
+      "Real words from Not Done Yet members and Roadman Inner Circle athletes.",
   },
   mixed: {
     heading: "REAL RESULTS FROM REAL CYCLISTS",

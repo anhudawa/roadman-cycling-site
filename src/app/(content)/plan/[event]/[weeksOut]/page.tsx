@@ -368,7 +368,7 @@ export default async function PlanPage({
                   COACHED FOR YOUR EVENT.
                 </h2>
                 <p className="text-foreground-muted text-base md:text-lg mb-8 max-w-xl mx-auto leading-relaxed">
-                  The Not Done Yet coaching community runs the coached
+                  Not Done Yet group coaching runs the coached
                   five-pillar system built around your actual event date.
                   Personalised TrainingPeaks plan, weekly calls, expert
                   masterclasses. 7-day free trial.
@@ -513,7 +513,7 @@ function buildFaqs(
 
   qs.push({
     question: `Do I need a coach to train for the ${event.name}?`,
-    answer: `You don't need a coach to finish. You do need structure. If you're new to sportives, have a target finish time, have a plateau you can't break, or have a history of peaking wrong, a coached plan pays for itself. Inside the Not Done Yet coaching community the plan is built backwards from your event date — base, build, peak, taper timed to the week the ${event.name} runs. 7-day free trial, $195/mo.`,
+    answer: `You don't need a coach to finish. You do need structure. If you're new to sportives, have a target finish time, have a plateau you can't break, or have a history of peaking wrong, a coached plan pays for itself. In Not Done Yet group coaching, the plan is built backwards from your event date — base, build, peak, taper timed to the week the ${event.name} runs. 7-day free trial, $195/mo.`,
   });
 
   qs.push({

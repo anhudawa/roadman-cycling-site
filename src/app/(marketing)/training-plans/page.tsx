@@ -259,7 +259,7 @@ const FAQ = [
   {
     question: "How much does a Roadman training plan cost?",
     answer:
-      "Training plans live inside the Not Done Yet coaching community — $195 a month, with a 7-day free trial. That includes the personalised TrainingPeaks plan, the weekly coaching call with Anthony, the S&C roadmap, the nutrition guidance, and a private community of serious cyclists running the same system. Cancel anytime.",
+      "Training plans are delivered through Not Done Yet group coaching — $195 a month, with a 7-day free trial. That includes the personalised TrainingPeaks plan, weekly review by the Roadman coaching team, the live group coaching call with Anthony, the S&C roadmap, nutrition guidance, and a private community of serious cyclists running the same system. Cancel anytime.",
   },
   {
     question: "Can I follow the plan if I've never used TrainingPeaks before?",

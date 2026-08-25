@@ -191,7 +191,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     seoDescription:
       "After a serious crash in March 2025, David's enthusiasm was gone. Four months on Not Done Yet later he had his mojo back and signed up for his first race. The comeback model.",
     answerCapsule:
-      "After a serious crash in March 2025, David Lundy was struggling to get back to his old level and losing his enthusiasm for riding. Four months inside the Not Done Yet coaching community, he had his mojo back and signed up for his first race since the accident. Comebacks are not just physical.",
+      "After a serious crash in March 2025, David Lundy was struggling to get back to his old level and losing his enthusiasm for riding. Four months inside Not Done Yet group coaching, he had his mojo back and signed up for his first race since the accident. Comebacks are not just physical.",
     keywords: [
       "cycling comeback after crash",
       "return to cycling after injury",
@@ -216,7 +216,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       { label: "Goal", value: "Get back to enjoying riding, then back to racing" },
     ],
     intervention: [
-      "David joined the Not Done Yet coaching community four months before he wrote his testimonial. The intervention wasn't just a training plan — it was a structured comeback. Plan first, community second, accountability third.",
+      "David joined Not Done Yet group coaching four months before he wrote his testimonial. The intervention wasn't just a training plan — it was a structured comeback. Plan first, community second, accountability third.",
       "After a crash, the worst thing you can do is try to pick up where you left off. The right thing is to rebuild gradually, with structure that respects what your nervous system has been through, and a community of riders who know exactly what a bad crash does to your head.",
     ],
     weeklyStructure: [
@@ -258,7 +258,7 @@ export const CASE_STUDIES: CaseStudy[] = [
           "The evidence-based protocol for returning to riding without losing months.",
       },
       {
-        label: "Not Done Yet coaching community",
+        label: "Not Done Yet group coaching",
         href: "/community/not-done-yet",
         description:
           "The coached community David came back inside. $195/month, 7-day free trial.",
@@ -601,7 +601,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     seoDescription:
       "Blair's 20-minute power moved from 236 to 296 watts in three months on Not Done Yet. The structure that produced 60 watts in a quarter — and the honest caveats that most marketing leaves out.",
     answerCapsule:
-      "Blair Corey's 20-minute average power moved from 236 watts to 296 watts in three months inside the Not Done Yet coaching community — a 60-watt gain on the metric that proxies most closely for FTP. He paced his most recent test feeling like he could have gone harder.",
+      "Blair Corey's 20-minute average power moved from 236 watts to 296 watts in three months inside Not Done Yet group coaching — a 60-watt gain on the metric that proxies most closely for FTP. He paced his most recent test feeling like he could have gone harder.",
     keywords: [
       "20-minute power FTP gain",
       "Not Done Yet results",
@@ -668,7 +668,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     internalLinks: [
       {
-        label: "Not Done Yet coaching community",
+        label: "Not Done Yet group coaching",
         href: "/community/not-done-yet",
         description: "The structured coaching community Blair tests inside.",
       },
@@ -700,7 +700,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     seoDescription:
       "Gregory was 315 pounds in late 2019 and about to go on disability. After joining Not Done Yet, he reached his lowest weight in 15 years — under 100 kilograms. The long arc of body composition.",
     answerCapsule:
-      "In November 2019, Gregory Gross was 315 pounds and about to go on disability. After joining the Not Done Yet coaching community on January 5, he reached his lowest weight in 15 years — under 100 kilograms. The case for the long-arc body-composition approach over the quick-fix.",
+      "In November 2019, Gregory Gross was 315 pounds and about to go on disability. After joining Not Done Yet group coaching on January 5, he reached his lowest weight in 15 years — under 100 kilograms. The case for the long-arc body-composition approach over the quick-fix.",
     keywords: [
       "cycling weight loss case study",
       "315 lbs to under 100kg",
@@ -772,7 +772,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         description: "Healthy power-to-weight target — not a punishment number.",
       },
       {
-        label: "Not Done Yet coaching community",
+        label: "Not Done Yet group coaching",
         href: "/community/not-done-yet",
         description: "The structured community Gregory's arc happened inside.",
       },

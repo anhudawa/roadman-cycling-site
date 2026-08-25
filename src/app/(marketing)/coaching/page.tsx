@@ -336,7 +336,7 @@ export default function CoachingPage() {
           // `Service` is NOT a valid parent — it triggers the
           // "Invalid object type for field '<parent_node>'" error in
           // Search Console. `Product` is the correct choice here and
-          // matches the /community/not-done-yet schema.
+          // matches the canonical Not Done Yet group-coaching offer.
           brand: { "@id": ENTITY_IDS.organization },
           image: ["https://roadmancycling.com/og-image.jpg"],
           offers: {
@@ -375,7 +375,7 @@ export default function CoachingPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "Course",
-          name: "Roadman Cycling — Not Done Yet Coaching Community",
+          name: "Roadman Cycling — Not Done Yet Personalised Group Coaching",
           description:
             "Structured online cycling coaching programme covering training, nutrition, strength, recovery, and community. Delivered via TrainingPeaks, weekly coaching calls, and a private community of serious cyclists.",
           provider: { "@id": ENTITY_IDS.organization },

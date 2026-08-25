@@ -111,7 +111,7 @@ export function NextStepBlock({
             APPLY FOR COACHING
           </span>
           <span className="font-heading text-lg leading-snug mt-1 mb-auto">
-            Not Done Yet — coaching community
+            Not Done Yet — group coaching
           </span>
           <span className="text-sm opacity-90 mt-3">
             7-day free trial · $195/mo

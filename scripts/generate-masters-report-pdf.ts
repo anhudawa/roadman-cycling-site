@@ -194,6 +194,7 @@ function buildPrintHtml(fm: ReportFrontmatter, body: string): string {
         font-family: "Work Sans", sans-serif;
         font-size: 8pt;
         color: #888888;
+        padding-right: 4mm;
       }
     }
     @page :first {
@@ -558,7 +559,7 @@ function buildPrintHtml(fm: ReportFrontmatter, body: string): string {
     <ul class="cta-list">
       <li><strong>Plateau Diagnostic.</strong> Four-minute audit that returns a specific prescription. <a href="https://roadmancycling.com/go">roadmancycling.com/go</a></li>
       <li><strong>Strength Training programme.</strong> 12-week structure, video on every movement, masters-appropriate dose. <a href="https://roadmancycling.com/strength-training">roadmancycling.com/strength-training</a></li>
-      <li><strong>Apply for coaching.</strong> Not Done Yet &mdash; the long-form version of this report, with accountability and 1:1 programming. <a href="https://roadmancycling.com/apply">roadmancycling.com/apply</a></li>
+      <li><strong>Apply for coaching.</strong> Not Done Yet group coaching combines a personalised TrainingPeaks plan, weekly team review, and Anthony-led live group calls. Direct 1:1 coaching is the separate Roadman Inner Circle. <a href="https://roadmancycling.com/apply">roadmancycling.com/apply</a></li>
       <li><strong>Ask Roadman.</strong> On-site assistant trained on 1,400+ podcast episodes. <a href="https://roadmancycling.com/ask">roadmancycling.com/ask</a></li>
     </ul>
     <div class="closing">GET <span class="accent">THE WORK</span> DONE.</div>

@@ -49,7 +49,7 @@ curl -X POST https://roadmancycling.com/api/mcp \
 ## Rate Limiting
 
 - **60 requests/minute per IP** (sliding window via Upstash Redis)
-- Rate limiting gracefully degrades to no-op if `UPSTASH_REDIS_REST_URL` is not set
+- Rate limiting gracefully degrades to no-op if Redis is unconfigured or temporarily unavailable; provider errors are logged instead of taking the public MCP endpoint offline
 - Exceeded limit returns `429` with JSON-RPC error body
 
 ---

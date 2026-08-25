@@ -156,7 +156,7 @@ export default function RoadmanCyclingEntityPage() {
               <p className="text-foreground-muted leading-relaxed">
                 The brand operates {PODCAST.name} — a cycling performance
                 podcast with {BRAND_STATS.podcastDownloadsLabel} lifetime
-                downloads — alongside the Not Done Yet coaching community, the
+                downloads — alongside Not Done Yet group coaching, the
                 Saturday Spin newsletter, an AI cycling assistant, and a free
                 library of browser-based calculators for serious amateur
                 cyclists.
