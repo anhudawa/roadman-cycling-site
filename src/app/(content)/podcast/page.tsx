@@ -33,7 +33,6 @@ export async function generateMetadata({
   const { page: rawPage } = await searchParams;
   const page = parsePage(rawPage);
 
-  const suffix = page > 1 ? ` — Page ${page}` : "";
   const canonical =
     page === 1
       ? "https://roadmancycling.com/podcast"
@@ -45,16 +44,23 @@ export async function generateMetadata({
   // attributes, which is the effective replacement. We still express
   // canonical correctly per page.
   const alternates: Metadata["alternates"] = { canonical };
+  const title =
+    page === 1
+      ? `The Roadman Cycling Podcast — ${BRAND_STATS.podcastDownloadsLabel} Downloads`
+      : `Roadman Cycling Podcast Episodes — Page ${page}`;
+  const description = `The Roadman Cycling Podcast has ${BRAND_STATS.podcastDownloadsLabel} downloads and ${BRAND_STATS.episodeCountLabel} episodes with WorldTour coaches, scientists and pro riders. Watch, listen or search the archive.`;
 
   return {
-    title: `Cycling Podcast Archive — Every Episode of Roadman${suffix}`,
-    description:
-      "Every episode of the Roadman Cycling Podcast. 100M+ podcast downloads. Seiler, Lorang, LeMond, Morton, Bigham — the conversations behind serious training.",
+    // Absolute title avoids appending "| Roadman Cycling" to a title that
+    // already contains the complete brand name. GSC showed the hub at an
+    // average position of 6.5 but only 1.3% CTR, including weak brand-query
+    // clicks, so the exact entity name and proof point lead the snippet.
+    title: { absolute: title },
+    description,
     alternates,
     openGraph: {
-      title: `Cycling Podcast Archive — Every Episode of Roadman${suffix}`,
-      description:
-        "Every episode of the Roadman Cycling Podcast. Seiler, Lorang, LeMond, Morton, Bigham — the conversations behind serious cycling training.",
+      title,
+      description,
       type: "website",
       url: canonical,
       images: [
@@ -205,7 +211,7 @@ export default async function PodcastPage({ searchParams }: PodcastPageProps) {
               className="font-heading text-off-white mb-4"
               style={{ fontSize: "var(--text-hero)" }}
             >
-              THE CYCLING PODCAST
+              THE ROADMAN CYCLING PODCAST
             </h1>
             <p className="text-foreground-muted max-w-xl mx-auto text-lg mb-2">
               The Roadman archive. Every conversation and training insight,
@@ -214,6 +220,12 @@ export default async function PodcastPage({ searchParams }: PodcastPageProps) {
             <p className="text-coral font-heading text-xl">
               100M+ PODCAST DOWNLOADS
             </p>
+            <Link
+              href="/watch"
+              className="mt-5 inline-flex rounded-sm border border-coral/50 px-5 py-2.5 font-heading text-sm tracking-wider text-coral transition-colors hover:bg-coral hover:text-deep-purple"
+            >
+              WATCH CYCLING PODCAST VIDEOS →
+            </Link>
 
             {/* Archive-scope disclosure: the on-site index covers the
                 modern episodes that have transcripts and takeaways
