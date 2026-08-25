@@ -326,6 +326,26 @@ const nextConfig: NextConfig = {
         destination: "/blog/best-cycling-podcasts-2026",
         permanent: true,
       },
+      // Indoor-trainer search ownership (Aug 2026). Two later buying guides
+      // duplicated the maintained current-model guide, while the generated
+      // "best" route repeated the same head term with stale products. Preserve
+      // those URLs and consolidate model-selection signals into one owner. The
+      // separate rollers comparison keeps its distinct category intent.
+      {
+        source: "/blog/cycling-indoor-trainer-buying-guide",
+        destination: "/blog/best-indoor-smart-trainers-2026",
+        permanent: true,
+      },
+      {
+        source: "/best/best-turbo-trainers-2026",
+        destination: "/blog/best-indoor-smart-trainers-2026",
+        permanent: true,
+      },
+      {
+        source: "/blog/cycling-turbo-vs-rollers-vs-smart-trainer-guide",
+        destination: "/blog/indoor-trainer-vs-rollers",
+        permanent: true,
+      },
       // FTP-by-age consolidation (Aug 2026). Search Console showed the
       // maintained annual report earning 66 clicks / 3,695 impressions while
       // these later near-duplicates had 5 clicks or fewer and one was unknown

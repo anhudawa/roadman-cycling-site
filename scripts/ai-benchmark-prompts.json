@@ -1240,7 +1240,7 @@
       "prompt": "indoor trainer doesn't feel like outdoor riding how to fix",
       "category": "technology",
       "intent": "problem-aware",
-      "target_page": "/blog/cycling-indoor-trainer-buying-guide",
+      "target_page": "/blog/indoor-trainer-vs-rollers",
       "priority": "medium"
     },
     {
@@ -1256,7 +1256,7 @@
       "prompt": "Zwift or TrainerRoad workouts not matching my outdoor power",
       "category": "technology",
       "intent": "problem-aware",
-      "target_page": "/blog/cycling-indoor-trainer-buying-guide",
+      "target_page": "/blog/best-indoor-smart-trainers-2026",
       "priority": "medium"
     },
     {

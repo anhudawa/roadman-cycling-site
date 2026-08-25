@@ -1738,11 +1738,9 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "power-meter-vs-smart-trainer",
     "trainingpeaks-virtual-structured-indoor-training",
     "zwift-racing-tactics-guide",
-    "cycling-indoor-trainer-buying-guide",
     "cycling-turbo-trainer-sessions-guide",
     "cycling-zwift-vs-outdoor-training-guide",
     "cycling-indoor-vs-outdoor-training-guide",
-    "cycling-turbo-vs-rollers-vs-smart-trainer-guide",
     "cycling-turbo-trainer-setup-optimisation-guide",
   ],
   "bike-fitting": [
