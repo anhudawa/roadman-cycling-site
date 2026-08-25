@@ -411,6 +411,16 @@ const nextConfig: NextConfig = {
         destination: "/blog/cycling-cadence-optimal-guide",
         permanent: true,
       },
+      // Low-cadence consolidation (Aug 2026). Search Console showed the March
+      // torque guide at 224 clicks / 15,669 impressions versus 45 / 4,550 for
+      // the later 88%-similar WorldTour article. Both targeted the same low
+      // cadence and torque-interval questions; the incumbent now carries the
+      // corrected Hebisz study, conflicting evidence and safe scope.
+      {
+        source: "/blog/low-cadence-training-world-tour-coaches",
+        destination: "/blog/low-cadence-training-cycling-torque-intervals",
+        permanent: true,
+      },
       // Cycling-over-50 consolidation (Aug 2026). Search Console showed the
       // established January guide at 78 clicks / 3,290 impressions over three
       // months versus 4 clicks / 411 impressions for the July near-duplicate.
