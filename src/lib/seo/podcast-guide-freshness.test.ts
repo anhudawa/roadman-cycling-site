@@ -6,6 +6,13 @@ const guide = readFileSync(
   resolve(process.cwd(), "content/blog/best-cycling-podcasts-2026.mdx"),
   "utf8",
 );
+const indoorGuide = readFileSync(
+  resolve(
+    process.cwd(),
+    "content/blog/best-indoor-cycling-podcasts-winter.mdx",
+  ),
+  "utf8",
+);
 
 describe("best cycling podcasts guide freshness", () => {
   it("records the August 2026 review and discloses Roadman's conflict", () => {
@@ -24,5 +31,15 @@ describe("best cycling podcasts guide freshness", () => {
   it("routes readers into Roadman's new video watch layer", () => {
     expect(guide).toContain("[watch full cycling podcast videos](/watch)");
     expect(guide).toContain("[Watch on Roadman](/watch)");
+  });
+
+  it("keeps the indoor companion guide on active feeds", () => {
+    expect(indoorGuide).toContain("lastReviewed: '2026-08-25'");
+    expect(indoorGuide).toContain("Cycling Weekly's [Off The Back]");
+    expect(indoorGuide).toContain("public feed stops in July 2021");
+    expect(indoorGuide).toContain("[Roadman video library](/watch)");
+    expect(indoorGuide).not.toContain(
+      "The Cycling News Podcast runs 20 to 30 minutes",
+    );
   });
 });
