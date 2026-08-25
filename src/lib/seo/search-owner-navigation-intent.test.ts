@@ -9,6 +9,9 @@ function source(path: string) {
 describe("search-owner navigation intent", () => {
   it("reserves broad navigation labels for canonical owner pages", () => {
     const navigation = source("src/types/index.ts");
+    const appsVsCoaching = source(
+      "src/app/(marketing)/apps-vs-coaching/page.tsx",
+    );
 
     expect(navigation).toContain(
       '{ label: "Cycling Training Plans", href: "/training-plans" }',
@@ -38,6 +41,10 @@ describe("search-owner navigation intent", () => {
     );
     expect(navigation).not.toContain(
       'label: "Coaching",\n    href: "/community/not-done-yet"',
+    );
+    expect(appsVsCoaching).toContain('item: `${SITE_ORIGIN}/coaching`');
+    expect(appsVsCoaching).not.toContain(
+      'item: `${SITE_ORIGIN}/community/not-done-yet`',
     );
   });
 });
