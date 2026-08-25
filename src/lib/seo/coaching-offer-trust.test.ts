@@ -77,6 +77,27 @@ const PRODUCT_CLASSIFICATION_SURFACES = [
   "src/lib/tools/reports.ts",
 ] as const;
 
+const PRODUCT_IDENTITY_SURFACES = [
+  "content/blog/age-group-ftp-benchmarks-2026.mdx",
+  "content/blog/cycling-returning-after-break.mdx",
+  "content/podcast/ep-2-5-fixable-mistakes-self-coached-cyclists-make.mdx",
+  "content/podcast/ep-2540-secret-to-improving-threshold-dose-frequency-duration.mdx",
+  "content/podcast/ep-2541-5-fixable-mistakes-every-self-coached-cyclist-makes.mdx",
+  "src/app/(content)/event/[slug]/page.tsx",
+  "src/app/(content)/you/[slug]/page.tsx",
+  "src/app/go/ads/page.tsx",
+  "src/app/go/page.tsx",
+  "src/lib/cluster-hubs.ts",
+] as const;
+
+const PRODUCT_IDENTITY_INDEXED_CONTENT = [
+  "content/blog/age-group-ftp-benchmarks-2026.mdx",
+  "content/blog/cycling-returning-after-break.mdx",
+  "content/podcast/ep-2-5-fixable-mistakes-self-coached-cyclists-make.mdx",
+  "content/podcast/ep-2540-secret-to-improving-threshold-dose-frequency-duration.mdx",
+  "content/podcast/ep-2541-5-fixable-mistakes-every-self-coached-cyclist-makes.mdx",
+] as const;
+
 const INACCURATE_NOT_DONE_YET_CLAIMS = [
   "premium online 1:1 coaching",
   "1:1 plans across 5 pillars",
@@ -144,6 +165,21 @@ describe("coaching offer trust", () => {
     expect(combined).toContain("Not Done Yet group coaching");
   });
 
+  it("keeps product-identity copy distinct from the included rider community", () => {
+    const combined = PRODUCT_IDENTITY_SURFACES.map((path) =>
+      readFileSync(resolve(process.cwd(), path), "utf8"),
+    ).join("\n");
+
+    expect(combined).not.toContain("Not Done Yet Coaching Community");
+    expect(combined).not.toContain("Not Done Yet coaching community");
+    expect(combined).not.toContain("The paid community I run");
+    expect(combined).not.toContain("the Not Done Yet community ($195/mo)");
+    expect(combined).not.toContain("The Not Done Yet community builds");
+    expect(combined).toContain("Not Done Yet Group Coaching");
+    expect(combined).toContain("Not Done Yet group coaching");
+    expect(combined).toContain("private rider community");
+  });
+
   it("corrects and freshness-stamps the indexed articles that carried the old claim", () => {
     const articles = CORRECTED_ARTICLE_PATHS.map((path) => ({
       path,
@@ -186,6 +222,21 @@ describe("coaching offer trust", () => {
       const slug = path.split("/").at(-1)?.replace(/\.mdx$/, "");
       expect(indexNowSource, path).toContain(`"${slug}"`);
     }
+  });
+
+  it("keeps product-identity corrections in the recurring IndexNow set", () => {
+    const indexNowSource = readFileSync(
+      resolve(process.cwd(), "scripts/submit-indexnow.ts"),
+      "utf8",
+    );
+
+    for (const path of PRODUCT_IDENTITY_INDEXED_CONTENT) {
+      const slug = path.split("/").at(-1)?.replace(/\.mdx$/, "");
+      expect(indexNowSource, path).toContain(`"${slug}"`);
+    }
+
+    expect(indexNowSource).toContain("getAllEventGuideSlugs");
+    expect(indexNowSource).toContain("/masters/vo2max");
   });
 
   it("teaches AI crawlers which programme is group coaching and which is 1:1", async () => {

@@ -24,7 +24,7 @@ import { GoExitIntent } from "./_components/GoExitIntent";
  *    exists without giving them a tab to wander off into.
  *  - Single CTA, repeated three times, all pointing to /plateau
  *    where the diagnostic flow lives. The diagnostic is the entry
- *    point to the Not Done Yet community sales motion. There is no
+ *    point to the Not Done Yet group-coaching sales motion. There is no
  *    call-booking, no strategy session, no high-ticket leak.
  *  - Pure server-rendered: no framer-motion, no Suspense, no
  *    per-request DB queries. Whole page on the wire in one round
@@ -61,7 +61,7 @@ const FAQS: ReadonlyArray<{ q: string; a: string }> = [
   },
   {
     q: "What's Not Done Yet?",
-    a: "The paid community I run for serious masters cyclists who refuse to accept their best days are behind them. Training plans, weekly live calls with me, the S&C roadmap. You don't have to join anything to take the diagnostic.",
+    a: "The personalised group-coaching programme I run for serious masters cyclists who refuse to accept their best days are behind them. It includes a TrainingPeaks plan reviewed weekly by the Roadman coaching team, live group coaching with me, strength and nutrition guidance, and a private rider community. You don't have to join anything to take the diagnostic.",
   },
   {
     q: "What happens after I get my result?",

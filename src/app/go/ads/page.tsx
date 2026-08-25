@@ -49,7 +49,7 @@ const FAQS: ReadonlyArray<{ q: string; a: string }> = [
   },
   {
     q: "What's Not Done Yet?",
-    a: "The paid community I run for serious masters cyclists who refuse to accept their best days are behind them. Training plans, weekly live calls with me, the S&C roadmap. You don't have to join anything to take the diagnostic.",
+    a: "The personalised group-coaching programme I run for serious masters cyclists who refuse to accept their best days are behind them. It includes a TrainingPeaks plan reviewed weekly by the Roadman coaching team, live group coaching with me, strength and nutrition guidance, and a private rider community. You don't have to join anything to take the diagnostic.",
   },
   {
     q: "What happens after I get my result?",

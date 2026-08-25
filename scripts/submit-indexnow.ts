@@ -35,6 +35,7 @@ import {
   getBlogArchiveHref,
   getBlogArchivePageCount,
 } from "../src/lib/seo/blog-archive-pagination";
+import { getAllEventGuideSlugs } from "../src/lib/event-guides";
 
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry") || args.includes("--dry-run");
@@ -56,6 +57,7 @@ const CURATED: string[] = [
   `https://${HOST}/about/press`,
   `https://${HOST}/podcast`,
   `https://${HOST}/masters`,
+  `https://${HOST}/masters/vo2max`,
   `https://${HOST}/training-plans`,
   `https://${HOST}/training-camps`,
   `https://${HOST}/watch`,
@@ -186,6 +188,17 @@ const COACHING_OFFER_TRUST_CLUSTER = [
   "zwift-vs-trainerroad",
 ];
 
+const PRODUCT_IDENTITY_BLOG_CLUSTER = [
+  "age-group-ftp-benchmarks-2026",
+  "cycling-returning-after-break",
+];
+
+const PRODUCT_IDENTITY_PODCAST_CLUSTER = [
+  "ep-2-5-fixable-mistakes-self-coached-cyclists-make",
+  "ep-2540-secret-to-improving-threshold-dose-frequency-duration",
+  "ep-2541-5-fixable-mistakes-every-self-coached-cyclist-makes",
+];
+
 const COMPARISON_CLUSTER = [
   "zwift-vs-trainerroad",
   "wahoo-vs-garmin-cycling-computers",
@@ -225,6 +238,16 @@ const TRAINING_CAMP_CLUSTER = [
 
 function clusterUrls(slugs: string[]): string[] {
   return slugs.map((slug) => `https://${HOST}/blog/${slug}`);
+}
+
+function podcastUrls(slugs: string[]): string[] {
+  return slugs.map((slug) => `https://${HOST}/podcast/${slug}`);
+}
+
+function eventGuideUrls(): string[] {
+  return getAllEventGuideSlugs().map(
+    (slug) => `https://${HOST}/event/${slug}`,
+  );
 }
 
 function allBlogUrls(): string[] {
@@ -311,6 +334,9 @@ async function main() {
   clusterUrls(TRIATHLON_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(COACHING_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(COACHING_OFFER_TRUST_CLUSTER).forEach((u) => urls.add(u));
+  clusterUrls(PRODUCT_IDENTITY_BLOG_CLUSTER).forEach((u) => urls.add(u));
+  podcastUrls(PRODUCT_IDENTITY_PODCAST_CLUSTER).forEach((u) => urls.add(u));
+  eventGuideUrls().forEach((u) => urls.add(u));
   clusterUrls(PODCAST_AUTHORITY_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(TRAINING_CAMP_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(COMPARISON_CLUSTER).forEach((u) => urls.add(u));
