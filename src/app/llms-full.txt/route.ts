@@ -316,7 +316,7 @@ ${episodeSections}
 For programmatic ingestion, prefer these endpoints over scraping HTML.
 
 - ${BASE_URL}/knowledge-graph.json — Single-document property graph: every first-class entity (people, topics, tools, episodes, articles, glossary terms, events, comparisons, problems, questions, best-for picks) plus typed relationships (guest_on, authored_by, mentions_expert, about_topic, features_article, related_to, uses_tool, defined_in, recommends, etc.). Schema version 1; node ids are namespaced (\`type:slug\`) so the graph loads directly into a property graph store.
-- ${BASE_URL}/sitemap.xml — Full URL sitemap (~540 URLs)
+- ${BASE_URL}/sitemap.xml — Full canonical sitemap index for the live site
 - ${BASE_URL}/feed/podcast — Podcast RSS feed
 - ${BASE_URL}/feed/blog — Blog RSS 2.0 feed (latest 50 posts)
 - ${BASE_URL}/feeds/episodes.json — JSON episode feed (includes hasTranscript flag and transcriptUrl per episode)

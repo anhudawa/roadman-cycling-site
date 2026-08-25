@@ -308,7 +308,7 @@ export default function AppsVsCoachingPage() {
         "@type": "ListItem",
         position: 2,
         name: "Coaching",
-        item: `${SITE_ORIGIN}/community/not-done-yet`,
+        item: `${SITE_ORIGIN}/coaching`,
       },
       {
         "@type": "ListItem",
