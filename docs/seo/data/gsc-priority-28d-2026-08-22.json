@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "property": "sc-domain:roadmancycling.com",
   "capturedAt": "2026-08-24T13:58:37Z",
   "deploymentDate": "2026-08-24",
@@ -14,6 +14,43 @@
     "ctr": 0.014,
     "position": 7.9
   },
+  "ownerPages": [
+    {
+      "path": "/podcast",
+      "clicks": 17,
+      "impressions": 1323,
+      "ctr": 0.013,
+      "position": 6.5
+    },
+    {
+      "path": "/coaching",
+      "clicks": 26,
+      "impressions": 903,
+      "ctr": 0.029,
+      "position": 23.5
+    },
+    {
+      "path": "/masters",
+      "clicks": 2,
+      "impressions": 106,
+      "ctr": 0.019,
+      "position": 19.5
+    },
+    {
+      "path": "/training-plans",
+      "clicks": 2,
+      "impressions": 49,
+      "ctr": 0.041,
+      "position": 6.5
+    },
+    {
+      "path": "/training-camps",
+      "clicks": 9,
+      "impressions": 276,
+      "ctr": 0.033,
+      "position": 6.5
+    }
+  ],
   "queries": [
     {
       "query": "cycling podcast",
@@ -396,6 +433,7 @@
   "ownerLinkClicks": null,
   "notes": [
     "Captured manually from the signed-in Google Search Console domain property using Web search and a fixed 28-day range.",
+    "The five canonical owner-page rows were captured with an exact Page filter for each path in Web search over the same fixed date range; their values were cross-checked against the written 24 August baseline.",
     "Google warns that chart totals and page-table rows can be partial when filters are applied; reported URL counts and owner shares should be compared using the same filters, not summed as accounting totals.",
     "The URL split rows contain the visible first page of results where Google reported more than ten URLs.",
     "Search-owner click tracking did not exist during this period, so its baseline is null rather than zero.",

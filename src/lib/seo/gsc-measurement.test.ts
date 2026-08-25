@@ -9,12 +9,31 @@ import {
 
 function snapshot(overrides: Partial<GscSnapshot> = {}): GscSnapshot {
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     property: "sc-domain:roadmancycling.com",
     capturedAt: "2026-08-24T12:00:00.000Z",
     deploymentDate: "2026-08-24",
     period: { start: "2026-07-26", end: "2026-08-22", days: 28 },
     site: { clicks: 100, impressions: 1_000, ctr: 0.1, position: 10 },
+    ownerPages: [
+      { path: "/podcast", clicks: 2, impressions: 50, ctr: 0.04, position: 6 },
+      { path: "/coaching", clicks: 1, impressions: 10, ctr: 0.1, position: 30 },
+      { path: "/masters", clicks: 0, impressions: 5, ctr: 0, position: 20 },
+      {
+        path: "/training-plans",
+        clicks: 0,
+        impressions: 2,
+        ctr: 0,
+        position: 10,
+      },
+      {
+        path: "/training-camps",
+        clicks: 0,
+        impressions: 4,
+        ctr: 0,
+        position: 15,
+      },
+    ],
     queries: [
       {
         query: "cycling coach",
@@ -105,6 +124,17 @@ describe("GSC measurement", () => {
     const baseline = snapshot();
     const current = currentSnapshot({
       site: { clicks: 120, impressions: 1_100, ctr: 0.109, position: 9 },
+      ownerPages: snapshot().ownerPages.map((row) =>
+        row.path === "/coaching"
+          ? {
+              ...row,
+              clicks: 6,
+              impressions: 48,
+              ctr: 0.125,
+              position: 12,
+            }
+          : row,
+      ),
       queries: [
         {
           query: "cycling coach",
@@ -176,6 +206,16 @@ describe("GSC measurement", () => {
 
     expect(result.site.clicks.absolute).toBe(20);
     expect(result.site.clicks.relative).toBeCloseTo(0.2);
+    const coachingOwner = result.ownerPages.find(
+      (row) => row.path === "/coaching",
+    );
+    expect(coachingOwner).toEqual(
+      expect.objectContaining({
+        ownerId: "cycling-coaching",
+        positionGain: 18,
+      }),
+    );
+    expect(coachingOwner?.ctrPoints).toBeCloseTo(2.5);
     expect(result.queries[0].positionGain).toBe(4);
     expect(result.urlSplits[0].reportedUrlCountDelta).toBe(-2);
     expect(result.urlSplits[0].ownerImpressionShareBefore).toBeCloseTo(0.1);
@@ -220,6 +260,8 @@ describe("GSC measurement", () => {
     );
 
     expect(markdown).toContain("# Roadman search comparison");
+    expect(markdown).toContain("## Canonical owner pages");
+    expect(markdown).toContain("[Online Cycling Coaching](/coaching)");
     expect(markdown).toContain("## URL ownership");
     expect(markdown).toContain("## Video indexing");
     expect(markdown).toContain("Video isn't on a watch page");
@@ -291,6 +333,15 @@ describe("GSC measurement", () => {
 
   it("refuses extra, duplicate or changed measurement filters", () => {
     const baseline = snapshot();
+
+    expect(() =>
+      compareGscSnapshots(
+        baseline,
+        currentSnapshot({
+          ownerPages: baseline.ownerPages.slice(1),
+        }),
+      ),
+    ).toThrow("same canonical owner pages");
 
     expect(() =>
       compareGscSnapshots(
