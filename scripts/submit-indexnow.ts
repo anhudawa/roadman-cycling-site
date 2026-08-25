@@ -99,6 +99,7 @@ const CURATED: string[] = [
   `https://${HOST}/blog/cycling-knee-tracking-cleat-setup-guide`,
   `https://${HOST}/blog/cycling-ankle-mobility-calf-strength-guide`,
   `https://${HOST}/blog/bike-fit-one-change-amateurs-should-make`,
+  `https://${HOST}/blog/daryl-fitzgerald-saddle-height-one-change`,
   `https://${HOST}/tools/masters-ftp-benchmark`,
   `https://${HOST}/answers/ftp-by-age`,
 
