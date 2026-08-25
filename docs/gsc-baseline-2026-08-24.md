@@ -156,6 +156,7 @@ alternates, redirects, noindex pages, robots exclusions, or generated assets.
 | Alternate page with proper canonical      | 1,588 | Expected consolidation                                                                                                     |
 | Crawled — currently not indexed           | 1,227 | Samples dominated by fingerprinted Open Graph image assets and feeds; `noindex` remediation live, GSC reprocessing pending |
 | Page with redirect                        |   492 | Generally expected consolidation                                                                                           |
+| Not found (404)                            |   377 | Samples dominated by unhashed Open Graph image references; source references corrected, GSC reprocessing pending           |
 | Excluded by `noindex`                     |   264 | Generally intentional private/thin pages                                                                                   |
 | Blocked by robots.txt                     |   255 | Requires periodic audit, not blanket removal                                                                               |
 | Soft 404                                  |   103 | Route-level 404 remediation deployed and production-verified; GSC reprocessing pending                                     |
@@ -167,6 +168,21 @@ on 25 August: guest slugs absent from the curated corpus return route-level
 404s, the transactional checkout emits `noindex, follow`, and generated social
 images plus raw feeds emit `X-Robots-Tag: noindex, nofollow`. The table retains
 the frozen baseline counts until Search Console recrawls and reprocesses them.
+
+Search Console separately reported 302 URLs as "Indexed, though blocked by
+robots.txt". Its examples were the stable `/api/og/blog-hero?...` image
+endpoint referenced by article structured data. The generated-image cleanup
+keeps the broader `/api/` tree blocked while explicitly allowing that one
+high-resolution image endpoint. This lets Google fetch the intended structured
+image as an image instead of retaining a URL it knows about but cannot crawl.
+
+The 404 examples were the opposite side of the same defect: unhashed
+`/blog/<slug>/opengraph-image` references do not exist because Next.js serves
+metadata-image routes under fingerprinted URLs. Article structured data now
+uses the stable crawlable image endpoint when no featured image exists. Manual
+unhashed image references were also removed from the training-plan, masters,
+event-prep and apps-versus-coaching metadata so Next can inject each route's
+real fingerprinted social image.
 
 ## Video-search opportunity and remediation
 

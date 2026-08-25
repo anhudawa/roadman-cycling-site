@@ -32,10 +32,12 @@ const DISALLOW_PATHS = [
 ];
 
 // Crawlers must be able to fetch /_next/static/ so Googlebot and AI
-// crawlers can render the page (JS, CSS, images live there). The
-// broader /_next/ tree stays disallowed so build-internal routes
-// don't get indexed. Under the REP, the more-specific Allow wins.
-const ALLOW_PATHS = ["/", "/_next/static/"];
+// crawlers can render the page (JS, CSS, images live there). The blog
+// hero endpoint is also intentionally referenced by Article/WebPage
+// structured data as a stable, high-resolution image fallback, so it
+// must remain crawlable even though the broader /api/ tree is blocked.
+// Under the REP, the more-specific Allow wins.
+const ALLOW_PATHS = ["/", "/_next/static/", "/api/og/blog-hero"];
 
 export default function robots(): MetadataRoute.Robots {
   return {

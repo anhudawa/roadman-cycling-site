@@ -283,21 +283,16 @@ export default async function BlogPostPage({
               ? ["h1", ".answer-capsule"]
               : ["h1", ".prose-roadman > p:first-of-type"],
           },
-          // image: always emitted so every article is eligible for the
-          // Article image rich result. Prefer the post's featuredImage;
-          // for the ~45 posts without one, fall back to the per-post
-          // Satori OG card generated at /blog/<slug>/opengraph-image
-          // (guaranteed to exist and render at exactly 1200×630).
-          image: {
-            "@type": "ImageObject",
-            url: post.featuredImage
-              ? (post.featuredImage.startsWith('http')
-                  ? post.featuredImage
-                  : `${SITE_ORIGIN}${post.featuredImage}`)
-              : `${SITE_ORIGIN}/blog/${slug}/opengraph-image`,
-            width: 1200,
-            height: 630,
-          },
+          // Always emit a crawlable Article image. Next fingerprints
+          // metadata-image routes, so a hand-built
+          // /blog/<slug>/opengraph-image URL is a 404 in production. Use
+          // the stable, explicitly crawlable Satori endpoint when a post
+          // does not have its own featured image.
+          image: post.featuredImage
+            ? (post.featuredImage.startsWith('http')
+                ? post.featuredImage
+                : `${SITE_ORIGIN}${post.featuredImage}`)
+            : `${SITE_ORIGIN}/api/og/blog-hero?slug=${encodeURIComponent(slug)}`,
           // mentions: experts cited in the article (linked to their
           // /guests/[slug]#person @id which the guest page emits) plus
           // any explicitly cited related podcast episodes (linked to
