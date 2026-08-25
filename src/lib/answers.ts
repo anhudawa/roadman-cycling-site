@@ -11,6 +11,7 @@ import { periodisationAnswers } from "./answers-data/periodisation";
 import { powerAnswers } from "./answers-data/power";
 import { mentalAnswers } from "./answers-data/mental";
 import { bikefitAnswers } from "./answers-data/bikefit";
+import { applyBikeFitTrustOverride } from "./answers-data/bikefit-trust-overrides";
 import { heatAnswers } from "./answers-data/heat";
 import { crossTrainingAnswers } from "./answers-data/cross-training";
 import { metricsAnswers } from "./answers-data/metrics";
@@ -1683,7 +1684,7 @@ export const ANSWER_PAGES: AnswerPage[] = [
   ...periodisationAnswers,
   ...powerAnswers,
   ...mentalAnswers,
-  ...bikefitAnswers,
+  ...bikefitAnswers.map(applyBikeFitTrustOverride),
   ...heatAnswers,
   ...crossTrainingAnswers,
   ...metricsAnswers,
@@ -1693,7 +1694,7 @@ export const ANSWER_PAGES: AnswerPage[] = [
   ...highVolumeQueryAnswers,
   ...highVolumeQuery2Answers,
   ...highVolumeQuery3Answers,
-  ...highVolumeQuery4Answers,
+  ...highVolumeQuery4Answers.map(applyBikeFitTrustOverride),
   ...highVolumeQuery5Answers,
   ...highVolumeQuery6Answers,
   ...highVolumeQuery7Answers,
