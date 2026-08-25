@@ -19,6 +19,10 @@ vi.mock("@/lib/brand-facts", () => ({
     newsletterSubscribersLabel: "30k",
   },
   FOUNDER: { name: "Anthony Walsh", location: "Dublin", foundedYear: 2018 },
+  PODCAST_HISTORY: {
+    summary:
+      "The podcast feed has been active since 2017 and has published under the Roadman Cycling brand since the 2021 rebrand.",
+  },
   SITE_ORIGIN: "https://roadmancycling.com",
 }));
 
@@ -89,6 +93,16 @@ describe("GET /llms.txt", () => {
     const text = await res.text();
     expect(text).toContain("MCP Server");
   });
+
+  it("distinguishes podcast-feed history from the Roadman rebrand", async () => {
+    const { GET } = await import("./route");
+    const res = await GET();
+    const text = await res.text();
+
+    expect(text).toContain("podcast feed has been active since 2017");
+    expect(text).toContain("Roadman Cycling brand since the 2021 rebrand");
+  });
+
   it("declares canonical owners for the five priority search categories", async () => {
     const { GET } = await import("./route");
     const res = await GET();

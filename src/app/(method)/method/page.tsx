@@ -16,12 +16,12 @@ import { FinalCTA } from "./_components/sales/FinalCTA";
 export const metadata: Metadata = {
   title: "The Roadman Method — 12-Week Course for Stuck Cyclists",
   description:
-    "Twelve weeks. Five pillars. One system. Built on 1,400+ conversations with World Tour coaches, sport scientists and pro cyclists. From $297, lifetime access.",
+    "Twelve weeks. Five pillars. One system. Built on 1,400+ podcast episodes and interviews with World Tour coaches, sport scientists and pro cyclists. From $297, lifetime access.",
   alternates: { canonical: "/method" },
   openGraph: {
     title: "The Roadman Method — 12-Week Course for Stuck Cyclists",
     description:
-      "A 12-week course for serious amateur cyclists. Built on 1,400+ podcast conversations with the people who actually move performance forward.",
+      "A 12-week course for serious amateur cyclists. Built on a 1,400+ episode podcast catalogue featuring the people who actually move performance forward.",
     type: "website",
   },
 };

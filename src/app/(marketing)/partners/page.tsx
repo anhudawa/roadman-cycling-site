@@ -810,7 +810,7 @@ export default function PartnersPage() {
 
             <ScrollReveal direction="up" delay={0.5}>
               <p className="text-center text-foreground-muted text-sm mt-8">
-                Plus 1,400+ more conversations in{" "}
+                Explore every named expert in{" "}
                 <Link href="/guests" className="text-coral hover:underline">
                   the full guest archive
                 </Link>

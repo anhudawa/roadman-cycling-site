@@ -46,7 +46,7 @@ const reviewers: Reviewer[] = [
       "Coaching philosophy",
       "Editorial direction",
     ],
-    bio: `Founder of Roadman Cycling and host of The Roadman Cycling Podcast. Coaching cyclists since ${FOUNDER.foundedYear} (and continuously since 2013 under the original A1 Coaching brand). Over 1,400 on-the-record interviews with World Tour coaches, sports scientists, and pro riders. Based in ${FOUNDER.location}. Anthony is editor-in-chief and signs off every coaching, training, and methodology piece on this site.`,
+    bio: `Founder of Roadman Cycling and host of The Roadman Cycling Podcast. Coaching cyclists since ${FOUNDER.foundedYear} (and continuously since 2013 under the original A1 Coaching brand). Host of a 1,400+ episode catalogue featuring interviews with World Tour coaches, sports scientists, and pro riders. Based in ${FOUNDER.location}. Anthony is editor-in-chief and signs off every coaching, training, and methodology piece on this site.`,
     href: "/entity/anthony-walsh",
   },
 ];

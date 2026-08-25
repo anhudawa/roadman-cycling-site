@@ -4,7 +4,11 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ENTITY_IDS, BRAND_STATS } from "@/lib/brand-facts";
+import {
+  ENTITY_IDS,
+  BRAND_STATS,
+  PODCAST_HISTORY,
+} from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
   title: "Press & Media Kit — Anthony Walsh & Roadman Cycling",
@@ -34,8 +38,7 @@ const brandStats = [
   {
     stat: BRAND_STATS.episodeCountLabel,
     label: "Episodes published",
-    detail:
-      "In-depth interviews with World Tour coaches, sports scientists and pro riders — weekly since 2021, available everywhere podcasts are",
+    detail: PODCAST_HISTORY.summary,
   },
   {
     stat: BRAND_STATS.newsletterSubscribersLabel,
@@ -79,7 +82,7 @@ const notableGuests = [
 const pitchAngles = [
   {
     title: "The cycling podcast built on access, not algorithms",
-    body: "How one host's 1,400+ on-the-record interviews with the world's best coaches and scientists built a 100M-download audience — and changed how amateur cyclists train.",
+    body: "How one host's 1,400+ episode catalogue — including interviews with leading coaches and scientists — built a 100M-download audience and changed how amateur cyclists train.",
   },
   {
     title: "What the World Tour knows that age-groupers don't — yet",
@@ -278,13 +281,13 @@ export default function PressPage() {
                 <p>
                   Based in Dublin, Ireland, Anthony built Roadman from a
                   one-man recording setup into a company coaching cyclists
-                  worldwide. His interview catalogue runs to over
-                  1,400 on-the-record conversations with the coaches,
-                  scientists, and athletes who are actively shaping elite
-                  cycling — from polarised training pioneer Prof. Stephen
-                  Seiler to Red Bull–Bora–Hansgrohe head of performance Dan
-                  Lorang, three-time Tour de France winner Greg LeMond, and
-                  EF Education pro Lachlan Morton.
+                  worldwide. Across a catalogue of more than 1,400 episodes,
+                  his on-the-record guests include coaches, scientists and
+                  athletes actively shaping elite cycling — from polarised
+                  training pioneer Prof. Stephen Seiler to Red
+                  Bull–Bora–Hansgrohe head of performance Dan Lorang,
+                  three-time Tour de France winner Greg LeMond, and EF
+                  Education pro Lachlan Morton.
                 </p>
                 <p>
                   The Roadman Cycling coaching programme applies that body
@@ -295,10 +298,11 @@ export default function PressPage() {
                 <p className="text-foreground-subtle text-sm pt-4 border-t border-white/10">
                   <strong className="text-off-white">Short bio (50 words):</strong>{" "}
                   Anthony Walsh is the founder of Roadman Cycling and host of
-                  The Roadman Cycling Podcast. Over 1,400 interviews with
-                  World Tour coaches, sports scientists and pro cyclists
-                  have built a podcast with 100M+ downloads and a coaching
-                  programme serving serious amateur cyclists worldwide.
+                  The Roadman Cycling Podcast. Its 1,400+ episode catalogue
+                  includes interviews with World Tour coaches, sports
+                  scientists and pro cyclists, has 100M+ lifetime downloads,
+                  and supports a coaching programme serving serious amateur
+                  cyclists worldwide.
                 </p>
               </ScrollReveal>
             </div>

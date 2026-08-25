@@ -85,7 +85,7 @@ const ROLES: Role[] = [
     ],
     niceToHaves: [
       "A presence on social media or YouTube — comfortable on camera and able to contribute to content",
-      "Familiarity with the Roadman Cycling Podcast and the methodology we have built across 1,400+ expert conversations",
+      "Familiarity with the Roadman Cycling Podcast and the methodology built across its 1,400+ episode catalogue",
       "Experience with masters-specific training (40+ athletes, hormonal context, recovery management)",
       "Background as a competitive cyclist yourself — Cat 3 or better, or equivalent gran fondo / time trial pedigree",
       "Comfort working inside a small, fast-moving team that ships content as well as coaching",
@@ -123,7 +123,7 @@ const ROLES: Role[] = [
     type: "Contract / Part-time",
     hook: "61K subscribers. 100M+ podcast downloads. The content exists — it needs someone who knows how to make YouTube reward it.",
     description: [
-      "The Roadman Cycling Podcast is one of the largest cycling podcasts in the world. Over 1,400 episodes. Guests from Stephen Seiler to Lachlan Morton to Dan Lorang. The content is strong and the audience is loyal — but the YouTube channel is not growing at the rate the content deserves.",
+      "The Roadman Cycling Podcast has more than 1,400 episodes and 100M+ lifetime downloads. Guests range from Stephen Seiler to Lachlan Morton to Dan Lorang. The content is strong and the audience is loyal — but the YouTube channel is not growing at the rate the content deserves.",
       "We need someone who lives and breathes YouTube. Not someone who knows a bit about social media and has YouTube on their CV. Someone who can look at our analytics, find the friction, and fix it — thumbnails, titles, retention curves, shorts strategy, publishing cadence, all of it.",
       "This is not a content creation role. The content already exists. This is about making it perform — getting it in front of more of the right people and keeping them watching.",
     ],
@@ -338,7 +338,7 @@ const aboutFacts = [
   {
     stat: "100M+",
     label: "Podcast downloads",
-    detail: "The Roadman Cycling Podcast — one of the largest cycling podcasts in the world",
+    detail: "The Roadman Cycling Podcast — 1,400+ episodes and 100M+ lifetime downloads",
   },
   {
     stat: "1,400+",

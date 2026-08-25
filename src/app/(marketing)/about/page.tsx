@@ -4,7 +4,12 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button, Card, ScrollReveal, ParallaxImage } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ENTITY_IDS, SITE_ORIGIN, FOUNDER } from "@/lib/brand-facts";
+import {
+  ENTITY_IDS,
+  SITE_ORIGIN,
+  FOUNDER,
+  PODCAST_HISTORY,
+} from "@/lib/brand-facts";
 import { slugifyGuestName } from "@/lib/guests";
 
 /**
@@ -62,7 +67,16 @@ const expertNetwork: { name: string; role: string; category: ExpertCategory; hig
 ];
 
 const milestones = [
-  { year: "2021", event: "Roadman Cycling Podcast launches", icon: "🎙️" },
+  {
+    year: String(PODCAST_HISTORY.feedStartedYear),
+    event: "Anthony launches the podcast feed",
+    icon: "🎙️",
+  },
+  {
+    year: String(PODCAST_HISTORY.roadmanBrandSinceYear),
+    event: "A1 Coaching rebrands as Roadman Cycling",
+    icon: "🚴",
+  },
   { year: "2022", event: "1 million downloads", icon: "📈" },
   { year: "2023", event: "Sarah joins the podcast team", icon: "🤝" },
   { year: "2024", event: "Greg LeMond interview — a career highlight", icon: "🏆" },
@@ -208,7 +222,7 @@ export default function AboutPage() {
                   Dan Lorang explained how he builds World Tour training plans.
                   Greg LeMond shared what it took to win three Tours de France.
                   Lachlan Morton talked about why the World Tour wasn&apos;t
-                  enough. Over 1,400 conversations later, the access hasn&apos;t
+                  enough. More than 1,400 podcast episodes later, the access hasn&apos;t
                   slowed down.
                 </p>
               </ScrollReveal>
@@ -330,7 +344,7 @@ export default function AboutPage() {
                   EVERYTHING I&apos;VE LEARNED, APPLIED TO YOUR TRAINING.
                 </h3>
                 <p className="text-foreground-muted text-lg mb-8 max-w-xl mx-auto leading-relaxed">
-                  1,400+ conversations with the best coaches, scientists and
+                  1,400+ podcast episodes, including interviews with coaches, scientists and
                   riders in the sport — distilled into a plan built around
                   your power numbers, your events, your calendar, your life.
                 </p>
@@ -410,7 +424,7 @@ export default function AboutPage() {
 
             <ScrollReveal direction="up" delay={0.5}>
               <p className="text-center text-foreground-muted text-sm mt-8">
-                Plus 1,400+ more conversations in{" "}
+                Explore every named expert in{" "}
                 <Link href="/guests" className="text-coral hover:underline">
                   the full guest archive
                 </Link>

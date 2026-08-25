@@ -68,7 +68,7 @@ const principles = [
 ];
 
 const evidenceBase = [
-  "1,400+ on-the-record podcast interviews with World Tour coaches, scientists, and pro riders",
+  "A 1,400+ episode podcast catalogue featuring World Tour coaches, scientists, and pro riders",
   "Direct conversations with the people building elite training plans, not summaries of what others wrote",
   "Cross-referenced against peer-reviewed sports science where the literature exists",
   "Pressure-tested across hundreds of coached cyclists worldwide",

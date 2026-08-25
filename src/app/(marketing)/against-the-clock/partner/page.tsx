@@ -338,8 +338,8 @@ export default function AgainstTheClockPartnerPage() {
                 THE REACH
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto">
-                The Roadman Cycling Podcast is the largest cycling performance podcast
-                in the world. Every figure below is the canonical, verified number.
+                The Roadman Cycling Podcast has surpassed 100M lifetime downloads.
+                Every figure below is the canonical, verified number.
               </p>
             </ScrollReveal>
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">

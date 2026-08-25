@@ -91,7 +91,7 @@ export default function RacesPage() {
               GOT A RACE QUESTION?
             </h2>
             <p className="text-foreground-muted max-w-xl mx-auto mb-8 leading-relaxed">
-              Ask Roadman is the on-site AI assistant grounded in 1,400+ podcast conversations
+              Ask Roadman is the on-site AI assistant grounded in a 1,400+ episode podcast catalogue
               with World Tour coaches and sports scientists. Ask anything about race preparation,
               pacing strategy or training for your target event.
             </p>

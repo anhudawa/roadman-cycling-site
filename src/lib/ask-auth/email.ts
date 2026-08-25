@@ -74,7 +74,7 @@ function askMagicLinkHtml(url: string): string {
         </td></tr>
 
         <tr><td style="padding:0 0 24px 0;color:#CBD5E1;font-size:16px;line-height:1.6;">
-          You asked for a sign-in link to Ask Roadman — Anthony's coaching brain on tap, grounded in 1,400+ podcast conversations with World Tour coaches, sports scientists, and pro cyclists.
+          You asked for a sign-in link to Ask Roadman — Anthony's coaching brain on tap, grounded in a 1,400+ episode podcast catalogue featuring World Tour coaches, sports scientists, and pro cyclists.
         </td></tr>
 
         <tr><td style="padding:0 0 28px 0;">

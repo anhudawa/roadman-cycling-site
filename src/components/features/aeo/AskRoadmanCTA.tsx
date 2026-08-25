@@ -84,7 +84,7 @@ export function AskRoadmanCTA({
         Take this into the assistant.
       </p>
       <p className="text-foreground-muted text-sm mb-4 max-w-xl">
-        Ask Roadman is grounded in 1,400+ on-the-record podcast conversations.
+        Ask Roadman is grounded in a 1,400+ episode podcast catalogue.
         Cited answers in your context — no re-typing.
       </p>
       <Link

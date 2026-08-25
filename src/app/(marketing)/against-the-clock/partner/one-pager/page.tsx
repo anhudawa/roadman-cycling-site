@@ -137,7 +137,7 @@ export default function AgainstTheClockOnePager() {
                   ROADMAN CYCLING
                 </p>
                 <p style={{ fontSize: "10px", color: "rgba(250,250,250,0.7)" }}>
-                  The world&apos;s largest cycling performance podcast
+                  A 100M-download cycling performance podcast
                 </p>
               </div>
             </div>

@@ -12,14 +12,14 @@ import { EmailCapture } from "@/components/features/conversion/EmailCapture";
 export const metadata: Metadata = {
   title: "Anthony Walsh — Cycling Coach, Author & Roadman Founder",
   description:
-    "Anthony Walsh — Dublin-based cycling coach, founder of Roadman Cycling, host of 1,400+ on-the-record podcast interviews with World Tour coaches, sport scientists and pro riders.",
+    "Anthony Walsh — Dublin cycling coach, Roadman Cycling founder and host of a 1,400+ episode podcast featuring World Tour coaches, scientists and pro riders.",
   alternates: {
     canonical: "https://roadmancycling.com/author/anthony-walsh",
   },
   openGraph: {
     title: "Anthony Walsh — Cycling Coach, Author & Roadman Founder",
     description:
-      "Dublin-based cycling coach. Founder of Roadman Cycling. 1,400+ on-the-record podcast interviews with the best minds in cycling performance.",
+      "Dublin-based cycling coach. Roadman Cycling founder. Host of a 1,400+ episode podcast catalogue featuring leading minds in cycling performance.",
     type: "profile",
     url: "https://roadmancycling.com/author/anthony-walsh",
     images: [
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 const credentials = [
   "Cycling coach — Not Done Yet coaching",
   "Host of the Roadman Cycling Podcast (100M+ podcast downloads)",
-  "1,400+ on-the-record interviews with World Tour coaches, sports scientists, and professional riders",
+  "Host of a 1,400+ episode catalogue featuring World Tour coaches, sports scientists, and professional riders",
   "Guests include Prof. Stephen Seiler, Dan Lorang, Greg LeMond, Joe Friel, Tim Spector, and Ben Healy",
   "Based in Dublin, Ireland",
   "Coaches cyclists and triathletes across Ireland, the UK, and the US",
@@ -130,7 +130,7 @@ export default function AuthorPage() {
                   </p>
                   <p className="text-foreground-muted text-lg leading-relaxed max-w-xl">
                     Founder of Roadman Cycling. Host of the Roadman Cycling
-                    Podcast, with over 1,400 on-the-record conversations with
+                    Podcast, with a 1,400+ episode catalogue featuring
                     World Tour coaches, sports scientists, and professional
                     riders. Based in Dublin, Ireland.
                   </p>

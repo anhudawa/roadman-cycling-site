@@ -186,7 +186,7 @@ const discoveryPaths = [
     category: "Listen",
     title: "The Roadman Podcast",
     href: "/podcast",
-    copy: "1,400+ conversations with world-class coaches, athletes and researchers.",
+    copy: "1,400+ podcast episodes, including conversations with world-class coaches, athletes and researchers.",
     secondaryLabel: "Meet the guests",
     secondaryHref: "/guests",
     track: "home_discovery_podcast",

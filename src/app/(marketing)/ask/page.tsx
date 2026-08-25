@@ -10,12 +10,12 @@ import { getDefinition } from "@/lib/diagnostics/framework/registry";
 export const metadata: Metadata = {
   title: "Ask Roadman — Cycling Questions Answered with Citations",
   description:
-    "Anthony's coaching brain on tap. Ask any cycling question — every answer grounded in 1,400+ podcast conversations with the coaches behind Grand Tour wins. Free.",
+    "Anthony's coaching brain on tap. Ask any cycling question — every answer grounded in a 1,400+ episode podcast catalogue featuring Grand Tour coaches. Free.",
   alternates: { canonical: "https://roadmancycling.com/ask" },
   openGraph: {
     title: "Ask Roadman — Cycling Questions Answered with Citations",
     description:
-      "Ask any cycling question. Every answer grounded in 1,400+ podcast conversations with the coaches and scientists behind Grand Tour wins.",
+      "Ask any cycling question. Every answer is grounded in a 1,400+ episode catalogue featuring coaches and scientists behind Grand Tour wins.",
     type: "website",
     url: "https://roadmancycling.com/ask",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],
@@ -93,7 +93,7 @@ export default async function AskPage({
           "@type": "WebApplication",
           name: "Ask Roadman",
           description:
-            "On-site cycling performance assistant grounded in 1,400+ Roadman Cycling Podcast conversations with World Tour coaches, sports scientists, and pro cyclists.",
+            "On-site cycling performance assistant grounded in a 1,400+ episode Roadman Cycling Podcast catalogue featuring World Tour coaches, sports scientists, and pro cyclists.",
           url: "https://roadmancycling.com/ask",
           applicationCategory: "HealthApplication",
           operatingSystem: "Web",
@@ -101,7 +101,7 @@ export default async function AskPage({
           isAccessibleForFree: true,
           inLanguage: "en",
           featureList: [
-            "Conversational answers grounded in 1,400+ podcast conversations",
+            "Conversational answers grounded in a 1,400+ episode podcast catalogue",
             "Citations to the source episode for every answer",
             "Tool result handoff (FTP zones, race weight, fuelling, etc.)",
             "Pre-filled prompts from blog posts and guest pages",
@@ -140,7 +140,7 @@ export default async function AskPage({
               THIS WILL HELP.
             </h1>
             <p className="text-foreground-muted max-w-2xl text-base md:text-lg leading-relaxed">
-              Built on 1,400+ on-the-record Roadman Cycling Podcast conversations
+              Built on a 1,400+ episode Roadman Cycling Podcast catalogue
               with World Tour coaches, sports scientists, and pro cyclists.
               Straight answers, cited to the source.
             </p>

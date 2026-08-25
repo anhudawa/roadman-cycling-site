@@ -10,7 +10,7 @@ import { JourneyBlock } from "@/components/journey";
 export const metadata: Metadata = {
   title: "Cycling Coaching Methodology — The Five Roadman Pillars",
   description:
-    "How Roadman actually coaches cyclists. Five pillars built on Seiler, Lorang, Wakefield and 1,400+ podcast conversations. The training the pros do — adapted for 8–12 hour weeks.",
+    "How Roadman coaches cyclists. Five pillars informed by Seiler, Lorang, Wakefield and a 1,400+ episode podcast catalogue. Pro methods adapted for 8–12 hour weeks.",
   alternates: {
     canonical: "https://roadmancycling.com/methodology",
   },

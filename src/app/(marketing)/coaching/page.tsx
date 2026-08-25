@@ -322,7 +322,7 @@ export default function CoachingPage() {
           "@id": `${SITE_ORIGIN}/#coaching-service`,
           name: "Roadman Cycling Coaching",
           description:
-            "Personalised online cycling coaching across five pillars: training, nutrition, strength, recovery, and community. Built on 1,400+ expert podcast conversations.",
+            "Personalised online cycling coaching across five pillars: training, nutrition, strength, recovery, and community. Informed by a 1,400+ episode expert podcast catalogue.",
           category: "Online Cycling Coaching",
           // The coaching is offered by the Roadman Cycling organisation;
           // the head coach (Anthony) is the named provider of the Course
@@ -448,7 +448,7 @@ export default function CoachingPage() {
               </h1>
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
                 Evidence-based coaching for serious amateur and masters
-                cyclists. Personalised plans built on 1,400+ conversations with
+                cyclists. Personalised plans informed by 1,400+ podcast episodes and interviews with
                 the world&apos;s best coaches and scientists — Seiler, Lorang,
                 LeMond, Friel — structured into your week so every session
                 counts.
@@ -688,7 +688,7 @@ export default function CoachingPage() {
                       "Strength programming periodised with your riding",
                       "Recovery protocols that let training actually stick",
                       "A private community of serious cyclists that keeps you consistent through bad weeks",
-                      "Expert knowledge from 1,400+ podcast conversations distilled into your plan",
+                      "Expert knowledge from a 1,400+ episode podcast catalogue distilled into your plan",
                     ].map((item) => (
                       <li
                         key={item}

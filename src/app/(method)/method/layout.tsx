@@ -8,7 +8,7 @@ import { MethodMotionProvider } from "./_components/MethodMotionProvider";
 export const metadata: Metadata = {
   title: "The Roadman Method — A 12-Week System for Cyclists Who Are Stuck",
   description:
-    "Twelve weeks. Five pillars. One system. Built on 1,400+ conversations with World Tour coaches, sports scientists and pro cyclists. For serious amateurs who are training hard but not getting faster.",
+    "Twelve weeks. Five pillars. One system. Built on 1,400+ podcast episodes and interviews with World Tour coaches, sports scientists and pro cyclists. For serious amateurs who are training hard but not getting faster.",
 };
 
 /**

@@ -144,8 +144,8 @@ export default function MastersReportSqueezePage() {
           <p className="text-foreground-muted text-base md:text-xl leading-relaxed mb-9 max-w-xl mx-auto">
             The 2026 reference for training after 40. What actually
             declines, what doesn&rsquo;t, and the training that holds up
-            &mdash; built from 1,400+ conversations with World Tour coaches
-            and the peer-reviewed evidence behind them.
+            &mdash; informed by a 1,400+ episode podcast catalogue and the
+            peer-reviewed evidence behind it.
           </p>
 
           <MastersReportCapture position="hero" />

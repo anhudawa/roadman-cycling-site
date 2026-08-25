@@ -8,6 +8,7 @@ import {
   BRAND_STATS,
   ENTITY_IDS,
   PODCAST,
+  PODCAST_HISTORY,
   PODCAST_SAME_AS,
   SITE_ORIGIN,
 } from "@/lib/brand-facts";
@@ -15,7 +16,7 @@ import { getAllEpisodes } from "@/lib/podcast";
 
 const PAGE_URL = `${SITE_ORIGIN}/entity/roadman-podcast`;
 
-const PODCAST_DESCRIPTION = `${PODCAST.name} is a weekly cycling performance podcast hosted by Anthony Walsh. ${BRAND_STATS.episodeCountLabel} episodes of long-form interviews with World Tour coaches, sports scientists, and pro riders, with ${BRAND_STATS.podcastDownloadsLabel} lifetime downloads.`;
+const PODCAST_DESCRIPTION = `${PODCAST.name} is a cycling performance podcast hosted by Anthony Walsh. Its ${BRAND_STATS.episodeCountLabel}-episode catalogue spans long-form interviews with World Tour coaches, sports scientists and pro riders, plus practical solo episodes, with ${BRAND_STATS.podcastDownloadsLabel} lifetime downloads.`;
 
 export const metadata: Metadata = {
   title: "The Roadman Cycling Podcast — Show Facts & Stats",
@@ -40,8 +41,7 @@ const claims: { stat: string; label: string; evidence: string }[] = [
   {
     stat: BRAND_STATS.episodeCountLabel,
     label: "Episodes published",
-    evidence:
-      "Long-form interviews recorded weekly since 2021. Available everywhere podcasts are listened to.",
+    evidence: PODCAST_HISTORY.summary,
   },
   {
     stat: BRAND_STATS.podcastDownloadsLabel,
@@ -89,6 +89,7 @@ export default function RoadmanPodcastEntityPage() {
           url: PODCAST.url,
           mainEntityOfPage: PAGE_URL,
           description: PODCAST_DESCRIPTION,
+          datePublished: PODCAST_HISTORY.feedStartedDate,
           webFeed: PODCAST.rssFeed,
           image: BRAND.ogImage,
           author: { "@id": ENTITY_IDS.person },
@@ -192,6 +193,27 @@ export default function RoadmanPodcastEntityPage() {
                 >
                   {PODCAST.rssFeed}
                 </a>
+              </Card>
+              <Card className="p-5 sm:col-span-2" hoverable={false}>
+                <p className="text-xs text-foreground-subtle font-heading tracking-widest mb-2">
+                  HISTORY
+                </p>
+                <p className="text-off-white text-sm leading-relaxed">
+                  {PODCAST_HISTORY.summary}
+                </p>
+                <div className="flex flex-wrap gap-4 mt-3 text-xs">
+                  {PODCAST_HISTORY.evidenceUrls.map((url, index) => (
+                    <a
+                      key={url}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-coral hover:underline"
+                    >
+                      {index === 0 ? "Apple Podcasts record" : "Podchaser record"}
+                    </a>
+                  ))}
+                </div>
               </Card>
             </div>
           </Container>
