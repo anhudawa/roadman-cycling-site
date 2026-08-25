@@ -62,15 +62,27 @@ const EXPLORE_ITEMS = [
   },
   {
     label: "Training Plans",
-    href: "/plan",
-    description: "Structured plans for the events that matter",
+    href: "/training-plans",
+    description: "How to build a structured cycling training plan",
     track: "home_nav_explore_plans",
   },
   {
+    label: "Event Plan Finder",
+    href: "/plan",
+    description: "Find a plan framework for your event and weeks remaining",
+    track: "home_nav_explore_event_plans",
+  },
+  {
     label: "Training Camps",
-    href: "https://roadmancycling.com/training-camps",
+    href: "/training-camps",
     description: "Ride and progress with Roadman in Girona",
     track: "home_nav_explore_camps",
+  },
+  {
+    label: "Masters Cycling",
+    href: "/masters",
+    description: "Training, recovery and performance after 40",
+    track: "home_nav_explore_masters",
   },
   {
     label: "Methodology",

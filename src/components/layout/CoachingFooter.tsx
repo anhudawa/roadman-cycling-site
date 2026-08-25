@@ -27,7 +27,8 @@ const FOOTER_COLUMNS = [
     links: [
       { label: "Start here", href: "/start-here" },
       { label: "Cycling blog", href: "/blog" },
-      { label: "Training plans", href: "/plan" },
+      { label: "Cycling training plans", href: "/training-plans" },
+      { label: "Event plan finder", href: "/plan" },
       { label: "Topic hubs", href: "/topics" },
       { label: "Masters cycling", href: "/masters" },
     ],

@@ -29,7 +29,9 @@ const footerColumns = {
       { label: "Start Here", href: "/start-here" },
       { label: "Blog", href: "/blog" },
       { label: "Topic Hubs", href: "/topics" },
-      { label: "Training Plans", href: "/plan" },
+      { label: "Cycling Training Plans", href: "/training-plans" },
+      { label: "Event Plan Finder", href: "/plan" },
+      { label: "Masters Cycling", href: "/masters" },
       { label: "Newsletter", href: "/newsletter" },
       { label: "Plateau Diagnostic", href: "/plateau" },
       { label: "Ask Roadman", href: "/ask" },
@@ -49,6 +51,7 @@ const footerColumns = {
       { label: "Cycling Coach Ireland", href: "/coaching/ireland" },
       { label: "Cycling Coach UK", href: "/coaching/uk" },
       { label: "Cycling Coach USA", href: "/coaching/usa" },
+      { label: "Cycling Training Camps", href: "/training-camps" },
     ],
   },
   community: {
