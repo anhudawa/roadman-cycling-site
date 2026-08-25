@@ -2,11 +2,12 @@
  * scripts/audit-orphans.ts
  *
  * Finds pages in the sitemap that have no inbound internal links from
- * other indexed content. Orphan pages are a real SEO problem: they
- * can't be discovered by crawlers from within the site, and Google
- * treats them as lower priority regardless of content quality.
+ * other indexed content or a crawlable archive. Orphan pages are a real SEO
+ * problem: they can't be discovered by crawlers from within the site, and
+ * Google treats them as lower priority regardless of content quality.
  *
  * Scans:
+ *   - Crawlable blog and podcast archive pagination
  *   - All blog MDX bodies + frontmatter (relatedEpisodes, internalLinks)
  *   - All podcast MDX bodies + frontmatter (relatedPosts)
  *   - Pillar pages (/coaching, /coaching/triathletes, /podcast, /about,
@@ -195,10 +196,7 @@ function main() {
 
   // 1) Scan blog bodies
   for (const b of blogs) {
-    const raw = fs.readFileSync(
-      path.join(BLOG_DIR, `${b.slug}.mdx`),
-      "utf-8",
-    );
+    const raw = fs.readFileSync(path.join(BLOG_DIR, `${b.slug}.mdx`), "utf-8");
     const { data, content } = matter(raw);
     // Body links
     for (const href of extractLinksFromMarkdown(content)) {
@@ -246,7 +244,15 @@ function main() {
     }
   }
 
-  // 4) Report
+  // 4) Model generated archive links. These links are emitted as ordinary
+  // server-rendered anchors, but a source-code regex cannot see their runtime
+  // slug values. Counting them prevents crawlable archive entries from being
+  // mislabeled as true orphans while retaining the archive marker in the weak
+  // link report so contextual-link opportunities remain visible.
+  for (const blog of blogs) blog.inbound.add("[blog archive]");
+  for (const episode of episodes) episode.inbound.add("[podcast archive]");
+
+  // 5) Report
   const orphanBlogs = blogs.filter((b) => b.inbound.size === 0);
   const orphanEpisodes = episodes.filter((e) => e.inbound.size === 0);
   const weaklyLinkedBlogs = blogs.filter((b) => b.inbound.size === 1);
@@ -260,6 +266,10 @@ function main() {
   lines.push("Pages with zero incoming internal links. Google can still");
   lines.push("discover them via sitemap.xml, but they don't accumulate");
   lines.push("link equity from the rest of the site.");
+  lines.push("");
+  lines.push("Server-rendered blog and podcast archive links are counted.");
+  lines.push("A page listed as weak may therefore be crawlable but supported");
+  lines.push("only by its archive rather than by contextual editorial links.");
   lines.push("");
   lines.push("## Summary");
   lines.push("");
