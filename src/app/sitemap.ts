@@ -31,6 +31,7 @@ import {
   getPublicRecommendationProducts,
 } from "@/lib/recommends/queries";
 import { SITEMAP_IDS } from "@/lib/seo/sitemaps";
+import { getBlogArchiveHref, getBlogArchivePageCount } from "@/lib/seo/blog-archive-pagination";
 
 const BASE_URL = "https://roadmancycling.com";
 const PRIORITY_OWNER_RELEASE_DATE = new Date("2026-08-25");
@@ -157,7 +158,18 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     })(),
     { url: `${BASE_URL}/podcast/transcripts`, changeFrequency: "weekly", priority: 0.7 },
     { url: `${BASE_URL}/watch`, changeFrequency: "weekly", priority: 0.75 },
-    { url: `${BASE_URL}/blog`, changeFrequency: "weekly", priority: 0.8 },
+    // Blog archive — all pages are server-rendered and self-canonical. Listing
+    // every page here mirrors the podcast archive and gives crawlers a direct
+    // route to all 1,000+ articles in addition to the numbered link chain.
+    ...Array.from(
+      { length: getBlogArchivePageCount(getAllPosts().length) },
+      (_, index) => ({
+        url: `${BASE_URL}${getBlogArchiveHref(index + 1)}`,
+        ...(index === 0 ? { lastModified: PRIORITY_OWNER_RELEASE_DATE } : {}),
+        changeFrequency: "weekly" as const,
+        priority: index === 0 ? 0.8 : 0.6,
+      }),
+    ),
     { url: `${BASE_URL}/tools`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/guests`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/topics`, changeFrequency: "weekly", priority: 0.8 },
