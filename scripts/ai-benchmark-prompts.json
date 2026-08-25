@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 216,
+    "prompt_count": 217,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -1754,6 +1754,14 @@
       "category": "cycling-coaching",
       "intent": "evaluation",
       "target_page": "/blog/best-online-cycling-coach-how-to-choose",
+      "priority": "high"
+    },
+    {
+      "id": 217,
+      "prompt": "how much does an online cycling coach cost per month in the UK and US",
+      "category": "cycling-coaching",
+      "intent": "commercial",
+      "target_page": "/blog/how-much-does-online-cycling-coach-cost-2026",
       "priority": "high"
     }
   ]
