@@ -343,20 +343,20 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   },
   {
     slug: "bike-fitting",
-    title: "Bike Fitting — The Complete Guide for Cyclists",
+    title: "Bike Fitting — Methods, Evidence & Rider Position",
     headline: "FIT THE BIKE TO THE RIDER",
-    ctaHeadline: "A PROPER FIT CHANGES EVERYTHING.",
+    ctaHeadline: "BUILD A POSITION YOU CAN REPEAT.",
     description:
-      "The complete guide to bike fitting. What a proper fit involves, when to get one, common problems it solves, crank length, saddle position, and why most amateurs are leaving watts on the table through poor position.",
+      "Roadman's bike-fitting knowledge hub: evidence limits, saddle and cleat methods, cockpit and crank decisions, expert interviews, pain boundaries, and the route to the canonical DIY guide.",
     pillar: "community",
     keywords: [
-      "bike fit cycling",
-      "bike fitting guide",
+      "bike fitting knowledge",
+      "bike fit evidence",
       "cycling saddle position",
       "crank length cycling",
       "bike fit after 40",
       "cycling position",
-      "bike fit cost",
+      "professional bike fit",
     ],
   },
   {

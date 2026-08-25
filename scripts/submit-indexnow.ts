@@ -91,6 +91,8 @@ const CURATED: string[] = [
   // Fresh flagship content
   `https://${HOST}/blog/age-group-ftp-benchmarks-2026`,
   `https://${HOST}/blog/ftp-benchmarks-by-age-and-experience`,
+  `https://${HOST}/blog/bike-fit-guide-cyclists`,
+  `https://${HOST}/topics/bike-fitting`,
   `https://${HOST}/tools/masters-ftp-benchmark`,
   `https://${HOST}/answers/ftp-by-age`,
 
