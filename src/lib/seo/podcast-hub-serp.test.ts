@@ -12,14 +12,17 @@ function absoluteTitle(value: unknown): string | undefined {
 }
 
 describe("podcast hub SERP proposition", () => {
-  it("leads the page-one snippet with the exact entity and proof point", async () => {
+  it("leads the page-one snippet with the exact entity and core topics", async () => {
     const metadata = await generateMetadata({ searchParams: Promise.resolve({}) });
     const title = absoluteTitle(metadata.title);
 
-    expect(title).toContain("The Roadman Cycling Podcast");
-    expect(title).toContain("100M+ Downloads");
+    expect(title).toBe(
+      "Roadman Cycling Podcast: Training, Nutrition & Racing",
+    );
     expect(title?.length).toBeLessThanOrEqual(60);
-    expect(metadata.description).toContain("1,400+ episodes");
+    expect(metadata.description).toContain("810+");
+    expect(metadata.description).toContain("training, nutrition, racing");
+    expect(metadata.description).toContain("masters performance");
     expect(String(metadata.description).length).toBeLessThanOrEqual(160);
     expect(metadata.alternates?.canonical).toBe(
       "https://roadmancycling.com/podcast",

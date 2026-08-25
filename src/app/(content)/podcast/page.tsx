@@ -19,6 +19,7 @@ import {
   BRAND_STATS,
   PODCAST,
   PODCAST_HISTORY,
+  PODCAST_SAME_AS,
 } from "@/lib/brand-facts";
 import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
 
@@ -52,15 +53,15 @@ export async function generateMetadata({
   const alternates: Metadata["alternates"] = { canonical };
   const title =
     page === 1
-      ? `The Roadman Cycling Podcast — ${BRAND_STATS.podcastDownloadsLabel} Downloads`
+      ? "Roadman Cycling Podcast: Training, Nutrition & Racing"
       : `Roadman Cycling Podcast Episodes — Page ${page}`;
-  const description = `The Roadman Cycling Podcast has ${BRAND_STATS.podcastDownloadsLabel} downloads and ${BRAND_STATS.episodeCountLabel} episodes with WorldTour coaches, scientists and pro riders. Watch, listen or search the archive.`;
+  const description = `Search ${BRAND_STATS.searchableEpisodePagesLabel} transcript-backed Roadman Cycling Podcast episodes on training, nutrition, racing, bike fit and masters performance.`;
 
   return {
     // Absolute title avoids appending "| Roadman Cycling" to a title that
-    // already contains the complete brand name. GSC showed the hub at an
-    // average position of 6.5 but only 1.3% CTR, including weak brand-query
-    // clicks, so the exact entity name and proof point lead the snippet.
+    // already contains the complete brand name. The topic-led proposition
+    // matches both brand and cycling-podcast discovery queries; reach proof
+    // remains in the description, schema and visible page.
     title: { absolute: title },
     description,
     alternates,
@@ -88,14 +89,24 @@ const PODCAST_START_PATHS = [
     title: "Best cycling podcasts and where Roadman fits",
   },
   {
-    href: "/topics/cycling-training-plans",
-    label: "Train smarter",
-    title: "Episodes and experts on training plans",
+    href: "/topics/ftp-training",
+    label: "Build fitness",
+    title: "FTP, intervals and endurance training",
+  },
+  {
+    href: "/topics/cycling-nutrition",
+    label: "Fuel the work",
+    title: "Cycling nutrition and recovery episodes",
   },
   {
     href: "/masters",
     label: "Ride faster after 40",
     title: "The masters cycling knowledge hub",
+  },
+  {
+    href: "/topics/bike-fitting",
+    label: "Ride comfortably",
+    title: "Bike fit, pain and position guidance",
   },
   {
     href: "/guests",
@@ -117,7 +128,19 @@ export default async function PodcastPage({ searchParams }: PodcastPageProps) {
 
   const start = (page - 1) * EPISODES_PER_PAGE;
   const end = start + EPISODES_PER_PAGE;
-  const episodes = allEpisodes.slice(start, end);
+  const podcastSearchIndex = allEpisodes.map((ep) => ({
+    slug: ep.slug,
+    title: ep.title,
+    episodeNumber: ep.episodeNumber,
+    guest: ep.guest,
+    guestCredential: ep.guestCredential,
+    description: ep.description,
+    publishDate: ep.publishDate,
+    duration: ep.duration,
+    pillar: ep.pillar,
+    type: ep.type,
+  }));
+  const episodes = podcastSearchIndex.slice(start, end);
 
   return (
     <>
@@ -134,9 +157,20 @@ export default async function PodcastPage({ searchParams }: PodcastPageProps) {
               url: `${SITE_ORIGIN}/podcast`,
               name: "The Roadman Cycling Podcast Archive",
               description:
-                "The searchable Roadman Cycling Podcast archive: conversations with coaches, sports scientists, professional riders and practitioners.",
+                "The searchable cycling podcast archive for training, nutrition, racing, bike fit and masters performance: interviews with coaches, sports scientists, professional riders and practitioners.",
               ...buildSearchOwnerTrustProperties("cycling-podcast"),
               mainEntity: { "@id": ENTITY_IDS.podcast },
+              about: [
+                { "@type": "Thing", name: "Cycling training" },
+                { "@type": "Thing", name: "Cycling nutrition" },
+                { "@type": "Thing", name: "Bicycle racing" },
+                { "@type": "Thing", name: "Bicycle fitting" },
+                { "@type": "Thing", name: "Masters cycling" },
+              ],
+              audience: {
+                "@type": "Audience",
+                audienceType: "Amateur and masters cyclists",
+              },
               primaryImageOfPage: {
                 "@type": "ImageObject",
                 url: `${SITE_ORIGIN}/og-image.jpg`,
@@ -148,18 +182,26 @@ export default async function PodcastPage({ searchParams }: PodcastPageProps) {
               "@context": "https://schema.org",
               "@type": "PodcastSeries",
               "@id": ENTITY_IDS.podcast,
+              name: PODCAST.name,
+              alternateName: "Roadman Podcast",
+              description:
+                "An English-language cycling performance podcast hosted by Anthony Walsh, covering training, nutrition, racing, bike fit and masters cycling.",
+              disambiguatingDescription:
+                "The cycling training and performance show published by Roadman Cycling.",
               datePublished: PODCAST_HISTORY.feedStartedDate,
               webFeed: `${SITE_ORIGIN}/feed/podcast`,
               author: { "@id": ENTITY_IDS.person },
               publisher: { "@id": ENTITY_IDS.organization },
               inLanguage: "en",
-              genre: "Sports",
-              numberOfEpisodes: allEpisodes.length,
-              sameAs: [
-                "https://open.spotify.com/show/2oCs3N4ahypwzzUrFqgUmC",
-                "https://podcasts.apple.com/us/podcast/the-roadman-cycling-podcast/id1224143549",
-                "https://youtube.com/@theroadmanpodcast",
+              genre: ["Cycling", "Endurance sports", "Sports science"],
+              keywords: [
+                "cycling podcast",
+                "cycling training podcast",
+                "cycling nutrition podcast",
+                "masters cycling podcast",
               ],
+              numberOfEpisodes: allEpisodes.length,
+              sameAs: PODCAST_SAME_AS,
             }}
           />
           <JsonLd
@@ -221,8 +263,8 @@ export default async function PodcastPage({ searchParams }: PodcastPageProps) {
               THE ROADMAN CYCLING PODCAST
             </h1>
             <p className="text-foreground-muted max-w-xl mx-auto text-lg mb-2">
-              The Roadman archive. Every conversation and training insight,
-              searchable and ready for you.
+              Training, nutrition, racing, bike fit and performance after 40—
+              searchable across the transcript-backed Roadman archive.
             </p>
             <p className="text-coral font-heading text-xl">
               100M+ PODCAST DOWNLOADS
@@ -293,7 +335,19 @@ export default async function PodcastPage({ searchParams }: PodcastPageProps) {
                   turn those conversations into answers for amateur cyclists. {" "}
                   {PODCAST_HISTORY.summary}
                 </p>
-                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                <p className="text-foreground-subtle text-center text-sm leading-relaxed max-w-3xl mx-auto mb-7">
+                  This is the canonical show page and full on-site episode
+                  archive. Individual episode pages own their guest and topic;
+                  the{" "}
+                  <Link
+                    href="/blog/best-cycling-podcasts-2026"
+                    className="text-coral hover:underline underline-offset-4"
+                  >
+                    cycling podcast comparison guide
+                  </Link>{" "}
+                  owns independent listening recommendations.
+                </p>
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {PODCAST_START_PATHS.map((path) => (
                     <Link
                       key={path.href}
@@ -317,19 +371,22 @@ export default async function PodcastPage({ searchParams }: PodcastPageProps) {
         {/* Search + Episodes (Client Component) */}
         <Section background="charcoal">
           <Container>
+            <div className="text-center mb-8">
+              <h2
+                className="font-heading text-off-white mb-3"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                SEARCH THE CYCLING PODCAST ARCHIVE
+              </h2>
+              <p className="text-foreground-muted max-w-2xl mx-auto">
+                Search all {allEpisodes.length} on-site episodes by topic, guest
+                or title. Filters also apply to the full archive; normal browsing
+                remains paginated below.
+              </p>
+            </div>
             <PodcastSearch
-              episodes={episodes.map((ep) => ({
-                slug: ep.slug,
-                title: ep.title,
-                episodeNumber: ep.episodeNumber,
-                guest: ep.guest,
-                guestCredential: ep.guestCredential,
-                description: ep.description,
-                publishDate: ep.publishDate,
-                duration: ep.duration,
-                pillar: ep.pillar,
-                type: ep.type,
-              }))}
+              episodes={episodes}
+              searchIndex={podcastSearchIndex}
             />
 
             {/* Server-rendered pagination */}
