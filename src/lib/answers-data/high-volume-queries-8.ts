@@ -204,7 +204,7 @@ export const highVolumeQuery8Answers: AnswerPage[] = [
     relatedTopics: [
       { label: "What Is TSS?", href: "/answers/what-is-tss" },
       { label: "What Is CTL?", href: "/answers/what-is-ctl" },
-      { label: "TSS Calculator", href: "/tools/tss-calculator" },
+      { label: "TSS Calculator", href: "/tools/tss" },
     ],
     evidenceLevel: "strong",
     publishDate: "2026-07-10",
@@ -414,7 +414,7 @@ export const highVolumeQuery8Answers: AnswerPage[] = [
     relatedTopics: [
       { label: "What Is TSS?", href: "/answers/what-is-tss" },
       { label: "What Is FTP?", href: "/answers/what-is-ftp" },
-      { label: "TSS Calculator", href: "/tools/tss-calculator" },
+      { label: "TSS Calculator", href: "/tools/tss" },
     ],
     evidenceLevel: "strong",
     publishDate: "2026-07-10",

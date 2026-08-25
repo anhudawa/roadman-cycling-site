@@ -1264,7 +1264,7 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
     ],
     related: [
       { label: "In-Ride Fuelling Calculator", href: "/tools/fuelling", kind: "tool" },
-      { label: "FFTWR Complete Guide", href: "/blog/fuel-for-the-work-required-guide", kind: "article" },
+      { label: "FFTWR Complete Guide", href: "/blog/fuel-for-the-work-required-fftwr-explained", kind: "article" },
       { label: "Hexis Review", href: "/blog/hexis-review", kind: "article" },
       { label: "Fuelled vs Fasted Sessions", href: "/compare/fueled-vs-fasted-sessions", kind: "topic" },
       { label: "Hexis vs MyFitnessPal", href: "/compare/hexis-vs-myfitnesspal", kind: "article" },

@@ -475,6 +475,14 @@ const nextConfig: NextConfig = {
       { source: "/problem/flat-ftp", destination: "/problem/stuck-on-plateau", permanent: true },
       { source: "/problem/ftp-stuck-250-watts", destination: "/problem/stuck-on-plateau", permanent: true },
 
+      // Retired podcast-era campaigns still linked from the episode archive.
+      // Preserve their accumulated authority by consolidating each intent into
+      // the current canonical owner rather than serving an internal 404.
+      { source: "/14day", destination: "/training-plans", permanent: true },
+      { source: "/8week", destination: "/training-plans", permanent: true },
+      { source: "/roadmancc52487793", destination: "/community", permanent: true },
+      { source: "/web-class", destination: "/coaching", permanent: true },
+
       // ==========================================================
       // coaching.roadmancycling.com subdomain catch-all
       // ----------------------------------------------------------

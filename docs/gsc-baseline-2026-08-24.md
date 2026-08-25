@@ -108,17 +108,19 @@ alternates, redirects, noindex pages, robots exclusions, or generated assets.
 | Reason | URLs | Assessment on 25 Aug |
 | --- | ---: | --- |
 | Alternate page with proper canonical | 1,588 | Expected consolidation |
-| Crawled — currently not indexed | 1,227 | Samples dominated by fingerprinted Open Graph image assets and feeds |
+| Crawled — currently not indexed | 1,227 | Samples dominated by fingerprinted Open Graph image assets and feeds; `noindex` remediation live, GSC reprocessing pending |
 | Page with redirect | 492 | Generally expected consolidation |
 | Excluded by `noindex` | 264 | Generally intentional private/thin pages |
 | Blocked by robots.txt | 255 | Requires periodic audit, not blanket removal |
-| Soft 404 | 103 | Retired junk guest slugs returning streamed 200 responses; fix in progress |
-| Duplicate without user-selected canonical | 20 | Mostly obsolete guest slugs plus `/method/checkout`; fix in progress |
+| Soft 404 | 103 | Route-level 404 remediation deployed and production-verified; GSC reprocessing pending |
+| Duplicate without user-selected canonical | 20 | Transactional checkout now `noindex`; obsolete guest routes hard-404; GSC reprocessing pending |
 | Access forbidden (403) | 1 | Isolated; inspect if it persists |
 
-The concrete remediation is to return route-level 404s for guest slugs absent
-from the curated guest corpus, noindex the transactional checkout, and send an
-`X-Robots-Tag` on generated social images and raw feeds.
+The concrete remediation was deployed and verified on the apex production host
+on 25 August: guest slugs absent from the curated corpus return route-level
+404s, the transactional checkout emits `noindex, follow`, and generated social
+images plus raw feeds emit `X-Robots-Tag: noindex, nofollow`. The table retains
+the frozen baseline counts until Search Console recrawls and reprocesses them.
 
 ## Video-search opportunity and remediation
 

@@ -138,6 +138,13 @@ After fixes, re-running the real generator against the current tree: **all 42 di
 
 **Audit-tool blind spot — recommend fixing the tooling.** `npm run audit:links:offline` does **not** recognise the `/answers/` route (`getAllAnswerSlugs`, 259 valid slugs), so it reports **568 valid `/answers/` links sitewide as broken "unknown"** — all false positives (every blog `/answers/` link was verified to resolve). This masks real breakage; teaching `scripts/audit-links.mjs` about `/answers/` is recommended. The remaining non-`/answers/` "unknown" hits (95 legacy `https://www.roadmancycling.com/...` CTAs in old `content/podcast/` episodes, 6 `/method` refs in `src/lib`) are outside blog scope.
 
+**Resolved 25 August 2026.** The route dump and auditor now consume the live
+inventories for all 569 canonical Answers, 349 Watch pages, 277 expert-topic
+pairs, podcast guests, Tour stages/history, and recommendation routes. This
+removed 1,280 false-positive Answer references, exposed and repaired 59 real
+dead Answer/Guest/editorial links, and identified four retired campaign paths
+for permanent consolidation into their current search owners.
+
 ---
 
 ## Files changed by this audit

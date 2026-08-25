@@ -132,7 +132,7 @@ export const highVolumeQuery4Answers: AnswerPage[] = [
       { label: "How many hours should cyclists train?", href: "/answers/how-many-hours-training" },
       { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
       { label: "HR Zone Calculator", href: "/tools/hr-zones" },
-      { label: "How to get started with cycling training", href: "/blog/how-to-get-started-with-cycling-training" },
+      { label: "How to get started with cycling training", href: "/answers/how-to-get-started-with-cycling-training" },
     ],
     evidenceLevel: "moderate",
     evidenceNote:
@@ -263,8 +263,8 @@ export const highVolumeQuery4Answers: AnswerPage[] = [
       { label: "How many hours should cyclists train?", href: "/answers/how-many-hours-training" },
       { label: "How to plan beginner training", href: "/answers/how-to-plan-cycling-training-for-beginners" },
       { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
-      { label: "Getting started with cycling training", href: "/blog/how-to-get-started-with-cycling-training" },
-      { label: "How to build cycling fitness from scratch", href: "/blog/how-to-build-cycling-fitness-from-scratch" },
+      { label: "Getting started with cycling training", href: "/answers/how-to-get-started-with-cycling-training" },
+      { label: "How to build cycling fitness from scratch", href: "/answers/how-to-build-cycling-fitness-from-scratch" },
     ],
     evidenceLevel: "moderate",
     evidenceNote:
@@ -668,7 +668,7 @@ export const highVolumeQuery4Answers: AnswerPage[] = [
       { label: "How to set saddle height", href: "/answers/how-to-set-saddle-height" },
       { label: "Bike Fit Guide", href: "/blog/bike-fit-guide-cyclists" },
       { label: "Cycling Knee Pain — Causes and Fixes", href: "/blog/cycling-knee-pain-causes-fixes" },
-      { label: "Signs you need a bike fit", href: "/blog/signs-you-need-a-bike-fit" },
+      { label: "Signs you need a bike fit", href: "/answers/signs-you-need-a-bike-fit" },
     ],
     evidenceLevel: "moderate",
     evidenceNote:
@@ -925,7 +925,7 @@ export const highVolumeQuery4Answers: AnswerPage[] = [
       { label: "How to check saddle fore-aft", href: "/answers/how-to-check-saddle-fore-aft-position" },
       { label: "Bike Fit Guide", href: "/blog/bike-fit-guide-cyclists" },
       { label: "Bike Fit After 40", href: "/blog/bike-fit-after-40" },
-      { label: "Signs You Need a Bike Fit", href: "/blog/signs-you-need-a-bike-fit" },
+      { label: "Signs You Need a Bike Fit", href: "/answers/signs-you-need-a-bike-fit" },
     ],
     evidenceLevel: "moderate",
     evidenceNote:
