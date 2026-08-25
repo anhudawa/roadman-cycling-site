@@ -169,6 +169,16 @@ const PODCAST_AUTHORITY_CLUSTER = [
   "what-cycling-podcasts-got-wrong-about-polarised-training",
 ];
 
+const TRAINING_CAMP_CLUSTER = [
+  "best-cycling-holidays-europe-2026",
+  "cycling-training-camp-nutrition-guide",
+  "cycling-training-camp-preparation-guide",
+  "cycling-training-camps-what-to-expect-guide",
+  "girona-training-camps-2026",
+  "mallorca-cycling-training-camp-guide",
+  "what-to-expect-cycling-training-camp",
+];
+
 function clusterUrls(slugs: string[]): string[] {
   return slugs.map((slug) => `https://${HOST}/blog/${slug}`);
 }
@@ -248,7 +258,9 @@ async function main() {
   clusterUrls(TRIATHLON_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(COACHING_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(PODCAST_AUTHORITY_CLUSTER).forEach((u) => urls.add(u));
+  clusterUrls(TRAINING_CAMP_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(COMPARISON_CLUSTER).forEach((u) => urls.add(u));
+  urls.add(`https://${HOST}/podcast/ep-2175-lessons-from-riding-in-mallorca`);
 
   if (all) {
     allBlogUrls().forEach((u) => urls.add(u));
