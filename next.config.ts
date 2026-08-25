@@ -346,6 +346,26 @@ const nextConfig: NextConfig = {
         destination: "/blog/indoor-trainer-vs-rollers",
         permanent: true,
       },
+      // Power-meter search ownership (Aug 2026). Three buying explainers and
+      // one generated best-of route competed for the same model-selection
+      // intent. Preserve every retired URL while concentrating that intent in
+      // the current, sourced buyer guide. The power-meter/trainer comparison
+      // remains separate because it owns a distinct first-purchase decision.
+      {
+        source: "/blog/cycling-power-meter-guide",
+        destination: "/blog/power-meter-buying-guide-cyclists",
+        permanent: true,
+      },
+      {
+        source: "/blog/cycling-power-meter-buying-guide",
+        destination: "/blog/power-meter-buying-guide-cyclists",
+        permanent: true,
+      },
+      {
+        source: "/best/best-power-meters-amateur-cyclists",
+        destination: "/blog/power-meter-buying-guide-cyclists",
+        permanent: true,
+      },
       // FTP-by-age consolidation (Aug 2026). Search Console showed the
       // maintained annual report earning 66 clicks / 3,695 impressions while
       // these later near-duplicates had 5 clicks or fewer and one was unknown

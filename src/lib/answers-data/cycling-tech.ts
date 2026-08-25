@@ -232,7 +232,7 @@ export const cyclingTechAnswers: AnswerPage[] = [
       { label: "GPS Watches for Cyclists Who Run", href: "/blog/gps-watches-cycling-running-guide" },
       { label: "HR Zone Calculator", href: "/tools/hr-zones" },
       { label: "What cycling metrics should I actually track?", href: "/answers/what-cycling-metrics-to-track" },
-      { label: "Cycling Power Meter Guide", href: "/blog/cycling-power-meter-guide" },
+      { label: "Cycling Power Meter Guide", href: "/blog/power-meter-buying-guide-cyclists" },
     ],
     evidenceLevel: "anecdotal",
     evidenceNote:

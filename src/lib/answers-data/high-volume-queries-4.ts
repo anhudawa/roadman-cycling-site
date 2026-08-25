@@ -1575,15 +1575,15 @@ export const highVolumeQuery4Answers: AnswerPage[] = [
     question: "How Do I Pair a Power Meter with My Bike Computer?",
     seoTitle: "How to Pair a Power Meter with Your Garmin, Wahoo or Hammerhead",
     seoDescription:
-      "How to pair a power meter with Garmin, Wahoo, or Hammerhead: ANT+ and Bluetooth settings, calibration, and the common pairing errors that give you bad data.",
+      "Pair a cycling power meter safely: wake the sensor, add it by ID, confirm crank length, update firmware and follow the model's calibration instructions.",
     pillar: "coaching",
     directAnswer:
-      "Pair a power meter by opening your bike computer's sensor settings, selecting 'Add Sensor' or 'Pair Sensor', and spinning the cranks to wake the power meter. The computer will detect it via ANT+ or Bluetooth. Confirm the pairing, then calibrate (zero offset) before every ride by holding the bike still and selecting 'Calibrate' in the sensor menu. Most pairing failures come from a dead battery, a power meter that has not been woken up by pedalling, or interference from a nearby trainer or phone already connected via Bluetooth.",
+      "Wake the power meter, open the head unit's sensor menu, add a power sensor and match the displayed sensor ID to the unit on your bike. Confirm the crank-length setting, install current firmware through the manufacturer's app, and follow that exact model's zero or calibration instructions. Do not assume every meter requires a manual zero before every ride: current Favero PRO pedals advertise automatic calibration, Garmin Rally 110/210 uses Pedal IQ alerts, and compatible Quarq models use MagicZero.",
     keyTakeaways: [
       "Wake the power meter by spinning the cranks before searching for sensors.",
-      "Pair via ANT+ for bike computers; Bluetooth for phone apps.",
-      "Calibrate (zero offset) before every ride for accurate data.",
-      "Most pairing failures: dead battery, meter asleep, or Bluetooth conflict with another device.",
+      "Match the sensor ID so a nearby trainer or rider's meter is not paired by mistake.",
+      "Check crank length and firmware before trusting the displayed watts.",
+      "Follow the product's current calibration guidance instead of a universal daily-zero rule.",
     ],
     whoFor: [
       {
@@ -1596,18 +1596,11 @@ export const highVolumeQuery4Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Anthony has spoken with power-meter experts on the podcast and the pairing process is always simpler than people make it. The power meter speaks ANT+ and Bluetooth — your bike computer speaks both. The two find each other automatically if you follow the sequence correctly. The problems start when riders try to pair with a dead battery, do not spin the cranks first, or have their phone connected via Bluetooth at the same time and wonder why the Garmin cannot see the meter.",
-      "Calibration is the step most riders skip and it matters. A zero-offset calibration before every ride takes 10 seconds and ensures the power data is accurate. Temperature changes, transport, and installation can shift the baseline, so if you skip calibration, your numbers might be off by 5-10 watts. Hold the bike still, feet off the pedals, and hit calibrate. That is it.",
-      "If the pairing fails, check three things in order: battery level, whether the meter is awake (spin the cranks), and whether another device already has a Bluetooth lock on it. Those three cover 90% of pairing problems.",
+      "Pair by sensor ID, not just the first name that appears. A training room can contain a trainer, two pedals and several nearby sensors broadcasting at once.",
+      "Crank length is part of the measurement setup for pedal meters. A successful connection does not prove the configuration is correct.",
+      "Calibration behaviour is now model-specific. Roadman follows the manufacturer's current instructions and does not invent a universal ritual or claim that one step solves nearly every fault.",
     ],
-    expertEvidence: [
-      {
-        name: "Power meter pairing — Roadman podcast",
-        credential: "As discussed across cycling tech episodes",
-        insight:
-          "The most common power meter data errors come not from hardware faults but from skipped calibration and pairing interference. A daily zero-offset calibration and a clean pairing environment solve the vast majority of data quality complaints.",
-      },
-    ],
+    expertEvidence: [],
     practicalApplication: [
       {
         title: "Spin the cranks to wake the meter",
@@ -1615,19 +1608,19 @@ export const highVolumeQuery4Answers: AnswerPage[] = [
           "Power meters go to sleep to save battery. Before opening sensor settings on your head unit, spin the cranks backwards or forwards for 3-5 seconds to wake the meter up.",
       },
       {
-        title: "Open sensor pairing on your head unit",
+        title: "Open sensor pairing and verify the ID",
         detail:
-          "Garmin: Settings > Sensors > Add Sensor. Wahoo: Sensors > Add Sensor. Hammerhead: Sensors > Add Sensor. The unit will scan for available devices. Your power meter should appear within 10-15 seconds.",
+          "Open the current sensor menu, choose to add a power sensor and compare the detected ID with the device or its app. Menu labels change by head-unit generation, so use the current manual if the path differs.",
       },
       {
-        title: "Calibrate before every ride",
+        title: "Confirm setup and maker-specific calibration",
         detail:
-          "With the bike upright and no weight on the pedals, go to the power meter sensor on your head unit and select Calibrate or Zero Offset. Wait for the confirmation. This takes 10 seconds and should be part of your pre-ride routine.",
+          "Set the correct crank length, install current firmware and follow the power-meter manual. Some models calibrate automatically, some alert when calibration is needed and some specify a manual zero after installation or under particular conditions.",
       },
       {
         title: "Troubleshoot pairing failures",
         detail:
-          "Check battery level (most meters flash an LED when woken). Ensure no phone app has a Bluetooth connection to the meter. Try turning Bluetooth off on your phone during pairing. If all else fails, remove the sensor from the head unit and re-pair from scratch.",
+          "Check charge or battery, wake state and whether another app holds a Bluetooth connection. Confirm that the head unit supports the protocol and that you selected the meter rather than the trainer. Then remove and re-add the saved sensor if the current manual recommends it.",
       },
     ],
     commonMistakes: [
@@ -1637,38 +1630,38 @@ export const highVolumeQuery4Answers: AnswerPage[] = [
       },
       {
         mistake: "Skipping calibration because the numbers look fine.",
-        fix: "Calibrate before every ride. Temperature changes and transport can shift the zero offset by 5-10 watts without you noticing.",
+        fix: "Read the exact model's current guidance. Follow its automatic-calibration, smart-alert or manual-zero procedure and investigate an unusual value or sudden shift.",
       },
       {
         mistake: "Pairing via Bluetooth when the phone already has a connection.",
-        fix: "Most power meters can only pair via Bluetooth to one device at a time. Disconnect from the phone app before pairing with the bike computer, or use ANT+ for the head unit.",
+        fix: "Bluetooth connection limits vary by product. Disconnect unnecessary apps, then use a supported ANT+ or Bluetooth path documented for the meter and head unit.",
       },
     ],
     faq: [
       {
         question: "Should I pair via ANT+ or Bluetooth?",
         answer:
-          "ANT+ for bike computers — it is more stable and allows multiple devices to connect simultaneously. Bluetooth for phone apps. Most modern power meters broadcast both protocols at the same time.",
+          "Use the protocol supported by both devices and the required feature. ANT+ can support several listeners; Bluetooth connection counts vary by product. Do not claim one protocol is universally more stable—room layout, radio congestion and hardware all matter.",
       },
       {
         question: "Why does my power meter keep dropping connection?",
         answer:
-          "Low battery is the most common cause. Second is interference from other ANT+ devices nearby (on a turbo trainer or in a gym). Third is a loose battery compartment. Check battery, tighten the cap, and try a fresh battery.",
+          "Start with charge or battery state, firmware, the saved sensor ID and competing Bluetooth connections. Then test the head unit close to the sensor and follow the manufacturer's troubleshooting steps. Do not open or tighten a battery compartment unless the product manual specifies that action.",
       },
       {
         question: "How often should I calibrate my power meter?",
         answer:
-          "Before every ride. It takes 10 seconds and ensures your data is accurate. At minimum, calibrate when the temperature changes significantly or after transporting the bike.",
+          "Follow the model's manual. Current Favero PRO pedals advertise automatic calibration, Garmin Rally 110/210 provides Pedal IQ calibration alerts, and compatible Quarq products use MagicZero. A different meter may specify a manual zero after installation, a move or a temperature change.",
       },
       {
         question: "Can I pair a power meter to my phone?",
         answer:
-          "Yes, via Bluetooth. Apps like Wahoo, TrainerRoad and Zwift can connect directly to Bluetooth power meters. Just remember that a Bluetooth connection to your phone may prevent your bike computer from connecting via Bluetooth at the same time.",
+          "Yes, when the meter and app support Bluetooth power sensors. Connection counts differ, so check whether the meter allows the phone and head unit to listen simultaneously or use ANT+ for one device where supported.",
       },
       {
         question: "Why are my power numbers different from my trainer?",
         answer:
-          "Different devices measure power at different points in the drivetrain. A crank-based power meter reads 2-5% higher than a hub-based one because of drivetrain losses. Neither is wrong — they measure at different locations. Pick one as your reference and train off that.",
+          "The devices measure at different points and have separate tolerances, calibration rules and smoothing. There is no universal 2-5% direction or offset. Compare steady efforts after following both setup procedures, then use one consistent source for tests and workout targets.",
       },
       {
         question: "Do I need to pair the power meter to each bike computer separately?",
@@ -1685,9 +1678,9 @@ export const highVolumeQuery4Answers: AnswerPage[] = [
     ],
     evidenceLevel: "anecdotal",
     evidenceNote:
-      "Pairing and calibration guidance from power meter manufacturers and cycling tech practice.",
+      "General setup sequence aligned with current manufacturer-specific calibration behaviour; exact menu paths and radio limits must be checked against the meter and head-unit manuals.",
     publishDate: "2026-07-09",
-    updatedDate: "2026-07-09",
+    updatedDate: "2026-08-25",
   },
 
   // ============================================================
