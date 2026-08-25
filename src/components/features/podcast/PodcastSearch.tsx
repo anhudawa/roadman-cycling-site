@@ -20,15 +20,24 @@ interface EpisodeSearchItem {
 
 interface PodcastSearchProps {
   episodes: EpisodeSearchItem[];
+  searchIndex?: EpisodeSearchItem[];
 }
 
-export function PodcastSearch({ episodes }: PodcastSearchProps) {
+const MAX_ARCHIVE_RESULTS = 100;
+
+export function PodcastSearch({
+  episodes,
+  searchIndex = episodes,
+}: PodcastSearchProps) {
   const [query, setQuery] = useState("");
   const [pillarFilter, setPillarFilter] = useState<string>("");
   const [typeFilter, setTypeFilter] = useState<string>("");
 
   const filtered = useMemo(() => {
-    let results = episodes;
+    const searchingArchive = Boolean(
+      query.trim() || pillarFilter || typeFilter,
+    );
+    let results = searchingArchive ? searchIndex : episodes;
 
     if (pillarFilter) {
       results = results.filter((ep) => ep.pillar === pillarFilter);
@@ -66,7 +75,12 @@ export function PodcastSearch({ episodes }: PodcastSearchProps) {
     }
 
     return results;
-  }, [episodes, query, pillarFilter, typeFilter]);
+  }, [episodes, searchIndex, query, pillarFilter, typeFilter]);
+
+  const searchingArchive = Boolean(query.trim() || pillarFilter || typeFilter);
+  const visibleEpisodes = searchingArchive
+    ? filtered.slice(0, MAX_ARCHIVE_RESULTS)
+    : filtered;
 
   return (
     <div>
@@ -145,12 +159,16 @@ export function PodcastSearch({ episodes }: PodcastSearchProps) {
       {/* Result count */}
       <p className="text-sm text-foreground-subtle mb-4 text-center">
         {filtered.length} episode{filtered.length !== 1 ? "s" : ""}
+        {searchingArchive ? " across the archive" : " on this page"}
         {query && ` matching "${query}"`}
+        {searchingArchive && filtered.length > MAX_ARCHIVE_RESULTS
+          ? ` — showing the first ${MAX_ARCHIVE_RESULTS}`
+          : ""}
       </p>
 
       {/* Episode List */}
       <div className="space-y-3">
-        {filtered.map((episode) => (
+        {visibleEpisodes.map((episode) => (
           <Link
             key={episode.slug}
             href={`/podcast/${episode.slug}`}
