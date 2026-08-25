@@ -160,15 +160,233 @@ function ownerImpressionShare(split: GscUrlSplit): number {
   return (owner?.impressions ?? 0) / split.aggregate.impressions;
 }
 
+const MS_PER_DAY = 24 * 60 * 60 * 1000;
+
+function parseCalendarDate(value: string, label: string): number {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    throw new Error(`${label} must use YYYY-MM-DD.`);
+  }
+
+  const timestamp = Date.parse(`${value}T00:00:00.000Z`);
+  if (
+    !Number.isFinite(timestamp) ||
+    new Date(timestamp).toISOString().slice(0, 10) !== value
+  ) {
+    throw new Error(`${label} is not a valid calendar date.`);
+  }
+
+  return timestamp;
+}
+
+function assertMetric(label: string, metric: GscMetric): void {
+  const values: Array<[keyof GscMetric, number]> = [
+    ["clicks", metric.clicks],
+    ["impressions", metric.impressions],
+    ["ctr", metric.ctr],
+    ["position", metric.position],
+  ];
+  for (const [name, value] of values) {
+    if (!Number.isFinite(value) || value < 0) {
+      throw new Error(`${label}.${name} must be a non-negative number.`);
+    }
+  }
+  if (metric.ctr > 1) {
+    throw new Error(`${label}.ctr must be a decimal ratio between 0 and 1.`);
+  }
+}
+
+function assertUniqueKeys(label: string, keys: string[]): void {
+  const seen = new Set<string>();
+  for (const key of keys) {
+    if (seen.has(key)) {
+      throw new Error(`${label} contains a duplicate key: ${key}`);
+    }
+    seen.add(key);
+  }
+}
+
+function assertSameKeySet(
+  label: string,
+  baselineKeys: string[],
+  currentKeys: string[],
+): void {
+  assertUniqueKeys(`Baseline ${label}`, baselineKeys);
+  assertUniqueKeys(`Current ${label}`, currentKeys);
+
+  const baselineSet = new Set(baselineKeys);
+  const currentSet = new Set(currentKeys);
+  const missing = baselineKeys.filter((key) => !currentSet.has(key));
+  const extra = currentKeys.filter((key) => !baselineSet.has(key));
+
+  if (missing.length > 0 || extra.length > 0) {
+    const details = [
+      missing.length > 0 ? `missing: ${missing.join(", ")}` : "",
+      extra.length > 0 ? `extra: ${extra.join(", ")}` : "",
+    ]
+      .filter(Boolean)
+      .join("; ");
+    throw new Error(`GSC snapshots must use the same ${label} (${details}).`);
+  }
+}
+
+function metricValuesMatch(left: GscMetric, right: GscMetric): boolean {
+  return (
+    left.clicks === right.clicks &&
+    left.impressions === right.impressions &&
+    left.ctr === right.ctr &&
+    left.position === right.position
+  );
+}
+
+function validateSnapshot(snapshot: GscSnapshot, label: string): void {
+  const start = parseCalendarDate(snapshot.period.start, `${label} period start`);
+  const end = parseCalendarDate(snapshot.period.end, `${label} period end`);
+  parseCalendarDate(snapshot.deploymentDate, `${label} deployment date`);
+
+  if (end < start) {
+    throw new Error(`${label} period end must not precede its start.`);
+  }
+  const inclusiveDays = Math.floor((end - start) / MS_PER_DAY) + 1;
+  if (snapshot.period.days !== inclusiveDays) {
+    throw new Error(
+      `${label} period declares ${snapshot.period.days} days but its dates span ${inclusiveDays}.`,
+    );
+  }
+  if (!Number.isFinite(Date.parse(snapshot.capturedAt))) {
+    throw new Error(`${label} capturedAt must be a valid timestamp.`);
+  }
+
+  assertMetric(`${label} site`, snapshot.site);
+  const queryKeys = snapshot.queries.map((row) =>
+    keyForQuery(row.query, row.match),
+  );
+  assertUniqueKeys(`${label} priority queries`, queryKeys);
+  snapshot.queries.forEach((row, index) =>
+    assertMetric(`${label} queries[${index}]`, row),
+  );
+
+  assertUniqueKeys(
+    `${label} URL splits`,
+    snapshot.urlSplits.map((split) => split.id),
+  );
+  for (const split of snapshot.urlSplits) {
+    if (
+      !Number.isInteger(split.reportedUrlCount) ||
+      split.reportedUrlCount < split.rows.length
+    ) {
+      throw new Error(
+        `${label} URL split ${split.id} must report at least as many URLs as it stores.`,
+      );
+    }
+    const query = snapshot.queries.find(
+      (row) =>
+        keyForQuery(row.query, row.match) ===
+        keyForQuery(split.query, split.match),
+    );
+    if (!query) {
+      throw new Error(
+        `${label} URL split ${split.id} has no matching priority query.`,
+      );
+    }
+    assertMetric(`${label} URL split ${split.id} aggregate`, split.aggregate);
+    if (!metricValuesMatch(query, split.aggregate)) {
+      throw new Error(
+        `${label} URL split ${split.id} aggregate must match its priority query metric.`,
+      );
+    }
+    split.rows.forEach((row, index) =>
+      assertMetric(`${label} URL split ${split.id} rows[${index}]`, row),
+    );
+  }
+
+  if (!Number.isFinite(snapshot.ai.impressions) || snapshot.ai.impressions < 0) {
+    throw new Error(`${label} AI impressions must be a non-negative number.`);
+  }
+  const aiPageKeys = snapshot.ai.pages.map((page) => normalisePath(page.path));
+  assertUniqueKeys(`${label} AI pages`, aiPageKeys);
+  snapshot.ai.pages.forEach((page, index) => {
+    if (!Number.isFinite(page.impressions) || page.impressions < 0) {
+      throw new Error(
+        `${label} AI pages[${index}].impressions must be a non-negative number.`,
+      );
+    }
+  });
+}
+
 function assertComparable(baseline: GscSnapshot, current: GscSnapshot): void {
   if (baseline.schemaVersion !== 1 || current.schemaVersion !== 1) {
     throw new Error("Only GSC snapshot schema version 1 is supported.");
   }
+  validateSnapshot(baseline, "Baseline");
+  validateSnapshot(current, "Current");
   if (baseline.property !== current.property) {
     throw new Error("GSC snapshots must use the same property.");
   }
+  if (baseline.deploymentDate !== current.deploymentDate) {
+    throw new Error("GSC snapshots must use the same deployment date.");
+  }
   if (baseline.period.days !== current.period.days) {
     throw new Error("GSC snapshots must use periods of the same length.");
+  }
+
+  assertSameKeySet(
+    "priority query filters",
+    baseline.queries.map((row) => keyForQuery(row.query, row.match)),
+    current.queries.map((row) => keyForQuery(row.query, row.match)),
+  );
+  assertSameKeySet(
+    "URL split IDs",
+    baseline.urlSplits.map((split) => split.id),
+    current.urlSplits.map((split) => split.id),
+  );
+  assertSameKeySet(
+    "AI page filters",
+    baseline.ai.pages.map((page) => normalisePath(page.path)),
+    current.ai.pages.map((page) => normalisePath(page.path)),
+  );
+
+  const currentSplits = new Map(
+    current.urlSplits.map((split) => [split.id, split]),
+  );
+  for (const before of baseline.urlSplits) {
+    const after = currentSplits.get(before.id)!;
+    if (
+      keyForQuery(before.query, before.match) !==
+      keyForQuery(after.query, after.match)
+    ) {
+      throw new Error(
+        `URL split ${before.id} must use the same query and match mode.`,
+      );
+    }
+    if (
+      normalisePath(before.expectedOwner) !==
+      normalisePath(after.expectedOwner)
+    ) {
+      throw new Error(
+        `URL split ${before.id} must use the same expected owner.`,
+      );
+    }
+  }
+
+  const baselineEnd = parseCalendarDate(
+    baseline.period.end,
+    "Baseline period end",
+  );
+  const currentStart = parseCalendarDate(
+    current.period.start,
+    "Current period start",
+  );
+  const deployment = parseCalendarDate(
+    baseline.deploymentDate,
+    "Deployment date",
+  );
+  if (baselineEnd >= currentStart) {
+    throw new Error("GSC snapshot periods must not overlap.");
+  }
+  if (baselineEnd >= deployment || currentStart <= deployment) {
+    throw new Error(
+      "GSC snapshots must bracket the deployment with full pre- and post-deployment days.",
+    );
   }
 }
 
