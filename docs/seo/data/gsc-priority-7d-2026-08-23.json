@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "property": "sc-domain:roadmancycling.com",
   "capturedAt": "2026-08-25T11:59:31Z",
   "deploymentDate": "2026-08-24",
@@ -14,6 +14,43 @@
     "ctr": 0.014,
     "position": 8.2
   },
+  "ownerPages": [
+    {
+      "path": "/podcast",
+      "clicks": 5,
+      "impressions": 263,
+      "ctr": 0.019,
+      "position": 6.3
+    },
+    {
+      "path": "/coaching",
+      "clicks": 5,
+      "impressions": 206,
+      "ctr": 0.024,
+      "position": 26.8
+    },
+    {
+      "path": "/masters",
+      "clicks": 2,
+      "impressions": 36,
+      "ctr": 0.056,
+      "position": 11.7
+    },
+    {
+      "path": "/training-plans",
+      "clicks": 1,
+      "impressions": 10,
+      "ctr": 0.1,
+      "position": 9.2
+    },
+    {
+      "path": "/training-camps",
+      "clicks": 3,
+      "impressions": 83,
+      "ctr": 0.036,
+      "position": 9.5
+    }
+  ],
   "queries": [
     {
       "query": "cycling podcast",
@@ -306,6 +343,7 @@
   "notes": [
     "Captured manually from the signed-in Google Search Console domain property using Web search and the fixed 17-23 August 2026 range.",
     "Search Console reported data through 23 August and showed the site totals as 10,636 clicks, 776,834 impressions, 1.4% CTR and average position 8.2.",
+    "The five canonical owner-page rows were captured with an exact Page filter for each path in Web search over the same fixed date range; clicks, impressions, CTR and average position were enabled for every capture.",
     "The Generative AI total was displayed as the compact value 175K, stored here as 175,000; repeat the same card-reading method for the seven-day comparison.",
     "The seven-day checkpoint intentionally measures total AI impressions but not per-page AI impressions. The canonical 28-day scorecard retains the five fixed AI owner pages.",
     "Filtered page tables can be partial. The stored rows are the rows Search Console exposed during capture, while reportedUrlCount preserves Google's own URL count.",

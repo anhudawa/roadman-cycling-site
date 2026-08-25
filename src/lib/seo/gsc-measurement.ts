@@ -61,7 +61,7 @@ export interface SearchOwnerClickSnapshot {
 }
 
 export interface GscSnapshot {
-  schemaVersion: 1;
+  schemaVersion: 2;
   property: string;
   capturedAt: string;
   deploymentDate: string;
@@ -71,6 +71,8 @@ export interface GscSnapshot {
     days: number;
   };
   site: GscMetric;
+  /** Exact-URL Web-search metrics for all five canonical search owners. */
+  ownerPages: GscPageMetric[];
   queries: GscQueryMetric[];
   urlSplits: GscUrlSplit[];
   ai: GscAiSnapshot;
@@ -98,6 +100,17 @@ export interface GscComparison {
   baseline: GscSnapshot;
   current: GscSnapshot;
   site: GscMetricComparison;
+  ownerPages: Array<
+    GscMetricComparison & {
+      ownerId: SearchOwnerId;
+      label: string;
+      path: string;
+      ctrBefore: number;
+      ctrAfter: number;
+      positionBefore: number;
+      positionAfter: number;
+    }
+  >;
   queries: Array<
     GscMetricComparison & {
       query: string;
@@ -273,7 +286,10 @@ function metricValuesMatch(left: GscMetric, right: GscMetric): boolean {
 }
 
 function validateSnapshot(snapshot: GscSnapshot, label: string): void {
-  const start = parseCalendarDate(snapshot.period.start, `${label} period start`);
+  const start = parseCalendarDate(
+    snapshot.period.start,
+    `${label} period start`,
+  );
   const end = parseCalendarDate(snapshot.period.end, `${label} period end`);
   parseCalendarDate(snapshot.deploymentDate, `${label} deployment date`);
 
@@ -291,6 +307,17 @@ function validateSnapshot(snapshot: GscSnapshot, label: string): void {
   }
 
   assertMetric(`${label} site`, snapshot.site);
+  const ownerPageKeys = snapshot.ownerPages.map((row) =>
+    normalisePath(row.path),
+  );
+  assertSameKeySet(
+    "canonical owner pages",
+    SEARCH_OWNERS.map((owner) => normalisePath(owner.path)),
+    ownerPageKeys,
+  );
+  snapshot.ownerPages.forEach((row, index) =>
+    assertMetric(`${label} ownerPages[${index}]`, row),
+  );
   const queryKeys = snapshot.queries.map((row) =>
     keyForQuery(row.query, row.match),
   );
@@ -333,7 +360,10 @@ function validateSnapshot(snapshot: GscSnapshot, label: string): void {
     );
   }
 
-  if (!Number.isFinite(snapshot.ai.impressions) || snapshot.ai.impressions < 0) {
+  if (
+    !Number.isFinite(snapshot.ai.impressions) ||
+    snapshot.ai.impressions < 0
+  ) {
     throw new Error(`${label} AI impressions must be a non-negative number.`);
   }
   const aiPageKeys = snapshot.ai.pages.map((page) => normalisePath(page.path));
@@ -384,8 +414,8 @@ function validateSnapshot(snapshot: GscSnapshot, label: string): void {
 }
 
 function assertComparable(baseline: GscSnapshot, current: GscSnapshot): void {
-  if (baseline.schemaVersion !== 1 || current.schemaVersion !== 1) {
-    throw new Error("Only GSC snapshot schema version 1 is supported.");
+  if (baseline.schemaVersion !== 2 || current.schemaVersion !== 2) {
+    throw new Error("Only GSC snapshot schema version 2 is supported.");
   }
   validateSnapshot(baseline, "Baseline");
   validateSnapshot(current, "Current");
@@ -429,8 +459,7 @@ function assertComparable(baseline: GscSnapshot, current: GscSnapshot): void {
       );
     }
     if (
-      normalisePath(before.expectedOwner) !==
-      normalisePath(after.expectedOwner)
+      normalisePath(before.expectedOwner) !== normalisePath(after.expectedOwner)
     ) {
       throw new Error(
         `URL split ${before.id} must use the same expected owner.`,
@@ -479,6 +508,28 @@ export function compareGscSnapshots(
     return {
       query: before.query,
       match: before.match,
+      ...compareMetric(before, after),
+    };
+  });
+
+  const baselineOwnerPages = new Map(
+    baseline.ownerPages.map((row) => [normalisePath(row.path), row]),
+  );
+  const currentOwnerPages = new Map(
+    current.ownerPages.map((row) => [normalisePath(row.path), row]),
+  );
+  const ownerPages = SEARCH_OWNERS.map((owner) => {
+    const path = normalisePath(owner.path);
+    const before = baselineOwnerPages.get(path)!;
+    const after = currentOwnerPages.get(path)!;
+    return {
+      ownerId: owner.id,
+      label: owner.label,
+      path,
+      ctrBefore: before.ctr,
+      ctrAfter: after.ctr,
+      positionBefore: before.position,
+      positionAfter: after.position,
       ...compareMetric(before, after),
     };
   });
@@ -578,6 +629,7 @@ export function compareGscSnapshots(
     baseline,
     current,
     site: compareMetric(baseline.site, current.site),
+    ownerPages,
     queries,
     urlSplits,
     ai: {
@@ -644,6 +696,15 @@ export function renderGscComparisonMarkdown(comparison: GscComparison): string {
     `| Impressions | ${comparison.site.impressions.before.toLocaleString()} | ${comparison.site.impressions.after.toLocaleString()} | ${signed(comparison.site.impressions.absolute)} (${relative(comparison.site.impressions.relative)}) |`,
     `| CTR | ${percent(baseline.site.ctr)} | ${percent(current.site.ctr)} | ${signed(comparison.site.ctrPoints, 1)} points |`,
     `| Average position | ${baseline.site.position.toFixed(1)} | ${current.site.position.toFixed(1)} | ${signed(comparison.site.positionGain, 1)} positions gained |`,
+    "",
+    "## Canonical owner pages",
+    "",
+    "| Owner | Clicks | Impressions | CTR | Position |",
+    "| --- | ---: | ---: | ---: | ---: |",
+    ...comparison.ownerPages.map(
+      (row) =>
+        `| [${row.label}](${row.path}) | ${row.clicks.before.toLocaleString()} → ${row.clicks.after.toLocaleString()} (${signed(row.clicks.absolute)}) | ${row.impressions.before.toLocaleString()} → ${row.impressions.after.toLocaleString()} (${signed(row.impressions.absolute)}) | ${percent(row.ctrBefore)} → ${percent(row.ctrAfter)} (${signed(row.ctrPoints, 1)} points) | ${row.positionBefore.toFixed(1)} → ${row.positionAfter.toFixed(1)} (${signed(row.positionGain, 1)} gained) |`,
+    ),
     "",
     "## Priority queries",
     "",

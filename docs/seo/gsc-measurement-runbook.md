@@ -43,11 +43,12 @@ performance movement.
 
 1. In the `sc-domain:roadmancycling.com` Search results report, choose the checkpoint's exact post period and enable clicks, impressions, CTR and average position.
 2. Record the site totals.
-3. Use **Exact query** for every priority query except `training camp`, which must use **Queries containing**.
-4. For `cycling coach`, `cycling training plan` and the `training camp` family, open the Pages tab. Record the reported URL count and all visible rows, preserving the intended owner when Google exposes it even if it has zero clicks. Do not invent a zero-impression row when Google omits the owner; its absence correctly produces zero owner share.
-5. Open the Generative AI report with the same period. For the seven-day checkpoint, record the total card using the same compact-card method as the baseline. For the 28-day checkpoint, also record exact-page impressions for the five owner paths in its baseline.
-6. Open **Video indexing** and record its `Last update`, `Video indexed`, `No video indexed`, and every reason/count/validation row. This report is point-in-time rather than date-filtered, so preserve Google's displayed update date. Keep the baseline reason even if it disappears by recording zero videos and `Not present` in the current snapshot.
-7. In Roadman Admin → Measurement, use the same date range and record the “Supporting content → definitive guides” total, per-owner clicks and every row in “Top assisted source pages.” In particular, preserve the source rows for the existing GSC winners: the 60-day training article, the online-coach selection article and the best-podcasts article.
+3. Apply an **Exact page** filter for each canonical owner URL—`/podcast`, `/coaching`, `/masters`, `/training-plans` and `/training-camps`—and record clicks, impressions, CTR and average position in `ownerPages`. Use the canonical HTTPS URL on `roadmancycling.com`; do not substitute folder totals, topic hubs or query-filtered page rows.
+4. Use **Exact query** for every priority query except `training camp`, which must use **Queries containing**.
+5. For `cycling coach`, `cycling training plan` and the `training camp` family, open the Pages tab. Record the reported URL count and all visible rows, preserving the intended owner when Google exposes it even if it has zero clicks. Do not invent a zero-impression row when Google omits the owner; its absence correctly produces zero owner share.
+6. Open the Generative AI report with the same period. For the seven-day checkpoint, record the total card using the same compact-card method as the baseline. For the 28-day checkpoint, also record exact-page impressions for the five owner paths in its baseline.
+7. Open **Video indexing** and record its `Last update`, `Video indexed`, `No video indexed`, and every reason/count/validation row. This report is point-in-time rather than date-filtered, so preserve Google's displayed update date. Keep the baseline reason even if it disappears by recording zero videos and `Not present` in the current snapshot.
+8. In Roadman Admin → Measurement, use the same date range and record the “Supporting content → definitive guides” total, per-owner clicks and every row in “Top assisted source pages.” In particular, preserve the source rows for the existing GSC winners: the 60-day training article, the online-coach selection article and the best-podcasts article.
 
 Search Console may label filtered chart totals and page tables as partial. That is expected. Use the same filters both times and compare directionally: intended-owner impression share, number of competing URLs, clicks, CTR and position.
 
@@ -71,7 +72,11 @@ npm run seo:gsc:compare -- \
   --output docs/seo/gsc-comparison-2026-09-21.md
 ```
 
-The comparison fails on invalid inclusive day counts, overlapping windows, deployment-date changes, duplicate or extra filters, query match-mode changes, URL-owner changes, or different AI page sets. This prevents a superficially clean report built from mismatched dates or filters.
+The comparison fails on invalid inclusive day counts, overlapping windows,
+deployment-date changes, missing or changed canonical owner pages, duplicate or
+extra filters, query match-mode changes, URL-owner changes, or different AI
+page sets. This prevents a superficially clean report built from mismatched
+dates or filters.
 
 ## Decision rules
 
