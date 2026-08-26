@@ -229,15 +229,21 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "lachlan-morton": {
+    seoDescription:
+      "Roadman guest profile for EF Pro Cycling Far Beyond rider Lachlan Morton, with his Alt Tour, Unbound win, ultra records and source-checked interview.",
+    credential:
+      "EF Pro Cycling Far Beyond rider; 2024 Unbound Gravel winner and Around Australia record holder",
     description:
-      "Australian professional cyclist for EF Education–EasyPost, ultra-distance and alt-racing pioneer. Former Everesting world record holder, 2024 Unbound Gravel 200 winner, Great Divide ultra-endurance rider.",
+      "Australian professional cyclist on EF Pro Cycling's 2026 Far Beyond programme, 2024 Unbound Gravel 200 winner and holder of the 30-day, 9-hour, 59-minute Around Australia record.",
     worksFor: {
-      name: "EF Education–EasyPost",
-      type: "SportsTeam",
-      url: "https://www.efprocycling.com",
+      name: "EF Pro Cycling — Far Beyond",
+      type: "Organization",
+      url: "https://www.efprocycling.com/our-team/",
     },
     sameAs: [
       "https://en.wikipedia.org/wiki/Lachlan_Morton",
+      "https://www.wikidata.org/wiki/Q2374213",
+      "https://www.uci.org/rider-details/75973",
       "https://www.efprocycling.com/our-team/lachlan-morton/",
       "https://www.procyclingstats.com/rider/lachlan-morton",
     ],
@@ -245,14 +251,84 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "lachlan-morton-why-quit-world-tour",
     ],
     whyMatters:
-      "Lachlan Morton is the World Tour rider who proved you can race the Tour de France in July, set the Great Divide bikepacking record, and win Unbound Gravel — all in the same career. He has redefined what a pro cyclist's calendar can look like, championed alt-racing as a serious discipline, and become the public face of the link between ultra-endurance riding and World Tour fitness. For amateurs trying to figure out how to balance long days, racing, and adventure on the same engine, he is the model.",
+      "Lachlan Morton is an Australian professional cyclist who moved from a conventional WorldTour road path into EF Pro Cycling's alternative and Far Beyond programmes. His verified record includes the 2021 Alt Tour, the 2024 Unbound Gravel 200 win, a 12-day Tour Divide ride and the 14,200km Around Australia record. His Roadman interview is valuable because it explains the motivation behind that change in his own words. The personal-cost and training-by-feel claims are Morton's account; current team status, distances, dates and results are checked against EF and UCI records.",
+    keyIdeasHeading: "VERIFIED RECORD AND INTERVIEW ACCOUNT",
+    keyIdeasDescription:
+      "Official EF and UCI records are separated from Morton's first-person explanation of why he left the conventional road calendar.",
     keyIdeas: [
-      "Ultra-distance volume and World Tour racing fitness are not in conflict — they reinforce each other when periodised properly.",
-      "Alt-racing (gravel, ultra, FKT attempts) is now a legitimate parallel career path, not a downshift from road racing.",
-      "Mental durability on multi-day rides is built by spending genuine time alone on the bike, not by training plan structure alone.",
-      "Pacing for ultra is closer to Zone 2 discipline than to threshold work — the riders who blow up are the ones who race the first half.",
-      "Equipment choices for ultra (tyres, lighting, bag setup) matter more for finish-line performance than chasing 5W of aero gain.",
+      "Remains an EF Pro Cycling athlete on the 2026 Far Beyond programme; he did not retire from professional cycling.",
+      "Won the 2024 Unbound Gravel 200 in 9:11:47 and finished second in the 2025 Unbound XL.",
+      "Completed at least 14,200km around Australia in 30 days, 9 hours and 59 minutes in 2024.",
+      "Rode roughly 5,500km during the 2021 Alt Tour, including stages and transfers, reaching Paris five days before the peloton.",
+      "Says the personal cost of conventional road performance stopped feeling worthwhile; this is his first-person explanation, not an official cause.",
     ],
+    faqs: [
+      {
+        question: "Who is Lachlan Morton?",
+        answer:
+          "Lachlan Morton is an Australian professional cyclist born on 2 January 1992. In 2026 he rides on EF Pro Cycling's Far Beyond programme and is known for the Alt Tour, winning the 2024 Unbound Gravel 200 and setting the 2024 Around Australia record.",
+      },
+      {
+        question: "Did Lachlan Morton quit professional cycling?",
+        answer:
+          "No. Morton moved away from a conventional WorldTour road schedule but remains an EF Pro Cycling athlete on its 2026 Far Beyond programme, racing gravel and long-distance events and undertaking record attempts.",
+      },
+      {
+        question: "Why did Lachlan Morton leave WorldTour road racing?",
+        answer:
+          "In his Roadman interview, Morton says performing at his best on the road demanded isolation and single-mindedness whose personal cost no longer felt worthwhile. He later returned to top-level teams before moving into EF's alternative calendar, so it was not one permanent retirement.",
+      },
+      {
+        question: "What is Lachlan Morton's Alt Tour?",
+        answer:
+          "Morton's 2021 Alt Tour covered every Tour de France stage plus the transfers between them. EF records roughly 5,500km ridden unsupported, a Paris finish five days before the peloton and more than $700,000 raised for World Bicycle Relief.",
+      },
+      {
+        question: "What is Lachlan Morton's Around Australia record?",
+        answer:
+          "In 2024 Morton completed at least 14,200km around Australia in 30 days, 9 hours and 59 minutes with a support crew. EF reported that the ride beat the previous mark by close to a week.",
+      },
+    ],
+    sources: [
+      {
+        name: "EF Pro Cycling — Lachlan Morton official profile",
+        url: "https://www.efprocycling.com/our-team/lachlan-morton/",
+        note: "Current profile establishing identity, Alt Tour facts, recent achievements and EF affiliation.",
+      },
+      {
+        name: "EF Pro Cycling — 2026 Far Beyond programme",
+        url: "https://www.efprocycling.com/culture/axelle-dubau-prevot-and-lachlan-morton-will-race-far-beyond-their-old-frontiers-in-2026/",
+        note: "Official current programme announcement confirming Morton's 2026 role.",
+      },
+      {
+        name: "UCI — Lachlan Morton rider record",
+        url: "https://www.uci.org/rider-details/75973",
+        note: "Canonical rider identity and road-team history.",
+      },
+      {
+        name: "EF Pro Cycling — 2024 Unbound Gravel win",
+        url: "https://www.efprocycling.com/racing/lachlan-morton-wins-the-2024-unbound-gravel/",
+        note: "Official race report recording the 9:11:47 win.",
+      },
+      {
+        name: "EF Pro Cycling — Tour Divide ride",
+        url: "https://www.efprocycling.com/culture/the-great-divide-mountain-bike-route/",
+        note: "Official route diary recording 12 days, 12 hours and 21 minutes and the planned rest approach.",
+      },
+      {
+        name: "EF Pro Cycling — Around Australia record",
+        url: "https://www.efprocycling.com/culture/lachlan-morton-sets-the-around-australia-record/",
+        note: "Official completion report recording distance, time, supported format and fundraising.",
+      },
+      {
+        name: "Roadman Cycling Podcast — Lachlan Morton interview",
+        url: "https://roadmancycling.com/podcast/ep-21-my-untold-story-about-why-i-quit-world-tour-lachlan-morton",
+        note: "Primary source for Morton's motivation and training-by-feel account.",
+      },
+    ],
+    reviewedBy:
+      "Anthony Walsh, against EF Pro Cycling and UCI records plus the Roadman interview transcript",
+    lastReviewed: "2026-08-26",
     relatedHubs: ["cycling-training-plans", "cycling-recovery"],
   },
 

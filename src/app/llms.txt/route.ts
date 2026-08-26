@@ -289,6 +289,7 @@ ${answersClusterBlock}
 - [George Hincapie: Career, US Postal and Roadman Podcast Profile](${tag(`${BASE_URL}/guests/george-hincapie`)}): Source-checked profile covering 17 Tour starts, five Olympics, the official USADA record, Modern Adventure Pro Cycling and every Roadman appearance.
 - [Tyler Hamilton: Career, Doping Record and Roadman Podcast Profile](${tag(`${BASE_URL}/guests/tyler-hamilton`)}): Source-checked profile covering his retained road career, returned Olympic medal, official USADA record, The Secret Race, current coaching work and every Roadman appearance.
 - [Jonas Abrahamsen: 2025 Tour Win, 18kg Gain and Pro Training](${tag(`${BASE_URL}/podcast/ep-29-untold-story-ofjonas-abrahamsens-pro-winter-training`)}): Source-bounded interview separating his verified 2025 Tour stage win and 2024 jersey run from self-reported body-mass, power, heat, altitude and winter-training figures.
+- [Lachlan Morton: Alt Tour, Unbound and EF Far Beyond](${tag(`${BASE_URL}/blog/lachlan-morton-why-quit-world-tour`)}): Source-checked biography separating Morton's current 2026 EF role and verified race and record results from his first-person explanation of leaving the conventional road calendar.
 - [Podcast RSS Feed](${BASE_URL}/feed/podcast): Machine-readable feed of all episodes.
 
 ## Free Calculators
