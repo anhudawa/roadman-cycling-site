@@ -29,6 +29,10 @@ export interface GuestProfileOverride {
   seoTitle?: string;
   /** Optional search description for a featured entity page. */
   seoDescription?: string;
+  /** Optional intent-specific title for the expert-topic index. */
+  expertSeoTitle?: string;
+  /** Optional intent-specific description for the expert-topic index. */
+  expertSeoDescription?: string;
   /** Optional visible credential that replaces episode-derived copy. */
   credential?: string;
   /** Absolute URL of a headshot. Prefer a verified public photo. */
@@ -1670,17 +1674,90 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "andrew-feather": {
+    seoTitle: "Andrew Feather: Bio, Results & Podcast",
+    seoDescription:
+      "Andrew Feather is a four-time UK National Hill-Climb Champion. See his verified results, 2025 Pogi Challenge ride and Roadman podcast interview.",
+    expertSeoTitle: "Andrew Feather on Hill-Climb Training & Pacing",
+    expertSeoDescription:
+      "Andrew Feather's Roadman podcast advice on hill-climb pacing, power-to-weight, race weight and short-effort preparation, organised by topic.",
+    credential:
+      "Four-time UK National Hill-Climb Champion; third at the 2025 national championship",
     description:
-      "British amateur hill-climb specialist. Multiple-time UK national hill-climb champion. Climbed ahead of Tadej Pogačar across the line at the 2024 Pogi Challenge in Slovenia — a 15km handicap mass-start hill climb with 1,200m of elevation gain.",
+      "British hill-climb specialist and full-time lawyer. Four-time UK National Hill-Climb Champion who held off Tadej Pogačar across the line in the handicapped 2025 Pogi Challenge, although Pogačar recorded the faster elapsed climb time.",
     whyMatters:
-      "Andrew Feather is the British amateur hill-climb specialist who finished ahead of Tadej Pogačar at the 2024 Pogi Challenge — admittedly with a 6–7 minute head start on a handicap, but at 6.3 W/kg for 44 minutes at age 40, the performance is itself the headline. His career is the cleanest case study in what a true amateur uphill specialist can do, and how the W/kg numbers that win UK national hill climbs compare with what WorldTour climbers are putting out at the very top end.",
+      "Andrew Feather is a four-time UK National Hill-Climb Champion who won his first national title in 2018 and his fourth in 2023. At the 2025 Pogi Challenge he was the only challenger reported to reach the finish before Tadej Pogačar, after receiving roughly a six-minute head start; Pogačar's elapsed time was about three and a half minutes faster. Feather's Roadman interview is useful first-person evidence on pacing, race weight, equipment and the training of a successful amateur specialist, but its power and training figures are self-reported rather than independently tested here.",
     keyIdeas: [
-      "6.3 W/kg held for 44 minutes at age 40 puts a top UK amateur hill climber inside the same W/kg bracket as a strong WorldTour climber for short uphill durations.",
-      "Handicap-format climbs are won by the rider whose actual W/kg most exceeds the organiser's assumption — Feather hit 6.2–6.3 vs an estimated 5.5.",
-      "Net-time over the climb is the real number — Pogačar was about 3.5 minutes quicker than Feather over the 15km, 1,200m ascent.",
-      "Quinn Simmons' Il Lombardia ride — 355W average across 4+ hours, climbing at 400+W — defines the modern WorldTour ceiling, and Pogačar still caught him with 2.5 minutes to spare.",
-      "Top amateur W/kg numbers are catching elite numbers for short durations, but the 4-hour durability gap is what still separates the categories.",
+      "Feather reports averaging 397W for 44 minutes at roughly 63kg during the 2025 Pogi Challenge; Roadman has not independently verified the power file.",
+      "The Pogi Challenge used a pursuit format: challengers started first and Pogačar began roughly six minutes later.",
+      "Feather crossed before Pogačar, but contemporary reporting put Pogačar's elapsed climb time about three and a half minutes faster.",
+      "Feather says he rode to his own power rather than reacting to the expected catch, a practical pacing lesson rather than proof that he was faster on net time.",
+      "Official and contemporary records show four national titles by 2023 and third place at the 2025 UK National Hill-Climb Championship.",
     ],
+    keyIdeasHeading: "Verified results and interview takeaways",
+    keyIdeasDescription:
+      "Official race records are separated from figures and methods Feather reported in the Roadman interview.",
+    faqs: [
+      {
+        question: "Who is Andrew Feather?",
+        answer:
+          "Andrew Feather is a British hill-climb specialist and full-time lawyer. He won four UK National Hill-Climb Championship titles by 2023 and finished third at the 2025 championship.",
+      },
+      {
+        question: "Did Andrew Feather beat Tadej Pogačar?",
+        answer:
+          "Feather reached the finish before Pogačar at the handicapped 2025 Pogi Challenge after the challengers received roughly a six-minute head start. Contemporary reporting says Pogačar covered the climb about three and a half minutes faster, so it was a first-across-the-line result, not a faster elapsed time.",
+      },
+      {
+        question: "What power did Andrew Feather report at the Pogi Challenge?",
+        answer:
+          "Feather told Roadman he averaged 397W for about 44 minutes at roughly 63kg, or approximately 6.2–6.3 W/kg. Those are his self-reported figures; Roadman has not independently verified the underlying power file.",
+      },
+      {
+        question: "How many UK National Hill-Climb titles has Andrew Feather won?",
+        answer:
+          "Four. Cycling Time Trials recorded his first title in 2018, and Cycling Weekly reported that his 2023 victory was his fourth.",
+      },
+      {
+        question: "How did Andrew Feather train for hill climbs?",
+        answer:
+          "In the Roadman interview, Feather described riding about two hours a day around work and family and focusing on short, hard hill-climb efforts before the national championship. This is his personal account, not a universal training prescription.",
+      },
+    ],
+    sources: [
+      {
+        name: "Pogi Challenge — official 2025 results",
+        url: "https://pogichallenge.com/en/rezultati/",
+        note: "Official event results page for the 2025 Pogi Challenge.",
+      },
+      {
+        name: "Pogi Challenge — official course and pursuit format",
+        url: "https://pogichallenge.com/",
+        note: "Official event description of the challenger-first pursuit format and current Krvavec course.",
+      },
+      {
+        name: "Cycling Weekly — Feather holds off Pogačar",
+        url: "https://www.cyclingweekly.com/news/he-didnt-manage-to-catch-me-tadej-pogacar-beaten-by-british-hill-climber-at-event-in-slovenia",
+        note: "Contemporary 2025 report covering the handicap, elapsed-time distinction and Feather's reported power.",
+      },
+      {
+        name: "Cycling Time Trials — 2018 National Hill-Climb report",
+        url: "https://www.cyclingtimetrials.org.uk/news/400-national-hill-climb-championship-report",
+        note: "Official report and result for Feather's first national title.",
+      },
+      {
+        name: "Cycling Weekly — 2023 National Hill-Climb title",
+        url: "https://www.cyclingweekly.com/news/national-hill-climb-championship-won-on-discs-for-the-first-time",
+        note: "Report identifying the 2023 victory as Feather's fourth national title.",
+      },
+      {
+        name: "Cycling Weekly — 2025 National Hill-Climb results",
+        url: "https://www.cyclingweekly.com/racing/im-not-the-most-gifted-rider-but-ive-worked-very-hard-for-this-galler-and-macfarlane-conquer-bank-road-at-british-national-hill-climb-championships",
+        note: "2025 results listing Feather third in 2:20.4.",
+      },
+    ],
+    reviewedBy:
+      "Fact-checked by Roadman editorial against Cycling Time Trials, Pogi Challenge and Cycling Weekly records.",
+    lastReviewed: "2026-08-26",
     relatedHubs: ["ftp-training", "cycling-training-plans"],
   },
 

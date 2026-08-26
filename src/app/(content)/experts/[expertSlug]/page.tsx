@@ -26,15 +26,21 @@ export async function generateMetadata({
   const { expertSlug } = await params;
   const guest = getGuestBySlug(expertSlug);
   if (!guest) return { title: "Not Found" };
+  const override = getGuestProfileOverride(expertSlug);
 
-  const description = `What does ${guest.name} say about training, nutrition and racing? Explore direct quotes, key positions and Roadman podcast episodes by topic.`;
+  const defaults = {
+    title: `What Does ${guest.name} Say? — Topics`,
+    description: `What does ${guest.name} say about training, nutrition and racing? Explore direct quotes, key positions and Roadman podcast episodes by topic.`,
+  };
+  const title = override?.expertSeoTitle ?? defaults.title;
+  const description = override?.expertSeoDescription ?? defaults.description;
 
   return {
-    title: `What Does ${guest.name} Say? — Topics`,
+    title,
     description,
     alternates: { canonical: `${SITE_ORIGIN}/experts/${expertSlug}` },
     openGraph: {
-      title: `What Does ${guest.name} Say? — By Topic`,
+      title,
       description,
       type: "profile",
       url: `${SITE_ORIGIN}/experts/${expertSlug}`,

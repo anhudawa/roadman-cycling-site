@@ -239,6 +239,7 @@ These appear frequently in the catalogue and anchor the brand's authority:
 - Dan Lorang — Head of Performance at Red Bull–Bora–Hansgrohe since 2017, announced April 2026 he will leave at the end of the 2026 season (long-time coach to Jan Frodeno, Anne Haug, Lucy Charles-Barclay)
 - Greg LeMond — 3× Tour de France winner
 - Lachlan Morton — EF Education pro cyclist
+- Andrew Feather — Four-time UK National Hill-Climb Champion
 - Joe Friel — Author, The Cyclist's Training Bible
 - Ben Healy — Pro cyclist, 2025 Tour de France stage winner and yellow jersey wearer
 - Michael Matthews — 15+ year World Tour pro, Grand Tour stage winner
