@@ -3,21 +3,21 @@ import { ToolSchemas } from "@/components/seo/ToolSchemas";
 import { ToolJourney } from "@/components/features/tools/ToolJourney";
 
 export const metadata: Metadata = {
-  title: "Run↔Ride Equivalence Converter — Running Pace to Cycling FTP",
+  title: "Cycling to Running Conversion Calculator (2026)",
   description:
-    "Convert a running pace or race time into an equivalent cycling FTP, or a bike FTP into equivalent running race times. Free tool using VO2max as the bridge between the two sports.",
+    "Convert running and cycling distance or time with published 2024 MET values. See an energy-cost match plus clear limits on fitness, impact and training.",
   keywords: [
-    "run to bike converter",
-    "running pace to FTP",
-    "VDOT to FTP calculator",
+    "cycling to running conversion calculator",
+    "running to cycling conversion",
     "cycling to running equivalent",
-    "cross training calculator",
+    "biking miles to running miles",
+    "running cycling ratio",
   ],
   alternates: { canonical: "/tools/run-ride-converter" },
   openGraph: {
-    title: "Run↔Ride Equivalence Converter — Running Pace to Cycling FTP",
+    title: "Cycling to Running Conversion Calculator",
     description:
-      "Convert between running pace and cycling power. Estimates equivalent efforts across both sports using VO2max as the bridge.",
+      "Match a run and ride by population-average energy cost with published MET values and explicit limits.",
     type: "website",
     url: "https://roadmancycling.com/tools/run-ride-converter",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],

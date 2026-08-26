@@ -1087,78 +1087,103 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
 
   "run-ride-converter": {
     slug: "run-ride-converter",
-    title: "Run↔Ride Equivalence Converter",
+    title: "Cycling to Running Conversion Calculator",
     description:
-      "Convert a running pace or race time into an equivalent cycling FTP, or a bike FTP into equivalent running race times. Free tool using VO2max as the bridge.",
+      "Convert running and cycling distance or time with published 2024 Compendium MET values and explicit limits on fitness, impact and adaptation.",
     url: `${ROADMAN_BASE}/tools/run-ride-converter`,
-    breadcrumbName: "Run↔Ride Equivalence Converter",
+    breadcrumbName: "Cycling to Running Conversion Calculator",
     answerSummary:
-      "Enter a running pace or race time and get an estimated cycling FTP in watts and W/kg, or enter your FTP and get estimated VDOT plus race time predictions for 5K through marathon. VO2max is the shared currency linking the two sports, with a correction factor for the lower VO2max readings typical of cycling tests.",
+      "Choose Run → Ride or Ride → Run, enter a distance or duration and select the published speed categories on both sides. The calculator matches MET-minutes using the 2024 Adult Compendium of Physical Activities and returns a population-average energy-cost duration and distance. It does not predict FTP, VDOT, race performance, tissue load or equal training adaptation.",
     whatItDoes:
-      "This tool bridges running and cycling performance using VO2max as the common measure. Runners moving to the bike (injury, off-season, triathlon) get an estimated starting FTP instead of guessing. Cyclists picking up running get estimated race times instead of showing up to a 10K blind. Both directions include a training-load equivalence and a heart-rate comparison note, because effort doesn't translate 1:1 between the sports.",
+      "This tool answers one narrow question: how long and how far would a selected activity in the other sport take to produce the same population-average MET-minute exposure? Each running and cycling option maps to a named 2024 Compendium activity code. The source MET value is multiplied by minutes, then divided by the target MET value. This is an energy-cost match, not evidence that the sessions are interchangeable.",
     whoItsFor: [
-      "Runners cross-training on the bike during an injury or off-season",
-      "Cyclists adding running for triathlon or general fitness",
-      "Coaches setting a sensible starting point for an athlete new to the other sport",
-      "Anyone curious how their running fitness stacks up against their cycling fitness, or vice versa",
+      "Runners replacing some aerobic work with cycling during an off-season or reduced-impact block",
+      "Cyclists adding running and needing a conservative planning reference",
+      "Triathletes and coaches comparing session energy cost without pretending the sports are identical",
+      "Anyone searching for a cycling-to-running ratio who needs the assumptions shown",
     ],
     howItWorks:
-      "Running pace or race time is converted to VDOT using Jack Daniels' model — velocity becomes an oxygen cost, then adjusted for how long that pace can be sustained. Cycling FTP is converted to VO2max using a standard FTP-to-VO2max regression. A 0.92 correction factor links the two, because cycling VO2max tests typically read 5-8% lower than running VO2max tests for the same athlete. Training-load equivalence uses a 1.65x duration scale between easy cycling and easy running.",
+      "MET-minutes = published MET value × session minutes. Target minutes = source MET-minutes ÷ target MET value. When distance is entered, the selected source speed converts it to duration; the selected target speed converts the matched duration back to distance. Body mass cancels when comparing the same person, so no weight input is required. The arithmetic is transparent, but MET values remain population estimates.",
     howToSteps: [
-      { name: "Pick a direction", text: "Choose Run → Ride if you're converting running fitness to an estimated bike FTP, or Ride → Run if you're converting FTP to estimated running performance." },
-      { name: "Enter your weight", text: "Body weight in kg or lbs — needed to convert between VO2max and FTP in either direction." },
-      { name: "Enter your running or cycling number", text: "For Run → Ride: a pace (min/km or min/mile) or a race time at 5K, 10K, half marathon or marathon. For Ride → Run: your FTP in watts." },
-      { name: "Read the equivalent numbers", text: "You'll get an estimated FTP or VDOT, race time predictions, an easy-effort description, a training-load equivalence, and a heart-rate comparison note." },
+      { name: "Choose the direction", text: "Select Run → Ride or Ride → Run. This determines which published activity categories appear on each side." },
+      { name: "Enter distance or time", text: "Use a known session distance in kilometres or miles, or enter its duration in minutes." },
+      { name: "Select both speed categories", text: "Choose the source and target speeds that best describe the sessions. Every option displays its 2024 Compendium MET value." },
+      { name: "Read the scoped match", text: "Use the returned duration and distance as a population-average energy-cost reference, then preserve the purpose, specificity and recovery constraints of the original session." },
     ],
     howToTotalTime: "PT2M",
     limitations:
-      "This tool estimates aerobic-capacity transfer between two different sports — it can't account for running economy, cycling efficiency, bike fit, neuromuscular skill, or terrain. Two athletes with identical VO2max numbers can have meaningfully different race times or FTP. The 0.92 cycling correction factor and 1.65x duration scale are coaching approximations, not physiological constants. Treat every output here as a rough guide for programming cross-training, not a precise prediction.",
+      "Equal MET-minutes do not mean equal race fitness, tissue load, recovery cost, training stress or adaptation. MET categories estimate population-average energy expenditure. Running economy, cycling efficiency, gradient, wind, surface, drafting, coasting, bike fit and sport-specific skill can move an individual's cost. Running impact and eccentric load have no cycling-distance equivalent. Do not use this result as injury-rehabilitation clearance or as a substitute for sport-specific race preparation.",
     whenToSeeACoach:
-      "If you're using this to plan a serious cross-training block — injury rehab, off-season bike focus, or a first triathlon — a coach can build the actual week around your real numbers rather than an estimate, and adjust as your body responds.",
+      "Use coaching or appropriately qualified clinical support when a substitution affects injury rehabilitation, return to running, race preparation or a high-load multisport week. A calculator cannot assess tissue tolerance, symptoms, recovery or whether the original session should be replaced at all.",
     examples: [
       {
-        scenario: "Runner, 70kg, converting a 10K time to bike FTP",
-        inputs: ["Weight: 70kg", "10K: 45:00"],
-        output: "Estimated FTP around 230-250W (roughly 3.3-3.6 W/kg), with an equivalent easy-ride description and a training-load note.",
+        scenario: "Thirty-minute run to a moderate ride",
+        inputs: ["Run: 30 minutes at 6 mph", "Ride: 12 mph category"],
+        output: "The 9.3-MET run produces 279 MET-minutes. At 8.0 MET, the matched ride is about 35 minutes and 7.0 miles. This matches estimated energy cost only.",
       },
       {
-        scenario: "Cyclist, 75kg, converting FTP to running times",
-        inputs: ["Weight: 75kg", "FTP: 250W"],
-        output: "Estimated VDOT in the mid-40s, with predicted 5K, 10K, half marathon and marathon times and an equivalent easy running pace.",
+        scenario: "One-hour ride to a steady run",
+        inputs: ["Ride: 60 minutes at 14 mph", "Run: 6 mph"],
+        output: "The 10.0-MET ride produces 600 MET-minutes. At 9.3 MET, the matched run is about 65 minutes and 6.5 miles. The impact and sport-specific load are not matched.",
       },
     ],
     faqs: [
       {
-        question: "How accurate is a run-to-bike FTP conversion?",
-        answer: "It's a starting-point estimate, not a precise prediction. VO2max transfers reasonably well between running and cycling, but running economy and cycling efficiency are separate skills that vary a lot between athletes. Use the output as a first FTP to train from, then retest on the bike after a few weeks.",
+        question: "How many cycling miles equal one running mile?",
+        answer: "There is no fixed evidence-backed ratio. Speed, terrain, wind, drafting and individual economy change the answer. Select a speed category on each side and this tool will calculate a disclosed MET-minute energy-cost match instead of applying one universal 1:3 rule.",
       },
       {
-        question: "Why is cycling VO2max usually lower than running VO2max?",
-        answer: "Cycling recruits less total muscle mass than running — no upper body involvement, less core and stabiliser demand — so the same athlete typically posts a VO2max reading 5-8% lower on a bike test than on a treadmill test. This tool applies a 0.92 correction factor to account for that gap.",
+        question: "Does equal MET-minutes mean equal training stress?",
+        answer: "No. MET-minutes estimate energy cost from population values. They do not capture impact, eccentric loading, sport-specific muscle recruitment, session distribution, recovery or the individual's response. The result is a planning reference, not a training-load identity.",
       },
       {
-        question: "Why does cycling heart rate run lower than running heart rate?",
-        answer: "At an equivalent physiological effort, cycling heart rate is typically 5-10 bpm lower than running heart rate, mainly because there's no impact loading and less total muscle mass working against gravity. Don't apply your running heart-rate zones directly to the bike, or vice versa.",
+        question: "Can cycling replace a run during injury rehabilitation?",
+        answer: "Cycling may preserve some aerobic work with less impact, but the calculator cannot decide whether replacement is clinically appropriate. It does not match tissue loading or assess symptoms. Follow the rehabilitation plan from an appropriately qualified professional.",
       },
       {
-        question: "Can I use this to plan a cross-training week?",
-        answer: "Yes, as a rough guide. The training-load equivalence uses a 1.65x duration scale — an easy ride can typically run about 65% longer than an easy run for similar aerobic cost, reflecting lower impact stress on the bike. Start conservative and adjust based on how your body responds.",
+        question: "Why does the calculator ask for both speeds?",
+        answer: "The 2024 Compendium assigns different MET values to different running and cycling speeds, and distance requires a speed to become time. Naming both categories prevents a slow recovery ride and a fast non-drafting ride from being treated as the same activity.",
       },
     ],
     related: [
-      { label: "FTP Zone Calculator", href: "/tools/ftp-zones", kind: "tool" },
       { label: "Heart-Rate Zone Calculator", href: "/tools/hr-zones", kind: "tool" },
-      { label: "W/kg Calculator", href: "/tools/wkg", kind: "tool" },
-      { label: "Race Time Predictor", href: "/tools/race-predictor", kind: "tool" },
-      { label: "FTP training topic hub", href: "/topics/ftp-training", kind: "topic" },
+      { label: "Cycling-to-running conversion guide", href: "/blog/running-cycling-conversion-calculator", kind: "article" },
+      { label: "Running vs cycling fitness transfer", href: "/blog/running-vs-cycling-fitness-transfer", kind: "article" },
+      { label: "Running for cyclists topic hub", href: "/topics/running-for-cyclists", kind: "topic" },
+      { label: "Cycling for runners topic hub", href: "/topics/cycling-for-runners", kind: "topic" },
     ],
     webAppFeatures: [
-      "Two-way conversion — running to cycling and cycling to running",
-      "VDOT-based race time predictions for 5K through marathon",
-      "Estimated FTP and W/kg from running pace or race time",
-      "Training-load equivalence between easy rides and easy runs",
-      "Heart-rate comparison note between the two sports",
+      "Two-way running-to-cycling and cycling-to-running calculation",
+      "Distance or duration inputs with kilometre and mile support",
+      "Published 2024 Compendium activity codes and MET values",
+      "Transparent MET-minute arithmetic",
+      "Explicit performance, impact, recovery and adaptation limits",
     ],
+    evidenceSources: [
+      {
+        name: "2024 Adult Compendium of Physical Activities",
+        role: "Herrmann et al. · 1,114 activity codes and updated measured MET values",
+        href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10818145/",
+      },
+      {
+        name: "Official 2024 Adult Compendium activity table",
+        role: "Named running and bicycling codes used by calculator version 2.0",
+        href: "https://pacompendium.com/wp-content/uploads/2024/03/1_2024-adult-compendium_1_2024.pdf",
+      },
+      {
+        name: "Cross-training between running and cycling",
+        role: "Menges et al., 2026 · systematic review and meta-analysis; n=7 randomized trials",
+        href: "https://pubmed.ncbi.nlm.nih.gov/42267259/",
+      },
+      {
+        name: "Physiological differences between cycling and running",
+        role: "Millet et al., 2009 · review of modality-specific physiology",
+        href: "https://pubmed.ncbi.nlm.nih.gov/19290675/",
+      },
+    ],
+    dateModified: "2026-08-26",
+    reviewedBy: "Anthony Walsh",
+    reviewScope: "calculation method and source-boundary review",
   },
 
   "power-speed": {

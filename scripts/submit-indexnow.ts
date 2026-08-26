@@ -178,6 +178,8 @@ const CURATED: string[] = [
   `https://${HOST}/tools/energy-availability`,
   `https://${HOST}/tools/shock-pressure`,
   `https://${HOST}/tools/wkg`,
+  `https://${HOST}/blog/running-cycling-conversion-calculator`,
+  `https://${HOST}/tools/run-ride-converter`,
 
   // AI discoverability
   `https://${HOST}/llms.txt`,

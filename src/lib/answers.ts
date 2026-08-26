@@ -16,6 +16,7 @@ import { applyFtpTestTrustOverride } from "./answers-data/ftp-test-trust-overrid
 import { applyThresholdIntervalsTrustOverride } from "./answers-data/threshold-intervals-trust-override";
 import { heatAnswers } from "./answers-data/heat";
 import { crossTrainingAnswers } from "./answers-data/cross-training";
+import { applyRunRideConversionTrustOverride } from "./answers-data/run-ride-conversion-trust-override";
 import { metricsAnswers } from "./answers-data/metrics";
 import { trainingPhysiologyAnswers } from "./answers-data/training-physiology";
 import { wave3Answers } from "./answers-data/wave3";
@@ -1727,7 +1728,7 @@ export const ANSWER_PAGES: AnswerPage[] = [
   ...mentalAnswers,
   ...bikefitAnswers.map(applyBikeFitTrustOverride),
   ...heatAnswers,
-  ...crossTrainingAnswers,
+  ...crossTrainingAnswers.map(applyRunRideConversionTrustOverride),
   ...metricsAnswers,
   ...trainingPhysiologyAnswers,
   ...wave3Answers,
