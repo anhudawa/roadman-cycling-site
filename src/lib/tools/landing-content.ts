@@ -480,76 +480,133 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
 
   "hr-zones": {
     slug: "hr-zones",
-    title: "Heart-Rate Zone Calculator",
+    title: "Cycling Heart-Rate Zone Calculator",
     description:
-      "Calculate your 5 cycling heart-rate zones from Max HR or LTHR. Free tool grounded in Friel and Coggan zone models.",
+      "Calculate five cycling heart-rate zones from a measured maximum heart rate or a cycling-specific lactate-threshold heart-rate estimate, with transparent methods, worked examples and evidence limits.",
     url: `${ROADMAN_BASE}/tools/hr-zones`,
-    breadcrumbName: "Heart-Rate Zone Calculator",
+    breadcrumbName: "Cycling Heart-Rate Zone Calculator",
     answerSummary:
-      "Enter either Max HR or Lactate Threshold HR (LTHR). The tool returns your five training zones in beats per minute — Active Recovery, Endurance, Tempo, Threshold, and VO2 — using the established Friel-style percentage bands.",
+      "Enter a measured cycling maximum heart rate or a cycling-specific LTHR estimate. The calculator returns five continuous whole-bpm ranges. Max-HR mode uses 50%, 60%, 70%, 80%, 90% and 100% boundaries; LTHR mode condenses Joe Friel's cycling convention into five displayed bands. The output is a coaching estimate, not a laboratory threshold measurement.",
     whatItDoes:
-      "Heart rate is the cheapest, most universal training signal. This calculator turns one number — either Max HR or LTHR — into five zone ranges you can dial straight into your Garmin, Wahoo, or Polar device.",
+      "This is Roadman's canonical calculator and explanation for broad cycling heart-rate-zone searches. It converts one cycling-specific anchor into five gap-free ranges that can be copied into a head unit or training platform. Within the displayed Max-HR span—or across the open-ended LTHR table—each whole bpm belongs to exactly one range.\n\nHeart rate describes the body's internal response, while power describes external work and perceived exertion describes how the effort feels. Those signals can disagree, so the calculated bands are starting points to interpret alongside breathing, RPE, power, conditions and the purpose of the session.",
     whoItsFor: [
+      "Cyclists who need five heart-rate ranges for a head unit or training platform",
       "Riders training without a power meter",
-      "Cyclists who use HR as a backup to power",
-      "Beginners getting structured for the first time",
-      "Anyone setting up a new device or platform",
+      "Athletes comparing heart-rate response with power and perceived exertion",
+      "Coaches and self-coached riders who want a disclosed percentage convention",
     ],
     howItWorks:
-      "If you enter LTHR, we use Friel's zone bands as percentages of LTHR — slightly more accurate than Max HR for trained athletes. If you only have Max HR, we apply Karvonen-style percentages of HRmax. LTHR comes from the average HR for the last 20 minutes of an FTP test; Max HR comes from a true all-out 5-min effort or a recent strenuous race.",
+      "Max-HR mode applies a simple percentage-of-maximum convention: 50–60%, above 60–70%, above 70–80%, above 80–90% and above 90–100%. This is not the Karvonen heart-rate-reserve method. LTHR mode uses Friel-style cycling boundaries: up to 81%, above 81–90%, above 90–94%, above 94–100% and above 100% of the entered threshold-HR estimate. The traditional 5a, 5b and 5c subdivisions are collapsed into one open-ended Zone 5. Roadman rounds each upper boundary to a whole bpm and starts the next band one bpm higher, preventing overlaps.\n\nThe two methods answer different questions and can produce different bands. An age equation is only a population estimate of maximum heart rate. An LTHR field test estimates a cycling-specific anchor; it does not directly measure blood lactate or make the percentage bands individually validated metabolic thresholds.",
     howToSteps: [
-      { name: "Pick which number you have", text: "LTHR (preferred for trained riders) or Max HR. If neither, do a 20-minute FTP test and record both — average HR for the last 20 min is your LTHR estimate; the highest reading is close to Max HR." },
-      { name: "Enter the value", text: "LTHR typically falls 130-180 bpm for adults; Max HR typically 170-200 bpm. Outside these ranges is possible but rare." },
-      { name: "Read the five zones", text: "Z1 (recovery), Z2 (endurance), Z3 (tempo), Z4 (threshold), Z5 (VO2)." },
-      { name: "Apply on the bike", text: "Use the zones as a target on outdoor rides where power isn't available, or as a sanity check on indoor sessions. Heart rate drifts upward 5-10 bpm after 60 minutes — that's normal cardiac drift, not a fitness problem." },
+      { name: "Choose one cycling-specific method", text: "Use Max HR only when you have a credible maximum recorded while cycling. Use LTHR only when it comes from a documented cycling lab or repeatable field protocol. Do not mix a running anchor with cycling zones." },
+      { name: "Enter the anchor", text: "Enter a whole-bpm value from 100 to 220. If you only have an age equation, label it as an estimate and replace it when you have a valid measured value." },
+      { name: "Calculate the five ranges", text: "Read the method label and the exact bpm bands. The displayed five-zone table is a coaching convention; it is not interchangeable with a three-zone research model or another platform's labels." },
+      { name: "Copy the result consistently", text: "Use the same method and anchor in your head unit, training platform and plan. Record the protocol and test date so a later result can be compared like for like." },
+      { name: "Cross-check the ride", text: "Compare heart rate with breathing, RPE and power where available. Heart rate responds with delay and may drift during sustained exercise, especially as heat strain or dehydration changes." },
+      { name: "Reassess abnormal responses", text: "Do not force a target when illness, medication, heat or an unusual heart-rate response changes the meaning of the number. Stop and seek appropriate medical advice for concerning symptoms." },
     ],
-    howToTotalTime: "PT2M",
+    howToTotalTime: "PT3M",
     limitations:
-      "Heart rate is influenced by sleep, caffeine, dehydration, heat, and stress — it can drift 5-15 bpm in either direction. HR zones lag effort by 30-90 seconds, so they're poor for short intervals. Max HR drops with age but not at the textbook \"220 minus age\" rate — that formula is wrong for most trained athletes. Where possible, use power as the primary control and HR as the cross-check.",
+      "Fixed percentages cannot locate every rider's lactate or ventilatory thresholds. Published age equations have substantial individual error, and even exercise-intensity prescription from percentage anchors can misclassify metabolic response. Heart rate also changes with heat, hydration, fatigue, illness, stimulants and rate-limiting medication, and it lags rapid changes in work rate. Power, heart rate and RPE measure different signals; no one metric is universally primary. Finally, these five displayed bands are not interchangeable with the three-zone models used in training-intensity-distribution research, so the calculator cannot prescribe a universal polarised or 80/20 programme.",
     whenToSeeACoach:
-      "If your HR is 10+ bpm above normal at the same power for several days running, you're likely under-recovered, ill, or over-reaching. That's where coaching and structured monitoring beats more numbers — it changes how you respond.",
+      "A coach or sports scientist can help when repeatable field tests disagree, your heart-rate and power responses diverge, or a plan needs individual threshold testing. Seek medical assessment—not a calculator or coach—for chest pain, fainting, unexplained palpitations, an abnormal response to exercise, or questions about exercise with a cardiovascular condition or rate-limiting medication.",
     examples: [
       {
-        scenario: "Trained rider with LTHR test",
-        inputs: ["LTHR: 168 bpm"],
-        output: "Z2: 119-141 bpm. Z3: 142-159 bpm. Z4: 160-176 bpm. Z5: 177+ bpm.",
+        scenario: "Cycling LTHR estimate of 168 bpm",
+        inputs: ["Method: LTHR", "Cycling LTHR estimate: 168 bpm"],
+        output: "Z1: ≤136 bpm · Z2: 137–151 bpm · Z3: 152–158 bpm · Z4: 159–168 bpm · Z5: ≥169 bpm.",
       },
       {
-        scenario: "New rider with Max HR estimate",
-        inputs: ["Max HR: 188 bpm"],
-        output: "Z2: 113-141 bpm. Z3: 142-160 bpm. Z4: 161-179 bpm.",
+        scenario: "Measured cycling Max HR of 188 bpm",
+        inputs: ["Method: Max HR", "Measured cycling Max HR: 188 bpm"],
+        output: "Z1: 94–113 bpm · Z2: 114–132 bpm · Z3: 133–150 bpm · Z4: 151–169 bpm · Z5: 170–188 bpm.",
       },
     ],
     faqs: [
       {
-        question: "How do I find my Max HR?",
-        answer: "The most accurate way is a true all-out test — a hard 5-minute effort at the end of a race or hard interval session, with a 30-second sprint to finish. Take the highest reading. Avoid the \"220 minus age\" formula — it's a population average and is wrong for most trained athletes by 5-15 bpm in either direction.",
+        question: "How are cycling heart-rate zones calculated?",
+        answer: "Roadman's Max-HR mode uses five percentage-of-maximum bands with boundaries at 50%, 60%, 70%, 80%, 90% and 100%. LTHR mode uses a condensed Friel-style cycling convention with boundaries at 81%, 90%, 94% and 100% of the entered LTHR estimate. The calculator rounds to continuous whole-bpm ranges. Other devices may use different models, so compare both the anchor and the percentages before copying labels.",
       },
       {
-        question: "What is LTHR in cycling?",
-        answer: "LTHR is your Lactate Threshold Heart Rate — the heart rate corresponding to your FTP. The simplest way to estimate it is to do a 20-minute FTP test and record the average heart rate for the last 20 minutes. LTHR is more useful than Max HR for setting zones in trained athletes, because it scales better with training adaptation.",
+        question: "Should I use Max HR or LTHR for cycling zones?",
+        answer: "Use the method that matches a credible cycling-specific measurement and the plan you are following. Max-HR percentages are simple but an age-predicted maximum can be far from an individual's value. LTHR can provide a cycling-specific field anchor, but its result depends on the protocol and is still an estimate rather than a direct laboratory measurement. Do not treat outputs from the two methods as interchangeable.",
       },
       {
-        question: "Should I train with heart rate or power?",
-        answer: "Power is the primary control if you have access to it — instant, doesn't drift, isn't affected by heat or stress. Heart rate is a useful cross-check and is fine as a primary signal for endurance riders without a power meter. The best setup is power as the target, HR as the sanity check.",
+        question: "Is 220 minus age accurate for maximum heart rate?",
+        answer: "No age equation can accurately predict every individual's maximum heart rate. Research-derived equations describe population trends and have substantial individual prediction error. If you use one because no measured value is available, label the result as a provisional estimate rather than your true cycling Max HR. A maximal test may be inappropriate for some riders, so use professional screening or supervision when health or symptoms warrant it.",
       },
       {
-        question: "Why is my heart rate higher in summer?",
-        answer: "Cardiac drift in heat is real — your heart works harder to pump blood to skin for cooling, which raises HR for the same power output by 5-15 bpm. Don't chase HR zones when it's hot; let power lead and accept HR runs higher than usual.",
+        question: "Is cycling LTHR the same as FTP or laboratory lactate threshold?",
+        answer: "No. FTP is a power estimate, while LTHR is a heart-rate anchor derived from a particular protocol. A field LTHR can be useful for scaling training, but it does not directly measure blood lactate and should not be assumed to equal a laboratory threshold. Keep the protocol, device and conditions consistent when tracking change.",
+      },
+      {
+        question: "Why does heart rate drift during a long ride or in heat?",
+        answer: "During prolonged cycling, heart rate can rise even when power stays steady. Heat strain and fluid loss can contribute, but the size and direction of the response are individual and condition-dependent. Use the trend with power, RPE, breathing and environmental context rather than automatically raising power to hold a prescribed heart-rate band.",
+      },
+      {
+        question: "Should I train by heart rate, power or perceived exertion?",
+        answer: "They answer different questions: power records external work, heart rate records part of the internal response, and RPE records the athlete's integrated perception. Research shows that training-intensity distributions can look different depending on which measure is used. For short efforts, power and RPE often respond faster; for steady rides, heart-rate trends add useful context. Use the combination that fits the session and your equipment.",
       },
     ],
     related: [
       { label: "FTP Zone Calculator", href: "/tools/ftp-zones", kind: "tool" },
-      { label: "W/kg Calculator", href: "/tools/wkg", kind: "tool" },
       { label: "Heart-rate vs power training guide", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe", kind: "article" },
-      { label: "FTP training topic hub", href: "/topics/ftp-training", kind: "topic" },
+      { label: "Indoor vs outdoor cycling heart-rate zones", href: "/blog/heart-rate-zones-indoor-vs-outdoor-cycling", kind: "article" },
+      { label: "Mountain-bike heart-rate zones", href: "/blog/mtb-heart-rate-zones-guide", kind: "article" },
+      { label: "Training with heart rate only", href: "/blog/cycling-training-with-heart-rate-only-guide", kind: "article" },
     ],
     webAppFeatures: [
-      "5-zone Friel/Coggan HR zone model",
-      "Accepts Max HR or LTHR",
-      "Instant bpm ranges",
-      "Polarised training guidance",
+      "Five continuous whole-bpm cycling ranges",
+      "Separate Max-HR and cycling-LTHR methods",
+      "Transparent percentage boundaries and worked examples",
+      "Copy-to-clipboard results",
+      "Evidence notes and method limitations",
     ],
+    evidenceSources: [
+      {
+        name: "Joe Friel: A Quick Guide to Setting Zones",
+        role: "original cycling LTHR zone convention and current author clarification",
+        href: "https://joefrieltraining.com/a-quick-guide-to-setting-zones/",
+      },
+      {
+        name: "Tanaka, Monahan & Seals (2001)",
+        role: "age-predicted maximum-heart-rate population equation and prediction error",
+        href: "https://pubmed.ncbi.nlm.nih.gov/11153730/",
+      },
+      {
+        name: "Nes et al. (2013), HUNT Fitness Study",
+        role: "maximum-heart-rate equation and reported standard error of estimate",
+        href: "https://pubmed.ncbi.nlm.nih.gov/22376273/",
+      },
+      {
+        name: "Mann, Lamberts & Lambert (2013)",
+        role: "limitations of fixed percentage anchors for exercise-intensity prescription",
+        href: "https://pubmed.ncbi.nlm.nih.gov/23620244/",
+      },
+      {
+        name: "Meixner et al. (2025)",
+        role: "inter-individual variability in fixed-percentage Zone 2 prescriptions in cyclists",
+        href: "https://pubmed.ncbi.nlm.nih.gov/40225831/",
+      },
+      {
+        name: "Sanders, Myers & Akubat (2017)",
+        role: "differences between heart rate, power and perceived-exertion intensity distributions",
+        href: "https://pubmed.ncbi.nlm.nih.gov/28253026/",
+      },
+      {
+        name: "Wingo et al. (2020)",
+        role: "cycling cardiovascular drift and heat-strain context",
+        href: "https://pubmed.ncbi.nlm.nih.gov/32102057/",
+      },
+      {
+        name: "Jamnick et al. (2020)",
+        role: "threshold-based exercise-intensity framework and limits of relative percentages",
+        href: "https://pubmed.ncbi.nlm.nih.gov/32729096/",
+      },
+    ],
+    dateModified: "2026-08-26",
+    reviewedBy: "Anthony Walsh",
+    reviewScope: "source-to-claim and calculator-method review",
   },
 
   "tyre-pressure": {

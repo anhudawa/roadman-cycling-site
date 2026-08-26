@@ -3,14 +3,14 @@ import { ToolSchemas } from "@/components/seo/ToolSchemas";
 import { ToolJourney } from "@/components/features/tools/ToolJourney";
 
 export const metadata: Metadata = {
-  title: "Heart Rate Zone Calculator — Cycling HR Zones from Max or LTHR",
+  title: "Cycling Heart Rate Zones Calculator: Max HR or LTHR",
   description:
-    "Get your 5 cycling heart rate zones from either max HR or LTHR. Free, instant, with the rationale for each method and how to test if you don't have a number yet.",
-  keywords: ["heart rate zone calculator", "cycling HR zones", "heart rate training zones", "max heart rate zones"],
+    "Calculate five continuous cycling heart rate zones from measured max HR or a cycling LTHR estimate. See the exact method, examples and evidence limits.",
+  keywords: ["cycling heart rate zones", "cycling HR zones", "cycling heart rate zone calculator", "heart rate training zones", "LTHR zones"],
   alternates: { canonical: "/tools/hr-zones" },
   openGraph: {
-    title: "Heart Rate Zone Calculator — Cycling HR Zones from Max or LTHR",
-    description: "Get your 5 cycling heart rate zones from either max HR or LTHR. With the rationale for each method and a quick test protocol.",
+    title: "Cycling Heart Rate Zones Calculator: Max HR or LTHR",
+    description: "Calculate five continuous cycling heart-rate zones with a transparent Max-HR or cycling-LTHR method, worked examples and evidence limits.",
     type: "website",
     url: "https://roadmancycling.com/tools/hr-zones",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],

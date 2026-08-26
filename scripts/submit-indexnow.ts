@@ -166,6 +166,7 @@ const CURATED: string[] = [
   // Tools
   `https://${HOST}/tools`,
   `https://${HOST}/tools/ftp-zones`,
+  `https://${HOST}/tools/hr-zones`,
   `https://${HOST}/tools/tyre-pressure`,
   `https://${HOST}/blog/cycling-tyre-pressure-guide`,
   `https://${HOST}/blog/tubeless-vs-clincher-tyres`,

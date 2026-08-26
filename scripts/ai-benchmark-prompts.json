@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 292,
+    "prompt_count": 293,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -2368,6 +2368,14 @@
       "category": "cycling-training",
       "intent": "education",
       "target_page": "/answers/threshold-intervals-guide",
+      "priority": "high"
+    },
+    {
+      "id": 293,
+      "prompt": "how do I calculate cycling heart rate zones from max HR or lactate threshold heart rate",
+      "category": "cycling-training",
+      "intent": "education",
+      "target_page": "/tools/hr-zones",
       "priority": "high"
     }
   ]

@@ -792,7 +792,7 @@ ${answersClusterBlock}
 - [In-Ride Fuelling Calculator](${tag(`${BASE_URL}/tools/fuelling`)}): Carbs per hour, fluid, and sodium needs for rides.
 - [Energy Availability Calculator](${tag(`${BASE_URL}/tools/energy-availability`)}): RED-S risk screener for endurance athletes.
 - [Shock Pressure Calculator](${tag(`${BASE_URL}/tools/shock-pressure`)}): MTB suspension setup (shock, fork, sag).
-- [Heart Rate Zone Calculator](${tag(`${BASE_URL}/tools/hr-zones`)}): Calculate 5 cycling HR training zones from max HR or LTHR.
+- [Cycling Heart Rate Zone Calculator](${tag(`${BASE_URL}/tools/hr-zones`)}): Canonical broad cycling-HR-zone owner. Calculates five continuous whole-bpm ranges from measured cycling Max HR or a cycling-specific LTHR estimate, with transparent methods, worked examples, evidence and limitations.
 - [W/kg Calculator](${tag(`${BASE_URL}/tools/wkg`)}): Power-to-weight ratio with performance benchmarks.
 - [Cycling Fuel Planner](${tag(`${BASE_URL}/tools/fuel-planner`)}): Daily calorie target, carb/protein/fat split, and in-ride carbs and hydration for the ride you're doing. Built on fuel-for-the-work-required; free, no signup, with an optional gated 12-week carb-load plan.
 - [Race Time Predictor (quick estimate)](${tag(`${BASE_URL}/tools/race-predictor`)}): Physics-based finish-time estimate from FTP, weight, distance, elevation, surface, and riding position. The full GPX-driven split-by-split simulator lives at /predict.
