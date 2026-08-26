@@ -312,6 +312,12 @@ export async function GET() {
             "Canonical broad FTP owner: practical definition, test-method differences, zones, evidence limits and routes to improvement or qualified benchmarks.",
         },
         {
+          url: `${BASE_URL}/blog/ftp-training-zones-cycling-complete-guide`,
+          title: "Cycling Power Zones: FTP Chart & 7-Zone Guide",
+          description:
+            "Canonical informational owner for cycling power zones: seven-zone FTP chart, worked watts, model boundaries, interpretation and evidence limits.",
+        },
+        {
           url: `${BASE_URL}/answers/ftp-test-guide`,
           title: "FTP Test — Protocols, Accuracy & How to Choose",
           description:
@@ -785,7 +791,8 @@ ${answersClusterBlock}
 - [Dan Lorang: Lidl-Trek Role and Endurance Coaching](${tag(`${BASE_URL}/entity/dan-lorang`)}): Current, source-checked role record plus transcript-bounded positions on consistency, total load, heart rate, recovery, season planning and riders over 40.
 - [Podcast RSS Feed](${BASE_URL}/feed/podcast): Machine-readable feed of all episodes.
 
-## Free Calculators
+## Free Calculators & Companion Guides
+- [Cycling Power Zones: FTP Chart & 7-Zone Guide](${tag(`${BASE_URL}/blog/ftp-training-zones-cycling-complete-guide`)}): Canonical informational owner for the seven-zone chart, worked watts, three-zone versus seven-zone boundaries, individual limits and primary research.
 - [FTP Calculator](${tag(`${BASE_URL}/tools/ftp-zones`)}): Calculate seven continuous whole-watt cycling power-zone ranges from FTP. Includes transparent boundaries, worked examples, primary evidence, a scoped coach review and explicit limits on FTP-based prescription.
 - [Road Bike Tyre Pressure Calculator](${tag(`${BASE_URL}/tools/tyre-pressure`)}): Front and rear PSI and bar starting points from complete system weight, measured tyre width and surface, with hookless and manufacturer-limit checks.
 - [Race Weight Calculator](${tag(`${BASE_URL}/tools/race-weight`)}): Target cycling race weight based on body composition.

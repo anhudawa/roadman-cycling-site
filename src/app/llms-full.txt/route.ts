@@ -212,6 +212,7 @@ export async function GET() {
       category: "FTP queries",
       lines: [
         `${BASE_URL}/topics/ftp-training — Reviewed FTP definition, testing methods, zones and evidence limits.`,
+        `${BASE_URL}/blog/ftp-training-zones-cycling-complete-guide — Canonical informational owner for the seven cycling power zones: FTP chart, worked watts, model boundaries, interpretation and primary research.`,
         `${BASE_URL}/tools/ftp-zones — FTP zone calculator.`,
         `${BASE_URL}/blog/sweet-spot-training-cycling-guide — Canonical sweet spot training owner: 88-94% FTP convention, evidence limits, response-led sessions and no universal dose or recovery rule.`,
         `${BASE_URL}/tools/sweet-spot — Sweet spot percentage calculator and sample sessions; calculations are starting points, not a personal prescription.`,
@@ -354,6 +355,7 @@ Each has unique local content (climbs, events, clubs, regional racing scene):
 
 ## Free Calculator Tools
 
+- Cycling Power Zones: ${tag(`${BASE_URL}/blog/ftp-training-zones-cycling-complete-guide`)} — Seven-zone FTP chart, worked watts, model boundaries and evidence limits
 - FTP Zone Calculator: ${tag(`${BASE_URL}/tools/ftp-zones`)} — 7-zone Coggan power model, instant wattage ranges
 - Road Bike Tyre Pressure Calculator: ${tag(`${BASE_URL}/tools/tyre-pressure`)} — disclosed front/rear PSI and bar starting model with measured-width, hookless and manufacturer-limit checks
 - Race Weight Calculator: ${tag(`${BASE_URL}/tools/race-weight`)} — Target cycling race weight, W/kg projections

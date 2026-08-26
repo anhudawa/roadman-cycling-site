@@ -1493,15 +1493,15 @@ export const ftpAnswers: AnswerPage[] = [
     question: "What Percentage of FTP Is Each Training Zone?",
     seoTitle: "What Percentage of FTP Is Each Training Zone?",
     seoDescription:
-      "The 7-zone FTP training system: Zone 1 under 55%, Zone 2 56–75%, Zone 3 76–90%, Zone 4 91–105%, Zone 5 106–120%, Zone 6 121–150%, Zone 7 above 150%. What each zone trains and how to use them.",
+      "See all seven cycling power zones as FTP percentages, understand the rounding and model limits, and calculate continuous watt ranges without gaps.",
     pillar: "coaching",
     directAnswer:
-      "Using the standard 7-zone power system: Zone 1 is under 55% FTP (active recovery), Zone 2 is 56–75% (aerobic base), Zone 3 is 76–90% (tempo), Zone 4 is 91–105% (threshold — this is your FTP zone), Zone 5 is 106–120% (VO2max), Zone 6 is 121–150% (anaerobic capacity), Zone 7 is above 150% (neuromuscular power). Most amateur training sits in zones 2, 4, and 5.",
+      "In the conventional seven-zone power model, Zone 1 is up to 55% FTP, Zone 2 is above 55% to 75%, Zone 3 is above 75% to 90%, Zone 4 is above 90% to 105%, Zone 5 is above 105% to 120%, Zone 6 is above 120% to 150%, and Zone 7 is above 150%. These are workout ranges anchored to an FTP estimate, not seven individually measured physiological thresholds. Use Roadman's full cycling power-zones guide for interpretation and its calculator for gap-free whole-watt targets.",
     keyTakeaways: [
-      "Zone 4 (threshold) is 91–105% FTP — the zone that directly builds FTP when trained properly.",
-      "Zone 2 (56–75% FTP) is aerobic base — the largest volume of training for most cyclists.",
-      "Zone 5 (VO2max, 106–120% FTP) lifts the ceiling above which threshold work can improve.",
-      "Different coaches use different zone systems (5-zone, 6-zone, 7-zone) — what matters is the physiology, not the number of zones.",
+      "State the zone model beside the percentages; a three-zone research model and a seven-zone workout model do not share labels.",
+      "Round once and make each whole-watt range start immediately after the preceding one so there are no gaps or overlaps.",
+      "An FTP percentage is a starting target, not a measured biological switch. Cross-check it with breathing, RPE, heart rate and repeatability.",
+      "This page owns the short percentage answer; the full guide owns interpretation and the calculator owns watt computation.",
     ],
     whoFor: [
       {
@@ -1516,16 +1516,16 @@ export const ftpAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "The confusion around training zones is almost entirely a labelling problem. Different coaches, platforms, and countries use different numbers of zones — British Cycling uses a 7-zone system, Coggan's classic model uses 7 zones, TrainingPeaks uses 7, Zwift sometimes shows 5, and then there's the polarised 3-zone model that Seiler works with. They are all trying to describe the same underlying physiology. The zones are just boundaries drawn around a continuous spectrum of effort.",
-      "What matters practically is knowing the physiology of the key zones. Zone 2 (roughly 56–75% FTP) is where aerobic base is built — the mitochondrial density and fat oxidation that everything else stands on. Zone 4 (threshold, 91–105% FTP) is where FTP is directly built. Zone 5 (VO2max, 106–120% FTP) is where the ceiling above threshold gets lifted. Everything else is either active recovery (zone 1), tempo work (zone 3), or high-end sprint and anaerobic work (zones 6–7).",
-      "The practical prescription, which Dan Lorang and Joe Friel both converge on, is that most productive amateur training sits in three zones: easy zone 2 for the majority of time, targeted zone 4 threshold intervals once a week, and zone 5 VO2max once a week. Zones 1, 3, 6, and 7 all have their place, but if you are time-crunched and want to build FTP efficiently, the three-zone framework is what actually works.",
+      "The useful short answer is the percentage chart. The important qualification is that zones are boundaries drawn on a continuous response, not seven separate laboratory measurements.",
+      "Attach the FTP protocol, zone model and date to the numbers. A ramp estimate, a 20-minute estimate and critical power can correlate while still producing meaningfully different prescriptions for an individual rider.",
+      "Do not turn this chart into a universal weekly plan. Seven-zone labels describe workout ranges; three-zone training-distribution research answers a different question. Athlete, event, phase, volume and counting method all affect the programme.",
     ],
     expertEvidence: [
       {
         name: "Joe Friel",
         credential: "Author of The Cyclist's Training Bible; co-founder of TrainingPeaks",
         insight:
-          "The 7-zone power model is the gold standard for precision training prescription. Each zone corresponds to a distinct physiological response. Zone 4 (threshold) and Zone 5 (VO2max) are the primary FTP-building zones for trained cyclists; Zone 2 provides the aerobic base on which interval training can operate.",
+          "Roadman's source-bounded takeaway from Friel's interview is to organise intensity deliberately within the complete week. It is not evidence that each fixed FTP band is a distinct measured threshold or that one weekly distribution is universal.",
         episodeSlug: "ep-40-how-joe-friel-structures-the-ideal-cycling-training-week",
         guestSlug: "joe-friel",
       },
@@ -1533,7 +1533,7 @@ export const ftpAnswers: AnswerPage[] = [
         name: "Professor Stephen Seiler",
         credential: "Exercise physiologist, University of Agder; polarised-training researcher",
         insight:
-          "From a polarised perspective, the multi-zone models can be simplified: below the first ventilatory threshold (roughly Zone 2 and below) is easy; above the second ventilatory threshold (roughly Zone 5 and above) is hard; everything between is the grey zone. The practical lesson is not that zones are wrong, but that the easy zone needs to be properly easy — lower than most amateurs actually ride.",
+          "Roadman's source-bounded takeaway from Seiler's interview is that three-domain research and seven-zone workout labels must be named before they are compared. It does not make every minute in seven-zone Zone 3 physiologically useless.",
         episodeSlug: "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
         guestSlug: "stephen-seiler",
       },
@@ -1542,66 +1542,66 @@ export const ftpAnswers: AnswerPage[] = [
       {
         title: "Calculate your zones from your current FTP",
         detail:
-          "Take your FTP and multiply: Zone 2 = FTP × 0.56–0.75. Zone 4 = FTP × 0.91–1.05. Zone 5 = FTP × 1.06–1.20. For a 250 W FTP: Zone 2 = 140–188 W, Zone 4 = 228–263 W, Zone 5 = 265–300 W. Use the FTP Zone Calculator to generate all seven zones instantly.",
+          "Use the FTP Zone Calculator to apply every boundary consistently. It rounds each upper limit down to a whole watt and begins the next range one watt higher, so one watt cannot appear in two zones or in neither.",
       },
       {
-        title: "Build your week around zones 2, 4, and 5",
+        title: "Name the purpose before choosing a zone",
         detail:
-          "The most productive structure for most amateur cyclists: 3–4 rides in zone 2 (60–90 min each), one zone 4 threshold session (2×20 min), and one zone 5 VO2max session (5×4 min). Everything else truly easy. This three-zone prescription produces consistent FTP gains for 6–10 months in most structured beginners.",
+          "Decide whether the session is recovery, endurance, tempo, threshold-related, VO2max-oriented, anaerobic or neuromuscular work. The chart then translates that purpose into a first watt range; it does not choose the weekly dose for you.",
       },
       {
-        title: "Verify your easy rides are actually in zone 2",
+        title: "Cross-check the rider's response",
         detail:
-          "If your easy rides are hitting zone 3 (76–90% FTP), you are in the grey zone. Zone 3 is not 'easier threshold' — it is actually the least productive training intensity for most structured athletes. Slow down until you are below 75% FTP before calling a ride zone 2.",
+          "Compare watts with breathing, RPE, heart rate and repeatability. If the planned response repeatedly misses under comparable conditions, check the FTP method, fatigue, heat, fuelling and individual power-duration profile before changing the chart.",
       },
     ],
     commonMistakes: [
       {
         mistake: "Riding most sessions in zone 3 (tempo) because it 'feels like training'.",
         fix:
-          "Zone 3 is the grey zone: hard enough to accumulate fatigue, not hard enough to drive strong adaptation. It crowds out both the easy sessions needed for recovery and the hard sessions that build the ceiling.",
+          "Unplanned tempo can disrupt the intended easy-hard pattern, but planned tempo is not automatically wasted. Judge whether the intensity matches the session and complete programme.",
       },
       {
         mistake: "Confusing zone systems between platforms and comparing incompatible numbers.",
         fix:
-          "Zwift's 5-zone system, TrainingPeaks 7-zone, and Garmin's system all draw zone boundaries differently. Pick one system, understand where your key training zones sit in watts, and stay consistent. Cross-platform comparison is noise.",
+          "Platforms can use different names, percentages and rounding. Compare the underlying watts or percentages and keep the model named instead of assuming equal zone numbers mean equal work.",
       },
       {
         mistake: "Using a stale FTP to calculate zones.",
         fix:
-          "If your FTP is 3+ months old and you have been training consistently, your zones are probably miscalibrated. A low FTP makes your zones too easy and turns quality sessions into moderate ones. Retest and recalculate.",
+          "Retest when repeated comparable sessions show that the input no longer matches the intended response. Use the same protocol and conditions where practical; there is no universal three-month expiry date.",
       },
     ],
     faq: [
       {
         question: "What zone is sweet spot training in?",
         answer:
-          "Sweet spot sits at 84–94% FTP — straddling the top of zone 3 and the bottom of zone 4 in the 7-zone model. It was codified specifically because it is productive for time-crunched cyclists who cannot fully recover from pure threshold sessions.",
+          "Roadman uses the common 84–94% FTP convention, which straddles the upper part of Zone 3 and lower part of Zone 4 in this seven-zone model. Other systems can use different boundaries, so name the percentage rather than relying on the label alone.",
       },
       {
         question: "Which zone is best for losing weight while cycling?",
         answer:
-          "Zone 2 (56–75% FTP) maximises fat oxidation per minute and allows high training volume without excessive fatigue. But the most important factor for weight management is total calorie balance across the day — zone 2 helps but does not override diet.",
+          "No FTP zone independently determines weight loss. Lower-intensity riding can make volume more tolerable, but energy intake, total activity, recovery, health and sustainable habits matter. Do not turn a zone chart into a weight-loss prescription.",
       },
       {
         question: "Is zone 5 the same as VO2max training?",
         answer:
-          "Approximately. Zone 5 (106–120% FTP) targets VO2max — the maximum rate of oxygen uptake. True VO2max intervals hit the cardiovascular ceiling; the exact percentage varies by individual. 5×4 minutes at 110–120% FTP is the standard session structure.",
+          "Not exactly. Zone 5 is the conventional above-FTP range used as a starting point for VO2max-oriented intervals, but the oxygen-uptake response also depends on interval duration, recovery, power-duration profile and accumulated work. One fixed FTP percentage or workout format cannot guarantee that response.",
       },
       {
         question: "Do different zone systems give different training prescriptions?",
         answer:
-          "The percentages differ slightly, but the physiology they describe is the same. A Coggan zone 4 session at 91–105% FTP and a TrainingPeaks threshold session are the same thing with slightly different boundary labels. What matters is training at the right physiological intensity, not the zone number.",
+          "They can. Models may use different anchors, thresholds, labels and rounding, and three-zone research models answer a different question from seven-zone workout charts. Translate the actual range and session purpose rather than matching zone numbers.",
       },
       {
         question: "What zone should most of my training be in?",
         answer:
-          "Zone 2 (56–75% FTP) for roughly 80% of training time. That is the polarised principle — a large base of properly easy riding. The remaining 20% should be split between zone 4 threshold and zone 5 VO2max work. Very little productive time is spent in zone 3.",
+          "This percentage chart cannot prescribe a universal distribution. Polarised research usually uses three intensity domains and different counting methods, not seven-zone Zone 2 time. The right mix depends on the rider, event, phase, volume and complete programme.",
       },
       {
         question: "How often should I update my training zones?",
         answer:
-          "Every time you retest FTP — typically every 6–8 weeks. Using outdated zones means every session is slightly mis-targeted. Recalculate zones immediately after a new FTP test and update your training platform.",
+          "Update the zones whenever the FTP anchor changes. Retest after a meaningful block or when repeated workouts show the targets no longer match the intended response, using the same protocol and conditions where practical. There is no universal six-to-eight-week rule.",
       },
     ],
     relatedEpisodes: [
@@ -1612,15 +1612,14 @@ export const ftpAnswers: AnswerPage[] = [
     relatedTopics: [
       { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
       { label: "FTP Training — Topic Hub", href: "/topics/ftp-training" },
-      { label: "What Is Sweet Spot Training?", href: "/blog/sweet-spot-training-cycling-guide" },
       { label: "FTP Training Zones Guide", href: "/blog/ftp-training-zones-cycling-complete-guide" },
       { label: "Sweet Spot vs Zone 2", href: "/compare/sweet-spot-vs-zone-2" },
     ],
     evidenceLevel: "strong",
     evidenceNote:
-      "7-zone FTP system is the Coggan/TrainingPeaks standard. Zone physiology is well-established; percentage boundaries have minor variations across systems.",
+      "The percentage chart follows the published Allen-Coggan seven-level convention. Interpretation is bounded by the FTP method, rider and zone model; see the maintained cycling power-zones guide for primary research and review notes.",
     publishDate: "2026-05-26",
-    updatedDate: "2026-05-26",
+    updatedDate: "2026-08-26",
   },
 
   // ============================================================
