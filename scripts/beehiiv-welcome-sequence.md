@@ -99,7 +99,7 @@ If you read or listen to nothing else from me, make it these:
 
 **1. The Zone 2 Training Guide**
 The most misunderstood concept in cycling. Most riders think they're doing Zone 2. They're not. This breaks down what it actually is, why it matters, and how to do it properly — not the podcast-listener version, the real version.
-[Read it here](https://roadmancycling.com/blog/zone-2-training-complete-guide)
+[Read it here](https://roadmancycling.com/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe)
 
 **2. How to Improve Your FTP**
 Not "ride more." Not "do sweet spot." The actual levers you can pull to move your FTP — structured by what's most likely to work based on where you are right now.
@@ -120,7 +120,7 @@ That's the difference between this newsletter and the 47 other cycling emails in
 Anthony
 
 **CTA Button:** Start With the Zone 2 Guide
-**Destination:** https://roadmancycling.com/blog/zone-2-training-complete-guide
+**Destination:** https://roadmancycling.com/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe
 
 ---
 
@@ -469,7 +469,7 @@ P.S. If you have questions before joining, reply to this email. I answer every o
 
 ### Key URLs Referenced
 - Podcast: https://roadmancycling.com/podcast
-- Blog — Zone 2 Guide: https://roadmancycling.com/blog/zone-2-training-complete-guide
+- Blog — Zone 2 Guide: https://roadmancycling.com/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe
 - Blog — FTP Guide: https://roadmancycling.com/blog/how-to-improve-ftp-cycling
 - Blog — Polarised Training: https://roadmancycling.com/blog/polarised-training-cycling-guide
 - Blog — Body Composition: https://roadmancycling.com/blog/cycling-body-composition-guide

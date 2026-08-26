@@ -538,7 +538,7 @@ const highVolumeQuery14Drafts: AnswerPage[] = [
     relatedTopics: [
       { label: "Mental toughness for cycling", href: "/answers/how-to-build-mental-toughness-cycling" },
       { label: "How to recover faster after cycling", href: "/answers/how-to-recover-faster-after-cycling" },
-      { label: "What is Zone 2 training?", href: "/answers/what-is-zone-2-training" },
+      { label: "What is Zone 2 training?", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
     ],
     evidenceLevel: "strong",
     publishDate: "2026-07-10",
@@ -1216,7 +1216,7 @@ const highVolumeQuery14Drafts: AnswerPage[] = [
     relatedEpisodes: [],
     relatedTopics: [
       { label: "How to improve FTP", href: "/answers/how-to-improve-ftp" },
-      { label: "What is Zone 2 training?", href: "/answers/what-is-zone-2-training" },
+      { label: "What is Zone 2 training?", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "How to build cycling speed", href: "/answers/how-to-build-cycling-speed" },
     ],
     evidenceLevel: "strong",
@@ -1352,7 +1352,7 @@ const highVolumeQuery14Drafts: AnswerPage[] = [
     relatedTopics: [
       { label: "How to improve cycling power", href: "/answers/how-to-improve-cycling-power" },
       { label: "Signs you need a bike fit", href: "/answers/signs-you-need-a-bike-fit" },
-      { label: "What is Zone 2 training?", href: "/answers/what-is-zone-2-training" },
+      { label: "What is Zone 2 training?", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
     ],
     evidenceLevel: "strong",
     publishDate: "2026-07-10",
@@ -2169,7 +2169,7 @@ const highVolumeQuery14Drafts: AnswerPage[] = [
     relatedEpisodes: [],
     relatedTopics: [
       { label: "How to start cycling for fitness", href: "/answers/how-to-start-cycling-for-fitness" },
-      { label: "What is Zone 2 training?", href: "/answers/what-is-zone-2-training" },
+      { label: "What is Zone 2 training?", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "How to set cycling goals", href: "/answers/how-to-set-cycling-goals" },
     ],
     evidenceLevel: "strong",
@@ -2438,7 +2438,7 @@ const highVolumeQuery14Drafts: AnswerPage[] = [
     ],
     relatedEpisodes: [],
     relatedTopics: [
-      { label: "What is Zone 2 training?", href: "/answers/what-is-zone-2-training" },
+      { label: "What is Zone 2 training?", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "How many miles should a beginner cycle", href: "/answers/how-many-miles-should-a-beginner-cycle" },
       { label: "Is cycling good for mental health", href: "/answers/is-cycling-good-for-mental-health" },
     ],

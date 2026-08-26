@@ -622,7 +622,7 @@ export const highVolumeQuery10Answers: AnswerPage[] = [
     ],
     relatedEpisodes: [],
     relatedTopics: [
-      { label: "What is zone 2 training?", href: "/answers/what-is-zone-2-training" },
+      { label: "What is zone 2 training?", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "How long should zone 2 rides be?", href: "/answers/how-long-should-zone-2-rides-be" },
       { label: "What is aerobic decoupling?", href: "/answers/what-is-aerobic-decoupling" },
     ],
@@ -631,110 +631,6 @@ export const highVolumeQuery10Answers: AnswerPage[] = [
     updatedDate: "2026-07-10",
   },
 
-  // ============================================================
-  // 7 — WHAT IS ZONE 2 HEART RATE CYCLING
-  // ============================================================
-  {
-    slug: "what-is-zone-2-heart-rate-cycling",
-    cluster: "zone2",
-    question: "What Is Zone 2 Heart Rate for Cycling?",
-    seoTitle: "Zone 2 Heart Rate for Cycling — How to Find Yours",
-    seoDescription:
-      "Zone 2 heart rate sits at roughly 68-75% of your max HR. How to find yours accurately, why it matters, and what happens when you ride there consistently.",
-    pillar: "coaching",
-    directAnswer:
-      "Zone 2 heart rate for cycling typically falls between 68-75% of your maximum heart rate, or roughly 80-88% of your lactate threshold heart rate. For a rider with a max HR of 180, that is approximately 122-135 bpm. The practical test: you should be able to speak in full sentences without gasping. Zone 2 targets the metabolic intensity where fat and carbohydrate oxidation are roughly balanced, driving mitochondrial adaptations that form the aerobic foundation for every other training zone.",
-    keyTakeaways: [
-      "Zone 2 HR sits at roughly 68-75% of maximum heart rate for most models.",
-      "The talk test is a reliable field check — full sentences without gasping.",
-      "Zone 2 drives mitochondrial growth and fat oxidation capacity.",
-      "Most riders ride zone 2 too hard — if in doubt, go easier.",
-    ],
-    whoFor: [
-      {
-        label: "The rider confused by zone models",
-        detail:
-          "You have seen different zone systems and want a clear, practical definition of zone 2 for your training.",
-      },
-      {
-        label: "The cyclist new to structured training",
-        detail:
-          "You have bought a heart rate monitor and want to know what number to target for easy rides.",
-      },
-    ],
-    roadmanView: [
-      "Zone 2 has become a buzzword, and the internet has complicated something that is fundamentally straightforward. Zone 2 is the intensity where you can hold a conversation, where your breathing is controlled, and where your body is burning a high proportion of fat alongside some carbohydrate. The specific heart rate number depends on your physiology, your zone model, and how you tested — but the feeling is universal.",
-      "The single biggest problem with zone 2 training is that most riders ride it too hard. If you are solo and your breathing is slightly laboured, you are probably in zone 3. If you are on a group ride and keeping up with faster riders, you are almost certainly above zone 2. The whole point of this zone is that it should feel uncomfortably easy — the adaptation happens precisely because the intensity is low enough to preferentially stimulate aerobic pathways.",
-    ],
-    expertEvidence: [
-      {
-        name: "Dr Iñigo San Millán",
-        credential: "Exercise physiologist, UAE Team Emirates performance director",
-        insight:
-          "Zone 2, defined by the first lactate threshold (roughly 2 mmol/L blood lactate), is the intensity that maximises fat oxidation while maintaining a steady metabolic state. Training consistently at this intensity increases mitochondrial density and improves the cell's ability to clear lactate — adaptations that raise the ceiling for every effort above it.",
-      },
-    ],
-    practicalApplication: [
-      {
-        title: "Estimate your zone 2 ceiling",
-        detail:
-          "If you know your max heart rate, multiply by 0.75 for the top of zone 2. If you know your lactate threshold heart rate, multiply by 0.88. Use whichever gives the lower number as your ceiling and stay below it during zone 2 sessions.",
-      },
-      {
-        title: "Use the talk test as a field check",
-        detail:
-          "Every 15-20 minutes during a zone 2 ride, speak a full sentence aloud. If you need to pause for breath mid-sentence, ease off by 5-10 watts or drop your cadence slightly. This simple check catches intensity creep before it undermines the session.",
-      },
-      {
-        title: "Account for cardiac drift on longer rides",
-        detail:
-          "On rides over 90 minutes, heart rate naturally drifts upward at the same power. If you are training by heart rate alone, expect to slow down to stay in zone 2 as the ride extends. A power meter removes this ambiguity — hold the same watts and let heart rate drift.",
-      },
-    ],
-    commonMistakes: [
-      {
-        mistake: "Using 220-minus-age to set max heart rate and then basing zones on it.",
-        fix:
-          "The 220-minus-age formula has a standard error of plus or minus 10-12 bpm. A field test — a hard 20-minute effort or a ramp test — gives a far more accurate max heart rate from which to calculate zones.",
-      },
-      {
-        mistake: "Riding at the top of zone 2 for every session.",
-        fix:
-          "The middle of zone 2 is the sweet spot for most adaptations. Sitting right at the ceiling risks drifting into zone 3 with cardiac drift, heat, or slight uphills. Aim for the middle of the range, not the top.",
-      },
-      {
-        mistake: "Assuming zone 2 is the same on different zone models.",
-        fix:
-          "A 5-zone model and a 7-zone model define zone 2 differently. Know which model your device uses, and set your zones from a tested threshold rather than relying on defaults.",
-      },
-    ],
-    faq: [
-      {
-        question: "What heart rate is zone 2 for a 50-year-old?",
-        answer:
-          "It depends on individual physiology, not age alone. A 50-year-old with a tested max HR of 170 would have a zone 2 ceiling of roughly 128 bpm (75% of max). But max heart rate varies enormously at any age — test yours rather than relying on age-based formulas.",
-      },
-      {
-        question: "Why is my zone 2 different indoors?",
-        answer:
-          "Indoor cycling typically produces a heart rate 5-10 bpm lower than outdoor riding at the same power due to reduced upper-body stabilisation and the absence of wind. Some riders set separate indoor and outdoor heart rate zones to account for this.",
-      },
-      {
-        question: "How often should I ride in zone 2?",
-        answer:
-          "Most endurance training models recommend 75-80% of weekly training time in zone 2 or below, with the remaining 20-25% at higher intensities. In practice, that means 3-5 zone 2 sessions per week for most cyclists, depending on total volume.",
-      },
-    ],
-    relatedEpisodes: [],
-    relatedTopics: [
-      { label: "What is zone 2 training?", href: "/answers/what-is-zone-2-training" },
-      { label: "Zone 2: heart rate or power?", href: "/answers/zone-2-heart-rate-or-power" },
-      { label: "Is my zone 2 too hard?", href: "/answers/is-my-zone-2-too-hard" },
-    ],
-    evidenceLevel: "strong",
-    publishDate: "2026-07-10",
-    updatedDate: "2026-07-10",
-  },
 
   // ============================================================
   // 8 — HOW LONG SHOULD A BASE PHASE LAST

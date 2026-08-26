@@ -340,6 +340,12 @@ export async function GET() {
           description: "Which intensity model raises FTP fastest for amateurs.",
         },
         {
+          url: `${BASE_URL}/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe`,
+          title: "Zone 2 Cycling — Heart Rate, Power, RPE & LT1",
+          description:
+            "Canonical Zone 2 owner: zone-system translation, LT1 and VT1, power, heart rate, RPE, duration, adaptation evidence and practical limits.",
+        },
+        {
           url: `${BASE_URL}/blog/zone-2-vs-endurance-training`,
           title: "Zone 2 vs Endurance Training",
           description:
@@ -870,7 +876,7 @@ Evidence-based topic hubs — each gathers the articles, episodes, and tools for
 ## Topic Cluster Hubs (deep-dive masters & training clusters)
 Focused clusters that interlink a definitive guide with its supporting articles. Built for masters riders and specific training methods.
 - [VO2max for Masters Cyclists](${tag(`${BASE_URL}/masters/vo2max`)}): Which sessions rebuild the top end after 40, what the research on age-related VO2max decline shows, and how to train the aerobic ceiling without wrecking recovery.
-- [Zone 2 Training for Cyclists](${tag(`${BASE_URL}/training/zone-2`)}): What Zone 2 is, how to find your true LT1 ceiling with lactate, and why most amateurs ride their easy days too hard.
+- [Zone 2 Training for Cyclists](${tag(`${BASE_URL}/training/zone-2`)}): Translate competing zone systems, estimate LT1 or VT1, use power, heart rate and RPE together, and build a repeatable aerobic dose without false precision.
 - [Reverse Periodisation for Cyclists](${tag(`${BASE_URL}/training/reverse-periodisation`)}): Front-loading intensity in winter and building endurance toward the season — why it suits time-crunched amateurs facing a dark winter.
 - [Masters Nutrition for Cyclists](${tag(`${BASE_URL}/nutrition/masters`)}): Anabolic resistance, higher protein needs after 40, and why under-fuelling to chase race weight backfires for masters riders.
 - [Indoor Cycling Training](${tag(`${BASE_URL}/training/indoor`)}): When indoor beats outdoor, managing the heat that wrecks sessions, and making structured platforms count.

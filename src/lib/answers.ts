@@ -540,7 +540,7 @@ const BASE_ANSWERS: AnswerPage[] = [
       "ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler",
     ],
     relatedTopics: [
-      { label: "Zone 2 Training — Complete Guide", href: "/blog/zone-2-training-complete-guide" },
+      { label: "Zone 2 Training — Complete Guide", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
       { label: "HR Zone Calculator", href: "/tools/hr-zones" },
       { label: "Polarised vs Sweet Spot", href: "/answers/polarised-vs-sweet-spot" },
@@ -1112,7 +1112,7 @@ const BASE_ANSWERS: AnswerPage[] = [
       { label: "Sweet Spot vs Threshold", href: "/compare/sweet-spot-vs-threshold" },
       { label: "How much Zone 2 should I do?", href: "/answers/how-much-zone-2" },
       { label: "FTP Training — Topic Hub", href: "/topics/ftp-training" },
-      { label: "Zone 2 Training — Complete Guide", href: "/blog/zone-2-training-complete-guide" },
+      { label: "Zone 2 Training — Complete Guide", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
     ],
     evidenceLevel: "strong",
     evidenceNote:

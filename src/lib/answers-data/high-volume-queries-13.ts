@@ -815,10 +815,9 @@ export const highVolumeQuery13Answers: AnswerPage[] = [
     ],
     relatedEpisodes: [],
     relatedTopics: [
-      { label: "What is zone 2 training?", href: "/answers/what-is-zone-2-training" },
+      { label: "What is zone 2 training?", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "How long should zone 2 rides be?", href: "/answers/how-long-should-zone-2-rides-be" },
       { label: "What is aerobic decoupling?", href: "/answers/what-is-aerobic-decoupling" },
-      { label: "Zone 2 heart rate or power?", href: "/answers/zone-2-heart-rate-or-power" },
     ],
     evidenceLevel: "moderate",
     publishDate: "2026-07-10",
@@ -1089,7 +1088,7 @@ export const highVolumeQuery13Answers: AnswerPage[] = [
     relatedTopics: [
       { label: "What is FTP?", href: "/answers/functional-threshold-power-explained" },
       { label: "How long to improve cycling fitness", href: "/answers/how-long-does-it-take-to-improve-cycling-fitness" },
-      { label: "What is zone 2 training?", href: "/answers/what-is-zone-2-training" },
+      { label: "What is zone 2 training?", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "What is a recovery week?", href: "/answers/what-is-a-recovery-week" },
     ],
     evidenceLevel: "strong",
@@ -1361,7 +1360,7 @@ export const highVolumeQuery13Answers: AnswerPage[] = [
     relatedTopics: [
       { label: "Can you improve FTP after 40?", href: "/answers/can-you-improve-ftp-after-40" },
       { label: "Does strength training increase FTP?", href: "/answers/does-strength-training-increase-ftp" },
-      { label: "What is zone 2 training?", href: "/answers/what-is-zone-2-training" },
+      { label: "What is zone 2 training?", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "What is TSS?", href: "/answers/what-is-training-stress-score" },
     ],
     evidenceLevel: "strong",

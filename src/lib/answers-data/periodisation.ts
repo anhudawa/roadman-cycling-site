@@ -535,7 +535,7 @@ export const periodisationAnswers: AnswerPage[] = [
     ],
     relatedTopics: [
       { label: "Cycling Base Training Guide", href: "/blog/cycling-base-training-guide" },
-      { label: "Zone 2 Training — Complete Guide", href: "/blog/zone-2-training-complete-guide" },
+      { label: "Zone 2 Training — Complete Guide", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "How Long Should Base Phase Be?", href: "/answers/how-long-should-the-base-phase-be" },
       { label: "Base vs Build Training", href: "/compare/base-vs-build-training" },
       { label: "Cycling Training Plans — Topic Hub", href: "/topics/cycling-training-plans" },

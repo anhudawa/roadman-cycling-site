@@ -57,7 +57,7 @@ export const TRANSCRIPT_BLOG_ARTICLES: ClusterArticleSpec[] = [
     angle: "Source episode: ep-2095. Seiler explains the physiological mechanism behind low-HR high-power riding.",
     pillar: "coaching",
     requiredSections: ["Why pros ride easy so easily", "The aerobic efficiency gap", "How to train lower heart rates", "The cardiac drift problem", "When low HR training goes wrong", "The 6-month timeline"],
-    internalLinks: [{ href: "/blog/zone-2-training-complete-guide", anchor: "Zone 2 guide" }, { href: "/blog/every-roadman-episode-with-stephen-seiler", anchor: "every Seiler episode" }, { href: "/tools/ftp-zones", anchor: "FTP zones" }],
+    internalLinks: [{ href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe", anchor: "Zone 2 guide" }, { href: "/blog/every-roadman-episode-with-stephen-seiler", anchor: "every Seiler episode" }, { href: "/tools/ftp-zones", anchor: "FTP zones" }],
     wordTarget: 2400,
     featuredImage: "/images/cycling/gravel-road-climb-backup.jpg",
   },

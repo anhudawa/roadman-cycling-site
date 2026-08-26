@@ -426,7 +426,7 @@ If you read or listen to nothing else from me, make it these:
 
 **1. The Zone 2 Training Guide**
 The most misunderstood concept in cycling. Most riders think they're doing Zone 2. They're not. This breaks down what it actually is, why it matters, and how to do it properly.
-→ roadmancycling.com/blog/zone-2-training-complete-guide
+→ roadmancycling.com/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe
 
 **2. How to Improve Your FTP**
 Not "ride more." Not "do sweet spot." The actual levers you can pull to move your FTP — structured by what's most likely to work based on where you are right now.

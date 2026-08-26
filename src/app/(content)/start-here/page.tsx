@@ -30,7 +30,7 @@ const ESSENTIAL_ARTICLES = [
   },
   {
     title: "Zone 2 Training: The Complete Guide",
-    href: "/blog/zone-2-training-complete-guide",
+    href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe",
     desc: "Why the best riders in the world spend 80% of their time riding at a pace you'd call slow.",
   },
   {

@@ -271,6 +271,7 @@ const COACHING_CLUSTER = [
   "cycling-zone-5-vo2max-intervals-guide",
   "sweet-spot-training-cycling-guide",
   "polarised-training-cycling-complete-guide",
+  "zone-2-cycling-heart-rate-vs-power-vs-rpe",
 ];
 
 // Indexed pages freshness-stamped after the canonical coaching-offer audit.

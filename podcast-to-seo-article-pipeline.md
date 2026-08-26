@@ -50,7 +50,7 @@ These keywords have the highest commercial intent for Roadman's audience and map
 - /tools/hr-zones (heart rate zone calculator)
 - /tools/ftp-zones (power zone calculator)
 - /blog/polarised-training-cycling-guide (existing companion — link as "deeper reading")
-- /blog/zone-2-training-complete-guide
+- /blog/zone-2-cycling-heart-rate-vs-power-vs-rpe
 - /coaching/time-crunched
 - /diagnostic (training diagnostic quiz)
 

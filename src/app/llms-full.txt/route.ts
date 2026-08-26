@@ -102,7 +102,7 @@ export async function GET() {
         `${BASE_URL}/answers/ftp-test-guide — Choose and repeat an FTP test; compare sustained, 20-minute, ramp and modelled methods.`,
         `${BASE_URL}/tools/ftp-test — Convert a completed FTP test result using a displayed method-specific equation.`,
         `${BASE_URL}/blog/polarised-training-cycling-complete-guide — Canonical polarised-training owner: three-zone model, 80/20 counting methods, cyclist evidence, comparisons and implementation limits.`,
-        `${BASE_URL}/blog/zone-2-training-complete-guide — Zone 2: what it is and how to train it correctly.`,
+        `${BASE_URL}/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe — Canonical Zone 2 cycling owner: zone-system translation, LT1 and VT1, power, heart rate, RPE, duration, adaptation evidence and practical limits.`,
         `${BASE_URL}/blog/vo2max-cycling-fixable-reasons-low — VO2max: measurement, low-score causes, training boundaries, and when to seek clinical assessment.`,
         `${BASE_URL}/blog/reverse-periodisation-cycling — Reverse periodisation for time-crunched and masters riders.`,
         `${BASE_URL}/blog/masters-cyclist-guide-getting-faster-after-40 — Masters training: getting faster after 40.`,

@@ -119,7 +119,7 @@ export const trainingPhysiologyAnswers: AnswerPage[] = [
     relatedTopics: [
       { label: "What Is FTP and Why Does It Matter?", href: "/answers/what-is-ftp" },
       { label: "What Is VO2 Max for Cyclists?", href: "/answers/what-is-vo2-max-cycling" },
-      { label: "What Is Zone 2 Training?", href: "/answers/what-is-zone-2-training" },
+      { label: "What Is Zone 2 Training?", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       {
         label: "Lactate Threshold Home Test for Cyclists",
         href: "/blog/lactate-threshold-home-test-cyclists",
@@ -480,7 +480,7 @@ export const trainingPhysiologyAnswers: AnswerPage[] = [
     relatedTopics: [
       { label: "Polarised or Sweet Spot: Which Is Better?", href: "/answers/polarised-vs-sweet-spot" },
       { label: "What Is Polarised Training for Cyclists?", href: "/blog/polarised-training-cycling-complete-guide" },
-      { label: "What Is Zone 2 Training?", href: "/answers/what-is-zone-2-training" },
+      { label: "What Is Zone 2 Training?", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       {
         label: "80/20 Training and the Grey-Zone Trap",
         href: "/blog/80-20-cycling-training-the-grey-zone-trap",

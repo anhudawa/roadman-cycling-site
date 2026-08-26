@@ -33,6 +33,7 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "zwift-vs-trainerroad",
   "wahoo-vs-garmin-cycling-computers",
   "fasted-vs-fueled-cycling",
+  "zone-2-cycling-heart-rate-vs-power-vs-rpe",
   "zone-2-vs-endurance-training",
   "aero-vs-weight-cyclist",
   "tubeless-vs-clincher-tyres",

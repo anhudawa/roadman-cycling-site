@@ -99,7 +99,7 @@ export const PROBLEM_PAGES: ProblemPage[] = [
       "You haven't changed your approach in over a year",
     ],
     solutions: [
-      { title: "Build the base first", description: "Zone 2 volume before intensity", href: "/blog/zone-2-training-complete-guide" },
+      { title: "Build the base first", description: "Zone 2 volume before intensity", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { title: "Periodise properly", description: "Structure training into phases", href: "/blog/how-to-periodise-cycling-season" },
       { title: "Try the plateau diagnostic", description: "4-minute quiz identifies your specific blocker", href: "/plateau" },
       { title: "Get coached", description: "A coach identifies what you can't see in your own data", href: "/apply" },
@@ -709,7 +709,7 @@ export const PROBLEM_PAGES: ProblemPage[] = [
     solutions: [
       { title: "Recalculate your zones", description: "If easy rides don't feel easy, your zones are wrong", href: "/tools/ftp-zones" },
       { title: "Practice breathing technique", description: "Diaphragmatic breathing reduces perceived effort", href: "/blog/breathing-techniques-cycling-performance" },
-      { title: "Build aerobic base", description: "Zone 2 volume improves oxygen extraction efficiency", href: "/blog/zone-2-training-complete-guide" },
+      { title: "Build aerobic base", description: "Zone 2 volume improves oxygen extraction efficiency", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { title: "See a doctor about EIB", description: "Exercise-induced bronchoconstriction is treatable", href: "/blog/cycling-breathing-techniques" },
     ],
     toolHref: "/tools/ftp-zones",
