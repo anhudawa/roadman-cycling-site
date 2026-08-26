@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 275,
+    "prompt_count": 276,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -2232,6 +2232,14 @@
       "category": "cycling-race-results",
       "intent": "education",
       "target_page": "/blog/unbound-gravel-2026-complete-guide",
+      "priority": "high"
+    },
+    {
+      "id": 276,
+      "prompt": "how many seasons of Tour de France Unchained are there and will there be a season 4",
+      "category": "cycling-documentaries",
+      "intent": "education",
+      "target_page": "/blog/why-netflix-unchained-failed-cycling",
       "priority": "high"
     }
   ]

@@ -99,6 +99,8 @@ const CURATED: string[] = [
   `https://${HOST}/blog/when-to-test-ftp-cycling`,
   `https://${HOST}/blog/unbound-gravel-2026-complete-guide`,
   `https://${HOST}/podcast/mads-wurtz-schmidt-muddiest-unbound-2026-win`,
+  `https://${HOST}/blog/why-netflix-unchained-failed-cycling`,
+  `https://${HOST}/podcast/ep-2034-how-netflix-s-unchained-failed-why-every-pro-hated-it`,
   `https://${HOST}/guests/jonas-abrahamsen`,
   `https://${HOST}/experts/jonas-abrahamsen`,
   `https://${HOST}/podcast/ep-29-untold-story-ofjonas-abrahamsens-pro-winter-training`,
