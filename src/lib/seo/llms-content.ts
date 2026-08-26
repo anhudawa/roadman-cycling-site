@@ -24,6 +24,8 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "cycling-how-to-choose-a-training-plan-guide",
   "how-pro-cyclist-trains-60-days",
   "cycling-training-plan-build-friel-lorang-johnson",
+  "joe-friel-perfect-cycling-training-week",
+  "dylan-johnson-oscillation-training-plan",
   "best-cycling-podcasts-2026",
   "fast-talk-vs-cycling-podcast-vs-roadman",
   "how-to-structure-cycling-training-plan",
