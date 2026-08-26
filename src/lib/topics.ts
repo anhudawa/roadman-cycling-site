@@ -333,11 +333,11 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   },
   {
     slug: "polarised-training",
-    title: "Polarised Training for Cyclists — The Complete 80/20 Guide",
-    headline: "THE 80/20 RULE — EXPLAINED",
-    ctaHeadline: "POLARISED TRAINING, BUILT INTO YOUR WEEK.",
+    title: "Polarised Training Cycling — Guides, Evidence & Tools",
+    headline: "BUILD A POLARISED TRAINING PATH",
+    ctaHeadline: "TURN THE MODEL INTO YOUR WEEK.",
     description:
-      "The complete guide to polarised training for cyclists. The 80/20 intensity distribution, how to avoid the grey zone, and why the world's best endurance athletes train easy most of the time — from Professor Seiler, Dan Lorang, and 1,400+ podcast episodes.",
+      "A curated polarised-training learning path for cyclists: start with the evidence-led 80/20 guide, then compare models, set zones, choose sessions and hear the relevant Roadman podcast conversations.",
     pillar: "coaching",
     keywords: [
       "polarised training cycling",
@@ -883,7 +883,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "trainingpeaks-virtual-structured-indoor-training",
     "century-tss-trainingpeaks-100-mile-fitness",
     "cycling-periodisation-plan-guide",
-    "polarised-training-cycling-guide",
+    "polarised-training-cycling-complete-guide",
     "stephen-seiler-research-polarised-training-lessons",
     "cycling-base-training-guide",
     "reverse-periodisation-cycling",
@@ -1367,7 +1367,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "ftp-training-zones-cycling-complete-guide",
     "zone-2-training-complete-guide",
     "cycling-nutrition-race-day-guide",
-    "polarised-training-cycling-guide",
+    "polarised-training-cycling-complete-guide",
     "70-3-bike-training-plan-12-weeks",
     "ben-hoffman-three-uncommon-habits-triathlete",
     "best-cycling-podcast-for-triathletes",
@@ -1402,7 +1402,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-base-training-guide",
     "zone-2-training-complete-guide",
     "zone-2-training-cycling-complete-guide",
-    "polarised-training-cycling-guide",
+    "polarised-training-cycling-complete-guide",
     "stephen-seiler-research-polarised-training-lessons",
     "cycling-sportive-preparation",
     "new-study-confirms-heavy-strength-training-beats-more-miles-after-40",
@@ -1699,7 +1699,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
   ],
   "polarised-training": [
     "polarised-training-cycling-complete-guide",
-    "polarised-training-cycling-guide",
     "polarised-training-cycling-world-tour-prescription",
     "polarised-vs-sweet-spot-training",
     "80-20-cycling-training-the-grey-zone-trap",
@@ -2471,7 +2470,7 @@ const TOPIC_ENRICHMENT: Record<string, {
     commercialPath: "/training-plans",
     relatedTopics: ["ftp-training", "cycling-coaching"],
     featuredPostSlugs: [
-      "polarised-training-cycling-guide",
+      "polarised-training-cycling-complete-guide",
       "how-to-structure-cycling-training-plan",
       "zone-2-training-complete-guide",
     ],
@@ -3288,24 +3287,24 @@ const TOPIC_FAQS: Record<string, TopicFAQ[]> = {
   ],
   "polarised-training": [
     {
-      question: "What is polarised training?",
+      question: "Where should I start with polarised training?",
       answer:
-        "Polarised training is an intensity distribution where roughly 80% of your training sits at low intensity (Zone 1-2) and roughly 20% sits at high intensity (Zone 4-5), with very little time in the moderate middle. It's the pattern that Professor Stephen Seiler found across elite endurance athletes in every discipline.",
+        "Start with the evidence-led polarised training guide, which defines the three-zone model and explains why session count and time in zone can produce different 80/20 results. Then use this learning path for comparisons, zone setting, practical sessions and podcast conversations.",
     },
     {
-      question: "Does polarised training work for amateur cyclists?",
+      question: "Is this topic page the main polarised training guide?",
       answer:
-        "Yes. Seiler's research and our coaching experience both confirm that the 80/20 distribution works for amateurs, not just elites. The most common amateur mistake is spending too much time in the grey zone — training at moderate intensity that feels productive but doesn't efficiently build either the aerobic base or the top end.",
+        "No. This page is the navigation hub. The main guide owns the broad definition and evidence; the linked pages answer narrower questions such as polarised versus pyramidal, polarised versus sweet spot and how to set training zones.",
     },
     {
-      question: "How do I know if I'm training in the grey zone?",
+      question: "Does Roadman treat 80/20 as an exact weekly target?",
       answer:
-        "If your easy rides regularly creep above Zone 2, your heart rate on recovery rides drifts into tempo, or you finish 'easy' sessions feeling moderately tired rather than fresh, you're in the grey zone. Check your data — most amateurs are surprised by how hard their easy days actually are.",
+        "No. Eighty-twenty is a useful description whose result depends on the zone model, thresholds, observation period and counting method. Roadman recommends auditing the actual programme and rider response instead of forcing every week into an exact ratio.",
     },
     {
-      question: "Is sweet spot or polarised training better?",
+      question: "Which comparisons are included?",
       answer:
-        "Both work — the question is timing. Sweet spot is efficient for time-crunched riders in the base-to-build transition. Polarised tends to produce better long-term results, especially when you have the volume for genuine Zone 2 work. Most coaches use both at different points in the season.",
+        "The learning path links to dedicated polarised-versus-pyramidal and polarised-versus-sweet-spot guides. Keeping those jobs separate makes the advice clearer and prevents one broad page from giving shallow answers to every intent.",
     },
   ],
   "vo2max-training": [

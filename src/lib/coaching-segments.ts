@@ -267,7 +267,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
       },
       {
         label: "Polarised Training: The Masters Method",
-        href: "/blog/polarised-training-cycling-guide",
+        href: "/blog/polarised-training-cycling-complete-guide",
         description:
           "Seiler's polarised model applied to masters riders. Why 85/15 beats 80/20 after 40, and how to police true Zone 2.",
       },
@@ -1359,7 +1359,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
       },
       {
         label: "Polarised Training Guide",
-        href: "/blog/polarised-training-cycling-guide",
+        href: "/blog/polarised-training-cycling-complete-guide",
         description:
           "Seiler's polarised model applied to over-50 cyclists. Why 85/15 beats 80/20 after 50 and how to police true Zone 2 when grey-zone temptation is real.",
       },
@@ -2126,7 +2126,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
       },
       {
         label: "Polarised Training Guide",
-        href: "/blog/polarised-training-cycling-guide",
+        href: "/blog/polarised-training-cycling-complete-guide",
         description:
           "The Seiler-rooted polarised model that the comeback rebuild is built on. Why true Zone 2 has to be policed, especially in the first blocks back.",
       },

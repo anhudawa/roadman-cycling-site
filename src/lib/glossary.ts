@@ -45,12 +45,13 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
   {
     slug: "polarised-training",
     term: "Polarised Training",
-    definition: "A training intensity distribution where approximately 80% of training time is spent at low intensity (Zone 1-2) and 20% at high intensity (Zone 4+), with minimal time in the moderate 'grey zone' (Zone 3).",
-    extendedDefinition: "Coined by Prof. Stephen Seiler around 2004, polarised training is not a prescription but an observation — elite endurance athletes across cycling, running, rowing, and cross-country skiing independently converge on this distribution. The key insight is that easy days must be properly easy to allow hard days to be properly hard. Most amateur cyclists do the opposite: riding moderately hard most days, which produces minimal adaptation.",
+    definition: "A training-intensity distribution with most endurance work below the first physiological threshold, some work above the second threshold and less work in the moderate domain between them.",
+    extendedDefinition: "The popular 80/20 shorthand is descriptive, not a universal weekly prescription. A result changes with the three-zone model, threshold method and whether sessions or recorded time are counted. Elite endurance athletes use both polarised and pyramidal distributions, and current cyclist-specific evidence does not establish one model as universally superior.",
     pillar: "coaching",
     relatedTerms: ["ftp", "vo2max", "sweet-spot", "zone-2"],
-    relatedArticle: "/blog/polarised-training-cycling-guide",
-    relatedTopicHub: "/topics/cycling-training-plans",
+    relatedArticle: "/blog/polarised-training-cycling-complete-guide",
+    relatedTopicHub: "/topics/polarised-training",
+    canonicalPath: "/blog/polarised-training-cycling-complete-guide",
   },
   {
     slug: "sweet-spot",

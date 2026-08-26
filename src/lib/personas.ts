@@ -65,7 +65,7 @@ export const PERSONAS: Record<PersonaSlug, PersonaContent> = {
     metaDescription:
       "If your FTP hasn't moved in months despite consistent training, the problem isn't effort. It's intensity distribution. Here's the Seiler-backed fix, plus curated resources from the Roadman Podcast.",
     blogSlugs: [
-      "polarised-training-cycling-guide",
+      "polarised-training-cycling-complete-guide",
       "stephen-seiler-research-polarised-training-lessons",
       "why-your-ftp-is-stuck-five-causes",
     ],
