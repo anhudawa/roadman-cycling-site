@@ -36,6 +36,13 @@ export interface HubRelated {
   href: string;
 }
 
+export interface HubResearchSource {
+  title: string;
+  href: string;
+  /** What this source can support, including important population limits. */
+  scope: string;
+}
+
 export interface ClusterHubDef {
   /** Canonical path, e.g. "/training/zone-2". */
   path: string;
@@ -54,6 +61,13 @@ export interface ClusterHubDef {
   /** Breadcrumb parent — must resolve to a real route. */
   parent: { label: string; href: string };
   experts: HubExpert[];
+  /** Published research or official consensus used to bound the hub's claims. */
+  research?: HubResearchSource[];
+  /** Named editorial reviewer and ISO review date for visible and machine trust. */
+  reviewedBy?: string;
+  lastReviewed?: string;
+  /** How evidence, expert interviews and practical guidance were separated. */
+  methodology?: string;
   /** Existing blog slugs to aggregate, in editorial order. */
   articleSlugs: string[];
   /** Gap articles written for this hub (also blog slugs). */
@@ -76,12 +90,12 @@ const MASTERS_VO2MAX: ClusterHubDef = {
   path: "/masters/vo2max",
   id: "masters-vo2max",
   pillar: "coaching",
-  metaTitle: "VO2max for Masters Cyclists — The Complete Training Hub",
-  headline: "VO2MAX AFTER 40",
+  metaTitle: "VO2max Training for Masters Cyclists After 40",
+  headline: "VO2MAX TRAINING AFTER 40",
   description:
-    "VO2max is the first thing to go after 40 — and the most recoverable. The complete masters hub: which sessions rebuild the top end, what the research on age-related decline actually shows, and how to train your aerobic ceiling without wrecking your recovery.",
+    "VO2max training for masters cyclists: interpret age-related change, choose a repeatable interval dose, audit recovery and know when a health check comes first.",
   shortAnswer:
-    "VO2max declines roughly 0.5% a year in masters cyclists who keep training the top end, closer to 1% a year in those who stop — but the trajectory is trainable, not fixed. Short, hard intervals that put you at 90%+ of max heart rate two or three times a week are the highest-return work a cyclist over 40 can do.",
+    "A masters cyclist should verify the trend with a repeatable test, keep a tolerable dose of event-relevant intensity in the programme, and progress only when execution and recovery remain stable; age alone cannot set one decline rate, interval format, weekly frequency or 72-hour rule.",
   keywords: [
     "vo2max masters cycling",
     "vo2max over 40",
@@ -92,11 +106,42 @@ const MASTERS_VO2MAX: ClusterHubDef = {
   ],
   parent: { label: "Masters", href: "/masters" },
   experts: [
-    { name: "Dr Andy Galpin", credential: "Muscle physiologist, Parker University" },
-    { name: "Professor Stephen Seiler", credential: "Exercise physiologist, polarised-training researcher" },
-    { name: "Dr David Lipman", credential: "Sports scientist and masters-performance researcher" },
+    { name: "Dr Andy Galpin", credential: "Exercise physiologist and Roadman podcast guest" },
+    { name: "Professor Stephen Seiler", credential: "Endurance-training researcher and Roadman podcast guest" },
+    { name: "Dr David Lipman", credential: "Sports physician and masters-performance researcher" },
     { name: "Joe Friel", credential: "Coach and author of Fast After 50" },
   ],
+  research: [
+    {
+      title: "Rogers et al. — Decline in VO2max with aging in master athletes and sedentary men",
+      href: "https://pubmed.ncbi.nlm.nih.gov/2361923/",
+      scope: "eight-year follow-up of 15 trained male masters athletes and 14 sedentary men; a cohort result, not an individual forecast",
+    },
+    {
+      title: "Hawkins et al. — Longitudinal change in VO2max and maximal heart rate in master athletes",
+      href: "https://pubmed.ncbi.nlm.nih.gov/11581561/",
+      scope: "135 male and female masters runners followed for about 8.5 years; observed rates varied with sex, body composition and training change",
+    },
+    {
+      title: "Aerobic fitness in older endurance athletes and sedentary men",
+      href: "https://pubmed.ncbi.nlm.nih.gov/11844000/",
+      scope: "older male endurance athletes; the small subgroup maintaining vigorous training differed markedly from athletes who reduced it",
+    },
+    {
+      title: "Simonsson et al. — The Umeå HIT randomized controlled trial",
+      href: "https://pubmed.ncbi.nlm.nih.gov/36972981/",
+      scope: "older non-exercisers on stationary bikes; both tested protocols improved VO2peak and neither represents a masters-cyclist prescription",
+    },
+    {
+      title: "Training and cardiorespiratory-fitness loss in masters endurance athletes",
+      href: "https://pubmed.ncbi.nlm.nih.gov/36078762/",
+      scope: "review and regression synthesis showing wide longitudinal estimates and a strong association with changes in training volume",
+    },
+  ],
+  reviewedBy: "Anthony Walsh",
+  lastReviewed: "2026-08-26",
+  methodology:
+    "Roadman separated longitudinal masters-athlete evidence from cross-sectional comparisons, older-adult intervention trials and coaching practice. Population averages are used to frame questions, not predict one rider; interval selection remains conditional on the rider's event, testing method, history, health and response.",
   articleSlugs: [
     "cycling-vo2max-intervals",
     "vo2-max-workouts-cyclists-over-40",
@@ -111,47 +156,85 @@ const MASTERS_VO2MAX: ClusterHubDef = {
     "racing-at-50-plus-masters-cycling",
   ],
   newArticleSlugs: ["vo2max-decline-reversibility-masters-cyclists"],
-  pillarContent: `Here's what nobody tells you about getting older on a bike. It isn't your endurance that fades first — it's your ceiling. The long Sunday rides hold up well into your fifties and beyond. What goes is the top end: the four-minute effort up the local climb, the bridge to a move, the surge that used to come for free. That top end is VO2max, and on a masters cyclist it is both the first thing to decline and the single most responsive thing you can train.
+  pillarContent: `VO2max can matter to a masters cyclist, but a birthday does not diagnose the limiter or prescribe the workout. The useful question is not “Which interval is best after 40?” It is “What changed, how certain is the measurement, which demand matters for my event, and what dose can I repeat?”
 
-The decline is real, but it is not the number most riders fear. Across the research, a masters cyclist who keeps training intensity loses somewhere around half a percent of VO2max per year. Stop training the top end and that roughly doubles. Over two decades that is the difference between losing about 10% and losing 20% — the gap between a rider who is still racing and one who has quietly become a tourist. We pulled the research apart in [what the science says about VO2max decline and how much of it is reversible](/blog/vo2max-decline-reversibility-masters-cyclists), the piece anchored on the work of Dr David Lipman and the masters-performance data.
+This page owns that decision. Use the [canonical VO2max interval guide](/blog/cycling-vo2max-intervals) for session mechanics, the [low-VO2max diagnostic](/blog/vo2max-cycling-fixable-reasons-low) when the number looks wrong, the [masters weekly schedule](/blog/cycling-training-plan-masters-over-40) to place work across seven days, and the [masters plateau framework](/blog/masters-cyclist-guide-getting-faster-after-40) when a broader performance trend has stalled.
 
-## Why the top end goes first
+## What the masters research actually establishes
 
-Dr Andy Galpin's research explains the mechanism better than anything else. The fibres that fade fastest with age are the fast-twitch ones — the ones that produce the snap. You keep the engine; you lose the kick. That matters for VO2max because those high-recruitment fibres are exactly the ones you call on at the top of an interval. [Galpin's findings on why the snap goes first](/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40) reframe the whole problem: it isn't that your aerobic system has collapsed, it's that you have stopped asking the fibres that drive it to show up.
+Age-related change is real at population level; one fixed rate is not. In an eight-year follow-up, [Rogers and colleagues](https://pubmed.ncbi.nlm.nih.gov/2361923/) observed a smaller average decline in 15 trained male masters athletes than in 14 sedentary men. A larger longitudinal study of [135 male and female masters runners](https://pubmed.ncbi.nlm.nih.gov/11581561/) reported much wider rates and associations with training change and body composition. In another older male cohort, the small subgroup that maintained vigorous training behaved differently from those who reduced it.
 
-The fix is uncomfortable and specific. You have to spend time at 90% of max heart rate and above, and you have to do it often enough for the adaptation to stick. That is the founding logic of [VO2max intervals](/blog/cycling-vo2max-intervals) — the sessions that raise the ceiling everything else lives under.
+A 2022 [review and regression synthesis](https://pubmed.ncbi.nlm.nih.gov/36078762/) reported masters-athlete longitudinal estimates ranging from 5% to 46% per decade and linked much of the variation to changes in training volume. Those studies differ in population, sport, sex, age, follow-up and measurement. They support sustained training as an important modifier; they do not support subtracting 0.5% or 1% from one rider every year.
 
-## The sessions that actually move it
+VO2max is also not the whole performance model. Threshold, economy, body composition, skill, pacing, fatigue, health and the event's demands can change while VO2max is stable. A lower wearable estimate is therefore a prompt to investigate, not a verdict.
 
-There is no single right session, but there is a right shape. [The three VO2max workouts that work for cyclists over 40](/blog/vo2-max-workouts-cyclists-over-40) covers the classics — 5×5, 4×4, and the under-recovered "30/15" — and explains why the masters version uses fewer reps and more recovery than the plan you ran at 30. When even those stall, [sprint-interval training](/blog/sprint-interval-training-cyclists-masters) — six all-out 30-second efforts — moves FTP through a different door, recruiting the high-threshold fibres Galpin warns about.
+## Step one: verify the signal
 
-If your number is stubbornly low, verify the measurement before prescribing more work. [Why your VO2max may be low](/blog/vo2max-cycling-fixable-reasons-low) separates wearable error, genetics, training consistency, recovery, iron and health signals before routing a rider into the right intervention.
+Compare like with like before changing training. A laboratory test, a repeatable field protocol and a watch estimate are not interchangeable. Check whether the same protocol, equipment, environment, fuelling state and fatigue context were used. Look for a trend across several observations rather than one bad day.
 
-## Putting it in a masters week
+Then ask whether performance moved with the number. If repeatable climbing power, interval completion and race execution are stable, the estimate may be the noisy part. If several independent signals moved together, the change deserves a structured audit. The [VO2max estimator](/tools/vo2max) can organise a consistent field estimate, but it cannot diagnose a medical cause or replace a metabolic test.
 
-The top end is not trained in isolation. It sits inside a week that has to respect a 45-year-old's recovery rate, which means two hard sessions with 72 hours between them, not three crammed into a weekend. [Getting faster after 40](/blog/cycling-over-40-getting-faster) and [the masters training plan for riders over 40](/blog/masters-cycling-training-plan-over-40) put the VO2max work in its place inside a structured, sustainable block, and [managing training load through your 40s and 50s](/blog/training-load-management-cyclists-40s-50s) keeps that balance honest week to week — ramp rate, acute-to-chronic load, and the autoregulation that stops a hard session landing on a day your body hasn't recovered for. Build the sessions into a periodised plan in [TrainingPeaks](https://www.trainingpeaks.com) so you can see the intensity distribution and stop the easy days drifting hard — the most common reason masters intervals fail.
+## Step two: define the job before choosing the interval
 
-The headline is simple, and it is the Roadman position: your top end is not a fixed inheritance you spend down with age. It is a training response. You're not done yet.`,
+Different sessions solve different problems. Long aerobic intervals can accumulate time near a high oxygen demand; short repeats can make that demand more tolerable; repeated sprints target a different mix of neuromuscular and metabolic qualities. None is the universal masters workout.
+
+| The question | Best next Roadman destination |
+| --- | --- |
+| How should I execute VO2max intervals? | [VO2max interval guide](/blog/cycling-vo2max-intervals) |
+| Which session formats can I compare? | [VO2max workouts for cyclists over 40](/blog/vo2-max-workouts-cyclists-over-40) |
+| Is my estimate wrong or is something else limiting me? | [Low-VO2max diagnostic](/blog/vo2max-cycling-fixable-reasons-low) |
+| How do I place the session in a week? | [Masters weekly schedule](/blog/cycling-training-plan-masters-over-40) |
+| Has my whole programme plateaued? | [Four-week masters plateau audit](/blog/masters-cyclist-guide-getting-faster-after-40) |
+
+The event decides what deserves priority. A rider preparing for repeated short climbs may need a different stimulus from a long sportive rider whose main constraint is durability. Training history matters too: an interval-naive rider and a highly trained racer should not receive the same starting dose merely because both are 52.
+
+## Step three: start with the smallest repeatable dose
+
+There is evidence that older adults can improve cardiorespiratory fitness with structured cycling, but it does not crown one masters protocol. In the [Umeå randomized trial](https://pubmed.ncbi.nlm.nih.gov/36972981/), 68 non-exercising adults aged 66–79 completed either twice-weekly short supramaximal intervals or longer moderate intervals for three months. VO2peak improved across the groups without a between-group difference. That is useful evidence about trainability in that population—not proof that masters cyclists need two weekly sessions, 10 × 6 seconds, 4 × 4 minutes or a fixed heart-rate target.
+
+Choose a session the rider can execute consistently. Record interval power or pace, perceived effort, heart-rate response where useful, and the quality of the final repetitions. Progress one variable at a time: repetitions, work duration, power or reduced recovery. Do not increase all four because the first session went well.
+
+## Step four: earn the next hard session
+
+No trial gives every cyclist over 40 a compulsory 72-hour clock. Recovery should be judged from several signals: whether the target can be executed, whether easy riding is genuinely easy, sleep and life stress, soreness, motivation, illness and any unusual symptoms. The [training-load guide for cyclists in their 40s and 50s](/blog/training-load-management-cyclists-40s-50s) provides a broader audit; the [12-week masters plan](/blog/masters-cycling-training-plan-over-40) shows how a session can sit inside a goal-specific block.
+
+If quality falls repeatedly, remove or move work before adding more. If the rider absorbs the session and the event demands it, the next dose can progress. “Masters” changes the questions worth monitoring; it does not supply the answer in advance.
+
+## When this stops being a training question
+
+An unexpected or disproportionate drop in exercise capacity, chest pain or pressure, fainting, unusual breathlessness, palpitations, persistent fatigue or other concerning symptoms needs qualified medical assessment. Iron status, infection, medication effects and cardiovascular or respiratory conditions cannot be diagnosed from an interval file or a web page.
+
+Roadman provides education and coaching. It does not use age, VO2max or recovery data to diagnose disease, clear a rider for maximal exercise or replace individual clinical advice.`,
   faqs: [
     {
       question: "How much does VO2max really decline after 40?",
       answer:
-        "Roughly 0.5% per year for masters cyclists who keep training the top end, closer to 1% per year for those who don't. Tanaka and Seals (2008) remains the canonical reference. The key finding is that the decline is heavily moderated by training — trained masters lose far less than the sedentary population, and the slope is partly recoverable.",
+        "There is no single annual rate for one rider. Longitudinal masters-athlete studies report materially different trajectories, and changes in training volume, body composition, sex, age, health and measurement method can all matter. Use a repeatable personal trend rather than subtracting a population percentage each year.",
     },
     {
       question: "Can a cyclist over 40 actually raise their VO2max?",
       answer:
-        "Yes. VO2max is one of the most trainable variables at any age. Masters cyclists who add structured high-intensity intervals two or three times a week routinely lift their VO2max even in their fifties and sixties — the response is slower than at 25 but the direction is the same.",
+        "Some older adults improve VO2peak with structured training, so age alone does not make improvement impossible. The size and direction of one cyclist's response depend on starting fitness, test reliability, training history, dose, adherence, recovery and health; improvement is possible, not guaranteed.",
     },
     {
       question: "What is the best VO2max session for a masters cyclist?",
       answer:
-        "Classic 5×5 (five minutes at maximal sustainable effort, five minutes easy) is the workhorse. Masters athletes get most of the benefit with fewer reps and more recovery than younger riders — three to four reps rather than five or six, and a full 72 hours before the next hard session.",
+        "No single interval format is best for every masters cyclist. Choose from longer intervals, short repeats or repeated-sprint work according to the event, current limiter, training history and ability to complete quality work repeatedly; use the dedicated interval guide for session mechanics.",
     },
     {
-      question: "Why does the top end fade before endurance?",
+      question: "How often should masters cyclists train VO2max?",
       answer:
-        "Because the fast-twitch fibres that drive high-intensity efforts atrophy faster with age than the slow-twitch fibres that carry steady endurance. Dr Andy Galpin's research describes it as keeping the engine but losing the kick — which is exactly why short, hard intervals matter more, not less, as you get older.",
+        "Frequency is a load decision, not an age-group rule. Begin with the smallest dose that addresses the goal, count racing, hard group rides and strength work in the total week, and add another hard exposure only when execution and recovery remain stable.",
+    },
+    {
+      question: "Do I need to reach 90% of maximum heart rate in every interval?",
+      answer:
+        "No. Heart rate lags behind power, varies between riders and conditions, and can be altered by medication and fatigue. Use power or pace, perceived effort, interval duration and repeatability alongside heart rate; do not turn one percentage into the definition of a successful session.",
+    },
+    {
+      question: "When should a VO2max drop be checked medically?",
+      answer:
+        "Seek qualified medical advice when the change is unexpected or disproportionate, or when it comes with chest discomfort, fainting, unusual breathlessness, palpitations, persistent fatigue or other concerning symptoms. A coach, wearable or website cannot diagnose the cause or clear someone for maximal exercise.",
     },
   ],
   relatedHubs: [
@@ -161,7 +244,7 @@ The headline is simple, and it is the Roadman position: your top end is not a fi
   ],
   ctaHeadline: "TRAIN YOUR TOP END WITH A PLAN.",
   ctaSubhead:
-    "The Not Done Yet coaching team builds your intervals, recovery and progression around a masters recovery rate — not a 25-year-old's. Serious cyclists, real structure.",
+    "The Not Done Yet coaching team places intensity inside your event, training history, health context and response — without using age as the whole prescription.",
 };
 
 /* ------------------------------------------------------------------ */
@@ -347,12 +430,12 @@ const MASTERS_NUTRITION: ClusterHubDef = {
   path: "/nutrition/masters",
   id: "nutrition-masters",
   pillar: "nutrition",
-  metaTitle: "Masters Nutrition for Cyclists — The Complete Hub",
-  headline: "FUELLING AFTER 40",
+  metaTitle: "Masters Cycling Nutrition After 40: Evidence Guide",
+  headline: "MASTERS CYCLING NUTRITION",
   description:
-    "After 40 the rules change. Anabolic resistance means you need more protein to hold the same muscle, recovery windows lengthen, and the 'ride more, eat less' model does real damage. The complete masters nutrition hub.",
+    "Masters cycling nutrition after 40: assess energy, carbohydrate and protein needs, avoid fixed age-only targets and know when to involve a sports dietitian.",
   shortAnswer:
-    "Masters cyclists develop anabolic resistance — the muscle-building response to protein blunts with age — so protein needs rise to 1.6–2.2 g/kg/day spread across four feedings of 30–40g. Under-fuelling to chase race weight backfires after 40, accelerating muscle loss rather than fat loss.",
+    "Start by matching total energy and carbohydrate to training, then assess protein against body size, dietary pattern, goals and health context; masters-specific research does not establish one universal daily target, four-meal rule or compulsory pre-sleep dose.",
   keywords: [
     "masters cycling nutrition",
     "cycling nutrition over 40",
@@ -363,11 +446,47 @@ const MASTERS_NUTRITION: ClusterHubDef = {
   ],
   parent: { label: "Masters", href: "/masters" },
   experts: [
-    { name: "Alan Murchison", credential: "Michelin-starred chef and performance nutrition specialist" },
-    { name: "Alex Larson", credential: "Registered dietitian, endurance nutrition" },
-    { name: "Dr David Dunne", credential: "Sports nutritionist and performance scientist" },
-    { name: "Dr Michael Ormsbee", credential: "Researcher in protein timing and overnight recovery" },
+    { name: "Alan Murchison", credential: "Chef, performance-nutrition author and Roadman podcast guest" },
+    { name: "Alex Larson", credential: "Registered dietitian specialising in endurance nutrition" },
+    { name: "Dr David Dunne", credential: "Performance nutritionist and Roadman podcast guest" },
+    { name: "Dr Michael Ormsbee", credential: "Researcher in exercise and protein timing" },
   ],
+  research: [
+    {
+      title: "Franzke et al. — Protein intake, performance and body composition in master athletes",
+      href: "https://pubmed.ncbi.nlm.nih.gov/39940356/",
+      scope: "2025 scoping review finding only 12 heterogeneous reports and no established population-specific protein recommendation",
+    },
+    {
+      title: "Moore et al. — Protein dose response in healthy older versus younger men",
+      href: "https://pubmed.ncbi.nlm.nih.gov/25056502/",
+      scope: "pooled acute muscle-protein-synthesis analysis in men; useful physiology, not a masters-cyclist daily target",
+    },
+    {
+      title: "Kim et al. — Even versus uneven protein distribution in older adults",
+      href: "https://pubmed.ncbi.nlm.nih.gov/28318687/",
+      scope: "small eight-week randomized trial finding no distribution effect on measured anabolic or functional outcomes",
+    },
+    {
+      title: "Kouw et al. — Pre-sleep protein and overnight muscle protein synthesis",
+      href: "https://pubmed.ncbi.nlm.nih.gov/28855419/",
+      scope: "acute randomized trial in healthy older men; not a cycling-performance or long-term recovery trial",
+    },
+    {
+      title: "Mountjoy et al. — IOC consensus statement on Relative Energy Deficiency in Sport",
+      href: "https://bjsm.bmj.com/content/57/17/1073",
+      scope: "health and performance framework for problematic low energy availability in female and male athletes; diagnosis requires qualified assessment",
+    },
+    {
+      title: "Lane et al. — Low energy availability in trained male endurance athletes",
+      href: "https://pubmed.ncbi.nlm.nih.gov/31581498/",
+      scope: "observational self-report study including cyclists; prevalence estimates used female-derived cut-points and do not diagnose an individual",
+    },
+  ],
+  reviewedBy: "Anthony Walsh",
+  lastReviewed: "2026-08-26",
+  methodology:
+    "Roadman separated masters-athlete evidence from general older-adult protein studies, acute tracer experiments and expert practice. The page uses those sources to define questions and limits; it does not convert one study population into a universal diet, protein target or treatment plan.",
   articleSlugs: [
     "alan-murchison-michelin-star-chef-cycling-nutrition",
     "alex-larson-body-composition-cyclists",
@@ -379,45 +498,82 @@ const MASTERS_NUTRITION: ClusterHubDef = {
     "what-experts-say-about-cycling-nutrition",
   ],
   newArticleSlugs: ["masters-metabolism-anabolic-resistance-nutrition"],
-  pillarContent: `The cycling internet sells masters riders the same nutrition advice it sells everyone: eat less, ride more, get lighter, go faster. For a 25-year-old it's incomplete. For a 50-year-old it's actively harmful. The metabolism you're feeding at 50 does not respond the way it did at 30, and the single biggest change has a name most amateurs have never heard: anabolic resistance.
+  pillarContent: `Masters cycling nutrition is not a separate food system. The useful difference after 40 is the decision context: training load, recovery, body-composition goals, dietary pattern, health, medication and the evidence gaps all deserve more attention than an age-only protein formula.
 
-Anabolic resistance means the muscle-building machinery gets harder to switch on with age. The same protein feeding that built muscle in your thirties produces a smaller response in your fifties. So the masters rider who cuts food to lose weight isn't trimming fat — they're shedding the muscle that holds their power. [What changes about masters metabolism, and the anabolic-resistance protein protocol that answers it](/blog/masters-metabolism-anabolic-resistance-nutrition) is the piece that puts the whole shift in one place.
+This page owns that broad nutrition audit. Use the [protein guide](/blog/cycling-protein-requirements) for the full protein question, the [bedtime protein review](/blog/bedtime-protein-cyclists-recovery-protocol) for pre-sleep evidence, the [body-composition guide](/blog/cycling-body-composition-guide) for changing weight without treating the scale as the outcome, and the [masters metabolism guide](/blog/masters-metabolism-anabolic-resistance-nutrition) for the physiology in more depth.
 
-## Protein is the lever, and the dose went up
+## Start with energy, not a supplement
 
-The practical consequence is a higher protein target, eaten differently. Where younger riders get away with 1.4 g/kg, masters cyclists do better at 1.6 to 2.2 g/kg/day, split into four feedings of 30 to 40g rather than loaded into dinner. [How much protein cyclists actually need](/blog/cycling-protein-requirements) covers the targets and timing; registered dietitian Alex Larson's work on [getting lean and staying lean](/blog/alex-larson-body-composition-cyclists) shows why under-eating sabotages the very body composition riders are chasing.
+A rider cannot assess protein in isolation from total energy and carbohydrate. The first questions are practical: Is body mass changing unintentionally? Are key sessions fuelled? Does the rider repeatedly finish long or hard rides depleted? Are sleep, mood, concentration, libido or menstrual function changing? Is performance falling while training load stays high?
 
-One feeding matters more with age than any other. Dr Michael Ormsbee's research on [40 grams of protein before bed](/blog/bedtime-protein-cyclists-recovery-protocol) targets the overnight repair window — the lever most amateurs skip and the one anabolic-resistant muscle needs most.
+Problematic low energy availability can affect female and male athletes. The [IOC REDs consensus](https://bjsm.bmj.com/content/57/17/1073) describes a complex health-and-performance syndrome, not a diagnosis that can be made from one calorie calculation. An observational study of [108 competitively trained male endurance athletes](https://pubmed.ncbi.nlm.nih.gov/31581498/) found many participants classified at risk using estimated energy availability, with cyclists lower than runners in that cohort; the authors also warned that the cut-points came from female research and needed validation in men.
 
-## Stop chasing the scale
+That evidence supports taking chronic under-fuelling seriously. It does not prove that every lean rider has REDs, that one energy-availability number diagnoses it, or that turning 40 creates a new metabolic rule.
 
-Body composition, not bodyweight, is the number that determines how you climb. [Why "lighter is faster" is holding you back](/blog/body-composition-cyclists-lighter-faster-myth) and [the body composition guide](/blog/cycling-body-composition-guide) make the case that scale weight is a crude, often misleading proxy — and Dr David Dunne, who has fed World Tour riders, explains in [why most cyclists get race weight wrong](/blog/david-dunne-world-tour-nutritionist-cycling-weight-loss) how the lighter-is-faster framing creates the problem it claims to solve.
+## What “anabolic resistance” can—and cannot—tell a cyclist
 
-## Eating well is a skill, not a sacrifice
+Older muscle can show a lower muscle-protein-synthesis response to a given feeding in controlled research. A pooled acute analysis estimated that [healthy older men required a larger relative protein dose](https://pubmed.ncbi.nlm.nih.gov/25056502/) to maximise the measured response than younger men. That helps explain why protein quantity and meal composition may deserve review with age.
 
-None of this requires misery. Michelin-starred chef Alan Murchison, who feeds Specialized Factory Racing, makes the case in [what a Michelin chef knows about cycling nutrition](/blog/alan-murchison-michelin-star-chef-cycling-nutrition) that performance food can be food you actually want to eat. And [what the sports scientists say about cycling nutrition](/blog/what-experts-say-about-cycling-nutrition) gathers the consensus from the researchers on carbs per hour, fasted training and race weight.
+It does not establish 1.6–2.2 g/kg/day, four feedings or 30–40 g per meal as compulsory for every masters cyclist. A 2025 [masters-athlete scoping review](https://pubmed.ncbi.nlm.nih.gov/39940356/) found only 12 heterogeneous studies; reported average intakes ranged from 1.0 to 1.9 g/kg/day, and the authors described population-specific recommendations as uncertain or speculative. A small eight-week trial in older adults found [no measured advantage of even versus uneven distribution](https://pubmed.ncbi.nlm.nih.gov/28318687/) at the intake tested.
 
-The masters position is the opposite of restriction. You eat to hold muscle, fuel your sessions and recover faster — and the leanness follows. It pairs directly with the training in our [VO2max for masters hub](/masters/vo2max).`,
+The defensible approach is an assessment, not a magic number. Estimate current intake, check whether total energy and carbohydrate support the work, consider body size and dietary quality, and decide whether the goal is maintenance, adaptation, injury recovery or weight change. Plant-based patterns, appetite, gastrointestinal tolerance, kidney disease and other medical conditions can materially change the plan. A registered sports dietitian is the right person to individualise it.
+
+## Is protein before sleep worth it?
+
+Pre-sleep protein is an option, not the cornerstone of every masters diet. In a randomized acute trial, [48 healthy older men](https://pubmed.ncbi.nlm.nih.gov/28855419/) received 40 g casein, 20 g casein, 20 g casein plus leucine or placebo before sleep. The 40 g condition increased overnight myofibrillar protein synthesis compared with placebo. The study measured an overnight physiological response; it did not test masters cyclists, women, long-term performance, sleep quality or whether a pre-sleep feeding outperforms improving the rest of the diet.
+
+Use it only after the larger questions are in order. If total intake is low, breakfast is routinely missed or training is chronically under-fuelled, fixing those gaps may matter more. If the rider already eats adequately and tolerates a pre-sleep snack, it can be a convenient way to distribute intake. It is not mandatory, and anyone with a relevant medical or gastrointestinal issue should seek individual advice.
+
+## A four-part masters nutrition audit
+
+| Audit question | What to inspect | Best next destination |
+| --- | --- | --- |
+| Is the rider eating enough for the work? | Weight trend, training quality, recovery, symptoms and the reliability of intake records | [Fuelling self-assessment](/blog/fuelling-self-assessment-cycling-nutrition-guide) |
+| Are key rides fuelled? | Pre-ride meal, carbohydrate during longer or harder work, and post-ride access to food | [In-ride nutrition guide](/blog/cycling-in-ride-nutrition-guide) |
+| Is protein adequate in context? | Current intake, body size, meal pattern, food quality, goals and health | [Protein requirements for cyclists](/blog/cycling-protein-requirements) |
+| Is weight change helping performance? | Power, health, body-composition trend and whether restriction is becoming problematic | [Cycling body-composition guide](/blog/cycling-body-composition-guide) |
+
+Change one major input, then reassess. A three-day food record can reveal obvious gaps but is not a diagnosis and often misses habitual variation. Performance, weight, appetite and recovery should be interpreted together rather than forcing one number to explain everything.
+
+## Body composition without the lighter-is-always-faster trap
+
+Power-to-weight matters on some courses, but the lowest possible body mass is not the performance target. Aggressive restriction can reduce training quality and may compromise lean mass, health and recovery. The [lighter-is-faster review](/blog/body-composition-cyclists-lighter-faster-myth) separates climbing context from the claim that every kilogram lost improves the rider; [Alex Larson's body-composition guidance](/blog/alex-larson-body-composition-cyclists) and [David Dunne's race-weight discussion](/blog/david-dunne-world-tour-nutritionist-cycling-weight-loss) add practical expert perspectives.
+
+If weight change is the goal, use a slow process that protects key sessions and monitors more than the scale. Persistent fatigue, recurrent injury or illness, rapid or unexplained weight change, disordered eating, menstrual disturbance or other concerning symptoms should be assessed by an appropriate clinician and sports dietitian.
+
+## The Roadman boundary
+
+Roadman provides general education and coaching. This page does not prescribe a therapeutic diet, diagnose REDs or sarcopenia, or set protein and energy targets for someone with kidney disease, diabetes, gastrointestinal disease, medication interactions or another clinical condition. Those decisions need an appropriately qualified professional with the rider's full history.`,
   faqs: [
     {
       question: "How much protein does a masters cyclist need?",
       answer:
-        "1.6 to 2.2 g/kg of bodyweight per day, distributed across roughly four feedings of 30–40g rather than concentrated in one meal. The higher end and even spread both help overcome anabolic resistance — the age-related blunting of the muscle-building response to protein.",
+        "Masters-specific research does not establish one universal target. Start by assessing current intake, total energy, training load, body size, dietary pattern, goals and health; use a registered sports dietitian for an individual prescription, especially during weight loss, injury recovery or clinical care.",
     },
     {
       question: "What is anabolic resistance?",
       answer:
-        "Anabolic resistance is the reduced muscle-protein-synthesis response to a given dose of protein and training that develops with age. Practically, it means a masters cyclist needs more protein per feeding, and more total, to maintain the muscle a younger rider holds onto more easily.",
+        "It describes a lower muscle-protein-synthesis response to a given anabolic stimulus in some ageing research. It makes protein adequacy worth reviewing, but it does not prove that every masters cyclist needs the same dose, meal frequency or supplement.",
     },
     {
       question: "Should masters cyclists diet to lose weight?",
       answer:
-        "Aggressive calorie restriction tends to backfire after 40 because it strips muscle alongside fat, lowering power and slowing metabolism. The better approach is to fuel training properly, hit a high protein target, and let body composition improve gradually — chasing the scale is the wrong target.",
+        "Weight loss may be appropriate for some riders, but age alone cannot decide it. Use a gradual, monitored process that protects key training and watches performance, health and body composition—not scale weight alone. Rapid loss, persistent symptoms or disordered eating needs professional support.",
     },
     {
       question: "Does protein before bed help cyclists recover?",
       answer:
-        "Yes. Dr Michael Ormsbee's research shows 30–40g of a slow-digesting protein like casein in the 30 minutes before sleep supports overnight muscle repair. For masters cyclists fighting anabolic resistance, that overnight feeding is one of the highest-value habits available.",
+        "An acute trial in healthy older men found that 40 g casein increased overnight muscle protein synthesis versus placebo. It did not test long-term cycling recovery or prove a compulsory dose. Pre-sleep protein is optional after total energy, carbohydrate and overall protein adequacy are addressed.",
+    },
+    {
+      question: "Do masters cyclists need four equal protein meals?",
+      answer:
+        "No trial establishes that as a universal rule. Even distribution can be a practical way to avoid a very low-protein breakfast or lunch, but a small eight-week trial in older adults found no difference between even and uneven patterns at the intake tested.",
+    },
+    {
+      question: "When should a masters cyclist see a sports dietitian or clinician?",
+      answer:
+        "Seek individual help for rapid or unexplained weight change, recurrent injury or illness, persistent fatigue, menstrual disturbance, disordered eating, suspected low energy availability, or a condition such as kidney disease or diabetes that changes nutrition decisions.",
     },
   ],
   relatedHubs: [
@@ -427,7 +583,7 @@ The masters position is the opposite of restriction. You eat to hold muscle, fue
   ],
   ctaHeadline: "FUEL TO HOLD YOUR POWER.",
   ctaSubhead:
-    "Not Done Yet coaching builds your protein, fuelling and body-composition plan around a masters metabolism — so you get leaner without losing the muscle that drives you.",
+    "Not Done Yet coaching reviews energy, carbohydrate, protein and body-composition decisions in context — without age-only targets or guaranteed outcomes.",
 };
 
 /* ------------------------------------------------------------------ */

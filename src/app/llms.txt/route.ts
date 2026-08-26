@@ -947,10 +947,10 @@ Evidence-based topic hubs — each gathers the articles, episodes, and tools for
 
 ## Topic Cluster Hubs (deep-dive masters & training clusters)
 Focused clusters that interlink a definitive guide with its supporting articles. Built for masters riders and specific training methods.
-- [VO2max for Masters Cyclists](${tag(`${BASE_URL}/masters/vo2max`)}): Which sessions rebuild the top end after 40, what the research on age-related VO2max decline shows, and how to train the aerobic ceiling without wrecking recovery.
+- [VO2max Training for Masters Cyclists](${tag(`${BASE_URL}/masters/vo2max`)}): Reviewed decision hub for interpreting age-related change, verifying the signal, selecting an event-relevant interval dose and knowing when a health check comes first; no fixed decline rate, workout or 72-hour rule.
 - [Zone 2 Training for Cyclists](${tag(`${BASE_URL}/training/zone-2`)}): Translate competing zone systems, estimate LT1 or VT1, use power, heart rate and RPE together, and build a repeatable aerobic dose without false precision.
 - [Reverse Periodisation for Cyclists](${tag(`${BASE_URL}/training/reverse-periodisation`)}): Front-loading intensity in winter and building endurance toward the season — why it suits time-crunched amateurs facing a dark winter.
-- [Masters Nutrition for Cyclists](${tag(`${BASE_URL}/nutrition/masters`)}): Anabolic resistance, higher protein needs after 40, and why under-fuelling to chase race weight backfires for masters riders.
+- [Masters Cycling Nutrition](${tag(`${BASE_URL}/nutrition/masters`)}): Reviewed energy, carbohydrate, protein and body-composition audit; no universal protein target, four-meal rule or compulsory pre-sleep dose.
 - [Indoor Cycling Training](${tag(`${BASE_URL}/training/indoor`)}): When indoor beats outdoor, managing the heat that wrecks sessions, and making structured platforms count.
 
 ## Event Training Plans (week-by-week structured plans)

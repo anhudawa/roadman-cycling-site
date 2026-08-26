@@ -55,6 +55,20 @@ function HubJsonLd({ hub }: { hub: ResolvedClusterHub }) {
               isPartOf: { "@id": ENTITY_IDS.website },
               mainEntity: { "@id": `${url}#thing` },
               about: { "@id": `${url}#thing` },
+              ...(hub.lastReviewed && { dateModified: hub.lastReviewed }),
+              ...(hub.reviewedBy && {
+                reviewedBy:
+                  hub.reviewedBy === "Anthony Walsh"
+                    ? { "@id": ENTITY_IDS.person }
+                    : { "@type": "Person", name: hub.reviewedBy },
+              }),
+              ...(hub.research && hub.research.length > 0 && {
+                citation: hub.research.map((source) => ({
+                  "@type": "ScholarlyArticle",
+                  name: source.title,
+                  url: source.href,
+                })),
+              }),
               hasPart: hub.articles.map((a) => ({
                 "@type": "BlogPosting",
                 "@id": `${SITE_ORIGIN}/blog/${a.slug}#article`,
@@ -372,7 +386,16 @@ export function ClusterHubPage({ def }: { def: ClusterHubDef }) {
                   title: a.title,
                   href: `/blog/${a.slug}`,
                 }))}
-                methodology={`This hub aggregates Roadman Cycling's written guides and podcast conversations into a single position on ${hub.metaTitle.toLowerCase()}. Every recommendation traces back to a named expert on the show or the published research they cite — not generic fitness content.`}
+                research={hub.research?.map((source) => ({
+                  title: `${source.title} — ${source.scope}`,
+                  href: source.href,
+                }))}
+                methodology={
+                  hub.methodology ??
+                  `This hub aggregates Roadman Cycling's written guides and podcast conversations into a single position on ${hub.metaTitle.toLowerCase()}. Every recommendation traces back to a named expert on the show or the published research they cite — not generic fitness content.`
+                }
+                reviewedBy={hub.reviewedBy}
+                lastReviewed={hub.lastReviewed}
               />
               <AskRoadmanCTA
                 topic={hub.metaTitle}
