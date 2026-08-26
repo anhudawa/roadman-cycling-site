@@ -3,6 +3,7 @@ import { HowToSchema } from "./HowToSchema";
 import { JsonLd } from "./JsonLd";
 import { SoftwareApplicationSchema } from "./SoftwareApplicationSchema";
 import { getToolLanding } from "@/lib/tools/landing-content";
+import { ENTITY_IDS } from "@/lib/brand-facts";
 
 interface ToolSchemasProps {
   /** Tool slug — must exist in TOOL_LANDING_CONTENT. */
@@ -32,6 +33,29 @@ export function ToolSchemas({ slug }: ToolSchemasProps) {
         description={c.howItWorks}
         totalTime={c.howToTotalTime}
         steps={c.howToSteps}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "@id": `${c.url}#webpage`,
+          url: c.url,
+          name: c.title,
+          description: c.description,
+          isPartOf: { "@id": ENTITY_IDS.website },
+          publisher: { "@id": ENTITY_IDS.organization },
+          author: { "@id": ENTITY_IDS.person },
+          mainEntity: { "@id": `${c.url}#webapplication` },
+          ...(c.dateModified && { dateModified: c.dateModified }),
+          ...(c.reviewedBy && {
+            reviewedBy: c.reviewedBy === "Anthony Walsh"
+              ? { "@id": ENTITY_IDS.person }
+              : { "@type": "Person", name: c.reviewedBy },
+          }),
+          ...(c.evidenceSources && c.evidenceSources.length > 0 && {
+            citation: c.evidenceSources.map((source) => source.href),
+          }),
+        }}
       />
       <JsonLd
         data={{

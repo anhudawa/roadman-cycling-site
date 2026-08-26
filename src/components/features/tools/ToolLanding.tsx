@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Section, Container } from "@/components/layout";
 import { getToolLanding, type ToolLandingContent, type ToolRelatedLink } from "@/lib/tools/landing-content";
+import { CONTACT, FOUNDER } from "@/lib/brand-facts";
 
 interface ToolLandingProps {
   /** Tool slug — must exist in TOOL_LANDING_CONTENT. */
@@ -154,9 +155,104 @@ function LimitationsSection({ content }: { content: ToolLandingContent }) {
             <p className="text-foreground-muted leading-relaxed">{content.whenToSeeACoach}</p>
           </div>
         </div>
+        {content.evidenceSources && content.evidenceSources.length > 0 && (
+          <ToolEvidenceBlock content={content} />
+        )}
       </Container>
     </Section>
   );
+}
+
+function ToolEvidenceBlock({ content }: { content: ToolLandingContent }) {
+  const reviewedBy = [content.reviewedBy, content.reviewScope]
+    .filter(Boolean)
+    .join(" — ");
+  const reviewedDate = formatReviewDate(content.dateModified);
+
+  return (
+    <aside
+      className="rounded-xl border border-white/10 bg-white/[0.03] p-5 md:p-6 mt-10"
+      aria-label="Primary evidence, author, and editorial standards"
+    >
+      <p className="font-heading text-coral text-xs tracking-widest mb-4">
+        SOURCES &amp; TRUST
+      </p>
+      <div className="mb-4">
+        <p className="text-xs text-foreground-subtle uppercase tracking-wider mb-2">
+          Author
+        </p>
+        <p className="text-sm text-foreground-muted">
+          <Link
+            href={FOUNDER.url}
+            className="text-off-white hover:text-coral transition-colors"
+          >
+            {FOUNDER.name}
+          </Link>
+          {" — "}
+          {FOUNDER.jobTitle}
+        </p>
+      </div>
+      <div className="mb-4">
+        <p className="text-xs text-foreground-subtle uppercase tracking-wider mb-2">
+          Primary evidence
+        </p>
+        <ul className="space-y-2">
+          {content.evidenceSources?.map((source) => (
+            <li key={source.href} className="text-sm text-foreground-muted">
+              <span className="text-off-white">{source.name}</span>
+              {" — "}
+              {source.role}{" "}
+              <a
+                href={source.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-coral hover:text-coral/80 transition-colors"
+                aria-label={`Read primary source: ${source.name}`}
+              >
+                <span aria-hidden="true">→</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="text-xs text-foreground-subtle border-t border-white/10 pt-3 mt-3 space-y-1">
+        {(reviewedBy || reviewedDate) && (
+          <p>
+            {reviewedBy && <span>Reviewed by {reviewedBy}</span>}
+            {reviewedBy && reviewedDate && <span> · </span>}
+            {reviewedDate && <span>Last reviewed {reviewedDate}</span>}
+          </p>
+        )}
+        <p>
+          <Link
+            href={CONTACT.editorialStandardsUrl.replace(/^https?:\/\/[^/]+/, "")}
+            className="text-foreground-subtle hover:text-coral transition-colors underline decoration-white/10 underline-offset-2"
+          >
+            Editorial standards
+          </Link>
+          {" · "}
+          <a
+            href={`mailto:${CONTACT.correctionsEmail}?subject=Correction%20request`}
+            className="text-foreground-subtle hover:text-coral transition-colors underline decoration-white/10 underline-offset-2"
+          >
+            Report a correction
+          </a>
+        </p>
+      </div>
+    </aside>
+  );
+}
+
+function formatReviewDate(value?: string): string | undefined {
+  if (!value) return undefined;
+  const date = new Date(`${value}T00:00:00Z`);
+  if (Number.isNaN(date.getTime())) return value;
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(date);
 }
 
 function FAQSection({ content }: { content: ToolLandingContent }) {
