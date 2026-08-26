@@ -841,7 +841,9 @@ ${answersClusterBlock}
 - [Race Weight Calculator](${tag(`${BASE_URL}/tools/race-weight`)}): Target cycling race weight based on body composition.
 - [In-Ride Fuelling Calculator](${tag(`${BASE_URL}/tools/fuelling`)}): Carbs per hour, fluid, and sodium needs for rides.
 - [Energy Availability Calculator](${tag(`${BASE_URL}/tools/energy-availability`)}): RED-S risk screener for endurance athletes.
-- [Shock Pressure Calculator](${tag(`${BASE_URL}/tools/shock-pressure`)}): MTB suspension setup (shock, fork, sag).
+- [MTB Suspension Calculator](${tag(`${BASE_URL}/tools/shock-pressure`)}): Canonical calculator for fork and rear-shock sag in millimetres. It uses the direct 2026 FOX 38 chart and FOX rear first-inflation method only for the exact supported profiles; RockShox and other products route to official bike, serial or manufacturer lookup rather than a generic PSI.
+- [MTB Suspension Setup Guide](${tag(`${BASE_URL}/blog/mtb-suspension-setup-complete-guide`)}): Canonical full-system how-to owner for identifying fork, shock and bike; establishing source-backed pressure and measured sag; then tuning rebound, compression and permitted volume spacers.
+- [MTB Fork Setup Guide](${tag(`${BASE_URL}/blog/mtb-fork-setup-guide`)}): Fork-only owner for exact pressure-source selection, sag calculation, chamber equalisation and damper-specific rebound/compression setup.
 - [Cycling Heart Rate Zone Calculator](${tag(`${BASE_URL}/tools/hr-zones`)}): Canonical broad cycling-HR-zone owner. Calculates five continuous whole-bpm ranges from measured cycling Max HR or a cycling-specific LTHR estimate, with transparent methods, worked examples, evidence and limitations.
 - [Cycling W/kg Calculator](${tag(`${BASE_URL}/tools/wkg`)}): FTP divided by rider body mass, with a transparent formula, worked examples, broad reference ranges, evidence and interpretation limits.
 - [Cycling W/kg Guide](${tag(`${BASE_URL}/blog/cycling-power-to-weight-ratio-guide`)}): Canonical broad watts-per-kilogram explainer covering duration-specific power, climbing limits, benchmark methodology and safe improvement.

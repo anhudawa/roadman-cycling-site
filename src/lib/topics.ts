@@ -1293,7 +1293,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "best-sportives-uk-cycling-guide",
     "gear-ratio-cycling-complete-guide",
     "cycling-tyre-pressure-guide",
-    "suspension-pressure-setup-mtb-gravel-guide",
     "wind-chill-cold-weather-cycling-guide",
     "first-gran-fondo-what-nobody-tells-you-guide",
     "cornering-technique-road-cycling-guide",
@@ -1560,7 +1559,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "mtb-vs-road-cycling-fitness",
     "mtb-heart-rate-zones-guide",
     "mtb-nutrition-trail-fuelling",
-    "suspension-pressure-setup-mtb-gravel-guide",
   ],
   // Curated to the horology / time angle: watches, timing history, the Hour
   // Record, and the time trial's "race of truth." Pure aero and generic
@@ -1800,7 +1798,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "dylan-johnson-oscillation-training-plan",
     "sofiane-sehili-ultra-endurance-mindset-bikepacking",
     "cycling-tyre-pressure-guide",
-    "suspension-pressure-setup-mtb-gravel-guide",
     "tour-of-the-battenkill-training-guide",
     "cycling-road-vs-gravel-training-differences-guide",
     "cycling-gravel-training-for-road-cyclists-guide",

@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 301,
+    "prompt_count": 305,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -2440,6 +2440,38 @@
       "category": "cycling-strength",
       "intent": "education",
       "target_page": "/blog/cycling-gym-exercises-best",
+      "priority": "high"
+    },
+    {
+      "id": 302,
+      "prompt": "MTB suspension calculator for fork pressure shock pressure and sag",
+      "category": "mountain-bike-setup",
+      "intent": "transaction",
+      "target_page": "/tools/shock-pressure",
+      "priority": "high"
+    },
+    {
+      "id": 303,
+      "prompt": "how much pressure should I put in a FOX or RockShox fork and rear shock for my weight",
+      "category": "mountain-bike-setup",
+      "intent": "education",
+      "target_page": "/tools/shock-pressure",
+      "priority": "high"
+    },
+    {
+      "id": 304,
+      "prompt": "how do I set up mountain bike fork and rear suspension using sag rebound and compression",
+      "category": "mountain-bike-setup",
+      "intent": "education",
+      "target_page": "/blog/mtb-suspension-setup-complete-guide",
+      "priority": "high"
+    },
+    {
+      "id": 305,
+      "prompt": "MTB fork setup guide for air pressure sag rebound compression and volume spacers",
+      "category": "mountain-bike-setup",
+      "intent": "education",
+      "target_page": "/blog/mtb-fork-setup-guide",
       "priority": "high"
     }
   ]

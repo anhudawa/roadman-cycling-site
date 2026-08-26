@@ -283,7 +283,7 @@ only by its archive rather than by contextual editorial links.
 - [Cingles du Mont Ventoux Training Guide: How to Climb Ventoux Three Times in One Day](/blog/sportive-cingles-mont-ventoux-training-guide) — linked only from `[blog archive]`
 - [Super Shoes Explained: Do Carbon Plate Running Shoes Make Sense for Cyclists?](/blog/super-shoes-carbon-plate-running-cyclists) — linked only from `[blog archive]`
 - [Supplements for the Cyclist Who Runs: What Has Evidence, What Is Noise](/blog/supplements-endurance-cyclist-runner) — linked only from `[blog archive]`
-- [Suspension Pressure Setup for MTB and Gravel: Sag, Rebound, and Getting It Right](/blog/suspension-pressure-setup-mtb-gravel-guide) — linked only from `[blog archive]`
+- ~~Suspension Pressure Setup for MTB and Gravel~~ — consolidated on 26 August 2026 into [MTB Suspension Setup Guide](/blog/mtb-suspension-setup-complete-guide) with a permanent redirect after the mixed page recorded 10 clicks from 2,206 impressions in the three-month GSC baseline.
 - [Tour des Stations Training Guide: 267km, 8,000m of Climbing, and One of the Hardest Days on a Bike](/blog/tour-des-stations-training-guide) — linked only from `[blog archive]`
 - [Tour of Cambridgeshire Training Guide: How to Prepare for the UK's UCI Gran Fondo Qualifier](/blog/tour-of-cambridgeshire-training-guide) — linked only from `[blog archive]`
 - [Tour of the Battenkill Training Guide: America's Dirt Road Classic](/blog/tour-of-the-battenkill-training-guide) — linked only from `[blog archive]`
