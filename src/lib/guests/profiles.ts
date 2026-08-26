@@ -1184,21 +1184,97 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "jonas-abrahamsen": {
+    seoDescription:
+      "Roadman guest profile for Uno-X Mobility rider Jonas Abrahamsen, with his verified 2025 Tour stage win, 2024 jersey run and training interview.",
+    credential:
+      "Uno-X Mobility rider and 2025 Tour de France stage winner",
     description:
-      "Norwegian professional road cyclist for Uno-X Mobility. Tour de France stage breakaway specialist and 2024 Tour de France polka-dot KOM jersey wearer for multiple stages, with multiple WorldTour-level breakaway and stage-race results.",
+      "Norwegian professional road cyclist for Uno-X Mobility, winner of Stage 11 of the 2025 Tour de France and wearer of the Tour's green and polka-dot jerseys during his 2024 breakaway campaign.",
     worksFor: {
       name: "Uno-X Mobility",
       type: "SportsTeam",
+      url: "https://www.unoxteam.com/mens-worldteam",
     },
-    whyMatters:
-      "Jonas Abrahamsen is the Uno-X Mobility breakaway specialist who became one of the public faces of the 2024 Tour de France through his stage-long efforts in the polka-dot KOM jersey. As one of the leading lights of the Norwegian programme — backed by Olav Bu's performance team — he represents the new generation of riders who have come up through structured Norwegian endurance science rather than the traditional European junior pipeline. For Roadman listeners interested in how the Norwegian model produces World Tour talent, he is one of the most visible recent examples.",
-    keyIdeas: [
-      "Breakaway craft is a discrete skill set — gauging the bunch's appetite and committing 50 km out wins the day.",
-      "Norwegian-system riders combine high aerobic volume with disciplined intensity, producing durability across stage races.",
-      "Body composition and weight management for breakaway riders trade against power output for long, climb-heavy stages.",
-      "Mental approach to long solo efforts is built in training rides that simulate the demand without the cameras.",
-      "Smaller-budget WorldTour teams now have a viable model — selective racing, breakaway specialism, and visible results.",
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Jonas_Abrahamsen",
+      "https://www.wikidata.org/wiki/Q23013999",
+      "https://www.uci.org/rider-details/86594",
+      "https://www.letour.fr/en/rider/122/uno-x-mobility/jonas-abrahamsen",
     ],
+    whyMatters:
+      "Jonas Abrahamsen is a Norwegian breakaway specialist for Uno-X Mobility. He became one of the faces of the 2024 Tour de France by leading both the points and mountains classifications in the opening stages, then won Stage 11 in Toulouse in 2025 after attacking from kilometre zero. His Roadman interview is valuable because it separates that verified race record from his first-person account of gaining roughly 18kg, developing more short-duration power and using high-volume, heat and altitude blocks. The individual physiology numbers are his account; the related published heat study reports group results and does not identify individual participants.",
+    keyIdeasHeading: "VERIFIED RECORD AND INTERVIEW CLAIMS",
+    keyIdeasDescription:
+      "Official race and team records are separated from Abrahamsen's self-reported body-mass, power and physiology figures.",
+    keyIdeas: [
+      "Won Stage 11 of the 2025 Tour de France in Toulouse, his first Grand Tour victory and Uno-X Mobility's first Tour stage win.",
+      "Led the 2024 Tour's points and mountains classifications in the opening stages and retained the polka-dot jersey through Stage 10.",
+      "Says moving from roughly 60kg to 78kg helped him recover, position and produce the short-duration power his role demanded.",
+      "Describes winter volume of 20–25 hours at home and 30–35 hours on training camp, rather than a fixed weekly template.",
+      "Reports a large individual VO2-max response to heat training; the related study found greater haemoglobin mass but no statistically greater VO2-max or performance gain than control.",
+    ],
+    faqs: [
+      {
+        question: "Who is Jonas Abrahamsen?",
+        answer:
+          "Jonas Abrahamsen is a Norwegian professional road cyclist for Uno-X Mobility. He is a breakaway specialist, won Stage 11 of the 2025 Tour de France and led both the points and mountains classifications during the opening stages of the 2024 Tour.",
+      },
+      {
+        question: "When did Jonas Abrahamsen win a Tour de France stage?",
+        answer:
+          "Abrahamsen won Stage 11 of the 2025 Tour de France in Toulouse on 16 July. The official Tour report records it as his first Grand Tour victory and Uno-X Mobility's first Tour stage win.",
+      },
+      {
+        question: "Did Jonas Abrahamsen gain 18kg?",
+        answer:
+          "In his Roadman interview, Abrahamsen says he moved from roughly 60kg to 78kg and credits the change with better recovery and much higher short-duration power. The weights, power figures and causal interpretation are his self-reported experience.",
+      },
+      {
+        question: "What does the Jonas Abrahamsen heat-training study show?",
+        answer:
+          "The related five-week study in elite cyclists found a 42g increase in haemoglobin mass in the heat group versus 6g in control, but no statistically greater VO2-max or performance improvement. Abrahamsen reports his own VO2 max rose from roughly 70–74 to 84; the paper does not publish that individual result or identify participants by name.",
+      },
+      {
+        question: "What does Jonas Abrahamsen discuss on the Roadman podcast?",
+        answer:
+          "The interview covers his 2025 Tour stage win, self-reported 18kg body-mass change, short-duration power, 20–35-hour winter weeks, heat and altitude work, controlled VO2 intervals and recovery from a broken collarbone before the Tour.",
+      },
+    ],
+    sources: [
+      {
+        name: "Tour de France — Abrahamsen wins Stage 11 in Toulouse",
+        url: "https://www.letour.fr/en/news/2025/abrahamsen-what-a-first/1328895",
+        note: "Official Stage 11 report recording the 16 July 2025 win as Abrahamsen's first Grand Tour victory and Uno-X Mobility's first.",
+      },
+      {
+        name: "Tour de France — green and polka-dot jerseys in 2024",
+        url: "https://www.letour.fr/en/news/2024/jonas-abrahamsen-uno-x-sometimes-you-have-to-put-on-a-show/1318099",
+        note: "Official Tour interview establishing his 2024 points- and mountains-classification lead and separating it from the 2025 stage win.",
+      },
+      {
+        name: "Uno-X Mobility — 2026 Men's WorldTour Team",
+        url: "https://www.unoxteam.com/mens-worldteam",
+        note: "Current official roster listing Abrahamsen and the team's 2026 WorldTour status.",
+      },
+      {
+        name: "UCI — Jonas Abrahamsen rider record",
+        url: "https://www.uci.org/rider-details/86594",
+        note: "Canonical UCI rider identity record.",
+      },
+      {
+        name: "Rønnestad et al. — five weeks of heat training in elite cyclists",
+        url: "https://doi.org/10.1113/EP088544",
+        note: "Peer-reviewed group study reporting increased haemoglobin mass but no statistically greater VO2-max or performance improvement versus control.",
+      },
+      {
+        name: "Roadman Cycling Podcast — Jonas Abrahamsen interview",
+        url: "https://roadmancycling.com/podcast/ep-29-untold-story-ofjonas-abrahamsens-pro-winter-training",
+        note: "Primary source for Abrahamsen's body-mass, power, heat, altitude and winter-volume claims.",
+      },
+    ],
+    reviewedBy:
+      "Anthony Walsh, against official Tour de France, Uno-X Mobility and UCI records, the peer-reviewed heat-training paper and the Roadman interview",
+    lastReviewed: "2026-08-26",
     relatedHubs: ["cycling-training-plans"],
   },
 
