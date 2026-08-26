@@ -17,7 +17,7 @@ describe("priority search article evidence contracts", () => {
   it("keeps the 60-day training result distinct from general guidance", () => {
     const article = readArticle("how-pro-cyclist-trains-60-days");
 
-    expect(article.data.updatedDate).toBe("2026-08-25");
+    expect(article.data.updatedDate).toBe("2026-08-26");
     expect(article.data.answerCapsule).toContain("That result is not a forecast");
     expect(article.data.citedClaims).toHaveLength(4);
     expect(

@@ -13,17 +13,18 @@ import {
 import { getTestimonialsByName } from "@/lib/testimonials";
 import { EVENTS } from "@/lib/training-plans";
 import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
+import { OFFER_TIERS } from "@/lib/offer-ladder";
 
 const STRUCTURED_IMAGE_URL = `${SITE_ORIGIN}/api/og/blog-hero?title=${encodeURIComponent("Cycling Training Plans")}&pillar=coaching`;
+const PLAN_OFFER = OFFER_TIERS.notDoneYet;
 
 /**
  * /training-plans — pillar hub for the "cycling training plans" topic
  * cluster.
  *
- * The page is built around one editorial argument: a plan only works
- * when it's matched to the rider. The four-cause diagnostic at
- * `/plateau` is the gate — the page funnels readers there first, then
- * routes them to the Not Done Yet plan tier that matches their hours.
+ * The page is built around one editorial argument: a useful plan makes its
+ * rider inputs and review rules explicit. The four-pattern self-assessment at
+ * `/plateau` is the first routing step before a coaching review.
  *
  * Delivery is TrainingPeaks. Periodisation is 16 weeks. Hours/week
  * tiers are 6, 8, 10, 12. None of this is invented — it mirrors the
@@ -33,7 +34,7 @@ const STRUCTURED_IMAGE_URL = `${SITE_ORIGIN}/api/og/blog-hero?title=${encodeURIC
 export const metadata: Metadata = {
   title: { absolute: "Cycling Training Plans for 6–12 Hours a Week" },
   description:
-    "16-week cycling training plans for 6, 8, 10 or 12 hours a week, delivered in TrainingPeaks and matched to your goal, fitness and available time.",
+    "Coached 16-week cycling training plans for 6–12 hours a week, with TrainingPeaks delivery, weekly review and live group coaching. $195/month.",
   keywords: [
     "cycling training plans",
     "structured cycling training",
@@ -53,7 +54,7 @@ export const metadata: Metadata = {
     title:
       "Cycling Training Plans — Periodised, Coach-Designed, TrainingPeaks-Delivered",
     description:
-      "16-week periodised cycling plans built around 6 to 12 hours a week and tuned to one of four plateau profiles. No shelf templates.",
+      "Roadman's coached 16-week cycling plans for 6 to 12 hours a week, delivered in TrainingPeaks with weekly review and live group coaching.",
     type: "website",
     url: `${SITE_ORIGIN}/training-plans`,
   },
@@ -61,7 +62,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Cycling Training Plans — Roadman Cycling",
     description:
-      "Periodised, coach-designed, TrainingPeaks-delivered. Matched to your plateau profile, not pulled off a shelf.",
+      "Coached 16-week TrainingPeaks plans for 6 to 12 hours a week, with weekly review and live group coaching.",
   },
   robots: { index: true, follow: true },
 };
@@ -85,23 +86,23 @@ const PLAN_VARIANTS: PlanVariant[] = [
     label: "Six hours a week",
     audience: "Working parents. Two-job households. Riders with one bike window per day.",
     weeklyShape:
-      "Two quality sessions, one long ride, the rest is short Zone 2 or commute. Every minute earns its place.",
+      "A lower-volume structure in which priority work, endurance and recovery must fit inside a firm weekly ceiling.",
     bestFor:
-      "Holding FTP through a brutal work block, or building cleanly when life isn't quiet enough for more.",
+      "Riders who can protect roughly six hours consistently and need the block scaled to that constraint.",
     tradeoff:
-      "You won't add huge volume. You will move the needle — sharper intervals, smarter recovery, no junk miles.",
+      "Less volume leaves fewer optional sessions, so the goal and priority work must be explicit.",
   },
   {
     hours: "8",
     label: "Eight hours a week",
     audience:
-      "The most common bucket — serious amateur, full job, family, one big ride on the weekend.",
+      "Serious amateurs balancing a full working week, family commitments and a longer weekend riding window.",
     weeklyShape:
-      "Two hard days, one long endurance day, two short Zone 2 days. The week the rest of the plans are built around.",
+      "Priority sessions, endurance volume and recovery arranged around the rider's available days and current training tolerance.",
     bestFor:
-      "Cyclists who've plateaued on apps. The hours are enough — the structure usually isn't.",
+      "Riders who can protect roughly eight hours but want a named team to review how the week is working.",
     tradeoff:
-      "Needs honest easy riding. Most plateaus on 8 hours come from grey-zone training, not too little time.",
+      "Adding intensity can displace recovery quickly, so completed load and feedback still govern progression.",
   },
   {
     hours: "10",
@@ -109,11 +110,11 @@ const PLAN_VARIANTS: PlanVariant[] = [
     audience:
       "Riders with a target event. Club racers. People who've trained 8 and want to push the ceiling.",
     weeklyShape:
-      "Three quality days, one big endurance ride, two recovery rides, plus the weekly S&C block.",
+      "A larger endurance allowance with priority work, recovery and any strength training coordinated across the week.",
     bestFor:
-      "Cat 3 to Cat 1 progress. Building toward a Marmotte, Étape or 70.3. Climbing-specific blocks.",
+      "Riders preparing for a demanding event whose recent training supports a higher-volume block.",
     tradeoff:
-      "Real recovery matters more here than the next interval. The plan calls the easy ride easy on purpose.",
+      "The extra hours are useful only when the rider can recover from them and preserve the priority sessions.",
   },
   {
     hours: "12",
@@ -121,11 +122,11 @@ const PLAN_VARIANTS: PlanVariant[] = [
     audience:
       "Masters racing seriously, ultra-distance riders, comeback athletes with the time to commit.",
     weeklyShape:
-      "Three to four quality sessions, two long rides, recovery days that look easy and stay easy.",
+      "Higher-volume endurance and event-specific work with recovery placed according to the rider's response.",
     bestFor:
-      "Race-season builds, big sportives, ultra prep. The volume where polarised training really starts paying off.",
+      "Experienced riders whose event demands, training history and life schedule justify roughly twelve hours.",
     tradeoff:
-      "Twelve hours is a recovery problem, not a training problem. Sleep, food and life stress dictate the plan.",
+      "A twelve-hour target is not automatically better; sleep, fuelling, work and recent load may require less.",
   },
 ];
 
@@ -137,22 +138,22 @@ const FOUR_CAUSES = [
   {
     label: "UNDER-RECOVERED",
     summary:
-      "Doing the training. Not absorbing it. Sleep, life stress and back-to-back hard sessions are eating the adaptation.",
+      "Recent training load and life stress may be exceeding the recovery the rider currently has available.",
   },
   {
     label: "GREY-ZONE TRAP",
     summary:
-      "Most riding is neither easy enough to recover from nor hard enough to drive change. The middle is where progress dies.",
+      "Too much work may be accumulating at a similar moderate intensity, leaving priority and recovery days poorly separated.",
   },
   {
     label: "STRENGTH GAP",
     summary:
-      "The aerobic engine still works. The neuromuscular power that drives it is leaking quietly — about 1% a year after 40 without lifting.",
+      "The goal may benefit from strength work, depending on lifting history, cycling load, technique and recovery capacity.",
   },
   {
     label: "FUELLING DEFICIT",
     summary:
-      "Training hungry. Chasing race weight. Every session is paid for with tomorrow's adaptation.",
+      "Session fuelling or overall energy availability may not match the work; clinical concerns require qualified assessment.",
   },
 ];
 
@@ -179,17 +180,17 @@ const INSIDE_THE_PLAN = [
   {
     number: "04",
     title: "Strength block, not bolt-on",
-    body: "Cycling-specific S&C runs alongside the riding, periodised with it. Two sessions a week. Movements that transfer to power on the bike.",
+    body: "Cycling-specific strength work is coordinated with the riding and adjusted for lifting experience, soreness, priority sessions and event timing.",
   },
   {
     number: "05",
     title: "Fuelling and recovery built in",
-    body: "Carbs per hour by session, recovery windows, sleep targets. The bits most plans hand-wave that decide whether the training sticks.",
+    body: "General fuelling and recovery guidance is coordinated with session demand. Therapeutic nutrition and clinical questions sit outside coaching scope.",
   },
   {
     number: "06",
     title: "Weekly coaching with Anthony",
-    body: "Live group calls, written reviews when something doesn't go to plan, a community of riders running the same system. The reason the plan adapts when life moves.",
+    body: "Weekly live group coaching, an individual plan review by the Roadman coaching team and a private rider community between reviews.",
   },
 ];
 
@@ -200,23 +201,23 @@ const INSIDE_THE_PLAN = [
 const COMPARISONS = [
   {
     alt: "TrainerRoad / Zwift workouts",
-    them: "A library of sessions, AI scheduling, indoor focus. Useful for raw fitness in winter, less useful when life moves.",
-    us: "A periodised plan tied to your goal, with a coach watching the file. The plan adjusts when you don't sleep, not when an algorithm guesses.",
+    them: "Workout libraries and adaptive scheduling differ by product. Check which inputs drive changes, what is reviewed and when the rider must override the system.",
+    us: "A personalised TrainingPeaks plan reviewed weekly by the Roadman coaching team, with live group coaching and rider feedback in the loop.",
   },
   {
     alt: "Free YouTube plans",
-    them: "Generic templates, no progression, no accountability. Excellent if you're brand new to the sport.",
-    us: "Built around your hours, your plateau profile and your event date — and someone to talk to in week 6 when motivation dips.",
+    them: "Free plans can provide useful structure. Check the author, intended rider, progression, recovery, modification rules and date before using one.",
+    us: "The Roadman service adds individual plan review, current rider context and an agreed route for questions and changes.",
   },
   {
     alt: "Self-coached on Strava / Garmin",
-    them: "You're the coach, the athlete and the analyst. Works for some riders. Most plateau within 18 months.",
-    us: "Independent eyes on your file every week. A second opinion that catches the patterns you can't see in your own data.",
+    them: "The rider controls every decision and bears the cost of analysis, objectivity and knowing when to change the plan.",
+    us: "A named coaching team reviews the plan each week and is accountable for explaining the next change.",
   },
   {
     alt: "Off-the-shelf PDF plans",
-    them: "Fixed weeks, no adjustment, no diagnosis. If the plan was wrong for you on day one, it's still wrong on day 56.",
-    us: "Matched to a plateau profile before the first session. If the diagnostic says under-recovered, you don't get the build-volume plan.",
+    them: "A predetermined schedule can suit a predictable goal and week. Its value depends on fit and clear rules for missed or modified sessions.",
+    us: "Roadman uses a pre-start profile plus weekly review; the profile is a routing aid, not a medical diagnosis or performance guarantee.",
   },
 ];
 
@@ -228,38 +229,37 @@ const FAQ = [
   {
     question: "How long is a Roadman cycling training plan?",
     answer:
-      "Sixteen weeks. Base, build, peak and taper, sequenced properly — the same shape every coach in the podcast network builds against. You can start mid-cycle if you've kept a year-round Zone 2 base, but the full sixteen weeks is where the methodology actually compounds.",
+      "Roadman currently uses 16-week planning blocks. The phase emphasis and starting point depend on the rider's goal, recent training, event date and recovery; 16 weeks is the service format, not a claim that every cyclist needs the same sequence.",
   },
   {
     question: "How many hours a week do I need to train on a Roadman plan?",
     answer:
-      "Six, eight, ten or twelve. Six hours is enough to hold and build cleanly through a heavy work block. Eight is the most common bucket — full job, family, one big weekend ride. Ten and twelve are for riders with a target event or genuine race-season volume. Pick the number you can realistically protect for sixteen weeks, not the one that sounds impressive.",
+      "Roadman currently supports 6, 8, 10 and 12-hour weekly variants. Choose the time you can protect consistently, then confirm that the starting load and event demands fit your recent training rather than assuming more hours are better.",
   },
   {
     question: "How are the plans delivered?",
     answer:
-      "Through TrainingPeaks. Workouts land on your calendar each week, push to your Garmin, Wahoo or Hammerhead, and report back when you're done. No printed PDFs, no separate app to wrestle. You also get the weekly coaching call with Anthony and the private community alongside the plan itself.",
+      "Through TrainingPeaks. Structured workouts can sync to supported devices, and completed data returns to the calendar for review. The service also includes weekly live group coaching with Anthony Walsh and the private rider community.",
   },
   {
     question: "What is periodised cycling training?",
     answer:
-      "Splitting the year into phases that each build a different thing. Base for aerobic foundation, build for threshold and VO2 max work, peak for event-specific intensity, taper to shed fatigue before race day. The opposite of doing the same intervals all year and wondering why the gains stop.",
+      "Periodisation is the organisation of training so priorities change across time. Base, build, peak and taper are useful labels, but phase length and order depend on the athlete and event; research in trained cyclists does not establish one universally superior model.",
   },
   {
     question:
       "Why should I take the plateau diagnostic before getting a plan?",
     answer:
-      "Because the same number of hours produces different results depending on why you're stuck. An under-recovered rider needs less, not more. A grey-zone rider needs harder hard days and slower easy ones. A strength-gap rider needs lifting before another threshold block. The diagnostic is twelve questions and four minutes — it tells you which plan shape actually fits.",
+      "The four-minute self-assessment helps route the first conversation toward recovery, intensity distribution, strength or fuelling. It is not a medical diagnosis and does not determine the plan on its own; recent training, goals, feedback and coaching review still matter.",
   },
   {
     question: "Do I need a power meter to follow a Roadman plan?",
     answer:
-      "It helps, but it isn't required. Plenty of members run the plan on heart rate and rate of perceived exertion, then add a power meter later when they want to dial the intervals tighter. The plan is built so the prescriptions translate cleanly across both.",
+      "No. Power can make some targets and reviews more precise, but heart rate and rate of perceived exertion can also guide sessions when zones and limitations are understood. The coaching team confirms the available data during onboarding.",
   },
   {
     question: "How much does a Roadman training plan cost?",
-    answer:
-      "Training plans are delivered through Not Done Yet group coaching — $195 a month, with a 7-day free trial. That includes the personalised TrainingPeaks plan, weekly review by the Roadman coaching team, the live group coaching call with Anthony, the S&C roadmap, nutrition guidance, and a private community of serious cyclists running the same system. Cancel anytime.",
+    answer: `The plans are part of Not Done Yet group coaching, currently ${PLAN_OFFER.pricing.display} with a ${PLAN_OFFER.pricing.trial}. That includes a personalised TrainingPeaks plan, weekly team review, live group coaching with Anthony Walsh, strength and general fuelling guidance, and the private rider community. The application shows the current terms before signup.`,
   },
   {
     question: "Can I follow the plan if I've never used TrainingPeaks before?",
@@ -270,7 +270,7 @@ const FAQ = [
     question:
       "How do Roadman plans compare to TrainerRoad or a free YouTube plan?",
     answer:
-      "A TrainerRoad-style library gives you workouts and an algorithm that schedules them. A free plan gives you a fixed template. Both are useful entry points. The difference here is a coached, periodised plan that adapts when life moves — and a second set of eyes on the file every week so the plan corrects before you're three weeks into the wrong block.",
+      "Apps and free plans can both provide useful structure. Compare their inputs, progression, review and modification rules with what you need. Roadman's difference is the named human review loop: a personalised TrainingPeaks plan is reviewed weekly alongside rider feedback and live group coaching.",
   },
 ];
 
@@ -313,8 +313,11 @@ export default function TrainingPlansPage() {
     url: `${SITE_ORIGIN}/training-plans`,
     name: "Cycling Training Plans — Roadman Cycling",
     description:
-      "Periodised, coach-designed cycling training plans delivered through TrainingPeaks. 16-week periodisation across 6, 8, 10 and 12 hours per week, matched to one of four plateau profiles.",
+      "Roadman's coached 16-week cycling training-plan service for riders training 6, 8, 10 or 12 hours per week, delivered through TrainingPeaks with weekly review.",
     ...buildSearchOwnerTrustProperties("cycling-training-plans"),
+    dateModified: "2026-08-26",
+    editor: { "@id": ENTITY_IDS.person },
+    publisher: { "@id": ENTITY_IDS.organization },
     primaryImageOfPage: {
       "@type": "ImageObject",
       url: STRUCTURED_IMAGE_URL,
@@ -330,11 +333,15 @@ export default function TrainingPlansPage() {
   const courseJsonLd = {
     "@context": "https://schema.org",
     "@type": "Course",
+    "@id": `${SITE_ORIGIN}/training-plans#course`,
     name: "Roadman Cycling Training Plans — 16-Week Periodised",
     description:
-      "16-week periodised cycling training plans across 6, 8, 10 and 12 hours per week. Delivered through TrainingPeaks with weekly coaching from Anthony Walsh. Built around the four-cause plateau diagnostic so each rider follows the plan shape that fits their bottleneck.",
+      "A coached 16-week TrainingPeaks plan for 6, 8, 10 or 12 hours per week, with individual weekly plan review, live group coaching, strength and general fuelling guidance, and a private rider community.",
     provider: { "@id": ENTITY_IDS.organization },
-    educationalCredentialAwarded: "Structured cycling fitness progression",
+    audience: {
+      "@type": "Audience",
+      audienceType: "Serious amateur and masters cyclists",
+    },
     hasCourseInstance: PLAN_VARIANTS.map((v) => ({
       "@type": "CourseInstance",
       name: `${v.label} cycling training plan`,
@@ -344,11 +351,12 @@ export default function TrainingPlansPage() {
     })),
     offers: {
       "@type": "Offer",
-      price: "195",
+      price: String(PLAN_OFFER.pricing.monthlyUsd),
       priceCurrency: "USD",
       category: "Monthly subscription",
-      url: `${SITE_ORIGIN}/community/not-done-yet`,
+      url: `${SITE_ORIGIN}${PLAN_OFFER.cta.href}`,
       availability: "https://schema.org/InStock",
+      seller: { "@id": ENTITY_IDS.organization },
     },
   };
 
@@ -380,8 +388,9 @@ export default function TrainingPlansPage() {
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
                 Periodised cycling plans built by coaches, delivered through
                 TrainingPeaks. Sixteen weeks. Six to twelve hours a week. Matched
-                to one of four plateau profiles before the first session —
-                because the same plan doesn&apos;t fix every kind of stuck.
+                with a four-pattern rider profile used as one input before the
+                first session. The profile routes the conversation; the weekly
+                review keeps the plan tied to what actually happens.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
@@ -410,8 +419,74 @@ export default function TrainingPlansPage() {
 
         <div className="gradient-divider" />
 
+        <Section background="charcoal" className="!py-12 md:!py-16">
+          <Container>
+            <div className="mx-auto max-w-5xl">
+              <div className="mx-auto mb-8 max-w-3xl rounded-2xl border border-coral/25 bg-coral/[0.06] px-6 py-6 text-center">
+                <p className="font-heading text-xs tracking-[0.25em] text-coral mb-3">
+                  THE SHORT ANSWER
+                </p>
+                <h2 className="font-heading text-2xl text-off-white mb-3">
+                  WHAT ROADMAN CYCLING TRAINING PLANS ARE
+                </h2>
+                <p className="font-heading text-xs tracking-[0.18em] text-foreground-subtle mb-4">
+                  SERVICE FACTS · REVIEWED 26 AUGUST 2026
+                </p>
+                <p className="text-foreground-muted leading-relaxed">
+                  Roadman training plans are part of Not Done Yet group
+                  coaching, not one-off downloads. Each rider receives a
+                  personalised 16-week TrainingPeaks plan for 6, 8, 10 or 12
+                  hours a week, reviewed every week by the Roadman coaching
+                  team. The service also includes live group coaching with
+                  Anthony Walsh, cycling-specific strength, general fuelling
+                  guidance and a private rider community. The current price is
+                  {" "}{PLAN_OFFER.pricing.display} with a {PLAN_OFFER.pricing.trial}.
+                </p>
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-4">
+                {[
+                  {
+                    href: "/topics/cycling-training-plans",
+                    label: "Learn the method",
+                    detail: "Inputs, periodisation, intensity, recovery and review rules",
+                  },
+                  {
+                    href: "/blog/cycling-how-to-choose-a-training-plan-guide",
+                    label: "Compare formats",
+                    detail: "Static plan, app, self-coaching or coached plan",
+                  },
+                  {
+                    href: "/plan",
+                    label: "Choose an event",
+                    detail: "Frameworks organised by event and weeks remaining",
+                  },
+                  {
+                    href: "/blog/how-pro-cyclist-trains-60-days",
+                    label: "Read the case study",
+                    detail: "Anthony Walsh's documented N=1 60-day experiment",
+                  },
+                ].map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="rounded-xl border border-white/10 bg-white/[0.03] p-5 transition-colors hover:border-coral/40"
+                  >
+                    <p className="font-heading text-sm uppercase tracking-wide text-off-white mb-2">
+                      {item.label}
+                    </p>
+                    <p className="text-foreground-subtle text-sm leading-relaxed">
+                      {item.detail}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </Container>
+        </Section>
+
         {/* ─────────────── The argument: matched plan, not shelf plan ─── */}
-        <Section background="charcoal">
+        <Section background="deep-purple" grain>
           <Container width="narrow">
             <div className="grid md:grid-cols-2 gap-12 items-start">
               <ScrollReveal direction="left">
@@ -420,25 +495,25 @@ export default function TrainingPlansPage() {
                   style={{ fontSize: "var(--text-section)" }}
                 >
                   <GradientText as="span">
-                    MOST TRAINING PLANS FAIL THE SAME WAY.
+                    WHEN A STATIC PLAN MEETS A CHANGING WEEK.
                   </GradientText>
                 </h2>
                 <div className="space-y-4 text-foreground-muted leading-relaxed">
                   <p>
-                    You download the plan. Print the calendar. Three weeks in,
-                    work goes mad, sleep collapses, and the plan doesn&apos;t
-                    know any of that happened. So you push through, the legs go
-                    quietly, and by week eight the gains have stopped.
+                    A static plan can be useful when the goal and weekly schedule
+                    are predictable. Its limitation appears when work, sleep,
+                    illness or the rider&apos;s response changes and nobody is
+                    responsible for the next decision.
                   </p>
                   <p>
-                    The plan wasn&apos;t wrong. The plan was generic. It was
-                    written for a rider who doesn&apos;t exist, with hours that
-                    look nothing like yours, against a reason for your plateau
-                    nobody bothered to diagnose first.
+                    That does not make every template wrong or every coached
+                    plan better. It means the rider should know which inputs the
+                    plan used, how progression works and what evidence will
+                    justify a change.
                   </p>
                   <p className="text-off-white font-medium">
-                    A plan only works when it&apos;s matched to the rider.
-                    That&apos;s the whole argument here.
+                    Roadman&apos;s proposition is a matched plan plus a named
+                    weekly human review loop.
                   </p>
                 </div>
               </ScrollReveal>
@@ -450,12 +525,12 @@ export default function TrainingPlansPage() {
                   </h3>
                   <ul className="space-y-3">
                     {[
-                      "Diagnose the plateau before you write the plan",
+                      "Record the rider profile before writing the first week",
                       "Scale to the hours the rider can actually protect",
                       "Periodise across 16 weeks — base, build, peak, taper",
                       "Deliver through TrainingPeaks so the file talks back",
                       "Pair strength and fuelling with the riding, not after",
-                      "Put a coach on the file every week so it adjusts when life moves",
+                      "Make the coaching team accountable for a weekly review",
                     ].map((item) => (
                       <li
                         key={item}
@@ -485,12 +560,13 @@ export default function TrainingPlansPage() {
                 className="font-heading text-off-white mb-4"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                FIND OUT WHY YOU&apos;RE STUCK FIRST
+                START WITH THE RIDER PROFILE
               </h2>
               <p className="text-foreground-muted max-w-2xl mx-auto leading-relaxed">
-                Twelve questions. Four minutes. Tells you which of four reasons
-                your FTP has stalled — and which plan shape actually fits.
-                Skip this and you&apos;re guessing.
+                Twelve questions about training, recovery, strength and
+                fuelling. The four-minute self-assessment helps route the first
+                conversation; it is not a medical diagnosis or a promise that
+                one profile explains every plateau.
               </p>
             </ScrollReveal>
 
@@ -541,9 +617,9 @@ export default function TrainingPlansPage() {
                 PICK THE HOURS YOU CAN PROTECT
               </h2>
               <p className="text-foreground-muted max-w-2xl mx-auto leading-relaxed">
-                Same 16-week periodisation. Honestly scaled to the time you
-                actually have. Pick the number you can defend for the whole
-                block — not the one that sounds the most serious.
+                Four 16-week service variants, scaled around the time the rider
+                can protect. The final week still depends on the goal, recent
+                training, response and recovery—not the hours label alone.
               </p>
             </ScrollReveal>
 
@@ -642,10 +718,11 @@ export default function TrainingPlansPage() {
                 INSIDE EVERY ROADMAN PLAN
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto leading-relaxed">
-                Built on {BRAND_STATS.episodeCountLabel} on-the-record
-                conversations with the coaches behind Tadej Pogačar, Chris
-                Froome and Egan Bernal — Seiler, Lorang, LeMond, Friel. Their
-                methodology, structured for your week.
+                Informed by {BRAND_STATS.episodeCountLabel} on-the-record
+                podcast conversations with researchers, coaches and athletes,
+                including Stephen Seiler, Dan Lorang, Greg LeMond and Joe Friel.
+                Their different perspectives inform Roadman&apos;s method; they
+                are not presented as endorsers of this programme.
               </p>
             </ScrollReveal>
 
@@ -707,7 +784,7 @@ export default function TrainingPlansPage() {
                     <div className="grid md:grid-cols-2 gap-5">
                       <div className="rounded-lg border border-white/10 bg-white/[0.02] p-4">
                         <p className="font-heading text-foreground-subtle text-xs tracking-widest mb-2">
-                          THEM
+                          TYPICAL FORMAT
                         </p>
                         <p className="text-foreground-muted text-sm leading-relaxed">
                           {c.them}
@@ -715,7 +792,7 @@ export default function TrainingPlansPage() {
                       </div>
                       <div className="rounded-lg border border-coral/30 bg-coral/5 p-4">
                         <p className="font-heading text-coral text-xs tracking-widest mb-2">
-                          ROADMAN
+                          ROADMAN SERVICE
                         </p>
                         <p className="text-foreground-muted text-sm leading-relaxed">
                           {c.us}
@@ -743,8 +820,8 @@ export default function TrainingPlansPage() {
                 RIDERS WHO BROKE THE PLATEAU
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto leading-relaxed">
-                Real numbers. Real names. Different starting points, same
-                periodised system underneath.
+                Named rider accounts with different starting points. Individual
+                outcomes do not forecast what another rider will achieve.
               </p>
             </ScrollReveal>
 
@@ -900,8 +977,8 @@ export default function TrainingPlansPage() {
         <Section background="charcoal" className="!py-12">
           <Container width="narrow">
             <EvidenceBlock
-              lastReviewed="25 August 2026"
-              reviewedBy="Roadman Cycling coaching team"
+              lastReviewed="26 August 2026"
+              reviewedBy="Anthony Walsh, founder and head coach"
               experts={[
                 {
                   name: "Prof. Stephen Seiler",
@@ -933,9 +1010,9 @@ export default function TrainingPlansPage() {
               YOUR PLAN STARTS WITH A DIAGNOSIS.
             </h2>
             <p className="text-off-white/80 max-w-lg mx-auto mb-8 leading-relaxed">
-              Four minutes. Twelve questions. Tells you which of the four
-              plateau profiles fits you — and which Roadman plan shape comes
-              next.
+              Four minutes. Twelve questions. The result helps route the first
+              coaching conversation; recent training, goals and feedback still
+              determine what comes next.
             </p>
             <Link
               href="/plateau"

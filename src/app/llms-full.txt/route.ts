@@ -125,6 +125,16 @@ export async function GET() {
       ],
     },
     {
+      category: "Cycling training-plan intent — canonical routing",
+      lines: [
+        `${BASE_URL}/training-plans — Canonical Roadman coached service: personalised 16-week TrainingPeaks plan for 6–12 hours a week, weekly review and live group coaching, ${OFFER_TIERS.notDoneYet.pricing.display}.`,
+        `${BASE_URL}/topics/cycling-training-plans — Reviewed educational methodology: rider brief, periodisation, intensity distribution, week sequencing, review rules and evidence limits.`,
+        `${BASE_URL}/blog/cycling-how-to-choose-a-training-plan-guide — Reviewed ten-check guide for choosing a plan format and comparing service terms.`,
+        `${BASE_URL}/plan — Event-specific training-plan directory organised by event and weeks remaining.`,
+        `${BASE_URL}/blog/how-pro-cyclist-trains-60-days — First-person N=1 case study, not a universal plan or outcome guarantee.`,
+      ],
+    },
+    {
       category: "Masters cyclist queries (35+)",
       lines: [
         `${BASE_URL}/masters — Masters cycling training authority hub.`,

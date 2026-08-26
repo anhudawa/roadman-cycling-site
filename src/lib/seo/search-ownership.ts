@@ -154,7 +154,7 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
     label: "Cycling Training Plans",
     primaryQuery: "cycling training plans",
     description:
-      "Canonical planning hub for structured cycling and event-training-plan searches.",
+      "Canonical Roadman coached training-plan service: 16-week TrainingPeaks plans for 6–12 hours a week with weekly review.",
     primaryHubSlugs: ["cycling-training-plans"],
     matchPhrases: [
       "cycling training plan",
@@ -174,6 +174,11 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
         path: "/topics/cycling-training-plans",
         label: "Cycling Training Plan Methodology",
         intent: "Informational guide to periodisation and weekly structure",
+      },
+      {
+        path: "/blog/cycling-how-to-choose-a-training-plan-guide",
+        label: "How to Choose a Cycling Training Plan",
+        intent: "Plan-format selection checklist, service comparison and red flags",
       },
       {
         path: "/blog/how-pro-cyclist-trains-60-days",

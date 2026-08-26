@@ -106,6 +106,10 @@ const CURATED: string[] = [
   `https://${HOST}/masters`,
   `https://${HOST}/masters/vo2max`,
   `https://${HOST}/training-plans`,
+  `https://${HOST}/topics/cycling-training-plans`,
+  `https://${HOST}/plan`,
+  `https://${HOST}/blog/cycling-how-to-choose-a-training-plan-guide`,
+  `https://${HOST}/blog/how-pro-cyclist-trains-60-days`,
   `https://${HOST}/training-camps`,
   `https://${HOST}/watch`,
 
