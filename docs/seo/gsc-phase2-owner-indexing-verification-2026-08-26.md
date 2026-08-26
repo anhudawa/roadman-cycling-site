@@ -47,6 +47,25 @@ creating alternative head-term owners or redirecting a working owner page.
 Supporting articles should answer narrower questions and link back to the owner
 without copying its title, H1 or broad commercial job.
 
+## Day-zero crawl-processing baseline
+
+The Page indexing detail was expanded for every owner on 26 August. Google
+reported a successful fetch as smartphone Googlebot and the exact self-declared
+canonical in every case. Crawl times below are preserved exactly as displayed
+by Search Console; the interface did not expose a timezone label beside them.
+
+| Canonical owner | Last crawl shown by Google | Release interpretation |
+| --- | --- | --- |
+| `/podcast` | 26 Aug 2026, 2:31:26 PM | Recrawled after the owner release |
+| `/coaching` | 26 Aug 2026, 7:14:54 AM | Recrawled after the owner release |
+| `/masters` | 25 Aug 2026, 11:13:20 AM | Recrawled after the owner release |
+| `/training-plans` | 25 Aug 2026, 7:01:52 PM | Recrawled after the owner release |
+| `/training-camps` | 25 Aug 2026, 11:13:19 AM | Recrawled after the owner release |
+
+This is stronger evidence than index status alone: Google has fetched the
+released owner layer. It is not evidence of a ranking improvement, and it does
+not remove the need for the fixed-window performance comparison.
+
 The release decisions and baseline metrics are recorded in:
 
 - [`gsc-podcast-hub-opportunity-2026-08-25.md`](./gsc-podcast-hub-opportunity-2026-08-25.md)
