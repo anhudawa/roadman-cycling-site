@@ -10,17 +10,22 @@ describe("cycling computer buyer-guide trust", () => {
   const { data, content } = matter(source);
 
   it("publishes a current, reviewed 2026 model set", () => {
-    expect(data.updatedDate).toBe("2026-08-25");
-    expect(data.lastReviewed).toBe("2026-08-25");
-    expect(data.reviewedBy).toContain("Garmin, Wahoo and Hammerhead");
+    expect(data.updatedDate).toBe("2026-08-26");
+    expect(data.lastReviewed).toBe("2026-08-26");
+    expect(data.reviewedBy).toContain(
+      "Garmin, Wahoo, Hammerhead and COROS",
+    );
 
     for (const model of [
       "Garmin Edge 1050",
       "Garmin Edge 850",
       "Garmin Edge 550",
+      "Garmin Edge Explore 2",
+      "Wahoo ELEMNT ACE",
       "Wahoo ELEMNT ROAM 3",
       "Wahoo ELEMNT BOLT 3",
       "Hammerhead Karoo",
+      "COROS DURA",
     ]) {
       expect(source).toContain(model);
     }
@@ -41,7 +46,8 @@ describe("cycling computer buyer-guide trust", () => {
     expect(source).toContain("https://www.garmin.com/");
     expect(source).toContain("https://support.wahoofitness.com/");
     expect(source).toContain("https://support.hammerhead.io/");
-    expect(source).toContain("manufacturer maximum");
+    expect(source).toContain("https://support.coros.com/");
+    expect(source).toContain("manufacturer scenarios");
     expect(source).toContain("Manufacturer claims are labelled as such");
   });
 
