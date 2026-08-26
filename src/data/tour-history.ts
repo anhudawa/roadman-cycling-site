@@ -15,8 +15,12 @@
 export interface TourHistoryArticle {
   slug: string;
   title: string;
+  /** Search-result title override. The site-wide title template adds the brand. */
+  seoTitle?: string;
   /** Standfirst / dek. */
   dek: string;
+  /** Search-result description override. */
+  seoDescription?: string;
   /** Section label, e.g. "THE GREATS" or "ICONIC CLIMBS". */
   eyebrow: string;
   /** Era or subject tag shown on cards. */
@@ -24,6 +28,22 @@ export interface TourHistoryArticle {
   readMinutes: number;
   /** ISO publish date. */
   published: string;
+  /** ISO date of the latest substantive update. */
+  updated?: string;
+  /** Human-readable review date shown in the trust block. */
+  lastReviewed?: string;
+  reviewedBy?: string;
+  quickFacts?: { label: string; value: string }[];
+  person?: {
+    name: string;
+    alternateName?: string;
+    description: string;
+    birthDate?: string;
+    birthPlace?: string;
+    nationality?: string;
+    sameAs: string[];
+  };
+  sources?: { name: string; url: string; scope: string }[];
   /** Markdown body. */
   body: string;
   related: { label: string; href: string }[];
@@ -63,31 +83,133 @@ So take both halves. Build the engine the way the Cannibal built his — patient
   },
   {
     slug: "bernard-hinault-the-badger",
-    title: "Bernard Hinault: The Badger and the Art of Peaking",
-    dek: "The last Frenchman to win the Tour didn't race everything — he picked his battles and arrived ready. The case for peaking, for the amateur who can't be in form all year.",
+    title: "Bernard Hinault: Five Tours, 28 Stages and ‘The Badger’",
+    seoTitle: "Bernard Hinault: Tour Wins & ‘The Badger’",
+    dek: "Bernard Hinault won five Tours de France, 28 Tour stages and ten Grand Tours. Here is the verified career record of the French champion known as ‘The Badger’.",
+    seoDescription: "Bernard Hinault biography: five Tour de France wins, 28 stages, ten Grand Tours, the Badger nickname, 1980 injury and Greg LeMond rivalry.",
     eyebrow: "THE GREATS",
     tag: "Hinault · 1978–1986",
-    readMinutes: 6,
+    readMinutes: 9,
     published: "2026-06-09",
-    body: `They called Bernard Hinault le Blaireau — the Badger — for the way he raced: head down, teeth bared, dangerous when cornered. He won five Tours between 1978 and 1985 and remains, four decades on, the last Frenchman to win the race. He won a sixth that he arguably should have, lost in 1980 to a knee injury he rode on far too long, and finished his career on his own terms at thirty-two, the day he said he would.
+    updated: "2026-08-25",
+    lastReviewed: "25 August 2026",
+    reviewedBy: "Roadman Cycling editorial team against official race records",
+    quickFacts: [
+      { label: "Born", value: "14 November 1954, Yffiniac, Brittany, France" },
+      { label: "Professional career", value: "1975–1986" },
+      { label: "Tour de France wins", value: "5 — 1978, 1979, 1981, 1982 and 1985" },
+      { label: "Tour stage wins", value: "28 individual stages" },
+      { label: "Grand Tour wins", value: "10 — 5 Tours, 3 Giri and 2 Vueltas" },
+      { label: "World title", value: "1980 UCI road race world champion" },
+      { label: "Nickname", value: "Le Blaireau — ‘The Badger’" },
+      { label: "Why he matters", value: "Still the most recent French Tour winner" },
+    ],
+    person: {
+      name: "Bernard Hinault",
+      alternateName: "Le Blaireau; The Badger",
+      description: "French former professional road cyclist and five-time winner of the Tour de France.",
+      birthDate: "1954-11-14",
+      birthPlace: "Yffiniac, Brittany, France",
+      nationality: "France",
+      sameAs: [
+        "https://en.wikipedia.org/wiki/Bernard_Hinault",
+        "https://www.wikidata.org/wiki/Q109255",
+      ],
+    },
+    sources: [
+      {
+        name: "Tour de France — 2026 five-time winners record",
+        url: "https://www.letour.fr/fr/data/data-du-jour-etape-21",
+        scope: "Hinault's five winning years and the current five-win club",
+      },
+      {
+        name: "Tour de France — LeMond–Hinault relationship",
+        url: "https://www.letour.fr/en/news/2014/stage-13/love-hate-relationship-lemond-hinault",
+        scope: "The 1986 Tour and Hinault's 28th and final Tour stage",
+      },
+      {
+        name: "Tour de France — Hinault's 1980 withdrawal",
+        url: "https://www.letour.fr/fr/actus/2020/1980-hinault-met-un-genou-a-terre-8-10/1283573",
+        scope: "Yellow jersey, knee pain and withdrawal before the Pyrenees",
+      },
+      {
+        name: "Giro d'Italia Hall of Fame — Bernard Hinault",
+        url: "https://www.giroditalia.it/en/hall-of-fame/2017-bernard-hinault/",
+        scope: "Birth, career dates, three Giro wins and ten Grand Tour wins",
+      },
+      {
+        name: "La Vuelta — Hinault's 1978 victory",
+        url: "https://www.lavuelta.es/en/news/2018/history-la-vuelta-1978-the-inaugural-act-of-bernard-hinaults-grand-tours/12868",
+        scope: "First Grand Tour victory and the 1978 Tour–Vuelta double",
+      },
+      {
+        name: "La Vuelta — Hinault's 1983 victory",
+        url: "https://www.lavuelta.es/en/news/2019/the-gredos-mountain-range-the-origin-of-bernard-hinaults-extraordinary-1983-vuelta/16826",
+        scope: "Second Vuelta victory and ten-Grand-Tour total",
+      },
+      {
+        name: "UCI — 2027 World Championships announcement",
+        url: "https://www.uci.org/pressrelease/the-uci-unveils-the-outline-of-the-2027-uci-cycling-world-championships-in/1ffrMyNyZgFcoJzAmCFygg",
+        scope: "Hinault's 1980 elite road world title at Sallanches",
+      },
+      {
+        name: "UCI — Hinault's 1980 Liège–Bastogne–Liège victory",
+        url: "https://fr.uci.org/article/liege-bastogne-liege-1980-la-plus-belle-victoire-dans-une-classique-d-hinault/7xtOJL3SHb5il6TpV5oaZW",
+        scope: "His 1977 and 1980 Liège victories and the 1980 race account",
+      },
+      {
+        name: "UCI — Paris–Roubaix history",
+        url: "https://fr.uci.org/article/paris-roubaix-168474/6wopaKXceQx27l2MtMettE",
+        scope: "Hinault's 1981 victory and refusal to return after the 1982 race",
+      },
+    ],
+    body: `Bernard Hinault is a French former professional cyclist who won the Tour de France five times — in 1978, 1979, 1981, 1982 and 1985. He also won 28 individual Tour stages, three editions of the Giro d'Italia and two Vueltas a España. Known in French as *le Blaireau* — “the Badger” — Hinault remains the most recent French winner of the Tour.
 
-What separates Hinault from Merckx is instructive, and it is the whole point of this piece. Merckx raced everything and burned bright and brief. Hinault was selective. He targeted. He built his season around objectives and arrived at them sharp, then allowed himself to be ordinary in the races that did not matter to him. The Badger understood something that took sports science another generation to formalise: you cannot be at your best all year, so choose when your best needs to land, and build toward it.
+Those numbers make him more than a home hero. Hinault could win stage races, time trials, mountain stages and the hardest one-day races. He was the 1980 world road champion, won Liège–Bastogne–Liège twice and, despite openly disliking Paris–Roubaix, won it in the rainbow jersey in 1981.
 
-## Periodisation, before it had the name
+## Why was Bernard Hinault called the Badger?
 
-The modern word for what Hinault did is periodisation — organising training and racing into blocks, each with a purpose, so that fitness peaks for a chosen event rather than drifting along at a permanent middling level. A base period to build the engine. A specific period to sharpen the qualities the goal demands. A taper to arrive fresh. Then a deliberate let-down before the next build.
+*Le Blaireau* translates literally as “the Badger”. The nickname became shorthand for Hinault's combative public image and refusal to yield once a race became a contest of will. Accounts differ on precisely who first attached it to him and why, so the safest historical claim is also the useful one: it was his established nickname during his career, not a later label invented by fans.
 
-For a professional with a thirty-year-old's recovery and a full support staff, that is a luxury. For a masters amateur with a job, a family and eight to twelve hours a week, it is a necessity. You do not have the time or the recovery to be race-fit in March and still race-fit in September. The riders who improve year on year are the ones who pick an A-event — the Étape, a target gran fondo, a club hill climb — and reverse-engineer the calendar back from it.
+## How many Tours de France did Hinault win?
 
-## Racing into form
+Hinault won five Tours de France: **1978, 1979, 1981, 1982 and 1985**. That puts him in the five-win group with Jacques Anquetil, Eddy Merckx, Miguel Indurain and, after the 2026 Tour, Tadej Pogačar. Hinault is still the last French rider to have won the general classification.
 
-Hinault also trusted something amateurs find hard to accept: that you can race your way into shape, that the early-season form you are panicking about is supposed to be missing because the build isn't finished yet. Form is not a switch. It is the output of a process that has a date on it.
+His Tour record also contains **28 individual stage wins**. The last came in the penultimate-day time trial at Saint-Étienne in 1986, when he finished second overall to his La Vie Claire teammate Greg LeMond.
 
-So borrow the Badger's discipline rather than his aggression. Decide what day you need to be flying. Work backwards. Let the unimportant rides be unimportant. Arrive angry, arrive sharp, and let everything before it be the building, not the proving.`,
+## The 1980 Tour: a knee injury, not a lost sixth title
+
+Hinault started the 1980 Tour as defending champion and was wearing yellow when persistent knee pain forced him to withdraw before the first major Pyrenean stage. Joop Zoetemelk went on to win the race.
+
+It is reasonable to say the injury removed Hinault from a position of strength. It is not accurate to count 1980 as a sixth victory he “should” have won: the race still had its decisive mountain stages ahead, and an unfinished Tour is not a result. Hinault recovered to win the world championship road race at Sallanches later that summer.
+
+## Ten Grand Tours, across all three races
+
+Hinault won every Giro d'Italia he entered: **1980, 1982 and 1985**. He also won the Vuelta a España in **1978 and 1983**. Add those five titles to his five Tours and the total is ten Grand Tour victories from 13 starts, with two further second places.
+
+Only a small group of riders has won all three men's Grand Tours. Hinault did it in an era when the Vuelta was held in spring: his first Grand Tour was the 1978 Vuelta, which he won before taking his first Tour later that year.
+
+## Hinault and Greg LeMond in 1985 and 1986
+
+The most disputed chapter of Hinault's Tour career is his relationship with Greg LeMond. LeMond supported Hinault's fifth victory in 1985. Hinault said he would support the American in 1986, but then attacked repeatedly, took the yellow jersey and continued to race aggressively after LeMond emerged as the stronger rider.
+
+The pair crossed the Alpe d'Huez finish line together, hand in hand. LeMond ultimately won by 3 minutes 10 seconds; Hinault finished second and maintained that his attacks had been designed to harden the race and help his teammate. LeMond's interpretation was far less comfortable. The official Tour record establishes the results, but intent remains contested — and the two riders' perspectives should not be collapsed into one tidy version. Hear LeMond's own account in [our Greg LeMond interview on Hinault](/podcast/ep-2176-lemond-opens-up-about-relationship-with-hinault-rdmn-clips).
+
+## Was Hinault a model of periodised training?
+
+This page originally presented Hinault as proof that selective racing and planned peaking explain his success. That is a coaching interpretation, not a fact established by the race record. His calendar actually included Grand Tours, stage races, world championships, Monuments and other classics, and the surviving sources do not justify a neat contrast in which Merckx “raced everything” while Hinault simply picked a few targets.
+
+There is still a sound training lesson here, but it comes from modern coaching rather than biography: an amateur with limited recovery should identify priority events, build toward them and plan easier periods. Use Hinault as inspiration for competitive intent, not as scientific evidence for a periodisation model.
+
+## Career legacy
+
+Hinault turned professional in 1975 and retired in 1986. His record combines five Tours, three Giri, two Vueltas, a world road title and major one-day victories including Paris–Roubaix and Liège–Bastogne–Liège. That range is the clearest reason he belongs in the first rank of road cycling history.
+
+His exact place in an all-time ranking is opinion. His palmarès is not: five Tours, 28 Tour stages and ten Grand Tours, achieved before retiring at 32.`,
     related: [
       { label: "Taper discipline — the 15% gain", href: "/blog/cycling-taper-discipline-15-percent-gain" },
       { label: "Training plans hub", href: "/topics/cycling-training-plans" },
-      { label: "Goal setting that actually works", href: "/blog/cycling-goal-setting-that-actually-works" },
+      { label: "Greg LeMond on his relationship with Hinault", href: "/podcast/ep-2176-lemond-opens-up-about-relationship-with-hinault-rdmn-clips" },
     ],
   },
   {

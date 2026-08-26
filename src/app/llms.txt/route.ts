@@ -335,7 +335,7 @@ Roadman's coverage of the 2026 Tour, every stage and the sport's history read th
 - [Tour Stage Pages (1–21)](${tag(`${BASE_URL}/tour-de-france/stage/1`)}): Per-stage tactical preview, prediction, and training angle. Stage URLs run /tour-de-france/stage/1 through /tour-de-france/stage/21.
 - [Tour de France History — Through a Training Lens](${tag(`${BASE_URL}/tour-de-france/history`)}): Merckx, Hinault, Indurain, Pantani, LeMond and the legend of Alpe d'Huez — Tour history told through the lessons that still apply to amateurs.
 - [Eddy Merckx: The Anatomy of the Cannibal](${tag(`${BASE_URL}/tour-de-france/history/eddy-merckx-the-cannibal`)})
-- [Bernard Hinault: The Badger and the Art of Peaking](${tag(`${BASE_URL}/tour-de-france/history/bernard-hinault-the-badger`)})
+- [Bernard Hinault: Five Tours, 28 Stages and ‘The Badger’](${tag(`${BASE_URL}/tour-de-france/history/bernard-hinault-the-badger`)}): Verified biography and race record with official Tour de France, Giro d'Italia, La Vuelta and UCI sources.
 - [Miguel Indurain: The Engine Room](${tag(`${BASE_URL}/tour-de-france/history/miguel-indurain-the-engine-room`)})
 - [Marco Pantani and the Mathematics of the Climb](${tag(`${BASE_URL}/tour-de-france/history/marco-pantani-mathematics-of-the-climb`)})
 - [Greg LeMond, 8 Seconds, and the First Marginal Gain](${tag(`${BASE_URL}/tour-de-france/history/greg-lemond-eight-seconds`)})
