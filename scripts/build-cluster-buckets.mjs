@@ -32,7 +32,7 @@ const NAMESPACES = {
     "coach-vs-app","polarised-vs-pyramidal","strength-vs-more-miles","indoor-vs-outdoor-training",
     "heart-rate-vs-power","trainerroad-vs-trainingpeaks","online-coach-vs-local-club","ftp-ramp-test-vs-20-minute",
     "sweet-spot-vs-threshold","zwift-plan-vs-coach","road-vs-gravel-fitness","self-coached-vs-coached",
-    "weight-loss-vs-ftp-gain","training-plan-vs-coach","garmin-vs-wahoo",
+    "weight-loss-vs-ftp-gain","training-plan-vs-coach",
     "power-meter-vs-smart-trainer","trainingpeaks-vs-vekta","base-vs-build-training","short-vs-long-intervals",
     "cycling-vs-triathlon-coach","fueled-vs-fasted-sessions","volume-vs-intensity","morning-vs-evening-training",
     "group-rides-vs-solo-training","carbs-vs-fat-adaptation","single-sided-vs-dual-sided-power","road-bike-vs-gravel-bike",
