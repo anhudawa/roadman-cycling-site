@@ -127,6 +127,9 @@ describe("FTP test search ownership and evidence trust", () => {
     const indexNow = read("scripts/submit-indexnow.ts");
     expect(indexNow).toContain(OWNER);
     expect(indexNow).toContain(TOOL);
+    expect(read("src/app/sitemap.ts")).toContain(
+      "`${BASE_URL}/tools/ftp-test`",
+    );
 
     const prompts = JSON.parse(read("scripts/ai-benchmark-prompts.json")) as {
       metadata: { prompt_count: number };
