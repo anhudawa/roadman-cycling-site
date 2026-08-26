@@ -5,13 +5,13 @@ import { loadByEmail } from "@/lib/rider-profile/store";
 import { FuellingClient } from "./FuellingClient";
 
 export const metadata: Metadata = {
-  title: "Cycling Fuelling Calculator — Carbs, Fluid & Sodium Per Hour",
+  title: { absolute: "Cycling Nutrition Calculator: Carbs, Fluid & Sodium" },
   description:
-    "Exactly what to eat and drink hour by hour. Carbs, fluid and sodium targets calibrated to your weight, intensity and ride length. Pre-filled from your Roadman profile.",
+    "Plan carbs, fluid and sodium per hour for any ride. Enter duration, intensity, power, weight and weather in this free, evidence-informed calculator.",
   alternates: { canonical: "https://roadmancycling.com/tools/fuelling" },
   openGraph: {
-    title: "Cycling Fuelling Calculator — Carbs, Fluid & Sodium Per Hour",
-    description: "Exactly what to eat and drink hour by hour. Carbs, fluid and sodium calibrated to your weight, intensity and ride length.",
+    title: "Cycling Nutrition Calculator: Carbs, Fluid & Sodium",
+    description: "Plan carbs, fluid and sodium per hour from your ride duration, intensity, power, weight and weather.",
     type: "website",
     url: "https://roadmancycling.com/tools/fuelling",
   },

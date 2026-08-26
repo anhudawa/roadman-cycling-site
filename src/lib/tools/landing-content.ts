@@ -29,6 +29,12 @@ export interface ToolHowToStep {
   text: string;
 }
 
+export interface ToolEvidenceSource {
+  name: string;
+  role: string;
+  href: string;
+}
+
 export interface ToolLandingContent {
   slug: string;
   title: string;
@@ -59,6 +65,14 @@ export interface ToolLandingContent {
   related: ToolRelatedLink[];
   /** WebApplication / SoftwareApplication featureList bullets. */
   webAppFeatures: string[];
+  /** Primary research and consensus sources used to verify the model and copy. */
+  evidenceSources?: ToolEvidenceSource[];
+  /** ISO date used by visible trust signals and WebPage structured data. */
+  dateModified?: string;
+  /** Named human who checked the source-to-claim mapping. */
+  reviewedBy?: string;
+  /** Honest scope of the review; avoids implying clinical or dietetic review. */
+  reviewScope?: string;
 }
 
 const ROADMAN_BASE = "https://roadmancycling.com";
@@ -231,67 +245,67 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
 
   "fuelling": {
     slug: "fuelling",
-    title: "In-Ride Fuelling Calculator",
+    title: "Cycling Nutrition Calculator",
     description:
-      "Calculate carbs per hour, fluid, and sodium for your ride based on duration, intensity, body weight, gut training, and weather. Evidence-based, free.",
+      "Estimate carbs, fluid and sodium per hour from ride duration, power, intensity, gut training, body weight and weather. Free and evidence-informed.",
     url: `${ROADMAN_BASE}/tools/fuelling`,
-    breadcrumbName: "In-Ride Fuelling Calculator",
+    breadcrumbName: "Cycling Nutrition Calculator",
     answerSummary:
-      "Tell the calculator how long you're riding, how hard, your body weight, how trained your gut is, and the weather. It returns carbs per hour, total carbs, fluid per hour, sodium, glucose:fructose split, and a feeding interval based on Jeukendrup, Morton, and ACSM data.",
+      "Enter ride duration, power, session type, body weight, gut-training level and weather. The cycling nutrition calculator returns planning estimates for carbohydrate, fluid and sodium per hour, total carbohydrate, feeding intervals and a glucose:fructose split. Rehearse the output in training and adjust it from your own tolerance and sweat-rate data.",
     whatItDoes:
-      "Most amateur riders bonk because they under-fuel — they ride on what worked at lower intensities, then surprise themselves when they crack at hour three. This calculator gives you a specific carb, fluid, and sodium target for the actual ride you're doing, not a generic \"60 g per hour\" rule.",
+      "A single grams-per-hour rule cannot fit a recovery spin, a hard two-hour session and a five-hour race. This tool converts the ride you are planning into a practical starting range for carbohydrate, fluid and sodium. It also shows how to divide higher carbohydrate intakes between glucose and fructose. The numbers are modelled estimates, not laboratory measurements or medical advice.",
     whoItsFor: [
-      "Anyone riding longer than 90 minutes who wants to finish strong",
-      "Riders preparing for a sportive, gran fondo, or stage race",
-      "Cyclists training their gut to handle higher carb intakes",
-      "Athletes whose ride performance falls off a cliff in heat",
+      "Cyclists planning a long training ride, sportive, gran fondo or race",
+      "Riders comparing 30, 60, 90 or 120 g/hr carbohydrate strategies",
+      "Athletes practising higher intakes before an important event",
+      "Cyclists who want a weather-adjusted starting point before measuring sweat rate",
     ],
     howItWorks:
-      "We blend three frameworks: James Morton's \"fuel for the work required\" (carb intake scales with intensity), Asker Jeukendrup's dual-transporter model (glucose and fructose use separate transporters, allowing absorption above 60 g/hr), and ACSM/Sawka guidance on fluid and sodium. The result is a per-session prescription, not a generic recommendation.",
+      "The model estimates carbohydrate demand from expected power, ride duration and session type, then limits the suggested intake according to the gut-training level you select. Higher targets use glucose and fructose because they rely on different intestinal transporters. Fluid begins with body mass, intensity and weather; sodium uses a population-average sweat concentration. Those last two estimates should be replaced by your own pre/post-ride body-mass and sweat-test data when available.",
     howToSteps: [
-      { name: "Pick the session profile", text: "Choose the closest match: recovery, endurance, tempo, sweet spot, threshold, VO2, race, or mixed intervals. Carb demand scales sharply with intensity." },
-      { name: "Enter ride duration and weight", text: "Duration in minutes; body weight in kg. Lighter riders need fewer total carbs; longer rides need feeding earlier." },
-      { name: "Set gut training honestly", text: "None / Some / Trained. If you're new to high-carb fuelling, start at the lower end of the range and build up over 4-6 weeks of training rides." },
-      { name: "Add weather", text: "Temperature and humidity drive sweat and sodium loss. Above 25°C in humid conditions, fluid needs can double." },
-      { name: "Execute on the bike", text: "Start fuelling within the first 30 minutes. Use the suggested feeding interval and respect the dual-transport split if you're above 60 g/hr." },
+      { name: "Describe the ride", text: "Enter duration, expected average power and the closest session type. These inputs drive the carbohydrate estimate." },
+      { name: "Add body weight", text: "Body weight is used for the fluid estimate, not to scale the carbohydrate target. Carbohydrate demand is modelled from the work being done." },
+      { name: "Set gut training honestly", text: "Choose beginner, moderate or trained. High targets are appropriate only after the same product and dose have been tolerated repeatedly in training." },
+      { name: "Add the conditions", text: "Use local or manual temperature and humidity. Weather adjusts the starting fluid estimate, but it cannot know your individual sweat rate." },
+      { name: "Rehearse and calibrate", text: "Spread intake across the ride, note gastrointestinal symptoms, and compare body mass before and after representative sessions. Change one variable at a time." },
     ],
     howToTotalTime: "PT3M",
     limitations:
-      "Carb absorption is highly individual — published ceilings (90-120 g/hr) assume a trained gut and the right glucose:fructose ratio. Sodium needs vary 4-fold across athletes. The calculator estimates from population averages and won't match a sweat patch test. Treat the output as a starting prescription you refine with experience.",
+      "This is a planning model. It does not measure your respiratory exchange ratio, glycogen status, sweat rate, sweat sodium, gastrointestinal tolerance or medical history. Research supporting 120 g/hr comes from tightly controlled endurance protocols and trained participants; it is not a universal target. Fluid and sodium losses vary widely, while both underdrinking and overdrinking can be harmful. Never use the result to force fluid intake or ignore thirst, symptoms or body-mass gain.",
     whenToSeeACoach:
-      "If you've followed the recommendations and still bonk, GI distress is consistent, or your weight drops more than 2-3% during a ride despite drinking — get a sweat patch test and speak to a sports nutritionist. Some riders have unusually high sodium losses or fructose intolerance that this calculator can't see.",
+      "Speak to a registered sports dietitian or qualified clinician if gastrointestinal distress persists, you have diabetes or another condition affected by carbohydrate/fluid intake, you repeatedly gain body mass during long rides, or performance and health decline despite adequate training. A coach can help with execution; clinical nutrition questions need an appropriately qualified professional.",
     examples: [
       {
-        scenario: "75kg rider, 4hr endurance ride, 22°C, gut moderately trained",
-        inputs: ["Duration: 240 min", "Session: endurance", "Weight: 75kg", "Gut: some", "Temp: 22°C"],
-        output: "60 g carbs/hr (240 g total), 600 ml fluid/hr, 500 mg sodium/hr, single-source glucose works.",
+        scenario: "75kg rider, 4hr endurance ride, moderate conditions",
+        inputs: ["Duration: 240 min", "Average power: 150W", "Session: endurance", "Weight: 75kg", "Gut: moderate", "Weather: 20°C, 50% humidity"],
+        output: "About 74 g carbohydrate/hr (296 g total), 450 ml fluid/hr and 500 mg sodium/hr. Because intake is above 60 g/hr, the tool suggests glucose plus fructose.",
       },
       {
-        scenario: "70kg racer, 5hr sportive with surges, 28°C humid, gut trained",
-        inputs: ["Duration: 300 min", "Session: race", "Weight: 70kg", "Gut: trained", "Temp: 28°C"],
-        output: "100 g carbs/hr (500 g total) using 2:1 glucose:fructose, 850 ml fluid/hr, 800 mg sodium/hr, feeding every 15 min.",
+        scenario: "70kg trained rider, 5hr race, warm and humid",
+        inputs: ["Duration: 300 min", "Average power: 180W", "Session: race", "Weight: 70kg", "Gut: trained", "Weather: 28°C, 70% humidity"],
+        output: "120 g carbohydrate/hr (600 g total) using a 1:0.8 glucose:fructose split, about 770 ml fluid/hr and 860 mg sodium/hr. This high target must be rehearsed; it is not a beginner recommendation.",
       },
     ],
     faqs: [
       {
         question: "How many carbs per hour should I eat on the bike?",
-        answer: "It depends on intensity and how trained your gut is. Easy rides (<2 hours): 30-40 g/hr or nothing. Endurance (2-4 hours, Z2-Z3): 60-80 g/hr. Threshold and racing (4+ hours or hard): 90-120 g/hr if your gut is trained. Below 60 g/hr, glucose alone is fine; above that, use a 2:1 glucose:fructose mix to use both intestinal transporters.",
+        answer: "Match intake to duration, intensity and tolerance. A short, easy ride may need no on-bike carbohydrate; 30-60 g/hr is a common starting range for longer or harder sessions; prolonged racing often uses 60-90 g/hr. Intakes around 90-120 g/hr are specialised strategies for trained riders using glucose plus fructose after repeated practice. They are not a minimum or a universal goal.",
       },
       {
         question: "What is gut training in cycling?",
-        answer: "Gut training is the practice of progressively eating more carbs during training rides so your gut adapts to absorb them under exercise. The intestinal sodium-glucose transporter (SGLT1) and the fructose transporter (GLUT5) both upregulate with repeated high-carb training. Untrained gut: target 40-60 g/hr. Trained gut: 90-120 g/hr is achievable.",
+        answer: "Gut training means repeatedly practising the food, drink, dose and timing you plan to use in competition. The aim is to improve tolerance and reduce gastrointestinal surprises. Increase intake gradually during suitable training rides; do not assume that every rider will tolerate 90-120 g/hr, and do not introduce a high dose for the first time on race day.",
       },
       {
         question: "How much fluid should I drink per hour cycling?",
-        answer: "500-1000 ml per hour depending on temperature, humidity, body size, and individual sweat rate. ACSM guidance is to limit weight loss during exercise to under 2% of body weight. Sip continuously rather than gulping every 30 minutes. In hot conditions, pre-cooling and continuous fluid intake matter more than total volume.",
+        answer: "There is no safe universal ml-per-hour target. Needs vary with weather, intensity, body size, acclimation and individual sweat rate. Use the calculator as a starting estimate, then weigh yourself before and after representative rides while recording intake. Aim to avoid excessive dehydration without drinking so much that body mass increases; overdrinking can raise hyponatraemia risk.",
       },
       {
         question: "Why do I bonk on long rides?",
-        answer: "Almost always because total carbohydrate intake doesn't match work done. Glycogen stores at ~500 g (2000 kcal); a 4-hour ride at endurance pace can burn 2400-3200 kcal, with carbs supplying 50-85% of energy depending on intensity. If you're eating a banana and a gel and call it fuelled, you're running an energy deficit by hour two.",
+        answer: "Low carbohydrate availability is one common cause of a late-ride collapse, especially when intake does not match the duration and intensity. Starting too hard, heat stress, dehydration, illness, inadequate training and gastrointestinal problems can produce similar symptoms. Review pacing, conditions and nutrition together instead of treating every poor ride as a fuelling failure.",
       },
       {
         question: "What is the dual-transporter model?",
-        answer: "Glucose is absorbed via SGLT1 — capped around 60 g/hr. Fructose uses GLUT5 — adds another ~30-40 g/hr capacity. Combining the two in a roughly 2:1 glucose:fructose ratio lets athletes absorb 90-120 g/hr without gut distress. Most performance gels and drinks designed for endurance now use this ratio.",
+        answer: "Glucose and fructose use different intestinal transport pathways, so combining them can raise exogenous carbohydrate delivery compared with glucose alone during prolonged exercise. The older practical mix was often 2:1 glucose:fructose; many newer high-intake protocols use roughly 1:0.8. Neither ratio guarantees tolerance, and higher intake should be tested progressively.",
       },
     ],
     related: [
@@ -302,12 +316,52 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
       { label: "Glycogen — Glossary", href: "/glossary/glycogen", kind: "glossary" },
     ],
     webAppFeatures: [
-      "Per-session carbs, fluid and sodium targets",
-      "Glucose:fructose split for absorption above 60 g/hr",
-      "Heat- and humidity-adjusted fluid recommendations",
-      "Gut-training scaling (none / some / trained)",
-      "Total ride carb load and feeding interval",
+      "Per-session carbohydrate, fluid and sodium planning estimates",
+      "Glucose:fructose split for higher carbohydrate targets",
+      "Weather-adjusted fluid starting estimate",
+      "Gut-training guardrails for high intake",
+      "Total ride carbohydrate and feeding interval",
     ],
+    evidenceSources: [
+      {
+        name: "Regulation of fat and carbohydrate metabolism by exercise intensity",
+        role: "Romijn et al., 1993 · stable-isotope and calorimetry study, n=5",
+        href: "https://pubmed.ncbi.nlm.nih.gov/8214047/",
+      },
+      {
+        name: "Cycling efficiency and type I muscle fibres",
+        role: "Coyle et al., 1992 · trained cyclists, n=19",
+        href: "https://pubmed.ncbi.nlm.nih.gov/1501563/",
+      },
+      {
+        name: "The new carbohydrate intake recommendations",
+        role: "Jeukendrup, 2013 · duration- and intensity-specific guidance",
+        href: "https://pubmed.ncbi.nlm.nih.gov/23765351/",
+      },
+      {
+        name: "Graded carbohydrate ingestion up to 120 g/hr and cycling critical power",
+        role: "Norte et al., 2026 · trained cyclists/triathletes, n=16",
+        href: "https://pubmed.ncbi.nlm.nih.gov/42322010/",
+      },
+      {
+        name: "Normative sweat sodium and sweating-rate data in athletes",
+        role: "Baker et al., 2016 · observational athlete dataset, n=506",
+        href: "https://pubmed.ncbi.nlm.nih.gov/26070030/",
+      },
+      {
+        name: "Exercise and fluid replacement position stand",
+        role: "American College of Sports Medicine, 2007",
+        href: "https://pubmed.ncbi.nlm.nih.gov/17277604/",
+      },
+      {
+        name: "Fluid replacement for the physically active",
+        role: "National Athletic Trainers' Association consensus statement, 2017",
+        href: "https://pubmed.ncbi.nlm.nih.gov/28985128/",
+      },
+    ],
+    dateModified: "2026-08-25",
+    reviewedBy: "Anthony Walsh",
+    reviewScope: "primary-source verification",
   },
 
   "wkg": {

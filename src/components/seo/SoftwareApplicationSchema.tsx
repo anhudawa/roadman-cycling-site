@@ -29,6 +29,7 @@ export function SoftwareApplicationSchema({
       data={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
+        "@id": `${url}#webapplication`,
         name,
         description,
         url,

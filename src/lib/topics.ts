@@ -2376,7 +2376,7 @@ const TOPIC_ENRICHMENT: Record<string, {
   },
   "cycling-nutrition": {
     tools: [
-      { slug: "fuelling", title: "In-Ride Fuelling Calculator", href: "/tools/fuelling" },
+      { slug: "fuelling", title: "Cycling Nutrition Calculator", href: "/tools/fuelling" },
       { slug: "calories", title: "Calories Burned Calculator", href: "/tools/calories" },
       { slug: "energy-availability", title: "Energy Availability Calculator", href: "/tools/energy-availability" },
       { slug: "race-weight", title: "Race Weight Calculator", href: "/tools/race-weight" },
@@ -2511,7 +2511,7 @@ const TOPIC_ENRICHMENT: Record<string, {
   "triathlon-cycling": {
     tools: [
       { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
-      { slug: "fuelling", title: "In-Ride Fuelling Calculator", href: "/tools/fuelling" },
+      { slug: "fuelling", title: "Cycling Nutrition Calculator", href: "/tools/fuelling" },
     ],
     commercialPath: "/coaching/triathletes",
     relatedTopics: ["cycling-nutrition", "cycling-training-plans"],
@@ -2711,7 +2711,7 @@ const TOPIC_ENRICHMENT: Record<string, {
   },
   "race-preparation": {
     tools: [
-      { slug: "fuelling", title: "In-Ride Fuelling Calculator", href: "/tools/fuelling" },
+      { slug: "fuelling", title: "Cycling Nutrition Calculator", href: "/tools/fuelling" },
       { slug: "ftp-zones", title: "FTP Zone Calculator", href: "/tools/ftp-zones" },
       { slug: "race-day-checklist", title: "Race Day Checklist", href: "/tools/race-day-checklist" },
       { slug: "fuel-planner", title: "Cycling Fuel Planner", href: "/tools/fuel-planner" },
@@ -2779,7 +2779,7 @@ const TOPIC_ENRICHMENT: Record<string, {
   },
   "ultra-endurance": {
     tools: [
-      { slug: "fuelling", title: "In-Ride Fuelling Calculator", href: "/tools/fuelling" },
+      { slug: "fuelling", title: "Cycling Nutrition Calculator", href: "/tools/fuelling" },
       { slug: "fuel-planner", title: "Cycling Fuel Planner", href: "/tools/fuel-planner" },
     ],
     commercialPath: "/coaching",
@@ -2816,7 +2816,7 @@ const TOPIC_ENRICHMENT: Record<string, {
   "running-for-cyclists": {
     tools: [
       { slug: "hr-zones", title: "HR Zone Calculator", href: "/tools/hr-zones" },
-      { slug: "fuelling", title: "In-Ride Fuelling Calculator", href: "/tools/fuelling" },
+      { slug: "fuelling", title: "Cycling Nutrition Calculator", href: "/tools/fuelling" },
     ],
     commercialPath: "/strength-training",
     relatedTopics: [
@@ -2835,7 +2835,7 @@ const TOPIC_ENRICHMENT: Record<string, {
   "cycling-for-runners": {
     tools: [
       { slug: "hr-zones", title: "HR Zone Calculator", href: "/tools/hr-zones" },
-      { slug: "fuelling", title: "In-Ride Fuelling Calculator", href: "/tools/fuelling" },
+      { slug: "fuelling", title: "Cycling Nutrition Calculator", href: "/tools/fuelling" },
     ],
     commercialPath: "/strength-training",
     relatedTopics: [
