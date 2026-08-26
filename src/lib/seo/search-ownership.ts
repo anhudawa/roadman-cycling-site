@@ -167,6 +167,30 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
           "Twelve-week goal-specific plan examples and progression boundaries for riders over 40",
       },
       {
+        path: "/masters/vo2max",
+        label: "VO2max Training for Masters Cyclists",
+        intent:
+          "Age-related VO2max evidence, measurement audit, interval-selection boundaries and clinical handoff",
+      },
+      {
+        path: "/nutrition/masters",
+        label: "Masters Cycling Nutrition",
+        intent:
+          "Energy, carbohydrate, protein and body-composition audit with masters-specific evidence limits",
+      },
+      {
+        path: "/blog/vo2max-decline-reversibility-masters-cyclists",
+        label: "VO2max Decline and Retrainability After 40",
+        intent:
+          "Longitudinal masters-athlete decline evidence, training-change interpretation and retrainability limits",
+      },
+      {
+        path: "/blog/masters-metabolism-anabolic-resistance-nutrition",
+        label: "Anabolic Resistance for Masters Cyclists",
+        intent:
+          "Anabolic-resistance physiology, protein evidence limits and qualified nutrition handoff",
+      },
+      {
         path: "/tools/masters-ftp-benchmark",
         label: "Masters FTP Benchmark Calculator",
         intent: "Age-graded FTP and W/kg benchmarking for masters cyclists",

@@ -206,6 +206,8 @@ export async function GET() {
         `${BASE_URL}/blog/masters-cyclist-guide-getting-faster-after-40 — Four-week plateau decision framework: verify the signal, audit absorption and test one limiting input.`,
         `${BASE_URL}/blog/cycling-training-plan-masters-over-40 — Day-by-day weekly-schedule intent; examples require individual modification.`,
         `${BASE_URL}/blog/masters-cycling-training-plan-over-40 — Twelve-week goal-specific plan intent; not the broad masters owner.`,
+        `${BASE_URL}/masters/vo2max — Reviewed VO2max decision hub: verify the trend, identify the event limiter, select a repeatable dose and use clinical handoff where needed; no fixed annual decline, workout or 72-hour rule.`,
+        `${BASE_URL}/nutrition/masters — Reviewed masters nutrition audit across energy, carbohydrate, protein and body composition; no universal protein target, four-meal rule or compulsory pre-sleep dose.`,
         `${BASE_URL}/blog/age-group-ftp-benchmarks-2026 — FTP benchmarks by age group.`,
         `${BASE_URL}/problem/losing-power-after-40 — Why power declines after 40.`,
         `${BASE_URL}/blog/strength-training-cyclists-over-50 — Progressive masters strength guidance; strength does not replace endurance volume.`,
