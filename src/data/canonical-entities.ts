@@ -456,13 +456,17 @@ export const CANONICAL_ENTITIES: CanonicalEntity[] = [
     slug: "michael-matthews",
     canonicalName: "Michael Matthews",
     variations: ["Michael Matthews", "Matthews", "Bling Matthews"],
-    title: "Professional cyclist; Grand Tour stage winner",
+    title:
+      "Team Jayco AlUla professional; 2010 U23 world champion; 2017 Tour points winner",
     affiliation: "Team Jayco AlUla",
-    affiliationVerified: false,
+    affiliationVerified: true,
     sameAs: [
       "https://en.wikipedia.org/wiki/Michael_Matthews_(cyclist)",
+      "https://www.wikidata.org/wiki/Q561546",
+      "https://greenedgecycling.com/2026/michael-matthews/",
+      "https://www.olympics.com.au/olympians/michael-matthews/",
       "https://www.procyclingstats.com/rider/michael-matthews",
-      "https://www.instagram.com/blingmatthews/",
+      "https://www.instagram.com/bling90/",
       "https://x.com/blingmatthews",
     ],
     sameAsVerified: true,
@@ -473,10 +477,14 @@ export const CANONICAL_ENTITIES: CanonicalEntity[] = [
       "team tactics",
       "pro periodisation",
     ],
-    episodes: ["ep-4-15-years-of-pro-riding-what-amateurs-don-t-know-matthews"],
+    episodes: [
+      "ep-4-15-years-of-pro-riding-what-amateurs-don-t-know-matthews",
+      "bling-matthews-the-hunt-for-green-jerseys",
+    ],
     kind: "pro-cyclist",
     guestSlug: "michael-matthews",
-    notes: "Current team not verified this pass; Wikipedia disambiguates as 'Michael Matthews (cyclist)'.",
+    notes:
+      "Current team and contract verified from Team Jayco AlUla and UCI records on 26 August 2026; public identity owner is /guests/michael-matthews.",
   },
   {
     slug: "rosa-kloser",

@@ -344,8 +344,8 @@ export default async function GuestPage({
                   SOURCES AND VERIFICATION
                 </h2>
                 <p className="text-sm text-foreground-muted mb-6">
-                  Career and sanction facts are checked against the records
-                  below. Podcast observations remain attributed to {guest.name}.
+                  Identity, career and credential facts are checked against the
+                  records below. Podcast observations remain attributed to {guest.name}.
                 </p>
                 <ol className="space-y-4">
                   {override.sources.map((source, index) => (

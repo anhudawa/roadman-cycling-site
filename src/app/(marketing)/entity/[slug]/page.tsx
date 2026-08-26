@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
 import { Header, Footer, Section, Container } from "@/components/layout";
@@ -17,6 +17,7 @@ import {
 import {
   getAllEntitySlugs,
   getEntityBySlug,
+  getEntityProfilePath,
   type ExpertEntityFull,
 } from "@/lib/entities";
 import { getGuestBySlug } from "@/lib/guests";
@@ -66,7 +67,7 @@ export async function generateMetadata({
   const entity = getEntityBySlug(slug);
   if (!entity) return { title: "Entity Not Found" };
 
-  const url = `${SITE_ORIGIN}/entity/${slug}`;
+  const url = `${SITE_ORIGIN}${getEntityProfilePath(entity)}`;
   const title = entity.seoTitle ?? `${entity.name} — ${entity.jobTitle}`;
   const description = entity.seoDescription ?? entity.shortBio;
   return {
@@ -91,6 +92,13 @@ export default async function EntityPage({
   const { slug } = await params;
   const entity = getEntityBySlug(slug);
   if (!entity) notFound();
+
+  // Some early entity records duplicated an established guest profile. A
+  // permanent redirect consolidates links, history and Person signals on the
+  // declared owner instead of asking crawlers to choose between two bios.
+  if (entity.canonicalProfilePath) {
+    permanentRedirect(entity.canonicalProfilePath);
+  }
 
   return <EntityPageContent slug={slug} entity={entity} />;
 }

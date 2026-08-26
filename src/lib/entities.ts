@@ -91,6 +91,12 @@ export interface ExpertEntityFrontmatter {
   podcastAppearances?: number;
   /** Slug of the matching `/guests/[slug]` page if one exists. */
   guestSlug?: string;
+  /**
+   * Canonical public profile when this MDX record only supplies entity data.
+   * The legacy `/entity/[slug]` URL redirects here and is omitted from the
+   * sitemap so one person does not compete with themself in search.
+   */
+  canonicalProfilePath?: string;
   /** Notable positions / quotes. 3-6 items shown on-page. */
   positions: ExpertPosition[];
   /** Slugs of related blog posts. Rendered as a "Featured in" grid. */
@@ -154,4 +160,11 @@ export function getEntityBySlug(slug: string): ExpertEntityFull | null {
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);
   return { ...(data as ExpertEntityFrontmatter), slug, content };
+}
+
+/** Resolve the one public profile URL that should own this person's identity. */
+export function getEntityProfilePath(
+  entity: Pick<ExpertEntityMeta, "slug" | "canonicalProfilePath">,
+): string {
+  return entity.canonicalProfilePath ?? `/entity/${entity.slug}`;
 }

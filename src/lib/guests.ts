@@ -205,7 +205,8 @@ const KNOWN_CREDENTIALS: Record<string, string> = {
   "Mark Sisson": "Endurance athlete, Primal Blueprint founder",
   "Matt Beers": "Professional MTB and gravel racer",
   "Matt Bottrill": "UK time trial champion, cycling coach",
-  "Michael Matthews": "Professional cyclist, stage race winner",
+  "Michael Matthews":
+    "Team Jayco AlUla professional; 2010 U23 world champion; 2017 Tour de France points winner",
   "Mick Clohisey": "Irish Olympic marathon runner",
   "Olav Bu": "Norwegian cycling physiologist, Uno-X performance lead",
   "Owen Vermeulen": "Professional gravel cyclist, addiction recovery advocate",
