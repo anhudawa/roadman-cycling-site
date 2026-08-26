@@ -1713,12 +1713,7 @@ export const ANSWER_PAGES: AnswerPage[] = [
   ...highVolumeQuery5Answers,
   ...highVolumeQuery6Answers,
   ...highVolumeQuery7Answers,
-  // The later high-volume-queries-13 entry is the single canonical owner for
-  // the tubeless setup intent. Exclude the earlier duplicate from every
-  // public inventory, sitemap, list, and lookup.
-  ...highVolumeQuery8Answers.filter(
-    ({ slug }) => slug !== "how-to-set-up-tubeless-tyres",
-  ),
+  ...highVolumeQuery8Answers,
   ...highVolumeQuery9Answers,
   ...highVolumeQuery10Answers,
   ...highVolumeQuery11Answers,

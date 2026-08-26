@@ -136,6 +136,136 @@ describe("road bike tyre-pressure calculator owner", () => {
     expect(redirects).toContain(
       '{ source: "/blog/tyre-pressure-cycling-complete-guide", destination: "/blog/cycling-tyre-pressure-guide", permanent: true }',
     );
+    expect(read("src/lib/answers-data/high-volume-queries.ts")).not.toContain(
+      'slug: "best-tyre-pressure-road-cycling"',
+    );
+    expect(redirects).toContain(
+      '{ source: "/answers/best-tyre-pressure-road-cycling", destination: "/blog/cycling-tyre-pressure-guide", permanent: true }',
+    );
+  });
+
+  it("consolidates zero-traffic wet answers and removes blanket pressure advice", () => {
+    const rain = read("content/blog/cycling-in-rain-guide.mdx");
+    const descending = read(
+      "content/blog/cycling-descending-wet-conditions-guide.mdx",
+    );
+    const racing = read("content/blog/cycling-racing-in-the-rain-guide.mdx");
+    const braking = read(
+      "content/blog/cycling-braking-technique-confidence-guide.mdx",
+    );
+    const cornering = read(
+      "content/blog/cornering-confidence-road-bike-technique.mdx",
+    );
+    const redirects = read("next.config.ts");
+    const answerFiles = [
+      "src/lib/answers-data/high-volume-queries-4.ts",
+      "src/lib/answers-data/high-volume-queries-8.ts",
+      "src/lib/answers-data/high-volume-queries-10.ts",
+      "src/lib/answers-data/high-volume-queries-11.ts",
+    ]
+      .map(read)
+      .join("\n");
+
+    expect(answerFiles).not.toContain('slug: "cycling-in-rain-tips-and-gear"');
+    expect(answerFiles).not.toContain(
+      'slug: "cycling-in-wet-conditions-safety"',
+    );
+    expect(answerFiles).not.toContain('slug: "how-to-set-up-tubeless-tyres"');
+    expect(redirects).toContain(
+      '{ source: "/answers/cycling-in-rain-tips-and-gear", destination: "/blog/cycling-in-rain-guide", permanent: true }',
+    );
+    expect(redirects).toContain(
+      '{ source: "/answers/cycling-in-wet-conditions-safety", destination: "/blog/cycling-in-rain-guide", permanent: true }',
+    );
+
+    for (const article of [rain, descending, racing, braking, cornering]) {
+      const { data } = matter(article);
+      expect(data.updatedDate).toBe("2026-08-26");
+      expect(data.lastReviewed).toBe("2026-08-26");
+      expect(data.reviewedBy).toContain("Anthony Walsh");
+      expect(data.citedClaims.length).toBeGreaterThanOrEqual(2);
+      expect(article).toContain("1-2 PSI");
+    }
+
+    expect(rain).toContain("Bicycle Rolling Resistance");
+    expect(descending).toContain("Shimano's road-brake safety guidance");
+    expect(racing).toContain("controlled test of three 28mm tyres");
+    expect(braking).not.toContain(
+      "Drop your tyre pressure by 5-10 psi from your dry setup",
+    );
+
+    const tubelessOwner = read(
+      "src/lib/answers-data/high-volume-queries-13.ts",
+    );
+    expect(tubelessOwner).toContain('slug: "how-to-set-up-tubeless-tyres"');
+    expect(tubelessOwner).toContain(
+      "never exceed the lower maximum for the tyre-rim pair",
+    );
+    expect(tubelessOwner).not.toContain(
+      "Inflate to the tyre's maximum pressure to fully seat",
+    );
+    expect(tubelessOwner).not.toContain(
+      "Typically 10-15 PSI lower than tubed setups",
+    );
+
+    const decision = read(
+      "docs/seo/gsc-wet-riding-consolidation-2026-08-26.md",
+    );
+    expect(decision).toContain("0 clicks and 0 impressions");
+    expect(decision).toContain("/answers/cycling-in-rain-tips-and-gear");
+    expect(decision).toContain("/answers/cycling-in-wet-conditions-safety");
+  });
+
+  it("publishes one compatibility-first tubeless comparison without universal claims", () => {
+    const raw = read("content/blog/tubeless-vs-clincher-tyres.mdx");
+    const { data, content } = matter(raw);
+    const answerOwner = read(
+      "src/lib/answers-data/high-volume-queries-2.ts",
+    );
+    const setupOwner = read(
+      "src/lib/answers-data/high-volume-queries-13.ts",
+    );
+
+    expect(data.seoTitle).toBe(
+      "Tubeless vs Clincher Road Tyres: Which Should You Use?",
+    );
+    expect(data.updatedDate).toBe("2026-08-26");
+    expect(data.lastReviewed).toBe("2026-08-26");
+    expect(data.reviewedBy).toContain("Anthony Walsh");
+    expect(data.citedClaims).toHaveLength(4);
+    expect(data.faq).toHaveLength(6);
+    expect(content).toContain("Compatibility decides whether tubeless is an option");
+    expect(content).toContain(
+      "https://docs.sram.com/en-US/publications/6s97VpCp9fBhUto8eMea31/UM%20-%20ZIPP%20-%20Road%20Wheels",
+    );
+    expect(content).toContain(
+      "https://www.schwalbe.com/en/technology-faq/tire-dimensions/",
+    );
+    expect(content).toContain(
+      "https://www.bicyclerollingresistance.com/specials/top-3-fastest-tubeless-vs-tubes",
+    );
+    for (const unsupported of [
+      "3-6 watts per tyre",
+      "50-70% fewer",
+      "30-60ml",
+      "fully tubeless",
+      "Inflate to the tyre's maximum pressure",
+    ]) {
+      expect(raw).not.toContain(unsupported);
+      expect(answerOwner).not.toContain(unsupported);
+    }
+    expect(setupOwner).not.toContain(
+      "Inflate to the tyre's maximum pressure to fully seat",
+    );
+    expect(setupOwner).not.toContain(
+      "Typically 10-15 PSI lower than tubed setups",
+    );
+    expect(answerOwner).toContain(
+      "Compare complete named systems: casing, tube or sealant",
+    );
+    expect(setupOwner).toContain(
+      "Set up road tubeless tyres safely: verify tyre-rim compatibility",
+    );
   });
 
   it("extends discovery, recrawl, benchmark and measurement controls", () => {

@@ -1195,7 +1195,7 @@ export const highVolumeQuery11Answers: AnswerPage[] = [
     relatedTopics: [
       { label: "Best saddle for women", href: "/answers/best-cycling-saddle-for-women" },
       { label: "Women-specific bike fit", href: "/answers/women-specific-bike-fit-differences" },
-      { label: "Cycling in rain tips and gear", href: "/answers/cycling-in-rain-tips-and-gear" },
+      { label: "Cycling in rain tips and gear", href: "/blog/cycling-in-rain-guide" },
     ],
     evidenceLevel: "moderate",
     publishDate: "2026-07-10",

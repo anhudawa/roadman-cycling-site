@@ -1785,26 +1785,26 @@ export const highVolumeQuery13Answers: AnswerPage[] = [
     question: "How to Set Up Tubeless Tyres on a Road Bike?",
     seoTitle: "How to Set Up Tubeless Tyres — Step-by-Step Road Bike Guide",
     seoDescription:
-      "Tubeless tyres reduce puncture risk and lower rolling resistance. Here is the step-by-step process for a reliable tubeless setup on road wheels.",
+      "Set up road tubeless tyres safely: verify tyre-rim compatibility, pressure limits, tape, valve, sealant, bead seating and permitted repair methods.",
     pillar: "coaching",
     directAnswer:
-      "Setting up tubeless tyres requires tubeless-ready wheels and tyres, tubeless rim tape, tubeless valves, and sealant. The process is: tape the rim bed to seal spoke holes, install tubeless valves, mount the tyre with sealant inside, and inflate rapidly to seat the beads — typically requiring a floor pump with a boost chamber or a compressor. Once seated, rotate the wheel to distribute sealant and check for leaks. Tubeless systems reduce puncture risk by 70-80% and lower rolling resistance by 2-4W per tyre at equivalent pressures compared with butyl inner tubes.",
+      "Set up tubeless only with an explicitly compatible rim, tyre, tape, valve and sealant. Follow the wheel and tyre manuals for tape width, mounting, seating pressure and permitted range; never exceed the lower maximum for the pair. Seat the beads with controlled airflow, add the manufacturer-specified sealant quantity, distribute it and inspect the bead line and leaks. Sealant can close some punctures and tubeless removes the inner-tube pinch-flat mode, but no universal puncture or watt reduction applies to every system.",
     keyTakeaways: [
-      "Tubeless reduces punctures by 70-80% — sealant plugs small holes instantly.",
-      "Rolling resistance drops 2-4W per tyre compared with butyl inner tubes at the same pressure.",
-      "You need tubeless-ready wheels, tyres, rim tape, valves, and sealant.",
-      "A floor pump with boost chamber or compressor is needed to seat the beads initially.",
+      "The exact rim and tyre must be approved for use together; a tubeless label on one component is not enough.",
+      "Never exceed the lower maximum or go below the higher minimum published for the tyre-rim pair.",
+      "Use compatible tape, valves and the sealant quantity specified for the tyre size.",
+      "Use only the controlled airflow needed to seat the beads and inspect the bead line before riding.",
     ],
     whoFor: [
       {
         label: "The puncture-plagued rider",
         detail:
-          "You are tired of fixing flats on the roadside and want a system that handles small punctures automatically.",
+          "You want an approved system whose sealant may close some small tread punctures and understand that a backup repair or recovery plan is still required.",
       },
       {
         label: "The performance-conscious cyclist",
         detail:
-          "You want the rolling resistance and comfort advantages of running lower tyre pressures without pinch flats.",
+          "You want a compatible system that can be pressure-tested without the inner-tube pinch-flat mode.",
       },
       {
         label: "The home mechanic",
@@ -1813,78 +1813,72 @@ export const highVolumeQuery13Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Tubeless on road bikes is no longer a fringe choice — it is the default for most new mid-to-high-end wheels. The benefits are clear: fewer punctures, lower rolling resistance, and the ability to run lower pressures for better grip and comfort without risking pinch flats. The trade-off is a messier setup process and the need to top up sealant every 3-4 months.",
-      "The initial setup is the part people dread. It does not have to be difficult if you follow the process: clean rim, good tape, proper sealant amount, and enough air volume to pop the beads into the hooks. A floor pump with a boost chamber handles 90% of tyre and rim combinations. The remaining 10% need a compressor or a trip to the shop.",
-      "Once running, the maintenance is minimal. Check sealant levels every 3-4 months by deflating and breaking one bead to look inside. Top up with 30-60 ml if it has dried. Carry a spare inner tube on every ride as a backup — sealant handles small holes but not sidewall cuts.",
+      "Tubeless road systems are common on current performance wheels, but the rim and tyre still need explicit approval for use together. Sealant can close some punctures and removing the tube removes the tube pinch-flat mode; it does not remove bead-retention, burping, rim-impact or pressure-limit constraints. The trade-off is a more involved setup and ongoing sealant maintenance.",
+      "Initial setup starts with the exact manuals: approved tyre, tape width and layers, valve, sealant quantity, mounting method and pressure ceiling. If the beads do not seat within those instructions, stop rather than adding uncontrolled compressor pressure and ask a qualified workshop to inspect the pairing.",
+      "Maintenance is system-specific. Check pressure before every ride and inspect sealant at the interval given by its maker, which changes with temperature, casing and product. Carry the repair supplies your wheel and tyre manufacturers permit; sealant will not close every cut.",
     ],
     expertEvidence: [
       {
-        name: "Josh Poertner",
-        credential: "Former technical director, Zipp Speed Weaponry; founder, Silca",
+        name: "SRAM Zipp",
+        credential: "Wheel-system manufacturer guidance",
         insight:
-          "Tubeless road tyres save 2-4W per tyre in rolling resistance compared with butyl inner tubes at the same pressure, because there is no inner tube deformation absorbing energy. At lower pressures — which tubeless enables without pinch flat risk — the comfort and grip gains are substantial without increasing rolling resistance.",
-      },
-      {
-        name: "Jarno Bierman",
-        credential: "Independent tyre testing, BicycleRollingResistance.com",
-        insight:
-          "In controlled drum testing, tubeless setups consistently produce lower rolling resistance than the same tyre with a butyl inner tube. Latex inner tubes close the gap but carry their own disadvantages — rapid air loss and higher puncture rates. Tubeless offers the best combination of low resistance, reliability, and puncture protection.",
+          "Tyre choice, measured width, wheel model and pressure limits must be checked as one system. The lower published maximum overrides a generic calculator or sidewall-only target.",
       },
     ],
     practicalApplication: [
       {
         title: "Tape the rim bed properly",
         detail:
-          "Remove old rim tape. Clean the rim bed with isopropyl alcohol. Apply tubeless-specific rim tape (matched to your rim's internal width) in one continuous loop, overlapping the start by 10-15 cm. Press firmly over each spoke hole to ensure a complete seal. Poke through the valve hole with a sharp tool.",
+          "Follow the rim maker's cleaning, tape width, layer count, overlap and valve-hole instructions. Generic overlap or tape-width rules can conflict with a wheel manual. Replace damaged or lifted tape rather than trying to patch a high-pressure road system.",
       },
       {
         title: "Install the valve and mount the tyre",
         detail:
-          "Insert the tubeless valve through the tape and tighten the lockring firmly. Mount one bead of the tyre, pour in 30-60 ml of sealant (check manufacturer recommendation), then mount the second bead. Start opposite the valve and work around with your thumbs — tyre levers can damage the bead seal.",
+          "Install the approved valve and mount the explicitly compatible tyre using the wheel and tyre instructions. Add the sealant maker's quantity for the measured tyre size; do not substitute a universal 30-60 ml dose. Use only permitted mounting tools so the bead and tape are not damaged.",
       },
       {
         title: "Seat the beads with rapid inflation",
         detail:
-          "Attach a floor pump with boost chamber (or compressor) and inflate rapidly. You should hear the beads pop into the rim hooks — two distinct pings. Inflate to the tyre's maximum pressure to fully seat, then reduce to your riding pressure.",
+          "Follow the wheel and tyre manuals. Use a compatible pump, boost chamber or regulated compressor only if permitted, add no more pressure than needed to seat the beads, and never exceed the lower maximum for the tyre-rim pair. Confirm the moulded bead line is even on both sides before reducing to the calculated riding pressure.",
       },
       {
         title: "Distribute sealant and check for leaks",
         detail:
-          "Rotate the wheel slowly in all orientations to coat the entire tyre interior with sealant. Spin the wheel and listen for air leaks. Small hissing from the bead or valve area often resolves as sealant reaches the leak. Leave overnight and check pressure in the morning.",
+          "Distribute sealant exactly as its maker and the tyre maker instruct. Inspect the bead line, valve, tape and pressure retention before riding; persistent air loss needs diagnosis rather than an assumption that more sealant will resolve it.",
       },
     ],
     commonMistakes: [
       {
         mistake: "Using non-tubeless-ready tyres or wheels.",
         fix:
-          "Tubeless-ready (TLR or TR) rims and tyres have specific bead profiles designed to create an airtight seal. Standard clincher tyres on non-tubeless rims will not seal reliably and can blow off catastrophically at pressure.",
+          "Use only an explicitly approved tyre-rim pairing. Tape or sealant does not make a standard tube-only tyre or non-tubeless rim an approved road-tubeless system.",
       },
       {
         mistake: "Using too little sealant.",
         fix:
-          "Road tyres need 30-60 ml of sealant per tyre. Too little means small punctures will not seal. Check the sealant manufacturer's recommendation for your tyre size.",
+          "Use the sealant manufacturer's quantity for the tyre's measured size and application. Both too little and too much can compromise the intended behaviour; record the product and installation date.",
       },
       {
         mistake: "Forgetting to top up sealant.",
         fix:
-          "Sealant dries out in 3-4 months (faster in hot climates). Set a calendar reminder to check and top up. Dried sealant will not plug punctures and the tyre may lose its air seal.",
+          "Set an inspection reminder from the sealant maker's interval and shorten it when that maker specifies hotter or drier conditions. Add only the approved product and quantity; do not assume every sealant lasts three or four months.",
       },
     ],
     faq: [
       {
         question: "What pressure should I run tubeless road tyres at?",
         answer:
-          "Typically 10-15 PSI lower than tubed setups. For a 28 mm tyre on a 75 kg rider: 60-70 PSI front, 65-75 PSI rear. SRAM, Silca, and Zipp all offer free tyre pressure calculators based on weight, tyre width, and road surface.",
+          "There is no universal PSI reduction from a tubed setup. Use complete system weight, measured mounted width and surface to calculate separate front and rear starting points, then obey the exact tyre and rim limits. Tubeless removes the inner-tube pinch-flat mode but does not remove bead-retention, burping, rim-impact or support limits.",
       },
       {
         question: "What happens if I get a puncture too big for sealant?",
         answer:
-          "Carry a spare inner tube and tyre levers. Remove the tyre, wipe out excess sealant, insert the tube, and inflate. This converts you back to a tubed setup for the ride home. Tubeless plug kits handle 2-3 mm punctures that sealant alone cannot.",
+          "Stop safely and follow the tyre and wheel makers' permitted roadside-repair method. A compatible plug may repair some tread punctures, while other damage requires an approved tube or recovery. Do not ride a sidewall cut, damaged bead or visibly damaged rim, and do not assume one plug size can repair every hole.",
       },
       {
         question: "How often do I need to add air?",
         answer:
-          "Tubeless tyres lose 5-10 PSI per week through the sealant layer — more than tubed setups. Check pressure before every ride and top up as needed. This is normal, not a sign of a problem.",
+          "Check pressure before every ride. Loss rate varies with casing, sealant, tape, valve, temperature and time; there is no universal weekly PSI figure. A sudden or persistent loss can indicate a leak that needs inspection rather than routine top-up.",
       },
       {
         question: "Can I convert any wheel to tubeless?",
@@ -1894,22 +1888,23 @@ export const highVolumeQuery13Answers: AnswerPage[] = [
       {
         question: "Which sealant is best?",
         answer:
-          "Stan's NoTubes, Orange Seal, and Muc-Off are the most widely used. Stan's is the industry standard; Orange Seal seals larger holes; Muc-Off lasts longest in hot conditions. All work — choose based on your climate and riding conditions.",
+          "There is no universal best sealant. Use one approved by the tyre and wheel manufacturers, check whether it is suitable for your pressure, temperature and tyre casing, and follow its quantity and inspection interval. Do not mix sealants unless both manufacturers explicitly allow it.",
       },
       {
         question: "Is tubeless worth it for a commuter?",
         answer:
-          "Absolutely. Commuters ride in all conditions, often on debris-strewn roads, and cannot afford roadside puncture stops. Tubeless sealant handles the glass and thorns that cause 80% of commuting punctures without you even noticing.",
+          "It can be when small punctures are common and the compatible system is maintained. Sealant will not close every cut, so a commuter still needs pressure checks, sealant inspections and a backup repair plan. Compare that maintenance with the simplicity of a tubed setup for your route and skills.",
       },
     ],
     relatedEpisodes: [],
     relatedTopics: [
-      { label: "Are carbon wheels worth it?", href: "/answers/are-carbon-wheels-worth-it" },
-      { label: "When to replace bike chain", href: "/answers/when-to-replace-bike-chain" },
+      { label: "Tyre Pressure Calculator", href: "/tools/tyre-pressure" },
+      { label: "Cycling Tyre Pressure Guide", href: "/blog/cycling-tyre-pressure-guide" },
+      { label: "Tubeless vs Clincher Tyres", href: "/answers/tubeless-vs-clincher-tyres" },
     ],
     evidenceLevel: "moderate",
     publishDate: "2026-07-10",
-    updatedDate: "2026-07-10",
+    updatedDate: "2026-08-26",
   },
 
   // 15 — WHAT CYCLING KIT FOR WINTER

@@ -1359,112 +1359,7 @@ export const highVolumeQuery10Answers: AnswerPage[] = [
     relatedTopics: [
       { label: "How to descend safely", href: "/answers/how-to-descend-safely-on-a-road-bike" },
       { label: "How to improve bike handling", href: "/answers/how-to-improve-bike-handling" },
-      { label: "Best tyre pressure for road cycling", href: "/answers/best-tyre-pressure-road-cycling" },
-    ],
-    evidenceLevel: "moderate",
-    publishDate: "2026-07-10",
-    updatedDate: "2026-07-10",
-  },
-
-  // ============================================================
-  // 14 — CYCLING IN WET CONDITIONS SAFETY
-  // ============================================================
-  {
-    slug: "cycling-in-wet-conditions-safety",
-    cluster: "cycling-tech",
-    question: "How Do You Ride Safely in Wet Conditions?",
-    seoTitle: "Cycling in Wet Conditions — Safety Tips and Technique",
-    seoDescription:
-      "Wet riding demands lower tyre pressure, earlier braking, and avoidance of painted lines. How to stay safe and confident when the roads are wet.",
-    pillar: "coaching",
-    directAnswer:
-      "Riding safely in wet conditions requires three adjustments: reduce tyre pressure by 5-10 psi to increase grip, brake earlier and more gently because stopping distances roughly double on wet tarmac, and avoid painted road markings, manhole covers, and metal surfaces which become extremely slippery when wet. Take wider lines through corners, reduce your speed by 20-30% compared to dry conditions, and wear high-visibility clothing. Mudguards and clear or yellow lens glasses improve visibility in spray.",
-    keyTakeaways: [
-      "Drop tyre pressure by 5-10 psi to increase the contact patch and grip.",
-      "Brake earlier — stopping distances roughly double on wet roads.",
-      "Avoid painted lines, manhole covers, and metal surfaces entirely.",
-      "Take wider lines through corners at 20-30% lower speed than dry conditions.",
-    ],
-    whoFor: [
-      {
-        label: "The fair-weather rider who wants to extend their season",
-        detail:
-          "You avoid riding in rain and want the confidence and kit knowledge to ride safely in wet conditions.",
-      },
-      {
-        label: "The commuter who has no choice about the weather",
-        detail:
-          "You ride in all conditions and want to minimise the risk of a wet-weather crash.",
-      },
-    ],
-    roadmanView: [
-      "In Britain, if you only ride in the dry, you lose half the year. Wet-weather riding is a skill set that separates riders who train consistently from those whose fitness rises and falls with the forecast. The adjustments are straightforward — lower pressure, earlier braking, wider lines, and heightened awareness of surface hazards — but they need to become habits rather than things you remember mid-corner.",
-      "The surfaces that catch people out are always the same: white lane markings, metal drain covers, diesel patches near junctions, and fallen leaves on country lanes. Each of these is functionally an ice rink in the wet. The fix is awareness and avoidance — if you can see a painted line, ride around it; if you cannot avoid a drain cover, cross it upright and in a straight line with no braking or steering input.",
-    ],
-    expertEvidence: [
-      {
-        name: "Phil Burt",
-        credential: "Former head physiotherapist, British Cycling",
-        insight:
-          "Wet-weather crashes cluster around two causes: loss of grip on low-friction surfaces (paint, metal, leaves) and rear-wheel slides caused by heavy rear braking. Training riders to identify and avoid these surfaces, and to modulate braking with emphasis on the front brake, reduces the wet-weather crash rate substantially.",
-      },
-    ],
-    practicalApplication: [
-      {
-        title: "Reduce tyre pressure before wet rides",
-        detail:
-          "Drop 5-10 psi from your dry-condition pressure. For a 28mm tyre, this might mean 65-70 psi instead of 75-80 psi. The lower pressure increases the tyre's contact patch and improves grip on wet tarmac.",
-      },
-      {
-        title: "Double your braking distance",
-        detail:
-          "Whatever point you would normally start braking for a corner or junction, move it back by the same distance again. Wet rims (on rim brakes) and wet rotors (disc brakes) both lose initial braking power until the water is cleared — squeeze the brakes lightly before you need them to dry the surfaces.",
-      },
-      {
-        title: "Ride the darkest tarmac",
-        detail:
-          "In wet conditions, the darkest, roughest tarmac has the most grip. Smooth, pale surfaces (concrete, painted areas, polished kerb stones) are the most slippery. Train your eyes to read the road surface and route your line over the grippiest available surface.",
-      },
-    ],
-    commonMistakes: [
-      {
-        mistake: "Riding through puddles without knowing what is underneath.",
-        fix:
-          "Puddles hide potholes, drains, and debris. Ride around them unless you can see the bottom. A pothole at 30 km/h can crack a rim or cause a crash — the two seconds lost going around are always worth it.",
-      },
-      {
-        mistake: "Wearing dark clothing in rain and poor visibility.",
-        fix:
-          "Drivers' visibility drops dramatically in rain. Wear a high-visibility gilet or jacket, use front and rear lights on flash mode even during the day, and fit reflective tape to shoes or shoe covers.",
-      },
-      {
-        mistake: "Keeping the same cornering speed as in dry conditions.",
-        fix:
-          "Tyre grip on wet tarmac is roughly 60-70% of dry grip. Reduce cornering speed by 20-30% and take wider, more gradual lines. The time saved by carrying speed is not worth the risk of a wet-weather slide.",
-      },
-    ],
-    faq: [
-      {
-        question: "Are disc brakes better in the wet?",
-        answer:
-          "Yes. Disc brakes perform more consistently in wet conditions because the rotor is smaller, centrally located, and clears water faster than a wet rim. Rim brakes lose significant stopping power in the first revolution on a wet rim — that lag is reduced to almost nothing with discs.",
-      },
-      {
-        question: "What tyres are best for wet riding?",
-        answer:
-          "Wider tyres (28-32mm) at lower pressure provide more grip than narrow, high-pressure tyres. Tread pattern matters less than compound — softer rubber compounds grip better in the wet but wear faster. For year-round riding in a wet climate, a 28mm tyre with a grippy compound is a solid default.",
-      },
-      {
-        question: "Should I ride in heavy rain?",
-        answer:
-          "Light to moderate rain is manageable with the right kit and technique. Heavy rain, standing water, and strong crosswinds increase risk substantially. If visibility drops below 50-100 metres, consider cutting the ride short. Indoor training is always an option when conditions are properly dangerous.",
-      },
-    ],
-    relatedEpisodes: [],
-    relatedTopics: [
-      { label: "Cycling in rain — tips and gear", href: "/answers/cycling-in-rain-tips-and-gear" },
-      { label: "How to descend safely", href: "/answers/how-to-descend-safely-on-a-road-bike" },
-      { label: "How to corner on a road bike", href: "/answers/how-to-corner-on-a-road-bike" },
+      { label: "Road bike tyre pressure calculator", href: "/tools/tyre-pressure" },
     ],
     evidenceLevel: "moderate",
     publishDate: "2026-07-10",
@@ -1568,7 +1463,7 @@ export const highVolumeQuery10Answers: AnswerPage[] = [
     relatedEpisodes: [],
     relatedTopics: [
       { label: "How to ride in the wind", href: "/answers/how-to-ride-in-the-wind-cycling" },
-      { label: "Cycling in wet conditions", href: "/answers/cycling-in-wet-conditions-safety" },
+      { label: "Cycling in wet conditions", href: "/blog/cycling-in-rain-guide" },
       { label: "How to improve bike handling", href: "/answers/how-to-improve-bike-handling" },
     ],
     evidenceLevel: "moderate",
