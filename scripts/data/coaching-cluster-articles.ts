@@ -163,12 +163,12 @@ export const COACHING_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
 
   {
     slug: "time-crunched-cyclist-8-hours-week",
-    title: "The Time-Crunched Cyclist: How to Train on 8 Hours a Week",
-    seoTitle: "The Time-Crunched Cyclist: How to Train on 8 Hours a Week",
+    title: "The Time-Crunched Cyclist: An 8-Hour Training Plan",
+    seoTitle: "Time-Crunched Cyclist: 8-Hour Training Plan (2026)",
     seoDescription:
-      "Eight hours a week is enough for serious cycling progress — if you structure it right. Here's the weekly template, the intensity distribution, and the sessions that actually move the needle.",
+      "A coach-reviewed 8-hour cycling plan with two weekly templates, research-backed intensity guidance, and rules for missed sessions, recovery and event prep.",
     excerpt:
-      "Eight hours a week. Full-time job. Family. Real life. Here's how to structure those hours so you keep improving — and where the time-crunched cyclist usually wastes them.",
+      "Eight hours can move your cycling forward, but there is no universal magic split. Use two adaptable weekly templates, then choose key sessions from your goal and recovery.",
     targetKeyword: "time crunched cyclist training",
     supportingKeywords: [
       "8 hours a week cycling",
@@ -177,20 +177,21 @@ export const COACHING_CLUSTER_ARTICLES: ClusterArticleSpec[] = [
       "cycling training 6 hours",
     ],
     angle:
-      "Concrete weekly template, not generic advice. Names the sessions, the order, and what to cut when the week goes wrong.",
+      "Two concrete weekly templates with an explicit evidence boundary, goal-specific session choices and decision rules for missed workouts and poor recovery.",
     pillar: "coaching",
     requiredSections: [
-      "The 8-hour rule: why it's enough",
-      "The weekly template (hour by hour)",
-      "The three sessions that matter most",
-      "What to cut when life gets in the way",
-      "Common time-crunched mistakes",
-      "How to add one more hour when you find it",
+      "Can eight hours actually make you faster?",
+      "The Roadman eight-hour starting plan",
+      "Recovery-limited version",
+      "Choose Thursday from the goal, not from habit",
+      "Which session should survive a broken week?",
+      "Recovery: use trends, not one red number",
+      "Sources and evidence limits",
     ],
     internalLinks: [
-      { href: "/coaching", anchor: "our coaching" },
+      { href: "/topics/cycling-training-plans", anchor: "cycling training plans" },
       { href: "/tools/ftp-zones", anchor: "FTP zones calculator" },
-      { href: "/community/not-done-yet", anchor: "Not Done Yet community" },
+      { href: "/coaching/time-crunched", anchor: "time-crunched coaching" },
     ],
     wordTarget: 2000,
     featuredImage: "/images/cycling/gravel-canyon-wide.jpg",

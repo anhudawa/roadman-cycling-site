@@ -358,6 +358,7 @@ Roadman's coverage of the 2026 Tour, every stage and the sport's history read th
 ## Topic Hubs
 Evidence-based topic hubs — each gathers the articles, episodes, and tools for one subject, with a short answer and FAQ schema.
 - [Cycling Training Plans](${tag(`${BASE_URL}/topics/cycling-training-plans`)})
+- [Time-Crunched Cyclist: 8-Hour Training Plan](${tag(`${BASE_URL}/blog/time-crunched-cyclist-8-hours-week`)}): Coach-reviewed general and recovery-limited templates, goal-specific session choices, missed-workout rules and explicit limits on what the training-intensity research proves.
 - [FTP Training](${tag(`${BASE_URL}/topics/ftp-training`)})
 - [Cycling Nutrition](${tag(`${BASE_URL}/topics/cycling-nutrition`)})
 - [Cycling Recovery](${tag(`${BASE_URL}/topics/cycling-recovery`)})
