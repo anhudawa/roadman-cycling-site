@@ -171,11 +171,11 @@ export const TOOLS: ToolEntry[] = [
   },
   {
     slug: "hydration",
-    title: "Hydration Calculator",
+    title: "Cycling Sweat Rate Calculator",
     description:
-      "Estimate sweat losses and build a per-ride hydration plan from duration, intensity, temperature, and body weight. Includes sodium guidance and bottle count.",
+      "Estimate condition-specific cycling sweat rate from measured pre/post body mass, fluid, urine and duration. Shows the formula and safety limits without prescribing a universal fluid or sodium dose.",
     pillar: "nutrition",
-    inputs: ["duration", "intensity", "temperature", "weight"],
+    inputs: ["preWeight", "postWeight", "fluid", "urine", "duration"],
   },
   {
     slug: "climb-time",

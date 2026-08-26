@@ -344,6 +344,21 @@ const HEAT_ANSWER_TRUST_CLUSTER = [
   "does-heat-training-help-for-a-cool-race",
 ];
 
+// One broad hydration owner, two distinct measurement/product specialists and
+// one pre-event sodium evidence review. Submit the reviewed answer and tool
+// routes with them so crawlers see a consistent knowledge graph.
+const HYDRATION_TRUST_CLUSTER = [
+  "cycling-hydration-guide",
+  "cycling-electrolytes-sweat-rate-testing-guide",
+  "electrolytes-sweat-rate-cycling",
+  "cycling-sodium-loading-hydration-guide",
+];
+
+const HYDRATION_ANSWER_TRUST_CLUSTER = [
+  "how-much-to-drink-cycling",
+  "do-cyclists-need-electrolytes",
+];
+
 // Reviewed, evidence-bounded answers that support the canonical bike-fit
 // guide. These URLs target narrow questions without competing for the guide's
 // head term, and should be recrawled together when their answer data changes.
@@ -486,9 +501,12 @@ async function main() {
   clusterUrls(PODCAST_AUTHORITY_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(TRAINING_CAMP_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(HEAT_TRAINING_TRUST_CLUSTER).forEach((u) => urls.add(u));
+  clusterUrls(HYDRATION_TRUST_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(COMPARISON_CLUSTER).forEach((u) => urls.add(u));
   answerUrls(BIKE_FIT_ANSWER_TRUST_CLUSTER).forEach((u) => urls.add(u));
   answerUrls(HEAT_ANSWER_TRUST_CLUSTER).forEach((u) => urls.add(u));
+  answerUrls(HYDRATION_ANSWER_TRUST_CLUSTER).forEach((u) => urls.add(u));
+  urls.add(`https://${HOST}/tools/hydration`);
   urls.add(`https://${HOST}/podcast/ep-2175-lessons-from-riding-in-mallorca`);
 
   if (all) {

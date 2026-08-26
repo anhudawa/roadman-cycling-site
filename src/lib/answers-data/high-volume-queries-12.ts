@@ -1096,16 +1096,16 @@ export const highVolumeQuery12Answers: AnswerPage[] = [
     question: "What Should You Drink While Cycling?",
     seoTitle: "What to Drink While Cycling — Hydration Guide",
     seoDescription:
-      "Drink 500-750ml per hour while cycling, using water for short rides and an electrolyte/carb drink for rides over 90 minutes. Complete hydration guide.",
+      "What to drink while cycling: when water is enough, when carbohydrate or sodium may help, and how to build a measured range without overdrinking.",
     pillar: "nutrition",
     directAnswer:
-      "For rides under 60-90 minutes, plain water is sufficient. For rides over 90 minutes or in hot conditions, use an electrolyte drink containing 500-700mg sodium per litre plus 30-60g carbohydrate per 500ml bottle. Aim for 500-750ml per hour in temperate conditions and up to 1,000ml per hour in heat. Drink before you feel thirsty — by the time thirst kicks in, you are already 1-2% dehydrated. A 2% loss in body weight from dehydration reduces aerobic performance by 6-10%. Electrolyte tablets or powder added to water are a practical, low-cost solution.",
+      "Water is often sufficient for short or cool rides when normal meals cover sodium and carbohydrate. Longer, harder or hotter rides may justify a drink containing carbohydrate or sodium, but there is no universal bottle-per-hour or sodium dose. Build a range from thirst, representative sweat-loss observations, conditions, access and tolerance, and do not drink enough to gain body mass during prolonged exercise.",
     keyTakeaways: [
-      "500-750ml per hour in temperate conditions; up to 1,000ml in heat.",
-      "Water is fine for rides under 90 minutes; add electrolytes and carbs for longer rides.",
-      "Sodium is the critical electrolyte — aim for 500-700mg per litre of fluid.",
-      "A 2% bodyweight loss from dehydration reduces performance by 6-10%.",
-      "Drink to a schedule, not to thirst — thirst is a lagging indicator of dehydration.",
+      "No fixed millilitres-per-hour range is safe or correct for every cyclist.",
+      "Water may be enough on short or cool rides; product choice depends on fuel, sweat loss and event context.",
+      "Sweat volume does not reveal sweat sodium concentration or produce a universal sodium dose.",
+      "Thirst is useful, but long, hot or logistically constrained events can justify a measured and rehearsed range.",
+      "A normally hydrated rider should not drink enough to gain body mass during prolonged exercise.",
     ],
     whoFor: [
       {
@@ -1120,72 +1120,72 @@ export const highVolumeQuery12Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Most riders under-drink. They carry one bottle of water on a three-hour ride and wonder why they feel awful in the last hour. The maths is simple: you lose 500-1,000ml of fluid per hour through sweat, more in heat. If you are only replacing 250ml per hour, you accumulate a litre deficit every two hours. That deficit costs watts, concentration, and recovery time.",
-      "For anything over 90 minutes, put electrolytes in at least one of your bottles. Sodium is the big one — it drives fluid absorption and prevents the diluted-blood-volume problem that comes from drinking plain water for hours. You do not need expensive products; an electrolyte tablet dissolved in a bidon does the job.",
+      "The useful question is not how many bottles an average rider drinks. It is what you lost and tolerated in conditions that resemble your event. Measure representative sessions, keep temperature and workload beside the number, and plan the next ride from a range rather than one false-precision target.",
+      "Electrolytes are a product choice, not compulsory kit for every ride. Count sodium from food, drink and supplements together, and remember that adding sodium does not make overdrinking safe.",
     ],
     expertEvidence: [
       {
         name: "Dr Asker Jeukendrup",
         credential: "Sports nutrition and hydration researcher",
         insight:
-          "Fluid intake during exercise should aim to prevent more than a 2% loss of body mass from dehydration. A drink containing sodium (500-700mg/L) and carbohydrate (3-6% solution) promotes faster fluid absorption than plain water and maintains performance over prolonged exercise.",
+          "Exercise fluid planning should be individual and context-specific. Body-mass change can help audit a representative session, but one percentage threshold does not diagnose dehydration or prescribe full replacement for every athlete.",
       },
       {
         name: "Dr Andy Blow",
         credential: "Sports hydration researcher, Precision Hydration founder",
         insight:
-          "Sweat sodium concentration varies widely between individuals — from 200mg to over 1,500mg per litre of sweat. Athletes with high sweat sodium losses (salty sweat stains, cramping tendency) need higher sodium drinks and may require 1,000-1,500mg sodium per litre to maintain performance.",
+          "Sweat sodium concentration varies widely. A valid measurement can inform product choice for selected high-loss events, but salty clothing, cramping or sweat volume alone cannot determine an exact sodium prescription.",
       },
     ],
     practicalApplication: [
       {
-        title: "Set a drinking schedule",
+        title: "Build a condition-specific range",
         detail:
-          "Every 15-20 minutes, take 3-4 large gulps from your bottle. This delivers roughly 150-200ml per interval, adding up to 500-750ml per hour. Set a repeating timer on your cycling computer if you tend to forget.",
+          "Record dry pre/post body mass, everything consumed, any urine and duration during a representative ride. Repeat comparable sessions and use the observations as a logistics range, not a requirement to replace every millilitre.",
       },
       {
         title: "Use the two-bottle system for long rides",
         detail:
-          "Carry one bottle of electrolyte/carbohydrate drink and one bottle of plain water. Alternate between them. The electrolyte bottle provides fuel and sodium; the water bottle lets you rinse your mouth or cool your head in heat.",
+          "When access allows, separate plain water from a carbohydrate or sodium drink so concentration and flavour remain adjustable. The correct mix depends on the fuel plan and conditions, not a universal alternation rule.",
       },
       {
         title: "Weigh yourself before and after a ride to calibrate",
         detail:
-          "Weigh yourself before a ride (minimal clothing) and again after. Each kilogram lost represents approximately 1 litre of fluid deficit. Use this to adjust your drinking rate on future rides.",
+          "Use dry minimal clothing and the same scale. Add consumed fluid and subtract urine before dividing by time. Attach conditions to the result and repeat it; the estimate describes loss, not a mandatory drinking rate.",
       },
     ],
     commonMistakes: [
       {
         mistake: "Drinking only water on rides over 2 hours.",
         fix:
-          "Plain water does not replace the sodium lost in sweat. Prolonged water-only intake can dilute blood sodium and impair fluid absorption. Add an electrolyte tablet or powder to at least one bottle.",
+          "Water may be appropriate depending on food, loss and conditions. Review the complete carbohydrate and sodium plan rather than making an electrolyte product compulsory at an arbitrary duration.",
       },
       {
         mistake: "Waiting until thirsty to drink.",
         fix:
-          "Thirst is triggered by a 1-2% fluid deficit. By then, performance is already declining. Drink on a schedule: every 15-20 minutes, regardless of thirst.",
+          "Thirst is a legitimate input, especially on shorter or cooler rides. For long or hot events, combine it with a rehearsed range and access plan rather than ignoring thirst or forcing fluid regardless of symptoms.",
       },
       {
         mistake: "Over-drinking to the point of bloating.",
         fix:
-          "Drinking more than 1,000ml per hour in temperate conditions risks hyponatraemia (dangerously low blood sodium). Match intake to sweat rate — do not force fluid beyond what you are losing.",
+          "Bloating or fluid-related body-mass gain is a reason to stop forcing intake and reassess. Exercise-associated hyponatraemia is linked to overdrinking; sodium in the bottle does not provide immunity. Confusion, seizure, collapse or altered consciousness needs urgent medical help.",
       },
     ],
     faq: [
       {
         question: "Is sports drink better than water for cycling?",
         answer:
-          "For rides under 60-90 minutes, water is fine. For rides over 90 minutes, a sports drink containing electrolytes and carbohydrate is more effective because it replaces sodium, provides fuel, and promotes faster fluid absorption.",
+          "Not automatically. Water can be sufficient when the ride, normal diet and conditions do not require additional carbohydrate or sodium. A sports drink can simplify fuel and sodium delivery during longer or harder sessions, but choose it for the complete plan rather than a fixed duration rule.",
       },
       {
         question: "How much sodium do I need in my drink?",
         answer:
-          "500-700mg per litre is a good starting point. If you are a heavy or salty sweater (white salt marks on your kit), you may need up to 1,000-1,500mg per litre. Experiment in training.",
+          "There is no universal dose. Total need depends on sweat volume, sweat sodium concentration, food, other products, conditions and duration. Salt marks and cramping do not provide a precise measurement. Review the product label and rehearse a complete plan; use qualified testing or advice when the decision materially affects a long, high-loss event.",
       },
       {
         question: "Can I drink too much while cycling?",
         answer:
-          "Yes. Over-hydrating — particularly with plain water — dilutes blood sodium and can cause hyponatraemia, a dangerous condition. Match your intake to your sweat rate, not a fixed target.",
+          "Yes. Overdrinking can cause exercise-associated hyponatraemia, and adding sodium does not remove that risk. A normally hydrated rider should not drink enough to gain body mass during prolonged exercise. Use thirst and a rehearsed range rather than forcing full sweat replacement.",
       },
       {
         question: "What about energy drinks with caffeine?",
@@ -1195,7 +1195,7 @@ export const highVolumeQuery12Answers: AnswerPage[] = [
       {
         question: "Should I pre-hydrate before a ride?",
         answer:
-          "Drinking 400-600ml of fluid with electrolytes in the 2-3 hours before a ride ensures you start well hydrated. Do not overdo it — excessive pre-hydration just means more stops.",
+          "Start from normal day-to-day hydration rather than forcing a large bolus. A specialist sodium-loading or hyperhydration strategy has limited, context-specific evidence and is not a universal DIY routine. Rehearse any deliberate pre-event plan and get qualified advice when health conditions or medication affect fluid or sodium balance.",
       },
     ],
     relatedEpisodes: [],
@@ -1204,10 +1204,16 @@ export const highVolumeQuery12Answers: AnswerPage[] = [
       { label: "Do cyclists need electrolytes?", href: "/answers/do-cyclists-need-electrolytes" },
       { label: "How to hydrate in hot weather cycling", href: "/answers/how-to-hydrate-in-hot-weather-cycling" },
       { label: "How many carbs per hour cycling", href: "/answers/how-many-carbs-per-hour-cycling" },
+      { label: "Cycling hydration guide", href: "/blog/cycling-hydration-guide" },
+      { label: "Cycling sweat-rate calculator", href: "/tools/hydration" },
     ],
     evidenceLevel: "strong",
+    evidenceNote:
+      "Reviewed against the 2026 UCI cycling consensus, field sweat-testing methodology, the NATA fluid-replacement position statement and the exercise-associated-hyponatraemia consensus. These sources support individual, context-specific planning rather than one universal fluid or sodium dose.",
     publishDate: "2026-07-10",
-    updatedDate: "2026-07-10",
+    updatedDate: "2026-08-26",
+    reviewedBy:
+      "Anthony Walsh, with editorial source-to-claim checking against the cited hydration and hyponatraemia literature",
   },
 
   // ============================================================

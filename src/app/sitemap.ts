@@ -292,6 +292,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/tools/tyre-pressure`, lastModified: new Date("2026-08-26"), changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/tools/race-weight`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/tools/fuelling`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE_URL}/tools/hydration`, lastModified: new Date("2026-08-26"), changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/tools/energy-availability`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/tools/shock-pressure`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/tools/hr-zones`, changeFrequency: "monthly", priority: 0.7 },
