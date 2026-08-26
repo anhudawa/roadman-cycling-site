@@ -67,13 +67,15 @@ export async function generateMetadata({
   if (!entity) return { title: "Entity Not Found" };
 
   const url = `${SITE_ORIGIN}/entity/${slug}`;
+  const title = entity.seoTitle ?? `${entity.name} — ${entity.jobTitle}`;
+  const description = entity.seoDescription ?? entity.shortBio;
   return {
-    title: `${entity.name} — ${entity.jobTitle}`,
-    description: entity.shortBio,
+    title,
+    description,
     alternates: { canonical: url },
     openGraph: {
-      title: `${entity.name} — ${entity.jobTitle}`,
-      description: entity.shortBio,
+      title,
+      description,
       type: "profile",
       url,
       images: ["/og-image.jpg"],
@@ -141,6 +143,23 @@ function EntityPageContent({
           "@type": "ProfilePage",
           name: `${entity.name} — Entity & Roadman Cycling`,
           url,
+          ...(entity.lastReviewed && { dateModified: entity.lastReviewed }),
+          ...(entity.reviewedBy && {
+            reviewedBy: {
+              "@type": "Person",
+              "@id": `${SITE_ORIGIN}/author/anthony-walsh#person`,
+              name: "Anthony Walsh",
+              url: `${SITE_ORIGIN}/author/anthony-walsh`,
+            },
+          }),
+          ...(entity.sources &&
+            entity.sources.length > 0 && {
+              citation: entity.sources.map((source) => ({
+                "@type": "CreativeWork",
+                name: source.name,
+                url: source.url,
+              })),
+            }),
           isPartOf: { "@id": ENTITY_IDS.website },
           about: { "@id": `${url}#person` },
           mainEntity: {
@@ -154,6 +173,12 @@ function EntityPageContent({
             ...(entity.image && { image: entity.image }),
             ...(entity.location && {
               homeLocation: { "@type": "Place", name: entity.location },
+            }),
+            ...(entity.nationality && {
+              nationality: {
+                "@type": "Country",
+                name: entity.nationality,
+              },
             }),
             ...(entity.worksFor && {
               worksFor: {
@@ -186,6 +211,22 @@ function EntityPageContent({
           },
         }}
       />
+      {entity.faqs && entity.faqs.length > 0 && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: entity.faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: faq.answer,
+              },
+            })),
+          }}
+        />
+      )}
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -270,12 +311,12 @@ function EntityPageContent({
                   )}
                 </Card>
               )}
-              {entity.location && (
+              {entity.nationality && (
                 <Card className="p-5" hoverable={false}>
                   <p className="text-xs text-foreground-subtle font-heading tracking-widest mb-2">
-                    BASED IN
+                    NATIONALITY
                   </p>
-                  <p className="text-off-white">{entity.location}</p>
+                  <p className="text-off-white">{entity.nationality}</p>
                 </Card>
               )}
               {typeof entity.podcastAppearances === "number" && (
@@ -494,6 +535,66 @@ function EntityPageContent({
                     </a>
                   );
                 })}
+              </div>
+            </Container>
+          </Section>
+        )}
+
+        {/* Source transparency and recurring entity questions. */}
+        {entity.sources && entity.sources.length > 0 && (
+          <Section background="charcoal">
+            <Container width="narrow">
+              <ScrollReveal direction="up">
+                <h2 className="font-heading text-2xl text-off-white tracking-wide mb-3">
+                  SOURCES AND VERIFICATION
+                </h2>
+                {entity.reviewedBy && (
+                  <p className="text-foreground-muted text-sm mb-6">
+                    {entity.reviewedBy}
+                    {entity.lastReviewed ? ` Last reviewed ${entity.lastReviewed}.` : ""}
+                  </p>
+                )}
+              </ScrollReveal>
+              <div className="space-y-3">
+                {entity.sources.map((source) => (
+                  <Card key={source.url} className="p-4" hoverable={false}>
+                    <a
+                      href={source.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-heading text-off-white hover:text-coral transition-colors"
+                    >
+                      {source.name} ↗
+                    </a>
+                    <p className="text-sm text-foreground-muted mt-2 leading-relaxed">
+                      {source.note}
+                    </p>
+                  </Card>
+                ))}
+              </div>
+            </Container>
+          </Section>
+        )}
+
+        {entity.faqs && entity.faqs.length > 0 && (
+          <Section background="deep-purple" grain>
+            <Container width="narrow">
+              <ScrollReveal direction="up">
+                <h2 className="font-heading text-2xl text-off-white tracking-wide mb-6">
+                  ABOUT {entity.name.toUpperCase()}
+                </h2>
+              </ScrollReveal>
+              <div className="space-y-4">
+                {entity.faqs.map((faq) => (
+                  <Card key={faq.question} className="p-5" hoverable={false}>
+                    <h3 className="font-heading text-off-white mb-2">
+                      {faq.question}
+                    </h3>
+                    <p className="text-foreground-muted leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </Card>
+                ))}
               </div>
             </Container>
           </Section>

@@ -910,7 +910,7 @@ export default function TrainingPlansPage() {
                 },
                 {
                   name: "Dan Lorang",
-                  role: "Head of Performance, Red Bull–Bora–Hansgrohe",
+                  role: "Head of Performance, Lidl-Trek",
                   href: "/guests/dan-lorang",
                 },
                 {

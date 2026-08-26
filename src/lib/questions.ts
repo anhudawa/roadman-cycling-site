@@ -210,7 +210,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
       {
         label: "Dan Lorang — Roadman Podcast",
         detail:
-          "Lorang (Head of Performance, Red Bull–Bora–Hansgrohe) emphasises that recovery is a separate trainable input — under-recovered athletes can't express their fitness in testing.",
+          "Lorang (Head of Performance at Lidl-Trek since August 2026) emphasises that recovery is a separate input — under-recovered athletes can't express their fitness in testing.",
         href: "/guests/dan-lorang",
       },
       {
@@ -1984,7 +1984,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
       {
         label: "Dan Lorang — Roadman Podcast",
         detail:
-          "Lorang (Head of Performance at Red Bull–Bora–Hansgrohe; long-time triathlon coach to Jan Frodeno and Anne Haug) has stressed that the work-life-recovery balance dictates the right volume — copy the prescription, never the volume.",
+          "Lorang (Head of Performance at Lidl-Trek since August 2026; previously at Red Bull–Bora–Hansgrohe) has stressed that work, family and recovery affect the right volume — copy the decision process, not a professional's volume.",
         href: "/guests/dan-lorang",
       },
       {

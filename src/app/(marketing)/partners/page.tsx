@@ -253,7 +253,7 @@ const testimonials = [
 const notableGuests = [
   "Greg LeMond — 3x Tour de France winner",
   "Professor Stephen Seiler — Polarised training pioneer",
-  "Dan Lorang — Head of Performance, Red Bull-Bora-Hansgrohe",
+  "Dan Lorang — Head of Performance, Lidl-Trek",
   "Lachlan Morton — EF Education, alt-racing pioneer",
   "Dan Bigham — Head of Engineering, Red Bull–Bora–Hansgrohe · Former UCI Hour Record holder",
   "Alistair Brownlee — 2x Olympic triathlon gold",

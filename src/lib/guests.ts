@@ -166,7 +166,7 @@ const KNOWN_CREDENTIALS: Record<string, string> = {
   "Courtney Conley": "Foot health specialist, founder of Gait Happens",
   "Cynthia Thurlow": "Intermittent fasting expert, nurse practitioner",
   "Dan Bigham": "Former Hour Record holder, Head of Engineering at Red Bull-Bora-Hansgrohe",
-  "Dan Lorang": "Head of Performance, Red Bull–Bora–Hansgrohe",
+  "Dan Lorang": "Head of Performance, Lidl-Trek",
   "David Gillick": "European indoor 400m champion",
   "Dylan Johnson": "Cycling coach, gravel racer and evidence-based training analyst",
   "Dr Allen Lim": "Sports physiologist, founder of Skratch Labs",

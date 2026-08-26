@@ -36,7 +36,7 @@ const RESEARCH_AREAS = [
   },
   {
     title: "World Tour Training Methodology",
-    expert: "Dan Lorang, Red Bull-Bora-Hansgrohe",
+    expert: "Dan Lorang, Head of Performance at Lidl-Trek",
     articles: [
       { title: "Dan Lorang's Amateur Training Plan", href: "/blog/dan-lorang-amateur-training-plan" },
       { title: "Every Lorang Episode", href: "/blog/every-roadman-episode-with-dan-lorang" },

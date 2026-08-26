@@ -61,7 +61,7 @@ const notableGuests = [
   { name: "Professor Stephen Seiler", credential: "Polarised training pioneer" },
   {
     name: "Dan Lorang",
-    credential: "Head of Performance, Red Bull–Bora–Hansgrohe (since 2017)",
+    credential: "Head of Performance, Lidl-Trek (since August 2026)",
   },
   { name: "Greg LeMond", credential: "3× Tour de France winner" },
   { name: "Lachlan Morton", credential: "EF Education pro cyclist" },

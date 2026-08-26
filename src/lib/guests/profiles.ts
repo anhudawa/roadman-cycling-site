@@ -438,13 +438,24 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "dan-lorang": {
+    seoTitle: "Dan Lorang: Lidl-Trek Role, Coaching & Podcast",
+    seoDescription:
+      "Dan Lorang is Lidl-Trek's Head of Performance. Read his verified role, coaching background and Roadman episodes on amateur training and recovery.",
+    expertSeoTitle: "Dan Lorang on Amateur Training & Load Management",
+    expertSeoDescription:
+      "Dan Lorang's Roadman topics: sustainable training, load and recovery, heart rate, season planning, tapering and coaching riders over 40.",
+    credential: "Head of Performance, Lidl-Trek; elite endurance coach",
     description:
-      "Luxembourgish performance coach. Long-time triathlon coach to Jan Frodeno, Anne Haug and Lucy Charles-Barclay; Head of Performance at Red Bull–Bora–Hansgrohe since 2017, announced in April 2026 that he will leave at the end of the 2026 season.",
+      "Luxembourgish endurance coach and Head of Performance at Lidl-Trek since 1 August 2026. His Roadman interviews were recorded during his previous tenure at Bora–Hansgrohe and cover sustainable training, load management, tapering and recovery.",
     worksFor: {
-      name: "Red Bull–Bora–Hansgrohe",
+      name: "Lidl-Trek",
       type: "SportsTeam",
+      url: "https://racing.trekbikes.com/team/lidl-trek",
     },
-    sameAs: ["https://de.linkedin.com/in/dan-lorang-33296319"],
+    sameAs: [
+      "https://racing.trekbikes.com/team/lidl-trek",
+      "https://de.linkedin.com/in/dan-lorang-33296319",
+    ],
     featuredArticles: [
       "every-roadman-episode-with-dan-lorang",
       "ironman-bike-training-plan-16-weeks",
@@ -452,15 +463,80 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "cycling-periodisation-friel-lorang-johnson",
     ],
     whyMatters:
-      "Dan Lorang is one of the most respected coaches in endurance sport — the long-time coach to triathlon greats Jan Frodeno, Anne Haug, and Lucy Charles-Barclay, and Head of Performance at Red Bull–Bora–Hansgrohe since 2017. He is the rare coach who has produced Ironman world champions and Grand Tour stage winners using the same underlying principles. His public work on training-load management, polarised intensity, and the long-arc development of an athlete has influenced how the smarter end of the amateur world structures their season.",
+      "Dan Lorang is a Luxembourgish endurance coach and Lidl-Trek's Head of Performance. The team's official announcement says his remit covers coaching, nutrition, health, recovery, athletics, and data and AI. Before joining Lidl-Trek on 1 August 2026, he led performance at Red Bull–Bora–Hansgrohe. He has also coached leading long-course triathletes. His two Roadman interviews are most useful for what they actually establish: sustainable load, season planning, heart-rate context, recovery and individualisation—not a universal weekly formula.",
     keyIdeas: [
-      "Long-term athlete development trumps short-term peaking — the best athletes are the ones who improve year-on-year for a decade.",
-      "Polarised intensity distribution applies to both Ironman triathletes and Grand Tour riders — the principles cross disciplines.",
-      "Training load is best managed by listening to the athlete daily, not by following a plan in spite of the body's signals.",
-      "Strength work is non-negotiable for endurance athletes over 30 — durability prevents the late-season collapse.",
-      "The bike leg of a triathlon is paced for the run that follows, not as a standalone TT — most age-groupers ignore this and fade in the marathon.",
+      "Became Lidl-Trek's Head of Performance on 1 August 2026 after his Red Bull–Bora–Hansgrohe tenure.",
+      "Treats consistency and the balance between load and recovery as foundations of sustainable endurance training.",
+      "Plans seasons backwards from priority races, then adjusts periods and tapers to the individual athlete.",
+      "Uses heart rate alongside power and perceived exertion because the measures answer different coaching questions.",
+      "Advises riders over 40 to include work, family, sleep and social stress when judging total recoverable load.",
     ],
-    relatedHubs: ["ftp-training", "cycling-training-plans", "triathlon-cycling"],
+    keyIdeasHeading: "VERIFIED FACTS AND POSITIONS",
+    keyIdeasDescription:
+      "Current role facts come from Lidl-Trek; coaching positions below come from the two Roadman interview transcripts.",
+    faqs: [
+      {
+        question: "Who is Dan Lorang?",
+        answer:
+          "Dan Lorang is a Luxembourgish endurance coach and Head of Performance at Lidl-Trek. He previously led performance at Red Bull–Bora–Hansgrohe and has coached leading long-course triathletes.",
+      },
+      {
+        question: "Which team does Dan Lorang work for now?",
+        answer:
+          "Dan Lorang joined Lidl-Trek as Head of Performance on 1 August 2026. Roadman's interviews with him were recorded during his earlier Bora–Hansgrohe tenure.",
+      },
+      {
+        question: "How many Dan Lorang Roadman episodes are there?",
+        answer:
+          "There are two long-form Roadman Cycling Podcast interviews with Dan Lorang: the April 2024 amateur-training conversation and the April 2025 conversation on season planning, tapering and recovery.",
+      },
+      {
+        question: "Does Dan Lorang recommend one training plan for every amateur?",
+        answer:
+          "No. In the reviewed interviews he stresses consistency, individual response, total life load and planning backwards from goals. He does not prescribe one universal 80/20 split or one fixed weekly schedule.",
+      },
+      {
+        question: "Does Dan Lorang coach Tadej Pogačar or Jonas Vingegaard?",
+        answer:
+          "No reviewed source used for this profile identifies Lorang as the personal coach of either rider. Roadman does not make that claim.",
+      },
+    ],
+    sources: [
+      {
+        name: "Lidl-Trek official team roster",
+        url: "https://racing.trekbikes.com/team/lidl-trek",
+        note: "Lists Dan Lorang as Luxembourgish and Head of Performance on the current management team.",
+      },
+      {
+        name: "Lidl-Trek leadership announcement — 2 June 2026",
+        url: "https://racing.trekbikes.com/stories/lidl-trek/a-new-chapter-begins-lidl-trek-announces-leadership-transition-following-the-2026-tour-de-france",
+        note: "Establishes the 1 August start date and the scope of Lorang's current remit.",
+      },
+      {
+        name: "Roadman interview — amateur training plan",
+        url: "/podcast/ep-2134-roglics-coach-builds-a-training-plan-for-amateur-riders-dan",
+        note: "Primary transcript for consistency, load and recovery, heart rate, weekly planning and sleep.",
+      },
+      {
+        name: "Roadman interview — 13 years coaching professionals",
+        url: "/podcast/ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
+        note: "Primary transcript for season planning, tapering, life stress and training-data interpretation.",
+      },
+      {
+        name: "That Triathlon Show — Dan Lorang episode 417",
+        url: "https://scientifictriathlon.com/tts417/",
+        note: "First-person interview notes on his background, triathlon athletes and individualised coaching approach.",
+      },
+      {
+        name: "USA Triathlon — Taylor Knibb profile",
+        url: "https://www.usatriathlon.org/profiles/taylor-knibb",
+        note: "Current athlete profile identifying Dan Lorang as Knibb's coach.",
+      },
+    ],
+    reviewedBy:
+      "Reviewed by Anthony Walsh against Lidl-Trek's official roster and announcement, Roadman's two interview transcripts and the cited first-person sources.",
+    lastReviewed: "2026-08-26",
+    relatedHubs: ["cycling-coaching", "cycling-training-plans", "cycling-recovery"],
   },
 
   "john-wakefield": {

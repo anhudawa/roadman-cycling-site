@@ -478,7 +478,7 @@ export default function SCLandingPage() {
             <p>
               This programme didn&apos;t come from a textbook. It came from years of
               conversations with the coaches and scientists behind Grand Tour wins —
-              Dan Lorang at Red Bull–Bora–Hansgrohe, Professor Stephen Seiler, strength
+              Dan Lorang at Lidl-Trek, Professor Stephen Seiler, strength
               researchers working with pro teams — and from coaching hundreds of
               serious amateurs inside the Not Done Yet community.
             </p>

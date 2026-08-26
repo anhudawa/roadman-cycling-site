@@ -236,7 +236,7 @@ Core offerings:
 These appear frequently in the catalogue and anchor the brand's authority:
 
 - Prof. Stephen Seiler — Exercise physiologist, polarised training pioneer
-- Dan Lorang — Head of Performance at Red Bull–Bora–Hansgrohe since 2017, announced April 2026 he will leave at the end of the 2026 season (long-time coach to Jan Frodeno, Anne Haug, Lucy Charles-Barclay)
+- Dan Lorang — Head of Performance at Lidl-Trek since 1 August 2026; formerly Head of Performance at Red Bull–Bora–Hansgrohe; endurance coach to leading long-course triathletes
 - Greg LeMond — 3× Tour de France winner
 - Lachlan Morton — EF Education pro cyclist
 - Andrew Feather — Four-time UK National Hill-Climb Champion

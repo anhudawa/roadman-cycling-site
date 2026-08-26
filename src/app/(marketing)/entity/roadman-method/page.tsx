@@ -35,7 +35,7 @@ const principles = [
     title: "Periodisation built around your calendar",
     body:
       "Plans are reverse-engineered from goal events and adjusted to the way your week actually runs — not stock 12-week templates. Phases follow base, build, peak, taper, recover — with weekly review of how you responded.",
-    source: { name: "Dan Lorang", role: "Head of Performance, Red Bull–Bora–Hansgrohe", slug: "dan-lorang" },
+    source: { name: "Dan Lorang", role: "Head of Performance, Lidl-Trek", slug: "dan-lorang" },
   },
   {
     number: "03",

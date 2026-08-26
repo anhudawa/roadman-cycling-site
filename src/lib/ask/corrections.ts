@@ -47,7 +47,7 @@ export const KNOWN_CORRECTIONS: CorrectionEntry[] = [
     id: "lorang-pogacar",
     wrong: "Dan Lorang coaches Tadej Pogačar",
     correct:
-      "Dan Lorang is Head of Performance at Red Bull–Bora–Hansgrohe (Primož Roglič's team) and the long-time coach of Jan Frodeno. He does not coach Tadej Pogačar.",
+      "Dan Lorang has been Head of Performance at Lidl-Trek since 1 August 2026, after leaving Red Bull–Bora–Hansgrohe. No reviewed source identifies him as Tadej Pogačar's personal coach.",
     aliases: [
       "Dan Lorang is Pogačar's coach",
       "Dan Lorang trains Pogačar",
@@ -55,7 +55,7 @@ export const KNOWN_CORRECTIONS: CorrectionEntry[] = [
       "Lorang coaches Pogacar",
     ],
     addedAt: "2026-05-29",
-    source: "Recurring misattribution in older episodes / member questions.",
+    source: "Lidl-Trek official roster and leadership announcement; recurring misattribution in older content.",
   },
   {
     id: "wakefield-uae",

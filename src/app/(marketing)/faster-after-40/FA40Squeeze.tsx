@@ -597,7 +597,7 @@ export default function FA40Squeeze() {
             {[
               {
                 name: "Dan Lorang",
-                role: "Head of Performance, Red Bull–Bora–Hansgrohe",
+                role: "Head of Performance, Lidl-Trek",
                 detail:
                   "Coaches Frodeno, Haug, and Cavendish. His periodisation framework for time-limited athletes forms the backbone of the Coaching chapter.",
               },
