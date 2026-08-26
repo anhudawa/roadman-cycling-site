@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { ToolLanding } from "@/components/features/tools/ToolLanding";
+import { calculateFtpZones } from "@/lib/tools/calculators";
 
 /* ------------------------------------------------------------------ */
 /*  Test protocols & benchmark data                                    */
@@ -29,7 +30,7 @@ const PROTOCOLS: Protocol[] = [
     factor: 0.95,
     inputLabel: "20-MINUTE AVERAGE POWER (WATTS)",
     placeholder: "e.g. 280",
-    description: "The industry standard. Ride as hard as you can sustain for 20 minutes. FTP = 95 % of your average power.",
+    description: "A common field estimate: this calculator applies 95% to your 20-minute average. The conversion is not exact for every rider.",
   },
   {
     id: "8min",
@@ -38,7 +39,7 @@ const PROTOCOLS: Protocol[] = [
     factor: 0.90,
     inputLabel: "BEST 8-MINUTE AVERAGE POWER (WATTS)",
     placeholder: "e.g. 310",
-    description: "Two maximal 8-minute efforts with recovery between. FTP = 90 % of the better effort. Useful when 20 minutes feels psychologically daunting.",
+    description: "A protocol-specific estimate: this calculator applies 90% to the entered 8-minute power. Confirm that this matches the protocol you completed.",
   },
   {
     id: "ramp",
@@ -47,7 +48,7 @@ const PROTOCOLS: Protocol[] = [
     factor: 0.75,
     inputLabel: "LAST COMPLETED STEP POWER (WATTS)",
     placeholder: "e.g. 350",
-    description: "Progressive ramp until failure. FTP = 75 % of your maximum aerobic power (MAP), typically the last full step you completed. Most Zwift and TrainerRoad ramp tests use this.",
+    description: "A simplified ramp estimate: this calculator applies 75% to the entered final-step power. Platform equations and step definitions can differ.",
   },
   {
     id: "60min",
@@ -56,49 +57,11 @@ const PROTOCOLS: Protocol[] = [
     factor: 1.0,
     inputLabel: "60-MINUTE AVERAGE POWER (WATTS)",
     placeholder: "e.g. 250",
-    description: "The gold standard by definition — FTP is the power you can sustain for approximately one hour. Rarely used in practice because it requires exceptional pacing discipline.",
+    description: "Uses the entered 60-minute average as an FTP estimate. Pacing, course and individual time to exhaustion still affect interpretation.",
   },
 ];
 
-interface FtpTier {
-  min: number;
-  max: number;
-  label: string;
-  desc: string;
-  color: string;
-}
-
-const FTP_TIERS: FtpTier[] = [
-  { min: 0, max: 1.5, label: "Beginner", desc: "New to structured cycling", color: "#94A3B8" },
-  { min: 1.5, max: 2.5, label: "Recreational", desc: "Regular rider, moderate fitness", color: "#22C55E" },
-  { min: 2.5, max: 3.2, label: "Trained amateur", desc: "Structured training paying off", color: "#3B82F6" },
-  { min: 3.2, max: 3.7, label: "Strong amateur", desc: "Cat 3-4 competitive level", color: "#8B5CF6" },
-  { min: 3.7, max: 4.2, label: "Very strong", desc: "Cat 1-2, competitive in regional racing", color: "#EAB308" },
-  { min: 4.2, max: 4.7, label: "Elite amateur", desc: "National-level talent", color: "#F97316" },
-  { min: 4.7, max: 5.5, label: "Professional", desc: "Continental / domestic pro", color: "#EF4444" },
-  { min: 5.5, max: 10, label: "World Tour", desc: "Grand Tour contender territory", color: "#DC2626" },
-];
-
-/* Coggan 7-zone model (factors of FTP) */
-const ZONES = [
-  { zone: 1, name: "Active Recovery", low: 0, high: 0.55 },
-  { zone: 2, name: "Endurance", low: 0.55, high: 0.75 },
-  { zone: 3, name: "Tempo", low: 0.75, high: 0.90 },
-  { zone: 4, name: "Threshold", low: 0.90, high: 1.05 },
-  { zone: 5, name: "VO2max", low: 1.05, high: 1.20 },
-  { zone: 6, name: "Anaerobic", low: 1.20, high: 1.50 },
-  { zone: 7, name: "Neuromuscular", low: 1.50, high: 2.0 },
-];
-
 const ZONE_COLORS = ["#94A3B8", "#22C55E", "#3B82F6", "#8B5CF6", "#EAB308", "#F97316", "#EF4444"];
-
-/* ------------------------------------------------------------------ */
-/*  Helpers                                                            */
-/* ------------------------------------------------------------------ */
-
-function getTier(wkg: number): FtpTier {
-  return FTP_TIERS.find((t) => wkg >= t.min && wkg < t.max) || FTP_TIERS[FTP_TIERS.length - 1];
-}
 
 /* ------------------------------------------------------------------ */
 /*  Component                                                          */
@@ -118,7 +81,7 @@ export default function FtpTestPage() {
 
   const estimatedFtp = Math.round(testWatts * protocol.factor);
   const wkg = riderKg > 30 ? estimatedFtp / riderKg : 0;
-  const tier = wkg > 0 ? getTier(wkg) : null;
+  const zones = estimatedFtp > 0 ? calculateFtpZones(estimatedFtp) : [];
 
   /* Validation */
   const powerError = testPower && (testWatts < 50 || testWatts > 800) ? "Enter a power between 50 and 800 watts" : null;
@@ -145,7 +108,14 @@ export default function FtpTestPage() {
               FTP TEST CALCULATOR
             </h1>
             <p className="text-foreground-muted text-lg">
-              Your test result in. Estimated FTP, W/kg, and power zones out.
+              Apply a stated protocol equation to a completed test result. Outputs are estimates, not interchangeable laboratory thresholds.
+            </p>
+            <p className="text-foreground-subtle text-sm mt-3">
+              Not sure which protocol fits?{" "}
+              <Link href="/answers/ftp-test-guide" className="text-coral hover:text-coral/80">
+                Read the FTP test selection guide
+              </Link>
+              .
             </p>
           </Container>
         </Section>
@@ -246,9 +216,9 @@ export default function FtpTestPage() {
                     <div className="text-center mb-8">
                       <p className="font-heading text-6xl md:text-8xl text-coral mb-2">{estimatedFtp}W</p>
                       <p className="font-heading text-xl text-off-white">ESTIMATED FTP</p>
-                      {wkg > 0 && tier && (
-                        <p className="mt-2" style={{ color: tier.color }}>
-                          {wkg.toFixed(2)} W/kg — {tier.label}
+                      {wkg > 0 && (
+                        <p className="mt-2 text-foreground-muted">
+                          {wkg.toFixed(2)} W/kg from this estimated FTP
                         </p>
                       )}
                     </div>
@@ -271,35 +241,11 @@ export default function FtpTestPage() {
                       </div>
                     </div>
 
-                    {/* W/kg benchmark scale */}
-                    {wkg > 0 && (
-                      <div className="space-y-2 mb-8">
-                        <h3 className="font-heading text-sm text-off-white mb-2">W/KG BENCHMARK</h3>
-                        {FTP_TIERS.map((t) => {
-                          const isActive = wkg >= t.min && wkg < t.max;
-                          return (
-                            <div
-                              key={t.label}
-                              className={`flex items-center gap-4 rounded-lg p-3 transition-all ${isActive ? "bg-white/[0.08] border border-white/15" : ""}`}
-                            >
-                              <div className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: t.color }} />
-                              <span className="text-off-white text-sm flex-1">{t.label}</span>
-                              <span className="text-foreground-subtle text-xs">
-                                {t.max < 10 ? `${t.min}–${t.max}` : `${t.min}+`} W/kg
-                              </span>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )}
-
                     {/* Zone preview */}
                     <div className="rounded-xl border border-white/10 p-6 mb-8">
                       <h3 className="font-heading text-lg text-off-white mb-4">POWER ZONES (PREVIEW)</h3>
                       <div className="space-y-2">
-                        {ZONES.map((z, i) => {
-                          const low = Math.round(estimatedFtp * z.low);
-                          const high = z.zone === 7 ? null : Math.round(estimatedFtp * z.high);
+                        {zones.map((z, i) => {
                           return (
                             <div key={z.zone} className="flex items-center gap-3">
                               <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: ZONE_COLORS[i] + "30" }}>
@@ -307,7 +253,9 @@ export default function FtpTestPage() {
                               </div>
                               <span className="text-off-white text-sm flex-1">{z.name}</span>
                               <span className="font-heading text-sm text-foreground-muted">
-                                {high ? `${low}–${high}W` : `${low}W+`}
+                                {z.maxWatts !== null
+                                  ? `${z.minWatts}–${z.maxWatts}W`
+                                  : `${z.minWatts}W+`}
                               </span>
                             </div>
                           );
@@ -321,9 +269,9 @@ export default function FtpTestPage() {
 
                     {/* Protocol comparison */}
                     <div className="rounded-xl border border-white/10 p-6 mb-8">
-                      <h3 className="font-heading text-lg text-off-white mb-4">EQUIVALENT TEST RESULTS</h3>
+                      <h3 className="font-heading text-lg text-off-white mb-4">EQUATION COMPARISON</h3>
                       <p className="text-foreground-subtle text-sm mb-4">
-                        For the same {estimatedFtp}W FTP, here&apos;s what you&apos;d need to hit on other protocols:
+                        These are the inputs that each fixed equation would map to {estimatedFtp}W. They are not predictions that you will achieve equivalent results on each protocol.
                       </p>
                       <div className="space-y-3">
                         {comparisons.map((c) => (
@@ -344,8 +292,9 @@ export default function FtpTestPage() {
                         <li><Link href="/tools/ftp-zones" className="text-coral hover:text-coral/80 text-sm transition-colors">Full FTP Zone Calculator — with heart-rate overlay</Link></li>
                         <li><Link href="/tools/tss" className="text-coral hover:text-coral/80 text-sm transition-colors">TSS Calculator — training load from your new FTP</Link></li>
                         <li><Link href="/tools/wkg" className="text-coral hover:text-coral/80 text-sm transition-colors">W/kg Calculator — detailed benchmarks</Link></li>
+                        <li><Link href="/answers/ftp-test-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">Choose and interpret an FTP test</Link></li>
                         <li><Link href="/blog/when-to-test-ftp-cycling" className="text-coral hover:text-coral/80 text-sm transition-colors">When to Test Your FTP (and When Testing Hurts)</Link></li>
-                        <li><Link href="/topics/ftp-training" className="text-coral hover:text-coral/80 text-sm transition-colors">FTP Training topic hub</Link></li>
+                        <li><Link href="/topics/ftp-training" className="text-coral hover:text-coral/80 text-sm transition-colors">What FTP means in cycling</Link></li>
                       </ul>
                     </div>
 
@@ -376,47 +325,44 @@ export default function FtpTestPage() {
             </h2>
             <div className="text-foreground-muted text-sm leading-relaxed space-y-3">
               <p>
-                <strong className="text-off-white">What is FTP?</strong> Functional Threshold Power is the
-                highest power you can sustain for approximately one hour. In practice, it represents
-                the boundary between steady-state and accumulating fatigue — the point where lactate
-                production starts outrunning clearance. The concept was formalised by Dr. Andrew Coggan
-                and Hunter Allen in <em>Training and Racing with a Power Meter</em>.
+                <strong className="text-off-white">What this tool does:</strong> It applies the displayed
+                conversion factor to the value you enter. It does not verify the test protocol, device,
+                pacing or physiological threshold, and it does not make different tests interchangeable.
               </p>
               <p>
-                <strong className="text-off-white">20-minute test (× 0.95):</strong> The most widely
-                used field test. The 5 % discount accounts for the anaerobic contribution during a
-                20-minute effort that wouldn&apos;t be sustainable for a full hour. First popularised
-                by Allen and Coggan, adopted by TrainingPeaks, Strava, and most coaching platforms.
+                <strong className="text-off-white">20-minute equation (× 0.95):</strong>{" "}
+                <a href="https://help.trainingpeaks.com/hc/en-us/articles/204071934-How-to-Calculate-Threshold-Values-for-Power-Heart-Rate-or-Pace" className="text-coral hover:text-coral/80">
+                  TrainingPeaks documents this as an estimate
+                </a>
+                . A scoping review found the field test can be reliable while agreement with physiological
+                threshold markers still has meaningful individual limits.
               </p>
               <p>
-                <strong className="text-off-white">Ramp test (× 0.75):</strong> You start at a low
-                wattage and increase by a fixed increment (typically 20W) every minute until failure.
-                FTP is estimated at 75 % of the last completed step — your Maximum Aerobic Power (MAP).
-                The ramp test is popular because it&apos;s short (~15-20 minutes of actual effort) and
-                doesn&apos;t require pacing skill. The trade-off: it can overestimate FTP for riders
-                with strong anaerobic systems and underestimate for pure endurance types.
+                <strong className="text-off-white">Ramp and 8-minute equations:</strong> These are
+                simplified fixed-factor calculations. Platforms can define the input and conversion
+                differently, so use the equation supplied with the protocol you actually completed.
               </p>
               <p>
-                <strong className="text-off-white">8-minute test (× 0.90):</strong> Two maximal
-                8-minute efforts with 10 minutes recovery. FTP = 90 % of the better effort. Originally
-                developed by CTS (Carmichael Training Systems). Useful for riders who struggle to pace
-                a 20-minute effort.
+                <strong className="text-off-white">Measurement boundary:</strong> A systematic review
+                found that cycling power-meter validity and reproducibility can vary with the device and
+                testing conditions, including cadence, temperature and exercise intensity. Keep the same
+                hardware and calibration procedure when following a trend.
               </p>
               <p>
-                <strong className="text-off-white">Which protocol is most accurate?</strong> No short
-                test perfectly predicts hour power. The 20-minute test is the most validated, but all
-                protocols have individual error of &plusmn;3-5 %. Consistency matters more than protocol
-                choice — pick one, use the same protocol every time, and track the trend.
+                <strong className="text-off-white">Interpretation boundary:</strong> Time to exhaustion
+                at a measured FTP varies substantially. Use the result as one training anchor and review
+                the wider power-duration curve, session response and target-event demands.
               </p>
               <p>
-                <strong className="text-off-white">Limitations:</strong> FTP is a useful training
-                anchor but not a complete picture of fitness. Two riders with identical FTP can have very
-                different VO2max, anaerobic capacity, fatigue resistance, and repeatability profiles.
-                Power duration modelling (e.g., WKO&apos;s mFTP) attempts a more nuanced estimate by
-                looking at the full power-duration curve rather than a single test.
+                <strong className="text-off-white">Reviewed references:</strong>{" "}
+                <a href="https://pubmed.ncbi.nlm.nih.gov/34304689/" className="text-coral hover:text-coral/80">FTP field-test scoping review</a>
+                {" · "}
+                <a href="https://pubmed.ncbi.nlm.nih.gov/35009945/" className="text-coral hover:text-coral/80">cycling power-meter review</a>
+                {" · "}
+                <a href="https://pubmed.ncbi.nlm.nih.gov/35835698/" className="text-coral hover:text-coral/80">time-to-exhaustion study</a>
               </p>
               <p className="text-xs text-foreground-subtle">
-                Last updated: July 2026 &middot; Tool version 1.0
+                Reviewed by Anthony Walsh for method and primary-source alignment &middot; Last updated: 26 August 2026
               </p>
             </div>
           </Container>

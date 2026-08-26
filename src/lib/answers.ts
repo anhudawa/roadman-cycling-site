@@ -12,6 +12,7 @@ import { powerAnswers } from "./answers-data/power";
 import { mentalAnswers } from "./answers-data/mental";
 import { bikefitAnswers } from "./answers-data/bikefit";
 import { applyBikeFitTrustOverride } from "./answers-data/bikefit-trust-overrides";
+import { applyFtpTestTrustOverride } from "./answers-data/ftp-test-trust-override";
 import { heatAnswers } from "./answers-data/heat";
 import { crossTrainingAnswers } from "./answers-data/cross-training";
 import { metricsAnswers } from "./answers-data/metrics";
@@ -1712,7 +1713,7 @@ function applyCurrentExpertCredentials(answer: AnswerPage): AnswerPage {
 }
 
 export const ANSWER_PAGES: AnswerPage[] = [
-  ...BASE_ANSWERS,
+  ...BASE_ANSWERS.map(applyFtpTestTrustOverride),
   ...ftpAnswers,
   ...zone2Answers,
   ...nutritionAnswers,

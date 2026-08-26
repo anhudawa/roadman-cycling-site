@@ -312,10 +312,22 @@ export async function GET() {
             "Canonical broad FTP owner: practical definition, test-method differences, zones, evidence limits and routes to improvement or qualified benchmarks.",
         },
         {
+          url: `${BASE_URL}/answers/ftp-test-guide`,
+          title: "FTP Test — Protocols, Accuracy & How to Choose",
+          description:
+            "Canonical informational owner for choosing and repeating an FTP test, comparing method limits and interpreting disagreement.",
+        },
+        {
           url: `${BASE_URL}/tools/ftp-zones`,
           title: "FTP Calculator",
           description:
             "Calculate seven gap-free cycling power-zone ranges from FTP, with testing and evidence limits.",
+        },
+        {
+          url: `${BASE_URL}/tools/ftp-test`,
+          title: "FTP Test Result Calculator",
+          description:
+            "Applies a clearly stated fixed-factor equation to a completed sustained, 20-minute, ramp or 8-minute test result.",
         },
         {
           url: `${BASE_URL}/blog/age-group-ftp-benchmarks-2026`,

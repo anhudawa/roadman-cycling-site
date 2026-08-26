@@ -10,7 +10,8 @@
 
 - `/topics/ftp-training` owns the broad **ftp cycling**, **what is FTP in cycling** and FTP-overview intent.
 - `/tools/ftp-zones` owns the unqualified calculator and seven-zone output.
-- `/tools/ftp-test` owns protocol selection and test-result conversion.
+- `/answers/ftp-test-guide` owns broad protocol selection and result interpretation.
+- `/tools/ftp-test` owns fixed-equation test-result conversion.
 - `/blog/how-to-improve-ftp-cycling` owns improvement tactics.
 - `/blog/ftp-benchmarks-by-age-and-experience` owns experience-qualified comparisons.
 - `/blog/age-group-ftp-benchmarks-2026` owns age-qualified comparisons.
