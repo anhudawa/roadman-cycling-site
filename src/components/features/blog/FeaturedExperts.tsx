@@ -4,6 +4,8 @@ import { getEntityBySlug, getEntityProfilePath } from "@/lib/entities";
 interface FeaturedExpertsProps {
   /** Entity slugs that match `content/entities/*.mdx` files. */
   slugs: string[];
+  /** Current page path, used to suppress a canonical-owner self-link. */
+  currentPath?: string;
 }
 
 /**
@@ -20,10 +22,13 @@ interface FeaturedExpertsProps {
  * Article JSON-LD — the visible UI and the schema name the same
  * entities at the same URLs.
  */
-export function FeaturedExperts({ slugs }: FeaturedExpertsProps) {
+export function FeaturedExperts({ slugs, currentPath }: FeaturedExpertsProps) {
   const entities = slugs
     .map((s) => getEntityBySlug(s))
-    .filter((e): e is NonNullable<ReturnType<typeof getEntityBySlug>> => e !== null);
+    .filter(
+      (e): e is NonNullable<ReturnType<typeof getEntityBySlug>> =>
+        e !== null && getEntityProfilePath(e) !== currentPath,
+    );
   if (entities.length === 0) return null;
 
   return (

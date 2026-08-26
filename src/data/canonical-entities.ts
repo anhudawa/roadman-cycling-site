@@ -391,6 +391,33 @@ export const CANONICAL_ENTITIES: CanonicalEntity[] = [
     entityPageSlug: "lachlan-morton",
     guestSlug: "lachlan-morton",
   },
+  {
+    slug: "sam-bennett",
+    canonicalName: "Sam Bennett",
+    variations: ["Sam Bennett", "Bennett", "Sammy Bennett"],
+    title: "Professional road sprinter; 2020 Tour de France points winner",
+    affiliation: "Pinarello Q36.5 Pro Cycling Team",
+    affiliationVerified: true,
+    sameAs: [
+      "https://www.pinarello-q36-5.com/riders/sam-bennett/",
+      "https://www.wikidata.org/wiki/Q2216398",
+      "https://en.wikipedia.org/wiki/Sam_Bennett_(cyclist)",
+    ],
+    sameAsVerified: true,
+    topics: [
+      "professional road sprinting",
+      "bunch-sprint positioning",
+      "lead-out tactics",
+      "Tour de France points classification",
+      "Grand Tour racing",
+      "Irish cycling",
+    ],
+    episodes: [],
+    kind: "pro-cyclist",
+    entityPageSlug: "sam-bennett",
+    notes:
+      "Current 2026 team verified from Pinarello Q36.5 on 26 August 2026. Roadman's four Bennett-focused episodes are solo host analyses, not guest appearances. Public identity owner is /blog/sam-bennett-what-sprinters-do-differently.",
+  },
 
   // ──────────────────────────────────────────────────────────────────────
   // Podcast guests with sameAs verified from episode guestSameAs frontmatter.

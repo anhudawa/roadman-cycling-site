@@ -123,6 +123,31 @@ export default async function BlogPostPage({
     post.relatedPosts,
   );
   const parentTopics = getTopicsForPost(slug);
+  const currentPath = `/blog/${slug}`;
+  // Some established articles are also the canonical identity owner for a
+  // person. Keep the entity data in content/entities, but co-locate the full
+  // Person node on the article that owns the search intent. The legacy entity
+  // route redirects here, so crawlers see one URL and one Person @id.
+  const canonicalOwnerEntities = (post.featuredEntities ?? [])
+    .map((entitySlug) => getEntityBySlug(entitySlug))
+    .filter(
+      (entity): entity is NonNullable<ReturnType<typeof getEntityBySlug>> =>
+        entity !== null && getEntityProfilePath(entity) === currentPath,
+    );
+  const articleAbout = [
+    ...canonicalOwnerEntities.map((entity) => ({
+      "@type": "Person" as const,
+      "@id": `${SITE_ORIGIN}${currentPath}#person`,
+      name: entity.name,
+      url: `${SITE_ORIGIN}${currentPath}`,
+    })),
+    ...parentTopics.map((topic) => ({
+      "@type": "Thing" as const,
+      "@id": `${SITE_ORIGIN}/topics/${topic.slug}#thing`,
+      name: topic.title,
+      url: `${SITE_ORIGIN}/topics/${topic.slug}`,
+    })),
+  ];
   // Resolve the primary topic hub for the in-article hub link. Prefer
   // the explicit `primaryHub` frontmatter field; fall back to the first
   // topic resolved via the reverse index so existing posts continue to
@@ -177,7 +202,7 @@ export default async function BlogPostPage({
       ...(post.keywords ?? []),
     ],
     {
-      currentPath: `/blog/${slug}`,
+      currentPath,
       // Editorial hub membership supplies the broad owner only when the
       // article metadata does not identify a narrower family. For example,
       // a training-camp preparation article remains owned by camps even
@@ -269,14 +294,7 @@ export default async function BlogPostPage({
           // about: the topical Thing the article is fundamentally about.
           // Topic hubs declare a co-located `@id` of
           // `<origin>/topics/<slug>#thing` so this lines up.
-          ...(parentTopics.length > 0 && {
-            about: parentTopics.map((t) => ({
-              "@type": "Thing",
-              "@id": `${SITE_ORIGIN}/topics/${t.slug}#thing`,
-              name: t.title,
-              url: `${SITE_ORIGIN}/topics/${t.slug}`,
-            })),
-          }),
+          ...(articleAbout.length > 0 && { about: articleAbout }),
           speakable: {
             "@type": "SpeakableSpecification",
             cssSelector: post.answerCapsule
@@ -324,6 +342,9 @@ export default async function BlogPostPage({
                 const entity = getEntityBySlug(slug);
                 if (!entity) return null;
                 const profilePath = getEntityProfilePath(entity);
+                // A person whose canonical profile is this article is the
+                // article's subject (`about`), not merely someone it mentions.
+                if (profilePath === currentPath) return null;
                 return {
                   "@type": "Person" as const,
                   "@id": `${SITE_ORIGIN}${profilePath}#person`,
@@ -384,6 +405,63 @@ export default async function BlogPostPage({
           })()),
         }}
       />
+      {canonicalOwnerEntities.map((entity) => {
+        const subjectOf = (entity.relatedEpisodes ?? [])
+          .map((episodeSlug) => getEpisodeBySlug(episodeSlug))
+          .filter(
+            (episode): episode is NonNullable<typeof episode> =>
+              episode !== null,
+          )
+          .map((episode) => ({
+            "@type": "PodcastEpisode" as const,
+            "@id": `${SITE_ORIGIN}/podcast/${episode.slug}#episode`,
+            name: episode.title,
+            url: `${SITE_ORIGIN}/podcast/${episode.slug}`,
+            datePublished: episode.publishDate,
+            partOfSeries: { "@id": ENTITY_IDS.podcast },
+          }));
+
+        return (
+          <JsonLd
+            key={entity.slug}
+            data={{
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "@id": `${SITE_ORIGIN}${currentPath}#person`,
+              name: entity.name,
+              jobTitle: entity.jobTitle,
+              description: entity.shortBio,
+              url: `${SITE_ORIGIN}${currentPath}`,
+              mainEntityOfPage: `${SITE_ORIGIN}${currentPath}`,
+              ...(entity.image && { image: entity.image }),
+              ...(entity.location && {
+                homeLocation: { "@type": "Place", name: entity.location },
+              }),
+              ...(entity.nationality && {
+                nationality: { "@type": "Country", name: entity.nationality },
+              }),
+              ...(entity.worksFor && {
+                worksFor: {
+                  "@type": entity.worksFor.type,
+                  name: entity.worksFor.name,
+                  ...(entity.worksFor.url && { url: entity.worksFor.url }),
+                },
+                memberOf: {
+                  "@type": entity.worksFor.type,
+                  name: entity.worksFor.name,
+                  ...(entity.worksFor.url && { url: entity.worksFor.url }),
+                },
+              }),
+              ...(entity.sameAs &&
+                entity.sameAs.length > 0 && {
+                  sameAs: entity.sameAs,
+                }),
+              knowsAbout: entity.knowsAbout,
+              ...(subjectOf.length > 0 && { subjectOf }),
+            }}
+          />
+        );
+      })}
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -627,7 +705,10 @@ export default async function BlogPostPage({
             )}
 
             {post.featuredEntities && post.featuredEntities.length > 0 && (
-              <FeaturedExperts slugs={post.featuredEntities} />
+              <FeaturedExperts
+                slugs={post.featuredEntities}
+                currentPath={currentPath}
+              />
             )}
 
             {/* Series navigation — shown when this post belongs to a
