@@ -75,7 +75,7 @@ describe("cycling nutrition calculator search and evidence trust", () => {
     expect(content).toContain('dateModified: "2026-08-25"');
     expect(content).toContain('reviewedBy: "Anthony Walsh"');
     expect(content).toContain('reviewScope: "primary-source verification"');
-    expect(landing).toContain("Primary evidence");
+    expect(landing).toContain("Evidence sources");
     expect(landing).toContain("Report a correction");
     expect(schemas).toContain('"@type": "WebPage"');
     expect(schemas).toContain('mainEntity: { "@id": `${c.url}#webapplication` }');

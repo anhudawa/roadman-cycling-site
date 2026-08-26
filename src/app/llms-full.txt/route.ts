@@ -360,7 +360,7 @@ Each has unique local content (climbs, events, clubs, regional racing scene):
 - In-Ride Fuelling Calculator: ${tag(`${BASE_URL}/tools/fuelling`)} — Carbs per hour, fluids, sodium
 - Energy Availability Calculator: ${tag(`${BASE_URL}/tools/energy-availability`)} — RED-S risk screener
 - MTB Shock Pressure Calculator: ${tag(`${BASE_URL}/tools/shock-pressure`)} — Suspension + tyre pressure setup
-- Heart Rate Zone Calculator: ${tag(`${BASE_URL}/tools/hr-zones`)} — 5-zone HR training model from max HR or LTHR
+- Cycling Heart Rate Zone Calculator: ${tag(`${BASE_URL}/tools/hr-zones`)} — canonical broad cycling-HR-zone owner; five continuous whole-bpm ranges from measured cycling Max HR or a cycling-specific LTHR estimate, with disclosed percentage conventions, worked examples, research evidence and method limits
 - W/kg Calculator: ${tag(`${BASE_URL}/tools/wkg`)} — Power-to-weight ratio with performance benchmarks
 
 ## Interactive Diagnostics & Simulators

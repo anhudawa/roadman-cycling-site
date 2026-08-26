@@ -382,6 +382,13 @@ const nextConfig: NextConfig = {
       // interval queries and the later blog splitting the same job. Preserve
       // the definition, LT1/LT2, comparison, improvement and podcast pages.
       { source: "/blog/cycling-threshold-intervals-guide", destination: "/answers/threshold-intervals-guide", permanent: true },
+      // Search Console shows the calculator winning broad cycling heart-rate-
+      // zone and calculator intent. Consolidate three overlapping explainers;
+      // indoor/outdoor, MTB, heart-rate-only and metric-comparison pages keep
+      // their distinct search jobs.
+      { source: "/blog/cycling-heart-rate-zones-explained", destination: "/tools/hr-zones", permanent: true },
+      { source: "/blog/cycling-heart-rate-zones-explained-guide", destination: "/tools/hr-zones", permanent: true },
+      { source: "/blog/heart-rate-zone-training-cycling-guide", destination: "/tools/hr-zones", permanent: true },
       // Consolidate duplicate tyre-pressure explainers into the established guide.
       { source: "/blog/tyre-pressure-cycling-complete-guide", destination: "/blog/cycling-tyre-pressure-guide", permanent: true },
       { source: "/answers/best-tyre-pressure-road-cycling", destination: "/blog/cycling-tyre-pressure-guide", permanent: true },

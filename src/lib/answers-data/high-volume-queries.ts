@@ -270,7 +270,6 @@ export const highVolumeQueryAnswers: AnswerPage[] = [
       { label: "Heart Rate Zone Calculator", href: "/tools/hr-zones" },
       { label: "What percentage of FTP is each zone?", href: "/answers/what-percent-ftp-for-zones" },
       { label: "How do I improve my FTP?", href: "/answers/how-to-improve-ftp" },
-      { label: "Heart Rate Zones Explained", href: "/blog/cycling-heart-rate-zones-explained" },
     ],
     evidenceLevel: "strong",
     evidenceNote:

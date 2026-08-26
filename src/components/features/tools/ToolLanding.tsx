@@ -172,7 +172,7 @@ function ToolEvidenceBlock({ content }: { content: ToolLandingContent }) {
   return (
     <aside
       className="rounded-xl border border-white/10 bg-white/[0.03] p-5 md:p-6 mt-10"
-      aria-label="Primary evidence, author, and editorial standards"
+      aria-label="Evidence sources, author, and editorial standards"
     >
       <p className="font-heading text-coral text-xs tracking-widest mb-4">
         SOURCES &amp; TRUST
@@ -194,7 +194,7 @@ function ToolEvidenceBlock({ content }: { content: ToolLandingContent }) {
       </div>
       <div className="mb-4">
         <p className="text-xs text-foreground-subtle uppercase tracking-wider mb-2">
-          Primary evidence
+          Evidence sources
         </p>
         <ul className="space-y-2">
           {content.evidenceSources?.map((source) => (
@@ -207,7 +207,7 @@ function ToolEvidenceBlock({ content }: { content: ToolLandingContent }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-coral hover:text-coral/80 transition-colors"
-                aria-label={`Read primary source: ${source.name}`}
+                aria-label={`Read source: ${source.name}`}
               >
                 <span aria-hidden="true">→</span>
               </a>
