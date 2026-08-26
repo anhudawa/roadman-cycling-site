@@ -3,15 +3,22 @@ import { ToolSchemas } from "@/components/seo/ToolSchemas";
 import { ToolJourney } from "@/components/features/tools/ToolJourney";
 
 export const metadata: Metadata = {
-  title: "FTP Power Zone Calculator — Your 7 Cycling Training Zones",
+  title: {
+    absolute: "FTP Calculator: 7 Cycling Power Zones (2026)",
+  },
   description:
-    "Enter your FTP, get your 7 cycling power zones instantly. Free, no signup. The same Coggan zone model the World Tour coaches on the podcast use to write training plans.",
-  keywords: ["FTP zone calculator", "cycling power zones", "FTP calculator", "training zones cycling"],
+    "Enter your FTP to calculate seven cycling power zones with gap-free watt ranges. Free, instant, coach-reviewed, with test guidance and evidence limits.",
+  keywords: [
+    "FTP calculator",
+    "FTP zone calculator",
+    "cycling power zones",
+    "cycling training zones",
+  ],
   alternates: { canonical: "https://roadmancycling.com/tools/ftp-zones" },
   openGraph: {
-    title: "FTP Power Zone Calculator — Your 7 Cycling Training Zones",
+    title: "FTP Calculator: 7 Cycling Power Zones (2026)",
     description:
-      "Enter your FTP, get your 7 cycling power zones instantly. The same Coggan zone model the World Tour coaches on the podcast use.",
+      "Calculate seven cycling power zones from FTP, with gap-free watt ranges, test guidance and evidence limits.",
     type: "website",
     url: "https://roadmancycling.com/tools/ftp-zones",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],

@@ -80,87 +80,126 @@ const ROADMAN_BASE = "https://roadmancycling.com";
 export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
   "ftp-zones": {
     slug: "ftp-zones",
-    title: "FTP Zone Calculator",
+    title: "FTP Calculator",
     description:
-      "Calculate your 7 cycling power zones from your FTP instantly. Free tool grounded in the training methodology discussed with Professor Seiler and World Tour coaches.",
+      "Calculate seven continuous cycling power zones from FTP, with whole-watt ranges, test guidance and explicit evidence limits.",
     url: `${ROADMAN_BASE}/tools/ftp-zones`,
-    breadcrumbName: "FTP Zone Calculator",
+    breadcrumbName: "FTP Calculator",
     answerSummary:
-      "Enter your Functional Threshold Power in watts and the calculator returns the seven Coggan power zones — Active Recovery through Neuromuscular — with watt ranges for each. Optional LTHR adds matching heart-rate ranges. The output is the same zone framework used in structured plans worldwide.",
+      "Enter a recent FTP and this calculator converts it into seven conventional cycling power ranges. It returns continuous whole-watt bands with no gaps. These are starting targets, not measured lactate or ventilatory thresholds: two riders with the same FTP can still have different power-duration profiles and responses.",
     whatItDoes:
-      "This calculator turns a single FTP number into a complete training prescription. You get seven zones with exact wattage ranges, so any workout written as \"30 minutes Z2\" or \"3 × 8 min at threshold\" becomes a specific power target. If you also enter LTHR, you get matching heart-rate ranges to use when power drops out.",
+      "This is a transparent percentage conversion, not a laboratory test or a complete training prescription. It turns one FTP value into seven whole-watt ranges so a workout written in power zones has usable targets. Every watt belongs to exactly one range.\n\nIt is the general FTP calculator for training-zone intent. If the question is how your FTP compares with riders of the same age and gender, use the separate masters benchmark calculator.",
     whoItsFor: [
-      "Cyclists training to a structured plan and writing intervals in zones",
-      "Riders moving from heart-rate to power, or vice versa",
-      "Coaches and self-coached athletes setting up Garmin, Wahoo, Zwift or TrainerRoad",
-      "Anyone who has just done an FTP test and needs zones updated",
+      "Cyclists who have a recent FTP and need power targets for a structured plan",
+      "Riders setting cycling power zones in a head unit or training platform",
+      "Coaches and self-coached athletes checking a transparent percentage table",
+      "Anyone repeating an FTP protocol who wants gap-free whole-watt ranges",
     ],
     howItWorks:
-      "We use the Coggan 7-zone model — the standard you'll find in every major training platform. Each zone is defined as a percentage band of FTP: Z1 below 55%, Z2 56-75%, Z3 76-90%, Z4 91-105%, Z5 106-120%, Z6 121-150%, Z7 above 150%. Heart-rate ranges, when supplied, use Friel-style percentages of LTHR. Power is the primary control; HR is a secondary check.",
+      "The calculator applies conventional Coggan-style upper boundaries: Zone 1 up to 55% of FTP, Zone 2 above 55% to 75%, Zone 3 above 75% to 90%, Zone 4 above 90% to 105%, Zone 5 above 105% to 120%, Zone 6 above 120% to 150%, and Zone 7 above 150%. After rounding an upper boundary down to a whole watt, the next zone starts one watt higher. That prevents gaps and overlaps.",
     howToSteps: [
-      { name: "Determine your FTP", text: "Complete a 20-minute all-out test on a power meter or smart trainer. Multiply average power by 0.95 to estimate FTP. Ramp tests on Zwift or TrainerRoad are an acceptable alternative." },
-      { name: "Enter FTP in watts", text: "Input your FTP. Typical amateur values are 150-350W depending on fitness level, body weight, and training history." },
-      { name: "Optionally enter LTHR", text: "If you train with heart rate as a backup, enter your Lactate Threshold Heart Rate (the average HR for the same 20-minute test). The calculator will return zone ranges in bpm alongside watts." },
-      { name: "Apply the zones in your training", text: "Use the wattage ranges to set zones in Garmin Connect, Wahoo, TrainingPeaks, Zwift, or TrainerRoad. Spend roughly 80% of training time in Z1-Z2 and 20% in Z4 and above — Professor Seiler's polarised model." },
+      { name: "Use a current, repeatable FTP", text: "Take FTP from a protocol you can repeat under similar conditions. Multiplying a 20-minute test by 0.95 is one common field estimate, but ramp, 20-minute, hour and critical-power tests are not interchangeable." },
+      { name: "Enter FTP in watts", text: "Input a value from 50 to 600 watts. The calculator does not judge whether the number is physiologically valid; it only converts the value you provide." },
+      { name: "Read the continuous ranges", text: "Each displayed whole-watt range begins immediately after the previous one ends. For a 280 W FTP, Zone 2 is 155–210 W and Zone 3 is 211–252 W." },
+      { name: "Calibrate in training", text: "Use the ranges as starting targets. Adjust the session with breathing, RPE, heart rate, repeatability and coaching context because fixed percentages do not locate individual physiological thresholds." },
     ],
     howToTotalTime: "PT2M",
     limitations:
-      "Zones are a percentage-of-FTP model — they assume your FTP is current and accurate. If you haven't tested in three months, retest before trusting the numbers. The Coggan 7-zone model is one of several (Friel, BCF, iLevels). Different platforms label zones slightly differently. Heart-rate ranges drift with heat, fatigue, hydration, and caffeine — treat them as a sanity check, not a target.",
+      "The output is only as current and repeatable as the FTP input. A 20-minute FTP estimate is related to, but not interchangeable with, critical power or laboratory lactate landmarks. Fixed percentages also cannot describe every rider's sustainable duration above FTP. Finally, a seven-zone power table is not the same thing as the three-zone models used in training-intensity-distribution research, so this calculator cannot prescribe a universal 80/20 week.",
     whenToSeeACoach:
-      "If you can hit Z4 watts on demand but never seem to adapt, or your FTP has been flat for over a year, the bottleneck isn't your zones — it's how you're stacking workload, recovery, and intensity distribution. That's where structured coaching beats more numbers.",
+      "Use a coach or sports scientist when test protocols disagree materially, the same percentage produces very different responses between riders, or you need zones tied to lactate, ventilation, race demands and a complete training plan rather than a generic percentage model.",
     examples: [
       {
-        scenario: "Competitive amateur, 75kg, mid-season",
-        inputs: ["FTP: 280W", "LTHR: 168 bpm"],
-        output: "Z2: 157-210W (116-139 bpm) for endurance rides. Z4: 255-294W (160-176 bpm) for 2 × 20 min threshold. Z5: 297-336W for 5 × 4 min VO2 max intervals.",
+        scenario: "Example A: 280 W FTP",
+        inputs: ["FTP input: 280 W", "Whole-watt boundaries"],
+        output: "Z1: 0–154 W · Z2: 155–210 W · Z3: 211–252 W · Z4: 253–294 W · Z5: 295–336 W · Z6: 337–420 W · Z7: 421 W+.",
       },
       {
-        scenario: "Beginner, 80kg, 3 months in",
-        inputs: ["FTP: 180W", "LTHR not entered"],
-        output: "Z2: 101-135W for the bulk of weekly volume. Z3: 137-162W for tempo. Z4: 164-189W for short threshold efforts as fitness builds.",
+        scenario: "Example B: 180 W FTP",
+        inputs: ["FTP input: 180 W", "Whole-watt boundaries"],
+        output: "Z1: 0–99 W · Z2: 100–135 W · Z3: 136–162 W · Z4: 163–189 W · Z5: 190–216 W · Z6: 217–270 W · Z7: 271 W+.",
       },
     ],
     faqs: [
       {
         question: "What is FTP in cycling?",
-        answer: "FTP stands for Functional Threshold Power. It's the highest average power you can sustain for approximately one hour and is measured in watts. FTP is the single most important metric in cycling training because your seven power zones are all calculated as percentages of it.",
+        answer: "FTP stands for Functional Threshold Power. It is a practical cycling performance marker used to scale workouts and compare repeat tests. It is often described as power near a quasi-steady effort, but a calculated FTP is not a guarantee that every rider can hold that wattage for exactly one hour.",
       },
       {
         question: "How do I calculate my FTP?",
-        answer: "The most common method is a 20-minute all-out test: ride as hard as you can sustain for 20 minutes on a power meter or smart trainer, then multiply your average power by 0.95. For example, if your 20-minute average is 260W, your estimated FTP is 247W. Ramp tests and full 60-minute tests are alternatives, but the 20-minute protocol offers the best balance of accuracy and practicality.",
+        answer: "One common field protocol multiplies mean power from a 20-minute test by 0.95. That factor is an estimate, not a universal physiological conversion. Ramp tests, longer time trials and critical-power models can return different values, so use the same protocol when tracking change. Roadman's FTP test calculator compares the available protocols.",
       },
       {
-        question: "What is a good FTP for a beginner cyclist?",
-        answer: "For a beginner male cyclist, an FTP of 150-200W is typical; for a beginner female cyclist, 100-160W is common. However, absolute watts matter less than watts per kilogram (W/kg). A beginner might be around 1.5-2.5 W/kg, while a competitive amateur typically reaches 3.5-4.5 W/kg. Focus on your own progression rather than comparing raw numbers.",
+        question: "What are the seven cycling power zones?",
+        answer: "This calculator uses Zone 1 up to 55% of FTP, Zone 2 above 55% to 75%, Zone 3 above 75% to 90%, Zone 4 above 90% to 105%, Zone 5 above 105% to 120%, Zone 6 above 120% to 150%, and Zone 7 above 150%. Labels can differ across platforms, so keep the selected model consistent with your plan.",
       },
       {
-        question: "How often should I test my FTP?",
-        answer: "Test every 6-8 weeks, ideally at the end of a training block and after a rest day. Testing more frequently causes unnecessary fatigue without meaningful data because FTP changes gradually. Many smart trainers and platforms like Zwift and TrainerRoad also estimate FTP passively from your ride data.",
+        question: "Why do Roadman's watt ranges have no gaps?",
+        answer: "Percentage boundaries often land between whole watts. Roadman rounds each upper boundary down, then begins the next zone one watt higher. At 280 W FTP, Zone 1 ends at 154 W and Zone 2 begins at 155 W. Every whole watt therefore belongs to one zone, with no overlap or missing target.",
       },
       {
-        question: "What are the 7 cycling power zones?",
-        answer: "Z1 (Active Recovery, below 55% FTP), Z2 (Endurance, 56-75% FTP), Z3 (Tempo, 76-90% FTP), Z4 (Threshold, 91-105% FTP), Z5 (VO2max, 106-120% FTP), Z6 (Anaerobic Capacity, 121-150% FTP), and Z7 (Neuromuscular, above 150% FTP). This is the Coggan model — the standard used by most training platforms.",
+        question: "How often should I retest FTP?",
+        answer: "Retest when the value is stale enough to distort sessions, after a meaningful training block, or when repeatable workouts show the current targets no longer fit. There is no single interval that suits every rider. Keep the device, protocol, environment and preparation as consistent as practical before comparing results.",
       },
       {
-        question: "What is W/kg and why does it matter in cycling?",
-        answer: "W/kg (watts per kilogram) is your power-to-weight ratio — your FTP divided by body weight. It's the best predictor of climbing and overall cycling performance. A 70kg rider with a 280W FTP has a ratio of 4.0 W/kg. Improving W/kg through more power, less excess body fat, or both is the most effective way to get faster on the bike.",
+        question: "Are FTP and critical power the same?",
+        answer: "No. They are strongly related performance markers, but published studies report limits of agreement large enough that they should not be used interchangeably for individual training decisions. Critical power is fitted from multiple efforts across the power-duration curve; FTP is commonly estimated from one field protocol.",
+      },
+      {
+        question: "Which Roadman FTP calculator should I use?",
+        answer: "Use this FTP calculator when you want seven training-zone watt ranges. Use the FTP test calculator when you need to estimate FTP from a test result. Use the masters FTP calculator by age and gender when you want an age-graded W/kg percentile rather than training zones.",
       },
     ],
     related: [
+      { label: "FTP Test Calculator", href: "/tools/ftp-test", kind: "tool" },
+      { label: "FTP Calculator by Age & Gender", href: "/tools/masters-ftp-benchmark", kind: "tool" },
       { label: "W/kg Calculator", href: "/tools/wkg", kind: "tool" },
-      { label: "Heart-Rate Zone Calculator", href: "/tools/hr-zones", kind: "tool" },
-      { label: "Race Predictor", href: "/predict", kind: "tool" },
       { label: "FTP training topic hub", href: "/topics/ftp-training", kind: "topic" },
       { label: "What is FTP? — Glossary", href: "/glossary/ftp", kind: "glossary" },
-      { label: "Podcast: FTP jumped 30 watts after this workout", href: "/podcast/ep-2026-ftp-jumped-30-watts-after-this-workout", kind: "podcast" },
+      { label: "Complete FTP Training Zones Guide", href: "/blog/ftp-training-zones-cycling-complete-guide", kind: "article" },
     ],
     webAppFeatures: [
-      "7-zone Coggan power zone model",
-      "Instant wattage ranges from any FTP value",
-      "Optional LTHR input for matched heart-rate zones",
-      "Visual zone distribution chart",
+      "Seven conventional cycling power zones",
+      "Continuous whole-watt ranges with no gaps or overlaps",
+      "Instant results from any FTP value between 50 and 600 watts",
+      "Transparent percentage boundaries and worked examples",
       "Copy-to-clipboard results",
     ],
+    evidenceSources: [
+      {
+        name: "TrainingPeaks: Cycling Power Zones Explained",
+        role: "published Allen-Coggan percentage-zone reference",
+        href: "https://www.trainingpeaks.com/blog/power-training-levels/",
+      },
+      {
+        name: "Valenzuela et al. 2020, Reliability of Functional Threshold Power",
+        role: "FTP20 reliability and 95% field-test convention",
+        href: "https://pubmed.ncbi.nlm.nih.gov/31952081/",
+      },
+      {
+        name: "Karsten et al. 2021, Critical Power and FTP20",
+        role: "limits of agreement between critical power and FTP",
+        href: "https://pubmed.ncbi.nlm.nih.gov/33551839/",
+      },
+      {
+        name: "Morgan et al. 2022, FTP and Lactate Thresholds",
+        role: "boundary on substituting FTP for laboratory lactate landmarks",
+        href: "https://pubmed.ncbi.nlm.nih.gov/34127613/",
+      },
+      {
+        name: "Jeffries et al. 2022, Time to Exhaustion at FTP",
+        role: "individual variation in sustainable duration at estimated FTP",
+        href: "https://pubmed.ncbi.nlm.nih.gov/35835698/",
+      },
+      {
+        name: "Rosenblat et al. 2025, Training Intensity Distribution",
+        role: "evidence boundary for universal polarised-versus-pyramidal claims",
+        href: "https://pubmed.ncbi.nlm.nih.gov/39888556/",
+      },
+    ],
+    dateModified: "2026-08-26",
+    reviewedBy: "Anthony Walsh",
+    reviewScope: "method and primary-source verification",
   },
 
   "race-weight": {

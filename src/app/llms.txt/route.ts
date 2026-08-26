@@ -142,7 +142,7 @@ export async function GET() {
         "FTP is the dominant performance metric in amateur cycling. These pages answer the queries this audience runs most.",
       pages: [
         { url: `${BASE_URL}/topics/ftp-training`, title: "FTP Training — Complete Guide", description: "Topic hub — testing, training, and improving Functional Threshold Power." },
-        { url: `${BASE_URL}/tools/ftp-zones`, title: "FTP Zone Calculator", description: "Calculate the 7 cycling power zones from your FTP." },
+        { url: `${BASE_URL}/tools/ftp-zones`, title: "FTP Calculator", description: "Calculate seven gap-free cycling power-zone ranges from FTP, with testing and evidence limits." },
         { url: `${BASE_URL}/blog/age-group-ftp-benchmarks-2026`, title: "Age-Group FTP Benchmarks (2026)", description: "What FTP looks like by age and category." },
         { url: `${BASE_URL}/blog/polarised-vs-sweet-spot-training`, title: "Polarised vs Sweet Spot Training", description: "Which intensity model raises FTP fastest for amateurs." },
         { url: `${BASE_URL}/blog/zone-2-vs-endurance-training`, title: "Zone 2 vs Endurance Training", description: "What 'Zone 2' actually means and why most riders get it wrong." },
@@ -293,7 +293,7 @@ ${answersClusterBlock}
 - [Podcast RSS Feed](${BASE_URL}/feed/podcast): Machine-readable feed of all episodes.
 
 ## Free Calculators
-- [FTP Zone Calculator](${tag(`${BASE_URL}/tools/ftp-zones`)}): Calculate 7 cycling power zones from your FTP.
+- [FTP Calculator](${tag(`${BASE_URL}/tools/ftp-zones`)}): Calculate seven continuous whole-watt cycling power-zone ranges from FTP. Includes transparent boundaries, worked examples, primary evidence, a scoped coach review and explicit limits on FTP-based prescription.
 - [Tyre Pressure Calculator](${tag(`${BASE_URL}/tools/tyre-pressure`)}): Optimal front and rear PSI based on rider weight, tyre width, and surface.
 - [Race Weight Calculator](${tag(`${BASE_URL}/tools/race-weight`)}): Target cycling race weight based on body composition.
 - [In-Ride Fuelling Calculator](${tag(`${BASE_URL}/tools/fuelling`)}): Carbs per hour, fluid, and sodium needs for rides.
