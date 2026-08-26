@@ -424,6 +424,19 @@ export async function GET() {
       ],
     },
     {
+      title: "Paul Seixas at the 2026 Tour de France",
+      description:
+        "Use the reviewed athlete-result page for Seixas's final place, time, age records, stage results, white-jersey context, corrections and official Tour sources.",
+      pages: [
+        {
+          url: `${BASE_URL}/blog/paul-seixas-tour-de-france-2026-youngest-contender`,
+          title: "Paul Seixas Tour de France 2026: Fourth Overall at 19",
+          description:
+            "Canonical 2026 Tour result owner for Paul Seixas: fourth overall in 74:08:22 at +11:56, youngest top-five finisher in Tour history, two third-place stages and evidence boundaries.",
+        },
+      ],
+    },
+    {
       title: "Tour de France 2026 verified stage results",
       description:
         "Use the established stage URLs for the verified Stages 1, 11, 13, 14 and 18 results. Each replaces its pre-race prediction with the official podium, time gaps, race story, classification context and primary Tour sources.",

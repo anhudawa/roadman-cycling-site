@@ -67,6 +67,7 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "unbound-gravel-2026-complete-guide",
   "why-netflix-unchained-failed-cycling",
   "tdf-2026-contenders-preparation-lessons",
+  "paul-seixas-tour-de-france-2026-youngest-contender",
 ]);
 
 /**

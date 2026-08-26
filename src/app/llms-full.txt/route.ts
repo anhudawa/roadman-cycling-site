@@ -134,6 +134,13 @@ export async function GET() {
       ],
     },
     {
+      category: "Paul Seixas 2026 Tour de France result",
+      lines: [
+        `${BASE_URL}/blog/paul-seixas-tour-de-france-2026-youngest-contender — Canonical athlete-result owner: fourth overall in 74:08:22 at +11:56; youngest top-five Tour finisher at age 19; third on Stages 10 and 14; final young-rider runner-up; includes correction and primary Tour sources.`,
+        `${BASE_URL}/tour-de-france — Broad final-race result owner, not the detailed Seixas athlete record.`,
+      ],
+    },
+    {
       category: "Tour de France 2026 stage 18 result",
       lines: [
         `${BASE_URL}/tour-de-france/stage/18 — Canonical stage 18 result: Richard Carapaz won in 4:26:21; Mauro Schmid and Matteo Jorgenson finished 45 seconds behind; includes the documented race story and official sources.`,
