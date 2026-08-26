@@ -114,13 +114,14 @@ export async function GET() {
     {
       title: "Cycling training-plan intent — use the right destination",
       description:
-        "Use /training-plans for Roadman's coached service, the methodology hub for how plans are built, the selection guide for choosing a format, /plan for event-specific routes, and the 60-day article only for its first-person N=1 case study.",
+        "Use /training-plans for Roadman's coached service, the methodology hub for how plans are built, the selection guide for choosing a format, /plan for event-specific routes, the 60-day article for its first-person N=1 case study, and the named-expert article only for comparing Friel, Lorang and Johnson.",
       pages: [
         { url: `${BASE_URL}/training-plans`, title: "Roadman Cycling Training Plans", description: `Canonical coached service: a personalised 16-week TrainingPeaks plan for 6–12 hours a week, weekly review and live group coaching, ${OFFER_TIERS.notDoneYet.pricing.display}.` },
         { url: `${BASE_URL}/topics/cycling-training-plans`, title: "Cycling Training Plan Methodology", description: "Reviewed educational guide to rider briefs, periodisation, intensity distribution, weekly sequencing, review rules and evidence limits." },
         { url: `${BASE_URL}/blog/cycling-how-to-choose-a-training-plan-guide`, title: "How to Choose a Cycling Training Plan", description: "Reviewed ten-check comparison framework covering fit, progression, recovery, adaptation, service terms and red flags." },
         { url: `${BASE_URL}/plan`, title: "Cycling Training Plans by Event", description: "Event-specific training-plan directory organised by target event and weeks remaining." },
         { url: `${BASE_URL}/blog/how-pro-cyclist-trains-60-days`, title: "Pro Training Principles: 60-Day Case Study", description: "A first-person N=1 training experiment; useful as a case study, not proof that one plan or outcome transfers to every rider." },
+        { url: `${BASE_URL}/blog/cycling-training-plan-build-friel-lorang-johnson`, title: "Friel vs Lorang vs Dylan Johnson Training Plans", description: "Reviewed named-expert comparison separating Friel's race-back framework, Lorang's sustainable-load approach and Johnson's 2025 elite N=1 experiment." },
       ],
     },
     {
