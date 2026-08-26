@@ -28,11 +28,12 @@ export async function generateMetadata({
   const guest = getGuestBySlug(slug);
   if (!guest) notFound();
   const override = getGuestProfileOverride(slug);
+  const credential = override?.credential ?? guest.credential;
 
   const description =
     override?.seoDescription ??
-    (guest.credential
-      ? `${guest.name} — ${guest.credential}. ${guest.episodeCount} episode${guest.episodeCount > 1 ? "s" : ""} on The Roadman Cycling Podcast.`
+    (credential
+      ? `${guest.name} — ${credential}. ${guest.episodeCount} episode${guest.episodeCount > 1 ? "s" : ""} on The Roadman Cycling Podcast.`
       : `${guest.name} — ${guest.episodeCount} episode${guest.episodeCount > 1 ? "s" : ""} on The Roadman Cycling Podcast. Expert cycling knowledge from leading guests.`);
   const title = override?.seoTitle ?? `${guest.name} — Podcast Guest`;
 
@@ -74,6 +75,7 @@ export default async function GuestPage({
   // long-tail guests; in that case the Person schema falls back to the
   // heuristic fields computed from episode data.
   const override = getGuestProfileOverride(slug);
+  const credential = override?.credential ?? guest.credential;
 
   return (
     <>
@@ -89,18 +91,37 @@ export default async function GuestPage({
         data={{
           "@context": "https://schema.org",
           "@type": "ProfilePage",
-          name: `${guest.name} — Podcast Guest`,
+          name: override?.seoTitle ?? `${guest.name} — Podcast Guest`,
           url: `https://roadmancycling.com/guests/${slug}`,
+          ...(override?.lastReviewed && {
+            dateModified: override.lastReviewed,
+          }),
+          ...(override?.reviewedBy && {
+            reviewedBy: {
+              "@type": "Person",
+              "@id": "https://roadmancycling.com/author/anthony-walsh#person",
+              name: "Anthony Walsh",
+              url: "https://roadmancycling.com/author/anthony-walsh",
+            },
+          }),
+          ...(override?.sources &&
+            override.sources.length > 0 && {
+              citation: override.sources.map((source) => ({
+                "@type": "CreativeWork",
+                name: source.name,
+                url: source.url,
+              })),
+            }),
           mainEntity: {
             "@type": "Person",
             "@id": `https://roadmancycling.com/guests/${slug}#person`,
             name: guest.name,
-            ...(guest.credential && { jobTitle: guest.credential }),
+            ...(credential && { jobTitle: credential }),
             description:
               override?.whyMatters ??
               override?.description ??
-              (guest.credential
-                ? `${guest.name} — ${guest.credential}. Expert guest on The Roadman Cycling Podcast.`
+              (credential
+                ? `${guest.name} — ${credential}. Expert guest on The Roadman Cycling Podcast.`
                 : `${guest.name} — expert guest on The Roadman Cycling Podcast.`),
             url: `https://roadmancycling.com/guests/${slug}`,
             ...(override?.image && { image: override.image }),
@@ -121,10 +142,10 @@ export default async function GuestPage({
             // endurance pillars this guest is known for, so AI assistants can
             // ground "what does X do?" queries with the same answer that
             // appears on the visible page.
-            ...(guest.credential && {
+            ...(credential && {
               hasOccupation: {
                 "@type": "Occupation",
-                name: guest.credential,
+                name: credential,
                 occupationalCategory: "Sports / Endurance Performance",
                 skills: guest.pillars.map((p) =>
                   p === "coaching"
@@ -174,6 +195,22 @@ export default async function GuestPage({
           },
         }}
       />
+      {override?.faqs && override.faqs.length > 0 && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: override.faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: faq.answer,
+              },
+            })),
+          }}
+        />
+      )}
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -218,9 +255,9 @@ export default async function GuestPage({
                 {guest.name.toUpperCase()}
               </h1>
 
-              {guest.credential && (
+              {credential && (
                 <p className="text-foreground-muted text-lg mb-6">
-                  {guest.credential}
+                  {credential}
                 </p>
               )}
 
@@ -272,11 +309,11 @@ export default async function GuestPage({
             <Container width="narrow">
               <ScrollReveal direction="up">
                 <h2 className="font-heading text-off-white mb-4 text-2xl tracking-wide">
-                  KEY IDEAS
+                  {override.keyIdeasHeading ?? "KEY IDEAS"}
                 </h2>
                 <p className="text-sm text-foreground-muted mb-6">
-                  The major positions {guest.name.split(" ").slice(-1)[0]} is
-                  known for in cycling and endurance sport.
+                  {override.keyIdeasDescription ??
+                    `The major positions ${guest.name.split(" ").slice(-1)[0]} is known for in cycling and endurance sport.`}
                 </p>
                 <ul className="space-y-3">
                   {override.keyIdeas.map((idea, i) => (
@@ -294,6 +331,96 @@ export default async function GuestPage({
                     </li>
                   ))}
                 </ul>
+              </ScrollReveal>
+            </Container>
+          </Section>
+        )}
+
+        {override?.sources && override.sources.length > 0 && (
+          <Section background="charcoal" className="!pt-6 !pb-12">
+            <Container width="narrow">
+              <ScrollReveal direction="up">
+                <h2 className="font-heading text-off-white mb-4 text-2xl tracking-wide">
+                  SOURCES AND VERIFICATION
+                </h2>
+                <p className="text-sm text-foreground-muted mb-6">
+                  Career and sanction facts are checked against the records
+                  below. Podcast observations remain attributed to {guest.name}.
+                </p>
+                <ol className="space-y-4">
+                  {override.sources.map((source, index) => (
+                    <li
+                      key={source.url}
+                      className="rounded-lg border border-white/10 bg-white/[0.03] p-4"
+                    >
+                      <p className="text-sm text-off-white font-heading tracking-wide">
+                        {String(index + 1).padStart(2, "0")}.{" "}
+                        <a
+                          href={source.url}
+                          rel="noreferrer"
+                          className="text-coral hover:underline"
+                        >
+                          {source.name}
+                        </a>
+                      </p>
+                      <p className="mt-2 text-sm text-foreground-muted leading-relaxed">
+                        {source.note}
+                      </p>
+                    </li>
+                  ))}
+                </ol>
+                {(override.reviewedBy || override.lastReviewed) && (
+                  <p className="mt-5 text-xs text-foreground-subtle">
+                    {override.reviewedBy && `Reviewed by ${override.reviewedBy}`}
+                    {override.reviewedBy && override.lastReviewed && " · "}
+                    {override.lastReviewed && (
+                      <>
+                        Last reviewed{" "}
+                        <time dateTime={override.lastReviewed}>
+                          {new Date(`${override.lastReviewed}T00:00:00Z`).toLocaleDateString(
+                            "en-GB",
+                            {
+                              day: "numeric",
+                              month: "long",
+                              year: "numeric",
+                              timeZone: "UTC",
+                            }
+                          )}
+                        </time>
+                      </>
+                    )}
+                  </p>
+                )}
+              </ScrollReveal>
+            </Container>
+          </Section>
+        )}
+
+        {override?.faqs && override.faqs.length > 0 && (
+          <Section background="charcoal" className="!pt-6 !pb-12">
+            <Container width="narrow">
+              <ScrollReveal direction="up">
+                <h2 className="font-heading text-off-white mb-6 text-2xl tracking-wide">
+                  {guest.name.toUpperCase()} FAQ
+                </h2>
+                <div className="space-y-4">
+                  {override.faqs.map((faq) => (
+                    <details
+                      key={faq.question}
+                      className="group rounded-lg border border-white/10 bg-white/[0.03] p-4"
+                    >
+                      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-heading text-off-white tracking-wide">
+                        <span>{faq.question}</span>
+                        <span aria-hidden="true" className="text-coral text-lg">
+                          +
+                        </span>
+                      </summary>
+                      <p className="mt-3 text-sm text-foreground-muted leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </details>
+                  ))}
+                </div>
               </ScrollReveal>
             </Container>
           </Section>
@@ -435,8 +562,8 @@ export default async function GuestPage({
                         </p>
                         <footer className="mt-3 text-xs text-foreground-subtle">
                           <span className="text-off-white/80">{guest.name}</span>
-                          {(q.credential || guest.credential) &&
-                            `, ${q.credential || guest.credential}`}
+                          {(q.credential || credential) &&
+                            `, ${q.credential || credential}`}
                           <span aria-hidden="true"> &middot; </span>
                           <Link
                             href={`/podcast/${q.episodeSlug}`}
