@@ -223,8 +223,8 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
   {
     slug: "brick-workout",
     term: "Brick Workout",
-    definition: "A training session combining two disciplines back-to-back, typically cycling immediately followed by running. Essential for triathletes to practise the bike-to-run transition.",
-    extendedDefinition: "The term 'brick' comes from the heavy-legged feeling when running off the bike. Bricks train neuromuscular adaptation, pacing discipline, and mental toughness for the T2 transition. A typical brick: 60-90 minutes at race-pace power on the bike, immediately followed by 15-30 minutes of running starting at target race pace. Start with short run portions and build. Brick frequency: 1-2 per week in the build phase, reducing toward race day.",
+    definition: "A training session combining two disciplines back-to-back, most often cycling followed by running in triathlon. It can practise the transition, race execution, or a deliberately combined training day.",
+    extendedDefinition: "A brick does not have one required duration, intensity, or weekly frequency. A first bike-to-run brick may pair an easy 45-60 minute ride with 8-12 minutes of easy running or run-walk. Later race-specific bricks can rehearse bike pacing, kit, fuelling, and the opening run plan. The run still counts as impact load, and longer is not automatically more specific. Research often finds that cycling makes a subsequent run harder, but athlete responses and proposed mechanisms vary.",
     pillar: "coaching",
     relatedTerms: ["ftp", "periodisation"],
     relatedArticle: "/blog/brick-workouts-for-ironman",
