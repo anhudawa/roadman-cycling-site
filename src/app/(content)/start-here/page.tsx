@@ -35,7 +35,7 @@ const ESSENTIAL_ARTICLES = [
   },
   {
     title: "Strength Training for Cyclists",
-    href: "/blog/strength-training-cyclists-complete-guide",
+    href: "/blog/cycling-strength-training-guide",
     desc: "The exercises, the rep schemes, the weekly structure. Built for cyclists who have never touched a barbell.",
   },
   {

@@ -117,7 +117,7 @@ export const wave3Answers: AnswerPage[] = [
       { label: "What Off-Season Strength Should I Do?", href: "/answers/off-season-strength-training" },
       {
         label: "Strength Training for Cyclists: Complete Guide",
-        href: "/blog/strength-training-cyclists-complete-guide",
+        href: "/blog/cycling-strength-training-guide",
       },
       {
         label: "The Best Gym Exercises for Cyclists",

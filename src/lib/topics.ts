@@ -138,11 +138,11 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   },
   {
     slug: "cycling-strength-conditioning",
-    title: "Strength Training for Cyclists — The Complete Guide",
-    headline: "STRONGER OFF THE BIKE, FASTER ON IT",
-    ctaHeadline: "STRENGTH WORK, PERIODISED WITH YOUR RIDING.",
+    title: "Cycling Strength & Conditioning Research Library",
+    headline: "FIND THE RIGHT STRENGTH ANSWER",
+    ctaHeadline: "BUILD THE GYM WORK AROUND THE RIDER.",
     description:
-      "Cycling-specific strength training: what exercises to do, what loads, how often, and how to periodise gym work alongside your bike training. Evidence-based, coach-approved.",
+      "Roadman's evidence and practical library for cyclist strength training: the broad research answer, beginner progression, exercises, masters, in-season work, mobility and safe pain guidance.",
     pillar: "strength",
     keywords: [
       "strength training for cyclists",
@@ -1180,7 +1180,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "derek-teel-best-exercises-cyclists",
     "glute-activation-cyclists-power-leaks",
     "gym-vs-bike-strength-training-cyclists-research",
-    "strength-training-cyclists-complete-guide",
     "strength-training-cyclists-minimum-effective-dose",
     "strength-training-cyclists-over-50",
     "strength-training-for-triathletes-bike-specific",

@@ -36,6 +36,7 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "polarised-training-cycling-complete-guide",
   "sweet-spot-training-cycling-guide",
   "bike-fit-guide-cyclists",
+  "cycling-strength-training-guide",
 ]);
 
 /**
