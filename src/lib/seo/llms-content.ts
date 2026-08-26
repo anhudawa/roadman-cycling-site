@@ -51,6 +51,7 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "brick-workouts-for-ironman",
   "cycling-interval-training-beginners",
   "cycling-vo2max-intervals",
+  "cycling-zone-5-vo2max-intervals-guide",
   "cycling-tyre-pressure-guide",
   "cycling-in-rain-guide",
   "cycling-descending-wet-conditions-guide",
