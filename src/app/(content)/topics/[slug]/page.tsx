@@ -428,7 +428,7 @@ export default async function TopicPage({
                 {graph.glossaryTerms.map((t) => (
                   <Link
                     key={t.slug}
-                    href={`/glossary/${t.slug}`}
+                    href={t.canonicalPath ?? `/glossary/${t.slug}`}
                     className="inline-flex items-center gap-1 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-4 py-2 text-sm font-heading text-off-white tracking-wider transition-all"
                   >
                     {t.term}

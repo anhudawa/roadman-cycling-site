@@ -119,6 +119,26 @@ export interface AnswerRelatedLink {
   description?: string;
 }
 
+export interface AnswerSource {
+  /** Human-readable title of the reviewed source. */
+  name: string;
+  /** Canonical public URL for the source. */
+  url: string;
+  /** Publisher or issuing body, where it helps readers judge authority. */
+  publisher?: string;
+  /** Short note describing what this source supports. */
+  note?: string;
+}
+
+export interface AnswerDefinedTerm {
+  /** The term this answer owns in the Roadman cycling glossary. */
+  name: string;
+  /** Optional plain-language alias or spelling. */
+  alternateName?: string;
+  /** Concise definition mirrored in DefinedTerm structured data. */
+  description: string;
+}
+
 export interface AnswerPage {
   slug: string;
   cluster: AnswerCluster;
@@ -147,6 +167,10 @@ export interface AnswerPage {
   relatedEpisodes: string[];
   /** Related topics / hubs / tools — internal links. */
   relatedTopics: AnswerRelatedLink[];
+  /** External and first-party references reviewed for factual claims. */
+  sources?: AnswerSource[];
+  /** Optional glossary entity when this answer is the canonical term owner. */
+  definedTerm?: AnswerDefinedTerm;
   evidenceLevel: EvidenceLevelType;
   evidenceNote?: string;
   publishDate: string;

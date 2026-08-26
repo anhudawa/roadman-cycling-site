@@ -4,7 +4,7 @@ import { getAllEpisodes } from "@/lib/podcast";
 import { getAllGuests, slugifyGuestName } from "@/lib/guests";
 import { getAllTopics, getAllTopicSlugs, getTopicsForPost } from "@/lib/topics";
 import { getAllEntities } from "@/lib/entities";
-import { GLOSSARY_TERMS } from "@/lib/glossary";
+import { GLOSSARY_TERMS, getGlossaryTermPath } from "@/lib/glossary";
 import { COMPARISONS } from "@/lib/comparisons";
 import { PROBLEM_PAGES } from "@/lib/problems";
 import { QUESTION_PAGES } from "@/lib/questions";
@@ -458,7 +458,7 @@ export function GET() {
       id: `term:${term.slug}`,
       type: "term",
       name: term.term,
-      url: feedUrl(`/glossary/${term.slug}`),
+      url: feedUrl(getGlossaryTermPath(term)),
       description: summarise(term.definition),
       pillar: term.pillar,
     });

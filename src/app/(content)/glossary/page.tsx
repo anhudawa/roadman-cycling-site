@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Card, ScrollReveal, GradientText, Badge } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { GLOSSARY_TERMS } from "@/lib/glossary";
+import { GLOSSARY_TERMS, getGlossaryTermPath } from "@/lib/glossary";
 
 // Common "what does X mean in cycling" questions, structured for the
 // FAQPage rich result on the glossary index. Pulled from the highest-
@@ -105,10 +105,10 @@ export default function GlossaryPage() {
           publisher: { "@id": "https://roadmancycling.com/#organization" },
           hasDefinedTerm: GLOSSARY_TERMS.map((term) => ({
             "@type": "DefinedTerm",
-            "@id": `https://roadmancycling.com/glossary/${term.slug}#term`,
+            "@id": `https://roadmancycling.com${getGlossaryTermPath(term)}#defined-term`,
             name: term.term,
             description: term.definition,
-            url: `https://roadmancycling.com/glossary/${term.slug}`,
+            url: `https://roadmancycling.com${getGlossaryTermPath(term)}`,
           })),
         }}
       />
@@ -202,7 +202,7 @@ export default function GlossaryPage() {
                 <div className="space-y-4">
                   {terms.map((term, i) => (
                     <ScrollReveal key={term.slug} direction="up" delay={i * 0.03}>
-                      <Link href={`/glossary/${term.slug}`} className="block group">
+                      <Link href={getGlossaryTermPath(term)} className="block group">
                         <Card className="p-6 transition-all group-hover:border-coral/30">
                           <div className="flex items-start justify-between gap-4">
                             <div>

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { GLOSSARY_TERMS } from "@/lib/glossary";
+import { GLOSSARY_TERMS, getGlossaryTermPath } from "@/lib/glossary";
 import {
   FEED_BASE_URL,
   FEED_CACHE_HEADERS,
@@ -26,7 +26,7 @@ export function GET() {
       summary: summarise(term.definition),
       definition: term.definition,
       extendedDefinition: term.extendedDefinition,
-      url: feedUrl(`/glossary/${term.slug}`),
+      url: feedUrl(getGlossaryTermPath(term)),
       datePublished: null,
       dateModified: null,
       author: "Anthony Walsh",

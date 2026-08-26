@@ -8,6 +8,13 @@ interface EvidenceSource {
   href?: string;
 }
 
+interface ReviewedSource {
+  name: string;
+  href: string;
+  publisher?: string;
+  note?: string;
+}
+
 /**
  * Whether an expert `href` should render as a link. Non-`/guests/` hrefs
  * are passed through unchanged. A `/guests/<slug>` href only links when
@@ -26,6 +33,7 @@ function isRenderableHref(href?: string): href is string {
 interface EvidenceBlockProps {
   experts?: EvidenceSource[];
   episodes?: { title: string; href: string }[];
+  reviewedSources?: ReviewedSource[];
   lastReviewed?: string;
   reviewedBy?: string;
   /** Override the default author link ("/author/anthony-walsh"). */
@@ -44,6 +52,7 @@ interface EvidenceBlockProps {
 export function EvidenceBlock({
   experts,
   episodes,
+  reviewedSources,
   lastReviewed,
   reviewedBy = FOUNDER.name,
   authorHref = FOUNDER.url,
@@ -116,6 +125,37 @@ export function EvidenceBlock({
                 >
                   {ep.title}
                 </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {reviewedSources && reviewedSources.length > 0 && (
+        <div className="mb-4">
+          <p className="text-xs text-foreground-subtle uppercase tracking-wider mb-2">
+            Reviewed references
+          </p>
+          <ul className="space-y-2">
+            {reviewedSources.map((source) => (
+              <li key={source.href} className="text-sm text-foreground-muted">
+                <a
+                  href={source.href}
+                  className="text-coral hover:text-coral/80 transition-colors"
+                  rel="noopener noreferrer"
+                >
+                  {source.name}
+                </a>
+                {source.publisher && (
+                  <span className="text-foreground-subtle">
+                    {" "}— {source.publisher}
+                  </span>
+                )}
+                {source.note && (
+                  <span className="block text-xs text-foreground-subtle mt-0.5">
+                    {source.note}
+                  </span>
+                )}
               </li>
             ))}
           </ul>

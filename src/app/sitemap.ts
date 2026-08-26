@@ -6,7 +6,7 @@ import { getAllGuests } from "@/lib/guests";
 import { getGuestProfileOverride } from "@/lib/guests/profiles";
 import { getAllTopicSlugs } from "@/lib/topics";
 import { getAllClusterHubPaths } from "@/lib/cluster-hubs";
-import { getAllTermSlugs } from "@/lib/glossary";
+import { getAllTermSlugs, getTermBySlug } from "@/lib/glossary";
 import { getAllComparisonSlugs } from "@/lib/comparisons";
 import { getAllBestForSlugs } from "@/lib/best-for";
 import { getAllProblemSlugs } from "@/lib/problems";
@@ -470,11 +470,15 @@ function buildTopicAndMoreSitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const glossaryPages = getAllTermSlugs().map((slug) => ({
-    url: `${BASE_URL}/glossary/${slug}`,
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
+  const glossaryPages = getAllTermSlugs()
+    .filter(
+      (slug) => !getTermBySlug(slug)?.canonicalPath,
+    )
+    .map((slug) => ({
+      url: `${BASE_URL}/glossary/${slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }));
 
   const comparisonPages = getAllComparisonSlugs().map((slug) => ({
     url: `${BASE_URL}/compare/${slug}`,
