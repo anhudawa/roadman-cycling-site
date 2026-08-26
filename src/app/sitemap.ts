@@ -3,6 +3,7 @@ import { getAllPosts } from "@/lib/blog";
 import { getAllEpisodes, getTranscriptSlugs } from "@/lib/podcast";
 import { EPISODES_PER_PAGE } from "@/components/features/podcast/PodcastPagination";
 import { getAllGuests } from "@/lib/guests";
+import { getGuestProfileOverride } from "@/lib/guests/profiles";
 import { getAllTopicSlugs } from "@/lib/topics";
 import { getAllClusterHubPaths } from "@/lib/cluster-hubs";
 import { getAllTermSlugs } from "@/lib/glossary";
@@ -91,6 +92,17 @@ function validDate(value: string | Date | undefined | null): Date | null {
 function lastModifiedIfValid(value: string | Date | undefined | null) {
   const date = validDate(value);
   return date ? { lastModified: date } : {};
+}
+
+function latestValidDate(
+  ...values: Array<string | Date | undefined | null>
+): Date | null {
+  const dates = values
+    .map(validDate)
+    .filter((date): date is Date => date !== null);
+  return dates.length > 0
+    ? new Date(Math.max(...dates.map((date) => date.getTime())))
+    : null;
 }
 
 function freshness(value: string | Date | undefined | null) {
@@ -414,11 +426,14 @@ function buildPodcastSitemap(): MetadataRoute.Sitemap {
 }
 
 function buildGuestSitemap(): MetadataRoute.Sitemap {
-  return getAllGuests().map((guest) => ({
-    url: `${BASE_URL}/guests/${guest.slug}`,
-    ...freshness(guest.latestAppearance),
-    priority: 0.6,
-  }));
+  return getAllGuests().map((guest) => {
+    const profileReviewed = getGuestProfileOverride(guest.slug)?.lastReviewed;
+    return {
+      url: `${BASE_URL}/guests/${guest.slug}`,
+      ...freshness(latestValidDate(guest.latestAppearance, profileReviewed)),
+      priority: 0.6,
+    };
+  });
 }
 
 function buildPlanSitemap(): MetadataRoute.Sitemap {

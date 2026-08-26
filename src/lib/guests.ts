@@ -217,7 +217,7 @@ const KNOWN_CREDENTIALS: Record<string, string> = {
   "Sofiane Sehili": "Ultra-endurance cyclist, bikepacking record holder",
   "Tayler Wiles": "Former Trek-Segafredo pro cyclist",
   "Ted King": "Former WorldTour professional and gravel racer",
-  "Tyler Hamilton": "Olympic time-trial champion, Tour de France stage winner, author of The Secret Race",
+  "Tyler Hamilton": "Former professional cyclist, cycling coach and co-author of The Secret Race",
   "Uri Carlson": "Registered dietitian nutritionist, founder of Inner Wild Nutrition",
   "Steve Cummings": "Olympic medallist, two-time Tour de France stage winner",
   "Tim Spector": "Professor of genetic epidemiology, ZOE founder",

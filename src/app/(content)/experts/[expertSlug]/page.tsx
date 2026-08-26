@@ -26,15 +26,11 @@ export async function generateMetadata({
   const { expertSlug } = await params;
   const guest = getGuestBySlug(expertSlug);
   if (!guest) return { title: "Not Found" };
-  const override = getGuestProfileOverride(expertSlug);
-  const credential = override?.credential ?? guest.credential;
 
-  const description = `What does ${guest.name} say about training, nutrition and racing? Direct quotes and key positions by topic${
-    credential ? ` from ${credential.toLowerCase()}` : ""
-  } — from The Roadman Cycling Podcast.`.slice(0, 158);
+  const description = `What does ${guest.name} say about training, nutrition and racing? Explore direct quotes, key positions and Roadman podcast episodes by topic.`;
 
   return {
-    title: `What Does ${guest.name} Say? — Topics | Roadman Cycling`,
+    title: `What Does ${guest.name} Say? — Topics`,
     description,
     alternates: { canonical: `${SITE_ORIGIN}/experts/${expertSlug}` },
     openGraph: {

@@ -2187,20 +2187,104 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "tyler-hamilton": {
+    seoTitle: "Tyler Hamilton: Career, Doping & Podcast",
+    seoDescription:
+      "Who is Tyler Hamilton? Verified profile of the former pro cyclist, coach and Secret Race co-author, including his medal return, doping record and podcasts.",
+    credential:
+      "American former professional cyclist, cycling coach and co-author of The Secret Race",
     description:
-      "Former US Postal, CSC and Phonak professional, 2004 Olympic time-trial gold medallist and Tour de France stage winner, whose 2012 book The Secret Race became the defining first-hand account of the EPO era.",
+      "American former professional cyclist, Tour de France stage winner, cycling coach and co-author of The Secret Race. Hamilton was awarded the 2004 Olympic time-trial gold medal, then voluntarily returned it and asked the IOC to remove him from the official record after admitting doping during his career.",
+    worksFor: {
+      name: "Tyler Hamilton Training",
+      type: "Organization",
+      url: "https://www.tylerhamiltontraining.com/about",
+    },
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Tyler_Hamilton",
+      "https://www.wikidata.org/wiki/Q505446",
+      "https://www.tylerhamiltontraining.com/about",
+      "https://www.olympedia.org/athletes/90529",
+      "https://www.procyclingstats.com/rider/tyler-hamilton",
+    ],
     featuredArticles: [
       "tyler-hamilton-us-postal-doping-confession",
     ],
     whyMatters:
-      "Tyler Hamilton was one of the most talented American riders of his generation — an Olympic time-trial champion and a Tour de France stage winner — before he became one of its most important witnesses. His confession and his book The Secret Race did more than any other rider account to document how the EPO-era doping system actually worked, and who built it. For amateurs his value now is double: a hard-won, honest perspective on the culture that produced the era, and a coach's eye on how training and power-based racing have evolved since.",
+      "Tyler Hamilton is an American former professional cyclist, cycling coach and co-author with Daniel Coyle of The Secret Race. His retained road record includes a solo Tour de France stage win in 2003, but his career cannot be separated from doping. A blood-transfusion positive at the 2004 Vuelta led to a two-year suspension, and a second violation in 2009 brought an eight-year suspension. After publicly admitting doping, Hamilton returned the 2004 Olympic time-trial gold medal and asked the IOC to remove his name from the official record. His sworn evidence helped document the US Postal system, while Roadman's interviews preserve his first-person accounts of the era, confession, forgiveness and the move from feel-based training to power-meter coaching.",
+    keyIdeasHeading: "VERIFIED CAREER AND INTERVIEW FACTS",
+    keyIdeasDescription:
+      "Official anti-doping and Olympic records are separated from Hamilton's own account and Roadman interview observations.",
     keyIdeas: [
-      "The early US Postal years ran on an A-team and B-team structure; not every rider was inside the programme, and many did not initially know what it involved.",
-      "The first doping intervention was framed by a team doctor as something for his health, explicitly 'not doping' — a framing designed to reduce the moral weight of the moment.",
-      "Pinning the era on a handful of named riders misses the doctors, directors and officials who built and maintained the system and held the structural responsibility.",
-      "Forgiving Lance Armstrong was a long process, less about absolving anyone and more about releasing years of accumulated resentment.",
-      "The shift to power meters and data has changed how riders train and race since his era — a different, more measurable sport than the one he came up in.",
+      "Hamilton turned professional in 1995 and won a solo Tour de France stage in 2003 despite racing with a fractured collarbone.",
+      "CAS upheld a two-year suspension after his 2004 Vuelta blood sample showed evidence of another person's blood.",
+      "A second anti-doping violation in 2009 resulted in an eight-year suspension and disqualification of results from 9 February 2009.",
+      "Hamilton returned his 2004 Olympic gold medal and asked the IOC to withdraw his name from the official record.",
+      "His sworn affidavit describes doping inside US Postal; The Secret Race developed that first-person account with Daniel Coyle.",
+      "In Roadman's interviews, Hamilton discusses confession, forgiving Lance Armstrong and the evolution of coaching through power meters.",
     ],
+    faqs: [
+      {
+        question: "Who is Tyler Hamilton?",
+        answer:
+          "Tyler Hamilton is an American former professional cyclist, cycling coach and co-author with Daniel Coyle of The Secret Race. He raced professionally from 1995, won a Tour de France stage in 2003 and later became a central witness to doping inside the US Postal team.",
+      },
+      {
+        question: "Did Tyler Hamilton keep his 2004 Olympic gold medal?",
+        answer:
+          "No. Hamilton voluntarily returned the medal after admitting doping during his career. In June 2012 he asked IOC president Jacques Rogge to withdraw his name from the official record; the current Olympic record lists him as disqualified from the Athens time trial.",
+      },
+      {
+        question: "Why was Tyler Hamilton banned from cycling?",
+        answer:
+          "CAS upheld a two-year suspension after Hamilton tested positive for a homologous blood transfusion at the 2004 Vuelta a España. In 2009 he accepted an eight-year suspension for a second violation after a test found testosterone or its precursors.",
+      },
+      {
+        question: "What is The Secret Race?",
+        answer:
+          "The Secret Race is Hamilton's 2012 memoir, co-written with Daniel Coyle, about professional cycling and doping during the Armstrong era. Its publisher records it as the winner of the William Hill Sports Book of the Year award.",
+      },
+      {
+        question: "Which Tyler Hamilton interviews are on Roadman?",
+        answer:
+          "Roadman has four Hamilton appearances covering the US Postal doping system, confession and forgiveness, cycling coaching, power-meter training and the difference between data and listening to the body.",
+      },
+    ],
+    sources: [
+      {
+        name: "USADA — US Postal Service Pro Cycling Team investigation",
+        url: "https://www.usada.org/athletes/results/u-s-postal-service-pro-cycling-team-investigation/",
+        note: "Hosts Hamilton's sworn affidavit, the reasoned decision and his correspondence with the IOC about returning the medal.",
+      },
+      {
+        name: "USADA — 2004 blood-doping case upheld by CAS",
+        url: "https://www.usada.org/sanction/usada-press-release-tyler-hamiltons-blood-doping-violation-unanimously-upheld-by-sports-highest-court/",
+        note: "Records the homologous blood-transfusion finding, two-year suspension and forfeiture of results from 11 September 2004.",
+      },
+      {
+        name: "USADA — 2009 second anti-doping violation",
+        url: "https://www.usada.org/sanction/u-s-cyclist-hamilton-accepts-eight-year-suspension-for-doping-violation/",
+        note: "Records the finding for testosterone or its precursors, eight-year suspension and disqualification of results from 9 February 2009.",
+      },
+      {
+        name: "Olympedia — Tyler Hamilton Olympic record",
+        url: "https://www.olympedia.org/athletes/90529",
+        note: "Lists Hamilton as disqualified from the 2004 road race and time trial and documents the medal return and formal removal.",
+      },
+      {
+        name: "Tyler Hamilton Training — about",
+        url: "https://www.tylerhamiltontraining.com/about",
+        note: "Hamilton's coaching organisation records his 1995 professional start, Grand Tour history, 2009 founding of the business and current biography.",
+      },
+      {
+        name: "Penguin — The Secret Race",
+        url: "https://www.penguin.co.uk/books/417780/the-secret-race-by-tyler-hamilton-and-daniel-coyle/9780552169172",
+        note: "Publisher record for the Hamilton and Daniel Coyle memoir and its William Hill Sports Book of the Year award.",
+      },
+    ],
+    reviewedBy:
+      "Anthony Walsh, against USADA, IOC correspondence, Olympedia, Tyler Hamilton Training and Penguin records",
+    lastReviewed: "2026-08-26",
+    relatedHubs: ["cycling-coaching", "cycling-training-plans"],
   },
 
   "steve-cummings": {
