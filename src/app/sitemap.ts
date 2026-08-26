@@ -334,7 +334,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     // pages, while /training-plans is the marketing pillar above them.
     {
       url: `${BASE_URL}/training-plans`,
-      lastModified: PRIORITY_OWNER_RELEASE_DATE,
+      lastModified: new Date("2026-08-26"),
       changeFrequency: "weekly" as const,
       priority: 0.85,
     },

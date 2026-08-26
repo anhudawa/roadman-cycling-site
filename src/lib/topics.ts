@@ -114,18 +114,24 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   },
   {
     slug: "cycling-training-plans",
-    title: "Cycling Training Plans — How to Structure Your Training Year",
-    headline: "HOW CYCLING TRAINING PLANS WORK",
-    ctaHeadline: "A PLAN BUILT AROUND YOUR LIFE.",
+    title: "How to Build a Cycling Training Plan — Method Guide",
+    headline: "CYCLING TRAINING PLAN METHODOLOGY",
+    ctaHeadline: "SEE ROADMAN'S COACHED PLAN OPTIONS.",
     description:
-      "How to build a cycling training plan that actually works. Periodisation, weekly structure, time-crunched plans, event preparation, and the framework used by World Tour coaches — adapted for amateurs.",
+      "A cycling training plan links a defined goal to the rider's schedule, history, capacity, recovery and feedback. This reviewed guide explains the method and evidence limits.",
     pillar: "coaching",
+    lastReviewed: "2026-08-26",
+    reviewedBy: {
+      name: "Anthony Walsh",
+      role: "Roadman Cycling founder and head coach",
+      href: "/author/anthony-walsh",
+    },
     keywords: [
-      "cycling training plan",
-      "cycling periodisation",
-      "polarised training cycling",
-      "cycling training structure",
-      "base training cycling",
+      "how to build a cycling training plan",
+      "cycling training plan methodology",
+      "how to structure a cycling training week",
+      "cycling periodisation guide",
+      "cycling plan review rules",
     ],
   },
   {
@@ -2408,7 +2414,7 @@ const TOPIC_ENRICHMENT: Record<string, {
       { slug: "interval-builder", title: "Interval Session Builder", href: "/tools/interval-builder" },
       { slug: "race-predictor", title: "Race Time Predictor", href: "/tools/race-predictor" },
     ],
-    commercialPath: "/plan",
+    commercialPath: "/training-plans",
     relatedTopics: ["ftp-training", "cycling-coaching"],
     featuredPostSlugs: [
       "polarised-training-cycling-guide",
@@ -2420,33 +2426,33 @@ const TOPIC_ENRICHMENT: Record<string, {
       "What Roadman treats as settled, what still depends on the rider, and how each conclusion changes the week you should actually ride.",
     citedClaims: [
       {
-        claim: "A plan must progress, recover and peak",
+        claim: "No periodisation model is a universal winner",
         roadmanPosition:
-          "Repeating a workout library is not periodisation. A useful plan sequences base, build, event-specific work, taper and recovery so each phase prepares the next.",
+          "Traditional, block and day-by-day models can all be coherent. A plan should organise priorities around the rider and goal, then use the response to decide the next block.",
         evidenceSource:
-          "Established periodisation practice, Joe Friel's framework and WorldTour coaching conversations in the Roadman archive.",
+          "A 2023 systematic review found only seven eligible studies in trained road cyclists and did not favour one model across eight-to-twelve-week interventions (PMID 36640771).",
         practicalImplication:
-          "Plan backward from the target event and give every four-to-six-week block one primary adaptation goal.",
+          "Work backwards from the goal, identify the current priority and review the rider's response before fixing the next block.",
         evidenceLevel: "strong",
       },
       {
-        claim: "Two quality sessions are enough for most amateurs",
+        claim: "An intensity label is not a complete prescription",
         roadmanPosition:
-          "For riders training six to twelve hours, two genuinely demanding sessions usually provide enough stimulus when the remaining riding stays easy.",
+          "Polarised, pyramidal and threshold distributions describe patterns, but their meaning changes with the zone system and whether sessions or minutes are counted. No fixed 80/20 split fits every rider.",
         evidenceSource:
-          "Polarised-training research and convergent practice across Seiler, Lorang, Wakefield and Roadman coaching cases.",
+          "A 2025 individual-participant network meta-analysis found no overall polarised-versus-pyramidal difference for VO2max or time-trial performance when intensity used heart-rate time in zone (PMID 39888556).",
         practicalImplication:
-          "Protect two quality days, a long aerobic ride and the recovery that lets those sessions land.",
+          "Define the zone system and counting method, then choose and review the distribution in the context of athlete level, phase and outcome.",
         evidenceLevel: "moderate",
       },
       {
-        claim: "Available hours should shape the plan",
+        claim: "The rider brief comes before the calendar",
         roadmanPosition:
-          "A six-hour week cannot be a twelve-hour plan compressed into fewer days. Volume, intensity density and recovery have to be rebuilt around the rider's real calendar.",
+          "The goal, recent completed training, available time, event demands, recovery and feedback determine whether a schedule fits. More planned work is not automatically a better plan.",
         evidenceSource:
-          "Roadman coached-athlete practice and time-crunched training principles across the expert archive.",
+          "The periodisation evidence above does not establish one universal structure; Roadman's rider brief is an explicit coaching decision framework rather than a clinical rule.",
         practicalImplication:
-          "Choose the hours you can repeat for sixteen weeks, then scale the training stress inside that ceiling.",
+          "Write the real constraints first, place priority work and recovery inside them, and state what evidence will trigger a change.",
         evidenceLevel: "moderate",
       },
     ],
@@ -3022,22 +3028,22 @@ const TOPIC_FAQS: Record<string, TopicFAQ[]> = {
     {
       question: "How should I structure a cycling training plan?",
       answer:
-        "Build from a base of easy aerobic volume, add targeted intensity as your event approaches, and schedule regular recovery weeks to absorb the work. Periodisation — organising training into progressive blocks — is what separates a plan from random hard riding.",
+        "Start with the goal, recent completed training, available time, event demands, recovery and review agreement. Place priority work and recovery inside those constraints, progress one or two relevant variables at a time, and state what evidence will trigger an adjustment.",
     },
     {
       question: "What is polarised training?",
       answer:
-        "Polarised training keeps most of your riding easy (around 80%) and a small portion properly hard (around 20%), with little time in the moderate middle. It's well supported by research and used widely by elite endurance athletes.",
+        "Polarised training describes a distribution with substantial low-intensity work and a smaller amount of high-intensity work. The percentages change depending on the zone system and whether sessions or minutes are counted; current evidence does not show that one fixed ratio is best for every cyclist and outcome.",
     },
     {
       question: "How many hours a week do I need to train?",
       answer:
-        "Meaningful progress is possible on 6–8 structured hours a week, and time-crunched riders still improve on less when the intensity is well placed. Consistency week to week matters far more than the occasional big week.",
+        "There is no universal minimum because the answer depends on the goal, starting point, training history and recovery. Choose a repeatable schedule that supports the priority sessions and review the response before adding more volume; Roadman's coached service currently supports six-to-twelve-hour weekly variants.",
     },
     {
       question: "What is base training?",
       answer:
-        "Base training is an extended period of mostly easy, aerobic riding that builds endurance, efficiency and the durability to handle harder work later. It's the foundation the rest of the season is built on, not junk miles.",
+        "Base training is a label for a phase that often emphasises general endurance and preparation for later work. Its content and duration are not fixed, and a rider with recent endurance training, a novice and a racer between events may need different starting priorities.",
     },
   ],
   "cycling-recovery": [

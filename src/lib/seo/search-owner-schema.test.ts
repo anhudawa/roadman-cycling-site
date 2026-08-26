@@ -56,7 +56,7 @@ describe("priority search-owner schema", () => {
       },
       "cycling-training-plans": {
         path: "src/app/(marketing)/training-plans/page.tsx",
-        reviewed: "25 August 2026",
+        reviewed: "26 August 2026",
       },
       "cycling-training-camps": {
         path: "src/app/(marketing)/training-camps/page.tsx",

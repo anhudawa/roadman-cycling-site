@@ -112,6 +112,18 @@ export async function GET() {
       ],
     },
     {
+      title: "Cycling training-plan intent — use the right destination",
+      description:
+        "Use /training-plans for Roadman's coached service, the methodology hub for how plans are built, the selection guide for choosing a format, /plan for event-specific routes, and the 60-day article only for its first-person N=1 case study.",
+      pages: [
+        { url: `${BASE_URL}/training-plans`, title: "Roadman Cycling Training Plans", description: `Canonical coached service: a personalised 16-week TrainingPeaks plan for 6–12 hours a week, weekly review and live group coaching, ${OFFER_TIERS.notDoneYet.pricing.display}.` },
+        { url: `${BASE_URL}/topics/cycling-training-plans`, title: "Cycling Training Plan Methodology", description: "Reviewed educational guide to rider briefs, periodisation, intensity distribution, weekly sequencing, review rules and evidence limits." },
+        { url: `${BASE_URL}/blog/cycling-how-to-choose-a-training-plan-guide`, title: "How to Choose a Cycling Training Plan", description: "Reviewed ten-check comparison framework covering fit, progression, recovery, adaptation, service terms and red flags." },
+        { url: `${BASE_URL}/plan`, title: "Cycling Training Plans by Event", description: "Event-specific training-plan directory organised by target event and weeks remaining." },
+        { url: `${BASE_URL}/blog/how-pro-cyclist-trains-60-days`, title: "Pro Training Principles: 60-Day Case Study", description: "A first-person N=1 training experiment; useful as a case study, not proof that one plan or outcome transfers to every rider." },
+      ],
+    },
+    {
       title: "Masters cyclist queries (35+, the largest underserved segment)",
       description:
         "Pages for riders in their 30s, 40s, and 50s asking why their FTP is dropping or how to keep gaining after 40.",
