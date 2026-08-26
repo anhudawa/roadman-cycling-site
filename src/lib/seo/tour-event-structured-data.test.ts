@@ -26,10 +26,13 @@ describe("Tour de France Event structured data", () => {
   it("keeps every stage Event complete for Google rich results", () => {
     for (const property of [
       '"@type": "SportsEvent"',
-      'startDate: stage.date',
-      'eventStatus: "https://schema.org/EventScheduled"',
-      'location: [tourPlace(stage.start), tourPlace(stage.finish)]',
-      "description: stage.description",
+      "startDate: stage.date",
+      "endDate: stage.date",
+      "eventStatus: result",
+      '"https://schema.org/EventCompleted"',
+      '"https://schema.org/EventScheduled"',
+      "location: [tourPlace(stage.start), tourPlace(stage.finish)]",
+      "description: result?.summary ?? stage.description",
     ]) {
       expect(stage).toContain(property);
     }

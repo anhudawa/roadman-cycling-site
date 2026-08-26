@@ -242,9 +242,9 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/tour-de-france`, lastModified: new Date("2026-06-10"), changeFrequency: "daily", priority: 0.85 },
     ...TOUR_STAGES.map((s) => ({
       url: `${BASE_URL}/tour-de-france/stage/${s.number}`,
-      lastModified: new Date("2026-06-10"),
-      changeFrequency: "weekly" as const,
-      priority: 0.6,
+      lastModified: new Date(s.result?.lastReviewed ?? "2026-06-10"),
+      changeFrequency: s.result ? ("monthly" as const) : ("weekly" as const),
+      priority: s.result ? 0.72 : 0.6,
     })),
     { url: `${BASE_URL}/tour-de-france/history`, lastModified: new Date("2026-06-11"), changeFrequency: "monthly", priority: 0.7 },
     ...TOUR_HISTORY.map((a) => ({

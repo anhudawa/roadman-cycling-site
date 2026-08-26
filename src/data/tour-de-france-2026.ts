@@ -23,11 +23,7 @@
  */
 
 export type StageType =
-  | "flat"
-  | "hilly"
-  | "mountain"
-  | "individual-tt"
-  | "team-tt";
+  "flat" | "hilly" | "mountain" | "individual-tt" | "team-tt";
 
 export type ClimbCategory = "HC" | "1" | "2" | "3" | "4";
 
@@ -44,6 +40,23 @@ export interface Climb {
 export interface RelatedLink {
   label: string;
   href: string;
+}
+
+export interface StageResultSummary {
+  winner: string;
+  winnerTeam: string;
+  winningTime: string;
+  podium: Array<{
+    position: 1 | 2 | 3;
+    rider: string;
+    team: string;
+    timeOrGap: string;
+  }>;
+  summary: string;
+  keyMoments: string[];
+  classificationAfter: string;
+  sources: Array<{ label: string; href: string }>;
+  lastReviewed: string;
 }
 
 export interface Stage {
@@ -74,6 +87,8 @@ export interface Stage {
   expertAngle: { expert: string; angle: string };
   /** Existing Roadman content this stage connects to. */
   related: RelatedLink[];
+  /** Verified post-race result, added only after official results are available. */
+  result?: StageResultSummary;
 }
 
 export const TOUR_TYPE_LABEL: Record<StageType, string> = {
@@ -139,7 +154,10 @@ export const TOUR_STAGES: Stage[] = [
     },
     related: [
       { label: "Race Predictor — model your own TT", href: "/predict" },
-      { label: "Against the Clock — the TT mindset", href: "/entity/against-the-clock" },
+      {
+        label: "Against the Clock — the TT mindset",
+        href: "/entity/against-the-clock",
+      },
       { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
     ],
   },
@@ -177,9 +195,18 @@ export const TOUR_STAGES: Stage[] = [
         "The polarised-training pioneer would point at the recovery between efforts: the rider who spent the off-season building an aerobic base clears lactate fastest between each Montjuïc kick and is still there at the line.",
     },
     related: [
-      { label: "VO2max intervals that build repeatability", href: "/blog/cycling-vo2max-intervals" },
-      { label: "The grey-zone trap (80/20 training)", href: "/blog/80-20-cycling-training-the-grey-zone-trap" },
-      { label: "Polarised vs sweet spot", href: "/blog/polarised-vs-sweet-spot-training" },
+      {
+        label: "VO2max intervals that build repeatability",
+        href: "/blog/cycling-vo2max-intervals",
+      },
+      {
+        label: "The grey-zone trap (80/20 training)",
+        href: "/blog/80-20-cycling-training-the-grey-zone-trap",
+      },
+      {
+        label: "Polarised vs sweet spot",
+        href: "/blog/polarised-vs-sweet-spot-training",
+      },
     ],
   },
   {
@@ -194,7 +221,12 @@ export const TOUR_STAGES: Stage[] = [
     range: "Pyrenees",
     climbs: [
       { name: "Collada de Toses", lengthKm: 9.3, gradientPct: 6.5 },
-      { name: "Col du Calvaire", lengthKm: 11.4, gradientPct: 4.1, summitM: 1836 },
+      {
+        name: "Col du Calvaire",
+        lengthKm: 11.4,
+        gradientPct: 4.1,
+        summitM: 1836,
+      },
       { name: "Les Angles", lengthKm: 1.7, gradientPct: 6.5 },
     ],
     summitFinish: true,
@@ -217,8 +249,14 @@ export const TOUR_STAGES: Stage[] = [
         "Hold the long climbs in a controlled threshold zone and save the truly hard minutes for the final ramp — the classic polarised principle of not living in the grey zone, applied at race pace.",
     },
     related: [
-      { label: "Pacing strategy for long climbs", href: "/blog/cycling-pacing-strategy-long-climbs" },
-      { label: "Climb faster — five fixable reasons", href: "/blog/climb-faster-cycling-five-fixable-reasons" },
+      {
+        label: "Pacing strategy for long climbs",
+        href: "/blog/cycling-pacing-strategy-long-climbs",
+      },
+      {
+        label: "Climb faster — five fixable reasons",
+        href: "/blog/climb-faster-cycling-five-fixable-reasons",
+      },
       { label: "VO2max training hub", href: "/masters/vo2max" },
     ],
   },
@@ -256,7 +294,10 @@ export const TOUR_STAGES: Stage[] = [
         "The ultra-distance specialist's edge is fuelling and pacing a long day so the tank is not empty when it matters — eat early and often, and the legs are still there over the last climb.",
     },
     related: [
-      { label: "Carbohydrate per hour for cyclists", href: "/blog/carbohydrate-per-hour-cyclists" },
+      {
+        label: "Carbohydrate per hour for cyclists",
+        href: "/blog/carbohydrate-per-hour-cyclists",
+      },
       { label: "In-Ride Fuelling Calculator", href: "/tools/fuelling" },
       { label: "Training plans hub", href: "/topics/cycling-training-plans" },
     ],
@@ -290,9 +331,18 @@ export const TOUR_STAGES: Stage[] = [
         "22 Grand Tour stage wins came from holding position and trusting the lead-out — the sprint is decided in the final corners, not the final metres, so commit to a wheel and do not panic.",
     },
     related: [
-      { label: "The sprint captain's code (Greipel)", href: "/blog/andre-greipel-sprint-captains-code" },
-      { label: "Sprint power vs winning power", href: "/blog/cory-williams-sprint-power-vs-winning-power" },
-      { label: "Group ride etiquette", href: "/blog/cycling-group-ride-etiquette-guide" },
+      {
+        label: "The sprint captain's code (Greipel)",
+        href: "/blog/andre-greipel-sprint-captains-code",
+      },
+      {
+        label: "Sprint power vs winning power",
+        href: "/blog/cory-williams-sprint-power-vs-winning-power",
+      },
+      {
+        label: "Group ride etiquette",
+        href: "/blog/cycling-group-ride-etiquette-guide",
+      },
     ],
   },
   {
@@ -305,9 +355,26 @@ export const TOUR_STAGES: Stage[] = [
     type: "mountain",
     range: "Pyrenees",
     climbs: [
-      { name: "Col d'Aspin", category: "1", lengthKm: 12, gradientPct: 6.5, summitM: 1490 },
-      { name: "Col du Tourmalet", category: "HC", lengthKm: 17, gradientPct: 7.3, summitM: 2115 },
-      { name: "Montée de Gavarnie-Gèdre", category: "2", lengthKm: 18.7, gradientPct: 3.8 },
+      {
+        name: "Col d'Aspin",
+        category: "1",
+        lengthKm: 12,
+        gradientPct: 6.5,
+        summitM: 1490,
+      },
+      {
+        name: "Col du Tourmalet",
+        category: "HC",
+        lengthKm: 17,
+        gradientPct: 7.3,
+        summitM: 2115,
+      },
+      {
+        name: "Montée de Gavarnie-Gèdre",
+        category: "2",
+        lengthKm: 18.7,
+        gradientPct: 3.8,
+      },
     ],
     summitFinish: true,
     sprintFriendly: false,
@@ -329,9 +396,15 @@ export const TOUR_STAGES: Stage[] = [
         "The former pro-team chef's whole job was keeping riders fuelled across mountain stages — real food early, then a steady stream of carbohydrate, so the rider never hits the wall on the final climb.",
     },
     related: [
-      { label: "Carb-loading protocol for race week", href: "/blog/cycling-carb-loading-protocol-race-week" },
+      {
+        label: "Carb-loading protocol for race week",
+        href: "/blog/cycling-carb-loading-protocol-race-week",
+      },
       { label: "In-Ride Fuelling Calculator", href: "/tools/fuelling" },
-      { label: "Pacing strategy for long climbs", href: "/blog/cycling-pacing-strategy-long-climbs" },
+      {
+        label: "Pacing strategy for long climbs",
+        href: "/blog/cycling-pacing-strategy-long-climbs",
+      },
     ],
   },
   {
@@ -363,8 +436,14 @@ export const TOUR_STAGES: Stage[] = [
         "The discipline of keeping easy days easy is the foundation of the polarised model — the bunch soft-pedals for hours precisely so the hard efforts later in the race can be truly hard.",
     },
     related: [
-      { label: "The grey-zone trap", href: "/blog/80-20-cycling-training-the-grey-zone-trap" },
-      { label: "Active recovery rides done right", href: "/blog/cycling-active-recovery-rides-guide" },
+      {
+        label: "The grey-zone trap",
+        href: "/blog/80-20-cycling-training-the-grey-zone-trap",
+      },
+      {
+        label: "Active recovery rides done right",
+        href: "/blog/cycling-active-recovery-rides-guide",
+      },
       { label: "Heart Rate Zone Calculator", href: "/tools/hr-zones" },
     ],
   },
@@ -398,8 +477,14 @@ export const TOUR_STAGES: Stage[] = [
         "The TT specialist talks constantly about staying relaxed and smooth under pressure — tension wastes energy and slows your reactions, on a TT bike or in a sprint lead-out.",
     },
     related: [
-      { label: "What amateurs learn from the pros (Dowsett)", href: "/blog/alex-dowsett-pro-cycling-lessons-amateur" },
-      { label: "Group ride etiquette", href: "/blog/cycling-group-ride-etiquette-guide" },
+      {
+        label: "What amateurs learn from the pros (Dowsett)",
+        href: "/blog/alex-dowsett-pro-cycling-lessons-amateur",
+      },
+      {
+        label: "Group ride etiquette",
+        href: "/blog/cycling-group-ride-etiquette-guide",
+      },
       { label: "Le Métier — the craft of riding", href: "/topics" },
     ],
   },
@@ -437,7 +522,10 @@ export const TOUR_STAGES: Stage[] = [
         "The Red Bull–Bora–Hansgrohe head of performance builds riders who can repeat hard efforts deep into a stage — periodised training that layers intensity on top of a big aerobic engine, not random hard days.",
     },
     related: [
-      { label: "Cycling interval training for beginners", href: "/blog/cycling-interval-training-beginners" },
+      {
+        label: "Cycling interval training for beginners",
+        href: "/blog/cycling-interval-training-beginners",
+      },
       { label: "Training plans hub", href: "/topics/cycling-training-plans" },
       { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
     ],
@@ -453,7 +541,12 @@ export const TOUR_STAGES: Stage[] = [
     range: "Massif Central",
     elevationGainM: 3700,
     climbs: [
-      { name: "Pas de Peyrol (Puy Mary)", lengthKm: 7.8, gradientPct: 6, summitM: 1589 },
+      {
+        name: "Pas de Peyrol (Puy Mary)",
+        lengthKm: 7.8,
+        gradientPct: 6,
+        summitM: 1589,
+      },
       { name: "Col de Pertus", lengthKm: 4.4, gradientPct: 8.5 },
       { name: "Col de Prat de Bouc", lengthKm: 3.2, gradientPct: 5.8 },
     ],
@@ -477,9 +570,18 @@ export const TOUR_STAGES: Stage[] = [
         "Strength on and off the bike is a recurring theme — heavy lifting in the base phase builds the force you need on a 10% ramp, then converts to durable climbing power in the season.",
     },
     related: [
-      { label: "Strength & conditioning hub", href: "/topics/cycling-strength-conditioning" },
-      { label: "Climb faster — five fixable reasons", href: "/blog/climb-faster-cycling-five-fixable-reasons" },
-      { label: "Stop getting dropped on climbs", href: "/blog/cycling-climbing-tips-stop-getting-dropped" },
+      {
+        label: "Strength & conditioning hub",
+        href: "/topics/cycling-strength-conditioning",
+      },
+      {
+        label: "Climb faster — five fixable reasons",
+        href: "/blog/climb-faster-cycling-five-fixable-reasons",
+      },
+      {
+        label: "Stop getting dropped on climbs",
+        href: "/blog/cycling-climbing-tips-stop-getting-dropped",
+      },
     ],
   },
   {
@@ -492,7 +594,9 @@ export const TOUR_STAGES: Stage[] = [
     type: "flat",
     sprintFriendly: true,
     summitFinish: false,
-    climbs: [{ name: "Côte de Billy-Chevannes", lengthKm: 1.5, gradientPct: 6 }],
+    climbs: [
+      { name: "Côte de Billy-Chevannes", lengthKm: 1.5, gradientPct: 6 },
+    ],
     description:
       "A transitional flat stage out of the spa town of Vichy to Nevers. The sprinters who survived the mountains take their chance before the race tilts east toward the Jura and Vosges.",
     tactical: {
@@ -511,9 +615,15 @@ export const TOUR_STAGES: Stage[] = [
         "The author of The Cyclist's Training Bible has long argued that fitness is built in recovery — the stimulus is the hard day, but the gain comes when you back off and let the body absorb it.",
     },
     related: [
-      { label: "What a recovery week actually looks like", href: "/blog/cycling-recovery-week-what-to-actually-do" },
+      {
+        label: "What a recovery week actually looks like",
+        href: "/blog/cycling-recovery-week-what-to-actually-do",
+      },
       { label: "Recovery hub", href: "/topics/cycling-recovery" },
-      { label: "Cycling after 40 — recovery report", href: "/blog/cycling-after-40-recovery-report-2026" },
+      {
+        label: "Cycling after 40 — recovery report",
+        href: "/blog/cycling-after-40-recovery-report-2026",
+      },
     ],
   },
   {
@@ -526,7 +636,9 @@ export const TOUR_STAGES: Stage[] = [
     type: "flat",
     sprintFriendly: true,
     summitFinish: false,
-    climbs: [{ name: "Côte de Montagny-lès-Buxy", lengthKm: 2.6, gradientPct: 3.9 }],
+    climbs: [
+      { name: "Côte de Montagny-lès-Buxy", lengthKm: 2.6, gradientPct: 3.9 },
+    ],
     description:
       "A start on the Magny-Cours motor-racing circuit and a flat run to Chalon-sur-Saône. The last realistic bunch sprint before the Jura and Vosges reshape the race.",
     tactical: {
@@ -545,7 +657,10 @@ export const TOUR_STAGES: Stage[] = [
         "An aerodynamics obsessive, his point is that on flat ground air resistance is almost the entire battle — position and shelter matter more than raw fitness when the road is flat and fast.",
     },
     related: [
-      { label: "Group ride etiquette", href: "/blog/cycling-group-ride-etiquette-guide" },
+      {
+        label: "Group ride etiquette",
+        href: "/blog/cycling-group-ride-etiquette-guide",
+      },
       { label: "Race Predictor", href: "/predict" },
       { label: "Tyre Pressure Calculator", href: "/tools/tyre-pressure" },
     ],
@@ -583,7 +698,10 @@ export const TOUR_STAGES: Stage[] = [
         "His long-distance feats run on relentless, early, consistent fuelling — the body can only absorb so much per hour, so you start eating before you need to and never stop.",
     },
     related: [
-      { label: "Nutrition plan for a 100-mile sportive", href: "/blog/cycling-nutrition-plan-100-mile-sportive" },
+      {
+        label: "Nutrition plan for a 100-mile sportive",
+        href: "/blog/cycling-nutrition-plan-100-mile-sportive",
+      },
       { label: "In-Ride Fuelling Calculator", href: "/tools/fuelling" },
       { label: "Nutrition hub", href: "/topics/cycling-nutrition" },
     ],
@@ -623,8 +741,14 @@ export const TOUR_STAGES: Stage[] = [
     },
     related: [
       { label: "VO2max training hub", href: "/masters/vo2max" },
-      { label: "Polarised vs sweet spot", href: "/blog/polarised-vs-sweet-spot-training" },
-      { label: "Pacing strategy for long climbs", href: "/blog/cycling-pacing-strategy-long-climbs" },
+      {
+        label: "Polarised vs sweet spot",
+        href: "/blog/polarised-vs-sweet-spot-training",
+      },
+      {
+        label: "Pacing strategy for long climbs",
+        href: "/blog/cycling-pacing-strategy-long-climbs",
+      },
     ],
   },
   {
@@ -637,7 +761,12 @@ export const TOUR_STAGES: Stage[] = [
     type: "mountain",
     range: "Alps",
     climbs: [
-      { name: "Plateau de Solaison", category: "HC", lengthKm: 11.3, gradientPct: 9 },
+      {
+        name: "Plateau de Solaison",
+        category: "HC",
+        lengthKm: 11.3,
+        gradientPct: 9,
+      },
       { name: "Col de la Croisette", lengthKm: 7.6, gradientPct: 8.8 },
       { name: "Col de la Savine", lengthKm: 5.9, gradientPct: 4.6 },
     ],
@@ -661,7 +790,10 @@ export const TOUR_STAGES: Stage[] = [
         "Periodisation pointed at a goal climb — build threshold and VO2 in the right blocks so the rider peaks with the exact capacity a 9% wall demands, rather than arriving generally fit but unspecific.",
     },
     related: [
-      { label: "Pacing strategy for long climbs", href: "/blog/cycling-pacing-strategy-long-climbs" },
+      {
+        label: "Pacing strategy for long climbs",
+        href: "/blog/cycling-pacing-strategy-long-climbs",
+      },
       { label: "FTP training hub", href: "/topics/ftp-training" },
       { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
     ],
@@ -697,7 +829,10 @@ export const TOUR_STAGES: Stage[] = [
     related: [
       { label: "Race Predictor — model your TT", href: "/predict" },
       { label: "Against the Clock", href: "/entity/against-the-clock" },
-      { label: "Cycling time trial tips", href: "/blog/cycling-time-trial-tips" },
+      {
+        label: "Cycling time trial tips",
+        href: "/blog/cycling-time-trial-tips",
+      },
     ],
   },
   {
@@ -734,8 +869,14 @@ export const TOUR_STAGES: Stage[] = [
     },
     related: [
       { label: "Recovery hub", href: "/topics/cycling-recovery" },
-      { label: "Active recovery rides done right", href: "/blog/cycling-active-recovery-rides-guide" },
-      { label: "Goal setting that actually works", href: "/blog/cycling-goal-setting-that-actually-works" },
+      {
+        label: "Active recovery rides done right",
+        href: "/blog/cycling-active-recovery-rides-guide",
+      },
+      {
+        label: "Goal setting that actually works",
+        href: "/blog/cycling-goal-setting-that-actually-works",
+      },
     ],
   },
   {
@@ -749,34 +890,100 @@ export const TOUR_STAGES: Stage[] = [
     range: "Alps",
     elevationGainM: 3950,
     climbs: [
-      { name: "Orcières-Merlette", lengthKm: 7.1, gradientPct: 6.7, summitM: 1850 },
+      {
+        name: "Orcières-Merlette",
+        lengthKm: 7.1,
+        gradientPct: 6.7,
+        summitM: 1850,
+      },
       { name: "Côte d'Engins", lengthKm: 11.4, gradientPct: 5.4 },
       { name: "Monteynard", lengthKm: 9.7, gradientPct: 5 },
     ],
     summitFinish: true,
     sprintFriendly: false,
     description:
-      "The high Alps begin in earnest with a summit finish at the ski resort of Orcières-Merlette, a climb steeped in Tour history. The first of three consecutive Alpine mountain stages that decide the race.",
+      "Richard Carapaz won stage 18 at Orcières-Merlette in 4:26:21 after attacking twice on the final climb and riding the last three kilometres alone. Mauro Schmid and Matteo Jorgenson finished 45 seconds behind.",
     tactical: {
       whoBenefits:
-        "The GC favourites with the strongest teams. The first of three consecutive Alpine days is about who arrives freshest, not who wins the stage.",
+        "Richard Carapaz made the decisive selection from the breakaway on Orcières-Merlette. Mauro Schmid and Matteo Jorgenson completed the podium, both 45 seconds behind.",
       whatToWatch:
-        "Restraint. A rider who burns too much here pays for it twice before the block ends on Alpe d'Huez. The first cracks of the final week show on the Orcières-Merlette ramp.",
+        "Carapaz followed Jorgenson's early moves, attacked with four kilometres remaining and went again one kilometre later. The second acceleration created the winning three-kilometre solo effort.",
     },
     prediction:
-      "The GC battle resumes with the first Alpine time gaps, but the smartest favourites keep their powder dry. A breakaway could still steal the stage while the leaders measure each other.",
+      "Roadman's preview allowed for a breakaway win while the leaders measured each other. That broad scenario occurred, but the official result and race record now replace the prediction as the page's primary answer.",
     roadmanTake:
-      "The first of three Alpine days in a row is about managing the whole block, not winning the stage. Recovery between back-to-back mountain stages — sleep, protein, getting the carbs back in fast — is what lets a rider still be there on day three. Train the recovery as seriously as the efforts.",
+      "The documented lesson is tactical rather than physiological: Carapaz stayed in a contested break, responded to the final-climb selection and used two separate accelerations before committing to a three-kilometre solo. The result does not reveal his power, fuelling or recovery protocol.",
     expertAngle: {
       expert: "Dan Lorang",
       angle:
         "Stage-race performance is a recovery problem — refuel within the window, sleep, and the rider can repeat a near-maximal climb three days running instead of fading after one.",
     },
     related: [
-      { label: "Bedtime protein recovery protocol", href: "/blog/bedtime-protein-cyclists-recovery-protocol" },
+      {
+        label: "Bedtime protein recovery protocol",
+        href: "/blog/bedtime-protein-cyclists-recovery-protocol",
+      },
       { label: "Recovery hub", href: "/topics/cycling-recovery" },
-      { label: "Cycling after 40 — recovery report", href: "/blog/cycling-after-40-recovery-report-2026" },
+      {
+        label: "Cycling after 40 — recovery report",
+        href: "/blog/cycling-after-40-recovery-report-2026",
+      },
     ],
+    result: {
+      winner: "Richard Carapaz",
+      winnerTeam: "EF Education-EasyPost",
+      winningTime: "4:26:21",
+      podium: [
+        {
+          position: 1,
+          rider: "Richard Carapaz",
+          team: "EF Education-EasyPost",
+          timeOrGap: "4:26:21",
+        },
+        {
+          position: 2,
+          rider: "Mauro Schmid",
+          team: "Team Jayco AlUla",
+          timeOrGap: "+0:45",
+        },
+        {
+          position: 3,
+          rider: "Matteo Jorgenson",
+          team: "Team Visma | Lease a Bike",
+          timeOrGap: "+0:45",
+        },
+      ],
+      summary:
+        "A 14-rider break formed after a prolonged fight. The group split inside the final 50 kilometres, and six riders reached the foot of Orcières-Merlette together. Jorgenson attacked first; Carapaz made the decisive move with four kilometres remaining, accelerated again with three kilometres to go and held 45 seconds to the line.",
+      keyMoments: [
+        "Valentin Paret-Peintre collected the major early mountain points as the break formed and expanded.",
+        "Matteo Jorgenson repeatedly reduced the leading group before the final climb.",
+        "Carapaz attacked at four kilometres to go and again at three kilometres to go, then rode solo to the finish.",
+        "The main general-classification contenders finished together; Tadej Pogačar retained yellow, while Carapaz moved into the overall top ten.",
+        "Brandon McNulty abandoned while ill, reducing UAE Team Emirates-XRG's support before the two Alpe d'Huez stages.",
+      ],
+      classificationAfter:
+        "Tadej Pogačar retained the yellow jersey. The leading general-classification group finished together, and Carapaz's long-range gain moved him into the overall top ten.",
+      sources: [
+        {
+          label: "Official Tour de France stage 18 classification",
+          href: "https://www.letour.fr/en/rankings/stage-18?hasCookies=false&hideOnetrust=true&isWebview=true",
+        },
+        {
+          label: "Official Tour de France stage 18 race report",
+          href: "https://www.letour.fr/en/news/2026/stage-18/carapaz-takes-his-attacking-crown-in-orcieres-merlette/1353035",
+        },
+        {
+          label: "Official Tour de France stage 18 route and climbs",
+          href: "https://www.letour.fr/en/etape-18",
+        },
+        {
+          label: "Official Tour de France Pogačar interview after stage 18",
+          href: "https://www.letour.fr/en/news/2026/tadej-pogacar-you-need-to-ride-on-instinct/1353044",
+        },
+      ],
+      lastReviewed: "2026-08-26",
+    },
   },
   {
     number: 19,
@@ -788,7 +995,13 @@ export const TOUR_STAGES: Stage[] = [
     type: "mountain",
     range: "Alps",
     climbs: [
-      { name: "Alpe d'Huez", category: "HC", lengthKm: 13.8, gradientPct: 8.1, summitM: 1860 },
+      {
+        name: "Alpe d'Huez",
+        category: "HC",
+        lengthKm: 13.8,
+        gradientPct: 8.1,
+        summitM: 1860,
+      },
       { name: "Col du Noyer", lengthKm: 7.2, gradientPct: 8.3 },
       { name: "Col d'Ornon", lengthKm: 5.6, gradientPct: 6.2 },
     ],
@@ -814,7 +1027,10 @@ export const TOUR_STAGES: Stage[] = [
     related: [
       { label: "VO2max training hub", href: "/masters/vo2max" },
       { label: "VO2max intervals", href: "/blog/cycling-vo2max-intervals" },
-      { label: "Pacing strategy for long climbs", href: "/blog/cycling-pacing-strategy-long-climbs" },
+      {
+        label: "Pacing strategy for long climbs",
+        href: "/blog/cycling-pacing-strategy-long-climbs",
+      },
     ],
   },
   {
@@ -828,11 +1044,40 @@ export const TOUR_STAGES: Stage[] = [
     range: "Alps",
     elevationGainM: 5600,
     climbs: [
-      { name: "Col de la Croix de Fer", category: "HC", lengthKm: 24, gradientPct: 5.2, summitM: 2067 },
-      { name: "Col du Télégraphe", category: "1", lengthKm: 11.9, gradientPct: 7.1, summitM: 1566 },
-      { name: "Col du Galibier", category: "HC", lengthKm: 17.7, gradientPct: 6.8, summitM: 2642 },
-      { name: "Col de Sarenne", category: "1", lengthKm: 12.8, gradientPct: 7.3 },
-      { name: "Alpe d'Huez", category: "HC", lengthKm: 13.8, gradientPct: 8.1, summitM: 1860 },
+      {
+        name: "Col de la Croix de Fer",
+        category: "HC",
+        lengthKm: 24,
+        gradientPct: 5.2,
+        summitM: 2067,
+      },
+      {
+        name: "Col du Télégraphe",
+        category: "1",
+        lengthKm: 11.9,
+        gradientPct: 7.1,
+        summitM: 1566,
+      },
+      {
+        name: "Col du Galibier",
+        category: "HC",
+        lengthKm: 17.7,
+        gradientPct: 6.8,
+        summitM: 2642,
+      },
+      {
+        name: "Col de Sarenne",
+        category: "1",
+        lengthKm: 12.8,
+        gradientPct: 7.3,
+      },
+      {
+        name: "Alpe d'Huez",
+        category: "HC",
+        lengthKm: 13.8,
+        gradientPct: 8.1,
+        summitM: 1860,
+      },
     ],
     summitFinish: true,
     sprintFriendly: false,
@@ -854,9 +1099,15 @@ export const TOUR_STAGES: Stage[] = [
         "Durability over a monstrous day comes from base, fuelling and pacing held together for hours — ride within yourself early so there is something left for the Galibier and the Alpe.",
     },
     related: [
-      { label: "Masters Cycling Training Report 2026", href: "/blog/masters-cycling-training-report-2026" },
+      {
+        label: "Masters Cycling Training Report 2026",
+        href: "/blog/masters-cycling-training-report-2026",
+      },
       { label: "Event prep — peak for your big day", href: "/event-prep" },
-      { label: "Carb-loading protocol", href: "/blog/cycling-carb-loading-protocol-race-week" },
+      {
+        label: "Carb-loading protocol",
+        href: "/blog/cycling-carb-loading-protocol-race-week",
+      },
     ],
   },
   {
@@ -869,7 +1120,9 @@ export const TOUR_STAGES: Stage[] = [
     type: "flat",
     sprintFriendly: true,
     summitFinish: false,
-    climbs: [{ name: "Butte Montmartre (×3)", lengthKm: 1.1, gradientPct: 5.9 }],
+    climbs: [
+      { name: "Butte Montmartre (×3)", lengthKm: 1.1, gradientPct: 5.9 },
+    ],
     description:
       "The processional finish to Paris, now with three ascents of the cobbled Butte Montmartre before the Champs-Élysées circuit. Champagne for the GC riders, then a frantic finale that may favour a late attack as much as a sprint.",
     tactical: {
@@ -888,7 +1141,10 @@ export const TOUR_STAGES: Stage[] = [
         "Consistency beats intensity over a season — the rider who strings together months of well-judged training without injury or burnout arrives in Paris, in form, every time.",
     },
     related: [
-      { label: "Goal setting that actually works", href: "/blog/cycling-goal-setting-that-actually-works" },
+      {
+        label: "Goal setting that actually works",
+        href: "/blog/cycling-goal-setting-that-actually-works",
+      },
       { label: "Training plans hub", href: "/topics/cycling-training-plans" },
       { label: "The Roadman methodology", href: "/methodology" },
     ],
