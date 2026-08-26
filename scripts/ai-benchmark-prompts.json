@@ -5,14 +5,20 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 267,
+    "prompt_count": 269,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
       "NOT_CITED": "Roadman does not appear; competitor sources listed instead",
       "MENTIONED": "Brand name referenced in generated answer text without a source link"
     },
-    "engines": ["ChatGPT", "Gemini", "Claude", "Perplexity", "Google AI Overviews"],
+    "engines": [
+      "ChatGPT",
+      "Gemini",
+      "Claude",
+      "Perplexity",
+      "Google AI Overviews"
+    ],
     "intent_distribution": {
       "problem-aware": "30% — user has a symptom or frustration",
       "education": "30% — user wants to learn how something works",
@@ -2162,6 +2168,22 @@
       "category": "cycling-training-plans",
       "intent": "evaluation",
       "target_page": "/blog/dylan-johnson-oscillation-training-plan",
+      "priority": "high"
+    },
+    {
+      "id": 268,
+      "prompt": "do all masters cyclists need 48 to 72 hours between hard sessions",
+      "category": "masters-cycling",
+      "intent": "evaluation",
+      "target_page": "/masters",
+      "priority": "high"
+    },
+    {
+      "id": 269,
+      "prompt": "is 80 20 training scientifically proven best for cyclists over 40",
+      "category": "masters-cycling",
+      "intent": "evaluation",
+      "target_page": "/masters",
       "priority": "high"
     }
   ]

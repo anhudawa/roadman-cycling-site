@@ -40,24 +40,102 @@ const REPORT_HREF = "/blog/masters-cycling-training-report-2026";
 
 const CHALLENGES = [
   {
-    title: "The top end goes first",
-    body: "VO2 max and your fast-twitch fibres fade before your aerobic engine does. A fit 47-year-old can still hold four hours at threshold but can't find the six-second kick on a climb. That's not bad luck — it's the order ageing takes things.",
+    title: "Aerobic capacity and power can change",
+    body: "VO2max and high-power performance tend to decline across populations as age advances, but the slope varies markedly with training, health and the outcome measured. Age is context for testing and planning, not a forecast of one rider's watts.",
   },
   {
-    title: "Recovery takes longer",
-    body: "The session that needed 24 hours at 30 needs 48 to 72 now. Stack hard days the way you used to and you don't get fitter, you get flat. The training only counts once you've absorbed it.",
+    title: "Recovery needs measuring",
+    body: "Older athletes may recover more slowly from some muscle-damaging sessions, but athlete-specific evidence is limited and does not establish one 48-to-72-hour rule. The useful question is how this rider responds to this dose.",
   },
   {
-    title: "Time is the real constraint",
-    body: "Six to twelve hours a week around a job, a family and a body that's been at this a while. You can't out-volume the problem. Every session has to earn its place.",
+    title: "Life changes the dose",
+    body: "Work, family, sleep, health and training history determine what can be repeated. A six-hour rider and a twelve-hour rider do not need percentage-scaled copies of the same week; both need a plan that starts from recent completed training.",
   },
   {
-    title: "Strength quietly disappears",
-    body: "Lean mass and peak force drift away from your late thirties on. Endurance riding does almost nothing to defend them — it trains the half of the system that was ageing well anyway.",
+    title: "Strength deserves its own plan",
+    body: "Ageing and inactivity can reduce muscle mass, strength and power. Heavy strength training improves some cycling outcomes in adult cyclists, but the evidence does not prove one programme for every rider over 40. Readiness and progression still govern the dose.",
   },
   {
-    title: "The hormones move",
-    body: "Testosterone slides for men; perimenopause and menopause reshape recovery and adaptation for women. Iron status matters more. Pretending none of it changes is how good riders stall without knowing why.",
+    title: "Health context matters",
+    body: "Menopause, iron status, medication, cardiovascular risk, injury and illness can all change training decisions. They cannot be diagnosed from age, FTP or a recovery score. Symptoms and unexplained performance loss need appropriate clinical assessment.",
+  },
+];
+
+type EvidenceClaim = {
+  question: string;
+  finding: string;
+  boundary: string;
+  source: string;
+  href: string;
+  relatedSource?: string;
+  relatedHref?: string;
+  grade: string;
+};
+
+const EVIDENCE_CLAIMS: readonly EvidenceClaim[] = [
+  {
+    question:
+      "Does VO2max decline 5% per decade in every trained masters rider?",
+    finding:
+      "A historical eight-year study observed 5.5% per decade in 15 male masters athletes versus 12% in 14 sedentary men.",
+    boundary:
+      "It is a small cohort result, not an individual forecast. A 2022 review found longitudinal declines from 5% to 46% per decade, closely related to training changes.",
+    source: "Rogers et al. (1990)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/2361923/",
+    relatedSource: "Burtscher et al. (2022) review",
+    relatedHref: "https://pubmed.ncbi.nlm.nih.gov/36078762/",
+    grade: "Moderate for the trend; low for one fixed rate",
+  },
+  {
+    question: "Do all masters cyclists need 48–72 hours between hard rides?",
+    finding:
+      "Ageing can plausibly affect muscle-damage and repair responses, especially after damaging exercise.",
+    boundary:
+      "Athlete-specific research is limited, activity level is often confounded and normal training stimuli are under-studied. No universal clock is established.",
+    source: "Fell and Williams (2008)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/18268815/",
+    grade: "Limited and context-dependent",
+  },
+  {
+    question: "Is 80/20 proven best for riders over 40?",
+    finding:
+      "A large share of easy work can help make hard sessions repeatable, and several intensity distributions improve endurance outcomes.",
+    boundary:
+      "No masters-cyclist trial establishes one universal 80/20 prescription. A 2025 individual-participant meta-analysis found no overall polarised-versus-pyramidal difference for its stated outcomes.",
+    source: "Rosenblat et al. (2025)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/39888556/",
+    grade: "Mixed; not masters-specific",
+  },
+  {
+    question:
+      "Does heavy strength training improve cycling performance after 40?",
+    finding:
+      "A 2025 meta-analysis of 17 studies and 262 adult cyclists found improvements in cycling efficiency, anaerobic power and combined cycling performance outcomes.",
+    boundary:
+      "The review did not establish an over-40 subgroup effect, found no VO2max change and rated the evidence low, so it cannot prescribe one optimal programme.",
+    source: "Llanos-Lagos et al. (2025)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/40632222/",
+    grade: "Low-certainty supportive evidence",
+  },
+  {
+    question: "Do masters athletes require 1.6–2.2 g/kg protein every day?",
+    finding:
+      "Exercising adults generally need more protein than the sedentary RDA, and adequate energy plus protein supports repair.",
+    boundary:
+      "A 2025 masters-athlete scoping review found only 12 heterogeneous studies and called population-specific recommendations uncertain. Needs vary with training, energy intake, health and clinical context.",
+    source: "Franzke, Maierhofer and Putz (2025)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/39940356/",
+    grade: "Emerging and heterogeneous",
+  },
+  {
+    question: "Does every masters cyclist need exactly eight hours of sleep?",
+    finding:
+      "The AASM and Sleep Research Society consensus recommends that adults sleep at least seven hours regularly to support health.",
+    boundary:
+      "This is a general health threshold, not an age-specific performance prescription. Individual need, sleep quality, timing and possible sleep disorders still matter.",
+    source: "Watson et al. (2015) consensus",
+    href: "https://pubmed.ncbi.nlm.nih.gov/26039963/",
+    grade: "Expert consensus for a minimum; not a performance dose",
   },
 ];
 
@@ -68,29 +146,29 @@ const CHALLENGES = [
 const METHODOLOGY = [
   {
     number: "01",
-    title: "Reverse the periodisation",
-    body: "Most plans build a long aerobic base over winter and bolt intensity on late. After 40 that's backwards. The top end is the first thing you lose, so we keep a thread of intensity running all year and build the volume around it — instead of letting the engine's ceiling rust every winter and trying to rebuild it from scratch each spring.",
+    title: "Start from the rider, not the birth year",
+    body: "Map the goal, recent completed training, available days, health context and response to current load before choosing a model. Masters is an age category, not a diagnosis and not a complete rider brief.",
     href: "/topics/cycling-training-plans",
     hrefLabel: "Training plans hub",
   },
   {
     number: "02",
-    title: "Polarise the week, not just the season",
-    body: "Seiler's 80/20, applied to how an over-40 rider actually lives. Two properly hard sessions. Everything else easy enough that you'd be a little embarrassed by the speed. The grey zone — that flattering not-quite-hard pace — is where masters riders bury themselves: too taxing to recover from, too soft to drive adaptation.",
+    title: "Protect quality without worshipping a ratio",
+    body: "Keep easy work easy enough that the planned quality remains repeatable. One or two hard sessions may be a useful starting range for many trained riders, but 80/20 is not a masters law and intensity frequency must respond to the athlete.",
     href: "/topics/ftp-training",
     hrefLabel: "FTP & intensity hub",
   },
   {
     number: "03",
-    title: "Strength is the new base",
-    body: "Twice a week, heavy and fast, single-leg and eccentric-led. A 2025 meta-analysis of 17 studies and 262 trained cyclists found structured strength work improves cycling performance with no cost to VO2 max. After 40 it stops being optional — it's the only training that directly defends the type II fibres endurance riding ignores.",
+    title: "Progress strength as training load",
+    body: "Resistance training can improve cycling performance, efficiency and anaerobic power, but it carries fatigue and requires progression. Select exercises, load and frequency from competence, injury history, season and recovery—not from a blanket twice-weekly command.",
     href: "/topics/cycling-strength-conditioning",
     hrefLabel: "Strength hub",
   },
   {
     number: "04",
-    title: "Recover like it's the part that counts",
-    body: "Because it is. Hard days spaced 48 to 72 hours apart. Protein at 1.6 to 2.2 g/kg across the day, with one dose above roughly 35g. Sleep treated as the actual adaptation window, not the thing you trim when life gets busy. Recovery isn't the reward for the work — it's where the work becomes fitness.",
+    title: "Use response rules, not an age clock",
+    body: "Review sleep, symptoms, session execution, soreness, mood and ordinary life stress before progressing load. Adults should generally obtain at least seven hours of sleep; protein and recovery targets still need individual context rather than one masters-only number.",
     href: "/topics/cycling-recovery",
     hrefLabel: "Recovery hub",
   },
@@ -107,7 +185,7 @@ const EXPERTS = [
     credential: "Muscle physiologist, Cal State Fullerton",
     episode: "The Science of Getting Faster After 40",
     position:
-      "Galpin's hierarchy of ageing is blunt: power drops faster than strength, and strength faster than muscle mass. Type II — the fast-twitch fibres behind your kick on a climb — shrink first, by 10 to 40%. Endurance riding barely touches them. The defence is targeted: fast, controlled load and protein at 1.6 to 2.2 g/kg.",
+      "Galpin's interview emphasises measuring the quality that is actually declining, then training that quality deliberately. It is an expert framework for assessment and exercise selection, not proof of one fibre-loss percentage or protein target for every masters cyclist.",
     pillar: "Strength",
   },
   {
@@ -116,7 +194,7 @@ const EXPERTS = [
     credential: "Exercise physiologist, polarised-training researcher",
     episode: "80/20 Training to Ride Faster",
     position:
-      "The 80/20 split isn't a beginner's compromise — it's the model the best endurance athletes in the world actually train on. For masters riders the point lands harder: the grey zone costs you more after 40 because your recovery budget is smaller. Keep 80% properly easy and you free the headroom to go truly hard on the other 20%.",
+      "Seiler explains why a high proportion of low-intensity work can support repeatable quality. The conversation informs Roadman's intensity-distribution approach; it does not establish that every rider over 40 must hit an exact 80/20 time split.",
     pillar: "Training",
   },
   {
@@ -125,7 +203,7 @@ const EXPERTS = [
     credential: "Author, The Cyclist's Training Bible",
     episode: "The Training Secret to Going Faster After 40",
     position:
-      "Friel is in his eighties and still rides 12 to 13 hours a week. His method protects intensity instead of retreating into junk miles, treats strength work in the garage gym as non-negotiable, and builds more recovery between hard days. Not less training — better-spaced training.",
+      "Friel describes protecting relevant intensity, maintaining strength and allowing recovery to shape the schedule as riders age. His own training is an example of an individual system, not a volume or frequency prescription for another rider.",
     pillar: "Training",
   },
   {
@@ -134,7 +212,7 @@ const EXPERTS = [
     credential: "Endurance physician, masters performance researcher",
     episode: "How to Beat 99% by Getting Faster With Age",
     position:
-      "The masters riders who keep improving aren't the ones doing the most. They're the most consistent, and they recover with intent. Lipman's case is that structure and patience beat heroics — the riders who stay healthy and keep showing up are the ones still moving the numbers a decade in.",
+      "Lipman's interview prioritises consistency, health and patient progression over hero sessions. That coaching position supports a review process; it does not guarantee continued improvement or quantify one recovery interval.",
     pillar: "Training",
   },
   {
@@ -143,7 +221,7 @@ const EXPERTS = [
     credential: "Coach, strength training for cyclists",
     episode: "Strength Training for Cycling, Simplified",
     position:
-      "Teel makes the strength piece doable for a rider with a job. Cycling-specific patterns, in-season maintenance, and sessions scheduled around your hard rides rather than competing with them — so the lifting makes you faster on the bike instead of leaving you too cooked to ride.",
+      "Teel focuses on making strength work executable around cycling: choose useful patterns, progress them and manage in-season fatigue. The episode is coaching guidance, while the independent review below defines the evidence limits.",
     pillar: "Strength",
   },
   {
@@ -152,7 +230,7 @@ const EXPERTS = [
     credential: "World Tour nutritionist",
     episode: "We Got Weight Loss Wrong",
     position:
-      "Under-fuelling is the hidden lid on masters performance. Dunne's message is the opposite of diet culture: fuel for the work, protect protein, and let body composition follow. The riders chasing the scale with low intake are the ones losing the muscle they can least afford.",
+      "Dunne argues for fuelling the work rather than forcing weight loss through chronic restriction. That principle does not diagnose low energy availability or establish one protein intake for every age, sex and health profile.",
     pillar: "Nutrition",
   },
   {
@@ -161,7 +239,7 @@ const EXPERTS = [
     credential: "Head of Performance, Lidl-Trek",
     episode: "13 Years of Coaching Pros: What Amateurs Don't Know",
     position:
-      "Structure and periodisation matter more when time and recovery are limited, not less. Lorang — Head of Performance at a WorldTour team and long-time coach to Frodeno and Haug — on what amateurs get wrong when they train without a plan, and why the principles scale down to a time-crunched masters week.",
+      "Lorang starts amateur planning with sustainable total load and whole-life context. The transferable lesson is the decision process—not a percentage-scaled version of an elite calendar or one schedule for all masters riders.",
     pillar: "Training",
   },
 ] as const;
@@ -172,24 +250,24 @@ const EXPERTS = [
 
 const MISTAKES = [
   {
-    mistake: "Training the way you did at 30",
-    fix: "Keep the intensity, add the recovery. Two hard days a week, not three, with 48 to 72 hours between them. The plan that built you can't be run on a 45-year-old's recovery budget.",
+    mistake: "Using age as the whole rider brief",
+    fix: "Record the goal, recent load, health context, available time and response to key sessions. Age matters, but it cannot tell you whether this rider needs one hard day, two hard days or a longer reset.",
   },
   {
-    mistake: "Skipping strength because you're scared of bulking or losing your climbing legs",
-    fix: "Lift heavy and fast twice a week. The research is one-directional: structured strength work makes cyclists faster with no cost to VO2 max. You will not turn into a bodybuilder on two sessions.",
+    mistake: "Either skipping strength or copying an advanced programme",
+    fix: "Treat resistance work as progressive training load. Start from technical competence and current capacity, then adjust exercise, load and frequency around the riding and any relevant clinical advice.",
   },
   {
-    mistake: "Riding the grey zone and calling it endurance",
-    fix: "Pin your easy days to a pace that feels almost too slow. Save the suffering for the two sessions that earn it. Easy-but-not-easy is the most expensive habit in masters cycling.",
+    mistake: "Treating 80/20 as a pass-fail test",
+    fix: "Keep the purpose of each ride clear and monitor whether quality remains repeatable. Polarised and pyramidal distributions can both work; the exact split depends on phase, sport, measurement method and rider.",
   },
   {
-    mistake: "Under-fuelling — still chasing the scale with low protein",
-    fix: "Fuel the work, hit 1.6 to 2.2 g/kg of protein across the day, and let body composition follow. Crash diets strip the muscle ageing is already taking.",
+    mistake: "Chasing weight while under-fuelling the work",
+    fix: "Match carbohydrate and total energy to training demand, include adequate protein, and review persistent fatigue or unexplained weight change. Do not turn a general sports-nutrition range into a personal prescription without health context.",
   },
   {
-    mistake: "Treating recovery as the thing you cut when you're busy",
-    fix: "Protect sleep first. Deload every three to four weeks. Run the seven-point recovery audit and fix what it surfaces. After 40, recovery is the input that decides whether any of the training sticks.",
+    mistake: "Scheduling recovery by folklore",
+    fix: "Use a planned review point and explicit modification rules. Session quality, symptoms, sleep, soreness and life stress are more informative than assuming every rider needs 48 hours, 72 hours or a deload on the same week.",
     href: "/blog/masters-recovery-audit-seven-things-to-check",
     hrefLabel: "Run the recovery audit",
   },
@@ -208,74 +286,197 @@ type LibraryGroup = {
 const LIBRARY: LibraryGroup[] = [
   {
     heading: "Training & getting faster after 40",
-    blurb: "The spine of the methodology — what changes, what doesn't, and the weekly structure that holds up.",
+    blurb:
+      "The spine of the methodology — what changes, what doesn't, and the weekly structure that holds up.",
     links: [
-      { href: "/blog/masters-cyclist-guide-getting-faster-after-40", label: "The Masters Decision Framework: 3 mistakes that stall riders over 40" },
-      { href: "/blog/cycling-over-40-getting-faster", label: "Getting Faster After 40: the age-defying guide" },
-      { href: "/blog/cycling-after-40-faster-science", label: "Cycling After 40: the science of getting faster" },
-      { href: "/blog/cycling-over-50-training", label: "Cycling Over 50: training smarter when recovery takes longer" },
-      { href: "/blog/cycling-training-plan-masters-over-40", label: "The best cycling training plan for masters riders over 40" },
-      { href: "/blog/vo2-max-workouts-cyclists-over-40", label: "VO2 max workouts for cyclists over 40" },
-      { href: "/blog/sprint-interval-training-cyclists-masters", label: "Sprint interval training for masters cyclists" },
-      { href: "/blog/cycling-cadence-by-age-masters", label: "Cycling cadence by age: why masters should spin higher" },
-      { href: "/blog/efficiency-factor-cycling-masters", label: "Efficiency factor for masters cyclists" },
-      { href: "/blog/resting-heart-rate-masters-cyclists", label: "Resting heart rate for masters cyclists" },
-      { href: "/blog/ftp-benchmarks-by-age-and-experience", label: "FTP benchmarks by age and experience" },
-      { href: "/blog/age-group-ftp-benchmarks-2026", label: "Age-group FTP benchmarks 2026" },
-      { href: "/blog/what-experts-say-about-masters-cycling", label: "What coaches say about getting faster after 40" },
-      { href: "/blog/best-cycling-coach-masters-riders", label: "What to look for in a coach for masters riders" },
-      { href: "/blog/joe-friel-fast-after-50-cycling-method", label: "Joe Friel: the Fast After 50 method" },
+      {
+        href: "/blog/masters-cyclist-guide-getting-faster-after-40",
+        label:
+          "The Masters Decision Framework: 3 mistakes that stall riders over 40",
+      },
+      {
+        href: "/blog/cycling-over-40-getting-faster",
+        label: "Getting Faster After 40: practical training decisions",
+      },
+      {
+        href: "/blog/cycling-after-40-faster-science",
+        label: "Cycling After 40: what the research can tell us",
+      },
+      {
+        href: "/blog/cycling-over-50-training",
+        label: "Cycling Over 50: adapting training to your response",
+      },
+      {
+        href: "/blog/cycling-training-plan-masters-over-40",
+        label: "A cycling training-plan framework for riders over 40",
+      },
+      {
+        href: "/blog/vo2-max-workouts-cyclists-over-40",
+        label: "VO2 max workouts for cyclists over 40",
+      },
+      {
+        href: "/blog/sprint-interval-training-cyclists-masters",
+        label: "Sprint interval training for masters cyclists",
+      },
+      {
+        href: "/blog/cycling-cadence-by-age-masters",
+        label: "Cycling cadence by age: evidence and practical starting points",
+      },
+      {
+        href: "/blog/efficiency-factor-cycling-masters",
+        label: "Efficiency factor for masters cyclists",
+      },
+      {
+        href: "/blog/resting-heart-rate-masters-cyclists",
+        label: "Resting heart rate for masters cyclists",
+      },
+      {
+        href: "/blog/ftp-benchmarks-by-age-and-experience",
+        label: "FTP benchmarks by age and experience",
+      },
+      {
+        href: "/blog/age-group-ftp-benchmarks-2026",
+        label: "Age-group FTP benchmarks 2026",
+      },
+      {
+        href: "/blog/what-experts-say-about-masters-cycling",
+        label: "What coaches say about getting faster after 40",
+      },
+      {
+        href: "/blog/best-cycling-coach-masters-riders",
+        label: "What to look for in a coach for masters riders",
+      },
+      {
+        href: "/blog/joe-friel-fast-after-50-cycling-method",
+        label: "Joe Friel: the Fast After 50 method",
+      },
     ],
   },
   {
     heading: "Strength after 40",
-    blurb: "The training that defends the fibres endurance riding leaves behind.",
+    blurb:
+      "The training that defends the fibres endurance riding leaves behind.",
     links: [
-      { href: "/blog/strength-training-cyclists-over-50", label: "Strength training for cyclists over 50" },
-      { href: "/blog/new-study-confirms-heavy-strength-training-beats-more-miles-after-40", label: "Heavy strength training beats more miles after 40" },
-      { href: "/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40", label: "Andy Galpin: why the snap goes first" },
-      { href: "/blog/derek-teel-best-exercises-cyclists", label: "Derek Teel's best exercises for cyclists" },
+      {
+        href: "/blog/strength-training-cyclists-over-50",
+        label: "Strength training for cyclists over 50",
+      },
+      {
+        href: "/blog/new-study-confirms-heavy-strength-training-beats-more-miles-after-40",
+        label:
+          "Heavy strength training for cyclists: what the study can and cannot show",
+      },
+      {
+        href: "/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40",
+        label: "Andy Galpin: why the snap goes first",
+      },
+      {
+        href: "/blog/derek-teel-best-exercises-cyclists",
+        label: "Derek Teel's best exercises for cyclists",
+      },
     ],
   },
   {
     heading: "Recovery",
-    blurb: "After 40 this is the input that decides whether the training sticks.",
+    blurb:
+      "After 40 this is the input that decides whether the training sticks.",
     links: [
-      { href: "/blog/masters-recovery-audit-seven-things-to-check", label: "The over-40 recovery audit: seven things to check" },
-      { href: "/blog/post-ride-recovery-window-cyclists-over-40", label: "The post-ride recovery window for cyclists over 40" },
-      { href: "/blog/cycling-after-40-recovery-report-2026", label: "Cycling After 40 Recovery Report (Q3 2026)" },
+      {
+        href: "/blog/masters-recovery-audit-seven-things-to-check",
+        label: "The over-40 recovery audit: seven things to check",
+      },
+      {
+        href: "/blog/post-ride-recovery-window-cyclists-over-40",
+        label: "The post-ride recovery window for cyclists over 40",
+      },
+      {
+        href: "/blog/cycling-after-40-recovery-report-2026",
+        label: "Cycling After 40 Recovery Report (Q3 2026)",
+      },
     ],
   },
   {
     heading: "Hormones, fuelling & body composition",
     blurb: "The factors that move with age and quietly stall good riders.",
     links: [
-      { href: "/blog/free-testosterone-cyclists-50th-percentile-dr-gordon", label: "Free testosterone in cyclists: what the research says" },
-      { href: "/blog/menopause-cycling-performance", label: "Menopause and cycling performance" },
-      { href: "/blog/iron-deficiency-cyclists-masters", label: "Iron deficiency in masters cyclists" },
+      {
+        href: "/blog/free-testosterone-cyclists-50th-percentile-dr-gordon",
+        label: "Free testosterone in cyclists: what the research says",
+      },
+      {
+        href: "/blog/menopause-cycling-performance",
+        label: "Menopause and cycling performance",
+      },
+      {
+        href: "/blog/iron-deficiency-cyclists-masters",
+        label: "Iron deficiency in masters cyclists",
+      },
     ],
   },
   {
     heading: "The culture & the playlists",
-    blurb: "The reckoning the sport is having — and where to start in the archive.",
+    blurb:
+      "The reckoning the sport is having — and where to start in the archive.",
     links: [
-      { href: "/blog/masters-racing-doping-cycling-amateur-cheating", label: "The masters doping problem" },
-      { href: "/blog/best-roadman-episodes-masters", label: "Best Roadman episodes for masters cyclists" },
-      { href: "/blog/masters-cycling-podcast-playlist", label: "The masters cycling podcast playlist" },
-      { href: "/blog/every-roadman-episode-with-stephen-seiler", label: "Every Roadman episode with Stephen Seiler" },
-      { href: "/blog/podcasts-for-cyclists-over-40", label: "The best podcasts for cyclists over 40" },
-      { href: "/blog/best-cycling-training-podcasts-age-groupers", label: "Best cycling training podcasts for age-groupers" },
+      {
+        href: "/blog/masters-racing-doping-cycling-amateur-cheating",
+        label: "The masters doping problem",
+      },
+      {
+        href: "/blog/best-roadman-episodes-masters",
+        label: "Best Roadman episodes for masters cyclists",
+      },
+      {
+        href: "/blog/masters-cycling-podcast-playlist",
+        label: "The masters cycling podcast playlist",
+      },
+      {
+        href: "/blog/every-roadman-episode-with-stephen-seiler",
+        label: "Every Roadman episode with Stephen Seiler",
+      },
+      {
+        href: "/blog/podcasts-for-cyclists-over-40",
+        label: "The best podcasts for cyclists over 40",
+      },
+      {
+        href: "/blog/best-cycling-training-podcasts-age-groupers",
+        label: "Best cycling training podcasts for age-groupers",
+      },
     ],
   },
 ];
 
 const TOPIC_HUBS = [
-  { href: "/topics/ftp-training", label: "FTP Training", note: "Threshold, zones, intensity" },
-  { href: "/topics/cycling-strength-conditioning", label: "Strength & Conditioning", note: "The off-the-bike work" },
-  { href: "/topics/cycling-recovery", label: "Recovery", note: "Sleep, deloads, adaptation" },
-  { href: "/topics/cycling-nutrition", label: "Nutrition", note: "Fuelling, protein, body comp" },
-  { href: "/topics/cycling-training-plans", label: "Training Plans", note: "Structuring the year" },
-  { href: "/topics/cycling-coaching", label: "Coaching", note: "What good coaching looks like" },
+  {
+    href: "/topics/ftp-training",
+    label: "FTP Training",
+    note: "Threshold, zones, intensity",
+  },
+  {
+    href: "/topics/cycling-strength-conditioning",
+    label: "Strength & Conditioning",
+    note: "The off-the-bike work",
+  },
+  {
+    href: "/topics/cycling-recovery",
+    label: "Recovery",
+    note: "Sleep, deloads, adaptation",
+  },
+  {
+    href: "/topics/cycling-nutrition",
+    label: "Nutrition",
+    note: "Fuelling, protein, body comp",
+  },
+  {
+    href: "/topics/cycling-training-plans",
+    label: "Training Plans",
+    note: "Structuring the year",
+  },
+  {
+    href: "/topics/cycling-coaching",
+    label: "Coaching",
+    note: "What good coaching looks like",
+  },
 ];
 
 type ToolEntry = {
@@ -289,44 +490,52 @@ const TOOLS: readonly ToolEntry[] = [
   {
     href: "/tools/masters-ftp-benchmark",
     label: "Masters FTP Benchmark",
-    description: "Where your watts actually place you for your age band — and the realistic next 12-month target.",
+    description:
+      "Where your watts actually place you for your age band — and the realistic next 12-month target.",
     masters: true,
   },
   {
     href: "/tools/masters-recovery-score",
     label: "Masters Recovery Score",
-    description: "Score the recovery factors that matter most after 40 — sleep, training load, age, stress.",
+    description:
+      "Score the recovery factors that matter most after 40 — sleep, training load, age, stress.",
     masters: true,
   },
   {
     href: "/tools/ftp-zones",
     label: "FTP Zones Calculator",
-    description: "Build your training zones from a current FTP, ready for the polarised distribution.",
+    description:
+      "Build your training zones from a current FTP, ready for the polarised distribution.",
   },
   {
     href: "/tools/hr-zones",
     label: "Heart Rate Zones",
-    description: "Zones from threshold or max HR — useful when you're tracking aerobic durability.",
+    description:
+      "Zones from threshold or max HR — useful when you're tracking aerobic durability.",
   },
   {
     href: "/tools/race-weight",
     label: "Race Weight Calculator",
-    description: "A goal race weight without the calorie-counting trap. Built around fuelling, not restriction.",
+    description:
+      "A goal race weight without the calorie-counting trap. Built around fuelling, not restriction.",
   },
   {
     href: "/tools/energy-availability",
     label: "Energy Availability",
-    description: "Check whether you're under-fuelling for the work — the hidden lid on masters performance.",
+    description:
+      "Check whether you're under-fuelling for the work — the hidden lid on masters performance.",
   },
   {
     href: "/tools/fuelling",
     label: "In-Ride Fuelling",
-    description: "Carbs per hour for the ride in front of you, so you finish the session you started.",
+    description:
+      "Carbs per hour for the ride in front of you, so you finish the session you started.",
   },
   {
     href: "/tools/wkg",
     label: "W/kg Calculator",
-    description: "Power-to-weight from your numbers — the ratio that decides what happens on a climb.",
+    description:
+      "Power-to-weight from your numbers — the ratio that decides what happens on a climb.",
   },
 ];
 
@@ -354,19 +563,19 @@ const NOT_FOR_YOU = [
 const FAQ = [
   {
     q: "Can you actually get faster after 40, or is it all just maintenance?",
-    a: "You can get faster. The decline that gets quoted — roughly 5% of VO2 max per decade in trained masters, against closer to double that in sedentary adults — is the trained athlete's number, and the riders who keep improving live at the good end of it. The work that gets them there isn't more volume or harder intervals. It's polarised intensity distribution, targeted strength twice a week, longer recovery between hard sessions, and protein timed across the day. The training that worked at 30 doesn't work the same after 40, but the right training still produces real gains.",
+    a: "Yes, many riders can improve from their current baseline after 40. Population-level age trends do not tell you whether one individual has reached a ceiling. The useful comparison is the rider's current result against their own recent training, health, execution and goal—not a promise based on age or a historical percentage.",
   },
   {
     q: "What's different about masters cycling training versus general training?",
-    a: "Three things change. One: recovery windows are longer, so two properly hard sessions a week beats three almost-hard ones. Two: strength work moves from optional to non-negotiable — a 2025 meta-analysis of 17 studies showed structured strength training improves cycling performance after 40 with no cost to VO2 max. Three: fuelling and protein become load-bearing, at 1.6 to 2.2 g/kg a day, spread across meals, not skipped at breakfast. Most masters riders fall behind because they keep doing what worked at 30 with less recovery and worse fuel. The fix is rarely 'train harder'.",
+    a: "Masters planning should make age-related and clinical context visible, but age alone does not select the plan. Start with recent tolerated load, event demand, training history, available recovery and relevant health factors. Then use response rules to change frequency, intensity, strength work or recovery instead of applying one masters template.",
   },
   {
     q: "Is strength training really necessary for cyclists over 40?",
-    a: "Yes, and it's the most under-done work in masters cycling. After 40 the fast-twitch fibres behind your kick shrink first and shrink hardest — Andy Galpin puts it at 10 to 40% — and endurance riding does almost nothing to protect them. Two strength sessions a week, heavy and fast, single-leg and eccentric-led, directly defends that part of the engine. The 2025 meta-analysis is unambiguous: it makes cyclists faster, with no negative effect on VO2 max.",
+    a: "Progressive resistance training is a strong option for preserving function and can improve some cycling outcomes. The 2025 cyclist meta-analysis found low-certainty benefits for efficiency, anaerobic power and combined performance, but it did not prove an over-40 subgroup effect or one optimal programme. Readiness, technique, injury history and total load determine implementation.",
   },
   {
     q: "How much should a masters cyclist train each week?",
-    a: "Most serious masters riders are in the 6 to 12 hour range, and that's plenty if it's structured. The shape matters more than the total: two properly hard sessions, the rest easy enough to recover from, two strength sessions, and a deload every three to four weeks. Piling on volume you can't recover from is how riders over 40 stall. Run the Masters Recovery Score if you want to see whether your current load is one you can actually absorb.",
+    a: "There is no evidence-based weekly-hour number for every masters cyclist. Start from the last several weeks the rider completed without persistent symptoms or repeated session failure, then change load gradually for the goal and available recovery. Six to twelve hours describes many Roadman clients; it is a service audience, not a physiological rule.",
   },
   {
     q: "Do I need a coach, or can I figure this out from the podcast and the blog?",
@@ -381,7 +590,7 @@ const FAQ = [
 const STATS = [
   { value: "1,400+", label: "Episodes in the archive" },
   { value: "40+", label: "Citations in the 2026 Masters Report" },
-  { value: "12-week", label: "Block you can run on Monday" },
+  { value: "6", label: "Visible evidence boundaries" },
 ];
 
 const mastersTestimonials = getTestimonialsByName([
@@ -414,17 +623,17 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: HUB_URL },
   openGraph: {
-    title: "Masters Cycling Training — The Authority on Getting Faster After 40",
+    title: "Masters Cycling Training — Evidence and Plans After 40",
     description:
-      "Training, strength, recovery and nutrition for serious cyclists over 40. The Roadman archive, the 2026 Masters Report, and the tools to run it next Monday.",
+      "Training, strength, recovery and nutrition for cyclists over 40, with primary-source evidence, limitations, expert interviews and practical tools.",
     type: "website",
     url: HUB_URL,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Masters Cycling Training — Getting Faster Over 40, 45, 50+",
+    title: "Masters Cycling Training — Evidence After 40",
     description:
-      "The definitive, evidence-based resource for cyclists over 40. Training, strength, recovery, nutrition.",
+      "A reviewed masters-cycling resource separating research, expert interviews and practical starting points.",
   },
   robots: { index: true, follow: true },
 };
@@ -444,15 +653,20 @@ export default function MastersHubPage() {
     "@type": "WebPage",
     "@id": `${HUB_URL}#webpage`,
     url: HUB_URL,
-    name: "Masters Cycling Training — The Roadman Cycling Authority on Getting Faster After 40",
+    name: "Masters Cycling Training — Evidence, Plans and Tools After 40",
     description:
-      "The definitive masters cycling resource. Evidence-based training, strength, recovery and nutrition for serious cyclists over 40, grounded in the Roadman podcast archive.",
+      "A reviewed masters cycling resource separating primary research, expert interviews and practical training, strength, recovery and nutrition guidance.",
     ...buildSearchOwnerTrustProperties("masters-cycling"),
+    dateModified: "2026-08-26",
+    citation: EVIDENCE_CLAIMS.flatMap((claim) => [
+      claim.href,
+      ...(claim.relatedHref ? [claim.relatedHref] : []),
+    ]),
     about: {
       "@type": "Thing",
       name: "Masters Cycling Training",
       description:
-        "Training, strength, recovery and nutrition for cyclists aged 40+ who continue to improve through structured, evidence-based work.",
+        "Training, strength, recovery and nutrition for cyclists aged 40+, with explicit evidence limits and individualisation rules.",
     },
     audience: {
       "@type": "PeopleAudience",
@@ -505,11 +719,11 @@ export default function MastersHubPage() {
                 </h1>
                 <p className="text-foreground-muted text-lg md:text-xl leading-relaxed mb-4">
                   Since {PODCAST_HISTORY.feedStartedYear}, Anthony has put the
-                  people who actually study and coach masters performance on
-                  the podcast — Stephen Seiler,
-                  Andy Galpin, Joe Friel, David Lipman, Derek Teel. This is
-                  everything they taught us about getting faster after 40,
-                  pulled into one place.
+                  people who actually study and coach masters performance on the
+                  podcast — Stephen Seiler, Andy Galpin, Joe Friel, David
+                  Lipman, Derek Teel. This is the reviewed route through those
+                  interviews, independent research, practical plans and evidence
+                  limits.
                 </p>
                 <p className="text-off-white text-lg md:text-xl leading-relaxed font-medium mb-10">
                   The evidence, the methodology, the full archive, and the route
@@ -578,9 +792,10 @@ export default function MastersHubPage() {
               </h2>
               <p className="text-foreground-muted max-w-2xl mx-auto leading-relaxed">
                 Here&apos;s what nobody tells you when you turn 40: it&apos;s
-                not that you slow down, it&apos;s that the things you have to
-                manage change. Five of them, specifically. Name them and every
-                one is trainable.
+                not that one birthday selects a new training plan. It&apos;s
+                that age, training history, health and life context can change
+                the constraints. Name them, measure them, and decide from the
+                rider in front of you.
               </p>
             </ScrollReveal>
 
@@ -602,6 +817,103 @@ export default function MastersHubPage() {
         </Section>
 
         {/* ---------------------------------------------------------- */}
+        {/* 3. Primary-source evidence boundaries                       */}
+        {/* ---------------------------------------------------------- */}
+        <Section background="off-white" id="evidence-boundaries">
+          <Container>
+            <ScrollReveal direction="up" className="text-center mb-12">
+              <p className="text-coral font-heading text-xs tracking-widest mb-3">
+                PRIMARY-SOURCE CHECK
+              </p>
+              <h2
+                className="font-heading text-charcoal mb-4"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                WHAT THE EVIDENCE SUPPORTS — AND WHERE IT STOPS
+              </h2>
+              <p className="text-charcoal/70 max-w-3xl mx-auto leading-relaxed">
+                Research, an expert interview and a coaching starting point do
+                different jobs. This table keeps them separate so a memorable
+                number does not quietly become a universal masters rule.
+              </p>
+            </ScrollReveal>
+
+            <ScrollReveal direction="up">
+              <div className="overflow-x-auto rounded-xl border border-charcoal/10 bg-white shadow-sm">
+                <table className="w-full min-w-[920px] text-left">
+                  <thead className="bg-charcoal text-off-white">
+                    <tr>
+                      <th className="p-4 font-heading text-xs tracking-wider w-[22%]">
+                        CLAIM CHECK
+                      </th>
+                      <th className="p-4 font-heading text-xs tracking-wider w-[24%]">
+                        WHAT IS SUPPORTED
+                      </th>
+                      <th className="p-4 font-heading text-xs tracking-wider w-[30%]">
+                        LIMIT
+                      </th>
+                      <th className="p-4 font-heading text-xs tracking-wider w-[24%]">
+                        SOURCE &amp; GRADE
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {EVIDENCE_CLAIMS.map((claim) => (
+                      <tr
+                        key={claim.question}
+                        className="border-t border-charcoal/10 align-top"
+                      >
+                        <th className="p-4 text-sm text-charcoal font-semibold leading-relaxed">
+                          {claim.question}
+                        </th>
+                        <td className="p-4 text-sm text-charcoal/75 leading-relaxed">
+                          {claim.finding}
+                        </td>
+                        <td className="p-4 text-sm text-charcoal/75 leading-relaxed">
+                          {claim.boundary}
+                        </td>
+                        <td className="p-4 text-sm leading-relaxed">
+                          <a
+                            href={claim.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-coral hover:text-coral-hover underline underline-offset-2"
+                          >
+                            {claim.source}
+                          </a>
+                          {claim.relatedHref && claim.relatedSource && (
+                            <a
+                              href={claim.relatedHref}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block mt-2 text-coral hover:text-coral-hover underline underline-offset-2"
+                            >
+                              {claim.relatedSource}
+                            </a>
+                          )}
+                          <span className="block mt-2 text-xs text-charcoal/60">
+                            {claim.grade}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" className="mt-6">
+              <p className="text-sm text-charcoal/65 max-w-4xl mx-auto leading-relaxed">
+                These sources define the boundaries of this hub. Roadman podcast
+                interviews explain named experts&apos; positions; they do not
+                upgrade a coaching opinion into comparative evidence. The full
+                report contains the wider citation ledger and correction notes.
+              </p>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
+        {/* ---------------------------------------------------------- */}
         {/* 4. The Roadman methodology for masters                      */}
         {/* ---------------------------------------------------------- */}
         <Section background="deep-purple" grain id="methodology">
@@ -614,13 +926,12 @@ export default function MastersHubPage() {
                 className="font-heading text-off-white mb-4"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                FOUR THINGS WE&apos;D STAKE IT ON
+                FOUR PLANNING PRINCIPLES
               </h2>
               <p className="text-foreground-muted max-w-2xl mx-auto leading-relaxed">
-                This is the editorial position — what the access has convinced
-                us is true for riders over 40. It isn&apos;t the only way to
-                train. It&apos;s the way that keeps showing up in the riders who
-                are still getting faster.
+                These are practical starting principles, not age-based laws.
+                Each one must survive contact with the rider&apos;s completed
+                training, symptoms, schedule and response.
               </p>
             </ScrollReveal>
 
@@ -823,10 +1134,10 @@ export default function MastersHubPage() {
                   THE MASTERS CYCLING TRAINING REPORT 2026
                 </h3>
                 <p className="text-sm text-foreground-muted leading-relaxed">
-                  The definitive guide to training as a masters cyclist. What
-                  changes after 40, what doesn&apos;t, and a 12-week block you
-                  can run on Monday. 18 sections, 40+ citations, 5 named case
-                  studies.
+                  An evidence-led guide to training as a masters cyclist. What
+                  may change after 40, what does not change automatically, and a
+                  12-week block you can adapt. 18 sections, 40+ citations, 5
+                  named case studies.
                 </p>
               </Link>
             </ScrollReveal>
@@ -834,7 +1145,11 @@ export default function MastersHubPage() {
             {/* Grouped reading */}
             <div className="grid md:grid-cols-2 gap-6 mb-12">
               {LIBRARY.map((group, gi) => (
-                <ScrollReveal key={group.heading} direction="up" delay={gi * 0.04}>
+                <ScrollReveal
+                  key={group.heading}
+                  direction="up"
+                  delay={gi * 0.04}
+                >
                   <div className="h-full p-6 rounded-lg bg-white/[0.02] border border-white/10">
                     <h3 className="font-heading text-lg text-off-white tracking-wide mb-1">
                       {group.heading.toUpperCase()}
@@ -948,14 +1263,22 @@ export default function MastersHubPage() {
 
             <div className="grid md:grid-cols-2 gap-4">
               <ScrollReveal direction="up">
-                <Card className="p-6 h-full border-l-2 border-l-coral" hoverable={false}>
+                <Card
+                  className="p-6 h-full border-l-2 border-l-coral"
+                  hoverable={false}
+                >
                   <h3 className="font-heading text-lg text-off-white tracking-wide mb-4">
                     THIS IS FOR YOU IF
                   </h3>
                   <ul className="space-y-3">
                     {FOR_YOU.map((item) => (
-                      <li key={item} className="flex gap-3 text-sm text-foreground-muted leading-relaxed">
-                        <span className="text-coral shrink-0 font-heading">✓</span>
+                      <li
+                        key={item}
+                        className="flex gap-3 text-sm text-foreground-muted leading-relaxed"
+                      >
+                        <span className="text-coral shrink-0 font-heading">
+                          ✓
+                        </span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -963,14 +1286,22 @@ export default function MastersHubPage() {
                 </Card>
               </ScrollReveal>
               <ScrollReveal direction="up" delay={0.06}>
-                <Card className="p-6 h-full border-l-2 border-l-white/20" hoverable={false}>
+                <Card
+                  className="p-6 h-full border-l-2 border-l-white/20"
+                  hoverable={false}
+                >
                   <h3 className="font-heading text-lg text-off-white tracking-wide mb-4">
                     PROBABLY NOT IF
                   </h3>
                   <ul className="space-y-3">
                     {NOT_FOR_YOU.map((item) => (
-                      <li key={item} className="flex gap-3 text-sm text-foreground-muted leading-relaxed">
-                        <span className="text-foreground-subtle shrink-0 font-heading">–</span>
+                      <li
+                        key={item}
+                        className="flex gap-3 text-sm text-foreground-muted leading-relaxed"
+                      >
+                        <span className="text-foreground-subtle shrink-0 font-heading">
+                          –
+                        </span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -1009,7 +1340,10 @@ export default function MastersHubPage() {
               <div className="grid md:grid-cols-3 gap-4">
                 {mastersTestimonials.map((t, i) => (
                   <ScrollReveal key={t.name} direction="up" delay={i * 0.06}>
-                    <Card className="p-6 h-full border-l-2 border-l-coral" hoverable={false}>
+                    <Card
+                      className="p-6 h-full border-l-2 border-l-coral"
+                      hoverable={false}
+                    >
                       {t.stat && (
                         <div className="mb-4">
                           <div className="font-heading text-coral text-2xl tracking-tight">
@@ -1111,7 +1445,10 @@ export default function MastersHubPage() {
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={0.06}>
-                <Card className="p-6 h-full border-2 border-coral relative" hoverable={false}>
+                <Card
+                  className="p-6 h-full border-2 border-coral relative"
+                  hoverable={false}
+                >
                   <span className="absolute -top-3 left-6 bg-coral text-off-white font-heading text-[10px] tracking-widest px-3 py-1 rounded">
                     MOST POPULAR
                   </span>
@@ -1242,8 +1579,8 @@ export default function MastersHubPage() {
         <Section background="charcoal" className="!py-12">
           <Container width="narrow">
             <EvidenceBlock
-              lastReviewed="25 August 2026"
-              reviewedBy="Roadman Cycling coaching team"
+              lastReviewed="26 August 2026"
+              reviewedBy="Anthony Walsh against the linked primary research and complete Roadman source interviews"
               experts={[
                 {
                   name: "Dr Andy Galpin",
@@ -1277,9 +1614,9 @@ export default function MastersHubPage() {
               YOU&apos;RE NOT DONE YET.
             </h2>
             <p className="text-off-white/85 max-w-lg mx-auto mb-8 text-lg">
-              The training that keeps masters cyclists getting faster is
-              fixable, structured, and well-mapped. Start with the report, or
-              let the diagnostic point you at the right next step.
+              Better masters training starts with the right problem and an
+              honest baseline. Start with the report, or let the diagnostic
+              point you at the next question to investigate.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link

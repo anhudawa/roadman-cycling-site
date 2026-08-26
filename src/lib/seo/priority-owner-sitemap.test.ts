@@ -11,7 +11,7 @@ describe("priority owner sitemap freshness", () => {
     const changedUrls = new Map([
       ["https://roadmancycling.com/podcast", ORIGINAL_RELEASE_DATE],
       ["https://roadmancycling.com/coaching", COACHING_RELEASE_DATE],
-      ["https://roadmancycling.com/masters", ORIGINAL_RELEASE_DATE],
+      ["https://roadmancycling.com/masters", COACHING_RELEASE_DATE],
       ["https://roadmancycling.com/training-plans", COACHING_RELEASE_DATE],
       ["https://roadmancycling.com/training-camps", ORIGINAL_RELEASE_DATE],
       ["https://roadmancycling.com/plan", ORIGINAL_RELEASE_DATE],

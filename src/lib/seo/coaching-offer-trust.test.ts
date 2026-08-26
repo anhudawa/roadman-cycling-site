@@ -1,5 +1,6 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
+import matter from "gray-matter";
 import { describe, expect, it } from "vitest";
 import { GET as getFullLlms } from "@/app/llms-full.txt/route";
 import { GET as getShortLlms } from "@/app/llms.txt/route";
@@ -187,7 +188,10 @@ describe("coaching offer trust", () => {
     const combined = articles.map(({ source }) => source).join("\n");
 
     for (const { path, source } of articles) {
-      expect(source, path).toContain("updatedDate: '2026-08-25'");
+      const updatedDate = matter(source).data.updatedDate as string;
+      expect(Date.parse(updatedDate), path).toBeGreaterThanOrEqual(
+        Date.parse("2026-08-25"),
+      );
     }
 
     for (const claim of INACCURATE_NOT_DONE_YET_CLAIMS) {
@@ -218,7 +222,10 @@ describe("coaching offer trust", () => {
     );
 
     for (const path of CORRECTED_ARTICLE_PATHS) {
-      const slug = path.split("/").at(-1)?.replace(/\.mdx$/, "");
+      const slug = path
+        .split("/")
+        .at(-1)
+        ?.replace(/\.mdx$/, "");
       expect(indexNowSource, path).toContain(`"${slug}"`);
     }
   });
@@ -230,7 +237,10 @@ describe("coaching offer trust", () => {
     );
 
     for (const path of PRODUCT_IDENTITY_INDEXED_CONTENT) {
-      const slug = path.split("/").at(-1)?.replace(/\.mdx$/, "");
+      const slug = path
+        .split("/")
+        .at(-1)
+        ?.replace(/\.mdx$/, "");
       expect(indexNowSource, path).toContain(`"${slug}"`);
     }
 

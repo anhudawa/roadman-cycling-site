@@ -271,6 +271,16 @@ const COACHING_OFFER_TRUST_CLUSTER = [
   "zwift-vs-trainerroad",
 ];
 
+// Canonical masters owner plus four deliberately distinct supporting jobs:
+// broad overview, decision framework, weekly scheduling and twelve-week plans.
+const MASTERS_OWNER_TRUST_CLUSTER = [
+  "cycling-over-40-complete-guide",
+  "masters-cyclist-guide-getting-faster-after-40",
+  "cycling-training-plan-masters-over-40",
+  "masters-cycling-training-plan-over-40",
+  "masters-cycling-training-report-2026",
+];
+
 const PRODUCT_IDENTITY_BLOG_CLUSTER = [
   "age-group-ftp-benchmarks-2026",
   "cycling-returning-after-break",
@@ -424,9 +434,7 @@ function answerUrls(slugs: string[]): string[] {
 }
 
 function eventGuideUrls(): string[] {
-  return getAllEventGuideSlugs().map(
-    (slug) => `https://${HOST}/event/${slug}`,
-  );
+  return getAllEventGuideSlugs().map((slug) => `https://${HOST}/event/${slug}`);
 }
 
 function allBlogUrls(): string[] {
@@ -474,7 +482,9 @@ async function submit(urls: string[]): Promise<void> {
       urlList: chunk,
     };
 
-    console.log(`\n→ Submitting ${chunk.length} URLs (chunk ${Math.floor(i / CHUNK) + 1})`);
+    console.log(
+      `\n→ Submitting ${chunk.length} URLs (chunk ${Math.floor(i / CHUNK) + 1})`,
+    );
 
     if (dryRun) {
       console.log("  [DRY RUN] no request sent");
@@ -513,6 +523,7 @@ async function main() {
   clusterUrls(TRIATHLON_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(COACHING_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(COACHING_OFFER_TRUST_CLUSTER).forEach((u) => urls.add(u));
+  clusterUrls(MASTERS_OWNER_TRUST_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(PRODUCT_IDENTITY_BLOG_CLUSTER).forEach((u) => urls.add(u));
   podcastUrls(PRODUCT_IDENTITY_PODCAST_CLUSTER).forEach((u) => urls.add(u));
   eventGuideUrls().forEach((u) => urls.add(u));
@@ -528,7 +539,9 @@ async function main() {
   answerUrls(CRAMP_ANSWER_TRUST_CLUSTER).forEach((u) => urls.add(u));
   urls.add(`https://${HOST}/tools/hydration`);
   urls.add(`https://${HOST}/problem/cramp-on-long-rides`);
-  urls.add(`https://${HOST}/podcast/what-causes-muscle-cramp-and-how-to-avoid-it`);
+  urls.add(
+    `https://${HOST}/podcast/what-causes-muscle-cramp-and-how-to-avoid-it`,
+  );
   urls.add(`https://${HOST}/podcast/ep-2175-lessons-from-riding-in-mallorca`);
 
   if (all) {

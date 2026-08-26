@@ -1,6 +1,7 @@
 import { type ReactNode } from "react";
 
-type SectionBackground = "charcoal" | "deep-purple" | "purple" | "coral" | "transparent";
+type SectionBackground =
+  "charcoal" | "deep-purple" | "purple" | "coral" | "off-white" | "transparent";
 
 interface SectionProps {
   children: ReactNode;
@@ -16,6 +17,7 @@ const bgClasses: Record<SectionBackground, string> = {
   "deep-purple": "bg-deep-purple",
   purple: "bg-purple",
   coral: "bg-coral text-off-white",
+  "off-white": "bg-off-white",
   transparent: "bg-transparent",
 };
 
