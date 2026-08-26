@@ -3,15 +3,24 @@ import { ToolSchemas } from "@/components/seo/ToolSchemas";
 import { ToolJourney } from "@/components/features/tools/ToolJourney";
 
 export const metadata: Metadata = {
-  title: "MTB Shock & Fork Pressure Calculator — Suspension Setup",
+  title: "MTB Suspension Calculator: Fork & Shock Pressure + Sag",
   description:
-    "Dial in fork and shock pressure plus sag for your weight and riding style — XC, trail, enduro or DH. Free, no signup. A sensible starting point before you tune by feel.",
-  keywords: ["shock pressure calculator", "suspension setup calculator", "mountain bike sag calculator", "fork pressure calculator"],
+    "Calculate MTB fork and rear-shock sag, plus manufacturer-backed starting pressure where an exact source supports it. FOX 38, FOX rear shock and RockShox lookup guidance.",
+  keywords: [
+    "mtb suspension calculator",
+    "suspension calculator",
+    "mtb suspension setup calculator",
+    "shock pressure calculator",
+    "fork pressure calculator",
+    "fox suspension calculator",
+    "rockshox suspension calculator",
+    "mountain bike sag calculator",
+  ],
   alternates: { canonical: "/tools/shock-pressure" },
   openGraph: {
-    title: "MTB Shock & Fork Pressure Calculator — Suspension Setup",
+    title: "MTB Suspension Calculator: Fork & Shock Pressure + Sag",
     description:
-      "Dial in fork and shock pressure plus sag for your weight and riding style — XC, trail, enduro or DH. A sensible starting point before you tune by feel.",
+      "Calculate fork and rear-shock sag, use an exact manufacturer starting pressure where supported, and know when the official product lookup must take over.",
     type: "website",
     url: "https://roadmancycling.com/tools/shock-pressure",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],

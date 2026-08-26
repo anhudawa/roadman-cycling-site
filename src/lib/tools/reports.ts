@@ -512,78 +512,66 @@ function generateFuellingReport(i: FuellingInputs): ReportOutput {
 /* ============================================================ */
 
 interface ShockPressureInputs {
-  weight: number;         // kg
-  bikeWeight: number;     // kg
-  ridingStyle: string;    // xc / trail / enduro / dh
-  terrain: string;
-  tyreCasing: string;
-  forkBrand: string;
-  forkModel: string;
-  shockBrand: string;
-  shockModel: string;
-  forkPsi?: number;
-  shockPsi?: number;
-  forkRebound?: number;
-  shockRebound?: number;
-  tyreFrontPsi?: number;
-  tyreRearPsi?: number;
+  bodyWeightKg: number;
+  ridingWeightKg: number;
+  forkLabel: string;
+  forkStartingPsi?: number;
+  forkPressureStatus: string;
+  forkSagPercent: number;
+  forkSagMm: number;
+  rearLabel: string;
+  rearStartingPsi?: number;
+  rearPressureStatus: string;
+  rearSagPercent: number;
+  rearSagMm: number;
   name?: string;
 }
 
 function generateShockPressureReport(i: ShockPressureInputs): ReportOutput {
   const nameLine = i.name ? `<p style="color:#FAFAFA;font-size:15px;margin:0 0 16px;">${escapeHtml(i.name.split(" ")[0])} —</p>` : "";
-  const hasFork = typeof i.forkPsi === "number" && i.forkPsi > 0;
-  const hasShock = typeof i.shockPsi === "number" && i.shockPsi > 0;
-  const hasTyres = typeof i.tyreFrontPsi === "number";
-
-  const rows: string[] = [];
-  if (hasFork) {
-    rows.push(`<tr><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);color:#9ca3af;">Fork (${escapeHtml(i.forkBrand)} ${escapeHtml(i.forkModel)})</td><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;color:#FAFAFA;font-variant-numeric:tabular-nums;"><strong style="color:#F16363;">${i.forkPsi} psi</strong>${i.forkRebound !== undefined ? ` · rebound ${i.forkRebound}` : ""}</td></tr>`);
-  }
-  if (hasShock) {
-    rows.push(`<tr><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);color:#9ca3af;">Shock (${escapeHtml(i.shockBrand)} ${escapeHtml(i.shockModel)})</td><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;color:#FAFAFA;font-variant-numeric:tabular-nums;"><strong style="color:#F16363;">${i.shockPsi} psi</strong>${i.shockRebound !== undefined ? ` · rebound ${i.shockRebound}` : ""}</td></tr>`);
-  }
-  if (hasTyres) {
-    rows.push(`<tr><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);color:#9ca3af;">Tyres</td><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;color:#FAFAFA;font-variant-numeric:tabular-nums;">front <strong style="color:#F16363;">${i.tyreFrontPsi} psi</strong> · rear <strong style="color:#F16363;">${i.tyreRearPsi} psi</strong></td></tr>`);
-  }
+  const forkPressure = typeof i.forkStartingPsi === "number"
+    ? `<strong style="color:#F16363;">${i.forkStartingPsi} PSI start</strong>`
+    : `<strong style="color:#F16363;">official lookup required</strong>`;
+  const rearPressure = typeof i.rearStartingPsi === "number"
+    ? `<strong style="color:#F16363;">${i.rearStartingPsi} PSI start</strong>`
+    : `<strong style="color:#F16363;">${i.rearPressureStatus === "coil" ? "bike-specific spring lookup" : "official lookup required"}</strong>`;
 
   const body = `
     ${nameLine}
-    <p style="color:#FAFAFA;font-size:15px;margin:0 0 6px;">Setup: ${i.weight} kg rider · ${escapeHtml(i.ridingStyle)} · ${escapeHtml(i.terrain)} terrain · ${escapeHtml(i.tyreCasing)} casing</p>
-    <p style="color:#9ca3af;font-size:14px;margin:0 0 24px;">Your baseline setup — dial from here.</p>
+    <p style="color:#FAFAFA;font-size:15px;margin:0 0 6px;">Body weight: ${i.bodyWeightKg} kg · dressed riding weight: ${i.ridingWeightKg} kg</p>
+    <p style="color:#9ca3af;font-size:14px;margin:0 0 24px;">Pressure starts the process. Measured sag is the setup target.</p>
 
     <h2 style="color:#F16363;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;">Your setup</h2>
     <table style="width:100%;border-collapse:collapse;font-size:14px;background:rgba(255,255,255,0.03);border-radius:8px;overflow:hidden;margin:0 0 24px;">
-      <tbody>${rows.join("")}</tbody>
+      <tbody>
+        <tr><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);color:#9ca3af;">Fork — ${escapeHtml(i.forkLabel)}</td><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;color:#FAFAFA;">${forkPressure}<br><span style="color:#9ca3af;">${i.forkSagMm} mm at ${i.forkSagPercent}% sag</span></td></tr>
+        <tr><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);color:#9ca3af;">Rear — ${escapeHtml(i.rearLabel)}</td><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;color:#FAFAFA;">${rearPressure}<br><span style="color:#9ca3af;">${i.rearSagMm} mm at ${i.rearSagPercent}% sag</span></td></tr>
+      </tbody>
     </table>
 
-    <h2 style="color:#F16363;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;">How to tune</h2>
+    <h2 style="color:#F16363;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;">Setup sequence</h2>
     <ol style="padding-left:20px;margin:0 0 24px;color:#FAFAFA;">
-      <li style="margin-bottom:10px;line-height:1.55;"><strong>Set sag first.</strong> Gear up, bounce, sit on the bike centred. Fork 15–25% sag (XC lower, enduro higher). Shock 25–30%.</li>
-      <li style="margin-bottom:10px;line-height:1.55;"><strong>Rebound: control the return.</strong> Start in the middle of the range. Too fast = bouncy. Too slow = packing down on repeated hits.</li>
-      <li style="margin-bottom:10px;line-height:1.55;"><strong>Compression: for big hits only.</strong> Leave LSC/HSC in the middle and only adjust after you've established air pressure and rebound on real terrain.</li>
-      <li style="line-height:1.55;"><strong>Re-check every 4 weeks.</strong> Seals wear, air migrates, and seasonal temp shifts change feel. A 5-minute sag check beats guessing.</li>
+      <li style="margin-bottom:10px;line-height:1.55;"><strong>Identify the exact products.</strong> Confirm model year, travel or stroke, air-spring variant, bike-specific guidance and every maximum.</li>
+      <li style="margin-bottom:10px;line-height:1.55;"><strong>Open compression and inflate.</strong> Follow the manufacturer's increments and chamber-equalisation procedure. A displayed PSI is only a starting point.</li>
+      <li style="margin-bottom:10px;line-height:1.55;"><strong>Measure in full kit.</strong> Settle into normal riding position without bouncing, then compare O-ring movement with the millimetre targets above.</li>
+      <li style="margin-bottom:10px;line-height:1.55;"><strong>Adjust and repeat.</strong> Make one small pressure change, equalise again where required, and remeasure before changing damping.</li>
+      <li style="line-height:1.55;"><strong>Use the exact damping guide.</strong> Rebound clicks and compression settings vary by model, damper and pressure; this report does not invent them.</li>
     </ol>
 
-    <h2 style="color:#F16363;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;">Seasonal notes</h2>
-    <ul style="padding-left:20px;margin:0 0 24px;color:#FAFAFA;">
-      <li style="margin-bottom:8px;line-height:1.5;">Winter / wet: drop 1–2 psi front tyre for traction; fork/shock can go slightly firmer for energy return.</li>
-      <li style="margin-bottom:8px;line-height:1.5;">Summer / dry hardpack: a psi firmer fork helps cornering precision.</li>
-      <li style="line-height:1.5;">Bike park / shuttle days: +5–10% pressure front AND rear, faster rebound. You're hitting stuff hard.</li>
-    </ul>
+    <p style="color:#9ca3af;font-size:13px;line-height:1.55;margin:0 0 24px;">Roadman Cycling is independent and is not affiliated with FOX, SRAM or RockShox. Manufacturer and bicycle instructions override this report. Volume spacers do not trigger an automatic PSI multiplier, and coil spring rate is not calculated from rider weight alone.</p>
 
     ${softCoachingCta()}
   `;
   return {
-    subject: `Your MTB setup: ${hasFork ? `${i.forkPsi} psi fork` : "suspension"}${hasShock ? ` / ${i.shockPsi} psi shock` : ""}`,
-    html: wrap(`Your MTB suspension setup`, `${escapeHtml(i.ridingStyle)} · ${escapeHtml(i.terrain)} · ${i.weight} kg rider.`, body),
+    subject: "Your source-aware MTB suspension setup",
+    html: wrap("Your MTB suspension setup", `${i.ridingWeightKg} kg dressed rider · sag-first setup.`, body),
     beehiivTag: "tool-shock-pressure-report",
     beehiivFields: {
       tool: "shock-pressure",
-      riding_style: i.ridingStyle,
-      terrain: i.terrain,
-      ...(hasFork && i.forkPsi !== undefined ? { fork_psi: i.forkPsi } : {}),
-      ...(hasShock && i.shockPsi !== undefined ? { shock_psi: i.shockPsi } : {}),
+      fork_pressure_status: i.forkPressureStatus,
+      rear_pressure_status: i.rearPressureStatus,
+      ...(i.forkStartingPsi !== undefined ? { fork_psi: i.forkStartingPsi } : {}),
+      ...(i.rearStartingPsi !== undefined ? { shock_psi: i.rearStartingPsi } : {}),
     },
   };
 }
@@ -689,24 +677,24 @@ export function generateToolReport(
       });
     }
     case "shock-pressure": {
-      const weight = Number(inputs.weight);
-      if (!weight) return null;
+      const bodyWeightKg = Number(inputs.bodyWeightKg);
+      const ridingWeightKg = Number(inputs.ridingWeightKg);
+      const forkSagMm = Number(inputs.forkSagMm);
+      const rearSagMm = Number(inputs.rearSagMm);
+      if (!bodyWeightKg || !ridingWeightKg || !forkSagMm || !rearSagMm) return null;
       return generateShockPressureReport({
-        weight,
-        bikeWeight: Number(inputs.bikeWeight) || 14,
-        ridingStyle: String(inputs.ridingStyle || "trail"),
-        terrain: String(inputs.terrain || "mixed"),
-        tyreCasing: String(inputs.tyreCasing || "trail_casing"),
-        forkBrand: String(inputs.forkBrand || ""),
-        forkModel: String(inputs.forkModel || ""),
-        shockBrand: String(inputs.shockBrand || ""),
-        shockModel: String(inputs.shockModel || ""),
-        forkPsi: typeof inputs.forkPsi === "number" ? inputs.forkPsi : undefined,
-        shockPsi: typeof inputs.shockPsi === "number" ? inputs.shockPsi : undefined,
-        forkRebound: typeof inputs.forkRebound === "number" ? inputs.forkRebound : undefined,
-        shockRebound: typeof inputs.shockRebound === "number" ? inputs.shockRebound : undefined,
-        tyreFrontPsi: typeof inputs.tyreFrontPsi === "number" ? inputs.tyreFrontPsi : undefined,
-        tyreRearPsi: typeof inputs.tyreRearPsi === "number" ? inputs.tyreRearPsi : undefined,
+        bodyWeightKg,
+        ridingWeightKg,
+        forkLabel: String(inputs.forkLabel || "Fork"),
+        forkStartingPsi: typeof inputs.forkStartingPsi === "number" ? inputs.forkStartingPsi : undefined,
+        forkPressureStatus: String(inputs.forkPressureStatus || "lookup-required"),
+        forkSagPercent: Number(inputs.forkSagPercent) || 20,
+        forkSagMm,
+        rearLabel: String(inputs.rearLabel || "Rear suspension"),
+        rearStartingPsi: typeof inputs.rearStartingPsi === "number" ? inputs.rearStartingPsi : undefined,
+        rearPressureStatus: String(inputs.rearPressureStatus || "lookup-required"),
+        rearSagPercent: Number(inputs.rearSagPercent) || 30,
+        rearSagMm,
         name,
       });
     }

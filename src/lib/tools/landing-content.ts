@@ -766,80 +766,121 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
 
   "shock-pressure": {
     slug: "shock-pressure",
-    title: "MTB Suspension Setup Calculator",
+    title: "MTB Suspension Calculator",
     description:
-      "Set fork and shock pressure, sag targets, and suspension setup for your mountain bike. Free, evidence-based MTB tool.",
+      "Calculate fork and rear-shock sag, plus a manufacturer-backed starting pressure where an exact source supports it.",
     url: `${ROADMAN_BASE}/tools/shock-pressure`,
-    breadcrumbName: "MTB Suspension Setup Calculator",
+    breadcrumbName: "MTB Suspension Calculator",
     answerSummary:
-      "Enter rider and bike weight, shock type (air or coil), and intended use (XC, trail, enduro, DH). The calculator returns starting fork and shock pressures, sag targets, and a sequence of bracketing adjustments to dial in suspension on the trail.",
+      "Enter body weight, riding-kit weight, fork travel, shock stroke and sag targets. Roadman calculates sag in millimetres and returns an official starting pressure only where the selected model-year source supports one. For bike-specific or serial-specific products, it sends you to the manufacturer lookup instead of inventing a universal PSI.",
     whatItDoes:
-      "Most riders set suspension once and never touch it again — usually too soft on the rear and too stiff on the front. This calculator gives you a sensible starting setup based on your weight and discipline, then walks you through the bracketing steps to fine-tune sag, rebound, and compression.",
+      "This is a source-aware setup assistant, not a universal pressure formula. It converts your chosen fork and rear sag percentages into millimetres, matches a dressed rider to the published 2026 FOX 38 chart, and applies FOX's published body-weight starting method to the selected 2026 FLOAT rear shocks. Those values begin the setup; measured sag decides it.\n\nFor RockShox, another FOX generation, another air shock or a coil shock, the tool deliberately withholds an unsupported number and routes you to the product, serial-number or bicycle-specific source. Tyre pressure has its own canonical calculator rather than a second hidden model on this page.",
     whoItsFor: [
-      "MTB riders new to suspension setup",
-      "Cyclists changing bikes, weight, or terrain",
-      "Anyone whose bike feels harsh on small bumps but bottoms out on big ones",
-      "Trail and enduro riders setting up for a specific course",
+      "MTB riders who need a measurable fork and rear-sag target",
+      "FOX 38 owners who can confirm the exact 2026 chassis variant",
+      "FOX FLOAT X, FLOAT SL or FLOAT X2 owners checking the published 2026 starting method",
+      "RockShox riders who need the correct path to Trailhead rather than a generic pressure table",
+      "Air- or coil-shock owners who want to know where a calculator must stop",
     ],
     howItWorks:
-      "Air-spring pressure scales with rider weight and the manufacturer's recommended sag percentage for the discipline (typically 20-25% for XC, 25-30% for trail, 30-35% for enduro/DH). We use known PSI/kg curves for popular Fox and RockShox dampers, plus a sag-bracketing protocol to fine-tune. Coil spring rates use the standard load-deflection equation.",
+      "Sag in millimetres equals suspension travel or shock stroke multiplied by the chosen sag percentage. FOX 38 starting PSI is a direct band lookup from the official 2026 table—no interpolation, extrapolation, riding-style multiplier or volume-spacer multiplier. Selected 2026 FOX rear shocks use FOX's body-weight-in-pounds first-inflation method, subject to the stated maximum; rear sag then calibrates the bike-specific result. Other products require their official lookup.",
     howToSteps: [
-      { name: "Weigh yourself in full riding kit", text: "Helmet, pads, hydration pack, shoes, and water — full ride weight. This number is what the suspension actually has to support." },
-      { name: "Pick discipline and shock type", text: "XC, trail, enduro, or DH; air spring or coil. Sag targets shift with discipline." },
-      { name: "Set starting pressure or spring rate", text: "Use the calculator's starting value, then check sag with a sag-meter or O-ring while seated in normal riding position." },
-      { name: "Bracket your settings", text: "If sag is too high, add 5-10 PSI; too low, drop 5-10 PSI. Adjust rebound to match the suspension's recommended damping curve. Compression last." },
-      { name: "Test on familiar terrain", text: "Ride a known trail. If the bike packs through repeated hits, increase rebound damping. If it bucks, decrease it. Bottoming on every big drop means add volume spacers, not pressure." },
+      { name: "Identify the exact products", text: "Confirm fork and shock model, model year, travel or stroke, air-spring variant and every maximum stated by the bicycle and component manufacturers." },
+      { name: "Enter body and kit weight separately", text: "FOX's rear starting method refers to body weight in pounds. The fork chart and sag check use the weight of the dressed rider, so Roadman keeps those two values visible." },
+      { name: "Choose a sag target from the exact manual", text: "Enter the percentage specified for the product and bike. Roadman converts it to the millimetre distance the O-ring should move." },
+      { name: "Inflate and equalise exactly as instructed", text: "Open compression damping, use a shock pump, respect every maximum and follow the product-specific positive/negative chamber equalisation sequence." },
+      { name: "Measure, adjust and record", text: "Settle into normal riding position in full kit, measure sag without bouncing, make a small pressure adjustment, equalise again where required and repeat before touching rebound or compression." },
     ],
-    howToTotalTime: "PT5M",
+    howToTotalTime: "PT15M",
     limitations:
-      "Suspension setup is highly individual and depends on terrain, riding style, and damper internals that differ between models. Use the calculator as a starting point — the bracketing protocol is what actually dials it in. We can't see your specific damper's tune or whether your seals need a service.",
+      "Roadman cannot identify a component from appearance, read its serial number, see the bicycle's leverage curve or know its OEM tune, service condition, temperature, permitted spacers or manufacturer limits. The numeric fork chart is intentionally limited to four 2026 FOX 38 variants and the published weight range. The FOX rear value is explicitly a first-inflation method, not a bike-specific final pressure. No generic coil spring rate, rebound click count or automatic style/spacer adjustment is produced.",
     whenToSeeACoach:
-      "If your suspension still feels wrong after bracketing, the issue is usually a service item — worn seals, contaminated oil, or a damper tune that doesn't match your weight. A qualified suspension service is more effective than another spreadsheet at that point.",
+      "Suspension faults and compatibility are mechanical questions, not coaching questions. Stop riding and use a qualified suspension technician or the bicycle/component manufacturer if you cannot identify the product, a calculated starting method exceeds a limit, the unit is stuck down, loses pressure, leaks, tops out harshly or still behaves abnormally after correct sag setup.",
     examples: [
       {
-        scenario: "Trail rider, 80kg in kit, 140mm air fork and shock",
-        inputs: ["Rider weight: 75kg", "Bike+kit: 5kg", "Discipline: trail", "Shock type: air"],
-        output: "Fork: ~85 PSI for 25% sag. Shock: ~190 PSI for 28% sag. Rebound 8 clicks from closed front, 7 rear.",
+        scenario: "2026 FOX 38 FLOAT, 80 kg dressed rider",
+        inputs: ["Body weight: 77 kg", "Kit + hydration: 3 kg", "Fork travel: 170 mm", "Target fork sag: 20%"],
+        output: "The official 170–180 lb chart band starts at 93 PSI. The measurable target is 34 mm sag. Inflate, equalise and adjust to that target; do not add a riding-style or spacer multiplier.",
       },
       {
-        scenario: "Enduro rider, 90kg, coil shock",
-        inputs: ["Rider weight: 84kg", "Bike+kit: 6kg", "Discipline: enduro", "Shock type: coil"],
-        output: "Coil spring rate: ~500 lb/in for 30% sag. Air fork: ~95 PSI. Rebound and compression set to mid-range to start, then bracket.",
+        scenario: "2026 FOX FLOAT X with 55 mm stroke",
+        inputs: ["Body weight: 77 kg / about 170 lb", "Target rear sag: 30%", "Shock stroke: 55 mm"],
+        output: "FOX's first-inflation method starts at about 170 PSI. The target is 16.5 mm sag. The final pressure can differ with the frame, so measure and adjust rather than treating 170 PSI as the answer.",
       },
     ],
     faqs: [
       {
-        question: "What is sag in MTB suspension?",
-        answer: "Sag is the amount your suspension compresses under your static body weight in normal riding position. It's measured as a percentage of total travel: 20-25% for XC, 25-30% for trail, 30-35% for enduro and DH. Too little sag means the suspension can't track small bumps; too much means it bottoms out.",
+        question: "What is the correct MTB suspension pressure for my weight?",
+        answer: "There is no universal rider-weight-to-PSI answer. Fork pressure depends on the exact chassis, air spring, travel and model year. Rear pressure also depends heavily on the bicycle's leverage curve and OEM tune. Use the matching manufacturer starting point, then adjust until measured sag matches the bike and component manuals.",
       },
       {
-        question: "How do I set my fork pressure?",
-        answer: "Start with the calculator's recommended PSI for your weight and discipline. Strap a sag-meter or zip-tie to the stanchion, sit on the bike in normal riding position (hands on bars, feet on pedals), and check how much travel you've used. Adjust 5-10 PSI at a time until sag is within range.",
+        question: "How does the FOX suspension calculator work?",
+        answer: "For the four listed 2026 FOX 38 variants, Roadman selects the published weight band without interpolating or extrapolating. For the listed 2026 FLOAT rear shocks, it applies FOX's body-weight-in-pounds first-inflation method and stated maximum. In both cases the rider must then equalise the air chambers and tune to measured sag.",
       },
       {
-        question: "Air or coil shock — which is better?",
-        answer: "Air is lighter, more adjustable, and supports a wider weight range — best for XC, trail, and most enduro use. Coil is more sensitive on small bumps, more linear through the stroke, and more durable, but heavier and limited to a single rider weight per spring. DH and aggressive enduro often run coil; cross-country runs air.",
+        question: "Why does the RockShox suspension calculator send me to Trailhead?",
+        answer: "RockShox directs riders to the pressure decal or Trailhead for the product-specific starting pressure and rebound setting. Model name alone is not enough because generations, travel and air-spring configurations differ. Roadman still calculates the sag distance, but it does not copy one RockShox table across incompatible products.",
       },
       {
-        question: "Why does my suspension feel harsh on small bumps?",
-        answer: "Usually compression damping is set too high, rebound is too slow (so the suspension hasn't fully extended before the next bump), or air pressure is too high for your weight. Drop pressure 5-10 PSI, open compression, and check sag is in range. If it's still harsh, the seals may need service.",
+        question: "What is sag and how do I calculate it?",
+        answer: "Sag is how far the suspension compresses under the dressed rider in normal position. Multiply fork travel or shock stroke—not rear-wheel travel—by the target percentage. A 170 mm fork at 20% is 34 mm. A 55 mm shock at 30% is 16.5 mm.",
       },
       {
-        question: "How often should I service MTB suspension?",
-        answer: "Lower-leg service every 50 hours, full damper service every 100-200 hours depending on conditions. Riding in mud, dust, or wet weather shortens intervals. A serviced fork or shock is worth more than a top-end model that's been ridden into the ground without maintenance.",
+        question: "Do volume spacers mean I should add more PSI?",
+        answer: "Not through a universal percentage. FOX describes spacers as a way to change mid-stroke and bottom-out resistance after sag is set, while RockShox describes tokens as increasing progression. Follow the permitted configuration for the exact product and repeat the complete sag process after a change.",
+      },
+      {
+        question: "Can rider weight alone calculate a coil spring rate?",
+        answer: "No. A defensible spring-rate calculation also needs frame motion ratio or leverage curve, rear travel, shock stroke, weight distribution and the manufacturer's preload limits. Use the bicycle maker or shock maker's bike-specific spring calculator; Roadman will not disguise a rider-weight shortcut as engineering.",
+      },
+      {
+        question: "Is Roadman affiliated with FOX or RockShox?",
+        answer: "No. Roadman Cycling is an independent publisher and calculator. FOX, SRAM and RockShox names identify the official source profile selected by the rider. Their manuals, bike-specific instructions, warnings and maximum limits always override this page.",
       },
     ],
     related: [
       { label: "Tyre Pressure Calculator", href: "/tools/tyre-pressure", kind: "tool" },
       { label: "MTB suspension setup guide", href: "/blog/mtb-suspension-setup-complete-guide", kind: "article" },
-      { label: "Equipment topic hub", href: "/topics/cycling-coaching", kind: "topic" },
+      { label: "MTB fork setup guide", href: "/blog/mtb-fork-setup-guide", kind: "article" },
+      { label: "Mountain biking topic hub", href: "/topics/mountain-biking", kind: "topic" },
     ],
     webAppFeatures: [
-      "Fork and shock pressure starting values",
-      "Sag targets per discipline",
-      "Air spring and coil-spring modes",
-      "Bracketing protocol for fine-tuning",
+      "Fork and rear-shock sag calculator in millimetres",
+      "Direct 2026 FOX 38 published pressure-band lookup",
+      "2026 FOX FLOAT rear-shock first-inflation method with maximum-pressure guard",
+      "RockShox Trailhead and model-specific lookup routing",
+      "Explicit no-extrapolation and no-generic-coil-rate safeguards",
     ],
+    evidenceSources: [
+      {
+        name: "FOX 2026 38 mm Owner’s Manual",
+        role: "published pressure bands, 15–20% sag, maximum pressure and spacer boundaries",
+        href: "https://tech.ridefox.com/bike/owners-manuals/3103/fork--2026-38mm",
+      },
+      {
+        name: "FOX 2026 FLOAT SL and FLOAT X Owner’s Manual",
+        role: "body-weight starting method, 25–30% sag, equalisation process and maximum pressures",
+        href: "https://tech.ridefox.com/bike/owners-manuals/3098/sagsetup",
+      },
+      {
+        name: "FOX 2026 FLOAT X2 Owner’s Manual",
+        role: "body-weight starting method, approximately 30% sag, equalisation process and 350 PSI maximum",
+        href: "https://tech.ridefox.com/bike/owners-manuals/3023/shock--2026-float-x2",
+      },
+      {
+        name: "SRAM/RockShox Suspension Manual",
+        role: "product-specific pressure lookup, sag method and damping sequence",
+        href: "https://docs.sram.com/en-US/publications/5ODr3E6BhL1uWDnWhq4ATB/UM%20-%20Suspension",
+      },
+      {
+        name: "RockShox Trailhead",
+        role: "official product lookup for starting pressure, rebound, service and tuning data",
+        href: "https://trailhead.rockshox.com/",
+      },
+    ],
+    dateModified: "2026-08-26",
+    reviewedBy: "Anthony Walsh",
+    reviewScope: "source-to-calculation and rider-facing method review",
   },
 
   "energy-availability": {

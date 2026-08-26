@@ -118,6 +118,15 @@ const nextConfig: NextConfig = {
         destination: "/blog/cycling-strength-training-guide",
         permanent: true,
       },
+      // The mixed MTB/gravel pressure article duplicates the established MTB
+      // setup guide and had only 10 clicks from 2,206 impressions in the
+      // three-month GSC baseline. Consolidate its history on the reviewed
+      // full-system guide; fork-only intent keeps its separate specialist URL.
+      {
+        source: "/blog/suspension-pressure-setup-mtb-gravel-guide",
+        destination: "/blog/mtb-suspension-setup-complete-guide",
+        permanent: true,
+      },
       // Search Console shows the established 30-watts URL owns the broad
       // heat-training query history. Consolidate the three later general and
       // at-home variants onto that evidence-reviewed owner.

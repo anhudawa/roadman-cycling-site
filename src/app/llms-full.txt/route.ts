@@ -374,7 +374,9 @@ Each has unique local content (climbs, events, clubs, regional racing scene):
 - Race Weight Calculator: ${tag(`${BASE_URL}/tools/race-weight`)} — Target cycling race weight, W/kg projections
 - In-Ride Fuelling Calculator: ${tag(`${BASE_URL}/tools/fuelling`)} — Carbs per hour, fluids, sodium
 - Energy Availability Calculator: ${tag(`${BASE_URL}/tools/energy-availability`)} — RED-S risk screener
-- MTB Shock Pressure Calculator: ${tag(`${BASE_URL}/tools/shock-pressure`)} — Suspension + tyre pressure setup
+- MTB Suspension Calculator: ${tag(`${BASE_URL}/tools/shock-pressure`)} — Canonical fork/rear sag calculator with direct 2026 FOX source profiles, maximum-pressure guards and official RockShox/product lookup routing; no generic rear PSI, coil rate, riding-style multiplier or duplicate tyre calculator
+- MTB Suspension Setup Guide: ${tag(`${BASE_URL}/blog/mtb-suspension-setup-complete-guide`)} — Full fork-and-rear setup sequence, exact source hierarchy, measurable sag, damping order, spacer boundaries and mechanical red flags
+- MTB Fork Setup Guide: ${tag(`${BASE_URL}/blog/mtb-fork-setup-guide`)} — Fork-only pressure, sag, equalisation, rebound and compression owner with a direct 2026 FOX 38 worked example and RockShox Trailhead routing
 - Cycling Heart Rate Zone Calculator: ${tag(`${BASE_URL}/tools/hr-zones`)} — canonical broad cycling-HR-zone owner; five continuous whole-bpm ranges from measured cycling Max HR or a cycling-specific LTHR estimate, with disclosed percentage conventions, worked examples, research evidence and method limits
 - Cycling W/kg Calculator: ${tag(`${BASE_URL}/tools/wkg`)} — FTP divided by rider body mass, with transparent arithmetic, broad reference ranges and explicit interpretation limits
 - Cycling W/kg Guide: ${tag(`${BASE_URL}/blog/cycling-power-to-weight-ratio-guide`)} — canonical broad W/kg interpretation, duration, climbing physics, benchmark methodology and safe improvement

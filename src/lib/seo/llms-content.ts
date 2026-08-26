@@ -15,6 +15,8 @@ export const LLMS_SHORT_MAX_BYTES = 150_000;
 export const LLMS_FULL_MAX_BYTES = 500_000;
 
 export const LLMS_PINNED_BLOG_SLUGS = new Set([
+  "mtb-suspension-setup-complete-guide",
+  "mtb-fork-setup-guide",
   "age-group-ftp-benchmarks-2026",
   "ftp-training-zones-cycling-complete-guide",
   "cycling-power-to-weight-ratio-guide",

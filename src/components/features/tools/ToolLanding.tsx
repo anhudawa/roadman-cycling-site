@@ -150,7 +150,9 @@ function LimitationsSection({ content }: { content: ToolLandingContent }) {
           <p className="text-foreground-muted leading-relaxed mb-5">{content.limitations}</p>
           <div className="border-t border-white/10 pt-5">
             <p className="text-coral text-xs font-body font-medium uppercase tracking-widest mb-2">
-              When to see a coach
+              {content.slug === "shock-pressure"
+                ? "When to get mechanical help"
+                : "When to see a coach"}
             </p>
             <p className="text-foreground-muted leading-relaxed">{content.whenToSeeACoach}</p>
           </div>
