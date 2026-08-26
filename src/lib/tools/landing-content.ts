@@ -155,7 +155,7 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
       { label: "FTP Calculator by Age & Gender", href: "/tools/masters-ftp-benchmark", kind: "tool" },
       { label: "W/kg Calculator", href: "/tools/wkg", kind: "tool" },
       { label: "FTP training topic hub", href: "/topics/ftp-training", kind: "topic" },
-      { label: "What is FTP? — Glossary", href: "/glossary/ftp", kind: "glossary" },
+      { label: "What Is FTP in Cycling?", href: "/topics/ftp-training", kind: "topic" },
       { label: "Complete FTP Training Zones Guide", href: "/blog/ftp-training-zones-cycling-complete-guide", kind: "article" },
     ],
     webAppFeatures: [

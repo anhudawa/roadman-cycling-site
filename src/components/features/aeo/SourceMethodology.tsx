@@ -19,6 +19,8 @@ interface SourceMethodologyProps {
   episodes?: LinkedSource[];
   /** Roadman articles, comparisons, or guides the answer leans on. */
   articles?: LinkedSource[];
+  /** Primary research, official guidance, or original reference material. */
+  research?: LinkedSource[];
   /**
    * One paragraph explaining how the answer was put together — the
    * judgement, not the inputs. Optional. When omitted, a sensible default
@@ -46,6 +48,7 @@ export function SourceMethodology({
   experts,
   episodes,
   articles,
+  research,
   methodology = DEFAULT_METHODOLOGY,
   lastReviewed,
   reviewedBy = FOUNDER.name,
@@ -54,7 +57,8 @@ export function SourceMethodology({
   const hasNamedSources =
     (experts && experts.length > 0) ||
     (episodes && episodes.length > 0) ||
-    (articles && articles.length > 0);
+    (articles && articles.length > 0) ||
+    (research && research.length > 0);
 
   return (
     <aside
@@ -129,6 +133,26 @@ export function SourceMethodology({
                   className="text-sm text-coral hover:text-coral/80 transition-colors"
                 >
                   {a.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {research && research.length > 0 && (
+        <div className="mb-4">
+          <p className="text-xs text-foreground-subtle uppercase tracking-wider mb-2">
+            Primary references
+          </p>
+          <ul className="space-y-1">
+            {research.map((source) => (
+              <li key={source.href}>
+                <Link
+                  href={source.href}
+                  className="text-sm text-coral hover:text-coral/80 transition-colors"
+                >
+                  {source.title}
                 </Link>
               </li>
             ))}

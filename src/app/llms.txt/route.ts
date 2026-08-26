@@ -307,9 +307,9 @@ export async function GET() {
       pages: [
         {
           url: `${BASE_URL}/topics/ftp-training`,
-          title: "FTP Training — Complete Guide",
+          title: "FTP in Cycling — Meaning, Tests, Zones & Training",
           description:
-            "Topic hub — testing, training, and improving Functional Threshold Power.",
+            "Canonical broad FTP owner: practical definition, test-method differences, zones, evidence limits and routes to improvement or qualified benchmarks.",
         },
         {
           url: `${BASE_URL}/tools/ftp-zones`,
@@ -696,7 +696,7 @@ Roadman's coverage of the 2026 Tour, every stage and the sport's history read th
 Evidence-based topic hubs — each gathers the articles, episodes, and tools for one subject, with a short answer and FAQ schema.
 - [Cycling Training Plans](${tag(`${BASE_URL}/topics/cycling-training-plans`)})
 - [Time-Crunched Cyclist: 8-Hour Training Plan](${tag(`${BASE_URL}/blog/time-crunched-cyclist-8-hours-week`)}): Coach-reviewed general and recovery-limited templates, goal-specific session choices, missed-workout rules and explicit limits on what the training-intensity research proves.
-- [FTP Training](${tag(`${BASE_URL}/topics/ftp-training`)})
+- [FTP in Cycling](${tag(`${BASE_URL}/topics/ftp-training`)}): Canonical reviewed definition of Functional Threshold Power, including test-method differences, evidence limits, zones, time-to-exhaustion context and the next page for each specific task.
 - [Cycling Nutrition](${tag(`${BASE_URL}/topics/cycling-nutrition`)})
 - [Cycling Recovery](${tag(`${BASE_URL}/topics/cycling-recovery`)})
 - [Strength & Conditioning for Cyclists](${tag(`${BASE_URL}/topics/cycling-strength-conditioning`)})
