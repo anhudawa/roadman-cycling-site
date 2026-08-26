@@ -514,6 +514,16 @@ const nextConfig: NextConfig = {
         destination: "/blog/age-group-ftp-benchmarks-2026",
         permanent: true,
       },
+      // W/kg editorial consolidation (Aug 2026). Search Console showed the
+      // incumbent guide at 453 clicks / 67,699 impressions over three months,
+      // versus 59 / 7,210 for a later same-job explainer. Keep the calculator,
+      // glossary, age report and power-duration pages separate because they
+      // answer arithmetic, definition, age-qualified and duration-specific jobs.
+      {
+        source: "/blog/cycling-watts-per-kilo-complete-guide",
+        destination: "/blog/cycling-power-to-weight-ratio-guide",
+        permanent: true,
+      },
       // General cycling-cadence consolidation (Aug 2026). Search Console
       // showed the established general guide at 239 clicks / 33,311
       // impressions over three months. The two July near-duplicates recorded

@@ -229,7 +229,6 @@ only by its archive rather than by contextual editorial links.
 - [The Cyclist's Warm-Up and Cool-Down: What Actually Works and What's a Waste of Time](/blog/cycling-warm-up-cool-down-guide) — linked only from `[blog archive]`
 - [How to Watch a Grand Tour: The Fan's Guide to Understanding Professional Road Racing](/blog/cycling-watching-grand-tours-fan-guide) — linked only from `[blog archive]`
 - [Raising Your Watt Floor: Why Your Easy Pace Matters More Than Your FTP](/blog/cycling-watt-floor-raising-guide) — linked only from `[blog archive]`
-- [W/kg: The Complete Guide to Watts Per Kilo for Cyclists](/blog/cycling-watts-per-kilo-complete-guide) — linked only from `[blog archive]`
 - [Weekly Meal Prep for Cyclists: The Sunday System That Keeps You Fuelled All Week](/blog/cycling-weekly-meal-prep-guide) — linked only from `[blog archive]`
 - [Losing Weight Without Losing Power: The Masters Cyclist's Guide to Getting Leaner After 40](/blog/cycling-weight-loss-without-losing-power-guide) — linked only from `[blog archive]`
 - [In-Season Weight Training for Cyclists: Maintaining Strength Without Hurting Bike Performance](/blog/cycling-weight-training-in-season-guide) — linked only from `[blog archive]`
@@ -297,4 +296,3 @@ only by its archive rather than by contextual editorial links.
 - [When Your FTP Test Lies — And What to Do About It](/blog/which-ftp-test-protocol-best-guide) — linked only from `[blog archive]`
 - [Zone 2 Not Working? The Context Nobody Gives You](/blog/zone-2-not-working-cycling) — linked only from `[blog archive]`
 - [Racing on Zwift: The Tactics Nobody Teaches You](/blog/zwift-racing-tactics-guide) — linked only from `[blog archive]`
-

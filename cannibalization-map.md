@@ -182,8 +182,8 @@
 | Practical guide — fuel for the work | `/blog/cycling-weight-loss-fuel-for-the-work-required` | ✅ | Owns the framework keyword. |
 | Diagnostic — mistakes | `/blog/cycling-weight-loss-mistakes` | ✅ | |
 | Diagnostic — fasted myth | `/blog/cycling-fasted-riding-myth` | ✅ | |
-| W/kg ratio | `/blog/cycling-power-to-weight-ratio-guide` | ✅ | (Shared with FTP cluster.) |
-| Tool — w/kg | `/tools/wkg` | ✅ | |
+| W/kg ratio | `/blog/cycling-power-to-weight-ratio-guide` | ✅ | Canonical broad interpretation owner; later same-job `/blog/cycling-watts-per-kilo-complete-guide` permanently redirects here. Shared with FTP cluster. |
+| Tool — w/kg | `/tools/wkg` | ✅ | Owns calculation; reference ranges are not presented as race categories or population percentiles. |
 | Diagnostic — can't lose weight | `/problem/cant-lose-weight-cycling` | ✅ | |
 | Diagnostic — RED-S | `/problem/red-s-low-energy-availability` | ✅ | |
 | Authority — Alex Larson | `/blog/alex-larson-body-composition-cyclists` | ✅ | |

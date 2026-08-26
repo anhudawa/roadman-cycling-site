@@ -176,6 +176,7 @@ const CURATED: string[] = [
   `https://${HOST}/tools/fuelling`,
   `https://${HOST}/tools/energy-availability`,
   `https://${HOST}/tools/shock-pressure`,
+  `https://${HOST}/tools/wkg`,
 
   // AI discoverability
   `https://${HOST}/llms.txt`,
@@ -184,6 +185,7 @@ const CURATED: string[] = [
   // Fresh flagship content
   `https://${HOST}/blog/age-group-ftp-benchmarks-2026`,
   `https://${HOST}/blog/ftp-benchmarks-by-age-and-experience`,
+  `https://${HOST}/blog/cycling-power-to-weight-ratio-guide`,
   `https://${HOST}/blog/bike-fit-guide-cyclists`,
   `https://${HOST}/topics/bike-fitting`,
   `https://${HOST}/blog/cycling-strength-training-guide`,
