@@ -120,6 +120,13 @@ export async function GET() {
       ],
     },
     {
+      category: "Tour de France: Unchained series guide",
+      lines: [
+        `${BASE_URL}/blog/why-netflix-unchained-failed-cycling — Canonical series owner: three seasons, 24 episodes, race years, where to watch, official viewing data, final-season status and correction record.`,
+        `${BASE_URL}/podcast/ep-2034-how-netflix-s-unchained-failed-why-every-pro-hated-it — Roadman's corrected opinion and source-record page, not the broad series owner.`,
+      ],
+    },
+    {
       category: "Commercial intent — coaching",
       lines: [
         `${BASE_URL}/coaching — Canonical Roadman online cycling coach service: personalised TrainingPeaks plan, weekly review and group coaching, ${OFFER_TIERS.notDoneYet.pricing.display}.`,

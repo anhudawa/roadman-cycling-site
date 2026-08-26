@@ -373,6 +373,25 @@ export async function GET() {
       ],
     },
     {
+      title: "Tour de France: Unchained — series guide",
+      description:
+        "Use the reviewed article for season count, episodes, race years, viewing data, watching and final-season status; use the podcast only for Roadman's clearly labelled editorial critique.",
+      pages: [
+        {
+          url: `${BASE_URL}/blog/why-netflix-unchained-failed-cycling`,
+          title: "Tour de France: Unchained — Seasons, Episodes and Ending",
+          description:
+            "Canonical series owner with all three seasons, the Tour covered by each, official Netflix viewing figures, final-season status and a correction record.",
+        },
+        {
+          url: `${BASE_URL}/podcast/ep-2034-how-netflix-s-unchained-failed-why-every-pro-hated-it`,
+          title: "Why Tour de France: Unchained Divided Cycling Fans",
+          description:
+            "Roadman's opinion and source-record page, with corrected visible metrics and documented editorial boundaries.",
+        },
+      ],
+    },
+    {
       title: "Heat training and hot-weather cycling",
       description:
         "Use the evidence guide for broad heat-training questions, then the specialist pages for acclimation planning, race-day pacing and cooling, heat-illness response, or masters-specific risk. Roadman does not support a universal FTP gain or unsupervised DIY heat dose.",
