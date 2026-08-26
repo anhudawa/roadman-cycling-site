@@ -1602,17 +1602,17 @@ export const racingAnswers: AnswerPage[] = [
     slug: "how-to-stop-cramping-in-races",
     cluster: "racing",
     question: "How Do I Stop Cramping in Races?",
-    seoTitle: "How to Stop Cramping in Cycling Races — The Real Causes",
+    seoTitle: "How to Stop Cramping in Cycling Races — Safe Response",
     seoDescription:
-      "Cycling cramps are caused by neuromuscular fatigue and under-fuelling — not dehydration alone. How to prevent cramps with better pacing, fuelling and training specificity.",
+      "Stop safely, reduce the load and gently stretch a race cramp. Then review pacing, event demand, recovery, food and measured hydration without assuming one cause.",
     pillar: "coaching",
     directAnswer:
-      "Cycling cramps are primarily caused by neuromuscular fatigue and insufficient carbohydrate intake — not simply dehydration or salt loss, as was long assumed. Prevent them by pacing the opening phase conservatively (not going out too hard), fuelling consistently from 30 minutes in, and training at the specific intensities and durations your race will demand. Cramps in the final third of a race are almost always a sign of something that went wrong in the first half.",
+      "When a muscle cramps in a cycling race, get clear of other riders, stop safely, reduce the load and gently hold the affected muscle in a static stretch until it eases. Do not diagnose sodium loss from the symptom or force fluid. Before the next race, review the exact muscle, timing, pace, terrain, preparation, recovery, food, fluid and associated symptoms. Confusion, collapse, severe weakness or dark urine requires medical assessment.",
     keyTakeaways: [
-      "Cramps are most often caused by neuromuscular fatigue and under-fuelling, not just dehydration.",
-      "Going out too hard is the single most common trigger — excess early effort accelerates fatigue.",
-      "Consistent carbohydrate intake of 60–80g/hr from 30 minutes in reduces cramping risk significantly.",
-      "Training at race duration and intensity is the only real prevention — you can't outrun unpreparedness.",
+      "Race cramp is multifactorial; it does not prove one fluid, sodium, carbohydrate or magnesium deficit.",
+      "Gentle static stretching is the best-supported immediate response to an uncomplicated exercise-associated cramp.",
+      "Event-specific preparation and sensible early pacing may reduce a demand-fatigue mismatch, but no tactic guarantees prevention.",
+      "Build fuelling and hydration for race performance and tolerance, not around an unproven anti-cramp dose.",
     ],
     whoFor: [
       {
@@ -1623,91 +1623,79 @@ export const racingAnswers: AnswerPage[] = [
       {
         label: "The cyclist who's tried salt tablets and electrolytes without success",
         detail:
-          "You've addressed hydration and salt but still cramp, and you want to understand why.",
+          "You need a complete race audit rather than another diagnosis-by-product.",
       },
     ],
     roadmanView: [
-      "The cramping conversation in cycling has been dominated for decades by the dehydration-and-salt narrative. Drink more, take electrolytes, add a sodium tablet — and for many riders, that's done nothing. That's because the dominant cause of exercise-associated cramps is neuromuscular fatigue, not electrolyte imbalance. The muscles get tired, the alpha motor neurons lose their inhibitory control, and the result is a spasm. Electrolytes don't fix that.",
-      "What does fix it is going out at the right pace. Almost every cramper in a gran fondo or sportive made an error in the first hour — they went out too hard, accumulated neuromuscular fatigue too early, and ran out of contractile capacity before the finish. The cramp isn't happening at kilometre 140 by accident; it's the consequence of what happened at kilometre 20.",
-      "The other genuine lever is fuelling. Glycogen depletion accelerates neuromuscular fatigue, and under-fuelled muscles cramp sooner than fuelled ones. That makes consistent carbohydrate intake — 60–80g/hr from 30 minutes in — a real cramping prevention strategy, not just a performance strategy.",
+      "Race-day cramp attracts false certainty because the rider wants one fast answer. The symptom cannot tell us that the missing variable was salt, water, carbohydrate or fitness.",
+      "The practical job is to reduce the gap between preparation and race demand, then rehearse pacing, position, food and fluid together. That manages plausible contributors without pretending one of them is proven in every case.",
+      "When the cramp happens, race position comes second. Get clear, stop safely, stretch gently and reassess whether continuing is sensible.",
     ],
-    expertEvidence: [
-      {
-        name: "Sam Impey",
-        credential: "World Tour nutritionist",
-        insight:
-          "The electrolyte-only explanation for exercise cramps is no longer supported by the weight of evidence. Neuromuscular fatigue is the primary mechanism, and glycogen depletion accelerates that fatigue. Consistent fuelling reduces cramping risk; electrolytes alone do not.",
-        episodeSlug: "ep-2035-world-tour-nutritionist-we-got-fuelling-wrong",
-        guestSlug: "sam-impey",
-      },
-      {
-        name: "Dan Lorang",
-        credential: "Head of Performance, Red Bull–Bora–Hansgrohe",
-        insight:
-          "Pacing errors in the opening phase of a long race are the most common driver of late-race cramping at every level. The muscles simply accumulate more fatigue than they can manage. Conservative early pacing, event-specific training at duration, and consistent fuelling are the three levers that work.",
-        episodeSlug: "ep-2134-roglics-coach-builds-a-training-plan-for-amateur-riders-dan",
-        guestSlug: "dan-lorang",
-      },
-    ],
+    expertEvidence: [],
     practicalApplication: [
       {
-        title: "Cap effort in the first 90 minutes",
+        title: "Rehearse the race demand",
         detail:
-          "The single most effective cramp prevention is not going out too hard. Cap your effort at 75–80% of FTP in the first 90 minutes of a gran fondo. Neuromuscular fatigue is non-linear — the effort you spend in hour one costs disproportionately in hour four.",
+          "Build progressively toward the relevant duration, terrain, cadence and repeated efforts. Use an event-specific pacing plan rather than one universal FTP ceiling.",
       },
       {
-        title: "Fuel consistently from 30 minutes in",
+        title: "Write the on-course response",
         detail:
-          "Set a timer and eat every 30 minutes: 60–80g of carbohydrate per hour from the first alarm. Glycogen depletion accelerates the neuromuscular fatigue that triggers cramps. Fuelled muscles cramp later and less severely than under-fuelled ones.",
+          "Know how you will move out of the group, stop safely, unload and gently stretch the affected muscle. Decide the symptoms that mean the race is over and medical help is needed.",
       },
       {
-        title: "Train at your race distance and intensity",
+        title: "Review the episode before changing products",
         detail:
-          "If you're cramping in the final 30km of a 160km event, you probably haven't trained at 160km. Do at least 2 training rides at or near race distance in the 6 weeks before the event. Cramps at new distances are normal — the fix is specificity.",
+          "Log the muscle, timing, pace, terrain, position, conditions, preparation, recovery, food, drink, medication and accompanying symptoms. Change one plausible factor at a time.",
       },
     ],
     commonMistakes: [
       {
         mistake: "Relying solely on salt tablets and electrolytes to prevent cramps.",
         fix:
-          "Address pacing and fuelling first. Electrolytes support hydration but don't fix neuromuscular fatigue. If you still cramp after sorting pacing and nutrition, then revisit electrolyte strategy.",
+          "A cramp does not diagnose sodium loss. Plan hydration from measured losses, conditions, access and tolerance, then review it alongside the full race demand.",
       },
       {
-        mistake: "Going out hard because the legs feel fresh.",
+        mistake: "Treating early overpacing as the proven cause of every late cramp.",
         fix:
-          "The legs feeling fresh at the start is the most dangerous sign in a long event — it means you haven't yet accumulated any of the fatigue that will accumulate. Pace as though hour four starts now.",
+          "Sensible early pacing is useful risk management, but the event review still needs training, position, conditions, recovery, food, fluid and symptoms.",
       },
       {
-        mistake: "Not training at race duration.",
+        mistake: "Continuing immediately because the cramp eased.",
         fix:
-          "Cramping at new distances is a specificity problem. Your longest training ride needs to reach 60–70% of your race distance at minimum.",
+          "Rest and reassess strength, pain, coordination and the wider situation. A temporarily relaxed muscle does not guarantee that continuing is safe.",
       },
     ],
     faq: [
       {
         question: "Do electrolytes prevent cramps?",
         answer:
-          "Electrolytes help maintain hydration status, which supports overall performance. But the primary cause of exercise cramps is neuromuscular fatigue, not electrolyte imbalance. Electrolytes are worth including in any long ride — they just aren't the complete answer to cramping.",
+          "Not reliably for every rider. Sodium and fluid can be useful parts of a race plan, but a cramp does not prove an electrolyte deficit and no universal dose prevents exercise-associated cramps. Use measured hydration planning rather than diagnosing from the symptom.",
       },
       {
         question: "Why do I cramp in the final 30km of every gran fondo?",
         answer:
-          "Most likely a combination of insufficient pacing discipline in the first half and insufficient fuelling throughout. Address both. If the issue persists after sorting those two, consider whether your peak long training ride is close enough to race distance.",
+          "The repeated timing suggests a demand-related pattern worth investigating, not one certain cause. Compare the event with training duration, terrain, intensity and position, then review early pacing, recovery, food, fluid, weather and the exact muscle involved.",
       },
       {
         question: "Does pickle juice actually stop cramps?",
         answer:
-          "Some evidence suggests pickle juice triggers a neural reflex that can shorten a cramp already in progress — not by rehydrating, since it acts too fast for absorption. It's an emergency intervention, not a prevention strategy.",
+          "One small laboratory study found that pickle juice shortened electrically induced cramps, probably through a mouth-and-throat reflex rather than electrolyte replacement. That does not establish prevention or reliable treatment during a real cycling race. It is optional, must be pre-tested and never replaces stopping or assessing warning signs.",
       },
       {
         question: "Can poor bike fit cause cramping?",
         answer:
-          "Yes. A saddle that's too high, cleat position that overloads one muscle group, or a position that forces inefficient pedalling mechanics can all contribute to localised fatigue and cramping. If you cramp in specific muscles consistently, get a bike fit.",
+          "A position or equipment change can alter local muscular demand and belongs in the audit, especially when the same muscle repeatedly cramps. That association does not prove the fit caused it. Reverse abrupt changes and use a qualified fit review when the pattern persists.",
       },
       {
         question: "Should I stretch to prevent cramps during a race?",
         answer:
-          "Stretching a cramp while it's happening is the immediate treatment. Prevention comes from pacing, fuelling and fitness — not pre-race stretching. Stopping to stretch during a race is a last resort, not a strategy.",
+          "Gentle static stretching is the best-supported immediate treatment once an uncomplicated cramp occurs. Evidence does not establish pre-race stretching as a reliable cramp-prevention method. Stop safely before stretching and do not force an injured or severely painful muscle.",
+      },
+      {
+        question: "When should a race cramp be treated as an emergency?",
+        answer:
+          "Stop and seek urgent medical assessment when cramp occurs with confusion, collapse, seizure, worsening coordination, severe weakness, dark urine, breathing difficulty or other whole-body symptoms. Do not treat those signs as a simple fuelling or electrolyte problem.",
       },
     ],
     relatedEpisodes: [
@@ -1723,8 +1711,11 @@ export const racingAnswers: AnswerPage[] = [
       { label: "Cycling Nutrition — Topic Hub", href: "/topics/cycling-nutrition" },
     ],
     evidenceLevel: "moderate",
+    evidenceNote:
+      "Reviewed against the 2022 evidence-based exercise-associated muscle-cramp review (PMID 34185846), the 2019 mechanism review (PMCID PMC6901412), the pickle-juice laboratory experiment (PMID 19997012) and the magnesium Cochrane review (PMCID PMC8094171). The page separates plausible race contributors from proven causes and does not prescribe one prevention dose.",
     publishDate: "2026-05-26",
-    updatedDate: "2026-05-26",
+    updatedDate: "2026-08-26",
+    reviewedBy: "Anthony Walsh, with editorial fact-checking against the cited exercise-associated muscle-cramp literature",
   },
 
   // ============================================================

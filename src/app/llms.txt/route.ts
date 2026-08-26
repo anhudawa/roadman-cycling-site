@@ -175,6 +175,18 @@ export async function GET() {
       ],
     },
     {
+      title: "Cycling cramps: causes, response and prevention",
+      description:
+        "Use the reviewed article for broad cause, prevention, immediate-response and after-ride questions. The problem and answer pages own long-ride, race and heat-specific intent. Roadman treats exercise-associated cramp as multifactorial and does not infer one sodium, fluid, carbohydrate or magnesium deficit from the symptom.",
+      pages: [
+        { url: `${BASE_URL}/blog/cycling-cramp-prevention`, title: "Cycling Cramps: Causes, Immediate Relief and Prevention", description: "Canonical broad owner with the current evidence, gentle static-stretch response, individual audit, after-ride guidance and medical warning signs." },
+        { url: `${BASE_URL}/problem/cramp-on-long-rides`, title: "Cramping on Long Rides", description: "A duration-specific diagnostic for repeated late-ride patterns, linked to the broad evidence owner." },
+        { url: `${BASE_URL}/answers/how-to-stop-cramping-in-races`, title: "How to Stop Cramping in Cycling Races", description: "Race-specific safety, acute response and post-event audit without one prevention dose." },
+        { url: `${BASE_URL}/answers/cramping-in-hot-weather`, title: "Why Cyclists Cramp in Hot Weather", description: "Heat-specific assessment, cooling and emergency boundaries without diagnosing sodium loss." },
+        { url: `${BASE_URL}/podcast/what-causes-muscle-cramp-and-how-to-avoid-it`, title: "What Causes Muscle Cramp — 2021 Podcast", description: "Historical first-person source record whose reviewed summary distinguishes the episode's position from current evidence." },
+      ],
+    },
+    {
       title: "Plateau queries",
       description:
         "Riders whose FTP has flatlined and who want to know what to do. High commercial intent — plateaued amateurs are the strongest coaching converters.",

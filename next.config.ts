@@ -343,6 +343,9 @@ const nextConfig: NextConfig = {
       // Consolidate zero-traffic wet-riding answers into the reviewed rain pillar.
       { source: "/answers/cycling-in-rain-tips-and-gear", destination: "/blog/cycling-in-rain-guide", permanent: true },
       { source: "/answers/cycling-in-wet-conditions-safety", destination: "/blog/cycling-in-rain-guide", permanent: true },
+      // Consolidate the later exact-match cramp answer into the established,
+      // reviewed broad guide; long-ride, race and heat pages retain narrow intent.
+      { source: "/answers/what-causes-muscle-cramps-cycling", destination: "/blog/cycling-cramp-prevention", permanent: true },
       // Legacy product URL — strength-training course used to live under /products
       { source: "/products/strength-training", destination: "/strength-training", permanent: true },
       // Renamed/typo blog slugs surfaced in body links

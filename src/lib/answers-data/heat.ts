@@ -808,7 +808,7 @@ export const heatAnswers: AnswerPage[] = [
     ],
     faq: [
       { question: "Do electrolytes prevent every cramp?", answer: "No. Cramps are multifactorial and no product prevents every episode." },
-      { question: "Should I stretch?", answer: "Gentle shortening and gradual movement may help some cramps, but stop if pain, injury or neurological symptoms are present." },
+      { question: "Should I stretch?", answer: "For an uncomplicated exercise-associated cramp, stop safely and gently hold the affected muscle in a static stretch until it eases. Do not force a painful or possibly injured muscle, and seek help for neurological or whole-body symptoms." },
       { question: "When is it an emergency?", answer: "Confusion, poor coordination, collapse, seizure or loss of consciousness during heat requires emergency help." },
     ],
     evidenceNote:

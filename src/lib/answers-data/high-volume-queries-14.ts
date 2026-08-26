@@ -1,6 +1,6 @@
 import type { AnswerPage } from "@/lib/answers";
 
-export const highVolumeQuery14Answers: AnswerPage[] = [
+const highVolumeQuery14Drafts: AnswerPage[] = [
   // ============================================================
   // CLUSTER 1 — RECOVERY & HEALTH
   // ============================================================
@@ -2717,3 +2717,10 @@ export const highVolumeQuery14Answers: AnswerPage[] = [
     updatedDate: "2026-07-10",
   },
 ];
+
+// Broad cycling-cramp intent is consolidated into the reviewed article owner.
+// Keep the legacy draft out of answer routing, sitemaps and structured data while
+// the permanent redirect transfers the old URL to that owner.
+export const highVolumeQuery14Answers = highVolumeQuery14Drafts.filter(
+  ({ slug }) => slug !== "what-causes-muscle-cramps-cycling",
+);

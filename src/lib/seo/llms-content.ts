@@ -57,6 +57,7 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "cycling-electrolytes-sweat-rate-testing-guide",
   "electrolytes-sweat-rate-cycling",
   "cycling-sodium-loading-hydration-guide",
+  "cycling-cramp-prevention",
 ]);
 
 /**

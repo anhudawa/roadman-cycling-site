@@ -678,12 +678,12 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
   {
     slug: "sodium-sweat-rate",
     term: "Sodium Sweat Rate",
-    definition: "The amount of sodium lost per litre of sweat — a highly individual metric ranging from around 200 mg/L to over 2000 mg/L, with direct consequences for hydration strategy and cramp risk.",
-    extendedDefinition: "Heavy salty sweaters often struggle in hot events unless they aggressively replace sodium; low salty sweaters over-supplement and get GI issues. Simple check: if your kit is covered in visible white streaks after a hard ride, you are likely in the high-sodium category. Lab tests (Precision Hydration, Levelen) quantify the rate. Typical replacement targets: 300mg/L for low sweaters, 700mg/L for moderate, 1000mg+/L for heavy. Sodium is particularly important over 3+ hour rides in heat.",
+    definition: "Sweat sodium concentration is the amount of sodium in a litre of sweat. Total sodium loss also depends on sweat volume, and neither value can be diagnosed from cramping or salt marks alone.",
+    extendedDefinition: "Sweat sodium concentration varies substantially between people and can change with collection method and conditions. Visible salt marks may justify a closer look but do not quantify concentration or prescribe replacement. When testing would materially affect a long, high-loss event plan, use a valid protocol and interpret the result alongside measured sweat rate, normal diet, every food and drink source, conditions, access and tolerance. Avoid both a universal sodium dose and forced drinking; a sodium-containing product does not make excess fluid safe or guarantee cramp prevention.",
     pillar: "nutrition",
     relatedTerms: ["gut-training", "hydration-rate"],
-    relatedArticle: "/blog/cycling-hydration-guide",
-    relatedTool: "/tools/fuelling",
+    relatedArticle: "/blog/electrolytes-sweat-rate-cycling",
+    relatedTool: "/tools/hydration",
     relatedTopicHub: "/topics/cycling-nutrition",
   },
   {

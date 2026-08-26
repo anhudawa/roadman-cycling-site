@@ -359,6 +359,15 @@ const HYDRATION_ANSWER_TRUST_CLUSTER = [
   "do-cyclists-need-electrolytes",
 ];
 
+// One broad evidence owner plus distinct race and heat answers. The long-ride
+// problem page and historical podcast source are added explicitly in main().
+const CRAMP_TRUST_CLUSTER = ["cycling-cramp-prevention"];
+
+const CRAMP_ANSWER_TRUST_CLUSTER = [
+  "how-to-stop-cramping-in-races",
+  "cramping-in-hot-weather",
+];
+
 // Reviewed, evidence-bounded answers that support the canonical bike-fit
 // guide. These URLs target narrow questions without competing for the guide's
 // head term, and should be recrawled together when their answer data changes.
@@ -502,11 +511,15 @@ async function main() {
   clusterUrls(TRAINING_CAMP_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(HEAT_TRAINING_TRUST_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(HYDRATION_TRUST_CLUSTER).forEach((u) => urls.add(u));
+  clusterUrls(CRAMP_TRUST_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(COMPARISON_CLUSTER).forEach((u) => urls.add(u));
   answerUrls(BIKE_FIT_ANSWER_TRUST_CLUSTER).forEach((u) => urls.add(u));
   answerUrls(HEAT_ANSWER_TRUST_CLUSTER).forEach((u) => urls.add(u));
   answerUrls(HYDRATION_ANSWER_TRUST_CLUSTER).forEach((u) => urls.add(u));
+  answerUrls(CRAMP_ANSWER_TRUST_CLUSTER).forEach((u) => urls.add(u));
   urls.add(`https://${HOST}/tools/hydration`);
+  urls.add(`https://${HOST}/problem/cramp-on-long-rides`);
+  urls.add(`https://${HOST}/podcast/what-causes-muscle-cramp-and-how-to-avoid-it`);
   urls.add(`https://${HOST}/podcast/ep-2175-lessons-from-riding-in-mallorca`);
 
   if (all) {

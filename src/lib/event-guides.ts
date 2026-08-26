@@ -445,7 +445,7 @@ export const EVENT_GUIDES: EventGuide[] = [
         slug: "cycling-cramp-prevention",
         title: "Cycling Cramp Prevention",
         whyItMatters:
-          "Long heat-soaked rides + sodium losses = cramps in the back half. The protocol that prevents them.",
+          "Long, hot rides combine fatigue, pacing and hydration demands. Use the evidence guide without diagnosing a sodium deficit from cramp alone.",
       },
       {
         slug: "cycling-nutrition-plan-100-mile-sportive",
@@ -2111,7 +2111,7 @@ export const EVENT_GUIDES: EventGuide[] = [
       },
     ],
     fuellingDeepDive:
-      "Cape Epic fuelling is on-bike + off-bike, and the off-bike side is where amateurs lose the week. On the bike: 80g carbs/hour minimum, 90-100g if you've trained the gut, sustained for 5-7 hours every stage. Daily carb intake during race week climbs to 8-10g/kg body weight (a 70kg rider eats 560-700g carbs across the day). Recovery window is non-negotiable: a carb-protein shake (3:1 or 4:1 ratio) within 30 minutes of every stage finish, real meal within 90. Protein needs rise on stage races: 1.6-2g/kg/day to support overnight muscle repair. Sleep is fuel — riders banking 7-8 hours per night recover; riders sleeping 5-6 crack on day 5 regardless of fitness. Sodium losses in Karoo heat are 1,500-2,000mg/hour; replace aggressively or accept the cramp and the bonk.",
+      "Cape Epic fuelling is an on-bike and off-bike problem. Rehearse a carbohydrate range your gut tolerates for the expected stage duration, begin recovery food and fluid promptly, distribute protein across the day and protect sleep. Karoo heat can increase fluid and sodium loss, but no universal sodium-loss figure applies to every rider and aggressive replacement does not guarantee cramp prevention. Measure representative sweat loss, count sodium from every source, avoid forced overdrinking and use the complete cramp guide if a repeated pattern appears.",
     pacingDeepDive:
       "Cape Epic is multi-day pacing, full stop. Each stage is a 70-75% effort, not a 100% effort. Stage 1 power should be the slowest you can comfortably hold for the day, not the fastest — riders who race stage 1 are riding defence by stage 4. Pace climbs on rigid wattage ceilings: 75-80% FTP on the major climbs through stage 3, dropping to 70-75% by stage 5 as fatigue lands. Heart rate drifts 5-10 bpm higher in the heat for the same wattage — pace on power, accept the HR. Singletrack descents are recovery, not racing: hold pace, eat, drink, do not crash (a Cape Epic broken collarbone is 8 days of waiting at the finish line). The team rule is the iron rule: you finish together or you DNF. Pace at the slower partner's level on day 1, not day 5.",
     detailedMistakes: [
