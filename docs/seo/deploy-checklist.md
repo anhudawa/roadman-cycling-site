@@ -1,4 +1,8 @@
-# Deploy checklist — 2026-Q2 SEO overhaul
+# Deploy checklist — 2026-Q2 SEO overhaul (historical)
+
+> This records the Q2 release contents. For current indexing and discovery
+> actions, use `docs/seo/manual-tasks-handoff.md`; historical URL counts and
+> submission lists below are not an active runbook.
 
 What this branch contains and the exact sequence for shipping it.
 
@@ -64,7 +68,9 @@ What this branch contains and the exact sequence for shipping it.
 
 3. **Google Search Console**:
     - Submit the sitemap (`/sitemap.xml`) if not already submitted. GSC → Sitemaps → Add a new sitemap.
-    - URL inspect + Request Indexing on the 8 highest-value new pages:
+    - Use read-only URL Inspection to record the state of the 8 highest-value
+      new pages. A request-indexing action is separate, requires explicit
+      approval and is not a default deploy step:
         1. `/coaching/triathlon`
         2. `/about/press`
         3. `/blog/age-group-ftp-benchmarks-2026`

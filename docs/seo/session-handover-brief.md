@@ -110,35 +110,23 @@ Blog, podcast, guest, topic hub, plan hub, plan phase, persona
 
 ---
 
-## Manual Tasks (You Need To Do)
+## Manual tasks (historical section)
 
-Full guide at `docs/seo/manual-tasks-handoff.md`
+The active state and safe workflow are in `docs/seo/manual-tasks-handoff.md`.
+The five Phase 2 owner URLs are already indexed; there is no outstanding bulk
+request-indexing task.
 
 ### 1. Add www.roadmancycling.com in Vercel (2 min)
 - Vercel dashboard → Settings → Domains → Add `www.roadmancycling.com`
 - Select "Redirect to roadmancycling.com"
 - If DNS required: CNAME `www` → `cname.vercel-dns.com`
 
-### 2. Google Search Console (5-8 min)
-- Sitemaps → Add `https://roadmancycling.com/sitemap.xml`
-- URL Inspection → Request Indexing on these 15 URLs:
-```
-https://roadmancycling.com/coaching
-https://roadmancycling.com/apply
-https://roadmancycling.com/plan
-https://roadmancycling.com/start-here
-https://roadmancycling.com/assessment
-https://roadmancycling.com/tools/ftp-zones
-https://roadmancycling.com/coaching/triathlon
-https://roadmancycling.com/research
-https://roadmancycling.com/blog/cycling-coaching-results-before-and-after
-https://roadmancycling.com/blog/cycling-coaching-free-trial
-https://roadmancycling.com/compare
-https://roadmancycling.com/glossary
-https://roadmancycling.com/best/best-cycling-training-apps
-https://roadmancycling.com/problem/not-getting-faster
-https://roadmancycling.com/editorial-standards
-```
+### 2. Google Search Console
+- Confirm the existing sitemap submission remains successful.
+- Use URL Inspection as a read-only diagnostic and record the exact canonical
+  result. Do not turn every inspection into a submission action.
+- Current evidence: `/podcast`, `/coaching`, `/masters`, `/training-plans` and
+  `/training-camps` all report **URL is on Google**.
 
 ### 3. Retry IndexNow (2 min)
 ```bash
@@ -250,7 +238,8 @@ Append to `PROBLEM_PAGES` array in `src/lib/problems.ts`
 
 ## What Happens Next
 
-**24-48 hours after GSC submission:** Priority pages indexed. FAQ/HowTo/Review rich snippets appear.
+**After release:** Verify production first, then observe Google crawl and search
+appearance without promising a fixed indexing or rich-result timeline.
 
 **1-2 weeks:** Full sitemap crawled. ~870 pages indexed. www URLs de-indexed.
 

@@ -1,4 +1,6 @@
-# IndexNow Submission — Ready to Run
+# IndexNow submission — current runbook
+
+**Inventory verified:** 26 August 2026
 
 ## Quick start
 
@@ -8,7 +10,10 @@ Once the site is deployed and live at `https://roadmancycling.com`, run:
 npm run seo:indexnow -- --all
 ```
 
-This submits **526 URLs** (92 curated high-priority + all blog articles + all podcast episodes) to the IndexNow API, which is honoured by Bing, Yandex, Seznam, and Naver.
+The script discovers the live repository inventory and submits it to the
+IndexNow API used by participating engines. A 26 August dry run found **376
+curated URLs** and **1,990 URLs** with `--all`; always trust a fresh dry run over
+these snapshot counts.
 
 For a preview without sending any requests:
 
@@ -16,7 +21,8 @@ For a preview without sending any requests:
 npm run seo:indexnow:dry -- --all
 ```
 
-To submit only the 92 curated high-priority URLs (pillar pages, coaching geo pages, tools, clusters):
+To submit only the curated high-priority URLs (owners, supporting pages, tools
+and current release URLs):
 
 ```bash
 npm run seo:indexnow
@@ -43,47 +49,34 @@ Google explicitly does not participate in the IndexNow protocol. To get Google t
    ```
    Enter `sitemap.xml` and click Submit.
 
-2. **Use URL Inspection for high-priority pages.**
+2. **Use URL Inspection as a read-only check for high-priority pages.**
    Go to:
    ```
    https://search.google.com/search-console/inspect?resource_id=sc-domain:roadmancycling.com
    ```
-   Paste each URL, click "Request Indexing".
+   Paste the exact canonical URL and record Google's reported state. Requesting
+   indexing is a separate manual action and requires explicit approval plus a
+   justified discovery problem.
 
-## Top 10 URLs to manually inspect in GSC
+## Current Phase 2 owners to inspect in GSC
 
-These are the highest-priority pages — manually request indexing for each one via the URL Inspection tool:
+These owners were inspected on 26 August 2026 and all returned **URL is on
+Google**. Reinspect only when a diagnostic or measurement checkpoint requires
+fresh evidence:
 
-- [ ] `https://roadmancycling.com/` — homepage
-- [ ] `https://roadmancycling.com/coaching` — coaching pillar
-- [ ] `https://roadmancycling.com/coaching/triathlon` — triathlon coaching pillar
-- [ ] `https://roadmancycling.com/start-here` — curated onboarding hub
-- [ ] `https://roadmancycling.com/plan` — training plan hub
-- [ ] `https://roadmancycling.com/blog/age-group-ftp-benchmarks-2026` — flagship content asset
-- [ ] `https://roadmancycling.com/podcast` — podcast index
-- [ ] `https://roadmancycling.com/tools` — tools hub
-- [ ] `https://roadmancycling.com/tools/ftp-zones` — FTP zones calculator
-- [ ] `https://roadmancycling.com/about` — about / trust page
+- [x] `https://roadmancycling.com/podcast`
+- [x] `https://roadmancycling.com/coaching`
+- [x] `https://roadmancycling.com/masters`
+- [x] `https://roadmancycling.com/training-plans`
+- [x] `https://roadmancycling.com/training-camps`
 
-## URL breakdown (curated, 92 URLs)
+## URL inventory
 
-| Category | Count |
-|---|---|
-| Pillar + authority pages | 6 |
-| Geo coaching pages | 11 |
-| Tools | 7 |
-| AI discoverability (llms.txt) | 2 |
-| Flagship content | 1 |
-| Persona routes (/you/*) | 4 |
-| Start here | 1 |
-| Training plan hub + 14 event hubs | 15 |
-| Triathlon cluster (blog) | 12 |
-| Coaching cluster (blog) | 12 |
-| Comparison cluster (blog) | 10 |
-| Podcast authority cluster (blog) | 11 |
-| **Total curated** | **92** |
-
-With `--all`, the script also discovers all `.mdx` files in `content/blog/` and `content/podcast/`, de-duplicates against the curated set, and submits the full batch (currently **526 URLs**).
+The curated list is maintained in `scripts/submit-indexnow.ts`. With `--all`, the
+script also discovers indexable routes and content, de-duplicates them against
+the curated set and chunks the resulting submission. Do not copy a historical
+URL count into release instructions; run `npm run seo:indexnow:dry` or
+`npm run seo:indexnow:dry -- --all` to obtain the current count.
 
 ## Troubleshooting
 

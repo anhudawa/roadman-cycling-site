@@ -77,3 +77,36 @@ Nutrition sources now distinguish masters-athlete evidence from acute older-adul
 2. Does `/nutrition/masters` move toward page one for broad masters cycling nutrition searches while the protein and body-composition guides retain their narrower jobs?
 3. Do AI answers cite the hub for evidence limits rather than repeat a fixed decline, recovery or protein rule?
 4. Do click-through rates improve once titles describe the decision and evidence job rather than “complete hub” language?
+
+## Production verification
+
+Merged in PR #235 and deployed to the canonical production domain on 26 August
+2026. The Vercel production deployment reached **Ready** and owns both
+`roadmancycling.com` aliases.
+
+Production checks passed for all four release URLs:
+
+| URL | HTTP | Canonical | H1 | Review/evidence | Retired claims |
+| --- | ---: | --- | ---: | --- | --- |
+| `/masters/vo2max` | 200 | Self-canonical | 1 | Named review + primary references | Absent |
+| `/nutrition/masters` | 200 | Self-canonical | 1 | Named review + primary references | Absent |
+| `/blog/vo2max-decline-reversibility-masters-cyclists` | 200 | Self-canonical | 1 | Named review + sources | Absent |
+| `/blog/masters-metabolism-anabolic-resistance-nutrition` | 200 | Self-canonical | 1 | Named review + sources | Absent |
+
+The rendered hub pages expose `Reviewed by Anthony Walsh`, the 26 August review
+date and visible primary references. The rendered supporting articles expose
+their scoped review statement, the same review date and sources. HTML checks
+also confirmed hub `dateModified` and `reviewedBy` structured data plus the
+intended production titles. None of the retired fixed decline, 72-hour recovery,
+protein-range, universal pre-sleep casein or automatic-leanness claims appeared
+in the production responses.
+
+The production discovery pass then completed successfully:
+
+- IndexNow verified the public key and accepted the 376-URL curated submission
+  with HTTP `200`.
+- Read-only Google URL Inspection reported **URL is on Google** and **Page is
+  indexed** for all four URLs.
+- All four inspections also reported HTTPS delivery and a breadcrumb
+  enhancement.
+- The available **Request indexing** action was not triggered.
