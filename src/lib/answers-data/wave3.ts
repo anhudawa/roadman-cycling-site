@@ -374,18 +374,17 @@ export const wave3Answers: AnswerPage[] = [
     slug: "what-is-a-domestique",
     cluster: "racing",
     question: "What Is a Domestique in Cycling?",
-    seoTitle: "What Is a Domestique in Cycling? The Team Rider's Role Explained",
+    seoTitle: "Domestique in Cycling: Meaning, Jobs & Tactics",
     seoDescription:
-      "A domestique is a rider who sacrifices their own race to support the team leader — fetching bottles, shielding from wind, and pacing on climbs. What the role really involves.",
+      "What a cycling domestique does, from bottles and wind protection to chase work, climb pacing and lead-outs—plus road captain and super-domestique roles.",
     pillar: "coaching",
     directAnswer:
-      "A domestique is a professional cyclist whose job is to support their team's leader rather than chase their own result. The word is French for 'servant', and the role covers everything from fetching bottles and food from the team car, to shielding the leader from the wind for hours, to pacing them up climbs and giving up a wheel — or even a bike — if the leader has a mechanical. Cycling is a team sport disguised as an individual one, and the domestique is the reason a single rider can win a race.",
+      "A domestique is a road-racing cyclist assigned to spend energy in support of a protected rider or team plan. Depending on the day, they may shelter a leader from wind, improve positioning, collect bottles, chase a breakaway, set the pace on a climb or work in a sprint lead-out. It is a tactical role—not a lesser class of rider—and the assignment can change from one race or stage to the next.",
     keyTakeaways: [
-      "A domestique supports the team leader instead of riding for their own result — 'domestique' is French for 'servant'.",
-      "The job includes carrying bottles and food, sheltering the leader from the wind, and pacing them on climbs.",
-      "Domestiques sacrifice their own energy and chances so the leader arrives fresh at the decisive moment.",
-      "Cycling looks individual but is won by teams — the leader's result is built on their domestiques' work.",
-      "Many great riders spent years as domestiques, and the role demands huge fitness and selflessness.",
+      "Domestique is an assigned support role, not a label for a weaker rider.",
+      "Jobs change by terrain and plan: positioning, bottles, chasing, pacing, wind protection or lead-out work.",
+      "A road captain adds tactical leadership; a super-domestique can support a leader deep into decisive terrain.",
+      "The same rider may work for a leader one day and race for their own result on another.",
     ],
     whoFor: [
       {
@@ -400,69 +399,84 @@ export const wave3Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "The domestique is the heart of what makes cycling such a strange and beautiful sport: it looks like an individual pursuit, but it's won by teams, and most of the riders in any race are working so that someone else can win. The word comes from the French for servant, and the job is exactly that — to spend your own legs in service of the leader's result.",
-      "What a domestique actually does across a race is relentless. They drop back to the team car and ferry bottles and food up to teammates, arms full, then claw their way back to the bunch. They sit on the front for hours taking the wind so the leader sits sheltered, saving energy for the finale. They pace the leader up the early slopes of a climb until they've nothing left, then peel off. If the leader punctures, a domestique might give up their own wheel or whole bike. None of it shows up in the result sheet, and all of it decides the result.",
-      "There's a real lesson in it for amateurs beyond the trivia. Cycling rewards teamwork far more than newcomers realise — sharing the wind, riding for a teammate's chance, understanding that the strongest rider doesn't always win but the best-supported one often does. Watch any race through the lens of who's working for whom, as we lay out in our [race tactics guide](/blog/cycling-race-tactics-guide), and the whole sport suddenly makes sense.",
+      "Cycling awards an individual result, but road racing is organised around collective work. The Tour de France itself recognises best teammates, and its 2023 review described versatile riders supporting a leader across different terrain. That is the cleanest way to understand a domestique: a rider spending today's energy so the team's chosen plan can survive until the decisive moment.",
+      "The job is not one fixed checklist. On flat roads it can mean keeping a leader out of crosswinds or controlling the gap to a break. Before a climb it can mean positioning; on the climb it can mean a controlled tempo. For a sprinter it may mean chasing or taking a turn in the lead-out. Bottle collection is real, but current UCI rules control where and how riders may receive food and drink, so it should not be presented as a free-for-all at the team car.",
+      "The role also changes. A road captain may do support work while making tactical decisions and relaying the plan inside the peloton. A super-domestique is strong enough to remain with a leader late in a mountain stage or other selective finale. Neither term means the rider never gets personal opportunities; team leadership can change by race, stage, form and situation.",
     ],
     expertEvidence: [
       {
         name: "George Hincapie",
-        credential: "17-time Tour de France starter, celebrated domestique and classics rider",
+        credential: "17-time Tour de France starter and former road captain",
         insight:
-          "Hincapie is one of the most respected domestiques in the sport's history, a trusted lieutenant across many Grand Tour campaigns. His career embodies the role: an enormously capable rider who repeatedly subordinated his own chances to deliver a leader to the line, the human definition of what a domestique does.",
+          "In his Roadman interview, Hincapie describes the hidden work involved in controlling difficult race days and the decisions made inside the peloton. We use that as first-person evidence of the road-captain and support role, while his separate Roadman profile discloses the admitted doping and sanction attached to his US Postal years.",
         episodeSlug: "ep-2231-the-untold-story-of-my-time-with-lance-hincapie",
         guestSlug: "george-hincapie",
       },
     ],
     practicalApplication: [
       {
-        title: "Watch for the bottle runs",
+        title: "Identify the protected rider",
         detail:
-          "Next time you watch a race, spot the riders dropping to the team car and ferrying bottles back up. That's the domestique's work made visible.",
+          "Before the decisive terrain, note which rider is kept sheltered and near the front while teammates spend energy around them. That rider is usually the team's priority for the day.",
       },
       {
-        title: "See who's on the front",
+        title: "Match the job to the terrain",
         detail:
-          "The riders setting the pace into the wind or on the climb are usually domestiques burning themselves so their leader doesn't have to. Note when they peel off, spent.",
+          "Watch who controls a break on flat roads, moves the leader forward before a climb, sets the climb tempo or forms the sprint train. Domestique work changes as the course changes.",
       },
       {
-        title: "Bring it to your group rides",
+        title: "Read the handover",
         detail:
-          "The domestique mindset — share the wind, ride for the group's strongest, save them for the finish — makes club runs and races faster and more rewarding for everyone.",
+          "Notice when one support rider finishes a turn and another takes over. The order reveals the team plan: bigger riders earlier, climbing support later, or progressively faster riders in a lead-out.",
       },
     ],
     commonMistakes: [
       {
-        mistake: "Thinking cycling is an individual sport.",
+        mistake: "Treating domestique as a rider's permanent rank.",
         fix:
-          "It's a team sport that crowns an individual. The winner's result is built on the domestiques who sheltered, paced and fed them all day.",
+          "It is a role assigned for a race or stage. A rider can support one day, lead on another, or receive freedom if the protected rider's plan changes.",
       },
       {
         mistake: "Assuming domestiques are weaker riders.",
         fix:
-          "Domestiques are often exceptional athletes — the strength to ferry bottles, set the pace and shelter a leader for hours is enormous. The role is about selflessness, not lack of ability.",
+          "Support work can require sustained power, positioning skill and tactical judgement. The assignment describes whose result the team is protecting, not who has the least ability.",
+      },
+      {
+        mistake: "Calling every teammate a road captain.",
+        fix:
+          "A road captain adds in-race communication and tactical leadership. A domestique can execute support work without holding that decision-making responsibility.",
       },
     ],
     faq: [
       {
         question: "What does a domestique do?",
         answer:
-          "A domestique supports their team leader: carrying bottles and food from the team car, sheltering the leader from the wind, pacing them on climbs, and sacrificing their own race — even their own wheel or bike — to keep the leader in contention. The aim is to deliver the leader fresh to the decisive moment.",
+          "A domestique supports a protected rider or team tactic. Jobs can include sheltering a leader from wind, improving position before a key sector, carrying supplies under race rules, controlling a breakaway, setting tempo on a climb and contributing to a sprint lead-out.",
       },
       {
         question: "Why is it called a domestique?",
         answer:
-          "The word is French for 'servant'. It entered cycling as a sometimes-derogatory term for riders who served their leaders, but it's now used with respect for the demanding, selfless role these riders perform.",
+          "Domestique is the French word historically translated as 'servant' or household servant. In cycling it became the established term for a rider working in service of a leader or team plan; modern race coverage generally uses it as a respected tactical role.",
       },
       {
         question: "Do domestiques ever win races?",
         answer:
-          "Sometimes. A domestique may be given a chance on a day that doesn't suit the leader, or break away when the team's strategy allows. Many famous riders spent years as domestiques before leading themselves, and a good domestique's value is measured in their leader's results, not just their own.",
+          "Yes. Team roles change by race and stage. A support rider can be given freedom in a breakaway, become the protected option on suitable terrain or inherit leadership if the original plan changes. The UCI has profiled riders who combined domestique work with leadership responsibilities.",
       },
       {
         question: "How fit do you have to be to be a domestique?",
         answer:
-          "Extremely. Ferrying bottles back through the bunch, riding on the front into a headwind for hours and pacing a leader up a climb all demand world-class fitness. Domestiques are elite athletes who choose, or are assigned, a supporting role.",
+          "At professional level, a domestique is an elite rider. The role can demand repeated movement through the bunch, sustained pace-setting and enough reserve to help after earlier work. Fitness requirements vary because flat-road, climbing and lead-out domestiques perform different jobs.",
+      },
+      {
+        question: "What is the difference between a domestique and a road captain?",
+        answer:
+          "A domestique performs support work; a road captain also carries tactical leadership inside the race, communicates decisions and helps organise teammates. One rider can be both, but not every domestique is the road captain. UCI coverage has explicitly described a rider holding both domestique and team-captain responsibilities.",
+      },
+      {
+        question: "What is a super-domestique?",
+        answer:
+          "A super-domestique is an informal term for a high-level support rider capable of staying with a protected leader deep into decisive terrain. They often have the ability to lead in other races, but on that day their job is to preserve or improve the leader's position.",
       },
     ],
     relatedEpisodes: [
@@ -476,15 +490,58 @@ export const wave3Answers: AnswerPage[] = [
         href: "/blog/cycling-race-tactics-guide",
       },
       {
+        label: "Cycling Beginners Hub",
+        href: "/topics/cycling-beginners",
+      },
+      {
         label: "Steve Cummings: Lessons From the Peloton's Last Maverick",
         href: "/blog/steve-cummings-maverick-self-coached-lessons",
       },
     ],
+    sources: [
+      {
+        name: "Four jerseys for four men — best teammates",
+        url: "https://www.letour.fr/en/news/2023/four-jerseys-for-four-men/1316750",
+        publisher: "Tour de France",
+        note: "Official race account of domestique work across terrain and the Tour's best-teammate recognition.",
+      },
+      {
+        name: "Tour de France guide: domestiques",
+        url: "https://www.letour.fr/en/video/2948/tour-de-france-guide-domestiques",
+        publisher: "Tour de France",
+        note: "Official Tour explainer for the role.",
+      },
+      {
+        name: "UCI Cycling Regulations, Part 2: Road Races",
+        url: "https://assets.ctfassets.net/761l7gh5x5an/6FEzFHeA2oKMBGb5sdIvQ7/6495a6535b573ed5eb8d7fd213b9e808/2-ROA-20260206-E.pdf",
+        publisher: "Union Cycliste Internationale",
+        note: "Current rules governing feeding, team-car assistance and rider conduct.",
+      },
+      {
+        name: "The UCI Women's WorldTour Chronicle",
+        url: "https://www.uci.org/article/the-uci-women-s-worldtour-chronicle-183250/2qbAFgcS6ZsX8pKlg0hPsk",
+        publisher: "Union Cycliste Internationale",
+        note: "Official example distinguishing domestique work from road-captain responsibility.",
+      },
+      {
+        name: "George Hincapie on seven Tours and road-captain work",
+        url: "https://roadmancycling.com/podcast/ep-2231-the-untold-story-of-my-time-with-lance-hincapie",
+        publisher: "Roadman Cycling Podcast",
+        note: "First-person account; the accompanying profile states the historical and anti-doping boundaries.",
+      },
+    ],
+    definedTerm: {
+      name: "Domestique",
+      alternateName: "Cycling domestique",
+      description:
+        "A road-cycling team rider assigned to spend energy in support of a protected rider or team plan through positioning, pacing, chasing, supplies or race control.",
+    },
     evidenceLevel: "strong",
     evidenceNote:
-      "The role and duties of a domestique are well-established, factual features of professional road racing; George Hincapie is a widely recognised exemplar of the role.",
+      "Role boundaries are checked against official Tour de France coverage, current UCI road regulations, an official UCI team profile and a first-person Roadman road-captain interview. Specific assignments still vary by team, race and stage.",
     publishDate: "2026-06-20",
-    updatedDate: "2026-06-20",
+    updatedDate: "2026-08-26",
+    reviewedBy: "Anthony Walsh",
   },
 
   // ============================================================

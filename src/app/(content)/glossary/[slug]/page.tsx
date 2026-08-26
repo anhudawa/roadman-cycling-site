@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
 import { Card, ScrollReveal, Badge } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { getTermBySlug, getAllTermSlugs, GLOSSARY_TERMS } from "@/lib/glossary";
+import {
+  getTermBySlug,
+  getAllTermSlugs,
+  getGlossaryTermPath,
+  GLOSSARY_TERMS,
+} from "@/lib/glossary";
 
 /** Extract acronym/abbreviation for schema.org termCode */
 function getTermCode(termName: string): string | undefined {
@@ -33,7 +38,7 @@ export async function generateMetadata({
     title: `What Is ${term.term}? — Cycling Glossary`,
     description: term.definition,
     alternates: {
-      canonical: `https://roadmancycling.com/glossary/${slug}`,
+      canonical: `https://roadmancycling.com${term.canonicalPath ?? `/glossary/${slug}`}`,
     },
   };
 }
@@ -46,6 +51,7 @@ export default async function GlossaryTermPage({
   const { slug } = await params;
   const term = getTermBySlug(slug);
   if (!term) notFound();
+  if (term.canonicalPath) permanentRedirect(term.canonicalPath);
 
   const relatedTerms = term.relatedTerms
     .map((s) => GLOSSARY_TERMS.find((t) => t.slug === s))
@@ -171,7 +177,7 @@ export default async function GlossaryTermPage({
                     rt ? (
                       <Link
                         key={rt.slug}
-                        href={`/glossary/${rt.slug}`}
+                        href={getGlossaryTermPath(rt)}
                         className="inline-flex items-center gap-1 rounded-lg border border-white/15 hover:border-coral/40 bg-white/[0.04] hover:bg-white/[0.07] px-3 py-1.5 text-xs font-heading text-off-white tracking-wider transition-all"
                       >
                         {rt.term}

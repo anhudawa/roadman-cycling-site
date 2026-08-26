@@ -426,6 +426,12 @@ export function AnswerTemplate({
                 href: `/guests/${e.guestSlug}`,
               }))}
             episodes={relatedEpisodes}
+            reviewedSources={answer.sources?.map((source) => ({
+              name: source.name,
+              href: source.url,
+              publisher: source.publisher,
+              note: source.note,
+            }))}
             lastReviewed={dateFmt(updated)}
             reviewedBy={answer.reviewedBy || "Anthony Walsh"}
           />

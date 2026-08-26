@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getAllPosts } from "@/lib/blog";
 import { getAllEpisodes } from "@/lib/podcast";
 import { getAllTopics } from "@/lib/topics";
-import { GLOSSARY_TERMS } from "@/lib/glossary";
+import { GLOSSARY_TERMS, getGlossaryTermPath } from "@/lib/glossary";
 import { getAllGuests } from "@/lib/guests";
 import { getAllTools } from "@/lib/tools-registry";
 import { FEED_BASE_URL, FEED_CACHE_HEADERS, feedUrl, summarise } from "@/lib/feeds";
@@ -189,7 +189,7 @@ export function GET(request: Request) {
           id: term.slug,
           type: "glossary",
           title: term.term,
-          url: feedUrl(`/glossary/${term.slug}`),
+          url: feedUrl(getGlossaryTermPath(term)),
           summary: summarise(term.definition),
           primaryTopic: term.pillar,
           datePublished: null,

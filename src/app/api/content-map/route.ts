@@ -3,7 +3,7 @@ import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import { getAllEpisodes } from "@/lib/podcast";
 import { getAllGuests } from "@/lib/guests";
 import { getAllTopics } from "@/lib/topics";
-import { GLOSSARY_TERMS } from "@/lib/glossary";
+import { GLOSSARY_TERMS, getGlossaryTermPath } from "@/lib/glossary";
 import { COMPARISONS } from "@/lib/comparisons";
 import { BEST_FOR_PAGES } from "@/lib/best-for";
 import { PROBLEM_PAGES } from "@/lib/problems";
@@ -176,7 +176,7 @@ export async function GET() {
       authoritySource: { name: "Anthony Walsh", role: "Cycling Coach & Podcast Host" },
     })),
     glossary: GLOSSARY_TERMS.map((t) => ({
-      url: `${BASE_URL}/glossary/${t.slug}`,
+      url: `${BASE_URL}${getGlossaryTermPath(t)}`,
       type: "glossary",
       term: t.term,
       pillar: t.pillar,

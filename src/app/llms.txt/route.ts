@@ -565,6 +565,7 @@ ${QUESTION_PAGES.map((q) => `- [${q.question}](${tag(`${BASE_URL}/question/${q.s
 ## Answers
 ${ANSWER_PAGES.length} short, sourced, citation-ready answers to the questions serious cyclists ask most — each one a direct answer, named-expert evidence, common mistakes, and an FAQ, grounded in the Roadman podcast archive. Organised into the clusters below; browse the full index, or pull the complete inventory from /sitemap.xml.
 - [Cycling Answers Index](${tag(`${BASE_URL}/answers`)}): All ${ANSWER_PAGES.length} answers at /answers/{slug}, grouped by theme.
+- [What Is a Domestique in Cycling?](${tag(`${BASE_URL}/answers/what-is-a-domestique`)}): Canonical, source-reviewed definition covering bottles, positioning, chase work, climbing tempo, lead-outs, road captains and super-domestiques. The former /glossary/domestique URL redirects here.
 ${answersClusterBlock}
 
 ## Editorial Standards & E-E-A-T

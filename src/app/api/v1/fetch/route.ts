@@ -3,7 +3,7 @@ import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import { getAllEpisodes, getEpisodeBySlug } from "@/lib/podcast";
 import { getTopicBySlug } from "@/lib/topics";
 import { getGuestBySlug } from "@/lib/guests";
-import { GLOSSARY_TERMS } from "@/lib/glossary";
+import { GLOSSARY_TERMS, getGlossaryTermPath } from "@/lib/glossary";
 import { FEED_BASE_URL, FEED_CACHE_HEADERS, feedUrl, summarise } from "@/lib/feeds";
 
 type FetchType = "article" | "episode" | "topic" | "glossary" | "guest";
@@ -179,7 +179,7 @@ function fetchGlossary(id: string) {
     id: term.slug,
     type: "glossary" as const,
     title: term.term,
-    url: feedUrl(`/glossary/${term.slug}`),
+    url: feedUrl(getGlossaryTermPath(term)),
     summary: summarise(term.definition),
     body: term.extendedDefinition,
     bodyFormat: "markdown" as const,

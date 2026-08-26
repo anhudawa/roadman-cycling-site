@@ -107,6 +107,24 @@ export default async function AnswerPageRoute({
       url: `${SITE_ORIGIN}/podcast/${ep.slug}`,
     }));
   const mentions = [...expertMentions, ...episodeMentions];
+  const articleAbout = [
+    ...parentTopics.map((t) => ({
+      "@type": "Thing" as const,
+      "@id": `${SITE_ORIGIN}/topics/${t.slug}#thing`,
+      name: t.title,
+      url: `${SITE_ORIGIN}/topics/${t.slug}`,
+    })),
+    ...(answer.definedTerm
+      ? [
+          {
+            "@type": "DefinedTerm" as const,
+            "@id": `${url}#defined-term`,
+            name: answer.definedTerm.name,
+            url,
+          },
+        ]
+      : []),
+  ];
 
   return (
     <>
@@ -125,6 +143,9 @@ export default async function AnswerPageRoute({
           publisher: { "@id": ENTITY_IDS.organization },
           datePublished: answer.publishDate,
           dateModified: answer.updatedDate || answer.publishDate,
+          ...(answer.reviewedBy === "Anthony Walsh" && {
+            reviewedBy: { "@id": ENTITY_IDS.person },
+          }),
           mainEntityOfPage: { "@type": "WebPage", "@id": url },
           inLanguage: "en",
           isPartOf: [
@@ -133,12 +154,18 @@ export default async function AnswerPageRoute({
               "@id": `${SITE_ORIGIN}/topics/${t.slug}#topic`,
             })),
           ],
-          ...(parentTopics.length > 0 && {
-            about: parentTopics.map((t) => ({
-              "@type": "Thing",
-              "@id": `${SITE_ORIGIN}/topics/${t.slug}#thing`,
-              name: t.title,
-              url: `${SITE_ORIGIN}/topics/${t.slug}`,
+          ...(articleAbout.length > 0 && { about: articleAbout }),
+          ...(answer.sources && answer.sources.length > 0 && {
+            citation: answer.sources.map((source) => ({
+              "@type": "CreativeWork",
+              name: source.name,
+              url: source.url,
+              ...(source.publisher && {
+                publisher: {
+                  "@type": "Organization",
+                  name: source.publisher,
+                },
+              }),
             })),
           }),
           speakable: {
@@ -148,6 +175,25 @@ export default async function AnswerPageRoute({
           ...(mentions.length > 0 && { mentions }),
         }}
       />
+
+      {answer.definedTerm && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "DefinedTerm",
+            "@id": `${url}#defined-term`,
+            name: answer.definedTerm.name,
+            ...(answer.definedTerm.alternateName && {
+              alternateName: answer.definedTerm.alternateName,
+            }),
+            description: answer.definedTerm.description,
+            url,
+            inDefinedTermSet: {
+              "@id": `${SITE_ORIGIN}/glossary#termset`,
+            },
+          }}
+        />
+      )}
 
       {/* FAQPage — the on-page FAQ accordion mirrors this exactly. */}
       {answer.faq.length > 0 && (

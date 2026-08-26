@@ -88,6 +88,8 @@ const CURATED: string[] = [
   `https://${HOST}/podcast/tdf-stage-19-take-a-bow-sam-bennett`,
   `https://${HOST}/podcast/tdf-stage-21-sam-bennett-has-made-history`,
   `https://${HOST}/podcast/the-mystery-around-sam-bennett-and-la-tour-de-france`,
+  `https://${HOST}/answers/what-is-a-domestique`,
+  `https://${HOST}/glossary/domestique`,
   `https://${HOST}/guests/jonas-abrahamsen`,
   `https://${HOST}/experts/jonas-abrahamsen`,
   `https://${HOST}/podcast/ep-29-untold-story-ofjonas-abrahamsens-pro-winter-training`,
