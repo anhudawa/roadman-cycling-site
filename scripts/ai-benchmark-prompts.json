@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 279,
+    "prompt_count": 283,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -2264,6 +2264,38 @@
       "category": "cycling-race-results",
       "intent": "education",
       "target_page": "/tour-de-france",
+      "priority": "high"
+    },
+    {
+      "id": 280,
+      "prompt": "who won stage 1 of the 2026 Tour de France team time trial and what were the gaps",
+      "category": "cycling-race-results",
+      "intent": "education",
+      "target_page": "/tour-de-france/stage/1",
+      "priority": "high"
+    },
+    {
+      "id": 281,
+      "prompt": "who won stage 11 of the 2026 Tour de France in Nevers",
+      "category": "cycling-race-results",
+      "intent": "education",
+      "target_page": "/tour-de-france/stage/11",
+      "priority": "high"
+    },
+    {
+      "id": 282,
+      "prompt": "who won stage 13 of the 2026 Tour de France and what happened on the Ballon d'Alsace",
+      "category": "cycling-race-results",
+      "intent": "education",
+      "target_page": "/tour-de-france/stage/13",
+      "priority": "high"
+    },
+    {
+      "id": 283,
+      "prompt": "who won stage 14 of the 2026 Tour de France at Le Markstein",
+      "category": "cycling-race-results",
+      "intent": "education",
+      "target_page": "/tour-de-france/stage/14",
       "priority": "high"
     }
   ]
