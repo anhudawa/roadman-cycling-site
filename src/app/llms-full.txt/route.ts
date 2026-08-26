@@ -140,6 +140,14 @@ export async function GET() {
       ],
     },
     {
+      category: "Tour de France 2026 final results",
+      lines: [
+        `${BASE_URL}/tour-de-france — Canonical final-result owner: Tadej Pogačar won in 73:56:26, 6:26 ahead of Remco Evenepoel; Isaac del Toro finished third; includes the final top ten, jersey winners, Stage 21 result, all 21 stage pages and official Tour sources.`,
+        `${BASE_URL}/blog/tour-de-france-2026-route-what-it-means-for-you — Distinct route-and-training lesson owner, not the final result page.`,
+        `${BASE_URL}/blog/tdf-2026-contenders-preparation-lessons — Distinct Pogačar preparation owner, not the broad final result page.`,
+      ],
+    },
+    {
       category: "Commercial intent — coaching",
       lines: [
         `${BASE_URL}/coaching — Canonical Roadman online cycling coach service: personalised TrainingPeaks plan, weekly review and group coaching, ${OFFER_TIERS.notDoneYet.pricing.display}.`,

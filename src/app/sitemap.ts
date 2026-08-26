@@ -239,7 +239,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     // Tour de France 2026 overlay — hub + all 21 stage pages. Time-boxed
     // facade, but the stage pages are evergreen route references worth
     // indexing through the race window.
-    { url: `${BASE_URL}/tour-de-france`, lastModified: new Date("2026-06-10"), changeFrequency: "daily", priority: 0.85 },
+    { url: `${BASE_URL}/tour-de-france`, lastModified: new Date("2026-08-26"), changeFrequency: "monthly", priority: 0.9 },
     ...TOUR_STAGES.map((s) => ({
       url: `${BASE_URL}/tour-de-france/stage/${s.number}`,
       lastModified: new Date(s.result?.lastReviewed ?? "2026-06-10"),

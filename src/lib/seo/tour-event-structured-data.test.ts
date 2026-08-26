@@ -12,6 +12,9 @@ describe("Tour de France Event structured data", () => {
 
   it("gives the parent Tour event a stable graph identifier", () => {
     expect(hub).toContain('"@id": `${URL}#event`');
+    expect(hub).toContain(
+      'eventStatus: "https://schema.org/EventCompleted"',
+    );
   });
 
   it("references the parent without emitting a second incomplete Event", () => {

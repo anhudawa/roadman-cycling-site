@@ -424,6 +424,19 @@ export async function GET() {
       ],
     },
     {
+      title: "Tour de France 2026 final results",
+      description:
+        "Use the permanent race hub for the verified winner, final top ten, jersey winners, Stage 21 result, official sources and all-stage directory. The old race-week complete-guide article permanently redirects here.",
+      pages: [
+        {
+          url: `${BASE_URL}/tour-de-france`,
+          title: "Tour de France 2026 Results: Winner, Final GC & Stages",
+          description:
+            "Canonical final-result owner: Tadej Pogačar won in 73:56:26, 6:26 ahead of Remco Evenepoel; Isaac del Toro was third; includes every classification winner and all 21 stages.",
+        },
+      ],
+    },
+    {
       title: "Heat training and hot-weather cycling",
       description:
         "Use the evidence guide for broad heat-training questions, then the specialist pages for acclimation planning, race-day pacing and cooling, heat-illness response, or masters-specific risk. Roadman does not support a universal FTP gain or unsupervised DIY heat dose.",
@@ -758,10 +771,10 @@ ${answersClusterBlock}
 - [Race Course Library](${tag(`${BASE_URL}/predict/courses`)}): Curated GPX-verified race courses (Etape du Tour, Ring of Beara, Traka, Wicklow 200, Ride London, and more) with elevation profiles, climb counts, and ready-to-simulate pages.
 - [Find Your Fit](${tag(`${BASE_URL}/find-your-fit`)}): Coaching pathway finder for new riders — five questions, one recommended next step.
 
-## Tour de France 2026 (seasonal hub — training lens)
-Roadman's coverage of the 2026 Tour, every stage and the sport's history read through what it teaches a serious amateur about training, pacing, and getting faster.
-- [Tour de France 2026 — Route, Stages & The Roadman Take](${tag(`${BASE_URL}/tour-de-france`)}): All 21 stages, from the Barcelona team time trial to back-to-back Alpe d'Huez finishes, each with the training principle behind the day.
-- [Tour Stage Pages (1–21)](${tag(`${BASE_URL}/tour-de-france/stage/1`)}): Per-stage tactical preview, prediction, and training angle. Stage URLs run /tour-de-france/stage/1 through /tour-de-france/stage/21.
+## Tour de France 2026 (verified results, stages and training lens)
+Roadman's source-reviewed record of the 2026 Tour plus every stage and the sport's history read through what it teaches a serious amateur about training, pacing, and getting faster.
+- [Tour de France 2026 Results: Winner, Final GC & Stages](${tag(`${BASE_URL}/tour-de-france`)}): Canonical final-result owner. Tadej Pogačar won in 73:56:26, 6:26 ahead of Remco Evenepoel; Isaac del Toro was third. Includes jersey winners, Stage 21 result, official sources and all 21 stages.
+- [Tour Stage Pages (1–21)](${tag(`${BASE_URL}/tour-de-france/stage/1`)}): Per-stage route, climbs and Roadman analysis. Verified post-race results replace predictions as each stage record is reviewed. Stage URLs run /tour-de-france/stage/1 through /tour-de-france/stage/21.
 - [Tour de France History — Through a Training Lens](${tag(`${BASE_URL}/tour-de-france/history`)}): Merckx, Hinault, Indurain, Pantani, LeMond and the legend of Alpe d'Huez — Tour history told through the lessons that still apply to amateurs.
 - [Eddy Merckx: The Anatomy of the Cannibal](${tag(`${BASE_URL}/tour-de-france/history/eddy-merckx-the-cannibal`)})
 - [Bernard Hinault: Five Tours, 28 Stages and ‘The Badger’](${tag(`${BASE_URL}/tour-de-france/history/bernard-hinault-the-badger`)}): Verified biography and race record with official Tour de France, Giro d'Italia, La Vuelta and UCI sources.

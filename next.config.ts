@@ -102,6 +102,14 @@ const nextConfig: NextConfig = {
           "/blog/benji-naesen-imposter-syndrome-cycling-weight-loss",
         permanent: true,
       },
+      // The permanent race hub now owns the broad Tour de France 2026 result,
+      // route and stage-directory intent. Retire the stale race-week preview
+      // so its links and query history consolidate on one verified owner.
+      {
+        source: "/blog/tour-de-france-2026-complete-guide",
+        destination: "/tour-de-france",
+        permanent: true,
+      },
       // Google already prefers cycling-strength-training-guide for the broad
       // query. Retire the later near-duplicate so links and ranking history
       // consolidate on the established evidence-bounded owner.
