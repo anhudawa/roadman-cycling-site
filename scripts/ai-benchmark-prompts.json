@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 226,
+    "prompt_count": 227,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -1834,6 +1834,14 @@
       "category": "cycling-history",
       "intent": "education",
       "target_page": "/tour-de-france/history/bernard-hinault-the-badger",
+      "priority": "high"
+    },
+    {
+      "id": 227,
+      "prompt": "who is Greg LeMond and what happened in his 1989 Tour de France comeback",
+      "category": "cycling-history",
+      "intent": "education",
+      "target_page": "/blog/greg-lemond-interview-roadman-podcast",
       "priority": "high"
     }
   ]

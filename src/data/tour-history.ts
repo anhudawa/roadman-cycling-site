@@ -273,20 +273,42 @@ Chasing extreme leanness, under-fuelling to hit a climbing weight, is how amateu
   {
     slug: "greg-lemond-eight-seconds",
     title: "Greg LeMond, 8 Seconds, and the First Marginal Gain",
-    dek: "Shot, written off, and back to win the closest Tour ever — by a margin he found on a set of handlebars. LeMond's 1989 is the original aerodynamics story, and a masterclass in Not Done Yet.",
+    seoTitle: "Greg LeMond 1989 Tour: The 8-Second Win",
+    dek: "Shot, written off, and back to win the closest Tour ever. LeMond's final time trial is the original aerodynamics story — and a reminder that equipment never replaces the ride.",
+    seoDescription: "How Greg LeMond overturned 50 seconds in the 1989 Tour's final time trial and won by eight seconds, with the official race record and aero context.",
     eyebrow: "THE GREATS",
     tag: "LeMond · 1986–1990",
     readMinutes: 7,
     published: "2026-06-11",
-    body: `Two years before the most famous time trial in cycling history, Greg LeMond was lying in a field with around three dozen shotgun pellets in his body, some of them lodged near the lining of his heart. A hunting accident in 1987 nearly killed the man who, in 1986, had become the first rider from outside Europe to win the Tour de France. The comeback that followed is the reason his name belongs in any conversation about getting faster — and about refusing to accept that your best days are behind you.
+    updated: "2026-08-26",
+    lastReviewed: "26 August 2026",
+    reviewedBy: "Roadman Cycling editorial team against official Tour de France and UCI records",
+    sources: [
+      {
+        name: "Tour de France — the 1989 final time trial",
+        url: "https://www.letour.fr/fr/actus/2024/arrivee-finale-arrivee-capitale-champs-elysees-la-plus-belle-pour-aller-sprinter-iv-iv/1316966",
+        scope: "The 50-second deficit, aero bars and eight-second final margin",
+      },
+      {
+        name: "UCI — non-European Tour de France winners",
+        url: "https://www.uci.org/article/tour-de-france-the-non-european-winners-from-lemond-to-bernal/1mjHBbIXYrRXuzHxywGK5G",
+        scope: "LeMond's 1986, 1989 and 1990 Tour victories",
+      },
+      {
+        name: "Roadman Cycling — Greg LeMond biography and interview guide",
+        url: "https://roadmancycling.com/blog/greg-lemond-interview-roadman-podcast",
+        scope: "The broader source-checked biography and first-person interview archive",
+      },
+    ],
+    body: `Two years before the most famous time trial in cycling history, Greg LeMond survived a life-threatening hunting accident in California. The rider who had become the first non-European Tour de France winner in 1986 missed the next two editions. The comeback that followed is the reason his name belongs in any conversation about getting faster — and about refusing to accept that your best days are behind you.
 
 In 1989 LeMond arrived at the final stage of the Tour, a short individual time trial from Versailles into Paris, fifty seconds down on Laurent Fignon. Fifty seconds, over a course that short, was supposed to be uncatchable. Everyone said so.
 
 ## The handlebars
 
-LeMond did two things differently. He used a set of triathlon aero bars — clip-on extensions that let him stretch out low and narrow over the front of the bike — and an aerodynamic helmet. Fignon rode in a traditional position, on traditional bars, his ponytail loose in the wind. The clock did the rest. LeMond took back fifty-eight seconds in around twenty-five kilometres and won the Tour de France by eight. It remains the closest finish in the race's history.
+LeMond did two things differently. He used a set of triathlon aero bars — clip-on extensions that let him stretch out low and narrow over the front of the bike — and an aerodynamic helmet. Fignon rode in a traditional position on traditional bars. The clock did the rest. LeMond took back fifty-eight seconds over 24.5 kilometres and won the Tour de France by eight. It remains the closest finish in the race's history.
 
-That is the original marginal-gains story, decades before the phrase existed. On flat ground at speed, the single biggest force a rider fights is air resistance — the great majority of your effort goes into pushing a hole through the air. Position matters more than almost anything else, because a lower, narrower frontal area is free speed: the same watts, a faster bike. LeMond did not out-power Fignon that day. He out-shaped him.
+That is the original marginal-gains story, decades before the phrase existed. On flat ground at speed, air resistance is the dominant opposing force. Position matters because reducing frontal area and drag can turn the same power into more speed. The official result proves that LeMond produced the faster ride; it does not let us assign a precise number of seconds to the bars, helmet, pacing or physiology in isolation.
 
 The modern obsessives have only refined the point. The riders and coaches who treat aerodynamics as the highest-return investment in flat-and-rolling performance are LeMond's direct descendants. For an amateur, the order of operations is the same: get the position right before you spend on anything else, because watts are expensive and aero is, comparatively, cheap.
 
@@ -294,11 +316,11 @@ The modern obsessives have only refined the point. The riders and coaches who tr
 
 There is a reason LeMond's story sits naturally inside the Roadman frame. He was written off — too injured, too far back, too late — and he came back anyway, twice. From the gunshot to the 1989 win. From fifty seconds down to eight seconds up. The whole ethos of refusing to accept that the window has closed has a face, and it is his.
 
-So take the literal lesson and the larger one together. Get aero — it is the cheapest speed you will ever buy. And the next time someone tells you the best is behind you, remember a man with pellets near his heart, on a borrowed idea of handlebars, winning the Tour de France by the length of a sprint.`,
+So take the literal lesson and the larger one together. Test your position before buying speed, and remember that equipment only works when the rider can produce the effort. For LeMond's full career record, accident account and Roadman interview archive, read the [source-checked Greg LeMond biography](/blog/greg-lemond-interview-roadman-podcast).`,
     related: [
+      { label: "Greg LeMond biography and Roadman interview", href: "/blog/greg-lemond-interview-roadman-podcast" },
       { label: "Race Predictor — model your time trial", href: "/predict" },
       { label: "Against the Clock", href: "/entity/against-the-clock" },
-      { label: "Cycling time trial tips", href: "/blog/cycling-time-trial-tips" },
     ],
   },
   {
