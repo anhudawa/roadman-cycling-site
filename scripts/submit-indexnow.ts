@@ -267,6 +267,7 @@ const COACHING_CLUSTER = [
   "how-to-structure-cycling-training-plan",
   "power-meter-training-plan-week-by-week",
   "cycling-interval-training-beginners",
+  "cycling-vo2max-intervals",
 ];
 
 // Indexed pages freshness-stamped after the canonical coaching-offer audit.
@@ -289,7 +290,6 @@ const COACHING_OFFER_TRUST_CLUSTER = [
   "cycling-coaching-results-before-and-after",
   "cycling-coaching-testimonials",
   "cycling-training-plan-masters-over-40",
-  "cycling-vo2max-intervals",
   "how-much-does-online-cycling-coach-cost-2026",
   "masters-cycling-training-report-2026",
   "menopause-cycling-performance",

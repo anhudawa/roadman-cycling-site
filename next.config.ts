@@ -348,6 +348,11 @@ const nextConfig: NextConfig = {
       // Consolidate the later, weaker interval-design explainer into the
       // established broad owner while preserving its links and search history.
       { source: "/blog/cycling-interval-sessions-complete-guide", destination: "/blog/cycling-interval-training-beginners", permanent: true },
+      // Consolidate three broad VO2max-interval answers into the established
+      // ranking owner; Zone 5, masters, diagnostic and measurement jobs remain.
+      { source: "/blog/cycling-vo2max-intervals-complete-guide", destination: "/blog/cycling-vo2max-intervals", permanent: true },
+      { source: "/blog/vo2max-intervals-cycling-session-guide", destination: "/blog/cycling-vo2max-intervals", permanent: true },
+      { source: "/answers/how-to-do-vo2-max-intervals", destination: "/blog/cycling-vo2max-intervals", permanent: true },
       // Consolidate duplicate tyre-pressure explainers into the established guide.
       { source: "/blog/tyre-pressure-cycling-complete-guide", destination: "/blog/cycling-tyre-pressure-guide", permanent: true },
       { source: "/answers/best-tyre-pressure-road-cycling", destination: "/blog/cycling-tyre-pressure-guide", permanent: true },

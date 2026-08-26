@@ -34,8 +34,8 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
   {
     slug: "vo2max",
     term: "VO2max",
-    definition: "The maximum rate at which the body can consume oxygen during intense exercise. A key determinant of endurance cycling performance, typically measured in ml/kg/min.",
-    extendedDefinition: "VO2max sets the ceiling for aerobic power production. Trained male cyclists typically range from 50-70 ml/kg/min; elite World Tour riders reach 80-90+. While partly genetic, VO2max is trainable through high-intensity interval work — particularly 3-8 minute efforts at 106-120% of FTP. Prof. Seiler's research shows that the polarised model (80% easy, 20% hard) is the most effective distribution for improving VO2max over time.",
+    definition: "The highest rate at which the body can take in, transport and use oxygen during an incremental test. It is usually expressed relative to body mass in mL/kg/min or as an absolute rate in L/min.",
+    extendedDefinition: "Laboratory respiratory-gas analysis measures VO2max directly; watches and field tests estimate it. VO2max is an important contributor to endurance performance, but threshold, cycling efficiency, anaerobic contribution and durability also matter. It can respond to several training approaches, and the size of the response varies between riders. No single interval protocol or intensity distribution is universally best.",
     pillar: "coaching",
     relatedTerms: ["ftp", "lactate-threshold", "polarised-training"],
     relatedArticle: "/blog/cycling-vo2max-intervals",

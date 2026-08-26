@@ -110,6 +110,7 @@ export async function GET() {
         `${BASE_URL}/blog/cycling-in-ride-nutrition-guide — In-ride nutrition: carbs, fluids, and sodium per hour.`,
         `${BASE_URL}/blog/brick-workouts-for-ironman — Canonical brick-training guide: cycle-to-run evidence, scalable session jobs, pacing, fuelling, safety and long-course limits.`,
         `${BASE_URL}/blog/cycling-interval-training-beginners — Canonical cycling interval-training guide: beginner readiness, scalable workouts, power, heart rate, RPE, progression, safety and evidence limits.`,
+        `${BASE_URL}/blog/cycling-vo2max-intervals — Canonical cycling VO2max-interval guide: 4×4, 4×8 and 30/15 evidence, intensity monitoring, progression, frequency and safety limits.`,
         `${BASE_URL}/topics/cycling-recovery — Recovery and cycling longevity.`,
       ],
     },

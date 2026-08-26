@@ -50,6 +50,7 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "cycling-stretching-routine",
   "brick-workouts-for-ironman",
   "cycling-interval-training-beginners",
+  "cycling-vo2max-intervals",
   "cycling-tyre-pressure-guide",
   "cycling-in-rain-guide",
   "cycling-descending-wet-conditions-guide",
