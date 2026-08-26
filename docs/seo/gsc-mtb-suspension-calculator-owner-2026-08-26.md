@@ -141,3 +141,21 @@ Post-release comparisons against the 24 August baseline:
 Success means preserving the strong exact-query positions while improving
 CTR and coverage for the broader FOX, RockShox, setup and sag query families.
 No conclusion should be drawn from the first few days of recrawl volatility.
+
+## Release verification — 26 August 2026
+
+- Merged in PR #233 as production commit `2b17195b`.
+- Vercel marked the production deployment `dpl_3qt4R2FsxNVgFckKwaQ1FvQ6qpGd`
+  ready and attached it to the production aliases.
+- Production returned HTTP 200 with the new canonical title and schema graph for
+  the calculator and both retained guides.
+- The retired mixed guide returned HTTP 308 to
+  `/blog/mtb-suspension-setup-complete-guide`.
+- Live interaction returned 93 PSI and 34 mm fork sag plus 170 PSI and 16.5 mm
+  rear sag for the 77 kg body / 3 kg kit example.
+- The live FOX 38 profile rejected 190 mm travel against its 130–180 mm boundary
+  and accepted the published 54 kg metric chart edge at 72 PSI.
+- IndexNow accepted the 372-URL curated discovery submission with HTTP 200.
+- Read-only Google URL Inspection reported the calculator, full-system guide and
+  fork guide as “URL is on Google”, indexed, served over HTTPS and with a valid
+  breadcrumb item. No manual indexing request was triggered.

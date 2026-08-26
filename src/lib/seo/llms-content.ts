@@ -42,6 +42,7 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "aero-vs-weight-cyclist",
   "tubeless-vs-clincher-tyres",
   "cycling-over-40-complete-guide",
+  "masters-cyclist-guide-getting-faster-after-40",
   "cycling-training-plan-masters-over-40",
   "masters-cycling-training-plan-over-40",
   "polarised-training-cycling-complete-guide",

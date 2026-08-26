@@ -312,12 +312,18 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   },
   {
     slug: "masters-cycling",
-    title: "Masters Cycling — Training, Recovery & Performance After 40",
-    headline: "MASTERS CYCLING AFTER 40",
+    title: "Masters Cycling Guide Library — Training After 40",
+    headline: "MASTERS CYCLING GUIDE LIBRARY",
     ctaHeadline: "COACHING BUILT FOR THE OVER-40 RIDER.",
     description:
-      "Masters cycling done right: how to train, recover, lift and fuel after 40 so you keep getting faster. Built for the serious amateur the whole Roadman method is designed around.",
+      "A routed library of Roadman's reviewed masters cycling guides, tools and podcast resources. Use /masters for the canonical evidence layer, then choose the narrow page for a weekly schedule, 12-week plan, plateau, recovery, strength, nutrition or racing question.",
     pillar: "coaching",
+    lastReviewed: "2026-08-26",
+    reviewedBy: {
+      name: "Anthony Walsh",
+      role: "Cycling Coach & Podcast Host",
+      href: "/author/anthony-walsh",
+    },
     keywords: [
       "masters cycling",
       "cycling after 40",
@@ -2287,37 +2293,63 @@ const TOPIC_ENRICHMENT: Record<string, {
     ],
     claimsHeading: "THE MASTERS TRAINING POSITION",
     claimsCaption:
-      "The recurring conclusions across Roadman's masters interviews, published research and coached-athlete practice — graded by evidence strength.",
+      "What the current research can support—and what this guide library will not infer from age alone.",
     citedClaims: [
       {
-        claim: "Performance decline after 40 is trainable, not fixed",
+        claim: "Ageing changes the context, not one fixed decline rate",
         roadmanPosition:
-          "Age changes the recovery budget before it removes the ability to improve. Trained masters riders can still raise power, durability and race performance with the right stimulus.",
+          "Aerobic capacity can decline with age, but published masters-athlete trajectories vary widely and a cohort average cannot forecast one rider.",
         evidenceSource:
-          "Published masters-athlete research plus Roadman conversations with Andy Galpin, Joe Friel and David Lipman.",
+          "An eight-year study followed 15 male masters athletes and 14 sedentary men; a 2022 review reported longitudinal masters-athlete estimates from 5% to 46% per decade.",
         practicalImplication:
-          "Keep an annual thread of high-intensity work and judge progress against age-appropriate trends, not younger-rider norms.",
-        evidenceLevel: "strong",
-      },
-      {
-        claim: "Hard-session spacing matters more with age",
-        roadmanPosition:
-          "Most masters riders need 48–72 hours between demanding sessions. Adding another medium-hard day usually reduces adaptation rather than accelerating it.",
-        evidenceSource:
-          "Convergent coaching practice across Friel, Seiler and Roadman masters cases; supported by age-related recovery research.",
-        practicalImplication:
-          "Cap most weeks at two hard bike sessions and add recovery before adding volume or intensity.",
+          "Use repeatable field tests and the rider's own training history rather than subtracting a fixed percentage from future performance.",
         evidenceLevel: "moderate",
       },
       {
-        claim: "Strength training is a core masters intervention",
+        claim: "No universal hard-session spacing is established",
         roadmanPosition:
-          "Heavy, progressive strength work helps defend force, lean mass and fast-twitch capacity that endurance riding alone does not preserve well.",
+          "Extra space may be useful, but age alone does not prescribe 48–72 hours or a fixed number of demanding sessions.",
         evidenceSource:
-          "Cycling strength-training studies and Roadman interviews with Andy Galpin and Derek Teel.",
+          "A review of ageing and recovery found plausible mechanisms alongside limited athlete-specific evidence, activity confounding and few normal-training studies.",
         practicalImplication:
-          "Lift twice weekly in the build phase and retain one maintenance session during the riding season.",
-        evidenceLevel: "strong",
+          "Repeat or postpone quality from execution, unusual symptoms, soreness, sleep, mood and life stress compared with the rider's baseline.",
+        evidenceLevel: "emerging",
+      },
+      {
+        claim: "Strength can help without proving one over-40 programme",
+        roadmanPosition:
+          "Progressive strength can improve some adult-cyclist outcomes, but the dose must account for competence, injury and medical context, equipment and total load.",
+        evidenceSource:
+          "A 2025 meta-analysis of 17 studies and 262 adult cyclists found benefits for some outcomes, no VO2max effect and low-certainty evidence; it did not establish an over-40 subgroup programme.",
+        practicalImplication:
+          "Start with a tolerable exposure and change the bike week if strength quality or recovery deteriorates.",
+        evidenceLevel: "moderate",
+      },
+    ],
+    sources: [
+      {
+        title: "Rogers et al. — eight-year VO2max change in masters athletes (PMID 2361923)",
+        href: "https://pubmed.ncbi.nlm.nih.gov/2361923/",
+      },
+      {
+        title: "Longitudinal masters-athlete aerobic-capacity review (PMID 36078762)",
+        href: "https://pubmed.ncbi.nlm.nih.gov/36078762/",
+      },
+      {
+        title: "Recovery and performance in masters athletes review (PMID 18268815)",
+        href: "https://pubmed.ncbi.nlm.nih.gov/18268815/",
+      },
+      {
+        title: "Training-intensity distribution network meta-analysis (PMID 39888556)",
+        href: "https://pubmed.ncbi.nlm.nih.gov/39888556/",
+      },
+      {
+        title: "Heavy strength training in cyclists meta-analysis (PMID 40632222)",
+        href: "https://pubmed.ncbi.nlm.nih.gov/40632222/",
+      },
+      {
+        title: "Protein in masters athletes scoping review (PMID 39940356)",
+        href: "https://pubmed.ncbi.nlm.nih.gov/39940356/",
       },
     ],
   },
@@ -2992,22 +3024,22 @@ const TOPIC_FAQS: Record<string, TopicFAQ[]> = {
     {
       question: "Can you still get faster cycling after 40?",
       answer:
-        "Yes. Some decline in VO2 max and fast-twitch power is real, but it's slower than most riders fear, and the gap between an untrained and a well-trained masters rider is enormous. Train your easy days easy, ration your hard sessions, lift twice a week and protect recovery, and most riders over 40 keep setting personal bests for years.",
+        "Improvement remains possible, especially when training becomes more consistent or better matched to the event, but no page can promise an outcome. Compare like-for-like tests and event performance with your own history instead of applying one population decline rate.",
     },
     {
       question: "What changes most about training after 40?",
       answer:
-        "Recovery. It slows with age, which is the one change that reshapes the whole plan. The fix isn't training harder — it's training easier most of the time, going hard a small and deliberate amount, and treating recovery as part of the training rather than the absence of it.",
+        "Ageing can affect aerobic capacity, muscle function, health context and recovery, but the size and timing vary by rider. Build the plan from the event, history, available time, current health and response to recent load rather than naming one universal change.",
     },
     {
       question: "Should masters cyclists do strength training?",
       answer:
-        "It's close to non-negotiable. Lifting is the most effective tool for holding onto the muscle, power and bone density that age otherwise erodes, and research shows heavy strength work beats simply riding more for older riders. Two sessions a week is the sweet spot, dropping to one in-season.",
+        "Progressive strength can improve some outcomes in adult cyclists, but current evidence is low certainty and does not establish one over-40 programme. Choose the exercise, load and frequency from competence, injury and medical context, equipment and total training load.",
     },
     {
       question: "How much should masters cyclists rest between hard sessions?",
       answer:
-        "More than they think. Most masters riders do best with one or two quality sessions a week and everything else easy, plus a reduced-volume week every third or fourth week. The recurring mistake is filling the gaps with comfortably-hard riding that costs recovery without delivering adaptation.",
+        "There is no age-only interval. Start conservatively, then repeat or postpone demanding work from session execution, unusual symptoms, soreness, sleep, mood and life stress compared with the rider's own baseline; seek medical advice for concerning or persistent symptoms.",
     },
   ],
   "ftp-training": [

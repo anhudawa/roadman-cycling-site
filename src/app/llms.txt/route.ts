@@ -210,13 +210,25 @@ export async function GET() {
     {
       title: "Masters cyclist queries (35+)",
       description:
-        "Use /masters for broad masters-cycling questions and evidence boundaries. Use the child pages only for their narrower benchmark, weekly-schedule, 12-week-plan, strength or comeback jobs; age alone does not select a prescription.",
+        "Use /masters for broad masters-cycling questions and evidence boundaries. Use the child pages only for their narrower whole-rider overview, plateau audit, benchmark, weekly-schedule, 12-week-plan, strength or comeback jobs; age alone does not select a prescription.",
       pages: [
         {
           url: `${BASE_URL}/masters`,
           title: "Masters Cycling Training",
           description:
             "Canonical reviewed hub separating primary research, expert interviews and practical starting points, including limits on fixed VO2max decline, a 48-to-72-hour recovery rule, universal 80/20, strength and protein claims.",
+        },
+        {
+          url: `${BASE_URL}/blog/cycling-over-40-complete-guide`,
+          title: "Cycling Over 40 Orientation Guide",
+          description:
+            "Whole-rider overview across training, recovery, strength, fuelling, health context, bike fit and community; not a weekly or 12-week prescription.",
+        },
+        {
+          url: `${BASE_URL}/blog/masters-cyclist-guide-getting-faster-after-40`,
+          title: "Masters Cycling Plateau Decision Framework",
+          description:
+            "Four-week plateau-audit intent: verify the performance signal, audit absorption, test one limiting input and keep medical red flags outside coaching.",
         },
         {
           url: `${BASE_URL}/blog/cycling-training-plan-masters-over-40`,
