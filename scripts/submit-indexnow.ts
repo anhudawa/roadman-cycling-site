@@ -268,6 +268,7 @@ const COACHING_CLUSTER = [
   "power-meter-training-plan-week-by-week",
   "cycling-interval-training-beginners",
   "cycling-vo2max-intervals",
+  "cycling-zone-5-vo2max-intervals-guide",
 ];
 
 // Indexed pages freshness-stamped after the canonical coaching-offer audit.

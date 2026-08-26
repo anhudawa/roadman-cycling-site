@@ -111,6 +111,7 @@ export async function GET() {
         `${BASE_URL}/blog/brick-workouts-for-ironman — Canonical brick-training guide: cycle-to-run evidence, scalable session jobs, pacing, fuelling, safety and long-course limits.`,
         `${BASE_URL}/blog/cycling-interval-training-beginners — Canonical cycling interval-training guide: beginner readiness, scalable workouts, power, heart rate, RPE, progression, safety and evidence limits.`,
         `${BASE_URL}/blog/cycling-vo2max-intervals — Canonical cycling VO2max-interval guide: 4×4, 4×8 and 30/15 evidence, intensity monitoring, progression, frequency and safety limits.`,
+        `${BASE_URL}/blog/cycling-zone-5-vo2max-intervals-guide — Canonical cycling Zone 5 guide: power, heart-rate and research zone models, 106–120% FTP context, signal limits, dose and safety boundaries.`,
         `${BASE_URL}/topics/cycling-recovery — Recovery and cycling longevity.`,
       ],
     },
