@@ -196,7 +196,7 @@ const KNOWN_CREDENTIALS: Record<string, string> = {
   "Joe Friel": "Author of The Cyclist's Training Bible",
   "John Archibald": "British track cyclist, pursuit specialist",
   "John Wakefield": "Director of Coaching & Sports Science, Red Bull–Bora–Hansgrohe",
-  "Jonas Abrahamsen": "Uno-X pro cyclist, KOM jersey holder",
+  "Jonas Abrahamsen": "Uno-X Mobility rider and 2025 Tour de France stage winner",
   "Josh Amberger": "Professional Ironman triathlete",
   "Lachlan Morton": "EF Education pro cyclist, alt-racing pioneer",
   "Lael Wilcox": "Ultra-endurance cyclist, Trans Am and Tour Divide record holder",

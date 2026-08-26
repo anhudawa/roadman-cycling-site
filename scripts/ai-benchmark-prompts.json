@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 229,
+    "prompt_count": 230,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -1858,6 +1858,14 @@
       "category": "cycling-history",
       "intent": "education",
       "target_page": "/guests/tyler-hamilton",
+      "priority": "high"
+    },
+    {
+      "id": 230,
+      "prompt": "who is Jonas Abrahamsen and how did gaining 18kg change his cycling performance",
+      "category": "cycling-training",
+      "intent": "education",
+      "target_page": "/podcast/ep-29-untold-story-ofjonas-abrahamsens-pro-winter-training",
       "priority": "high"
     }
   ]
