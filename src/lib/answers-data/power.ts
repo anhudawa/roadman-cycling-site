@@ -171,7 +171,7 @@ export const powerAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "The five fixable climbing mistakes episode is one of the most-listened on the podcast, and the answer that surprises people most is always the same: pacing. Not power. Not weight. The single biggest climbing error for amateurs is going out too hard in the first 90 seconds because the group surged, or because the bottom felt easy enough. That deficit never fully recovers on a long climb.",
-      "After pacing, the levers are power-to-weight ratio — the fraction that determines climbing speed more than any other number. Andrew Feather, the amateur who beat Pogacar at his own challenge, has talked about the discipline of knowing his sustainable climbing power and never exceeding it. Jack Burke, the world's fastest hill climber, attributes his Stravă KOMs to years of targeted power-to-weight work, not simply riding more.",
+      "After pacing, the levers include power-to-weight ratio. Andrew Feather, a four-time UK National Hill-Climb Champion, described riding to his own power during the pursuit-format 2025 Pogi Challenge rather than changing pace around the expected catch. Jack Burke attributes his climbing results to years of targeted power-to-weight work, not simply riding more.",
       "Position matters too — an overly upright rider wastes energy fighting the air even on steep pitches. A slight forward lean, hands on the tops or hoods, lets the glutes and quads do the work without the core leaking power. It's not glamorous, but it's free.",
     ],
     expertEvidence: [
@@ -185,7 +185,7 @@ export const powerAnswers: AnswerPage[] = [
       },
       {
         name: "Andrew Feather",
-        credential: "Amateur cyclist who beat Pogačar at the Pogi Challenge",
+        credential: "Four-time UK National Hill-Climb Champion",
         insight:
           "Knowing your sustainable climbing power and sticking to it — even when others surge — is the discipline most amateurs haven't built. Pacing discipline on the first third of a climb is where most amateur climbing races are won or lost.",
         episodeSlug: "ep-24-i-asked-a-40-year-old-amateur-how-he-beat-pogacar",
@@ -2585,7 +2585,7 @@ export const powerAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "This is one of the most common and most fixable problems on any hilly route. You feel great on the first climb, strong on the second, and by the fourth or fifth you're crawling, watching wheels drift away, convinced you're just not fit enough. Here's what nobody tells you: the fade on the late climbs was usually caused by what you did on the early ones. You spent power you couldn't afford when it felt easy.",
-      "Andrew Feather, the amateur hill-climb champion who beat Pogačar at his own challenge, has talked about exactly this discipline — knowing your sustainable climbing power and refusing to exceed it, even when the legs feel good and the group surges. The riders who hold power across repeated climbs aren't the ones who go hardest early. They're the ones who pace every climb to the same number, so the last one is no worse than the first. It's counterintuitive and it's where most amateur climbing days are lost.",
+      "Andrew Feather, a four-time UK National Hill-Climb Champion, has described the discipline of riding to his own power rather than reacting to an expected catch. Across repeated climbs, the useful principle is to protect the power you need later instead of overspending it early. That does not mean every climb should use one fixed number: duration, gradient, drafting and race tactics still change the best pacing plan.",
       "There's a mechanism underneath it that Alex Welburn's critical-power work makes concrete: every climb above your sustainable ceiling draws down a finite anaerobic battery that only recharges on the descents and flats. Overcook climbs one and two and the battery's empty before the climb that matters. Dan Lorang's World Tour framing rounds it out — fuel matters as much as pacing, because a depleted rider can't refill the battery at all. The fade isn't a fitness verdict. It's a pacing-and-fuelling problem you can fix this month.",
     ],
     expertEvidence: [
