@@ -55,6 +55,32 @@ export interface StageResult {
   topThree: [StageFinisher, StageFinisher, StageFinisher];
 }
 
+export interface TourClassificationWinner {
+  classification: string;
+  winner: string;
+  team: string;
+}
+
+export interface TourFinalResult {
+  winner: string;
+  winnerTeam: string;
+  winningTime: string;
+  winningMargin: string;
+  titleCount: number;
+  officialDistanceKm: number;
+  podium: [GCRider, GCRider, GCRider];
+  classificationWinners: TourClassificationWinner[];
+  finalStage: {
+    winner: string;
+    team: string;
+    runnerUp: string;
+    third: string;
+    summary: string;
+  };
+  sources: Array<{ label: string; href: string }>;
+  lastReviewed: string;
+}
+
 // ──────────────────────────────────────────────────────────────────
 // Data — update after each stage
 // ──────────────────────────────────────────────────────────────────
@@ -175,6 +201,71 @@ export const latestStageResult: StageResult | null = {
       gapSeconds: 0,
     },
   ],
+};
+
+/**
+ * Final, source-reviewed race record for answer surfaces and the evergreen hub.
+ * The official distance is the distance actually raced after the adapted finale,
+ * rather than the 3,333 km published for the original route.
+ */
+export const tourFinalResult: TourFinalResult = {
+  winner: "Tadej Pogačar",
+  winnerTeam: "UAE Team Emirates–XRG",
+  winningTime: "73:56:26",
+  winningMargin: "6:26",
+  titleCount: 5,
+  officialDistanceKm: 3197,
+  podium: [gcStandings[0]!, gcStandings[1]!, gcStandings[2]!],
+  classificationWinners: [
+    {
+      classification: "Points · green jersey",
+      winner: "Mads Pedersen",
+      team: "Lidl–Trek",
+    },
+    {
+      classification: "Mountains · polka-dot jersey",
+      winner: "Richard Carapaz",
+      team: "EF Education–EasyPost",
+    },
+    {
+      classification: "Young rider · white jersey",
+      winner: "Isaac del Toro",
+      team: "UAE Team Emirates–XRG",
+    },
+    {
+      classification: "Team classification",
+      winner: "Lidl–Trek",
+      team: "",
+    },
+    {
+      classification: "Super-combativity",
+      winner: "Richard Carapaz",
+      team: "EF Education–EasyPost",
+    },
+  ],
+  finalStage: {
+    winner: "Mathieu van der Poel",
+    team: "Alpecin–Premier Tech",
+    runnerUp: "Jasper Philipsen",
+    third: "Mads Pedersen",
+    summary:
+      "Mathieu van der Poel followed Pogačar over the final Montmartre ascent, then accelerated inside the last 600 metres to hold off Jasper Philipsen and Mads Pedersen in Paris.",
+  },
+  sources: [
+    {
+      label: "Official Tour de France final classification",
+      href: "https://www.letour.fr/en/rankings/stage-21?hasCookies=false&hideOnetrust=true&isWebview=true",
+    },
+    {
+      label: "Official Stage 21 race report and classification winners",
+      href: "https://www.letour.fr/en/news/2026/van-der-poel-and-pogacar-illuminate-paris/1356643",
+    },
+    {
+      label: "Official 2026 classification recap",
+      href: "https://www.letour.fr/en/news/2026/panache-in-all-shapes-and-colours/1356659",
+    },
+  ],
+  lastReviewed: "2026-08-26",
 };
 
 // ──────────────────────────────────────────────────────────────────

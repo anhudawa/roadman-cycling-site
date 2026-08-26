@@ -9,27 +9,30 @@ import { SITE_ORIGIN } from "@/lib/brand-facts";
 
 import { TOUR_META, TOUR_STAGES } from "@/data/tour-de-france-2026";
 import {
-  getTourPhase,
   getTodayStage,
   getCompletedStages,
-  daysUntilStart,
   formatStageDate,
   tourPlace,
 } from "@/lib/tour";
 import { TOUR_HISTORY } from "@/data/tour-history";
+import {
+  formatGap,
+  gcStandings,
+  tourFinalResult,
+} from "@/data/tour-results-2026";
 import { StageCard } from "@/components/features/tour";
 
 const URL = `${SITE_ORIGIN}/tour-de-france`;
 
 export const metadata: Metadata = {
-  title: "Tour de France 2026 — Route, Stages & The Roadman Take",
+  title: "Tour de France 2026 Results: Winner, Final GC & Stages",
   description:
-    "Every stage of the 2026 Tour de France, from the Barcelona team time trial to back-to-back Alpe d'Huez finishes — with the training principle behind each day ",
+    "Tadej Pogačar won the 2026 Tour de France in 73:56:26, 6:26 ahead of Remco Evenepoel. See the final GC, jersey winners, Stage 21 result and all stages.",
   alternates: { canonical: URL },
   openGraph: {
-    title: "Tour de France 2026 — Route, Stages & The Roadman Take",
+    title: "Tour de France 2026 Results: Winner, Final GC & Stages",
     description:
-      "All 21 stages of the 2026 Tour de France, with the Roadman training angle on every one.",
+      "Verified 2026 Tour de France results, final classification, jersey winners and all 21 stages.",
     type: "website",
     url: URL,
     images: ["/og-image.jpg"],
@@ -37,37 +40,17 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-// Keep the phase-driven status header fresh without a redeploy.
+// Keep the evergreen result hub and stage directory reasonably fresh.
 export const revalidate = 900;
 
 const FACTS = [
   { k: "Grand Départ", v: `${TOUR_META.grandDepart} · 4 July` },
   { k: "Finish", v: "Paris · 26 July" },
   { k: "Stages", v: `${TOUR_META.stageCount}` },
-  { k: "Distance", v: `${TOUR_META.totalDistanceKm.toLocaleString()} km` },
-  { k: "Climbing", v: `${TOUR_META.totalClimbingM.toLocaleString()} m` },
+  { k: "Distance raced", v: `${tourFinalResult.officialDistanceKm.toLocaleString()} km` },
+  { k: "Planned climbing", v: `${TOUR_META.totalClimbingM.toLocaleString()} m` },
   { k: "Highest point", v: `${TOUR_META.highestPoint.name} · ${TOUR_META.highestPoint.altitudeM}m` },
 ];
-
-function StatusLine() {
-  const phase = getTourPhase();
-  if (phase === "countdown") {
-    const d = daysUntilStart();
-    return (
-      <>Starts in <span className="text-jersey-yellow">{d} day{d === 1 ? "" : "s"}</span></>
-    );
-  }
-  if (phase === "live") {
-    const today = getTodayStage();
-    return today ? (
-      <>Live now · <span className="text-jersey-yellow">Stage {today.number} today</span></>
-    ) : (
-      <span className="text-jersey-yellow">Rest day</span>
-    );
-  }
-  if (phase === "fadeout") return <span className="text-jersey-yellow">Race complete</span>;
-  return <>4–26 July 2026</>;
-}
 
 export default function TourDeFranceHubPage() {
   const today = getTodayStage();
@@ -84,23 +67,64 @@ export default function TourDeFranceHubPage() {
           sport: "Road cycling",
           startDate: TOUR_META.startDate,
           endDate: TOUR_META.endDate,
-          eventStatus: "https://schema.org/EventScheduled",
+          eventStatus: "https://schema.org/EventCompleted",
           eventAttendanceMode:
             "https://schema.org/OfflineEventAttendanceMode",
           url: URL,
           location: [tourPlace("Barcelona"), tourPlace("Paris")],
           description:
-            "The 2026 Tour de France — 21 stages from Barcelona to Paris across five mountain ranges.",
+            `Tadej Pogačar won the 2026 Tour de France in ${tourFinalResult.winningTime}, ${tourFinalResult.winningMargin} ahead of Remco Evenepoel.`,
           subEvent: TOUR_STAGES.map((s) => ({
             "@type": "SportsEvent",
             name: `Stage ${s.number}: ${s.start} to ${s.finish}`,
             startDate: s.date,
-            eventStatus: "https://schema.org/EventScheduled",
+            endDate: s.date,
+            eventStatus: "https://schema.org/EventCompleted",
             eventAttendanceMode:
               "https://schema.org/OfflineEventAttendanceMode",
             location: [tourPlace(s.start), tourPlace(s.finish)],
             url: `${URL}/stage/${s.number}`,
           })),
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: "Who won the 2026 Tour de France?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: `${tourFinalResult.winner} of ${tourFinalResult.winnerTeam} won in ${tourFinalResult.winningTime}, ${tourFinalResult.winningMargin} ahead of Remco Evenepoel. It was his fifth Tour de France title.`,
+              },
+            },
+            {
+              "@type": "Question",
+              name: "What was the final podium of the 2026 Tour de France?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: `Tadej Pogačar won, Remco Evenepoel was second at ${formatGap(tourFinalResult.podium[1].gapSeconds)}, and Isaac del Toro was third at ${formatGap(tourFinalResult.podium[2].gapSeconds)}.`,
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Who won the green, polka-dot and white jerseys at the 2026 Tour de France?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Mads Pedersen won the green points jersey, Richard Carapaz won the polka-dot mountains jersey, and Isaac del Toro won the white young-rider jersey.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Who won Stage 21 of the 2026 Tour de France?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: `${tourFinalResult.finalStage.winner} won Stage 21 in Paris ahead of ${tourFinalResult.finalStage.runnerUp} and ${tourFinalResult.finalStage.third}.`,
+              },
+            },
+          ],
         }}
       />
       <JsonLd
@@ -123,7 +147,7 @@ export default function TourDeFranceHubPage() {
             <Breadcrumbs items={[{ label: "Tour de France 2026" }]} />
             <ScrollReveal direction="up">
               <p className="font-heading text-jersey-yellow text-xs sm:text-sm tracking-[0.3em] mb-4">
-                {TOUR_META.edition} EDITION · <StatusLine />
+                {TOUR_META.edition} EDITION · FINAL RESULT · REVIEWED {tourFinalResult.lastReviewed}
               </p>
               <h1
                 className="font-heading text-off-white leading-[0.9] mb-6"
@@ -133,20 +157,115 @@ export default function TourDeFranceHubPage() {
                 <span className="block text-jersey-yellow">{TOUR_META.year}</span>
               </h1>
               <p className="text-foreground-muted text-lg max-w-2xl leading-relaxed mb-8">
-                Barcelona to Paris. {TOUR_META.stageCount}&nbsp;stages, five mountain
-                ranges, two summit finishes on Alpe d&rsquo;Huez. Below: every stage, the climbs
-                that decide it, and the training principle a Roadman rider takes from each
-                one.
+                <strong className="text-off-white">{tourFinalResult.winner}</strong> won
+                the 2026 Tour de France in {tourFinalResult.winningTime}, finishing{" "}
+                {tourFinalResult.winningMargin} ahead of Remco Evenepoel and claiming a
+                record-equalling fifth title. Below: the verified final classification,
+                jersey winners and every stage.
               </p>
               <div className="flex flex-wrap gap-3">
-                <Button href="#stages" dataTrack="tour_hub_stages">
-                  Browse All Stages
+                <Button href="#results" dataTrack="tour_hub_results">
+                  See Final Results
                 </Button>
-                <Button href="/tour-de-france/history" variant="ghost" dataTrack="tour_hub_history">
-                  Tour History
+                <Button href="#stages" variant="ghost" dataTrack="tour_hub_stages">
+                  Browse All Stages
                 </Button>
               </div>
             </ScrollReveal>
+          </Container>
+        </Section>
+
+        {/* Verified final results */}
+        <Section background="charcoal" id="results" className="border-b border-white/5">
+          <Container>
+            <div className="max-w-3xl mb-10">
+              <p className="font-heading text-jersey-yellow text-[11px] tracking-[0.3em] mb-3">
+                OFFICIAL RESULT · REVIEWED {tourFinalResult.lastReviewed}
+              </p>
+              <h2 className="font-heading text-off-white text-3xl sm:text-4xl tracking-wide mb-4">
+                2026 TOUR DE FRANCE FINAL RESULTS
+              </h2>
+              <p className="text-off-white text-lg leading-relaxed">
+                <strong>{tourFinalResult.winner}</strong> of {tourFinalResult.winnerTeam}
+                won in {tourFinalResult.winningTime}. Remco Evenepoel finished second at{" "}
+                {tourFinalResult.winningMargin}, with Isaac del Toro third at{" "}
+                {formatGap(tourFinalResult.podium[2].gapSeconds)}. It was Pogačar&rsquo;s fifth Tour
+                victory, equalling the all-time record.
+              </p>
+            </div>
+
+            <div className="grid lg:grid-cols-[1.25fr_0.75fr] gap-8 items-start">
+              <div className="overflow-x-auto rounded-xl border border-white/10">
+                <table className="w-full text-left">
+                  <thead className="bg-white/[0.04]">
+                    <tr className="text-foreground-subtle text-xs tracking-wider">
+                      <th className="px-4 py-3">GC</th>
+                      <th className="px-4 py-3">RIDER</th>
+                      <th className="px-4 py-3">TEAM</th>
+                      <th className="px-4 py-3 text-right">TIME / GAP</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {gcStandings.map((rider) => (
+                      <tr key={rider.position} className="border-t border-white/8 text-sm">
+                        <td className="px-4 py-3 font-heading text-jersey-yellow">
+                          {rider.position}
+                        </td>
+                        <td className="px-4 py-3 text-off-white font-medium">
+                          {rider.name}
+                        </td>
+                        <td className="px-4 py-3 text-foreground-muted">{rider.team}</td>
+                        <td className="px-4 py-3 text-off-white text-right tabular-nums">
+                          {rider.position === 1
+                            ? tourFinalResult.winningTime
+                            : formatGap(rider.gapSeconds)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="font-heading text-off-white text-2xl tracking-wide mb-4">
+                  CLASSIFICATION WINNERS
+                </h3>
+                {tourFinalResult.classificationWinners.map((item) => (
+                  <div key={item.classification} className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                    <p className="font-heading text-foreground-subtle text-[10px] tracking-[0.2em] mb-1">
+                      {item.classification.toUpperCase()}
+                    </p>
+                    <p className="text-off-white font-medium">{item.winner}</p>
+                    {item.team && <p className="text-foreground-muted text-sm">{item.team}</p>}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6 mt-10">
+              <div className="rounded-xl border-l-2 border-jersey-yellow bg-white/[0.03] p-5">
+                <p className="font-heading text-jersey-yellow text-[11px] tracking-[0.25em] mb-2">
+                  STAGE 21 · PARIS
+                </p>
+                <p className="text-foreground-muted leading-relaxed">
+                  {tourFinalResult.finalStage.summary}
+                </p>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
+                <p className="font-heading text-foreground-subtle text-[11px] tracking-[0.25em] mb-3">
+                  PRIMARY SOURCES
+                </p>
+                <ul className="space-y-2">
+                  {tourFinalResult.sources.map((source) => (
+                    <li key={source.href}>
+                      <a href={source.href} className="text-jersey-yellow hover:text-jersey-yellow-deep underline underline-offset-4 text-sm">
+                        {source.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </Container>
         </Section>
 
@@ -167,6 +286,17 @@ export default function TourDeFranceHubPage() {
               Five ranges in order: {TOUR_META.ranges.join(" · ")}. Two rest days
               ({formatStageDate(TOUR_META.restDays[0])} and {formatStageDate(TOUR_META.restDays[1])}),
               one team time trial, one individual time trial.
+            </p>
+            <p className="text-sm text-foreground-muted mt-3 leading-relaxed">
+              For the route through an amateur-training lens, read the{" "}
+              <Link href="/blog/tour-de-france-2026-route-what-it-means-for-you" className="text-jersey-yellow hover:text-jersey-yellow-deep underline underline-offset-4">
+                2026 route and training analysis
+              </Link>
+              . For the winner&rsquo;s build-up, use the distinct{" "}
+              <Link href="/blog/tdf-2026-contenders-preparation-lessons" className="text-jersey-yellow hover:text-jersey-yellow-deep underline underline-offset-4">
+                Pogačar preparation record
+              </Link>
+              .
             </p>
           </Container>
         </Section>

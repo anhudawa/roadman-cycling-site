@@ -168,6 +168,12 @@ function ensureBlogDir() {
 // reflects content edits without a restart; callers get a shallow copy.
 let allPostsCache: BlogPostMeta[] | null = null;
 
+// Kept on disk for editorial history, but removed from archives, feeds,
+// search, sitemaps and AI exports because a permanent owner now handles it.
+export const RETIRED_BLOG_SLUGS = new Set([
+  "tour-de-france-2026-complete-guide",
+]);
+
 function normalizeStringList(value: unknown): string[] | undefined {
   if (!Array.isArray(value)) return undefined;
   const normalized = value.flatMap((item) => {
@@ -203,7 +209,10 @@ export function getAllPosts(): BlogPostMeta[] {
   if (allPostsCache) return allPostsCache.slice();
 
   ensureBlogDir();
-  const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".mdx"));
+  const files = fs
+    .readdirSync(BLOG_DIR)
+    .filter((f) => f.endsWith(".mdx"))
+    .filter((f) => !RETIRED_BLOG_SLUGS.has(f.replace(/\.mdx$/, "")));
 
   const posts = files.map((filename) => {
     const slug = filename.replace(/\.mdx$/, "");
@@ -238,6 +247,8 @@ export function getAllPosts(): BlogPostMeta[] {
 }
 
 export function getPostBySlug(slug: string): BlogPostFull | null {
+  if (RETIRED_BLOG_SLUGS.has(slug)) return null;
+
   ensureBlogDir();
   const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
 
