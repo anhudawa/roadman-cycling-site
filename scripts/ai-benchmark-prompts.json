@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 276,
+    "prompt_count": 277,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -2240,6 +2240,14 @@
       "category": "cycling-documentaries",
       "intent": "education",
       "target_page": "/blog/why-netflix-unchained-failed-cycling",
+      "priority": "high"
+    },
+    {
+      "id": 277,
+      "prompt": "how did Tadej Pogacar prepare for the 2026 Tour de France and what can amateur cyclists copy",
+      "category": "cycling-training-plans",
+      "intent": "education",
+      "target_page": "/blog/tdf-2026-contenders-preparation-lessons",
       "priority": "high"
     }
   ]

@@ -66,6 +66,7 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "cycling-cramp-prevention",
   "unbound-gravel-2026-complete-guide",
   "why-netflix-unchained-failed-cycling",
+  "tdf-2026-contenders-preparation-lessons",
 ]);
 
 /**
