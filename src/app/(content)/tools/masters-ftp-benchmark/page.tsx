@@ -101,17 +101,25 @@ export default function MastersFtpBenchmarkPage() {
               Free Tool · Masters Cyclists
             </p>
             <h1 className="font-heading text-off-white mb-4" style={{ fontSize: "var(--text-section)" }}>
-              FTP BENCHMARK FOR MASTERS
+              FTP CALCULATOR BY AGE &amp; GENDER
             </h1>
             <p className="text-foreground-muted text-lg">
-              Where you actually sit among trained amateur masters cyclists in your age group —
-              not against 25-year-olds with no kids.
+              Estimate where your W/kg sits among trained amateur masters
+              cyclists in the same age group and gender cohort.
             </p>
           </Container>
         </Section>
 
         <Section background="charcoal" className="!py-12">
           <Container width="narrow">
+            <p className="text-sm text-foreground-muted mb-6">
+              This tool estimates an age-graded benchmark; it does not set
+              training zones. For seven power ranges, use the{" "}
+              <Link href="/tools/ftp-zones" className="text-coral hover:text-coral/80">
+                general FTP calculator
+              </Link>
+              .
+            </p>
             <div className="bg-background-elevated rounded-xl border border-white/5 p-8 space-y-6">
               <div>
                 <label id="ftpb-gender-label" className="block font-heading text-lg text-off-white mb-2">

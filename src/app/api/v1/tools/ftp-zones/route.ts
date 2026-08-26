@@ -46,15 +46,15 @@ export function GET(request: Request) {
       baseUrl: FEED_BASE_URL,
       tool: {
         slug: "ftp-zones",
-        title: "FTP Zone Calculator",
+        title: "FTP Calculator",
         url: feedUrl("/tools/ftp-zones"),
       },
       input: { ftp, lthr: lthr ?? null },
       zones,
       methodology: {
-        powerModel: "Coggan 7-zone (% of FTP)",
+        powerModel: "Conventional Coggan-style 7-zone boundaries (% of FTP)",
         heartRateModel: lthr ? "Friel-style % of LTHR" : null,
-        notes: "Heart-rate ranges are estimates. Power is the primary control; HR drifts with heat, fatigue, and hydration.",
+        notes: "Whole-watt ranges are continuous: each zone starts one watt after the previous rounded-down upper boundary. They are planning ranges, not measured physiological thresholds. FTP, critical power and laboratory lactate landmarks are not interchangeable.",
       },
     },
     { headers: FEED_CACHE_HEADERS },

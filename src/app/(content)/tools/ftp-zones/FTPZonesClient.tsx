@@ -9,72 +9,17 @@ import { ZoneChart } from "@/components/features/tools/ZoneChart";
 import { SaveToolResultForm } from "@/components/features/tools/SaveToolResultForm";
 import { ToolLanding } from "@/components/features/tools/ToolLanding";
 import { TOOL_EVENTS, trackTool } from "@/lib/analytics/tool-events";
+import { calculateFtpZones } from "@/lib/tools/calculators";
 
-interface Zone {
-  name: string;
-  description: string;
-  minPercent: number;
-  maxPercent: number;
-  color: string;
-}
-
-const ZONES: Zone[] = [
-  {
-    name: "Zone 1 — Active Recovery",
-    description: "Easy spinning. Recovery rides. Coffee stops.",
-    minPercent: 0,
-    maxPercent: 55,
-    color: "#94A3B8",
-  },
-  {
-    name: "Zone 2 — Endurance",
-    description:
-      "The base. Where pros spend 80% of their time. Build your aerobic engine here.",
-    minPercent: 56,
-    maxPercent: 75,
-    color: "#3B82F6",
-  },
-  {
-    name: "Zone 3 — Tempo",
-    description:
-      "Moderate effort. Useful for specific training blocks but often the 'grey zone' to avoid.",
-    minPercent: 76,
-    maxPercent: 90,
-    color: "#22C55E",
-  },
-  {
-    name: "Zone 4 — Threshold",
-    description:
-      "Your FTP. The effort you can sustain for about an hour. The line between aerobic and anaerobic.",
-    minPercent: 91,
-    maxPercent: 105,
-    color: "#EAB308",
-  },
-  {
-    name: "Zone 5 — VO2max",
-    description:
-      "Hard intervals. 3-8 minute efforts that build your ceiling. This is where breakthroughs happen.",
-    minPercent: 106,
-    maxPercent: 120,
-    color: "#F97316",
-  },
-  {
-    name: "Zone 6 — Anaerobic Capacity",
-    description:
-      "Short, sharp efforts. 30 seconds to 3 minutes. Builds top-end power for attacks and sprints.",
-    minPercent: 121,
-    maxPercent: 150,
-    color: "#EF4444",
-  },
-  {
-    name: "Zone 7 — Neuromuscular",
-    description:
-      "Max sprints. Under 30 seconds. Pure explosive power. Think Cavendish on the Champs-Elysees.",
-    minPercent: 151,
-    maxPercent: 999,
-    color: "#DC2626",
-  },
-];
+const ZONE_COLORS = [
+  "#94A3B8",
+  "#3B82F6",
+  "#22C55E",
+  "#EAB308",
+  "#F97316",
+  "#EF4444",
+  "#DC2626",
+] as const;
 
 function getFtpError(value: string): string | null {
   if (!value) return null;
@@ -100,6 +45,7 @@ export function FTPZonesClient({ initialFtp }: FTPZonesClientProps = {}) {
   const [copied, setCopied] = useState(false);
   const ftpValue = parseInt(ftp) || 0;
   const ftpError = getFtpError(ftp);
+  const zones = ftpValue > 0 ? calculateFtpZones(ftpValue) : [];
 
   const handleCalculate = () => {
     if (ftpValue > 0 && !ftpError) {
@@ -114,10 +60,11 @@ export function FTPZonesClient({ initialFtp }: FTPZonesClientProps = {}) {
 
   const handleCopyResults = async () => {
     if (!calculated || ftpValue <= 0) return;
-    const zoneLines = ZONES.map((z) => {
-      const min = z.minPercent === 0 ? 0 : Math.round((z.minPercent / 100) * ftpValue);
-      const max = z.maxPercent === 999 ? null : Math.round((z.maxPercent / 100) * ftpValue);
-      return `${z.name}: ${max ? `${min}-${max}W` : `${min}W+`}`;
+    const zoneLines = zones.map((zone) => {
+      const range = zone.maxWatts
+        ? `${zone.minWatts}-${zone.maxWatts}W`
+        : `${zone.minWatts}W+`;
+      return `Zone ${zone.zone} — ${zone.name}: ${range}`;
     }).join("\n");
     const text = `FTP Zones (${ftpValue}W FTP)\n${zoneLines}\n— roadmancycling.com/tools/ftp-zones`;
     await navigator.clipboard.writeText(text);
@@ -139,11 +86,11 @@ export function FTPZonesClient({ initialFtp }: FTPZonesClientProps = {}) {
               className="font-heading text-off-white mb-4"
               style={{ fontSize: "var(--text-section)" }}
             >
-              FTP ZONE CALCULATOR
+              FTP CALCULATOR: 7 CYCLING POWER ZONES
             </h1>
             <p className="text-foreground-muted text-lg">
-              Enter your FTP and get your 7-zone power table instantly. Know
-              exactly where to train for every session.
+              Enter your FTP and get seven continuous whole-watt ranges as
+              practical starting targets for structured training.
             </p>
           </Container>
         </Section>
@@ -160,8 +107,12 @@ export function FTPZonesClient({ initialFtp }: FTPZonesClientProps = {}) {
                 YOUR FTP (WATTS)
               </label>
               <p className="text-sm text-foreground-muted mb-4">
-                Don&apos;t know your FTP? Use your best 20-minute power and
-                multiply by 0.95.
+                Enter a recent FTP from the same test protocol you plan to
+                repeat. Need an estimate first? Use the{" "}
+                <Link href="/tools/ftp-test" className="text-coral hover:text-coral/80">
+                  FTP test calculator
+                </Link>
+                .
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <input
@@ -198,6 +149,17 @@ export function FTPZonesClient({ initialFtp }: FTPZonesClientProps = {}) {
               {ftpError && (
                 <p className="text-red-400 text-xs mt-1" role="alert">{ftpError}</p>
               )}
+              <p className="text-xs text-foreground-subtle mt-4">
+                Looking for an age-and-gender comparison rather than training
+                zones? Use the{" "}
+                <Link
+                  href="/tools/masters-ftp-benchmark"
+                  className="text-coral hover:text-coral/80"
+                >
+                  masters FTP calculator by age and gender
+                </Link>
+                .
+              </p>
             </div>
 
             {/* Results */}
@@ -234,29 +196,20 @@ export function FTPZonesClient({ initialFtp }: FTPZonesClientProps = {}) {
                 >
                   <ZoneChart
                     ftp={ftpValue}
-                    zones={ZONES.map((z) => ({
-                      name: z.name,
-                      shortName: z.name.split("—")[0].trim(),
-                      minWatts: z.minPercent === 0 ? 0 : Math.round((z.minPercent / 100) * ftpValue),
-                      maxWatts: z.maxPercent === 999 ? null : Math.round((z.maxPercent / 100) * ftpValue),
-                      color: z.color,
+                    zones={zones.map((zone) => ({
+                      name: `Zone ${zone.zone} — ${zone.name}`,
+                      shortName: `Zone ${zone.zone}`,
+                      minWatts: zone.minWatts,
+                      maxWatts: zone.maxWatts,
+                      color: ZONE_COLORS[zone.zone - 1],
                     }))}
                   />
                 </motion.div>
 
-                {ZONES.map((zone, zoneIndex) => {
-                  const min =
-                    zone.minPercent === 0
-                      ? 0
-                      : Math.round((zone.minPercent / 100) * ftpValue);
-                  const max =
-                    zone.maxPercent === 999
-                      ? null
-                      : Math.round((zone.maxPercent / 100) * ftpValue);
-
+                {zones.map((zone, zoneIndex) => {
                   return (
                     <motion.div
-                      key={zone.name}
+                      key={zone.zone}
                       className="bg-background-elevated rounded-lg border border-white/5 p-5 flex flex-col sm:flex-row sm:items-center gap-4"
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -268,11 +221,11 @@ export function FTPZonesClient({ initialFtp }: FTPZonesClientProps = {}) {
                     >
                       <div
                         className="w-2 h-2 rounded-full shrink-0 sm:w-3 sm:h-3"
-                        style={{ backgroundColor: zone.color }}
+                        style={{ backgroundColor: ZONE_COLORS[zone.zone - 1] }}
                       />
                       <div className="flex-1 min-w-0">
                         <h3 className="font-heading text-lg text-off-white">
-                          {zone.name.toUpperCase()}
+                          {`ZONE ${zone.zone} — ${zone.name}`.toUpperCase()}
                         </h3>
                         <p className="text-sm text-foreground-muted mt-0.5">
                           {zone.description}
@@ -280,12 +233,16 @@ export function FTPZonesClient({ initialFtp }: FTPZonesClientProps = {}) {
                       </div>
                       <div className="sm:text-right shrink-0">
                         <p className="font-heading text-2xl text-coral stat-glow">
-                          {max ? `${min}–${max}W` : `${min}W+`}
+                          {zone.maxWatts
+                            ? `${zone.minWatts}–${zone.maxWatts}W`
+                            : `${zone.minWatts}W+`}
                         </p>
                         <p className="text-xs text-foreground-subtle">
-                          {max
-                            ? `${zone.minPercent}–${zone.maxPercent}% FTP`
-                            : `${zone.minPercent}%+ FTP`}
+                          {zone.zone === 1
+                            ? `Up to ${zone.maxPercentFtp}% FTP`
+                            : zone.maxPercentFtp
+                              ? `>${zone.minPercentFtp}–${zone.maxPercentFtp}% FTP`
+                              : `>${zone.minPercentFtp}% FTP`}
                         </p>
                       </div>
                     </motion.div>
@@ -300,28 +257,28 @@ export function FTPZonesClient({ initialFtp }: FTPZonesClientProps = {}) {
                   <div className="space-y-3 text-foreground-muted text-sm leading-relaxed">
                     <p>
                       <strong className="text-off-white">
-                        The 80/20 rule is real.
+                        Do not confuse seven power zones with three-zone research models.
                       </strong>{" "}
-                      Professor Seiler&apos;s research shows the best endurance
-                      athletes spend roughly 80% of training time in Zone 1-2
-                      and 20% in Zone 4+. Most amateurs ride too hard on easy
-                      days and too easy on hard days.
+                      Polarised and pyramidal studies group intensity around
+                      physiological thresholds, not these seven labels. Both
+                      approaches can work; your weekly distribution is a
+                      programming decision, not a result this calculator can make.
                     </p>
                     <p>
                       <strong className="text-off-white">
-                        Zone 2 is your foundation.
+                        Treat each boundary as a starting range.
                       </strong>{" "}
-                      If your Zone 2 ceiling feels low, that&apos;s precisely
-                      why you need to spend time there. It builds mitochondrial
-                      density, fat oxidation, and aerobic capacity.
+                      FTP-derived percentages do not locate your individual
+                      lactate or ventilatory thresholds. Use breathing, RPE,
+                      heart rate and repeatability to calibrate the target.
                     </p>
                     <p>
                       <strong className="text-off-white">
-                        Zone 4 is your benchmark.
+                        Keep the test protocol consistent.
                       </strong>{" "}
-                      Your FTP represents roughly the power you can sustain for
-                      an hour. Threshold intervals (2x20min at Zone 4) are the
-                      bread and butter of cycling training.
+                      A 20-minute estimate, ramp-test estimate and critical-power
+                      model are related but not interchangeable. Compare progress
+                      using the same device, environment and protocol.
                     </p>
                   </div>
                 </div>
@@ -341,17 +298,11 @@ export function FTPZonesClient({ initialFtp }: FTPZonesClientProps = {}) {
                     inputs={{ ftp: ftpValue, weightKg: null, maxHr: null }}
                     outputs={{
                       wkg: null,
-                      zones: ZONES.map((z) => ({
-                        zone: z.name.split("—")[0].trim(),
-                        label: z.name,
-                        lower:
-                          z.minPercent === 0
-                            ? 0
-                            : Math.round((z.minPercent / 100) * ftpValue),
-                        upper:
-                          z.maxPercent === 999
-                            ? ftpValue * 3
-                            : Math.round((z.maxPercent / 100) * ftpValue),
+                      zones: zones.map((zone) => ({
+                        zone: `Zone ${zone.zone}`,
+                        label: `Zone ${zone.zone} — ${zone.name}`,
+                        lower: zone.minWatts,
+                        upper: zone.maxWatts ?? ftpValue * 3,
                       })),
                     }}
                     heading={`Save your ${ftpValue}w power zones`}

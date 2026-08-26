@@ -27,29 +27,54 @@ const FTP_ZONE_DEFS: Array<{
   maxPercentLthr: number | null;
   description: string;
 }> = [
-  { zone: 1, name: "Active Recovery", minPercentFtp: 0,   maxPercentFtp: 55,   minPercentLthr: 0,   maxPercentLthr: 68,  description: "Easy spinning, recovery rides, coffee stops." },
-  { zone: 2, name: "Endurance",       minPercentFtp: 56,  maxPercentFtp: 75,   minPercentLthr: 69,  maxPercentLthr: 83,  description: "Conversational pace. Build the aerobic base here." },
-  { zone: 3, name: "Tempo",           minPercentFtp: 76,  maxPercentFtp: 90,   minPercentLthr: 84,  maxPercentLthr: 94,  description: "Comfortably hard. Moderate aerobic work." },
-  { zone: 4, name: "Threshold",       minPercentFtp: 91,  maxPercentFtp: 105,  minPercentLthr: 95,  maxPercentLthr: 105, description: "At or near FTP. Sustainable for 20–60 minutes." },
-  { zone: 5, name: "VO2 Max",         minPercentFtp: 106, maxPercentFtp: 120,  minPercentLthr: 106, maxPercentLthr: null, description: "Very hard. 3–8 minute intervals only." },
-  { zone: 6, name: "Anaerobic",       minPercentFtp: 121, maxPercentFtp: 150,  minPercentLthr: 106, maxPercentLthr: null, description: "Short, high-intensity efforts. 30s–2 min." },
-  { zone: 7, name: "Neuromuscular",   minPercentFtp: 151, maxPercentFtp: null, minPercentLthr: 106, maxPercentLthr: null, description: "Sprints. 5–15 second maximal efforts." },
+  { zone: 1, name: "Active Recovery", minPercentFtp: 0,   maxPercentFtp: 55,   minPercentLthr: 0,   maxPercentLthr: 68,  description: "Very easy spinning used for warm-ups, cool-downs and low-load recovery riding." },
+  { zone: 2, name: "Endurance",       minPercentFtp: 55,  maxPercentFtp: 75,   minPercentLthr: 68,  maxPercentLthr: 83,  description: "Steady aerobic riding that should remain controlled and repeatable." },
+  { zone: 3, name: "Tempo",           minPercentFtp: 75,  maxPercentFtp: 90,   minPercentLthr: 83,  maxPercentLthr: 94,  description: "Sustained tempo work: purposeful load, but below the threshold-focused range." },
+  { zone: 4, name: "Threshold",       minPercentFtp: 90,  maxPercentFtp: 105,  minPercentLthr: 94,  maxPercentLthr: 105, description: "The conventional FTP-centred range used for threshold-focused intervals." },
+  { zone: 5, name: "VO2 Max",         minPercentFtp: 105, maxPercentFtp: 120,  minPercentLthr: 105, maxPercentLthr: null, description: "High-intensity aerobic work; sustainable duration varies substantially by rider." },
+  { zone: 6, name: "Anaerobic",       minPercentFtp: 120, maxPercentFtp: 150,  minPercentLthr: 105, maxPercentLthr: null, description: "Short efforts drawing heavily on work capacity above the aerobic steady state." },
+  { zone: 7, name: "Neuromuscular",   minPercentFtp: 150, maxPercentFtp: null, minPercentLthr: 105, maxPercentLthr: null, description: "Maximal sprint work; target quality and duration matter more than a fixed FTP percentage." },
 ];
 
 export function calculateFtpZones(ftp: number, lthr?: number): FtpZone[] {
-  return FTP_ZONE_DEFS.map((z) => ({
-    zone: z.zone,
-    name: z.name,
-    minPercentFtp: z.minPercentFtp,
-    maxPercentFtp: z.maxPercentFtp,
-    minWatts: Math.round((z.minPercentFtp / 100) * ftp),
-    maxWatts: z.maxPercentFtp === null ? null : Math.round((z.maxPercentFtp / 100) * ftp),
-    minPercentLthr: z.minPercentLthr,
-    maxPercentLthr: z.maxPercentLthr,
-    minBpm: lthr ? Math.round((z.minPercentLthr / 100) * lthr) : null,
-    maxBpm: lthr && z.maxPercentLthr !== null ? Math.round((z.maxPercentLthr / 100) * lthr) : null,
-    description: z.description,
-  }));
+  let previousMaxWatts = -1;
+  let previousMaxBpm = -1;
+
+  return FTP_ZONE_DEFS.map((z) => {
+    const maxWatts =
+      z.maxPercentFtp === null
+        ? null
+        : Math.floor((z.maxPercentFtp / 100) * ftp);
+    const maxBpm =
+      lthr && z.maxPercentLthr !== null
+        ? Math.floor((z.maxPercentLthr / 100) * lthr)
+        : null;
+    const minWatts = z.zone === 1 ? 0 : previousMaxWatts + 1;
+    const minBpm = !lthr
+      ? null
+      : z.zone === 1
+        ? 0
+        : z.zone <= 5
+          ? previousMaxBpm + 1
+          : Math.round((z.minPercentLthr / 100) * lthr);
+
+    if (maxWatts !== null) previousMaxWatts = maxWatts;
+    if (maxBpm !== null) previousMaxBpm = maxBpm;
+
+    return {
+      zone: z.zone,
+      name: z.name,
+      minPercentFtp: z.minPercentFtp,
+      maxPercentFtp: z.maxPercentFtp,
+      minWatts,
+      maxWatts,
+      minPercentLthr: z.minPercentLthr,
+      maxPercentLthr: z.maxPercentLthr,
+      minBpm,
+      maxBpm,
+      description: z.description,
+    };
+  });
 }
 
 export type RaceWeightEvent = "road-race" | "gran-fondo" | "hill-climb" | "time-trial" | "gravel";

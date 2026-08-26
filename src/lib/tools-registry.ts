@@ -17,9 +17,9 @@ export interface ToolEntry {
 export const TOOLS: ToolEntry[] = [
   {
     slug: "ftp-zones",
-    title: "FTP Zone Calculator",
+    title: "FTP Calculator",
     description:
-      "Enter your FTP and get a complete 7-zone power table with wattage ranges and (optionally) heart-rate ranges per zone.",
+      "Enter a recent FTP and get seven continuous whole-watt cycling power ranges. The API can optionally return LTHR reference ranges.",
     pillar: "coaching",
     apiEndpoint: "/api/v1/tools/ftp-zones",
     inputs: ["ftp", "lthr"],

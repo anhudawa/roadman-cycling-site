@@ -5,16 +5,18 @@ import { loadByEmail } from "@/lib/rider-profile/store";
 import { FTPZonesClient } from "./FTPZonesClient";
 
 export const metadata: Metadata = {
-  title: "FTP Power Zone Calculator — Your 7 Cycling Training Zones",
+  title: {
+    absolute: "FTP Calculator: 7 Cycling Power Zones (2026)",
+  },
   description:
-    "Enter your FTP, get your 7-zone power table instantly. Free, no signup, pre-filled if you've saved an FTP to your Roadman profile. Built on the Coggan zone model.",
+    "Enter your FTP to calculate seven cycling power zones with gap-free watt ranges. Free, instant, coach-reviewed, with test guidance and evidence limits.",
   alternates: {
     canonical: "https://roadmancycling.com/tools/ftp-zones",
   },
   openGraph: {
-    title: "FTP Power Zone Calculator — Your 7 Cycling Training Zones",
+    title: "FTP Calculator: 7 Cycling Power Zones (2026)",
     description:
-      "Enter your FTP and get your 7-zone power table instantly. Free, no signup needed. Built on the Coggan zone model.",
+      "Calculate seven cycling power zones from FTP, with gap-free watt ranges, test guidance and evidence limits.",
     type: "website",
     url: "https://roadmancycling.com/tools/ftp-zones",
   },

@@ -5,9 +5,11 @@ import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationS
 import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 
 export const metadata: Metadata = {
-  title: "Masters FTP Benchmark — Where Your Watts Place You by Age",
+  title: {
+    absolute: "FTP Calculator by Age & Gender | Masters Benchmark",
+  },
   description:
-    "Enter age, FTP and weight. See your percentile against trained amateur masters cyclists in your decade — 40-44, 45-49, 50-54, 55-59, 60+. Plus your watts-to-next-band.",
+    "Compare FTP by age and gender. Enter age, FTP and weight to estimate W/kg percentile among trained amateur masters cyclists, with explicit model limits.",
   keywords: [
     "masters ftp benchmark",
     "ftp by age group",
@@ -18,9 +20,9 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/tools/masters-ftp-benchmark" },
   openGraph: {
-    title: "Masters FTP Benchmark — Where Your Watts Place You by Age",
+    title: "FTP Calculator by Age & Gender | Masters Benchmark",
     description:
-      "Enter age, FTP and weight. See your percentile against trained amateur masters cyclists in your decade — plus your watts-to-next-band.",
+      "Estimate an age-and-gender W/kg percentile for trained amateur masters cyclists. Separate from Roadman's FTP training-zone calculator.",
     type: "website",
     url: "https://roadmancycling.com/tools/masters-ftp-benchmark",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],
