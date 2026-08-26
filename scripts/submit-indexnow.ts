@@ -118,6 +118,7 @@ const CURATED: string[] = [
   `https://${HOST}/tools`,
   `https://${HOST}/tools/ftp-zones`,
   `https://${HOST}/tools/tyre-pressure`,
+  `https://${HOST}/blog/cycling-tyre-pressure-guide`,
   `https://${HOST}/tools/race-weight`,
   `https://${HOST}/tools/fuelling`,
   `https://${HOST}/tools/energy-availability`,

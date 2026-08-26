@@ -3,15 +3,20 @@ import { ToolSchemas } from "@/components/seo/ToolSchemas";
 import { ToolJourney } from "@/components/features/tools/ToolJourney";
 
 export const metadata: Metadata = {
-  title: "Road Bike Tyre Pressure Calculator — 15% Drop Method (2026)",
+  title: "Road Bike Tyre Pressure Calculator: Front & Rear PSI",
   description:
-    "Optimal front and rear PSI for your weight, tyre width and surface — built on the 15% drop method most World Tour teams now use. Faster, more comfortable, fewer pinch flats.",
-  keywords: ["tyre pressure calculator cycling", "bike tyre pressure", "cycling PSI calculator", "optimal tyre pressure"],
+    "Calculate front and rear road bike tyre pressure in PSI and bar from system weight, measured tyre width and surface, with hookless safety checks.",
+  keywords: [
+    "road bike tyre pressure calculator",
+    "bike tire pressure calculator",
+    "cycling PSI calculator",
+    "road bike tyre pressure",
+  ],
   alternates: { canonical: "/tools/tyre-pressure" },
   openGraph: {
-    title: "Road Bike Tyre Pressure Calculator — 15% Drop Method (2026)",
+    title: "Road Bike Tyre Pressure Calculator: Front & Rear PSI",
     description:
-      "Optimal front and rear PSI for your weight, tyre width and surface — built on the 15% drop method most World Tour teams now use.",
+      "Calculate front and rear PSI and bar from system weight, measured tyre width and surface, with hookless safety checks.",
     type: "website",
     url: "https://roadmancycling.com/tools/tyre-pressure",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],

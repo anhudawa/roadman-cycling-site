@@ -7,145 +7,18 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { ReportRequestForm } from "@/components/features/tools/ReportRequestForm";
 import { ToolLanding } from "@/components/features/tools/ToolLanding";
-
-type Surface = "smooth" | "rough" | "gravel";
-type TubeType = "clincher" | "tubeless" | "tubular";
-
-/**
- * Tyre pressure calculator based on Frank Berto's 15% tyre deflection research
- * and calibrated against SILCA Professional Pressure Calculator outputs.
- *
- * Model overview:
- *   1. Look up base rear pressure from a table interpolated by tyre width
- *      (table values calibrated for an 83.5kg system weight — 75kg + 8.5kg)
- *   2. Scale linearly by actual total weight vs reference weight
- *   3. Derive front pressure as ~93% of rear (matching the ~5-7% front/rear
- *      split seen in SILCA and Berto's 45/55 weight distribution research)
- *   4. Adjust for rim width, tube type, and surface condition
- *
- * Calibration targets (75kg rider + 8.5kg bike, clincher, smooth, standard rim):
- *   25mm → front ~85, rear ~90
- *   28mm → front ~70, rear ~75
- *   32mm → front ~55, rear ~60
- *   40mm → front ~35, rear ~38
- *   45mm → front ~28, rear ~31
- */
-
-// Reference REAR pressures (PSI) at 83.5kg system weight (75kg rider + 8.5kg bike).
-// Derived from SILCA calculator outputs, Berto deflection charts, and BRR test data.
-const BASE_REAR_PRESSURE_TABLE: [number, number][] = [
-  // [tyreWidth_mm, rearPSI_at_83.5kg_system]
-  [23, 105],
-  [25, 90],
-  [28, 75],
-  [30, 67],
-  [32, 60],
-  [35, 50],
-  [38, 43],
-  [40, 38],
-  [42, 35],
-  [45, 31],
-  [50, 26],
-  [55, 22],
-  [60, 19],
-];
-
-/** Linear interpolation between lookup table entries */
-function interpolateBasePressure(tyreWidth: number): number {
-  const table = BASE_REAR_PRESSURE_TABLE;
-  if (tyreWidth <= table[0][0]) return table[0][1];
-  if (tyreWidth >= table[table.length - 1][0]) return table[table.length - 1][1];
-  for (let i = 0; i < table.length - 1; i++) {
-    const [w0, p0] = table[i];
-    const [w1, p1] = table[i + 1];
-    if (tyreWidth >= w0 && tyreWidth <= w1) {
-      const t = (tyreWidth - w0) / (w1 - w0);
-      return p0 + t * (p1 - p0);
-    }
-  }
-  return table[0][1];
-}
-
-function calculatePressure(
-  riderWeight: number,
-  bikeWeight: number,
-  tyreWidth: number,
-  rimWidth: number,
-  surface: Surface,
-  tubeType: TubeType
-): { front: number; rear: number } {
-  const totalWeight = riderWeight + bikeWeight;
-  const refWeight = 83.5; // reference system weight the table is calibrated for
-
-  // Look up base rear pressure and scale linearly by weight.
-  // Pressure is proportional to load at constant deflection (Berto).
-  const baseRearPSI = interpolateBasePressure(tyreWidth);
-  let rearPSI = baseRearPSI * (totalWeight / refWeight);
-
-  // Front tyre runs ~7% lower than rear.
-  // This corresponds to ~45/55 weight distribution (Berto) and matches
-  // the 5-10 PSI front/rear gap seen in SILCA outputs across all widths.
-  let frontPSI = rearPSI * 0.93;
-
-  // Rim width correction: wider rims spread the tyre casing, increasing
-  // effective air volume → lower pressure needed for the same deflection.
-  // Baseline internal rim widths per tyre size (modern standard pairings).
-  const baselineRims: Record<number, number> = {
-    23: 15, 25: 17, 28: 19, 30: 19, 32: 21,
-    35: 21, 38: 23, 40: 25, 42: 25, 45: 27,
-    50: 29, 55: 30, 60: 30,
-  };
-  const tyreSizes = [23, 25, 28, 30, 32, 35, 38, 40, 42, 45, 50, 55, 60];
-  const closestTyre = tyreSizes.reduce(
-    (prev, curr) =>
-      Math.abs(curr - tyreWidth) < Math.abs(prev - tyreWidth) ? curr : prev
-  );
-  const baseRim = baselineRims[closestTyre] || 19;
-  const rimDelta = rimWidth - baseRim;
-  // ~1.5% pressure reduction per mm of extra rim width (SILCA methodology)
-  const rimFactor = 1 - rimDelta * 0.015;
-  rearPSI *= rimFactor;
-  frontPSI *= rimFactor;
-
-  // Tube type adjustment (SILCA / BRR data):
-  //   Tubeless: 8-10% lower — eliminates pinch-flat risk so lower pressure
-  //   is safe, and reduces hysteresis from inner tube friction.
-  //   Tubular: ~3% lower — supple casing, lower hysteresis.
-  const tubeModifier: Record<TubeType, number> = {
-    clincher: 1.0,
-    tubeless: 0.91,
-    tubular: 0.97,
-  };
-  rearPSI *= tubeModifier[tubeType];
-  frontPSI *= tubeModifier[tubeType];
-
-  // Surface condition (SILCA K-factor approach simplified):
-  //   Rough roads: ~10% lower — tyre needs to absorb vibration, lower
-  //   pressure reduces impedance losses from surface roughness.
-  //   Gravel: ~20% lower — maximise contact patch and comfort,
-  //   prevent bouncing over loose surfaces.
-  const surfaceModifier: Record<Surface, number> = {
-    smooth: 1.0,
-    rough: 0.90,
-    gravel: 0.80,
-  };
-  rearPSI *= surfaceModifier[surface];
-  frontPSI *= surfaceModifier[surface];
-
-  // Clamp to safe ranges
-  rearPSI = Math.max(18, Math.min(130, rearPSI));
-  frontPSI = Math.max(18, Math.min(120, frontPSI));
-
-  return {
-    front: Math.round(frontPSI),
-    rear: Math.round(rearPSI),
-  };
-}
+import {
+  calculateTyrePressure,
+  type RimProfile,
+  type TyrePressureResult,
+  type TyreSetup,
+  type TyreSurface,
+} from "@/lib/tools/tyre-pressure-calculator";
 
 // Validation ranges
 const VALIDATION = {
   riderWeight: { min: 30, max: 200, label: "Rider weight" },
-  bikeWeight: { min: 3, max: 25, label: "Bike weight" },
+  bikeWeight: { min: 3, max: 60, label: "Bike and gear weight" },
 } as const;
 
 function getValidationError(value: string, field: keyof typeof VALIDATION): string | null {
@@ -163,9 +36,12 @@ export default function TyrePressurePage() {
   const [bikeWeight, setBikeWeight] = useState("8.5");
   const [tyreWidth, setTyreWidth] = useState("25");
   const [rimWidth, setRimWidth] = useState("19");
-  const [surface, setSurface] = useState<Surface>("smooth");
-  const [tubeType, setTubeType] = useState<TubeType>("clincher");
-  const [result, setResult] = useState<{ front: number; rear: number } | null>(null);
+  const [surface, setSurface] = useState<TyreSurface>("smooth");
+  const [tyreSetup, setTyreSetup] = useState<TyreSetup>("tubed");
+  const [rimProfile, setRimProfile] = useState<RimProfile>("unsure");
+  const [systemMinimumPsi, setSystemMinimumPsi] = useState("");
+  const [systemMaximumPsi, setSystemMaximumPsi] = useState("");
+  const [result, setResult] = useState<TyrePressureResult | null>(null);
   const [copied, setCopied] = useState(false);
 
   const riderWeightError = getValidationError(riderWeight, "riderWeight");
@@ -177,16 +53,32 @@ export default function TyrePressurePage() {
     const rw = parseFloat(riderWeight);
     const bw = parseFloat(bikeWeight);
     const tw = parseInt(tyreWidth);
-    const riw = parseInt(rimWidth);
-    if (rw > 0 && bw > 0 && tw > 0 && riw > 0) {
-      setResult(calculatePressure(rw, bw, tw, riw, surface, tubeType));
+    if (rw > 0 && bw > 0 && tw > 0) {
+      setResult(calculateTyrePressure({
+        riderWeightKg: rw,
+        bikeAndGearWeightKg: bw,
+        measuredTyreWidthMm: tw,
+        surface,
+        setup: tyreSetup,
+        rimProfile,
+        systemMinimumPsi: systemMinimumPsi
+          ? parseFloat(systemMinimumPsi)
+          : undefined,
+        systemMaximumPsi: systemMaximumPsi
+          ? parseFloat(systemMaximumPsi)
+          : undefined,
+      }));
     }
   };
 
   const handleCopyResults = async () => {
     if (!result) return;
-    const tubeLabels: Record<TubeType, string> = { clincher: "clincher", tubeless: "tubeless", tubular: "tubular" };
-    const text = `Tyre Pressure: Front ${result.front} PSI / Rear ${result.rear} PSI (${riderWeight}kg rider, ${tyreWidth}mm tyres, ${tubeLabels[tubeType]}) — roadmancycling.com/tools/tyre-pressure`;
+    const setupLabels: Record<TyreSetup, string> = {
+      tubed: "tubed",
+      tubeless: "tubeless",
+      tubular: "tubular",
+    };
+    const text = `Road bike tyre-pressure starting point: front ${result.frontPsi} PSI (${result.frontBar} bar) / rear ${result.rearPsi} PSI (${result.rearBar} bar), ${riderWeight}kg rider, ${tyreWidth}mm measured tyres, ${setupLabels[tyreSetup]}. Verify the tyre and rim pressure range before riding — roadmancycling.com/tools/tyre-pressure`;
     await navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -208,10 +100,12 @@ export default function TyrePressurePage() {
               Free Tool
             </p>
             <h1 className="font-heading text-off-white mb-4" style={{ fontSize: "var(--text-section)" }}>
-              TYRE PRESSURE CALCULATOR
+              ROAD BIKE TYRE PRESSURE CALCULATOR
             </h1>
             <p className="text-foreground-muted text-lg">
-              Science-based pressure recommendations based on your weight, tyre width, rim width, setup type, and road surface.
+              Get front and rear starting pressure in PSI and bar from total
+              system weight, measured tyre width and surface—with explicit
+              hookless and manufacturer safety checks.
             </p>
           </Container>
         </Section>
@@ -222,11 +116,11 @@ export default function TyrePressurePage() {
               {/* Rider Weight */}
               <div>
                 <label htmlFor="rider-weight" className="block font-heading text-lg text-off-white mb-2">
-                  RIDER WEIGHT (KG)
+                  RIDER WEIGHT IN KIT (KG)
                 </label>
                 <input
                   id="rider-weight"
-                  type="number" min="40" max="150" placeholder="e.g. 75"
+                  type="number" min="30" max="200" step="0.1" placeholder="e.g. 75"
                   value={riderWeight}
                   onChange={(e) => { setRiderWeight(e.target.value); setResult(null); }}
                   className={`${riderWeightError ? errorInputClasses : inputClasses} text-xl`}
@@ -239,11 +133,11 @@ export default function TyrePressurePage() {
               {/* Bike Weight */}
               <div>
                 <label htmlFor="bike-weight" className="block font-heading text-lg text-off-white mb-2">
-                  BIKE WEIGHT (KG)
+                  BIKE + BOTTLES + LUGGAGE (KG)
                 </label>
                 <input
                   id="bike-weight"
-                  type="number" min="5" max="20" step="0.1" placeholder="e.g. 8.5"
+                  type="number" min="3" max="60" step="0.1" placeholder="e.g. 9.5"
                   value={bikeWeight}
                   onChange={(e) => { setBikeWeight(e.target.value); setResult(null); }}
                   className={bikeWeightError ? errorInputClasses : inputClasses}
@@ -256,7 +150,7 @@ export default function TyrePressurePage() {
               {/* Tyre Width */}
               <div>
                 <label htmlFor="tyre-width" className="block font-heading text-lg text-off-white mb-2">
-                  TYRE WIDTH (MM)
+                  MEASURED MOUNTED TYRE WIDTH (MM)
                 </label>
                 <select
                   id="tyre-width"
@@ -268,6 +162,10 @@ export default function TyrePressurePage() {
                     <option key={w} value={w} className="bg-charcoal">{w}mm{w >= 38 && w <= 45 ? " (gravel)" : w > 45 ? " (MTB)" : ""}</option>
                   ))}
                 </select>
+                <p className="text-foreground-subtle text-xs mt-1">
+                  Measure the inflated tyre at its widest point if possible.
+                  The number on the sidewall can differ from its width on your rim.
+                </p>
               </div>
 
               {/* Rim Internal Width */}
@@ -286,7 +184,8 @@ export default function TyrePressurePage() {
                   ))}
                 </select>
                 <p className="text-foreground-subtle text-xs mt-1">
-                  Check your wheel manufacturer specs. Most modern road wheels are 19-21mm.
+                  Used for your compatibility record, not as a hidden pressure
+                  modifier. Check the tyre maker&apos;s approved rim-width range.
                 </p>
               </div>
 
@@ -294,13 +193,13 @@ export default function TyrePressurePage() {
               <div>
                 <label id="tyre-setup-label" className="block font-heading text-lg text-off-white mb-2">TYRE SETUP</label>
                 <div className="flex gap-3" role="group" aria-labelledby="tyre-setup-label">
-                  {([["clincher", "Clincher"], ["tubeless", "Tubeless"], ["tubular", "Tubular"]] as const).map(([val, label]) => (
+                  {([["tubed", "Tyre + tube"], ["tubeless", "Tubeless"], ["tubular", "Tubular"]] as const).map(([val, label]) => (
                     <button
                       key={val} type="button"
-                      onClick={() => { setTubeType(val); setResult(null); }}
-                      aria-pressed={tubeType === val}
+                      onClick={() => { setTyreSetup(val); setResult(null); }}
+                      aria-pressed={tyreSetup === val}
                       className={`flex-1 py-3 rounded-lg font-heading text-sm tracking-wider transition-colors cursor-pointer ${
-                        tubeType === val ? "bg-coral text-off-white" : "bg-white/5 text-foreground-muted hover:bg-white/10"
+                        tyreSetup === val ? "bg-coral text-off-white" : "bg-white/5 text-foreground-muted hover:bg-white/10"
                       }`}
                     >
                       {label}
@@ -308,6 +207,77 @@ export default function TyrePressurePage() {
                   ))}
                 </div>
               </div>
+
+              {/* Rim profile */}
+              <div>
+                <label id="rim-profile-label" className="block font-heading text-lg text-off-white mb-2">
+                  RIM PROFILE
+                </label>
+                <div className="flex gap-3" role="group" aria-labelledby="rim-profile-label">
+                  {([["hooked", "Hooked"], ["hookless", "Hookless"], ["unsure", "Not sure"]] as const).map(([val, label]) => (
+                    <button
+                      key={val}
+                      type="button"
+                      onClick={() => { setRimProfile(val); setResult(null); }}
+                      aria-pressed={rimProfile === val}
+                      className={`flex-1 py-3 rounded-lg font-heading text-sm tracking-wider transition-colors cursor-pointer ${
+                        rimProfile === val ? "bg-coral text-off-white" : "bg-white/5 text-foreground-muted hover:bg-white/10"
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+                <p className="text-foreground-subtle text-xs mt-1">
+                  Hookless rims require an explicitly compatible tyre and often
+                  have a lower pressure limit than hooked rims.
+                </p>
+              </div>
+
+              {/* Manufacturer limits */}
+              <fieldset>
+                <legend className="block font-heading text-lg text-off-white mb-2">
+                  PRINTED SYSTEM LIMITS (OPTIONAL, PSI)
+                </legend>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label htmlFor="system-minimum" className="block text-foreground-subtle text-xs mb-1">
+                      Highest minimum
+                    </label>
+                    <input
+                      id="system-minimum"
+                      type="number"
+                      min="1"
+                      max="130"
+                      step="0.5"
+                      placeholder="e.g. 55"
+                      value={systemMinimumPsi}
+                      onChange={(e) => { setSystemMinimumPsi(e.target.value); setResult(null); }}
+                      className={inputClasses}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="system-maximum" className="block text-foreground-subtle text-xs mb-1">
+                      Lowest maximum
+                    </label>
+                    <input
+                      id="system-maximum"
+                      type="number"
+                      min="1"
+                      max="160"
+                      step="0.5"
+                      placeholder="e.g. 72"
+                      value={systemMaximumPsi}
+                      onChange={(e) => { setSystemMaximumPsi(e.target.value); setResult(null); }}
+                      className={inputClasses}
+                    />
+                  </div>
+                </div>
+                <p className="text-foreground-subtle text-xs mt-1">
+                  Use the strictest tyre and rim limits. If either maker gives
+                  a higher minimum or lower maximum, that controls.
+                </p>
+              </fieldset>
 
               {/* Surface */}
               <div>
@@ -337,21 +307,23 @@ export default function TyrePressurePage() {
               {result && (
                 <motion.div
                   className="mt-8 space-y-4"
-                  key={`${result.front}-${result.rear}`}
+                  key={`${result.frontPsi}-${result.rearPsi}`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="flex items-center justify-between">
-                    <h2 className="font-heading text-2xl text-off-white">YOUR RECOMMENDED PRESSURE</h2>
-                    <button
-                      onClick={handleCopyResults}
-                      aria-label={copied ? "Results copied to clipboard" : "Copy results to clipboard"}
-                      className="text-sm text-coral hover:text-coral/80 font-heading tracking-wider transition-colors cursor-pointer"
-                    >
-                      {copied ? "Copied!" : "Copy Results"}
-                    </button>
+                    <h2 className="font-heading text-2xl text-off-white">YOUR STARTING PRESSURE</h2>
+                    {!result.outsideEnteredLimits && (
+                      <button
+                        onClick={handleCopyResults}
+                        aria-label={copied ? "Results copied to clipboard" : "Copy results to clipboard"}
+                        className="text-sm text-coral hover:text-coral/80 font-heading tracking-wider transition-colors cursor-pointer"
+                      >
+                        {copied ? "Copied!" : "Copy Results"}
+                      </button>
+                    )}
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <motion.div
@@ -361,8 +333,10 @@ export default function TyrePressurePage() {
                       transition={{ duration: 0.35, delay: 0.1 }}
                     >
                       <p className="text-sm text-foreground-subtle mb-1">FRONT</p>
-                      <p className="font-heading text-5xl text-coral">{result.front}</p>
-                      <p className="text-foreground-muted text-sm">PSI</p>
+                      <p className="font-heading text-5xl text-coral">{result.frontPsi}</p>
+                      <p className="text-foreground-muted text-sm">
+                        PSI · {result.frontBar} bar
+                      </p>
                     </motion.div>
                     <motion.div
                       className="bg-background-elevated rounded-xl border border-white/5 p-6 text-center"
@@ -371,9 +345,38 @@ export default function TyrePressurePage() {
                       transition={{ duration: 0.35, delay: 0.18 }}
                     >
                       <p className="text-sm text-foreground-subtle mb-1">REAR</p>
-                      <p className="font-heading text-5xl text-coral">{result.rear}</p>
-                      <p className="text-foreground-muted text-sm">PSI</p>
+                      <p className="font-heading text-5xl text-coral">{result.rearPsi}</p>
+                      <p className="text-foreground-muted text-sm">
+                        PSI · {result.rearBar} bar
+                      </p>
                     </motion.div>
+                  </div>
+
+                  <div
+                    className={`rounded-xl border p-5 ${
+                      result.outsideEnteredLimits
+                        ? "border-red-500/50 bg-red-500/10"
+                        : "border-amber-400/30 bg-amber-400/5"
+                    }`}
+                    role={result.outsideEnteredLimits ? "alert" : "note"}
+                  >
+                    <p className="font-heading text-off-white text-sm mb-2">
+                      {result.outsideEnteredLimits
+                        ? "DO NOT USE THIS ESTIMATE"
+                        : "COMPATIBILITY CHECK REQUIRED"}
+                    </p>
+                    <p className="text-foreground-muted text-sm leading-relaxed">
+                      {result.outsideEnteredLimits
+                        ? `The model output sits outside the limits you entered${result.effectiveMaximumPsi ? ` (effective maximum ${result.effectiveMaximumPsi} PSI)` : ""}. Use a compatible wider tyre or follow the tyre and rim makers' setup table; do not clamp the estimate and ride it.`
+                        : "Before riding, confirm the tyre is approved for the rim and that both values sit inside the pressure ranges from both manufacturers. The lower maximum and higher minimum always win."}
+                    </p>
+                    {result.hooklessCeilingApplied && (
+                      <p className="text-foreground-muted text-sm leading-relaxed mt-2">
+                        For this hookless selection, the calculator applied a
+                        72 PSI (5 bar) ceiling. Your wheel or tyre may specify a
+                        lower value.
+                      </p>
+                    )}
                   </div>
 
                   <motion.div
@@ -384,21 +387,25 @@ export default function TyrePressurePage() {
                   >
                     <h3 className="font-heading text-lg text-off-white">HOW THIS WORKS</h3>
                     <p className="text-foreground-muted text-sm leading-relaxed">
-                      This calculator uses Frank Berto&apos;s 15% tyre deflection model, calibrated against
-                      SILCA&apos;s professional pressure calculator and Bicycle Rolling Resistance test data.
-                      Weight distribution on a road bike is roughly 45% front / 55% rear, so the rear
-                      tyre always needs slightly higher pressure. Wider rims spread the tyre casing,
-                      increasing air volume and reducing the pressure needed for the same support.
+                      Roadman model v1 scales pressure with total system weight
+                      and measured mounted tyre width, then returns the front at
+                      93% of the rear baseline. It applies explicit surface
+                      factors of 1.00 for smooth tarmac, 0.90 for rough roads and
+                      0.80 for gravel. The exact method is published below so the
+                      result is reproducible.
                     </p>
                     <p className="text-foreground-muted text-sm leading-relaxed">
-                      Tubeless setups run 8-10% lower than clincher because there&apos;s no inner tube to
-                      pinch flat and less hysteresis in the casing. Rough roads and gravel benefit from
-                      lower pressure to reduce vibration losses and improve grip.
+                      Setup type and internal rim width do not silently alter
+                      the number. Tyre casing, actual axle load, rim geometry and
+                      manufacturer compatibility differ too much for one honest
+                      universal modifier. They remain visible in your setup so
+                      you can check the correct maker table.
                     </p>
                     <p className="text-foreground-muted text-sm leading-relaxed">
-                      These are starting points. Fine-tune by 2-3 PSI based on feel. If you&apos;re getting
-                      pinch flats, go higher. If the ride feels harsh or you&apos;re losing grip in corners,
-                      go lower.
+                      Treat the output as a starting point. Change one wheel by
+                      1-2 PSI at a time on a repeatable route, while staying
+                      inside the permitted range. Stop lowering pressure if the
+                      tyre squirms, bottoms on the rim, burps, or loses support.
                     </p>
                   </motion.div>
 
@@ -434,35 +441,54 @@ export default function TyrePressurePage() {
                     </ul>
                   </motion.div>
 
-                  <motion.div
-                    className="mt-8"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.35, delay: 0.38 }}
-                  >
-                    <ReportRequestForm
-                      tool="tyre-pressure"
-                      inputs={{
-                        riderWeight: parseFloat(riderWeight),
-                        bikeWeight: parseFloat(bikeWeight),
-                        tyreWidth: parseFloat(tyreWidth),
-                        rimWidth: parseFloat(rimWidth),
-                        surface,
-                        tubeType,
-                        front: result.front,
-                        rear: result.rear,
-                      }}
-                      heading={`Your ${tyreWidth}mm tyre setup for every condition`}
-                      subheading="A setup table covering dry, wet, gravel, and winter — plus how to tune by feel on real rides. One email, save it in the bookmarks."
-                      bullets={[
-                        `Front ${result.front} / rear ${result.rear} psi baseline`,
-                        "Adjustments for wet, gravel, and winter conditions",
-                        "Tubeless vs clincher pressure deltas",
-                        "How to fine-tune by feel on real rides",
-                        "Temperature + altitude corrections",
-                      ]}
-                    />
-                  </motion.div>
+                  {!result.outsideEnteredLimits ? (
+                    <motion.div
+                      className="mt-8"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.35, delay: 0.38 }}
+                    >
+                      <ReportRequestForm
+                        tool="tyre-pressure"
+                        inputs={{
+                          riderWeight: parseFloat(riderWeight),
+                          bikeWeight: parseFloat(bikeWeight),
+                          tyreWidth: parseFloat(tyreWidth),
+                          rimWidth: parseFloat(rimWidth),
+                          surface,
+                          tubeType: tyreSetup,
+                          rimProfile,
+                          systemMinimumPsi: systemMinimumPsi
+                            ? parseFloat(systemMinimumPsi)
+                            : undefined,
+                          systemMaximumPsi: systemMaximumPsi
+                            ? parseFloat(systemMaximumPsi)
+                            : undefined,
+                          front: result.frontPsi,
+                          rear: result.rearPsi,
+                        }}
+                        heading={`Save your ${tyreWidth}mm starting setup`}
+                        subheading="Get the front/rear PSI and bar, compatibility reminder and controlled field-test steps in one email."
+                        bullets={[
+                          `Front ${result.frontPsi} / rear ${result.rearPsi} psi baseline`,
+                          "Tubed, tubeless and hookless safety checks",
+                          "How to test 1-2 PSI changes on a repeatable route",
+                          "The tyre/rim limits that always override the model",
+                        ]}
+                      />
+                    </motion.div>
+                  ) : (
+                    <div className="mt-8 rounded-xl border border-red-500/30 bg-red-500/5 p-5">
+                      <p className="font-heading text-off-white text-sm mb-1">
+                        REPORT AND COPY DISABLED
+                      </p>
+                      <p className="text-foreground-muted text-sm leading-relaxed">
+                        Choose a compatible setup whose calculated start sits
+                        inside the tyre and rim limits before saving or sharing
+                        a pressure result.
+                      </p>
+                    </div>
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>

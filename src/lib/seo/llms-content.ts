@@ -42,6 +42,7 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "cycling-energy-gels-guide",
   "cycling-in-ride-nutrition-guide",
   "cycling-stretching-routine",
+  "cycling-tyre-pressure-guide",
 ]);
 
 /**
