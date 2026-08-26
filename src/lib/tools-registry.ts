@@ -35,9 +35,9 @@ export const TOOLS: ToolEntry[] = [
   },
   {
     slug: "tyre-pressure",
-    title: "Tyre Pressure Calculator",
+    title: "Road Bike Tyre Pressure Calculator",
     description:
-      "SILCA-grade front and rear PSI based on weight, tyre width, rim width, tube type, and road surface.",
+      "Front and rear PSI and bar from complete system weight, measured tyre width and surface, with hookless and manufacturer-limit checks.",
     pillar: "coaching",
   },
   {

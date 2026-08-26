@@ -538,7 +538,7 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
     ],
     relatedTopics: [
       { label: "Tyre Pressure Calculator", href: "/tools/tyre-pressure" },
-      { label: "Tyre Pressure — Complete Guide", href: "/blog/tyre-pressure-cycling-complete-guide" },
+      { label: "Cycling Tyre Pressure Guide", href: "/blog/cycling-tyre-pressure-guide" },
       { label: "Best tyre pressure for road cycling", href: "/answers/best-tyre-pressure-road-cycling" },
       { label: "Cycling Tech", href: "/topics/cycling-tech" },
     ],

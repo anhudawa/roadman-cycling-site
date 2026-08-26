@@ -296,7 +296,7 @@ ${answersClusterBlock}
 
 ## Free Calculators
 - [FTP Calculator](${tag(`${BASE_URL}/tools/ftp-zones`)}): Calculate seven continuous whole-watt cycling power-zone ranges from FTP. Includes transparent boundaries, worked examples, primary evidence, a scoped coach review and explicit limits on FTP-based prescription.
-- [Tyre Pressure Calculator](${tag(`${BASE_URL}/tools/tyre-pressure`)}): Optimal front and rear PSI based on rider weight, tyre width, and surface.
+- [Road Bike Tyre Pressure Calculator](${tag(`${BASE_URL}/tools/tyre-pressure`)}): Front and rear PSI and bar starting points from complete system weight, measured tyre width and surface, with hookless and manufacturer-limit checks.
 - [Race Weight Calculator](${tag(`${BASE_URL}/tools/race-weight`)}): Target cycling race weight based on body composition.
 - [In-Ride Fuelling Calculator](${tag(`${BASE_URL}/tools/fuelling`)}): Carbs per hour, fluid, and sodium needs for rides.
 - [Energy Availability Calculator](${tag(`${BASE_URL}/tools/energy-availability`)}): RED-S risk screener for endurance athletes.

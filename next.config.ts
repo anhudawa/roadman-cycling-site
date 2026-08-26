@@ -300,6 +300,8 @@ const nextConfig: NextConfig = {
       { source: "/free-community", destination: "/community/clubhouse", permanent: true },
       { source: "/blog/i-lost-7kg-eating-more-cycling", destination: "/blog/cycling-weight-loss-fuel-for-the-work-required", permanent: true },
       { source: "/blog/cycling-periodisation-training", destination: "/blog/cycling-periodisation-plan-guide", permanent: true },
+      // Consolidate duplicate tyre-pressure explainers into the established guide.
+      { source: "/blog/tyre-pressure-cycling-complete-guide", destination: "/blog/cycling-tyre-pressure-guide", permanent: true },
       // Legacy product URL — strength-training course used to live under /products
       { source: "/products/strength-training", destination: "/strength-training", permanent: true },
       // Renamed/typo blog slugs surfaced in body links

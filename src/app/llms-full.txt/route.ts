@@ -278,7 +278,7 @@ Each has unique local content (climbs, events, clubs, regional racing scene):
 ## Free Calculator Tools
 
 - FTP Zone Calculator: ${tag(`${BASE_URL}/tools/ftp-zones`)} — 7-zone Coggan power model, instant wattage ranges
-- Tyre Pressure Calculator: ${tag(`${BASE_URL}/tools/tyre-pressure`)} — Frank Berto 15% deflection model, surface-specific
+- Road Bike Tyre Pressure Calculator: ${tag(`${BASE_URL}/tools/tyre-pressure`)} — disclosed front/rear PSI and bar starting model with measured-width, hookless and manufacturer-limit checks
 - Race Weight Calculator: ${tag(`${BASE_URL}/tools/race-weight`)} — Target cycling race weight, W/kg projections
 - In-Ride Fuelling Calculator: ${tag(`${BASE_URL}/tools/fuelling`)} — Carbs per hour, fluids, sodium
 - Energy Availability Calculator: ${tag(`${BASE_URL}/tools/energy-availability`)} — RED-S risk screener

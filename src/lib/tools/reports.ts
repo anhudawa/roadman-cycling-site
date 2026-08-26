@@ -216,7 +216,10 @@ interface TyrePressureInputs {
   tyreWidth: number;   // mm
   rimWidth: number;    // mm
   surface: "smooth" | "rough" | "gravel";
-  tubeType: "clincher" | "tubeless" | "tubular";
+  tubeType: "tubed" | "tubeless" | "tubular";
+  rimProfile?: "hooked" | "hookless" | "unsure";
+  systemMinimumPsi?: number;
+  systemMaximumPsi?: number;
   front: number;       // psi — precomputed
   rear: number;        // psi — precomputed
   name?: string;
@@ -224,57 +227,39 @@ interface TyrePressureInputs {
 
 function generateTyrePressureReport(i: TyrePressureInputs): ReportOutput {
   const nameLine = i.name ? `<p style="color:#FAFAFA;font-size:15px;margin:0 0 16px;">${escapeHtml(i.name.split(" ")[0])} —</p>` : "";
-
-  // Adjustment table — same PSI shifted by condition. +10% rough, +5% wet, -8% gravel vs baseline.
-  const dryFront = i.front;
-  const dryRear = i.rear;
-  const wetFront = Math.round(i.front * 0.95);
-  const wetRear = Math.round(i.rear * 0.95);
-  const gravelFront = Math.round(i.front * 0.88);
-  const gravelRear = Math.round(i.rear * 0.88);
-  const winterFront = Math.round(i.front * 0.9);
-  const winterRear = Math.round(i.rear * 0.9);
-
-  const tubelessNote = i.tubeType === "tubeless"
-    ? `<p style="color:#9ca3af;font-size:14px;margin:0 0 16px;">You're running tubeless — these numbers assume you're 4-6 psi below what a clincher tyre of the same width would need. If you start burping air, add 3 psi and recheck.</p>`
-    : `<p style="color:#9ca3af;font-size:14px;margin:0 0 16px;">You're running clinchers. Going tubeless lets you drop 4-6 psi safely and gain significant grip + comfort. It's the biggest free performance upgrade most cyclists are still sitting on.</p>`;
+  const frontBar = (i.front / 14.5038).toFixed(1);
+  const rearBar = (i.rear / 14.5038).toFixed(1);
+  const rimProfile = i.rimProfile || "unsure";
+  const enteredRange = [
+    i.systemMinimumPsi ? `minimum ${i.systemMinimumPsi} PSI` : null,
+    i.systemMaximumPsi ? `maximum ${i.systemMaximumPsi} PSI` : null,
+  ].filter(Boolean).join("; ");
+  const setupLabel = i.tubeType === "tubed" ? "tyre + tube" : i.tubeType;
 
   const body = `
     ${nameLine}
-    <p style="color:#FAFAFA;font-size:15px;margin:0 0 6px;">Setup: ${i.riderWeight} kg rider, ${i.tyreWidth}mm ${i.tubeType} tyres, ${i.rimWidth}mm rims</p>
-    <p style="color:#9ca3af;font-size:14px;margin:0 0 24px;">Your baseline (${i.surface} roads): front <strong style="color:#F16363;">${i.front} psi</strong> / rear <strong style="color:#F16363;">${i.rear} psi</strong></p>
+    <p style="color:#FAFAFA;font-size:15px;margin:0 0 6px;">Setup: ${i.riderWeight} kg rider, ${i.bikeWeight} kg bike/gear, ${i.tyreWidth} mm measured tyre, ${i.rimWidth} mm internal rim, ${setupLabel}, ${rimProfile} rim</p>
+    <p style="color:#9ca3af;font-size:14px;margin:0 0 20px;">Roadman v1 starting point for ${i.surface}: front <strong style="color:#F16363;">${i.front} PSI (${frontBar} bar)</strong> / rear <strong style="color:#F16363;">${i.rear} PSI (${rearBar} bar)</strong></p>
 
-    <h2 style="color:#F16363;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;">Adjust by condition</h2>
-    <table style="width:100%;border-collapse:collapse;font-size:14px;background:rgba(255,255,255,0.03);border-radius:8px;overflow:hidden;margin:0 0 24px;">
-      <thead><tr style="background:rgba(255,255,255,0.05);">
-        <th style="padding:10px 12px;text-align:left;color:#9ca3af;font-weight:500;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;">Conditions</th>
-        <th style="padding:10px 12px;text-align:right;color:#9ca3af;font-weight:500;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;">Front</th>
-        <th style="padding:10px 12px;text-align:right;color:#9ca3af;font-weight:500;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;">Rear</th>
-      </tr></thead>
-      <tbody>
-        <tr><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);color:#FAFAFA;">Dry road, smooth tarmac</td><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;color:#FAFAFA;">${dryFront} psi</td><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;color:#FAFAFA;">${dryRear} psi</td></tr>
-        <tr><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);color:#FAFAFA;">Wet road</td><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;color:#FAFAFA;">${wetFront} psi</td><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;color:#FAFAFA;">${wetRear} psi</td></tr>
-        <tr><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);color:#FAFAFA;">Gravel / broken tarmac</td><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;color:#FAFAFA;">${gravelFront} psi</td><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;color:#FAFAFA;">${gravelRear} psi</td></tr>
-        <tr><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);color:#FAFAFA;">Winter / cold + grit</td><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;color:#FAFAFA;">${winterFront} psi</td><td style="padding:10px 12px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;color:#FAFAFA;">${winterRear} psi</td></tr>
-      </tbody>
-    </table>
+    <div style="border:1px solid rgba(241,163,99,0.45);background:rgba(241,163,99,0.08);border-radius:8px;padding:14px;margin:0 0 24px;">
+      <p style="color:#FAFAFA;font-size:13px;font-weight:700;margin:0 0 6px;text-transform:uppercase;letter-spacing:1px;">Compatibility check required</p>
+      <p style="color:#9ca3af;font-size:14px;line-height:1.55;margin:0;">Confirm the exact tyre is approved for the rim and that both pressures sit inside the higher minimum and lower maximum published by the two manufacturers.${enteredRange ? ` You entered: ${enteredRange}.` : " You did not enter manufacturer limits, so verify them before riding."}${rimProfile === "hookless" ? " Hookless selection: 72 PSI (5 bar) is a ceiling, but your exact system may be lower." : ""}</p>
+    </div>
 
-    ${tubelessNote}
-
-    <h2 style="color:#F16363;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;">How to tune by feel</h2>
+    <h2 style="color:#F16363;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;">How to field-test it</h2>
     <ol style="padding-left:20px;margin:0 0 24px;color:#FAFAFA;">
-      <li style="margin-bottom:8px;line-height:1.55;">Start at the number above. Ride your usual route.</li>
-      <li style="margin-bottom:8px;line-height:1.55;">Bike skittish in corners? Drop 2 psi.</li>
-      <li style="margin-bottom:8px;line-height:1.55;">Feeling every pebble through the bars? Drop 3-4 psi.</li>
-      <li style="margin-bottom:8px;line-height:1.55;">Tyre bottoming out on potholes (rim strikes)? Add 3 psi.</li>
-      <li style="line-height:1.55;">Every real-world change &gt; 5°C changes pressure by ~1 psi. Check before hard rides.</li>
+      <li style="margin-bottom:8px;line-height:1.55;">Use the same gauge and record front/rear pressure before each test.</li>
+      <li style="margin-bottom:8px;line-height:1.55;">Ride a repeatable route in similar conditions.</li>
+      <li style="margin-bottom:8px;line-height:1.55;">Change only one wheel by 1-2 PSI while staying inside the permitted range.</li>
+      <li style="margin-bottom:8px;line-height:1.55;">Record control, cornering support, harshness and rim contact—not speed alone.</li>
+      <li style="line-height:1.55;">Stop lowering if the tyre squirms, bottoms, burps or loses support.</li>
     </ol>
 
     ${softCoachingCta()}
   `;
   return {
-    subject: `Your tyre pressure setup: ${dryFront}/${dryRear} psi`,
-    html: wrap(`Your tyre setup, ${i.tyreWidth}mm`, "Pressure for dry, wet, gravel, winter — plus a quick tuning guide.", body),
+    subject: `Your tyre-pressure starting point: ${i.front}/${i.rear} PSI`,
+    html: wrap(`Your tyre setup, ${i.tyreWidth}mm`, "Front/rear starting pressure, safety checks and a controlled field-test method.", body),
     beehiivTag: "tool-tyre-pressure-report",
     beehiivFields: { tool: "tyre-pressure", tyre_width_mm: i.tyreWidth, front_psi: i.front, rear_psi: i.rear },
   };
@@ -632,6 +617,9 @@ export function generateToolReport(
         rimWidth: Number(inputs.rimWidth) || 19,
         surface: (inputs.surface as TyrePressureInputs["surface"]) || "smooth",
         tubeType: (inputs.tubeType as TyrePressureInputs["tubeType"]) || "tubeless",
+        rimProfile: (inputs.rimProfile as TyrePressureInputs["rimProfile"]) || "unsure",
+        systemMinimumPsi: Number(inputs.systemMinimumPsi) || undefined,
+        systemMaximumPsi: Number(inputs.systemMaximumPsi) || undefined,
         front,
         rear,
         name,

@@ -554,81 +554,122 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
 
   "tyre-pressure": {
     slug: "tyre-pressure",
-    title: "Tyre Pressure Calculator",
+    title: "Road Bike Tyre Pressure Calculator",
     description:
-      "SILCA-grade front and rear tyre pressure based on rider weight, tyre width, rim width, surface, and tube type. Free, evidence-based.",
+      "Calculate front and rear road bike tyre pressure in PSI and bar from system weight, measured tyre width and surface, with explicit hookless and manufacturer safety checks.",
     url: `${ROADMAN_BASE}/tools/tyre-pressure`,
-    breadcrumbName: "Tyre Pressure Calculator",
+    breadcrumbName: "Road Bike Tyre Pressure Calculator",
     answerSummary:
-      "Enter rider and bike weight, tyre and internal rim width, road surface, and tube type. The calculator returns front and rear PSI targets following SILCA-style impedance-loss optimisation — the same logic the WorldTour use to set up their tyres.",
+      "Add rider, bike, bottles and luggage; use the measured width of the inflated tyre; choose the surface; and enter the strictest limits printed by the tyre and rim makers. The calculator returns a front and rear starting point in PSI and bar. It is not a compatibility approval or a pressure limit.",
     whatItDoes:
-      "The right tyre pressure isn't \"the maximum on the sidewall\" — that's almost always too high. Lower pressures roll faster on real roads because they reduce impedance losses (the energy spent vibrating the rider, not just the tyre). This calculator gives you front and rear targets for your specific setup and surface.",
+      "This calculator turns system weight, measured mounted tyre width and surface into a reproducible front/rear starting estimate. It shows PSI and bar, records rim and setup details for the safety check, and flags an estimate that falls outside limits you enter.\n\nThere is no universal fastest pressure. Tyre construction, actual wheel load, rim geometry, speed and surface all matter. Use the result to begin controlled testing—not as permission to ignore a tyre or wheel manual.",
     whoItsFor: [
-      "Anyone running modern wide tyres (28mm+) on hookless or wide rims",
-      "Riders who still pump to 100+ psi out of habit",
-      "Gravel and all-road cyclists juggling road and rough surfaces",
-      "Tubeless converts who want to confirm safe minimums",
+      "Road cyclists who want separate front and rear starting pressures",
+      "Riders using 23-60 mm tyres on tarmac, rough roads or gravel",
+      "Hookless users who need the pressure ceiling kept visible",
+      "Cyclists comparing a calculated estimate with manufacturer tables",
     ],
     howItWorks:
-      "Optimal pressure scales with system weight (rider + bike + kit), tyre volume (width × internal rim width), and surface roughness. We model this off SILCA-style impedance-loss research — pressure too high causes the tyre to bounce instead of rolling, costing watts. Front pressure runs ~5 PSI lower than rear because the front carries less weight.",
+      "Roadman model v1 uses a disclosed empirical curve: rear PSI = 361.6257 × system weight in kg ÷ measured tyre width in mm^1.8. The front estimate is 93% of rear. Surface factors are 1.00 for smooth tarmac, 0.90 for rough roads and 0.80 for gravel. Setup type and rim width are not hidden modifiers because casing and tyre/rim combinations vary. The output is then checked against any limits you enter and a 72 PSI ceiling when hookless is selected.",
     howToSteps: [
-      { name: "Weigh yourself in kit", text: "Add your weight in cycling kit, the bike, plus bottles and any luggage. Most riders forget to add 1-2 kg of kit and bottles." },
-      { name: "Measure rim width, not stated tyre width", text: "Internal rim width is the number that matters. Measure with calipers or check the manufacturer spec. Modern road rims are 19-25 mm internal." },
-      { name: "Pick the surface", text: "Smooth tarmac, rough chip-seal, or gravel/cobbles. Each surface shifts the optimal pressure down by several PSI." },
-      { name: "Set front and rear separately", text: "The calculator returns different front and rear values. Set them with a digital pressure gauge — most floor pumps are wrong by 5-10 PSI." },
+      { name: "Add complete system weight", text: "Enter your weight in riding kit, then the bike, bottles, tools and luggage. Missing carried mass makes the estimate too low." },
+      { name: "Measure the inflated tyre", text: "Use callipers at the widest point of the mounted tyre where possible. Sidewall size is only a fallback because rim width changes actual tyre width." },
+      { name: "Check the tyre-rim system", text: "Confirm rim profile, approved tyre compatibility, internal rim-width range, and the minimum and maximum pressures published by both manufacturers." },
+      { name: "Choose the real surface", text: "Select smooth tarmac, rough tarmac or gravel for the route you are actually riding. Mixed routes should start with the rougher dominant surface." },
+      { name: "Calculate and verify", text: "Reject any result outside the permitted range. The higher manufacturer minimum and lower manufacturer maximum always control." },
+      { name: "Tune in small steps", text: "Test one change at a time on a repeatable route, usually 1-2 PSI per wheel, and stop lowering if the tyre squirms, bottoms, burps or loses support." },
     ],
-    howToTotalTime: "PT2M",
+    howToTotalTime: "PT5M",
     limitations:
-      "The calculator can't see your specific tyre casing (some tyres have noticeably different impedance curves), your rim's actual mounted tyre width (which is often 1-2 mm wider than stated), or your tubeless sealant volume. Use the output as a starting point; adjust ±5 PSI based on how the bike feels on your local roads.",
+      "The model does not know your exact front/rear axle load, tyre casing, bead retention, insert, sealant, speed, temperature, gauge error or impact risk. It cannot certify that a tyre fits a rim. Manufacturer compatibility and pressure ranges override every number on this page. Do not use the result if it falls outside those limits.",
     whenToSeeACoach:
-      "If you're tracking watts on a known segment and the difference between two pressures is in the noise — it probably is. Tyre-pressure optimisation is worth 5-15 watts on rough roads but isn't going to win you a race. Get the basics right, then move on.",
+      "A coach can structure field testing, but a qualified mechanic or the tyre/wheel manufacturer—not a coach or calculator—should resolve compatibility, repeated burping, rim strikes, unexplained pressure loss or uncertainty about a hookless setup.",
     examples: [
       {
-        scenario: "75kg rider, 28mm tubeless, 21mm rim, smooth tarmac",
-        inputs: ["Total weight: 84kg", "Tyre: 28mm", "Rim: 21mm", "Surface: smooth", "Tube: tubeless"],
-        output: "Front: 65 PSI. Rear: 70 PSI.",
+        scenario: "75 kg rider, 28 mm measured tyre, smooth tarmac",
+        inputs: ["Bike, bottles and kit: 8.5 kg", "System weight: 83.5 kg", "Measured tyre: 28 mm", "Surface factor: 1.00"],
+        output: "Model starting point: front 70 PSI (4.8 bar), rear 75 PSI (5.2 bar). Verify both manufacturers' limits before use.",
       },
       {
-        scenario: "85kg rider, 38mm gravel tubeless, 24mm rim, gravel surface",
-        inputs: ["Total weight: 95kg", "Tyre: 38mm", "Rim: 24mm", "Surface: gravel", "Tube: tubeless"],
-        output: "Front: 32 PSI. Rear: 36 PSI.",
+        scenario: "85 kg rider, 40 mm measured tyre, gravel",
+        inputs: ["Bike, bottles and kit: 10 kg", "System weight: 95 kg", "Measured tyre: 40 mm", "Surface factor: 0.80"],
+        output: "Model starting point: front 33 PSI (2.3 bar), rear 36 PSI (2.5 bar). The tyre/rim minimum can still be higher.",
       },
     ],
     faqs: [
       {
         question: "What tyre pressure should I run on a road bike?",
-        answer: "For a 70kg rider on 28mm tubeless tyres with 21mm internal rims on smooth tarmac, around 65-70 PSI front, 70-75 PSI rear is fast. Add 5-10 PSI per 10kg above 70kg. Subtract 5-10 PSI for rough roads. The sidewall maximum is a safety limit, not a target — it's almost always too high.",
+        answer: "It depends on complete system weight, measured mounted tyre width, surface, tyre construction and the permitted tyre-rim range. As a model example, an 83.5 kg system on measured 28 mm tyres starts at about 70 PSI front and 75 PSI rear on smooth tarmac. That is a test point, not a universal target or safety approval.",
       },
       {
-        question: "Why do lower tyre pressures roll faster?",
-        answer: "On real roads, energy is lost two ways — hysteresis (tyre deformation) and impedance (rider/bike vibration). Higher pressure reduces hysteresis but increases impedance, because the tyre bounces over bumps instead of absorbing them. Below the optimum, hysteresis dominates and you get slower; above, impedance dominates. SILCA's research found the optimum is usually well below the sidewall max.",
+        question: "Is lower tyre pressure always faster?",
+        answer: "No. Pressure involves a trade-off between tyre deformation, surface interaction, vibration, grip and impact support. Smooth-surface tests can favour higher pressure, while lower pressure and wider tyres can reduce vibration on rougher surfaces. Recent controlled work found nonlinear effects and no single universal optimum, which is why this calculator returns a starting point for field testing.",
       },
       {
         question: "How much lower should front pressure be than rear?",
-        answer: "Around 5 PSI lower on a road bike, because the front wheel carries roughly 40% of system weight versus 60% on the rear. On gravel or all-road, the gap can grow to 4-6 PSI. Running equal pressure makes the front feel harsh and the rear feel soft.",
+        answer: "The exact split follows the load on each wheel, which changes with riding position, bike geometry and luggage. Roadman model v1 uses a disclosed default: front pressure is 93% of rear. Riders who measure individual wheel loads should prefer tyre or wheel-maker guidance that accepts those loads.",
       },
       {
-        question: "Are tubeless tyres faster than tubes?",
-        answer: "Yes — typically 5-15 watts faster at the same pressure due to lower hysteresis losses, plus tubeless lets you safely run lower pressures (no pinch flat risk), unlocking more impedance gains. The trade-off is setup hassle and sealant maintenance.",
+        question: "Should tubeless pressure be lower than pressure with a tube?",
+        answer: "Tubeless removes an inner tube pinch-flat mode, but that does not justify one universal percentage reduction. Casing, tyre size, rim, load and terrain still control support and retention. This model therefore does not silently lower pressure because tubeless is selected; use the tyre and rim makers' tubeless range, then tune in small steps.",
       },
       {
-        question: "Is the maximum sidewall pressure safe?",
-        answer: "Yes, it's a safety limit. But it's not the target. The sidewall max exists for legal/insurance reasons — running near it on a wide modern tyre with a wide rim almost always rolls slower and definitely feels worse. Treat the calculator's number as the target and the sidewall as a never-exceed ceiling.",
+        question: "What is the maximum pressure for hookless road rims?",
+        answer: "Current road tubeless straight-side systems use a 5 bar or roughly 72 PSI ceiling, but many wheel-and-tyre combinations specify a lower maximum for a given width. Use only a tyre explicitly approved for hookless use and never exceed the lowest maximum published by the tyre or rim maker. A 72 PSI calculator cap does not certify compatibility.",
+      },
+      {
+        question: "Should I use stated or measured tyre width?",
+        answer: "Use the measured width of the inflated tyre on your actual rim when possible. The same labelled tyre can measure differently on different internal rim widths. If you cannot measure it, use the sidewall size as an estimate and expect to refine the result after measuring.",
       },
     ],
     related: [
       { label: "MTB Setup Calculator", href: "/tools/shock-pressure", kind: "tool" },
-      { label: "Race Predictor", href: "/predict", kind: "tool" },
-      { label: "Tyre pressure complete guide", href: "/blog/cycling-tyre-pressure-guide", kind: "article" },
-      { label: "Equipment topic hub", href: "/topics/cycling-coaching", kind: "topic" },
+      { label: "Road cycling tyre-pressure guide", href: "/blog/cycling-tyre-pressure-guide", kind: "article" },
+      { label: "MTB tyre-pressure guide", href: "/blog/mtb-tyre-pressure-guide", kind: "article" },
+      { label: "Tyres are slowing you down podcast", href: "/podcast/ep-2057-your-tyres-are-slowing-you-down-here-s-why", kind: "podcast" },
     ],
     webAppFeatures: [
-      "Front and rear PSI based on system weight",
-      "Tyre and internal rim-width inputs",
-      "Surface adjustment (smooth / rough / gravel)",
-      "Tubeless and clincher modes",
-      "SILCA-style impedance-loss model",
+      "Front and rear starting pressure in PSI and bar",
+      "Complete system-weight and measured tyre-width inputs",
+      "Smooth, rough-road and gravel surface modes",
+      "Hooked, hookless and manufacturer-limit safety checks",
+      "Published Roadman v1 calculation method",
     ],
+    evidenceSources: [
+      {
+        name: "ETRTO Recommendations, edition 2 (2024)",
+        role: "Tyre/rim compatibility and manufacturer pressure limits",
+        href: "https://www.etrto.org/media/j05fjxrd/etrto-recommendations-edition-2-september-2024.pdf",
+      },
+      {
+        name: "SRAM Zipp Road Wheels user manual",
+        role: "Hookless compatibility and width-specific maximum pressure examples",
+        href: "https://docs.sram.com/en-US/publications/6s97VpCp9fBhUto8eMea31/UM%20-%20ZIPP%20-%20Road%20Wheels",
+      },
+      {
+        name: "Schwalbe tyre-pressure guidance",
+        role: "Load, tyre width and permitted-range guidance",
+        href: "https://www.schwalbe.com/en/technology-faq/tire-pressure/",
+      },
+      {
+        name: "Buder, Fouchard & Schwanitz (2025)",
+        role: "Controlled tyre-width, pressure, surface and vibration study",
+        href: "https://www.jsc-journal.com/index.php/JSC/article/download/1049/863/5662",
+      },
+      {
+        name: "Crenna et al. (2025)",
+        role: "Road-bike tyre width, pressure and vibration measurements",
+        href: "https://doi.org/10.3390/eng6090245",
+      },
+      {
+        name: "Lim et al. (2011)",
+        role: "Field method and smooth-asphalt pressure comparison",
+        href: "https://pubmed.ncbi.nlm.nih.gov/20881880/",
+      },
+    ],
+    dateModified: "2026-08-26",
+    reviewedBy: "Anthony Walsh",
+    reviewScope: "source-to-claim and calculator-method review",
   },
 
   "shock-pressure": {
