@@ -75,6 +75,13 @@ export default async function TopicPage({
               url: `${SITE_ORIGIN}/topics/${slug}`,
               isPartOf: { "@id": ENTITY_IDS.website },
               publisher: { "@id": ENTITY_IDS.organization },
+              ...(topic.sources.length > 0 && {
+                citation: topic.sources.map((source) => ({
+                  "@type": "CreativeWork",
+                  name: source.title,
+                  url: source.href,
+                })),
+              }),
               ...(topic.lastReviewed && {
                 dateModified: topic.lastReviewed,
               }),
@@ -89,7 +96,11 @@ export default async function TopicPage({
               // mainEntity: the topical Thing the hub is about. Articles and
               // episodes reference this @id from their `about` field so the
               // topic resolves to one shared node across the site.
-              mainEntity: { "@id": `${SITE_ORIGIN}/topics/${slug}#thing` },
+              mainEntity: {
+                "@id": `${SITE_ORIGIN}/topics/${slug}${
+                  topic.definedTerm ? "#defined-term" : "#thing"
+                }`,
+              },
               // hasPart references each member by the canonical @id its own
               // page emits, so an article that appears on multiple hubs
               // resolves to one BlogPosting node rather than several
@@ -127,6 +138,29 @@ export default async function TopicPage({
               url: `${SITE_ORIGIN}/topics/${slug}`,
               sameAs: `${SITE_ORIGIN}/topics/${slug}`,
             },
+            ...(topic.definedTerm
+              ? [
+                  {
+                    "@type": "DefinedTerm",
+                    "@id": `${SITE_ORIGIN}/topics/${slug}#defined-term`,
+                    name: topic.definedTerm.name,
+                    ...(topic.definedTerm.alternateName && {
+                      alternateName: topic.definedTerm.alternateName,
+                    }),
+                    ...(topic.definedTerm.termCode && {
+                      termCode: topic.definedTerm.termCode,
+                    }),
+                    description: topic.description,
+                    url: `${SITE_ORIGIN}/topics/${slug}`,
+                    inDefinedTermSet: {
+                      "@id": `${SITE_ORIGIN}/glossary#termset`,
+                    },
+                    subjectOf: {
+                      "@id": `${SITE_ORIGIN}/topics/${slug}#topic`,
+                    },
+                  },
+                ]
+              : []),
           ],
         }}
       />
@@ -555,7 +589,7 @@ export default async function TopicPage({
           <Container width="narrow">
             <ScrollReveal direction="up">
               <SourceMethodology
-                methodology={`This hub aggregates Roadman Cycling Podcast conversations and our written guides into a single position on ${topic.title.toLowerCase()}. Recommendations come from named experts on the show, the published research they cite, and Anthony's coaching practice — not generic fitness content.`}
+                methodology={`This hub turns Roadman Cycling's reporting, coaching practice and the listed primary references into one reviewed position on ${topic.title.toLowerCase()}. Where a test or research result has individual limits, the page states them instead of presenting one protocol as universal.`}
                 episodes={topic.episodes.slice(0, 2).map((ep) => ({
                   title: ep.title,
                   href: `/podcast/${ep.slug}`,
@@ -564,6 +598,9 @@ export default async function TopicPage({
                   title: p.title,
                   href: `/blog/${p.slug}`,
                 }))}
+                research={topic.sources}
+                lastReviewed={topic.lastReviewed}
+                reviewedBy={topic.reviewedBy?.name}
               />
               <AskRoadmanCTA
                 topic={topic.title}

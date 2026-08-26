@@ -12,7 +12,7 @@ export const BENCHMARK_ARTICLES: ClusterArticleSpec[] = [
     angle: "Benchmark reference page with tables by age group (20s, 30s, 40s, 50s, 60+) and experience level. Cites Coggan, Allen, and podcast data.",
     pillar: "coaching",
     requiredSections: ["How to read FTP benchmarks", "FTP benchmarks by age group", "FTP benchmarks by experience level", "W/kg benchmarks (the number that matters more)", "How fast can you improve?", "When benchmarks stop mattering"],
-    internalLinks: [{ href: "/tools/ftp-zones", anchor: "FTP zone calculator" }, { href: "/tools/wkg", anchor: "W/kg calculator" }, { href: "/glossary/ftp", anchor: "what is FTP" }],
+    internalLinks: [{ href: "/tools/ftp-zones", anchor: "FTP zone calculator" }, { href: "/tools/wkg", anchor: "W/kg calculator" }, { href: "/topics/ftp-training", anchor: "what is FTP in cycling" }],
     wordTarget: 2500,
     featuredImage: "/images/cycling/gravel-road-climb-2.jpg",
   },

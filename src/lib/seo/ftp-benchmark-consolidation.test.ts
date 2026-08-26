@@ -40,8 +40,8 @@ describe("FTP benchmark intent consolidation", () => {
     const raw = readFileSync(blogFile(CANONICAL_SLUG), "utf8");
     const { data } = matter(raw);
 
-    expect(data.updatedDate).toBe("2026-08-25");
-    expect(data.lastReviewed).toBe("2026-08-25");
+    expect(data.updatedDate).toBe("2026-08-26");
+    expect(data.lastReviewed).toBe("2026-08-26");
     expect(data.relatedPosts).toContain(EXPERIENCE_SLUG);
     expect(raw).toContain(`/blog/${EXPERIENCE_SLUG}`);
 
@@ -54,8 +54,8 @@ describe("FTP benchmark intent consolidation", () => {
     const raw = readFileSync(blogFile(EXPERIENCE_SLUG), "utf8");
     const { data, content } = matter(raw);
 
-    expect(data.updatedDate).toBe("2026-08-25");
-    expect(data.lastReviewed).toBe("2026-08-25");
+    expect(data.updatedDate).toBe("2026-08-26");
+    expect(data.lastReviewed).toBe("2026-08-26");
     expect(data.title).toMatch(/Experience Level/i);
     expect(data.keywords).toEqual(
       expect.arrayContaining([

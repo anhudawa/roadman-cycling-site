@@ -90,6 +90,8 @@ const CURATED: string[] = [
   `https://${HOST}/podcast/the-mystery-around-sam-bennett-and-la-tour-de-france`,
   `https://${HOST}/answers/what-is-a-domestique`,
   `https://${HOST}/glossary/domestique`,
+  `https://${HOST}/topics/ftp-training`,
+  `https://${HOST}/glossary/ftp`,
   `https://${HOST}/guests/jonas-abrahamsen`,
   `https://${HOST}/experts/jonas-abrahamsen`,
   `https://${HOST}/podcast/ep-29-untold-story-ofjonas-abrahamsens-pro-winter-training`,

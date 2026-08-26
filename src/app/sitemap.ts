@@ -465,7 +465,9 @@ function buildTopicAndMoreSitemap(): MetadataRoute.Sitemap {
     url: `${BASE_URL}/topics/${slug}`,
     ...(["cycling-coaching", "cycling-training-plans", "masters-cycling"].includes(slug)
       ? { lastModified: new Date("2026-08-24") }
-      : {}),
+      : slug === "ftp-training"
+        ? { lastModified: new Date("2026-08-26") }
+        : {}),
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));

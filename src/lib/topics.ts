@@ -20,6 +20,12 @@ export interface TopicHub {
     role: string;
     href: string;
   };
+  /** Optional glossary entity represented by this canonical topic owner. */
+  definedTerm?: {
+    name: string;
+    alternateName?: string;
+    termCode?: string;
+  };
   /**
    * Short noun phrase used in the commercial CTA headline
    * ("GET COACHED ON {ctaHeadline}"). Hand-written per topic because
@@ -51,6 +57,8 @@ export interface TopicHub {
   citedClaims: CitedClaim[];
   claimsHeading?: string;
   claimsCaption?: string;
+  /** Primary or official references used to review the topic's core claims. */
+  sources: TopicSource[];
   /**
    * Question/answer pairs for the hub, derived from the topic's own
    * content. Rendered as a visible <details> accordion AND emitted as
@@ -72,19 +80,35 @@ export interface TopicFAQ {
   answer: string;
 }
 
+export interface TopicSource {
+  title: string;
+  href: string;
+}
+
 /**
  * Topic hubs — curated landing pages that group related content.
  * Each one targets a high-value keyword cluster.
  */
-const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commercialPath" | "relatedTopics" | "featuredPostSlugs" | "pillarContent" | "citedClaims" | "claimsHeading" | "claimsCaption" | "faqs">[] = [
+const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commercialPath" | "relatedTopics" | "featuredPostSlugs" | "pillarContent" | "citedClaims" | "claimsHeading" | "claimsCaption" | "sources" | "faqs">[] = [
   {
     slug: "ftp-training",
-    title: "FTP Training for Cyclists — The Complete Evidence-Based Guide",
-    headline: "FTP TRAINING — THE COMPLETE GUIDE",
-    ctaHeadline: "FTP TRAINING BUILT AROUND YOUR NUMBERS.",
+    title: "FTP Cycling: Meaning, Tests, Zones & Training",
+    headline: "FTP IN CYCLING: MEANING, TESTS & TRAINING",
+    ctaHeadline: "FTP TRAINING BUILT AROUND YOUR FULL POWER PROFILE.",
     description:
-      "The complete guide to FTP training. How to test, train, and improve your Functional Threshold Power — grounded in conversations with Professor Seiler, Dan Lorang, and 1,400+ podcast episodes.",
+      "FTP in cycling is a practical estimate of threshold power used for zones and progress. Learn its meaning, how tests differ, its limits and what to do next.",
     pillar: "coaching",
+    lastReviewed: "2026-08-26",
+    reviewedBy: {
+      name: "Anthony Walsh",
+      role: "Roadman Cycling founder and head coach",
+      href: "/author/anthony-walsh",
+    },
+    definedTerm: {
+      name: "Functional Threshold Power",
+      alternateName: "FTP in cycling",
+      termCode: "FTP",
+    },
     keywords: [
       "ftp training",
       "ftp cycling",
@@ -2279,6 +2303,7 @@ const TOPIC_ENRICHMENT: Record<string, {
   citedClaims?: CitedClaim[];
   claimsHeading?: string;
   claimsCaption?: string;
+  sources?: TopicSource[];
 }> = {
   "masters-cycling": {
     tools: [
@@ -2349,37 +2374,77 @@ const TOPIC_ENRICHMENT: Record<string, {
       "why-your-ftp-is-stuck-five-causes",
     ],
     claimsCaption:
-      "Where Roadman lands on the recurring questions about FTP — and the strength of evidence behind each position.",
+      "What FTP can and cannot support, with the limits made explicit.",
     citedClaims: [
       {
-        claim: "FTP can improve in trained amateurs",
+        claim: "FTP is a useful operational estimate, not an exact one-hour constant",
         roadmanPosition:
-          "Yes, but the rate of gain depends on training age. Beginners see fast jumps; experienced amateurs need block-by-block patience.",
+          "Use FTP to anchor power zones and compare like-for-like tests. Do not assume every rider can sustain the number for exactly 60 minutes or that it identifies a laboratory threshold without error.",
         evidenceSource:
-          "Convergent across Lorang, Wakefield and Friel commentary on the Roadman archive; supported by published training-age research.",
+          "Coggan's practical definition, the FTP field-test scoping review and research on time to exhaustion at FTP.",
         practicalImplication:
-          "Plan in 12-week blocks and judge progress on trend, not single-test jumps.",
+          "Track the test protocol and duration alongside the watt value, then judge the trend under comparable conditions.",
         evidenceLevel: "strong",
       },
       {
-        claim: "Masters cyclists need more recovery, not less work",
+        claim: "A 20-minute test is an estimate with individual error",
         roadmanPosition:
-          "Reduce intensity density and protect sleep. The total volume can stay; the recovery between hard sessions has to grow.",
+          "Multiplying 20-minute power by 0.95 is common and can be repeatable, but it is not a universal conversion from 20-minute performance to FTP.",
         evidenceSource:
-          "Masters-specific research on adaptation rates plus coaching practice across the Roadman masters interviews.",
+          "The 2021 FTP scoping review found reliability alongside wide limits of agreement against physiological threshold markers.",
         practicalImplication:
-          "Cap hard sessions at two per week and add a second easy day before adding any intervals.",
+          "Repeat the same warm-up, equipment and protocol; do not compare a ramp result directly with a 20-minute result as if the methods were identical.",
         evidenceLevel: "moderate",
       },
       {
-        claim: "A 20-minute test estimates FTP within ~5% for most amateurs",
+        claim: "FTP and critical power are related but not interchangeable",
         roadmanPosition:
-          "Close enough to set zones, but only useful if the protocol is repeated identically every retest. Trend beats precision.",
+          "Both summarise sustained power, but they come from different models and should retain separate names, values and testing methods.",
         evidenceSource:
-          "Coggan/Allen 20-minute protocol with 95% adjustment; corroborated by athlete data across the Roadman coaching network.",
+          "A study of trained cyclists found strong correlation but agreement limits too wide to substitute one value for the other.",
         practicalImplication:
-          "Use the same warm-up, terrain and pacing every time. Retest no more than once every 6–8 weeks.",
+          "If software reports critical power, do not relabel it FTP or silently use it to reset FTP-based zones.",
         evidenceLevel: "moderate",
+      },
+      {
+        claim: "Time to exhaustion adds information that FTP alone misses",
+        roadmanPosition:
+          "Two riders with the same FTP can sustain it for meaningfully different durations, so threshold durability deserves separate attention.",
+        evidenceSource:
+          "Research across recreational, trained, well-trained and professional cyclists reported substantial variation in time to exhaustion at FTP.",
+        practicalImplication:
+          "Review the power-duration curve, repeatability and event demands instead of treating one FTP value as a complete rider profile.",
+        evidenceLevel: "moderate",
+      },
+    ],
+    sources: [
+      {
+        title: "TrainingPeaks — What Is Threshold Power? (Andrew Coggan)",
+        href: "https://www.trainingpeaks.com/learn/articles/what-is-threshold-power/",
+      },
+      {
+        title: "TrainingPeaks Help — Calculating threshold values",
+        href: "https://help.trainingpeaks.com/hc/en-us/articles/204071934-How-to-Calculate-Threshold-Values-for-Power-Heart-Rate-or-Pace",
+      },
+      {
+        title: "British Cycling — Understanding intensity with power",
+        href: "https://www.britishcycling.org.uk/knowledge/training/get-started/article/izn20140820-Training-Understanding-Intensity-3--Power-0",
+      },
+      {
+        title: "Sports Medicine — FTP field-test scoping review (PMID 34304689)",
+        href: "https://pubmed.ncbi.nlm.nih.gov/34304689/",
+      },
+      {
+        title: "International Journal of Sports Physiology and Performance — FTP vs critical power (PMID 33551839)",
+        href: "https://pubmed.ncbi.nlm.nih.gov/33551839/",
+      },
+      {
+        title: "International Journal of Sports Physiology and Performance — Time to exhaustion at FTP (PMID 35835698)",
+        href: "https://pubmed.ncbi.nlm.nih.gov/35835698/",
+      },
+      {
+        title: "Sports Medicine — Cycling power-meter validity review (PMID 35009945)",
+        href: "https://pubmed.ncbi.nlm.nih.gov/35009945/",
       },
     ],
   },
@@ -2984,22 +3049,32 @@ const TOPIC_FAQS: Record<string, TopicFAQ[]> = {
     {
       question: "What is FTP in cycling?",
       answer:
-        "FTP (Functional Threshold Power) is the highest power output you can sustain for roughly an hour, measured in watts. It's the anchor for setting training zones, because almost every structured session is prescribed as a percentage of it.",
+        "FTP, or Functional Threshold Power, is a practical estimate of sustained threshold power measured in watts. Cyclists use it to anchor power zones and track comparable tests, but it is not a guarantee that every rider can hold the number for exactly one hour.",
     },
     {
       question: "How do I test my FTP?",
       answer:
-        "The most common field test is a 20-minute all-out effort, with FTP estimated at 95% of your average power. Use the same warm-up, terrain and pacing every time so the number stays comparable, and retest no more than once every six to eight weeks.",
+        "Common options include a sustained 45–60-minute effort or race file, a 20-minute field test with an estimated conversion, a ramp test, and modelled detection from ride data. No method is exact for every rider, so choose one appropriate method and repeat the same protocol, equipment and conditions.",
     },
     {
       question: "How long does it take to improve FTP?",
       answer:
-        "Beginners often see quick gains in the first few months, while experienced amateurs progress block by block over 8–12 weeks. Judge progress on the trend across several tests rather than a single result, and expect smaller jumps as your training age increases.",
+        "There is no universal timetable or guaranteed percentage. Training history, available volume, recovery, testing error and the rider's current limiters all matter, so judge change across comparable training blocks and confirm a surprising result before changing every zone.",
     },
     {
       question: "What is a good FTP for a cyclist?",
       answer:
-        "Raw FTP matters less than power-to-weight, measured in watts per kilogram. A fit amateur is often around 3–4 W/kg and competitive club riders 4–5 W/kg, but the only number that matters for your training is your own.",
+        "A useful FTP is one measured consistently and interpreted for the rider's body mass, event, power-duration curve and training history. Population benchmark tables can provide context, but they are not targets and a single raw-watt or W/kg band cannot define cycling ability.",
+    },
+    {
+      question: "Is FTP the same as critical power or lactate threshold?",
+      answer:
+        "No. FTP, critical power and laboratory lactate or ventilatory thresholds are related constructs, but their values come from different definitions and methods. Research supports correlation, not automatic interchangeability, so keep the test name attached to the number.",
+    },
+    {
+      question: "What does FTP not tell you?",
+      answer:
+        "FTP alone does not describe sprint power, repeatability, fatigue resistance, technical skill, aerodynamics or how long a rider can sustain threshold power. Pair it with a power-duration curve, time-to-exhaustion context and the demands of the target event.",
     },
   ],
   "cycling-nutrition": [
@@ -3772,6 +3847,7 @@ export function getAllTopics(): TopicHub[] {
       citedClaims: enrichment.citedClaims ?? [],
       claimsHeading: enrichment.claimsHeading,
       claimsCaption: enrichment.claimsCaption,
+      sources: enrichment.sources ?? [],
       faqs: TOPIC_FAQS[topic.slug] ?? [],
     };
   });

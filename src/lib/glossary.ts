@@ -22,13 +22,14 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
   {
     slug: "ftp",
     term: "FTP (Functional Threshold Power)",
-    definition: "The highest average power a cyclist can sustain for approximately one hour, measured in watts. All seven training zones are calculated as percentages of FTP.",
-    extendedDefinition: "FTP is the single most important metric in cycling training. Introduced by Dr Andrew Coggan, it represents the boundary between sustainable aerobic work and unsustainable anaerobic effort. Most riders test FTP via a 20-minute all-out effort (multiplied by 0.95) or a ramp test. Typical amateur FTP ranges from 150W to 350W depending on fitness, body weight, and training history. FTP expressed as watts per kilogram (W/kg) is a better predictor of climbing and overall performance.",
+    definition: "A practical estimate of sustained threshold power, measured in watts and commonly used to set cycling power zones and track comparable tests over time.",
+    extendedDefinition: "FTP is an operational training estimate, not a guarantee that every rider can sustain the value for exactly one hour or that it equals critical power or a laboratory threshold. Common methods include sustained efforts, a 20-minute estimate, ramp testing and modelled detection. Keep the method attached to the result, repeat comparable conditions and interpret FTP alongside W/kg, time to exhaustion and the full power-duration curve.",
     pillar: "coaching",
     relatedTerms: ["w-kg", "sweet-spot", "threshold", "vo2max"],
-    relatedArticle: "/blog/ftp-training-zones-cycling-complete-guide",
+    relatedArticle: "/blog/how-to-improve-ftp-cycling",
     relatedTool: "/tools/ftp-zones",
     relatedTopicHub: "/topics/ftp-training",
+    canonicalPath: "/topics/ftp-training",
   },
   {
     slug: "vo2max",
