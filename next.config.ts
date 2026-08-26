@@ -502,6 +502,15 @@ const nextConfig: NextConfig = {
         destination: "/compare/trainingpeaks-vs-vekta",
         permanent: true,
       },
+      // Exact-query GSC data showed the current, source-checked blog article
+      // earning all clicks for "rouvy vs zwift" while the older generated
+      // comparison earned impressions with stale pricing and unsupported
+      // volume claims. Consolidate those signals on the established owner.
+      {
+        source: "/compare/rouvy-vs-zwift-platform",
+        destination: "/blog/rouvy-vs-zwift",
+        permanent: true,
+      },
 
       // ==========================================================
       // Legacy ClickFunnels paths flagged as live 404s in the
