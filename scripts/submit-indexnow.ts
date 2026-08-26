@@ -93,6 +93,7 @@ const CURATED: string[] = [
   `https://${HOST}/topics/ftp-training`,
   `https://${HOST}/glossary/ftp`,
   `https://${HOST}/answers/ftp-test-guide`,
+  `https://${HOST}/answers/threshold-intervals-guide`,
   `https://${HOST}/tools/ftp-test`,
   `https://${HOST}/answers/20-minute-ftp-test`,
   `https://${HOST}/answers/how-to-do-a-ramp-test`,

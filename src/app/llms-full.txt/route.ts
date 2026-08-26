@@ -100,6 +100,7 @@ export async function GET() {
       lines: [
         `${BASE_URL}/topics/ftp-training — Canonical FTP-in-cycling definition: tests, zones, limits and task routing.`,
         `${BASE_URL}/answers/ftp-test-guide — Choose and repeat an FTP test; compare sustained, 20-minute, ramp and modelled methods.`,
+        `${BASE_URL}/answers/threshold-intervals-guide — Canonical cycling threshold-interval owner: scalable workouts, FTP limits, power-heart-rate-RPE monitoring, progression, weekly placement and evidence boundaries.`,
         `${BASE_URL}/tools/ftp-test — Convert a completed FTP test result using a displayed method-specific equation.`,
         `${BASE_URL}/blog/polarised-training-cycling-complete-guide — Canonical polarised-training owner: three-zone model, 80/20 counting methods, cyclist evidence, comparisons and implementation limits.`,
         `${BASE_URL}/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe — Canonical Zone 2 cycling owner: zone-system translation, LT1 and VT1, power, heart rate, RPE, duration, adaptation evidence and practical limits.`,
