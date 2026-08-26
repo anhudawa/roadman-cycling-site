@@ -79,6 +79,7 @@ export default function TourDeFranceHubPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "SportsEvent",
+          "@id": `${URL}#event`,
           name: `Tour de France ${TOUR_META.year}`,
           sport: "Road cycling",
           startDate: TOUR_META.startDate,

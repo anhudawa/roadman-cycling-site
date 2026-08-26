@@ -69,6 +69,7 @@ export default async function StagePage({
         data={{
           "@context": "https://schema.org",
           "@type": "SportsEvent",
+          "@id": `${url}#event`,
           name: `Tour de France 2026 — Stage ${stage.number}: ${stage.start} to ${stage.finish}`,
           sport: "Road cycling",
           startDate: stage.date,
@@ -77,9 +78,7 @@ export default async function StagePage({
             "https://schema.org/OfflineEventAttendanceMode",
           url,
           superEvent: {
-            "@type": "SportsEvent",
-            name: `Tour de France ${TOUR_META.year}`,
-            url: `${SITE_ORIGIN}/tour-de-france`,
+            "@id": `${SITE_ORIGIN}/tour-de-france#event`,
           },
           location: [tourPlace(stage.start), tourPlace(stage.finish)],
           description: stage.description,
