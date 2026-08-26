@@ -130,13 +130,13 @@ export const TOUR_STAGES: Stage[] = [
     dayOfWeek: "Saturday",
     start: "Barcelona",
     finish: "Barcelona",
-    distanceKm: 19.7,
+    distanceKm: 19.6,
     type: "team-tt",
     climbs: [{ name: "Côte de Montjuïc", lengthKm: 1.1, gradientPct: 5.1 }],
     summitFinish: false,
     sprintFriendly: false,
     description:
-      "The most southerly Grand Départ in race history opens with a team time trial around Barcelona — the first TTT to start a Tour since 1971. Seconds lost here follow GC riders for three weeks.",
+      "Jonas Vingegaard won the opening Barcelona team time trial in 21:47 and took the first yellow jersey. Filippo Ganna finished eight seconds behind and Tadej Pogačar was third at 12 seconds.",
     tactical: {
       whoBenefits:
         "The deep GC squads — UAE, Visma–Lease a Bike, Red Bull–Bora–Hansgrohe — whose eight riders can hold a brutal pace as one unit. A leader with a strong team takes time before he has pedalled in anger.",
@@ -146,7 +146,7 @@ export const TOUR_STAGES: Stage[] = [
     prediction:
       "Expect 30 to 60 seconds between the best and weakest GC teams by the finish — a deficit some contenders will spend three weeks trying to claw back. The strongest squad puts its leader in the first yellow jersey.",
     roadmanTake:
-      "A TTT is the purest test of pacing discipline and turn-taking — eight riders holding one effort, nobody blowing the line. The same maths runs your club's chaingang: smooth, even pulls beat hero turns that shred the group. Hold a steady power, rotate clean, and the average speed takes care of itself.",
+      "Visma controlled the flat opening kilometres as a unit, then released Vingegaard to finish the Montjuïc climb. The result shows the value of even team pacing and a planned handover; it does not disclose the riders' power or aerodynamic data.",
     expertAngle: {
       expert: "Dan Bigham",
       angle:
@@ -160,6 +160,57 @@ export const TOUR_STAGES: Stage[] = [
       },
       { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
     ],
+    result: {
+      winner: "Jonas Vingegaard",
+      winnerTeam: "Team Visma | Lease a Bike",
+      winningTime: "21:47",
+      podium: [
+        {
+          position: 1,
+          rider: "Jonas Vingegaard",
+          team: "Team Visma | Lease a Bike",
+          timeOrGap: "21:47",
+        },
+        {
+          position: 2,
+          rider: "Filippo Ganna",
+          team: "Netcompany Ineos",
+          timeOrGap: "+8 seconds",
+        },
+        {
+          position: 3,
+          rider: "Tadej Pogačar",
+          team: "UAE Team Emirates-XRG",
+          timeOrGap: "+12 seconds",
+        },
+      ],
+      summary:
+        "Team Visma | Lease a Bike drove the flatter opening sections before Jonas Vingegaard powered through the final Montjuïc climb to set 21:47. Filippo Ganna was eight seconds slower after Netcompany Ineos lost Kévin Vauquelin to a puncture, while Tadej Pogačar finished 12 seconds down.",
+      keyMoments: [
+        "The individual-time format meant each rider's own finishing time counted for the general classification.",
+        "Filippo Ganna set 21:55 after Kévin Vauquelin's puncture disrupted the Netcompany Ineos plan.",
+        "Visma kept its collective speed through the flat sections and delivered Vingegaard to the final climb.",
+        "Vingegaard accelerated on Montjuïc and stopped the clock at 21:47.",
+        "Pogačar was fastest over the final 3.7 kilometres and finished third, 12 seconds behind.",
+      ],
+      classificationAfter:
+        "Jonas Vingegaard took his first Tour de France yellow jersey since 2023. Pogačar's fastest time over the hilly final 3.7 kilometres also put him in the polka-dot jersey.",
+      sources: [
+        {
+          label: "Official Tour de France Stage 1 race report",
+          href: "https://www.letour.fr/en/news/2026/stage-1/montjuics-magic-smiles-on-vingegaard/1333818",
+        },
+        {
+          label: "Official Tour de France Stage 1 classification",
+          href: "https://www.letour.fr/en/rankings/stage-1?hasCookies=false&hideOnetrust=true&isRacecenter=true&isWebview=true",
+        },
+        {
+          label: "Official Tour de France Stage 1 route record",
+          href: "https://www.letour.fr/en/etape-1",
+        },
+      ],
+      lastReviewed: "2026-08-26",
+    },
   },
   {
     number: 2,
@@ -598,7 +649,7 @@ export const TOUR_STAGES: Stage[] = [
       { name: "Côte de Billy-Chevannes", lengthKm: 1.5, gradientPct: 6 },
     ],
     description:
-      "A transitional flat stage out of the spa town of Vichy to Nevers. The sprinters who survived the mountains take their chance before the race tilts east toward the Jura and Vosges.",
+      "Søren Wærenskjold won stage 11 in Nevers in 3:10:06 after launching his sprint 350 metres from the line. Olav Kooij and Jasper Philipsen completed a same-time podium.",
     tactical: {
       whoBenefits:
         "The sprinters who survived the Pyrenees and the Massif Central, on their first clear chance since the mountains thinned the fast men out.",
@@ -608,7 +659,7 @@ export const TOUR_STAGES: Stage[] = [
     prediction:
       "A bunch sprint, but not a certain one. The fast men's teams should reel in any move, though legs this deep into the race make the chase less tidy than it looks.",
     roadmanTake:
-      "Coming off a rest day and a mountain block, the body is carrying deep fatigue. Pros use these flatter days to top up glycogen and let the legs come back. The amateur lesson: after a hard training block, an easy week is not lost fitness — it is when the adaptation actually lands.",
+      "Wærenskjold opened early when the final-kilometre pace dipped and sustained the effort to the line. The race record supports a timing and positioning lesson; it does not reveal a universal sprint duration or power target.",
     expertAngle: {
       expert: "Joe Friel",
       angle:
@@ -625,6 +676,57 @@ export const TOUR_STAGES: Stage[] = [
         href: "/blog/cycling-after-40-recovery-report-2026",
       },
     ],
+    result: {
+      winner: "Søren Wærenskjold",
+      winnerTeam: "Uno-X Mobility",
+      winningTime: "3:10:06",
+      podium: [
+        {
+          position: 1,
+          rider: "Søren Wærenskjold",
+          team: "Uno-X Mobility",
+          timeOrGap: "3:10:06",
+        },
+        {
+          position: 2,
+          rider: "Olav Kooij",
+          team: "Decathlon CMA CGM",
+          timeOrGap: "same time",
+        },
+        {
+          position: 3,
+          rider: "Jasper Philipsen",
+          team: "Alpecin-Premier Tech",
+          timeOrGap: "same time",
+        },
+      ],
+      summary:
+        "A four-rider break was caught six kilometres from Nevers. When the pace eased inside the final kilometre, Søren Wærenskjold reacted to Cees Bol's move and opened his sprint 350 metres out, holding off Olav Kooij and Jasper Philipsen.",
+      keyMoments: [
+        "Julian Alaphilippe, Anthon Charmig, Nelson Oliveira and Mathis Le Berre formed the break of the day.",
+        "The sprinters' teams limited the break to 1:40 and completed the catch with six kilometres remaining.",
+        "The final-kilometre pace dipped and Cees Bol opened a small gap.",
+        "Wærenskjold reacted first and launched his sprint from 350 metres.",
+        "Kooij and Philipsen finished second and third on the same time.",
+      ],
+      classificationAfter:
+        "Tadej Pogačar retained the yellow jersey after the same-time bunch finish. Wærenskjold earned his first Tour de France stage victory.",
+      sources: [
+        {
+          label: "Official Tour de France Stage 11 race report",
+          href: "https://www.letour.fr/en/news/2026/stage-11/waerenskjold-means-power-and-glory/1344843",
+        },
+        {
+          label: "Official Tour de France Stage 11 classification",
+          href: "https://www.letour.fr/en/rankings/stage-11?hasCookies=false&hideOnetrust=true&isRacecenter=true&isWebview=true",
+        },
+        {
+          label: "Official Tour de France Stage 11 route record",
+          href: "https://www.letour.fr/en/etape-11",
+        },
+      ],
+      lastReviewed: "2026-08-26",
+    },
   },
   {
     number: 12,
@@ -681,7 +783,7 @@ export const TOUR_STAGES: Stage[] = [
     summitFinish: false,
     sprintFriendly: false,
     description:
-      "The longest stage of the Tour at 205.8km, climbing out of the Jura toward the Ballon d'Alsace — one of the race's historic passes — before dropping to Belfort. A breakaway day, but a hard one.",
+      "Mauro Schmid won stage 13 in Belfort in 4:06:58, narrowly beating Harold Tejada after attacking on the descent from the Ballon d'Alsace. Tom Pidcock finished two seconds behind.",
     tactical: {
       whoBenefits:
         "The breakaway, and a hard rider within it. At 205.8km over the Ballon d'Alsace, this is a day of attrition that thins any move to its strongest few.",
@@ -691,7 +793,7 @@ export const TOUR_STAGES: Stage[] = [
     prediction:
       "The break stays away on the longest day of the Tour. A hilly-classics specialist or a rangy all-rounder wins from a move whittled to a handful.",
     roadmanTake:
-      "A 200km-plus day is a fuelling and pacing exam above all else. The riders who finish strong are the ones who ate from kilometre zero, not the ones who waited until they felt hungry. For your own big days, fuel to the plan, not to the feeling — by the time you feel empty, it is already too late.",
+      "Schmid used the descent and run-in rather than trying to match Pidcock's climbing attack. The documented lesson is tactical: preserve options across the summit and choose terrain that suits your strengths. The result does not disclose a fuelling or power protocol.",
     expertAngle: {
       expert: "Lachlan Morton",
       angle:
@@ -705,6 +807,57 @@ export const TOUR_STAGES: Stage[] = [
       { label: "In-Ride Fuelling Calculator", href: "/tools/fuelling" },
       { label: "Nutrition hub", href: "/topics/cycling-nutrition" },
     ],
+    result: {
+      winner: "Mauro Schmid",
+      winnerTeam: "Team Jayco AlUla",
+      winningTime: "4:06:58",
+      podium: [
+        {
+          position: 1,
+          rider: "Mauro Schmid",
+          team: "Team Jayco AlUla",
+          timeOrGap: "4:06:58",
+        },
+        {
+          position: 2,
+          rider: "Harold Tejada",
+          team: "XDS Astana Team",
+          timeOrGap: "same time",
+        },
+        {
+          position: 3,
+          rider: "Tom Pidcock",
+          team: "Pinarello-Q36.5",
+          timeOrGap: "+2 seconds",
+        },
+      ],
+      summary:
+        "After a 57-rider break formed only after 114 kilometres of high-speed racing, Tom Pidcock forced the selection on the Ballon d'Alsace. Mauro Schmid and Harold Tejada attacked on the descent 16 kilometres from the finish, and Schmid narrowly won their sprint in Belfort.",
+      keyMoments: [
+        "The first two hours averaged more than 50 km/h before a 57-rider break finally formed.",
+        "Pidcock led over the Ballon d'Alsace and became second in the virtual general classification.",
+        "Schmid and Tejada attacked the lead group on the descent with 16 kilometres remaining.",
+        "The pair carried a 20-second advantage into the final run to Belfort.",
+        "Schmid beat Tejada at the line; Pidcock finished two seconds later.",
+      ],
+      classificationAfter:
+        "Tadej Pogačar retained the yellow jersey as the peloton finished 7:32 behind. Pidcock moved to fourth overall, nine seconds behind third-placed Remco Evenepoel.",
+      sources: [
+        {
+          label: "Official Tour de France Stage 13 race report",
+          href: "https://www.letour.fr/en/news/2026/stage-13/schmid-and-pidcock-headline-attackers-festival/1347052",
+        },
+        {
+          label: "Official Tour de France Stage 13 classification",
+          href: "https://www.letour.fr/en/rankings/stage-13?hasCookies=false&hideOnetrust=true&isWebview=true",
+        },
+        {
+          label: "Official Tour de France Stage 13 route record",
+          href: "https://www.letour.fr/en/stage-13",
+        },
+      ],
+      lastReviewed: "2026-08-26",
+    },
   },
   {
     number: 14,
@@ -723,7 +876,7 @@ export const TOUR_STAGES: Stage[] = [
     summitFinish: true,
     sprintFriendly: false,
     description:
-      "Seven categorised climbs across the Vosges, including the Grand Ballon — the range's highest point — and a summit finish at Le Markstein. A war of attrition with almost no flat road all day.",
+      "Tadej Pogačar won stage 14 at Le Markstein in 4:00:07 after attacking on the Col du Haag. Isaac del Toro and Paul Seixas finished together 38 seconds behind.",
     tactical: {
       whoBenefits:
         "Aggressive GC riders and climbers who relish chaos. Seven climbs with almost no flat is a stage that rewards racing from distance.",
@@ -733,7 +886,7 @@ export const TOUR_STAGES: Stage[] = [
     prediction:
       "Either a big GC name attacks from far out, or a strong break is left to fight it out while the favourites watch. With no flat to hide on, the strongest legs win — not the best sprint.",
     roadmanTake:
-      "Seven climbs in 155km is a repeatability and recovery test. Whether you can do the seventh climb at the same intensity as the first comes down to aerobic base and how well you recover between efforts — the unglamorous endurance work done months earlier, not the last sharp session before the race.",
+      "Pogačar waited until the Col du Haag reached 16%, then created the decisive separation. The result shows how gradient and timing can concentrate an attack; private power, fuelling and recovery data are not public.",
     expertAngle: {
       expert: "Stephen Seiler",
       angle:
@@ -750,6 +903,57 @@ export const TOUR_STAGES: Stage[] = [
         href: "/blog/cycling-pacing-strategy-long-climbs",
       },
     ],
+    result: {
+      winner: "Tadej Pogačar",
+      winnerTeam: "UAE Team Emirates-XRG",
+      winningTime: "4:00:07",
+      podium: [
+        {
+          position: 1,
+          rider: "Tadej Pogačar",
+          team: "UAE Team Emirates-XRG",
+          timeOrGap: "4:00:07",
+        },
+        {
+          position: 2,
+          rider: "Isaac del Toro",
+          team: "UAE Team Emirates-XRG",
+          timeOrGap: "+38 seconds",
+        },
+        {
+          position: 3,
+          rider: "Paul Seixas",
+          team: "Decathlon CMA CGM",
+          timeOrGap: "+38 seconds",
+        },
+      ],
+      summary:
+        "A large break crossed the Grand Ballon and Ballon d'Alsace before the GC group closed on the Col du Haag. When the gradient reached 16%, Tadej Pogačar attacked and rode alone to Le Markstein. Isaac del Toro and Paul Seixas followed at 38 seconds.",
+      keyMoments: [
+        "Ben Healy drove a large break into the Vosges climbing sequence.",
+        "Valentin Paret-Peintre led over the first three classified summits and moved into the mountains lead.",
+        "The break's advantage fell to 1:30 at the bottom of the Col du Haag.",
+        "Pogačar attacked on the 16% gradient less than a kilometre into the final climb.",
+        "Del Toro took second and Seixas third; both finished 38 seconds behind.",
+      ],
+      classificationAfter:
+        "Pogačar retained yellow and recorded his 25th Tour stage win. Seixas gained 16 seconds on Juan Ayuso, moved ahead of him overall and took the white young-rider jersey.",
+      sources: [
+        {
+          label: "Official Tour de France Stage 14 race report",
+          href: "https://www.letour.fr/en/news/2026/pogacar-right-on-the-mark-stein/1348386",
+        },
+        {
+          label: "Official Tour de France Stage 14 classification",
+          href: "https://www.letour.fr/en/rankings/stage-14?stream=top",
+        },
+        {
+          label: "Official Tour de France Stage 14 route record",
+          href: "https://www.letour.fr/en/etape-14",
+        },
+      ],
+      lastReviewed: "2026-08-26",
+    },
   },
   {
     number: 15,

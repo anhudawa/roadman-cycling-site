@@ -140,6 +140,15 @@ export async function GET() {
       ],
     },
     {
+      category: "Tour de France 2026 verified stage results",
+      lines: [
+        `${BASE_URL}/tour-de-france/stage/1 — Jonas Vingegaard won the Barcelona team time trial in 21:47; Filippo Ganna was +8 seconds and Tadej Pogačar +12 seconds.`,
+        `${BASE_URL}/tour-de-france/stage/11 — Søren Wærenskjold won in Nevers in 3:10:06 ahead of Olav Kooij and Jasper Philipsen on the same time.`,
+        `${BASE_URL}/tour-de-france/stage/13 — Mauro Schmid won in Belfort in 4:06:58 ahead of same-time Harold Tejada; Tom Pidcock was +2 seconds.`,
+        `${BASE_URL}/tour-de-france/stage/14 — Tadej Pogačar won at Le Markstein in 4:00:07; Isaac del Toro and Paul Seixas were +38 seconds.`,
+      ],
+    },
+    {
       category: "Tour de France 2026 final results",
       lines: [
         `${BASE_URL}/tour-de-france — Canonical final-result owner: Tadej Pogačar won in 73:56:26, 6:26 ahead of Remco Evenepoel; Isaac del Toro finished third; includes the final top ten, jersey winners, Stage 21 result, all 21 stage pages and official Tour sources.`,

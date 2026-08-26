@@ -424,6 +424,37 @@ export async function GET() {
       ],
     },
     {
+      title: "Tour de France 2026 verified stage results",
+      description:
+        "Use the established stage URLs for the verified Stages 1, 11, 13, 14 and 18 results. Each replaces its pre-race prediction with the official podium, time gaps, race story, classification context and primary Tour sources.",
+      pages: [
+        {
+          url: `${BASE_URL}/tour-de-france/stage/1`,
+          title: "Tour de France 2026 Stage 1 Results: Vingegaard Wins",
+          description:
+            "Jonas Vingegaard won the Barcelona team time trial in 21:47; Filippo Ganna was eight seconds behind and Tadej Pogačar 12 seconds behind.",
+        },
+        {
+          url: `${BASE_URL}/tour-de-france/stage/11`,
+          title: "Tour de France 2026 Stage 11 Results: Wærenskjold Wins",
+          description:
+            "Søren Wærenskjold won in Nevers in 3:10:06 ahead of Olav Kooij and Jasper Philipsen on the same time.",
+        },
+        {
+          url: `${BASE_URL}/tour-de-france/stage/13`,
+          title: "Tour de France 2026 Stage 13 Results: Schmid Wins",
+          description:
+            "Mauro Schmid won in Belfort in 4:06:58 ahead of same-time Harold Tejada; Tom Pidcock was two seconds behind.",
+        },
+        {
+          url: `${BASE_URL}/tour-de-france/stage/14`,
+          title: "Tour de France 2026 Stage 14 Results: Pogačar Wins",
+          description:
+            "Tadej Pogačar won at Le Markstein in 4:00:07; Isaac del Toro and Paul Seixas finished 38 seconds behind.",
+        },
+      ],
+    },
+    {
       title: "Tour de France 2026 final results",
       description:
         "Use the permanent race hub for the verified winner, final top ten, jersey winners, Stage 21 result, official sources and all-stage directory. The old race-week complete-guide article permanently redirects here.",
