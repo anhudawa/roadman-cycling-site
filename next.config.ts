@@ -378,6 +378,10 @@ const nextConfig: NextConfig = {
       { source: "/answers/zone-2-heart-rate-cycling", destination: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe", permanent: true },
       { source: "/answers/zone-2-heart-rate-or-power", destination: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe", permanent: true },
       { source: "/answers/what-is-zone-2-heart-rate-cycling", destination: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe", permanent: true },
+      // Search Console shows the concise answer winning broad threshold-
+      // interval queries and the later blog splitting the same job. Preserve
+      // the definition, LT1/LT2, comparison, improvement and podcast pages.
+      { source: "/blog/cycling-threshold-intervals-guide", destination: "/answers/threshold-intervals-guide", permanent: true },
       // Consolidate duplicate tyre-pressure explainers into the established guide.
       { source: "/blog/tyre-pressure-cycling-complete-guide", destination: "/blog/cycling-tyre-pressure-guide", permanent: true },
       { source: "/answers/best-tyre-pressure-road-cycling", destination: "/blog/cycling-tyre-pressure-guide", permanent: true },

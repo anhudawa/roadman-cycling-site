@@ -91,7 +91,7 @@ describe("cycling VO2max interval search owner and evidence trust", () => {
 
     for (const file of [
       "content/blog/cycling-interval-session-library-guide.mdx",
-      "content/blog/cycling-threshold-intervals-guide.mdx",
+      "src/lib/answers-data/threshold-intervals-trust-override.ts",
       "content/blog/best-indoor-cycling-workouts-winter.mdx",
       "content/blog/winter-base-training-modern-approach-cycling.mdx",
       "src/lib/topics.ts",

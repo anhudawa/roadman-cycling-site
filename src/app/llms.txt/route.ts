@@ -318,6 +318,12 @@ export async function GET() {
             "Canonical informational owner for choosing and repeating an FTP test, comparing method limits and interpreting disagreement.",
         },
         {
+          url: `${BASE_URL}/answers/threshold-intervals-guide`,
+          title: "Threshold Intervals Cycling — Workouts & Progression",
+          description:
+            "Canonical threshold-interval owner: scalable sessions, FTP limits, multi-signal monitoring, progression and weekly placement.",
+        },
+        {
           url: `${BASE_URL}/tools/ftp-zones`,
           title: "FTP Calculator",
           description:
