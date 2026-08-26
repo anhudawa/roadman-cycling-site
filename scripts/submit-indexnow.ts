@@ -314,6 +314,36 @@ const TRAINING_CAMP_CLUSTER = [
   "what-to-expect-cycling-training-camp",
 ];
 
+// Canonical heat owner plus the distinct planning, race-day, emergency and
+// masters support pages. Keep these together so evidence and safety corrections
+// are recrawled as one knowledge cluster.
+const HEAT_TRAINING_TRUST_CLUSTER = [
+  "heat-training-cyclists-30-watts-ftp-protocol",
+  "cycling-heat-acclimation-protocol-guide",
+  "cycling-heat-performance-adaptation-guide",
+  "cycling-heat-illness-prevention-guide",
+  "heat-tolerance-ageing-cyclist",
+];
+
+const HEAT_ANSWER_TRUST_CLUSTER = [
+  "what-is-heat-training-cycling",
+  "how-to-do-heat-training-at-home",
+  "how-to-ride-better-in-the-heat",
+  "can-a-sauna-improve-cycling",
+  "heat-acclimation-protocol",
+  "how-to-hydrate-in-hot-weather-cycling",
+  "how-long-does-heat-adaptation-last",
+  "can-heat-training-raise-ftp",
+  "how-to-race-in-extreme-heat",
+  "altitude-or-heat-training",
+  "heat-training-timing-before-event",
+  "cramping-in-hot-weather",
+  "humidity-vs-dry-heat-training",
+  "combining-heat-and-altitude",
+  "how-to-stop-overheating-on-the-indoor-trainer",
+  "does-heat-training-help-for-a-cool-race",
+];
+
 // Reviewed, evidence-bounded answers that support the canonical bike-fit
 // guide. These URLs target narrow questions without competing for the guide's
 // head term, and should be recrawled together when their answer data changes.
@@ -455,8 +485,10 @@ async function main() {
   eventGuideUrls().forEach((u) => urls.add(u));
   clusterUrls(PODCAST_AUTHORITY_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(TRAINING_CAMP_CLUSTER).forEach((u) => urls.add(u));
+  clusterUrls(HEAT_TRAINING_TRUST_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(COMPARISON_CLUSTER).forEach((u) => urls.add(u));
   answerUrls(BIKE_FIT_ANSWER_TRUST_CLUSTER).forEach((u) => urls.add(u));
+  answerUrls(HEAT_ANSWER_TRUST_CLUSTER).forEach((u) => urls.add(u));
   urls.add(`https://${HOST}/podcast/ep-2175-lessons-from-riding-in-mallorca`);
 
   if (all) {

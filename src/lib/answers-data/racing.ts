@@ -1346,7 +1346,7 @@ export const racingAnswers: AnswerPage[] = [
       "Prepare for Unbound 200 with a 16-week build that prioritises aerobic volume above all else, including at least 4 long rides over 160km on mixed terrain in the final 8 weeks. Heat acclimatisation — 10–14 days of heat exposure before arriving in Kansas — is non-negotiable. Equipment and nutrition strategy require dedicated testing; Unbound punishes improvisation.",
     keyTakeaways: [
       "200km at Unbound takes 10–14 hours for most amateur finishers — train for that time on bike.",
-      "Heat acclimatisation in the 10–14 days before the event can be worth 20–30 watts in the heat.",
+      "Heat acclimatisation can reduce strain before a genuinely hot event, but no universal watt gain or DIY protocol is established.",
       "Long rides of 160–200km in training are the irreplaceable preparation — nothing replaces time in the saddle.",
       "Equipment failure ends more Unbound attempts than fitness failure — test everything in conditions as close to Kansas as possible.",
     ],
@@ -1365,7 +1365,7 @@ export const racingAnswers: AnswerPage[] = [
     roadmanView: [
       "Unbound 200 is not a long gran fondo with gravel. It's a different category of event. The flat Kansas Flint Hills look unremarkable on paper — no mountain cols, no 3000m of climbing — but 200 miles of chunky gravel, unpredictable weather and extreme heat creates a sufferance that pure road fitness cannot prepare you for. Rosa Klöser's approach was methodical and unglamorous: massive base, specific long rides, equipment tested to death, and heat prep done before travelling.",
       "Matt Beers and Keegan Swenson's preparation shared the same DNA from a different angle: the aerobic base has to be enormous, and the long rides have to get properly long — 160km, 180km, 200km in the saddle. Nothing replaces time on the bike at Unbound distances. An athlete who peaks at 100km long rides in preparation is not prepared for what hours 8–14 feel like.",
-      "The heat piece is consistently underestimated by European and northern hemisphere athletes. Kansas in early June is hot in a way that erodes performance more than almost any other variable. A 10-day heat protocol — simple sauna exposure or indoor trainer sessions in extra layers — can shift your plasma volume enough to meaningfully protect power output in the heat.",
+      "The heat piece is consistently underestimated by athletes arriving from cooler climates. Kansas conditions can add substantial strain. Progressive acclimation, conservative pacing, mapped fluid access and tested cooling belong in the plan, but no universal sauna or extra-layer protocol fits every rider.",
     ],
     expertEvidence: [
       {
@@ -1394,7 +1394,7 @@ export const racingAnswers: AnswerPage[] = [
       {
         title: "Run a 10–14 day heat acclimatisation protocol",
         detail:
-          "Starting 2 weeks before travel to Kansas: 30–45 minutes of daily heat exposure — sauna, indoor trainer in extra layers, or both. This increases plasma volume and trains your body to cool more efficiently. It's one of the highest-return interventions available for a hot-weather event.",
+          "Work backwards from travel and use progressive, event-specific exposure only when the rider has a real climate gap. Count heat as training load, protect recovery and establish cooling, communication and stop rules before the block.",
       },
       {
         title: "Complete a full dress rehearsal 4–6 weeks out",
@@ -1454,7 +1454,7 @@ export const racingAnswers: AnswerPage[] = [
     relatedTopics: [
       { label: "Unbound Gravel 200 Training Guide", href: "/blog/unbound-gravel-200-training-guide" },
       { label: "Rosa Klöser's Unbound Training Plan", href: "/blog/rosa-kloser-unbound-2024-simple-training-plan" },
-      { label: "Heat Training for Cyclists", href: "/blog/cycling-heat-training-guide" },
+      { label: "Heat Training for Cyclists", href: "/blog/heat-training-cyclists-30-watts-ftp-protocol" },
       { label: "How to Prepare for a First Gravel Race", href: "/answers/first-gravel-race-preparation" },
       { label: "Cycling Training Plans", href: "/topics/cycling-training-plans" },
     ],

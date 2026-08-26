@@ -1137,7 +1137,7 @@ export const ftpAnswers: AnswerPage[] = [
         name: "Anthony Walsh",
         credential: "Host, Roadman Cycling Podcast",
         insight:
-          "The heat training protocol documented in the podcast produced a documented 30-watt FTP gain — an extreme example of a targeted stimulus delivering outsized adaptation. For most riders, the reliable path to 20 watts is structured threshold and VO2max work over 10–12 weeks, not a single intervention.",
+          "A podcast case study described a large FTP change after a heat block, but that individual story does not establish a repeatable heat effect. For most riders, progressive threshold and VO2max work, supported by enough easy volume and recovery, is the more defensible route to improving FTP.",
         episodeSlug: "ep-2026-ftp-jumped-30-watts-after-this-workout",
       },
     ],
@@ -1364,15 +1364,15 @@ export const ftpAnswers: AnswerPage[] = [
     question: "Why Is My Indoor FTP Lower Than Outdoor?",
     seoTitle: "Why Is My Indoor FTP Lower Than Outdoor? The Real Explanation",
     seoDescription:
-      "Indoor FTP typically runs 3–8% lower than outdoor due to heat buildup, lack of airflow, and different muscle recruitment. Here's how to manage the gap and which number to train from.",
+      "Indoor and outdoor FTP can differ because of cooling, equipment, position, inertia and test conditions. Learn how to compare the numbers consistently.",
     pillar: "coaching",
     directAnswer:
-      "Indoor FTP typically runs 3–8% lower than outdoor because the body heats up faster without natural airflow, and thermoregulation costs performance. Muscle recruitment also differs indoors — you lose the micro-variation of road cycling. The fix is a large fan, a cool room (under 20°C ideally), and accepting the gap. Train from your indoor number indoors; use your outdoor number for outdoor targets.",
+      "Indoor FTP can be lower, similar or occasionally higher than an outdoor result because cooling, trainer and power-meter agreement, position, inertia, pacing and familiarity differ. There is no universal percentage gap. Standardise the device, calibration procedure, protocol, time of day and airflow, then compare trends within the same setup before creating separate training zones.",
     keyTakeaways: [
-      "A 3–8% indoor-outdoor FTP gap is normal — not a sign that one test or environment is wrong.",
-      "Heat is the primary driver: without airflow, core temperature rises faster and power output drops.",
-      "A powerful fan reduces the gap significantly — treat it as training equipment, not a luxury.",
-      "Do not compare indoor test results to outdoor test results — they measure different conditions.",
+      "There is no universal indoor-to-outdoor FTP percentage.",
+      "Low airflow can raise thermal strain, but device agreement, position, inertia, protocol and familiarity also matter.",
+      "Strong, safe airflow helps standardise indoor testing and protect workout quality.",
+      "Compare repeated tests within the same setup before deciding that separate zones are needed.",
     ],
     whoFor: [
       {
@@ -1387,8 +1387,8 @@ export const ftpAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Every autumn, a portion of the cycling internet panics. They go indoors, test on Zwift, and see a number 15–20 watts below their summer outdoor FTP. Panic ensues. The answer is almost always simple: it is not your fitness that changed, it is the thermal environment. Outdoors at 18°C, moving through air, your body stays cool. Indoors on a trainer in a 22°C garage with no fan, your core temperature climbs within ten minutes and your body diverts blood to the skin instead of the muscles.",
-      "The effect is significant and well-documented. Studies have shown that cycling performance decreases roughly 1% for every 1°C increase in ambient temperature above 15°C. The practical implication: cool the room, run a powerful fan (not a desk fan — a large floor or box fan), and you will close the gap substantially. Anthony tested this himself and the difference with a proper fan versus none was several watts at the same perceived effort.",
+      "An indoor number below a summer outdoor result does not automatically mean fitness fell. Cooling, the measuring device, bike position, test protocol and familiarity all changed at once for many riders.",
+      "Treat airflow as part of the test setup, then standardise everything you can. The result becomes useful when it is repeatable, not when it matches an assumed percentage.",
       "The other piece is muscle recruitment. Outdoor cycling involves constant micro-adjustments to gradient, cornering, and wind — the muscles are doing slightly different work. Indoors it is more constant and in some ways more tiring at the same power because there are no natural breaks. The two numbers will probably never be identical, and that is fine. What matters is consistency: test indoors for your indoor training number, test outdoors for your outdoor number, and don't mix them.",
     ],
     expertEvidence: [
@@ -1421,21 +1421,21 @@ export const ftpAnswers: AnswerPage[] = [
           "Test indoors on the trainer you train on, with your fan running, at the time of day you normally train. Use that number for all your indoor zone settings. Do not import your outdoor FTP to set indoor zones.",
       },
       {
-        title: "Keep the room below 20°C if possible",
+        title: "Keep the thermal setup repeatable",
         detail:
-          "Open a window, train early morning in summer, or train in a cooler room. Every degree above 20°C costs roughly 1% of performance. Comfortable is not the target — cool and productive is.",
+          "Ventilate the room, use strong airflow and record conditions. A repeatable setup is more useful than a universal temperature threshold.",
       },
     ],
     commonMistakes: [
       {
         mistake: "Panicking when an indoor FTP is lower than an outdoor one.",
         fix:
-          "Expect the gap. The correct response is to manage it with a fan and cool environment — not to doubt your fitness or your test.",
+          "Audit cooling, device agreement, protocol and position before interpreting the result as lost fitness.",
       },
       {
         mistake: "Using your outdoor FTP to set zones for indoor training.",
         fix:
-          "If your outdoor FTP is 260 W and your indoor is 245 W, training indoors to 260 W zones means every session is slightly above target intensity. Use the indoor number indoors.",
+          "First repeat a standardised indoor test. Separate zones can be useful when a stable environment-specific difference persists, but one comparison is not enough.",
       },
       {
         mistake: "Doing an indoor FTP test with no fan and in a warm room, then using that as your benchmark.",
@@ -1447,7 +1447,7 @@ export const ftpAnswers: AnswerPage[] = [
       {
         question: "How much lower is indoor FTP compared to outdoor?",
         answer:
-          "Typically 3–8% lower with adequate cooling. Without a fan in a warm room, the gap can reach 10–15%. With a proper cooling setup (large fan, cool room under 18°C), the gap often closes to 1–3%.",
+          "There is no universal percentage. The direction and size of the gap depend on cooling, equipment agreement, position, inertia, protocol, pacing and familiarity. Compare repeatable tests under recorded conditions.",
       },
       {
         question: "Will my outdoor FTP transfer if I train mostly indoors?",

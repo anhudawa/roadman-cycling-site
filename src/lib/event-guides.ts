@@ -436,7 +436,7 @@ export const EVENT_GUIDES: EventGuide[] = [
           "Mallorca demands 80-100g/hour for 10+ hours. Most amateurs ride below the gut's actual ceiling — this is how you train it up before race day.",
       },
       {
-        slug: "cycling-heat-training-guide",
+        slug: "heat-training-cyclists-30-watts-ftp-protocol",
         title: "Heat Training for Cyclists",
         whyItMatters:
           "The Pla central plain regularly hits 28-30°C by midday. Heat acclimation in the 14 days before race day is worth more than any aero gain.",
@@ -859,7 +859,7 @@ export const EVENT_GUIDES: EventGuide[] = [
           "Marmotte demands 90-110g/hour for 8-10 hours. Most amateurs ride below the gut's actual ceiling — this is how you train it up before race day.",
       },
       {
-        slug: "cycling-heat-training-guide",
+        slug: "heat-training-cyclists-30-watts-ftp-protocol",
         title: "Heat Training for Cyclists",
         whyItMatters:
           "The Maurienne valley regularly hits 35°C+ between km 60 and 130. Heat acclimation in the 14 days before race day is worth more than any aero gain.",
@@ -1065,7 +1065,7 @@ export const EVENT_GUIDES: EventGuide[] = [
           "Many Étape editions cross 2,000m. This guide covers what altitude exposure is realistic in 2-3 weeks pre-race.",
       },
       {
-        slug: "cycling-heat-training-guide",
+        slug: "heat-training-cyclists-30-watts-ftp-protocol",
         title: "Heat Training for Cyclists",
         whyItMatters:
           "Alpine valley sections regularly hit 35°C+. Heat acclimation in the 14 days before race day is worth more than any aero gain.",

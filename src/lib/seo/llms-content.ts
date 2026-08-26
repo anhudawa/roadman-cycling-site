@@ -48,6 +48,11 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "cycling-racing-in-the-rain-guide",
   "cycling-braking-technique-confidence-guide",
   "cornering-confidence-road-bike-technique",
+  "heat-training-cyclists-30-watts-ftp-protocol",
+  "cycling-heat-acclimation-protocol-guide",
+  "cycling-heat-performance-adaptation-guide",
+  "cycling-heat-illness-prevention-guide",
+  "heat-tolerance-ageing-cyclist",
 ]);
 
 /**

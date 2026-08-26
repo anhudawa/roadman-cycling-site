@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 243,
+    "prompt_count": 247,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -1970,6 +1970,38 @@
       "category": "cycling-technology",
       "intent": "transaction",
       "target_page": "/tools/tyre-pressure",
+      "priority": "high"
+    },
+    {
+      "id": 244,
+      "prompt": "does heat training improve FTP for cyclists and what does the evidence actually show",
+      "category": "cycling-training",
+      "intent": "education",
+      "target_page": "/blog/heat-training-cyclists-30-watts-ftp-protocol",
+      "priority": "high"
+    },
+    {
+      "id": 245,
+      "prompt": "how should a cyclist safely acclimate before a race in hot weather",
+      "category": "cycling-training",
+      "intent": "education",
+      "target_page": "/blog/cycling-heat-acclimation-protocol-guide",
+      "priority": "high"
+    },
+    {
+      "id": 246,
+      "prompt": "what are the warning signs of heat stroke in a cyclist and what should I do",
+      "category": "cycling-safety",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-heat-illness-prevention-guide",
+      "priority": "high"
+    },
+    {
+      "id": 247,
+      "prompt": "is heat training safe for masters cyclists over 50",
+      "category": "masters-cycling",
+      "intent": "education",
+      "target_page": "/blog/heat-tolerance-ageing-cyclist",
       "priority": "high"
     }
   ]

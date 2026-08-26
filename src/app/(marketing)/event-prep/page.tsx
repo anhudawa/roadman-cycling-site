@@ -83,7 +83,7 @@ const EVENT_PREP_BLOG_SLUGS = [
   "cycling-taper-discipline-15-percent-gain",
   "carbohydrate-per-hour-cyclists",
   "cycling-nutrition-plan-100-mile-sportive",
-  "cycling-heat-training-guide",
+  "heat-training-cyclists-30-watts-ftp-protocol",
   "cycling-altitude-training",
   "cycling-sportive-preparation",
   "cycling-race-tactics-guide",
