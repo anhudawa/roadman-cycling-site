@@ -405,62 +405,62 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
 
   "wkg": {
     slug: "wkg",
-    title: "W/kg Calculator",
+    title: "Cycling W/kg Calculator",
     description:
-      "Calculate your cycling power-to-weight ratio (W/kg) instantly and benchmark against amateur, competitive, and professional ranges.",
+      "Calculate cycling FTP watts per kilogram from power and body mass, with transparent reference ranges, worked examples, evidence and interpretation limits.",
     url: `${ROADMAN_BASE}/tools/wkg`,
     breadcrumbName: "W/kg Calculator",
     answerSummary:
-      "Enter your FTP in watts and body weight in kilograms. The calculator divides one by the other and returns your W/kg, plus where you sit across eight benchmark bands from beginner (under 1.5) to professional (5.0+).",
+      "Enter FTP in watts and body mass in kilograms. The calculator returns FTP W/kg and highlights the surrounding half-watt range. The arithmetic is exact; the range is context, not a race category, percentile or diagnosis of ability. Keep the test method and date attached to the result.",
     whatItDoes:
-      "W/kg is the single best predictor of climbing speed and overall road cycling performance. This calculator gives you the number and tells you which performance band you're in — without the cycling forum noise that usually comes with that question.",
+      "This calculator performs one disclosed operation: FTP watts divided by rider body mass in kilograms. It then locates the result inside a broad half-watt reference range without converting that range into a race licence or professional label.\n\nFTP W/kg is useful for threshold-related climbing context. It does not describe sprint power, five-minute power, durability, aerodynamics, handling or race craft, and it does not predict speed independently of gradient, total system mass, wind, rolling resistance and pacing.",
     whoItsFor: [
-      "Riders comparing themselves to event categories or peer groups",
-      "Cyclists deciding whether to chase more power or less weight",
-      "Anyone planning a bucket-list event with published category cut-offs",
-      "Athletes who want a single fitness number that travels across all rides",
+      "Cyclists who already have a current FTP estimate and want the ratio calculated",
+      "Riders tracking a repeatable FTP W/kg baseline over time",
+      "Masters cyclists who need a route from raw W/kg to a qualified age benchmark",
+      "Coaches and self-coached riders explaining why one ratio is not a complete power profile",
     ],
     howItWorks:
-      "W/kg = FTP (watts) ÷ Body weight (kg). FTP should come from a 20-minute test (×0.95) or a ramp test. Body weight should be measured first thing in the morning, after the bathroom, before eating or drinking — and averaged across 3-4 consecutive days to remove noise.",
+      "W/kg = FTP in watts ÷ rider body mass in kilograms. The tool does not estimate FTP or reconcile different protocols. Use a current value from a disclosed, repeatable method and a representative body-mass measurement. Record the device, protocol and date because a ramp estimate, 20-minute estimate, modelled FTP and long steady effort can disagree.",
     howToSteps: [
-      { name: "Determine FTP", text: "Complete a 20-minute all-out test on a power meter or smart trainer. Multiply average power by 0.95. Ramp tests on Zwift / TrainerRoad are an acceptable alternative." },
-      { name: "Weigh consistently", text: "Record morning weight on 3-4 consecutive days. Average the result. This is the number to use — not your weight after a long ride or after a heavy meal." },
-      { name: "Divide watts by kilograms", text: "Example: 260W / 72kg = 3.61 W/kg. The calculator does this and matches you to the closest benchmark band." },
-      { name: "Decide which lever to pull", text: "If you're already at competitive amateur power but holding extra weight, body composition is the fastest gain. If your power is well below your weight class, train more — don't diet." },
+      { name: "Choose a current FTP estimate", text: "Use a value from a disclosed, repeatable power test or model. Keep the device and protocol beside the result rather than treating unlike FTP methods as interchangeable." },
+      { name: "Use representative body mass", text: "Enter kilograms from a consistent measurement routine. If tracking change, compare similar conditions because hydration and food can move body mass without changing fitness." },
+      { name: "Calculate the ratio", text: "Divide FTP watts by kilograms. Example: 260 W ÷ 72 kg = 3.61 W/kg. Two decimals help with arithmetic; they do not remove measurement uncertainty." },
+      { name: "Add the missing context", text: "Interpret the result with age, experience, event, duration and terrain. Use a complete power profile for training decisions and actual race results for competitive ability." },
     ],
     howToTotalTime: "PT1M",
     limitations:
-      "W/kg predicts climbing speed but not flat performance — on flat roads, absolute watts and aerodynamics dominate. Body weight changes daily with hydration and food; rely on a 7-day rolling average. Benchmarks are population-based — being a band below \"competitive\" doesn't mean you're slow at your event.",
+      "The output is rider-only FTP W/kg, not total-system W/kg and not a speed prediction. It does not include bicycle mass, gradient, aerodynamic drag, wind, rolling resistance, drafting, pacing, fatigue or power-duration shape. The displayed ranges are not population percentiles, sex- or age-adjusted norms, race categories or medical advice.",
     whenToSeeACoach:
-      "If your W/kg has been flat for 6+ months despite consistent training, the issue is rarely the number — it's how your training week is structured. Coaching is about how you spend your hours, not how you measure them.",
+      "A coach can help when repeated, comparable tests do not move despite consistent training or when event demands are unclear. Intentional weight loss, persistent fatigue, falling power, menstrual disturbance, recurrent illness or injury should be handled with appropriately qualified medical or sports-dietetic support rather than a generic W/kg target.",
     examples: [
       {
-        scenario: "Competitive amateur",
+        scenario: "FTP calculation",
         inputs: ["FTP: 280W", "Weight: 72kg"],
-        output: "3.89 W/kg — strong amateur band. Climbing target for a regional gran fondo podium.",
+        output: "3.89 W/kg at FTP. The ratio does not by itself establish a race category or predict a gran fondo result.",
       },
       {
-        scenario: "Comeback rider",
+        scenario: "Repeatable baseline",
         inputs: ["FTP: 200W", "Weight: 88kg"],
-        output: "2.27 W/kg — recreational band. The fastest gain is usually 3-4 kg of body composition rather than 30W of FTP.",
+        output: "2.27 W/kg at FTP. Record the method and date, then compare with the same setup after a suitable training period.",
       },
     ],
     faqs: [
       {
         question: "What is a good W/kg for cycling?",
-        answer: "Recreational: 1.5-2.5 W/kg. Fitness cyclist: 2.5-3.0. Competitive amateur: 3.0-3.5. Strong amateur: 3.5-4.0. Elite: 4.0-4.5. Semi-pro: 4.5-5.0. Professional: 5.0+. Grand Tour climbers: 6.0+ on a 20-minute climb.",
+        answer: "There is no context-free good number. Duration, test method, age, sex, training history and event all matter. Generic charts are useful for orientation, not as population percentiles or race categories. Compare against a matched age or experience reference and your own repeatable baseline.",
       },
       {
         question: "How do I improve my W/kg?",
-        answer: "Two levers: increase FTP through structured training (polarised model, threshold intervals, consistency) or decrease body weight through the fuel-for-the-work-required framework. Most amateurs improve fastest through body composition changes. Riders already at low body fat usually need to train more, not eat less.",
+        answer: "Increase sustainable power through appropriate training and recovery. Body-mass change is not automatically required and should preserve energy availability, health, recovery and useful power. A generic calculator cannot decide whether weight loss is appropriate for an individual.",
       },
       {
         question: "Does W/kg matter on flat roads?",
-        answer: "Less than on climbs. On flat roads, absolute watts and aerodynamic drag dominate finishing speed. A 90kg rider with 320W FTP will often beat a 65kg rider with 240W on the flat, even though the lighter rider has the better W/kg. W/kg is the king metric for climbing and overall stage-race performance.",
+        answer: "Less than on sustained climbs. At higher speeds on flatter roads, absolute power and aerodynamic drag become more important. Wind, rolling resistance, drafting, position and course shape also matter, so W/kg is not a universal finishing-speed predictor.",
       },
       {
-        question: "What's a realistic W/kg gain in one year?",
-        answer: "A consistent amateur can typically gain 0.3-0.5 W/kg in a year through structured training and modest body-composition work. Beginners can gain more (1.0+) in their first year. Riders already at 4.5+ usually plateau and need very specific training and recovery to add another 0.1-0.2.",
+        question: "Is FTP W/kg the same as climbing W/kg?",
+        answer: "Not necessarily. FTP is a threshold-related estimate, while a climb may last much less or much more time. Use power for a duration that matches the climb, then account for bicycle mass, gradient, aerodynamics and conditions.",
       },
     ],
     related: [
@@ -472,10 +472,45 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
     ],
     webAppFeatures: [
       "Instant W/kg calculation",
-      "Eight performance benchmark bands",
-      "Visual benchmark comparison",
-      "Recommendations on which lever to pull",
+      "Transparent watts-divided-by-kilograms formula",
+      "Broad half-watt reference-range marker",
+      "Worked examples and interpretation limits",
     ],
+    evidenceSources: [
+      {
+        name: "Creating Your Power Profile",
+        role: "Andrew Coggan · multi-duration framework and benchmark limits",
+        href: "https://www.trainingpeaks.com/blog/power-profiling/",
+      },
+      {
+        name: "Understanding Intensity: Power",
+        role: "British Cycling · FTP W/kg definition and weight-loss caution",
+        href: "https://www.britishcycling.org.uk/knowledge/training/get-started/article/izn20140820-Training-Understanding-Intensity-3--Power-0",
+      },
+      {
+        name: "Allometric scaling of uphill cycling performance",
+        role: "Jobson et al., 2008 · field hill-climb study",
+        href: "https://pubmed.ncbi.nlm.nih.gov/18213539/",
+      },
+      {
+        name: "Optimal body-mass normalisation over complex cycling courses",
+        role: "Horvath and Andersson, 2025 · course-specific modelling",
+        href: "https://pubmed.ncbi.nlm.nih.gov/40901017/",
+      },
+      {
+        name: "Power profiling and the power-duration relationship in cycling",
+        role: "Leo et al., 2022 · narrative review",
+        href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8783871/",
+      },
+      {
+        name: "IOC consensus statement on Relative Energy Deficiency in Sport",
+        role: "Mountjoy et al., 2023 · health and performance consensus",
+        href: "https://bjsm.bmj.com/content/57/17/1073",
+      },
+    ],
+    dateModified: "2026-08-26",
+    reviewedBy: "Anthony Walsh",
+    reviewScope: "coach review and source verification",
   },
 
   "hr-zones": {

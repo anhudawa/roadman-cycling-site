@@ -1851,7 +1851,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "sportful-dolomiti-race-training-guide",
     "cycling-how-to-climb-faster-guide",
     "cycling-mountain-passes-strategy-guide",
-    "cycling-watts-per-kilo-complete-guide",
     "cycling-hill-climb-racing-guide",
     "etape-du-dales-training-guide",
     "bealach-mor-training-guide",

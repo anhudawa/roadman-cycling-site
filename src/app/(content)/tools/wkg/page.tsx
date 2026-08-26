@@ -7,19 +7,20 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { ToolLanding } from "@/components/features/tools/ToolLanding";
 
-const BENCHMARKS = [
-  { min: 0, max: 1.5, label: "Beginner", color: "#94A3B8" },
-  { min: 1.5, max: 2.5, label: "Recreational", color: "#3B82F6" },
-  { min: 2.5, max: 3.0, label: "Fitness cyclist", color: "#22C55E" },
-  { min: 3.0, max: 3.5, label: "Competitive amateur", color: "#EAB308" },
-  { min: 3.5, max: 4.0, label: "Strong amateur", color: "#F97316" },
-  { min: 4.0, max: 4.5, label: "Elite amateur", color: "#EF4444" },
-  { min: 4.5, max: 5.0, label: "Semi-pro", color: "#DC2626" },
-  { min: 5.0, max: 7.0, label: "Professional", color: "#9333EA" },
+const REFERENCE_RANGES = [
+  { min: 0, max: 1.5, label: "Under 1.5", color: "#94A3B8" },
+  { min: 1.5, max: 2.0, label: "1.5–2.0", color: "#60A5FA" },
+  { min: 2.0, max: 2.5, label: "2.0–2.5", color: "#3B82F6" },
+  { min: 2.5, max: 3.0, label: "2.5–3.0", color: "#22C55E" },
+  { min: 3.0, max: 3.5, label: "3.0–3.5", color: "#EAB308" },
+  { min: 3.5, max: 4.0, label: "3.5–4.0", color: "#F97316" },
+  { min: 4.0, max: 4.5, label: "4.0–4.5", color: "#EF4444" },
+  { min: 4.5, max: 5.0, label: "4.5–5.0", color: "#DC2626" },
+  { min: 5.0, max: Number.POSITIVE_INFINITY, label: "5.0+", color: "#9333EA" },
 ];
 
 function getLevel(wkg: number) {
-  return BENCHMARKS.find((b) => wkg >= b.min && wkg < b.max) || BENCHMARKS[BENCHMARKS.length - 1];
+  return REFERENCE_RANGES.find((b) => wkg >= b.min && wkg < b.max) || REFERENCE_RANGES[REFERENCE_RANGES.length - 1];
 }
 
 function getFtpError(value: string): string | null {
@@ -64,7 +65,7 @@ export default function WkgPage() {
               W/KG CALCULATOR
             </h1>
             <p className="text-foreground-muted text-lg">
-              Enter your FTP and body weight. See where you stand.
+              Calculate FTP watts per kilogram, then interpret the result in context.
             </p>
           </Container>
         </Section>
@@ -129,12 +130,19 @@ export default function WkgPage() {
                     <p className="font-heading text-6xl md:text-8xl text-coral mb-2">{wkg.toFixed(2)}</p>
                     <p className="font-heading text-xl text-off-white">WATTS PER KILOGRAM</p>
                     <p className="text-foreground-muted mt-2" style={{ color: level.color }}>
-                      {level.label}
+                      FTP reference range: {level.label} W/kg
+                    </p>
+                    <p className="text-foreground-subtle text-xs mt-2 max-w-xl mx-auto">
+                      A range is not a race category or percentile. Interpret it with your test method,
+                      age, experience, event and complete power-duration profile.
                     </p>
                   </div>
 
                   <div className="space-y-2 mb-8">
-                    {BENCHMARKS.map((b) => {
+                    <p className="text-xs text-foreground-subtle uppercase tracking-wider mb-3">
+                      Broad FTP ranges — arithmetic context, not rider rankings
+                    </p>
+                    {REFERENCE_RANGES.map((b) => {
                       const isActive = wkg >= b.min && wkg < b.max;
                       return (
                         <div
@@ -142,8 +150,10 @@ export default function WkgPage() {
                           className={`flex items-center gap-4 rounded-lg p-3 transition-all ${isActive ? "bg-white/[0.08] border border-white/15" : ""}`}
                         >
                           <div className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: b.color }} />
-                          <span className="text-off-white text-sm flex-1">{b.label}</span>
-                          <span className="text-foreground-subtle text-xs">{b.min}-{b.max} W/kg</span>
+                          <span className="text-off-white text-sm flex-1">{b.label} W/kg</span>
+                          <span className="text-foreground-subtle text-xs">
+                            {isActive ? "Your calculated range" : "Reference range"}
+                          </span>
                         </div>
                       );
                     })}
@@ -163,7 +173,7 @@ export default function WkgPage() {
 
                   <div className="rounded-2xl border border-coral/30 bg-gradient-to-br from-coral/10 via-deep-purple/40 to-charcoal p-6 md:p-8 text-center">
                     <p className="font-heading text-coral text-xs tracking-widest mb-2">WANT TO IMPROVE THIS NUMBER?</p>
-                    <p className="text-off-white font-heading text-lg mb-4">Coaching targets both sides — more power, better composition.</p>
+                    <p className="text-off-white font-heading text-lg mb-4">Coaching builds useful power around your event, recovery and real life.</p>
                     <a href="/apply" className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all" data-track="tool_wkg_apply">
                       Apply for Coaching →
                     </a>
@@ -183,20 +193,21 @@ export default function WkgPage() {
             <div className="text-foreground-muted text-sm leading-relaxed space-y-3">
               <p>
                 <strong className="text-off-white">Formula:</strong> W/kg = FTP (watts) ÷ Body weight (kg).
-                FTP should be determined from a 20-minute all-out test (×0.95) or ramp test.
+                This tool does not estimate FTP. Enter a current value from a disclosed, repeatable method and
+                keep that method attached to the result.
               </p>
               <p>
-                <strong className="text-off-white">Benchmarks:</strong> Based on published data from Coggan&apos;s
-                power profiling, adjusted for real-world amateur and masters populations. Professional benchmarks
-                from World Tour race data.
+                <strong className="text-off-white">Reference ranges:</strong> The highlighted half-watt range is
+                arithmetic context only. It is not a population percentile, age adjustment, race licence or
+                professional classification. Use the maintained age and experience benchmark reports for qualified comparisons.
               </p>
               <p>
-                <strong className="text-off-white">Limitations:</strong> W/kg predicts climbing speed but not
-                flat performance (where absolute watts matter more). Body weight should be measured consistently
-                (morning, before eating). W/kg varies with hydration and time of day.
+                <strong className="text-off-white">Limitations:</strong> FTP W/kg is one duration-specific ratio.
+                Gradient, total rider-plus-bike mass, aerodynamics, wind, rolling resistance, drafting and pacing
+                affect speed. Body mass also varies with hydration, food and measurement timing.
               </p>
               <p className="text-xs text-foreground-subtle">
-                Last updated: April 2026 · Tool version 1.0
+                Last reviewed: 26 August 2026 · Tool version 1.1
               </p>
             </div>
           </Container>

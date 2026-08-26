@@ -3,15 +3,15 @@ import { ToolSchemas } from "@/components/seo/ToolSchemas";
 import { ToolJourney } from "@/components/features/tools/ToolJourney";
 
 export const metadata: Metadata = {
-  title: "W/kg Calculator — Cycling Power-to-Weight Ratio + Benchmarks",
+  title: "Cycling W/kg Calculator — FTP ÷ Body Weight",
   description:
-    "Your power-to-weight ratio plus where it actually places you. Free W/kg calculator with amateur, competitive and pro benchmarks — and what the next band of riders trains like.",
+    "Calculate cycling FTP watts per kilogram from power and body weight. See the formula, worked examples, reference ranges, evidence and interpretation limits.",
   keywords: ["w/kg calculator", "watts per kg cycling", "power to weight ratio", "cycling w/kg"],
   alternates: { canonical: "/tools/wkg" },
   openGraph: {
-    title: "W/kg Calculator — Cycling Power-to-Weight Ratio + Benchmarks",
+    title: "Cycling W/kg Calculator — FTP ÷ Body Weight",
     description:
-      "Your power-to-weight ratio plus where it actually places you. With amateur, competitive and pro benchmarks side by side.",
+      "Calculate FTP watts per kilogram, then interpret the result with transparent reference ranges and evidence limits.",
     type: "website",
     url: "https://roadmancycling.com/tools/wkg",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],

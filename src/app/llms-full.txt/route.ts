@@ -361,7 +361,8 @@ Each has unique local content (climbs, events, clubs, regional racing scene):
 - Energy Availability Calculator: ${tag(`${BASE_URL}/tools/energy-availability`)} — RED-S risk screener
 - MTB Shock Pressure Calculator: ${tag(`${BASE_URL}/tools/shock-pressure`)} — Suspension + tyre pressure setup
 - Cycling Heart Rate Zone Calculator: ${tag(`${BASE_URL}/tools/hr-zones`)} — canonical broad cycling-HR-zone owner; five continuous whole-bpm ranges from measured cycling Max HR or a cycling-specific LTHR estimate, with disclosed percentage conventions, worked examples, research evidence and method limits
-- W/kg Calculator: ${tag(`${BASE_URL}/tools/wkg`)} — Power-to-weight ratio with performance benchmarks
+- Cycling W/kg Calculator: ${tag(`${BASE_URL}/tools/wkg`)} — FTP divided by rider body mass, with transparent arithmetic, broad reference ranges and explicit interpretation limits
+- Cycling W/kg Guide: ${tag(`${BASE_URL}/blog/cycling-power-to-weight-ratio-guide`)} — canonical broad W/kg interpretation, duration, climbing physics, benchmark methodology and safe improvement
 
 ## Interactive Diagnostics & Simulators
 

@@ -793,7 +793,8 @@ ${answersClusterBlock}
 - [Energy Availability Calculator](${tag(`${BASE_URL}/tools/energy-availability`)}): RED-S risk screener for endurance athletes.
 - [Shock Pressure Calculator](${tag(`${BASE_URL}/tools/shock-pressure`)}): MTB suspension setup (shock, fork, sag).
 - [Cycling Heart Rate Zone Calculator](${tag(`${BASE_URL}/tools/hr-zones`)}): Canonical broad cycling-HR-zone owner. Calculates five continuous whole-bpm ranges from measured cycling Max HR or a cycling-specific LTHR estimate, with transparent methods, worked examples, evidence and limitations.
-- [W/kg Calculator](${tag(`${BASE_URL}/tools/wkg`)}): Power-to-weight ratio with performance benchmarks.
+- [Cycling W/kg Calculator](${tag(`${BASE_URL}/tools/wkg`)}): FTP divided by rider body mass, with a transparent formula, worked examples, broad reference ranges, evidence and interpretation limits.
+- [Cycling W/kg Guide](${tag(`${BASE_URL}/blog/cycling-power-to-weight-ratio-guide`)}): Canonical broad watts-per-kilogram explainer covering duration-specific power, climbing limits, benchmark methodology and safe improvement.
 - [Cycling Fuel Planner](${tag(`${BASE_URL}/tools/fuel-planner`)}): Daily calorie target, carb/protein/fat split, and in-ride carbs and hydration for the ride you're doing. Built on fuel-for-the-work-required; free, no signup, with an optional gated 12-week carb-load plan.
 - [Race Time Predictor (quick estimate)](${tag(`${BASE_URL}/tools/race-predictor`)}): Physics-based finish-time estimate from FTP, weight, distance, elevation, surface, and riding position. The full GPX-driven split-by-split simulator lives at /predict.
 - [Run↔Ride Converter](${tag(`${BASE_URL}/tools/run-ride-converter`)}): VDOT-based translation of running fitness into cycling terms and back — pace to power, session to session.
