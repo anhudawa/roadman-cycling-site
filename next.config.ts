@@ -302,6 +302,10 @@ const nextConfig: NextConfig = {
       { source: "/blog/cycling-periodisation-training", destination: "/blog/cycling-periodisation-plan-guide", permanent: true },
       // Consolidate duplicate tyre-pressure explainers into the established guide.
       { source: "/blog/tyre-pressure-cycling-complete-guide", destination: "/blog/cycling-tyre-pressure-guide", permanent: true },
+      { source: "/answers/best-tyre-pressure-road-cycling", destination: "/blog/cycling-tyre-pressure-guide", permanent: true },
+      // Consolidate zero-traffic wet-riding answers into the reviewed rain pillar.
+      { source: "/answers/cycling-in-rain-tips-and-gear", destination: "/blog/cycling-in-rain-guide", permanent: true },
+      { source: "/answers/cycling-in-wet-conditions-safety", destination: "/blog/cycling-in-rain-guide", permanent: true },
       // Legacy product URL — strength-training course used to live under /products
       { source: "/products/strength-training", destination: "/strength-training", permanent: true },
       // Renamed/typo blog slugs surfaced in body links

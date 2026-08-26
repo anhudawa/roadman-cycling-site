@@ -286,21 +286,21 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
     question: "Should I Switch to Tubeless Tyres for Road Cycling?",
     seoTitle: "Tubeless vs Clincher Tyres: Should You Switch?",
     seoDescription:
-      "Tubeless tyres reduce puncture risk, allow lower pressures for better grip and comfort, and cut rolling resistance. But setup can be messy and they are not essential for everyone. Here's who benefits most.",
+      "Compare tubeless and tubed road tyres: compatibility, puncture modes, pressure limits, maintenance and roadside repair without a universal PSI claim.",
     pillar: "coaching",
     directAnswer:
-      "Tubeless tyres are worth the switch if you ride regularly and punctures frustrate you. They seal small cuts with sealant automatically, allow 5–10 psi lower pressures for better grip and comfort, and marginally reduce rolling resistance by eliminating the inner tube's friction against the tyre casing. The downsides are a messier initial setup, periodic sealant top-ups every 3–4 months, and slightly harder roadside repair if the sealant cannot seal a large cut.",
+      "Tubeless tyres can be worth the switch if small punctures are common and the exact tyre-rim pair is approved for tubeless use. Sealant can close some punctures and removing the tube eliminates the tube pinch-flat mechanism, but neither benefit justifies one universal pressure reduction. Calculate pressure from complete system weight and measured width, then obey the tyre, rim and sealant manufacturers' instructions. The trade-offs are setup, maintenance and a more involved roadside repair when sealant or a plug cannot close the damage.",
     keyTakeaways: [
-      "Tubeless tyres self-seal small punctures with liquid sealant, dramatically reducing the chance of a ride-ending flat.",
-      "Lower tyre pressure (5–10 psi less than clincher recommendations) improves grip, comfort, and rolling resistance on real-world road surfaces.",
-      "Setup requires tubeless-compatible rims and tyres, valve stems, sealant, and patience — the first installation can be messy.",
-      "Weight difference between tubeless and clincher setups is marginal (under 50g per wheel in most cases) and not a deciding factor.",
+      "Liquid sealant may close some small tread punctures, but cuts, bead damage, rim impacts and other failures still need an approved repair or recovery.",
+      "Tubeless removes the inner-tube pinch-flat mode, but pressure still depends on load, measured width, casing, surface, rim profile and manufacturer limits.",
+      "Setup requires an approved tyre-rim pair plus the specified tape, valve, sealant, tools and inflation process.",
+      "Compare complete named systems: casing, tube or sealant, pressure, repair kit, maintenance and weight all vary by product.",
     ],
     whoFor: [
       {
         label: "The rider tired of punctures",
         detail:
-          "You have had enough of roadside inner-tube changes and want a system that handles small cuts and thorns without you stopping.",
+          "You want a compatible system whose sealant may close some small tread punctures and understand that it will not prevent every roadside stop.",
       },
       {
         label: "The cyclist considering a wheelset or tyre upgrade",
@@ -309,90 +309,82 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Tubeless on road is one of those topics where half the internet says it is a revelation and the other half says it is a mess. Both sides are right. When tubeless works — and it works most of the time — it is properly brilliant. You ride over glass, thorns, and sharp debris that would have given you a flat with inner tubes, and the sealant handles it without you even knowing. The lower pressures mean the bike feels more planted in corners and more comfortable over rough surfaces, which is not just a feel-good thing — research on rolling resistance shows that lower pressure on rough roads is measurably faster.",
-      "The mess comes at installation and maintenance. Getting a tubeless tyre seated on the rim for the first time can involve a compressor, a lot of sealant sprayed up the wall, and language your neighbours do not want to hear. And sealant dries out every 3–4 months, so you need to top it up or the system stops working. If you get a cut too large for the sealant to handle, you are fitting an inner tube by the roadside anyway — so carry one regardless.",
-      "Anthony's practical position: if you ride three or more times a week and your local roads are puncture-prone, tubeless is worth the faff. If you ride once a week on clean roads and barely puncture anyway, the hassle and cost of conversion may not pay for itself. It is an improvement, not a necessity.",
+      "Tubeless on road is one of those topics where half the internet says it is a revelation and the other half says it is a mess. Both sides are right. When the tyre-rim system is compatible and the sealant closes a small puncture, the benefit is obvious. Removing the tube also removes one pinch-flat mechanism, which can expand the safe pressure-testing range. That does not mean every tubeless setup should run one amount lower or that lower is always faster.",
+      "The trade-off is installation and maintenance. Use only the airflow, tape, valve and sealant process permitted by the wheel, tyre and sealant makers. Inspection intervals and roadside repair options vary by product, temperature and damage, so a backup plan matters as much as the setup.",
+      "Anthony's practical position: tubeless can pay off when small punctures are common and you are willing to maintain the system. A tubed setup remains a valid simpler choice. Compare compatibility, service access and the permitted roadside repair method rather than treating tubeless as a universal upgrade.",
     ],
     expertEvidence: [
       {
-        name: "Roadman Cycling",
-        credential: "Roadman Cycling equipment and tyre coverage",
+        name: "SRAM Zipp",
+        credential: "Wheel-system manufacturer guidance",
         insight:
-          "Tyre pressure and tyre choice account for more free speed than almost any other equipment change. Going tubeless allows you to run the pressures that actually match your weight and road surface, rather than the inflated pressures many riders default to because they are afraid of pinch flats with inner tubes.",
-        episodeSlug: "ep-2057-your-tyres-are-slowing-you-down-here-s-why",
-      },
-      {
-        name: "Roadman Cycling",
-        credential: "Roadman Cycling tyre pressure coverage",
-        insight:
-          "The data on tyre pressure is clear: most road cyclists run pressures that are too high. Tubeless removes the risk of pinch flats, which is the main reason riders over-inflate in the first place. Once you can safely run 70–80 psi instead of 90–100, the bike is faster and more comfortable on every surface except a perfectly smooth velodrome.",
-        episodeSlug: "ep-2157-tyre-pressure-the-free-speed-hack",
+          "Tyre model, measured width, wheel model, load and pressure limits must be checked as one system. A calculator is a starting point and cannot approve an incompatible pairing.",
       },
     ],
     practicalApplication: [
       {
         title: "Check your wheels are tubeless-compatible",
         detail:
-          "Look for 'tubeless ready' (TR or TLR) markings on your rims. Most wheels from the last 5 years are compatible, but not all. If your rims are not tubeless-ready, a conversion is not recommended — the bead may not seat properly, creating a safety risk. In that case, wait until your next wheelset upgrade.",
+          "Check the exact wheel manual and approved tyre list. A TR or TLR marking on one component does not prove that the pair is compatible, especially with hookless rims. If the combination is not explicitly permitted, do not convert it.",
       },
       {
         title: "Choose the right sealant and quantity",
         detail:
-          "Use 30–40ml of liquid sealant per tyre for road-width tyres (25–32mm). Top up every 3–4 months by removing the valve core and injecting fresh sealant with a syringe. Set a reminder in your calendar — dried-out sealant is the number one reason tubeless riders get flats they should not have.",
+          "Use a sealant approved for the tyre and wheel, then follow its quantity and inspection interval for the measured tyre size and climate. Record the product and installation date, and do not mix formulations unless both makers permit it.",
       },
       {
         title: "Carry a spare inner tube and tyre plug kit",
         detail:
-          "Tubeless is not puncture-proof. Carry a plug kit for medium cuts (a 30-second repair without removing the tyre) and an inner tube for catastrophic failures. A mini pump or CO2 inflator is still mandatory. The sealant handles small debris automatically; you handle the rest.",
+          "Tubeless is not puncture-proof. Carry only the plug, tube, inflation device and mounting tools permitted for the exact wheel and tyre. A sidewall cut, damaged bead or damaged rim requires stopping and recovery rather than an improvised ride-home repair.",
       },
     ],
     commonMistakes: [
       {
         mistake: "Assuming tubeless eliminates all flats and riding without repair supplies.",
         fix:
-          "Always carry a plug kit and an inner tube. Sealant handles small punctures; it cannot fix a slashed sidewall or a large gash. Being stranded 40 miles from home is worse than carrying 100g of insurance.",
+          "Carry the approved repair supplies and a recovery plan. Sealant may close some small tread punctures; it cannot make bead, sidewall or rim damage safe to ride.",
       },
       {
         mistake: "Never topping up sealant and running on dried-out residue.",
         fix:
-          "Check sealant levels every 3–4 months by removing the valve core and listening for liquid sloshing. Inject 20–30ml of fresh sealant each time. A tubeless system without working sealant is just a clincher with extra steps.",
+          "Inspect at the sealant maker's interval and add only the specified compatible quantity. Temperature, casing and formulation change the service interval, so do not use one calendar rule for every product.",
       },
       {
         mistake: "Over-inflating tubeless tyres to clincher pressures.",
         fix:
-          "The whole point of tubeless is running lower pressures safely. Use the Roadman Tyre Pressure Calculator to find your ideal pressure based on rider weight, tyre width, and road surface — it will likely be 10–15% lower than what you are used to with inner tubes.",
+          "Do not copy either a tubed pressure or a universal percentage reduction. Use the Roadman Tyre Pressure Calculator with complete system weight and measured mounted width, then compare its starting point with the exact tyre and rim limits.",
       },
     ],
     faq: [
       {
         question: "Are tubeless tyres faster than clinchers?",
         answer:
-          "In controlled conditions on smooth roads, the difference is negligible — roughly 1–3 watts per tyre. The real-world advantage comes from running lower pressures on imperfect roads, where tubeless allows you to find the right pressure without risking pinch flats. On rough tarmac, that lower pressure is measurably faster because the tyre absorbs surface irregularities instead of bouncing over them.",
+          "Not automatically. Rolling resistance depends on tyre construction, tube material or sealant, pressure, load and surface. Tubeless can remove tube-related hysteresis and the tube pinch-flat mode, but the fastest safe setup must be compared using the actual tyre-rim system rather than a universal watt or pressure claim.",
       },
       {
         question: "How much does a tubeless conversion cost?",
         answer:
-          "If your wheels are already tubeless-ready, the conversion costs roughly $30–50 for valves, rim tape (if needed), and sealant. If you need new tyres as well, budget $80–150 per pair for quality tubeless-specific road tyres. If your wheels are not tubeless-compatible, you would need a new wheelset, which changes the equation entirely.",
+          "Cost depends on whether the current wheel and tyre are already an approved pair and whether tape, valves, sealant, tyres or workshop labour are needed. Price the exact compatible parts locally; do not convert an unapproved rim to avoid the cost of the correct system.",
       },
       {
         question: "Can I convert any wheel to tubeless?",
         answer:
-          "No. Only wheels designed or certified as tubeless-ready should be used. The rim profile must lock the tyre bead securely without an inner tube providing additional pressure. Converting non-tubeless rims with tape is risky — the bead can blow off under pressure, which is a genuine safety hazard.",
+          "No. Use only an explicitly approved tyre-rim pairing and the specified tape, valve and sealant. Tape does not turn a non-tubeless rim into an approved system, and an undocumented pairing may not retain or seal the bead safely.",
       },
       {
         question: "How long does tubeless sealant last?",
         answer:
-          "Most sealants remain effective for 3–4 months before drying out, depending on climate and how much air permeates the tyre. In hot, dry conditions it can dry faster. Top up regularly by injecting through the valve core with a syringe — it takes 60 seconds and prevents the most common tubeless failure mode.",
+          "Use the sealant manufacturer's inspection and replacement interval. Temperature, casing, product and storage alter the lifespan, and a pressure loss can indicate a tape, valve, bead or puncture problem rather than a routine need for more sealant.",
       },
       {
         question: "What happens if I get a puncture that sealant cannot fix?",
         answer:
-          "Insert a tyre plug first — a rubber strip pushed into the cut from the outside using a plug tool. This takes 30 seconds and works for holes up to 4–5mm. If the plug does not hold or the damage is too large, remove the tyre, fit an inner tube, and ride home as you would with a clincher. The sealant makes a mess inside the tyre but does not prevent an inner tube from seating.",
+          "Stop safely and follow the tyre and wheel makers' permitted repair method. A compatible plug may repair some tread punctures, while other damage requires an approved tube or recovery. Do not ride a sidewall cut, damaged bead or damaged rim, and do not assume one plug size repairs every hole.",
       },
       {
         question: "Do professional road cyclists use tubeless tyres?",
         answer:
-          "Increasingly, yes. Several World Tour teams have adopted tubeless for road stages, especially in spring classics where puncture resistance on cobbles matters. However, many pros still use tubular tyres glued to carbon rims for weight and feel. The professional peloton has team cars and spare wheels — their tyre choice is driven by different priorities than yours.",
+          "Professional teams use tubeless, tubular and tubed systems depending on sponsor equipment, event and support. Their choice does not establish compatibility or pressure for an amateur setup; team cars and wheel changes also change the consequences of a failure.",
       },
     ],
     relatedEpisodes: [
@@ -404,13 +396,13 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
       { label: "Tyre Pressure Calculator", href: "/tools/tyre-pressure" },
       { label: "Tubeless vs Clincher — Full Guide", href: "/blog/tubeless-vs-clincher-tyres" },
       { label: "Tyre Pressure Guide", href: "/blog/cycling-tyre-pressure-guide" },
-      { label: "Best tyre pressure for road cycling", href: "/answers/best-tyre-pressure-road-cycling" },
+      { label: "Cycling Tech", href: "/topics/cycling-tech" },
     ],
     evidenceLevel: "moderate",
     evidenceNote:
-      "Rolling resistance data from independent test labs (Bicycle Rolling Resistance) supports the lower-pressure advantage. Puncture-sealing efficacy is well documented by manufacturers and confirmed by widespread adoption. Real-world speed gains are harder to quantify precisely due to road-surface variability.",
+      "Independent drum testing can compare tube and sealant configurations under fixed conditions, while manufacturers define compatibility and pressure limits. Real-world speed and puncture outcomes remain system-, surface- and damage-specific.",
     publishDate: "2026-07-09",
-    updatedDate: "2026-07-09",
+    updatedDate: "2026-08-26",
   },
 
   // ============================================================
@@ -539,7 +531,7 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
     relatedTopics: [
       { label: "Tyre Pressure Calculator", href: "/tools/tyre-pressure" },
       { label: "Cycling Tyre Pressure Guide", href: "/blog/cycling-tyre-pressure-guide" },
-      { label: "Best tyre pressure for road cycling", href: "/answers/best-tyre-pressure-road-cycling" },
+      { label: "Road bike tyre pressure calculator", href: "/tools/tyre-pressure" },
       { label: "Cycling Tech", href: "/topics/cycling-tech" },
     ],
     evidenceLevel: "strong",

@@ -2158,7 +2158,7 @@ export const highVolumeQuery15Answers: AnswerPage[] = [
       {
         question: "What if it rains on event day?",
         answer:
-          "Train in the rain at least twice during preparation so it is not a shock on event day. Reduce tyre pressure by 5-10 psi for better grip, apply chamois cream generously, and carry a lightweight rain jacket. Lower your cornering speed by 15-20%.",
+          "Check the organiser's instructions and use a pressure calculated from complete system weight, measured tyre width and surface; do not make a blanket 5-10 PSI reduction. Obey the tyre-rim limits, brake earlier and smoothly, avoid abrupt inputs over paint or metal, and carry clothing appropriate to the temperature and forecast. There is no universal safe cornering-speed percentage.",
       },
       {
         question: "Do I need a power meter for century training?",
@@ -2174,7 +2174,7 @@ export const highVolumeQuery15Answers: AnswerPage[] = [
     ],
     evidenceLevel: "strong",
     publishDate: "2026-07-10",
-    updatedDate: "2026-07-10",
+    updatedDate: "2026-08-26",
   },
 
   // 17 — WHAT TO EAT DURING A SPORTIVE

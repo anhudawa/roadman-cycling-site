@@ -377,6 +377,17 @@ Evidence-based topic hubs — each gathers the articles, episodes, and tools for
 - [Cycling Tech & GPS — Bike Computers, Watches & Power Meters](${tag(`${BASE_URL}/topics/cycling-tech`)}): Bike computers vs GPS watches, power meters, and the handful of metrics worth checking — cutting through the marketing to what actually moves your training.
 - [All Topics](${tag(`${BASE_URL}/topics`)})
 
+## Road Skills & Equipment Safety
+- [Cycling in the Rain](${tag(`${BASE_URL}/blog/cycling-in-rain-guide`)}): The canonical wet-riding owner — kit, visibility, braking, surface hazards and a bounded tyre-pressure test protocol.
+- [Descending in Wet Conditions](${tag(`${BASE_URL}/blog/cycling-descending-wet-conditions-guide`)}): Reviewed wet-descending guidance grounded in British Cycling, Shimano, SRAM and setup-specific tyre testing.
+- [Racing in the Rain](${tag(`${BASE_URL}/blog/cycling-racing-in-the-rain-guide`)}): Race-specific preparation where organiser rules, predictable lines and system limits override tactical position.
+- [Cycling Braking Technique](${tag(`${BASE_URL}/blog/cycling-braking-technique-confidence-guide`)}): Progressive braking, wet-response checks and the limits of universal stopping-distance claims.
+- [Road Bike Cornering Technique](${tag(`${BASE_URL}/blog/cornering-confidence-road-bike-technique`)}): Vision, body position, lawful lines and bounded wet-cornering guidance without universal grip percentages.
+- [Cycling Tyre Pressure Guide](${tag(`${BASE_URL}/blog/cycling-tyre-pressure-guide`)}): Compatibility-first setup, measured width, manufacturer limits and 1-2 PSI field testing.
+- [Road Bike Tyre Pressure Calculator](${tag(`${BASE_URL}/tools/tyre-pressure`)}): Front/rear PSI and bar starting points with visible formula, hookless ceiling and manufacturer-limit checks.
+- [Tubeless vs Clincher Road Tyres](${tag(`${BASE_URL}/blog/tubeless-vs-clincher-tyres`)}): Compatibility, setup-specific rolling-resistance evidence, puncture modes, maintenance and permitted roadside repair without a universal watt or PSI claim.
+- [How to Set Up Tubeless Tyres](${tag(`${BASE_URL}/answers/how-to-set-up-tubeless-tyres`)}): A concise compatibility-first setup sequence governed by the tyre, rim and sealant instructions.
+
 ## Topic Cluster Hubs (deep-dive masters & training clusters)
 Focused clusters that interlink a definitive guide with its supporting articles. Built for masters riders and specific training methods.
 - [VO2max for Masters Cyclists](${tag(`${BASE_URL}/masters/vo2max`)}): Which sessions rebuild the top end after 40, what the research on age-related VO2max decline shows, and how to train the aerobic ceiling without wrecking recovery.

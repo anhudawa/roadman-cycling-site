@@ -612,7 +612,7 @@ export const highVolumeQuery7Answers: AnswerPage[] = [
       {
         question: "Does tyre pressure affect climbing on steep gradients?",
         answer:
-          "Yes. On very steep climbs (above 15%), running slightly lower tyre pressure improves rear tyre grip by increasing the contact patch. At high torque and low speed, rear tyre spin is a genuine issue on smooth tarmac. Dropping 5-10 psi from your normal pressure before a steep section can prevent this.",
+          "It can, but do not remove 5-10 PSI before one climb. Begin with a pressure calculated from complete system weight, measured tyre width and surface, and stay inside the tyre-rim limits. If rear-wheel spin persists on a familiar low-risk route, test only a 1-2 PSI rear change while also using smoother seated torque and suitable gearing; stop lowering if the tyre squirms, bottoms or loses support.",
       },
       {
         question: "Is it ever smarter to walk than ride on a steep hill?",
@@ -628,7 +628,7 @@ export const highVolumeQuery7Answers: AnswerPage[] = [
     ],
     evidenceLevel: "moderate",
     publishDate: "2026-07-10",
-    updatedDate: "2026-07-10",
+    updatedDate: "2026-08-26",
   },
 
   // ============================================================

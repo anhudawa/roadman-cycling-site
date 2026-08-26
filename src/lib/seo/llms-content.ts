@@ -43,6 +43,11 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "cycling-in-ride-nutrition-guide",
   "cycling-stretching-routine",
   "cycling-tyre-pressure-guide",
+  "cycling-in-rain-guide",
+  "cycling-descending-wet-conditions-guide",
+  "cycling-racing-in-the-rain-guide",
+  "cycling-braking-technique-confidence-guide",
+  "cornering-confidence-road-bike-technique",
 ]);
 
 /**
