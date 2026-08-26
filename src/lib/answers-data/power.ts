@@ -665,139 +665,6 @@ export const powerAnswers: AnswerPage[] = [
     publishDate: "2026-05-26",
     updatedDate: "2026-05-26",
   },
-
-  // ============================================================
-  // 6 — HOW TO DO VO2 MAX INTERVALS
-  // ============================================================
-  {
-    slug: "how-to-do-vo2-max-intervals",
-    cluster: "power",
-    question: "How Do I Do VO2 Max Intervals?",
-    seoTitle: "How to Do VO2 Max Intervals for Cycling — The Right Protocol",
-    seoDescription:
-      "Do VO2 max intervals correctly: 4–8 minute efforts at 106–120% FTP, equal rest, maximum 2 sessions per week. The protocol that moves the ceiling, and the mistakes that waste the effort.",
-    pillar: "coaching",
-    directAnswer:
-      "VO2 max intervals are 4–8 minute efforts at 106–120% of FTP with equal-duration recovery — so a 5×4 session uses 4 minutes on, 4 minutes easy, repeated five times. The last 60–90 seconds of each effort should be hard to complete. Two sessions per week is the ceiling for most amateurs. Under-resting between efforts and starting too hard are the two most common reasons sessions fail to deliver.",
-    keyTakeaways: [
-      "4–8 minutes at 106–120% FTP is the effective intensity window — shorter doesn't reach VO2 max, longer drifts below it.",
-      "Equal rest duration (rest = work interval length) is the standard recovery protocol.",
-      "The final 60–90 seconds of each effort should seriously challenge completion — calibrate power to achieve this.",
-      "Two VO2max sessions per week is the maximum for most amateurs; the rest of the week must be properly easy.",
-    ],
-    whoFor: [
-      {
-        label: "The rider who knows they need VO2 work but doesn't know how",
-        detail:
-          "You've heard VO2max intervals prescribed but aren't confident in the protocol, intensity or structure.",
-      },
-      {
-        label: "The rider whose VO2max intervals never seem to work",
-        detail:
-          "You do 'VO2max' sessions regularly but your ceiling hasn't moved — often a sign of wrong intensity or insufficient recovery.",
-      },
-    ],
-    roadmanView: [
-      "The protocol matters more than most riders realise. Anthony covered this on the podcast with Vasilis Anastopoulos, the Astana head coach, who described how easy it is to waste a VO2max session by starting either too hard (blowing up in minute 3) or too easy (never actually getting to maximum oxygen uptake). The sweet spot is effort that builds through the interval and becomes properly hard in the final minute or two.",
-      "The recovery piece is equally neglected. Riders who take 90 seconds between 5-minute efforts aren't doing VO2max intervals — they're doing something between sweet spot and threshold with an incomplete recovery. The adaptation comes from the quality of each maximal effort, not the total time spent at a certain average power.",
-      "Structure-wise: a reliable starting prescription for someone new to this work is 5×4 minutes at 110–115% FTP, with 4 minutes easy. If the 5th interval is nearly impossible, the power is right. If it's hard but completeable, that's the target. If they're all manageable, go 5% higher next session.",
-    ],
-    expertEvidence: [
-      {
-        name: "Vasilis Anastopoulos",
-        credential: "Head of Performance, Astana Pro Team",
-        insight:
-          "Effective VO2 max work requires that each effort actually stresses the oxygen transport system near its limit. Starting too hard blows up the interval; starting too easy never reaches the stimulus. The calibration is in the final 90 seconds — that's where the adaptation signal is strongest.",
-        episodeSlug: "ep-2-i-asked-astana-coach-about-zone-2-heres-what-he-said",
-        guestSlug: "vasilis-anastopoulos",
-      },
-      {
-        name: "John Archibald",
-        credential: "British national pursuit champion",
-        insight:
-          "The riders who improve VO2 max most reliably are those who can sustain multiple high-quality intervals in a single session — which requires arriving at each effort recovered. Cutting rest to get more reps in is counterproductive. Fewer high-quality efforts beat more compromised ones every time.",
-        episodeSlug: "ep-2089-how-to-ride-faster-than-98-of-people-john-archibald",
-        guestSlug: "john-archibald",
-      },
-    ],
-    practicalApplication: [
-      {
-        title: "Start with 5×4 minutes",
-        detail:
-          "Set power to 110–115% of FTP. Warm up for 20 minutes including 2–3 short accelerations. Then: 4 minutes on, 4 minutes easy, repeat five times. Target is that the 5th interval is achievable but the hardest. Cool down 10–15 minutes.",
-      },
-      {
-        title: "Progress to longer efforts over 3–4 weeks",
-        detail:
-          "Move to 4×5 min, then 3×7 min, then 3×8 min as fitness builds. Longer efforts at slightly lower power (106–110% FTP) produce more total time near VO2 max per session. Keep the recovery equal to the effort.",
-      },
-      {
-        title: "Fuel the session specifically",
-        detail:
-          "Take 30–40g of carbohydrate in the 30 minutes before the session. Glycolytic effort at VO2 max intensity burns through muscle glycogen rapidly — arriving depleted turns a quality interval session into a grind.",
-      },
-    ],
-    commonMistakes: [
-      {
-        mistake: "Starting the first interval at 120% FTP and imploding by minute 3.",
-        fix:
-          "Start conservatively — 110% FTP — and let the effort build. You can always go harder on the last two intervals. Blowing up on interval 2 wastes the rest of the session.",
-      },
-      {
-        mistake: "Using 60–90 seconds recovery between 4–5 minute efforts.",
-        fix:
-          "Insufficient recovery means each subsequent interval degrades below the VO2 max stimulus. Use rest equal to effort duration — 4 minutes on, 4 minutes off.",
-      },
-      {
-        mistake: "Doing VO2 max intervals on tired legs from the previous day's hard ride.",
-        fix:
-          "Schedule VO2max sessions after a rest day or very easy day. Arriving fatigued means target power represents a higher percentage of residual capacity — the session feels hard but the adaptation signal is blunted.",
-      },
-    ],
-    faq: [
-      {
-        question: "What heart rate should I target for VO2 max intervals?",
-        answer:
-          "In the final 60–90 seconds of each effort, heart rate should be at or near your maximum (95%+ of HRmax). If it never gets there, the effort isn't reaching VO2 max. Heart rate lags power by 60–90 seconds, so check it at the end of the interval, not the start.",
-      },
-      {
-        question: "How many VO2 max sessions per week?",
-        answer:
-          "One to two per week for most amateurs. One is enough to progress. Two produces faster gains but requires genuine easy riding on all other days. Three or more VO2max sessions on top of regular training produces accumulating fatigue, not faster adaptation.",
-      },
-      {
-        question: "Should VO2 max intervals be indoors or outdoors?",
-        answer:
-          "Indoors on a smart trainer is more controllable — you can hold exact power without descents, traffic or gradient changes. Outdoors on a steady climb works well and provides variety. Either is effective; the key is hitting the target intensity consistently through each effort.",
-      },
-      {
-        question: "How long before VO2 max intervals start working?",
-        answer:
-          "Most riders see measurable improvements in 4–6 weeks of consistent work. The first 2 sessions often feel rough as the body adjusts to the specific intensity. Weeks 3–6 typically produce noticeable improvement in how completeable the efforts feel at the same power.",
-      },
-      {
-        question: "Can I do VO2 max intervals on a climb?",
-        answer:
-          "Yes — a steady climb of 5–10% gradient makes it easier to hold consistent power and naturally limits speed, which can feel easier to push hard on. Just calibrate power targets on the same basis as flat or indoor sessions.",
-      },
-    ],
-    relatedEpisodes: [
-      "ep-2089-how-to-ride-faster-than-98-of-people-john-archibald",
-      "ep-2-i-asked-astana-coach-about-zone-2-heres-what-he-said",
-      "ep-17-7-fixable-reasons-your-v02-max-is-low-while-cycling",
-    ],
-    relatedTopics: [
-      { label: "VO2max Intervals Guide", href: "/blog/cycling-vo2max-intervals" },
-      { label: "How to increase VO2 max", href: "/answers/how-to-increase-vo2-max-cycling" },
-      { label: "Short vs Long Intervals", href: "/compare/short-vs-long-intervals" },
-      { label: "FTP Training — Topic Hub", href: "/topics/ftp-training" },
-      { label: "Sweet Spot vs Zone 2", href: "/compare/sweet-spot-vs-zone-2" },
-    ],
-    evidenceLevel: "strong",
-    publishDate: "2026-05-26",
-    updatedDate: "2026-05-26",
-  },
-
   // ============================================================
   // 7 — WHY DOES MY POWER FADE ON LONG RIDES
   // ============================================================
@@ -1855,7 +1722,7 @@ export const powerAnswers: AnswerPage[] = [
     ],
     relatedTopics: [
       { label: "How to build anaerobic capacity", href: "/answers/how-to-build-anaerobic-capacity" },
-      { label: "How to do VO2max intervals", href: "/answers/how-to-do-vo2-max-intervals" },
+      { label: "How to do VO2max intervals", href: "/blog/cycling-vo2max-intervals" },
       { label: "What is durability in cycling?", href: "/answers/what-is-durability-cycling" },
       { label: "Short vs Long Intervals", href: "/compare/short-vs-long-intervals" },
       { label: "FTP Training — Topic Hub", href: "/topics/ftp-training" },
@@ -2542,7 +2409,7 @@ export const powerAnswers: AnswerPage[] = [
     ],
     relatedTopics: [
       { label: "VO2max Intervals Guide", href: "/blog/cycling-vo2max-intervals" },
-      { label: "How to do VO2 max intervals", href: "/answers/how-to-do-vo2-max-intervals" },
+      { label: "How to do VO2 max intervals", href: "/blog/cycling-vo2max-intervals" },
       { label: "How to increase VO2 max", href: "/answers/how-to-increase-vo2-max-cycling" },
       { label: "FTP Training — Topic Hub", href: "/topics/ftp-training" },
       { label: "Short vs Long Intervals", href: "/compare/short-vs-long-intervals" },

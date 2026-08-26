@@ -2418,7 +2418,7 @@ export const zone2Answers: AnswerPage[] = [
     relatedTopics: [
       { label: "How to Stop Plateauing", href: "/answers/how-to-stop-plateauing" },
       { label: "Polarised vs Sweet Spot", href: "/answers/polarised-vs-sweet-spot" },
-      { label: "How to Do VO2 Max Intervals", href: "/answers/how-to-do-vo2-max-intervals" },
+      { label: "How to Do VO2 Max Intervals", href: "/blog/cycling-vo2max-intervals" },
       { label: "How to Build Cycling Endurance", href: "/answers/how-to-build-cycling-endurance" },
       { label: "Polarised Training Guide", href: "/blog/polarised-training-cycling-world-tour-prescription" },
     ],
@@ -2700,7 +2700,7 @@ export const zone2Answers: AnswerPage[] = [
     ],
     relatedTopics: [
       { label: "How to Structure a Training Week", href: "/answers/how-to-structure-a-training-week" },
-      { label: "How to Do VO2 Max Intervals", href: "/answers/how-to-do-vo2-max-intervals" },
+      { label: "How to Do VO2 Max Intervals", href: "/blog/cycling-vo2max-intervals" },
       { label: "Polarised vs Sweet Spot", href: "/answers/polarised-vs-sweet-spot" },
       { label: "How Much Zone 2 Should Cyclists Do?", href: "/answers/how-much-zone-2" },
       { label: "Polarised Training Guide", href: "/blog/polarised-training-cycling-world-tour-prescription" },

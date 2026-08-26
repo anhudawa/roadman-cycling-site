@@ -2220,7 +2220,7 @@ export const mastersAnswers: AnswerPage[] = [
     relatedTopics: [
       { label: "VO2 Max Workouts for Cyclists Over 40", href: "/blog/vo2-max-workouts-cyclists-over-40" },
       { label: "Does VO2 max decline with age?", href: "/answers/does-vo2-max-decline-with-age" },
-      { label: "How to do VO2 max intervals", href: "/answers/how-to-do-vo2-max-intervals" },
+      { label: "How to do VO2 max intervals", href: "/blog/cycling-vo2max-intervals" },
       { label: "How many hard sessions after 50?", href: "/answers/how-many-hard-sessions-after-50" },
       { label: "FTP Training — Topic Hub", href: "/topics/ftp-training" },
     ],

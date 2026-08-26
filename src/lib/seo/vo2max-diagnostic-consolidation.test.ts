@@ -62,7 +62,6 @@ describe("VO2max diagnostic intent consolidation", () => {
   it("preserves the cluster's distinct measurement, interval and masters owners", () => {
     const retainedSlugs = [
       "cycling-vo2max-intervals",
-      "vo2max-intervals-cycling-session-guide",
       "vo2-max-workouts-cyclists-over-40",
       "vo2max-cycling-what-your-number-means-guide",
     ];
