@@ -12,6 +12,14 @@ export interface TopicHub {
   description: string;
   pillar: ContentPillar;
   keywords: string[];
+  /** ISO editorial review date for visible freshness and CollectionPage schema. */
+  lastReviewed?: string;
+  /** Named human responsible for the latest editorial review. */
+  reviewedBy?: {
+    name: string;
+    role: string;
+    href: string;
+  };
   /**
    * Short noun phrase used in the commercial CTA headline
    * ("GET COACHED ON {ctaHeadline}"). Hand-written per topic because
@@ -232,21 +240,25 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   },
   {
     slug: "cycling-coaching",
-    title: "Cycling Coaching — Online & In-Person",
-    headline: "HOW CYCLING COACHING WORKS",
-    ctaHeadline: "STOP GUESSING. START PROGRESSING.",
+    title: "How Cycling Coaching Works — Cost, Fit & Methods",
+    headline: "CYCLING COACHING KNOWLEDGE GUIDE",
+    ctaHeadline: "SEE WHAT ROADMAN COACHING INCLUDES.",
     description:
-      "The complete guide to cycling coaching. When to get a coach, what to look for, how online coaching works, and why most cyclists plateau without structured guidance. Built from a 1,400+ episode podcast catalogue featuring coaches behind World Tour teams.",
+      "An educational guide to what cycling coaches do, when coaching may be useful, how online and in-person services differ, what they cost, and how to compare them safely.",
     pillar: "coaching",
+    lastReviewed: "2026-08-26",
+    reviewedBy: {
+      name: "Anthony Walsh",
+      role: "Roadman Cycling founder and head coach",
+      href: "/author/anthony-walsh",
+    },
     keywords: [
-      "cycling coach",
-      "cycling coaching",
-      "online cycling coach",
-      "cycling coaching program",
+      "how cycling coaching works",
+      "what does a cycling coach do",
       "is a cycling coach worth it",
-      "personalised cycling training plan",
-      "cycling coach ireland",
-      "cycling coach uk",
+      "cycling coaching cost",
+      "cycling coach qualifications",
+      "online vs in person cycling coaching",
     ],
   },
   {
@@ -1378,7 +1390,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "what-does-a-cycling-coach-do",
     "how-much-does-online-cycling-coach-cost-2026",
     "zwift-vs-cycling-coach",
-    "best-cycling-coach-guide",
     "best-cycling-coach-ireland",
     "best-cycling-coach-uk",
     "best-cycling-coach-usa",
@@ -2535,7 +2546,7 @@ const TOPIC_ENRICHMENT: Record<string, {
       { slug: "interval-builder", title: "Interval Session Builder", href: "/tools/interval-builder" },
       { slug: "body-composition", title: "Body Composition Calculator", href: "/tools/body-composition" },
     ],
-    commercialPath: "/apply",
+    commercialPath: "/coaching",
     relatedTopics: ["ftp-training", "cycling-training-plans"],
     featuredPostSlugs: [
       "is-a-cycling-coach-worth-it",
@@ -3165,22 +3176,22 @@ const TOPIC_FAQS: Record<string, TopicFAQ[]> = {
     {
       question: "Is a cycling coach worth it?",
       answer:
-        "A coach is worth it if you're plateauing, short on time, or unsure how to structure your training — the value is in personalisation and accountability, not just a plan. Most amateurs leak fitness through unstructured riding a coach would redirect.",
+        "A coach can be worth it when you have a specific goal, a persistent plateau, limited training time or changing constraints that require judgement rather than another static plan. It is not a guaranteed shortcut; compare the coach's scope, review cadence, communication, evidence and terms against what you will actually use.",
     },
     {
       question: "How does online cycling coaching work?",
       answer:
-        "An online coach builds your training around your goals, schedule and data, then adjusts it week to week based on how you respond and what you tell them. For most riders this is as effective as in-person coaching.",
+        "An online coach receives your goals, schedule, feedback and training data through agreed platforms, then plans and reviews work at the cadence stated in the service. Delivery varies: ask who reviews the data, what triggers a change, which contact channels are included and when in-person skills support would still be useful.",
     },
     {
       question: "How much does a cycling coach cost?",
       answer:
-        "Quality online coaching typically runs from around $150–250 a month depending on the level of contact and personalisation. Roadman's Not Done Yet coaching is $195/month with a 7-day free trial.",
+        "Price depends on whether the offer is group coaching or named-coach one-to-one, the billing period, review cadence, contact and contract terms. Roadman's dated market audit compares public offers on the same basis; Not Done Yet group coaching is currently $195 per calendar month with a seven-day free trial.",
     },
     {
       question: "Does my cycling coach need to be local?",
       answer:
-        "No. Because coaching is built on data, communication and a personalised plan, location rarely matters — what counts is the coach's methodology and how well they understand your goals.",
+        "Not always. Remote planning and data review can work across locations, while bike handling, group-riding skills, some sprint work and physical assessment may benefit from in-person observation. Choose by the support your goal requires, then confirm time-zone overlap, communication and safeguarding arrangements.",
     },
   ],
   "against-the-clock": [

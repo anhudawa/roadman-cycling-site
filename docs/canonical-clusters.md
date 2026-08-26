@@ -45,7 +45,7 @@
 
 ### Supporting pages (blog posts that link UP to `/masters`)
 
-Top 15 by relevance:
+Top 14 by relevance:
 
 - `cycling-over-40-complete-guide`
 - `masters-cycling-training-report-2026`
@@ -170,7 +170,6 @@ Top 15 by relevance:
 
 - `is-a-cycling-coach-worth-it`
 - `best-online-cycling-coach-how-to-choose`
-- `best-cycling-coach-guide`
 - `what-does-a-cycling-coach-do`
 - `how-much-does-online-cycling-coach-cost-2026`
 - `cycling-coaching-results-before-and-after`
@@ -189,7 +188,6 @@ Full cluster: 177 blog posts mapped in `TOPIC_POST_MAP["cycling-coaching"]` (top
 ### Decision pages
 
 - `best-online-cycling-coach-how-to-choose` (has `reviewedBy`)
-- `best-cycling-coach-guide`
 - `trainerroad-vs-online-cycling-coach`
 - `zwift-vs-cycling-coach`
 - `cycling-coach-vs-triathlon-coach`

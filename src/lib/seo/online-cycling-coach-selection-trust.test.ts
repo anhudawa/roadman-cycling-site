@@ -17,8 +17,8 @@ describe("online cycling coach selection search trust", () => {
     expect(parsed.data.seoTitle).toBe(
       "How to Choose an Online Cycling Coach (2026 Checklist)",
     );
-    expect(parsed.data.updatedDate).toBe("2026-08-25");
-    expect(parsed.data.lastReviewed).toBe("2026-08-25");
+    expect(parsed.data.updatedDate).toBe("2026-08-26");
+    expect(parsed.data.lastReviewed).toBe("2026-08-26");
     expect(parsed.data.reviewedBy).toContain("health-data");
     expect(parsed.data.seoDescription.length).toBeGreaterThanOrEqual(120);
     expect(parsed.data.seoDescription.length).toBeLessThanOrEqual(160);

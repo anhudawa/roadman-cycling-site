@@ -253,7 +253,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
       priority: 0.65,
     })),
     { url: `${BASE_URL}/apply`, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${BASE_URL}/coaching`, lastModified: PRIORITY_OWNER_RELEASE_DATE, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/coaching`, lastModified: new Date("2026-08-26"), changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/coaching/triathletes`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/coaching/ireland`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/coaching/uk`, changeFrequency: "monthly", priority: 0.7 },

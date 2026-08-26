@@ -42,23 +42,39 @@ describe("priority search-owner schema", () => {
 
   it("keeps the shared schema and visible trust block on every owner page", () => {
     const ownerPages = {
-      "cycling-podcast": "src/app/(content)/podcast/page.tsx",
-      "cycling-coaching": "src/app/(marketing)/coaching/page.tsx",
-      "masters-cycling": "src/app/(marketing)/masters/page.tsx",
-      "cycling-training-plans":
-        "src/app/(marketing)/training-plans/page.tsx",
-      "cycling-training-camps":
-        "src/app/(marketing)/training-camps/page.tsx",
+      "cycling-podcast": {
+        path: "src/app/(content)/podcast/page.tsx",
+        reviewed: "25 August 2026",
+      },
+      "cycling-coaching": {
+        path: "src/app/(marketing)/coaching/page.tsx",
+        reviewed: "26 August 2026",
+      },
+      "masters-cycling": {
+        path: "src/app/(marketing)/masters/page.tsx",
+        reviewed: "25 August 2026",
+      },
+      "cycling-training-plans": {
+        path: "src/app/(marketing)/training-plans/page.tsx",
+        reviewed: "25 August 2026",
+      },
+      "cycling-training-camps": {
+        path: "src/app/(marketing)/training-camps/page.tsx",
+        reviewed: "25 August 2026",
+      },
     } as const;
 
-    for (const [ownerId, pagePath] of Object.entries(ownerPages)) {
-      const source = readFileSync(resolve(process.cwd(), pagePath), "utf8");
+    for (const [ownerId, ownerPage] of Object.entries(ownerPages)) {
+      const source = readFileSync(
+        resolve(process.cwd(), ownerPage.path),
+        "utf8",
+      );
 
       expect(source).toContain(
         `buildSearchOwnerTrustProperties("${ownerId}")`,
       );
       expect(source).toContain("<EvidenceBlock");
-      expect(source).toContain('lastReviewed="25 August 2026"');
+      expect(source).toContain(`lastReviewed="${ownerPage.reviewed}"`);
       expect(source).toContain('"@type": "BreadcrumbList"');
     }
   });
