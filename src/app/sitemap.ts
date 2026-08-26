@@ -36,6 +36,7 @@ import { getBlogArchiveHref, getBlogArchivePageCount } from "@/lib/seo/blog-arch
 
 const BASE_URL = "https://roadmancycling.com";
 const PRIORITY_OWNER_RELEASE_DATE = new Date("2026-08-25");
+const MASTERS_OWNER_RELEASE_DATE = new Date("2026-08-26");
 
 /**
  * Split sitemaps by page type for GSC monitoring.
@@ -323,7 +324,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     // brand pages, not content-driven dynamic routes.
     { url: `${BASE_URL}/proof`, lastModified: new Date("2026-04-30"), changeFrequency: "weekly", priority: 0.85 },
     { url: `${BASE_URL}/find-your-fit`, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${BASE_URL}/masters`, lastModified: PRIORITY_OWNER_RELEASE_DATE, changeFrequency: "weekly", priority: 0.85 },
+    { url: `${BASE_URL}/masters`, lastModified: MASTERS_OWNER_RELEASE_DATE, changeFrequency: "weekly", priority: 0.85 },
     { url: `${BASE_URL}/apps-vs-coaching`, changeFrequency: "monthly", priority: 0.75 },
     { url: `${BASE_URL}/event-prep`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/wrapped`, changeFrequency: "weekly", priority: 0.7 },

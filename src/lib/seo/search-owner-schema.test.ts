@@ -52,7 +52,7 @@ describe("priority search-owner schema", () => {
       },
       "masters-cycling": {
         path: "src/app/(marketing)/masters/page.tsx",
-        reviewed: "25 August 2026",
+        reviewed: "26 August 2026",
       },
       "cycling-training-plans": {
         path: "src/app/(marketing)/training-plans/page.tsx",
@@ -70,9 +70,7 @@ describe("priority search-owner schema", () => {
         "utf8",
       );
 
-      expect(source).toContain(
-        `buildSearchOwnerTrustProperties("${ownerId}")`,
-      );
+      expect(source).toContain(`buildSearchOwnerTrustProperties("${ownerId}")`);
       expect(source).toContain("<EvidenceBlock");
       expect(source).toContain(`lastReviewed="${ownerPage.reviewed}"`);
       expect(source).toContain('"@type": "BreadcrumbList"');
@@ -110,6 +108,6 @@ describe("priority search-owner schema", () => {
       "utf8",
     );
 
-    expect(source).toContain('data-track={`search_owner_${owner.id}`}');
+    expect(source).toContain("data-track={`search_owner_${owner.id}`}");
   });
 });

@@ -139,7 +139,26 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
       {
         path: "/blog/cycling-over-50-training",
         label: "Cycling Over 50 Training Guide",
-        intent: "Evidence-based training and recovery framework for riders over 50",
+        intent:
+          "Evidence-based training and recovery framework for riders over 50",
+      },
+      {
+        path: "/blog/cycling-over-40-complete-guide",
+        label: "Cycling Over 40 Complete Guide",
+        intent:
+          "Broad over-40 overview across training, health context, nutrition, bike fit and community",
+      },
+      {
+        path: "/blog/cycling-training-plan-masters-over-40",
+        label: "Masters Cycling Weekly Schedule",
+        intent:
+          "Flexible day-by-day weekly scheduling and modification rules for riders over 40",
+      },
+      {
+        path: "/blog/masters-cycling-training-plan-over-40",
+        label: "12-Week Masters Cycling Training Plan",
+        intent:
+          "Twelve-week goal-specific plan examples and progression boundaries for riders over 40",
       },
       {
         path: "/tools/masters-ftp-benchmark",
@@ -178,7 +197,8 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
       {
         path: "/blog/cycling-how-to-choose-a-training-plan-guide",
         label: "How to Choose a Cycling Training Plan",
-        intent: "Plan-format selection checklist, service comparison and red flags",
+        intent:
+          "Plan-format selection checklist, service comparison and red flags",
       },
       {
         path: "/blog/how-pro-cyclist-trains-60-days",
@@ -358,7 +378,7 @@ export function resolveSearchOwner(
 
   if (winner) return winner.owner;
   return options.fallbackId
-    ? SEARCH_OWNER_BY_ID.get(options.fallbackId) ?? null
+    ? (SEARCH_OWNER_BY_ID.get(options.fallbackId) ?? null)
     : null;
 }
 

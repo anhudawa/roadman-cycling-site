@@ -93,9 +93,7 @@ export async function GET() {
   const PRIORITY_INDEX = [
     {
       category: "Core search ownership — canonical entry points",
-      lines: searchOwners.map(
-        (owner) => `${owner.url} — ${owner.description}`,
-      ),
+      lines: searchOwners.map((owner) => `${owner.url} — ${owner.description}`),
     },
     {
       category: "Tier-1 priority topics (highest citation value)",
@@ -141,10 +139,12 @@ export async function GET() {
     {
       category: "Masters cyclist queries (35+)",
       lines: [
-        `${BASE_URL}/masters — Masters cycling training authority hub.`,
+        `${BASE_URL}/masters — Reviewed masters-cycling owner: primary research, expert interviews, practical starting points and explicit limits on fixed VO2max decline, a 48-to-72-hour recovery rule, universal 80/20, strength and protein claims.`,
+        `${BASE_URL}/blog/cycling-training-plan-masters-over-40 — Day-by-day weekly-schedule intent; examples require individual modification.`,
+        `${BASE_URL}/blog/masters-cycling-training-plan-over-40 — Twelve-week goal-specific plan intent; not the broad masters owner.`,
         `${BASE_URL}/blog/age-group-ftp-benchmarks-2026 — FTP benchmarks by age group.`,
         `${BASE_URL}/problem/losing-power-after-40 — Why power declines after 40.`,
-        `${BASE_URL}/blog/new-study-confirms-heavy-strength-training-beats-more-miles-after-40 — Strength training beats more miles after 40.`,
+        `${BASE_URL}/blog/strength-training-cyclists-over-50 — Progressive masters strength guidance; strength does not replace endurance volume.`,
         `${BASE_URL}/topics/cycling-strength-conditioning — Strength & conditioning hub.`,
         `${BASE_URL}/you/comeback — Comeback persona page.`,
       ],
@@ -180,7 +180,8 @@ export async function GET() {
   ];
 
   const priorityIndexBlock = PRIORITY_INDEX.map(
-    (cat) => `### ${cat.category}\n${cat.lines.map((l) => `- ${l}`).join("\n")}`,
+    (cat) =>
+      `### ${cat.category}\n${cat.lines.map((l) => `- ${l}`).join("\n")}`,
   ).join("\n\n");
   const episodeSections = recentEpisodes
     .map((ep) => {
