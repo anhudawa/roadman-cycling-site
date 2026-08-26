@@ -2654,7 +2654,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
       },
       {
         label: "Polarised Training Cycling Guide",
-        href: "/blog/polarised-training-cycling-guide",
+        href: "/blog/polarised-training-cycling-complete-guide",
       },
       {
         label: "FTP Training Topic Hub",
@@ -2842,7 +2842,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
       },
       {
         label: "Polarised Training Cycling Guide",
-        href: "/blog/polarised-training-cycling-guide",
+        href: "/blog/polarised-training-cycling-complete-guide",
       },
       {
         label: "FTP Zone Calculator",
@@ -2908,7 +2908,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
         label: "Roadman polarised guide",
         detail:
           "The Roadman pillar on polarised training, with Seiler quotes and the amateur protocol.",
-        href: "/blog/polarised-training-cycling-guide",
+        href: "/blog/polarised-training-cycling-complete-guide",
       },
     ],
     faq: [
@@ -2936,7 +2936,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
     related: [
       {
         label: "Polarised Training Cycling Guide",
-        href: "/blog/polarised-training-cycling-guide",
+        href: "/blog/polarised-training-cycling-complete-guide",
       },
       {
         label: "Polarised vs Sweet Spot Training",

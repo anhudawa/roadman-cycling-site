@@ -187,7 +187,7 @@ function generateFtpZonesReport(inputs: FtpZonesInputs): ReportOutput {
 
     <p style="color:#FAFAFA;font-size:14px;margin:0 0 8px;">Further reading on the site:</p>
     <ul style="padding-left:20px;margin:0 0 28px;color:#F16363;font-size:14px;">
-      <li style="margin-bottom:4px;"><a href="https://roadmancycling.com/blog/polarised-training-cycling-guide" style="color:#F16363;">Polarised training: the 80/20 approach</a></li>
+      <li style="margin-bottom:4px;"><a href="https://roadmancycling.com/blog/polarised-training-cycling-complete-guide" style="color:#F16363;">Polarised training: the 80/20 approach</a></li>
       <li style="margin-bottom:4px;"><a href="https://roadmancycling.com/blog/how-to-improve-ftp-cycling" style="color:#F16363;">How to improve your FTP</a></li>
       <li><a href="https://roadmancycling.com/blog/zone-2-training-complete-guide" style="color:#F16363;">Zone 2 training — complete guide</a></li>
     </ul>

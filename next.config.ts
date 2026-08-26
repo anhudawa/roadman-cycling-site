@@ -362,6 +362,11 @@ const nextConfig: NextConfig = {
       { source: "/blog/sweet-spot-training-cycling-complete-guide", destination: "/blog/sweet-spot-training-cycling-guide", permanent: true },
       { source: "/answers/sweet-spot-training-explained", destination: "/blog/sweet-spot-training-cycling-guide", permanent: true },
       { source: "/answers/what-is-sweet-spot-training-cycling", destination: "/blog/sweet-spot-training-cycling-guide", permanent: true },
+      // Search Console shows the two broad polarised guides plus the short
+      // answer and glossary competing for definition intent. Keep the stronger
+      // complete guide as the owner; comparisons retain their distinct jobs.
+      { source: "/blog/polarised-training-cycling-guide", destination: "/blog/polarised-training-cycling-complete-guide", permanent: true },
+      { source: "/answers/what-is-polarised-training", destination: "/blog/polarised-training-cycling-complete-guide", permanent: true },
       // Consolidate duplicate tyre-pressure explainers into the established guide.
       { source: "/blog/tyre-pressure-cycling-complete-guide", destination: "/blog/cycling-tyre-pressure-guide", permanent: true },
       { source: "/answers/best-tyre-pressure-road-cycling", destination: "/blog/cycling-tyre-pressure-guide", permanent: true },

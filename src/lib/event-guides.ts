@@ -454,7 +454,7 @@ export const EVENT_GUIDES: EventGuide[] = [
           "Hour-by-hour nutrition for a long sportive day. The framework you scale up for 312km.",
       },
       {
-        slug: "polarised-training-cycling-guide",
+        slug: "polarised-training-cycling-complete-guide",
         title: "Polarised Training: The 80/20 Approach",
         whyItMatters:
           "The training distribution that builds the aerobic depth a 10+ hour day demands. Anchored in Professor Stephen Seiler's research.",
@@ -877,7 +877,7 @@ export const EVENT_GUIDES: EventGuide[] = [
           "How a Strava KOM-holder paces the Alpe — wattage discipline, fuelling on the climb, and the mental game on the hairpin count-down.",
       },
       {
-        slug: "polarised-training-cycling-guide",
+        slug: "polarised-training-cycling-complete-guide",
         title: "Polarised Training: The 80/20 Approach",
         whyItMatters:
           "The training distribution that builds the aerobic depth a 5,000m climbing day requires. Anchored in Professor Stephen Seiler's research.",
@@ -1089,7 +1089,7 @@ export const EVENT_GUIDES: EventGuide[] = [
           "John Wakefield-style torque intervals build the leg strength that holds power on sustained Alpine gradients.",
       },
       {
-        slug: "polarised-training-cycling-guide",
+        slug: "polarised-training-cycling-complete-guide",
         title: "Polarised Training: The 80/20 Approach",
         whyItMatters:
           "The training distribution that builds the aerobic depth a multi-HC-col day requires. Anchored in Professor Stephen Seiler's research.",
@@ -1920,7 +1920,7 @@ export const EVENT_GUIDES: EventGuide[] = [
           "Hour-by-hour nutrition for a long sportive day. Practical fuelling that scales for the 5-7 hour Beara window.",
       },
       {
-        slug: "polarised-training-cycling-guide",
+        slug: "polarised-training-cycling-complete-guide",
         title: "Polarised Training: The 80/20 Approach",
         whyItMatters:
           "The training distribution that builds aerobic depth without the mid-zone fatigue trap. Anchored in Professor Stephen Seiler's research.",

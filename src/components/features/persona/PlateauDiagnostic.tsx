@@ -44,7 +44,7 @@ function diagnose(
       sessionName: "The Norwegian 4x8",
       sessionDetail:
         "Warm up 15 min. 4x8 min at the highest sustainable intensity, 2-min spin between. Cool down. Once a week. Ride everything else easy.",
-      articleHref: "/blog/polarised-training-cycling-guide",
+      articleHref: "/blog/polarised-training-cycling-complete-guide",
       articleLabel: "Why polarised training works",
     };
   }

@@ -133,132 +133,6 @@ export const trainingPhysiologyAnswers: AnswerPage[] = [
   },
 
   // ============================================================
-  // WHAT IS POLARISED TRAINING
-  // ============================================================
-  {
-    slug: "what-is-polarised-training",
-    cluster: "periodisation",
-    question: "What Is Polarised Training for Cyclists?",
-    seoTitle: "What Is Polarised Training for Cyclists? The 80/20 Model Explained",
-    seoDescription:
-      "Polarised training means riding most of your volume easy and a small share properly hard, with little in between. What the 80/20 split means and why it works.",
-    pillar: "coaching",
-    directAnswer:
-      "Polarised training is an intensity distribution: roughly 80% of your riding is done easy, below the first lactate threshold, and roughly 20% is done truly hard, at or above the second threshold — with very little time spent in the comfortably-hard middle. The idea, formalised by physiologist Stephen Seiler from how elite endurance athletes actually train, is that easy volume builds the aerobic base cheaply while a small dose of hard work drives the high-end adaptations, and the grey-zone middle is rationed because it costs a lot of fatigue for modest return.",
-    keyTakeaways: [
-      "Polarised means easy days truly easy, hard days truly hard, and very little in between.",
-      "The headline split is about 80% low intensity, 20% high — measured by time or sessions.",
-      "It's how most elite endurance athletes train, mapped onto amateur weeks by Stephen Seiler.",
-      "The enemy is the grey zone: comfortably-hard riding that accumulates fatigue without much adaptation.",
-    ],
-    whoFor: [
-      {
-        label: "The time-pressed amateur stuck on a plateau",
-        detail:
-          "You train hard most days, you're always a bit tired, and your numbers have stopped moving. Polarised is usually the fix.",
-      },
-      {
-        label: "The rider who rides every group ride flat out",
-        detail:
-          "Your easy rides aren't easy and your hard rides aren't hard. Polarising the week separates them again.",
-      },
-    ],
-    roadmanView: [
-      "Polarised training is the model that quietly fixes more amateur plateaus than any single session ever will. The instinct, especially when time is short, is to make every ride count by riding it hard. The result is a week of comfortably-hard rides — the grey zone — that leaves you permanently a little fatigued and adapting to none of it well.",
-      "The polarised answer is counterintuitive: ride easy more often than feels productive, and when you do go hard, go really hard. The easy volume is where the aerobic engine is built, and it's cheap — it barely costs you recovery, so you can stack a lot of it. The hard 20% is where the ceiling moves, but it only works if you arrive fresh enough to hit it properly, which the easy days protect.",
-      "This is the spine of how we structure Method weeks. It isn't a magic ratio to obsess over to the decimal — the principle is what matters. Most of your time below the first threshold, a deliberate minority above the second, and a ruthless avoidance of the middle. The riders who get this right stop being tired all the time and start getting faster, often without adding a single hour.",
-    ],
-    expertEvidence: [
-      {
-        name: "Prof. Stephen Seiler",
-        credential: "Exercise physiologist who formalised the polarised-training model",
-        insight:
-          "Seiler's research showed elite endurance athletes converge on a roughly 80/20 distribution — the large majority of training easy, a deliberate minority hard — and that amateurs sabotage themselves by living in the comfortably-hard middle. Easy has to be easy for the model to work; that's the discipline most riders skip.",
-        episodeSlug: "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
-        guestSlug: "stephen-seiler",
-      },
-    ],
-    practicalApplication: [
-      {
-        title: "Count your week by intensity",
-        detail:
-          "Look at the last fortnight. If most of your sessions are comfortably hard rather than clearly easy or clearly hard, you're riding the grey zone. That's the first thing to fix.",
-      },
-      {
-        title: "Make easy properly easy",
-        detail:
-          "Cap your endurance rides below the first lactate threshold — conversational, controlled, sometimes frustratingly slow. This is the half of polarised that amateurs get wrong.",
-      },
-      {
-        title: "Make hard properly hard",
-        detail:
-          "When a session is meant to be hard, commit to it: threshold, VO2 or sprint work done properly. A handful of these a week, ridden fresh, do the heavy lifting.",
-      },
-    ],
-    commonMistakes: [
-      {
-        mistake: "Riding the 'easy' 80% too hard.",
-        fix:
-          "If your easy rides need recovery, they aren't easy. Slow them down until they're truly below the first threshold — that's what frees you to hit the hard sessions.",
-      },
-      {
-        mistake: "Obsessing over the exact 80/20 ratio.",
-        fix:
-          "The number is a guide, not a law. The principle — most easy, some hard, little in between — is what delivers the result, whatever your precise split.",
-      },
-    ],
-    faq: [
-      {
-        question: "What does the 80/20 in polarised training mean?",
-        answer:
-          "Roughly 80% of your training time or sessions are done at low intensity, below the first lactate threshold, and roughly 20% at high intensity, at or above the second threshold. The split is a guide to intensity distribution, not a rigid prescription.",
-      },
-      {
-        question: "Is polarised training better than sweet spot?",
-        answer:
-          "It depends on your time and goals. Polarised tends to suit riders with enough hours to accumulate easy volume and a need to protect freshness for hard work. Sweet spot can be more time-efficient for short blocks. Many riders use both across a season.",
-      },
-      {
-        question: "How do I ride the easy part of polarised?",
-        answer:
-          "Keep it below your first lactate threshold (LT1) — conversational, nose-breathing, a pace you could sustain for hours. It should feel almost too easy. That restraint is what lets the hard sessions land.",
-      },
-      {
-        question: "Does polarised training work for time-limited cyclists?",
-        answer:
-          "Yes, but the ratio flexes. With very few hours, a slightly higher share of intensity can make sense. The core lesson still holds: separate easy from hard and stop living in the grey middle, even on a tight schedule.",
-      },
-      {
-        question: "What is the grey zone in polarised training?",
-        answer:
-          "The grey zone is the comfortably-hard intensity between the two lactate thresholds — harder than easy, easier than threshold. It accumulates fatigue without delivering much adaptation, which is why polarised training deliberately minimises it.",
-      },
-    ],
-    relatedEpisodes: [
-      "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
-      "ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler",
-    ],
-    relatedTopics: [
-      { label: "Polarised or Sweet Spot: Which Is Better?", href: "/answers/polarised-vs-sweet-spot" },
-      { label: "Polarised or Pyramidal: Which Should I Use?", href: "/answers/polarised-or-pyramidal-training" },
-      { label: "What Is Zone 2 Training?", href: "/answers/what-is-zone-2-training" },
-      {
-        label: "Polarised Training: The Complete Guide",
-        href: "/blog/polarised-training-cycling-complete-guide",
-      },
-      {
-        label: "80/20 Training and the Grey-Zone Trap",
-        href: "/blog/80-20-cycling-training-the-grey-zone-trap",
-      },
-    ],
-    evidenceLevel: "strong",
-    evidenceNote:
-      "The polarised model and the 80/20 distribution are well-supported in endurance-training research; framing reflects Stephen Seiler's on-the-record work and his Roadman podcast appearances.",
-    publishDate: "2026-06-20",
-    updatedDate: "2026-06-20",
-  },
-
-  // ============================================================
   // WHAT IS HRV
   // ============================================================
   {
@@ -605,7 +479,7 @@ export const trainingPhysiologyAnswers: AnswerPage[] = [
     ],
     relatedTopics: [
       { label: "Polarised or Sweet Spot: Which Is Better?", href: "/answers/polarised-vs-sweet-spot" },
-      { label: "What Is Polarised Training for Cyclists?", href: "/answers/what-is-polarised-training" },
+      { label: "What Is Polarised Training for Cyclists?", href: "/blog/polarised-training-cycling-complete-guide" },
       { label: "What Is Zone 2 Training?", href: "/answers/what-is-zone-2-training" },
       {
         label: "80/20 Training and the Grey-Zone Trap",

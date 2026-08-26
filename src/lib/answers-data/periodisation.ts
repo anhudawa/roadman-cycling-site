@@ -1474,7 +1474,7 @@ export const periodisationAnswers: AnswerPage[] = [
     relatedTopics: [
       { label: "Polarised vs Pyramidal Training", href: "/compare/polarised-vs-pyramidal" },
       { label: "Polarised vs Sweet Spot", href: "/answers/polarised-vs-sweet-spot" },
-      { label: "Polarised Training Guide", href: "/blog/polarised-training-cycling-guide" },
+      { label: "Polarised Training Guide", href: "/blog/polarised-training-cycling-complete-guide" },
       { label: "Stephen Seiler 80/20 Research", href: "/blog/stephen-seiler-80-20-polarised-training-cyclists" },
       { label: "FTP Training — Topic Hub", href: "/topics/ftp-training" },
     ],
