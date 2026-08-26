@@ -40,6 +40,7 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "best-cycling-computers-2026",
   "rouvy-vs-zwift",
   "cycling-energy-gels-guide",
+  "cycling-in-ride-nutrition-guide",
 ]);
 
 /**
