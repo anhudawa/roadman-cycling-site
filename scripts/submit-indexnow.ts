@@ -266,6 +266,7 @@ const COACHING_CLUSTER = [
   "comeback-cyclist-12-week-return-plan",
   "how-to-structure-cycling-training-plan",
   "power-meter-training-plan-week-by-week",
+  "cycling-interval-training-beginners",
 ];
 
 // Indexed pages freshness-stamped after the canonical coaching-offer audit.

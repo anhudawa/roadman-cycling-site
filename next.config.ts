@@ -345,6 +345,9 @@ const nextConfig: NextConfig = {
       { source: "/free-community", destination: "/community/clubhouse", permanent: true },
       { source: "/blog/i-lost-7kg-eating-more-cycling", destination: "/blog/cycling-weight-loss-fuel-for-the-work-required", permanent: true },
       { source: "/blog/cycling-periodisation-training", destination: "/blog/cycling-periodisation-plan-guide", permanent: true },
+      // Consolidate the later, weaker interval-design explainer into the
+      // established broad owner while preserving its links and search history.
+      { source: "/blog/cycling-interval-sessions-complete-guide", destination: "/blog/cycling-interval-training-beginners", permanent: true },
       // Consolidate duplicate tyre-pressure explainers into the established guide.
       { source: "/blog/tyre-pressure-cycling-complete-guide", destination: "/blog/cycling-tyre-pressure-guide", permanent: true },
       { source: "/answers/best-tyre-pressure-road-cycling", destination: "/blog/cycling-tyre-pressure-guide", permanent: true },

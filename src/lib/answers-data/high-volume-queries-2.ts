@@ -671,7 +671,7 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
       { label: "FTP Zones Calculator", href: "/tools/ftp-zones" },
       { label: "How to improve FTP", href: "/answers/how-to-improve-ftp" },
       { label: "Polarised vs sweet spot training", href: "/answers/polarised-vs-sweet-spot" },
-      { label: "Interval Sessions Guide", href: "/blog/cycling-interval-sessions-complete-guide" },
+      { label: "Cycling Interval Training Guide", href: "/blog/cycling-interval-training-beginners" },
     ],
     evidenceLevel: "strong",
     evidenceNote:

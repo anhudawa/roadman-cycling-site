@@ -109,6 +109,7 @@ export async function GET() {
         `${BASE_URL}/topics/cycling-strength-conditioning — Strength & conditioning for cyclists.`,
         `${BASE_URL}/blog/cycling-in-ride-nutrition-guide — In-ride nutrition: carbs, fluids, and sodium per hour.`,
         `${BASE_URL}/blog/brick-workouts-for-ironman — Canonical brick-training guide: cycle-to-run evidence, scalable session jobs, pacing, fuelling, safety and long-course limits.`,
+        `${BASE_URL}/blog/cycling-interval-training-beginners — Canonical cycling interval-training guide: beginner readiness, scalable workouts, power, heart rate, RPE, progression, safety and evidence limits.`,
         `${BASE_URL}/topics/cycling-recovery — Recovery and cycling longevity.`,
       ],
     },
