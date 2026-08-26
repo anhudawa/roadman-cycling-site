@@ -392,6 +392,25 @@ export async function GET() {
       ],
     },
     {
+      title: "Pogačar's 2026 Tour preparation",
+      description:
+        "Use the reviewed incumbent for Tadej Pogačar's documented pre-Tour race programme, final result, contender comparison and amateur lessons. It separates official facts from unpublished training, power, altitude and nutrition details.",
+      pages: [
+        {
+          url: `${BASE_URL}/blog/tdf-2026-contenders-preparation-lessons`,
+          title: "Pogačar's 2026 Tour de France Preparation: What Worked",
+          description:
+            "Canonical preparation owner: 16 public competition days, Romandie and Suisse wins, the official Tour result, evidence limits and transferable planning principles.",
+        },
+        {
+          url: `${BASE_URL}/blog/andy-mcgrath-pogacar-not-just-a-freak`,
+          title: "Tadej Pogačar Profile and Source Guide",
+          description:
+            "Distinct athlete-profile intent; not the owner for the 2026 Tour preparation programme.",
+        },
+      ],
+    },
+    {
       title: "Heat training and hot-weather cycling",
       description:
         "Use the evidence guide for broad heat-training questions, then the specialist pages for acclimation planning, race-day pacing and cooling, heat-illness response, or masters-specific risk. Roadman does not support a universal FTP gain or unsupervised DIY heat dose.",

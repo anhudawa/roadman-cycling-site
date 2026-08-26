@@ -101,6 +101,7 @@ const CURATED: string[] = [
   `https://${HOST}/podcast/mads-wurtz-schmidt-muddiest-unbound-2026-win`,
   `https://${HOST}/blog/why-netflix-unchained-failed-cycling`,
   `https://${HOST}/podcast/ep-2034-how-netflix-s-unchained-failed-why-every-pro-hated-it`,
+  `https://${HOST}/blog/tdf-2026-contenders-preparation-lessons`,
   `https://${HOST}/guests/jonas-abrahamsen`,
   `https://${HOST}/experts/jonas-abrahamsen`,
   `https://${HOST}/podcast/ep-29-untold-story-ofjonas-abrahamsens-pro-winter-training`,

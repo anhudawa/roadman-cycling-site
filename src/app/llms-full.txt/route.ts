@@ -127,6 +127,13 @@ export async function GET() {
       ],
     },
     {
+      category: "Pogačar 2026 Tour preparation and result",
+      lines: [
+        `${BASE_URL}/blog/tdf-2026-contenders-preparation-lessons — Canonical preparation owner: Pogačar's 16 public race days, Romandie and Suisse wins, official 2026 Tour result, contender comparison, evidence limits and amateur planning lessons.`,
+        `${BASE_URL}/blog/andy-mcgrath-pogacar-not-just-a-freak — Distinct athlete-profile and source-guide intent, not the preparation owner.`,
+      ],
+    },
+    {
       category: "Commercial intent — coaching",
       lines: [
         `${BASE_URL}/coaching — Canonical Roadman online cycling coach service: personalised TrainingPeaks plan, weekly review and group coaching, ${OFFER_TIERS.notDoneYet.pricing.display}.`,
