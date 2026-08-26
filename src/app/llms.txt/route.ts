@@ -285,6 +285,7 @@ ${answersClusterBlock}
 
 ## Podcast
 - [The Roadman Cycling Podcast](${tag(`${BASE_URL}/podcast`)}): Show index. Weekly interview-led podcast with World Tour coaches, sports scientists, and pro riders.
+- [Greg LeMond: Three Tours, the 8-Second Comeback and the Roadman Interview](${tag(`${BASE_URL}/blog/greg-lemond-interview-roadman-podcast`)}): Source-checked biography and guide to Roadman's LeMond interviews, with official Tour de France, UCI and US government records.
 - [Podcast RSS Feed](${BASE_URL}/feed/podcast): Machine-readable feed of all episodes.
 
 ## Free Calculators

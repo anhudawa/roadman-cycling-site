@@ -122,6 +122,9 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "greg-lemond": {
+    seoTitle: "Greg LeMond: Podcast Guest & Episodes",
+    seoDescription:
+      "Greg LeMond's Roadman Cycling Podcast appearances on his Tour wins, 1987 accident, Bernard Hinault, EPO, Lance Armstrong and clean sport.",
     description:
       "Three-time Tour de France winner (1986, 1989, 1990) and two-time UCI Road World Champion. The only American man to win the Tour de France.",
     sameAs: [
@@ -130,6 +133,10 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "https://www.instagram.com/greg.lemond/",
       "https://www.facebook.com/greglemond/",
       "https://www.procyclingstats.com/rider/greg-lemond",
+    ],
+    featuredArticles: [
+      "greg-lemond-interview-roadman-podcast",
+      "trek-lemond-doping-dispute-cycling-history",
     ],
     whyMatters:
       "Greg LeMond is the only American man to win the Tour de France and remains one of the most influential riders in the sport's history. His 1989 Tour victory by 8 seconds — won on the final-day Champs-Élysées time trial using aero bars and a Scott aerodynamic position the peloton had dismissed — is the most famous margin in cycling. He pioneered modern training-by-power, was an early adopter of wind-tunnel work, and has spent the post-EPO decades as one of the sport's most credible voices on doping, governance, and what clean riders are physiologically capable of. Every conversation about pro cycling history runs through him.",
