@@ -36,7 +36,7 @@ describe("strength training for cyclists search ownership", () => {
     expect(data.lastReviewed).toBe("2026-08-26");
     expect(data.reviewedBy).toContain("editorial fact-checking");
     expect(data.primaryHub).toBe("cycling-strength-conditioning");
-    expect(data.evidenceLevel).toBe("low");
+    expect(data.evidenceLevel).toBe("emerging");
     expect(data.citedClaims).toHaveLength(4);
     expect(data.faq).toHaveLength(6);
     expect(data.keywords).toContain("strength training for cyclists");

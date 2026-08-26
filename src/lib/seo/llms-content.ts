@@ -46,6 +46,8 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "sweet-spot-training-cycling-guide",
   "bike-fit-guide-cyclists",
   "cycling-strength-training-guide",
+  "cycling-leg-day-should-cyclists",
+  "cycling-gym-exercises-best",
   "best-cycling-computers-2026",
   "rouvy-vs-zwift",
   "cycling-energy-gels-guide",
