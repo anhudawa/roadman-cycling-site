@@ -208,6 +208,7 @@ function ownerImpressionShare(split: GscUrlSplit): number {
 }
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
+export const MIN_GSC_CAPTURE_LAG_DAYS = 3;
 
 function parseCalendarDate(value: string, label: string): number {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
@@ -475,6 +476,10 @@ function assertComparable(baseline: GscSnapshot, current: GscSnapshot): void {
     current.period.start,
     "Current period start",
   );
+  const currentEnd = parseCalendarDate(
+    current.period.end,
+    "Current period end",
+  );
   const deployment = parseCalendarDate(
     baseline.deploymentDate,
     "Deployment date",
@@ -485,6 +490,14 @@ function assertComparable(baseline: GscSnapshot, current: GscSnapshot): void {
   if (baselineEnd >= deployment || currentStart <= deployment) {
     throw new Error(
       "GSC snapshots must bracket the deployment with full pre- and post-deployment days.",
+    );
+  }
+
+  const earliestCapture =
+    currentEnd + MIN_GSC_CAPTURE_LAG_DAYS * MS_PER_DAY;
+  if (Date.parse(current.capturedAt) < earliestCapture) {
+    throw new Error(
+      `Current GSC snapshot must be captured at least ${MIN_GSC_CAPTURE_LAG_DAYS} calendar days after its period end (earliest ${new Date(earliestCapture).toISOString().slice(0, 10)}).`,
     );
   }
 }

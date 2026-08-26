@@ -74,9 +74,11 @@ npm run seo:gsc:compare -- \
 
 The comparison fails on invalid inclusive day counts, overlapping windows,
 deployment-date changes, missing or changed canonical owner pages, duplicate or
-extra filters, query match-mode changes, URL-owner changes, or different AI
-page sets. This prevents a superficially clean report built from mismatched
-dates or filters.
+extra filters, query match-mode changes, URL-owner changes, different AI page
+sets, or a current snapshot captured fewer than three calendar days after its
+period end. This makes the 3 September and 24 September capture dates executable
+gates rather than suggestions, and prevents a superficially clean report built
+from partial data, mismatched dates or changed filters.
 
 ## Decision rules
 
