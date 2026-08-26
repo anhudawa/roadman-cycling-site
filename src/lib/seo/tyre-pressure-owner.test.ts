@@ -219,12 +219,8 @@ describe("road bike tyre-pressure calculator owner", () => {
   it("publishes one compatibility-first tubeless comparison without universal claims", () => {
     const raw = read("content/blog/tubeless-vs-clincher-tyres.mdx");
     const { data, content } = matter(raw);
-    const answerOwner = read(
-      "src/lib/answers-data/high-volume-queries-2.ts",
-    );
-    const setupOwner = read(
-      "src/lib/answers-data/high-volume-queries-13.ts",
-    );
+    const answerOwner = read("src/lib/answers-data/high-volume-queries-2.ts");
+    const setupOwner = read("src/lib/answers-data/high-volume-queries-13.ts");
 
     expect(data.seoTitle).toBe(
       "Tubeless vs Clincher Road Tyres: Which Should You Use?",
@@ -234,7 +230,9 @@ describe("road bike tyre-pressure calculator owner", () => {
     expect(data.reviewedBy).toContain("Anthony Walsh");
     expect(data.citedClaims).toHaveLength(4);
     expect(data.faq).toHaveLength(6);
-    expect(content).toContain("Compatibility decides whether tubeless is an option");
+    expect(content).toContain(
+      "Compatibility decides whether tubeless is an option",
+    );
     expect(content).toContain(
       "https://docs.sram.com/en-US/publications/6s97VpCp9fBhUto8eMea31/UM%20-%20ZIPP%20-%20Road%20Wheels",
     );
@@ -278,8 +276,8 @@ describe("road bike tyre-pressure calculator owner", () => {
     expect(read("scripts/submit-indexnow.ts")).toContain(
       "/blog/cycling-tyre-pressure-guide",
     );
-    expect(read("src/app/sitemap.ts")).toContain(
-      '/tools/tyre-pressure`, lastModified: new Date("2026-08-26")',
+    expect(read("src/app/sitemap.ts")).toMatch(
+      /url: `\$\{BASE_URL\}\/tools\/tyre-pressure`,\s+lastModified: new Date\("2026-08-26"\)/,
     );
 
     const prompts = JSON.parse(read("scripts/ai-benchmark-prompts.json")) as {

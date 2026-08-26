@@ -31,8 +31,12 @@ export async function generateMetadata({
   if (!stage) return { title: "Stage Not Found" };
 
   const url = `${SITE_ORIGIN}/tour-de-france/stage/${stage.number}`;
-  const title = `Stage ${stage.number}: ${stage.start} → ${stage.finish} — Tour de France 2026`;
-  const description = `${TOUR_TYPE_LABEL[stage.type]} · ${stage.distanceKm}km. ${stage.description}`;
+  const title = stage.result
+    ? `Tour de France 2026 Stage ${stage.number} Results: ${stage.result.winner.split(" ").at(-1)} Wins`
+    : `Stage ${stage.number}: ${stage.start} → ${stage.finish} — Tour de France 2026`;
+  const description = stage.result
+    ? `${stage.result.winner} won Tour de France 2026 stage ${stage.number} in ${stage.result.winningTime}. See the podium, time gaps, race story and official sources.`
+    : `${TOUR_TYPE_LABEL[stage.type]} · ${stage.distanceKm}km. ${stage.description}`;
   return {
     title,
     description: description.slice(0, 200),
@@ -62,6 +66,7 @@ export default async function StagePage({
   const color = STAGE_TYPE_COLOR[stage.type];
   const prev = getStage(stage.number - 1);
   const next = getStage(stage.number + 1);
+  const result = stage.result;
 
   return (
     <>
@@ -73,25 +78,81 @@ export default async function StagePage({
           name: `Tour de France 2026 — Stage ${stage.number}: ${stage.start} to ${stage.finish}`,
           sport: "Road cycling",
           startDate: stage.date,
-          eventStatus: "https://schema.org/EventScheduled",
-          eventAttendanceMode:
-            "https://schema.org/OfflineEventAttendanceMode",
+          endDate: stage.date,
+          eventStatus: result
+            ? "https://schema.org/EventCompleted"
+            : "https://schema.org/EventScheduled",
+          eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
           url,
           superEvent: {
             "@id": `${SITE_ORIGIN}/tour-de-france#event`,
           },
           location: [tourPlace(stage.start), tourPlace(stage.finish)],
-          description: stage.description,
+          description: result?.summary ?? stage.description,
         }}
       />
+      {result && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: `Who won stage ${stage.number} of the 2026 Tour de France?`,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: `${result.winner} of ${result.winnerTeam} won in ${result.winningTime}.`,
+                },
+              },
+              {
+                "@type": "Question",
+                name: `What was the stage ${stage.number} podium?`,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: result.podium
+                    .map(
+                      (rider) =>
+                        `${rider.position}. ${rider.rider} (${rider.timeOrGap})`,
+                    )
+                    .join("; "),
+                },
+              },
+              {
+                "@type": "Question",
+                name: `How did ${result.winner} win stage ${stage.number}?`,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: result.summary,
+                },
+              },
+            ],
+          }}
+        />
+      )}
       <JsonLd
         data={{
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: SITE_ORIGIN },
-            { "@type": "ListItem", position: 2, name: "Tour de France 2026", item: `${SITE_ORIGIN}/tour-de-france` },
-            { "@type": "ListItem", position: 3, name: `Stage ${stage.number}`, item: url },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: SITE_ORIGIN,
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Tour de France 2026",
+              item: `${SITE_ORIGIN}/tour-de-france`,
+            },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: `Stage ${stage.number}`,
+              item: url,
+            },
           ],
         }}
       />
@@ -100,7 +161,11 @@ export default async function StagePage({
 
       <main id="main-content">
         {/* Hero */}
-        <Section background="deep-purple" grain className="pt-28 sm:pt-32 pb-12">
+        <Section
+          background="deep-purple"
+          grain
+          className="pt-28 sm:pt-32 pb-12"
+        >
           <Container>
             <Breadcrumbs
               items={[
@@ -151,7 +216,10 @@ export default async function StagePage({
                   </span>
                 )}
                 {stage.sprintFriendly && (
-                  <span className="font-heading tracking-wider" style={{ color: STAGE_TYPE_COLOR.flat }}>
+                  <span
+                    className="font-heading tracking-wider"
+                    style={{ color: STAGE_TYPE_COLOR.flat }}
+                  >
                     SPRINT FINISH LIKELY
                   </span>
                 )}
@@ -161,15 +229,124 @@ export default async function StagePage({
         </Section>
 
         {/* Stage overview */}
-        <Section background="charcoal" className="!py-12 border-b border-white/5">
+        <Section
+          background="charcoal"
+          className="!py-12 border-b border-white/5"
+        >
           <Container width="narrow">
-            <p className="text-off-white text-lg leading-relaxed">{stage.description}</p>
+            <p className="text-off-white text-lg leading-relaxed">
+              {stage.description}
+            </p>
           </Container>
         </Section>
 
+        {/* Verified post-race result */}
+        {result && (
+          <Section
+            background="charcoal"
+            className="!py-12 border-b border-white/5"
+          >
+            <Container width="narrow">
+              <p className="font-heading text-jersey-yellow text-[11px] tracking-[0.3em] mb-3">
+                VERIFIED RESULT · REVIEWED {result.lastReviewed}
+              </p>
+              <h2 className="font-heading text-off-white text-3xl tracking-wide mb-3">
+                STAGE {stage.number} RESULT
+              </h2>
+              <p className="text-off-white text-lg leading-relaxed mb-7">
+                <strong>{result.winner}</strong> of {result.winnerTeam} won in{" "}
+                {result.winningTime}. The official result and report, rather
+                than Roadman&apos;s pre-race prediction, now control this page.
+              </p>
+
+              <div className="overflow-x-auto rounded-xl border border-white/10 mb-8">
+                <table className="w-full text-left">
+                  <thead className="bg-white/[0.04]">
+                    <tr className="text-foreground-subtle text-xs tracking-wider">
+                      <th className="px-4 py-3">PLACE</th>
+                      <th className="px-4 py-3">RIDER</th>
+                      <th className="px-4 py-3">TEAM</th>
+                      <th className="px-4 py-3 text-right">TIME / GAP</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {result.podium.map((rider) => (
+                      <tr
+                        key={rider.position}
+                        className="border-t border-white/8 text-sm"
+                      >
+                        <td className="px-4 py-3 font-heading text-jersey-yellow">
+                          {rider.position}
+                        </td>
+                        <td className="px-4 py-3 text-off-white font-medium">
+                          {rider.rider}
+                        </td>
+                        <td className="px-4 py-3 text-foreground-muted">
+                          {rider.team}
+                        </td>
+                        <td className="px-4 py-3 text-off-white text-right tabular-nums">
+                          {rider.timeOrGap}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <h3 className="font-heading text-off-white text-2xl tracking-wide mb-3">
+                HOW THE RACE WAS WON
+              </h3>
+              <p className="text-foreground-muted leading-relaxed mb-6">
+                {result.summary}
+              </p>
+              <ol className="space-y-3 mb-8">
+                {result.keyMoments.map((moment, index) => (
+                  <li
+                    key={moment}
+                    className="flex gap-3 text-foreground-muted leading-relaxed"
+                  >
+                    <span className="font-heading text-jersey-yellow shrink-0">
+                      {index + 1}.
+                    </span>
+                    <span>{moment}</span>
+                  </li>
+                ))}
+              </ol>
+
+              <div className="rounded-xl border-l-2 border-jersey-yellow bg-white/[0.03] p-5 mb-8">
+                <p className="font-heading text-foreground-subtle text-[11px] tracking-[0.25em] mb-2">
+                  GENERAL CLASSIFICATION AFTER STAGE {stage.number}
+                </p>
+                <p className="text-foreground-muted leading-relaxed">
+                  {result.classificationAfter}
+                </p>
+              </div>
+
+              <h3 className="font-heading text-off-white text-xl tracking-wide mb-3">
+                OFFICIAL SOURCES
+              </h3>
+              <ul className="space-y-2">
+                {result.sources.map((source) => (
+                  <li key={source.href}>
+                    <a
+                      href={source.href}
+                      className="text-jersey-yellow hover:text-jersey-yellow-deep underline underline-offset-4"
+                    >
+                      {source.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </Container>
+          </Section>
+        )}
+
         {/* Key climbs */}
         {stage.climbs.length > 0 && (
-          <Section background="charcoal" className="!py-12 border-b border-white/5">
+          <Section
+            background="charcoal"
+            className="!py-12 border-b border-white/5"
+          >
             <Container width="narrow">
               <h2 className="font-heading text-off-white text-2xl tracking-wide mb-6">
                 KEY CLIMBS
@@ -184,7 +361,11 @@ export default async function StagePage({
                       className="shrink-0 w-12 h-12 rounded-lg flex items-center justify-center font-heading text-sm"
                       style={{ color, backgroundColor: `${color}1F` }}
                     >
-                      {c.category ? (c.category === "HC" ? "HC" : `C${c.category}`) : "—"}
+                      {c.category
+                        ? c.category === "HC"
+                          ? "HC"
+                          : `C${c.category}`
+                        : "—"}
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="font-heading text-off-white text-lg leading-tight">
@@ -193,8 +374,12 @@ export default async function StagePage({
                       <p className="text-sm text-foreground-muted tabular-nums">
                         {[
                           c.lengthKm != null ? `${c.lengthKm} km` : null,
-                          c.gradientPct != null ? `${c.gradientPct}% avg` : null,
-                          c.summitM != null ? `${c.summitM.toLocaleString()} m summit` : null,
+                          c.gradientPct != null
+                            ? `${c.gradientPct}% avg`
+                            : null,
+                          c.summitM != null
+                            ? `${c.summitM.toLocaleString()} m summit`
+                            : null,
                         ]
                           .filter(Boolean)
                           .join(" · ") || "Categorised climb"}
@@ -207,40 +392,45 @@ export default async function StagePage({
           </Section>
         )}
 
-        {/* The tactical read */}
-        <Section background="charcoal" className="!py-12 border-b border-white/5">
-          <Container width="narrow">
-            <h2 className="font-heading text-off-white text-2xl tracking-wide mb-6">
-              THE TACTICAL READ
-            </h2>
-            <div className="space-y-6">
-              <div>
-                <p className="font-heading text-jersey-yellow text-[11px] tracking-[0.25em] mb-2">
-                  WHO IT SUITS
-                </p>
-                <p className="text-off-white leading-relaxed">
-                  {stage.tactical.whoBenefits}
-                </p>
+        {/* The tactical read — previews only; verified results replace predictions. */}
+        {!result && (
+          <Section
+            background="charcoal"
+            className="!py-12 border-b border-white/5"
+          >
+            <Container width="narrow">
+              <h2 className="font-heading text-off-white text-2xl tracking-wide mb-6">
+                THE TACTICAL READ
+              </h2>
+              <div className="space-y-6">
+                <div>
+                  <p className="font-heading text-jersey-yellow text-[11px] tracking-[0.25em] mb-2">
+                    WHO IT SUITS
+                  </p>
+                  <p className="text-off-white leading-relaxed">
+                    {stage.tactical.whoBenefits}
+                  </p>
+                </div>
+                <div>
+                  <p className="font-heading text-jersey-yellow text-[11px] tracking-[0.25em] mb-2">
+                    WHAT TO WATCH
+                  </p>
+                  <p className="text-off-white leading-relaxed">
+                    {stage.tactical.whatToWatch}
+                  </p>
+                </div>
+                <div className="rounded-xl border-l-2 border-jersey-yellow bg-white/[0.03] p-5">
+                  <p className="font-heading text-foreground-subtle text-[11px] tracking-[0.25em] mb-2">
+                    ROADMAN PREDICTION
+                  </p>
+                  <p className="text-foreground-muted leading-relaxed">
+                    {stage.prediction}
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="font-heading text-jersey-yellow text-[11px] tracking-[0.25em] mb-2">
-                  WHAT TO WATCH
-                </p>
-                <p className="text-off-white leading-relaxed">
-                  {stage.tactical.whatToWatch}
-                </p>
-              </div>
-              <div className="rounded-xl border-l-2 border-jersey-yellow bg-white/[0.03] p-5">
-                <p className="font-heading text-foreground-subtle text-[11px] tracking-[0.25em] mb-2">
-                  ROADMAN PREDICTION
-                </p>
-                <p className="text-foreground-muted leading-relaxed">
-                  {stage.prediction}
-                </p>
-              </div>
-            </div>
-          </Container>
-        </Section>
+            </Container>
+          </Section>
+        )}
 
         {/* The Roadman take */}
         <Section background="deep-purple" grain className="!py-14">
@@ -249,20 +439,22 @@ export default async function StagePage({
               THE ROADMAN TAKE
             </p>
             <h2 className="font-heading text-off-white text-3xl tracking-wide mb-5">
-              WHAT THIS STAGE DEMANDS
+              {result ? "WHAT THE RESULT SHOWS" : "WHAT THIS STAGE DEMANDS"}
             </h2>
             <p className="text-off-white text-lg leading-relaxed mb-8">
               {stage.roadmanTake}
             </p>
 
-            <div className="rounded-xl border-l-2 border-jersey-yellow bg-white/[0.03] p-5">
-              <p className="font-heading text-foreground-subtle text-[11px] tracking-[0.25em] mb-2">
-                WHAT {stage.expertAngle.expert.toUpperCase()} WOULD PUSH
-              </p>
-              <p className="text-foreground-muted leading-relaxed">
-                {stage.expertAngle.angle}
-              </p>
-            </div>
+            {!result && (
+              <div className="rounded-xl border-l-2 border-jersey-yellow bg-white/[0.03] p-5">
+                <p className="font-heading text-foreground-subtle text-[11px] tracking-[0.25em] mb-2">
+                  WHAT {stage.expertAngle.expert.toUpperCase()} WOULD PUSH
+                </p>
+                <p className="text-foreground-muted leading-relaxed">
+                  {stage.expertAngle.angle}
+                </p>
+              </div>
+            )}
           </Container>
         </Section>
 
@@ -274,7 +466,8 @@ export default async function StagePage({
                 TRAIN FOR IT
               </h2>
               <p className="text-foreground-muted text-sm mb-6">
-                The Roadman content that builds what Stage {stage.number} asks for.
+                The Roadman content that builds what Stage {stage.number} asks
+                for.
               </p>
               <div className="grid sm:grid-cols-2 gap-3">
                 {stage.related.map((r) => (

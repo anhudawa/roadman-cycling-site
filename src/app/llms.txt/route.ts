@@ -411,6 +411,19 @@ export async function GET() {
       ],
     },
     {
+      title: "Tour de France 2026 stage 18 result",
+      description:
+        "Use the established stage page for the verified Richard Carapaz result, podium, time gaps, race story, route and official Tour de France sources. It replaces the old pre-race prediction as the primary answer.",
+      pages: [
+        {
+          url: `${BASE_URL}/tour-de-france/stage/18`,
+          title: "Tour de France 2026 Stage 18 Results: Carapaz Wins",
+          description:
+            "Canonical stage 18 result: Richard Carapaz in 4:26:21, Mauro Schmid and Matteo Jorgenson at 45 seconds, decisive attacks and classification context.",
+        },
+      ],
+    },
+    {
       title: "Heat training and hot-weather cycling",
       description:
         "Use the evidence guide for broad heat-training questions, then the specialist pages for acclimation planning, race-day pacing and cooling, heat-illness response, or masters-specific risk. Roadman does not support a universal FTP gain or unsupervised DIY heat dose.",

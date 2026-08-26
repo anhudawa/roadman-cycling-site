@@ -134,6 +134,12 @@ export async function GET() {
       ],
     },
     {
+      category: "Tour de France 2026 stage 18 result",
+      lines: [
+        `${BASE_URL}/tour-de-france/stage/18 — Canonical stage 18 result: Richard Carapaz won in 4:26:21; Mauro Schmid and Matteo Jorgenson finished 45 seconds behind; includes the documented race story and official sources.`,
+      ],
+    },
+    {
       category: "Commercial intent — coaching",
       lines: [
         `${BASE_URL}/coaching — Canonical Roadman online cycling coach service: personalised TrainingPeaks plan, weekly review and group coaching, ${OFFER_TIERS.notDoneYet.pricing.display}.`,
