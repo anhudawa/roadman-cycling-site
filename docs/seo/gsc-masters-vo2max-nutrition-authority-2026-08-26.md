@@ -110,3 +110,22 @@ The production discovery pass then completed successfully:
 - All four inspections also reported HTTPS delivery and a breadcrumb
   enhancement.
 - The available **Request indexing** action was not triggered.
+
+### Google recrawl baseline
+
+The expanded Page indexing detail showed successful smartphone-Googlebot
+fetches and the exact self-declared canonical for every release URL. The last
+crawl times were all earlier than the 26 August production deployment:
+
+| URL | Last crawl shown by Google |
+| --- | --- |
+| `/masters/vo2max` | 19 Aug 2026, 5:37:07 AM |
+| `/nutrition/masters` | 20 Aug 2026, 3:18:24 AM |
+| `/blog/vo2max-decline-reversibility-masters-cyclists` | 25 Aug 2026, 7:00:12 AM |
+| `/blog/masters-metabolism-anabolic-resistance-nutrition` | 19 Aug 2026, 5:31:12 AM |
+
+Therefore **URL is on Google** proves the established URLs are indexed, but it
+does not yet prove that Google has processed the new evidence and review copy.
+The first checkpoint should recheck these crawl dates before interpreting
+impression, CTR or position movement. No manual request-indexing action is
+required while the canonical sitemap and internal links remain healthy.

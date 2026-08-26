@@ -60,4 +60,28 @@ describe("Phase 2 owner indexing verification", () => {
     expect(decision).toContain("historical\n**Couldn't fetch** result");
     expect(handoff).toContain("successful canonical sitemap index");
   });
+
+  it("distinguishes indexed URLs from post-release recrawls", () => {
+    expect(decision).toContain("## Day-zero crawl-processing baseline");
+    expect(decision).toContain(
+      "| `/podcast` | 26 Aug 2026, 2:31:26 PM | Recrawled after the owner release |",
+    );
+    expect(decision).toContain(
+      "| `/training-plans` | 25 Aug 2026, 7:01:52 PM | Recrawled after the owner release |",
+    );
+
+    const mastersRelease = read(
+      "docs/seo/gsc-masters-vo2max-nutrition-authority-2026-08-26.md",
+    );
+    expect(mastersRelease).toContain("### Google recrawl baseline");
+    expect(mastersRelease).toContain(
+      "| `/masters/vo2max` | 19 Aug 2026, 5:37:07 AM |",
+    );
+    expect(mastersRelease).toContain(
+      "does not yet prove that Google has processed the new evidence",
+    );
+    expect(mastersRelease).toContain(
+      "No manual request-indexing action is\nrequired",
+    );
+  });
 });
