@@ -25,6 +25,10 @@
  */
 
 export interface GuestProfileOverride {
+  /** Optional search title for a featured entity page. */
+  seoTitle?: string;
+  /** Optional search description for a featured entity page. */
+  seoDescription?: string;
   /** Absolute URL of a headshot. Prefer a verified public photo. */
   image?: string;
   /**
@@ -87,6 +91,36 @@ export interface GuestProfileOverride {
  * → slug `stephen-seiler`).
  */
 export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
+  "benji-naesen": {
+    seoTitle: "Benji Naesen: Biography & Podcast",
+    seoDescription:
+      "Benji Naesen is a Belgian cycling content creator and Lanterne Rouge Cycling Podcast co-host. Hear his Roadman interview and read verified key facts.",
+    description:
+      "Belgian cycling content creator and co-host of the Lanterne Rouge Cycling Podcast with Patrick Broe. His Roadman interview covers his route from Pro Cycling Manager content into professional-race analysis, his 10kg weight-loss account and imposter syndrome in cycling media.",
+    worksFor: {
+      name: "Lanterne Rouge Media, SL",
+      type: "Organization",
+      url: "https://www.lanternerouge.com",
+    },
+    sameAs: [
+      "https://www.youtube.com/@BenjiNaesenTV",
+      "https://www.instagram.com/benjinaesen/",
+      "https://x.com/BenjiNaesen",
+    ],
+    featuredArticles: [
+      "benji-naesen-imposter-syndrome-cycling-weight-loss",
+    ],
+    whyMatters:
+      "Benji Naesen is a Belgian cycling podcaster and content creator who co-hosts the Lanterne Rouge Cycling Podcast with Patrick Broe. His route into cycling media began with Pro Cycling Manager content rather than professional racing or print journalism, then expanded into race analysis and podcasting. In his Roadman interview he explains that path, describes losing approximately 10kg over roughly a year, and discusses how accumulated industry experience reduced his imposter syndrome.",
+    keyIdeas: [
+      "Co-hosts the Lanterne Rouge Cycling Podcast, covering professional race analysis with Patrick Broe.",
+      "Entered cycling media through Pro Cycling Manager content before expanding into videos and podcasting.",
+      "Described a personal 10kg weight-loss project built around a year-long horizon and tolerance for imperfect days.",
+      "Said accumulated work and media experience gradually reduced his feeling of being an outsider in cycling.",
+    ],
+    relatedHubs: ["cycling-weight-loss", "cycling-beginners"],
+  },
+
   "greg-lemond": {
     description:
       "Three-time Tour de France winner (1986, 1989, 1990) and two-time UCI Road World Champion. The only American man to win the Tour de France.",
