@@ -29,6 +29,8 @@ export interface GuestProfileOverride {
   seoTitle?: string;
   /** Optional search description for a featured entity page. */
   seoDescription?: string;
+  /** Optional visible credential that replaces episode-derived copy. */
+  credential?: string;
   /** Absolute URL of a headshot. Prefer a verified public photo. */
   image?: string;
   /**
@@ -76,6 +78,23 @@ export interface GuestProfileOverride {
    * (8-25 words) — the kind of thing an LLM can pull as an answer.
    */
   keyIdeas?: string[];
+  /** Optional labels for guest-specific fact, position or interview lists. */
+  keyIdeasHeading?: string;
+  keyIdeasDescription?: string;
+  /** Visible, structured answers to recurring entity questions. */
+  faqs?: Array<{
+    question: string;
+    answer: string;
+  }>;
+  /** Reviewed source list for high-profile or sensitive entity pages. */
+  sources?: Array<{
+    name: string;
+    url: string;
+    note: string;
+  }>;
+  /** Human-readable review disclosure and ISO review date. */
+  reviewedBy?: string;
+  lastReviewed?: string;
   /**
    * Optional list of related topic hub slugs to surface under the
    * guest. Falls back to the auto-derived pillar→topic mapping when
@@ -572,18 +591,25 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "george-hincapie": {
+    seoTitle: "George Hincapie: Career, US Postal & Podcast",
+    seoDescription:
+      "Who is George Hincapie? 17 Tour starts, five Olympics, Modern Adventure, US Postal doping testimony and every Roadman podcast appearance.",
+    credential:
+      "American former pro cyclist, five-time Olympian and Modern Adventure team founder",
     description:
-      "American former professional cyclist (1994–2012), 17-time Tour de France starter (16 finishes), three-time US national road champion, and 2001 Gent-Wevelgem winner. Veteran of the US Postal / Discovery Channel era. Founder of Hincapie Sportswear and, in 2025, Modern Adventure Pro Cycling.",
+      "American former professional cyclist who started 17 Tours de France, represented the United States at five Olympic Games and won Gent-Wevelgem in 2001. Hincapie later admitted doping and gave sworn evidence in the US Postal investigation. He is now founder and team lead of Modern Adventure Pro Cycling.",
     worksFor: {
       name: "Modern Adventure Pro Cycling",
       type: "SportsTeam",
-      url: "https://hincapie.com/",
+      url: "https://www.maprocycling.com/leadership",
     },
     sameAs: [
       "https://en.wikipedia.org/wiki/George_Hincapie",
+      "https://www.wikidata.org/wiki/Q267142",
       "https://www.procyclingstats.com/rider/george-hincapie",
       "https://www.olympedia.org/athletes/14752",
       "https://www.teamusa.com/profiles/george-hincapie",
+      "https://www.maprocycling.com/leadership",
       "https://hincapie.com/",
     ],
     featuredArticles: [
@@ -591,14 +617,75 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "tyler-hamilton-us-postal-doping-confession",
     ],
     whyMatters:
-      "George Hincapie rode 17 Tours de France — the record when he retired — and was the only rider to support Lance Armstrong through all seven of his Tour wins (since stripped). He is one of the few American riders who has openly addressed the doping era, the team dynamics inside US Postal, and the post-Armstrong rebuilding of US cycling. His 2025 launch of Modern Adventure Pro Cycling, alongside his brother Richard, makes him both a primary historical witness and an active team owner — a rare combination for that era.",
+      "George Hincapie is an American former professional cyclist and the founder and team lead of Modern Adventure Pro Cycling. He started 17 Tours de France from 1996 to 2012 — a participation record when he retired — and represented the United States at five Olympic Games from 1992 to 2008. His career also sits inside the US Postal doping record: Hincapie admitted using banned drugs and blood transfusions, provided sworn evidence to USADA and accepted the disqualification of results obtained from 31 May 2004 through 31 July 2006. Roadman's interviews preserve his first-person accounts of the Armstrong era, Paris-Roubaix positioning and changing tyre technology; official records, rather than interview recollection, establish the sanctions and results.",
+    keyIdeasHeading: "VERIFIED CAREER AND INTERVIEW FACTS",
+    keyIdeasDescription:
+      "Official record facts are separated from what Hincapie told Roadman in his own words.",
     keyIdeas: [
-      "Classics survival is built on positioning, not power — Hincapie's career proves that being in the right wheel for 250km matters more than peak watts.",
-      "The doping era was a team-level decision, not an individual one — the post-Armstrong reckoning is also institutional, not just personal.",
-      "American pro cycling's pipeline broke when US Postal dissolved — the Modern Adventure project is an attempt to rebuild that domestic pathway.",
-      "Paris-Roubaix tactics have changed less than the equipment — the cobbles still reward the rider who reads the bunch and times the move into the right sector.",
-      "Longevity at WorldTour level is a function of team role clarity — the riders who last are the ones who know exactly what they're paid to do each race.",
+      "Hincapie started 17 Tours de France, a participation record when he retired in 2012.",
+      "Team USA records five Olympic appearances: 1992, 1996, 2000, 2004 and 2008.",
+      "His retained headline road results include the 2001 Gent-Wevelgem and three US national road titles.",
+      "Hincapie admitted doping through 2006; USADA disqualified his results from 31 May 2004 through 31 July 2006.",
+      "Modern Adventure lists Hincapie as founder and team lead of its American UCI ProTeam.",
+      "In Roadman's Roubaix interview, Hincapie emphasised bunch position, crash risk and wider, lower-pressure tyres.",
     ],
+    faqs: [
+      {
+        question: "How many Tours de France did George Hincapie ride?",
+        answer:
+          "George Hincapie started 17 Tours de France from 1996 through 2012. USADA's reasoned decision described 17 appearances as a record when he retired.",
+      },
+      {
+        question: "Did George Hincapie admit doping?",
+        answer:
+          "Yes. In sworn evidence published by USADA, Hincapie admitted using banned drugs and blood transfusions and said he stopped using banned products after 2006. He accepted the disqualification of results obtained from 31 May 2004 through 31 July 2006.",
+      },
+      {
+        question: "How many Olympics did George Hincapie compete in?",
+        answer:
+          "Team USA lists George Hincapie at five Olympic Games: Barcelona 1992, Atlanta 1996, Sydney 2000, Athens 2004 and Beijing 2008.",
+      },
+      {
+        question: "What does George Hincapie do now?",
+        answer:
+          "George Hincapie is founder and team lead of Modern Adventure Pro Cycling, an American UCI ProTeam launched for the 2026 season.",
+      },
+      {
+        question: "Which George Hincapie interviews are on Roadman?",
+        answer:
+          "Roadman has four Hincapie appearances covering the US Postal and Lance Armstrong era, Paris-Roubaix, Peter Sagan, Tom Boonen, cobbled-race positioning and tyre technology.",
+      },
+    ],
+    sources: [
+      {
+        name: "USADA — US Postal Service Pro Cycling Team investigation",
+        url: "https://www.usada.org/athletes/results/u-s-postal-service-pro-cycling-team-investigation/",
+        note: "Hosts Hincapie's sworn affidavit, the reasoned decision and the accepted sanction record.",
+      },
+      {
+        name: "USADA — George Hincapie affidavit",
+        url: "https://www.usada.org/wp-content/uploads/Hincapie-George-Affidavit.pdf",
+        note: "Primary-source testimony on doping, US Postal and when Hincapie says he stopped using banned products.",
+      },
+      {
+        name: "Team USA — George Hincapie Olympic profile",
+        url: "https://www.teamusa.com/profiles/george-hincapie",
+        note: "Lists his five Olympic appearances from 1992 through 2008 and core career milestones.",
+      },
+      {
+        name: "Modern Adventure Pro Cycling — leadership",
+        url: "https://www.maprocycling.com/leadership",
+        note: "Confirms Hincapie's current founder and team-lead role and 17 Tour appearances.",
+      },
+      {
+        name: "Hincapie — Experience Domestique biography",
+        url: "https://hincapie.com/pages/experience-domestique",
+        note: "Hincapie's organisation records 17 Tour appearances and three US national road titles.",
+      },
+    ],
+    reviewedBy:
+      "Anthony Walsh, against USADA, Team USA, Modern Adventure Pro Cycling and the Roadman episode archive",
+    lastReviewed: "2026-08-26",
     relatedHubs: ["cycling-training-plans", "cycling-coaching"],
   },
 

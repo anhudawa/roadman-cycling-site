@@ -26,9 +26,11 @@ export async function generateMetadata({
   const { expertSlug } = await params;
   const guest = getGuestBySlug(expertSlug);
   if (!guest) return { title: "Not Found" };
+  const override = getGuestProfileOverride(expertSlug);
+  const credential = override?.credential ?? guest.credential;
 
   const description = `What does ${guest.name} say about training, nutrition and racing? Direct quotes and key positions by topic${
-    guest.credential ? ` from ${guest.credential.toLowerCase()}` : ""
+    credential ? ` from ${credential.toLowerCase()}` : ""
   } — from The Roadman Cycling Podcast.`.slice(0, 158);
 
   return {
@@ -57,6 +59,7 @@ export default async function ExpertIndexPage({
   if (topicSlugs.length === 0) notFound();
 
   const override = getGuestProfileOverride(expertSlug);
+  const credential = override?.credential ?? guest.credential;
   const topics = topicSlugs
     .map((slug) => getExpertTopic(slug))
     .filter((t): t is NonNullable<typeof t> => Boolean(t));
@@ -80,10 +83,10 @@ export default async function ExpertIndexPage({
             "@type": "Person",
             "@id": `${SITE_ORIGIN}/guests/${expertSlug}#person`,
             name: guest.name,
-            ...(guest.credential && { jobTitle: guest.credential }),
+            ...(credential && { jobTitle: credential }),
             description:
               override?.whyMatters ?? override?.description ?? undefined,
-            url: `${SITE_ORIGIN}/experts/${expertSlug}`,
+            url: `${SITE_ORIGIN}/guests/${expertSlug}`,
             ...(override?.image && { image: override.image }),
             ...(override?.sameAs &&
               override.sameAs.length > 0 && { sameAs: override.sameAs }),
@@ -133,9 +136,9 @@ export default async function ExpertIndexPage({
               <h1 className="font-heading text-off-white text-4xl md:text-6xl leading-tight mb-4">
                 {guest.name.toUpperCase()}
               </h1>
-              {guest.credential && (
+              {credential && (
                 <p className="text-foreground-muted text-lg mb-6">
-                  {guest.credential}
+                  {credential}
                 </p>
               )}
               <div className="flex items-center justify-center gap-3 text-sm text-foreground-subtle flex-wrap">
