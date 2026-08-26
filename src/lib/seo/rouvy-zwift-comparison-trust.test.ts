@@ -10,8 +10,8 @@ describe("ROUVY versus Zwift comparison trust", () => {
   const { data, content } = matter(source);
 
   it("publishes the material 2026 ownership change", () => {
-    expect(data.updatedDate).toBe("2026-08-25");
-    expect(data.lastReviewed).toBe("2026-08-25");
+    expect(data.updatedDate).toBe("2026-08-26");
+    expect(data.lastReviewed).toBe("2026-08-26");
     expect(data.reviewedBy).toContain("ROUVY and Zwift");
     expect(source).toContain("Zwift acquired ROUVY in April 2026");
     expect(source).toContain("separate roadmaps and membership platforms");
@@ -46,7 +46,7 @@ describe("ROUVY versus Zwift comparison trust", () => {
   });
 
   it("states time-bound US prices without presenting them as permanent", () => {
-    expect(source).toContain("25 August 2026");
+    expect(source).toContain("26 August 2026");
     expect(source).toContain("ROUVY Single | $19.99 | $179.99");
     expect(source).toContain("Zwift | $19.99 | $199.99");
     expect(source).toContain("taxes, app-store billing, trials and regional pricing vary");

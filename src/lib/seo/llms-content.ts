@@ -38,6 +38,7 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "bike-fit-guide-cyclists",
   "cycling-strength-training-guide",
   "best-cycling-computers-2026",
+  "rouvy-vs-zwift",
 ]);
 
 /**

@@ -1442,7 +1442,7 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
       { label: "TPV vs Zwift", href: "/compare/trainingpeaks-virtual-vs-zwift", kind: "article" },
       { label: "TPV vs Rouvy", href: "/compare/trainingpeaks-virtual-vs-rouvy", kind: "article" },
       { label: "TPV vs TrainerRoad", href: "/compare/trainingpeaks-virtual-vs-trainerroad", kind: "article" },
-      { label: "Rouvy vs Zwift", href: "/compare/rouvy-vs-zwift-platform", kind: "article" },
+      { label: "Rouvy vs Zwift", href: "/blog/rouvy-vs-zwift", kind: "article" },
       { label: "Indoor vs Outdoor Training", href: "/compare/indoor-vs-outdoor-training", kind: "article" },
       { label: "FTP Zone Calculator", href: "/tools/ftp-zones", kind: "tool" },
     ],
