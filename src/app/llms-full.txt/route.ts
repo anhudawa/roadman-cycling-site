@@ -212,6 +212,8 @@ export async function GET() {
       lines: [
         `${BASE_URL}/topics/ftp-training — Reviewed FTP definition, testing methods, zones and evidence limits.`,
         `${BASE_URL}/tools/ftp-zones — FTP zone calculator.`,
+        `${BASE_URL}/blog/sweet-spot-training-cycling-guide — Canonical sweet spot training owner: 88-94% FTP convention, evidence limits, response-led sessions and no universal dose or recovery rule.`,
+        `${BASE_URL}/tools/sweet-spot — Sweet spot percentage calculator and sample sessions; calculations are starting points, not a personal prescription.`,
         `${BASE_URL}/blog/polarised-vs-sweet-spot-training — Polarised vs sweet spot for FTP.`,
         `${BASE_URL}/blog/zone-2-vs-endurance-training — Zone 2 vs generic endurance.`,
       ],

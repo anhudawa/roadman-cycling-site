@@ -522,17 +522,17 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   },
   {
     slug: "sweet-spot-training",
-    title: "Sweet Spot Training for Cyclists — The Complete Guide",
-    headline: "THE SWEET SPOT — EXPLAINED",
-    ctaHeadline: "SWEET SPOT, PROGRAMMED AT THE RIGHT TIME.",
+    title: "Sweet Spot Training Resources, Comparisons & Tools",
+    headline: "SWEET SPOT — THE LEARNING PATH",
+    ctaHeadline: "CHOOSE THE SESSION FROM THE RIDER, NOT THE SLOGAN.",
     description:
-      "The complete guide to sweet spot training for cyclists. What it is (88-93% FTP), when to use it, how it compares to polarised and threshold training, and why it works best for time-crunched amateurs in the right phase of the season.",
+      "Roadman's sweet spot training knowledge hub: the evidence-reviewed 88–94% FTP guide, calculators and focused comparisons with Zone 2, threshold and polarised training.",
     pillar: "coaching",
     keywords: [
       "sweet spot training cycling",
       "sweet spot vs threshold",
       "sweet spot vs polarised",
-      "88-93% ftp training",
+      "88-94% ftp training",
       "sweet spot intervals",
     ],
   },
@@ -718,7 +718,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
   "ftp-training": [
     "ftp-training-zones-cycling-complete-guide",
     "how-to-improve-ftp-cycling",
-    "sweet-spot-training-cycling",
     "sweet-spot-training-cycling-guide",
     "cycling-vo2max-intervals",
     "vo2max-cycling-fixable-reasons-low",
@@ -760,7 +759,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "zone-2-training-cycling-complete-guide",
     "when-to-test-ftp-cycling",
     "ftp-test-protocols-compared-cycling",
-    "sweet-spot-training-cycling-complete-guide",
     "which-ftp-test-protocol-best-guide",
     "heart-rate-zone-training-cycling-guide",
     "training-stress-score-tss-cycling-guide",
@@ -771,7 +769,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-watt-floor-raising-guide",
     "cycling-threshold-intervals-guide",
     "cycling-heart-rate-zones-explained-guide",
-    "cycling-sweet-spot-training-complete-guide",
     "cycling-ftp-test-protocols-compared-guide",
     "cycling-blood-lactate-testing-guide",
     "cycling-building-ftp-systematic-guide",
@@ -988,7 +985,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "sella-ronda-bike-day-training-guide",
     "sprint-interval-training-cyclists-masters",
     "steady-state-vs-interval-training-cycling",
-    "sweet-spot-training-cycling",
     "sweet-spot-vs-threshold-vs-polarised-comparison",
     "time-crunched-cyclist-8-hours-week",
     "time-crunched-cyclist-benchmarks",
@@ -1010,7 +1006,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "polarised-vs-sweet-spot-training-cyclists",
     "how-cycling-coaches-build-race-plans",
     "cycling-climbing-time-estimate-guide",
-    "sweet-spot-training-cycling-complete-guide",
     "which-ftp-test-protocol-best-guide",
     "cycling-age-grading-performance-decline-guide",
     "tour-of-flanders-sportive-training-guide",
@@ -1066,7 +1061,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-gravel-training-for-road-cyclists-guide",
     "cycling-multi-day-event-preparation-guide",
     "cycling-fitting-training-around-work-family-guide",
-    "cycling-sweet-spot-training-complete-guide",
     "granfondo-prosecco-training-guide",
     "tour-de-suisse-granfondo-training-guide",
     "3-peaks-cyclocross-training-guide",
@@ -2049,16 +2043,13 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-autumn-training-transition-guide",
   ],
   "sweet-spot-training": [
-    "sweet-spot-training-cycling",
     "sweet-spot-training-cycling-guide",
-    "sweet-spot-training-cyclists-explained",
     "sweet-spot-vs-threshold-vs-polarised-comparison",
     "polarised-vs-sweet-spot-training",
     "how-to-improve-ftp-cycling",
     "improve-ftp-cycling-evidence-based-methods",
     "time-crunched-cyclist-8-hours-week",
     "time-crunched-cyclist-training-framework-guide",
-    "cycling-sweet-spot-training-complete-guide",
   ],
   "sprint-training": [
     "30-day-sprint-power-cycling-plan",
@@ -2814,7 +2805,7 @@ const TOPIC_ENRICHMENT: Record<string, {
     commercialPath: "/coaching",
     relatedTopics: ["ftp-training", "polarised-training", "cycling-training-plans"],
     featuredPostSlugs: [
-      "sweet-spot-training-cycling",
+      "sweet-spot-training-cycling-guide",
       "sweet-spot-vs-threshold-vs-polarised-comparison",
       "polarised-vs-sweet-spot-training",
     ],
@@ -3541,22 +3532,22 @@ const TOPIC_FAQS: Record<string, TopicFAQ[]> = {
     {
       question: "What is sweet spot training?",
       answer:
-        "Sweet spot sits at 88-93% of your FTP — just below threshold, in the zone where you get a strong training stimulus with manageable fatigue. It's efficient because it's hard enough to drive adaptation but sustainable enough to do more total work than threshold intervals.",
+        "Sweet spot is a cycling coaching convention commonly set at 88–94% of FTP. It overlaps upper tempo and lower threshold in common power models, so it is a practical prescription rather than a separate physiological threshold.",
     },
     {
       question: "Is sweet spot better than threshold training?",
       answer:
-        "Neither is universally better — they serve different purposes. Sweet spot produces a high training load with less fatigue, making it ideal for base-to-build phases and time-crunched riders. Threshold work (95-105% FTP) is more race-specific and targets FTP improvement more directly.",
+        "Neither is universally better. Sweet spot is commonly used for repeatable sub-threshold work, while threshold training targets sustained work nearer FTP; the right choice depends on the event, training phase, available time and the rider's previous response.",
     },
     {
       question: "When should I use sweet spot training?",
       answer:
-        "Sweet spot works best in the base-to-build transition and for time-crunched riders who need maximum return from limited hours. It's less effective as your sole intensity year-round — rotate it with polarised blocks and VO2max work to avoid accommodation.",
+        "Use sweet spot when controlled sustained sub-threshold work solves a specific training problem and fits the complete week. A time-limited quality session or preparation for a sustained climb can be reasonable uses, but neither creates a universal frequency or block length.",
     },
     {
       question: "Can I do too much sweet spot?",
       answer:
-        "Yes. Too much sweet spot without sufficient easy riding or genuine high-intensity work can leave you stuck in the grey zone — moderately fit but not improving. The most common pattern we see is riders who do nothing but sweet spot and plateau after 8-12 weeks.",
+        "Yes. Any repeated moderate-to-hard work can exceed the recovery available when races, group rides, strength training and life stress are counted. Reduce the dose when pacing deteriorates, normal training is suppressed or recovery trends remain abnormal.",
     },
   ],
   "sprint-training": [

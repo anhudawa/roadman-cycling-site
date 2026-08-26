@@ -29,7 +29,7 @@ const ZONE_BANDS: ZoneBand[] = [
     maxPct: 87,
     color: "#22C55E",
     description:
-      "Sustainable but not stressful. Good for building aerobic volume when Z2 feels too easy but you want more time-in-zone than threshold allows.",
+      "A power band in the classic model. Its internal cost still depends on duration, the FTP anchor and the rider.",
   },
   {
     name: "Sweet Spot",
@@ -38,7 +38,7 @@ const ZONE_BANDS: ZoneBand[] = [
     maxPct: 94,
     color: "#F97316",
     description:
-      "The top of tempo / bottom of threshold. High training stimulus per minute, lower recovery cost than pure threshold. The efficiency zone.",
+      "A coaching convention spanning upper tempo and lower threshold, commonly displayed at 88-94% FTP.",
   },
   {
     name: "Threshold",
@@ -47,7 +47,7 @@ const ZONE_BANDS: ZoneBand[] = [
     maxPct: 105,
     color: "#EAB308",
     description:
-      "Your FTP. The power you can hold for roughly an hour. Highest aerobic stress — but also highest fatigue and recovery cost.",
+      "A band around FTP in the classic model. FTP test methods and sustainable duration differ between riders.",
   },
 ];
 
@@ -68,43 +68,43 @@ const SESSION_TEMPLATES: SessionTemplate[] = [
     name: "Classic 2x20",
     totalMinutes: 40,
     structure: "2 x 20 min @ sweet spot, 5 min recovery between",
-    recovery: "Day off or Z1 spin the next day",
-    when: "The workhorse. Two blocks long enough to drive adaptation, short enough to hold form.",
+    recovery: "Review the full set before scheduling the next hard day",
+    when: "A familiar format for riders with recent evidence that twenty-minute sub-threshold blocks are repeatable.",
   },
   {
     name: "Triple 15s",
     totalMinutes: 45,
     structure: "3 x 15 min @ sweet spot, 5 min recovery between",
-    recovery: "Easy day or rest day after",
-    when: "Same total work as 2x20 but the shorter blocks feel more manageable early in a training block.",
+    recovery: "Use the next normal training day to confirm the dose was absorbed",
+    when: "A similar amount of work split into shorter blocks; reduce duration if pacing deteriorates.",
   },
   {
     name: "Steady State 45",
     totalMinutes: 45,
     structure: "1 x 45 min continuous @ sweet spot",
-    recovery: "Rest day or very easy spin after",
-    when: "Mental and muscular endurance builder. Save this for when 2x20 feels routine.",
+    recovery: "Do not assign a fixed recovery time from the template alone",
+    when: "A continuous option only when recent comparable work supports it; this can become a threshold test if FTP is inaccurate.",
   },
   {
     name: "Short Blocks",
     totalMinutes: 30,
     structure: "3 x 10 min @ sweet spot, 3 min recovery between",
-    recovery: "Can ride again the next day if Z2",
-    when: "Midweek filler or introduction session if you are new to sweet spot work.",
+    recovery: "Check normal power, soreness and motivation before the next quality session",
+    when: "A conservative introduction that can be shortened further for riders returning to structure.",
   },
   {
     name: "Long Blocks",
     totalMinutes: 60,
     structure: "3 x 20 min @ sweet spot, 5 min recovery between",
-    recovery: "Full rest day after. Hard session.",
-    when: "High-volume option for riders with 10+ hrs/week and solid base fitness.",
+    recovery: "Plan from the rider's observed response, not weekly hours alone",
+    when: "A high-volume option for experienced riders who already complete shorter versions with control.",
   },
   {
     name: "Weekend Special",
     totalMinutes: 90,
     structure: "2 x 45 min @ sweet spot, 10 min recovery between",
-    recovery: "Full rest or active recovery for 48 hrs",
-    when: "The big one. Only for athletes already comfortable with 3x20. Event-specific preparation.",
+    recovery: "Individualise; the calculator cannot prescribe the next hard day",
+    when: "A demanding event-specific example, not a default or progression target. Use only with relevant preparation.",
   },
 ];
 
@@ -123,31 +123,31 @@ interface VolumePhase {
 const VOLUME_PHASES: VolumePhase[] = [
   {
     phase: "Base / General Prep",
-    weeklyHours: "6-10 hrs",
-    ssMinutes: "40-60 min total",
-    sessions: "1-2x per week",
-    notes: "Sweet spot supplements your Z2 base. Keep the majority of volume easy.",
+    weeklyHours: "Any",
+    ssMinutes: "No fixed amount",
+    sessions: "Start from history",
+    notes: "Ask whether sub-threshold work solves a current goal before adding it to the base phase.",
   },
   {
     phase: "Build",
-    weeklyHours: "8-12 hrs",
-    ssMinutes: "60-120 min total",
-    sessions: "2-3x per week",
-    notes: "The peak sweet spot phase. This is where you bank the biggest fitness gains per hour.",
+    weeklyHours: "Any",
+    ssMinutes: "Progress one variable",
+    sessions: "Count all hard days",
+    notes: "Races, group rides, threshold work, strength and life stress belong in the dose decision.",
   },
   {
     phase: "Speciality / Race Prep",
-    weeklyHours: "8-14 hrs",
-    ssMinutes: "30-60 min total",
-    sessions: "1-2x per week",
-    notes: "Shift intensity toward threshold and VO2max. Sweet spot becomes a maintenance dose.",
+    weeklyHours: "Event-led",
+    ssMinutes: "Match the demand",
+    sessions: "No fixed frequency",
+    notes: "Keep sweet spot only when sustained sub-threshold work matches the event and does not displace a more specific quality.",
   },
   {
     phase: "Recovery / Off-season",
-    weeklyHours: "3-6 hrs",
-    ssMinutes: "0-20 min total",
-    sessions: "0-1x per week",
-    notes: "Minimal structured intensity. Ride for fun. Your body adapts to the training you already did.",
+    weeklyHours: "Reduced or unstructured",
+    ssMinutes: "Purpose first",
+    sessions: "Optional",
+    notes: "Recovery and enjoyment may be the goal. Do not add structured intensity merely to fill a table.",
   },
 ];
 
@@ -170,40 +170,34 @@ const COMPARISON_DATA: ComparisonRow[] = [
     threshold: "95-105%",
   },
   {
-    attribute: "Time you can hold it",
-    tempo: "2-4 hours",
-    sweetSpot: "30-90 min",
-    threshold: "20-60 min",
+    attribute: "Role in the model",
+    tempo: "Lower sustained power band",
+    sweetSpot: "Coaching overlap band",
+    threshold: "Band around FTP",
   },
   {
-    attribute: "Recovery cost",
-    tempo: "Low",
-    sweetSpot: "Moderate",
-    threshold: "High",
+    attribute: "What it measures",
+    tempo: "External power target",
+    sweetSpot: "External power target",
+    threshold: "External power target",
   },
   {
-    attribute: "Training stimulus per minute",
-    tempo: "Moderate",
-    sweetSpot: "High",
-    threshold: "Very high",
+    attribute: "What % FTP misses",
+    tempo: "Duration and internal response",
+    sweetSpot: "Duration and internal response",
+    threshold: "Test method and time to exhaustion",
   },
   {
-    attribute: "Best for",
-    tempo: "Long event prep, building volume at moderate intensity",
-    sweetSpot: "Maximising fitness gains per hour of training",
-    threshold: "Raising your FTP ceiling, race-specific work",
+    attribute: "Possible use",
+    tempo: "Sustained event-specific work",
+    sweetSpot: "Controlled sub-threshold intervals",
+    threshold: "Work specific to riding near FTP",
   },
   {
-    attribute: "Risk of overtraining",
-    tempo: "Low",
-    sweetSpot: "Moderate — watch weekly volume",
-    threshold: "High — limit to 2x per week max",
-  },
-  {
-    attribute: "When to use it",
-    tempo: "Group rides, long rides, early-season base building",
-    sweetSpot: "Time-crunched blocks, build phase, bread-and-butter intensity",
-    threshold: "Specific race prep, peaking phase, FTP breakthroughs",
+    attribute: "Decision check",
+    tempo: "Does it match the event and full week?",
+    sweetSpot: "Is the complete set repeatable?",
+    threshold: "Is FTP current and the cost absorbable?",
   },
 ];
 
@@ -292,9 +286,9 @@ export default function SweetSpotCalculatorPage() {
               SWEET SPOT CALCULATOR
             </h1>
             <p className="text-foreground-muted text-lg">
-              Enter your FTP and get your sweet spot power range, ready-made
-              interval sessions, and weekly volume guidance. Based on Coggan&apos;s
-              power zones and Seiler&apos;s intensity distribution research.
+              Calculate the common 88-94% FTP band, compare neighbouring power
+              ranges and review sample sessions with explicit dosing and
+              evidence limits.
             </p>
           </Container>
         </Section>
@@ -311,8 +305,9 @@ export default function SweetSpotCalculatorPage() {
                 YOUR FTP (WATTS)
               </label>
               <p className="text-sm text-foreground-muted mb-4">
-                Don&apos;t know your FTP? Use your best 20-minute power and
-                multiply by 0.95. Or try the{" "}
+                Don&apos;t know your FTP? Multiplying best 20-minute power by
+                0.95 is one common estimate, not a universal conversion. Compare
+                protocols with the{" "}
                 <Link
                   href="/tools/ftp-test"
                   className="text-coral hover:text-coral/80 transition-colors"
@@ -551,7 +546,7 @@ export default function SweetSpotCalculatorPage() {
                       </div>
                     </motion.div>
 
-                    {/* Weekly Volume Guide */}
+                    {/* Dose decision guide */}
                     <motion.div
                       className="bg-background-elevated rounded-xl border border-white/5 p-6 mb-6"
                       initial={{ opacity: 0, y: 10 }}
@@ -559,11 +554,12 @@ export default function SweetSpotCalculatorPage() {
                       transition={{ duration: 0.4, delay: 0.4 }}
                     >
                       <h3 className="font-heading text-lg text-off-white mb-2">
-                        WEEKLY VOLUME BY TRAINING PHASE
+                        DOSE QUESTIONS BY TRAINING PHASE
                       </h3>
                       <p className="text-sm text-foreground-muted mb-4">
-                        How much sweet spot per week depends on where you are in
-                        your training calendar. More is not always better.
+                        Research does not provide one weekly amount. Use the
+                        phase as context, then judge the complete programme and
+                        the rider&apos;s response.
                       </p>
 
                       {/* Desktop table */}
@@ -575,13 +571,13 @@ export default function SweetSpotCalculatorPage() {
                                 PHASE
                               </th>
                               <th className="text-left font-heading text-foreground-muted py-3 pr-4">
-                                WEEKLY HRS
+                                VOLUME CONTEXT
                               </th>
                               <th className="text-left font-heading text-foreground-muted py-3 pr-4">
-                                SS TIME
+                                WORK DECISION
                               </th>
                               <th className="text-left font-heading text-foreground-muted py-3 pr-4">
-                                SESSIONS
+                                FREQUENCY CHECK
                               </th>
                               <th className="text-left font-heading text-foreground-muted py-3">
                                 NOTES
@@ -632,7 +628,7 @@ export default function SweetSpotCalculatorPage() {
                             <div className="grid grid-cols-2 gap-2 text-xs mb-2">
                               <div>
                                 <span className="text-foreground-subtle">
-                                  Weekly hours:{" "}
+                                  Volume context:{" "}
                                 </span>
                                 <span className="text-foreground-muted">
                                   {vp.weeklyHours}
@@ -640,13 +636,13 @@ export default function SweetSpotCalculatorPage() {
                               </div>
                               <div>
                                 <span className="text-foreground-subtle">
-                                  SS time:{" "}
+                                  Work decision:{" "}
                                 </span>
                                 <span className="text-coral">{vp.ssMinutes}</span>
                               </div>
                               <div>
                                 <span className="text-foreground-subtle">
-                                  Sessions:{" "}
+                                  Frequency check:{" "}
                                 </span>
                                 <span className="text-foreground-muted">
                                   {vp.sessions}
@@ -672,8 +668,9 @@ export default function SweetSpotCalculatorPage() {
                         SWEET SPOT VS TEMPO VS THRESHOLD
                       </h3>
                       <p className="text-sm text-foreground-muted mb-4">
-                        Three zones, three different jobs. Here is when each one
-                        earns its place in your week.
+                        These are bands in one power model. The table compares
+                        their prescription roles without treating the cutoffs
+                        as physiological switches.
                       </p>
 
                       {/* Desktop table */}
@@ -760,62 +757,61 @@ export default function SweetSpotCalculatorPage() {
                       transition={{ duration: 0.35, delay: 0.5 }}
                     >
                       <h3 className="font-heading text-xl text-off-white mb-4">
-                        THE SCIENCE BEHIND SWEET SPOT
+                        WHAT THE EVIDENCE CAN SUPPORT
                       </h3>
                       <div className="space-y-3 text-foreground-muted text-sm leading-relaxed">
                         <p>
                           <strong className="text-off-white">
                             Where the name comes from.
                           </strong>{" "}
-                          Frank Overton coined the term to describe the intensity
-                          band where training stimulus is high relative to the
-                          recovery cost. It sits at the top of Coggan&apos;s Zone
-                          3 and the bottom of Zone 4 — typically 88-94% of FTP.
-                          The idea: you get roughly 90% of the adaptation you
-                          would from pure threshold work, but at a fraction of the
-                          fatigue.
+                          Sweet spot is a coaching convention commonly displayed
+                          at 88-94% FTP. In the classic power model it overlaps
+                          upper tempo and lower threshold. It is not a separate
+                          measured physiological zone, and no direct evidence
+                          validates a universal percentage-of-benefit formula.
                         </p>
                         <p>
                           <strong className="text-off-white">
                             Why it works.
                           </strong>{" "}
-                          At sweet spot intensity, you are above the first
-                          lactate turnpoint but below the maximal lactate steady
-                          state. Blood lactate rises but stabilises — you can
-                          sustain the effort for extended periods without the
-                          rapid accumulation that forces you to stop at
-                          threshold. This lets you accumulate more total
-                          time-in-zone per session, which is the primary driver
-                          of aerobic adaptation (Seiler &amp; Kjerland, 2006).
+                          The calculator multiplies FTP by 0.88 and 0.94. That
+                          arithmetic does not show where an individual&apos;s
+                          physiological thresholds sit. FTP20 research reports
+                          large limits of agreement with other markers, so keep
+                          the test method attached to the value and adjust when
+                          the planned work is not repeatable.
                         </p>
                         <p>
                           <strong className="text-off-white">
                             The polarised debate.
                           </strong>{" "}
-                          Professor Stephen Seiler&apos;s work shows elite
-                          endurance athletes tend toward a polarised
-                          distribution: lots of easy work (Zone 1-2) and some
-                          hard work (Zone 4+), with relatively little time in
-                          the middle. Does that mean sweet spot is wrong? No.
-                          Seiler&apos;s data comes from athletes training
-                          15-25+ hours per week. For age-group cyclists riding
-                          6-12 hours, sweet spot offers a higher return per
-                          hour than polarised training — because you simply
-                          don&apos;t have enough volume for the easy base to do
-                          its job alone.
+                          Recent reviews find that several training-intensity
+                          distributions can improve cycling performance. They do
+                          not establish sweet spot as universally best for
+                          time-crunched riders or polarised training as
+                          universally superior. Athlete level, intervention
+                          length and the complete programme matter.
                         </p>
                         <p>
                           <strong className="text-off-white">
                             When to choose threshold instead.
                           </strong>{" "}
-                          Pure threshold intervals (95-105% FTP) produce a
-                          stronger acute stimulus and are better for directly
-                          raising your FTP ceiling in the final 6-8 weeks
-                          before a target event. But they carry more fatigue,
-                          limit the volume you can do in a week, and demand
-                          more recovery. Most riders should build their season
-                          on sweet spot and shift toward threshold only during
-                          specific race preparation.
+                          Choose threshold when sustained work near FTP matches
+                          the goal and the rider can absorb it. Choose sweet spot
+                          when controlled sub-threshold work solves the current
+                          problem. Neither band comes with a universal block
+                          length, frequency, recovery time or guaranteed gain.
+                        </p>
+                        <p>
+                          Read the{" "}
+                          <Link
+                            href="/blog/sweet-spot-training-cycling-guide"
+                            className="text-coral hover:text-coral/80 transition-colors"
+                          >
+                            evidence-reviewed sweet spot guide
+                          </Link>{" "}
+                          for the source record, masters guidance and progression
+                          boundaries behind this calculator.
                         </p>
                       </div>
                     </motion.div>
@@ -831,6 +827,14 @@ export default function SweetSpotCalculatorPage() {
                         LEARN MORE
                       </h3>
                       <ul className="space-y-2">
+                        <li>
+                          <Link
+                            href="/blog/sweet-spot-training-cycling-guide"
+                            className="text-coral hover:text-coral/80 text-sm transition-colors"
+                          >
+                            Sweet Spot Training Guide — evidence and dose boundaries
+                          </Link>
+                        </li>
                         <li>
                           <Link
                             href="/tools/ftp-zones"

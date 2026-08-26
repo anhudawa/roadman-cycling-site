@@ -353,6 +353,15 @@ const nextConfig: NextConfig = {
       { source: "/blog/cycling-vo2max-intervals-complete-guide", destination: "/blog/cycling-vo2max-intervals", permanent: true },
       { source: "/blog/vo2max-intervals-cycling-session-guide", destination: "/blog/cycling-vo2max-intervals", permanent: true },
       { source: "/answers/how-to-do-vo2-max-intervals", destination: "/blog/cycling-vo2max-intervals", permanent: true },
+      // Search Console shows seven indexable URLs competing for broad sweet
+      // spot intent. Consolidate the four overlapping guides and two answers
+      // into the established page owner; comparison pages retain distinct jobs.
+      { source: "/blog/cycling-sweet-spot-training-complete-guide", destination: "/blog/sweet-spot-training-cycling-guide", permanent: true },
+      { source: "/blog/sweet-spot-training-cyclists-explained", destination: "/blog/sweet-spot-training-cycling-guide", permanent: true },
+      { source: "/blog/sweet-spot-training-cycling", destination: "/blog/sweet-spot-training-cycling-guide", permanent: true },
+      { source: "/blog/sweet-spot-training-cycling-complete-guide", destination: "/blog/sweet-spot-training-cycling-guide", permanent: true },
+      { source: "/answers/sweet-spot-training-explained", destination: "/blog/sweet-spot-training-cycling-guide", permanent: true },
+      { source: "/answers/what-is-sweet-spot-training-cycling", destination: "/blog/sweet-spot-training-cycling-guide", permanent: true },
       // Consolidate duplicate tyre-pressure explainers into the established guide.
       { source: "/blog/tyre-pressure-cycling-complete-guide", destination: "/blog/cycling-tyre-pressure-guide", permanent: true },
       { source: "/answers/best-tyre-pressure-road-cycling", destination: "/blog/cycling-tyre-pressure-guide", permanent: true },

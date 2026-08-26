@@ -55,12 +55,13 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
   {
     slug: "sweet-spot",
     term: "Sweet Spot Training",
-    definition: "Training at 88-94% of FTP. Delivers a high training stimulus with manageable fatigue — the 'sweet spot' between threshold work and tempo riding.",
-    extendedDefinition: "Sweet spot sits just below threshold and provides significant aerobic development without the recovery cost of full FTP work. It is particularly useful for time-crunched cyclists who cannot afford long recovery periods between sessions. A typical sweet spot session: 3x15 minutes at 88-93% FTP with 5 minutes recovery. Sweet spot and polarised training are not mutually exclusive — sweet spot can form part of the 20% hard work in a polarised distribution.",
+    definition: "A cycling coaching convention commonly set at 88–94% of FTP, overlapping upper tempo and lower threshold in common power models.",
+    extendedDefinition: "Sweet spot is a practical prescription rather than a separate physiological threshold. The wattage depends on how FTP was estimated, and the useful dose depends on the rider, session duration, complete training week and observed response. Research does not establish a universal frequency, recovery time or guaranteed improvement for the 88–94% band.",
     pillar: "coaching",
     relatedTerms: ["ftp", "threshold", "polarised-training"],
-    relatedArticle: "/blog/sweet-spot-training-cycling",
+    relatedArticle: "/blog/sweet-spot-training-cycling-guide",
     relatedTopicHub: "/topics/ftp-training",
+    canonicalPath: "/blog/sweet-spot-training-cycling-guide",
   },
   {
     slug: "zone-2",

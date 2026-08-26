@@ -1158,60 +1158,60 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
     slug: "sweet-spot",
     title: "Sweet Spot Calculator",
     description:
-      "Enter your FTP and get your sweet spot power range (88-94%), interval session structures, weekly volume guidance, and a comparison of sweet spot vs tempo vs threshold.",
+      "Enter your FTP and calculate the common 88-94% sweet spot band, compare neighbouring power ranges, and review response-led sample sessions.",
     url: `${ROADMAN_BASE}/tools/sweet-spot`,
     breadcrumbName: "Sweet Spot Calculator",
     answerSummary:
-      "Enter your FTP in watts and the calculator returns your sweet spot power range (88-94% of FTP), plus tempo and threshold ranges for comparison. It also gives you ready-made interval sessions, weekly volume recommendations by training phase, and guidance on when to choose sweet spot over tempo or threshold.",
+      "Enter your FTP in watts and the calculator displays the common sweet spot convention of 88-94% FTP, plus tempo and threshold ranges for context. The sample sessions are starting structures, not personal prescriptions; use recent training and the complete weekly load to select and progress them.",
     whatItDoes:
-      "This calculator turns a single FTP number into a complete sweet spot training toolkit. You get the exact watt range to target, session structures from 30 to 90 minutes of sweet spot work, and a phase-by-phase guide to how much sweet spot belongs in your training week. The comparison table makes it clear when to swap sweet spot for tempo or threshold work instead.",
+      "This calculator performs the percentage arithmetic and presents sample interval structures from 30 to 90 minutes of sweet spot work. It cannot locate your physiological thresholds, determine a personal weekly dose or replace the FTP test method, training history and observed response that a coach would use.",
     whoItsFor: [
-      "Time-crunched cyclists who want the most fitness per training hour",
+      "Time-crunched cyclists exploring whether sustained sub-threshold work fits a limited week",
       "Riders building a structured training week and choosing between tempo, sweet spot, and threshold sessions",
       "Self-coached athletes who know their FTP but need session prescriptions",
       "Anyone returning to structured training after a break and wanting productive but manageable intensity",
     ],
     howItWorks:
-      "Sweet spot is defined as 88-94% of FTP, sitting at the top of Coggan's Zone 3 and the bottom of Zone 4. The calculator multiplies your FTP by these percentages and presents the watt range alongside tempo (76-87%) and threshold (95-105%) for context. Session templates are matched to your chosen time target, and weekly volume recommendations are drawn from periodisation research by Seiler and Coggan.",
+      "Sweet spot is commonly prescribed at 88-94% of FTP, overlapping upper tempo and lower threshold in the classic power model. The calculator multiplies FTP by these percentages and shows neighbouring bands for context. The templates demonstrate possible structures; research does not establish one weekly frequency, block length or guaranteed result for every cyclist.",
     howToSteps: [
       { name: "Enter your FTP", text: "Type your Functional Threshold Power in watts. If you do not know it, use your best 20-minute power multiplied by 0.95." },
       { name: "Read your sweet spot range", text: "The calculator shows your sweet spot band (88-94% FTP) in watts, alongside tempo and threshold ranges for comparison." },
-      { name: "Pick a session", text: "Choose a time target (30, 45, 60, or 90 minutes) and get interval structures with recovery guidance." },
-      { name: "Check your training phase", text: "The weekly volume table shows how many sweet spot sessions fit your current phase — base, build, speciality, or recovery." },
+      { name: "Pick a sample structure", text: "Choose a work-duration target and treat the returned intervals as examples; shorten them when recent comparable work does not support the dose." },
+      { name: "Check the complete week", text: "Count races, group rides, threshold work, strength training and life stress before adding another demanding session." },
     ],
     howToTotalTime: "PT1M",
     limitations:
-      "Sweet spot percentages are population-based — individual lactate kinetics may shift your personal sweet spot a few percentage points in either direction. FTP itself is an estimate of your maximal lactate steady state; if your FTP is wrong, all the zones derived from it will be off. Session templates assume indoor or controlled outdoor conditions; add recovery time for outdoor sessions with stops and terrain variation.",
+      "The 88-94% band is a coaching convention, not a measured physiological threshold. FTP methods can disagree at individual level, and percentage alone does not capture duration, fatigue or internal response. Session templates are examples; do not infer a personal recovery time or weekly dose from the calculator.",
     whenToSeeACoach:
-      "If you have been doing sweet spot work consistently for 8+ weeks without seeing FTP gains, the issue is usually session structure, recovery, or fuelling — not the intensity range itself. A coach can audit your training load distribution and find the bottleneck.",
+      "Use a coach when the calculated target repeatedly fails to match perceived effort or repeatable performance, when the complete weekly load is difficult to interpret, or when event demands require a personalised progression. Stop and seek medical assessment for concerning exercise symptoms.",
     examples: [
       {
         scenario: "Time-crunched amateur, 250W FTP",
         inputs: ["FTP: 250W"],
-        output: "Sweet spot: 220-235W. Recommended session: 2x20 min at 220-235W with 5 min recovery. Two sessions per week in the build phase.",
+        output: "Displayed sweet spot band: 220-235W. Sample structure: 2x20 min with 5 min easy, only when recent training supports twenty-minute blocks.",
       },
       {
         scenario: "Strong masters rider, 300W FTP",
         inputs: ["FTP: 300W"],
-        output: "Sweet spot: 264-282W. For a 60-minute target: 3x20 min at 264-282W. During base phase, limit to one session per week alongside Z2 volume.",
+        output: "Displayed sweet spot band: 264-282W. A 3x20 sample is demanding and does not become appropriate because of age, FTP or phase alone.",
       },
     ],
     faqs: [
       {
         question: "What is sweet spot training in cycling?",
-        answer: "Sweet spot is the intensity band at 88-94% of your FTP — the top of tempo and the bottom of threshold. The term was coined by Frank Overton to describe the effort level where training stimulus is high but recovery cost is moderate. You get roughly 90% of the adaptation of pure threshold work at a fraction of the fatigue, which means you can accumulate more quality time-in-zone per week.",
+        answer: "Sweet spot is a cycling coaching convention commonly set at 88-94% of FTP. It overlaps upper tempo and lower threshold in common power models. It is a practical prescription, not a separate physiological threshold or a proven percentage-of-benefit formula.",
       },
       {
         question: "How long should a sweet spot interval be?",
-        answer: "Most sweet spot intervals run 10-45 minutes per block. The classic session is 2x20 minutes with 5 minutes of recovery between blocks. Beginners should start with 3x10 minutes and build toward longer blocks over 4-6 weeks. The key is accumulating 30-90 minutes of total sweet spot time per session, not any single interval length.",
+        answer: "There is no universal length. Choose intervals that allow the final repetition to resemble the first, then extend controlled time before raising power. A rider new to structure may need shorter work than the templates, while experienced riders may use longer blocks for a specific event demand.",
       },
       {
         question: "Is sweet spot better than threshold training?",
-        answer: "Neither is universally better — they serve different purposes. Sweet spot gives more training stimulus per unit of fatigue, making it ideal for the build phase and for time-crunched athletes. Threshold work (95-105% FTP) produces a stronger acute stimulus and is better for directly raising your FTP ceiling in the 6-8 weeks before a target event. Most riders should spend the majority of their structured-intensity time at sweet spot and reserve threshold for race-specific blocks.",
+        answer: "Neither is universally better. Sweet spot is commonly used for controlled sub-threshold work, while threshold training targets sustained work nearer FTP. Choose from the event, training phase, available time, FTP method and the rider's previous response.",
       },
       {
         question: "How many sweet spot sessions per week?",
-        answer: "During the build phase, 2-3 sweet spot sessions per week with 60-120 total minutes of sweet spot work is typical. In base phase, 1-2 sessions (40-60 minutes total). During race-specific preparation, drop to 1-2 sessions as you shift toward threshold and VO2max work. Recovery weeks should have zero or one easy sweet spot session at most.",
+        answer: "No evidence-backed number fits everyone. Count races, hard group rides, other interval work, strength training and life stress before setting frequency. One controlled session can be a conservative starting point; add work only when the complete set and normal training remain stable.",
       },
       {
         question: "What does sweet spot feel like?",
@@ -1219,7 +1219,7 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
       },
       {
         question: "Does sweet spot training work for older cyclists?",
-        answer: "Yes, and it is arguably more valuable for masters riders. Recovery takes longer after 40, so the lower fatigue cost of sweet spot compared to threshold means you can maintain more consistent training weeks without accumulating excessive fatigue. The key is respecting recovery between sessions — 48 hours minimum for riders over 45.",
+        answer: "It can, but age alone does not prescribe the dose or recovery gap. Masters-recovery evidence is limited and mixed. Use recent comparable sessions, sleep, soreness, motivation and normal power trends rather than a fixed 48-hour rule.",
       },
     ],
     related: [
@@ -1228,14 +1228,40 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
       { label: "FTP Test Calculator", href: "/tools/ftp-test", kind: "tool" },
       { label: "Training Load Calculator", href: "/tools/training-load", kind: "tool" },
       { label: "FTP Training topic hub", href: "/topics/ftp-training", kind: "topic" },
+      { label: "Sweet Spot Training evidence guide", href: "/blog/sweet-spot-training-cycling-guide", kind: "article" },
     ],
     webAppFeatures: [
       "Sweet spot power range calculation (88-94% FTP)",
       "Side-by-side tempo, sweet spot, and threshold zone comparison",
       "Session builder with six interval structures from 30 to 90 minutes",
-      "Weekly volume recommendations by training phase",
-      "Science-backed methodology section with Coggan and Seiler references",
+      "Training-phase questions without a universal weekly prescription",
+      "Evidence boundaries linked to the canonical sweet spot guide",
     ],
+    evidenceSources: [
+      {
+        name: "TrainingPeaks: Training With Power",
+        role: "Official description of the 88-94% FTP coaching convention and neighbouring power bands",
+        href: "https://www.trainingpeaks.com/blog/how-to-get-started-training-with-power/",
+      },
+      {
+        name: "Mackey and Horner 2021",
+        role: "Scoping review of FTP20 reliability and limits of agreement",
+        href: "https://pubmed.ncbi.nlm.nih.gov/34304689/",
+      },
+      {
+        name: "Filipe et al. 2025",
+        role: "Systematic review and meta-analysis of training distribution in trained cyclists",
+        href: "https://pubmed.ncbi.nlm.nih.gov/39788807/",
+      },
+      {
+        name: "Almquist et al. 2023",
+        role: "Systematic review of periodisation, intensity distribution and volume in trained cyclists",
+        href: "https://pubmed.ncbi.nlm.nih.gov/36640771/",
+      },
+    ],
+    dateModified: "2026-08-26",
+    reviewedBy: "Anthony Walsh",
+    reviewScope: "FTP convention, training-distribution, periodisation and masters-recovery claims",
   },
   "interval-builder": {
     slug: "interval-builder",
@@ -1288,7 +1314,7 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
       },
       {
         question: "How many interval sessions should I do per week?",
-        answer: "Most amateur cyclists benefit from 2-3 structured interval sessions per week, with the remaining volume at endurance pace (Zone 2). A typical build-phase week might include one sweet spot session, one threshold or VO2max session, and the rest at Z2. During race-specific preparation, shift toward more threshold and VO2max work. Never stack hard sessions on consecutive days without recovery between.",
+        answer: "There is no universal number. Count races, hard group rides, strength work and other sports before adding interval sessions. Begin conservatively, keep the complete set repeatable and add work only when normal training and recovery remain stable.",
       },
       {
         question: "What is the Ronnestad 30/15 protocol?",
