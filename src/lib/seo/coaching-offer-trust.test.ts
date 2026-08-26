@@ -33,7 +33,6 @@ const CORRECTED_ARTICLE_PATHS = [
   "content/blog/70-3-bike-training-plan-12-weeks.mdx",
   "content/blog/aero-position-training-for-triathletes.mdx",
   "content/blog/alex-larson-body-composition-cyclists.mdx",
-  "content/blog/best-cycling-coach-guide.mdx",
   "content/blog/best-cycling-coach-ireland.mdx",
   "content/blog/best-cycling-coach-masters-riders.mdx",
   "content/blog/best-cycling-coach-uk.mdx",

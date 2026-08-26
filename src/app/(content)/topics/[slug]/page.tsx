@@ -74,6 +74,18 @@ export default async function TopicPage({
               description: topic.description,
               url: `${SITE_ORIGIN}/topics/${slug}`,
               isPartOf: { "@id": ENTITY_IDS.website },
+              publisher: { "@id": ENTITY_IDS.organization },
+              ...(topic.lastReviewed && {
+                dateModified: topic.lastReviewed,
+              }),
+              ...(topic.reviewedBy && {
+                editor: {
+                  "@type": "Person",
+                  "@id": ENTITY_IDS.person,
+                  name: topic.reviewedBy.name,
+                  url: `${SITE_ORIGIN}${topic.reviewedBy.href}`,
+                },
+              }),
               // mainEntity: the topical Thing the hub is about. Articles and
               // episodes reference this @id from their `about` field so the
               // topic resolves to one shared node across the site.
@@ -169,6 +181,30 @@ export default async function TopicPage({
               <p className="topic-description text-foreground-muted max-w-2xl mx-auto text-lg">
                 {topic.description}
               </p>
+              {topic.lastReviewed && topic.reviewedBy && (
+                <p className="text-foreground-subtle text-sm mt-4">
+                  Editorially reviewed{" "}
+                  <time dateTime={topic.lastReviewed}>
+                    {new Date(`${topic.lastReviewed}T00:00:00Z`).toLocaleDateString(
+                      "en-GB",
+                      {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                        timeZone: "UTC",
+                      },
+                    )}
+                  </time>{" "}
+                  by{" "}
+                  <Link
+                    href={topic.reviewedBy.href}
+                    className="text-coral hover:underline underline-offset-4"
+                  >
+                    {topic.reviewedBy.name}
+                  </Link>
+                  , {topic.reviewedBy.role}.
+                </p>
+              )}
               <p className="text-foreground-subtle text-sm mt-4">
                 {topic.posts.length} articles &middot; {topic.episodes.length}{" "}
                 podcast episodes

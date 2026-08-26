@@ -72,7 +72,7 @@ The `/topics/cycling-coaching` hub has a 2,000+ word pillar content MDX file cov
 | Slug | URL | Type | Risk |
 |------|-----|------|------|
 | `/coaching` | `/coaching` | Marketing page (1,027 lines) | MODERATE — targets "online cycling coach" commercially; different intent |
-| `best-cycling-coach-guide` | `/blog/best-cycling-coach-guide` | Blog (~175 lines) | HIGH — targets "best cycling coach" with answerCapsule + FAQs |
+| `best-cycling-coach-guide` | `/blog/best-cycling-coach-guide` | Retired 26 Aug 2026 | CONSOLIDATED — permanently redirects to the reviewed nine-point selection guide |
 | `best-online-cycling-coach-how-to-choose` | `/blog/best-online-cycling-coach-how-to-choose` | Blog (~160 lines, `reviewedBy`) | HIGH — reviewed, targets "best online cycling coach" |
 | `what-does-a-cycling-coach-do` | `/blog/what-does-a-cycling-coach-do` | Blog | MODERATE — specific "what does a coach do" intent |
 | `cycling-working-with-a-coach-guide` | `/blog/cycling-working-with-a-coach-guide` | Blog (232 lines) | MODERATE — "working with a coach" angle |

@@ -15,7 +15,7 @@ const gscSource = readFileSync(
 describe("coaching hub service clarity", () => {
   it("keeps the generic coaching owner compact and self-canonical", () => {
     expect(metadata.title).toEqual({
-      absolute: "Online Cycling Coaching for Serious Amateur Riders",
+      absolute: "Online Cycling Coach | Personalised Cycling Coaching",
     });
     expect(metadata.alternates?.canonical).toBe(
       "https://roadmancycling.com/coaching",
@@ -26,7 +26,7 @@ describe("coaching hub service clarity", () => {
 
   it("publishes dated, extractable service facts and a scope boundary", () => {
     for (const phrase of [
-      "SERVICE FACTS · REVIEWED 25 AUGUST 2026",
+      "SERVICE FACTS · REVIEWED 26 AUGUST 2026",
       "WHAT ROADMAN COACHING INCLUDES",
       "Personalised TrainingPeaks plan reviewed every week",
       "Weekly Anthony-led live group coaching",
@@ -67,6 +67,18 @@ describe("coaching hub service clarity", () => {
       "That is why our members consistently outperform their app-trained years",
     );
     expect(pageSource).not.toContain("Time zones are never an issue");
+    expect(pageSource).not.toContain(
+      "MOST CYCLISTS PLATEAU AFTER 2-3 YEARS.",
+    );
+    expect(pageSource).not.toContain(
+      "Training apps give you workouts. They can&apos;t adjust",
+    );
+    expect(pageSource).not.toContain(
+      "location is never a barrier to getting faster",
+    );
+    expect(pageSource).toContain(
+      "No programme can guarantee a particular result.",
+    );
   });
 
   it("records the GSC decision and extends AI discovery measurement", () => {

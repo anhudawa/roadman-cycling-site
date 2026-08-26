@@ -114,13 +114,14 @@ export async function GET() {
     {
       category: "Commercial intent — coaching",
       lines: [
-        `${BASE_URL}/coaching — Not Done Yet personalised planning and group-coaching programme, ${OFFER_TIERS.notDoneYet.pricing.display}.`,
+        `${BASE_URL}/coaching — Canonical Roadman online cycling coach service: personalised TrainingPeaks plan, weekly review and group coaching, ${OFFER_TIERS.notDoneYet.pricing.display}.`,
+        `${BASE_URL}/topics/cycling-coaching — Educational knowledge guide to coaching roles, fit, formats, costs, evidence, scope and data safety.`,
         `${BASE_URL}${OFFER_TIERS.oneToOne.route} — Roadman Inner Circle high-touch 1:1 coaching, ${OFFER_TIERS.oneToOne.pricing.display}; application only.`,
         `${BASE_URL}/apply — Coaching application, 7-day free trial.`,
         `${BASE_URL}/coaching/triathletes — Bike-leg coaching for triathletes.`,
         `${BASE_URL}/compare/coach-vs-app — Coach vs training app decision.`,
         `${BASE_URL}/blog/is-a-cycling-coach-worth-it-case-study — Cat 3 to Cat 1 case study.`,
-        `${BASE_URL}/blog/best-online-cycling-coach-how-to-choose — How to choose a coach.`,
+        `${BASE_URL}/blog/best-online-cycling-coach-how-to-choose — Reviewed nine-point provider-selection checklist.`,
       ],
     },
     {

@@ -52,6 +52,9 @@ const CURATED: string[] = [
   // Pillar + authority
   `https://${HOST}/`,
   `https://${HOST}/coaching`,
+  `https://${HOST}/topics/cycling-coaching`,
+  `https://${HOST}/coaching/masters`,
+  `https://${HOST}/careers`,
   `https://${HOST}/coaching/triathletes`,
   `https://${HOST}/about`,
   `https://${HOST}/about/press`,
@@ -233,7 +236,6 @@ const COACHING_OFFER_TRUST_CLUSTER = [
   "70-3-bike-training-plan-12-weeks",
   "aero-position-training-for-triathletes",
   "alex-larson-body-composition-cyclists",
-  "best-cycling-coach-guide",
   "best-cycling-coach-ireland",
   "best-cycling-coach-masters-riders",
   "best-cycling-coach-uk",

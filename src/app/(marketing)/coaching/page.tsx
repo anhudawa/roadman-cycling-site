@@ -20,9 +20,9 @@ export const metadata: Metadata = {
   // Keep the complete search title compact. Google already displays the
   // Roadman site name separately, so repeating it through the root template
   // weakens the service proposition on narrow result pages.
-  title: { absolute: "Online Cycling Coaching for Serious Amateur Riders" },
+  title: { absolute: "Online Cycling Coach | Personalised Cycling Coaching" },
   description:
-    "Personalised online cycling coaching with a TrainingPeaks plan, weekly review, strength and nutrition support. For serious amateur riders. From $195/month.",
+    "Work with an online cycling coach through a personalised TrainingPeaks plan, weekly review, live coaching, strength and fuelling support. $195/month.",
   keywords: [
     "cycling coach",
     "cycling coaching",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     canonical: "https://roadmancycling.com/coaching",
   },
   openGraph: {
-    title: "Online Cycling Coach — Coaching for Serious Amateurs",
+    title: "Online Cycling Coach — Personalised Weekly Coaching",
     description:
       "Cycling coaching for serious amateurs whose FTP hasn't moved in a year. Five pillars, weekly live calls, a plan built around your week.",
     type: "website",
@@ -152,25 +152,25 @@ const pillars = [
     number: "02",
     title: "Nutrition",
     description:
-      "Race weight, fuelling strategy, and body composition guidance. Not calorie counting — practical nutrition that makes a measurable difference to your power-to-weight ratio.",
+      "General fuelling, race-weight, and body-composition guidance coordinated with the training plan. Clinical nutrition questions are referred to an appropriately qualified professional.",
   },
   {
     number: "03",
     title: "Strength",
     description:
-      "Cycling-specific S&C programming that transfers directly to the bike. Periodised with your riding so you get stronger without wrecking your legs.",
+      "Cycling-specific strength and conditioning periodised alongside your riding so the combined load, recovery and event calendar are considered together.",
   },
   {
     number: "04",
     title: "Recovery",
     description:
-      "Sleep optimisation, stress management, and adaptation protocols. The part most cyclists ignore — and the part that determines whether training actually sticks.",
+      "Sleep, stress, subjective feedback and recovery capacity considered alongside completed training when the next week is reviewed.",
   },
   {
     number: "05",
     title: "Community",
     description:
-      "Weekly live group coaching, a private group of serious cyclists, and individual plan reviews by the Roadman coaching team. The reason this works when apps and solo plans don't — you're surrounded by people who know your situation and are watching.",
+      "Weekly live group coaching, a private group of serious cyclists, and individual plan reviews by the Roadman coaching team. The community adds shared learning and accountability between reviews.",
   },
 ];
 
@@ -348,6 +348,9 @@ export default function CoachingPage() {
           description:
             "Evidence-based online cycling coaching for serious amateur and masters cyclists, with personalised TrainingPeaks plans and weekly review.",
           ...buildSearchOwnerTrustProperties("cycling-coaching"),
+          dateModified: "2026-08-26",
+          editor: { "@id": ENTITY_IDS.person },
+          publisher: { "@id": ENTITY_IDS.organization },
           mainEntity: { "@id": `${SITE_ORIGIN}/#coaching-service` },
           primaryImageOfPage: {
             "@type": "ImageObject",
@@ -408,6 +411,7 @@ export default function CoachingPage() {
                 unitCode: "MON",
               },
             },
+            seller: { "@id": ENTITY_IDS.organization },
           },
           aggregateRating: {
             "@type": "AggregateRating",
@@ -495,16 +499,16 @@ export default function CoachingPage() {
                 className="font-heading text-off-white mb-6"
                 style={{ fontSize: "var(--text-hero)" }}
               >
-                ONLINE CYCLING COACHING
+                ONLINE CYCLING COACH
                 <br />
-                <span className="text-coral">THAT MOVES THE NUMBERS.</span>
+                <span className="text-coral">FOR SERIOUS AMATEURS.</span>
               </h1>
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
                 Evidence-based coaching for serious amateur and masters
-                cyclists. Personalised plans informed by 1,400+ podcast episodes and interviews with
-                the world&apos;s best coaches and scientists — Seiler, Lorang,
-                LeMond, Friel — structured into your week so every session
-                counts.
+                cyclists. Personalised plans informed by 1,400+ podcast
+                episodes and interviews with leading coaches and scientists —
+                Seiler, Lorang, LeMond, Friel — structured into your week so
+                every session counts.
               </p>
 
               {/* Hero proof point — single killer stat + quote, above the fold */}
@@ -565,12 +569,24 @@ export default function CoachingPage() {
         <Section background="charcoal" className="!py-12 md:!py-16">
           <Container>
             <div className="max-w-5xl mx-auto">
-              <p className="text-center text-foreground-muted leading-relaxed max-w-3xl mx-auto mb-8">
-                Online cycling coaching is a coach-managed training system: a
-                plan built around your available hours, reviewed against your
-                completed data, and adjusted when fitness, fatigue, work, or
-                life changes. Choose the route that matches what you need now.
-              </p>
+              <div className="mx-auto mb-8 max-w-3xl rounded-2xl border border-coral/25 bg-coral/[0.06] px-6 py-6 text-center">
+                <p className="font-heading text-xs tracking-[0.25em] text-coral mb-3">
+                  THE SHORT ANSWER
+                </p>
+                <h2 className="font-heading text-2xl text-off-white mb-3">
+                  WHAT AN ONLINE CYCLING COACH DOES
+                </h2>
+                <p className="text-foreground-muted leading-relaxed">
+                  An online cycling coach turns your goal, available hours,
+                  training history and completed ride data into the next useful
+                  decision. Roadman&apos;s service pairs a personalised
+                  TrainingPeaks plan with weekly review, live coaching,
+                  cycling-specific strength, fuelling guidance and a private
+                  rider community. This page describes the service; the routes
+                  below cover education, provider-comparison questions and
+                  price research.
+                </p>
+              </div>
               <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                 {COACHING_INTENT_PATHS.map((path) => (
                   <Link
@@ -620,7 +636,7 @@ export default function CoachingPage() {
           <Container width="narrow">
             <ScrollReveal direction="up" className="text-center mb-10">
               <p className="text-coral font-heading text-xs tracking-widest mb-3">
-                SERVICE FACTS · REVIEWED 25 AUGUST 2026
+                SERVICE FACTS · REVIEWED 26 AUGUST 2026
               </p>
               <h2
                 className="font-heading text-off-white mb-4"
@@ -789,26 +805,26 @@ export default function CoachingPage() {
                   style={{ fontSize: "var(--text-section)" }}
                 >
                   <GradientText as="span">
-                    MOST CYCLISTS PLATEAU AFTER 2-3 YEARS.
+                    WHEN HARD WORK STOPS MOVING THE NUMBERS.
                   </GradientText>
                 </h2>
                 <div className="space-y-4 text-foreground-muted leading-relaxed">
                   <p>
-                    You bought the power meter. Downloaded the training app. Did
-                    the intervals. And it worked — for a while. Then the gains
-                    stopped, motivation dipped, and you started wondering whether
-                    this is just your ceiling.
+                    You may already have a power meter, a training app and a
+                    calendar full of intervals. When progress becomes unclear,
+                    the problem is deciding which signal matters and what should
+                    change next.
                   </p>
                   <p>
-                    It&apos;s not. The problem isn&apos;t effort — it&apos;s
-                    structure. Training apps give you workouts. They can&apos;t
-                    adjust for a bad night of sleep, a stressful week at work, or
-                    the fact that your nutrition is quietly undermining everything
-                    else.
+                    More work is not automatically the answer. Training load,
+                    recovery, fuelling, work and the purpose of the block may all
+                    alter the next decision. Software can organise and adapt
+                    workouts; the coaching service adds a named human team
+                    responsible for interpreting that context.
                   </p>
                   <p className="text-off-white font-medium">
-                    A coach sees the whole picture. That&apos;s why coaching
-                    works when apps stop working.
+                    The value to assess is judgement, review and accountability—not
+                    access to another workout library.
                   </p>
                 </div>
               </ScrollReveal>
@@ -821,11 +837,11 @@ export default function CoachingPage() {
                   <ul className="space-y-3">
                     {[
                       "Plans that adapt weekly based on your data and life context",
-                      "Nutrition guidance that targets your power-to-weight ratio",
+                      "Fuelling guidance coordinated with the purpose of the training block",
                       "Strength programming periodised with your riding",
-                      "Recovery protocols that let training actually stick",
-                      "A private community of serious cyclists that keeps you consistent through bad weeks",
-                      "Expert knowledge from a 1,400+ episode podcast catalogue distilled into your plan",
+                      "Recovery decisions considered alongside completed training load",
+                      "A private rider community for shared learning and accountability",
+                      "Relevant lessons from a 1,400+ episode podcast catalogue used to inform coaching decisions",
                     ].map((item) => (
                       <li
                         key={item}
@@ -867,8 +883,9 @@ export default function CoachingPage() {
                 THE FIVE-PILLAR SYSTEM
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto">
-                Most coaching is just a training plan. Ours covers everything
-                that determines whether you actually get faster.
+                Roadman coordinates five parts of the coaching service so the
+                plan, fuelling, strength, recovery and rider context are reviewed
+                together. No programme can guarantee a particular result.
               </p>
             </ScrollReveal>
 
@@ -1117,9 +1134,10 @@ export default function CoachingPage() {
                 COACHING CYCLISTS WORLDWIDE
               </h2>
               <p className="text-foreground-muted max-w-xl mx-auto mb-8 leading-relaxed">
-                Based in Dublin, Ireland. Coaching cyclists across Ireland, the
-                UK, the USA, and beyond. All coaching is delivered online — your
-                location is never a barrier to getting faster.
+                Based in Dublin, Ireland, and delivered online to cyclists across
+                Ireland, the UK, the USA, and beyond. Practical fit depends on
+                time-zone overlap, communication and the support your goal needs,
+                not proximity alone.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
@@ -1289,7 +1307,7 @@ export default function CoachingPage() {
         <Section background="charcoal" className="!py-12">
           <Container width="narrow">
             <EvidenceBlock
-              lastReviewed="25 August 2026"
+              lastReviewed="26 August 2026"
               reviewedBy="Anthony Walsh, founder and head coach"
               experts={[
                 {

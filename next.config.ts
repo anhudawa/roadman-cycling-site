@@ -346,6 +346,10 @@ const nextConfig: NextConfig = {
       // Consolidate the later exact-match cramp answer into the established,
       // reviewed broad guide; long-ride, race and heat pages retain narrow intent.
       { source: "/answers/what-causes-muscle-cramps-cycling", destination: "/blog/cycling-cramp-prevention", permanent: true },
+      // The generic 2026 coach guide duplicated the stronger, reviewed
+      // nine-point selection framework. Preserve its links and search history
+      // while leaving one owner for coach-selection intent.
+      { source: "/blog/best-cycling-coach-guide", destination: "/blog/best-online-cycling-coach-how-to-choose", permanent: true },
       // Legacy product URL — strength-training course used to live under /products
       { source: "/products/strength-training", destination: "/strength-training", permanent: true },
       // Renamed/typo blog slugs surfaced in body links

@@ -89,6 +89,16 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
         label: "How to Choose an Online Cycling Coach",
         intent: "Coach-selection framework and red flags",
       },
+      {
+        path: "/blog/how-much-does-online-cycling-coach-cost-2026",
+        label: "Online Cycling Coach Cost 2026",
+        intent: "Dated market-price, billing and service audit",
+      },
+      {
+        path: "/careers",
+        label: "Roadman Cycling Careers",
+        intent: "Cycling-coach employment and job intent",
+      },
     ],
   },
   {
