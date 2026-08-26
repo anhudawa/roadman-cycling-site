@@ -44,15 +44,35 @@ export interface ExpertPosition {
   context?: string;
 }
 
+export interface ExpertSource {
+  /** Source name shown to readers and emitted as a schema citation. */
+  name: string;
+  /** Public URL for the reviewed source. */
+  url: string;
+  /** What the source establishes, including any important scope limit. */
+  note: string;
+}
+
+export interface ExpertFaq {
+  question: string;
+  answer: string;
+}
+
 export interface ExpertEntityFrontmatter {
   /** Canonical display name (e.g. "Professor Stephen Seiler"). */
   name: string;
+  /** Optional search-result title. Falls back to name + job title. */
+  seoTitle?: string;
+  /** Optional search-result description. Falls back to shortBio. */
+  seoDescription?: string;
   /** Short job-title-style credential (1 line). */
   jobTitle: string;
   /** One-sentence description used in <meta>, OG, and the hero. */
   shortBio: string;
   /** Country/region — populates schema.org `homeLocation`. */
   location?: string;
+  /** Nationality when verified. Kept separate from current residence. */
+  nationality?: string;
   /** Headshot URL (absolute). Optional. */
   image?: string;
   /** Primary org affiliation. */
@@ -79,6 +99,12 @@ export interface ExpertEntityFrontmatter {
   relatedTopicHubs?: string[];
   /** Slugs of related podcast episodes. */
   relatedEpisodes?: string[];
+  /** Visible, reviewed sources for identity and credential claims. */
+  sources?: ExpertSource[];
+  /** Visible answers to recurring entity and disambiguation questions. */
+  faqs?: ExpertFaq[];
+  /** Human-readable review disclosure. */
+  reviewedBy?: string;
   /** ISO date this entity entry was last reviewed. Drives sitemap lastmod. */
   lastReviewed?: string;
 }

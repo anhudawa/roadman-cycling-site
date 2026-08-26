@@ -80,7 +80,7 @@ export const PROBLEM_PAGES: ProblemPage[] = [
     slug: "stuck-on-plateau",
     expertEvidence: {
       name: "Dan Lorang",
-      credential: "Head of Performance, Red Bull–Bora–Hansgrohe; coach to Jan Frodeno",
+      credential: "Head of Performance, Lidl-Trek; endurance coach",
       insight:
         "After thirteen years coaching pros, Lorang's view is that most amateur plateaus mean the easy gains from unstructured riding are gone — the next step isn't more intensity but real periodisation and proper recovery between hard sessions. Adaptation needs an aerobic base deep enough to support the work you keep stacking on top of it.",
       episodeSlug: "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
@@ -111,7 +111,7 @@ export const PROBLEM_PAGES: ProblemPage[] = [
     slug: "coming-back-after-break",
     expertEvidence: {
       name: "Dan Lorang",
-      credential: "Head of Performance, Red Bull–Bora–Hansgrohe; coach to Jan Frodeno",
+      credential: "Head of Performance, Lidl-Trek; endurance coach",
       insight:
         "Lorang builds amateur plans backward from the goal, not from how fit the rider used to be. Coming back, the trap is training to your old numbers — the fix is to recalibrate zones to current fitness and rebuild the aerobic platform first. Consistency at an honest intensity beats trying to claw back the block you lost.",
       episodeSlug: "ep-2134-roglics-coach-builds-a-training-plan-for-amateur-riders-dan",
@@ -270,7 +270,7 @@ export const PROBLEM_PAGES: ProblemPage[] = [
     slug: "tired-all-the-time",
     expertEvidence: {
       name: "Dan Lorang",
-      credential: "Head of Performance, Red Bull–Bora–Hansgrohe; coach to Jan Frodeno",
+      credential: "Head of Performance, Lidl-Trek; endurance coach",
       insight:
         "Lorang manages elite riders by watching the balance between load and recovery, not just the training itself. Chronic tiredness is rarely one thing — it's intensity, sleep, fuelling and life stress stacking faster than the body can absorb. The intervention is almost always to pull intensity back and let a recovery block do its job before adding work again.",
       episodeSlug: "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",

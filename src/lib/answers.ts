@@ -1672,6 +1672,21 @@ const BASE_ANSWERS: AnswerPage[] = [
   },
 ];
 
+function applyCurrentExpertCredentials(answer: AnswerPage): AnswerPage {
+  if (!answer.expertEvidence.some((point) => point.name === "Dan Lorang")) {
+    return answer;
+  }
+
+  return {
+    ...answer,
+    expertEvidence: answer.expertEvidence.map((point) =>
+      point.name === "Dan Lorang"
+        ? { ...point, credential: "Head of Performance, Lidl-Trek" }
+        : point,
+    ),
+  };
+}
+
 export const ANSWER_PAGES: AnswerPage[] = [
   ...BASE_ANSWERS,
   ...ftpAnswers,
@@ -1711,7 +1726,7 @@ export const ANSWER_PAGES: AnswerPage[] = [
   ...highVolumeQuery13Answers,
   ...highVolumeQuery14Answers.map(applyBikeFitTrustOverride),
   ...highVolumeQuery15Answers,
-];
+].map(applyCurrentExpertCredentials);
 
 const ANSWER_MAP = new Map(ANSWER_PAGES.map((a) => [a.slug, a]));
 

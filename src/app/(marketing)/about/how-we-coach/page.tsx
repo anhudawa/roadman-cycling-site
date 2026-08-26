@@ -35,7 +35,7 @@ const principles = [
     title: "Data-driven, not data-drunk",
     body:
       "Power, heart rate, HRV, RPE, sleep — all of it gets read in context. We don't chase ramp-test PRs every block, we don't optimise to a colour on a chart, and we don't ignore a sleep score that's flagging trouble. Numbers inform decisions. They don't replace them.",
-    rooted: { name: "Dan Lorang", role: "Head of Performance, Red Bull–Bora–Hansgrohe", slug: "dan-lorang" },
+    rooted: { name: "Dan Lorang", role: "Head of Performance, Lidl-Trek", slug: "dan-lorang" },
   },
   {
     number: "03",

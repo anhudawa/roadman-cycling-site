@@ -190,7 +190,7 @@ const ZONE_2: ClusterHubDef = {
   experts: [
     { name: "Dr Iñigo San Millán", credential: "Exercise physiologist; coach to Tadej Pogačar" },
     { name: "Professor Stephen Seiler", credential: "Exercise physiologist, polarised-training pioneer" },
-    { name: "Dan Lorang", credential: "Head coach, Bora-Hansgrohe; coach to Pogačar and Vingegaard" },
+    { name: "Dan Lorang", credential: "Head of Performance, Lidl-Trek; elite endurance coach" },
     { name: "John Wakefield", credential: "Performance coach, Science to Sport" },
   ],
   articleSlugs: [
@@ -206,7 +206,7 @@ const ZONE_2: ClusterHubDef = {
   newArticleSlugs: ["find-your-zone-2-lactate-testing-san-millan"],
   pillarContent: `The cycling internet will tell you Zone 2 is "easy riding." That is true and useless in equal measure. Easy compared to what? Easy by whose heart rate? The reason most amateurs get nothing from their Zone 2 is that they ride it by feel, the feel is wrong, and they spend the whole session 15 watts into no-man's-land — too hard to build a base, too easy to build a top end. The grey zone. The single most common mistake in amateur training.
 
-Here is the position, and it comes straight from the people who coach the best riders in the world. Professor Stephen Seiler's research on training-intensity distribution showed that elite endurance athletes spend roughly 80% of their training time properly easy. Dan Lorang, who has coached Tadej Pogačar and Jonas Vingegaard, prescribes the same. The hard part isn't believing it — it's holding yourself to it. [The complete guide to Zone 2 training](/blog/zone-2-training-complete-guide) lays out the why and the how.
+Professor Stephen Seiler's research is the source for the site's discussion of polarised intensity distribution. Dan Lorang's Roadman interviews support a narrower point: sustainable training depends on consistency and matching load to recovery. Roadman has no verified basis for claiming that Lorang coached Tadej Pogačar or Jonas Vingegaard. [The complete guide to Zone 2 training](/blog/zone-2-training-complete-guide) separates research evidence from coach interpretation.
 
 ## Find YOUR Zone 2, not a textbook's
 
@@ -278,7 +278,7 @@ const REVERSE_PERIODISATION: ClusterHubDef = {
   parent: { label: "Topics", href: "/topics" },
   experts: [
     { name: "Joe Friel", credential: "Coach and author of The Cyclist's Training Bible and Fast After 50" },
-    { name: "Dan Lorang", credential: "Head coach, Bora-Hansgrohe; coach to Pogačar and Vingegaard" },
+    { name: "Dan Lorang", credential: "Head of Performance, Lidl-Trek; elite endurance coach" },
     { name: "Dylan Johnson", credential: "Coach and evidence-based cycling educator" },
   ],
   articleSlugs: [
@@ -454,7 +454,7 @@ const INDOOR: ClusterHubDef = {
   parent: { label: "Topics", href: "/topics" },
   experts: [
     { name: "Professor Stephen Cheung", credential: "Environmental physiologist specialising in thermoregulation" },
-    { name: "Dan Lorang", credential: "Head coach, Bora-Hansgrohe; coach to Pogačar and Vingegaard" },
+    { name: "Dan Lorang", credential: "Head of Performance, Lidl-Trek; elite endurance coach" },
     { name: "John Wakefield", credential: "Performance coach, Science to Sport" },
   ],
   articleSlugs: [

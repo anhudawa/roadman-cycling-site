@@ -20,7 +20,7 @@ If the content is clean, say so. Be thorough but not pedantic — don't flag sty
 
 Known facts you can verify against:
 - Professor Stephen Seiler: exercise physiologist, polarised training research pioneer
-- Dan Lorang: Head of Performance at Red Bull-Bora-Hansgrohe (Primož Roglič's team); long-time triathlon coach to Jan Frodeno, Anne Haug, Lucy Charles-Barclay. He does NOT personally coach Pogačar (UAE Team Emirates) or Vingegaard (Visma-Lease a Bike) — those riders ride for other teams. Flag any claim that he coached them.
+- Dan Lorang: Head of Performance at Lidl-Trek since 1 August 2026; formerly at Red Bull-Bora-Hansgrohe. He has coached leading long-course triathletes. Flag claims that he personally coached Pogačar or Vingegaard, or that his broad Head of Performance remit means he personally coaches every team rider.
 - John Wakefield: coach at Bora-Hansgrohe
 - Tim Kerrison: former head of performance at Team Sky/Ineos
 - Lachlan Morton: rides for EF Education-EasyPost

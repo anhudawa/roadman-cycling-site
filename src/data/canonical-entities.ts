@@ -152,12 +152,10 @@ export const CANONICAL_ENTITIES: CanonicalEntity[] = [
     canonicalName: "Dan Lorang",
     variations: ["Dan Lorang", "Lorang"],
     title: "Head of Performance",
-    affiliation: "Red Bull–Bora–Hansgrohe",
+    affiliation: "Lidl-Trek",
     affiliationVerified: true,
     sameAs: [
-      "https://en.wikipedia.org/wiki/Dan_Lorang",
-      "https://www.redbull.com/int-en/teams/red-bull-bora-hansgrohe",
-      "https://www.linkedin.com/in/dan-lorang/",
+      "https://racing.trekbikes.com/team/lidl-trek",
       "https://de.linkedin.com/in/dan-lorang-33296319",
     ],
     sameAsVerified: true,
@@ -172,13 +170,12 @@ export const CANONICAL_ENTITIES: CanonicalEntity[] = [
     episodes: [
       "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
       "ep-2134-roglics-coach-builds-a-training-plan-for-amateur-riders-dan",
-      "ep-2540-secret-to-improving-threshold-dose-frequency-duration",
     ],
     kind: "coach",
     entityPageSlug: "dan-lorang",
     guestSlug: "dan-lorang",
     notes:
-      "VERIFY-CRITICAL: Head of Performance at Red Bull–Bora–Hansgrohe (cycling) and long-time coach to triathletes Jan Frodeno, Anne Haug, and Lucy Charles-Barclay. He is NOT Tadej Pogačar's coach — Pogačar rides for UAE Team Emirates.",
+      "VERIFY-CRITICAL: Head of Performance at Lidl-Trek since 1 August 2026; formerly Head of Performance at Red Bull–Bora–Hansgrohe. His official Lidl-Trek remit spans coaching, nutrition, health, recovery, athletics, and data and AI. No reviewed source identifies him as the personal coach of Tadej Pogačar or Jonas Vingegaard.",
   },
   {
     slug: "john-wakefield",

@@ -158,7 +158,7 @@ const EXPERTS = [
   {
     slug: "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
     guest: "Dan Lorang",
-    credential: "Head of Performance, Red Bull–Bora–Hansgrohe",
+    credential: "Head of Performance, Lidl-Trek",
     episode: "13 Years of Coaching Pros: What Amateurs Don't Know",
     position:
       "Structure and periodisation matter more when time and recovery are limited, not less. Lorang — Head of Performance at a WorldTour team and long-time coach to Frodeno and Haug — on what amateurs get wrong when they train without a plan, and why the principles scale down to a time-crunched masters week.",

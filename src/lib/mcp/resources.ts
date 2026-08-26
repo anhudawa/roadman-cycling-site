@@ -75,7 +75,7 @@ const EXPERTS_ROSTER = `# Roadman Cycling Expert Roster
 Specialty: Polarised training, endurance physiology. Coined the 80/20 rule.
 Appearances: 8+
 
-**Dan Lorang** — Head of Performance, Red Bull–Bora–Hansgrohe
+**Dan Lorang** — Head of Performance, Lidl-Trek since 1 August 2026
 Specialty: Season periodisation, World Tour coaching. Works with Jan Frodeno.
 Appearances: 5+
 

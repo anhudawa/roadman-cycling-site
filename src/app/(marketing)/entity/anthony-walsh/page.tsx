@@ -71,7 +71,7 @@ const expertise = [
 
 const notableInterviews = [
   { name: "Professor Stephen Seiler", credential: "Polarised training pioneer", slug: "stephen-seiler" },
-  { name: "Dan Lorang", credential: "Head of Performance, Red Bull–Bora–Hansgrohe", slug: "dan-lorang" },
+  { name: "Dan Lorang", credential: "Head of Performance, Lidl-Trek", slug: "dan-lorang" },
   { name: "Greg LeMond", credential: "3× Tour de France winner", slug: "greg-lemond" },
   { name: "Lachlan Morton", credential: "EF Education pro cyclist", slug: "lachlan-morton" },
   { name: "Joe Friel", credential: "Author, The Cyclist's Training Bible", slug: "joe-friel" },
