@@ -144,6 +144,7 @@ const CURATED: string[] = [
   `https://${HOST}/blog/cycling-knee-tracking-cleat-setup-guide`,
   `https://${HOST}/blog/cycling-ankle-mobility-calf-strength-guide`,
   `https://${HOST}/blog/cycling-energy-gels-guide`,
+  `https://${HOST}/blog/cycling-in-ride-nutrition-guide`,
   `https://${HOST}/blog/bike-fit-one-change-amateurs-should-make`,
   `https://${HOST}/blog/daryl-fitzgerald-saddle-height-one-change`,
   `https://${HOST}/podcast/ep-1-pro-bike-fitter-reveals-the-1-change-amateurs-should-make`,
