@@ -542,120 +542,6 @@ export const highVolumeQuery9Answers: AnswerPage[] = [
   },
 
   // ============================================================
-  // 6 — WHAT IS SWEET SPOT TRAINING (cycling deep-dive variant)
-  // ============================================================
-  {
-    slug: "what-is-sweet-spot-training-cycling",
-    cluster: "ftp",
-    question: "What Is Sweet Spot Training in Cycling?",
-    seoTitle: "What Is Sweet Spot Training? A Practical Breakdown",
-    seoDescription:
-      "Sweet spot sits at 84-94% of FTP — hard enough to build fitness, manageable enough to repeat. How to structure sessions and where they fit your week.",
-    pillar: "coaching",
-    directAnswer:
-      "Sweet spot training means riding at 84–94% of your FTP — a zone that's demanding enough to drive meaningful fitness gains but sustainable enough to accumulate more time-in-zone than true threshold work allows. It suits time-crunched riders who need to maximise adaptation per hour, typically structured as intervals of 10–20 minutes with short recoveries, totalling 30–60 minutes of work in a session.",
-    keyTakeaways: [
-      "Sweet spot sits at 84–94% FTP, below threshold but well above endurance pace.",
-      "It trades some per-minute adaptation for the ability to accumulate far more total time in zone.",
-      "It suits riders with 5–8 hours a week who can't fit long polarised blocks.",
-      "Overusing sweet spot as your only intensity drifts you into a fatiguing, under-recovering middle zone.",
-    ],
-    whoFor: [
-      {
-        label: "The time-crunched rider with 5-8 hours a week",
-        detail:
-          "You can't fit long, separate easy and hard sessions, so you need a zone that delivers solid adaptation without needing 90 minutes of dedicated recovery afterward.",
-      },
-      {
-        label: "The rider building a base of sustainable intensity",
-        detail:
-          "You want a structured way to add quality to your week without the all-out demands of true threshold or VO2max intervals.",
-      },
-    ],
-    roadmanView: [
-      "Sweet spot gets treated online as either a miracle zone or a trap, and the truth sits in between. It's an efficiency tool. You get most of the physiological benefit of threshold work with meaningfully less fatigue cost, which lets you do more of it across a week. For a rider training 6 hours who can't afford two full recovery days after a threshold session, that trade is really useful.",
-      "The problem starts when sweet spot becomes the only intensity a rider ever does. Stephen Seiler's research on polarised distribution is a caution here — an entire training week built from sweet spot sessions, without properly easy days either side, quietly becomes a grey-zone plan. You're never hard enough to force the top-end adaptations and never easy enough to properly recover.",
-      "Used correctly, sweet spot is a tool for a specific problem: limited hours. It is not a replacement for either properly easy riding or properly hard threshold and VO2max work when you have the time to do them properly.",
-    ],
-    expertEvidence: [
-      {
-        name: "Dr Andrew Coggan",
-        credential: "Exercise physiologist, co-developer of the power-based training zone model",
-        insight:
-          "Sweet spot occupies the zone just below threshold where a rider can accumulate substantially more total training stress per session than at true threshold intensity, without the same multi-day recovery cost — useful for riders who need efficiency more than peak stimulus.",
-      },
-      {
-        name: "Professor Stephen Seiler",
-        credential: "Exercise physiologist, polarised-training researcher",
-        insight:
-          "The risk with any moderately hard training zone is that it becomes the default for every session. Athletes who train exclusively in a sweet-spot-type zone, without truly easy days, tend to plateau faster than those who polarise their intensity.",
-        episodeSlug: "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
-        guestSlug: "stephen-seiler",
-      },
-    ],
-    practicalApplication: [
-      {
-        title: "Structure sessions as repeated 10-20 minute blocks",
-        detail:
-          "A typical session is 3×15 minutes at 88–92% FTP with 5 minutes easy between efforts. Build up total time in zone gradually across several weeks rather than jumping straight to long blocks.",
-      },
-      {
-        title: "Cap sweet spot to two or three sessions a week",
-        detail:
-          "Even though it's more repeatable than threshold work, sweet spot still accumulates fatigue. Two to three sessions a week with properly easy riding on the other days is a sustainable structure for most amateurs.",
-      },
-      {
-        title: "Keep your easy days actually easy",
-        detail:
-          "Sweet spot only works as intended if your non-interval days are low intensity. If every ride sits at a moderate effort, you lose the recovery that lets the sweet spot sessions produce adaptation.",
-      },
-    ],
-    commonMistakes: [
-      {
-        mistake: "Making every training session sweet spot because it feels productive.",
-        fix:
-          "Balance sweet spot sessions with properly easy riding. A week entirely at 85-90% FTP is a fatigue plan, not a training plan.",
-      },
-      {
-        mistake: "Treating sweet spot as interchangeable with threshold training.",
-        fix:
-          "Sweet spot and threshold produce overlapping but distinct adaptations. If your goal is maximum FTP gain and you have recovery capacity to spare, true threshold work at 95-105% FTP is more direct.",
-      },
-      {
-        mistake: "Starting with sessions too long for your current fitness.",
-        fix:
-          "Build up total sweet spot volume gradually — start with 20-30 minutes total and progress over several weeks rather than attempting a 60-minute session in week one.",
-      },
-    ],
-    faq: [
-      {
-        question: "Is sweet spot training the same as threshold training?",
-        answer:
-          "No. Threshold sits at roughly 95-105% of FTP, while sweet spot sits below it at 84-94%. Threshold produces a more direct, concentrated adaptation stimulus per minute; sweet spot allows more total accumulated time at a slightly lower intensity, trading some per-minute stimulus for repeatability.",
-      },
-      {
-        question: "How often should I do sweet spot sessions?",
-        answer:
-          "Two to three sessions a week is a sustainable amount for most amateur riders, provided the remaining days include properly easy riding. More than that risks drifting into a constant moderate-intensity pattern that under-delivers on both recovery and top-end adaptation.",
-      },
-      {
-        question: "Can sweet spot training replace zone 2 riding?",
-        answer:
-          "No. Sweet spot and zone 2 serve different purposes — zone 2 builds aerobic base and allows genuine recovery between harder efforts, while sweet spot is a moderately hard stimulus. Replacing all your easy riding with sweet spot removes the recovery that makes the hard sessions effective.",
-      },
-    ],
-    relatedEpisodes: ["ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler"],
-    relatedTopics: [
-      { label: "What is functional threshold power?", href: "/answers/what-is-functional-threshold-power" },
-      { label: "How long should cycling intervals be?", href: "/answers/how-long-should-cycling-intervals-be" },
-      { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
-    ],
-    evidenceLevel: "strong",
-    publishDate: "2026-07-10",
-    updatedDate: "2026-07-10",
-  },
-
-  // ============================================================
   // 7 — HOW LONG SHOULD CYCLING INTERVALS BE
   // ============================================================
   {
@@ -752,7 +638,7 @@ export const highVolumeQuery9Answers: AnswerPage[] = [
     ],
     relatedEpisodes: [],
     relatedTopics: [
-      { label: "What is sweet spot training?", href: "/answers/what-is-sweet-spot-training-cycling" },
+      { label: "What is sweet spot training?", href: "/blog/sweet-spot-training-cycling-guide" },
       { label: "What is functional threshold power?", href: "/answers/what-is-functional-threshold-power" },
       { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
     ],
@@ -858,7 +744,7 @@ export const highVolumeQuery9Answers: AnswerPage[] = [
     ],
     relatedEpisodes: [],
     relatedTopics: [
-      { label: "What is sweet spot training?", href: "/answers/what-is-sweet-spot-training-cycling" },
+      { label: "What is sweet spot training?", href: "/blog/sweet-spot-training-cycling-guide" },
       { label: "How long should cycling intervals be?", href: "/answers/how-long-should-cycling-intervals-be" },
       { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
     ],
@@ -967,7 +853,7 @@ export const highVolumeQuery9Answers: AnswerPage[] = [
     relatedEpisodes: ["ep-40-how-joe-friel-structures-the-ideal-cycling-training-week"],
     relatedTopics: [
       { label: "What is training periodisation?", href: "/answers/what-is-training-periodisation-cycling" },
-      { label: "What is sweet spot training?", href: "/answers/what-is-sweet-spot-training-cycling" },
+      { label: "What is sweet spot training?", href: "/blog/sweet-spot-training-cycling-guide" },
       { label: "TSS Calculator", href: "/tools/tss" },
     ],
     evidenceLevel: "strong",

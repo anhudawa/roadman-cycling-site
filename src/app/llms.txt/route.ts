@@ -799,7 +799,7 @@ ${answersClusterBlock}
 - [Wind Chill Calculator](${tag(`${BASE_URL}/tools/wind-chill`)}): Feels-like temperature for cyclists from speed, air temp, and wind — with descent mode for alpine descents, frostbite risk, and clothing recommendations.
 - [Masters FTP Benchmark](${tag(`${BASE_URL}/tools/masters-ftp-benchmark`)}): Age-specific FTP percentile for masters cyclists — enter age, FTP, weight, see where you rank against trained amateurs in your decade (40-44 through 60+).
 - [Masters Recovery Score](${tag(`${BASE_URL}/tools/masters-recovery-score`)}): Recovery audit calibrated for cyclists 40+ — age, weekly hours, sleep, and life stress combined into a 0-100 score with your single biggest lever to change this week.
-- [Sweet Spot Calculator](${tag(`${BASE_URL}/tools/sweet-spot`)}): Enter FTP, get sweet spot power range, session structures, weekly volume guidance.
+- [Sweet Spot Calculator](${tag(`${BASE_URL}/tools/sweet-spot`)}): Calculate the common 88-94% FTP band and review response-led sample sessions; no universal weekly dose is implied.
 - [Cycling Age Grade Calculator](${tag(`${BASE_URL}/tools/age-grade`)}): Age-grade cycling power, see peak-equivalent W/kg, percentile among trained masters cyclists.
 - [Interval Session Builder](${tag(`${BASE_URL}/tools/interval-builder`)}): Pick a training goal, enter FTP and available time, get a complete structured session with power targets, cadence, TSS estimate.
 - [Cycling Body Composition Calculator](${tag(`${BASE_URL}/tools/body-composition`)}): US Navy method body fat estimate with cycling context — W/kg impact of composition changes, minimum safe racing weight, RED-S risk flags.

@@ -244,8 +244,8 @@ const SESSIONS: Session[] = [
       { name: "Cool-down", durationMin: 5, powerMinPct: 50, powerMaxPct: 65, cadenceMin: 80, cadenceMax: 95, rpe: "2", color: "#22C55E" },
     ],
     description:
-      "The bread-and-butter sweet spot session. Two 20-minute blocks at 88-94% FTP sit just below your lactate threshold - high enough to drive strong aerobic adaptation, low enough to recover from within 24-36 hours. You get roughly 90% of the training effect of full threshold work at a fraction of the fatigue cost. The workhorse of any time-crunched training plan.",
-    recoveryNote: "Can ride Z2 the next day. 24-36 hours before the next sweet spot or harder session.",
+      "Two 20-minute blocks in the common 88-94% FTP sweet spot band. This is a familiar coaching format, not a universal starting dose or proof that the rider is below a measured lactate threshold. Use it when recent comparable work supports the duration and keep the first block controlled enough to repeat.",
+    recoveryNote: "Review the complete set and the next normal training day before scheduling another hard session; the template cannot prescribe a fixed recovery time.",
   },
   {
     id: "ss-triple-15s",
@@ -261,7 +261,7 @@ const SESSIONS: Session[] = [
     ],
     description:
       "Same total sweet spot volume as 2x20 but broken into three 15-minute blocks. The shorter efforts feel more manageable, especially early in a training block or when returning after a break. Slightly more total recovery time, which makes it a good option for riders building toward the classic 2x20 format.",
-    recoveryNote: "Easy Z2 or rest day tomorrow. Can do another sweet spot session in 36-48 hours.",
+    recoveryNote: "Use pacing, RPE and subsequent normal training to judge recovery rather than assuming a 36-48 hour interval.",
   },
   {
     id: "ss-endurance",
@@ -277,7 +277,7 @@ const SESSIONS: Session[] = [
     ],
     description:
       "One continuous 45-minute block at the lower end of sweet spot (88-92% FTP). This session builds muscular endurance and mental toughness - the ability to hold a demanding pace without a break. It mimics the sustained effort of a time trial or long solo breakaway. The slightly lower power target accounts for the absence of recovery intervals.",
-    recoveryNote: "Full rest day or very easy Z1 spin tomorrow. This is harder than it looks on paper.",
+    recoveryNote: "This is a demanding example. Individualise the next day from training history and observed response.",
   },
   {
     id: "ss-progressive",
@@ -297,7 +297,7 @@ const SESSIONS: Session[] = [
     ],
     description:
       "Three 15-minute blocks that step up through the sweet spot range: 88% then 91% then 94% FTP. Each block is harder than the last, teaching your body to produce power on accumulated fatigue - exactly what happens in the second half of a race. The progressive structure also teaches pacing discipline: start controlled, finish strong.",
-    recoveryNote: "Rest day or Z1 only tomorrow. 48 hours before the next sweet spot or harder session.",
+    recoveryNote: "Do not infer a fixed next-day prescription or 48-hour rule from this template; review whether the progression stayed controlled.",
   },
 
   /* ---- Tempo ---- */

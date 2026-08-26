@@ -213,7 +213,7 @@ export const TOOLS: ToolEntry[] = [
     slug: "sweet-spot",
     title: "Sweet Spot Calculator",
     description:
-      "Enter your FTP and get your sweet spot power range with session structures, weekly volume guidance, and when to choose sweet spot over tempo or threshold.",
+      "Calculate the common 88-94% FTP sweet spot band, compare neighbouring power ranges, and review response-led sample sessions.",
     pillar: "coaching",
     inputs: ["ftp"],
   },

@@ -269,6 +269,7 @@ const COACHING_CLUSTER = [
   "cycling-interval-training-beginners",
   "cycling-vo2max-intervals",
   "cycling-zone-5-vo2max-intervals-guide",
+  "sweet-spot-training-cycling-guide",
 ];
 
 // Indexed pages freshness-stamped after the canonical coaching-offer audit.

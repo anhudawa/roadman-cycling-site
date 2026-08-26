@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 288,
+    "prompt_count": 289,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -2336,6 +2336,14 @@
       "category": "cycling-training",
       "intent": "education",
       "target_page": "/blog/cycling-zone-5-vo2max-intervals-guide",
+      "priority": "high"
+    },
+    {
+      "id": 289,
+      "prompt": "what is sweet spot training in cycling and how often should I do it",
+      "category": "cycling-training",
+      "intent": "education",
+      "target_page": "/blog/sweet-spot-training-cycling-guide",
       "priority": "high"
     }
   ]
