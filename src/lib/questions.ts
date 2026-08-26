@@ -791,7 +791,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
       {
         label: "Roadman Fuelling Calculator",
         detail:
-          "Calculate your specific carb, fluid, and sodium targets by ride duration, intensity, and bodyweight.",
+          "Build a carbohydrate starting range from the session inputs; measure fluid loss separately with the cycling sweat-rate calculator.",
         href: "/tools/fuelling",
       },
     ],
@@ -924,10 +924,10 @@ export const QUESTION_PAGES: QuestionPage[] = [
     question: "How Do I Fuel a Sportive?",
     seoTitle: "How Do I Fuel a Sportive?",
     seoDescription:
-      "Sportive fuelling protocol — pre-ride, in-ride, and post-ride. The exact carb, fluid, and sodium targets that finish strong rather than bonking on the back third.",
+      "Sportive fuelling protocol — pre-ride, in-ride, and post-ride. Build and rehearse carbohydrate and condition-specific hydration ranges.",
     pillar: "nutrition",
     shortAnswer:
-      "Eat 2-3g/kg of carbs 2-3 hours before the start. Take 30-40g of carbs 30-60 minutes pre-start. Then 60-90g of carbs every hour from minute 30 onwards, with 500-750ml of fluid per hour and 500-1000mg of sodium for warm conditions. Most amateurs eat half what they need and bonk because of it.",
+      "Eat 2-3g/kg of carbs 2-3 hours before the start, take 30-40g of carbs 30-60 minutes pre-start, then use a rehearsed 60-90g-per-hour carbohydrate range from minute 30. Build fluid and sodium logistics from representative rides, weather, access and tolerance rather than copying a universal hourly dose.",
     bestFor:
       "Riders training for or doing a 100km+ sportive who want a defensible, evidence-based fuelling plan.",
     notFor:
@@ -938,14 +938,14 @@ export const QUESTION_PAGES: QuestionPage[] = [
     fullExplanation: [
       "Sportive fuelling is one of the highest-leverage things an amateur cyclist can fix — and one of the most consistently under-done. Anthony has interviewed dozens of riders whose sportive performance shifted 15-25% in pace not because their FTP changed, but because they finally fuelled properly. The protocol below isn't extreme; it's the new amateur baseline.",
       "Pre-ride: eat 2-3g of carbs per kg of bodyweight 2-3 hours before the start. For a 75kg rider, that's a 150-225g breakfast — porridge with banana and honey, plus toast and jam, plus a coffee. 30-60 minutes before the start, top up with 30-40g of fast carbs (a gel, a banana, a small flapjack). You're aiming to roll out with full glycogen and stable blood sugar.",
-      "In-ride: from minute 30, take 60-90g of carbs per hour — and this is where amateurs most consistently fall short. The rule is set a 25-30 minute timer on your head unit and eat or drink something every alarm. Mix sources: a bottle of carb drink (60g per bottle), gels (25g each), real food (rice cakes, Pop-Tarts, fig rolls). Aim for 500-750ml of fluid per hour. In hot conditions or long events, add 500-1000mg of sodium per hour — heavy sweaters at the upper end.",
+      "In-ride: from minute 30, use a rehearsed 60-90g-per-hour carbohydrate range. Set a 25-30 minute reminder and mix tolerated sources. Plan drink access from representative rides and expected conditions, then audit body-mass change and symptoms afterward. Sodium needs depend on total sweat loss, sweat sodium, diet and event context; sweat volume alone does not produce one universal dose.",
       "Post-ride matters too, especially if you're stacking efforts. Within 30-60 minutes of finishing, take 1-1.2g/kg of carbs plus 25-40g of protein. That accelerates glycogen replacement and starts muscle repair. The Roadman Fuelling Calculator gives the exact numbers for your weight, ride duration, and conditions. The Sportive Preparation guide adds the pacing context — fuelling and pacing are inseparable on long rides.",
     ],
     evidence: [
       {
         label: "Roadman Fuelling Calculator",
         detail:
-          "Free tool for calculating carb, fluid, and sodium needs by ride duration, intensity, weight, and conditions.",
+          "Free tool for building a carbohydrate starting range from ride inputs; use the separate measured sweat-rate calculator for fluid-loss auditing.",
         href: "/tools/fuelling",
       },
       {
@@ -981,7 +981,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
       {
         question: "How much fluid for a hot sportive?",
         answer:
-          "Heavy sweaters in heat over 28°C may need 750-1000ml/hour with 700-1000mg of sodium per hour. The simple way to estimate is to weigh yourself before and after a 90-minute ride at sportive pace — every kilogram lost is roughly a litre of fluid you didn't replace. Adjust accordingly.",
+          "There is no safe universal hourly dose. Test representative rides by recording dry pre/post body mass, drink, urine and duration, then attach temperature, humidity, airflow and intensity to the result. Use repeated observations to rehearse a practical range, do not force full sweat replacement, and do not drink enough to gain body mass during prolonged exercise.",
       },
     ],
     related: [
@@ -1495,7 +1495,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
       "The Mallorca 312 is a 312km mass-start sportive in late April with around 5,000m of climbing. The defining feature isn't the distance — it's the front-loaded profile. The first 130km contains every serious climb, including Sa Calobra (9.5km at 7%) at km 80. The closing 180km is flat-to-rolling and pack-dominated. Riders who treat the climbs as 'the hard part' and the flats as 'the recovery' have it backwards.",
       "Climbing pacing. Target 60-65% of FTP for the opening climbing block. Sa Calobra at km 80 is where every ego mistake gets paid for. Cap power at 75% of FTP on Sa Calobra — if your FTP is 280W, that's 210W on the bottom slopes climbing to no more than 220W on the steeper middle section. The temptation to ride it 'at sportive pace' is the single biggest reason 312 riders blow up between km 150 and km 220.",
       "The flat closing 180km is a different sport. Once you crest the final categorised climb, switch to tempo (76-87% FTP) inside groups, draft economy becomes the single biggest determinant of finishing time. A 4-rider rotating paceline at sportive tempo can save 40-60W per rider — that's the difference between a 12-hour and a 14-hour finish. Stay calm in the wind, take short turns, eat on every flat stretch.",
-      "Fuelling on a 12-hour event. Dr David Dunne's discussions of modern World Tour fuelling on the Roadman Cycling Podcast point to 90-120g of carbs per hour as the new amateur baseline for ultra-distance events, with 700-900ml of fluid and 700-1000mg of sodium each hour in Mallorca's late-April heat. That's roughly 1100-1400g of carbs across the day — most amateurs eat half that and bonk somewhere in the closing 80km. Use the fuelling calculator and gut-train every long ride beforehand.",
+      "Fuelling on a 12-hour event must be rehearsed. Higher carbohydrate intakes require progressive gut training and are not an automatic baseline for every amateur. Build fluid logistics from representative warm rides, bottle access and tolerance; review sodium separately because sweat volume does not reveal sweat sodium concentration. Use the fuelling and sweat-rate tools as planning inputs, not exact prescriptions.",
     ],
     evidence: [
       {
@@ -1751,10 +1751,10 @@ export const QUESTION_PAGES: QuestionPage[] = [
     question: "How Do I Fuel a 200km Sportive?",
     seoTitle: "How to Fuel a 200km Sportive",
     seoDescription:
-      "An evidence-based fuelling protocol for 200km sportives — pre-ride loading, in-ride carb and sodium targets, hydration through hour 7, and the gut training that makes 120g/hr possible.",
+      "A practical fuelling protocol for 200km sportives — pre-ride food, gut-trained carbohydrate ranges and measured hydration planning through hour seven.",
     pillar: "nutrition",
     shortAnswer:
-      "Take 90-120g of carbs per hour from minute 30, plus 600-900ml of fluid and 700-1000mg of sodium hourly. Total carb intake across a 6-9 hour 200km event lands at 600-1100g — most amateurs eat half that and bonk because of it. Train the gut on every long ride; race day is not the day to test new numbers.",
+      "Start carbohydrate early and use the highest intake you have repeatedly tolerated in training; 90g per hour or more requires deliberate gut training and is not a universal starting point. Build a separate fluid and sodium plan from representative rides, expected conditions, access and tolerance. Race day is not the time to test new numbers.",
     bestFor:
       "Riders training for or doing a 200km sportive — Wicklow 200, Mallorca 312, Maratona dles Dolomites — who need a defensible fuelling plan.",
     notFor:
@@ -1767,7 +1767,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
     fullExplanation: [
       "A 200km sportive is a step-change in fuelling demand from a 100km event, not a linear extension. Glycogen depletion across 6-9 hours of moderate-intensity work breaks the shortcuts that work at the shorter distance — under-eating early can be patched in a 100km ride; in a 200km ride it ends in a bonk somewhere in the closing 60km. The protocol below is the new amateur baseline for any event over 6 hours, not an upper bound for elite riders.",
       "Pre-ride loading. Eat 2-3g of carbs per kg of bodyweight 2-3 hours before the start — for a 75kg rider, that's a 150-225g breakfast (porridge with banana and honey, toast, juice). 30-60 minutes pre-start, top up with 30-40g of fast carbs (gel, banana, small flapjack). The aim is to roll out with full glycogen and stable blood sugar so you're not chasing a deficit from minute 60.",
-      "In-ride: 90-120g of carbs per hour from minute 30, climbing toward the upper end if your gut is trained for it. Set a 25-30 minute timer on your head unit and eat or drink something every alarm — hunger is a lagging indicator on long events. Mix sources: a bottle of carb drink (60g per bottle), gels (25g each), real food (rice cakes, Pop-Tarts, fig rolls). Hydration in the same window: 600-900ml of fluid per hour, 700-1000mg of sodium per hour, with heavy sweaters in heat at the upper end of both ranges.",
+      "In-ride: begin with a carbohydrate rate already tolerated in long training rides and progress only through deliberate gut training. A reminder can keep intake consistent, but the foods and concentration must suit the rider. Plan fluid separately from representative sweat-loss observations and event access. Sodium concentration varies widely, so do not infer a fixed sodium dose from fluid loss or body size.",
       "Gut training is the non-negotiable. Most amateurs cannot tolerate 120g/hr on day one — it has to be trained, the same way you train threshold power. Build by 10-15g/hr per week from your current intake on weekly long rides, and never test a new fuelling number for the first time on race day. On the podcast, Dr David Dunne has been explicit that the 90-120g/hr World Tour standard is achievable for amateurs but only with deliberate gut training in the 8-12 weeks before the event. Use the Roadman fuelling calculator to model your specific weight, duration, and conditions.",
     ],
     evidence: [
@@ -1780,7 +1780,7 @@ export const QUESTION_PAGES: QuestionPage[] = [
       {
         label: "Roadman — Fuelling Calculator",
         detail:
-          "Free tool for calculating carb, fluid, and sodium needs by ride duration, intensity, weight, and conditions — the practical companion to this protocol.",
+          "Free tool for building a carbohydrate starting range. Pair it with the measured cycling sweat-rate calculator and field testing.",
         href: "/tools/fuelling",
       },
       {

@@ -966,15 +966,15 @@ export const nutritionAnswers: AnswerPage[] = [
     question: "How Much Should I Drink While Cycling?",
     seoTitle: "How Much Should You Drink While Cycling?",
     seoDescription:
-      "How much to drink while cycling: 500–750ml per hour in cool conditions, up to 1,000ml in heat. Why thirst is a reasonable guide for most rides, and when it is not enough.",
+      "How much to drink while cycling: use thirst, measured sweat loss, conditions and access to build a range without overdrinking.",
     pillar: "nutrition",
     directAnswer:
-      "Drink 500–750ml per hour in cool to moderate conditions, scaling up to 750–1,000ml per hour in heat or high-intensity efforts. Thirst is a reasonable guide for easy rides but lags behind real needs in hot weather or at race pace. Start drinking from the first 15–20 minutes — do not wait until you feel dry. Pre-hydrating the morning before long or hot rides reduces the deficit you start with.",
+      "There is no universal millilitres-per-hour target for cycling. Thirst can be a useful guide on shorter rides in cool or moderate conditions. For long, hard or hot events, estimate sweat rate from representative pre/post body mass, measured drink, urine and duration, then use it as an upper planning boundary rather than a 100% replacement command. Avoid both substantial deficits and drinking enough to gain body mass.",
     keyTakeaways: [
-      "Target 500–750ml per hour in cool conditions, 750–1,000ml in heat.",
-      "Thirst is a reasonable guide for easy rides but underestimates needs in heat or high intensity.",
-      "Start drinking early — within the first 15–20 minutes, before thirst arrives.",
-      "Pre-hydrate the morning before long or hot events to reduce the starting deficit.",
+      "No single bottle-per-hour number fits every rider, condition and course.",
+      "Use thirst for many cool or moderate rides; long, hard or hot events may justify a measured and rehearsed range.",
+      "Calculate sweat rate from body-mass change plus drink minus urine, divided by duration, then repeat in comparable conditions.",
+      "Do not drink enough to gain body mass during prolonged exercise; sodium does not make overdrinking safe.",
     ],
     whoFor: [
       {
@@ -989,16 +989,16 @@ export const nutritionAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Most amateur cyclists drink too little and drink it too late. The science is clear that by the time thirst kicks in as a strong signal, you are already 1–2% dehydrated — a level that measurably reduces both power output and perceived effort. Anthony has tested this on long hot rides: the difference between proactively pacing your drinking and responding to thirst is visible in the power file in the back third of the ride.",
-      "The practical standard is a 500ml bottle per 30 minutes in warm conditions, adjusting based on sweat rate and temperature. Some riders sweat 1,500ml per hour in extreme heat — no amount of drinking covers that entirely, but getting as close as you can delays the performance decline. The riders who cope best in heat are the ones who start hydrated, drink on a schedule, and include sodium to help retain what they take in.",
-      "Cold weather riding fools people in the opposite direction — you feel less sweaty and forget to drink. The fluid loss is lower, but it is still there. On a three-hour cold-day ride, a 500ml bottle per hour is a reasonable minimum. Arrive home dehydrated in November and recovery quality suffers just as much as in July.",
+      "Hydration advice fails when it turns a population range into a command. The useful plan begins with what happened to this cyclist on a comparable ride, then preserves a range for weather, pace and access.",
+      "Sweat rate is evidence about loss, not a demand to replace every millilitre while moving. Very high loss can exceed comfortable intake, and forcing fluid creates a different risk.",
+      "Fluid, sodium and carbohydrate share a bottle but remain separate targets. More salt does not make more water automatically safe.",
     ],
     expertEvidence: [
       {
         name: "Dr Sam Impey",
         credential: "World Tour nutritionist",
         insight:
-          "Hydration strategy at World Tour level is personalised to sweat rate, sweat sodium concentration, and environmental conditions. The amateur takeaway is simpler: drink on a schedule from the start rather than reacting to thirst, include sodium in longer rides to aid retention, and never arrive at an event under-hydrated.",
+          "World Tour hydration practice is personalised to sweat rate, sweat sodium, environment, race logistics and the rest of the nutrition plan. The amateur lesson is to measure representative rides and test a practical range rather than copy a professional bottle schedule.",
         episodeSlug: "ep-2035-world-tour-nutritionist-we-got-fuelling-wrong",
         guestSlug: "sam-impey",
       },
@@ -1006,64 +1006,64 @@ export const nutritionAnswers: AnswerPage[] = [
         name: "Fuelling and hydration experiment",
         credential: "Roadman podcast — under vs optimal fuelling",
         insight:
-          "In Anthony's controlled fuelling comparison, hydration shortfall combined with carbohydrate shortfall produced the steepest power decline. The two interact — dehydration impairs carbohydrate absorption, compounding the effect of under-fuelling.",
+          "Roadman field observations can reveal problems worth testing, but they are not controlled proof of one fluid dose. Record carbohydrate, fluid, heat, pace and symptoms separately before changing the plan.",
         episodeSlug: "ep-36-i-tried-under-over-optimal-fuelling-heres-what-no-one-tells",
       },
     ],
     practicalApplication: [
       {
-        title: "Set a drinking schedule, not a thirst response",
+        title: "Measure one representative ride",
         detail:
-          "Aim for one 500–750ml bottle per hour in temperate conditions. Set a recurring 20-minute alert on your head unit as a prompt. You should never be taking a first sip at the 45-minute mark.",
+          "Record dry pre/post body mass, every drink, urine, duration, temperature, airflow and intensity. Use the sweat-rate calculator, then repeat before treating the result as a range.",
       },
       {
-        title: "Scale up in heat",
+        title: "Choose thirst, a range or a schedule from the ride",
         detail:
-          "Above 25°C or at race intensity, move toward 750–1,000ml per hour. If you are sweating through your kit visibly, you are likely losing more than 500ml per hour. Add a second bottle cage for hot-day rides or plan café and water stops.",
+          "Thirst may suit a shorter cool ride. A long, hard or hot event may need a rehearsed range and planned safe drinking opportunities. Keep observed loss as the upper boundary.",
       },
       {
-        title: "Pre-hydrate the morning before long rides",
+        title: "Audit the failure boundaries",
         detail:
-          "Drink 500ml of water in the 2–3 hours before a long or hot ride, alongside your pre-ride meal. Waking up on a normal morning you are already mildly dehydrated from overnight breathing and potential alcohol from the night before. Start the ride topped up.",
+          "Check for fluid-related body-mass gain, large deficits, gastrointestinal discomfort or worsening symptoms. Change one variable and seek qualified help for repeated problems or relevant medical history.",
       },
     ],
     commonMistakes: [
       {
-        mistake: "Waiting until thirsty to start drinking on the bike.",
+        mistake: "Copying one millilitres-per-hour target from another rider.",
         fix:
-          "Drink from 15–20 minutes in, before the thirst signal arrives. Thirst lags behind actual fluid needs, especially in heat.",
+          "Use thirst and repeated condition-specific sweat observations to build your own range.",
       },
       {
-        mistake: "Drinking only water on rides over two hours.",
+        mistake: "Treating sports drink as protection from overhydration.",
         fix:
-          "Plain water on long rides dilutes blood sodium, reducing the drive to retain fluid and potentially causing hyponatremia in extreme cases. Add electrolytes — particularly sodium — to your bottles for rides over 90 minutes.",
+          "Exercise-associated hyponatraemia is primarily linked to fluid consumed beyond losses. Sodium in the drink does not cancel that risk.",
       },
       {
-        mistake: "Under-hydrating in cold weather because you 'don't feel sweaty'.",
+        mistake: "Using one sweat-rate test as a permanent value.",
         fix:
-          "Cold air is dry and cycling creates respiratory fluid loss. You sweat less but still lose fluid. Keep drinking on a schedule year-round.",
+          "Repeat when temperature, humidity, intensity, clothing, acclimation or airflow changes materially.",
       },
     ],
     faq: [
       {
         question: "Can you drink too much water while cycling?",
         answer:
-          "Yes — hyponatremia (dangerously low blood sodium) can occur when riders drink large volumes of plain water over many hours without replacing sodium. It is rare in typical sportive riding but has occurred in ultra-endurance events. Use drinks with electrolytes for rides over two hours and on hot days.",
+          "Yes. Exercise-associated hyponatraemia is primarily linked to drinking hypotonic fluid beyond losses together with impaired water excretion. Water and sports drink can both contribute when overconsumed. Avoid fluid-related body-mass gain and seek urgent help for confusion, seizure, collapse or altered consciousness.",
       },
       {
         question: "Should I drink sports drinks or water on long rides?",
         answer:
-          "Both. Water alone works for rides under 60–90 minutes. Beyond that, a drink with sodium and some carbohydrate aids fluid retention, delivers fuel, and reduces the risk of dilutional hyponatremia. Use electrolyte drinks for long hot rides; water works fine for most easy rides.",
+          "Either can fit. Water may be sufficient for a short or low-loss ride; sodium and carbohydrate drink can support a prolonged or high-loss plan. Count total fluid and every source of carbohydrate and sodium. Electrolyte drink does not remove the risk of overdrinking.",
       },
       {
         question: "How do I know if I am dehydrated after a ride?",
         answer:
-          "Weigh yourself before and after a long ride. Each kilogram of bodyweight lost corresponds roughly to 1 litre of fluid deficit. If you lose 2kg or more, your hydration strategy needs improving. Dark urine post-ride is also a useful signal.",
+          "Dry pre/post body mass, drink, urine and duration estimate fluid loss from a representative ride. Interpret the result with thirst, symptoms, conditions and repeated observations. One scale value or urine colour does not diagnose dehydration or determine a universal replacement dose.",
       },
       {
         question: "How much should I drink on a hot day cycling event?",
         answer:
-          "In temperatures above 25–30°C, target 750–1,000ml per hour and ensure every bottle contains electrolytes. Plan water stop intervals that keep you below a 2% bodyweight fluid deficit. Starting an event already dehydrated is the most common cause of mid-event heat performance collapse.",
+          "There is no temperature-only volume. Measure representative hot rides, account for humidity, airflow, pace and access, then rehearse a range that stays below observed loss and does not produce fluid-related mass gain. Cooling and pacing belong in the same hot-event plan.",
       },
       {
         question: "Does caffeine cause dehydration while cycling?",
@@ -1085,9 +1085,11 @@ export const nutritionAnswers: AnswerPage[] = [
     ],
     evidenceLevel: "strong",
     evidenceNote:
-      "Hydration targets and thirst-lag evidence are well established in sports science; corroborated by Dr Sam Impey.",
+      "Reviewed against the 2026 UCI cycling consensus (PMID 41468209), NATA fluid-replacement position statement (PMID 28985128), sweat-testing methodology review (PMID 28332116) and exercise-associated-hyponatraemia consensus (PMID 26102445).",
     publishDate: "2026-05-26",
-    updatedDate: "2026-05-26",
+    updatedDate: "2026-08-26",
+    reviewedBy:
+      "Anthony Walsh, with editorial fact-checking against the cited hydration and exercise-associated-hyponatraemia literature",
   },
 
   // ============================================================
@@ -1099,15 +1101,15 @@ export const nutritionAnswers: AnswerPage[] = [
     question: "Do Cyclists Need Electrolytes?",
     seoTitle: "Do Cyclists Need Electrolytes? The Honest Answer",
     seoDescription:
-      "Do cyclists need electrolytes? Yes, for rides over 90 minutes, in heat, or where sweat loss is high. Why sodium is the key electrolyte, and when plain water is enough.",
+      "Do cyclists need electrolytes? Learn when sodium becomes useful, why needs vary and why sports drink cannot make overdrinking safe.",
     pillar: "nutrition",
     directAnswer:
-      "For rides over 90 minutes, in hot conditions, or when sweat loss is high, yes — cyclists need electrolytes, particularly sodium. Sodium aids fluid retention, helps maintain blood volume, and prevents the performance decline that comes from plasma sodium dilution. For rides under an hour in cool conditions, plain water is usually sufficient. Sodium is the electrolyte that matters most; the others — potassium, magnesium — are covered by a normal diet.",
+      "Cyclists do not need electrolyte supplements for every ride. Sodium becomes more relevant as total sweat loss, heat, duration and repeat-day demand rise. Start with the fluid plan, count sodium already present in food and drink, and individualise further when measured losses or repeat problems justify it. There is no universal hourly dose, and sodium does not prevent exercise-associated hyponatraemia if fluid is consumed beyond losses.",
     keyTakeaways: [
-      "Sodium is the critical electrolyte for cycling — it aids fluid retention and maintains plasma volume.",
-      "Electrolytes matter for rides over 90 minutes, in heat, and at high sweat rates.",
-      "Plain water is sufficient for most rides under 60–90 minutes in cool conditions.",
-      "A normal varied diet covers potassium, magnesium, and calcium needs — these rarely need supplementing.",
+      "Sodium and chloride are the main sweat electrolytes of practical interest during prolonged cycling.",
+      "Short, cool or low-loss rides often need no dedicated electrolyte product when normal diet and hydration are adequate.",
+      "Sweat sodium varies and regional testing is method dependent, so one product dose cannot fit every rider.",
+      "Sports drink can still contribute to hyponatraemia when consumed beyond losses; sodium is not permission to force fluid.",
     ],
     whoFor: [
       {
@@ -1122,16 +1124,16 @@ export const nutritionAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "Electrolyte marketing has created a world where riders are adding tablet after tablet to every water bottle on every ride, including a 45-minute commute in October. The truth is more targeted: for easy short rides, plain water is fine. For long rides, hot days, and high-intensity efforts where you are sweating significantly, sodium in your drink is actually important.",
-      "The mechanism is real. Sodium keeps you thirsty, so you drink more. It is retained with fluid, maintaining blood plasma volume. When sodium drops through heavy sweating and plain-water replacement, the hormonal drive to drink weakens, you stop retaining fluid efficiently, and power output drops faster than it should. The riders who manage this best — like Ben Healy with his extraordinary fuelling strategy — are precise about sodium intake on long and hot efforts.",
-      "For most amateurs on normal four-season riding, the priority is simply getting sodium into your bottles on any ride over 90 minutes and on any ride where conditions are warm. Beyond that, potassium and magnesium are handled by eating a varied diet. The electrolyte complexity the supplement industry sells is largely unnecessary for riders who eat real food.",
+      "An electrolyte label is not a plan. The ride, fluid volume, food and measured loss have to come first.",
+      "Sodium can support retention and palatability without becoming universal. The correct dose is bounded by method, context and tolerance.",
+      "Cramps are not proof of one deficiency, and white kit is not a laboratory measurement. Both are clues to investigate rather than shortcuts to a high dose.",
     ],
     expertEvidence: [
       {
         name: "Dr Sam Impey",
         credential: "World Tour nutritionist",
         insight:
-          "Sodium is the electrolyte that drives meaningful performance differences in cycling. It regulates fluid balance, aids carbohydrate absorption in the gut, and helps maintain blood volume. Losses via sweat can be substantial — some riders lose 1,500–2,000mg of sodium per hour — making replacement on long or hot rides a performance priority.",
+          "Sodium is the primary electrolyte to consider in prolonged cycling hydration, but total losses depend on both sweat volume and sweat sodium concentration. The useful plan remains individual and includes food, drink and event context.",
         episodeSlug: "ep-2035-world-tour-nutritionist-we-got-fuelling-wrong",
         guestSlug: "sam-impey",
       },
@@ -1139,37 +1141,37 @@ export const nutritionAnswers: AnswerPage[] = [
         name: "Ben Healy fuelling strategy",
         credential: "Roadman podcast — professional race fuelling",
         insight:
-          "At the pro level, electrolyte management is personalised around sweat testing. Riders with high sweat sodium content — some pros lose over 2,000mg/hr — carry specific sodium supplements in their race nutrition plan. The amateur lesson is to at least cover baseline sodium needs rather than relying on plain water for multi-hour efforts.",
+          "Professional practice can use sweat testing and race-specific logistics, but it should not be translated into a universal amateur dose. Regional test methods, total fluid, food and tolerance still have to be reviewed.",
         episodeSlug: "ep-2031-ben-healy-s-insane-fueling-strategy-revealed",
       },
     ],
     practicalApplication: [
       {
-        title: "Add sodium to your bottles for rides over 90 minutes",
+        title: "Start with the fluid and event plan",
         detail:
-          "An electrolyte tablet, a pinch of salt (300–500mg sodium), or a sodium-containing sports drink in your main bottle on any ride over 90 minutes is a sensible baseline. On hot days or high-intensity efforts, use it in every bottle.",
+          "Decide whether the ride is short and low loss or prolonged, hot and high loss. Measure representative fluid loss before choosing a sodium product.",
       },
       {
-        title: "Eat real food for potassium and magnesium",
+        title: "Read the actual sodium line",
         detail:
-          "Bananas, potatoes, spinach, and nuts cover potassium and magnesium. A varied diet almost always provides adequate amounts of these electrolytes — targeted supplementation is rarely necessary for amateur cyclists who eat well.",
+          "Compare milligrams of sodium in the bottle volume you will mix. Count carbohydrate drink, gels, food, capsules and tablets in the same ride total.",
       },
       {
-        title: "Test your personal sweat rate on hot long rides",
+        title: "Test the complete mixture",
         detail:
-          "Weigh yourself before and after a 90-minute hot-day ride without drinking. Each kg lost is roughly 1,500mg of sodium. If you regularly lose 2kg or more, you are a high sweat-loss rider and need to take electrolytes more seriously than most.",
+          "Rehearse product, concentration, fluid volume, carbohydrate, intensity and heat together. A body-mass sweat test estimates water loss; it does not reveal sodium concentration.",
       },
     ],
     commonMistakes: [
       {
-        mistake: "Adding electrolytes to every ride including short easy sessions.",
+        mistake: "Adding electrolytes by duration alone.",
         fix:
-          "For rides under 60–90 minutes in cool conditions, plain water is usually sufficient. Save the tablets for when they actually matter — long rides and hot days.",
+          "Use total sweat loss, heat, food, fluid and repeat-day demand. Short, cool, low-loss rides often need no dedicated product.",
       },
       {
-        mistake: "Drinking plain water for hours without replacing sodium.",
+        mistake: "Assuming electrolyte drink prevents hyponatraemia.",
         fix:
-          "Plain water on a long ride dilutes plasma sodium. Add sodium to your drinks for any ride over 90 minutes, scaling up in heat and high intensity.",
+          "Any hypotonic drink can contribute when consumed beyond losses. Do not gain body mass from fluid intake during prolonged exercise.",
       },
       {
         mistake: "Blaming cramps entirely on electrolyte deficiency.",
@@ -1181,27 +1183,27 @@ export const nutritionAnswers: AnswerPage[] = [
       {
         question: "Do electrolytes help with cycling cramps?",
         answer:
-          "Sodium deficiency and dehydration can contribute to cramping, particularly in heat. But most exercise cramps have a neuromuscular component — fatigue and poor pacing — that electrolytes alone will not fix. Staying hydrated with sodium-containing drinks reduces the risk; addressing training load and pacing addresses the rest.",
+          "Not reliably for every rider. Exercise-associated cramps are multifactorial and often involve fatigue or neuromuscular factors. Heat, fluid and sodium may contribute for some athletes, but a tablet cannot be guaranteed as prevention. Review pace, conditioning and the full hydration and fuel plan.",
       },
       {
         question: "What is the best electrolyte for cyclists?",
         answer:
-          "Sodium is the most important one for performance and fluid retention. Most electrolyte products also contain potassium, magnesium, and calcium, but the evidence for supplementing these beyond what a normal diet provides is weak. If you use electrolyte tablets, check the sodium content — aim for products with 300–500mg or more per serving.",
+          "Sodium and chloride are the main sweat electrolytes of practical interest during prolonged exercise. There is no universally best product or serving. Compare sodium in the volume you will actually mix, count food and other products, and choose by the measured plan, palatability and tolerance.",
       },
       {
         question: "Can I get enough electrolytes from food rather than supplements?",
         answer:
-          "For sodium, food alone is often not enough to replace high sweat losses during long or hot rides — you need it in your drink to maintain absorption efficiency alongside carbohydrate. For other electrolytes, yes — a normal varied diet covers potassium, magnesium, and calcium for most riders.",
+          "Often, especially for short or low-loss rides. Prolonged, hot or repeated-day cycling can make sodium-containing drink useful because food may be impractical while riding. Count sodium from every source before deciding a supplement is required.",
       },
       {
         question: "How much sodium do I need per hour cycling?",
         answer:
-          "Sweat sodium concentration varies widely between individuals — from 300mg/litre to over 1,500mg/litre. A practical starting target is 500–700mg of sodium per hour on long hot rides, adjusting based on whether you are a heavy or light sweater. If your kit is coated in white salt stains, you are a high-sodium loser and need more.",
+          "There is no universal hourly dose. Sweat volume, sweat sodium concentration, food, drink, acclimation and event context all matter. Salt marks are qualitative, not a precise concentration. Use method-aware testing or a qualified sports dietitian when a personalised high-dose strategy is being considered.",
       },
       {
         question: "Are electrolyte drinks worth it for short rides?",
         answer:
-          "For rides under 60 minutes in cool conditions, plain water is fine and electrolyte drinks add unnecessary cost and calories. For rides over 90 minutes, in heat, or where you sweat heavily, the sodium in electrolyte drinks makes a meaningful difference to fluid retention.",
+          "They are often unnecessary for a short, cool, low-loss ride when the cyclist starts normally hydrated and eats a normal diet. Taste or convenience may still matter. Judge longer or hotter rides from total loss and the complete plan rather than a duration-only cutoff.",
       },
     ],
     relatedEpisodes: [
@@ -1218,9 +1220,11 @@ export const nutritionAnswers: AnswerPage[] = [
     ],
     evidenceLevel: "strong",
     evidenceNote:
-      "Sodium's role in fluid retention and performance is well established; sweat-sodium variability corroborated by Dr Sam Impey.",
+      "Reviewed against the 2026 UCI cycling consensus (PMID 41468209), NATA fluid-replacement position statement (PMID 28985128), sweat-testing methodology review (PMID 28332116) and exercise-associated-hyponatraemia consensus (PMID 26102445).",
     publishDate: "2026-05-26",
-    updatedDate: "2026-05-26",
+    updatedDate: "2026-08-26",
+    reviewedBy:
+      "Anthony Walsh, with editorial fact-checking against the cited electrolyte and exercise-associated-hyponatraemia literature",
   },
 
   // ============================================================

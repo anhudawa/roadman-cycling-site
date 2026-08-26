@@ -324,7 +324,7 @@ export const EVENTS: TrainingEvent[] = [
     pacingStrategy:
       "The 312 is a fueling problem more than a fitness one. Pace the opening 100km at 60-65% FTP maximum. Ride the middle 100km conservatively with strict carb/fluid discipline. The last 100km is where preparation shows — those who fuelled correctly can even push. Arrive at the final named climb with reserves, not red-lined.",
     nutritionAngle:
-      "10+ hours means 80g carbs/hour minimum, 100g if gut-trained. 500-750ml fluid/hour once the heat kicks in. Food at every aid station on the route — don't skip any. Electrolytes become dominant after hour 6. A 'second breakfast' at the Pollença aid stop (km 80) is a classic move.",
+      "A 10+ hour plan needs a gut-trained carbohydrate range and reliable resupply. Use representative warm rides to estimate fluid loss and rehearse bottle access without forcing full replacement. Review sodium across food, drink and supplements rather than assuming electrolytes become a universal priority after a fixed hour. A 'second breakfast' at the Pollença aid stop (km 80) is a practical real-food option.",
     kitAngle:
       "Long-finger gloves + gilet for the first two hours (cold on the climbs pre-dawn). 34x30 minimum, 34x32 recommended for Sa Calobra late in the day. Extra bottle cages or a frame bag for the long desert-like middle section.",
   },
@@ -386,7 +386,7 @@ export const EVENTS: TrainingEvent[] = [
     pacingStrategy:
       "Don't race the start. Badlands has a 4-5 day finishing window for most riders and the leaderboard means almost nothing if you DNF at km 400. Sustainable pace — roughly 60% of your 8-hour FTP as an all-day ceiling. Sleep plan written in advance: where, how long, triggered by which km.",
     nutritionAngle:
-      "No aid stations. You carry or you resupply from shops. 80-100g carbs/hour on the bike minimum. Calories eaten at shops count. Salt + electrolytes critical in the desert crossing. Cafés and gas stations become your crew.",
+      "No aid stations means every carbohydrate and fluid range depends on mapped shop access. Rehearse the highest intake your gut tolerates, audit sweat loss in representative heat and carry contingency capacity between resupplies. Sodium should be planned from the whole diet, products and repeated observations rather than treated as a universal desert dose.",
     kitAngle:
       "Ultra-endurance bikepacking setup: dynamo hub, frame bag, saddle bag, bar bag. 40-45mm gravel tyres with good sidewalls (Challenge Getaway, Pirelli Cinturato, Schwalbe G-One Ultrabite). Bivvy bag + emergency blanket for forced sleep stops.",
   },
@@ -417,7 +417,7 @@ export const EVENTS: TrainingEvent[] = [
     pacingStrategy:
       "Altitude changes everything. Target a power ceiling 15-20% below what you'd hold at sea level. Heart rate runs 5-10 bpm higher than your lowland rate at the same effort — don't panic. Columbine Mine is a controlled climb at aerobic threshold. The flats + the Powerline descent are where the front group makes time; the back half is where you win your sub-9 buckle.",
     nutritionAngle:
-      "Altitude suppresses appetite — force-fuel on a timer. 70-90g carbs/hour. Feed zones are excellent (crew + on-course). Hydration is critical: 750ml+/hour with electrolytes. The dry Colorado air dehydrates faster than you feel.",
+      "Altitude can reduce appetite, so rehearse reminders and tolerated carbohydrate before race day. Use the excellent feed zones for resupply. Build a condition-specific fluid range from representative rides and access, and do not turn dry air or reduced thirst into a forced universal bottle or electrolyte schedule.",
     kitAngle:
       "Hardtail or 120mm trail bike. 2.3-2.4\" tyres with Enduro or MaxxTerra casings — not XC race tyres. CO2 + pump + plug kit + spare tube. Arm warmers + gilet for the 06:30 start (cold). Altitude requires sunglasses with good UV + clear lens backup for the Columbine descent (often cloud + rain).",
   },

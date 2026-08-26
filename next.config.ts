@@ -133,6 +133,20 @@ const nextConfig: NextConfig = {
         destination: "/blog/cycling-heat-illness-prevention-guide",
         permanent: true,
       },
+      // Search Console shows cycling-hydration-guide owns the broad hydration
+      // query history. Consolidate the later broad strategy and hybrid
+      // hydration/sweat-rate duplicates while keeping the measurement-led
+      // sweat-rate article as a distinct specialist owner.
+      {
+        source: "/blog/cycling-hydration-strategy-complete-guide",
+        destination: "/blog/cycling-hydration-guide",
+        permanent: true,
+      },
+      {
+        source: "/blog/cycling-hydration-sweat-rate-guide",
+        destination: "/blog/cycling-hydration-guide",
+        permanent: true,
+      },
       // ==========================================================
       // coaching.roadmancycling.com subdomain retirement
       // ----------------------------------------------------------

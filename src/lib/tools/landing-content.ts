@@ -1415,6 +1415,95 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
     ],
   },
 
+  hydration: {
+    slug: "hydration",
+    title: "Cycling Sweat Rate Calculator",
+    description:
+      "Calculate cycling sweat rate from measured pre/post body mass, fluid, urine and ride duration, with the formula, assumptions and safety boundaries visible.",
+    url: `${ROADMAN_BASE}/tools/hydration`,
+    breadcrumbName: "Sweat Rate Calculator",
+    answerSummary:
+      "A cycling sweat-rate test estimates fluid lost during one representative ride. Record dry pre- and post-ride body mass, everything you drink, any urine produced and the duration. The result belongs to those conditions: it is not a universal drinking target and it does not measure sweat sodium.",
+    whatItDoes:
+      "This calculator turns field measurements from a real ride into estimated total sweat loss and litres per hour. It keeps the inputs and formula visible, flags body-mass gain and unusually high values, and links the result to an evidence-led planning process.\n\nIt replaces Roadman's old population estimate based on body weight, intensity and temperature. Those variables affect sweat loss, but they cannot measure an individual rider's loss from a desk calculation.",
+    whoItsFor: [
+      "Cyclists planning long, hot or high-intensity rides",
+      "Riders comparing sweat losses across representative conditions",
+      "Coaches auditing bottle logistics without forcing full replacement",
+      "Anyone searching for a transparent cycling sweat-rate formula",
+    ],
+    howItWorks:
+      "Estimated sweat loss equals pre-ride body mass minus post-ride body mass, plus fluid consumed, minus urine produced. One kilogram of acute mass change is treated as roughly one litre of water, then total loss is divided by ride duration in hours. Wet clothing, scale precision, food and unrecorded losses create error, so repeat comparable tests.",
+    howToSteps: [
+      { name: "Prepare a representative ride", text: "Choose conditions, clothing and intensity relevant to the event or training question. Use the same reliable scale before and after." },
+      { name: "Measure normal behaviour", text: "Weigh after using the toilet in dry minimal clothing. Drink normally and record every bottle, refill and bathroom stop; do not withhold fluid for the test." },
+      { name: "Enter the four measurements", text: "Add pre- and post-ride body mass in kilograms, fluid consumed and urine in millilitres, and the ride duration." },
+      { name: "Interpret, repeat and audit", text: "Attach temperature, humidity, airflow, clothing and workload to the result. Repeat comparable sessions, avoid drinking enough to gain body mass and do not assume 100% replacement is required." },
+    ],
+    howToTotalTime: "PT5M",
+    limitations:
+      "One field result is noisy and specific to its conditions. Wet clothing, inaccurate scales, food, respiratory water and unrecorded fluid can distort it. The calculator estimates fluid loss only: it cannot measure sweat sodium, diagnose dehydration, prescribe a universal millilitres-per-hour target or decide whether symptoms need treatment.",
+    whenToSeeACoach:
+      "Use a qualified sports dietitian or clinician when repeated measurements are extreme, you have recurrent heat illness, confusion, collapse, persistent gastrointestinal problems, kidney or cardiovascular disease, or take medication that affects fluid or sodium balance. Confusion, seizure, collapse, loss of coordination or altered consciousness during or after exercise needs urgent medical help.",
+    examples: [
+      {
+        scenario: "Representative 90-minute ride",
+        inputs: ["Pre: 75.0 kg", "Post: 74.4 kg", "Drink: 750 ml", "Urine: 0 ml", "Duration: 90 min"],
+        output: "Estimated sweat loss: 1.35 L. Estimated sweat rate: 0.90 L/h. This describes that ride; it is not a command to drink 0.90 L/h.",
+      },
+      {
+        scenario: "Body-mass gain check",
+        inputs: ["Pre: 70.0 kg", "Post: 70.3 kg", "Drink and duration recorded"],
+        output: "The tool flags fluid-related body-mass gain so the rider can recheck measurements and avoid repeating an overdrinking pattern.",
+      },
+    ],
+    faqs: [
+      {
+        question: "How do I calculate sweat rate for cycling?",
+        answer: "Subtract post-ride body mass from pre-ride body mass, add fluid consumed, subtract urine produced, then divide the estimated litres lost by duration in hours. Weigh in dry minimal clothing and repeat comparable rides because one result is condition-specific and noisy.",
+      },
+      {
+        question: "Is sweat rate the same as how much I should drink per hour?",
+        answer: "No. Sweat rate estimates loss during a particular ride. It is one boundary for planning, not a requirement to replace every millilitre while riding. Thirst, conditions, access, tolerance, symptoms and post-ride body-mass trends also matter, and a normally hydrated rider should not drink enough to gain body mass during prolonged exercise.",
+      },
+      {
+        question: "Should I avoid drinking during a sweat-rate test?",
+        answer: "No. Drink normally and record the amount. The formula adds consumed fluid back into estimated loss. Withholding fluid can make the session unrepresentative and is unnecessary for this field calculation.",
+      },
+      {
+        question: "Does the calculator tell me how much sodium I need?",
+        answer: "No. Sweat volume and sweat sodium concentration are separate measurements. This tool does not infer a sodium dose from fluid loss, body mass, temperature or cramping. Review food, product labels, event demands and—when justified—valid sweat-sodium testing separately.",
+      },
+      {
+        question: "How often should I repeat a cycling sweat-rate test?",
+        answer: "Repeat it in the conditions that materially change your loss: cool and hot weather, indoor and outdoor riding, different workloads or clothing. Compare like with like and treat repeated observations as a range, not a permanent personal constant.",
+      },
+    ],
+    related: [
+      { label: "Cycling Hydration Guide", href: "/blog/cycling-hydration-guide", kind: "article" },
+      { label: "How to Calculate Sweat Rate", href: "/blog/cycling-electrolytes-sweat-rate-testing-guide", kind: "article" },
+      { label: "Electrolytes for Cycling", href: "/blog/electrolytes-sweat-rate-cycling", kind: "article" },
+      { label: "Cycling Nutrition Hub", href: "/topics/cycling-nutrition", kind: "topic" },
+    ],
+    webAppFeatures: [
+      "Measured cycling sweat-rate calculation",
+      "Transparent fluid-balance formula",
+      "Body-mass gain and high-value checks",
+      "500 ml and 750 ml bottle comparison",
+      "Visible methodology and evidence limits",
+      "No signup and no universal fluid or sodium prescription",
+    ],
+    evidenceSources: [
+      { name: "UCI Sports Nutrition Project: Special Environments", role: "Cycling-specific consensus and field sweat-loss equation", href: "https://pubmed.ncbi.nlm.nih.gov/41468209/" },
+      { name: "Baker: Sweating Rate and Sweat Sodium Concentration", role: "Field measurement methodology and sources of error", href: "https://pubmed.ncbi.nlm.nih.gov/28332116/" },
+      { name: "NATA Fluid Replacement Position Statement", role: "Individual planning and body-mass-gain safeguard", href: "https://pubmed.ncbi.nlm.nih.gov/28985128/" },
+      { name: "Exercise-Associated Hyponatremia Consensus", role: "Overdrinking risk and emergency context", href: "https://pubmed.ncbi.nlm.nih.gov/26102445/" },
+    ],
+    dateModified: "2026-08-26",
+    reviewedBy: "Anthony Walsh",
+    reviewScope: "Editorial source-to-claim review; not individual medical or dietetic advice.",
+  },
+
   "indoor-platform-compare": {
     slug: "indoor-platform-compare",
     title: "Indoor Cycling Platform Comparison Tool",

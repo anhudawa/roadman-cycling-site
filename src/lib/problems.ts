@@ -488,7 +488,7 @@ export const PROBLEM_PAGES: ProblemPage[] = [
     solutions: [
       { title: "Build durability", description: "Long rides at endurance pace extend the fatigue-resistance ceiling", href: "/blog/aerobic-decoupling-cycling-cardiac-drift" },
       { title: "Fuel properly", description: "60-90g carbs/hour maintains glycogen and delays neuromuscular fatigue", href: "/tools/fuelling" },
-      { title: "Plan your sodium intake", description: "700-1000mg per hour for heavy sweaters in heat", href: "/blog/cycling-hydration-guide" },
+      { title: "Audit fluid and sodium together", description: "Measure representative losses, count every source and avoid a universal dose", href: "/blog/electrolytes-sweat-rate-cycling" },
       { title: "Train long-ride pacing", description: "Even pacing prevents the surge-recover pattern that triggers cramps", href: "/glossary/pacing-strategy" },
     ],
     toolHref: "/tools/fuelling",

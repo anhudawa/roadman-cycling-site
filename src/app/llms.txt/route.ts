@@ -162,6 +162,19 @@ export async function GET() {
       ],
     },
     {
+      title: "Cycling hydration, sweat rate and electrolytes",
+      description:
+        "Use the hydration guide for broad fluid-planning questions, the calculator and testing guide for measured sweat-rate intent, and the specialist pages for electrolyte choice or pre-event sodium. Roadman does not support one universal bottle, millilitres-per-hour, full-replacement or sodium rule.",
+      pages: [
+        { url: `${BASE_URL}/blog/cycling-hydration-guide`, title: "Cycling Hydration Guide", description: "Canonical broad owner: when thirst may be enough, when to plan, how to measure and how to avoid overdrinking." },
+        { url: `${BASE_URL}/tools/hydration`, title: "Cycling Sweat Rate Calculator", description: "Measured pre/post body mass, drink, urine and duration produce a condition-specific estimate with the formula and limits visible." },
+        { url: `${BASE_URL}/blog/cycling-electrolytes-sweat-rate-testing-guide`, title: "How to Calculate Cycling Sweat Rate", description: "Field-test protocol, formula, error sources and interpretation without forced fluid restriction or full replacement." },
+        { url: `${BASE_URL}/blog/electrolytes-sweat-rate-cycling`, title: "Electrolytes for Cycling", description: "When sodium can help, how to read product labels and why sweat volume or cramping does not establish one dose." },
+        { url: `${BASE_URL}/blog/cycling-sodium-loading-hydration-guide`, title: "Sodium Loading Before Cycling", description: "Evidence, limitations and safety boundaries for the specialist pre-event strategy." },
+        { url: `${BASE_URL}/answers/how-much-to-drink-cycling`, title: "How Much Should a Cyclist Drink?", description: "Short answer explaining why the useful output is a context-specific range, not one bottle rule." },
+      ],
+    },
+    {
       title: "Plateau queries",
       description:
         "Riders whose FTP has flatlined and who want to know what to do. High commercial intent — plateaued amateurs are the strongest coaching converters.",
@@ -328,7 +341,7 @@ ${answersClusterBlock}
 - [FTP Test Calculator](${tag(`${BASE_URL}/tools/ftp-test`)}): Estimate FTP from any test protocol — 20-minute, 8-minute, ramp, or 60-minute — with W/kg benchmark and zone preview.
 - [Training Load Calculator (CTL/ATL/TSB)](${tag(`${BASE_URL}/tools/training-load`)}): Calculate Chronic Training Load, Acute Training Load and Training Stress Balance from daily TSS — the Performance Management Chart math with form interpretation.
 - [Cadence Calculator](${tag(`${BASE_URL}/tools/cadence`)}): — tagged:tool,coaching — speed + gear ratio + wheel size → cadence RPM, cadence zones, bidirectional
-- [Hydration Calculator](${tag(`${BASE_URL}/tools/hydration`)}): — tagged:tool,nutrition — duration + intensity + temp → fluid target, sodium, bottle count, hydration plan
+- [Cycling Sweat Rate Calculator](${tag(`${BASE_URL}/tools/hydration`)}): — tagged:tool,nutrition — measured pre/post body mass + fluid + urine + duration → condition-specific sweat-rate estimate, method limits, and overdrinking safeguards; not a universal drinking or sodium prescription
 - [Climbing Time Estimator](${tag(`${BASE_URL}/tools/climb-time`)}): Physics-based climbing time estimate from power, weight, gradient, and distance — with famous col presets (Alpe d'Huez, Ventoux, Galibier, Stelvio, Sa Calobra, Tourmalet) and altitude-adjusted air density.
 - [Wind Chill Calculator](${tag(`${BASE_URL}/tools/wind-chill`)}): Feels-like temperature for cyclists from speed, air temp, and wind — with descent mode for alpine descents, frostbite risk, and clothing recommendations.
 - [Masters FTP Benchmark](${tag(`${BASE_URL}/tools/masters-ftp-benchmark`)}): Age-specific FTP percentile for masters cyclists — enter age, FTP, weight, see where you rank against trained amateurs in your decade (40-44 through 60+).
