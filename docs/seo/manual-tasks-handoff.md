@@ -1,116 +1,96 @@
-# Manual SEO Tasks — Handoff Guide
+# Manual SEO tasks — current handoff
 
-**Date:** 2026-04-23
-**For:** Ted / whoever has Vercel + GSC access
+**Last verified:** 26 August 2026
 
-These two tasks take 10 minutes combined and unblock everything the SEO engine has built.
+**Owner:** Ted / whoever has Vercel and Google Search Console access
 
----
+This replaces the April 2026 handoff. The domain, sitemap and five Phase 2
+search-owner URLs have now been checked. There is no outstanding bulk indexing
+task.
 
-## Task 1: Add www.roadmancycling.com in Vercel (2 minutes)
+## Current verified state
 
-**Why:** Old `www.roadmancycling.com` pages are still indexed in Google. The middleware redirect is deployed but Vercel rejects www requests at the edge unless the domain is configured. Without this, those old URLs keep showing in search results and diluting trust.
+| Check | Verified result |
+| --- | --- |
+| `https://www.roadmancycling.com` | Permanent `308` redirect to `https://roadmancycling.com/` |
+| `https://roadmancycling.com/sitemap.xml` | `200`; GSC last read 26 August 2026 with **Success** |
+| `/podcast` | **URL is on Google**; page indexed; HTTPS and breadcrumb valid |
+| `/coaching` | **URL is on Google**; page indexed; HTTPS and breadcrumb valid |
+| `/masters` | **URL is on Google**; page indexed; HTTPS and breadcrumb valid |
+| `/training-plans` | **URL is on Google**; page indexed; HTTPS and breadcrumb valid |
+| `/training-camps` | **URL is on Google**; page indexed; HTTPS and breadcrumb valid |
 
-**Steps:**
+The full inspection record and measurement links are in
+[`gsc-phase2-owner-indexing-verification-2026-08-26.md`](./gsc-phase2-owner-indexing-verification-2026-08-26.md).
 
-1. Go to https://vercel.com
-2. Open the `roadman-cycling-site` project
-3. Click **Settings** in the top nav
-4. Click **Domains** in the left sidebar
-5. In the "Add Domain" input, type: `www.roadmancycling.com`
-6. Click **Add**
-7. Vercel will show one of two options:
-   - **"Redirect to roadmancycling.com"** — select this (preferred, handled at the edge, fastest)
-   - **"Add and configure DNS"** — if this appears, select the redirect option instead
-8. If Vercel asks about DNS, it will show a CNAME record to add. The record is:
-   - Type: `CNAME`
-   - Name: `www`
-   - Value: `cname.vercel-dns.com`
-   - Add this in your DNS provider (Cloudflare, Namecheap, wherever roadmancycling.com DNS is managed)
-9. Wait 5-10 minutes for DNS propagation
-10. Test: `curl -I https://www.roadmancycling.com` should return a 301 redirect to `https://roadmancycling.com`
+## Safe Google Search Console workflow
 
-**Expected result:** All `www.roadmancycling.com/*` URLs 301-redirect to `roadmancycling.com/*`. Google will de-index the www versions within 1-2 crawl cycles (1-2 weeks).
+Use URL Inspection as a read-only diagnostic by default:
 
----
+1. Inspect the exact canonical URL.
+2. Record whether Google reports **URL is on Google**, **Page is indexed**, HTTPS
+   status and detected enhancements.
+3. If the URL is already indexed, stop. Do not request another crawl merely
+   because content changed.
+4. Treat **Request indexing** as a separate manual action. Use it only when an
+   authorised person explicitly approves it and a genuinely new or materially
+   changed priority URL has a discovery problem.
+5. Never batch-click the action or state a guaranteed crawl, indexing or rich-
+   result timeline. Google decides whether and when to crawl, index and show
+   search features.
 
-## Task 2: Google Search Console Setup (5-8 minutes)
+Google does not use IndexNow. Its normal discovery path is the canonical internal
+link graph plus the submitted sitemap. URL Inspection verifies Google's state;
+it does not need to become a submission step for every release.
 
-**Why:** We shipped ~860 indexed pages, 186 blog articles, 310 enriched episodes, 8 tools, 10 comparisons, 20 glossary terms, and more — but Google doesn't know about most of them yet. Submitting the sitemap and manually inspecting priority pages forces discovery within 24-48 hours instead of waiting weeks.
+## Sitemap check
 
-### Part A: Submit Sitemap
+The public sitemap endpoint is healthy. Search Console reports the canonical
+sitemap index and video sitemap as **Success**, last read 26 August 2026. Every
+current child endpoint from `/sitemap/0.xml` through `/sitemap/7.xml` also
+returns `200` as XML.
 
-1. Go to https://search.google.com/search-console
-2. Select the `roadmancycling.com` property (or `sc-domain:roadmancycling.com` if it's a domain property)
-3. In the left sidebar, click **Sitemaps**
-4. In the "Add a new sitemap" field, enter: `https://roadmancycling.com/sitemap.xml`
-5. Click **Submit**
-6. You should see status: "Success" or "Pending" — both are fine
-7. The sitemap index contains 6 child sitemaps (articles, episodes, guests, plans, topics+glossary+comparisons, static pages). GSC will discover all of them automatically from the index.
+Six direct child-sitemap submissions from 23 April still display their old
+**Couldn't fetch** state because those rows were not reread. They are historical
+dashboard noise, not evidence that the current child endpoints are unavailable.
+The successful canonical sitemap index is the active discovery source. Do not
+submit duplicate forms merely to make old rows look current.
 
-### Part B: Request Indexing on 15 Priority Pages
+## IndexNow
 
-For each URL below, do this:
-1. Click the search bar at the top of any GSC page ("Inspect any URL...")
-2. Paste the URL
-3. Press Enter
-4. Wait for the inspection result (5-15 seconds)
-5. Click **"Request Indexing"**
-6. Wait for confirmation popup (10-30 seconds)
-7. Move to the next URL
-
-**Priority URLs (do all 15):**
-
-```
-https://roadmancycling.com/coaching
-https://roadmancycling.com/apply
-https://roadmancycling.com/plan
-https://roadmancycling.com/start-here
-https://roadmancycling.com/assessment
-https://roadmancycling.com/tools/ftp-zones
-https://roadmancycling.com/coaching/triathlon
-https://roadmancycling.com/research
-https://roadmancycling.com/blog/cycling-coaching-results-before-and-after
-https://roadmancycling.com/blog/cycling-coaching-free-trial
-https://roadmancycling.com/compare
-https://roadmancycling.com/glossary
-https://roadmancycling.com/best/best-cycling-training-apps
-https://roadmancycling.com/problem/not-getting-faster
-https://roadmancycling.com/editorial-standards
-```
-
-**Important notes:**
-- Google limits indexing requests to ~10-12 per day per property. If you hit a quota, do the first 12 today and the remaining 3 tomorrow.
-- Each request takes 15-30 seconds to process. Don't click multiple times.
-- If a URL shows "URL is on Google" already, still click Request Indexing to force a re-crawl with the latest content.
-
-### Part C: Verify Next Day (optional but recommended)
-
-Come back tomorrow and check:
-1. **Sitemaps** → confirm "Last read" date is recent and status is "Success"
-2. **Pages** → check if "Indexed" count is increasing
-3. **URL Inspection** → spot-check `/coaching` to confirm it shows "URL is on Google" with a fresh crawl date
-4. **Enhancements** → check for FAQ, HowTo, and Review rich result counts (should start appearing within 48-72 hours)
-
----
-
-## Task 3: Retry IndexNow (2 minutes)
-
-The first attempt returned "SiteVerificationNotCompleted" — this usually clears within 24 hours.
+IndexNow is the discovery channel for participating engines such as Bing. Run a
+preview before a real submission:
 
 ```bash
-cd ~/Desktop/roadman-cycling-site && git pull origin main && npm run seo:indexnow -- --all
+npm run seo:indexnow:dry
+npm run seo:indexnow
 ```
 
-Expected output: `✓ 200 OK` with 542+ URLs submitted. IndexNow reaches Bing, Yandex, Seznam, and Naver. Google does NOT use IndexNow — that's what the GSC submission above handles.
+Use `-- --all` only when a full-content resubmission is justified. The script
+discovers the current URL inventory, so this handoff deliberately does not
+hard-code a count that will become stale.
 
----
+## Phase 2 release checks
 
-## What happens after these tasks
+After a production release:
 
-- **24-48 hours:** Priority pages indexed by Google. FAQ/HowTo/Review rich snippets start appearing.
-- **1-2 weeks:** Full sitemap crawled. ~860 pages indexed. www URLs de-indexed.
-- **2-4 weeks:** Rankings begin settling. Non-brand impressions appear in GSC.
-- **8-12 weeks:** Cluster authority compounds. Topic hubs start ranking for head terms.
+1. Confirm the deployment is ready and the canonical domain serves the new
+   version.
+2. Check each changed URL returns `200`, is self-canonical and renders one H1.
+3. Confirm visible author/reviewer, evidence and internal links where required.
+4. Validate JSON-LD and discovery files from the production response.
+5. Run the curated IndexNow submission.
+6. Use read-only URL Inspection to capture Google's state; do not infer that a
+   successful deployment means Google has already recrawled it.
 
-Everything else — content, schema, internal links, conversion layer, AI search — is already deployed and waiting for Google to discover it.
+## Measurement cadence
+
+- Use the documented 24 August 2026 GSC baseline as day zero.
+- Take a directional read after seven complete days.
+- Take the primary comparison after 28 complete days.
+- Compare exact owner-page clicks, impressions, CTR and average position, plus
+  the clean non-brand query sets in each release decision document.
+- Do not claim a ranking or rich-result lift from an index-status check alone.
+
+No manual action is currently required from the site owner. The remaining work
+is production verification and time-based measurement.
