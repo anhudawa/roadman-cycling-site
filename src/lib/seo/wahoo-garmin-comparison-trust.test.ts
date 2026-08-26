@@ -10,8 +10,8 @@ describe("Wahoo versus Garmin comparison trust", () => {
   const { data, content } = matter(source);
 
   it("publishes a current and reviewed 2026 comparison", () => {
-    expect(data.updatedDate).toBe("2026-08-25");
-    expect(data.lastReviewed).toBe("2026-08-25");
+    expect(data.updatedDate).toBe("2026-08-26");
+    expect(data.lastReviewed).toBe("2026-08-26");
     expect(data.reviewedBy).toContain("Garmin and Wahoo");
 
     for (const model of [

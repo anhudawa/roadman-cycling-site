@@ -511,6 +511,14 @@ const nextConfig: NextConfig = {
         destination: "/blog/rouvy-vs-zwift",
         permanent: true,
       },
+      // Search Console assigns essentially all Wahoo-vs-Garmin clicks to the
+      // current reviewed blog owner. The generated comparison is a stale,
+      // lower-ranking duplicate, so fold its signals into that owner too.
+      {
+        source: "/compare/garmin-vs-wahoo",
+        destination: "/blog/wahoo-vs-garmin-cycling-computers",
+        permanent: true,
+      },
 
       // ==========================================================
       // Legacy ClickFunnels paths flagged as live 404s in the
