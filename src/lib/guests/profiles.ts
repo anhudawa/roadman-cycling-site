@@ -388,26 +388,106 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
   },
 
   "michael-matthews": {
+    seoTitle: "Michael Matthews: Cyclist, Tour Wins & Podcast",
+    seoDescription:
+      "Michael Matthews is a Team Jayco AlUla cyclist, 2010 U23 world champion and 2017 Tour points winner. Verified career facts and Roadman interviews.",
+    expertSeoTitle: "Michael Matthews on Pro Training & Sprinting",
+    expertSeoDescription:
+      "Michael Matthews's Roadman topics: WorldTour training, base miles, sprint durability, altitude camps, green-jersey racing and career longevity.",
+    credential:
+      "Team Jayco AlUla professional; 2010 U23 world champion; 2017 Tour de France points winner",
     description:
-      "Australian professional road and track cyclist for Team Jayco–AlUla. 2010 U23 Road Race World Champion, Tour de France green jersey winner, and Grand Tour stage winner across all three Grand Tours.",
+      "Australian professional road cyclist for Team Jayco AlUla. Matthews won the 2010 U23 road world title, the 2017 Tour de France points classification and stages in the Tour, Giro and Vuelta.",
     worksFor: {
-      name: "Team Jayco–AlUla",
+      name: "Team Jayco AlUla",
       type: "SportsTeam",
-      url: "https://greenedgecycling.com",
+      url: "https://greenedgecycling.com/2026/michael-matthews/",
     },
     sameAs: [
       "https://en.wikipedia.org/wiki/Michael_Matthews_(cyclist)",
+      "https://www.wikidata.org/wiki/Q561546",
+      "https://greenedgecycling.com/2026/michael-matthews/",
+      "https://www.olympics.com.au/olympians/michael-matthews/",
       "https://www.procyclingstats.com/rider/michael-matthews",
+      "https://www.instagram.com/bling90/",
+      "https://x.com/blingmatthews",
     ],
+    featuredArticles: ["michael-matthews-no-base-miles-pro-training"],
     whyMatters:
-      "Michael Matthews is one of the most consistent stage-race sprinters of his generation: 2010 U23 World Champion, multiple Tour de France stage wins, Tour points jersey wearer, and a Grand Tour stage winner across all three. His career is a case study in adapting a sprint engine to a punchy stage-racing parcours — useful reading for any amateur trying to translate raw power into actual race finishes.",
+      "Michael “Bling” Matthews is an Australian professional road cyclist for Team Jayco AlUla. He won the 2010 U23 road world title, stages in all three Grand Tours and the Tour de France points classification in 2017. He made his Olympic debut at Paris 2024, finishing 15th in the road race, and remains an active WorldTour rider in 2026. His two Roadman interviews cover green-jersey racing, sprint durability, altitude camps and the training approach he says has sustained his career.",
+    keyIdeasHeading: "VERIFIED CAREER & INTERVIEW FACTS",
+    keyIdeasDescription:
+      "Official career records are separated from Matthews's first-person training account on the Roadman podcast.",
     keyIdeas: [
-      "A sprint career built on punchy finishes is more sustainable than chasing pure flat bunch sprints.",
-      "Stage racing requires you to defend your fitness across three weeks — the riders who fade are the ones who under-recover in week one.",
-      "Sprint training in the gym matters: explosive lifts and plyometrics translate directly to closing speed.",
-      "Reading the finish — wind, road furniture, lead-out trains — wins more sprints than raw watts.",
-      "Recovery between stages is mostly about sleep, fuelling within 30 minutes of the line, and protecting the next morning's intensity.",
+      "Team Jayco AlUla lists Matthews on its 2026 roster; his current contract runs through the end of 2027.",
+      "He won the U23 road race at the 2010 UCI Road World Championships in Geelong.",
+      "He won the Tour de France points classification in 2017 after taking two stages that year.",
+      "His official records include stage victories in the Tour de France, Giro d'Italia and Vuelta a España.",
+      "He finished 15th in the Paris 2024 Olympic road race on his Olympic debut.",
+      "On Roadman, Matthews says he skips a traditional base block and instead rides sustained high-200s to low-300s watts before adding prescribed efforts.",
     ],
+    faqs: [
+      {
+        question: "Who is Michael Matthews the cyclist?",
+        answer:
+          "Michael “Bling” Matthews is an Australian professional road cyclist for Team Jayco AlUla. He is the 2010 U23 road world champion, the 2017 Tour de France points-classification winner and a stage winner in all three Grand Tours.",
+      },
+      {
+        question: "Which team does Michael Matthews ride for?",
+        answer:
+          "As reviewed on 26 August 2026, Matthews rides for Team Jayco AlUla. The team announced a contract extension through the end of the 2027 season, and the UCI currently lists Team Jayco AlUla as his team.",
+      },
+      {
+        question: "Did Michael Matthews win the Tour de France green jersey?",
+        answer:
+          "Yes. Matthews won the Tour de France points classification and its green jersey in 2017, when he also won stages 14 and 16.",
+      },
+      {
+        question: "Has Michael Matthews won stages in every Grand Tour?",
+        answer:
+          "Yes. Official team and race records show stage victories at the Tour de France, Giro d'Italia and Vuelta a España. Counts can differ when team time trials are included, so this profile does not combine them into one total.",
+      },
+      {
+        question: "What does Michael Matthews say about base training?",
+        answer:
+          "In his 2026 Roadman interview, Matthews says he does not use a traditional base-miles block. He describes riding at high-200s to low-300s watts for much of a training day before adding prescribed efforts. That is his first-person account, not a universal plan for amateur cyclists.",
+      },
+    ],
+    sources: [
+      {
+        name: "Team Jayco AlUla — Michael Matthews rider profile",
+        url: "https://greenedgecycling.com/2026/michael-matthews/",
+        note: "Official current-team profile confirming his 2026 roster place, 2010 U23 world title, 2017 Tour points win and stages in all three Grand Tours.",
+      },
+      {
+        name: "Team Jayco AlUla — contract extension through 2027",
+        url: "https://greenedgecycling.com/2026/%E2%9C%8D%EF%B8%8F%F0%9F%87%A6%F0%9F%87%BA-michael-matthews-commits-future-to-team-jayco-alula/",
+        note: "Official team announcement, published 3 November 2025, extending Matthews's contract through the end of 2027.",
+      },
+      {
+        name: "UCI DataRide — Michael Matthews rider record",
+        url: "https://dataride.uci.org/iframe/RiderRankingDetails/62919?baseRankingTypeId=1&categoryId=22&countryId=0&disciplineId=10&disciplineSeasonId=464&groupId=11&momentId=198167&raceTypeId=0&rankingId=6&teamId=0",
+        note: "Official UCI record identifying the Australian rider and his current Team Jayco AlUla affiliation.",
+      },
+      {
+        name: "Tour de France — Michael Matthews rider profile and results",
+        url: "https://www.letour.fr/en/rider/115/team-jayco-alula/michael-matthews",
+        note: "Official Tour record for Matthews's Tour stages, 2017 results and wider professional palmarès.",
+      },
+      {
+        name: "Australian Olympic Committee — Michael Matthews",
+        url: "https://www.olympics.com.au/olympians/michael-matthews/",
+        note: "Official Australian Olympic profile covering his development, major results and 15th place on his Paris 2024 Olympic debut.",
+      },
+      {
+        name: "Roadman Cycling Podcast — Michael Matthews on pro training",
+        url: "https://roadmancycling.com/podcast/ep-4-15-years-of-pro-riding-what-amateurs-don-t-know-matthews",
+        note: "Primary interview source for Matthews's self-reported base-miles, training-intensity, recovery and career-longevity statements.",
+      },
+    ],
+    reviewedBy:
+      "Anthony Walsh against official Team Jayco AlUla, UCI, Tour de France and Australian Olympic Committee records",
+    lastReviewed: "2026-08-26",
     relatedHubs: ["cycling-training-plans", "ftp-training"],
   },
 

@@ -212,7 +212,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     // dynamic /entity/[slug] route). Sitemap entries here so GSC sees
     // them in the static sitemap alongside the brand-entity pages,
     // rather than scattered across the dynamic sitemaps.
-    ...getAllEntities().map((e) => ({
+    ...getAllEntities().filter((e) => !e.canonicalProfilePath).map((e) => ({
       url: `${BASE_URL}/entity/${e.slug}`,
       ...lastModifiedIfValid(e.lastReviewed),
       changeFrequency: "monthly" as const,

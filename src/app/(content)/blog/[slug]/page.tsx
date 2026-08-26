@@ -11,7 +11,7 @@ import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 import { CONTENT_PILLARS } from "@/types";
 import { getPostBySlug, getAllSlugs, getRelatedPosts } from "@/lib/blog";
 import { getEpisodeBySlug } from "@/lib/podcast";
-import { getEntityBySlug } from "@/lib/entities";
+import { getEntityBySlug, getEntityProfilePath } from "@/lib/entities";
 import { getGuestBySlug } from "@/lib/guests";
 import { getTopicsForPost, getTopicTitleBySlug } from "@/lib/topics";
 import { EVENTS } from "@/lib/training-plans";
@@ -316,21 +316,19 @@ export default async function BlogPostPage({
                 name: e.name,
                 url: `${SITE_ORIGIN}${e.href}`,
               }));
-            // featuredEntities resolves to /entity/[slug]#person — the
-            // canonical entity-page Person @id, distinct from the
-            // /guests/[slug]#person used on the guest pages. Both are
-            // legitimate Person nodes for the same human; including
-            // them as separate mentions strengthens the cross-entity
-            // graph rather than collapsing it.
+            // featuredEntities resolves to the person's declared canonical
+            // profile. Reusing that page's Person @id prevents a guest bio
+            // and an entity-data record from becoming two nodes for one human.
             const entityMentions = (post.featuredEntities ?? [])
               .map((slug) => {
                 const entity = getEntityBySlug(slug);
                 if (!entity) return null;
+                const profilePath = getEntityProfilePath(entity);
                 return {
                   "@type": "Person" as const,
-                  "@id": `${SITE_ORIGIN}/entity/${slug}#person`,
+                  "@id": `${SITE_ORIGIN}${profilePath}#person`,
                   name: entity.name,
-                  url: `${SITE_ORIGIN}/entity/${slug}`,
+                  url: `${SITE_ORIGIN}${profilePath}`,
                 };
               })
               .filter((m): m is NonNullable<typeof m> => m !== null);

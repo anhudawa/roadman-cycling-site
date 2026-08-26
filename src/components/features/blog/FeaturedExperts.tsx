@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getEntityBySlug } from "@/lib/entities";
+import { getEntityBySlug, getEntityProfilePath } from "@/lib/entities";
 
 interface FeaturedExpertsProps {
   /** Entity slugs that match `content/entities/*.mdx` files. */
@@ -10,7 +10,7 @@ interface FeaturedExpertsProps {
  * Featured-experts strip rendered near the top of a blog post.
  *
  * Drives a bidirectional link between the article and the
- * `/entity/[slug]` pages of the experts whose work the article leans
+ * canonical profiles of the experts whose work the article leans
  * on. Sits in the top 30% of the page so the link equity (and the
  * AEO/SGE entity signal) lands above the fold. Silently drops any
  * slug without a matching entity MDX file so a typo in frontmatter
@@ -43,7 +43,7 @@ export function FeaturedExperts({ slugs }: FeaturedExpertsProps) {
         {entities.map((e) => (
           <Link
             key={e.slug}
-            href={`/entity/${e.slug}`}
+            href={getEntityProfilePath(e)}
             className="block rounded-lg border border-white/10 bg-white/[0.03] hover:border-coral/40 hover:bg-coral/5 p-3 transition-all group"
           >
             <p className="font-heading text-off-white group-hover:text-coral transition-colors text-sm tracking-wide mb-1">
