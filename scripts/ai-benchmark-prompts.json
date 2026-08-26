@@ -1542,7 +1542,7 @@
       "prompt": "how to improve watts per kilo cycling",
       "category": "general-cycling",
       "intent": "education",
-      "target_page": "/blog/cycling-power-to-weight-improve-guide",
+      "target_page": "/blog/cycling-power-to-weight-ratio-guide",
       "priority": "high"
     },
     {

@@ -516,11 +516,19 @@ const nextConfig: NextConfig = {
       },
       // W/kg editorial consolidation (Aug 2026). Search Console showed the
       // incumbent guide at 453 clicks / 67,699 impressions over three months,
-      // versus 59 / 7,210 for a later same-job explainer. Keep the calculator,
-      // glossary, age report and power-duration pages separate because they
-      // answer arithmetic, definition, age-qualified and duration-specific jobs.
+      // versus 59 / 7,210 for a later same-job explainer. A second prescriptive
+      // improvement article recorded only 5 / 1,010 and repeated the owner's
+      // improvement job with unsupported body-fat cut-offs and guaranteed-gain
+      // claims. Keep the calculator, glossary, age report and power-duration
+      // pages separate because they answer arithmetic, definition,
+      // age-qualified and duration-specific jobs.
       {
         source: "/blog/cycling-watts-per-kilo-complete-guide",
+        destination: "/blog/cycling-power-to-weight-ratio-guide",
+        permanent: true,
+      },
+      {
+        source: "/blog/cycling-power-to-weight-improve-guide",
         destination: "/blog/cycling-power-to-weight-ratio-guide",
         permanent: true,
       },

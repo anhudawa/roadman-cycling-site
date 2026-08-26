@@ -158,7 +158,6 @@ only by its archive rather than by contextual editorial links.
 - [The 10-Minute Post-Ride Stretching Routine That Keeps You Riding Pain-Free](/blog/cycling-post-ride-stretching-routine-guide) — linked only from `[blog archive]`
 - [Power Meter Accuracy: When Your Numbers Lie and How to Fix It](/blog/cycling-power-meter-accuracy-troubleshooting-guide) — linked only from `[blog archive]`
 - [Power Meters in 2026: What's Worth Your Money and What Isn't](/blog/cycling-power-meter-buying-guide) — linked only from `[blog archive]`
-- [How to Improve Your Power-to-Weight Ratio: Which Lever to Pull and When](/blog/cycling-power-to-weight-improve-guide) — linked only from `[blog archive]`
 - [The 10-Minute Pre-Ride Activation Routine That Fixes Your First 20 Minutes](/blog/cycling-pre-ride-activation-routine-guide) — linked only from `[blog archive]`
 - [Proprioception and Balance Training for Cyclists: The Skill You Are Losing Without Knowing It](/blog/cycling-proprioception-balance-training-guide) — linked only from `[blog archive]`
 - [Prostate Health for Male Cyclists: What the Research Says and What to Do About It](/blog/cycling-prostate-health-male-cyclists-guide) — linked only from `[blog archive]`
