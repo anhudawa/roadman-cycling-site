@@ -71,6 +71,7 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "electrolytes-sweat-rate-cycling",
   "cycling-sodium-loading-hydration-guide",
   "cycling-cramp-prevention",
+  "running-cycling-conversion-calculator",
   "unbound-gravel-2026-complete-guide",
   "why-netflix-unchained-failed-cycling",
   "tdf-2026-contenders-preparation-lessons",

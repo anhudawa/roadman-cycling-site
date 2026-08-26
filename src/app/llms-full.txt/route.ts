@@ -221,6 +221,16 @@ export async function GET() {
       ],
     },
     {
+      category: "Running and cycling conversion",
+      lines: [
+        `${BASE_URL}/blog/running-cycling-conversion-calculator — Canonical informational owner for run–ride distance, time, ratios, MET-minute examples and evidence limits.`,
+        `${BASE_URL}/tools/run-ride-converter — Two-way calculator using named 2024 Compendium MET categories; energy-cost match only, not FTP, race performance, impact or adaptation.`,
+        `${BASE_URL}/answers/how-many-minutes-cycling-equals-running — Narrow answer explaining why no universal time or distance ratio exists.`,
+        `${BASE_URL}/topics/running-for-cyclists — Programming hub for cyclists adding running.`,
+        `${BASE_URL}/topics/cycling-for-runners — Programming hub for runners adding cycling.`,
+      ],
+    },
+    {
       category: "Plateau queries",
       lines: [
         `${BASE_URL}/plateau — Plateau diagnostic (12 questions).`,
@@ -365,6 +375,7 @@ Each has unique local content (climbs, events, clubs, regional racing scene):
 - Cycling Heart Rate Zone Calculator: ${tag(`${BASE_URL}/tools/hr-zones`)} — canonical broad cycling-HR-zone owner; five continuous whole-bpm ranges from measured cycling Max HR or a cycling-specific LTHR estimate, with disclosed percentage conventions, worked examples, research evidence and method limits
 - Cycling W/kg Calculator: ${tag(`${BASE_URL}/tools/wkg`)} — FTP divided by rider body mass, with transparent arithmetic, broad reference ranges and explicit interpretation limits
 - Cycling W/kg Guide: ${tag(`${BASE_URL}/blog/cycling-power-to-weight-ratio-guide`)} — canonical broad W/kg interpretation, duration, climbing physics, benchmark methodology and safe improvement
+- Cycling to Running Conversion Calculator: ${tag(`${BASE_URL}/tools/run-ride-converter`)} — named 2024 Compendium MET categories, transparent MET-minute calculation and explicit limits on performance, impact and adaptation
 
 ## Interactive Diagnostics & Simulators
 
