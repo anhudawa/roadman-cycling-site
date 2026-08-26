@@ -87,7 +87,7 @@ function snapshot(overrides: Partial<GscSnapshot> = {}): GscSnapshot {
 
 function currentSnapshot(overrides: Partial<GscSnapshot> = {}): GscSnapshot {
   return snapshot({
-    capturedAt: "2026-09-22T12:00:00.000Z",
+    capturedAt: "2026-09-24T12:00:00.000Z",
     period: { start: "2026-08-25", end: "2026-09-21", days: 28 },
     ...overrides,
   });
@@ -445,5 +445,23 @@ describe("GSC measurement", () => {
         }),
       ),
     ).toThrow("video index indexed must be a non-negative integer");
+  });
+
+  it("refuses a post-release snapshot captured before the GSC lag clears", () => {
+    expect(() =>
+      compareGscSnapshots(
+        snapshot(),
+        currentSnapshot({ capturedAt: "2026-09-23T23:59:59.999Z" }),
+      ),
+    ).toThrow(
+      "must be captured at least 3 calendar days after its period end (earliest 2026-09-24)",
+    );
+
+    expect(() =>
+      compareGscSnapshots(
+        snapshot(),
+        currentSnapshot({ capturedAt: "2026-09-24T00:00:00.000Z" }),
+      ),
+    ).not.toThrow();
   });
 });
