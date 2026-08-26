@@ -54,7 +54,7 @@ describe("George Hincapie entity and CTR owner", () => {
     const expertPage = read("src/app/(content)/experts/[expertSlug]/page.tsx");
 
     expect(expertPage).toContain(
-      "title: `What Does ${guest.name} Say? — Topics | Roadman Cycling`",
+      "title: `What Does ${guest.name} Say? — Topics`",
     );
     expect(expertPage).toContain(
       "url: `${SITE_ORIGIN}/guests/${expertSlug}`",
