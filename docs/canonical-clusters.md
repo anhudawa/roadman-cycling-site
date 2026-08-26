@@ -479,7 +479,7 @@ Top 15 by relevance:
 - `cycling-strength-training-what-transfers-guide`
 - `cycling-strength-training-year-round-plan-guide`
 - `gym-vs-bike-strength-training-cyclists-research`
-- `strength-training-cyclists-complete-guide`
+- `cycling-strength-training-guide`
 - `strength-training-cyclists-minimum-effective-dose`
 - `cycling-core-training-complete-guide`
 - `cycling-gym-exercises-best`

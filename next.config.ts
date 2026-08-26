@@ -102,6 +102,14 @@ const nextConfig: NextConfig = {
           "/blog/benji-naesen-imposter-syndrome-cycling-weight-loss",
         permanent: true,
       },
+      // Google already prefers cycling-strength-training-guide for the broad
+      // query. Retire the later near-duplicate so links and ranking history
+      // consolidate on the established evidence-bounded owner.
+      {
+        source: "/blog/strength-training-cyclists-complete-guide",
+        destination: "/blog/cycling-strength-training-guide",
+        permanent: true,
+      },
       // ==========================================================
       // coaching.roadmancycling.com subdomain retirement
       // ----------------------------------------------------------
