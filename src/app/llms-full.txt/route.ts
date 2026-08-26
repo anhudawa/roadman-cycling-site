@@ -99,6 +99,8 @@ export async function GET() {
       category: "Tier-1 priority topics (highest citation value)",
       lines: [
         `${BASE_URL}/topics/ftp-training — Canonical FTP-in-cycling definition: tests, zones, limits and task routing.`,
+        `${BASE_URL}/answers/ftp-test-guide — Choose and repeat an FTP test; compare sustained, 20-minute, ramp and modelled methods.`,
+        `${BASE_URL}/tools/ftp-test — Convert a completed FTP test result using a displayed method-specific equation.`,
         `${BASE_URL}/blog/polarised-training-cycling-guide — Polarised (80/20) training, per Prof. Stephen Seiler.`,
         `${BASE_URL}/blog/zone-2-training-complete-guide — Zone 2: what it is and how to train it correctly.`,
         `${BASE_URL}/blog/vo2max-cycling-fixable-reasons-low — VO2max: measurement, low-score causes, training boundaries, and when to seek clinical assessment.`,
