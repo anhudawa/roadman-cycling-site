@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 299,
+    "prompt_count": 301,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -2424,6 +2424,22 @@
       "category": "running-crossover",
       "intent": "transaction",
       "target_page": "/tools/run-ride-converter",
+      "priority": "high"
+    },
+    {
+      "id": 300,
+      "prompt": "does cycling count as leg day and when can I ride after lifting",
+      "category": "cycling-strength",
+      "intent": "education",
+      "target_page": "/blog/cycling-leg-day-should-cyclists",
+      "priority": "high"
+    },
+    {
+      "id": 301,
+      "prompt": "what are the best gym exercises for cyclists and what does the evidence actually show",
+      "category": "cycling-strength",
+      "intent": "education",
+      "target_page": "/blog/cycling-gym-exercises-best",
       "priority": "high"
     }
   ]

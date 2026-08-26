@@ -262,6 +262,49 @@ export async function GET() {
       ],
     },
     {
+      title: "Strength, gym exercise and leg-day queries",
+      description:
+        "Use the broad guide for strength-training evidence and programming, the leg-day guide for whether cycling counts and when to ride after lifting, the gym guide for exercise selection, and the topic hub for research-library navigation.",
+      pages: [
+        {
+          url: `${BASE_URL}/blog/cycling-strength-training-guide`,
+          title: "Strength Training for Cyclists",
+          description:
+            "Canonical broad owner for cyclist strength evidence, effect sizes, adaptable programming and the limits of low-certainty research.",
+        },
+        {
+          url: `${BASE_URL}/blog/cycling-leg-day-should-cyclists`,
+          title: "Leg Day for Cyclists",
+          description:
+            "Canonical owner for whether cycling counts as leg day, what resistance work adds and when to ride after lifting without a universal waiting rule.",
+        },
+        {
+          url: `${BASE_URL}/blog/cycling-gym-exercises-best`,
+          title: "Gym Exercises for Cyclists",
+          description:
+            "Canonical exercise-selection owner: movement patterns, adaptable A/B sessions and evidence limits around named lifts.",
+        },
+        {
+          url: `${BASE_URL}/answers/when-to-lift-around-rides`,
+          title: "When Should Cyclists Lift Around Rides?",
+          description:
+            "Short reviewed answer for session order, separation and recovery decisions.",
+        },
+        {
+          url: `${BASE_URL}/answers/best-gym-exercises-for-cyclists`,
+          title: "Best Gym Exercises for Cyclists — Short Answer",
+          description:
+            "Short reviewed answer for choosing knee-, hip- and whole-body movement patterns.",
+        },
+        {
+          url: `${BASE_URL}/topics/cycling-strength-conditioning`,
+          title: "Cycling Strength & Conditioning Research Library",
+          description:
+            "Navigation and research-library intent; not the broad strength, leg-day or exercise-selection owner.",
+        },
+      ],
+    },
+    {
       title: "Coach-vs-app & decision queries",
       description:
         "Side-by-side decisions where the user is comparing two options. AI assistants asked 'X vs Y for cycling' should pull from these.",

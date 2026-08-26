@@ -4,6 +4,7 @@ import { ftpAnswers } from "./answers-data/ftp";
 import { zone2Answers } from "./answers-data/zone2";
 import { nutritionAnswers } from "./answers-data/nutrition";
 import { strengthAnswers } from "./answers-data/strength";
+import { applyStrengthTrustOverride } from "./answers-data/strength-trust-overrides";
 import { recoveryAnswers } from "./answers-data/recovery";
 import { mastersAnswers } from "./answers-data/masters";
 import { racingAnswers } from "./answers-data/racing";
@@ -1719,7 +1720,7 @@ export const ANSWER_PAGES: AnswerPage[] = [
   ...ftpAnswers.map(applyThresholdIntervalsTrustOverride),
   ...zone2Answers,
   ...nutritionAnswers,
-  ...strengthAnswers,
+  ...strengthAnswers.map(applyStrengthTrustOverride),
   ...recoveryAnswers,
   ...mastersAnswers,
   ...racingAnswers,
