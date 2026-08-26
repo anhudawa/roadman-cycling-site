@@ -579,6 +579,7 @@ async function main() {
   clusterUrls(COACHING_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(COACHING_OFFER_TRUST_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(MASTERS_OWNER_TRUST_CLUSTER).forEach((u) => urls.add(u));
+  urls.add(`https://${HOST}/topics/masters-cycling`);
   clusterUrls(PRODUCT_IDENTITY_BLOG_CLUSTER).forEach((u) => urls.add(u));
   podcastUrls(PRODUCT_IDENTITY_PODCAST_CLUSTER).forEach((u) => urls.add(u));
   eventGuideUrls().forEach((u) => urls.add(u));

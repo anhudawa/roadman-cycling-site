@@ -202,6 +202,8 @@ export async function GET() {
       category: "Masters cyclist queries (35+)",
       lines: [
         `${BASE_URL}/masters — Reviewed masters-cycling owner: primary research, expert interviews, practical starting points and explicit limits on fixed VO2max decline, a 48-to-72-hour recovery rule, universal 80/20, strength and protein claims.`,
+        `${BASE_URL}/blog/cycling-over-40-complete-guide — Whole-rider orientation across training, recovery, strength, fuelling, health context, bike fit and community; not a weekly or twelve-week prescription.`,
+        `${BASE_URL}/blog/masters-cyclist-guide-getting-faster-after-40 — Four-week plateau decision framework: verify the signal, audit absorption and test one limiting input.`,
         `${BASE_URL}/blog/cycling-training-plan-masters-over-40 — Day-by-day weekly-schedule intent; examples require individual modification.`,
         `${BASE_URL}/blog/masters-cycling-training-plan-over-40 — Twelve-week goal-specific plan intent; not the broad masters owner.`,
         `${BASE_URL}/blog/age-group-ftp-benchmarks-2026 — FTP benchmarks by age group.`,

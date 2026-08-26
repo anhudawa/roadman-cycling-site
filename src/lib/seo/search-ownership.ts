@@ -149,6 +149,12 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
           "Broad over-40 overview across training, health context, nutrition, bike fit and community",
       },
       {
+        path: "/blog/masters-cyclist-guide-getting-faster-after-40",
+        label: "Masters Cycling Plateau Decision Framework",
+        intent:
+          "Four-week plateau audit: verify the signal, audit absorption and test one limiting input",
+      },
+      {
         path: "/blog/cycling-training-plan-masters-over-40",
         label: "Masters Cycling Weekly Schedule",
         intent:
