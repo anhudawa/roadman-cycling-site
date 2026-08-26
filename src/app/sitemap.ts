@@ -236,7 +236,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/tour-de-france/history`, lastModified: new Date("2026-06-11"), changeFrequency: "monthly", priority: 0.7 },
     ...TOUR_HISTORY.map((a) => ({
       url: `${BASE_URL}/tour-de-france/history/${a.slug}`,
-      lastModified: new Date(a.published),
+      lastModified: new Date(a.updated ?? a.published),
       changeFrequency: "monthly" as const,
       priority: 0.65,
     })),

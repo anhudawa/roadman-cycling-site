@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 225,
+    "prompt_count": 226,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -1826,6 +1826,14 @@
       "category": "cycling-podcast",
       "intent": "education",
       "target_page": "/blog/benji-naesen-imposter-syndrome-cycling-weight-loss",
+      "priority": "high"
+    },
+    {
+      "id": 226,
+      "prompt": "who is Bernard Hinault and how many Tours de France and Grand Tours did he win",
+      "category": "cycling-history",
+      "intent": "education",
+      "target_page": "/tour-de-france/history/bernard-hinault-the-badger",
       "priority": "high"
     }
   ]
