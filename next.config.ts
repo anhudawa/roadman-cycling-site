@@ -110,6 +110,29 @@ const nextConfig: NextConfig = {
         destination: "/blog/cycling-strength-training-guide",
         permanent: true,
       },
+      // Search Console shows the established 30-watts URL owns the broad
+      // heat-training query history. Consolidate the three later general and
+      // at-home variants onto that evidence-reviewed owner.
+      {
+        source: "/blog/cycling-heat-training-guide",
+        destination: "/blog/heat-training-cyclists-30-watts-ftp-protocol",
+        permanent: true,
+      },
+      {
+        source: "/blog/cycling-heat-training-protocol-at-home",
+        destination: "/blog/heat-training-cyclists-30-watts-ftp-protocol",
+        permanent: true,
+      },
+      {
+        source: "/blog/heat-training-indoor-trainer-cyclists",
+        destination: "/blog/heat-training-cyclists-30-watts-ftp-protocol",
+        permanent: true,
+      },
+      {
+        source: "/answers/cycling-in-hot-weather-safety",
+        destination: "/blog/cycling-heat-illness-prevention-guide",
+        permanent: true,
+      },
       // ==========================================================
       // coaching.roadmancycling.com subdomain retirement
       // ----------------------------------------------------------

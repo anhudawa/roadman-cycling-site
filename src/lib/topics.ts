@@ -412,11 +412,11 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   },
   {
     slug: "heat-training",
-    title: "Heat Training for Cyclists — Acclimation, Protocol & Performance",
-    headline: "TRAIN THE HEAT, GAIN THE WATTS",
-    ctaHeadline: "HEAT ACCLIMATION, PERIODISED INTO YOUR PLAN.",
+    title: "Heat Training for Cyclists — Evidence, Acclimation & Safety",
+    headline: "PREPARE FOR THE HEAT, WITHOUT THE HYPE",
+    ctaHeadline: "HOT-EVENT PREPARATION, BUILT INTO YOUR PLAN.",
     description:
-      "The complete guide to heat training for cyclists. How heat acclimation improves FTP by up to 5%, at-home protocols, performance gains, safety for masters riders, and the science behind Remco Evenepoel's heat strategy.",
+      "Evidence-led heat training for cyclists: what acclimation can and cannot do, how to prepare for hot events, hydration boundaries, safety for masters riders, and why no FTP gain is guaranteed.",
     pillar: "coaching",
     keywords: [
       "heat training cycling",
@@ -881,8 +881,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "common-training-mistakes-from-1400-podcast-episodes",
     "cutting-training-half-real-power-data",
     "cycling-altitude-training",
-    "cycling-heat-training-guide",
-    "cycling-heat-training-protocol-at-home",
+    "heat-training-cyclists-30-watts-ftp-protocol",
     "cycling-hill-repeats-training",
     "cycling-interval-training-beginners",
     "cycling-over-50-training",
@@ -902,7 +901,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "gran-fondo-nyc-training-guide",
     "gran-fondo-training-plan-12-weeks",
     "haute-route-alps-training-guide",
-    "heat-training-cyclists-30-watts-ftp-protocol",
     "how-many-bike-hours-per-week-for-70-3",
     "how-to-get-faster-cycling",
     "how-to-improve-ftp-cycling",
@@ -1726,7 +1724,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "staying-sane-turbo-trainer-mental-strategies",
     "winter-cycling-training-indoor-protocol-pros",
     "heart-rate-zones-indoor-vs-outdoor-cycling",
-    "heat-training-indoor-trainer-cyclists",
+    "heat-training-cyclists-30-watts-ftp-protocol",
     "indoor-cycling-heat-management-trainingpeaks-virtual",
     "power-meter-vs-smart-trainer",
     "trainingpeaks-virtual-structured-indoor-training",
@@ -1872,17 +1870,14 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-dopamine-motivation-reward-guide",
   ],
   "heat-training": [
-    "cycling-heat-training-guide",
-    "cycling-heat-training-protocol-at-home",
     "heat-training-cyclists-30-watts-ftp-protocol",
-    "heat-training-indoor-trainer-cyclists",
+    "cycling-heat-acclimation-protocol-guide",
+    "cycling-heat-performance-adaptation-guide",
+    "cycling-heat-illness-prevention-guide",
     "heat-tolerance-ageing-cyclist",
     "indoor-cycling-heat-management-trainingpeaks-virtual",
-    "cycling-heat-performance-adaptation-guide",
     "cycling-travel-racing-abroad-guide",
-    "cycling-heat-acclimation-protocol-guide",
     "cycling-electrolytes-sweat-rate-testing-guide",
-    "cycling-heat-illness-prevention-guide",
   ],
   "women-cycling": [
     "cycling-training-around-menstrual-cycle",
@@ -2693,9 +2688,9 @@ const TOPIC_ENRICHMENT: Record<string, {
     commercialPath: "/coaching",
     relatedTopics: ["race-preparation", "indoor-training", "masters-cycling"],
     featuredPostSlugs: [
-      "cycling-heat-training-guide",
       "heat-training-cyclists-30-watts-ftp-protocol",
-      "cycling-heat-training-protocol-at-home",
+      "cycling-heat-illness-prevention-guide",
+      "heat-tolerance-ageing-cyclist",
     ],
   },
   "women-cycling": {
@@ -3370,22 +3365,22 @@ const TOPIC_FAQS: Record<string, TopicFAQ[]> = {
     {
       question: "Does heat training improve FTP?",
       answer:
-        "Yes — research shows heat acclimation can improve time-trial performance by 4-6% and FTP by up to 5%, even in cool conditions. The adaptations include increased plasma volume, better cardiovascular efficiency, and improved thermoregulation. It's one of the most underused legal performance tools.",
+        "It is not guaranteed. Heat acclimation is best supported as preparation for exercise in hot conditions. A meta-analysis found a possible time-trial benefit but no significant pooled VO2max improvement, and recent passive-heat reviews describe performance effects as uncertain. Do not plan around one promised FTP percentage.",
     },
     {
       question: "How do I heat acclimate at home?",
       answer:
-        "Ride your indoor trainer in a warm room (30°C+) with minimal fan for 60-90 minutes at easy to moderate intensity, 5-7 days in a row. Wear extra layers if needed. The protocol takes 7-14 days to produce measurable adaptations and needs to be done within 4 weeks of your target event.",
+        "First confirm that a materially hot event creates a real preparation gap. Purposeful heat exposure should be progressive, should account for the rest of the training load, and needs fluids, rapid cooling, communication and stop rules. A space heater, extra layers or a consumer sensor is not a universal DIY prescription; qualified supervision is preferable.",
     },
     {
       question: "Is heat training safe for masters riders?",
       answer:
-        "Yes, with precautions. Heat tolerance does decline with age, so start conservatively, hydrate aggressively, and monitor how you feel. Cut sessions short if you feel dizzy or nauseous. The performance benefits are just as real for over-40 riders — they just need a more gradual build-up.",
+        "Age alone cannot establish a safe dose. Fitness, health, medicines, previous heat exposure and history of heat illness all matter. A review found short-term acclimation feasible in some adults over 50, but only 96 older participants were represented. Seek individual medical advice when health or medication may change heat tolerance.",
     },
     {
       question: "How long does heat acclimation last?",
       answer:
-        "Most of the adaptation decays within 2-3 weeks of stopping heat exposure. Schedule your heat block to finish 1-2 weeks before your target event — close enough to retain the benefits, far enough to freshen up with normal training.",
+        "Adaptations decay at different rates and published protocols vary. Plan the timing from the target event, travel and recovery rather than assuming one universal half-life or maintenance dose. Reassess after a long break or a major change in environment.",
     },
   ],
   "women-cycling": [

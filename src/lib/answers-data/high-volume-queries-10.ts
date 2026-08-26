@@ -333,7 +333,7 @@ export const highVolumeQuery10Answers: AnswerPage[] = [
       "Train threshold power with 2x20-minute intervals building toward 3x20 over 12 weeks.",
       "Build fatigue resistance with long rides that include a hard effort in the final 90 minutes.",
       "Low-cadence force reps at 60-65 rpm on hills mimic the muscular demands of steep alpine roads.",
-      "Simulate altitude stress with heat training if you live at sea level — 60-90 minutes in a hot room, 10+ sessions.",
+      "Do not treat heat as a substitute for altitude. Use event-specific environmental preparation with qualified planning when either exposure is justified.",
     ],
     whoFor: [
       {

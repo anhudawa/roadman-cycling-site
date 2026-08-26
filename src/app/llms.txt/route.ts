@@ -149,6 +149,19 @@ export async function GET() {
       ],
     },
     {
+      title: "Heat training and hot-weather cycling",
+      description:
+        "Use the evidence guide for broad heat-training questions, then the specialist pages for acclimation planning, race-day pacing and cooling, heat-illness response, or masters-specific risk. Roadman does not support a universal FTP gain or unsupervised DIY heat dose.",
+      pages: [
+        { url: `${BASE_URL}/topics/heat-training`, title: "Cycling Heat Training — Evidence, Acclimation and Safety", description: "The cluster hub for heat training, hot-event preparation, cooling, hydration, emergency response and masters-specific decisions." },
+        { url: `${BASE_URL}/blog/heat-training-cyclists-30-watts-ftp-protocol`, title: "Heat Training for Cyclists: Evidence and Safe Preparation", description: "Canonical evidence guide explaining what heat training can and cannot do, including the limits of FTP and haemoglobin claims." },
+        { url: `${BASE_URL}/blog/cycling-heat-acclimation-protocol-guide`, title: "Heat Acclimation for Cyclists", description: "A progressive, event-specific planning framework with hydration, training-load and safety boundaries." },
+        { url: `${BASE_URL}/blog/cycling-heat-performance-adaptation-guide`, title: "Cycling in the Heat: Race-Day Plan", description: "Pacing, cooling, fluid access and withdrawal decisions without one fixed power-loss rule." },
+        { url: `${BASE_URL}/blog/cycling-heat-illness-prevention-guide`, title: "Heat Illness in Cyclists", description: "Warning signs, emergency response, rapid cooling and return-to-ride limits grounded in ACSM, CDC and NHS guidance." },
+        { url: `${BASE_URL}/blog/heat-tolerance-ageing-cyclist`, title: "Heat Training for Masters Cyclists", description: "Age, health, medication and evidence limits for masters and older riders preparing for hot conditions." },
+      ],
+    },
+    {
       title: "Plateau queries",
       description:
         "Riders whose FTP has flatlined and who want to know what to do. High commercial intent — plateaued amateurs are the strongest coaching converters.",
