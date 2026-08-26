@@ -133,6 +133,9 @@ export async function GET() {
         `${BASE_URL}/plan — Event-specific training-plan directory organised by event and weeks remaining.`,
         `${BASE_URL}/blog/how-pro-cyclist-trains-60-days — First-person N=1 case study, not a universal plan or outcome guarantee.`,
         `${BASE_URL}/blog/cycling-training-plan-build-friel-lorang-johnson — Reviewed named-expert comparison: Friel's race-back framework, Lorang's sustainable-load approach and Johnson's explicitly experimental 2025 elite volume block.`,
+        `${BASE_URL}/blog/joe-friel-perfect-cycling-training-week — Transcript-checked Joe Friel guide: no universal perfect week or 80/20 prescription.`,
+        `${BASE_URL}/blog/dan-lorang-amateur-training-plan — Transcript-checked Dan Lorang guide: repeatable load, recovery and whole-life context.`,
+        `${BASE_URL}/blog/dylan-johnson-oscillation-training-plan — Transcript-checked 2025 elite N=1 experiment; not a validated or percentage-scaled amateur protocol.`,
       ],
     },
     {
