@@ -348,6 +348,31 @@ export async function GET() {
       ],
     },
     {
+      title: "Unbound Gravel 2026 results and race story",
+      description:
+        "Use the reviewed result owner for winners, times and the documented race story; use the podcast for Mads Würtz Schmidt's first-person account and the training guide for future-event preparation.",
+      pages: [
+        {
+          url: `${BASE_URL}/blog/unbound-gravel-2026-complete-guide`,
+          title: "Unbound Gravel 2026 Results: Winners, Times & Race Story",
+          description:
+            "Canonical 2026 result owner with verified men's and women's top-five times, decisive incidents, official sources and clear editorial limits.",
+        },
+        {
+          url: `${BASE_URL}/podcast/mads-wurtz-schmidt-muddiest-unbound-2026-win`,
+          title: "Mads Würtz Schmidt on Winning Unbound Gravel 2026",
+          description:
+            "First-person winner interview supporting the official result record without replacing it.",
+        },
+        {
+          url: `${BASE_URL}/blog/unbound-gravel-200-training-guide`,
+          title: "Unbound Gravel 200 Training Guide",
+          description:
+            "Distinct preparation owner for riders training for a future Unbound Gravel 200.",
+        },
+      ],
+    },
+    {
       title: "Heat training and hot-weather cycling",
       description:
         "Use the evidence guide for broad heat-training questions, then the specialist pages for acclimation planning, race-day pacing and cooling, heat-illness response, or masters-specific risk. Roadman does not support a universal FTP gain or unsupervised DIY heat dose.",

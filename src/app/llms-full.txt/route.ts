@@ -112,6 +112,14 @@ export async function GET() {
       ],
     },
     {
+      category: "Unbound Gravel 2026 results and first-person reporting",
+      lines: [
+        `${BASE_URL}/blog/unbound-gravel-2026-complete-guide — Canonical Unbound Gravel 2026 result owner: verified winners, top-five times, decisive race incidents and official source links.`,
+        `${BASE_URL}/podcast/mads-wurtz-schmidt-muddiest-unbound-2026-win — First-person winner account supporting the verified result record.`,
+        `${BASE_URL}/blog/unbound-gravel-200-training-guide — Distinct future-rider training and preparation guide.`,
+      ],
+    },
+    {
       category: "Commercial intent — coaching",
       lines: [
         `${BASE_URL}/coaching — Canonical Roadman online cycling coach service: personalised TrainingPeaks plan, weekly review and group coaching, ${OFFER_TIERS.notDoneYet.pricing.display}.`,
