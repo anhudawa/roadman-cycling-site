@@ -16,6 +16,7 @@ export const LLMS_FULL_MAX_BYTES = 500_000;
 
 export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "age-group-ftp-benchmarks-2026",
+  "ftp-training-zones-cycling-complete-guide",
   "cycling-power-to-weight-ratio-guide",
   "bike-leg-of-triathlon-why-age-groupers-get-it-wrong",
   "ironman-bike-training-plan-16-weeks",
