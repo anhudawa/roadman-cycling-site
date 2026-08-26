@@ -925,7 +925,7 @@ export const mentalAnswers: AnswerPage[] = [
     relatedTopics: [
       { label: "How Do I Stay Motivated to Train?", href: "/answers/how-to-stay-motivated-cycling" },
       { label: "Cycling Base Training Guide", href: "/blog/cycling-base-training-guide" },
-      { label: "Zone 2 Training Complete Guide", href: "/blog/zone-2-training-complete-guide" },
+      { label: "Zone 2 Training Complete Guide", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "Cycling Training Plans — Topic Hub", href: "/topics/cycling-training-plans" },
       { label: "How Do I Set Cycling Goals That Stick?", href: "/answers/goal-setting-for-cyclists" },
     ],

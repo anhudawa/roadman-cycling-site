@@ -175,9 +175,9 @@ const ZONE_2: ClusterHubDef = {
   metaTitle: "Zone 2 Training for Cyclists — The Complete Hub",
   headline: "ZONE 2 DONE RIGHT",
   description:
-    "Pro cyclists spend roughly 80% of their time at a pace recreational riders could hold a conversation through. The complete Zone 2 hub: what it is, how to find your own true ceiling with lactate, and why most amateurs ride their easy days too hard.",
+    "The complete Zone 2 cycling hub: translate competing zone systems, estimate LT1 or VT1, use power, heart rate and RPE together, and build a repeatable aerobic dose without false precision.",
   shortAnswer:
-    "Zone 2 is the intensity just below your first lactate threshold (LT1) — hard enough to drive mitochondrial and fat-oxidation adaptations, easy enough to talk in full sentences. Most amateurs ride it 10–20 watts too hard, which turns a recovery-building session into a fatigue-building one.",
+    "Zone 2 cycling usually means low-intensity aerobic work around or below the first lactate or ventilatory threshold, LT1 or VT1. The label changes between zone systems, so a fixed FTP or maximum-heart-rate percentage is an estimate rather than a universal definition.",
   keywords: [
     "zone 2 training cycling",
     "zone 2 cycling",
@@ -188,13 +188,12 @@ const ZONE_2: ClusterHubDef = {
   ],
   parent: { label: "Topics", href: "/topics" },
   experts: [
-    { name: "Dr Iñigo San Millán", credential: "Exercise physiologist; coach to Tadej Pogačar" },
-    { name: "Professor Stephen Seiler", credential: "Exercise physiologist, polarised-training pioneer" },
-    { name: "Dan Lorang", credential: "Head of Performance, Lidl-Trek; elite endurance coach" },
-    { name: "John Wakefield", credential: "Performance coach, Science to Sport" },
+    { name: "Dr Iñigo San Millán", credential: "Exercise physiologist; Roadman Zone 2 podcast guest" },
+    { name: "Professor Stephen Seiler", credential: "Exercise physiologist; training-intensity-distribution researcher" },
+    { name: "Dan Lorang", credential: "Head of Performance, Red Bull–Bora-Hansgrohe" },
+    { name: "John Wakefield", credential: "Performance coach; former WorldTour coach" },
   ],
   articleSlugs: [
-    "zone-2-training-complete-guide",
     "zone-2-cycling-heart-rate-vs-power-vs-rpe",
     "zone-2-vs-endurance-training",
     "what-experts-say-about-zone-2-training",
@@ -204,43 +203,45 @@ const ZONE_2: ClusterHubDef = {
     "aerobic-decoupling-cycling-cardiac-drift",
   ],
   newArticleSlugs: ["find-your-zone-2-lactate-testing-san-millan"],
-  pillarContent: `The cycling internet will tell you Zone 2 is "easy riding." That is true and useless in equal measure. Easy compared to what? Easy by whose heart rate? The reason most amateurs get nothing from their Zone 2 is that they ride it by feel, the feel is wrong, and they spend the whole session 15 watts into no-man's-land — too hard to build a base, too easy to build a top end. The grey zone. The single most common mistake in amateur training.
+  pillarContent: `Zone 2 is useful only after the model and anchor are named. Research using three zones usually calls work below the first threshold Zone 1; common cycling software often calls a conventional 56–75% FTP band Zone 2. Those labels can describe overlapping low-intensity work, but they are not interchangeable.
 
-Professor Stephen Seiler's research is the source for the site's discussion of polarised intensity distribution. Dan Lorang's Roadman interviews support a narrower point: sustainable training depends on consistency and matching load to recovery. Roadman has no verified basis for claiming that Lorang coached Tadej Pogačar or Jonas Vingegaard. [The complete guide to Zone 2 training](/blog/zone-2-training-complete-guide) separates research evidence from coach interpretation.
+[Zone 2 cycling: heart rate, power, RPE and LT1](/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe) is the canonical definition and execution guide. It explains why a measured LT1 or VT1 is a stronger anchor than a generic percentage, why methods can still disagree, and why power, heart rate and RPE answer different questions.
+
+Professor Stephen Seiler's research supports the site's discussion of training-intensity distribution. Dan Lorang's Roadman interviews support narrower coaching observations about consistency and matching load to recovery. Roadman has no verified basis for claiming that Lorang coached Tadej Pogačar or Jonas Vingegaard.
 
 ## Find YOUR Zone 2, not a textbook's
 
-A percentage of max heart rate is a starting point, not an answer. Your true Zone 2 ceiling is the watts at your first lactate threshold, LT1 — the point where blood lactate first ticks above baseline — and it is personal. Dr Iñigo San Millán, the physiologist behind Pogačar's metabolic training, built his reputation on clamping riders right at that line. [How to find your own Zone 2 with lactate testing, using San Millán's methodology](/blog/find-your-zone-2-lactate-testing-san-millan), is the piece that turns the theory into a number you can actually ride to. If you don't want to bleed for it, [the at-home lactate threshold test](/blog/lactate-threshold-home-test-cyclists) gets you a workable LT1 and LT2 without a lab.
+A percentage of maximum heart rate or FTP can be a starting estimate. A suitable lactate or ventilatory assessment can locate an individual first threshold more directly, although protocol and interpretation still matter. [How to find Zone 2 with lactate testing](/blog/find-your-zone-2-lactate-testing-san-millan) explains the laboratory approach, while the [at-home lactate threshold guide](/blog/lactate-threshold-home-test-cyclists) explains the extra uncertainty in field testing.
 
-## Pick the metric that keeps you honest
+## Use each metric for its own job
 
-Power is precise, heart rate is honest, and RPE is the one that catches you drifting. They disagree often, and knowing which to trust when is most of the skill. [Zone 2 by heart rate vs power vs RPE](/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe) settles it. And if you want proof your base is real rather than assumed, [aerobic decoupling](/blog/aerobic-decoupling-cycling-cardiac-drift) — the cardiac drift number — tells you whether your heart rate stayed flat or quietly climbed while your power held.
+Power records external work. Heart rate and RPE describe parts of the internal response. Comfortable speech is a useful field proxy, not a precise threshold test. When the signals disagree, examine duration, terrain, heat, fuelling, fatigue and device quality before declaring one metric the universal referee. [Aerobic decoupling](/blog/aerobic-decoupling-cycling-cardiac-drift) can describe how heart rate and power separate over time, but it is not a diagnosis or a standalone fitness verdict.
 
 ## Where Zone 2 sits in the bigger picture
 
-Zone 2 is not a training plan on its own — it is the broad base of a [polarised approach](/blog/polarised-training-cycling-complete-guide), where most riding is properly easy and the rest is properly hard, with very little in between. If you've ever wondered whether you should be doing sweet spot instead, [sweet spot vs threshold vs polarised](/blog/sweet-spot-vs-threshold-vs-polarised-comparison) is the decision tree. And because the words get used loosely, [Zone 2 vs endurance training](/blog/zone-2-vs-endurance-training) draws the line between the two — they are not the same thing.
+Zone 2 is one training intensity, not a complete plan. A [polarised distribution](/blog/polarised-training-cycling-complete-guide) uses predominantly low-intensity work with a smaller high-intensity dose, but current evidence does not require an exact weekly ratio or show one distribution always wins. [Sweet spot vs threshold vs polarised](/blog/sweet-spot-vs-threshold-vs-polarised-comparison) owns the programme comparison, while [Zone 2 vs endurance training](/blog/zone-2-vs-endurance-training) separates two labels that are often used as synonyms.
 
-Log it in [TrainingPeaks](https://www.trainingpeaks.com) and watch your time-in-zone honestly. The riders who break through aren't doing anything exotic. They are just actually easy on the easy days, for the first time in their cycling lives.`,
+Judge the complete dose. There is no evidence-backed 60- or 90-minute minimum, no universal weekly percentage and no uniquely Zone 2 adaptation. Build a repeatable aerobic workload that supports the rest of the programme.`,
   faqs: [
     {
       question: "What is Zone 2 in cycling?",
       answer:
-        "Zone 2 is the aerobic-endurance intensity just below your first lactate threshold (LT1) — typically around 60–75% of max heart rate, where you can hold a full conversation. It's the intensity that drives mitochondrial density and fat-oxidation adaptations without generating the fatigue of harder work.",
+        "Zone 2 cycling usually means low-intensity aerobic work around or below LT1 or VT1. The exact label and boundary depend on the zone system; a common seven-zone power model uses 56–75% FTP, but that band is a convention rather than an individual physiological measurement.",
     },
     {
       question: "How do I find my real Zone 2?",
       answer:
-        "The gold standard is a lactate step test to find LT1 — the power at which blood lactate first rises above baseline. Dr Iñigo San Millán's protocol clamps riders right at that line. A practical at-home proxy is the pace at which you can still breathe through your nose or speak full sentences, cross-checked against heart rate drift over a long steady ride.",
+        "A suitable lactate or gas-exchange assessment can estimate LT1 or VT1. Without one, begin with a conservative power or heart-rate estimate from a named method and cross-check it with RPE, comfortable speech and repeatable response. No field proxy is an exact laboratory threshold.",
     },
     {
       question: "Why is my Zone 2 riding not working?",
       answer:
-        "Almost always because it's too hard. Most amateurs ride Zone 2 in the grey zone — 10 to 20 watts above LT1 — which adds fatigue without the polarised benefit. Hold yourself to a power or heart-rate cap and resist the ego pull to push when you feel good.",
+        "First confirm the zone model and anchor. Then check whether the dose is repeatable, whether conditions or fuelling changed, and whether the complete programme serves the event. Zone 2 is not guaranteed to solve every limiter, and one high heart-rate reading does not identify the cause.",
     },
     {
       question: "How much Zone 2 should I do?",
       answer:
-        "In a polarised model, roughly 80% of your weekly training time. For a time-crunched amateur that often means most weekday rides easy and one or two properly hard sessions, rather than every ride landing in the moderate middle.",
+        "There is no universal percentage, duration or session count. Training level, event demands, available time, other intensity and observed recovery determine the dose. Start from the current week, add the smallest useful amount and progress only when normal training remains repeatable.",
     },
   ],
   relatedHubs: [

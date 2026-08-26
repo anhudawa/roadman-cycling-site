@@ -26,7 +26,7 @@ const RESEARCH_AREAS = [
     title: "Polarised Training & Intensity Distribution",
     expert: "Prof. Stephen Seiler, University of Agder",
     articles: [
-      { title: "Zone 2 Training: The Complete Guide", href: "/blog/zone-2-training-complete-guide" },
+      { title: "Zone 2 Training: The Complete Guide", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { title: "Polarised vs Sweet Spot Training", href: "/blog/polarised-vs-sweet-spot-training" },
       { title: "Zone 2 vs Endurance Training", href: "/blog/zone-2-vs-endurance-training" },
       { title: "Every Seiler Episode", href: "/blog/every-roadman-episode-with-stephen-seiler" },

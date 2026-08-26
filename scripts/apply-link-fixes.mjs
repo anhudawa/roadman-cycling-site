@@ -75,8 +75,8 @@ const URL_REWRITES = [
     "/blog/la-marmotte-training-plan",
     "/blog/etape-du-tour-training-plan",
   ],
-  // Zone 2 references — the canonical guide slug includes "complete"
-  ["/blog/zone-2-training-cycling-guide", "/blog/zone-2-training-complete-guide"],
+  // Zone 2 references — route all broad-guide aliases to the GSC-backed owner.
+  ["/blog/zone-2-training-cycling-guide", "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe"],
   // Overtraining slug normalised
   [
     "/blog/overtraining-vs-overreaching-cyclists",

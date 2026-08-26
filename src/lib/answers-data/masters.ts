@@ -3381,8 +3381,7 @@ export const mastersAnswers: AnswerPage[] = [
       "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
     ],
     relatedTopics: [
-      { label: "Zone 2 heart rate cycling", href: "/answers/zone-2-heart-rate-cycling" },
-      { label: "Zone 2 — heart rate or power?", href: "/answers/zone-2-heart-rate-or-power" },
+      { label: "Zone 2 — heart rate or power?", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "How should cyclists train over 40?", href: "/answers/cycling-training-over-40" },
       { label: "Why does recovery take longer with age?", href: "/answers/why-does-recovery-take-longer-with-age" },
       { label: "HR Zone Calculator", href: "/tools/hr-zones" },
@@ -3672,7 +3671,7 @@ export const mastersAnswers: AnswerPage[] = [
       "ep-2037-the-new-science-of-getting-faster-after-40",
     ],
     relatedTopics: [
-      { label: "What is Zone 2 training?", href: "/answers/what-is-zone-2-training" },
+      { label: "What is Zone 2 training?", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "How many hard sessions after 50?", href: "/answers/how-many-hard-sessions-after-50" },
       { label: "Can you improve FTP after 40?", href: "/answers/can-you-improve-ftp-after-40" },
       { label: "Zone 2 Done Right — Masters Hub", href: "/training/zone-2", description: "The base, paced properly, with the intensity that defends your top end." },

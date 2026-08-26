@@ -181,7 +181,7 @@ export default function HRZonesPage() {
                   >
                     <h3 className="font-heading text-lg text-off-white mb-3">LEARN MORE</h3>
                     <ul className="space-y-2">
-                      <li><Link href="/blog/zone-2-training-complete-guide" className="text-coral hover:text-coral/80 text-sm transition-colors">Zone 2 Training: Complete Guide</Link></li>
+                      <li><Link href="/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" className="text-coral hover:text-coral/80 text-sm transition-colors">Zone 2 Training: Complete Guide</Link></li>
                       <li><Link href="/blog/heart-rate-high-cycling-fixable-reasons" className="text-coral hover:text-coral/80 text-sm transition-colors">Why Is My Heart Rate So High on the Bike?</Link></li>
                       <li><Link href="/tools/ftp-zones" className="text-coral hover:text-coral/80 text-sm transition-colors">FTP Zone Calculator (power-based zones)</Link></li>
                       <li><Link href="/compare/heart-rate-vs-power" className="text-coral hover:text-coral/80 text-sm transition-colors">Heart Rate vs Power: Which Should You Use?</Link></li>

@@ -1,276 +1,6 @@
 import type { AnswerPage } from "@/lib/answers";
 
 export const zone2Answers: AnswerPage[] = [
-  // ============================================================
-  // 1 — WHAT IS ZONE 2 TRAINING
-  // ============================================================
-  {
-    slug: "what-is-zone-2-training",
-    cluster: "zone2",
-    question: "What Is Zone 2 Training?",
-    seoTitle: "What Is Zone 2 Training? The Complete Explanation for Cyclists",
-    seoDescription:
-      "Zone 2 training is steady aerobic riding at 56–75% of FTP, or under your first ventilatory threshold. It builds mitochondrial density, fat oxidation, and the engine your hard work sits on. What World Tour coaches actually prescribe.",
-    pillar: "coaching",
-    directAnswer:
-      "Zone 2 training is continuous aerobic riding at 56–75% of FTP — the pace where you can hold a full conversation and breathe mostly through your nose. At this intensity, your aerobic system builds mitochondrial density and fat-burning capacity without accumulating meaningful fatigue. It forms roughly 80% of a World Tour rider's total training time, and it is the engine that every other training quality depends on.",
-    keyTakeaways: [
-      "Zone 2 sits at 56–75% of FTP, or below your first ventilatory threshold — truly conversational pace.",
-      "The adaptations are specific: more mitochondria, higher fat oxidation, and greater aerobic efficiency.",
-      "Around 80% of a professional cyclist's training time sits in Zone 2 — not as filler, but as the primary training stimulus.",
-      "Most amateurs ride their Zone 2 too hard; if you're mouth-breathing, you've left Zone 2.",
-    ],
-    whoFor: [
-      {
-        label: "The rider who thinks slow is wasted",
-        detail:
-          "You've heard about Zone 2 but can't believe riding this easy does anything useful.",
-      },
-      {
-        label: "The structured beginner",
-        detail:
-          "You're setting up your training zones for the first time and want to understand what Zone 2 actually means before following a plan.",
-      },
-    ],
-    roadmanView: [
-      "The phrase gets thrown around constantly, but it's worth being precise about what Zone 2 actually is — because the definition matters. It's not just 'riding easy.' It's riding at an intensity where your aerobic system is the dominant energy source, where fat oxidation is running at near peak, and where you can sustain the effort for hours without significant central nervous system fatigue. That specificity is what makes it the foundation of endurance training.",
-      "Anthony has asked this question directly to Stephen Seiler, Dan Lorang, and Vasilis Anastopoulos on the podcast. The answer is consistent: elite riders spend the vast majority of their time here, not because it's comfortable, but because the adaptive signal is real and the fatigue cost is low enough to repeat day after day. The cumulative effect of that is a deeper aerobic engine than any interval programme alone can build.",
-      "The reason amateurs underestimate it is simple: it feels too easy to be doing anything. That feeling is the point. The adaptations from Zone 2 are cellular — you can't feel mitochondria growing — but the payoff appears in how hard you can go when you're really pushing, and how quickly you recover between efforts.",
-    ],
-    expertEvidence: [
-      {
-        name: "Professor Stephen Seiler",
-        credential: "Exercise physiologist, polarised-training researcher, University of Agder",
-        insight:
-          "Seiler's research across elite endurance populations consistently shows that the lowest zone — Zone 1 and 2 — accounts for roughly 80% of training time in the sports that produce the best aerobic performances. The aerobic adaptations at this intensity are real and distinct from what higher intensities produce, particularly mitochondrial biogenesis and improved fat oxidation.",
-        episodeSlug: "ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler",
-        guestSlug: "stephen-seiler",
-      },
-      {
-        name: "Vasilis Anastopoulos",
-        credential: "Head of Performance, Astana Pro Team",
-        insight:
-          "The Astana approach to base building places the majority of volume in what coaches call Zone 1 — equivalent to what most training systems label Zone 2. The point is to build an aerobic platform so deep that hard work can sit on top of it without the rider collapsing under accumulated fatigue.",
-        episodeSlug: "ep-2-i-asked-astana-coach-about-zone-2-heres-what-he-said",
-        guestSlug: "vasilis-anastopoulos",
-      },
-    ],
-    practicalApplication: [
-      {
-        title: "Set your Zone 2 ceiling using two checks",
-        detail:
-          "Calculate 75% of your FTP — that's your power ceiling. Then apply the talk test: if you can't speak in complete, comfortable sentences, you're above Zone 2. On heart rate, stay below roughly 75% of your maximum. Use the lower of the two ceilings.",
-      },
-      {
-        title: "Build to rides of 60–90 minutes minimum",
-        detail:
-          "Zone 2 adaptations compound with duration. A 30-minute spin is recovery; 60–90 minutes is where the aerobic signal starts to be meaningful. Work toward at least one 90-minute to 2-hour Zone 2 session per week.",
-      },
-      {
-        title: "Protect Zone 2 from tempo creep",
-        detail:
-          "Check your power or HR every 10–15 minutes. It's easy to drift into Zone 3 as the ride feels comfortable. Ego is the enemy here — a flat 20 km/h into a headwind is still Zone 2 if the power says so.",
-      },
-    ],
-    commonMistakes: [
-      {
-        mistake: "Riding Zone 2 in Zone 3 because slow feels unproductive.",
-        fix:
-          "Trust numbers over feel. Power meter or heart rate, pick a ceiling and hold it. If you're breathing through your mouth regularly, you've drifted above Zone 2.",
-      },
-      {
-        mistake: "Treating Zone 2 as 'junk miles' and cutting it when time is short.",
-        fix:
-          "Zone 2 is the primary training stimulus for aerobic adaptation. Cut an interval session before cutting a long Zone 2 ride if your week is compressed.",
-      },
-      {
-        mistake: "Doing only Zone 2 and wondering why fitness plateaus.",
-        fix:
-          "Zone 2 is the base, not the whole plan. A trained rider needs a small dose of properly hard work — threshold or VO2max sessions — to keep the ceiling rising.",
-      },
-    ],
-    faq: [
-      {
-        question: "What is the difference between Zone 1 and Zone 2?",
-        answer:
-          "Zone 1 is recovery pace — very light spin below 55% FTP with minimal metabolic demand. Zone 2 is the lowest productive aerobic training zone, 56–75% FTP, where fat oxidation and mitochondrial adaptation are the dominant outputs. Some coaches collapse Zone 1 and Zone 2 into a single 'easy' block; the key distinction is that Zone 2 is training, Zone 1 is recovery.",
-      },
-      {
-        question: "How does Zone 2 training make you faster?",
-        answer:
-          "Zone 2 builds mitochondrial density in muscle fibres, raises the rate at which your body can oxidise fat as a fuel, and increases cardiac stroke volume. The practical effect: you can sustain higher absolute power for longer before relying on carbohydrate, and your hard-session quality improves because the aerobic base supports faster recovery between intervals.",
-      },
-      {
-        question: "Is Zone 2 the same as an endurance pace?",
-        answer:
-          "They overlap significantly. In most cycling training systems, 'endurance' and 'Zone 2' describe the same intensity band. Some systems use slightly different boundaries, but if the pace is conversational and sustainable for several hours, you're in the right territory.",
-      },
-      {
-        question: "Can I do Zone 2 on a mountain bike or off-road?",
-        answer:
-          "Yes, but it's harder to control on technical terrain where power output spikes constantly. Heart rate is a more practical guide off-road than power. Keep HR below ~75% of max and accept that some short bursts above Zone 2 are unavoidable on climbs.",
-      },
-      {
-        question: "Is Zone 2 training only for endurance athletes?",
-        answer:
-          "No. Even track sprinters include structured Zone 2 work to build the aerobic base that supports recovery between high-intensity efforts. The proportion varies by event, but the adaptation is universally useful.",
-      },
-      {
-        question: "How often should I ride in Zone 2?",
-        answer:
-          "The 80/20 principle applies here: roughly 80% of your total training time. For most amateurs riding 8–10 hours a week, that means 3–4 Zone 2 sessions, with 1–2 hard sessions. Frequency matters less than total time — one 90-minute session contributes more than three 30-minute ones.",
-      },
-    ],
-    relatedEpisodes: [
-      "ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler",
-      "ep-2-i-asked-astana-coach-about-zone-2-heres-what-he-said",
-      "ep-2-secret-to-zone-2-training-dose-frequency-duration",
-    ],
-    relatedTopics: [
-      { label: "Zone 2 Training — Complete Guide", href: "/blog/zone-2-training-complete-guide" },
-      { label: "How Much Zone 2 Should Cyclists Do?", href: "/answers/how-much-zone-2" },
-      { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
-      { label: "HR Zone Calculator", href: "/tools/hr-zones" },
-      { label: "Polarised Training Guide", href: "/blog/polarised-training-cycling-world-tour-prescription" },
-    ],
-    evidenceLevel: "strong",
-    evidenceNote:
-      "Zone 2 physiology is among the most replicated findings in endurance science. Mitochondrial biogenesis and fat oxidation at low intensities are well-established mechanisms.",
-    publishDate: "2026-05-26",
-    updatedDate: "2026-05-26",
-  },
-
-  // ============================================================
-  // 2 — ZONE 2 HEART RATE CYCLING
-  // ============================================================
-  {
-    slug: "zone-2-heart-rate-cycling",
-    cluster: "zone2",
-    question: "What Heart Rate Is Zone 2 for Cycling?",
-    seoTitle: "What Heart Rate Is Zone 2 for Cycling? — Find Your Number",
-    seoDescription:
-      "Zone 2 heart rate for cycling sits at roughly 60–72% of your maximum heart rate, below the first ventilatory threshold. Generic formulas miss individual variation — here's how to find your actual number.",
-    pillar: "coaching",
-    directAnswer:
-      "Zone 2 heart rate for cycling typically sits at 60–72% of your maximum heart rate — roughly 114–137 bpm for a rider with a 190 bpm max. The more precise marker is staying below your first ventilatory threshold: the point where you shift from nasal breathing to mouth breathing. Generic age-based formulas are a rough start; a short field test gives you a far more accurate ceiling.",
-    keyTakeaways: [
-      "Zone 2 HR is roughly 60–72% of maximum heart rate, but the talk test is a practical daily check.",
-      "Maximum heart rate declines with age, so the same percentage feels different at 40 vs 25.",
-      "Temperature, caffeine, dehydration, and fatigue all inflate heart rate — on hot days, ride by power or RPE instead.",
-      "The ventilatory threshold test — finding the point where you shift to mouth breathing — gives you a more accurate Zone 2 ceiling than any formula.",
-    ],
-    whoFor: [
-      {
-        label: "The heart rate monitor user",
-        detail:
-          "You train by HR, not power, and want to know exactly what numbers to target.",
-      },
-      {
-        label: "The rider whose HR drifts during long rides",
-        detail:
-          "Your heart rate climbs through a flat Zone 2 ride and you're unsure whether to slow down or trust the power.",
-      },
-    ],
-    roadmanView: [
-      "The '220 minus age' formula for maximum heart rate is one of the most widely cited numbers in cycling — and one of the least reliable for individual riders. Anthony has seen athletes with maximum HRs 20 bpm above or below the formula's prediction. If your Zone 2 ceiling is built on a wrong max, every training zone you've ever set is shifted.",
-      "A better approach: find your actual maximum heart rate with a proper ramp test or a short all-out effort, then set your Zone 2 ceiling at 70–72% of that. Cross-check it with the talk test — if you can speak in complete sentences without forcing it, you're in the right place. If you can only manage short phrases, you're above Zone 2.",
-      "There's also a daily drift problem. On a hot day, at altitude, or when you're under-slept, your heart rate at the same power output can be 10–15 bpm higher than normal. This is cardiac drift, and it means your Zone 2 power on Wednesday might push your HR above the Zone 2 ceiling. The fix is to learn both markers — power tells you the physiological load, HR tells you how your body is responding to today's conditions.",
-    ],
-    expertEvidence: [
-      {
-        name: "Professor Stephen Seiler",
-        credential: "Exercise physiologist, polarised-training researcher",
-        insight:
-          "Seiler's polarised training model uses ventilatory thresholds — not arbitrary HR zones — to define training intensity. The first ventilatory threshold, where breathing shifts from nasal-dominant to mixed, is the upper limit of what he calls 'truly easy' training. Working below that threshold is the defining characteristic of Zone 2.",
-        episodeSlug: "ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler",
-        guestSlug: "stephen-seiler",
-      },
-      {
-        name: "Dan Lorang",
-        credential: "Head of Performance, Red Bull–Bora–Hansgrohe; coach to Jan Frodeno and Primož Roglič",
-        insight:
-          "Lorang's prescription for amateur riders emphasises individual calibration over generic zone calculators. The key metric is finding the metabolic state where fat is the dominant fuel — which is precisely what the lower half of Zone 2 targets. He uses this as the baseline for all base-phase building blocks.",
-        episodeSlug: "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
-        guestSlug: "dan-lorang",
-      },
-    ],
-    practicalApplication: [
-      {
-        title: "Run a simple max HR test",
-        detail:
-          "After a 15-minute warm-up, ride 3 minutes all-out on a climb. Record the peak HR. This is closer to your true max than any formula. Set your Zone 2 ceiling at 70–72% of that number.",
-      },
-      {
-        title: "Apply the talk test as a daily calibration",
-        detail:
-          "Every 15 minutes during a Zone 2 ride, say a sentence out loud. Full, comfortable sentence without pausing for breath? You're in Zone 2. Short bursts only? Back off 5–10 watts until breathing is easy again.",
-      },
-      {
-        title: "Adjust Zone 2 ceiling for heat and fatigue",
-        detail:
-          "On hot days or after poor sleep, use power as your primary guide and accept that HR will be higher than your Zone 2 ceiling even at the right power. Don't slow down to hit the HR target — hold the power and let the HR be a signal, not a limiter.",
-      },
-    ],
-    commonMistakes: [
-      {
-        mistake: "Using the '220 minus age' formula and never questioning it.",
-        fix:
-          "Test your actual max HR before setting any zones. Generic formulas can be off by 15+ bpm, which shifts every training zone you have.",
-      },
-      {
-        mistake: "Letting HR drift decide when to stop a Zone 2 ride.",
-        fix:
-          "Cardiac drift during a long ride is normal. Slow down only if power is also climbing. If power is steady and HR is rising slightly, that's expected physiology, not a sign to stop.",
-      },
-      {
-        mistake: "Ignoring conditions that push HR above Zone 2 at Zone 2 power.",
-        fix:
-          "Heat, altitude, illness, and caffeine all affect HR. On a hot day, anchor to power or RPE and accept a higher HR reading.",
-      },
-    ],
-    faq: [
-      {
-        question: "What is a typical Zone 2 heart rate for a 45-year-old cyclist?",
-        answer:
-          "With an estimated max HR of 175 bpm (roughly 220 minus 45), Zone 2 would sit around 105–126 bpm. But measured max HRs at 45 vary from 160 to 195 bpm, so test yours before trusting this number. The talk test is your daily fallback.",
-      },
-      {
-        question: "Why does my heart rate in Zone 2 seem higher than other riders my age?",
-        answer:
-          "Maximum heart rate is highly individual and doesn't predict fitness. A higher max means all your zones sit at higher absolute numbers than a rider with a lower max, even if your relative fitness is identical. Compare percentages, not absolute bpm.",
-      },
-      {
-        question: "My heart rate climbs throughout a Zone 2 ride even though I'm not going faster — is that normal?",
-        answer:
-          "Yes. This is cardiac drift, caused by increasing core temperature, dehydration, and cardiovascular stress accumulating over time. A drift of 5–10 bpm over a 2-hour ride is normal and expected. Extreme drift (15+ bpm) suggests dehydration, heat, or accumulated fatigue.",
-      },
-      {
-        question: "Is Zone 2 heart rate the same on a bike as running?",
-        answer:
-          "No. Running typically produces 5–10 bpm higher heart rates than cycling at the same perceived effort, because running uses more muscle mass. Your Zone 2 power-to-HR relationship on the bike won't translate directly to a treadmill.",
-      },
-      {
-        question: "Should I use power or heart rate for Zone 2?",
-        answer:
-          "Both, as different signals. Power tells you the actual training load; HR tells you how your body is adapting to today's conditions. On a normal day, calibrate using HR. On hot or high-fatigue days, defer to power and accept elevated HR.",
-      },
-    ],
-    relatedEpisodes: [
-      "ep-2066-how-to-cycle-fast-with-a-low-heart-rate",
-      "ep-20-5-fixable-reasons-your-heart-rate-is-high-while-cycling",
-      "ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler",
-    ],
-    relatedTopics: [
-      { label: "HR Zone Calculator", href: "/tools/hr-zones" },
-      { label: "Zone 2 Cycling: HR vs Power vs RPE", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
-      { label: "5 Fixable Reasons Your Heart Rate Is High", href: "/blog/heart-rate-high-cycling-fixable-reasons" },
-      { label: "What Is Zone 2 Training?", href: "/answers/what-is-zone-2-training" },
-      { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
-    ],
-    evidenceLevel: "strong",
-    publishDate: "2026-05-26",
-    updatedDate: "2026-05-26",
-  },
 
   // ============================================================
   // 3 — IS MY ZONE 2 TOO HARD
@@ -528,8 +258,6 @@ export const zone2Answers: AnswerPage[] = [
       { label: "HR Zone Calculator", href: "/tools/hr-zones" },
       { label: "Zone 2 Cycling: HR vs Power vs RPE", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "Heart Rate vs Power", href: "/compare/heart-rate-vs-power" },
-      { label: "What Heart Rate Is Zone 2?", href: "/answers/zone-2-heart-rate-cycling" },
-      { label: "Zone 2 Training Complete Guide", href: "/blog/zone-2-training-complete-guide" },
     ],
     evidenceLevel: "moderate",
     publishDate: "2026-05-26",
@@ -659,8 +387,7 @@ export const zone2Answers: AnswerPage[] = [
     relatedTopics: [
       { label: "Indoor vs Outdoor Training", href: "/compare/indoor-vs-outdoor-training" },
       { label: "Cycling Podcasts for Indoor Training", href: "/blog/cycling-podcasts-for-indoor-training" },
-      { label: "Zone 2 Training Complete Guide", href: "/blog/zone-2-training-complete-guide" },
-      { label: "What Is Zone 2 Training?", href: "/answers/what-is-zone-2-training" },
+      { label: "Zone 2 Training Complete Guide", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "HR Zone Calculator", href: "/tools/hr-zones" },
     ],
     evidenceLevel: "moderate",
@@ -789,7 +516,7 @@ export const zone2Answers: AnswerPage[] = [
       "ep-2039-why-pros-train-so-easy-what-amateurs-dont-know",
     ],
     relatedTopics: [
-      { label: "Zone 2 Training Complete Guide", href: "/blog/zone-2-training-complete-guide" },
+      { label: "Zone 2 Training Complete Guide", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "Polarised Training for Cycling", href: "/blog/polarised-training-cycling-world-tour-prescription" },
       { label: "What Experts Say About Zone 2", href: "/blog/what-experts-say-about-zone-2-training" },
       { label: "Cycling Base Training Guide", href: "/blog/cycling-base-training-guide" },
@@ -925,7 +652,7 @@ export const zone2Answers: AnswerPage[] = [
     relatedTopics: [
       { label: "Cycling Base Training Guide", href: "/blog/cycling-base-training-guide" },
       { label: "How Much Zone 2 Should Cyclists Do?", href: "/answers/how-much-zone-2" },
-      { label: "Zone 2 Training Complete Guide", href: "/blog/zone-2-training-complete-guide" },
+      { label: "Zone 2 Training Complete Guide", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "Volume vs Intensity", href: "/compare/volume-vs-intensity" },
       { label: "Cycling Training Plans", href: "/topics/cycling-training-plans" },
     ],
@@ -1451,10 +1178,9 @@ export const zone2Answers: AnswerPage[] = [
       "ep-2066-how-to-cycle-fast-with-a-low-heart-rate",
     ],
     relatedTopics: [
-      { label: "Zone 2 Heart Rate for Cycling", href: "/answers/zone-2-heart-rate-cycling" },
       { label: "Is My Zone 2 Too Hard?", href: "/answers/is-my-zone-2-too-hard" },
       { label: "Zone 2 vs Tempo", href: "/answers/zone-2-vs-tempo" },
-      { label: "Zone 2 Training Complete Guide", href: "/blog/zone-2-training-complete-guide" },
+      { label: "Zone 2 Training Complete Guide", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "HR Zone Calculator", href: "/tools/hr-zones" },
     ],
     evidenceLevel: "moderate",
@@ -1719,7 +1445,7 @@ export const zone2Answers: AnswerPage[] = [
       { label: "Is My Zone 2 Too Hard?", href: "/answers/is-my-zone-2-too-hard" },
       { label: "Zone 2 Benefits for Cyclists", href: "/answers/zone-2-benefits-cycling" },
       { label: "How Long to Build Aerobic Base?", href: "/answers/how-long-to-build-aerobic-base" },
-      { label: "What Is Zone 2 Training?", href: "/answers/what-is-zone-2-training" },
+      { label: "What Is Zone 2 Training?", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
     ],
     evidenceLevel: "strong",
     publishDate: "2026-05-26",
@@ -2009,142 +1735,6 @@ export const zone2Answers: AnswerPage[] = [
     updatedDate: "2026-05-26",
   },
 
-  // ============================================================
-  // ZONE 2: SHOULD I USE HEART RATE OR POWER
-  // ============================================================
-  {
-    slug: "zone-2-heart-rate-or-power",
-    cluster: "zone2",
-    question: "Zone 2: Should I Use Heart Rate or Power?",
-    seoTitle: "Zone 2: Heart Rate or Power? — Use Both, Here's How",
-    seoDescription:
-      "Use power as your primary Zone 2 anchor and heart rate as a daily check, holding 56–75% of FTP and below 72% of max HR. Why the two metrics tell you different things — and when each one lies.",
-    pillar: "coaching",
-    directAnswer:
-      "Use both, but for different jobs. Power is the better primary anchor for Zone 2 because it's immediate and unaffected by heat, sleep, or caffeine — hold 56–75% of FTP. Heart rate is the better daily check on how your body is responding, kept below roughly 72% of max. On hot or fatigued days, trust power and let HR run high. With neither, the talk test covers you.",
-    keyTakeaways: [
-      "Power is the better primary anchor: instant, terrain-independent, and unaffected by heat or fatigue — hold 56–75% of FTP.",
-      "Heart rate tells you how your body is responding today, but lags by 1–2 minutes and inflates with heat, caffeine and poor sleep.",
-      "On hot days or after bad sleep, defer to power and accept an elevated HR — chasing the HR target down would make the ride too easy.",
-      "If you only have one metric, either works for Zone 2 — it's forgiving enough that a few watts or beats off the mark won't break the session.",
-    ],
-    whoFor: [
-      {
-        label: "The rider with both a power meter and HR strap",
-        detail:
-          "You have both metrics and want to know which to follow when they disagree.",
-      },
-      {
-        label: "The rider deciding what to buy",
-        detail:
-          "You're choosing between investing in a power meter or sticking with heart rate and want to know what actually matters for Zone 2.",
-      },
-    ],
-    roadmanView: [
-      "This is one of the most common questions Anthony gets, and the honest answer frustrates people who want a single number to follow: it's not heart rate or power, it's both, doing different jobs. Power measures what you're putting out — the actual mechanical load, available instantly, identical whether it's January and freezing or August and 30 degrees. Heart rate measures what's happening inside you in response to that load, which is useful but contaminated by everything from your morning coffee to last night's sleep.",
-      "Here's where it gets interesting. The two metrics drift apart over a long ride — power dead steady while HR climbs 10 beats. That's cardiac drift, and it's the single biggest source of confusion in Zone 2. A rider sees the HR creeping over the ceiling and slows down, when the power was telling the truth all along. The fix is to decide in advance which metric leads. For Zone 2, on a normal day, calibrate to HR; on a hot, fatigued, or high-altitude day, anchor to power and treat the high HR as information, not an instruction to back off.",
-      "And if you don't own a power meter, don't let this question stall you. Zone 2 is forgiving — it's the one intensity where being a few watts or beats off the target really doesn't matter much. Heart rate plus the talk test will keep you honest. The riders who got fast in the decades before power meters existed weren't missing anything for their easy days. Power earns its keep on the hard sessions, where precision matters more.",
-    ],
-    expertEvidence: [
-      {
-        name: "Professor Stephen Seiler",
-        credential: "Exercise physiologist, polarised-training researcher",
-        insight:
-          "Seiler defines intensity by physiological landmarks — the ventilatory thresholds — rather than by a single device output. The first ventilatory threshold is the true upper limit of Zone 2, and both power and heart rate are only proxies for it. His point is that the underlying metabolic state matters more than which gadget you read, with HR best understood as a response signal and power as a dose signal.",
-        episodeSlug: "ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler",
-        guestSlug: "stephen-seiler",
-      },
-      {
-        name: "John Wakefield",
-        credential: "World Tour coach, Red Bull–Bora–Hansgrohe; coach to Primož Roglič and Jai Hindley",
-        insight:
-          "Wakefield's approach to building endurance leans on power to set the prescribed load precisely, while reading heart rate and other markers to judge how a rider is absorbing that load day to day. For base work, the power target defines the session and the heart rate response tells the coach whether the athlete is fresh, fatigued, or fighting the heat.",
-        episodeSlug: "ep-2132-how-do-team-bora-approach-building-endurance-we-find-out-joh",
-        guestSlug: "john-wakefield",
-      },
-    ],
-    practicalApplication: [
-      {
-        title: "Set both ceilings on your head unit",
-        detail:
-          "Display power and heart rate side by side. Power ceiling at 75% of FTP, HR ceiling at roughly 72% of max. On a normal day they should broadly agree; when they don't, you'll know something's off — heat, fatigue, or a stale FTP number.",
-      },
-      {
-        title: "Let power lead, let HR inform",
-        detail:
-          "Ride to the power target. Glance at HR every 15 minutes as a sanity check. If HR is sitting where you'd expect, all is well. If it's drifting high at steady power, ask whether it's the conditions — and if it is, hold the power anyway.",
-      },
-      {
-        title: "Switch to power-only on hot or tired days",
-        detail:
-          "On days when heat, altitude, or poor sleep are inflating your HR, stop chasing the HR ceiling. Anchor entirely to power, accept the higher heart rate, and don't slow down — slowing to hit the HR target would drop you out of a productive Zone 2.",
-      },
-    ],
-    commonMistakes: [
-      {
-        mistake: "Slowing down mid-ride to keep HR under the ceiling as it drifts up.",
-        fix:
-          "Cardiac drift at steady power is normal physiology. If power is steady and only HR is climbing, hold the power. Slowing down turns Zone 2 into recovery riding.",
-      },
-      {
-        mistake: "Trusting heart rate on a hot day and riding too easy.",
-        fix:
-          "Heat can inflate HR by 10–15 bpm at the same load. On warm days, anchor to power or RPE and accept that the HR number will read high.",
-      },
-      {
-        mistake: "Refusing to do Zone 2 properly because you don't own a power meter.",
-        fix:
-          "Zone 2 is the most forgiving intensity. Heart rate and the talk test are entirely sufficient. Spend on a power meter for your hard sessions, not your easy ones.",
-      },
-    ],
-    faq: [
-      {
-        question: "Is power or heart rate more accurate for Zone 2?",
-        answer:
-          "Power is more accurate as a measure of the load you're producing — it's instant and unaffected by conditions. Heart rate is a more accurate read of how your body is coping with that load on the day. Neither is 'more accurate' overall; they measure different things, which is why pros use both.",
-      },
-      {
-        question: "Why is my heart rate high in Zone 2 even when my power is low?",
-        answer:
-          "Usually heat, dehydration, caffeine, poor sleep, or accumulated fatigue. Any of these raises HR at a given power. If your power is properly in Zone 2 and HR is high, the power is telling the truth — treat the elevated HR as a signal about your condition, not a sign you're working too hard.",
-      },
-      {
-        question: "Can I just use heart rate for Zone 2 and ignore power?",
-        answer:
-          "Yes, on normal days. Set your ceiling at around 72% of max HR and hold below it. The weakness is hot and fatigued days, when HR inflates at the same effort — on those days, lean on RPE and the talk test instead.",
-      },
-      {
-        question: "Does indoor training change which metric I should trust?",
-        answer:
-          "Yes. Indoors, heat builds up fast and pushes HR well above its outdoor value at the same power. Use power as the primary anchor on the trainer, run a strong fan, and accept that indoor HR will read 5–15 bpm higher than outdoors.",
-      },
-      {
-        question: "My power-based Zone 2 keeps pushing my HR over the ceiling — what's wrong?",
-        answer:
-          "Most likely your FTP is set too high, so 75% of an inflated FTP lands you above true Zone 2. Retest your FTP when rested, and if your Zone 2 power consistently breaches your HR ceiling and your talk test, lower the FTP figure by 5–10%.",
-      },
-      {
-        question: "Should beginners start with heart rate or power for Zone 2?",
-        answer:
-          "Heart rate plus the talk test is the cheapest, most accessible start, and it teaches you to feel the effort. Add a power meter once you're doing structured hard sessions, where precise pacing matters far more than it does for easy riding.",
-      },
-    ],
-    relatedEpisodes: [
-      "ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler",
-      "ep-2132-how-do-team-bora-approach-building-endurance-we-find-out-joh",
-      "ep-2066-how-to-cycle-fast-with-a-low-heart-rate",
-    ],
-    relatedTopics: [
-      { label: "Heart Rate vs Power", href: "/compare/heart-rate-vs-power" },
-      { label: "Zone 2 Cycling: HR vs Power vs RPE", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
-      { label: "Train by FTP or Heart Rate?", href: "/answers/train-by-ftp-or-heart-rate" },
-      { label: "What Heart Rate Is Zone 2?", href: "/answers/zone-2-heart-rate-cycling" },
-      { label: "Zone 2 Without a Power Meter", href: "/answers/zone-2-without-power-meter" },
-    ],
-    evidenceLevel: "strong",
-    publishDate: "2026-05-26",
-    updatedDate: "2026-05-26",
-  },
 
   // ============================================================
   // DOES ZONE 2 IMPROVE FAT OXIDATION

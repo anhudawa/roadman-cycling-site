@@ -66,7 +66,7 @@ export const ftpZonesDefinition: DiagnosticDefinition = {
         "Fuel every ride over 60 minutes — under-fuelling is common at this level.",
       ],
       recommendedResource: {
-        href: "/blog/zone-2-training-complete-guide",
+        href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe",
         label: "Zone 2 Training — the base you're missing",
       },
       crmTags: ["wkg-bucket-3-3-5"],

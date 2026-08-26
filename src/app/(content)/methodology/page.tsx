@@ -60,7 +60,7 @@ const PILLARS: PillarSpec[] = [
     ],
     see: [
       { label: "Polarised vs Sweet Spot", href: "/compare/polarised-vs-pyramidal" },
-      { label: "Zone 2 Training Guide", href: "/blog/zone-2-training-complete-guide" },
+      { label: "Zone 2 Training Guide", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "FTP Zone Calculator", href: "/tools/ftp-zones" },
     ],
   },

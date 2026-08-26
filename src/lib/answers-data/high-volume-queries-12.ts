@@ -127,7 +127,7 @@ export const highVolumeQuery12Answers: AnswerPage[] = [
     ],
     relatedEpisodes: [],
     relatedTopics: [
-      { label: "What is zone 2 training?", href: "/answers/what-is-zone-2-training" },
+      { label: "What is zone 2 training?", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "How to build cycling fitness from scratch", href: "/answers/how-to-build-cycling-fitness-from-scratch" },
       { label: "How long does it take to get fit cycling?", href: "/answers/how-long-does-it-take-to-get-fit-cycling" },
       { label: "How to build aerobic base cycling", href: "/answers/how-to-build-aerobic-base-cycling" },
@@ -490,7 +490,7 @@ export const highVolumeQuery12Answers: AnswerPage[] = [
     ],
     relatedEpisodes: [],
     relatedTopics: [
-      { label: "What is zone 2 training?", href: "/answers/what-is-zone-2-training" },
+      { label: "What is zone 2 training?", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "How long should a base phase last?", href: "/answers/how-long-should-a-base-phase-last" },
       { label: "What is base training?", href: "/answers/what-is-base-training" },
       { label: "Zone 2 benefits cycling", href: "/answers/zone-2-benefits-cycling" },

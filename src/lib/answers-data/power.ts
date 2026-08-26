@@ -788,7 +788,7 @@ export const powerAnswers: AnswerPage[] = [
     relatedTopics: [
       { label: "Cycling Nutrition — Topic Hub", href: "/topics/cycling-nutrition" },
       { label: "Fuelling Calculator", href: "/tools/fuelling" },
-      { label: "Zone 2 Training Guide", href: "/blog/zone-2-training-complete-guide" },
+      { label: "Zone 2 Training Guide", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "How much zone 2?", href: "/answers/how-much-zone-2" },
       { label: "How many carbs per hour?", href: "/answers/carbs-per-hour-cycling" },
     ],
@@ -1313,7 +1313,7 @@ export const powerAnswers: AnswerPage[] = [
       "ep-2027-train-slower-ride-faster-why-it-actually-works",
     ],
     relatedTopics: [
-      { label: "Zone 2 Training Guide", href: "/blog/zone-2-training-complete-guide" },
+      { label: "Zone 2 Training Guide", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "Cycling Base Training Guide", href: "/blog/cycling-base-training-guide" },
       { label: "How much zone 2?", href: "/answers/how-much-zone-2" },
       { label: "Cycling Training Plans", href: "/topics/cycling-training-plans" },
@@ -1446,7 +1446,7 @@ export const powerAnswers: AnswerPage[] = [
     ],
     relatedTopics: [
       { label: "Ryan Collins: 46.6 km/h for Six Hours", href: "/blog/ryan-collins-six-hour-record-46kmh" },
-      { label: "Zone 2 Training Guide", href: "/blog/zone-2-training-complete-guide" },
+      { label: "Zone 2 Training Guide", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "How to build endurance", href: "/answers/how-to-build-cycling-endurance" },
       { label: "Cycling Training Plans", href: "/topics/cycling-training-plans" },
       { label: "Volume vs Intensity", href: "/compare/volume-vs-intensity" },
@@ -1580,7 +1580,7 @@ export const powerAnswers: AnswerPage[] = [
     ],
     relatedTopics: [
       { label: "FTP Training — Topic Hub", href: "/topics/ftp-training" },
-      { label: "Zone 2 Training Guide", href: "/blog/zone-2-training-complete-guide" },
+      { label: "Zone 2 Training Guide", href: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe" },
       { label: "Why has my cycling plateaued?", href: "/answers/how-to-stop-plateauing" },
       { label: "Strength vs More Miles", href: "/compare/strength-vs-more-miles" },
       { label: "How do I improve my FTP?", href: "/answers/how-to-improve-ftp" },

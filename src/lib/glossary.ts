@@ -67,12 +67,13 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
   {
     slug: "zone-2",
     term: "Zone 2 (Endurance Zone)",
-    definition: "Training at 56-75% of FTP — a conversational pace where the body maximises fat oxidation and builds mitochondrial density without accumulating significant fatigue.",
-    extendedDefinition: "Zone 2 is the foundation of the polarised training model. At this intensity, the body primarily burns fat for fuel, builds new mitochondria in muscle cells, and expands the capillary network. Most amateur cyclists ride their easy rides too hard — in the grey zone between Zone 2 and threshold — which limits adaptation. The conversation test is the simplest check: if you can speak in full sentences without gasping, you are probably in Zone 2.",
+    definition: "Low-intensity aerobic cycling around or below the first lactate or ventilatory threshold, LT1 or VT1; the exact label and boundary depend on the zone system and anchor.",
+    extendedDefinition: "In a common seven-zone power model, Zone 2 is conventionally set at 56–75% of FTP. That percentage is a starting estimate rather than an individual physiological measurement. Research using a three-zone model usually calls work below the first threshold Zone 1. Power describes the external dose, while heart rate, RPE and comfortable speech help describe the response. Zone 2 can accumulate scalable aerobic work, but current evidence does not show that it owns a unique mitochondrial or fat-oxidation adaptation.",
     pillar: "coaching",
     relatedTerms: ["polarised-training", "ftp", "lactate-threshold"],
-    relatedArticle: "/blog/zone-2-training-complete-guide",
+    relatedArticle: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe",
     relatedTopicHub: "/topics/ftp-training",
+    canonicalPath: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe",
   },
   {
     slug: "w-kg",
@@ -144,7 +145,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     extendedDefinition: "Cardiac drift occurs because blood volume decreases (through sweating), core temperature rises, and the heart must beat faster to deliver the same oxygen. TSS and power stay constant, but the ride is getting measurably harder. Prof. Seiler uses cardiac drift as evidence that TSS measures load, not stress. Practical implication: a 4-hour Zone 2 ride costs more than the average power suggests.",
     pillar: "coaching",
     relatedTerms: ["zone-2", "ftp", "lactate-threshold"],
-    relatedArticle: "/blog/zone-2-training-complete-guide",
+    relatedArticle: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe",
     relatedTopicHub: "/topics/ftp-training",
   },
   {
@@ -391,7 +392,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     extendedDefinition: "LT1 (first lactate threshold) or VT1 (first ventilatory threshold) is the intensity where your body starts producing lactate faster than it can clear at rest — but still slowly enough that it doesn't accumulate. This is the ceiling of genuine 'easy' riding. Most amateur cyclists ride above LT1 on their easy days without realising it, which is why their Zone 2 training doesn't produce the expected adaptations. Lab testing or a talk test can identify LT1.",
     pillar: "coaching",
     relatedTerms: ["zone-2", "lactate-threshold", "polarised-training"],
-    relatedArticle: "/blog/zone-2-training-complete-guide",
+    relatedArticle: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe",
     relatedTopicHub: "/topics/ftp-training",
   },
   {
@@ -478,7 +479,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     extendedDefinition: "Mitochondrial density is one of the key physiological adaptations distinguishing trained from untrained endurance athletes. Masters cyclists experience a natural decline in mitochondrial density that zone 2 training counteracts. Long low-intensity rides (2+ hours at VT1 or below) drive mitochondrial biogenesis via the PGC-1α signalling pathway — this is why Prof. Seiler, Inigo San Millán and the World Tour coaches insist on volume at low intensity. High-intensity work improves the efficiency of existing mitochondria; only low-intensity volume grows new ones.",
     pillar: "coaching",
     relatedTerms: ["zone-2", "polarised-training", "vo2max"],
-    relatedArticle: "/blog/zone-2-training-complete-guide",
+    relatedArticle: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe",
     relatedTopicHub: "/topics/ftp-training",
   },
   {
@@ -579,7 +580,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     extendedDefinition: "LIT is the majority of training time for virtually every elite endurance athlete. Polarised training dedicates ~80% of training time to LIT, which drives mitochondrial biogenesis, capillarisation, and fat oxidation — adaptations high-intensity work can't produce. The single biggest mistake in amateur cycling: riding LIT sessions too hard. 'Easy' should be properly easy, usually at 60-75% of FTP and below aerobic threshold. Heart rate is the best real-time guide because power meters mask internal physiological load on easy days.",
     pillar: "coaching",
     relatedTerms: ["zone-2", "polarised-training", "base-training"],
-    relatedArticle: "/blog/zone-2-training-complete-guide",
+    relatedArticle: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe",
     relatedTopicHub: "/topics/ftp-training",
   },
   {

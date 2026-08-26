@@ -367,6 +367,17 @@ const nextConfig: NextConfig = {
       // complete guide as the owner; comparisons retain their distinct jobs.
       { source: "/blog/polarised-training-cycling-guide", destination: "/blog/polarised-training-cycling-complete-guide", permanent: true },
       { source: "/answers/what-is-polarised-training", destination: "/blog/polarised-training-cycling-complete-guide", permanent: true },
+      // Search Console shows the heart-rate, power and RPE guide owns the
+      // broad Zone 2 query history. Consolidate three overlapping guides and
+      // four duplicate definition/metric answers; duration, comparison,
+      // diagnostic and expert-source pages retain distinct search jobs.
+      { source: "/blog/zone-2-training-complete-guide", destination: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe", permanent: true },
+      { source: "/blog/zone-2-training-cycling-complete-guide", destination: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe", permanent: true },
+      { source: "/blog/cycling-zone-2-how-to-do-it-properly-guide", destination: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe", permanent: true },
+      { source: "/answers/what-is-zone-2-training", destination: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe", permanent: true },
+      { source: "/answers/zone-2-heart-rate-cycling", destination: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe", permanent: true },
+      { source: "/answers/zone-2-heart-rate-or-power", destination: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe", permanent: true },
+      { source: "/answers/what-is-zone-2-heart-rate-cycling", destination: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe", permanent: true },
       // Consolidate duplicate tyre-pressure explainers into the established guide.
       { source: "/blog/tyre-pressure-cycling-complete-guide", destination: "/blog/cycling-tyre-pressure-guide", permanent: true },
       { source: "/answers/best-tyre-pressure-road-cycling", destination: "/blog/cycling-tyre-pressure-guide", permanent: true },

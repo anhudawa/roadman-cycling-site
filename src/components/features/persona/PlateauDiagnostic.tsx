@@ -58,7 +58,7 @@ function diagnose(
       sessionName: "The extra Z2 ride",
       sessionDetail:
         "90 minutes at true Zone 2 — you can hold a conversation the whole time. Fasted is fine if you've trained that. Goal: one additional session/week.",
-      articleHref: "/blog/zone-2-training-complete-guide",
+      articleHref: "/blog/zone-2-cycling-heart-rate-vs-power-vs-rpe",
       articleLabel: "Complete Zone 2 guide",
     };
   }
