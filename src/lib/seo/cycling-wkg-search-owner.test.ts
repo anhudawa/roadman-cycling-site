@@ -10,7 +10,10 @@ const read = (path: string) =>
 
 const OWNER = "cycling-power-to-weight-ratio-guide";
 const OWNER_PATH = `/blog/${OWNER}`;
-const RETIRED = "cycling-watts-per-kilo-complete-guide";
+const RETIRED = [
+  "cycling-watts-per-kilo-complete-guide",
+  "cycling-power-to-weight-improve-guide",
+];
 
 describe("cycling W/kg search ownership", () => {
   const raw = read(`content/blog/${OWNER}.mdx`);
@@ -80,17 +83,19 @@ describe("cycling W/kg search ownership", () => {
     }
   });
 
-  it("retires only the same-job explainer and preserves specialist jobs", () => {
-    expect(
-      existsSync(resolve(process.cwd(), `content/blog/${RETIRED}.mdx`)),
-    ).toBe(false);
-
+  it("retires only same-job explainers and preserves specialist jobs", () => {
     const config = read("next.config.ts");
-    const start = config.indexOf(`source: "/blog/${RETIRED}"`);
-    const redirect = config.slice(start, start + 240);
-    expect(start).toBeGreaterThan(0);
-    expect(redirect).toContain(`destination: "${OWNER_PATH}"`);
-    expect(redirect).toContain("permanent: true");
+    for (const retired of RETIRED) {
+      expect(
+        existsSync(resolve(process.cwd(), `content/blog/${retired}.mdx`)),
+      ).toBe(false);
+
+      const start = config.indexOf(`source: "/blog/${retired}"`);
+      const redirect = config.slice(start, start + 240);
+      expect(start).toBeGreaterThan(0);
+      expect(redirect).toContain(`destination: "${OWNER_PATH}"`);
+      expect(redirect).toContain("permanent: true");
+    }
 
     for (const path of [
       "src/app/(content)/tools/wkg/page.tsx",
@@ -112,9 +117,11 @@ describe("cycling W/kg search ownership", () => {
       (entry) => entry.url,
     );
     expect(blogUrls).toContain(`https://roadmancycling.com${OWNER_PATH}`);
-    expect(blogUrls).not.toContain(
-      `https://roadmancycling.com/blog/${RETIRED}`,
-    );
+    for (const retired of RETIRED) {
+      expect(blogUrls).not.toContain(
+        `https://roadmancycling.com/blog/${retired}`,
+      );
+    }
 
     const tools = TOOL_LANDING_CONTENT.wkg;
     expect(tools.title).toBe("Cycling W/kg Calculator");
@@ -140,6 +147,7 @@ describe("cycling W/kg search ownership", () => {
     for (const signal of [
       "453 | 67,699",
       "59 | 7,210",
+      "5 | 1,010",
       "5 clicks, 1,220 impressions",
       "4 clicks, 814 impressions",
       "5 September 2026",
@@ -158,6 +166,9 @@ describe("cycling W/kg search ownership", () => {
     );
     expect(prompts.prompts).toContainEqual(
       expect.objectContaining({ id: 295, target_page: "/tools/wkg" }),
+    );
+    expect(prompts.prompts).toContainEqual(
+      expect.objectContaining({ id: 189, target_page: OWNER_PATH }),
     );
   });
 });
