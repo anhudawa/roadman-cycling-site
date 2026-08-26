@@ -95,10 +95,6 @@ describe("cycling training-plan search ownership", () => {
         expect.objectContaining({ path: TOPIC_PATH }),
         expect.objectContaining({ path: SELECTION_PATH }),
         expect.objectContaining({ path: CASE_PATH }),
-      ]),
-    );
-    expect(owner?.supportingDestinations).not.toEqual(
-      expect.arrayContaining([
         expect.objectContaining({
           path: "/blog/cycling-training-plan-build-friel-lorang-johnson",
         }),

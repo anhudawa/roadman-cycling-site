@@ -185,6 +185,11 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
         label: "Pro Training Principles: 60-Day Case Study",
         intent: "First-person training-plan experiment and results",
       },
+      {
+        path: "/blog/cycling-training-plan-build-friel-lorang-johnson",
+        label: "Friel, Lorang and Johnson Plan Comparison",
+        intent: "Named-expert planning-method comparison and source audit",
+      },
     ],
   },
   {

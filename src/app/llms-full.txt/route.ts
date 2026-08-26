@@ -132,6 +132,7 @@ export async function GET() {
         `${BASE_URL}/blog/cycling-how-to-choose-a-training-plan-guide — Reviewed ten-check guide for choosing a plan format and comparing service terms.`,
         `${BASE_URL}/plan — Event-specific training-plan directory organised by event and weeks remaining.`,
         `${BASE_URL}/blog/how-pro-cyclist-trains-60-days — First-person N=1 case study, not a universal plan or outcome guarantee.`,
+        `${BASE_URL}/blog/cycling-training-plan-build-friel-lorang-johnson — Reviewed named-expert comparison: Friel's race-back framework, Lorang's sustainable-load approach and Johnson's explicitly experimental 2025 elite volume block.`,
       ],
     },
     {
