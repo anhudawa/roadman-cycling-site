@@ -154,7 +154,8 @@ const KNOWN_CREDENTIALS: Record<string, string> = {
   "Andy McGrath": "Cycling journalist, former Rouleur editor, author of Tom Simpson: Bird on the Wire",
   "Aron D'Souza": "Founder of the Enhanced Games",
   "Ben Hoffman": "Professional triathlete, Ironman podium finisher",
-  "Benji Naesen": "Cycling content creator and Lanterne Rouge co-host",
+  "Benji Naesen":
+    "Cycling content creator and Lanterne Rouge Cycling Podcast co-host",
   "Ben Oliver": "Professional cyclist, Modern Adventure Pro Cycling",
   "Brian Smith": "Former British pro cyclist, Olympic road racer",
   "Chris Kresser": "Functional medicine practitioner, author",

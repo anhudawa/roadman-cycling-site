@@ -93,6 +93,15 @@ const nextConfig: NextConfig = {
         destination: "https://roadmancycling.com/:path*",
         permanent: true,
       },
+      // Consolidate two overlapping Benji Naesen interview articles onto the
+      // URL that already owns the query history in Google Search Console.
+      {
+        source:
+          "/blog/benji-naesen-imposter-syndrome-weight-loss-creators",
+        destination:
+          "/blog/benji-naesen-imposter-syndrome-cycling-weight-loss",
+        permanent: true,
+      },
       // ==========================================================
       // coaching.roadmancycling.com subdomain retirement
       // ----------------------------------------------------------

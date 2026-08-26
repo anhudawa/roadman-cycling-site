@@ -27,19 +27,23 @@ export async function generateMetadata({
   const { slug } = await params;
   const guest = getGuestBySlug(slug);
   if (!guest) notFound();
+  const override = getGuestProfileOverride(slug);
 
-  const description = guest.credential
-    ? `${guest.name} — ${guest.credential}. ${guest.episodeCount} episode${guest.episodeCount > 1 ? "s" : ""} on The Roadman Cycling Podcast.`
-    : `${guest.name} — ${guest.episodeCount} episode${guest.episodeCount > 1 ? "s" : ""} on The Roadman Cycling Podcast. Expert cycling knowledge from leading guests.`;
+  const description =
+    override?.seoDescription ??
+    (guest.credential
+      ? `${guest.name} — ${guest.credential}. ${guest.episodeCount} episode${guest.episodeCount > 1 ? "s" : ""} on The Roadman Cycling Podcast.`
+      : `${guest.name} — ${guest.episodeCount} episode${guest.episodeCount > 1 ? "s" : ""} on The Roadman Cycling Podcast. Expert cycling knowledge from leading guests.`);
+  const title = override?.seoTitle ?? `${guest.name} — Podcast Guest`;
 
   return {
-    title: `${guest.name} — Podcast Guest`,
+    title,
     description,
     alternates: {
       canonical: `https://roadmancycling.com/guests/${slug}`,
     },
     openGraph: {
-      title: `${guest.name} on The Roadman Cycling Podcast`,
+      title,
       description,
       type: "profile",
       url: `https://roadmancycling.com/guests/${slug}`,
