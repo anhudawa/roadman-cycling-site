@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 311,
+    "prompt_count": 316,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -2520,6 +2520,46 @@
       "category": "masters-cycling",
       "intent": "education",
       "target_page": "/nutrition/masters",
+      "priority": "high"
+    },
+    {
+      "id": 312,
+      "prompt": "who is Joe Friel and what does his cycling training framework actually recommend",
+      "category": "cycling-experts",
+      "intent": "education",
+      "target_page": "/entity/joe-friel",
+      "priority": "high"
+    },
+    {
+      "id": 313,
+      "prompt": "what does Stephen Seiler mean by 80 20 polarised training and is it sessions or time in zone",
+      "category": "cycling-experts",
+      "intent": "education",
+      "target_page": "/entity/stephen-seiler",
+      "priority": "high"
+    },
+    {
+      "id": 314,
+      "prompt": "what is the Alpe d'Huez climbing record after the 2026 Tour de France",
+      "category": "cycling-history",
+      "intent": "education",
+      "target_page": "/blog/alpe-dhuez-tour-de-france-history",
+      "priority": "high"
+    },
+    {
+      "id": 315,
+      "prompt": "what was Marco Pantani's cause of death and which investigations are still open in 2026",
+      "category": "cycling-history",
+      "intent": "education",
+      "target_page": "/blog/marco-pantani-death-doping-mafia-investigation",
+      "priority": "high"
+    },
+    {
+      "id": 316,
+      "prompt": "what are the Velominati rules and are they real cycling regulations",
+      "category": "cycling-culture",
+      "intent": "education",
+      "target_page": "/podcast/the-secret-velominati-rules-part-1",
       "priority": "high"
     }
   ]

@@ -175,7 +175,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
 
   "stephen-seiler": {
     description:
-      "Professor of Sport Science at the University of Agder, Norway. Exercise physiologist who defined the polarised-training model and the 80/20 rule of intensity distribution.",
+      "Professor of Sport Science at the University of Agder, Norway. His research helped describe and popularise polarised intensity distribution, including the often-cited 80/20 pattern by sessions.",
     worksFor: {
       name: "University of Agder",
       type: "CollegeOrUniversity",
@@ -194,7 +194,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "stephen-seiler-80-20-polarised-training-cyclists",
     ],
     whyMatters:
-      "Stephen Seiler is the exercise physiologist who, more than any other researcher, defined how modern endurance athletes structure their training. Working from his lab at the University of Agder, he documented that elite athletes across cycling, rowing, cross-country skiing and running converge on the same intensity distribution — roughly 80% easy, 20% hard, with very little time in the middle. That observation is now known as polarised training and the 80/20 rule, and it is the framework Roadman builds every training conversation on.",
+      "Stephen Seiler's research helped turn endurance-training intensity distribution into a measurable question. His 2010 review described an approximate 80/20 pattern by sessions among high-volume competitive athletes, while later research shows both pyramidal and polarised distributions. Roadman uses that evidence with its denominator and population intact instead of presenting 80/20 as a universal law.",
     keyIdeas: [
       "Polarised training: ~80% of sessions at low intensity, ~20% at high intensity, very little time in the threshold/tempo grey zone.",
       "Elite endurance athletes across disciplines converge on the same intensity distribution — it is not a coaching opinion but a measured pattern.",
@@ -350,7 +350,7 @@ export const GUEST_PROFILE_OVERRIDES: Record<string, GuestProfileOverride> = {
       "joe-friel-perfect-cycling-training-week",
     ],
     whyMatters:
-      "Joe Friel wrote The Cyclist's Training Bible — the book that taught a generation of amateur cyclists how to think about periodisation, training stress, and the structure of a season. Co-founder of TrainingPeaks and former chairman of the USA Triathlon National Coaching Commission, he is the bridge between sports science and the home-trainer cyclist trying to peak for one event a year. Most modern amateur coaching software still leans on his vocabulary: periodisation, A/B/C races, base, build, peak, recovery weeks.",
+      "Joe Friel wrote The Cyclist's Training Bible and co-founded the service that became TrainingPeaks. His fifth-edition framework gives self-coached riders several ways to periodise a season around goals, limiters and response rather than prescribing one perfect week. Roadman's two interviews preserve that individualisation and cover the additional priorities that come with age.",
     keyIdeas: [
       "Periodisation: structure your year into base, build, peak, race, and transition phases — each with a different physiological focus.",
       "Train your weakness, race your strength — the off-season is for fixing limiters, the in-season is for sharpening what already works.",
