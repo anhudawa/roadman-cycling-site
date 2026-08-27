@@ -6,7 +6,7 @@
  * the canonical owners and highest-value evidence visible before a crawler's
  * context or download budget is exhausted.
  */
-export const LLMS_SHORT_RECENT_POST_LIMIT = 34;
+export const LLMS_SHORT_RECENT_POST_LIMIT = 32;
 export const LLMS_SHORT_EPISODE_LIMIT = 30;
 export const LLMS_FULL_RECENT_POST_LIMIT = 300;
 export const LLMS_FULL_EPISODE_LIMIT = 80;
@@ -83,6 +83,7 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "cycling-cramp-prevention",
   "running-cycling-conversion-calculator",
   "unbound-gravel-2026-complete-guide",
+  "richard-mille-cycling-watches-modern-peloton",
   "why-netflix-unchained-failed-cycling",
   "tdf-2026-contenders-preparation-lessons",
   "paul-seixas-tour-de-france-2026-youngest-contender",

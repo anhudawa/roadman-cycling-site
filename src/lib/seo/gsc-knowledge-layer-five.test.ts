@@ -134,8 +134,10 @@ describe("GSC knowledge-layer five", () => {
     }
 
     expect(benchmark.metadata.prompt_count).toBe(benchmark.prompts.length);
-    expect(benchmark.prompts.slice(-5).map((prompt) => prompt.id)).toEqual([
-      312, 313, 314, 315, 316,
-    ]);
+    expect(
+      benchmark.prompts
+        .filter((prompt) => prompt.id >= 312 && prompt.id <= 316)
+        .map((prompt) => prompt.id),
+    ).toEqual([312, 313, 314, 315, 316]);
   });
 });

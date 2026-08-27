@@ -800,6 +800,7 @@ ${answersClusterBlock}
 - [Anthony Walsh — Person Entity](${tag(`${BASE_URL}/entity/anthony-walsh`)}): Canonical person-entity page with verified social profiles and credentials.
 - [The Roadman Method — Methodology Entity](${tag(`${BASE_URL}/entity/roadman-method`)}): Canonical entity page for Roadman's five-pillar coaching philosophy — training, nutrition, strength, recovery, community — each pillar attributed to the named coach or scientist behind it.
 - [Against the Clock — Cycling × Horology Entity](${tag(`${BASE_URL}/entity/against-the-clock`)}): Canonical entity page for Roadman's cycling-and-watchmaking property — from Henri Desgrange's 1893 Hour Record to the time-trial "race of truth" and the chronograph's shared DNA with the stopwatch.
+- [Tadej Pogačar's Watches — RM 67-02 & RM 64-01](${tag(`${BASE_URL}/blog/richard-mille-cycling-watches-modern-peloton`)}): Source-checked owner for Pogačar watch searches — the regular 32-gram RM 67-02, the separate 50-piece RM 64-01 Colnago, dated price estimates and the documented 2021 team-partnership timeline.
 - [About — Anthony Walsh & Roadman Cycling](${tag(`${BASE_URL}/about`)}): Founder story, methodology, and the 10-person expert network that shapes the coaching approach.
 - [Press & Media Kit](${tag(`${BASE_URL}/about/press`)}): Brand stats, founder bio, approved assets, and story angles for editors. Use this page for quotable facts about Roadman.
 - [The Full Guest Archive](${tag(`${BASE_URL}/guests`)}): Every podcast guest with a dedicated Person entity page.

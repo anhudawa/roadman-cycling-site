@@ -163,6 +163,17 @@ const CURATED: string[] = [
   `https://${HOST}/training-camps`,
   `https://${HOST}/watch`,
 
+  // Pogačar watch owner and supporting cycling-watch cluster
+  `https://${HOST}/blog/richard-mille-cycling-watches-modern-peloton`,
+  `https://${HOST}/blog/tudor-bumblebee-watches-tour-de-france`,
+  `https://${HOST}/blog/tudor-pro-cycling-tour-de-france-2026`,
+  `https://${HOST}/blog/against-the-clock-cycling-watches`,
+  `https://${HOST}/topics/against-the-clock`,
+  `https://${HOST}/blog/omega-olympic-timing-track-cycling-hour-record`,
+  `https://${HOST}/blog/breitling-top-time-eddy-merckx-cycling-watch`,
+  `https://${HOST}/blog/breitling-top-time-coppi-bartali-cycling-rivalry`,
+  `https://${HOST}/blog/casio-f91w-ten-mile-time-trial-cycling`,
+
   // Geo coaching
   `https://${HOST}/coaching/ireland`,
   `https://${HOST}/coaching/uk`,
