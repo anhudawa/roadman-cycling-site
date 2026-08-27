@@ -139,7 +139,7 @@ export const CANONICAL_ENTITIES: CanonicalEntity[] = [
     episodes: [
       "ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler",
       "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
-      "ep-2540-secret-to-improving-threshold-dose-frequency-duration",
+      "ep-2150-professor-seiler-returns-what-has-changed",
     ],
     kind: "scientist",
     entityPageSlug: "stephen-seiler",
@@ -238,11 +238,8 @@ export const CANONICAL_ENTITIES: CanonicalEntity[] = [
     affiliation: "Co-founder, TrainingPeaks",
     affiliationVerified: true,
     sameAs: [
-      "https://en.wikipedia.org/wiki/Joe_Friel",
       "https://joefrieltraining.com/",
-      "https://www.joefrielsblog.com/",
       "https://x.com/jfriel",
-      "https://www.linkedin.com/in/joe-friel-2b9b6b13/",
     ],
     sameAsVerified: true,
     topics: [

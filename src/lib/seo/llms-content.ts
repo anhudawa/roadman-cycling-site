@@ -6,7 +6,7 @@
  * the canonical owners and highest-value evidence visible before a crawler's
  * context or download budget is exhausted.
  */
-export const LLMS_SHORT_RECENT_POST_LIMIT = 39;
+export const LLMS_SHORT_RECENT_POST_LIMIT = 34;
 export const LLMS_SHORT_EPISODE_LIMIT = 30;
 export const LLMS_FULL_RECENT_POST_LIMIT = 300;
 export const LLMS_FULL_EPISODE_LIMIT = 80;
@@ -29,6 +29,9 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "how-pro-cyclist-trains-60-days",
   "cycling-training-plan-build-friel-lorang-johnson",
   "joe-friel-perfect-cycling-training-week",
+  "stephen-seiler-80-20-polarised-training-cyclists",
+  "alpe-dhuez-tour-de-france-history",
+  "marco-pantani-death-doping-mafia-investigation",
   "dylan-johnson-oscillation-training-plan",
   "best-cycling-podcasts-2026",
   "fast-talk-vs-cycling-podcast-vs-roadman",
