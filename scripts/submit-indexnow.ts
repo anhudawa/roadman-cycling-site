@@ -217,6 +217,7 @@ const CURATED: string[] = [
   `https://${HOST}/strength-training`,
   `https://${HOST}/topics/cycling-strength-conditioning`,
   `https://${HOST}/topics/cycling-recovery`,
+  `https://${HOST}/tools/strength-session-planner`,
   `https://${HOST}/tools/training-readiness`,
   `https://${HOST}/tools/recovery-screen`,
 

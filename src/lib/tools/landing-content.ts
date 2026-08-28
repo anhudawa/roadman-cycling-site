@@ -21,7 +21,7 @@ export interface ToolExample {
 export interface ToolRelatedLink {
   label: string;
   href: string;
-  kind: "tool" | "article" | "podcast" | "topic" | "glossary";
+  kind: "tool" | "article" | "podcast" | "topic" | "glossary" | "product";
 }
 
 export interface ToolHowToStep {
@@ -1420,6 +1420,92 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
     dateModified: "2026-08-26",
     reviewedBy: "Anthony Walsh",
     reviewScope: "FTP convention, training-distribution, periodisation and masters-recovery claims",
+  },
+  "strength-session-planner": {
+    slug: "strength-session-planner",
+    title: "Cycling Strength Session Planner",
+    description:
+      "Map a Monday-to-Sunday riding week and place one or two 30, 45 or 60-minute strength sessions while protecting key and long rides.",
+    url: `${ROADMAN_BASE}/tools/strength-session-planner`,
+    breadcrumbName: "Strength Session Planner",
+    answerSummary:
+      "Map each day's riding demand and available gym window. The planner ranks one or two strength placements, penalises the day before a key or long ride, prefers off-bike or easy-ride days and flags compromises. It places time only: exercises, sets, load and medical decisions remain outside the tool.",
+    whatItDoes:
+      "This tool solves a scheduling problem: where one or two strength sessions can sit in the cycling week with the least obvious conflict. It uses the week you enter rather than inventing a generic Monday-to-Sunday plan. Every recommendation includes the rules and compromises that produced it.\n\nThe planner is the tool-intent owner for placing strength around rides. The broad evidence and programming owner remains Roadman's strength-training guide; the forthcoming app owns ongoing strength, readiness and recovery delivery.",
+    whoItsFor: [
+      "Cyclists who already have bike sessions and need to find realistic gym windows",
+      "Masters riders adding strength without sacrificing a key interval or long ride",
+      "Time-crunched riders choosing between 30, 45 and 60-minute sessions",
+      "Coaches and self-coached athletes who want visible scheduling rules rather than a black box",
+    ],
+    howItWorks:
+      "Each available gym window receives a deterministic score. Off-bike and easy-ride days start higher; a window directly before a key or long ride receives a large penalty; a suitable day after a priority ride receives a small preference. When two sessions are requested, the planner prefers separation over back-to-back placement. A conflict is shown rather than hidden when the week has no clean option.",
+    howToSteps: [
+      { name: "Map the riding week", text: "For each day choose no ride, easy or recovery, endurance, key intervals or race-priority work, or a long or event-specific ride." },
+      { name: "Add only real gym windows", text: "Choose no window, 30, 45 or 60 minutes for each day. On a ride day, the tool assumes the gym window comes after the ride." },
+      { name: "Choose one or two sessions", text: "Ask for the smallest weekly dose you intend to complete. The planner will not stack an unplaced second session into the only available day." },
+      { name: "Read the reasons and cautions", text: "Check which ride is being protected and whether the suggested day contains a compromise. Move the window when the next important ride loses quality." },
+    ],
+    howToTotalTime: "PT3M",
+    limitations:
+      "The planner knows only the ride label and strength window entered for each day. It cannot see exercise selection, working-set volume, load, target RIR, lifting experience, injury history, travel, sleep or the true demand of a ride. The ranking rules are a transparent Roadman scheduling heuristic, not a research-validated prescription or proof that one sequence is optimal.",
+    whenToSeeACoach:
+      "Use a qualified coach or strength professional when every available window compromises priority riding, when strength repeatedly reduces bike-session quality, or when the programme must account for an event block, rehabilitation, osteoporosis risk, pain or another medical condition. Pain, injury and unexplained fatigue are not scheduling-tool problems.",
+    examples: [
+      {
+        scenario: "Two sessions around Tuesday intervals and a Sunday long ride",
+        inputs: ["Tuesday: key intervals", "Sunday: long ride", "Wednesday: easy ride + 45-minute gym window", "Friday: off-bike + 60-minute gym window"],
+        output: "Wednesday and Friday are selected. Neither sits directly before the priority rides, and the sessions are not back to back.",
+      },
+      {
+        scenario: "Only one compromised window",
+        inputs: ["Tuesday: key intervals", "Monday: only available 45-minute gym window"],
+        output: "Monday is shown because it is the only available window, but the planner labels the day-before-key-ride conflict instead of presenting it as a clean recommendation.",
+      },
+    ],
+    faqs: [
+      {
+        question: "When should cyclists do strength training during the week?",
+        answer: "Protect the rides most connected to the goal, then place strength where it does not repeatedly reduce their quality. Off-bike or easy-ride days can work, and some cyclists concentrate demanding work by riding first and lifting later. No single weekday or sequence is optimal for every rider.",
+      },
+      {
+        question: "Should I lift before or after cycling on the same day?",
+        answer: "Put the priority first. If the bike session is the key stimulus, complete it before strength. If developing maximal strength is the block's primary goal, lift fresh or separate the sessions. This planner assumes a ride-day gym window happens after the ride.",
+      },
+      {
+        question: "How many strength sessions should a cyclist do each week?",
+        answer: "The cyclist-only research includes programmes using one to three sessions per week, but it does not prove one universal optimum. One or two sessions can be a practical starting choice depending on experience, phase, riding load and recovery. This tool places the one or two sessions you request; it does not decide the dose for you.",
+      },
+      {
+        question: "How long should a cycling strength session be?",
+        answer: "Thirty, 45 and 60 minutes can all hold useful work when the exercise menu and set count match the window. More time is not automatically better. Choose the duration you can repeat without damaging the next important ride.",
+      },
+      {
+        question: "Does the planner prescribe exercises or weights?",
+        answer: "No. It places time around the riding week. Exercise choice, sets, load, RIR, progression and clinical constraints require more context. Roadman's strength guide covers the broad evidence; the upcoming app will connect placement with coach-reviewed cyclist-specific sessions.",
+      },
+    ],
+    related: [
+      { label: "Roadman strength and recovery app", href: "/app", kind: "product" },
+      { label: "Strength Training for Cyclists: Evidence & Plan", href: "/blog/cycling-strength-training-guide", kind: "article" },
+      { label: "Gym Exercises for Cyclists", href: "/blog/cycling-gym-exercises-best", kind: "article" },
+      { label: "Training Readiness Check", href: "/tools/training-readiness", kind: "tool" },
+      { label: "Cycling Strength & Conditioning Hub", href: "/topics/cycling-strength-conditioning", kind: "topic" },
+    ],
+    webAppFeatures: [
+      "Monday-to-Sunday ride-context mapping",
+      "One- or two-session placement",
+      "30, 45 and 60-minute gym windows",
+      "Key-ride and long-ride conflict detection",
+      "Visible deterministic scoring rules and compromise warnings",
+      "No signup required",
+    ],
+    evidenceSources: [
+      { name: "Llanos-Lagos et al. 2025", role: "cyclist-only heavy-strength systematic review and implementation limits", href: "https://pubmed.ncbi.nlm.nih.gov/40632222/" },
+      { name: "Petré et al. 2021", role: "concurrent endurance and resistance training outcomes in trained athletes", href: "https://pubmed.ncbi.nlm.nih.gov/33751469/" },
+      { name: "Murlasits et al. 2018", role: "same-session sequence meta-analysis and priority-order boundary", href: "https://pubmed.ncbi.nlm.nih.gov/28783467/" },
+    ],
+    dateModified: "2026-08-28",
   },
   "interval-builder": {
     slug: "interval-builder",

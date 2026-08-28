@@ -2537,6 +2537,7 @@ const TOPIC_ENRICHMENT: Record<string, {
   "cycling-strength-conditioning": {
     tools: [
       { slug: "body-composition", title: "Cycling Body Composition Calculator", href: "/tools/body-composition" },
+      { slug: "strength-session-planner", title: "Cycling Strength Session Planner", href: "/tools/strength-session-planner" },
       { slug: "training-readiness", title: "Training Readiness Check", href: "/tools/training-readiness" },
     ],
     commercialPath: "/strength-training",

@@ -242,10 +242,18 @@ export const TOOLS: ToolEntry[] = [
     inputs: ["ftp", "availableTime", "trainingGoal", "experienceLevel"],
   },
   {
+    slug: "strength-session-planner",
+    title: "Cycling Strength Session Planner",
+    description:
+      "Map the real riding week and place one or two 30, 45 or 60-minute strength sessions while protecting key and long rides. Every rule and compromise is visible.",
+    pillar: "strength",
+    inputs: ["weeklyRideContext", "strengthWindows", "requestedSessions"],
+  },
+  {
     slug: "recovery-screen",
     title: "Recovery Readiness Screen",
     description:
-      "A 10-question self-assessment screening your sleep, training load, nutrition, and stress. Scored 0–30 with personalised recommendations based on your weakest areas.",
+      "A 10-question context screen for sleep, recent load, fuelling, stress and response. The 0–30 bands are transparent Roadman heuristics, not clinical cut-offs.",
     pillar: "recovery",
   },
   {
@@ -259,7 +267,7 @@ export const TOOLS: ToolEntry[] = [
     slug: "training-readiness",
     title: "Training Readiness Check",
     description:
-      "A quick 8-question daily readiness check that tells you whether today should be a hard session, easy spin, or rest day. Scored 0–24 with an instant verdict.",
+      "A quick 8-question check that organises daily sleep, soreness, energy, mood, heart-rate, stress and prior-load context into a transparent 0–24 heuristic band.",
     pillar: "recovery",
   },
   {

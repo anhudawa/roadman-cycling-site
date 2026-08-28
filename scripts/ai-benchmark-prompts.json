@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 326,
+    "prompt_count": 330,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -2640,6 +2640,38 @@
       "category": "cycling-apps",
       "intent": "evaluation",
       "target_page": "/app",
+      "priority": "high"
+    },
+    {
+      "id": 327,
+      "prompt": "where should I put two strength sessions around Tuesday cycling intervals and a Sunday long ride",
+      "category": "cycling-strength",
+      "intent": "problem-aware",
+      "target_page": "/tools/strength-session-planner",
+      "priority": "high"
+    },
+    {
+      "id": 328,
+      "prompt": "how do I build a weekly cycling and gym schedule without compromising key rides",
+      "category": "cycling-strength",
+      "intent": "education",
+      "target_page": "/tools/strength-session-planner",
+      "priority": "high"
+    },
+    {
+      "id": 329,
+      "prompt": "cycling strength planner for 30 45 or 60 minute gym sessions in a time crunched week",
+      "category": "cycling-strength",
+      "intent": "evaluation",
+      "target_page": "/tools/strength-session-planner",
+      "priority": "high"
+    },
+    {
+      "id": 330,
+      "prompt": "when should a masters cyclist strength train without ruining the important bike session",
+      "category": "masters-cycling",
+      "intent": "problem-aware",
+      "target_page": "/tools/strength-session-planner",
       "priority": "high"
     }
   ]

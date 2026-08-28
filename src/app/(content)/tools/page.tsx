@@ -43,6 +43,13 @@ const tools = [
     status: "live" as const,
   },
   {
+    title: "Cycling Strength Session Planner",
+    description:
+      "Map your real riding week and place one or two 30, 45 or 60-minute strength sessions without putting them directly before a key or long ride.",
+    href: "/tools/strength-session-planner",
+    status: "live" as const,
+  },
+  {
     title: "Ask Roadman",
     description:
       "Anthony's coaching brain on tap. Ask any cycling question and get an answer grounded in 1,400+ episodes with World Tour coaches and sports scientists.",
