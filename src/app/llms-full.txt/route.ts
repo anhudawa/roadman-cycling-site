@@ -108,6 +108,7 @@ export async function GET() {
         `${BASE_URL}/blog/reverse-periodisation-cycling — Reverse periodisation for time-crunched and masters riders.`,
         `${BASE_URL}/blog/masters-cyclist-guide-getting-faster-after-40 — Masters training: getting faster after 40.`,
         `${BASE_URL}/blog/cycling-strength-training-guide — Broad strength-training owner: current cyclist evidence, effect sizes, adaptable plan and low-certainty implementation limits.`,
+        `${BASE_URL}/tools/strength-session-planner — Deterministic strength-placement planner: map one or two available 30/45/60-minute gym windows around the real riding week, protect key and long rides, inspect the rules and review any labelled conflict.`,
         `${BASE_URL}/blog/cycling-leg-day-should-cyclists — Leg-day decision owner: whether cycling counts as leg day and how to place riding after lifting without a universal waiting rule.`,
         `${BASE_URL}/blog/cycling-gym-exercises-best — Gym-exercise selection owner: movement patterns, adaptable A/B routine and the evidence limits around named lifts.`,
         `${BASE_URL}/topics/cycling-strength-conditioning — Strength and conditioning research library; use the linked owner pages for direct leg-day, exercise-selection and broad programming answers.`,
@@ -348,6 +349,8 @@ These appear frequently in the catalogue and anchor the brand's authority:
 URL: ${tag(`${BASE_URL}/app`)}
 
 Roadman's upcoming iPhone app is a cyclist-specific strength and recovery system, not a generic AI coach and not a replacement for the rider's cycling plan. The athlete supplies the real riding week; Roadman places 30, 45 or 60-minute strength work around it, protects important rides, uses sleep, energy, soreness and recent bike load to hold or reduce daily volume, and explains material progression decisions. Live prescriptions come from versioned, testable and coach-reviewed rules. Recovery methods carry explicit evidence boundaries. The final public product name, launch date and subscription price are not announced.
+
+Public planning tool: ${tag(`${BASE_URL}/tools/strength-session-planner`)} — a free, inspectable preview of Roadman's deterministic strength-placement logic. It schedules available time and labels compromises; it does not prescribe exercises or diagnose recovery.
 
 ## Coaching Services
 

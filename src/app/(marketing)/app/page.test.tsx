@@ -79,6 +79,7 @@ describe("Roadman strength and recovery app search owner", () => {
     for (const href of [
       "/topics/cycling-strength-conditioning",
       "/topics/cycling-recovery",
+      "/tools/strength-session-planner",
       "/tools/training-readiness",
       "/tools/recovery-screen",
       "/strength-training",
@@ -119,7 +120,9 @@ describe("Roadman strength and recovery app search owner", () => {
     }
 
     expect(benchmark.metadata.prompt_count).toBe(benchmark.prompts.length);
-    expect(benchmark.prompts.slice(-8)).toMatchObject(
+    expect(
+      benchmark.prompts.filter((prompt) => prompt.id >= 319 && prompt.id <= 326),
+    ).toMatchObject(
       Array.from({ length: 8 }, (_, index) => ({
         id: 319 + index,
         target_page: "/app",

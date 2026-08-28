@@ -321,5 +321,6 @@ function labelForKind(kind: ToolRelatedLink["kind"]): string {
     case "podcast": return "Podcast";
     case "topic": return "Topic hub";
     case "glossary": return "Glossary";
+    case "product": return "Product";
   }
 }

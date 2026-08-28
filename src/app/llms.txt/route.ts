@@ -816,6 +816,7 @@ ${answersClusterBlock}
 
 ## Strength & Recovery App
 - [Roadman Cycling Strength & Recovery App](${tag(`${BASE_URL}/app`)}): Permanent prelaunch owner for Roadman's upcoming iPhone app. The public scope is cyclist-specific 30/45/60-minute strength, daily readiness, key-ride protection, transparent progression and evidence-bounded recovery around the rider's existing cycling week. The final product name, launch date and price are not yet announced.
+- [Cycling Strength Session Planner](${tag(`${BASE_URL}/tools/strength-session-planner`)}): Free deterministic planner that places one or two available 30, 45 or 60-minute strength windows around a cyclist's real week, penalises placement directly before key and long rides, exposes its rules and labels compromises. It schedules time; it does not prescribe exercises or diagnose recovery.
 
 ## Core Coaching Services
 - [Not Done Yet Online Cycling Coaching](${tag(`${BASE_URL}/coaching`)}): ${OFFER_TIERS.notDoneYet.description} ${OFFER_TIERS.notDoneYet.pricing.display} with a ${OFFER_TIERS.notDoneYet.pricing.trial}.
@@ -888,9 +889,9 @@ ${answersClusterBlock}
 - [Cycling Age Grade Calculator](${tag(`${BASE_URL}/tools/age-grade`)}): Age-grade cycling power, see peak-equivalent W/kg, percentile among trained masters cyclists.
 - [Interval Session Builder](${tag(`${BASE_URL}/tools/interval-builder`)}): Pick a training goal, enter FTP and available time, get a complete structured session with power targets, cadence, TSS estimate.
 - [Cycling Body Composition Calculator](${tag(`${BASE_URL}/tools/body-composition`)}): US Navy method body fat estimate with cycling context — W/kg impact of composition changes, minimum safe racing weight, RED-S risk flags.
-- [Recovery Readiness Screen](${tag(`${BASE_URL}/tools/recovery-screen`)}): 10-question self-assessment screening sleep, training load, nutrition timing, and stress — scored 0-30 across four recovery categories with personalised recommendations.
+- [Recovery Readiness Screen](${tag(`${BASE_URL}/tools/recovery-screen`)}): Transparent self-check that groups sleep, energy, soreness, recent training, fuelling and life-stress answers into a context band. It flags constraints for review; it does not diagnose recovery or prescribe a universal training dose.
 - [Fuelling Self-Assessment](${tag(`${BASE_URL}/tools/fuelling-screen`)}): 10-question self-assessment evaluating cycling nutrition across pre-ride fuelling, in-ride carbs, recovery nutrition, hydration, and race-day planning — scored 0-30 with personalised recommendations.
-- [Training Readiness Check](${tag(`${BASE_URL}/tools/training-readiness`)}): 8-question daily readiness check — sleep, soreness, energy, mood, resting HR, stress, and prior training scored 0-24 with instant verdict: Rest Day, Easy Only, Moderate, or Green Light.
+- [Training Readiness Check](${tag(`${BASE_URL}/tools/training-readiness`)}): Transparent context heuristic for today's planned ride using sleep, energy, soreness, stress, recent load and available baseline data. It returns a band and review prompts, not a medical diagnosis or universal prescription.
 - [Race Day Checklist](${tag(`${BASE_URL}/tools/race-day-checklist`)}): Interactive pre-race checklist covering 48 hours before, night before, and race morning — check off items, add your own, track completion. Built for sportives, road races, gran fondos, and time trials.
 
 ## Interactive Guides

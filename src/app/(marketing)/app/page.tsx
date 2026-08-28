@@ -602,6 +602,12 @@ export default function AppLandingPage() {
                 Cycling recovery research
               </Link>
               <Link
+                href="/tools/strength-session-planner"
+                className="text-foreground-muted transition-colors hover:text-coral"
+              >
+                Strength session planner
+              </Link>
+              <Link
                 href="/tools/training-readiness"
                 className="text-foreground-muted transition-colors hover:text-coral"
               >
