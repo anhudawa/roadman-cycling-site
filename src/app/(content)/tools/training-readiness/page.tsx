@@ -112,38 +112,37 @@ interface ReadinessBand {
 function getBand(total: number): ReadinessBand {
   if (total <= 8)
     return {
-      verdict: "REST DAY",
+      verdict: "REASSESS TODAY",
       colour: "#EF4444",
       summary:
-        "Your body is telling you something. Take the day off.",
+        "Several readiness signals are unfavourable. Treat that as a prompt to review the day, not a diagnosis.",
       suggestion:
-        "Walk, stretch, eat well, sleep early. Training today does more harm than good. Come back tomorrow.",
+        "Check for illness, pain and unusual symptoms first. If those are absent, rest, easy movement or a reduced session may be sensible. Protect the next important ride and seek qualified advice when symptoms or an unexplained decline persist.",
     };
   if (total <= 14)
     return {
-      verdict: "EASY ONLY",
+      verdict: "REDUCE THE ASK",
       colour: "#EAB308",
       summary:
-        "Zone 1–2 only. Keep it under an hour. No intensity.",
+        "The day contains enough unfavourable signals to justify a more conservative starting point.",
       suggestion:
-        "A short spin to loosen the legs is fine — but nothing structured. If it starts to feel like work, stop.",
+        "Consider reducing duration or choosing easy work, then reassess during the warm-up. Do not use this score alone to diagnose fatigue or automatically cancel a priority session.",
     };
   if (total <= 19)
     return {
-      verdict: "MODERATE",
+      verdict: "START, THEN VERIFY",
       colour: "#22C55E",
       summary:
-        "Good enough for a structured session. Dial back if it doesn't come.",
+        "Most signals are workable, with some reasons to monitor how the planned session begins.",
       suggestion:
-        "Start your planned session. If the legs respond, complete it. If the power isn't there after the warm-up, drop to endurance and call it a win.",
+        "Begin the planned warm-up and compare the response with your normal pattern. Hold or reduce the demand if several signals remain poor; do not add work because the score looks acceptable.",
     };
   return {
-    verdict: "GREEN LIGHT",
+    verdict: "PLAN LOOKS VIABLE",
     colour: "#3B82F6",
-    summary:
-      "You're good to go. Hit your planned session.",
+    summary: "Today's self-reported signals are broadly favourable.",
     suggestion:
-      "Everything is lined up. Execute the session as written — today is a day to push.",
+      "The planned session is a reasonable starting point if the warm-up and your normal health checks agree. A high score is not permission to add intensity, volume or load beyond the plan.",
   };
 }
 
@@ -153,8 +152,8 @@ function getBand(total: number): ReadinessBand {
 
 export default function TrainingReadinessPage() {
   const [currentQ, setCurrentQ] = useState(0);
-  const [answers, setAnswers] = useState<(number | null)[]>(
-    () => new Array(QUESTIONS.length).fill(null)
+  const [answers, setAnswers] = useState<(number | null)[]>(() =>
+    new Array(QUESTIONS.length).fill(null),
   );
   const [showResults, setShowResults] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -184,7 +183,7 @@ export default function TrainingReadinessPage() {
         }
       }, 200);
     },
-    [answers, currentQ]
+    [answers, currentQ],
   );
 
   const handleBack = useCallback(() => {
@@ -210,7 +209,8 @@ export default function TrainingReadinessPage() {
 
   const progress = showResults
     ? 100
-    : ((currentQ + (answers[currentQ] !== null ? 1 : 0)) / QUESTIONS.length) * 100;
+    : ((currentQ + (answers[currentQ] !== null ? 1 : 0)) / QUESTIONS.length) *
+      100;
 
   const question = QUESTIONS[currentQ];
 
@@ -222,7 +222,7 @@ export default function TrainingReadinessPage() {
         <Section background="deep-purple" grain className="pt-32 pb-12">
           <Container width="narrow" className="text-center">
             <p className="text-coral text-sm font-body font-medium uppercase tracking-widest mb-4">
-              Free Daily Diagnostic
+              Free Daily Context Check
             </p>
             <h1
               className="font-heading text-off-white mb-4"
@@ -231,8 +231,8 @@ export default function TrainingReadinessPage() {
               TRAINING READINESS CHECK
             </h1>
             <p className="text-foreground-muted text-lg">
-              Eight questions. Under a minute. A clear call on whether to train hard,
-              spin easy, or rest today.
+              Eight questions. Under a minute. Organise today&apos;s signals
+              before you decide whether the plan should hold or reduce.
             </p>
           </Container>
         </Section>
@@ -289,11 +289,15 @@ export default function TrainingReadinessPage() {
                             key={i}
                             type="button"
                             onClick={() => handleSelect(opt.score, i)}
-                            aria-pressed={answers[currentQ] === opt.score && selectedIndex === i}
+                            aria-pressed={
+                              answers[currentQ] === opt.score &&
+                              selectedIndex === i
+                            }
                             className={`py-4 px-5 rounded-lg font-heading text-sm tracking-wider transition-colors cursor-pointer text-left ${
                               selectedIndex === i
                                 ? "bg-coral text-off-white"
-                                : answers[currentQ] === opt.score && selectedIndex === null
+                                : answers[currentQ] === opt.score &&
+                                    selectedIndex === null
                                   ? "bg-white/10 text-off-white border border-coral/40"
                                   : "bg-white/5 text-foreground-muted hover:bg-white/10"
                             }`}
@@ -325,7 +329,9 @@ export default function TrainingReadinessPage() {
                     transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                   >
                     <div className="flex items-center justify-between">
-                      <h2 className="font-heading text-2xl text-off-white">YOUR VERDICT</h2>
+                      <h2 className="font-heading text-2xl text-off-white">
+                        YOUR CONTEXT BAND
+                      </h2>
                       <button
                         type="button"
                         onClick={handleReset}
@@ -377,7 +383,7 @@ export default function TrainingReadinessPage() {
                       </p>
                     </motion.div>
 
-                    {/* Persistent low score warning */}
+                    {/* Persistent pattern warning */}
                     {totalScore < 12 && (
                       <motion.div
                         className="bg-red-500/10 rounded-xl border border-red-500/20 p-5"
@@ -386,15 +392,20 @@ export default function TrainingReadinessPage() {
                         transition={{ duration: 0.2, delay: 0.15 }}
                       >
                         <p className="text-foreground-muted text-sm leading-relaxed">
-                          <strong className="text-red-400">Three-day rule:</strong> If you
-                          score under 12 three days running, take the{" "}
+                          <strong className="text-red-400">
+                            Look for a pattern:
+                          </strong>{" "}
+                          One low score can be noise. Repeated or worsening
+                          fatigue, soreness, sleep disruption or performance
+                          decline deserves a wider review. Use the{" "}
                           <Link
                             href="/tools/recovery-screen"
                             className="text-coral hover:text-coral/80 transition-colors"
                           >
                             Recovery Readiness Screen
                           </Link>{" "}
-                          for a deeper look at what is going on.
+                          to organise that context. It still cannot diagnose
+                          illness, injury, REDs or overtraining syndrome.
                         </p>
                       </motion.div>
                     )}
@@ -406,14 +417,17 @@ export default function TrainingReadinessPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.2, delay: 0.2 }}
                     >
-                      <h3 className="font-heading text-lg text-off-white mb-3">RELATED TOOLS</h3>
+                      <h3 className="font-heading text-lg text-off-white mb-3">
+                        RELATED TOOLS
+                      </h3>
                       <ul className="space-y-2">
                         <li>
                           <Link
                             href="/tools/recovery-screen"
                             className="text-coral hover:text-coral/80 text-sm transition-colors"
                           >
-                            Recovery Readiness Screen &mdash; deeper 10-question recovery assessment
+                            Recovery Readiness Screen &mdash; deeper 10-question
+                            recovery assessment
                           </Link>
                         </li>
                         <li>
@@ -421,7 +435,8 @@ export default function TrainingReadinessPage() {
                             href="/tools/hr-zones"
                             className="text-coral hover:text-coral/80 text-sm transition-colors"
                           >
-                            Heart Rate Zone Calculator &mdash; set your training zones
+                            Heart Rate Zone Calculator &mdash; set your training
+                            zones
                           </Link>
                         </li>
                         <li>
@@ -429,7 +444,8 @@ export default function TrainingReadinessPage() {
                             href="/tools/training-load"
                             className="text-coral hover:text-coral/80 text-sm transition-colors"
                           >
-                            Training Load Calculator &mdash; CTL/ATL/TSB analysis
+                            Training Load Calculator &mdash; CTL/ATL/TSB
+                            analysis
                           </Link>
                         </li>
                       </ul>
@@ -451,19 +467,21 @@ export default function TrainingReadinessPage() {
               transition={{ duration: 0.2, delay: 0.4 }}
             >
               <p className="font-heading text-off-white text-lg md:text-xl mb-2">
-                MAKE READINESS A DAILY HABIT
+                PUT READINESS BESIDE YOUR STRENGTH PLAN
               </p>
               <p className="text-foreground-muted text-sm mb-5 max-w-md mx-auto">
-                Join 1,000+ cyclists who train smarter, not just harder. Daily readiness
-                protocols, training advice, and a community that gets it.
+                Roadman&apos;s upcoming iPhone app will use sleep, energy,
+                soreness and bike context to hold or reduce strength
+                volume&mdash;never to invent extra work or silently rewrite your
+                riding plan.
               </p>
-              <a
-                href="https://www.skool.com/roadmancycling"
+              <Link
+                href="/app"
                 className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
-                data-track="tool_training_readiness_skool"
+                data-track="tool_training_readiness_app"
               >
-                Join the Community
-              </a>
+                Join App Early Access
+              </Link>
             </motion.div>
           </Container>
         </Section>
@@ -479,26 +497,53 @@ export default function TrainingReadinessPage() {
             </h2>
             <div className="text-foreground-muted text-sm leading-relaxed space-y-3">
               <p>
-                <strong className="text-off-white">How it works:</strong> Eight questions
-                scored 0&ndash;3 produce a total between 0 and 24. Each question captures a
-                different readiness signal: sleep quantity, sleep quality, muscle soreness,
-                energy, mood, resting heart rate, stress, and prior-day training load.
+                <strong className="text-off-white">How it works:</strong> Eight
+                questions scored 0&ndash;3 produce a total between 0 and 24.
+                Each question captures a different readiness signal: sleep
+                quantity, sleep quality, muscle soreness, energy, mood, resting
+                heart rate, stress, and prior-day training load.
               </p>
               <p>
-                <strong className="text-off-white">Scoring bands:</strong> 0&ndash;8 Rest
-                Day (red), 9&ndash;14 Easy Only (amber), 15&ndash;19 Moderate (green),
-                20&ndash;24 Green Light (blue). The tool is designed for daily use &mdash;
-                run it each morning before you decide what to ride.
+                <strong className="text-off-white">
+                  What the score means:
+                </strong>{" "}
+                The four bands are a Roadman coaching heuristic for organising
+                context. They are not clinically validated cut-offs, and no
+                score by itself proves readiness, predicts injury or tells every
+                cyclist to train or rest.
               </p>
               <p>
-                <strong className="text-off-white">Disclaimer:</strong> This is a
-                self-assessment tool for informational purposes only. It is not a medical
-                diagnostic and does not replace professional advice. If you are experiencing
-                persistent fatigue, unexplained performance decline, or symptoms of
-                overtraining syndrome, consult your GP or a sports medicine professional.
+                <strong className="text-off-white">Evidence boundary:</strong>{" "}
+                Subjective wellbeing measures can be useful for monitoring
+                change, but commonly used single-item athlete measures have
+                important validation limits. Compare your answers with your own
+                baseline, planned session and symptoms rather than treating the
+                total as an automatic instruction. See the{" "}
+                <a
+                  className="text-coral hover:text-coral/80"
+                  href="https://pubmed.ncbi.nlm.nih.gov/26423706/"
+                >
+                  athlete-monitoring systematic review
+                </a>{" "}
+                and the{" "}
+                <a
+                  className="text-coral hover:text-coral/80"
+                  href="https://pubmed.ncbi.nlm.nih.gov/32957081/"
+                >
+                  measurement-quality review
+                </a>
+                .
+              </p>
+              <p>
+                <strong className="text-off-white">Disclaimer:</strong> This is
+                a self-assessment tool for informational purposes only. It is
+                not a medical diagnostic and does not replace professional
+                advice. If you are experiencing persistent fatigue, unexplained
+                performance decline, or symptoms of overtraining syndrome,
+                consult your GP or a sports medicine professional.
               </p>
               <p className="text-xs text-foreground-subtle">
-                Last updated: July 2026 &middot; Tool version 1.0
+                Last updated: August 2026 &middot; Tool version 1.1
               </p>
             </div>
           </Container>

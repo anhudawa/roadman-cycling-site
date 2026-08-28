@@ -4,9 +4,9 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 
 export const metadata: Metadata = {
-  title: "Recovery Readiness Screen — Is Your Recovery Keeping Pace?",
+  title: "Cycling Recovery Readiness Screen",
   description:
-    "A 10-question self-assessment that evaluates your sleep, training load, nutrition, and stress. Scored 0–30 with personalised recommendations. Free, no signup.",
+    "Organise ten cycling-recovery signals across sleep, recent load, fuelling, stress and wellbeing. Free 0–30 context screen with clear evidence limits.",
   keywords: [
     "cycling recovery screen",
     "recovery readiness assessment",
@@ -18,12 +18,19 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/tools/recovery-screen" },
   openGraph: {
-    title: "Recovery Readiness Screen — Is Your Recovery Keeping Pace?",
+    title: "Cycling Recovery Readiness Screen",
     description:
-      "Ten questions across sleep, training load, nutrition, and stress. A scored self-assessment with actionable recommendations for cyclists.",
+      "Ten questions across sleep, recent load, fuelling, stress and wellbeing, with practical priorities and explicit evidence boundaries.",
     type: "website",
     url: "https://roadmancycling.com/tools/recovery-screen",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Roadman Cycling",
+      },
+    ],
   },
 };
 
@@ -32,14 +39,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <SoftwareApplicationSchema
         name="Recovery Readiness Screen for Cyclists"
-        description="Free self-assessment tool that screens your recovery practices across sleep, training load, nutrition, and stress. Ten questions, scored 0–30, with personalised recommendations based on your weakest areas."
+        description="Free self-assessment that organises sleep, recent-load, fuelling, stress and wellbeing signals. Ten questions produce a 0–30 heuristic band and three priorities to review."
         url="https://roadmancycling.com/tools/recovery-screen"
         features={[
           "10-question self-assessment across four recovery categories",
-          "Scored 0–30 with four colour-coded severity bands",
-          "Category breakdown: Sleep, Training Load, Nutrition, Stress & Wellbeing",
-          "Top 3 personalised recommendations based on lowest-scoring areas",
+          "Scored 0–30 with four colour-coded context bands",
+          "Category breakdown: Sleep, Load & Recovery, Fuelling, Stress & Response",
+          "Top 3 priorities based on lowest-scoring areas",
+          "Explicit warning that the cut-offs are not clinically validated",
           "Links to related recovery and training tools",
+          "Early-access path to Roadman's strength and recovery app",
           "No signup required — instant results",
         ]}
       />
@@ -54,11 +63,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           },
           {
             name: "Answer the training load questions",
-            text: "Report your weekly training frequency and number of complete rest days. These form the Training Load category (max 6 points). Count all structured training — bike, strength, and any deliberate cardio.",
+            text: "Compare recent bike, strength and life load with your own baseline, then assess whether easier days have matched the demanding work. These form the Load and Recovery category (max 6 points).",
           },
           {
             name: "Answer the nutrition question",
-            text: "Rate how quickly you eat after hard sessions. This single question forms the Nutrition category (max 3 points). Post-ride fuelling is the recovery lever most riders underestimate.",
+            text: "Rate how consistently you replace fuel and fluid after demanding sessions, particularly when another session follows soon. This forms the Fuelling category (max 3 points).",
           },
           {
             name: "Answer the stress and wellbeing questions",
@@ -66,7 +75,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           },
           {
             name: "Review your results and recommendations",
-            text: "Your total score (0–30) places you in one of four bands: Recovery Deficit (red), Recovery Gaps (amber), Reasonable Recovery (green), or Strong Recovery (blue). Read the top three personalised recommendations and act on the most accessible one first.",
+            text: "Your total score (0–30) places the current answers in one of four context bands and identifies three priorities to review. The result is a Roadman heuristic, not a diagnosis, validated cut-off or automatic training prescription.",
           },
         ]}
       />
@@ -75,8 +84,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://roadmancycling.com" },
-            { "@type": "ListItem", position: 2, name: "Tools", item: "https://roadmancycling.com/tools" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://roadmancycling.com",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Tools",
+              item: "https://roadmancycling.com/tools",
+            },
             {
               "@type": "ListItem",
               position: 3,
@@ -96,7 +115,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               name: "What is a recovery readiness screen?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "A recovery readiness screen is a self-assessment that evaluates how well your body is recovering from training. It looks at sleep, training load, nutrition timing, stress, and wellbeing markers to produce a score and actionable recommendations. It is not a medical diagnostic — it is a structured way to identify recovery gaps before they become overtraining problems.",
+                text: "A recovery readiness screen is a self-assessment that organises sleep, recent load, fuelling, stress and wellbeing signals. It can identify topics to review, but it does not measure recovery directly or diagnose under-recovery, overtraining syndrome, REDs or illness.",
               },
             },
             {
@@ -104,7 +123,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               name: "How is the recovery readiness score calculated?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "Ten questions are each scored 0–3, giving a total between 0 and 30. Questions are grouped into four categories: Sleep (max 6), Training Load (max 6), Nutrition (max 3), and Stress and Wellbeing (max 15). The total determines your band: 0–10 Recovery Deficit, 11–18 Recovery Gaps, 19–24 Reasonable Recovery, 25–30 Strong Recovery.",
+                text: "Ten questions are each scored 0–3, giving a total between 0 and 30. Questions are grouped into Sleep, Load and Recovery, Fuelling, and Stress and Response. The four bands are Roadman context heuristics rather than clinically validated thresholds.",
               },
             },
             {
@@ -112,7 +131,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               name: "What should I do if my recovery score is low?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "Start with the personalised recommendations the tool provides — they target your three weakest areas. The most common fixes are increasing sleep duration, adding a rest day, and eating sooner after hard sessions. If your score is in the Recovery Deficit band (0–10), consider a structured recovery week at 40–50% of normal training volume before resuming your plan.",
+                text: "Review the three lowest-scoring areas in the context of your normal baseline, recent workload, symptoms and next important session. Do not apply a fixed rest-day count or percentage reduction from this score alone. Persistent fatigue, unexplained decline or concerning symptoms belong with a qualified healthcare professional.",
               },
             },
             {

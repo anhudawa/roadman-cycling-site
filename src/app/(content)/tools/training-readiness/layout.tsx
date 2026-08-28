@@ -4,9 +4,9 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { SoftwareApplicationSchema } from "@/components/seo/SoftwareApplicationSchema";
 
 export const metadata: Metadata = {
-  title: "Training Readiness Check — Should You Train Hard Today?",
+  title: "Training Readiness Check for Cyclists",
   description:
-    "An 8-question daily readiness check that tells you whether to train hard, spin easy, or rest. Scored 0–24 with an instant verdict. Free, no signup.",
+    "Organise eight daily cycling-readiness signals before training. A free 0–24 context check with clear evidence limits and no signup.",
   keywords: [
     "training readiness check cycling",
     "daily readiness assessment cyclist",
@@ -18,12 +18,19 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/tools/training-readiness" },
   openGraph: {
-    title: "Training Readiness Check — Should You Train Hard Today?",
+    title: "Training Readiness Check for Cyclists",
     description:
-      "Eight questions. Under a minute. A clear call on whether to train hard, spin easy, or rest today.",
+      "Eight questions. Under a minute. Organise sleep, soreness, energy, stress and recent-load signals before the planned session.",
     type: "website",
     url: "https://roadmancycling.com/tools/training-readiness",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Roadman Cycling" }],
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Roadman Cycling",
+      },
+    ],
   },
 };
 
@@ -32,16 +39,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <SoftwareApplicationSchema
         name="Training Readiness Check for Cyclists"
-        description="Free daily readiness check that evaluates sleep, soreness, energy, mood, heart rate, stress, and prior training to tell you whether today should be a hard session, easy spin, or rest day. Eight questions, scored 0–24, with an instant verdict."
+        description="Free daily context check that organises sleep, soreness, energy, mood, heart rate, stress and prior-training signals. Eight questions produce a 0–24 heuristic band with explicit evidence limits."
         url="https://roadmancycling.com/tools/training-readiness"
         features={[
           "8-question daily readiness assessment",
-          "Scored 0–24 with four colour-coded verdict bands",
-          "Instant verdict: Rest Day, Easy Only, Moderate, or Green Light",
+          "Scored 0–24 with four colour-coded context bands",
+          "Conservative starting guidance that cannot add training load",
           "Daily-use design — under 60 seconds to complete",
-          "Actionable suggestion for what to do today",
-          "Three-day warning for persistent low scores",
+          "Clear warning that the cut-offs are not clinically validated",
+          "Pattern warning for repeated unfavourable signals",
           "Links to Recovery Readiness Screen for deeper assessment",
+          "Early-access path to Roadman's strength and recovery app",
           "No signup required — instant results",
         ]}
       />
@@ -67,8 +75,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             text: "Report where your resting heart rate sits relative to normal, and what you did yesterday. These provide context for your overall readiness.",
           },
           {
-            name: "Get your verdict",
-            text: "Your total score (0–24) produces one of four verdicts: Rest Day (red), Easy Only (amber), Moderate (green), or Green Light (blue). Follow the suggestion for what to do today.",
+            name: "Read the context band",
+            text: "Your total score (0–24) produces one of four context bands. Use it alongside symptoms, your own baseline, the planned session and the warm-up response; it is not a validated diagnosis or automatic training instruction.",
           },
         ]}
       />
@@ -77,8 +85,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://roadmancycling.com" },
-            { "@type": "ListItem", position: 2, name: "Tools", item: "https://roadmancycling.com/tools" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://roadmancycling.com",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Tools",
+              item: "https://roadmancycling.com/tools",
+            },
             {
               "@type": "ListItem",
               position: 3,
@@ -98,7 +116,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               name: "What is a training readiness check?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "A training readiness check is a quick daily self-assessment that evaluates how prepared your body and mind are to train. It looks at sleep, soreness, energy, mood, heart rate, stress, and prior training to produce a score and a clear verdict — train hard, go easy, or rest. It is not a medical diagnostic. It is a structured way to make better daily training decisions.",
+                text: "A training readiness check is a quick daily self-assessment that organises sleep, soreness, energy, mood, heart rate, stress and prior-training context. This tool produces a heuristic band rather than a diagnosis or universal train-versus-rest instruction.",
               },
             },
             {
@@ -106,7 +124,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               name: "How is the training readiness score calculated?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "Eight questions are each scored 0–3, giving a total between 0 and 24. The total determines your verdict: 0–8 Rest Day, 9–14 Easy Only, 15–19 Moderate, 20–24 Green Light. Higher scores mean more readiness signals are favourable.",
+                text: "Eight questions are each scored 0–3, giving a total between 0 and 24. The four bands organise how many self-reported signals are favourable. The thresholds are a Roadman coaching heuristic, not clinically validated cut-offs.",
               },
             },
             {
@@ -114,7 +132,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               name: "How often should I use the training readiness check?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "Every day before you train. The tool is designed for daily use and takes under a minute. Run it each morning to make a data-informed decision about the day's session rather than relying on how you feel in the first five minutes of a ride.",
+                text: "Use it consistently when a daily trend would help, ideally under similar conditions. Compare the pattern with your own baseline, symptoms, planned session and warm-up response rather than letting one score make the decision.",
               },
             },
             {
@@ -122,7 +140,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               name: "What should I do if I keep scoring low?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "If you score under 12 for three consecutive days, take the Recovery Readiness Screen for a deeper assessment. Persistent low readiness usually points to accumulated fatigue, poor sleep, or high life stress — and the fix is more rest, not more training.",
+                text: "Review which signals are repeatedly unfavourable and use the Recovery Readiness Screen to organise the wider context. Persistent fatigue or performance decline can have several causes; concerning symptoms, illness or an unexplained persistent change belong with a qualified healthcare professional.",
               },
             },
             {
