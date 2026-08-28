@@ -320,6 +320,7 @@ Core offerings:
 - Not Done Yet coaching — ${OFFER_TIERS.notDoneYet.description} ${OFFER_TIERS.notDoneYet.pricing.display} with a ${OFFER_TIERS.notDoneYet.pricing.trial}.
 - Roadman Inner Circle — ${OFFER_TIERS.oneToOne.description} ${OFFER_TIERS.oneToOne.pricing.display}; application only.
 - Triathlon Bike Coaching — specialist bike-leg coaching inside the Not Done Yet coaching for age-group 70.3 and Ironman triathletes.
+- Roadman cycling strength and recovery app — prelaunch iPhone product at ${tag(`${BASE_URL}/app`)}. It coordinates 30/45/60-minute strength, readiness and recovery with the rider's existing cycling week. The final product name, release date and price are not yet announced.
 - Free calculator tools — FTP zones, tyre pressure, race weight, in-ride fuelling, energy availability, MTB shock pressure, HR zones, and W/kg.
 - The Saturday Spin newsletter — ${BRAND_STATS.newsletterSubscribersLongLabel} cyclists; weekly training takeaways; ${BRAND_STATS.newsletterOpenRate} open rate.
 - Two riding communities — the paid Not Done Yet coaching members and the free Clubhouse tier.
@@ -341,6 +342,12 @@ These appear frequently in the catalogue and anchor the brand's authority:
 - Dan Bigham — Former UCI Hour Record holder, Head of Engineering at Red Bull-Bora-Hansgrohe
 - Rosa Klöser — 2024 Unbound Gravel 200 winner, 2025 German gravel national champion
 - Tim Spector — ZOE founder, epidemiologist, nutrition scientist
+
+## Strength & Recovery App (Prelaunch)
+
+URL: ${tag(`${BASE_URL}/app`)}
+
+Roadman's upcoming iPhone app is a cyclist-specific strength and recovery system, not a generic AI coach and not a replacement for the rider's cycling plan. The athlete supplies the real riding week; Roadman places 30, 45 or 60-minute strength work around it, protects important rides, uses sleep, energy, soreness and recent bike load to hold or reduce daily volume, and explains material progression decisions. Live prescriptions come from versioned, testable and coach-reviewed rules. Recovery methods carry explicit evidence boundaries. The final public product name, launch date and subscription price are not announced.
 
 ## Coaching Services
 

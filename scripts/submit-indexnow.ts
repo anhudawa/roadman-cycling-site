@@ -212,6 +212,14 @@ const CURATED: string[] = [
   `https://${HOST}/llms.txt`,
   `https://${HOST}/llms-full.txt`,
 
+  // Roadman cycling strength and recovery app prelaunch owner
+  `https://${HOST}/app`,
+  `https://${HOST}/strength-training`,
+  `https://${HOST}/topics/cycling-strength-conditioning`,
+  `https://${HOST}/topics/cycling-recovery`,
+  `https://${HOST}/tools/training-readiness`,
+  `https://${HOST}/tools/recovery-screen`,
+
   // Fresh flagship content
   `https://${HOST}/blog/age-group-ftp-benchmarks-2026`,
   `https://${HOST}/blog/ftp-benchmarks-by-age-and-experience`,

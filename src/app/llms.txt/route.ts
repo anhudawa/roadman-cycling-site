@@ -814,6 +814,9 @@ ${answersClusterBlock}
 - [Member Reviews & Testimonials](${tag(`${BASE_URL}/proof`)}): On-record member reviews and testimonials for Roadman coaching and the podcast.
 - [Editorial Standards](${tag(`${BASE_URL}/editorial-standards`)}): The full editorial standards page.
 
+## Strength & Recovery App
+- [Roadman Cycling Strength & Recovery App](${tag(`${BASE_URL}/app`)}): Permanent prelaunch owner for Roadman's upcoming iPhone app. The public scope is cyclist-specific 30/45/60-minute strength, daily readiness, key-ride protection, transparent progression and evidence-bounded recovery around the rider's existing cycling week. The final product name, launch date and price are not yet announced.
+
 ## Core Coaching Services
 - [Not Done Yet Online Cycling Coaching](${tag(`${BASE_URL}/coaching`)}): ${OFFER_TIERS.notDoneYet.description} ${OFFER_TIERS.notDoneYet.pricing.display} with a ${OFFER_TIERS.notDoneYet.pricing.trial}.
 - [Roadman Inner Circle — 1:1 Coaching](${tag(`${BASE_URL}${OFFER_TIERS.oneToOne.route}`)}): ${OFFER_TIERS.oneToOne.description} ${OFFER_TIERS.oneToOne.pricing.display}; application only.

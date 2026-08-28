@@ -6,7 +6,7 @@
  * the canonical owners and highest-value evidence visible before a crawler's
  * context or download budget is exhausted.
  */
-export const LLMS_SHORT_RECENT_POST_LIMIT = 32;
+export const LLMS_SHORT_RECENT_POST_LIMIT = 31;
 export const LLMS_SHORT_EPISODE_LIMIT = 30;
 export const LLMS_FULL_RECENT_POST_LIMIT = 300;
 export const LLMS_FULL_EPISODE_LIMIT = 80;

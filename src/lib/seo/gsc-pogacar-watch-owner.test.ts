@@ -100,7 +100,11 @@ describe("GSC Pogačar watch owner", () => {
     }
 
     expect(benchmark.metadata.prompt_count).toBe(benchmark.prompts.length);
-    expect(benchmark.prompts.slice(-2)).toMatchObject([
+    expect(
+      benchmark.prompts.filter(
+        (prompt) => prompt.id === 317 || prompt.id === 318,
+      ),
+    ).toMatchObject([
       { id: 317, target_page: OWNER_ROUTE },
       { id: 318, target_page: OWNER_ROUTE },
     ]);

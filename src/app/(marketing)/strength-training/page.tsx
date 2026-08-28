@@ -138,6 +138,32 @@ export default function StrengthTrainingPage() {
         {/* Gradient divider */}
         <div className="gradient-divider" />
 
+        <Section background="charcoal" className="py-10 md:py-12">
+          <Container>
+            <div className="flex flex-col items-start justify-between gap-6 rounded-2xl border border-coral/20 bg-coral/[0.07] p-6 md:flex-row md:items-center md:p-8">
+              <div className="max-w-3xl">
+                <p className="font-heading text-sm tracking-[0.18em] text-coral">
+                  WANT STRENGTH PLACED AROUND YOUR REAL RIDING WEEK?
+                </p>
+                <p className="mt-2 leading-relaxed text-foreground-muted">
+                  Roadman is building an iPhone strength and recovery app with
+                  30, 45 and 60-minute sessions, readiness checks and key-ride
+                  protection. The final product name and price are not yet
+                  announced.
+                </p>
+              </div>
+              <Button
+                href="/app"
+                variant="outline"
+                className="shrink-0"
+                dataTrack="strength_plan_app_early_access"
+              >
+                Join app early access
+              </Button>
+            </div>
+          </Container>
+        </Section>
+
         {/* The Science */}
         <Section background="charcoal">
           <Container>
