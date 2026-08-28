@@ -14,7 +14,7 @@ const APP_DESCRIPTION =
 const STRUCTURED_IMAGE_URL = `${SITE_ORIGIN}/api/og/blog-hero?title=${encodeURIComponent("Cycling Strength & Recovery App")}&pillar=strength`;
 
 export const metadata: Metadata = {
-  title: "Cycling Strength & Recovery App | Roadman Cycling",
+  title: { absolute: "Cycling Strength & Recovery App | Roadman Cycling" },
   description: APP_DESCRIPTION,
   alternates: { canonical: APP_URL },
   openGraph: {

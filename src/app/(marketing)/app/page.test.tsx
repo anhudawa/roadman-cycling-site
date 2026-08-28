@@ -48,9 +48,9 @@ describe("Roadman strength and recovery app search owner", () => {
   it("publishes stable, name-neutral metadata", async () => {
     const { metadata } = await import("./page");
 
-    expect(metadata.title).toBe(
-      "Cycling Strength & Recovery App | Roadman Cycling",
-    );
+    expect(metadata.title).toMatchObject({
+      absolute: "Cycling Strength & Recovery App | Roadman Cycling",
+    });
     expect(metadata.description).toContain(
       "cyclist-specific strength and recovery app",
     );
