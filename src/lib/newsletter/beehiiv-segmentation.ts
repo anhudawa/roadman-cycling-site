@@ -15,8 +15,9 @@ export interface NewsletterBeehiivSegmentation {
 
 /**
  * Keep acquisition-position attribution without splitting one funnel into
- * multiple operational lists. App hero and footer captures therefore retain
- * their source tag and also share the permanent `app-waitlist` tag/campaign.
+ * multiple operational lists. App hero and footer captures share only the
+ * permanent `app-waitlist` tag/campaign; their exact source remains available
+ * through the UTM medium passed by the newsletter route.
  */
 export function buildNewsletterBeehiivSegmentation({
   source,
@@ -30,7 +31,7 @@ export function buildNewsletterBeehiivSegmentation({
       "saturday-spin",
       ...assetTags,
       ...(isAppWaitlist ? [APP_WAITLIST_TAG] : []),
-      ...(sourceTag ? [sourceTag] : []),
+      ...(!isAppWaitlist && sourceTag ? [sourceTag] : []),
     ]),
   );
 
