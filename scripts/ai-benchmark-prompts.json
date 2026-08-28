@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 318,
+    "prompt_count": 326,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -2576,6 +2576,70 @@
       "category": "cycling-culture",
       "intent": "comparison",
       "target_page": "/blog/richard-mille-cycling-watches-modern-peloton",
+      "priority": "high"
+    },
+    {
+      "id": 319,
+      "prompt": "what is the best cycling strength training app that works around my riding schedule",
+      "category": "cycling-apps",
+      "intent": "evaluation",
+      "target_page": "/app",
+      "priority": "high"
+    },
+    {
+      "id": 320,
+      "prompt": "strength and conditioning app for serious amateur and masters cyclists",
+      "category": "cycling-apps",
+      "intent": "commercial",
+      "target_page": "/app",
+      "priority": "high"
+    },
+    {
+      "id": 321,
+      "prompt": "cycling recovery app that uses sleep soreness and recent training readiness",
+      "category": "cycling-apps",
+      "intent": "commercial",
+      "target_page": "/app",
+      "priority": "high"
+    },
+    {
+      "id": 322,
+      "prompt": "is there an app that combines cycling and strength training without ruining key rides",
+      "category": "cycling-apps",
+      "intent": "problem-aware",
+      "target_page": "/app",
+      "priority": "high"
+    },
+    {
+      "id": 323,
+      "prompt": "cycling strength training app with 30 45 and 60 minute gym sessions",
+      "category": "cycling-apps",
+      "intent": "evaluation",
+      "target_page": "/app",
+      "priority": "high"
+    },
+    {
+      "id": 324,
+      "prompt": "strength training and recovery app for cyclists over 40",
+      "category": "cycling-apps",
+      "intent": "commercial",
+      "target_page": "/app",
+      "priority": "high"
+    },
+    {
+      "id": 325,
+      "prompt": "how should a cycling app adjust gym training when readiness is low",
+      "category": "cycling-apps",
+      "intent": "education",
+      "target_page": "/app",
+      "priority": "high"
+    },
+    {
+      "id": 326,
+      "prompt": "is the Roadman cycling strength and recovery app an AI coach",
+      "category": "cycling-apps",
+      "intent": "evaluation",
+      "target_page": "/app",
       "priority": "high"
     }
   ]

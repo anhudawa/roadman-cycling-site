@@ -219,6 +219,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     })),
     { url: `${BASE_URL}/community`, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/app`, lastModified: new Date("2026-08-28"), changeFrequency: "weekly", priority: 0.95 },
     { url: `${BASE_URL}/strength-training`, lastModified: new Date("2026-03-01"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/plateau`, lastModified: new Date("2026-04-22"), changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}/ask`, lastModified: new Date("2026-04-24"), changeFrequency: "weekly", priority: 0.9 },
