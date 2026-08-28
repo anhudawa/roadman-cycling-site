@@ -11,11 +11,7 @@ describe("Beehiiv newsletter segmentation", () => {
   ])("puts %s into one app waiting list", (source) => {
     const result = buildNewsletterBeehiivSegmentation({ source });
 
-    expect(result.tags).toEqual([
-      "saturday-spin",
-      APP_WAITLIST_TAG,
-      source,
-    ]);
+    expect(result.tags).toEqual(["saturday-spin", APP_WAITLIST_TAG]);
     expect(result.campaign).toBe(APP_WAITLIST_TAG);
   });
 
