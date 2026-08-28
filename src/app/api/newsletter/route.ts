@@ -4,6 +4,7 @@ import { upsertOnSignup } from "@/lib/admin/subscribers-store";
 import { buildMastersReportWelcomeEmail } from "@/lib/emails/masters-report-welcome";
 import { subscribeToBeehiiv } from "@/lib/integrations/beehiiv";
 import { getResendClient } from "@/lib/integrations/resend";
+import { buildNewsletterBeehiivSegmentation } from "@/lib/newsletter/beehiiv-segmentation";
 import { rateLimitOr429 } from "@/lib/rate-limit/ip-rate-limit";
 import { clampString, LIMITS, normaliseEmail } from "@/lib/validation";
 
@@ -108,28 +109,23 @@ export async function POST(request: Request) {
     // asset-delivery flows (e.g. /masters-report) because our own
     // Resend send below carries the PDF link — sending both would
     // confuse subscribers and step on each other in the inbox.
-    // Tag with the acquisition channel (e.g. "go-exit-intent",
-    // "masters-report-hero", "ndy-fit-not-a-fit") so subscribers can be
-    // segmented in Beehiiv by where they came in. Strip a leading slash
-    // so the default "/newsletter" becomes a clean "newsletter" tag.
-    const sourceTag = source.replace(/^\/+/, "").trim();
-    const baseTags = asset
-      ? ["saturday-spin", ...asset.tags]
-      : ["saturday-spin"];
-    const beehiivTags =
-      sourceTag && !baseTags.includes(sourceTag)
-        ? [...baseTags, sourceTag]
-        : baseTags;
-    const beehiivCampaign = asset ? asset.campaign : "saturday-spin";
+    // Retain the acquisition-position tag for attribution while assigning
+    // funnels to one operational tag/campaign. Both app form positions, for
+    // example, share `app-waitlist` instead of becoming separate lists.
+    const beehiivSegmentation = buildNewsletterBeehiivSegmentation({
+      source,
+      assetTags: asset?.tags,
+      assetCampaign: asset?.campaign,
+    });
     const result = await subscribeToBeehiiv({
       email,
       name,
-      tags: beehiivTags,
+      tags: beehiivSegmentation.tags,
       sendWelcomeEmail: !asset,
       utm: {
         source: "website",
         medium: source,
-        campaign: beehiivCampaign,
+        campaign: beehiivSegmentation.campaign,
       },
     });
 
