@@ -10,7 +10,7 @@ import type {
 } from './types';
 import { segmentAirState } from './environment';
 import { normalizedPower, variabilityIndex } from './analysis';
-import { G, MIN_SPEED } from './constants';
+import { DEFAULT_STEP_M, G, MIN_SPEED } from './constants';
 
 interface SolveSpeedArgs {
   /** Rider power, W (before drivetrain loss). */
@@ -102,8 +102,76 @@ interface SimulateCourseArgs {
 }
 
 /**
- * Simulate a full course. Steady-state speed per segment, with kinetic-energy
- * carry-over between segments via average-of-endpoints integration.
+ * Open-road braking guard for descents. The force model alone predicts terminal
+ * velocity; event predictions need the rider behaviour layer too.
+ */
+function descentSpeedCap(gradePct: number): number {
+  // Real riders rarely let long open-road descents run to physics-only
+  // terminal velocity. Keep the cap permissive enough for fast alpine roads,
+  // but prevent one noisy downhill segment from making a prediction wildly
+  // optimistic versus a Best Bike Split-style ride plan with braking limits.
+  if (gradePct > -3) return 30; // 108 km/h — effectively uncapped for flat/rolling roads.
+  if (gradePct > -6) return 25; // 90 km/h
+  if (gradePct > -10) return 22.5; // 81 km/h
+  return 20; // 72 km/h on very steep descents.
+}
+
+function integrateSegment(args: {
+  distance: number;
+  startSpeed: number;
+  targetPower: number;
+  mass: number;
+  gradient: number;
+  crr: number;
+  cda: number;
+  airDensity: number;
+  headwind: number;
+  drivetrainEfficiency: number;
+}): { duration: number; endSpeed: number; averageSpeed: number } {
+  const gradePct = Math.tan(args.gradient) * 100;
+  const maxSpeed = descentSpeedCap(gradePct);
+  const sinθ = Math.sin(args.gradient);
+  const cosθ = Math.cos(args.gradient);
+  const gravForce = args.mass * G * sinθ;
+  const rollForce = args.crr * args.mass * G * cosθ;
+  const wheelPower = args.targetPower * args.drivetrainEfficiency;
+
+  let remaining = args.distance;
+  let v = Math.min(Math.max(args.startSpeed, MIN_SPEED), maxSpeed);
+  let duration = 0;
+
+  while (remaining > 0) {
+    const dx = Math.min(remaining, DEFAULT_STEP_M);
+    const apparent = v + args.headwind;
+    const aeroForce =
+      0.5 * args.airDensity * args.cda * apparent * Math.abs(apparent);
+    const driveForce = wheelPower / Math.max(v, MIN_SPEED);
+    const netForce = driveForce - gravForce - rollForce - aeroForce;
+    const acceleration = netForce / args.mass;
+
+    let nextSpeedSquared = v * v + 2 * acceleration * dx;
+    if (!Number.isFinite(nextSpeedSquared) || nextSpeedSquared < MIN_SPEED * MIN_SPEED) {
+      nextSpeedSquared = MIN_SPEED * MIN_SPEED;
+    }
+    let nextV = Math.sqrt(nextSpeedSquared);
+    nextV = Math.min(Math.max(nextV, MIN_SPEED), maxSpeed);
+
+    const avgV = Math.max((v + nextV) / 2, MIN_SPEED);
+    duration += dx / avgV;
+    v = nextV;
+    remaining -= dx;
+  }
+
+  return {
+    duration,
+    endSpeed: v,
+    averageSpeed: args.distance / duration,
+  };
+}
+
+/**
+ * Simulate a full course using distance-step integration, preserving momentum
+ * between segments instead of snapping every segment to steady-state speed.
  */
 export function simulateCourse(args: SimulateCourseArgs): CourseResult {
   const { course, rider, environment, pacing } = args;
@@ -124,8 +192,10 @@ export function simulateCourse(args: SimulateCourseArgs): CourseResult {
     const targetPower = pacing[i];
     const altitude = (seg.startElevation + seg.endElevation) / 2;
     const air = segmentAirState(environment, { roadHeading: seg.heading, altitude });
-    const vSteady = solveSpeedFromPower({
-      power: targetPower,
+    const integrated = integrateSegment({
+      distance: seg.distance,
+      startSpeed: v,
+      targetPower,
       mass: totalMass,
       gradient: seg.gradient,
       crr: rider.crr,
@@ -134,26 +204,24 @@ export function simulateCourse(args: SimulateCourseArgs): CourseResult {
       headwind: air.headwindComponent,
       drivetrainEfficiency: rider.drivetrainEfficiency,
     });
-    const avgSpeed = Math.max((v + vSteady) / 2, MIN_SPEED);
-    const dt = seg.distance / avgSpeed;
-    const yaw = air.yawAngleAt(avgSpeed);
+    const yaw = air.yawAngleAt(integrated.averageSpeed);
 
     results.push({
       segmentIndex: i,
       startSpeed: v,
-      endSpeed: vSteady,
-      averageSpeed: avgSpeed,
-      duration: dt,
+      endSpeed: integrated.endSpeed,
+      averageSpeed: integrated.averageSpeed,
+      duration: integrated.duration,
       riderPower: targetPower,
       airDensity: air.airDensity,
       headwind: air.headwindComponent,
       yawAngle: yaw,
     });
 
-    totalTime += dt;
+    totalTime += integrated.duration;
     totalDistance += seg.distance;
-    energySum += targetPower * dt;
-    v = vSteady;
+    energySum += targetPower * integrated.duration;
+    v = integrated.endSpeed;
   }
 
   const averagePower = totalTime > 0 ? energySum / totalTime : 0;
