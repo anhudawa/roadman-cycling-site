@@ -36,7 +36,7 @@ describe("Daryl Fitzgerald podcast and entity search trust", () => {
     expect(parsed.data.seoTitle).toBe(
       "Daryl Fitzgerald Bike-Fit Podcast & Transcript",
     );
-    expect(parsed.data.updatedDate).toBe("2026-08-25");
+    expect(parsed.data.updatedDate).toBe("2026-08-31");
     expect(parsed.data.seoDescription.length).toBeGreaterThanOrEqual(120);
     expect(parsed.data.seoDescription.length).toBeLessThanOrEqual(160);
     expect(parsed.data.answerCapsule.split(/\s+/).length).toBeGreaterThanOrEqual(

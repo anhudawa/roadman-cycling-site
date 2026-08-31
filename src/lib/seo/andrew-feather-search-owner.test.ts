@@ -16,7 +16,7 @@ describe("Andrew Feather episode search owner", () => {
     expect(episode.data.seoTitle).toBe(
       "Andrew Feather: Pogi Challenge Power & Hill Climbs",
     );
-    expect(episode.data.updatedDate).toBe("2026-08-26");
+    expect(episode.data.updatedDate).toBe("2026-08-31");
     expect(episode.data.answerCapsule).toContain("head start");
     expect(episode.data.answerCapsule).toContain(
       "elapsed climb time was about three and a half minutes faster",
