@@ -13,15 +13,16 @@ import { ToolLanding } from "@/components/features/tools/ToolLanding";
 
 interface WheelOption {
   label: string;
-  rolloutMm: number;
+  rolloutMm: number | null;
 }
 
 const WHEELS: WheelOption[] = [
   { label: "700x23c", rolloutMm: 2096 },
   { label: "700x25c", rolloutMm: 2105 },
   { label: "700x28c", rolloutMm: 2136 },
-  { label: "700x32c", rolloutMm: 2168 },
-  { label: "650b x 47mm (gravel)", rolloutMm: 2070 },
+  { label: "700x32c", rolloutMm: 2155 },
+  { label: "700x35c", rolloutMm: 2168 },
+  { label: "Custom measured rollout", rolloutMm: null },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -34,15 +35,15 @@ interface CassetteOption {
 }
 
 const CASSETTES: CassetteOption[] = [
-  { label: "11-25", cogs: [11, 12, 13, 14, 15, 16, 17, 19, 21, 23, 25] },
-  { label: "11-28", cogs: [11, 12, 13, 14, 15, 17, 19, 21, 24, 28] },
-  { label: "11-30", cogs: [11, 12, 13, 14, 15, 17, 19, 21, 24, 27, 30] },
-  { label: "11-32", cogs: [11, 12, 13, 14, 16, 18, 20, 22, 25, 28, 32] },
-  { label: "11-34", cogs: [11, 12, 13, 15, 17, 19, 21, 24, 28, 32, 34] },
-  { label: "11-36", cogs: [11, 12, 13, 15, 17, 19, 22, 25, 28, 32, 36] },
-  { label: "10-36 (1x gravel)", cogs: [10, 12, 14, 16, 18, 21, 24, 28, 32, 36] },
-  { label: "10-42 (1x wide)", cogs: [10, 12, 14, 16, 18, 21, 24, 28, 32, 36, 42] },
-  { label: "10-44 (1x SRAM)", cogs: [10, 12, 14, 16, 18, 21, 24, 28, 32, 36, 40, 44] },
+  { label: "11-25 (Shimano 11-speed)", cogs: [11, 12, 13, 14, 15, 16, 17, 19, 21, 23, 25] },
+  { label: "11-28 (Shimano 11-speed)", cogs: [11, 12, 13, 14, 15, 17, 19, 21, 23, 25, 28] },
+  { label: "11-30 (Shimano 11-speed)", cogs: [11, 12, 13, 14, 15, 17, 19, 21, 24, 27, 30] },
+  { label: "11-32 (Shimano 11-speed)", cogs: [11, 12, 13, 14, 16, 18, 20, 22, 25, 28, 32] },
+  { label: "11-34 (Shimano 12-speed)", cogs: [11, 12, 13, 14, 15, 17, 19, 21, 24, 27, 30, 34] },
+  { label: "11-36 (Shimano 12-speed)", cogs: [11, 12, 13, 14, 15, 17, 19, 21, 24, 28, 32, 36] },
+  { label: "10-36 (SRAM 12-speed)", cogs: [10, 11, 12, 13, 15, 17, 19, 21, 24, 28, 32, 36] },
+  { label: "11-42 (SRAM 11-speed)", cogs: [11, 13, 15, 17, 19, 22, 25, 28, 32, 36, 42] },
+  { label: "10-44 (SRAM XPLR 12-speed)", cogs: [10, 11, 13, 15, 17, 19, 21, 24, 28, 32, 38, 44] },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -95,9 +96,9 @@ const SCENARIOS: ScenarioPreset[] = [
   {
     label: "Gravel",
     chainrings: [40],
-    cassetteIdx: 7, // 10-42
+    cassetteIdx: 8, // 10-44
     wheelIdx: 3, // 700x32c
-    note: "40T 1x, 10-42, 700x32c",
+    note: "40T 1x, 10-44, 700x32c",
   },
   {
     label: "Time Trial",
@@ -278,16 +279,24 @@ export default function GearRatioPage() {
   const [manualCogs, setManualCogs] = useState("");
   const [useManualCogs, setUseManualCogs] = useState(false);
   const [wheelIdx, setWheelIdx] = useState(1); // 700x25c
+  const [customRolloutMm, setCustomRolloutMm] = useState("2105");
   const [calculated, setCalculated] = useState(false);
   const [selectedCombo, setSelectedCombo] = useState<{ ring: number; cog: number } | null>(null);
 
   const cogs = useManualCogs ? parseCogs(manualCogs) : CASSETTES[cassetteIdx].cogs;
-  const rolloutMm = WHEELS[wheelIdx].rolloutMm;
+  const selectedWheel = WHEELS[wheelIdx];
+  const parsedCustomRollout = Number(customRolloutMm);
+  const rolloutMm = selectedWheel.rolloutMm ?? parsedCustomRollout;
 
   // Sort chainrings large-to-small for display
   const sortedChainrings = useMemo(() => [...chainrings].sort((a, b) => b - a), [chainrings]);
 
-  const canCalculate = chainrings.length > 0 && cogs.length > 0;
+  const canCalculate =
+    chainrings.length > 0 &&
+    cogs.length > 0 &&
+    Number.isFinite(rolloutMm) &&
+    rolloutMm >= 1000 &&
+    rolloutMm <= 3000;
 
   // Find min/max gears
   const extremes = useMemo(() => {
@@ -401,7 +410,7 @@ export default function GearRatioPage() {
                   {CHAINRING_PRESETS.map((p) => {
                     const isActive =
                       p.rings.length === chainrings.length &&
-                      p.rings.every((r, i) => chainrings.includes(r));
+                      p.rings.every((r) => chainrings.includes(r));
                     return (
                       <button
                         key={p.label}
@@ -502,10 +511,34 @@ export default function GearRatioPage() {
                 >
                   {WHEELS.map((w, idx) => (
                     <option key={w.label} value={idx} className="bg-charcoal">
-                      {w.label} ({w.rolloutMm}mm rollout)
+                      {w.label}{w.rolloutMm ? ` (${w.rolloutMm}mm rollout)` : ""}
                     </option>
                   ))}
                 </select>
+                {selectedWheel.rolloutMm === null && (
+                  <div className="mt-3">
+                    <label htmlFor="custom-rollout" className="text-foreground-subtle text-xs">
+                      Measured wheel circumference in millimetres
+                    </label>
+                    <input
+                      id="custom-rollout"
+                      type="number"
+                      min="1000"
+                      max="3000"
+                      step="1"
+                      inputMode="numeric"
+                      value={customRolloutMm}
+                      onChange={(e) => {
+                        setCustomRolloutMm(e.target.value);
+                        setCalculated(false);
+                      }}
+                      className={inputClass + " !text-base mt-1.5"}
+                    />
+                  </div>
+                )}
+                <p className="text-foreground-subtle text-xs mt-1.5">
+                  Presets are nominal. A loaded rollout measurement gives the most accurate speed and development.
+                </p>
               </div>
 
               <Button
@@ -785,25 +818,25 @@ export default function GearRatioPage() {
                 different wheel sizes.
               </p>
               <p>
-                <strong className="text-off-white">Meters of development:</strong> Gear ratio
-                multiplied by the wheel circumference (rollout) in meters. This is the distance
+                <strong className="text-off-white">Metres of development:</strong> Gear ratio
+                multiplied by the wheel circumference (rollout) in metres. This is the distance
                 the bike travels per pedal revolution. Widely used in continental Europe and in
                 track cycling.
               </p>
               <p>
-                <strong className="text-off-white">Rollout variation:</strong> The tyre
-                circumferences used here assume standard inflation and no load deformation.
-                Real-world rollout varies with tyre pressure, rider weight, and tyre construction.
-                A 2-3% difference is typical. For precision, measure your own rollout — mark the
-                tyre, ride one revolution, measure the ground distance.
+                <strong className="text-off-white">Rollout variation:</strong> Preset tyre
+                circumferences are nominal. Rim width, fitted tyre width, pressure, load, tread,
+                and casing change the real circumference. For precision, measure one loaded wheel
+                revolution on level ground and use the custom rollout field.
               </p>
               <p>
-                <strong className="text-off-white">Source:</strong> The formulas follow
-                Sheldon Brown&apos;s canonical gear-calculation methodology. Brown&apos;s work
-                remains the definitive reference for bicycle gearing arithmetic.
+                <strong className="text-off-white">Sources:</strong> The arithmetic is shown
+                above. Nominal circumferences and cassette tooth sequences are checked against the
+                named Garmin, Wahoo, Shimano, and SRAM sources below; gain ratio follows Sheldon
+                Brown&apos;s original definition.
               </p>
               <p className="text-xs text-foreground-subtle">
-                Last updated: July 2026 · Tool version 1.0
+                Last reviewed: 31 August 2026 · Tool version 1.1
               </p>
             </div>
           </Container>
