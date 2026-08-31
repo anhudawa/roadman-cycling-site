@@ -265,6 +265,8 @@ const CURATED: string[] = [
   `https://${HOST}/blog/best-recovery-foods-after-cycling`,
   `https://${HOST}/blog/cycling-recovery-week-what-to-actually-do`,
   `https://${HOST}/blog/cycling-rest-week-guide`,
+  `https://${HOST}/blog/cycling-recovery-tips`,
+  `https://${HOST}/blog/recovery-for-cyclists-world-tour-protocols`,
   `https://${HOST}/blog/cycling-fatigue-signs-when-to-back-off`,
   `https://${HOST}/blog/cycling-overtraining-signs-guide`,
   `https://${HOST}/blog/recognising-overtraining-cyclists-guide`,

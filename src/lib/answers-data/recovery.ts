@@ -665,7 +665,7 @@ export const recoveryAnswers: AnswerPage[] = [
       { label: "Active Recovery Rides for Cyclists", href: "/blog/cycling-active-recovery-rides-guide" },
       { label: "How many rest days do cyclists need?", href: "/answers/how-many-rest-days-cycling" },
       { label: "Recovery Topic Hub", href: "/topics/cycling-recovery" },
-      { label: "World Tour Recovery Protocols", href: "/blog/recovery-for-cyclists-world-tour-protocols" },
+      { label: "Cycling Recovery: What Works", href: "/blog/cycling-recovery-tips" },
     ],
     evidenceLevel: "moderate",
     evidenceNote:
@@ -1058,7 +1058,7 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     relatedTopics: [
       { label: "Post-Ride Recovery Window (Over 40)", href: "/blog/post-ride-recovery-window-cyclists-over-40" },
-      { label: "World Tour Recovery Protocols", href: "/blog/recovery-for-cyclists-world-tour-protocols" },
+      { label: "Cycling Recovery: What Works", href: "/blog/cycling-recovery-tips" },
       { label: "Recovery Topic Hub", href: "/topics/cycling-recovery" },
       { label: "How to recover after a race", href: "/answers/how-to-recover-after-a-race" },
       { label: "Active or Passive Recovery", href: "/answers/active-or-passive-recovery" },
@@ -1189,7 +1189,6 @@ export const recoveryAnswers: AnswerPage[] = [
       "ep-31-5-things-pogacar-always-does-after-a-ride",
     ],
     relatedTopics: [
-      { label: "World Tour Recovery Protocols", href: "/blog/recovery-for-cyclists-world-tour-protocols" },
       { label: "Recovery for Cyclists: What Works", href: "/blog/cycling-recovery-tips" },
       { label: "Recovery Topic Hub", href: "/topics/cycling-recovery" },
       { label: "How much sleep do cyclists need?", href: "/answers/how-much-sleep-do-cyclists-need" },
@@ -1452,7 +1451,7 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     relatedTopics: [
       { label: "Recovery Topic Hub", href: "/topics/cycling-recovery" },
-      { label: "World Tour Recovery Protocols", href: "/blog/recovery-for-cyclists-world-tour-protocols" },
+      { label: "Cycling Recovery: What Works", href: "/blog/cycling-recovery-tips" },
       { label: "How long to recover after a hard ride?", href: "/answers/how-long-to-recover-after-hard-ride" },
       { label: "Race Day Nutrition Guide", href: "/blog/cycling-nutrition-race-day-guide" },
       { label: "What is a recovery week?", href: "/answers/what-is-a-recovery-week" },
@@ -2682,7 +2681,7 @@ export const recoveryAnswers: AnswerPage[] = [
     relatedTopics: [
       { label: "Do recovery tools work?", href: "/answers/do-recovery-tools-work" },
       { label: "Recovery Topic Hub", href: "/topics/cycling-recovery" },
-      { label: "World Tour Recovery Protocols", href: "/blog/recovery-for-cyclists-world-tour-protocols" },
+      { label: "Cycling Recovery: What Works", href: "/blog/cycling-recovery-tips" },
       { label: "How much sleep do cyclists need?", href: "/answers/how-much-sleep-do-cyclists-need" },
       { label: "Active or Passive Recovery", href: "/answers/active-or-passive-recovery" },
     ],

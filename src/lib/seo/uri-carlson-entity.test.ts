@@ -36,7 +36,7 @@ describe("Uri Carlson entity consistency", () => {
   it("uses the canonical name in the supporting editorial guides", () => {
     for (const file of [
       "content/blog/cycling-nutrition-world-tour-nutritionists.mdx",
-      "content/blog/recovery-for-cyclists-world-tour-protocols.mdx",
+      "content/blog/cycling-recovery-tips.mdx",
     ]) {
       const source = readFileSync(resolve(process.cwd(), file), "utf8");
       expect(source).toContain("Uri Carlson");

@@ -38,6 +38,9 @@ describe("app acquisition attribution", () => {
     expect(buildAppWaitlistSource("recovery-week", "hero")).toBe(
       "roadman-app-waitlist-recovery-week-hero",
     );
+    expect(buildAppWaitlistSource("recovery-guide", "bottom")).toBe(
+      "roadman-app-waitlist-recovery-guide-bottom",
+    );
     expect(buildAppWaitlistSource("mobility-guide", "bottom")).toBe(
       "roadman-app-waitlist-mobility-guide-bottom",
     );
