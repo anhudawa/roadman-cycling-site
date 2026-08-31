@@ -59,6 +59,7 @@ const CURATED: string[] = [
   `https://${HOST}/about`,
   `https://${HOST}/about/press`,
   `https://${HOST}/podcast`,
+  `https://${HOST}/research/cycling-podcast-archive-study`,
   `https://${HOST}/blog/benji-naesen-imposter-syndrome-cycling-weight-loss`,
   `https://${HOST}/guests/benji-naesen`,
   `https://${HOST}/podcast/ep-2230-benji-naesens-opens-up-about-imposter-syndrome-in-cycling`,

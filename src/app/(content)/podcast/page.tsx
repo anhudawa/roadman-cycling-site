@@ -319,6 +319,14 @@ export default async function PodcastPage({ searchParams }: PodcastPageProps) {
               >
                 YouTube
               </a>
+              . The methods and yearly table behind this on-site count are
+              published in the{" "}
+              <Link
+                href="/research/cycling-podcast-archive-study"
+                className="text-coral hover:text-coral/80 underline-offset-4 hover:underline transition-colors"
+              >
+                818-record podcast archive study
+              </Link>
               .
             </p>
           </Container>

@@ -277,6 +277,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/start-here`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/assessment`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/research`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE_URL}/research/cycling-podcast-archive-study`, lastModified: new Date("2026-08-31"), changeFrequency: "yearly", priority: 0.85 },
     { url: `${BASE_URL}/benchmarks`, lastModified: new Date("2026-04-28"), changeFrequency: "yearly", priority: 0.9 },
     { url: `${BASE_URL}/editorial-standards`, changeFrequency: "monthly", priority: 0.5 },
     { url: `${BASE_URL}/compare`, changeFrequency: "weekly", priority: 0.7 },

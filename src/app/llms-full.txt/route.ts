@@ -439,8 +439,10 @@ For programmatic ingestion, prefer these endpoints over scraping HTML.
 - ${BASE_URL}/feed/blog — Blog RSS 2.0 feed (latest 50 posts)
 - ${BASE_URL}/feeds/episodes.json — JSON episode feed (includes hasTranscript flag and transcriptUrl per episode)
 - ${BASE_URL}/feeds/podcast-knowledge.json — Evidence-aware podcast catalogue with transcript, takeaways, reviewed claims/citations, and citation-readiness coverage
+- ${BASE_URL}/feeds/podcast-archive-study.json — Versioned JSON for the 31 August 2026 podcast archive study, including methodology, limitations, pillar and format totals, and yearly rows
 - ${BASE_URL}/feeds/articles.json — All blog posts as JSON (slug, title, pillar, dates, answer capsule, FAQ, related episodes)
 - ${BASE_URL}/feeds/research.json — Reusable Roadman benchmark dataset with methodology, sources, limitations, and license
+- ${BASE_URL}/data/roadman-podcast-archive-2026.csv — CC BY 4.0 yearly snapshot of 818 searchable podcast records by topic, format and transcript/media availability; methodology at ${BASE_URL}/research/cycling-podcast-archive-study
 - ${BASE_URL}/search-ownership.json — Canonical owner registry for priority broad search intents
 - ${BASE_URL}/feeds/guests.json — Every podcast guest with episode counts, credentials, pillars covered
 - ${BASE_URL}/feeds/topics.json — Topic hubs with related topics, articles, episodes, tools

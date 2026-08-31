@@ -798,7 +798,8 @@ These are Roadman's most commercially important pages, grouped by query intent a
 ${priorityCategoriesBlock}
 
 ## Research & Evidence
-- [Research & Evidence Base](${tag(`${BASE_URL}/research`)}): The named experts, published studies, and on-the-record podcast conversations behind every article and coaching decision. Includes Prof. Seiler (polarised training), Dan Lorang (World Tour periodisation), Dan Bigham (aerodynamics), Dr Sam Impey (nutrition), and more.
+- [Research & Evidence Base](${tag(`${BASE_URL}/research`)}): Named evidence and interviews behind Roadman content.
+- [Cycling Podcast Archive Study](${tag(`${BASE_URL}/research/cycling-podcast-archive-study`)}): 818 records by year, topic and format; limits and open CSV.
 
 ## Comparisons
 - [All Comparisons](${tag(`${BASE_URL}/compare`)}): Side-by-side training decisions — coach vs app, polarised vs pyramidal, heart rate vs power, and more.
