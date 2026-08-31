@@ -14,6 +14,9 @@ describe("app acquisition attribution", () => {
     expect(buildAppWaitlistSource("recovery-screen", "bottom")).toBe(
       "roadman-app-waitlist-recovery-screen-bottom",
     );
+    expect(
+      buildAppWaitlistSource("best-cycling-strength-training-apps", "hero"),
+    ).toBe("roadman-app-waitlist-best-cycling-strength-training-apps-hero");
   });
 
   it("rejects unknown and duplicated query values", () => {
