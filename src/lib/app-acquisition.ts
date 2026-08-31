@@ -12,6 +12,7 @@ export const APP_ACQUISITION_SOURCES = new Set([
   "gym-exercises",
   "glute-guide",
   "hrv-guide",
+  "magnesium-guide",
   "masters-hub",
   "mobility-guide",
   "off-season-strength",

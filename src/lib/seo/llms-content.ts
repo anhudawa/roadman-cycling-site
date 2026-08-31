@@ -6,7 +6,7 @@
  * the canonical owners and highest-value evidence visible before a crawler's
  * context or download budget is exhausted.
  */
-export const LLMS_SHORT_RECENT_POST_LIMIT = 15;
+export const LLMS_SHORT_RECENT_POST_LIMIT = 14;
 export const LLMS_SHORT_EPISODE_LIMIT = 30;
 export const LLMS_FULL_RECENT_POST_LIMIT = 300;
 export const LLMS_FULL_EPISODE_LIMIT = 80;
@@ -84,6 +84,7 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "cycling-recovery-tips",
   "cycling-sleep-performance-guide",
   "cycling-hrv-training-guide",
+  "magnesium-cyclists-recovery-performance-guide",
   "best-recovery-foods-after-cycling",
   "cycling-recovery-week-what-to-actually-do",
   "cycling-fatigue-signs-when-to-back-off",

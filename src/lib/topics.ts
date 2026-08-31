@@ -858,7 +858,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-continuous-glucose-monitoring-performance-guide",
     "cycling-plant-based-nutrition-performance-guide",
     "cycling-caffeine-performance-guide",
-    "cycling-magnesium-performance-recovery-guide",
     "cycling-anti-inflammatory-foods-recovery-guide",
     "cycling-training-camp-nutrition-guide",
     "cycling-metabolic-health-type-2-prevention-guide",
