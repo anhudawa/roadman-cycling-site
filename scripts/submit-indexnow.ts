@@ -194,6 +194,8 @@ const CURATED: string[] = [
   `https://${HOST}/blog/ftp-training-zones-cycling-complete-guide`,
   `https://${HOST}/tools/ftp-zones`,
   `https://${HOST}/tools/hr-zones`,
+  `https://${HOST}/tools/gear-ratio`,
+  `https://${HOST}/blog/gear-ratio-cycling-complete-guide`,
   `https://${HOST}/tools/tyre-pressure`,
   `https://${HOST}/blog/cycling-tyre-pressure-guide`,
   `https://${HOST}/blog/tubeless-vs-clincher-tyres`,

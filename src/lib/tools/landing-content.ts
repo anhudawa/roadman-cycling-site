@@ -1774,6 +1774,154 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
     reviewScope: "Editorial source-to-claim review; not individual medical or dietetic advice.",
   },
 
+  "gear-ratio": {
+    slug: "gear-ratio",
+    title: "Bike Gear Ratio Calculator",
+    description:
+      "Compare exact chainring and cassette combinations by ratio, gear inches, development, speed at cadence, total range and overlap.",
+    url: `${ROADMAN_BASE}/tools/gear-ratio`,
+    breadcrumbName: "Bike Gear Ratio Calculator",
+    answerSummary:
+      "Choose your chainrings, exact cassette sprockets and wheel rollout. The calculator divides front teeth by rear teeth, then uses wheel circumference to show gear inches, metres travelled per pedal revolution and speed at each cadence. It compares gearing geometry; it does not certify derailleur, chain, freehub or frame compatibility.",
+    whatItDoes:
+      "This is the canonical Roadman owner for bike gear ratio calculator intent. It maps every selected chainring-and-cog pair, identifies the easiest and hardest combinations, and makes duplicated or widely spaced gears visible before you buy a cassette. The companion gear-ratio guide owns explanatory intent and worked training examples.\n\nPreset tooth sequences are tied to named Shimano and SRAM configurations. You can enter any cassette manually, and a custom loaded-rollout input prevents a nominal tyre label from pretending to be an exact circumference.",
+    whoItsFor: [
+      "Road, gravel and sportive riders comparing cassette or chainring options",
+      "Cyclists checking climbing gears before a hilly event or training camp",
+      "Riders who want speed-at-cadence, development and gear inches from one input",
+      "Mechanics and coaches who need a transparent table instead of a black-box recommendation",
+    ],
+    howItWorks:
+      "For each combination, raw gear ratio is chainring teeth divided by rear-cog teeth. Development is that ratio multiplied by wheel circumference in metres. Speed is development multiplied by cadence and 60, then divided by 1,000 for kilometres per hour. Gear inches use the same ratio multiplied by wheel diameter in inches. The calculator does not model tyre slip or drivetrain losses.",
+    howToSteps: [
+      {
+        name: "Enter the drivetrain you actually have",
+        text: "Choose a named preset only when its tooth sequence matches your cassette. Otherwise enter every rear cog manually and choose the matching chainring set.",
+      },
+      {
+        name: "Set wheel circumference",
+        text: "Use a nominal tyre preset for a quick comparison or measure one loaded wheel revolution and enter the millimetres as a custom rollout for the most accurate speed and development.",
+      },
+      {
+        name: "Calculate every combination",
+        text: "Read the easiest and hardest gears, then open individual cells to compare development and speed across practical cadences.",
+      },
+      {
+        name: "Check compatibility separately",
+        text: "Confirm maximum sprocket, total capacity, freehub body, chain length and approved chainring combinations in the exact component manuals before buying parts.",
+      },
+    ],
+    howToTotalTime: "PT3M",
+    limitations:
+      "Wheel presets are nominal: rim width, fitted tyre width, pressure, load and tread change the real rollout. The output assumes no tyre slip and reports kinematics, not the power needed for a gradient. A matching numerical ratio does not prove a cassette will work with a derailleur, freehub, chain, shifter or frame. Manufacturer compatibility and installation documents override this calculator.",
+    whenToSeeACoach:
+      "Ask a qualified mechanic to check component compatibility before a cassette, chainring or drivetrain change. Use a coach when the decision depends on your sustainable power, cadence under fatigue, event gradients or pacing rather than ratios alone. Persistent knee pain needs an appropriate clinical or bike-fit assessment, not a lower-gear guess from a calculator.",
+    examples: [
+      {
+        scenario: "Compact road bike: 50/34, 11-28, 700x25c",
+        inputs: ["Wheel rollout: 2,105 mm", "Easiest: 34/28", "Hardest: 50/11"],
+        output: "34/28 is a 1.21 ratio and 2.56 m development, or 13.8 km/h at 90 rpm. 50/11 is a 4.55 ratio and 9.57 m development, or 51.7 km/h at 90 rpm.",
+      },
+      {
+        scenario: "1x gravel bike: 40T, SRAM XPLR 10-44, 700x32c",
+        inputs: ["Wheel rollout: 2,155 mm", "Easiest: 40/44", "Hardest: 40/10"],
+        output: "40/44 is a 0.91 ratio and 1.96 m development, or 9.4 km/h at 80 rpm. 40/10 is a 4.00 ratio and 8.62 m development, or 46.5 km/h at 90 rpm.",
+      },
+    ],
+    faqs: [
+      {
+        question: "How do you calculate a bike gear ratio?",
+        answer: "Divide the number of teeth on the front chainring by the number on the selected rear cog. A 50-tooth chainring with a 25-tooth cog is 50 / 25 = 2.00. The rear wheel turns twice for each crank revolution, before accounting for wheel circumference.",
+      },
+      {
+        question: "What is a good gear ratio for climbing?",
+        answer: "There is no universal climbing ratio. Lower numbers are easier, but the right lowest gear depends on gradient, total system mass, sustainable power and the cadence you can hold when tired. Compare the calculator output with your real climbing files and event route rather than treating 1:1 as a rule.",
+      },
+      {
+        question: "What is the difference between gear ratio, gear inches and development?",
+        answer: "Gear ratio compares chainring teeth with rear-cog teeth. Gear inches applies that ratio to wheel diameter. Development applies it to wheel circumference and reports metres travelled per crank revolution. Development connects most directly to speed at a chosen cadence.",
+      },
+      {
+        question: "How accurate are the wheel-size presets?",
+        answer: "They are nominal starting values. Actual circumference changes with rim width, tyre casing, fitted width, pressure and rider load. For the most accurate result, mark the tyre, complete one loaded wheel revolution on level ground, measure the distance in millimetres and use custom rollout.",
+      },
+      {
+        question: "Does a lower gear ratio mean easier pedalling?",
+        answer: "At the same wheel speed, a lower ratio requires a higher cadence and less crank torque for the same rear-wheel torque, so it generally feels easier to turn. It does not reduce the external power required to move the rider up a hill at the same speed.",
+      },
+      {
+        question: "Will the calculator tell me whether a cassette fits my bike?",
+        answer: "No. It compares tooth counts only. Cassette and chainring compatibility also depends on freehub standard, number of speeds, shifter indexing, derailleur maximum sprocket and total capacity, chain length, chainline and frame clearance. Check the exact component manuals or ask a qualified mechanic.",
+      },
+    ],
+    related: [
+      { label: "Gear ratios explained", href: "/blog/gear-ratio-cycling-complete-guide", kind: "article" },
+      { label: "Cycling gearing and cassette guide", href: "/blog/cycling-gearing-explained-chainrings-cassettes", kind: "article" },
+      { label: "What gear ratio do I need for climbing?", href: "/answers/what-gear-ratio-for-climbing", kind: "article" },
+      { label: "Cadence calculator", href: "/tools/cadence", kind: "tool" },
+      { label: "Climb-time calculator", href: "/tools/climb-time", kind: "tool" },
+      { label: "Power-to-speed calculator", href: "/tools/power-speed", kind: "tool" },
+    ],
+    webAppFeatures: [
+      "Exact chainring-by-cog ratio table",
+      "Gear inches and metres of development",
+      "Speed across five cadence values",
+      "Easiest and hardest gear comparison",
+      "Gear-overlap visualisation for multiple chainrings",
+      "Verified Shimano and SRAM cassette presets",
+      "Manual cassette and custom wheel-rollout inputs",
+    ],
+    evidenceSources: [
+      {
+        name: "Garmin wheel size and circumference table",
+        role: "nominal 700c rollout values and manual-measurement boundary",
+        href: "https://www8.garmin.com/manuals-apac/webhelp/venusq/EN-SG/GUID-DB7E720A-4CA0-4C30-AA2A-28DEC5060416-3977.html",
+      },
+      {
+        name: "Wahoo tyre-size and wheel-circumference chart",
+        role: "loaded-rollout measurement guidance and sources of circumference variation",
+        href: "https://support.wahoofitness.com/hc/en-us/articles/26243161988882-Tire-Size-Wheel-Circumference-Chart",
+      },
+      {
+        name: "Shimano CS-R8000 cassette specification",
+        role: "11-speed 11-25, 11-28, 11-30 and 11-32 sprocket sequences",
+        href: "https://si.shimano.com/en/pdfs/ev/CS-R8000-4257/EV-CS-R8000-4257.pdf",
+      },
+      {
+        name: "Shimano CS-R7100 cassette specification",
+        role: "12-speed 11-34 sprocket sequence",
+        href: "https://si.shimano.com/en/pdfs/ev/CS-R7100-4922/EV-CS-R7100-4922A.pdf",
+      },
+      {
+        name: "Shimano CS-HG710 dealer manual",
+        role: "12-speed 11-36 sprocket sequence",
+        href: "https://si.shimano.com/en/pdfs/dm/RACS010/DM-RACS010-02-ENG.pdf",
+      },
+      {
+        name: "SRAM Rival XG-1250 cassette",
+        role: "12-speed 10-36 sprocket sequence and XDR boundary",
+        href: "https://www.sram.com/en/sram/models/cs-xg-1250-d1",
+      },
+      {
+        name: "SRAM PG-1130 cassette",
+        role: "11-speed 11-42 sprocket sequence and drivetrain boundary",
+        href: "https://www.sram.com/en/sram/models/CS-PG-1130-A1",
+      },
+      {
+        name: "SRAM XPLR XG-1251 cassette",
+        role: "12-speed 10-44 sprocket sequence",
+        href: "https://www.sram.com/en/sram/models/cs-xg-1251-d1",
+      },
+      {
+        name: "Sheldon Brown gain-ratio method",
+        role: "original gain-ratio definition and wheel/crank geometry",
+        href: "https://www.sheldonbrown.com/gain.html",
+      },
+    ],
+    dateModified: "2026-08-31",
+    reviewedBy: "Anthony Walsh",
+    reviewScope: "calculator method, preset tooth sequence and source-to-claim review",
+  },
   "indoor-platform-compare": {
     slug: "indoor-platform-compare",
     title: "Indoor Cycling Platform Comparison Tool",
