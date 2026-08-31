@@ -4,6 +4,7 @@ export const APP_ACQUISITION_SOURCES = new Set([
   "best-cycling-recovery-apps",
   "best-cycling-strength-training-apps",
   "best-cycling-training-apps",
+  "derek-teel-exercises",
   "gym-exercises",
   "masters-hub",
   "recovery-guide",

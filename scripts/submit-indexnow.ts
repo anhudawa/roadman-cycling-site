@@ -250,6 +250,7 @@ const CURATED: string[] = [
   `https://${HOST}/blog/cycling-strength-training-guide`,
   `https://${HOST}/blog/cycling-leg-day-should-cyclists`,
   `https://${HOST}/blog/cycling-gym-exercises-best`,
+  `https://${HOST}/blog/derek-teel-best-exercises-cyclists`,
   `https://${HOST}/answers/best-gym-exercises-for-cyclists`,
   `https://${HOST}/answers/how-many-strength-sessions-cyclists`,
   `https://${HOST}/answers/will-lifting-make-me-slower`,
