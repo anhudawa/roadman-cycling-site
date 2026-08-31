@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { getRiderSession } from "@/lib/profile-auth/auth";
-import { getMethodSession } from "@/lib/method/auth";
-import { loadByEmail } from "@/lib/rider-profile/store";
 import { FuellingClient } from "./FuellingClient";
+
+// Keep the public search owner static. Signed-in rider defaults are loaded by
+// the client from a private API after hydration, so authentication cookies and
+// profile database latency never hold up the crawlable calculator page.
+export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: { absolute: "Cycling Nutrition Calculator: Carbs, Fluid & Sodium" },
@@ -17,31 +19,6 @@ export const metadata: Metadata = {
   },
 };
 
-/**
- * Server wrapper — pulls weight + FTP from the rider profile when
- * signed in and pre-fills the calculator. Anonymous riders still get
- * the full tool, just without pre-fills.
- */
-export default async function FuellingPage() {
-  let initialWeightKg: number | null = null;
-  let initialFtp: number | null = null;
-
-  const riderSession = await getRiderSession().catch(() => null);
-  const email =
-    riderSession?.profile.email ??
-    (await getMethodSession().catch(() => null))?.enrollment.email ??
-    null;
-
-  if (email) {
-    const profile = await loadByEmail(email);
-    if (profile?.currentWeight) {
-      initialWeightKg =
-        profile.weightUnit === "lb"
-          ? Math.round(profile.currentWeight * 0.45359237 * 10) / 10
-          : profile.currentWeight;
-    }
-    if (profile?.currentFtp) initialFtp = profile.currentFtp;
-  }
-
-  return <FuellingClient initialWeightKg={initialWeightKg} initialFtp={initialFtp} />;
+export default function FuellingPage() {
+  return <FuellingClient />;
 }
