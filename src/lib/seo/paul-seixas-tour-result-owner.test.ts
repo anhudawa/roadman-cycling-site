@@ -76,6 +76,9 @@ describe("Paul Seixas 2026 Tour result owner", () => {
     expect(read("src/app/llms.txt/route.ts")).toContain(PATH);
     expect(read("src/app/llms-full.txt/route.ts")).toContain(PATH);
     expect(read("scripts/submit-indexnow.ts")).toContain(PATH);
+    expect(read("src/app/tour-de-france/page.tsx")).toContain(
+      `href="${PATH}"`,
+    );
 
     const prompts = JSON.parse(read("scripts/ai-benchmark-prompts.json")) as {
       metadata: { prompt_count: number };

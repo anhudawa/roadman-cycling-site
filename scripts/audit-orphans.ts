@@ -12,6 +12,7 @@
  *   - All podcast MDX bodies + frontmatter (relatedPosts)
  *   - Pillar pages (/coaching, /coaching/triathletes, /podcast, /about,
  *     etc.) — both for links OUT and for links IN.
+ *   - Server-rendered topic hubs and their runtime blog/episode collections.
  *   - Guest profile overrides (featuredArticles)
  *
  * Reports:
@@ -27,6 +28,9 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { RETIRED_BLOG_SLUGS } from "../src/lib/blog";
+import { getAllEpisodes, type EpisodeMeta } from "../src/lib/podcast";
+import { getAllTopics } from "../src/lib/topics";
 
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
 const PODCAST_DIR = path.join(process.cwd(), "content/podcast");
@@ -46,6 +50,7 @@ function loadBlogNodes(): Node[] {
   return fs
     .readdirSync(BLOG_DIR)
     .filter((f) => f.endsWith(".mdx") && !f.endsWith(".draft.mdx"))
+    .filter((f) => !RETIRED_BLOG_SLUGS.has(f.replace(/\.mdx$/, "")))
     .map((filename) => {
       const slug = filename.replace(/\.mdx$/, "");
       const raw = fs.readFileSync(path.join(BLOG_DIR, filename), "utf-8");
@@ -183,6 +188,66 @@ function walk(dir: string, acc: string[] = []): string[] {
   return acc;
 }
 
+/**
+ * Mirror the podcast template's generated Related Episodes ranking against one
+ * already-loaded corpus. Runtime pages emit these as ordinary server-rendered
+ * anchors; they are invisible to a source-code href scan because all targets
+ * are selected from frontmatter at build time.
+ */
+function generatedRelatedEpisodes(
+  current: EpisodeMeta,
+  allEpisodes: EpisodeMeta[],
+  limit = 3,
+): EpisodeMeta[] {
+  const inputKeywords = (current.keywords ?? []).map((keyword) =>
+    keyword.toLowerCase(),
+  );
+  const titleWords = current.title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, "")
+    .split(/\s+/)
+    .filter((word) => word.length > 3);
+
+  return allEpisodes
+    .filter((episode) => episode.slug !== current.slug)
+    .map((episode) => {
+      let score = episode.pillar === current.pillar ? 10 : 0;
+      const episodeKeywords = (episode.keywords ?? []).map((keyword) =>
+        keyword.toLowerCase(),
+      );
+
+      for (const inputKeyword of inputKeywords) {
+        for (const episodeKeyword of episodeKeywords) {
+          if (episodeKeyword === inputKeyword) score += 3;
+          else if (
+            episodeKeyword.includes(inputKeyword) ||
+            inputKeyword.includes(episodeKeyword)
+          ) {
+            score += 1;
+          }
+        }
+      }
+
+      const episodeTitleWords = episode.title
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, "")
+        .split(/\s+/)
+        .filter((word) => word.length > 3);
+      for (const word of titleWords) {
+        if (episodeTitleWords.includes(word)) score += 2;
+      }
+      if (episode.guest && current.guest && episode.guest === current.guest) {
+        score += 15;
+      }
+
+      return { episode, score };
+    })
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map(({ episode }) => episode);
+}
+
 function main() {
   const blogs = loadBlogNodes();
   const episodes = loadEpisodeNodes();
@@ -207,6 +272,16 @@ function main() {
     if (Array.isArray(data.relatedEpisodes)) {
       for (const epSlug of data.relatedEpisodes) {
         const href = `/podcast/${epSlug}`;
+        b.outbound.add(href);
+        if (byPath[href]) byPath[href].inbound.add(b.path);
+      }
+    }
+    // Author-curated relatedPosts are rendered as crawlable cards by the blog
+    // template. Every published blog currently carries this field, so omitting
+    // it makes healthy topic clusters look archive-only.
+    if (Array.isArray(data.relatedPosts)) {
+      for (const postSlug of data.relatedPosts) {
+        const href = `/blog/${postSlug}`;
         b.outbound.add(href);
         if (byPath[href]) byPath[href].inbound.add(b.path);
       }
@@ -244,7 +319,41 @@ function main() {
     }
   }
 
-  // 4) Model generated archive links. These links are emitted as ordinary
+  // 4) Model generated topic-hub links. The source only stores bare slugs in
+  // TOPIC_POST_MAP and resolves episode matches at build time, so regex scans
+  // cannot see the final hrefs. The public topic page renders every resolved
+  // post and episode as a crawlable anchor.
+  for (const topic of getAllTopics()) {
+    const source = `/topics/${topic.slug}`;
+    for (const post of topic.posts) {
+      byPath[`/blog/${post.slug}`]?.inbound.add(source);
+    }
+    for (const episode of topic.episodes) {
+      byPath[`/podcast/${episode.slug}`]?.inbound.add(source);
+    }
+  }
+
+  // 5) Model each episode page's generated Related Episodes cards.
+  const allEpisodeMeta = getAllEpisodes();
+  for (const episode of allEpisodeMeta) {
+    const source = `/podcast/${episode.slug}`;
+    for (const related of generatedRelatedEpisodes(episode, allEpisodeMeta)) {
+      byPath[`/podcast/${related.slug}`]?.inbound.add(source);
+    }
+  }
+
+  // 6) Model chronological older/newer links on every episode page. Together
+  // with the archive, this gives every historical record a stable crawl path
+  // even when it is not selected by the similarity ranker.
+  for (let index = 0; index < allEpisodeMeta.length; index += 1) {
+    const source = `/podcast/${allEpisodeMeta[index].slug}`;
+    const newer = allEpisodeMeta[index - 1];
+    const older = allEpisodeMeta[index + 1];
+    if (newer) byPath[`/podcast/${newer.slug}`]?.inbound.add(source);
+    if (older) byPath[`/podcast/${older.slug}`]?.inbound.add(source);
+  }
+
+  // 7) Model generated archive links. These links are emitted as ordinary
   // server-rendered anchors, but a source-code regex cannot see their runtime
   // slug values. Counting them prevents crawlable archive entries from being
   // mislabeled as true orphans while retaining the archive marker in the weak
@@ -252,7 +361,7 @@ function main() {
   for (const blog of blogs) blog.inbound.add("[blog archive]");
   for (const episode of episodes) episode.inbound.add("[podcast archive]");
 
-  // 5) Report
+  // 8) Report
   const orphanBlogs = blogs.filter((b) => b.inbound.size === 0);
   const orphanEpisodes = episodes.filter((e) => e.inbound.size === 0);
   const weaklyLinkedBlogs = blogs.filter((b) => b.inbound.size === 1);
@@ -333,7 +442,7 @@ function main() {
     lines.push("");
   }
 
-  fs.writeFileSync(OUTPUT_PATH, lines.join("\n") + "\n", "utf-8");
+  fs.writeFileSync(OUTPUT_PATH, lines.join("\n").trimEnd() + "\n", "utf-8");
   console.log(`Wrote ${OUTPUT_PATH}`);
   console.log(`Orphan blogs: ${orphanBlogs.length}`);
   console.log(`Orphan episodes: ${orphanEpisodes.length}`);

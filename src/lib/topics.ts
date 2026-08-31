@@ -777,6 +777,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
   ],
   "cycling-nutrition": [
     "how-many-calories-cycling-burns-real-numbers",
+    "how-grand-tour-riders-fuel-5000-calories",
     "sam-impey-fuelling-carbs-per-hour-world-tour",
     "tim-podlogar-getting-lean-without-losing-power",
     "uri-carlson-under-over-optimal-fuelling",
@@ -1575,6 +1576,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "bravur-zwift-collaboration-watch",
     "tudor-bumblebee-watches-tour-de-france",
     "breitling-top-time-coppi-bartali-cycling-rivalry",
+    "breitling-top-time-eddy-merckx-cycling-watch",
     "tudor-pro-cycling-tour-de-france-2026",
     "casio-f91w-ten-mile-time-trial-cycling",
     "omega-olympic-timing-track-cycling-hour-record",
@@ -1699,6 +1701,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "zone-2-vs-endurance-training",
     "why-pros-train-so-easy-mixed-metabolism-zone",
     "what-experts-say-about-zone-2-training",
+    "zone-2-not-working-cycling",
     "christian-schrot-why-pros-train-easy",
     "prof-seiler-low-heart-rate-cycling",
     "vasilis-anastopoulos-zone-1-base-training",
@@ -2031,6 +2034,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "improve-ftp-cycling-evidence-based-methods",
     "time-crunched-cyclist-8-hours-week",
     "time-crunched-cyclist-training-framework-guide",
+    "zone-2-not-working-cycling",
   ],
   "sprint-training": [
     "30-day-sprint-power-cycling-plan",

@@ -296,6 +296,10 @@ export default function TourDeFranceHubPage() {
               <Link href="/blog/tdf-2026-contenders-preparation-lessons" className="text-jersey-yellow hover:text-jersey-yellow-deep underline underline-offset-4">
                 Pogačar preparation record
               </Link>
+              . For the youngest top-five finisher, read the verified{" "}
+              <Link href="/blog/paul-seixas-tour-de-france-2026-youngest-contender" className="text-jersey-yellow hover:text-jersey-yellow-deep underline underline-offset-4">
+                Paul Seixas final Tour record
+              </Link>
               .
             </p>
           </Container>

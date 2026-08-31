@@ -13,6 +13,7 @@ import { SearchOwnerLink } from "@/components/seo/SearchOwnerLink";
 import { ENTITY_IDS, SITE_ORIGIN, FOUNDER, SAME_AS } from "@/lib/brand-facts";
 import {
   getEpisodeBySlug,
+  getAllEpisodes,
   getAllEpisodeSlugs,
   hasTranscript,
 } from "@/lib/podcast";
@@ -115,6 +116,15 @@ export default async function EpisodePage({
   if (!episode) {
     notFound();
   }
+
+  const episodeArchive = getAllEpisodes();
+  const episodeIndex = episodeArchive.findIndex((item) => item.slug === slug);
+  const newerEpisode =
+    episodeIndex > 0 ? episodeArchive[episodeIndex - 1] : null;
+  const olderEpisode =
+    episodeIndex >= 0 && episodeIndex < episodeArchive.length - 1
+      ? episodeArchive[episodeIndex + 1]
+      : null;
 
   const publishDate = new Date(episode.publishDate);
   const episodeUrl = `https://roadmancycling.com/podcast/${slug}`;
@@ -1002,6 +1012,42 @@ export default async function EpisodePage({
               title={episode.title}
               className="mt-16"
             />
+
+            {(newerEpisode || olderEpisode) && (
+              <nav
+                aria-label="Episode chronology"
+                className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-3"
+              >
+                {olderEpisode ? (
+                  <Link
+                    href={`/podcast/${olderEpisode.slug}`}
+                    className="rounded-xl border border-white/10 bg-white/[0.03] p-5 transition-colors hover:border-coral/40"
+                  >
+                    <span className="block font-heading text-[10px] tracking-[0.2em] text-foreground-subtle mb-2">
+                      ← OLDER EPISODE
+                    </span>
+                    <span className="block font-heading text-sm text-off-white leading-snug">
+                      {olderEpisode.title}
+                    </span>
+                  </Link>
+                ) : (
+                  <span aria-hidden="true" />
+                )}
+                {newerEpisode && (
+                  <Link
+                    href={`/podcast/${newerEpisode.slug}`}
+                    className="rounded-xl border border-white/10 bg-white/[0.03] p-5 text-left sm:text-right transition-colors hover:border-coral/40"
+                  >
+                    <span className="block font-heading text-[10px] tracking-[0.2em] text-foreground-subtle mb-2">
+                      NEWER EPISODE →
+                    </span>
+                    <span className="block font-heading text-sm text-off-white leading-snug">
+                      {newerEpisode.title}
+                    </span>
+                  </Link>
+                )}
+              </nav>
+            )}
 
             {/* Related Content (cross-content: blog + podcast) */}
             <RelatedContent
