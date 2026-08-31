@@ -78,6 +78,8 @@ describe("strength and recovery app acquisition paths", () => {
         "/app?source=off-season-strength",
       "content/blog/best-recovery-foods-after-cycling.mdx":
         "/app?source=recovery-nutrition",
+      "content/blog/cycling-recovery-week-what-to-actually-do.mdx":
+        "/app?source=recovery-week",
       "content/blog/cycling-recovery-tips.mdx": "/app?source=recovery-guide",
       "content/blog/cycling-strength-training-guide.mdx":
         "/app?source=strength-guide",

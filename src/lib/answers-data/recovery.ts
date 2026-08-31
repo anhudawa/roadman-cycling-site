@@ -147,15 +147,15 @@ export const recoveryAnswers: AnswerPage[] = [
     question: "What Should a Recovery Week Look Like?",
     seoTitle: "What Should a Cycling Recovery Week Look Like?",
     seoDescription:
-      "A cycling recovery week means cutting volume to 40–50% with no intensity, for 5–7 days. What to actually do, what to skip, and why most riders do it wrong.",
+      "A practical 5–7 day cycling recovery-week plan, with volume, intensity and TSS guidance that adapts to fatigue instead of one rigid formula.",
     pillar: "recovery",
     directAnswer:
-      "A recovery week means cutting your training volume to 40–50% for 5–7 days, dropping all hard intervals, and letting your body express the fitness it has been building. It is not a week off. Short, easy spins of 30–60 minutes keep the legs moving without adding stress. Most riders either skip recovery weeks entirely or do them too hard — both mistakes cost adaptation.",
+      "A cycling recovery week is usually 5–7 days with a clear reduction in total training stress. As a practical starting point, ride roughly 40–60% less than in a build week, remove demanding intervals and use easy spins or complete rest according to how you respond. Brief openers are optional for a healthy rider. No trial establishes one universal 3:1 schedule, age rule or recovery-week TSS target.",
     keyTakeaways: [
-      "Cut total volume to 40–50% and remove all intensity — no threshold, no VO2max.",
-      "Short easy spins of 30–60 minutes are better than complete rest for most trained cyclists.",
-      "Fitness does not disappear in one easy week; it surfaces. The week after is often your best.",
-      "Schedule a recovery week every 3–4 weeks within a training block, not just when you feel broken.",
+      "Reduce total training stress clearly; roughly 40–60% less ride time is a starting range, not a law.",
+      "Remove demanding work when fatigue triggered the week; brief openers are optional when you are otherwise healthy.",
+      "Use trends in fatigue, sleep, soreness, stress, motivation and easy-ride RPE rather than a single wearable value.",
+      "Three-up, one-down and two-up, one-down are coaching templates—not universal evidence-based schedules.",
     ],
     whoFor: [
       {
@@ -170,9 +170,9 @@ export const recoveryAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "The most common mistake Anthony sees in self-coached amateurs is not overtraining the hard days — it is under-recovering the easy ones. A recovery week is not a concession to weakness. It is where the training you have already done turns into fitness. The adaptation happens in the recovery, not in the session.",
-      "The typical pattern is three hard weeks and one recovery week, though for masters riders it often flips to two-and-one. Dan Lorang's position on the podcast was direct: an athlete who skips recovery weeks consistently is not training harder — they are stacking fatigue on top of fatigue and eventually seeing their numbers go flat or backwards.",
-      "What does it actually look like? Two to four easy spins of 30–60 minutes, properly easy, no hard efforts. Eat properly. Sleep. Let the legs feel flat for a few days — that flatness is not fitness leaving, it is fatigue clearing. By day four or five most riders start to feel better than they have in weeks. That feeling is the point.",
+      "The first job of a recovery week is to create a real reduction in stress. If the easy week looks almost identical to the build week, changing its label will not clear fatigue.",
+      "I use a template, then coach the person in front of me. Three-up and one-down can be useful, but it is not a law of physiology.",
+      "The week is useful when the next training decision becomes clearer—not when a watch gives one green score or the legs follow a supposedly universal day-by-day script.",
     ],
     expertEvidence: [
       {
@@ -194,14 +194,14 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     practicalApplication: [
       {
-        title: "Drop volume to 40–50% and remove all intensity",
+        title: "Make a clear reduction in total training stress",
         detail:
-          "If your normal week is 10 hours, a recovery week is 4–5 hours. No threshold efforts, no intervals. Every session stays below zone 2. This is not negotiable — half-hearted recovery weeks produce half-hearted recovery.",
+          "If your normal week is 10 hours, four to six hours is a practical starting range. Remove demanding intervals when fatigue is the reason for the week and shorten the weekend ride.",
       },
       {
-        title: "Ride short and often rather than doing nothing",
+        title: "Choose easy movement or rest from your response",
         detail:
-          "Two to four rides of 30–60 minutes keeps the aerobic system ticking without adding meaningful stress. Complete rest for a week causes more fatigue on the return than easy spinning — the legs stiffen and the first hard session feels harder, not easier.",
+          "Short easy rides can preserve routine, but complete rest days are valid. Keep a ride only when it remains easy and leaves you no more fatigued; a healthy rider may include a few brief, full-recovery openers.",
       },
       {
         title: "Use the week to address everything else",
@@ -213,12 +213,12 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         mistake: "Doing recovery weeks at 70–80% volume because 50% feels lazy.",
         fix:
-          "The threshold for meaningful recovery is a real drop. 80% is just a normal week with fewer intervals — fatigue does not clear at that load.",
+          "Use a meaningful reduction relative to your own recent load. There is no universal threshold, so judge both total work and your response.",
       },
       {
         mistake: "Only taking a recovery week when you feel broken.",
         fix:
-          "Schedule them in advance every 3–4 weeks. Waiting until you are depleted means you have already lost two to three weeks of potential adaptation.",
+          "Put provisional easier weeks in the calendar, then move them earlier when several normal markers worsen together rather than waiting for a crisis.",
       },
       {
         mistake: "Under-eating during the recovery week.",
@@ -230,12 +230,12 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         question: "How often should cyclists have a recovery week?",
         answer:
-          "Every 3–4 weeks as a general rule, though masters cyclists often benefit from a 2:1 pattern — two build weeks followed by one recovery. Training stress and recovery capacity are individual, so watch how your numbers trend and adjust accordingly.",
+          "There is no universal evidence-based frequency. Three build weeks then one recovery week is a common template; two build weeks then one recovery week may suit some riders. Adjust to training quality, health, sleep, life stress and your normal response.",
       },
       {
         question: "Will I lose fitness in a recovery week?",
         answer:
-          "No measurable fitness is lost in 5–7 days of easy riding. Aerobic fitness takes three or more weeks of true inactivity to decline significantly. What you gain — cleared fatigue and consolidated adaptation — far outweighs any trivial detraining effect.",
+          "One reduced week is not the same as complete detraining. Meaningful loss is more likely with longer training cessation, while endurance taper studies show performance can improve when volume falls and some training remains. Avoid the absolute claim that fitness can never change.",
       },
       {
         question: "What is the difference between a recovery week and a deload?",
@@ -245,12 +245,12 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         question: "Should I do any intensity at all during a recovery week?",
         answer:
-          "No. Not even short bursts to 'test the legs'. The whole purpose of the week is to reduce physiological stress — any intensity adds cost without adding useful stimulus and blunts the recovery effect.",
+          "If you are healthy and unloading after a planned block, a few brief openers with full recovery can be reasonable. If fatigue, poor sleep, illness or declining performance triggered the week, remove demanding work and prioritise recovery.",
       },
       {
         question: "How do I know when a recovery week is working?",
         answer:
-          "Most riders feel worse in the first 2–3 days as fatigue surfaces with the load removed — heavy legs, low motivation, flat power. By days 4–6, this shifts to feeling truly fresh. That transition is the signal the week is doing its job.",
+          "Confirm that training stress fell, then follow trends in easy-ride RPE, fatigue, sleep, soreness and motivation. There is no validated day-two-to-day-six feeling pattern. If several markers continue to worsen, extend recovery and investigate other causes.",
       },
     ],
     relatedEpisodes: [
@@ -261,13 +261,12 @@ export const recoveryAnswers: AnswerPage[] = [
     relatedTopics: [
       { label: "Recovery Topic Hub", href: "/topics/cycling-recovery" },
       { label: "Cycling Recovery Week Guide", href: "/blog/cycling-recovery-week-what-to-actually-do" },
-      { label: "How to Structure a Rest Week", href: "/blog/cycling-rest-week-guide" },
       { label: "When to take a deload week", href: "/answers/when-to-take-a-deload-week" },
       { label: "Signs of Overtraining", href: "/answers/signs-of-overtraining-cycling" },
     ],
-    evidenceLevel: "strong",
+    evidenceLevel: "moderate",
     publishDate: "2026-05-26",
-    updatedDate: "2026-05-26",
+    updatedDate: "2026-08-31",
   },
 
   // ============================================================
@@ -532,7 +531,7 @@ export const recoveryAnswers: AnswerPage[] = [
       { label: "Active or Passive Recovery", href: "/answers/active-or-passive-recovery" },
       { label: "What is a recovery week?", href: "/answers/what-is-a-recovery-week" },
       { label: "Recovery for Cyclists: What Works", href: "/blog/cycling-recovery-tips" },
-      { label: "Recovery Week Guide", href: "/blog/cycling-rest-week-guide" },
+      { label: "Recovery Week Guide", href: "/blog/cycling-recovery-week-what-to-actually-do" },
     ],
     evidenceLevel: "moderate",
     evidenceNote:
@@ -1472,15 +1471,15 @@ export const recoveryAnswers: AnswerPage[] = [
     question: "When Should I Take a Deload Week?",
     seoTitle: "When Should Cyclists Take a Deload Week?",
     seoDescription:
-      "Take a deload week every 3–4 training weeks — not just when you break. What a cycling deload looks like, and why scheduling it in advance beats waiting for the crash.",
+      "When cyclists should take a deload week, how to use a provisional calendar, and which training and wellbeing trends should move it earlier.",
     pillar: "recovery",
     directAnswer:
-      "Plan a deload week every 3–4 training weeks regardless of how you feel — do not wait until you are broken to take one. A deload means cutting total volume to 40–50%, removing all intensity, and sleeping more. The rationale is simple: adaptation happens in recovery, and without a regular clear-down of accumulated fatigue, fitness stalls before it surfaces. Masters cyclists often benefit from every 2–3 weeks.",
+      "Put provisional deload weeks into the training calendar, but adjust them to your response rather than following one mandatory interval. Three loading weeks then one deload is a common template; two then one may suit some riders. Bring the week forward when training quality, fatigue, sleep, soreness, motivation or life stress worsen together. A 40–60% volume reduction is a practical starting range, not a universal cutoff.",
     keyTakeaways: [
-      "Schedule a deload every 3–4 weeks — planned in advance, not reactive.",
-      "Masters cyclists over 45 often need a deload every 2–3 weeks.",
-      "Cut volume to 40–50%, remove all intensity, sleep 8–9 hours.",
-      "Fitness does not decline in one deload week — accumulated fatigue clears, and the next block lands harder.",
+      "Use a planned template, then move the deload according to the athlete's response.",
+      "Age can inform a conservative starting plan but does not prove a universal 2:1 rule after 45.",
+      "Reduce total stress clearly; volume, demanding intensity and frequency are adjustable levers.",
+      "One reduced week is not complete detraining, but avoid absolute promises about fitness or the next session.",
     ],
     whoFor: [
       {
@@ -1496,8 +1495,8 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "The word 'deload' makes some cyclists anxious — it sounds like doing less, and doing less sounds like going backwards. Anthony's framing on the podcast is consistent: a deload week is not subtracted from your training. It is the mechanism that makes the training you have already done count. Fitness is built in the hard weeks; it is expressed in the deload.",
-      "The thing about planned deloads is that they prevent the unplanned ones. Riders who never build recovery into the structure eventually hit a forced rest — illness, an injury, a week where motivation is so low that the sessions happen but produce nothing. That forced rest is reactive, disorganised, and often accompanied by anxiety. A planned deload is the same physiological event managed properly.",
-      "For masters riders the frequency changes. After 45, the body's ability to buffer accumulated fatigue declines, and the 3-in-1 structure often shifts to 2-in-1. Two hard weeks, one easy week, repeat. It looks like less training on paper. In practice, it is more effective training because the hard weeks are actually hard rather than running on empty.",
+      "Planned deloads create a decision point before fatigue becomes severe. They cannot guarantee prevention of illness or injury, and a forced stop caused by either is not the same physiological event as a planned easier week.",
+      "For masters riders I start conservatively and use the response. Training history, total load, sleep, health and life stress tell me more than a hard age cutoff.",
     ],
     expertEvidence: [
       {
@@ -1519,36 +1518,36 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     practicalApplication: [
       {
-        title: "Build the deload into the training calendar before the block starts",
+        title: "Put a provisional deload into the calendar",
         detail:
-          "When planning a training block, mark week 4 (or week 3 if over 45) as a deload before a single session is logged. Treat it as immovable. The discipline is in the planning, not the execution — once it is in the calendar, the decision is already made.",
+          "Mark an easier week before the block starts, then move it earlier when several normal markers worsen together. The calendar creates a checkpoint; it should not override health or training response.",
       },
       {
-        title: "Cut volume to 40–50% with no intensity targets",
+        title: "Reduce total stress clearly",
         detail:
-          "If your normal training week is 10 hours, a deload is 4–5 hours. All sessions stay at zone 1 or easy zone 2. No threshold, no VO2max, no 'just a quick effort on that climb'. The intensity removal is as important as the volume cut.",
+          "If your normal week is 10 hours, four to six hours is one starting range. Remove demanding work when fatigue triggered the week; brief openers remain optional for a healthy rider unloading after a planned block.",
       },
       {
         title: "Use the deload to reinforce the basics",
         detail:
-          "Sleep 8–9 hours. Eat full carbohydrates despite riding less. Do the mobility or strength maintenance work that gets dropped in hard weeks. The deload week is also a reset of the habits around training, not just training load itself.",
+          "Protect a consistent sleep opportunity, eat enough and scale carbohydrate to actual work. Mobility or reduced strength work is optional and should not replace the stress you removed from cycling.",
       },
     ],
     commonMistakes: [
       {
         mistake: "Doing deload weeks reactively — only when already broken.",
         fix:
-          "Plan them in advance every 3–4 weeks. Reactive deloads mean you have already been in deficit for 1–2 weeks before taking the rest. Planned deloads prevent that debt from accumulating.",
+          "Use a provisional schedule and a regular response check. There is no evidence-based universal interval or guaranteed prevention effect.",
       },
       {
         mistake: "Doing 70–80% volume with 'lighter intensity' and calling it a deload.",
         fix:
-          "A deload requires a real volume cut to 40–50% and full intensity removal. 80% volume with fewer intervals is just a medium week — fatigue does not clear meaningfully at that load.",
+          "Make the reduction meaningful relative to your own recent load. No universal percentage proves that fatigue will or will not clear.",
       },
       {
         mistake: "Panicking at feeling flat or unmotivated during the deload.",
         fix:
-          "Feeling flat, heavy-legged, and low in motivation in the first 2–3 days of a deload is normal — it is fatigue surfacing with the load removed. By days 4–6 it should shift to feeling actually fresh. Trust the process.",
+          "There is no validated day-by-day feeling sequence. Follow the trend across the week; worsening fatigue, mood or performance may need more recovery or investigation of another cause.",
       },
     ],
     faq: [
@@ -1560,22 +1559,22 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         question: "Will I lose fitness in a deload week?",
         answer:
-          "No. Aerobic fitness requires three or more weeks of significant inactivity to decline measurably. One week of reduced training clears fatigue without touching fitness. The first hard session after a proper deload almost always produces better numbers than the last hard session before it.",
+          "One week of reduced training is not the same as complete detraining. Endurance taper research shows performance can improve when volume falls and some training remains, but individual fitness and the next session are not guaranteed.",
       },
       {
         question: "How do deload weeks change as I get older?",
         answer:
-          "More frequent and more complete. After 45, most coaches recommend a 2:1 or 3:1 build-to-deload ratio rather than 3:1 or 4:1. The deload volume cut may also need to be deeper — down to 35–40% rather than 50% — for sufficient recovery effect.",
+          "Age may justify a conservative starting plan, but evidence does not prescribe one ratio or a deeper percentage after 45. Adjust to training history, load, health, sleep, life stress and time to reproduce a good key session.",
       },
       {
         question: "Should I eat less during a deload week?",
         answer:
-          "No. Keep carbohydrate intake at or close to normal training levels for the first 2–3 days to ensure glycogen is fully replenished. A modest calorie reduction by week's end is fine if the lighter load continues, but under-eating during a deload slows the recovery you are trying to accelerate.",
+          "Match energy and carbohydrate to the lower training demand without turning the week into an aggressive diet. Keep normal protein-rich meals and prioritise adequate overall intake, especially if low energy availability may be contributing to fatigue.",
       },
       {
         question: "Can I do strength training during a deload week?",
         answer:
-          "One easy strength session of reduced volume is fine — it maintains the pattern without adding significant load. Skip any heavy or intense lifting during a deload week. If you normally do two strength sessions, do one at 60% volume.",
+          "A reduced strength session may suit a healthy rider who is unloading after a planned block. If accumulated fatigue triggered the week, reduce or remove demanding lifting too; count gym work as training stress rather than treating it as free.",
       },
     ],
     relatedEpisodes: [
@@ -1585,14 +1584,13 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     relatedTopics: [
       { label: "What is a recovery week?", href: "/answers/what-is-a-recovery-week" },
-      { label: "Recovery Week Guide", href: "/blog/cycling-rest-week-guide" },
       { label: "Cycling Recovery Week: What to Actually Do", href: "/blog/cycling-recovery-week-what-to-actually-do" },
       { label: "Recovery Topic Hub", href: "/topics/cycling-recovery" },
       { label: "Overreaching vs Overtraining", href: "/answers/overreaching-vs-overtraining" },
     ],
-    evidenceLevel: "strong",
+    evidenceLevel: "moderate",
     publishDate: "2026-05-26",
-    updatedDate: "2026-05-26",
+    updatedDate: "2026-08-31",
   },
 
   // ============================================================

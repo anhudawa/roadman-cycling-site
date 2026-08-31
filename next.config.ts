@@ -126,6 +126,14 @@ const nextConfig: NextConfig = {
         destination: "/blog/cycling-core-workout-routine",
         permanent: true,
       },
+      // Two pages split the same cycling rest/recovery-week intent across
+      // 19,430 GSC impressions in the latest three-month baseline. Keep the
+      // query-matched page with the stronger internal-link graph as the owner.
+      {
+        source: "/blog/cycling-rest-week-guide",
+        destination: "/blog/cycling-recovery-week-what-to-actually-do",
+        permanent: true,
+      },
       // Search Console shows the rides guide already owns the active-recovery
       // query history. Retire the three later broad duplicates and consolidate
       // their links on the reviewed, evidence-bounded owner.
