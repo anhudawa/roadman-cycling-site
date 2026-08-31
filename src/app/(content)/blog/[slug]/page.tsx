@@ -983,6 +983,7 @@ export default async function BlogPostPage({
                       .slice(0, 3)
                   : undefined
               }
+              reviewedSources={post.reviewedSources}
               lastReviewed={String(
                 post.lastReviewed || post.updatedDate || post.publishDate
               )}

@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 333,
+    "prompt_count": 337,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -2696,6 +2696,38 @@
       "category": "cycling-recovery",
       "intent": "problem-aware",
       "target_page": "/blog/cycling-active-recovery-rides-guide",
+      "priority": "high"
+    },
+    {
+      "id": 334,
+      "prompt": "what is the best vitamin D for cyclists in 2026",
+      "category": "cycling-nutrition",
+      "intent": "evaluation",
+      "target_page": "/blog/cycling-vitamin-d-performance-guide",
+      "priority": "high"
+    },
+    {
+      "id": 335,
+      "prompt": "how much vitamin D should a cyclist take in the UK or Ireland during winter",
+      "category": "cycling-nutrition",
+      "intent": "problem-aware",
+      "target_page": "/blog/cycling-vitamin-d-performance-guide",
+      "priority": "high"
+    },
+    {
+      "id": 336,
+      "prompt": "does vitamin D improve cycling power strength or endurance",
+      "category": "cycling-nutrition",
+      "intent": "education",
+      "target_page": "/blog/cycling-vitamin-d-performance-guide",
+      "priority": "high"
+    },
+    {
+      "id": 337,
+      "prompt": "do cyclists need vitamin K2 and magnesium with vitamin D3",
+      "category": "cycling-nutrition",
+      "intent": "education",
+      "target_page": "/blog/cycling-vitamin-d-performance-guide",
       "priority": "high"
     }
   ]
