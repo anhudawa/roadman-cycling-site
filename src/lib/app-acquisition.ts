@@ -1,5 +1,6 @@
 export const APP_ACQUISITION_SOURCES = new Set([
   "active-recovery-guide",
+  "beginner-strength-plan",
   "best-cycling-apps-structured-training",
   "best-cycling-recovery-apps",
   "best-cycling-strength-training-apps",
@@ -13,6 +14,7 @@ export const APP_ACQUISITION_SOURCES = new Set([
   "strength-guide",
   "strength-hub",
   "strength-plan",
+  "strength-over-50-guide",
   "strength-session-planner",
   "time-crunched-guide",
   "training-readiness",

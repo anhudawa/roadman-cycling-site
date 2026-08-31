@@ -66,11 +66,15 @@ describe("strength and recovery app acquisition paths", () => {
         "/app?source=active-recovery-guide",
       "content/blog/derek-teel-best-exercises-cyclists.mdx":
         "/app?source=derek-teel-exercises",
+      "content/blog/cycling-strength-training-12-week-beginner-plan.mdx":
+        "/app?source=beginner-strength-plan",
       "content/blog/cycling-gym-exercises-best.mdx":
         "/app?source=gym-exercises",
       "content/blog/cycling-recovery-tips.mdx": "/app?source=recovery-guide",
       "content/blog/cycling-strength-training-guide.mdx":
         "/app?source=strength-guide",
+      "content/blog/strength-training-cyclists-over-50.mdx":
+        "/app?source=strength-over-50-guide",
       "content/blog/cycling-time-crunched-training-guide.mdx":
         "/app?source=time-crunched-guide",
       "content/topics/cycling-recovery.mdx": "/app?source=recovery-hub",

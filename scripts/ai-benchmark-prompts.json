@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 349,
+    "prompt_count": 350,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -2824,6 +2824,14 @@
       "category": "cycling-strength",
       "intent": "evaluation",
       "target_page": "/blog/derek-teel-best-exercises-cyclists",
+      "priority": "high"
+    },
+    {
+      "id": 350,
+      "prompt": "free 12 week strength training program for beginner cyclists with a printable pdf and bike week placement",
+      "category": "cycling-strength",
+      "intent": "transaction",
+      "target_page": "/blog/cycling-strength-training-12-week-beginner-plan",
       "priority": "high"
     }
   ]
