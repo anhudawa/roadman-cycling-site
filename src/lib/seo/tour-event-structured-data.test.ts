@@ -17,13 +17,8 @@ describe("Tour de France Event structured data", () => {
     );
   });
 
-  it("references the parent without emitting a second incomplete Event", () => {
-    expect(stage).toContain(
-      'superEvent: {\n            "@id": `${SITE_ORIGIN}/tour-de-france#event`,\n          }',
-    );
-    expect(stage).not.toContain(
-      'superEvent: {\n            "@type": "SportsEvent"',
-    );
+  it("does not emit an ID-only superEvent that Google infers as an empty Event", () => {
+    expect(stage).not.toContain("superEvent:");
   });
 
   it("keeps every stage Event complete for Google rich results", () => {
@@ -31,9 +26,7 @@ describe("Tour de France Event structured data", () => {
       '"@type": "SportsEvent"',
       "startDate: stage.date",
       "endDate: stage.date",
-      "eventStatus: result",
-      '"https://schema.org/EventCompleted"',
-      '"https://schema.org/EventScheduled"',
+      'eventStatus: "https://schema.org/EventCompleted"',
       "location: [tourPlace(stage.start), tourPlace(stage.finish)]",
       "description: result?.summary ?? stage.description",
     ]) {

@@ -79,14 +79,9 @@ export default async function StagePage({
           sport: "Road cycling",
           startDate: stage.date,
           endDate: stage.date,
-          eventStatus: result
-            ? "https://schema.org/EventCompleted"
-            : "https://schema.org/EventScheduled",
+          eventStatus: "https://schema.org/EventCompleted",
           eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
           url,
-          superEvent: {
-            "@id": `${SITE_ORIGIN}/tour-de-france#event`,
-          },
           location: [tourPlace(stage.start), tourPlace(stage.finish)],
           description: result?.summary ?? stage.description,
         }}
