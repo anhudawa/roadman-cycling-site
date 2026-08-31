@@ -836,7 +836,7 @@ export const COMPARISONS: ComparisonPage[] = [
     ],
     bestForA: ["Riders struggling with evening consistency", "Parents with evening commitments", "Riders wanting fasted sessions"],
     bestForB: ["Riders targeting peak-power sessions", "Social riders wanting groups", "Night owls"],
-    relatedArticle: "/blog/cycling-sleep-optimisation",
+    relatedArticle: "/blog/cycling-sleep-performance-guide",
   },
   {
     slug: "group-rides-vs-solo-training",

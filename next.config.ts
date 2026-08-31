@@ -163,6 +163,25 @@ const nextConfig: NextConfig = {
         destination: "/blog/cycling-recovery-tips",
         permanent: true,
       },
+      // GSC (latest three months): three established broad sleep guides split
+      // 102 clicks, 25,604 web impressions and 6,044 Google AI impressions.
+      // Consolidate them—and the newer protocol duplicate—on the strongest,
+      // query-matched URL at an average position of 7.
+      {
+        source: "/blog/sleep-cycling-performance-complete-guide",
+        destination: "/blog/cycling-sleep-performance-guide",
+        permanent: true,
+      },
+      {
+        source: "/blog/cycling-sleep-optimisation",
+        destination: "/blog/cycling-sleep-performance-guide",
+        permanent: true,
+      },
+      {
+        source: "/blog/cycling-sleep-optimisation-performance-guide",
+        destination: "/blog/cycling-sleep-performance-guide",
+        permanent: true,
+      },
       // Search Console shows the rides guide already owns the active-recovery
       // query history. Retire the three later broad duplicates and consolidate
       // their links on the reviewed, evidence-bounded owner.

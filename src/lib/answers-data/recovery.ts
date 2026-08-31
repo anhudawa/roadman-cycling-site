@@ -8,41 +8,41 @@ export const recoveryAnswers: AnswerPage[] = [
     slug: "how-much-sleep-do-cyclists-need",
     cluster: "recovery",
     question: "How Much Sleep Do Cyclists Need?",
-    seoTitle: "How Much Sleep Do Cyclists Need? The Performance Answer",
+    seoTitle: "How Much Sleep Do Cyclists Need? Evidence-Based Answer",
     seoDescription:
-      "Cyclists need 8–9 hours of sleep per night — not the 7 most adults settle for. Why sleep is the single highest-return recovery tool, what the science shows, and how to protect it.",
+      "Adults should regularly sleep at least seven hours, but cyclist sleep needs vary. Use this evidence-based answer to find a practical personal range.",
     pillar: "recovery",
     directAnswer:
-      "Cyclists need 8–9 hours of sleep per night — not the 7 most adults settle for. Sleep is where adaptation actually happens: growth hormone peaks in deep sleep, muscle protein synthesis runs overnight, and the glycogen replenishment that fuels your next session is consolidated during the final sleep stages. For masters riders and anyone in a heavy training block, 9 hours is not excessive — it is the target.",
+      "Healthy adults should regularly sleep at least seven hours, but athlete consensus says one duration is unlikely to be ideal for every cyclist. Protect a regular opportunity that lets you wake and function normally, then adjust for your current sleep, training, health and schedule. Persistent short, fragmented or unrefreshing sleep needs its cause investigated rather than an automatic eight-, nine- or ten-hour target.",
     keyTakeaways: [
-      "8–9 hours is the performance target for trained cyclists, not a luxury.",
-      "Sleep quality matters as well as quantity — deep sleep is where hormonal recovery peaks.",
-      "One poor night cuts power output and perceived effort on the next day's ride measurably.",
-      "Masters riders need more sleep to achieve the same recovery as younger athletes.",
+      "Seven or more hours is the adult health consensus, not an athlete-specific optimum for everybody.",
+      "Use perceived need, symptoms, regular opportunity and training response to find a workable personal range.",
+      "Acute sleep deprivation impairs sport performance on average; one ordinary bad night does not have a known watt penalty.",
+      "Masters riders do not automatically need a fixed extra number of hours solely because of age.",
     ],
     whoFor: [
       {
         label: "The time-crunched rider who cuts sleep to fit training",
         detail:
-          "You cap sleep at 6–7 hours to get an early ride in, not realising you are trading fitness for fatigue.",
+          "You routinely create fewer than seven hours of sleep opportunity to add an early ride and need a better weekly trade-off.",
       },
       {
-        label: "The masters cyclist whose recovery has slowed",
+        label: "The cyclist who sleeps long enough but wakes unrefreshed",
         detail:
-          "You are over 40 and noticing you need more time between hard efforts — sleep is one of the highest-return levers.",
+          "You need to investigate fragmentation, symptoms, health and environment instead of continually adding time in bed.",
       },
     ],
     roadmanView: [
-      "Anthony has asked this question to a number of coaches on the podcast, and the answer is consistent: the professional cyclists who progress fastest are the ones who protect their sleep as fiercely as their training. Dan Lorang — who coaches at the World Tour level — treats sleep as a training input, not a background habit. You cannot out-train a chronic sleep deficit.",
-      "The amateur trap is predictable: you set a 5:30 alarm to ride before work, bank six hours, and wonder why your intervals feel terrible. The bike is not the problem. The bed is. Cutting sleep to add training is one of the most reliably counterproductive decisions a self-coached rider makes.",
-      "The fix is less exciting than most people want: go to bed earlier, defend the 8-hour window, and treat the bedroom as performance equipment. Blackout curtains, a cool room, no screens for 30 minutes before sleep — these are not special protocols, they are basics. Get them right before worrying about anything else in recovery.",
+      "Sleep belongs in the training conversation, but false precision does not. A useful plan starts with enough opportunity and the reason sleep is falling short.",
+      "If an early ride repeatedly forces fewer than seven hours, change the week before looking for a supplement or a better readiness score.",
+      "If enough time is available but sleep remains unrefreshing, the answer may be symptoms, pain, medication, travel or a sleep disorder—not a tougher bedtime target.",
     ],
     expertEvidence: [
       {
         name: "Professor Andy Galpin",
         credential: "Muscle physiologist, Professor of Kinesiology at Cal State Fullerton",
         insight:
-          "Sleep is the single most powerful recovery intervention available. Growth hormone release peaks in slow-wave sleep, and protein synthesis runs at its highest rate during the overnight window. No supplement or recovery tool produces an effect comparable to consistent 8–9 hour nights.",
+          "In Roadman's conversation with Andy Galpin, sleep sits inside the wider recovery system rather than being replaced by a supplement or gadget. The practical lesson is to protect it without converting an expert discussion into one compulsory nightly number.",
         episodeSlug: "the-science-of-getting-faster-after-40-dr-andy-galpin",
         guestSlug: "andy-galpin",
       },
@@ -50,75 +50,75 @@ export const recoveryAnswers: AnswerPage[] = [
         name: "Dan Lorang",
         credential: "Head of Performance, Red Bull–Bora–Hansgrohe",
         insight:
-          "Recovery is not the absence of training — it is a deliberate practice. Sleep sits at the top of that practice. When he analyses an athlete who is not adapting as expected, inadequate sleep is one of the first things he checks, before looking at session structure or load.",
+          "Dan Lorang's Roadman conversations treat sleep as one input alongside load, fuelling, health and the athlete's wider context. That supports checking sleep when adaptation stalls, not assuming it is always the sole cause.",
         episodeSlug: "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
         guestSlug: "dan-lorang",
       },
     ],
     practicalApplication: [
       {
-        title: "Set a bedtime, not just a wake time",
+        title: "Measure the opportunity first",
         detail:
-          "Work backwards from when you need to wake up. To hit 8.5 hours in bed, with a 5:45 alarm that means lights-out at 9:15 pm. Most riders focus on the alarm and ignore the bedtime — reverse the logic.",
+          "Record lights-out and wake time for two weeks. If the available window is routinely under seven hours, change a controllable boundary before interpreting stages or recovery scores.",
       },
       {
-        title: "Track sleep duration for two weeks",
+        title: "Compare sleep with function",
         detail:
-          "Use a Garmin, Wahoo, Oura, or phone app. Many riders believe they are getting 7.5 hours when the data shows 6.5. Seeing the gap is the fastest route to changing the habit.",
+          "Track subjective sleepiness, mood and familiar training effort beside approximate duration. A wearable can add a trend, but it is not a sleep-lab measurement.",
       },
       {
-        title: "Create a cool, dark room and drop screens 30 minutes before bed",
+        title: "Solve the barrier you actually have",
         detail:
-          "Temperature around 18°C and near-total darkness reliably increase deep-sleep proportion. Blue-light suppression in the 30 minutes before sleep is the cheapest sleep aid available. Both changes cost nothing.",
+          "Make the room dark, quiet and comfortable when environment is the issue. Change caffeine dose or timing when that pattern is clear. Seek qualified help for persistent insomnia or breathing symptoms.",
       },
     ],
     commonMistakes: [
       {
         mistake: "Cutting sleep to add more training hours.",
         fix:
-          "Sleep is where the fitness from training appears. Less sleep means worse training quality, slower recovery, and a higher injury risk — you end up with more hours and less adaptation.",
+          "When an optional session repeatedly forces fewer than seven hours, protect sleep opportunity and move or remove the session.",
       },
       {
         mistake: "Treating weekday sleep debt as something to catch up at weekends.",
         fix:
-          "You can partially recover a night or two's deficit, but chronic short nights compound. The research shows performance degradation accumulates over weeks, not single nights.",
+          "A longer weekend night does not make a routinely short weekday schedule a good plan. Reduce the recurring shortfall first.",
       },
       {
-        mistake: "Ignoring sleep quality in favour of quantity alone.",
+        mistake: "Treating a wearable stage score as sleep quality.",
         fix:
-          "Eight hours of fragmented, warm-room sleep is not the same as eight hours of solid deep sleep. Address room temperature, alcohol (which fragments sleep even in moderate amounts), and screen time first.",
+          "Consumer devices differ from polysomnography on important measures. Use patterns in timing, duration and symptoms rather than a proprietary deep-sleep target.",
       },
     ],
     faq: [
       {
         question: "Does cycling affect sleep quality?",
         answer:
-          "Yes, in both directions. Regular aerobic training improves sleep quality and slow-wave depth. But training too late — intensive sessions within 2–3 hours of bedtime — raises cortisol and core temperature and can delay sleep onset significantly.",
+          "Exercise and sleep can influence each other, but evening cycling is not automatically harmful. If hard late sessions repeatedly delay or fragment your sleep, move them earlier, finish farther from bed or make them easier.",
       },
       {
         question: "What happens if I regularly sleep less than 7 hours?",
         answer:
-          "Power output drops, perceived effort rises, reaction time slows, and appetite for carbohydrate increases — all of which work against cycling performance. After two to three weeks of chronic short sleep, the deficits are measurable in lab tests even if you feel 'used to it'.",
+          "Regularly sleeping under seven hours conflicts with the adult health consensus and habitual short sleep is common in athletes. Acute deprivation impairs performance on average, but do not assign an exact cycling penalty without evidence for your specific pattern.",
       },
       {
         question: "Should I nap if I am training twice a day?",
         answer:
-          "Yes, a 20–30 minute nap between sessions is well supported for recovery in high-load periods. Keep it under 30 minutes to avoid sleep inertia, and place it at least 6 hours before your target bedtime so it does not shift your sleep phase.",
+          "A nap may help alertness or session quality, but no duration and cutoff fits everybody. Test the nap against grogginess, the second session and the following night rather than treating it as compulsory.",
       },
       {
         question: "Does sleep need change with age for cyclists?",
         answer:
-          "It does. Masters cyclists recover more slowly across multiple systems — hormonal, muscular, immune — and the sleep window over which those processes run typically needs to be longer, not shorter. Riders over 50 often find they need 30–60 minutes more than they did at 35.",
+          "Age can change sleep architecture, health and schedule, but it does not create one fixed extra-hour rule. Masters cyclists should individualise opportunity and investigate persistent unrefreshing sleep.",
       },
       {
         question: "Can I improve my sleep without supplements?",
         answer:
-          "Most of the improvement available comes from behaviour, not supplements. Consistent wake and sleep times, a dark cool room, and cutting alcohol and screens are the evidence-backed foundations. Magnesium glycinate has modest supporting evidence; nothing else for sleep is well-proven in athletes.",
+          "Often. Start with adequate opportunity, a realistic schedule, a comfortable environment and caffeine timing. Melatonin, magnesium and other products are not universal protocols; check health, medication and anti-doping context with a qualified clinician or pharmacist.",
       },
       {
         question: "Is it worth training less to sleep more?",
         answer:
-          "For most time-crunched amateurs, yes. If the choice is a 90-minute early ride on 6 hours of sleep versus no ride and 8 hours, the second option often produces better training quality over the week. Sleep enables the sessions you do have rather than undermining them.",
+          "When an optional ride repeatedly forces chronic short sleep, moving or shortening it is a sensible trade. One unusual short night does not automatically require cancelling training; use symptoms, session importance and the wider pattern.",
       },
     ],
     relatedEpisodes: [
@@ -128,14 +128,13 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     relatedTopics: [
       { label: "Recovery Topic Hub", href: "/topics/cycling-recovery" },
-      { label: "Sleep Optimisation for Cyclists", href: "/blog/cycling-sleep-optimisation" },
       { label: "Sleep and Cycling Performance", href: "/blog/cycling-sleep-performance-guide" },
       { label: "What is a recovery week?", href: "/answers/what-is-a-recovery-week" },
       { label: "Signs of Overtraining", href: "/answers/signs-of-overtraining-cycling" },
     ],
-    evidenceLevel: "strong",
+    evidenceLevel: "moderate",
     publishDate: "2026-05-26",
-    updatedDate: "2026-05-26",
+    updatedDate: "2026-08-31",
   },
 
   // ============================================================
@@ -1320,7 +1319,6 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     relatedTopics: [
       { label: "How much sleep do cyclists need?", href: "/answers/how-much-sleep-do-cyclists-need" },
-      { label: "Sleep Optimisation for Cyclists", href: "/blog/cycling-sleep-optimisation" },
       { label: "Sleep and Cycling Performance", href: "/blog/cycling-sleep-performance-guide" },
       { label: "Recovery Topic Hub", href: "/topics/cycling-recovery" },
       { label: "How long to recover after a hard ride?", href: "/answers/how-long-to-recover-after-hard-ride" },

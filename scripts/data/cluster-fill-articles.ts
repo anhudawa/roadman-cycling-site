@@ -64,21 +64,4 @@ export const CLUSTER_FILL_ARTICLES: ClusterArticleSpec[] = [
     wordTarget: 2200,
     featuredImage: "/images/cycling/gravel-rest-stop.jpg",
   },
-
-  // === RECOVERY (currently 18, target 20+) ===
-  {
-    slug: "cycling-sleep-optimisation",
-    title: "Sleep Optimisation for Cyclists: The Performance Lever You're Ignoring",
-    seoTitle: "Sleep Optimisation for Cycling Performance",
-    seoDescription: "Sleep is the most underrated performance lever in cycling. How much you need, what quality means, and the specific protocols that improve adaptation.",
-    excerpt: "Every adaptation from training happens during sleep. If you're not sleeping well, you're not recovering — and you're leaving watts on the table.",
-    targetKeyword: "sleep cycling performance",
-    supportingKeywords: ["sleep and cycling", "cyclist sleep tips", "recovery sleep", "how much sleep cyclists"],
-    angle: "Evidence-based sleep guide for cyclists: quantity (7-9 hours), quality (sleep architecture), timing (circadian alignment), and pre-sleep protocols.",
-    pillar: "recovery",
-    requiredSections: ["Why sleep is the biggest recovery lever", "How much sleep cyclists actually need", "Sleep quality vs sleep quantity", "The pre-sleep protocol", "Napping strategy for athletes", "Sleep tracking: useful or obsessive?"],
-    internalLinks: [{ href: "/blog/cycling-sleep-performance-guide", anchor: "sleep guide" }, { href: "/glossary/overtraining", anchor: "overtraining" }, { href: "/coaching", anchor: "coaching" }],
-    wordTarget: 2200,
-    featuredImage: "/images/cycling/gravel-canyon-rest.jpg",
-  },
 ];
