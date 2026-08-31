@@ -10,6 +10,7 @@ export const APP_ACQUISITION_SOURCES = new Set([
   "derek-teel-exercises",
   "gym-exercises",
   "masters-hub",
+  "mobility-guide",
   "off-season-strength",
   "recovery-guide",
   "recovery-hub",
