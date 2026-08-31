@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { getRiderSession } from "@/lib/profile-auth/auth";
-import { getMethodSession } from "@/lib/method/auth";
-import { loadByEmail } from "@/lib/rider-profile/store";
 import { FTPZonesClient } from "./FTPZonesClient";
+
+// Keep this high-demand public search owner static. Optional signed-in FTP
+// defaults arrive from a private endpoint after hydration.
+export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: {
@@ -22,24 +23,6 @@ export const metadata: Metadata = {
   },
 };
 
-/**
- * Server wrapper that pulls the rider's stored FTP (if signed in)
- * and pre-fills the calculator. Falls through to anonymous if no
- * session — the tool remains usable for cold visitors.
- */
-export default async function FTPZonesPage() {
-  let initialFtp: number | null = null;
-
-  const riderSession = await getRiderSession().catch(() => null);
-  const email =
-    riderSession?.profile.email ??
-    (await getMethodSession().catch(() => null))?.enrollment.email ??
-    null;
-
-  if (email) {
-    const profile = await loadByEmail(email);
-    if (profile?.currentFtp) initialFtp = profile.currentFtp;
-  }
-
-  return <FTPZonesClient initialFtp={initialFtp} />;
+export default function FTPZonesPage() {
+  return <FTPZonesClient />;
 }

@@ -16,7 +16,7 @@ const profile = {
   currentFtp: 280,
 };
 
-describe("GET /api/tools/fuelling/prefill", () => {
+describe("GET /api/tools/profile-prefill", () => {
   beforeEach(() => {
     vi.resetAllMocks();
     getRiderSession.mockResolvedValue(null);

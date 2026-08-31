@@ -144,4 +144,19 @@ describe("FTP calculator search ownership and evidence trust", () => {
       }),
     );
   });
+
+  it("serves the public calculator statically and loads private defaults later", () => {
+    const page = read(PAGE);
+    const client = read(CLIENT);
+    const prefill = read("src/app/api/tools/profile-prefill/route.ts");
+
+    expect(page).toContain('dynamic = "force-static"');
+    expect(page).not.toContain("getRiderSession");
+    expect(page).not.toContain("getMethodSession");
+    expect(page).not.toContain("loadByEmail");
+    expect(client).toContain('fetch("/api/tools/profile-prefill"');
+    expect(client).toContain("ftpEditedRef.current");
+    expect(prefill).toContain('dynamic = "force-dynamic"');
+    expect(prefill).toContain('"Cache-Control": "private, no-store');
+  });
 });

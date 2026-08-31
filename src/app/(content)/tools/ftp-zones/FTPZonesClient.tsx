@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Header, Footer, Section, Container } from "@/components/layout";
@@ -30,22 +30,54 @@ function getFtpError(value: string): string | null {
   return null;
 }
 
-interface FTPZonesClientProps {
-  /** Pre-fill from the signed-in rider's profile, if available. */
-  initialFtp?: number | null;
+interface ToolProfilePrefillResponse {
+  prefill: {
+    weightKg: number | null;
+    currentFtp: number | null;
+  } | null;
 }
 
-export function FTPZonesClient({ initialFtp }: FTPZonesClientProps = {}) {
-  const [ftp, setFtp] = useState<string>(
-    initialFtp && initialFtp >= 50 && initialFtp <= 600 ? String(initialFtp) : "",
-  );
-  const [calculated, setCalculated] = useState<boolean>(
-    Boolean(initialFtp && initialFtp >= 50 && initialFtp <= 600),
-  );
+export function FTPZonesClient() {
+  const [ftp, setFtp] = useState("");
+  const [calculated, setCalculated] = useState(false);
   const [copied, setCopied] = useState(false);
+  const ftpEditedRef = useRef(false);
   const ftpValue = parseInt(ftp) || 0;
   const ftpError = getFtpError(ftp);
   const zones = ftpValue > 0 ? calculateFtpZones(ftpValue) : [];
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    void fetch("/api/tools/profile-prefill", {
+      cache: "no-store",
+      credentials: "same-origin",
+      signal: controller.signal,
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("Unable to load rider defaults");
+        return response.json() as Promise<ToolProfilePrefillResponse>;
+      })
+      .then(({ prefill }) => {
+        const savedFtp = prefill?.currentFtp;
+        if (
+          ftpEditedRef.current ||
+          savedFtp == null ||
+          savedFtp < 50 ||
+          savedFtp > 600
+        ) {
+          return;
+        }
+        setFtp(String(savedFtp));
+        setCalculated(true);
+      })
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        // Optional defaults must never stop the public calculator working.
+      });
+
+    return () => controller.abort();
+  }, []);
 
   const handleCalculate = () => {
     if (ftpValue > 0 && !ftpError) {
@@ -126,6 +158,7 @@ export function FTPZonesClient({ initialFtp }: FTPZonesClientProps = {}) {
                   placeholder="e.g. 250"
                   value={ftp}
                   onChange={(e) => {
+                    ftpEditedRef.current = true;
                     setFtp(e.target.value);
                     setCalculated(false);
                   }}

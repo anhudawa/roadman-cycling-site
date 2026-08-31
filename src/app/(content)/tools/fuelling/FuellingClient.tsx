@@ -399,7 +399,7 @@ export function FuellingClient() {
   useEffect(() => {
     const controller = new AbortController();
 
-    void fetch("/api/tools/fuelling/prefill", {
+    void fetch("/api/tools/profile-prefill", {
       cache: "no-store",
       credentials: "same-origin",
       signal: controller.signal,

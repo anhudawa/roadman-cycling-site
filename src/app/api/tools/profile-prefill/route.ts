@@ -23,11 +23,9 @@ function toPrefill(profile: RiderProfile | null) {
 }
 
 /**
- * Return optional calculator defaults for the authenticated rider.
- *
- * This private endpoint keeps cookies and database reads away from the public,
- * statically generated search owner. It never exposes another rider's profile
- * and returns the same null shape to anonymous or invalid sessions.
+ * Return optional defaults for public cycling calculators after hydration.
+ * The endpoint exposes only the signed-in rider's weight and FTP, and keeps
+ * authentication cookies and database reads away from crawlable tool pages.
  */
 export async function GET() {
   const riderSession = await getRiderSession().catch(() => null);
