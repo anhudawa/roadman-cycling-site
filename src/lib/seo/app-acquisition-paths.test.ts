@@ -61,4 +61,39 @@ describe("strength and recovery app acquisition paths", () => {
       expect(read(path)).toContain("](/app)");
     }
   });
+
+  it("routes authoritative education pages into each commercial comparison owner", () => {
+    const bridges = [
+      {
+        owner: "/best/best-cycling-training-apps",
+        sources: ["content/topics/cycling-training-plans.mdx"],
+      },
+      {
+        owner: "/best/best-cycling-strength-training-apps",
+        sources: [
+          "content/topics/cycling-strength-conditioning.mdx",
+          "content/blog/cycling-strength-training-guide.mdx",
+        ],
+      },
+      {
+        owner: "/best/best-cycling-recovery-apps",
+        sources: [
+          "content/topics/cycling-recovery.mdx",
+          "content/blog/cycling-recovery-tips.mdx",
+        ],
+      },
+      {
+        owner: "/best/best-cycling-apps-structured-training",
+        sources: ["content/topics/masters-cycling.mdx"],
+      },
+    ];
+
+    for (const bridge of bridges) {
+      for (const source of bridge.sources) {
+        expect(read(source), `${source} -> ${bridge.owner}`).toContain(
+          `](${bridge.owner})`,
+        );
+      }
+    }
+  });
 });
