@@ -262,6 +262,7 @@ const CURATED: string[] = [
   `https://${HOST}/blog/strength-training-cyclists-over-50`,
   `https://${HOST}/blog/cycling-strength-training-12-week-beginner-plan`,
   `https://${HOST}/blog/off-season-gym-routine-cyclists-12-week-block`,
+  `https://${HOST}/blog/best-recovery-foods-after-cycling`,
   `https://${HOST}/blog/best-cycling-computers-2026`,
   `https://${HOST}/blog/wahoo-vs-garmin-cycling-computers`,
   `https://${HOST}/topics/cycling-tech`,

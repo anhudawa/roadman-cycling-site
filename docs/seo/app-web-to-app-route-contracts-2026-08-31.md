@@ -29,6 +29,7 @@ conversion can be compared without changing the audience.
 | Apply Derek Teel's strength interview    | `/blog/derek-teel-best-exercises-cyclists`   | `/app?source=derek-teel-exercises`       |
 | Adapt strength training after age 50     | `/blog/strength-training-cyclists-over-50`    | `/app?source=strength-over-50-guide`     |
 | Understand recovery                      | `/blog/cycling-recovery-tips`                | `/app?source=recovery-guide`             |
+| Choose post-ride recovery food           | `/blog/best-recovery-foods-after-cycling`    | `/app?source=recovery-nutrition`         |
 | Decide on an active-recovery ride        | `/blog/cycling-active-recovery-rides-guide`  | `/app?source=active-recovery-guide`      |
 | Fit training into a limited week         | `/blog/cycling-time-crunched-training-guide` | `/app?source=time-crunched-guide`        |
 | Browse the strength knowledge layer      | `/topics/cycling-strength-conditioning`      | `/app?source=strength-hub`               |

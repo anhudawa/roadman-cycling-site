@@ -76,6 +76,8 @@ describe("strength and recovery app acquisition paths", () => {
         "/app?source=core-progressions",
       "content/blog/off-season-gym-routine-cyclists-12-week-block.mdx":
         "/app?source=off-season-strength",
+      "content/blog/best-recovery-foods-after-cycling.mdx":
+        "/app?source=recovery-nutrition",
       "content/blog/cycling-recovery-tips.mdx": "/app?source=recovery-guide",
       "content/blog/cycling-strength-training-guide.mdx":
         "/app?source=strength-guide",
