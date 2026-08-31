@@ -277,6 +277,8 @@ const CURATED: string[] = [
   `https://${HOST}/blog/cycling-in-ride-nutrition-guide`,
   `https://${HOST}/blog/cycling-stretching-routine`,
   `https://${HOST}/blog/cycling-mobility-routine`,
+  `https://${HOST}/blog/glute-activation-cyclists-power-leaks`,
+  `https://${HOST}/blog/cycling-glute-activation-power-guide`,
   `https://${HOST}/blog/bike-fit-one-change-amateurs-should-make`,
   `https://${HOST}/blog/daryl-fitzgerald-saddle-height-one-change`,
   `https://${HOST}/guests/daryl-fitzgerald`,
