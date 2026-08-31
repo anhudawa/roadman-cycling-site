@@ -176,16 +176,10 @@ export function applyCreatineTrustOverride(answer: AnswerPage): AnswerPage {
     ],
     relatedTopics: [
       {
-        label: "Anthony's 30-Day Creatine Data",
+        label: "Creatine for Cyclists: Evidence, Dose and 30-Day Data",
         href: "/blog/creatine-for-cyclists-thirty-day-data",
         description:
-          "Read the first-party protocol and results with the n=1 limitation kept visible.",
-      },
-      {
-        label: "Creatine Protocol for Cyclists",
-        href: "/blog/creatine-for-cyclists-30-day-protocol",
-        description:
-          "Use the practical companion only after the evidence and trade-off fit your goal.",
+          "Use the consolidated owner for endurance, strength, dose, body mass, safety and the n=1 self-test boundary.",
       },
       {
         label: "Cycling Strength Session Planner",
@@ -195,7 +189,7 @@ export function applyCreatineTrustOverride(answer: AnswerPage): AnswerPage {
       },
       {
         label: "Roadman Strength and Recovery App Waitlist",
-        href: "/app?source=creatine-answer",
+        href: "/app?source=creatine-guide",
         description:
           "Join the single waitlist for Roadman's upcoming cyclist-specific strength and recovery app.",
       },

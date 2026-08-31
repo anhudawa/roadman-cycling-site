@@ -387,7 +387,6 @@ Full cluster: 100 blog posts mapped in `TOPIC_POST_MAP["cycling-nutrition"]` (to
 
 - `amateur-cyclist-fuelling-benchmarks-report-2026`
 - `creatine-for-cyclists-thirty-day-data`
-- `creatine-for-cyclists-30-day-experiment`
 - `tim-spector-gut-microbiome-cycling-weight-loss`
 
 ### Answer pages
