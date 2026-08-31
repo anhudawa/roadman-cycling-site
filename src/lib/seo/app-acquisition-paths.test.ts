@@ -109,6 +109,8 @@ describe("strength and recovery app acquisition paths", () => {
         "/app?source=creatine-guide",
       "content/blog/cycling-autonomic-nervous-system-recovery-guide.mdx":
         "/app?source=autonomic-recovery-guide",
+      "content/blog/cycling-cortisol-stress-performance-guide.mdx":
+        "/app?source=cortisol-guide",
       "content/blog/cycling-strength-training-guide.mdx":
         "/app?source=strength-guide",
       "content/blog/strength-training-cyclists-over-50.mdx":

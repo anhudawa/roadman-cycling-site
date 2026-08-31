@@ -229,6 +229,7 @@ const CURATED: string[] = [
   `https://${HOST}/answers/should-cyclists-take-creatine`,
   `https://${HOST}/blog/creatine-for-cyclists-thirty-day-data`,
   `https://${HOST}/blog/cycling-autonomic-nervous-system-recovery-guide`,
+  `https://${HOST}/blog/cycling-cortisol-stress-performance-guide`,
   `https://${HOST}/podcast/ep-27-protein-before-bed-builds-cyclists-muscles-faster-new-study`,
   `https://${HOST}/blog/michael-ormsbee-protein-before-bed-cyclists`,
   `https://${HOST}/blog/bedtime-protein-cyclists-recovery-protocol`,
