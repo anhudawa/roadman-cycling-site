@@ -97,6 +97,8 @@ describe("strength and recovery app acquisition paths", () => {
         "/app?source=rhr-guide",
       "content/blog/cycling-rest-day-what-to-do-guide.mdx":
         "/app?source=rest-day-guide",
+      "content/blog/cold-water-immersion-cyclists.mdx":
+        "/app?source=cold-water-guide",
       "content/blog/cycling-strength-training-guide.mdx":
         "/app?source=strength-guide",
       "content/blog/strength-training-cyclists-over-50.mdx":
