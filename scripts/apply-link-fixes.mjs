@@ -80,7 +80,7 @@ const URL_REWRITES = [
   // Overtraining slug normalised
   [
     "/blog/overtraining-vs-overreaching-cyclists",
-    "/blog/cycling-overtraining-signs-guide",
+    "/blog/cycling-fatigue-signs-when-to-back-off",
   ],
   // Strength training catch-all renamed
   [
@@ -175,7 +175,7 @@ const BEST_EFFORT_BLOG_REWRITES = [
     "/blog/cycling-base-training-guide",
   ],
   // Bloodwork guide — overtraining signs cover the symptom-side; use that
-  ["/blog/cycling-bloodwork-guide", "/blog/cycling-overtraining-signs-guide"],
+  ["/blog/cycling-bloodwork-guide", "/blog/cycling-fatigue-signs-when-to-back-off"],
   // RED-S guide — energy availability / fuelling post
   [
     "/blog/red-s-cycling-guide",

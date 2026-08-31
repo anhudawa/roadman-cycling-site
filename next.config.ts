@@ -142,6 +142,19 @@ const nextConfig: NextConfig = {
         destination: "/blog/glute-activation-cyclists-power-leaks",
         permanent: true,
       },
+      // Three pages split the same fatigue and overtraining-signs intent across
+      // 23,314 GSC impressions. Keep the strongest, query-matched URL and
+      // consolidate the two weaker broad duplicates on that reviewed owner.
+      {
+        source: "/blog/cycling-overtraining-signs-guide",
+        destination: "/blog/cycling-fatigue-signs-when-to-back-off",
+        permanent: true,
+      },
+      {
+        source: "/blog/recognising-overtraining-cyclists-guide",
+        destination: "/blog/cycling-fatigue-signs-when-to-back-off",
+        permanent: true,
+      },
       // Search Console shows the rides guide already owns the active-recovery
       // query history. Retire the three later broad duplicates and consolidate
       // their links on the reviewed, evidence-bounded owner.

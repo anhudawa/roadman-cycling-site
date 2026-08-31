@@ -311,7 +311,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     extendedDefinition: "True overtraining syndrome takes weeks or months to develop and weeks to months to recover from. Most cyclists who think they're overtrained are actually 'overreached' — a shorter-term state that resolves with 1-2 weeks of reduced training. The distinction matters: overreaching is a normal part of training that leads to supercompensation. Overtraining is pathological. Warning signs: declining performance despite training, persistent fatigue, frequent illness, loss of motivation, sleep disturbance.",
     pillar: "recovery",
     relatedTerms: ["deload", "periodisation", "cardiac-drift"],
-    relatedArticle: "/blog/cycling-overtraining-signs-guide",
+    relatedArticle: "/blog/cycling-fatigue-signs-when-to-back-off",
     relatedTopicHub: "/topics/cycling-recovery",
   },
   {

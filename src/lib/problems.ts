@@ -294,7 +294,7 @@ export const PROBLEM_PAGES: ProblemPage[] = [
       { title: "Check energy availability", description: "Screen for under-fuelling with the EA calculator", href: "/tools/energy-availability" },
       { title: "Audit your recovery", description: "HRV, RHR, sleep, mood — track the right metrics", href: "/blog/cycling-hrv-training-guide" },
       { title: "Schedule a deload", description: "One easy week now saves six weeks of overtraining recovery", href: "/glossary/deload" },
-      { title: "Get blood work done", description: "Ferritin, vitamin D, testosterone (men) — the standard training bloods", href: "/blog/cycling-overtraining-signs-guide" },
+      { title: "Escalate persistent fatigue", description: "Ask a clinician which assessment fits the symptoms; no standard blood panel diagnoses overtraining", href: "/blog/cycling-fatigue-signs-when-to-back-off" },
     ],
     toolHref: "/tools/energy-availability",
     toolLabel: "Check your energy availability",
