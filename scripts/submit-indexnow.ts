@@ -233,6 +233,7 @@ const CURATED: string[] = [
   `https://${HOST}/blog/michael-ormsbee-protein-before-bed-cyclists`,
   `https://${HOST}/blog/bedtime-protein-cyclists-recovery-protocol`,
   `https://${HOST}/guests/michael-ormsbee`,
+  `https://${HOST}/podcast/ep-new-study-finally-confirms-what-winning-masters-cyclists-have-known`,
   `https://${HOST}/tools/training-readiness`,
   `https://${HOST}/tools/recovery-screen`,
 
