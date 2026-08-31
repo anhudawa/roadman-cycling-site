@@ -235,6 +235,8 @@ const CURATED: string[] = [
   `https://${HOST}/guests/michael-ormsbee`,
   `https://${HOST}/podcast/ep-new-study-finally-confirms-what-winning-masters-cyclists-have-known`,
   `https://${HOST}/podcast/ep-31-5-things-pogacar-always-does-after-a-ride`,
+  `https://${HOST}/podcast/pogacar-tour-de-france-recovery-routine`,
+  `https://${HOST}/blog/pogacar-recovery-routine`,
   `https://${HOST}/tools/training-readiness`,
   `https://${HOST}/tools/recovery-screen`,
 
