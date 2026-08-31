@@ -101,6 +101,8 @@ describe("strength and recovery app acquisition paths", () => {
         "/app?source=cold-water-guide",
       "content/blog/cycling-foam-rolling-self-massage-guide.mdx":
         "/app?source=foam-rolling-guide",
+      "content/blog/massage-guns-cyclists-worth-it.mdx":
+        "/app?source=massage-gun-guide",
       "content/blog/cycling-strength-training-guide.mdx":
         "/app?source=strength-guide",
       "content/blog/strength-training-cyclists-over-50.mdx":
