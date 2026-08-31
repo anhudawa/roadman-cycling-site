@@ -914,7 +914,7 @@ export const zone2Answers: AnswerPage[] = [
       "ep-2-zone-training-for-cyclists-is-zone-2-training-the-best-rider",
     ],
     relatedTopics: [
-      { label: "Cycling Overtraining Signs", href: "/blog/cycling-overtraining-signs-guide" },
+      { label: "Cycling Overtraining Signs", href: "/blog/cycling-fatigue-signs-when-to-back-off" },
       { label: "Cycling Base Training Guide", href: "/blog/cycling-base-training-guide" },
       { label: "Volume vs Intensity", href: "/compare/volume-vs-intensity" },
       { label: "How Long to Build Aerobic Base?", href: "/answers/how-long-to-build-aerobic-base" },

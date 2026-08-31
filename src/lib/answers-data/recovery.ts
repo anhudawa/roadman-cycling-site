@@ -395,7 +395,7 @@ export const recoveryAnswers: AnswerPage[] = [
       "ep-2056-13-years-of-coaching-pros-what-amateurs-dont-know",
     ],
     relatedTopics: [
-      { label: "Cycling Overtraining Signs Guide", href: "/blog/cycling-overtraining-signs-guide" },
+      { label: "Cycling Overtraining Signs Guide", href: "/blog/cycling-fatigue-signs-when-to-back-off" },
       { label: "More Volume, Getting Slower?", href: "/blog/more-volume-getting-slower-cycling-overtraining" },
       { label: "Overreaching vs Overtraining", href: "/answers/overreaching-vs-overtraining" },
       { label: "Recovery Topic Hub", href: "/topics/cycling-recovery" },
@@ -1715,7 +1715,7 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     relatedTopics: [
       { label: "Signs of Overtraining", href: "/answers/signs-of-overtraining-cycling" },
-      { label: "Cycling Overtraining Signs Guide", href: "/blog/cycling-overtraining-signs-guide" },
+      { label: "Cycling Overtraining Signs Guide", href: "/blog/cycling-fatigue-signs-when-to-back-off" },
       { label: "More Volume, Getting Slower?", href: "/blog/more-volume-getting-slower-cycling-overtraining" },
       { label: "Laurens ten Dam: Overtraining Lessons", href: "/blog/laurens-ten-dam-live-slow-ride-fast-overtraining-lessons" },
       { label: "Recovery Topic Hub", href: "/topics/cycling-recovery" },

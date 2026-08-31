@@ -70,6 +70,8 @@ describe("strength and recovery app acquisition paths", () => {
         "/app?source=beginner-strength-plan",
       "content/blog/cycling-gym-exercises-best.mdx":
         "/app?source=gym-exercises",
+      "content/blog/cycling-fatigue-signs-when-to-back-off.mdx":
+        "/app?source=fatigue-guide",
       "content/blog/glute-activation-cyclists-power-leaks.mdx":
         "/app?source=glute-guide",
       "content/blog/cycling-mobility-routine.mdx":

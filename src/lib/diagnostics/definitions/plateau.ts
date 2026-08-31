@@ -35,7 +35,7 @@ export const plateauDefinition: DiagnosticDefinition = {
         "Re-test FTP once RPE drops two points at the same wattage.",
       ],
       recommendedResource: {
-        href: "/blog/cycling-overtraining-signs-guide",
+        href: "/blog/cycling-fatigue-signs-when-to-back-off",
         label: "Overtraining vs Overreaching — the 10 warning signs",
       },
       riskAdvice: {

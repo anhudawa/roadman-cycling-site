@@ -373,7 +373,7 @@ export const highVolumeQuery6Answers: AnswerPage[] = [
       {
         title: "Monitor recovery to detect accumulated fatigue",
         detail:
-          "Track morning resting heart rate, sleep quality, and subjective leg freshness. If your resting heart rate is elevated by 5+ beats or your legs feel flat for on-bike sessions, the off-bike HIIT is adding more fatigue than your recovery can absorb. Reduce frequency or intensity until the markers normalise.",
+          "Track a consistently measured resting-heart-rate trend, sleep, leg freshness and on-bike performance. A change across several inputs can justify reducing the off-bike HIIT, but no universal five-beat threshold identifies the cause.",
       },
     ],
     commonMistakes: [

@@ -990,7 +990,7 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
     ],
     roadmanView: [
       "Adding volume is the most common lever cyclists reach for when progress stalls, and it is often the right one — but the timing matters more than the amount. Dan Lorang makes this point clearly: volume is a stressor, and adding stress to a system that has not absorbed its current load just digs a deeper recovery hole. The signal to add more is not ambition or a training plan spreadsheet — it is your body telling you it has adapted to where you are.",
-      "The practical indicators are simple. If you are sleeping well, your resting heart rate is stable, your interval power is holding or improving, and you finish the week feeling tired but not destroyed, you can add 10%. That might mean going from 8 hours to 8.5 hours, or from 450 TSS to 500. Small steps. Hold that new level for 2–3 weeks. If the indicators stay green, add another 10%. If sleep degrades, morning heart rate climbs 5+ beats, or your power numbers slide, pull back immediately — that is overreaching, not adaptation.",
+      "The practical indicators are a stable pattern of sleep, normal perceived recovery and power that is holding or improving. Add a small amount, hold it long enough to observe the response, and pull back if several indicators deteriorate. A fixed percentage or five-beat heart-rate change does not diagnose overreaching.",
       "The other side of this coin is that some riders never increase volume because they are comfortable where they are. Comfort is not progression. If you have been riding 6 hours a week for two years and your FTP has not moved, you almost certainly need more volume — specifically more Zone 2 volume to build the aerobic base that supports everything above it. Anthony's advice: be honest about whether you are avoiding more volume because your body cannot handle it or because your schedule is convenient. The first is legitimate; the second is a choice that comes with a cost.",
     ],
     expertEvidence: [
@@ -1069,7 +1069,7 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
       {
         question: "How do I know if I have increased volume too quickly?",
         answer:
-          "The warning signs are: resting heart rate elevated by 5+ beats per minute for more than 2 days, declining power output in intervals despite similar perceived effort, persistent muscle soreness beyond 48 hours, disrupted sleep, and loss of motivation to train. If you see two or more of these together, you have exceeded your current recovery capacity. Drop volume by 30–40% for a week, then rebuild from a lower level.",
+          "Look for a repeated change from your normal across power, perceived effort, recovery, sleep, mood, soreness and consistently measured heart-rate trends. No fixed five-beat, 48-hour, symptom-count or volume-reduction rule applies to every rider. Remove intensity first, reduce load and reassess the response.",
       },
       {
         question: "Should older cyclists increase volume more slowly?",
@@ -2392,7 +2392,7 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
       {
         title: "Monitor recovery markers week to week",
         detail:
-          "Track morning resting heart rate, sleep quality, and subjective motivation. If your resting heart rate is 5+ beats above normal, you did not sleep well, and you are dreading the bike, you need rest — not another ride. The Training Readiness calculator or a simple 1-5 subjective score each morning can flag when you are digging a hole.",
+          "Track a consistently measured heart-rate trend, sleep, motivation and how normal riding feels. Several changes together can support a rest or easy-day decision; the Training Readiness calculator is a heuristic prompt, not a diagnostic traffic light.",
       },
       {
         title: "Structure your week around hard days, not riding days",
@@ -2436,7 +2436,7 @@ export const highVolumeQuery2Answers: AnswerPage[] = [
       {
         question: "How do I know if I need a rest day?",
         answer:
-          "Key signals: morning resting heart rate 5+ beats above your baseline, poor sleep quality, persistent muscle soreness beyond normal post-ride fatigue, low motivation, irritability, and repeated sessions where you cannot hit your target power numbers. Any two of these together are a clear sign you need rest, not more training.",
+          "Look for a change from your normal across perceived fatigue, sleep, soreness, motivation, mood, repeated performance and consistently measured heart-rate trends. There is no validated five-beat or two-symptom rule. When the pattern is worsening, replace the hard session with rest or easy movement and reassess.",
       },
       {
         question: "Do masters cyclists need more rest days?",
