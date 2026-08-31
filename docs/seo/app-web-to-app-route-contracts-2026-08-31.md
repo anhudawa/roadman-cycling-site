@@ -22,7 +22,9 @@ conversion can be compared without changing the audience.
 | Identify a recovery constraint           | `/tools/recovery-screen`                     | `/app?source=recovery-screen`            |
 | Understand cycling strength evidence     | `/blog/cycling-strength-training-guide`      | `/app?source=strength-guide`             |
 | Choose cyclist-specific gym exercises    | `/blog/cycling-gym-exercises-best`           | `/app?source=gym-exercises`              |
+| Start a 12-week beginner strength plan   | `/blog/cycling-strength-training-12-week-beginner-plan` | `/app?source=beginner-strength-plan` |
 | Apply Derek Teel's strength interview    | `/blog/derek-teel-best-exercises-cyclists`   | `/app?source=derek-teel-exercises`       |
+| Adapt strength training after age 50     | `/blog/strength-training-cyclists-over-50`    | `/app?source=strength-over-50-guide`     |
 | Understand recovery                      | `/blog/cycling-recovery-tips`                | `/app?source=recovery-guide`             |
 | Decide on an active-recovery ride        | `/blog/cycling-active-recovery-rides-guide`  | `/app?source=active-recovery-guide`      |
 | Fit training into a limited week         | `/blog/cycling-time-crunched-training-guide` | `/app?source=time-crunched-guide`        |
