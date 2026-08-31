@@ -1466,7 +1466,7 @@ const BASE_ANSWERS: AnswerPage[] = [
         name: "Dr Michael Ormsbee",
         credential: "Sports nutrition researcher",
         insight:
-          "What you eat around training, including before bed the night before, shapes recovery and how ready your muscles are to work. Protein and carbohydrate timing isn't just an after-thought — it sets up the next day's ride.",
+          "What you eat around training contributes to recovery, but total carbohydrate, energy and protein come before a narrow bedtime window. A pre-sleep protein feed is useful only when it closes a real gap and does not compromise sleep.",
         episodeSlug: "ep-27-protein-before-bed-builds-cyclists-muscles-faster-new-study",
         guestSlug: "michael-ormsbee",
       },

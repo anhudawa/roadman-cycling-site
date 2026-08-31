@@ -2141,7 +2141,7 @@ export const highVolumeQuery13Answers: AnswerPage[] = [
       {
         question: "Do I need protein supplements?",
         answer:
-          "Supplements are not necessary if you can meet your targets through food. They are useful for convenience — a whey protein shake post-ride when appetite is suppressed, or casein before bed for overnight muscle protein synthesis. Food first, supplements to fill gaps.",
+          "Supplements are not necessary if food meets the target. They are useful for convenience — for example, a shake post-ride when appetite is suppressed or a small feed near bed when the day is genuinely short of protein. Food first, supplements to fill gaps.",
       },
       {
         question: "Is plant protein as effective as animal protein?",
@@ -2302,7 +2302,7 @@ export const highVolumeQuery13Answers: AnswerPage[] = [
       {
         question: "Is casein protein better than whey for recovery?",
         answer:
-          "Whey is faster-absorbing and better immediately post-ride. Casein digests slowly and is better before bed for overnight muscle protein synthesis. For most riders, whey post-ride and casein or Greek yoghurt before bed covers both windows.",
+          "Whey digests quickly and is convenient post-ride; casein digests more slowly. The direct endurance evidence found similar overnight synthesis responses, so most riders should choose by total need and tolerance rather than trying to cover two compulsory windows.",
       },
     ],
     relatedEpisodes: [],

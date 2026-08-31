@@ -42,7 +42,7 @@ export const nutritionAnswers: AnswerPage[] = [
         name: "Dr Michael Ormsbee",
         credential: "Sports nutrition researcher, Florida State University",
         insight:
-          "Post-exercise protein timing is one of the highest-leverage nutrition habits for cyclists, particularly older athletes. Muscle protein synthesis rates are elevated after exercise, and providing protein within that window — especially before bed for recovery overnight — accelerates adaptation compared to delayed feeding.",
+          "Protein supports adaptation, but total daily intake comes before a narrow timing window. A pre-sleep feed can increase overnight protein synthesis after evening exercise; that mechanism has not consistently translated into better next-day cycling performance.",
         episodeSlug: "ep-27-protein-before-bed-builds-cyclists-muscles-faster-new-study",
         guestSlug: "michael-ormsbee",
       },
@@ -50,7 +50,7 @@ export const nutritionAnswers: AnswerPage[] = [
         name: "Dr Sam Impey",
         credential: "World Tour nutritionist",
         insight:
-          "Recovery nutrition is not optional for riders training more than once a day or on consecutive hard days. The carbohydrate component restores glycogen so the next session starts full; the protein component initiates repair. Both windows — immediately post-ride and before sleep — are worth targeting.",
+          "Recovery nutrition matters most for riders training more than once a day or on consecutive hard days. Carbohydrate and protein after the ride are priorities; a bedtime feed is optional when it closes a genuine daily-protein shortfall.",
         episodeSlug: "ep-2035-world-tour-nutritionist-we-got-fuelling-wrong",
         guestSlug: "sam-impey",
       },
@@ -67,9 +67,9 @@ export const nutritionAnswers: AnswerPage[] = [
           "For a real meal: a large chicken breast or two eggs plus Greek yoghurt will hit the range. For a shake: most whey products deliver 20–25g per scoop, so two scoops or one scoop plus a glass of milk covers it.",
       },
       {
-        title: "Add a high-protein snack before bed",
+        title: "Use bedtime only if the day's protein target is short",
         detail:
-          "For hard days or back-to-back sessions, 30–40g of protein before sleep — cottage cheese, Greek yoghurt, or a casein shake — extends the recovery stimulus overnight, especially valuable for masters cyclists.",
+          "After an evening session, use a tolerated protein snack before sleep only if dinner and the day's meals leave the protein target short. Studies test roughly 20–45g, but the range is not a universal dose.",
       },
     ],
     commonMistakes: [
@@ -157,7 +157,7 @@ export const nutritionAnswers: AnswerPage[] = [
       "Target 1.6–2.2g of protein per kg per day as a serious amateur.",
       "Over 40, aim for 2–2.4g/kg — muscle protein synthesis becomes less efficient with age.",
       "Spread protein across 3–4 meals rather than concentrating it in one sitting.",
-      "A 30–40g serving before bed extends the overnight repair stimulus on hard training days.",
+      "A pre-sleep protein feed can increase overnight protein synthesis after evening exercise, but total daily intake comes first.",
     ],
     whoFor: [
       {
@@ -173,15 +173,15 @@ export const nutritionAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "The cycling world has a carbohydrate obsession, and rightly so — carbs are the fuel. But protein is the builder, and most serious amateurs under-eat it. The typical number Anthony sees from riders who track their food sits at 1.0–1.2g/kg, which is fine for a sedentary person and too low for someone doing four to six hours a week on the bike.",
-      "Dr Michael Ormsbee's research on nighttime protein changed Anthony's own habits. Taking 30–40g of casein or Greek yoghurt before sleep is not a bodybuilding trick — it is a recovery lever that the cycling world was slow to adopt. The protein extends the synthesis window overnight instead of letting your muscles sit in repair limbo while your stomach is empty for eight hours.",
-      "For masters athletes, the conversation is even more pointed. Muscle anabolic resistance after 40 means you need more protein per meal to get the same muscle-building response you got at 25. Eating the same amount you did a decade ago, distributed the same way, produces less adaptation. The fix is simple: more at each sitting, one more sitting per day, and a hit before sleep.",
+      "Dr Michael Ormsbee's research on nighttime protein changed Anthony's view of the mechanism: protein can be absorbed during sleep and can increase overnight synthesis after evening exercise. The practical use is narrower — close a real daily-protein gap rather than adding a shake by default.",
+      "For masters athletes, adequate total protein and distribution across meals matter. A bedtime feed is one possible delivery time, not a compulsory extra meal, and long-term evidence for a special pre-sleep effect in older adults remains limited.",
     ],
     expertEvidence: [
       {
         name: "Dr Michael Ormsbee",
         credential: "Sports nutrition researcher, Florida State University",
         insight:
-          "Nighttime protein intake — specifically 30–40g of a slow-digesting source like casein before sleep — measurably improves overnight muscle protein synthesis compared to going to bed without it. For cyclists training hard on consecutive days, this is a meaningful recovery difference.",
+          "Pre-sleep protein can measurably increase overnight muscle protein synthesis after evening exercise. Whether that produces a meaningful cycling-recovery benefit depends on total intake; the direct professional-cycling trial found no added benefit in already well-supplied riders.",
         episodeSlug: "ep-27-protein-before-bed-builds-cyclists-muscles-faster-new-study",
         guestSlug: "michael-ormsbee",
       },
@@ -206,9 +206,9 @@ export const nutritionAnswers: AnswerPage[] = [
           "Breakfast: eggs, Greek yoghurt, or cottage cheese. Lunch: chicken, fish, or legumes. Post-ride: a shake or high-protein snack. Dinner: a palm-sized serving of animal protein or equivalent plant sources. Each meal should deliver 25–40g.",
       },
       {
-        title: "Add a bedtime protein hit on hard training days",
+        title: "Close a remaining protein gap after hard training",
         detail:
-          "200g of Greek yoghurt, 150g of cottage cheese, or a casein shake before sleep delivers 30–40g of slow-release protein and extends the overnight repair window. This one change alone moves the needle for riders who currently eat nothing after dinner.",
+          "If the day is short of protein, use a modest portion of yoghurt, cottage cheese or a tolerated shake to close the calculated gap. Count it within daily energy intake and skip it if dinner already covers the target.",
       },
     ],
     commonMistakes: [
@@ -252,7 +252,7 @@ export const nutritionAnswers: AnswerPage[] = [
       {
         question: "Does protein timing around rides matter?",
         answer:
-          "Yes, but not as precisely as supplement marketing suggests. The most important windows are within 30–60 minutes post-exercise and before sleep. Getting protein at every meal across the day matters more than hitting an exact minute post-ride.",
+          "Timing can help organise intake, but supplement marketing overstates the precision. Total daily protein and distribution across meals matter more than an exact post-ride or bedtime minute.",
       },
       {
         question: "Do masters cyclists really need more protein than younger riders?",
@@ -1370,7 +1370,7 @@ export const nutritionAnswers: AnswerPage[] = [
     question: "What Are the Best Recovery Foods for Cyclists?",
     seoTitle: "Best Recovery Foods for Cyclists — What Actually Works",
     seoDescription:
-      "The best recovery foods for cyclists: protein plus carbs within 30–60 minutes of a hard session. Specific foods, quantities, and the bedtime protein strategy for faster overnight repair.",
+      "The best recovery foods for cyclists: protein and carbohydrate after hard training, practical quantities, and when an optional bedtime protein feed is useful.",
     pillar: "nutrition",
     directAnswer:
       "The best recovery foods pair 20–40g of protein with 1–1.2g of carbs per kg of bodyweight within 30–60 minutes of a hard session. Greek yoghurt and fruit, chocolate milk, rice and chicken, eggs on toast, or a whey shake with a banana all work. The food matters less than hitting the protein and carb targets in the window. Before bed on hard days, 30g of slow-digesting protein — cottage cheese or Greek yoghurt — extends overnight repair.",
@@ -1378,7 +1378,7 @@ export const nutritionAnswers: AnswerPage[] = [
       "The first 30–60 minutes post-ride is the highest-priority recovery window.",
       "Target 20–40g of protein and 1–1.2g/kg of carbohydrate in that window.",
       "Real food and shakes are equally effective if the macro targets are met.",
-      "A 30g bedtime protein hit on hard training days meaningfully extends overnight muscle repair.",
+      "A bedtime protein feed can increase overnight synthesis when it closes a real daily shortfall.",
     ],
     whoFor: [
       {
@@ -1395,7 +1395,7 @@ export const nutritionAnswers: AnswerPage[] = [
     roadmanView: [
       "The recovery window is free performance. Anthony has said this on the podcast more than once, and the research is clear enough to be stated plainly: eat 20–40g of protein and meaningful carbohydrate within an hour of a hard session, and you recover faster than if you eat the same food an hour later. Not a little faster — measurably faster, in terms of glycogen replenishment rate and muscle protein synthesis.",
       "The specific food matters far less than most people think. Chocolate milk — old-fashioned, accessible, unglamorous — has as strong a recovery evidence base as any branded recovery product. It delivers roughly 8g of protein and 26g of carbs per 250ml, gets absorbed quickly, and is isotonic enough to aid rehydration. Greek yoghurt with fruit, rice and chicken, or a two-egg scramble on toast all hit similar targets. Pick what you will actually eat within the window.",
-      "The bedtime protein piece comes from Dr Michael Ormsbee's research and is still underused. On hard training days and the night before key sessions, 30–40g of slow-digesting casein protein before sleep extends the repair stimulus overnight instead of leaving muscles in a catabolic state for eight hours. Cottage cheese, Greek yoghurt, or a casein shake are the practical options.",
+      "The bedtime protein piece comes from Dr Michael Ormsbee's research. Protein can be absorbed overnight and can increase protein synthesis after evening exercise, but total daily intake comes first. Use cottage cheese, Greek yoghurt or a tolerated shake only when it closes a genuine shortfall.",
     ],
     expertEvidence: [
       {
@@ -1410,7 +1410,7 @@ export const nutritionAnswers: AnswerPage[] = [
         name: "Dr Sam Impey",
         credential: "World Tour nutritionist",
         insight:
-          "Recovery nutrition is one of the highest-return habits for a serious amateur because most are not doing it consistently. The protocol is not complex: protein plus carbohydrate within an hour, protein again before sleep on hard days. The riders who do this reliably recover faster between sessions and hold training quality better through a block.",
+          "Recovery nutrition is one of the highest-return habits for a serious amateur. Prioritise carbohydrate and protein after hard training, then consider a pre-sleep feed only if the day's protein target remains short.",
         episodeSlug: "ep-2092-sports-nutritionist-the-one-food-thats-slowing-us-down",
         guestSlug: "sam-impey",
       },
@@ -1427,9 +1427,9 @@ export const nutritionAnswers: AnswerPage[] = [
           "25–40g of protein alongside 60–90g of carbohydrate for a 70–80kg rider. Concrete options: 200g Greek yoghurt (20g protein) plus a banana and a handful of granola; or a whey shake (25g protein) with 300ml of milk and a banana; or two eggs on two slices of toast plus a piece of fruit.",
       },
       {
-        title: "Add 30g of protein before sleep on hard days",
+        title: "Check the remaining protein gap before sleep",
         detail:
-          "150g of cottage cheese, 200g of Greek yoghurt, or a casein shake before bed on your hard training nights. On easy days and rest days this is less critical — the stimulus from the bedtime protein is proportional to the training stress that day.",
+          "Calculate the remaining protein gap after dinner, then use a small portion of cottage cheese, Greek yoghurt or a shake if needed. Do not force a fixed 30g dose when the target is already covered.",
       },
     ],
     commonMistakes: [
@@ -1463,7 +1463,7 @@ export const nutritionAnswers: AnswerPage[] = [
       {
         question: "What is the best protein source for cycling recovery?",
         answer:
-          "Whey protein is among the fastest-absorbed and most leucine-rich options, making it ideal immediately post-ride. For bedtime use, casein (found in cottage cheese and Greek yoghurt) digests slowly and provides a sustained amino acid release overnight. Both are effective — match the type to the timing.",
+          "Whey is a convenient post-ride option, while casein and dairy foods digest more slowly. In an endurance-exercise trial, whey and casein produced similar overnight protein-synthesis responses, so tolerance and the overall diet can decide the source.",
       },
       {
         question: "Do I need a recovery shake or is real food enough?",
@@ -2495,7 +2495,7 @@ export const nutritionAnswers: AnswerPage[] = [
         name: "Dr Michael Ormsbee",
         credential: "Sports nutrition researcher, Florida State University",
         insight:
-          "Muscle repair and protein synthesis continue on non-training days, so protein intake should stay high regardless of whether you rode. Maintaining 1.8–2.2g/kg and including a protein feeding before sleep supports the recovery and adaptation that rest days are designed to deliver — dropping protein on rest days undercuts the whole purpose of the rest.",
+          "Muscle repair continues on non-training days, so do not slash total protein. A bedtime feed is optional: keep it only if it helps distribute the day's target and does not duplicate dinner.",
         episodeSlug: "ep-27-protein-before-bed-builds-cyclists-muscles-faster-new-study",
         guestSlug: "michael-ormsbee",
       },
@@ -2571,7 +2571,7 @@ export const nutritionAnswers: AnswerPage[] = [
       {
         question: "Should masters cyclists eat differently on rest days?",
         answer:
-          "The principles hold, but protein matters even more over 40. Push rest-day protein toward 2.0–2.4g/kg and keep the bedtime feeding, since older muscle repairs more slowly and benefits from a steady protein supply. Avoid heavy calorie cuts on rest days, as recovery is already slower with age.",
+          "The principles hold over 40: protect adequate daily protein and distribute it across meals. Keep a bedtime feed only when it helps meet that target; do not add it automatically. Avoid aggressive energy restriction that compromises recovery.",
       },
     ],
     relatedEpisodes: [

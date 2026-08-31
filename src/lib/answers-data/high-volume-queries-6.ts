@@ -1112,9 +1112,9 @@ export const highVolumeQuery6Answers: AnswerPage[] = [
           "Mix 25-30 g of whey protein with 300-400 ml of water or milk within 1-2 hours of finishing a hard ride. This is most useful after interval sessions or long rides when appetite suppression makes eating a full meal difficult. If you can eat a balanced meal within 2 hours, the shake is unnecessary.",
       },
       {
-        title: "For masters cyclists, add an extra protein dose before bed",
+        title: "For masters cyclists, use bedtime only to close a protein gap",
         detail:
-          "Research shows that 30-40 g of casein protein before sleep enhances overnight muscle protein synthesis, which is particularly beneficial for athletes over 40 whose baseline synthesis rates are lower. A casein shake, a pot of cottage cheese, or a glass of milk with Greek yoghurt before bed addresses this.",
+          "Pre-sleep protein can enhance overnight muscle protein synthesis, but long-term evidence for a special bedtime benefit in older adults remains limited. First meet and distribute the daily target; use a tolerated snack only when the day ends short.",
       },
     ],
     commonMistakes: [
@@ -1138,7 +1138,7 @@ export const highVolumeQuery6Answers: AnswerPage[] = [
       {
         question: "Is whey or casein protein better for cyclists?",
         answer:
-          "Whey protein is best immediately post-ride because it digests quickly and has the highest leucine content, which is the amino acid that triggers muscle protein synthesis. Casein digests slowly and is better before bed, providing a sustained amino acid supply overnight. If you only buy one, whey is the more versatile option.",
+          "Whey is a convenient fast-digesting post-ride option, while casein digests more slowly. A 2023 endurance trial found similar overnight protein-synthesis responses to whey and casein, so total intake, tolerance and convenience matter more than declaring one universally best for bedtime.",
       },
       {
         question: "Do plant-based protein powders work as well as whey?",
