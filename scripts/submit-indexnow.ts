@@ -226,6 +226,9 @@ const CURATED: string[] = [
   `https://${HOST}/topics/cycling-strength-conditioning`,
   `https://${HOST}/topics/cycling-recovery`,
   `https://${HOST}/tools/strength-session-planner`,
+  `https://${HOST}/answers/should-cyclists-take-creatine`,
+  `https://${HOST}/blog/creatine-for-cyclists-thirty-day-data`,
+  `https://${HOST}/blog/creatine-for-cyclists-30-day-protocol`,
   `https://${HOST}/tools/training-readiness`,
   `https://${HOST}/tools/recovery-screen`,
 

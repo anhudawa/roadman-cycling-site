@@ -3,6 +3,7 @@ import { type EvidenceLevelType } from "@/components/ui/EvidenceLevel";
 import { ftpAnswers } from "./answers-data/ftp";
 import { zone2Answers } from "./answers-data/zone2";
 import { nutritionAnswers } from "./answers-data/nutrition";
+import { applyCreatineTrustOverride } from "./answers-data/creatine-trust-override";
 import { strengthAnswers } from "./answers-data/strength";
 import { applyStrengthTrustOverride } from "./answers-data/strength-trust-overrides";
 import { recoveryAnswers } from "./answers-data/recovery";
@@ -1719,7 +1720,7 @@ export const ANSWER_PAGES: AnswerPage[] = [
   ...BASE_ANSWERS.map(applyFtpTestTrustOverride),
   ...ftpAnswers.map(applyThresholdIntervalsTrustOverride),
   ...zone2Answers,
-  ...nutritionAnswers,
+  ...nutritionAnswers.map(applyCreatineTrustOverride),
   ...strengthAnswers.map(applyStrengthTrustOverride),
   ...recoveryAnswers,
   ...mastersAnswers,

@@ -143,7 +143,7 @@ export default async function AnswerPageRoute({
           publisher: { "@id": ENTITY_IDS.organization },
           datePublished: answer.publishDate,
           dateModified: answer.updatedDate || answer.publishDate,
-          ...(answer.reviewedBy === "Anthony Walsh" && {
+          ...(answer.reviewedBy?.startsWith("Anthony Walsh") && {
             reviewedBy: { "@id": ENTITY_IDS.person },
           }),
           mainEntityOfPage: { "@type": "WebPage", "@id": url },
