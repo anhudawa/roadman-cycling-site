@@ -1107,7 +1107,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-overtraining-signs-guide",
     "cycling-active-recovery-rides-guide",
     "cycling-hrv-training-guide",
-    "cycling-rest-week-guide",
     "cycling-back-pain-fixes",
     "cycling-recovery-week-what-to-actually-do",
     "knee-pain-cycling-what-to-check-first",

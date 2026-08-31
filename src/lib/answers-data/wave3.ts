@@ -239,7 +239,7 @@ export const wave3Answers: AnswerPage[] = [
       { label: "What Is Periodisation in Cycling?", href: "/answers/what-is-periodisation-cycling" },
       {
         label: "The Cycling Rest Week Guide",
-        href: "/blog/cycling-rest-week-guide",
+        href: "/blog/cycling-recovery-week-what-to-actually-do",
       },
       {
         label: "Periodisation: Friel, Lorang and Johnson",
