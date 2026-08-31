@@ -38,12 +38,20 @@ describe("active-recovery search ownership and trust", () => {
     expect(owner.data.reviewedBy).toContain("Anthony Walsh");
     expect(owner.data.citedClaims).toHaveLength(4);
     expect(owner.data.faq).toHaveLength(5);
-    expect(owner.content).toContain("## First, separate a cool-down from a recovery ride");
-    expect(owner.content).toContain("https://pubmed.ncbi.nlm.nih.gov/29663142/");
-    expect(owner.content).toContain("https://pubmed.ncbi.nlm.nih.gov/26972271/");
+    expect(owner.content).toContain(
+      "## First, separate a cool-down from a recovery ride",
+    );
+    expect(owner.content).toContain(
+      "https://pubmed.ncbi.nlm.nih.gov/29663142/",
+    );
+    expect(owner.content).toContain(
+      "https://pubmed.ncbi.nlm.nih.gov/26972271/",
+    );
     expect(owner.content).toContain("/tools/training-readiness");
     expect(owner.content).toContain("/tools/recovery-screen");
-    expect(owner.content).toContain("[Join the single app waiting list](/app)");
+    expect(owner.content).toContain(
+      "[Join the single app waiting list](/app?source=active-recovery-guide)",
+    );
     expect(owner.content).not.toContain("flush metabolites");
     expect(owner.content).not.toContain("resting HR is elevated 10+ bpm");
   });
@@ -72,7 +80,11 @@ describe("active-recovery search ownership and trust", () => {
     ];
 
     for (const path of files) {
-      if (generatedAuditFiles.some((generated) => path === resolve(root, generated)))
+      if (
+        generatedAuditFiles.some(
+          (generated) => path === resolve(root, generated),
+        )
+      )
         continue;
       if (path.endsWith("active-recovery-search-owner.test.ts")) continue;
       const source = readFileSync(path, "utf8");
@@ -109,7 +121,9 @@ describe("active-recovery search ownership and trust", () => {
     const fasterRecovery = highVolumeQuery14Answers.find(
       ({ slug }) => slug === "how-to-recover-faster-after-cycling",
     );
-    expect(fasterRecovery?.directAnswer).toContain("does not show a consistent");
+    expect(fasterRecovery?.directAnswer).toContain(
+      "does not show a consistent",
+    );
     expect(fasterRecovery?.directAnswer).not.toContain("clearing metabolites");
     expect(read("content/blog/cycling-recovery-tips.mdx")).not.toContain(
       "Active recovery (easy Zone 1 spin) is better than complete rest",

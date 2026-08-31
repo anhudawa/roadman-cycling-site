@@ -17,7 +17,7 @@ describe("cycling strength session planner search owner", () => {
     expect(page).toContain("CYCLING STRENGTH SESSION PLANNER");
     expect(page).toContain("PLACEMENT_RULES");
     expect(page).toContain('<ToolLanding slug="strength-session-planner" />');
-    expect(page).toContain('href="/app"');
+    expect(page).toContain('href="/app?source=strength-session-planner"');
     expect(page).toContain('data-track="strength_placement_app"');
     expect(page).toMatch(/does not prescribe exercises/i);
     expect(layout).toContain('canonical: "/tools/strength-session-planner"');

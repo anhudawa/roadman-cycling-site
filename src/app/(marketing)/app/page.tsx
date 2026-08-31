@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { Suspense } from "react";
+import {
+  AppEarlyAccessCapture,
+  AppEarlyAccessCaptureFallback,
+} from "@/components/features/conversion/AppEarlyAccessCapture";
 import { Container, Footer, Header, Section } from "@/components/layout";
 import { Card, ScrollReveal } from "@/components/ui";
 import { FAQSchema } from "@/components/seo/FAQSchema";
@@ -150,18 +154,6 @@ const AUDIENCES = [
   "You already have a cycling plan and want strength and recovery fitted around it.",
 ] as const;
 
-function EarlyAccessCapture({ source }: { source: string }) {
-  return (
-    <EmailCapture
-      heading="GET EARLY ACCESS"
-      subheading="Get beta, launch and product-name updates first. Joining also includes Roadman's Saturday Spin newsletter; one click unsubscribes."
-      buttonText="JOIN EARLY ACCESS"
-      source={source}
-      className="border-coral/20 bg-charcoal/80 text-left shadow-[0_24px_80px_rgba(0,0,0,0.28)]"
-    />
-  );
-}
-
 export default function AppLandingPage() {
   return (
     <>
@@ -244,10 +236,17 @@ export default function AppLandingPage() {
                 <p className="mt-8 max-w-2xl text-lg leading-relaxed text-foreground-muted md:text-xl">
                   Roadman is building a cyclist-specific strength and recovery
                   app around the week you actually ride. It protects the bike,
-                  progresses the gym and tells you why today&apos;s work changed.
+                  progresses the gym and tells you why today&apos;s work
+                  changed.
                 </p>
                 <div className="mt-9 max-w-xl">
-                  <EarlyAccessCapture source="roadman-app-waitlist-hero" />
+                  <Suspense
+                    fallback={
+                      <AppEarlyAccessCaptureFallback placement="hero" />
+                    }
+                  >
+                    <AppEarlyAccessCapture placement="hero" />
+                  </Suspense>
                 </div>
                 <p className="mt-4 max-w-xl text-xs leading-relaxed text-foreground-subtle">
                   The final product name, launch date and subscription price
@@ -446,7 +445,9 @@ export default function AppLandingPage() {
                   style={{ fontSize: "var(--text-section)" }}
                 >
                   NO MAGIC SCORE.
-                  <span className="block text-coral">NO WELLNESS CHORE LIST.</span>
+                  <span className="block text-coral">
+                    NO WELLNESS CHORE LIST.
+                  </span>
                 </h2>
                 <p className="mt-5 leading-relaxed text-foreground-muted">
                   A recovery tool belongs in the week only when it has a job.
@@ -476,7 +477,9 @@ export default function AppLandingPage() {
                   style={{ fontSize: "var(--text-section)" }}
                 >
                   THE RULES ARE REVIEWED.
-                  <span className="block text-coral">THE REASON IS VISIBLE.</span>
+                  <span className="block text-coral">
+                    THE REASON IS VISIBLE.
+                  </span>
                 </h2>
                 <p className="mt-5 leading-relaxed text-foreground-muted">
                   Live prescriptions come from versioned coaching rules. The
@@ -577,7 +580,13 @@ export default function AppLandingPage() {
                 before they are.
               </p>
               <div className="mx-auto mt-8 max-w-xl">
-                <EarlyAccessCapture source="roadman-app-waitlist-bottom" />
+                <Suspense
+                  fallback={
+                    <AppEarlyAccessCaptureFallback placement="bottom" />
+                  }
+                >
+                  <AppEarlyAccessCapture placement="bottom" />
+                </Suspense>
               </div>
             </div>
           </Container>

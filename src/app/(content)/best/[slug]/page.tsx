@@ -151,9 +151,24 @@ export default async function BestForPage({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://roadmancycling.com" },
-            { "@type": "ListItem", position: 2, name: "Best", item: "https://roadmancycling.com/best" },
-            { "@type": "ListItem", position: 3, name: page.title, item: pageUrl },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://roadmancycling.com",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Best",
+              item: "https://roadmancycling.com/best",
+            },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: page.title,
+              item: pageUrl,
+            },
           ],
         }}
       />
@@ -185,7 +200,7 @@ export default async function BestForPage({
               {page.disclosure && (
                 <div className="mt-6 rounded-xl border border-coral/25 bg-coral/[0.08] p-4 text-sm leading-relaxed text-foreground-muted">
                   <span className="font-heading tracking-wider text-coral">
-                    COMMERCIAL DISCLOSURE: {" "}
+                    COMMERCIAL DISCLOSURE:{" "}
                   </span>
                   {page.disclosure}
                 </div>
@@ -238,26 +253,41 @@ export default async function BestForPage({
                   <Card className="p-6" hoverable={false}>
                     <div className="flex items-start gap-4">
                       <div className="shrink-0 w-10 h-10 rounded-full bg-coral/20 flex items-center justify-center">
-                        <span className="font-heading text-coral text-lg">{i + 1}</span>
+                        <span className="font-heading text-coral text-lg">
+                          {i + 1}
+                        </span>
                       </div>
                       <div className="flex-1">
-                        <h2 className="font-heading text-off-white text-xl mb-1">{pick.name}</h2>
-                        <p className="text-coral text-sm font-heading tracking-wider mb-2">{pick.verdict.toUpperCase()}</p>
-                        <p className="text-foreground-muted text-sm leading-relaxed mb-3">{pick.bestFor}</p>
+                        <h2 className="font-heading text-off-white text-xl mb-1">
+                          {pick.name}
+                        </h2>
+                        <p className="text-coral text-sm font-heading tracking-wider mb-2">
+                          {pick.verdict.toUpperCase()}
+                        </p>
+                        <p className="text-foreground-muted text-sm leading-relaxed mb-3">
+                          {pick.bestFor}
+                        </p>
                         {pick.strength && (
                           <p className="text-foreground-muted text-sm leading-relaxed mb-3">
-                            <span className="font-semibold text-off-white">Why it fits: </span>
+                            <span className="font-semibold text-off-white">
+                              Why it fits:{" "}
+                            </span>
                             {pick.strength}
                           </p>
                         )}
                         {pick.limitation && (
                           <p className="text-foreground-subtle text-sm leading-relaxed mb-4">
-                            <span className="font-semibold text-foreground-muted">Watch-out: </span>
+                            <span className="font-semibold text-foreground-muted">
+                              Watch-out:{" "}
+                            </span>
                             {pick.limitation}
                           </p>
                         )}
                         <div className="flex flex-wrap gap-x-5 gap-y-2">
-                          <Link href={pick.href} className="text-coral hover:text-coral/80 text-sm transition-colors">
+                          <Link
+                            href={pick.href}
+                            className="text-coral hover:text-coral/80 text-sm transition-colors"
+                          >
                             Roadman context →
                           </Link>
                           {pick.officialUrl && (
@@ -355,7 +385,11 @@ export default async function BestForPage({
                   {page.appCta.body}
                 </p>
                 <div className="mt-7">
-                  <Button href="/app" size="lg" dataTrack={`best_${slug}_app`}>
+                  <Button
+                    href={`/app?source=best-${slug}`}
+                    size="lg"
+                    dataTrack={`best_${slug}_app`}
+                  >
                     Join App Early Access
                   </Button>
                 </div>
@@ -368,7 +402,10 @@ export default async function BestForPage({
           <Section background="deep-purple" grain>
             <Container width="narrow">
               <ScrollReveal direction="up" className="mb-8">
-                <h2 className="font-heading text-off-white" style={{ fontSize: "var(--text-section)" }}>
+                <h2
+                  className="font-heading text-off-white"
+                  style={{ fontSize: "var(--text-section)" }}
+                >
                   FAQ
                 </h2>
               </ScrollReveal>
@@ -376,8 +413,12 @@ export default async function BestForPage({
                 {page.faq.map((f) => (
                   <ScrollReveal key={f.question} direction="up">
                     <Card className="p-5" hoverable={false}>
-                      <h3 className="font-heading text-off-white text-base mb-2">{f.question}</h3>
-                      <p className="text-foreground-muted text-sm leading-relaxed">{f.answer}</p>
+                      <h3 className="font-heading text-off-white text-base mb-2">
+                        {f.question}
+                      </h3>
+                      <p className="text-foreground-muted text-sm leading-relaxed">
+                        {f.answer}
+                      </p>
                     </Card>
                   </ScrollReveal>
                 ))}
@@ -390,9 +431,17 @@ export default async function BestForPage({
           <Section background="charcoal" className="!py-14">
             <Container width="narrow" className="text-center">
               <ScrollReveal direction="up">
-                <p className="font-heading text-coral text-xs tracking-widest mb-3">NOT SURE WHICH TO CHOOSE?</p>
-                <p className="text-off-white font-heading text-xl mb-4">A coach removes the guesswork.</p>
-                <Button href="/apply" size="lg" dataTrack={`best_${slug}_apply`}>
+                <p className="font-heading text-coral text-xs tracking-widest mb-3">
+                  NOT SURE WHICH TO CHOOSE?
+                </p>
+                <p className="text-off-white font-heading text-xl mb-4">
+                  A coach removes the guesswork.
+                </p>
+                <Button
+                  href="/apply"
+                  size="lg"
+                  dataTrack={`best_${slug}_apply`}
+                >
                   Apply for Coaching
                 </Button>
               </ScrollReveal>
@@ -405,7 +454,10 @@ export default async function BestForPage({
           <Container width="narrow">
             <ScrollReveal direction="up">
               <SourceMethodology
-                methodology={page.methodology ?? `Picks are ranked by fit-to-rider, not affiliate revenue. We weight personalisation, time-efficiency, and accountability for amateur cyclists. Where reasonable people disagree, we say so.`}
+                methodology={
+                  page.methodology ??
+                  `Picks are ranked by fit-to-rider, not affiliate revenue. We weight personalisation, time-efficiency, and accountability for amateur cyclists. Where reasonable people disagree, we say so.`
+                }
                 episodes={page.officialSources ? undefined : sourceEpisodes}
                 articles={page.officialSources ? undefined : sourceArticles}
                 research={page.officialSources}

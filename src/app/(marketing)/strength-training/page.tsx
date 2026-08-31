@@ -54,9 +54,21 @@ const whatsIncluded = [
 ];
 
 const results = [
-  { stat: "8–15%", label: "power increase in 12 weeks", source: "Rønnestad et al., 2010" },
-  { stat: "4–5%", label: "improvement in cycling economy", source: "Rønnestad et al., 2010" },
-  { stat: "17%", label: "longer time to exhaustion", source: "Sunde et al., 2010" },
+  {
+    stat: "8–15%",
+    label: "power increase in 12 weeks",
+    source: "Rønnestad et al., 2010",
+  },
+  {
+    stat: "4–5%",
+    label: "improvement in cycling economy",
+    source: "Rønnestad et al., 2010",
+  },
+  {
+    stat: "17%",
+    label: "longer time to exhaustion",
+    source: "Sunde et al., 2010",
+  },
 ];
 
 export default function StrengthTrainingPage() {
@@ -67,8 +79,18 @@ export default function StrengthTrainingPage() {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://roadmancycling.com" },
-            { "@type": "ListItem", position: 2, name: "Strength Training", item: "https://roadmancycling.com/strength-training" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://roadmancycling.com",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Strength Training",
+              item: "https://roadmancycling.com/strength-training",
+            },
           ],
         }}
       />
@@ -153,7 +175,7 @@ export default function StrengthTrainingPage() {
                 </p>
               </div>
               <Button
-                href="/app"
+                href="/app?source=strength-plan"
                 variant="outline"
                 className="shrink-0"
                 dataTrack="strength_plan_app_early_access"
@@ -183,16 +205,16 @@ export default function StrengthTrainingPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {results.map((r, i) => (
                 <ScrollReveal key={r.stat} direction="up" delay={i * 0.1}>
-                  <Card className="p-8 text-center h-full" glass hoverable={false}>
+                  <Card
+                    className="p-8 text-center h-full"
+                    glass
+                    hoverable={false}
+                  >
                     <p className="font-heading text-5xl text-coral mb-2">
                       {r.stat}
                     </p>
-                    <p className="text-off-white font-medium mb-3">
-                      {r.label}
-                    </p>
-                    <p className="text-xs text-foreground-subtle">
-                      {r.source}
-                    </p>
+                    <p className="text-off-white font-medium mb-3">{r.label}</p>
+                    <p className="text-xs text-foreground-subtle">{r.source}</p>
                   </Card>
                 </ScrollReveal>
               ))}
@@ -209,24 +231,27 @@ export default function StrengthTrainingPage() {
                   className="font-heading text-off-white mb-6"
                   style={{ fontSize: "var(--text-section)" }}
                 >
-                  <GradientText as="span">MOST STRENGTH PLANS AREN&apos;T MADE FOR CYCLISTS.</GradientText>
+                  <GradientText as="span">
+                    MOST STRENGTH PLANS AREN&apos;T MADE FOR CYCLISTS.
+                  </GradientText>
                 </h2>
                 <div className="space-y-4 text-foreground-muted leading-relaxed">
                   <p>
-                    They&apos;re built by gym bros who&apos;ve never touched a bike,
-                    or they pile on movements that leave you too sore to ride.
-                    Bodybuilding splits that add bulk you don&apos;t need. CrossFit
-                    WODs that wreck your legs before Tuesday&apos;s intervals.
+                    They&apos;re built by gym bros who&apos;ve never touched a
+                    bike, or they pile on movements that leave you too sore to
+                    ride. Bodybuilding splits that add bulk you don&apos;t need.
+                    CrossFit WODs that wreck your legs before Tuesday&apos;s
+                    intervals.
                   </p>
                   <p>
-                    This plan is different — because it&apos;s built by cyclists,
-                    for cyclists. We target the exact muscles and movement patterns
-                    that drive better cycling. It&apos;s all periodised, progressive,
-                    and aligned with your riding.
+                    This plan is different — because it&apos;s built by
+                    cyclists, for cyclists. We target the exact muscles and
+                    movement patterns that drive better cycling. It&apos;s all
+                    periodised, progressive, and aligned with your riding.
                   </p>
                   <p className="text-off-white font-medium">
-                    You won&apos;t just feel stronger in the gym — you&apos;ll feel
-                    faster, more stable, and pain-free on the bike.
+                    You won&apos;t just feel stronger in the gym — you&apos;ll
+                    feel faster, more stable, and pain-free on the bike.
                   </p>
                 </div>
               </ScrollReveal>
@@ -248,7 +273,9 @@ export default function StrengthTrainingPage() {
                         key={item}
                         className="flex items-start gap-2 text-sm text-foreground-muted"
                       >
-                        <span className="text-coral mt-0.5 shrink-0">&#10003;</span>
+                        <span className="text-coral mt-0.5 shrink-0">
+                          &#10003;
+                        </span>
                         {item}
                       </li>
                     ))}
@@ -290,7 +317,12 @@ export default function StrengthTrainingPage() {
             <div className="max-w-4xl mx-auto space-y-4">
               {whatsIncluded.map((item, i) => (
                 <ScrollReveal key={item.title} direction="up" delay={i * 0.06}>
-                  <Card className="p-6 card-shimmer group" glass tilt tiltStrength={4}>
+                  <Card
+                    className="p-6 card-shimmer group"
+                    glass
+                    tilt
+                    tiltStrength={4}
+                  >
                     <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-8">
                       <div className="shrink-0">
                         <span className="font-heading text-4xl text-coral/40 group-hover:text-coral transition-colors duration-300">
@@ -332,8 +364,13 @@ export default function StrengthTrainingPage() {
 
             <div className="grid md:grid-cols-2 gap-8">
               <ScrollReveal direction="left">
-                <Card className="p-6 h-full border-l-2 border-l-coral" hoverable={false}>
-                  <h3 className="font-heading text-lg text-coral mb-4">YES, IF YOU...</h3>
+                <Card
+                  className="p-6 h-full border-l-2 border-l-coral"
+                  hoverable={false}
+                >
+                  <h3 className="font-heading text-lg text-coral mb-4">
+                    YES, IF YOU...
+                  </h3>
                   <ul className="space-y-3">
                     {[
                       "Ride regularly but do zero strength work",
@@ -343,8 +380,13 @@ export default function StrengthTrainingPage() {
                       "Have tried gym plans that didn't stick or didn't transfer",
                       "Are over 30 and notice the power isn't where it was",
                     ].map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm text-foreground-muted">
-                        <span className="text-coral mt-0.5 shrink-0">&#10003;</span>
+                      <li
+                        key={item}
+                        className="flex items-start gap-2 text-sm text-foreground-muted"
+                      >
+                        <span className="text-coral mt-0.5 shrink-0">
+                          &#10003;
+                        </span>
                         {item}
                       </li>
                     ))}
@@ -353,16 +395,26 @@ export default function StrengthTrainingPage() {
               </ScrollReveal>
 
               <ScrollReveal direction="right">
-                <Card className="p-6 h-full border-l-2 border-l-foreground-subtle" hoverable={false}>
-                  <h3 className="font-heading text-lg text-foreground-subtle mb-4">NOT IF YOU...</h3>
+                <Card
+                  className="p-6 h-full border-l-2 border-l-foreground-subtle"
+                  hoverable={false}
+                >
+                  <h3 className="font-heading text-lg text-foreground-subtle mb-4">
+                    NOT IF YOU...
+                  </h3>
                   <ul className="space-y-3">
                     {[
                       "Already follow a structured S&C plan from a coach",
                       "Are looking for a bodybuilding or muscle-gain programme",
                       "Want a personal coaching service (this is self-guided)",
                     ].map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm text-foreground-muted">
-                        <span className="text-foreground-subtle mt-0.5 shrink-0">&times;</span>
+                      <li
+                        key={item}
+                        className="flex items-start gap-2 text-sm text-foreground-muted"
+                      >
+                        <span className="text-foreground-subtle mt-0.5 shrink-0">
+                          &times;
+                        </span>
                         {item}
                       </li>
                     ))}
@@ -400,7 +452,10 @@ export default function StrengthTrainingPage() {
                   detail: "Age 56",
                 },
               ].map((t, i) => (
-                <ScrollReveal key={t.name + i} direction={i % 2 === 0 ? "left" : "right"}>
+                <ScrollReveal
+                  key={t.name + i}
+                  direction={i % 2 === 0 ? "left" : "right"}
+                >
                   <Card className="p-6" glass hoverable={false}>
                     <p className="text-foreground-muted italic leading-relaxed mb-4">
                       &ldquo;{t.quote}&rdquo;
@@ -429,18 +484,17 @@ export default function StrengthTrainingPage() {
               className="font-heading text-off-white mb-4"
               style={{ fontSize: "var(--text-section)" }}
             >
-              STRONGER ON THE BIKE.<br />STARTING THIS WEEK.
+              STRONGER ON THE BIKE.
+              <br />
+              STARTING THIS WEEK.
             </h2>
             <p className="text-off-white/80 max-w-lg mx-auto mb-2">
-              12-week training plan. Instructional videos. Stretching guide. Core
-              guide. Goal setting audio. Everything you need — nothing you don&apos;t.
+              12-week training plan. Instructional videos. Stretching guide.
+              Core guide. Goal setting audio. Everything you need — nothing you
+              don&apos;t.
             </p>
-            <p className="font-heading text-5xl text-off-white my-8">
-              $65
-            </p>
-            <CheckoutButton>
-              Get the Plan
-            </CheckoutButton>
+            <p className="font-heading text-5xl text-off-white my-8">$65</p>
+            <CheckoutButton>Get the Plan</CheckoutButton>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6 text-off-white/60 text-sm">
               <span>One-time payment</span>
               <span className="hidden sm:inline">&middot;</span>

@@ -4,26 +4,25 @@ import { resolve } from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 
-vi.mock("@/components/features/conversion/EmailCapture", () => ({
-  EmailCapture: ({
-    heading,
-    source,
-  }: {
-    heading: string;
-    source: string;
-  }) => <form data-source={source}>{heading}</form>,
+vi.mock("@/components/features/conversion/AppEarlyAccessCapture", () => ({
+  AppEarlyAccessCapture: ({ placement }: { placement: string }) => (
+    <form data-source={`roadman-app-waitlist-${placement}`}>
+      GET EARLY ACCESS
+    </form>
+  ),
+  AppEarlyAccessCaptureFallback: ({ placement }: { placement: string }) => (
+    <form data-source={`roadman-app-waitlist-${placement}`}>
+      GET EARLY ACCESS
+    </form>
+  ),
 }));
 
 vi.mock("@/components/layout", () => ({
   Header: () => <header>HEADER</header>,
   Footer: () => <footer>FOOTER</footer>,
-  Section: ({
-    children,
-    id,
-  }: {
-    children: React.ReactNode;
-    id?: string;
-  }) => <section id={id}>{children}</section>,
+  Section: ({ children, id }: { children: React.ReactNode; id?: string }) => (
+    <section id={id}>{children}</section>
+  ),
   Container: ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
   ),
@@ -120,13 +119,30 @@ describe("Roadman strength and recovery app search owner", () => {
     }
 
     expect(benchmark.metadata.prompt_count).toBe(benchmark.prompts.length);
+    const appCategoryPrompts = benchmark.prompts.filter(
+      (prompt) => prompt.id >= 319 && prompt.id <= 326,
+    );
+    expect(appCategoryPrompts.map((prompt) => prompt.id)).toEqual(
+      Array.from({ length: 8 }, (_, index) => 319 + index),
+    );
     expect(
-      benchmark.prompts.filter((prompt) => prompt.id >= 319 && prompt.id <= 326),
-    ).toMatchObject(
-      Array.from({ length: 8 }, (_, index) => ({
-        id: 319 + index,
-        target_page: "/app",
-      })),
+      appCategoryPrompts.filter((prompt) => prompt.target_page === "/app"),
+    ).toHaveLength(5);
+    expect(appCategoryPrompts).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: 319,
+          target_page: "/best/best-cycling-strength-training-apps",
+        }),
+        expect.objectContaining({
+          id: 321,
+          target_page: "/best/best-cycling-recovery-apps",
+        }),
+        expect.objectContaining({
+          id: 324,
+          target_page: "/best/best-cycling-apps-structured-training",
+        }),
+      ]),
     );
   });
 });

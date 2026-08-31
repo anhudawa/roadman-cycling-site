@@ -37,18 +37,22 @@ describe("app commercial search owners", () => {
       expect(page?.methodology, slug).toContain("desk-based");
       expect(page?.disclosure, slug).toContain("Roadman");
       expect(page?.appCta?.body, slug).toContain("/app");
-      expect(page?.picks.some((pick) => /Roadman/i.test(pick.name)), slug).toBe(
-        false,
-      );
+      expect(
+        page?.picks.some((pick) => /Roadman/i.test(pick.name)),
+        slug,
+      ).toBe(false);
 
       for (const pick of page?.picks ?? []) {
-        expect(pick.officialUrl, `${slug}: ${pick.name}`).toMatch(/^https:\/\//);
+        expect(pick.officialUrl, `${slug}: ${pick.name}`).toMatch(
+          /^https:\/\//,
+        );
         expect(pick.strength?.length, `${slug}: ${pick.name}`).toBeGreaterThan(
           80,
         );
-        expect(pick.limitation?.length, `${slug}: ${pick.name}`).toBeGreaterThan(
-          60,
-        );
+        expect(
+          pick.limitation?.length,
+          `${slug}: ${pick.name}`,
+        ).toBeGreaterThan(60);
       }
     }
   });
@@ -74,7 +78,7 @@ describe("app commercial search owners", () => {
     expect(route).toContain("COMMERCIAL DISCLOSURE");
     expect(route).toContain("Verify on official site");
     expect(route).toContain("research={page.officialSources}");
-    expect(route).toContain('href="/app"');
+    expect(route).toContain("href={`/app?source=best-${slug}`}");
     expect(route).not.toContain("EmailCapture");
 
     for (const slug of APP_GUIDE_SLUGS) {
@@ -102,8 +106,9 @@ describe("app commercial search owners", () => {
     ) as { prompts: Array<{ id: number; target_page: string }> };
 
     for (const [id, owner] of Object.entries(APP_COMPARISON_PROMPT_OWNERS)) {
-      expect(benchmark.prompts.find((prompt) => prompt.id === Number(id)))
-        .toMatchObject({ target_page: owner });
+      expect(
+        benchmark.prompts.find((prompt) => prompt.id === Number(id)),
+      ).toMatchObject({ target_page: owner });
     }
   });
 

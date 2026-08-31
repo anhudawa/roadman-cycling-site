@@ -476,7 +476,7 @@ export default function TrainingReadinessPage() {
                 riding plan.
               </p>
               <Link
-                href="/app"
+                href="/app?source=training-readiness"
                 className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
                 data-track="tool_training_readiness_app"
               >

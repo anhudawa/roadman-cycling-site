@@ -12,24 +12,24 @@
 
 ## Search ownership
 
-| Search job | Canonical owner |
-| --- | --- |
-| App, product, early access and launch | `/app` |
-| Broad strength evidence and programming | `/blog/cycling-strength-training-guide` |
-| Strength research navigation | `/topics/cycling-strength-conditioning` |
-| Broad recovery education | `/topics/cycling-recovery` |
-| Daily readiness self-check | `/tools/training-readiness` |
-| Deeper recovery screen | `/tools/recovery-screen` |
-| Current one-off 12-week strength product | `/strength-training` |
+| Search job                               | Canonical owner                         |
+| ---------------------------------------- | --------------------------------------- |
+| App, product, early access and launch    | `/app`                                  |
+| Broad strength evidence and programming  | `/blog/cycling-strength-training-guide` |
+| Strength research navigation             | `/topics/cycling-strength-conditioning` |
+| Broad recovery education                 | `/topics/cycling-recovery`              |
+| Daily readiness self-check               | `/tools/training-readiness`             |
+| Deeper recovery screen                   | `/tools/recovery-screen`                |
+| Current one-off 12-week strength product | `/strength-training`                    |
 
 ### Commercial discovery owners
 
-| Search job | Canonical owner | Boundary |
-| --- | --- | --- |
-| Best cycling training apps | `/best/best-cycling-training-apps` | Broad job-based market comparison; does not own Roadman product or launch intent. |
-| Best cycling strength training apps / cycling app with gym work | `/best/best-cycling-strength-training-apps` | Available cycling-specific strength products and bike-week placement. |
-| Best cycling recovery apps / cycling readiness app | `/best/best-cycling-recovery-apps` | Recovery inputs, correction and the next training action. |
-| Best masters cycling app / masters strength app | `/best/best-cycling-apps-structured-training` | Masters-specific intensity density, recovery context and strength support. |
+| Search job                                                      | Canonical owner                               | Boundary                                                                          |
+| --------------------------------------------------------------- | --------------------------------------------- | --------------------------------------------------------------------------------- |
+| Best cycling training apps                                      | `/best/best-cycling-training-apps`            | Broad job-based market comparison; does not own Roadman product or launch intent. |
+| Best cycling strength training apps / cycling app with gym work | `/best/best-cycling-strength-training-apps`   | Available cycling-specific strength products and bike-week placement.             |
+| Best cycling recovery apps / cycling readiness app              | `/best/best-cycling-recovery-apps`            | Recovery inputs, correction and the next training action.                         |
+| Best masters cycling app / masters strength app                 | `/best/best-cycling-apps-structured-training` | Masters-specific intensity density, recovery context and strength support.        |
 
 Every commercial discovery page links to the permanent `/app` owner. The unreleased Roadman app is disclosed but excluded from rankings until it is available and can be tested. Product name, price, launch date and App Store claims remain exclusive to `/app` after approval.
 
@@ -53,6 +53,12 @@ Every commercial discovery page links to the permanent `/app` owner. The unrelea
 - Turn the existing readiness and recovery tools into the acquisition path for `/app`.
 - Build a public strength-placement planner around time available, ride priority and gym-day conflicts.
 - Publish web-to-app route contracts so every useful web result can deep-link to the matching app action at launch.
+
+**Implemented 2026-08-31:** the readiness, recovery and strength-placement tools
+route into the single app owner; all current strength, recovery, masters and app
+comparison handoffs preserve an approved acquisition source; and the launch
+deep-link contract is recorded in
+`docs/seo/app-web-to-app-route-contracts-2026-08-31.md`.
 
 ### Release 4 — week two
 

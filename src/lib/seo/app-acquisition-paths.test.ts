@@ -16,12 +16,19 @@ describe("strength and recovery app acquisition paths", () => {
   const recoveryLayout = read(
     "src/app/(content)/tools/recovery-screen/layout.tsx",
   );
+  const plannerPage = read(
+    "src/app/(content)/tools/strength-session-planner/page.tsx",
+  );
 
-  it("routes both product-adjacent tools into the permanent app owner", () => {
-    expect(readinessPage).toContain('href="/app"');
+  it("routes every product-adjacent tool into the permanent app owner with source attribution", () => {
+    expect(readinessPage).toContain('href="/app?source=training-readiness"');
     expect(readinessPage).toContain('data-track="tool_training_readiness_app"');
-    expect(recoveryPage).toContain('href="/app"');
+    expect(recoveryPage).toContain('href="/app?source=recovery-screen"');
     expect(recoveryPage).toContain('data-track="tool_recovery_screen_app"');
+    expect(plannerPage).toContain(
+      'href="/app?source=strength-session-planner"',
+    );
+    expect(plannerPage).toContain('data-track="strength_placement_app"');
   });
 
   it("states that the web scores are heuristic rather than validated prescriptions", () => {
@@ -53,13 +60,40 @@ describe("strength and recovery app acquisition paths", () => {
     }
   });
 
-  it("links the two strongest trusted strength owners to the app", () => {
-    for (const path of [
-      "content/blog/cycling-strength-training-guide.mdx",
-      "content/blog/cycling-gym-exercises-best.mdx",
-    ]) {
-      expect(read(path)).toContain("](/app)");
+  it("attributes every strength, recovery and masters education handoff", () => {
+    const handoffs = {
+      "content/blog/cycling-active-recovery-rides-guide.mdx":
+        "/app?source=active-recovery-guide",
+      "content/blog/cycling-gym-exercises-best.mdx":
+        "/app?source=gym-exercises",
+      "content/blog/cycling-recovery-tips.mdx": "/app?source=recovery-guide",
+      "content/blog/cycling-strength-training-guide.mdx":
+        "/app?source=strength-guide",
+      "content/blog/cycling-time-crunched-training-guide.mdx":
+        "/app?source=time-crunched-guide",
+      "content/topics/cycling-recovery.mdx": "/app?source=recovery-hub",
+      "content/topics/cycling-strength-conditioning.mdx":
+        "/app?source=strength-hub",
+      "content/topics/masters-cycling.mdx": "/app?source=masters-hub",
+    } as const;
+
+    for (const [path, href] of Object.entries(handoffs)) {
+      expect(read(path), path).toContain(`](${href})`);
     }
+  });
+
+  it("keeps every attributed capture inside one Beehiiv audience", () => {
+    const segmentation = read("src/lib/newsletter/beehiiv-segmentation.ts");
+    const acquisition = read("src/lib/app-acquisition.ts");
+
+    expect(segmentation).toContain('APP_WAITLIST_TAG = "app-waitlist"');
+    expect(segmentation).toContain(
+      "source.startsWith(APP_WAITLIST_SOURCE_PREFIX)",
+    );
+    expect(acquisition).toContain("normaliseAppAcquisitionSource");
+    expect(acquisition).toContain(
+      "roadman-app-waitlist-${source}-${placement}",
+    );
   });
 
   it("routes authoritative education pages into each commercial comparison owner", () => {
