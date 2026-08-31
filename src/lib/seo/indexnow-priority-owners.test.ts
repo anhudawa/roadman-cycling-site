@@ -67,4 +67,19 @@ describe("IndexNow priority search owners", () => {
       expect(source).toContain(`\`https://\${HOST}${path}\``);
     }
   });
+
+  it("keeps the current GPS-watch owner and every Tour stage in recrawl coverage", () => {
+    const source = readFileSync(
+      resolve(process.cwd(), "scripts/submit-indexnow.ts"),
+      "utf8",
+    );
+
+    expect(source).toContain(
+      "`https://${HOST}/blog/gps-watches-cycling-running-guide`",
+    );
+    expect(source).toContain("...TOUR_STAGES.map(");
+    expect(source).toContain(
+      "`https://${HOST}/tour-de-france/stage/${stage.number}`",
+    );
+  });
 });

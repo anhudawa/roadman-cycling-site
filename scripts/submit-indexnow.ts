@@ -36,6 +36,7 @@ import {
   getBlogArchivePageCount,
 } from "../src/lib/seo/blog-archive-pagination";
 import { getAllEventGuideSlugs } from "../src/lib/event-guides";
+import { TOUR_STAGES } from "../src/data/tour-de-france-2026";
 
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry") || args.includes("--dry-run");
@@ -106,11 +107,9 @@ const CURATED: string[] = [
   `https://${HOST}/blog/tdf-2026-contenders-preparation-lessons`,
   `https://${HOST}/blog/paul-seixas-tour-de-france-2026-youngest-contender`,
   `https://${HOST}/tour-de-france`,
-  `https://${HOST}/tour-de-france/stage/1`,
-  `https://${HOST}/tour-de-france/stage/11`,
-  `https://${HOST}/tour-de-france/stage/13`,
-  `https://${HOST}/tour-de-france/stage/14`,
-  `https://${HOST}/tour-de-france/stage/18`,
+  ...TOUR_STAGES.map(
+    (stage) => `https://${HOST}/tour-de-france/stage/${stage.number}`,
+  ),
   `https://${HOST}/guests/jonas-abrahamsen`,
   `https://${HOST}/experts/jonas-abrahamsen`,
   `https://${HOST}/podcast/ep-29-untold-story-ofjonas-abrahamsens-pro-winter-training`,
@@ -175,6 +174,7 @@ const CURATED: string[] = [
   `https://${HOST}/blog/breitling-top-time-eddy-merckx-cycling-watch`,
   `https://${HOST}/blog/breitling-top-time-coppi-bartali-cycling-rivalry`,
   `https://${HOST}/blog/casio-f91w-ten-mile-time-trial-cycling`,
+  `https://${HOST}/blog/gps-watches-cycling-running-guide`,
 
   // Geo coaching
   `https://${HOST}/coaching/ireland`,
