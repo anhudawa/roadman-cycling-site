@@ -1113,7 +1113,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "masters-recovery-audit-seven-things-to-check",
     "more-volume-getting-slower-cycling-overtraining",
     "post-ride-recovery-window-cyclists-over-40",
-    "recovery-for-cyclists-world-tour-protocols",
     "travel-fatigue-cycling-pre-event-protocol",
     "energy-availability-red-s-cyclists-guide",
     "training-load-management-cyclists-guide",

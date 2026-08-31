@@ -81,6 +81,7 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "cycling-heat-illness-prevention-guide",
   "heat-tolerance-ageing-cyclist",
   "cycling-active-recovery-rides-guide",
+  "cycling-recovery-tips",
   "best-recovery-foods-after-cycling",
   "cycling-recovery-week-what-to-actually-do",
   "cycling-fatigue-signs-when-to-back-off",

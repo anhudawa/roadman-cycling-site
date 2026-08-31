@@ -155,6 +155,14 @@ const nextConfig: NextConfig = {
         destination: "/blog/cycling-fatigue-signs-when-to-back-off",
         permanent: true,
       },
+      // GSC (latest three months): the two broad recovery guides split 73
+      // clicks, 7,863 web impressions and 1,841 Google AI impressions. Merge
+      // the later World Tour page into the shorter, query-matched owner.
+      {
+        source: "/blog/recovery-for-cyclists-world-tour-protocols",
+        destination: "/blog/cycling-recovery-tips",
+        permanent: true,
+      },
       // Search Console shows the rides guide already owns the active-recovery
       // query history. Retire the three later broad duplicates and consolidate
       // their links on the reviewed, evidence-bounded owner.
