@@ -325,6 +325,27 @@ export default function PressPage() {
               </p>
             </ScrollReveal>
 
+            <div className="mb-8 rounded-xl border border-coral/30 bg-coral/[0.06] p-6 md:p-8">
+              <p className="font-heading text-xs tracking-widest text-coral">
+                NEW ORIGINAL DATA
+              </p>
+              <h3 className="mt-2 font-heading text-2xl text-off-white">
+                818-RECORD CYCLING PODCAST ARCHIVE STUDY
+              </h3>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-foreground-muted">
+                A citable, versioned snapshot of Roadman&apos;s searchable podcast
+                archive covering publication mix, episode format, named guests
+                and transcript availability. The methodology and CSV are open
+                for editorial use under CC BY 4.0.
+              </p>
+              <Link
+                href="/research/cycling-podcast-archive-study"
+                className="mt-5 inline-flex rounded-md bg-coral px-4 py-2 font-heading text-sm text-off-white transition-colors hover:bg-coral/90"
+              >
+                Open report and CSV →
+              </Link>
+            </div>
+
             <div className="grid md:grid-cols-2 gap-4">
               {pitchAngles.map((a, i) => (
                 <ScrollReveal key={a.title} direction="up" delay={i * 0.06}>

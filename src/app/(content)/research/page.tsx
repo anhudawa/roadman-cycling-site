@@ -162,6 +162,35 @@ export default function ResearchPage() {
                 </a>
               </div>
             </div>
+            <div className="max-w-4xl mx-auto mb-8 rounded-xl border border-purple/40 bg-purple/[0.08] p-6 md:p-8">
+              <p className="text-coral font-heading text-xs tracking-widest mb-2">
+                ORIGINAL MEDIA DATA
+              </p>
+              <h2 className="font-heading text-off-white text-xl md:text-2xl mb-3">
+                CYCLING PODCAST ARCHIVE STUDY 2026
+              </h2>
+              <p className="text-foreground-muted text-sm leading-relaxed mb-5">
+                A frozen snapshot of 818 searchable Roadman episode records:
+                publication year, editorial pillar, format, 161 unique named
+                guests and transcript availability. Includes a reproducible
+                method, limits and downloadable CSV.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/research/cycling-podcast-archive-study"
+                  className="inline-flex items-center rounded-md bg-coral px-4 py-2 font-heading text-sm text-off-white hover:bg-coral/90 transition-colors"
+                >
+                  Read the study →
+                </Link>
+                <a
+                  href="/data/roadman-podcast-archive-2026.csv"
+                  download
+                  className="inline-flex items-center rounded-md border border-white/15 px-4 py-2 font-heading text-sm text-off-white hover:border-coral/50 transition-colors"
+                >
+                  Download CSV →
+                </a>
+              </div>
+            </div>
             <div className="space-y-8 max-w-4xl mx-auto">
               {RESEARCH_AREAS.map((area, i) => (
                 <ScrollReveal key={area.title} direction="up" delay={i * 0.04}>
