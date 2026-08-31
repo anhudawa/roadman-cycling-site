@@ -77,6 +77,7 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "cycling-heat-illness-prevention-guide",
   "heat-tolerance-ageing-cyclist",
   "cycling-active-recovery-rides-guide",
+  "cycling-vitamin-d-performance-guide",
   "cycling-hydration-guide",
   "cycling-electrolytes-sweat-rate-testing-guide",
   "electrolytes-sweat-rate-cycling",

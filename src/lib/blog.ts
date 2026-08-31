@@ -34,6 +34,13 @@ export interface ExpertSource {
   href?: string;
 }
 
+export interface ReviewedSource {
+  name: string;
+  href: string;
+  publisher?: string;
+  note?: string;
+}
+
 export interface HowToStepItem {
   name: string;
   text: string;
@@ -99,6 +106,11 @@ export interface BlogFrontmatter {
   // publishDate when omitted.
   reviewedBy?: string;
   lastReviewed?: string;
+  // Primary references checked during the latest editorial review. Rendered
+  // as visible outbound citations in the article trust block so readers and
+  // retrieval systems can inspect the evidence rather than infer it from a
+  // generic review label.
+  reviewedSources?: ReviewedSource[];
   // Optional structured claim table — rendered after the AnswerCapsule
   // and before the article body when present. Each row is a claim →
   // Roadman position → evidence source → practical implication, with

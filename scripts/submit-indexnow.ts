@@ -466,6 +466,16 @@ const ACTIVE_RECOVERY_ANSWER_TRUST_CLUSTER = [
   "am-i-fully-recovered",
 ];
 
+// Evidence-led vitamin D owner plus the wider supplement and bone-health
+// context it points into. Submit them together after a medical-claim review so
+// crawlers see the corrected dose, testing and performance boundaries across
+// the cluster rather than refreshing the owner in isolation.
+const VITAMIN_D_TRUST_CLUSTER = [
+  "cycling-vitamin-d-performance-guide",
+  "supplements-cyclists-what-works-guide",
+  "bone-density-cycling-running-deep-dive",
+];
+
 // One broad hydration owner, two distinct measurement/product specialists and
 // one pre-event sodium evidence review. Submit the reviewed answer and tool
 // routes with them so crawlers see a consistent knowledge graph.
@@ -635,6 +645,8 @@ async function main() {
   clusterUrls(TRAINING_CAMP_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(HEAT_TRAINING_TRUST_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(ACTIVE_RECOVERY_TRUST_CLUSTER).forEach((u) => urls.add(u));
+  clusterUrls(VITAMIN_D_TRUST_CLUSTER).forEach((u) => urls.add(u));
+  urls.add(`https://${HOST}/topics/cycling-nutrition`);
   clusterUrls(HYDRATION_TRUST_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(CRAMP_TRUST_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(COMPARISON_CLUSTER).forEach((u) => urls.add(u));

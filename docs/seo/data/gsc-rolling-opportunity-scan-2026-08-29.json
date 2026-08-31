@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 1,
+  "kind": "rolling-opportunity-scan",
+  "property": "sc-domain:roadmancycling.com",
+  "capturedAt": "2026-08-31",
+  "dataThrough": "2026-08-29",
+  "periods": {
+    "current": {
+      "start": "2026-08-02",
+      "end": "2026-08-29",
+      "days": 28
+    },
+    "previous": {
+      "start": "2026-07-05",
+      "end": "2026-08-01",
+      "days": 28
+    }
+  },
+  "site": {
+    "current": {
+      "clicks": 41437,
+      "impressions": 3052259,
+      "ctr": 0.014,
+      "position": 8.1
+    },
+    "previous": {
+      "clicks": 37245,
+      "impressions": 2756372,
+      "ctr": 0.014,
+      "position": 7.2
+    }
+  },
+  "cyclingIntentFilter": {
+    "match": "custom-regex",
+    "expression": "(?i)(cycling|cyclist|bike|bicycle|podcast|coach|coaching|masters|training|sportive|camp|strength|recovery|ftp|vo2|peloton|zwift|rouvy|garmin|wahoo)",
+    "current": {
+      "clicks": 4799,
+      "impressions": 242633,
+      "ctr": 0.02,
+      "position": 11.4
+    },
+    "previous": {
+      "clicks": 4438,
+      "impressions": 316157,
+      "ctr": 0.014,
+      "position": 8.7
+    },
+    "warning": "Google marks filtered totals and tables as potentially partial. Use this scope for opportunity direction, not as a substitute for exact owner-page checkpoints."
+  },
+  "generativeAiFeatures": {
+    "currentImpressions": 709185,
+    "previousImpressions": 552021,
+    "topCurrentPages": [
+      {
+        "path": "/blog/age-group-ftp-benchmarks-2026",
+        "currentImpressions": 16744,
+        "previousImpressions": 18907
+      },
+      {
+        "path": "/tools/shock-pressure",
+        "currentImpressions": 14826,
+        "previousImpressions": 11331
+      },
+      {
+        "path": "/answers/should-cyclists-take-creatine",
+        "currentImpressions": 13838,
+        "previousImpressions": 296
+      },
+      {
+        "path": "/blog/running-cycling-conversion-calculator",
+        "currentImpressions": 11389,
+        "previousImpressions": 7395
+      },
+      {
+        "path": "/blog/ftp-benchmarks-by-age-and-experience",
+        "currentImpressions": 9336,
+        "previousImpressions": 12071
+      },
+      {
+        "path": "/blog/rouvy-vs-zwift",
+        "currentImpressions": 8060,
+        "previousImpressions": 6502
+      }
+    ]
+  },
+  "opportunities": {
+    "queries": [
+      {
+        "query": "cycling nutrition calculator",
+        "currentClicks": 19,
+        "currentImpressions": 3578,
+        "previousClicks": 44,
+        "previousImpressions": 5534
+      },
+      {
+        "query": "bike fitting guide",
+        "currentClicks": 2,
+        "currentImpressions": 2758,
+        "previousClicks": 2,
+        "previousImpressions": 5661
+      },
+      {
+        "query": "domestique cycling",
+        "currentClicks": 4,
+        "currentImpressions": 1887,
+        "previousClicks": 14,
+        "previousImpressions": 2959
+      },
+      {
+        "query": "ftp calculator",
+        "currentClicks": 13,
+        "currentImpressions": 1448,
+        "previousClicks": 18,
+        "previousImpressions": 1592
+      },
+      {
+        "query": "time crunched cyclist",
+        "currentClicks": 12,
+        "currentImpressions": 1332,
+        "previousClicks": 11,
+        "previousImpressions": 921
+      },
+      {
+        "query": "bike gear ratio calculator",
+        "currentClicks": 53,
+        "currentImpressions": 1203,
+        "previousClicks": 2,
+        "previousImpressions": 87
+      }
+    ],
+    "pages": [
+      {
+        "path": "/blog/wahoo-vs-garmin-cycling-computers",
+        "currentClicks": 383,
+        "currentImpressions": 7407,
+        "previousClicks": 552,
+        "previousImpressions": 7688
+      },
+      {
+        "path": "/blog/gps-watches-cycling-running-guide",
+        "currentClicks": 34,
+        "currentImpressions": 7376,
+        "previousClicks": 19,
+        "previousImpressions": 1626
+      },
+      {
+        "path": "/blog/cycling-vitamin-d-performance-guide",
+        "currentClicks": 10,
+        "currentImpressions": 7085,
+        "previousClicks": 2,
+        "previousImpressions": 1515,
+        "currentCtr": 0.001,
+        "previousCtr": 0.001,
+        "currentPosition": 4.4,
+        "previousPosition": 4.7
+      },
+      {
+        "path": "/blog/age-group-ftp-benchmarks-2026",
+        "currentClicks": 125,
+        "currentImpressions": 6160,
+        "previousClicks": 131,
+        "previousImpressions": 6387
+      },
+      {
+        "path": "/tools/fuelling",
+        "currentClicks": 142,
+        "currentImpressions": 5181,
+        "previousClicks": 228,
+        "previousImpressions": 7714
+      },
+      {
+        "path": "/blog/best-cycling-computers-2026",
+        "currentClicks": 64,
+        "currentImpressions": 4942,
+        "previousClicks": 77,
+        "previousImpressions": 4555
+      }
+    ]
+  },
+  "vitaminDExactPage": {
+    "path": "/blog/cycling-vitamin-d-performance-guide",
+    "current": {
+      "clicks": 10,
+      "impressions": 7085,
+      "ctr": 0.001,
+      "position": 4.4
+    },
+    "previous": {
+      "clicks": 2,
+      "impressions": 1515,
+      "ctr": 0.001,
+      "position": 4.7
+    },
+    "visibleQueryRows": [
+      {
+        "query": "best vitamin d for cyclists",
+        "currentClicks": 0,
+        "currentImpressions": 1935,
+        "previousClicks": 0,
+        "previousImpressions": 483
+      },
+      {
+        "query": "vitamin d for cyclists 2024",
+        "currentClicks": 0,
+        "currentImpressions": 682,
+        "previousClicks": 0,
+        "previousImpressions": 162
+      },
+      {
+        "query": "vitamin d for cyclists 2025",
+        "currentClicks": 0,
+        "currentImpressions": 647,
+        "previousClicks": 0,
+        "previousImpressions": 165
+      },
+      {
+        "query": "vitamin d for cyclists 2026",
+        "currentClicks": 0,
+        "currentImpressions": 634,
+        "previousClicks": 0,
+        "previousImpressions": 159
+      },
+      {
+        "query": "vitamin d vs bicycle",
+        "currentClicks": 0,
+        "currentImpressions": 429,
+        "previousClicks": 0,
+        "previousImpressions": 99
+      }
+    ],
+    "interpretation": "The page has a real best-product snippet opportunity, but much of the recent impression growth comes from low-value comparison-style queries. Optimise for the legitimate cycling intent; do not chase the noisy query expansion."
+  },
+  "notes": [
+    "This rolling scan overlaps recent releases and is diagnostic only. It must not replace the fixed non-overlapping seven-day and 28-day scorecards in the measurement runbook.",
+    "Google Search Console data was available through 29 August 2026 at capture time.",
+    "The first fixed post-release seven-day period ends 31 August and is eligible for reliable capture no earlier than 3 September 2026."
+  ]
+}
