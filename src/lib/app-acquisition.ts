@@ -21,6 +21,7 @@ export const APP_ACQUISITION_SOURCES = new Set([
   "recovery-nutrition",
   "recovery-screen",
   "recovery-week",
+  "rest-day-guide",
   "rhr-guide",
   "sleep-guide",
   "strength-guide",

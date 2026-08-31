@@ -414,7 +414,7 @@ export const recoveryAnswers: AnswerPage[] = [
     question: "How Many Rest Days Do Cyclists Need?",
     seoTitle: "How Many Rest Days Do Cyclists Need Per Week?",
     seoDescription:
-      "Most cyclists need 1–2 rest or easy days per week. What counts as a rest day, when to take more, and why masters cyclists often need an extra one.",
+      "There is no universal cycling rest-day number. Use one or two low-load days as a planning start, count all stress and choose full rest or active recovery.",
     pillar: "recovery",
     directAnswer:
       "There is no universal number of rest days for every cyclist. One or two low-load days per week is a practical starting structure for many riders, but the right dose depends on training load, sleep, health, life stress, event timing and individual response. An active-recovery spin is optional rather than automatically better than complete rest, and masters status alone does not prescribe a fixed number of days off.",
@@ -422,7 +422,7 @@ export const recoveryAnswers: AnswerPage[] = [
       "Use one or two low-load days as a starting hypothesis, then adjust from training quality and recovery trends.",
       "Age matters, but sleep, recent load, health and life stress matter too; there is no age-based universal rule.",
       "Active recovery may help a rider feel looser, but research does not show it is reliably better than full rest.",
-      "Rest day frequency should increase after hard event weeks, multi-day rides, or illness.",
+      "Events and illness change the decision, but neither creates one mandatory recovery calendar for every rider.",
     ],
     whoFor: [
       {
@@ -461,9 +461,9 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     practicalApplication: [
       {
-        title: "Place rest days immediately after your hardest sessions",
+        title: "Build low-load days around the work that matters",
         detail:
-          "A rest or active-recovery day should follow your hardest interval session and your longest ride. This is where the adaptation window is widest. Placing a second hard session the day after an interval session burns the adaptation stimulus before it consolidates.",
+          "Mark the priority sessions first, count cycling, gym and life load, then place low-load days where they best protect quality. A rest day does not have to follow every hard session, and consecutive demanding days can be deliberate when the block and recovery plan justify them.",
       },
       {
         title: "Choose the lower-cost recovery option",
@@ -471,9 +471,9 @@ export const recoveryAnswers: AnswerPage[] = [
           "If gentle movement reliably leaves you feeling better, try 20–45 minutes at RPE 1–2. If the ride adds fatigue, competes with sleep or tends to drift harder, take complete rest. Training status does not make active recovery automatically superior.",
       },
       {
-        title: "Add a second rest day for the week after any major event",
+        title: "Reassess after a major event",
         detail:
-          "A sportive, gran fondo, or race causes systemic stress that goes well beyond normal training fatigue. The week after, reduce to 2–3 easy sessions and two rest days before returning to structured training.",
+          "Use event duration, intensity, fuelling, sleep, symptoms, injury concerns and the next goal to choose complete rest, easy training and the return to intensity. There is no compulsory number of days that fits every sportive, race or stage event.",
       },
     ],
     commonMistakes: [
@@ -490,19 +490,19 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         mistake: "Taking more rest days when tired instead of fixing the training week structure.",
         fix:
-          "Chronic tiredness is usually a structure problem, not an acute recovery problem. Look at the hard/easy distribution before simply adding more rest days.",
+          "Persistent tiredness can reflect training structure, under-fuelling, sleep, illness, medication, life stress or other health causes. Reduce immediate training cost, review the programme and investigate persistent or disproportionate symptoms.",
       },
     ],
     faq: [
       {
         question: "Can I ride every day and still recover?",
         answer:
-          "Pros do, but they ride most days at really low intensity with highly controlled hard sessions. Amateur riders who ride every day without disciplined easy days accumulate fatigue rather than fitness. Daily riding is possible if zone 1 days are truly zone 1.",
+          "Some cyclists can ride on consecutive days when total load is appropriate and easy sessions stay genuinely low cost. Daily riding is not automatically better or worse, and professional schedules are not a template for amateurs. Judge the complete programme and the rider's response.",
       },
       {
         question: "How do I know if I need more rest days?",
         answer:
-          "Declining power over two or more weeks, rising resting heart rate, poor sleep, and lost motivation to train are the four most reliable signals. If all four are present, more rest days — immediately — are the correct response.",
+          "Look for agreement across symptoms, unusual fatigue, sleep and wellbeing changes, recent load, and repeatable performance or effort changes. Resting heart rate and HRV can add context but have no universal cutoff. Persistent or disproportionate problems need broader assessment, not only more days off.",
       },
       {
         question: "Do rest days change through the training season?",
@@ -517,7 +517,7 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         question: "How many rest days after a big event like a sportive?",
         answer:
-          "Two to three easy days or full rest days following a long sportive is the minimum. A hard three-hour race or multi-day event often needs a full week of easy-only riding before structured training resumes.",
+          "There is no universal minimum. Consider event cost, sleep, fuelling, symptoms, injury, travel and the next goal. Start with a low-cost day, then progress from normal daily function and easy riding rather than an automatic race-duration table.",
       },
     ],
     relatedEpisodes: [
@@ -531,10 +531,11 @@ export const recoveryAnswers: AnswerPage[] = [
       { label: "What is a recovery week?", href: "/answers/what-is-a-recovery-week" },
       { label: "Recovery for Cyclists: What Works", href: "/blog/cycling-recovery-tips" },
       { label: "Recovery Week Guide", href: "/blog/cycling-recovery-week-what-to-actually-do" },
+      { label: "Cycling Rest Days Guide", href: "/blog/cycling-rest-day-what-to-do-guide" },
     ],
     evidenceLevel: "moderate",
     evidenceNote:
-      "Rest-day frequency is not established by one universal cycling prescription. The active-recovery evidence supports cautious, outcome-specific language rather than claiming that easy spinning is always superior to rest.",
+      "Rest-day frequency is not established by one universal cycling prescription. Endurance-recovery reviews do not identify one consistently effective modality, and active-recovery evidence supports outcome-specific language rather than claiming that easy spinning is always superior to rest.",
     publishDate: "2026-05-26",
     updatedDate: "2026-08-31",
     reviewedBy: "Anthony Walsh",
@@ -615,7 +616,7 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         mistake: "Turning recovery spins into moderate rides because the legs feel good.",
         fix:
-          "Good legs on an easy spin means recovery is working — not that you should capitalise. Stay at zone 1 and save the effort for when it counts.",
+          "Feeling good does not prove recovery is complete. Keep the session inside its planned purpose and save additional load for the priority work.",
       },
       {
         mistake: "Treating a 90-minute 'easy' outdoor ride as active recovery.",
@@ -647,12 +648,12 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         question: "Should I do active recovery the morning of a hard afternoon session?",
         answer:
-          "A very short easy spin (20–30 minutes) is fine and may actually prime the system for the afternoon session. Keep it actually easy and short. If you are already fatigued from the week, the morning slot is better used for extra sleep.",
+          "It is optional, not required priming. Consider the rider's routine, accumulated load, sleep and whether the movement reliably adds negligible cost. When uncertain, protect the priority session rather than adding volume automatically.",
       },
       {
         question: "How do I know if my 'easy' ride is actually easy enough?",
         answer:
-          "The talk test is reliable: you should be able to hold a full sentence without pausing to breathe. Nose breathing throughout the ride is a good target. If you are breathing through your mouth at the pace you chose, slow down.",
+          "Conversation and RPE are useful guardrails, but no talk, nasal-breathing, heart-rate or power rule defines active recovery for everyone. The session should remain deliberately low cost and should be shortened or stopped when symptoms, effort or fatigue rise.",
       },
     ],
     relatedEpisodes: [
@@ -665,6 +666,7 @@ export const recoveryAnswers: AnswerPage[] = [
       { label: "How many rest days do cyclists need?", href: "/answers/how-many-rest-days-cycling" },
       { label: "Recovery Topic Hub", href: "/topics/cycling-recovery" },
       { label: "Cycling Recovery: What Works", href: "/blog/cycling-recovery-tips" },
+      { label: "Cycling Rest Days Guide", href: "/blog/cycling-rest-day-what-to-do-guide" },
     ],
     evidenceLevel: "moderate",
     evidenceNote:
