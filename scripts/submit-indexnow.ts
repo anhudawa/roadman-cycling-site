@@ -312,6 +312,7 @@ const COACHING_CLUSTER = [
   "is-a-cycling-coach-worth-it-case-study",
   "polarised-vs-sweet-spot-training",
   "trainerroad-vs-online-cycling-coach",
+  "cycling-time-crunched-training-guide",
   "time-crunched-cyclist-8-hours-week",
   "gran-fondo-training-plan-12-weeks",
   "how-to-periodise-cycling-season",

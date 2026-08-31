@@ -905,8 +905,8 @@ export default function TrainingPlansPage() {
                   title: "Polarised vs Sweet Spot: What the Science Says",
                 },
                 {
-                  href: "/blog/time-crunched-cyclist-8-hours-week",
-                  title: "How to Train on 8 Hours a Week",
+                  href: "/blog/cycling-time-crunched-training-guide",
+                  title: "How to Train on 5–7 Hours a Week",
                 },
                 {
                   href: "/blog/masters-cyclist-guide-getting-faster-after-40",
