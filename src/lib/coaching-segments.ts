@@ -1370,22 +1370,22 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     slug: "time-crunched",
     seoTitle: "Online Cycling Coach for Time-Crunched Cyclists | $195/mo",
     seoDescription:
-      "Online cycling coach for time-crunched cyclists with under 6 hours a week. Maximum return per hour, indoor-first programming, no junk miles, structured intensity. Personalised TrainingPeaks plans.",
+      "Online cycling coaching for riders with 4-6 hours a week. Personalised TrainingPeaks plans built around goals, real schedules, feedback and recovery.",
     h1: "Online Cycling Coach for Time-Crunched Cyclists",
     heroEyebrow: "COACHING FOR TIME-CRUNCHED CYCLISTS",
     heroAccent: "UNDER 6 HOURS. MAXIMUM RETURN PER HOUR.",
     directAnswer:
-      "This is coaching for cyclists with under 6 hours a week to train. The constraint sounds limiting but it's actually clarifying — every session has to do real work and the plan can't carry filler. Done right, time-crunched coaching produces serious gains. Done wrong, it produces a frustrated rider who burns out in three months.",
+      "This is individual cycling coaching for riders with roughly 4-6 repeatable hours a week. The coach builds from the rider's goal, history, schedule and response, then decides which sessions deserve the limited time and what changes when life disrupts the plan. It is not one compulsory low-volume template.",
     problem: [
       "The cycling internet talks about 12-hour weeks like that's normal. For most working cyclists with families, 4-6 hours is the honest ceiling — and most of what's written for that population is just a watered-down version of the 12-hour plan.",
-      "That's the wrong shape. A real time-crunched plan flips the intensity distribution: more sweet spot, more VO2max, less endurance volume. Indoor-first programming because every minute counts. Strength work that doubles as an injury insurance policy. And honest periodisation — hard blocks in calm weeks, maintenance blocks when work is brutal.",
-      "Sub-6-hour cyclists can absolutely keep getting faster. The bottleneck isn't time. It's plan design.",
+      "A lower-volume plan needs explicit priorities and adjustment rules. Some phases may place more intensity indoors; others need endurance, skills, event-specific terrain or additional recovery. Strength is included only where it serves the rider and fits the total load.",
+      "Four to six hours can support progress for many riders, but the result depends on the starting point, goal, consistency and response. The coaching job is to make those trade-offs visible and review them.",
     ],
     whatChanges: [
-      "Intensity distribution closer to 60/40 polarised — not the 80/20 from pro plans",
-      "Most weekday sessions 45-60 min indoor",
-      "VO2max and sweet spot prioritised — the highest-return-per-minute work",
-      "Strength sessions 2-3 times a week, 25-30 minutes each, replacing easy spins",
+      "Intensity distribution chosen for the rider and current phase — no fixed 60/40 or 80/20 rule",
+      "Weekday sessions designed around the time and equipment actually available",
+      "Goal-specific work prioritised without turning every short ride into a hard ride",
+      "Strength included where it serves the rider and can be recovered from",
       "No cancelled-session 'debt' — the plan reshuffles, doesn't accumulate",
       "Annual periodisation that respects work cycles — hard blocks land in calmer months",
     ],
@@ -1394,7 +1394,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
         number: "01",
         title: "Intensity-First Design",
         description:
-          "Time-crunched plans tilt toward sweet spot and VO2max because those sessions deliver the most adaptation per minute. The 80/20 polarised distribution gets re-shaped — closer to 60/40 — to fit the available hours.",
+          "The plan protects the work most specific to the current goal, which may be sustained intensity, VO2max work, endurance or skills. There is no fixed low-volume intensity split that fits every rider.",
       },
       {
         number: "02",
@@ -1406,13 +1406,13 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
         number: "03",
         title: "Quality Over Quantity",
         description:
-          "Every session has a clear purpose and a measurable target. No filler rides. No 'just spin and see how I feel'. When you have 5 hours a week, every hour is structured and every interval matters.",
+          "Every session has a clear purpose, including low-intensity riding, skills and enjoyment. The goal is not to turn every available minute into interval work; it is to remove work that repeatedly compromises the priorities.",
       },
       {
         number: "04",
         title: "Strength as an Insurance Policy",
         description:
-          "Two short, focused strength sessions a week protect power, build force, and stop injuries before they start. For time-crunched cyclists this is one of the highest-leverage uses of 30 minutes available.",
+          "Strength can support performance and physical capacity, but it is real training load rather than guaranteed injury prevention. Frequency and exercises are chosen around experience, need and recovery.",
       },
       {
         number: "05",
@@ -1423,7 +1423,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     ],
     sampleWeekHours: "5-6 hrs/week",
     sampleWeekContext:
-      "A typical week for a cyclist with full-time work, family, and 5-6 trainable hours. Indoor-led structure with the long ride at the weekend. Every session has a purpose.",
+      "An illustrative week for one cyclist with full-time work, family and 5-6 trainable hours. It is not a default prescription: intensity, strength and duration change with the rider, goal and response.",
     sampleWeek: [
       { day: "Monday", session: "Rest", duration: "0 min" },
       { day: "Tuesday", session: "VO2max — 6 x 3 min @ 115% FTP, 3 min easy (indoor)", duration: "60 min" },
@@ -1435,14 +1435,14 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
     ],
     mistakes: [
       {
-        title: "Following an 80/20 polarised plan when you ride 5 hours",
+        title: "Forcing every five-hour week into one intensity ratio",
         description:
-          "80/20 polarised was designed for pros riding 25+ hours a week. At 5 hours, four hours of Zone 2 leaves you barely any intensity, and your top-end vanishes. Time-crunched plans tilt 60/40 or even 50/50. Match the distribution to the hours, not the textbook.",
+          "Current evidence does not establish 80/20, 60/40 or 50/50 as the universal answer. Match the distribution to the rider, phase and event, then review whether the intended sessions are repeatable and working.",
       },
       {
-        title: "Doing endurance miles outdoors instead of intensity indoors",
+        title: "Treating indoor intensity as more valuable by definition",
         description:
-          "When you have 5 hours a week, three of them spent on slow Zone 2 outdoor rides won't move the needle as much as two structured indoor sessions plus one weekend long ride. The opportunity cost of slow miles is enormous when time is the constraint.",
+          "Indoor sessions can reduce setup and interruption time, while outdoor rides provide terrain, skills and event specificity. Compare the purpose and completed work; there is no universal indoor-to-outdoor multiplier.",
       },
       {
         title: "Cancelling sessions then trying to make them up",
@@ -1452,7 +1452,7 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
       {
         title: "No strength work because 'no time'",
         description:
-          "Two 30-min strength sessions a week sit in the same time slot as two easy 30-min spins. Replace one with the other and you get more adaptation. For time-crunched riders, strength is one of the highest-return uses of 30 minutes — do not skip it because the marketing says 'just ride'.",
+          "Strength may deserve time, but replacing cycling with strength is a programme decision rather than an automatic upgrade. Count both honestly and choose the work that serves the current goal.",
       },
       {
         title: "Same plan year-round",
@@ -1471,17 +1471,17 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
       {
         question: "Can I really make progress on under 6 hours a week?",
         answer:
-          "Yes. Several of our strongest results are from members training under 8 hours, and meaningful FTP gains are absolutely achievable on 4-6. The trade-off is that intensity has to do more of the work — sweet spot, VO2max, and well-structured weekend rides become the engine. The plan looks different from a 12-hour plan, but it works.",
+          "Many riders can progress on 4-6 hours, but the available time alone does not guarantee an outcome. Starting fitness, goal, consistency, session choice and recovery all matter. The coach records the baseline and reviews the response rather than promising a fixed gain.",
       },
       {
         question: "What's the difference between 'time-crunched' and 'busy professional' coaching?",
         answer:
-          "Mostly volume. Busy professional coaching usually targets 6-9 hours a week with a moving calendar. Time-crunched coaching targets 4-6 hours where time is the absolute constraint. Both lean on intensity-first programming and indoor sessions, but the intensity tilt is sharper at the lower volume.",
+          "Mostly the size of the repeatable weekly window. Busy-professional coaching generally works with 6-9 hours and a moving calendar; time-crunched coaching starts around 4-6 hours. Neither uses a fixed intensity split: the plan still follows the rider and goal.",
       },
       {
         question: "Will I have to give up outdoor riding?",
         answer:
-          "No. The weekend long ride stays outdoors and is often the most enjoyable session of the week. The shift is on weekdays — instead of a 90-min Zone 2 outdoor ride that costs you 2.5 hours door-to-door, a 60-min structured indoor session does more work in less elapsed time. Most members find this trade liberating, not limiting.",
+          "No. Indoor riding is useful when it removes setup, weather or traffic friction; outdoor riding remains important when the goal needs handling, terrain, group skills or event-specific practice. The balance is individual.",
       },
       {
         question: "Do I need a smart trainer or just a basic turbo?",
@@ -1530,9 +1530,9 @@ export const COACHING_SEGMENTS: Record<string, SegmentData> = {
       },
       {
         label: "Time-Crunched Cyclist Guide",
-        href: "/blog/time-crunched-cyclist-8-hours-week",
+        href: "/blog/cycling-time-crunched-training-guide",
         description:
-          "The long-form framework — getting faster on 5-8 hours a week without burning out, under-training, or following a watered-down 12-hour plan.",
+          "The reviewed decision framework for training on 5-7 hours, including evidence limits, example weeks and rules for disrupted schedules.",
       },
       {
         label: "VO2max Intervals For Cyclists",
