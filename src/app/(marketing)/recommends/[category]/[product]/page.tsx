@@ -10,6 +10,7 @@ import {
   getPublicRecommendationProducts,
   getRecommendationSettings,
 } from "@/lib/recommends/queries";
+import { buildRecommendationProductSchema } from "@/lib/recommends/schema";
 import { EVIDENCE_LABELS } from "@/lib/recommends/types";
 import { LocalNav } from "../../_components/LocalNav";
 import { OfferSelector } from "../../_components/OfferSelector";
@@ -101,20 +102,7 @@ export default async function RecommendationProductPage({
           },
         }}
       />
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Product",
-          name: product.name,
-          description: product.shortDescription,
-          image: product.imageUrl || undefined,
-          category: product.categoryName || undefined,
-          brand: product.brandName
-            ? { "@type": "Brand", name: product.brandName }
-            : undefined,
-          url: canonical,
-        }}
-      />
+      <JsonLd data={buildRecommendationProductSchema(product, canonical)} />
       <JsonLd
         data={{
           "@context": "https://schema.org",
