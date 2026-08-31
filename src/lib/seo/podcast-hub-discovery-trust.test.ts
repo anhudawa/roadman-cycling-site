@@ -23,7 +23,8 @@ describe("podcast hub topical discovery trust", () => {
   });
 
   it("searches the complete archive while preserving default pagination", () => {
-    expect(page).toContain("const podcastSearchIndex = allEpisodes.map");
+    expect(page).toContain("const allEpisodes = getPodcastHubIndex()");
+    expect(page).toContain("const podcastSearchIndex = allEpisodes");
     expect(page).toContain("const episodes = podcastSearchIndex.slice(start, end)");
     expect(page).toContain("searchIndex={podcastSearchIndex}");
     expect(page).toContain("Search all {allEpisodes.length} on-site episodes");

@@ -7,7 +7,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import { SocialProof } from "@/components/proof";
 import { ScrollReveal } from "@/components/ui";
-import { getAllEpisodes } from "@/lib/podcast";
+import { getPodcastHubIndex } from "@/lib/podcast-hub-index";
 import { PodcastSearch } from "@/components/features/podcast/PodcastSearch";
 import {
   PodcastPagination,
@@ -118,7 +118,7 @@ const PODCAST_START_PATHS = [
 export default async function PodcastPage({ searchParams }: PodcastPageProps) {
   const { page: rawPage } = await searchParams;
   const page = parsePage(rawPage);
-  const allEpisodes = getAllEpisodes();
+  const allEpisodes = getPodcastHubIndex();
   const totalPages = Math.ceil(allEpisodes.length / EPISODES_PER_PAGE);
 
   // 404 for out-of-range pages (but page 1 always valid even if empty)
@@ -128,18 +128,7 @@ export default async function PodcastPage({ searchParams }: PodcastPageProps) {
 
   const start = (page - 1) * EPISODES_PER_PAGE;
   const end = start + EPISODES_PER_PAGE;
-  const podcastSearchIndex = allEpisodes.map((ep) => ({
-    slug: ep.slug,
-    title: ep.title,
-    episodeNumber: ep.episodeNumber,
-    guest: ep.guest,
-    guestCredential: ep.guestCredential,
-    description: ep.description,
-    publishDate: ep.publishDate,
-    duration: ep.duration,
-    pillar: ep.pillar,
-    type: ep.type,
-  }));
+  const podcastSearchIndex = allEpisodes;
   const episodes = podcastSearchIndex.slice(start, end);
 
   return (
