@@ -57,6 +57,7 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "cycling-leg-day-should-cyclists",
   "cycling-gym-exercises-best",
   "derek-teel-best-exercises-cyclists",
+  "off-season-gym-routine-cyclists-12-week-block",
   "best-cycling-computers-2026",
   "rouvy-vs-zwift",
   "cycling-energy-gels-guide",

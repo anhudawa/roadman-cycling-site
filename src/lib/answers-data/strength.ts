@@ -2202,120 +2202,116 @@ export const strengthAnswers: AnswerPage[] = [
     question: "What Off-Season Strength Plan Should Cyclists Follow?",
     seoTitle: "Off-Season Strength Training Plan for Cyclists",
     seoDescription:
-      "A 12-week off-season strength plan: 4 weeks of adaptation, then 8 weeks of heavy 4–6 rep work, 2–3 sessions a week. The winter block that builds the strength riding alone can't.",
+      "A safe starting structure for off-season cyclist strength training, with experienced-lifter and beginner routes, bike-week placement and progression rules.",
     pillar: "strength",
     directAnswer:
-      "Run a 12-week block: 4 weeks of anatomical adaptation (higher reps, learning the patterns) followed by 8 weeks of heavy maximum-strength work at 4–6 reps. Train 2–3 times a week while bike volume is low. The off-season is the only window where the gym can be the priority, so this is when you build the heavy strength that protects power all year — not when you maintain it.",
+      "If you already lift, start with two non-consecutive full-body sessions and progress selected main lifts while bike demand is relatively low. Use the first weeks to establish repeatable work, emphasise heavier controlled sets in the middle, then retain strength as bike intensity returns. This is a practical structure, not one universally proven 12-week protocol. New lifters should use the beginner plan instead.",
     keyTakeaways: [
-      "The off-season is the one window to build heavy strength while bike volume is low — use it.",
-      "Structure it as 4 weeks of adaptation then 8 weeks of heavy 4–6 rep work.",
-      "Train 2–3 sessions a week; this is the highest gym frequency a cyclist should run.",
-      "Keep some easy riding going — the goal is to build strength, not abandon the bike entirely.",
+      "The latest cyclist-only meta-analysis supports heavy strength training as a category, but rated the evidence low certainty and did not establish one optimal plan.",
+      "Two non-consecutive sessions is a practical starting point, not a universal frequency rule.",
+      "Progress only while technique, symptoms, recovery and the next priority ride remain stable.",
+      "Use the experienced 12-week owner if you already lift; use the beginner plan and PDF if you do not.",
     ],
     whoFor: [
       {
-        label: "The cyclist staring down a dark, wet winter",
+        label: "The experienced cyclist planning a winter gym block",
         detail:
-          "The racing is done, the hours are dropping, and you want the off-season to count for something instead of drifting.",
+          "You have completed at least one progressive strength block and can control the main movement patterns under load.",
       },
       {
-        label: "The masters rider trying to hold power into next season",
+        label: "The self-coached rider balancing two training modes",
         detail:
-          "You know muscle slips away with age and want a structured winter block that puts real strength in the bank.",
+          "You need a clear starting structure and rules for changing it when the bike or recovery begins to suffer.",
       },
     ],
     roadmanView: [
-      "There's an episode Anthony made about the five things pros secretly do in winter, and the through-line is that the off-season isn't time off — it's when the foundations get laid. The riders who show up flying in spring didn't get there by doing nothing in December. They used the months when racing stopped to build the things you can't build when you're racing. Heavy strength sits right at the top of that list.",
-      "This is the only time of year the gym gets to be the priority. In season, strength is squeezed into one maintenance session because the riding comes first. In the off-season, that flips — bike volume drops, the pressure's off, and you can actually load the gym hard enough to change your baseline. Squander it on more junk miles in the cold and you arrive at spring no stronger than you left.",
-      "The plan itself isn't complicated. Four weeks easing in — learning the patterns, building tissue resilience at higher reps — then eight weeks of properly heavy work where the load is high and the reps are low. Two to three sessions a week. Keep some easy aerobic riding ticking over so you don't lose the engine, but let the gym lead. By the time you're building toward events, you'll have strength in the bank that protects your power for the rest of the year.",
+      "The off-season creates room to progress strength, but that room is not permission to ignore what the riding week says back.",
+      "A plan earns its place when gym performance improves and the important bike work remains productive. Bigger lifting numbers alone are not the finish line.",
+      "The app opportunity is to adjust placement and workload from the rider's current week instead of pretending one static sheet can see every recovery constraint.",
     ],
     expertEvidence: [
       {
-        name: "Derek Teel",
-        credential: "Strength coach for cyclists (Dialed Health)",
+        name: "Llanos-Lagos, Ramirez-Campillo and Sáez de Villarreal",
+        credential: "Authors of the 2026 cyclist-only systematic review and meta-analysis",
         insight:
-          "The off-season is where the heavy work belongs, because bike volume is low enough to let the gym be the priority for a few weeks. This is when you build maximum strength at low reps and high load — the adaptation that then needs only one maintenance session to hold through the racing season.",
-        episodeSlug: "ep-2183-strength-training-for-cycling-simplified-derek-teel",
-        guestSlug: "derek-teel",
+          "Across 17 controlled studies and 262 endurance cyclists, heavy strength training improved group-level cycling efficiency, anaerobic power and cycling performance. Evidence certainty was low, and the review could not make a robust optimal-programme recommendation.",
       },
       {
-        name: "Andy Galpin",
-        credential: "Professor of Kinesiology, Cal State Fullerton; muscle physiologist",
+        name: "Vikmoen and colleagues",
+        credential: "Authors of a small randomised trial in trained female duathletes",
         insight:
-          "Heavy, lower-rep loading is the specific stimulus that recruits and preserves fast-twitch fibre, which begins declining around age 35. A dedicated winter block of this work, when riding volume eases, is the most effective way for ageing cyclists to put strength in the bank and slow that decline.",
-        episodeSlug: "the-science-of-getting-faster-after-40-dr-andy-galpin",
-        guestSlug: "andy-galpin",
+          "Eleven weeks of twice-weekly lower-body strength work improved five-minute cycling performance after prolonged riding in the strength group. The trial included only 19 participants, so it supports the training category rather than one universal programme or promised gain.",
       },
     ],
     practicalApplication: [
       {
-        title: "Weeks 1–4: anatomical adaptation",
+        title: "Weeks 1–4: establish repeatable work",
         detail:
-          "Twice a week, 2–3 sets of 12–15 reps on the core patterns — goblet or split squat, Romanian deadlift, row, press, dead bug. Moderate load, clean technique. You're preparing tissue and movement quality for the heavy block to come.",
+          "Use two non-consecutive full-body sessions when recovered. Cover knee-dominant, hip-dominant, upper-body and trunk patterns, usually with controlled 6–10-rep sets and a clear rep buffer.",
       },
       {
-        title: "Weeks 5–12: maximum strength",
+        title: "Weeks 5–8: emphasise selected heavy lifts",
         detail:
-          "2–3 sessions a week, 3–4 sets of 4–6 reps where the last 2 reps demand real focus. Build the load steadily — add 2.5–5kg to lower-body lifts every 1–2 weeks. This is the block that actually changes your baseline strength.",
+          "Progress one or two main lower-body movements toward technically controlled 4–6-rep sets. Add load only when the current work, joint response and next important ride remain stable.",
       },
       {
-        title: "Keep easy riding ticking over",
+        title: "Weeks 9–12: integrate with the returning bike load",
         detail:
-          "Don't abandon the bike. Two or three easy aerobic rides a week maintain your engine and aid recovery between gym sessions. The off-season builds strength; it shouldn't cost you all your aerobic base.",
+          "Reduce optional sets or exercises before removing the main strength work. Power exercises are optional and skill-dependent, not a mandatory conversion phase.",
       },
       {
-        title: "Log every session and progress the load",
+        title: "Review the whole week",
         detail:
-          "Write down your working weights. The whole point of the heavy block is progressive overload — if the load isn't climbing across the 8 weeks, you're maintaining, not building. The log is how you hold yourself to it.",
+          "Track load, repetitions, technique, symptoms and the quality of the next priority ride. Change one variable when a negative pattern repeats.",
       },
     ],
     commonMistakes: [
       {
-        mistake: "Treating the off-season as pure rest and doing nothing in the gym.",
+        mistake: "Treating one 12-week template as a protocol proved optimal for everyone.",
         fix:
-          "The off-season is your one window to build heavy strength while bike volume is low. Waste it and you arrive at spring no stronger than you finished the last season.",
+          "Use the plan as a starting structure and progress only from the rider's response. The research used varied programmes and cannot identify one universal optimum.",
       },
       {
-        mistake: "Replacing all riding with the gym for three months.",
+        mistake: "Adding gym load while priority rides repeatedly deteriorate.",
         fix:
-          "Keep 2–3 easy aerobic rides a week. Losing your entire aerobic base over winter means a slow, painful rebuild in spring — build strength alongside the engine, not instead of it.",
+          "Reduce optional volume, hold the load or change session placement. Judge strength work inside the combined training week.",
       },
       {
-        mistake: "Staying at high reps the whole block and never going heavy.",
+        mistake: "Forcing jumps or explosive lifts into the final phase.",
         fix:
-          "High-rep work is the 4-week on-ramp, not the destination. The strength that matters comes from the heavy 4–6 rep block — that's the adaptation riding can't give you.",
+          "Power work is optional and requires competence. Retaining controlled strength while bike-specific intensity returns is also valid.",
       },
     ],
     faq: [
       {
         question: "How long should an off-season strength block last?",
         answer:
-          "Twelve weeks is the reliable structure: four weeks of anatomical adaptation followed by eight weeks of heavy maximum-strength work. That's long enough to drive a genuine change in baseline strength while bike volume is low.",
+          "Twelve weeks is a useful planning window, not a universally proven duration. The cyclist-only review included programmes lasting 5–25 weeks. Use the experienced-lifter guide as a template and adjust it to the season and response.",
       },
       {
         question: "How many strength sessions a week in the off-season?",
         answer:
-          "Two to three. The off-season is the only time a cyclist should run three sessions a week, because riding volume is low enough to recover from the extra gym load. In season this drops back to one maintenance session.",
+          "Two non-consecutive sessions is a practical start. The cyclist research included one to three sessions per week and did not establish one optimal frequency, so use one when riding or recovery cannot support two.",
       },
       {
         question: "Should I stop riding completely to focus on strength?",
         answer:
-          "No. Keep two or three easy aerobic rides a week. The off-season is for building strength while maintaining your engine — abandoning the bike entirely means rebuilding your whole aerobic base in spring, which costs more than the strength is worth.",
+          "No universal ride count applies. Keep enough cycling to serve the current phase and event timeline, but avoid stacking unfamiliar or very fatiguing gym work immediately before the week's key ride.",
       },
       {
-        question: "When should the off-season strength block start?",
+        question: "Should strength or cycling come first on the same day?",
         answer:
-          "As your race season winds down, typically October. That sets the heavy block to run through the darkest, lowest-volume months — November to January — when the gym can be the clear priority and the weather makes long rides least appealing anyway.",
+          "Let the goal decide. Strength first can favour lower-body strength development; complete the key bike session first when it owns the day's outcome. Separate demanding sessions when practical.",
       },
       {
         question: "What should I do after the 12-week block ends?",
         answer:
-          "Transition into a power-conversion phase as you start building toward events — faster, lighter, explosive lifts — then drop to one maintenance session a week once racing begins. The off-season build is the foundation the rest of the year stands on.",
+          "Retain selected strength work while bike specificity rises. Reduce sets and optional exercises before abandoning strength. Explosive work can be added when appropriate, but it is not a compulsory conversion phase.",
       },
       {
         question: "Is the off-season plan different for beginners?",
         answer:
-          "The structure is the same, but a beginner should spend longer in the adaptation phase — five or six weeks rather than four — to nail technique before loading heavily. Beginners also progress load faster once the heavy block starts, because early strength gains come quickly.",
+          "Yes. This answer's experienced plan assumes a previous strength block and competent technique under load. New lifters and long-term returners should use the conservative beginner 12-week plan and printable PDF.",
       },
     ],
     relatedEpisodes: [
@@ -2328,14 +2324,15 @@ export const strengthAnswers: AnswerPage[] = [
         label: "Strength & Conditioning — Topic Hub",
         href: "/topics/cycling-strength-conditioning",
       },
+      { label: "Experienced 12-Week Off-Season Strength Plan", href: "/blog/off-season-gym-routine-cyclists-12-week-block" },
       { label: "How do I periodise strength training?", href: "/answers/periodise-strength-training" },
       { label: "How to structure winter training", href: "/answers/how-to-structure-winter-training" },
       { label: "12-Week Beginner Strength Plan", href: "/blog/cycling-strength-training-12-week-beginner-plan" },
       { label: "Pro Winter Habits Playbook", href: "/blog/pro-cyclist-winter-habits-offseason-playbook" },
     ],
-    evidenceLevel: "moderate",
+    evidenceLevel: "emerging",
     publishDate: "2026-05-26",
-    updatedDate: "2026-05-26",
+    updatedDate: "2026-08-31",
   },
 
   // ============================================================

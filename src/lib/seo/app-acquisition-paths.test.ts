@@ -74,6 +74,8 @@ describe("strength and recovery app acquisition paths", () => {
         "/app?source=core-workout",
       "content/blog/core-strength-cyclists-beyond-planks.mdx":
         "/app?source=core-progressions",
+      "content/blog/off-season-gym-routine-cyclists-12-week-block.mdx":
+        "/app?source=off-season-strength",
       "content/blog/cycling-recovery-tips.mdx": "/app?source=recovery-guide",
       "content/blog/cycling-strength-training-guide.mdx":
         "/app?source=strength-guide",

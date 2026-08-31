@@ -25,6 +25,7 @@ conversion can be compared without changing the audience.
 | Start a cycling core routine             | `/blog/cycling-core-workout-routine`          | `/app?source=core-workout`               |
 | Progress beyond basic planks             | `/blog/core-strength-cyclists-beyond-planks`  | `/app?source=core-progressions`          |
 | Start a 12-week beginner strength plan   | `/blog/cycling-strength-training-12-week-beginner-plan` | `/app?source=beginner-strength-plan` |
+| Progress an experienced off-season block | `/blog/off-season-gym-routine-cyclists-12-week-block` | `/app?source=off-season-strength` |
 | Apply Derek Teel's strength interview    | `/blog/derek-teel-best-exercises-cyclists`   | `/app?source=derek-teel-exercises`       |
 | Adapt strength training after age 50     | `/blog/strength-training-cyclists-over-50`    | `/app?source=strength-over-50-guide`     |
 | Understand recovery                      | `/blog/cycling-recovery-tips`                | `/app?source=recovery-guide`             |
