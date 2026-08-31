@@ -10,6 +10,7 @@ export const APP_ACQUISITION_SOURCES = new Set([
   "cold-water-guide",
   "derek-teel-exercises",
   "fatigue-guide",
+  "foam-rolling-guide",
   "gym-exercises",
   "glute-guide",
   "hrv-guide",

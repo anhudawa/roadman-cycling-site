@@ -278,6 +278,7 @@ const CURATED: string[] = [
   `https://${HOST}/blog/resting-heart-rate-masters-cyclists`,
   `https://${HOST}/blog/cycling-rest-day-what-to-do-guide`,
   `https://${HOST}/blog/cold-water-immersion-cyclists`,
+  `https://${HOST}/blog/cycling-foam-rolling-self-massage-guide`,
   `https://${HOST}/blog/cycling-fatigue-signs-when-to-back-off`,
   `https://${HOST}/blog/cycling-overtraining-signs-guide`,
   `https://${HOST}/blog/recognising-overtraining-cyclists-guide`,
