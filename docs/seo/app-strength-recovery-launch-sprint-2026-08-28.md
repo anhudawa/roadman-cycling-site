@@ -22,6 +22,17 @@
 | Deeper recovery screen | `/tools/recovery-screen` |
 | Current one-off 12-week strength product | `/strength-training` |
 
+### Commercial discovery owners
+
+| Search job | Canonical owner | Boundary |
+| --- | --- | --- |
+| Best cycling training apps | `/best/best-cycling-training-apps` | Broad job-based market comparison; does not own Roadman product or launch intent. |
+| Best cycling strength training apps / cycling app with gym work | `/best/best-cycling-strength-training-apps` | Available cycling-specific strength products and bike-week placement. |
+| Best cycling recovery apps / cycling readiness app | `/best/best-cycling-recovery-apps` | Recovery inputs, correction and the next training action. |
+| Best masters cycling app / masters strength app | `/best/best-cycling-apps-structured-training` | Masters-specific intensity density, recovery context and strength support. |
+
+Every commercial discovery page links to the permanent `/app` owner. The unreleased Roadman app is disclosed but excluded from rankings until it is available and can be tested. Product name, price, launch date and App Store claims remain exclusive to `/app` after approval.
+
 ## Compressed release sequence
 
 ### Release 1 — now
@@ -45,7 +56,7 @@
 
 ### Release 4 — week two
 
-- Ship commercial and comparison owners: cycling strength app, recovery app, cycling app with gym work, and masters strength app.
+- Ship commercial and comparison owners: cycling strength app, recovery app, cycling app with gym work, and masters strength app. **Implemented 2026-08-31.**
 - Add the final name, App Store URL, verified pricing, screenshots and complete software-app offer markup only when approved.
 - Implement iOS Universal Links and measure search → waitlist → install → first-session activation.
 

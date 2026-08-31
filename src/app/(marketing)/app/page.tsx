@@ -181,7 +181,7 @@ export default function AppLandingPage() {
                 "@type": "ImageObject",
                 url: STRUCTURED_IMAGE_URL,
               },
-              dateModified: "2026-08-28",
+              dateModified: "2026-08-31",
             },
             {
               "@type": ["SoftwareApplication", "MobileApplication"],
@@ -589,6 +589,30 @@ export default function AppLandingPage() {
               Explore the knowledge behind the product
             </p>
             <div className="mt-7 flex flex-wrap justify-center gap-x-7 gap-y-4 text-sm">
+              <Link
+                href="/best/best-cycling-training-apps"
+                className="text-foreground-muted transition-colors hover:text-coral"
+              >
+                Best cycling training apps
+              </Link>
+              <Link
+                href="/best/best-cycling-strength-training-apps"
+                className="text-foreground-muted transition-colors hover:text-coral"
+              >
+                Cycling strength app comparison
+              </Link>
+              <Link
+                href="/best/best-cycling-recovery-apps"
+                className="text-foreground-muted transition-colors hover:text-coral"
+              >
+                Cycling recovery app comparison
+              </Link>
+              <Link
+                href="/best/best-cycling-apps-structured-training"
+                className="text-foreground-muted transition-colors hover:text-coral"
+              >
+                Masters cycling app comparison
+              </Link>
               <Link
                 href="/topics/cycling-strength-conditioning"
                 className="text-foreground-muted transition-colors hover:text-coral"
