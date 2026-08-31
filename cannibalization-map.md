@@ -88,7 +88,7 @@
 | # | Pages | Issue | Resolution |
 |---|---|---|---|
 | 1 | `/blog/what-stephen-seiler-says-about-polarised-training` vs `/blog/stephen-seiler-research-polarised-training-lessons` | Both Seiler deep-dives on polarised training. | **Action:** the "research-lessons" piece should reposition as a *citations / paper-by-paper* deep dive (researcher audience, includes citation table) and the "what Seiler says" piece is the *practical synthesis* (athlete audience). Cross-link both with explicit framing in opening paragraph. |
-| 2 | `/best/best-cycling-training-apps` vs `/best/best-cycling-apps-structured-training` | Near-identical "best apps" intent. | **Action:** consolidate to a single page at `/best/best-cycling-training-apps`. Either redirect the second slug or repurpose it for a different cut ("best apps for self-coached riders" vs "best apps for masters cyclists"). Flag for editorial. |
+| 2 | `/best/best-cycling-training-apps` vs `/best/best-cycling-apps-structured-training` | Previously overlapped on broad "best apps" intent. | **Resolved 31 August 2026:** the first owns the broad market comparison; the second now owns the masters-specific decision through recovery context, intensity density and strength support. Both state the boundary and cross-link deliberately. |
 | 3 | `/blog/zone-2-training-complete-guide` vs `/blog/zone-2-vs-endurance-training` | "Zone 2" mentioned in both as primary keyword. | **Resolved:** the latter is a comparison/clarification piece (Zone 2 is a *type* of endurance training, not a synonym). Keep the differentiation explicit in H1 + intro. Updated to clearly link UP to the complete guide. |
 | 4 | `/topics/ftp-training` covers Zone 2 heavily | Zone 2 advice lives in two hubs (FTP topic hub + the Zone 2 blog guide). | **Resolved by hierarchy:** the FTP topic hub references Zone 2 as a sub-topic and links to the Zone 2 complete guide as the primary. No fix needed beyond ensuring the link is there (it is — line 62 of `ftp-training.mdx`). |
 
@@ -307,9 +307,9 @@ These apply to every cluster. Treat them as the linting rules new content has to
 
 These need human review before mechanical action:
 
-1. **Consolidate `/best/best-cycling-training-apps` and `/best/best-cycling-apps-structured-training`** — same intent, near-identical picks. Recommended: keep `/best/best-cycling-training-apps` as canonical, redirect the second slug.
-2. **Consolidate `/blog/what-25-top-coaches-agree-on-about-ftp` and `/blog/what-worldtour-coaches-agree-on-ftp`** — pick one as the canonical FTP-coach-consensus piece.
-3. **Resolved 25 August 2026:** `/blog/age-group-ftp-benchmarks-2026` now owns age-banded FTP intent; `/blog/ftp-benchmarks-by-age-and-experience` is differentiated around training maturity.
+1. **Consolidate `/blog/what-25-top-coaches-agree-on-about-ftp` and `/blog/what-worldtour-coaches-agree-on-ftp`** — pick one as the canonical FTP-coach-consensus piece.
+2. **Resolved 25 August 2026:** `/blog/age-group-ftp-benchmarks-2026` now owns age-banded FTP intent; `/blog/ftp-benchmarks-by-age-and-experience` is differentiated around training maturity.
+3. **Resolved 31 August 2026:** the broad and masters cycling-app comparisons now own distinct decision jobs and should not be consolidated.
 4. **Decide whether `content/drafts/hubs/cycling-weight-loss.mdx` is a planned republish** or should be deleted to prevent duplicate-content risk.
 5. **Add missing glossary entries:** `red-s`, `energy-availability`, `hrv`, `overtraining`, `adaptation`, `recovery-week`, `deadlift`, `squat`, `mobility-cycling`.
 6. **Add missing event hubs:** `/event/ring-of-beara`, `/event/dirty-reiver`, `/event/cape-epic`, `/event/trans-pyrenees` (plans exist but the hub layer is missing).
