@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 354,
+    "prompt_count": 355,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -2864,6 +2864,14 @@
       "category": "cycling-recovery",
       "intent": "evaluation",
       "target_page": "/blog/cycling-recovery-week-what-to-actually-do",
+      "priority": "high"
+    },
+    {
+      "id": 355,
+      "prompt": "give me a 15 minute mobility routine for cyclists for hips back hamstrings and ankles without unsupported injury or watt claims",
+      "category": "cycling-strength",
+      "intent": "transaction",
+      "target_page": "/blog/cycling-mobility-routine",
       "priority": "high"
     }
   ]
