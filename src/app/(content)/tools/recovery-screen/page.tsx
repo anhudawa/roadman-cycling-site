@@ -570,7 +570,7 @@ export default function RecoveryScreenPage() {
                 cycling and strength week gives them a reason.
               </p>
               <Link
-                href="/app"
+                href="/app?source=recovery-screen"
                 className="inline-flex items-center justify-center gap-2 font-heading tracking-wider uppercase rounded-md bg-coral text-off-white hover:bg-coral/90 px-6 py-3 text-sm transition-all"
                 data-track="tool_recovery_screen_app"
               >

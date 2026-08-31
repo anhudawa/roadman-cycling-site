@@ -8,6 +8,8 @@ describe("Beehiiv newsletter segmentation", () => {
   it.each([
     "roadman-app-waitlist-hero",
     "roadman-app-waitlist-bottom",
+    "roadman-app-waitlist-strength-guide-hero",
+    "roadman-app-waitlist-recovery-screen-bottom",
   ])("puts %s into one app waiting list", (source) => {
     const result = buildNewsletterBeehiivSegmentation({ source });
 

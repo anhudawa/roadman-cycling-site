@@ -307,7 +307,7 @@ export default function StrengthSessionPlannerPage() {
                     readiness and recovery context.
                   </p>
                   <Link
-                    href="/app"
+                    href="/app?source=strength-session-planner"
                     data-track="strength_placement_app"
                     className="mt-5 inline-flex items-center justify-center rounded-md bg-coral px-6 py-3 font-heading text-sm uppercase tracking-wider text-off-white transition-colors hover:bg-coral/90"
                   >
