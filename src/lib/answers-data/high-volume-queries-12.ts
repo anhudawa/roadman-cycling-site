@@ -987,7 +987,7 @@ export const highVolumeQuery12Answers: AnswerPage[] = [
     keyTakeaways: [
       "Cyclists need 1.4-1.8g protein per kg bodyweight per day — achievable through whole food.",
       "A shake is useful post-ride when appetite is low and you need rapid protein intake.",
-      "Whey protein is the fastest-absorbing option; casein is better before bed.",
+      "Whey protein absorbs quickly; casein digests more slowly, but neither has shown a clear overnight synthesis advantage after endurance exercise.",
       "Whole food protein (meat, fish, eggs, dairy) is equally effective and more satiating.",
       "Masters cyclists (40+) may benefit from slightly higher protein intake: 1.6-2.0g per kg.",
     ],

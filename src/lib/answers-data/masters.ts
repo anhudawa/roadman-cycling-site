@@ -669,7 +669,7 @@ export const mastersAnswers: AnswerPage[] = [
       {
         question: "How much protein should I eat before bed?",
         answer:
-          "20–40g of slow-digesting protein — casein or cottage cheese — before sleep has evidence for improving overnight muscle protein synthesis in older athletes. It's a useful addition if you're already hitting daily targets.",
+          "Studies in older men show that pre-sleep protein can increase overnight muscle protein synthesis, but long-term mass and strength evidence remains limited. Use it to help meet or distribute the daily target, not as an automatic extra once the target is already covered.",
       },
       {
         question: "Will eating more protein help me lose weight as well?",
