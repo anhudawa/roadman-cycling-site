@@ -273,6 +273,8 @@ const CURATED: string[] = [
   `https://${HOST}/blog/cycling-sleep-optimisation-performance-guide`,
   `https://${HOST}/blog/cycling-hrv-training-guide`,
   `https://${HOST}/blog/cycling-heart-rate-variability-guide`,
+  `https://${HOST}/blog/magnesium-cyclists-recovery-performance-guide`,
+  `https://${HOST}/blog/cycling-magnesium-performance-recovery-guide`,
   `https://${HOST}/blog/cycling-fatigue-signs-when-to-back-off`,
   `https://${HOST}/blog/cycling-overtraining-signs-guide`,
   `https://${HOST}/blog/recognising-overtraining-cyclists-guide`,

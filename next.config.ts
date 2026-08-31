@@ -190,6 +190,14 @@ const nextConfig: NextConfig = {
         destination: "/blog/cycling-hrv-training-guide",
         permanent: true,
       },
+      // GSC (latest three months): two broad magnesium guides split 94 clicks,
+      // about 8,970 web impressions and 3,360 Google AI impressions. Keep the
+      // earlier page with more clicks and consolidate the next-day duplicate.
+      {
+        source: "/blog/cycling-magnesium-performance-recovery-guide",
+        destination: "/blog/magnesium-cyclists-recovery-performance-guide",
+        permanent: true,
+      },
       // Search Console shows the rides guide already owns the active-recovery
       // query history. Retire the three later broad duplicates and consolidate
       // their links on the reviewed, evidence-bounded owner.
