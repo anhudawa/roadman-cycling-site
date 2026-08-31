@@ -237,6 +237,7 @@ const CURATED: string[] = [
   `https://${HOST}/podcast/ep-31-5-things-pogacar-always-does-after-a-ride`,
   `https://${HOST}/podcast/pogacar-tour-de-france-recovery-routine`,
   `https://${HOST}/blog/pogacar-recovery-routine`,
+  `https://${HOST}/blog/tour-de-france-recovery-between-stages`,
   `https://${HOST}/tools/training-readiness`,
   `https://${HOST}/tools/recovery-screen`,
 
