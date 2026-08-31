@@ -103,6 +103,8 @@ describe("strength and recovery app acquisition paths", () => {
         "/app?source=foam-rolling-guide",
       "content/blog/massage-guns-cyclists-worth-it.mdx":
         "/app?source=massage-gun-guide",
+      "content/blog/cycling-tart-cherry-juice-recovery-guide.mdx":
+        "/app?source=tart-cherry-guide",
       "content/blog/cycling-strength-training-guide.mdx":
         "/app?source=strength-guide",
       "content/blog/strength-training-cyclists-over-50.mdx":
