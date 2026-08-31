@@ -365,27 +365,18 @@ const heatColors: Record<string, string> = {
   hot: "text-red-400",
 };
 
-interface FuellingClientProps {
-  /** Pre-fill from the signed-in rider's profile. Watts is derived from
-   *  saved FTP at sweet-spot intensity (≈92%) as a sensible default. */
-  initialWeightKg?: number | null;
-  initialFtp?: number | null;
+interface FuellingPrefillResponse {
+  prefill: {
+    weightKg: number | null;
+    currentFtp: number | null;
+  } | null;
 }
 
-export function FuellingClient({
-  initialWeightKg,
-  initialFtp,
-}: FuellingClientProps = {}) {
+export function FuellingClient() {
   const [duration, setDuration] = useState("");
   const [sessionType, setSessionType] = useState<SessionType>("endurance");
-  const [watts, setWatts] = useState(
-    initialFtp && initialFtp > 0
-      ? String(Math.round(initialFtp * 0.7)) // endurance default
-      : "",
-  );
-  const [weight, setWeight] = useState(
-    initialWeightKg && initialWeightKg > 0 ? String(initialWeightKg) : "",
-  );
+  const [watts, setWatts] = useState("");
+  const [weight, setWeight] = useState("");
   const [gutTraining, setGutTraining] = useState<GutTraining>("some");
   const [result, setResult] = useState<FuellingResult | null>(null);
   const [copied, setCopied] = useState(false);
@@ -401,6 +392,42 @@ export function FuellingClient({
   // Keep the live mode readable inside the async fetch closure so a late
   // location response can't overwrite manual or skipped weather.
   const weatherModeRef = useRef<WeatherMode>(weatherMode);
+
+  // Profile data is private and optional, so fetch it after the public tool
+  // has rendered. Functional updates preserve anything the rider typed while
+  // the request was in flight.
+  useEffect(() => {
+    const controller = new AbortController();
+
+    void fetch("/api/tools/fuelling/prefill", {
+      cache: "no-store",
+      credentials: "same-origin",
+      signal: controller.signal,
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("Unable to load rider defaults");
+        return response.json() as Promise<FuellingPrefillResponse>;
+      })
+      .then(({ prefill }) => {
+        if (!prefill) return;
+        if (prefill.weightKg && prefill.weightKg > 0) {
+          setWeight((current) => current || String(prefill.weightKg));
+        }
+        if (prefill.currentFtp && prefill.currentFtp > 0) {
+          setWatts(
+            (current) =>
+              current || String(Math.round(prefill.currentFtp! * 0.7)),
+          );
+        }
+      })
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        // Prefill failure is deliberately silent: anonymous riders and
+        // signed-in riders both retain the complete calculator.
+      });
+
+    return () => controller.abort();
+  }, []);
 
   // Auto-fetch weather from Open-Meteo (free, no API key)
   const fetchWeather = useCallback(async () => {
