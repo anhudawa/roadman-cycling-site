@@ -15,11 +15,11 @@ const highVolumeQuery14Drafts: AnswerPage[] = [
       "Recovery determines whether your next ride is better than the last. Here are the evidence-based protocols that accelerate adaptation between sessions.",
     pillar: "recovery",
     directAnswer:
-      "Recovery speed depends on three controllable variables: sleep quality, post-ride nutrition timing, and training-load management. Consuming 1.2 g/kg carbohydrate plus 0.3 g/kg protein within 30 minutes of finishing accelerates glycogen resynthesis by roughly 50% compared with delaying intake. Seven to nine hours of sleep provides the growth hormone pulse that drives muscular repair. Active recovery below 55% of FTP increases blood flow without adding fatigue, clearing metabolites faster than complete rest.",
+      "Recovery depends mainly on sleep, adequate fuelling, hydration when needed, and sensible training-load management. An optional 20–45 minute spin at RPE 1–2 may help some riders feel looser, but research does not show a consistent next-day performance advantage over complete rest. Choose it by the total cost and protect the next priority session.",
     keyTakeaways: [
       "Post-ride carbohydrate-protein intake within 30 minutes accelerates glycogen resynthesis by approximately 50%.",
       "Seven to nine hours of sleep delivers the growth hormone pulse essential for tissue repair.",
-      "Active recovery below 55% of FTP clears metabolites faster than complete rest.",
+      "Active recovery is optional; faster immediate blood-lactate clearance does not prove faster repair or next-day performance.",
       "Chronic training load management — not single-session tricks — determines long-term recovery capacity.",
     ],
     whoFor: [
@@ -72,7 +72,7 @@ const highVolumeQuery14Drafts: AnswerPage[] = [
       {
         title: "Use active recovery between hard days",
         detail:
-          "Spin at 50-55% of FTP for 30-45 minutes. Keep your heart rate in zone 1 the entire time. This is not a training session — it is a circulation session.",
+          "If light movement helps, try 20–45 minutes at RPE 1–2 and roughly 40–55% of FTP as a starting guardrail. Rest instead if the ride adds fatigue or competes with sleep and fuelling.",
       },
       {
         title: "Monitor your acute-to-chronic workload ratio",
@@ -84,7 +84,7 @@ const highVolumeQuery14Drafts: AnswerPage[] = [
       {
         mistake: "Riding hard on recovery days.",
         fix:
-          "If your recovery ride exceeds 55% of FTP, it is no longer recovery. Use a power meter and stay honest, or walk instead.",
+          "Keep a recovery ride at RPE 1–2. Roughly 40–55% FTP can be a useful guardrail, but no percentage is a universal threshold; shorten or stop when the cost rises.",
       },
       {
         mistake: "Relying on supplements instead of sleep and food.",
@@ -131,11 +131,12 @@ const highVolumeQuery14Drafts: AnswerPage[] = [
     ],
     relatedEpisodes: [],
     relatedTopics: [
+      { label: "Active recovery rides for cyclists", href: "/blog/cycling-active-recovery-rides-guide" },
       { label: "How much sleep cyclists need", href: "/answers/how-much-sleep-do-cyclists-need" },
       { label: "Long-ride nutrition strategy", href: "/answers/cycling-long-ride-nutrition-strategy" },
       { label: "Signs of overtraining in cyclists", href: "/answers/signs-of-overtraining-cycling" },
     ],
-    evidenceLevel: "strong",
+    evidenceLevel: "moderate",
     publishDate: "2026-07-10",
     updatedDate: "2026-07-10",
   },

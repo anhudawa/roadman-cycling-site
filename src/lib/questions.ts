@@ -2446,8 +2446,8 @@ export const QUESTION_PAGES: QuestionPage[] = [
         href: "/blog/bedtime-protein-cyclists-recovery-protocol",
       },
       {
-        label: "Cycling Active Recovery — Explained",
-        href: "/blog/cycling-active-recovery-explained",
+        label: "Active Recovery Rides for Cyclists",
+        href: "/blog/cycling-active-recovery-rides-guide",
       },
       {
         label: "Masters Recovery Score Tool",

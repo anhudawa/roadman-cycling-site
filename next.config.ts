@@ -118,6 +118,24 @@ const nextConfig: NextConfig = {
         destination: "/blog/cycling-strength-training-guide",
         permanent: true,
       },
+      // Search Console shows the rides guide already owns the active-recovery
+      // query history. Retire the three later broad duplicates and consolidate
+      // their links on the reviewed, evidence-bounded owner.
+      {
+        source: "/blog/cycling-active-recovery-explained",
+        destination: "/blog/cycling-active-recovery-rides-guide",
+        permanent: true,
+      },
+      {
+        source: "/blog/active-recovery-rides-evidence-cyclists",
+        destination: "/blog/cycling-active-recovery-rides-guide",
+        permanent: true,
+      },
+      {
+        source: "/blog/cycling-recovery-rides-how-to-do-them-properly-guide",
+        destination: "/blog/cycling-active-recovery-rides-guide",
+        permanent: true,
+      },
       // The mixed MTB/gravel pressure article duplicates the established MTB
       // setup guide and had only 10 clicks from 2,206 impressions in the
       // three-month GSC baseline. Consolidate its history on the reviewed

@@ -451,6 +451,17 @@ const HEAT_ANSWER_TRUST_CLUSTER = [
   "does-heat-training-help-for-a-cool-race",
 ];
 
+// One broad active-recovery owner plus the two narrow decision answers. The
+// topic hub, readiness tools and app owner are already in CURATED above.
+const ACTIVE_RECOVERY_TRUST_CLUSTER = [
+  "cycling-active-recovery-rides-guide",
+];
+
+const ACTIVE_RECOVERY_ANSWER_TRUST_CLUSTER = [
+  "active-or-passive-recovery",
+  "am-i-fully-recovered",
+];
+
 // One broad hydration owner, two distinct measurement/product specialists and
 // one pre-event sodium evidence review. Submit the reviewed answer and tool
 // routes with them so crawlers see a consistent knowledge graph.
@@ -619,11 +630,13 @@ async function main() {
   clusterUrls(PODCAST_AUTHORITY_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(TRAINING_CAMP_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(HEAT_TRAINING_TRUST_CLUSTER).forEach((u) => urls.add(u));
+  clusterUrls(ACTIVE_RECOVERY_TRUST_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(HYDRATION_TRUST_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(CRAMP_TRUST_CLUSTER).forEach((u) => urls.add(u));
   clusterUrls(COMPARISON_CLUSTER).forEach((u) => urls.add(u));
   answerUrls(BIKE_FIT_ANSWER_TRUST_CLUSTER).forEach((u) => urls.add(u));
   answerUrls(HEAT_ANSWER_TRUST_CLUSTER).forEach((u) => urls.add(u));
+  answerUrls(ACTIVE_RECOVERY_ANSWER_TRUST_CLUSTER).forEach((u) => urls.add(u));
   answerUrls(HYDRATION_ANSWER_TRUST_CLUSTER).forEach((u) => urls.add(u));
   answerUrls(CRAMP_ANSWER_TRUST_CLUSTER).forEach((u) => urls.add(u));
   urls.add(`https://${HOST}/tools/hydration`);

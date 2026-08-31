@@ -419,11 +419,11 @@ export const recoveryAnswers: AnswerPage[] = [
       "Most cyclists need 1–2 rest or easy days per week. What counts as a rest day, when to take more, and why masters cyclists often need an extra one.",
     pillar: "recovery",
     directAnswer:
-      "Most trained cyclists need 1–2 genuine rest or active-recovery days per week to maintain consistent training quality. One complete rest day plus one easy spin of 30–45 minutes is the structure most coaches prescribe for 8–12 hour training weeks. Masters cyclists over 45 typically need 2 full rest days per week to achieve the same recovery effect. More than that and detraining risk rises; fewer and fatigue accumulates.",
+      "There is no universal number of rest days for every cyclist. One or two low-load days per week is a practical starting structure for many riders, but the right dose depends on training load, sleep, health, life stress, event timing and individual response. An active-recovery spin is optional rather than automatically better than complete rest, and masters status alone does not prescribe a fixed number of days off.",
     keyTakeaways: [
-      "1 full rest day plus 1 easy spin per week is the standard prescription for trained cyclists.",
-      "Masters cyclists over 45 often need 2 complete rest days per week.",
-      "Active recovery spins (30–45 minutes, zone 1) are better than full rest for most trained riders.",
+      "Use one or two low-load days as a starting hypothesis, then adjust from training quality and recovery trends.",
+      "Age matters, but sleep, recent load, health and life stress matter too; there is no age-based universal rule.",
+      "Active recovery may help a rider feel looser, but research does not show it is reliably better than full rest.",
       "Rest day frequency should increase after hard event weeks, multi-day rides, or illness.",
     ],
     whoFor: [
@@ -440,8 +440,8 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "The rest day question always comes with a layer of guilt that does not belong there. Anthony hears it from riders regularly — they feel like rest days are something that happens to less-serious athletes. The data says otherwise. Joe Friel has written it clearly in his work, and his message on the podcast was the same: progressive overload requires progressive recovery. They are the same system.",
-      "What actually counts as a rest day? For most trained cyclists, a complete off-the-bike day is one option, but a 30–45 minute easy spin at genuine zone 1 is arguably better. It moves blood through the legs, keeps the routine intact, and produces less training-withdrawal anxiety without adding meaningful load. That distinction matters for the riders who struggle psychologically with full rest.",
-      "For masters riders the calculus shifts. After 45, hormonal recovery slows, muscle protein synthesis takes longer, and the immune suppression that follows hard sessions lasts longer. Two full rest days per week is not under-training — it is accurate dosing for the physiology you actually have.",
+      "What counts as a rest day depends on its cost. A complete off-the-bike day carries the least training load. A short spin can preserve routine and help some riders feel less stiff, but it still has a cost and is not automatically the better option.",
+      "For masters riders the margin often matters more, but age is not a prescription. Recent training, sleep, symptoms, pain, work stress and the next priority session should decide whether the week needs one low-load day or several.",
     ],
     expertEvidence: [
       {
@@ -468,9 +468,9 @@ export const recoveryAnswers: AnswerPage[] = [
           "A rest or active-recovery day should follow your hardest interval session and your longest ride. This is where the adaptation window is widest. Placing a second hard session the day after an interval session burns the adaptation stimulus before it consolidates.",
       },
       {
-        title: "Choose active recovery over full rest if you are trained",
+        title: "Choose the lower-cost recovery option",
         detail:
-          "A 30–45 minute ride at genuine zone 1 — low cadence, easy gearing, full conversation — moves recovery metabolites and keeps the aerobic system lightly stimulated without adding training stress. Most trained cyclists recover better from this than from a sofa day.",
+          "If gentle movement reliably leaves you feeling better, try 20–45 minutes at RPE 1–2. If the ride adds fatigue, competes with sleep or tends to drift harder, take complete rest. Training status does not make active recovery automatically superior.",
       },
       {
         title: "Add a second rest day for the week after any major event",
@@ -514,7 +514,7 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         question: "Is an active recovery ride better than complete rest?",
         answer:
-          "For most trained cyclists, yes. Easy spinning clears lactate and metabolic waste more efficiently than lying on the couch, keeps the aerobic system lightly activated, and maintains the daily training habit. The key is keeping it actually easy — zone 1, not zone 2.",
+          "Not universally. An easy spin can help some riders feel looser and maintain routine, while complete rest carries less training cost. Faster immediate blood-lactate clearance is not proof of faster repair or better next-day performance. Choose the option that best protects the next priority session.",
       },
       {
         question: "How many rest days after a big event like a sportive?",
@@ -535,8 +535,11 @@ export const recoveryAnswers: AnswerPage[] = [
       { label: "Recovery Week Guide", href: "/blog/cycling-rest-week-guide" },
     ],
     evidenceLevel: "moderate",
+    evidenceNote:
+      "Rest-day frequency is not established by one universal cycling prescription. The active-recovery evidence supports cautious, outcome-specific language rather than claiming that easy spinning is always superior to rest.",
     publishDate: "2026-05-26",
-    updatedDate: "2026-05-26",
+    updatedDate: "2026-08-31",
+    reviewedBy: "Anthony Walsh",
   },
 
   // ============================================================
@@ -548,15 +551,15 @@ export const recoveryAnswers: AnswerPage[] = [
     question: "Active or Passive Recovery: Which Is Better?",
     seoTitle: "Active vs Passive Recovery for Cyclists: Which Is Better?",
     seoDescription:
-      "Active recovery (easy 30–45 min spin) beats passive rest for most trained cyclists. When each works best, and the line between active recovery and adding more fatigue.",
+      "Active recovery or complete rest? Compare the evidence, use practical decision signals and keep an optional easy spin from adding hidden fatigue.",
     pillar: "recovery",
     directAnswer:
-      "For trained cyclists, active recovery — a 30–45 minute easy spin at genuine zone 1 — is better than passive rest on most recovery days. Easy movement clears metabolic waste faster, maintains blood flow to working muscles, and preserves the aerobic habit. Passive rest is the right call after illness, extreme fatigue, or the first day post-event when the body signals it needs to stop. The deciding factor is how truly easy the active option actually is.",
+      "Neither active nor passive recovery is universally better. A 20–45 minute spin at RPE 1–2 can help some cyclists feel looser and preserve routine, but research does not show a consistent next-day performance advantage over complete rest. Rest is the lower-cost choice when you are ill, in pain, badly under-slept, unusually fatigued or unable to keep the ride easy.",
     keyTakeaways: [
-      "Active recovery (30–45 min zone 1) is better than full rest for most trained cyclists on recovery days.",
-      "Zone 1 means truly easy — below conversational pace, low heart rate, no pushing.",
-      "Passive rest is appropriate the day after an extreme event, during illness, or after injury.",
-      "The risk with active recovery is going too hard — zone 2 or above adds fatigue rather than clearing it.",
+      "Active recovery may improve soreness, stiffness or subjective readiness for some riders; it is not a guaranteed performance intervention.",
+      "Use 20–45 minutes at RPE 1–2 and roughly 40–55% FTP as starting guardrails, not universal thresholds.",
+      "Complete rest is appropriate for illness, meaningful pain, severe sleep loss or unusual whole-body fatigue.",
+      "The main risk is turning an optional easy spin into added training load that compromises the next important session.",
     ],
     whoFor: [
       {
@@ -571,7 +574,7 @@ export const recoveryAnswers: AnswerPage[] = [
       },
     ],
     roadmanView: [
-      "The physiological case for active recovery is solid: gentle movement increases blood flow, accelerates clearance of inflammatory metabolites, and supports the lymphatic system in ways passive rest does not. That said, active recovery only works if it is actually active recovery — and most trained cyclists struggle to keep it there.",
+      "The case for active recovery is narrower than cycling folklore suggests. Gentle movement can feel good and can reduce stiffness for some riders, but that does not prove faster muscle repair or adaptation. It has to earn its place in the week.",
       "The danger is turning a 45-minute easy spin into a 60-minute zone 2 effort because the legs feel better after 20 minutes and the ego wants to capitalise. The moment you do that, you have added a training session. The recovery window closes. What looked like recovery was actually cost.",
       "Passive rest has its place. The day after a really hard race, or coming off illness, or any time the body is clearly telling you to stop — listen to it. Recovery is not a formula. It is a response to signals. The skill is reading those signals accurately rather than overriding them with a tidy protocol.",
     ],
@@ -595,19 +598,19 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     practicalApplication: [
       {
-        title: "Cap active recovery at zone 1 with a heart rate ceiling",
+        title: "Use effort first and numbers as guardrails",
         detail:
-          "Set your head unit to alert above 65% of max heart rate. On a recovery spin, stay below that ceiling the entire ride. No climbs, no chasing, no finishing 'just a bit harder'. If you cannot stay below it, shorten the ride rather than pushing the intensity.",
+          "Hold RPE 1–2 with effortless conversation. Roughly 40–55% of FTP can be a conservative starting range, but heat, fatigue and an inaccurate FTP can change the cost. Shorten or stop if the ride does not feel trivial.",
       },
       {
-        title: "Keep it under 45 minutes",
+        title: "Start with 20–45 minutes",
         detail:
-          "A recovery spin longer than 45–60 minutes accumulates enough load to shift from recovery to training. If the legs feel good and you want to keep riding, that is a signal to save the energy for tomorrow's session.",
+          "No duration is proven optimal for everyone. Use the shortest ride that gives the desired movement or routine benefit, and save the energy for the next priority session.",
       },
       {
-        title: "Use passive rest on day one post-event",
+        title: "Reassess rather than follow a post-event rule",
         detail:
-          "After a major event — gran fondo, race, hard sportive — take the first day completely off. No riding, no hiking, no gym. Let the body do its initial repair work without interruption. Active recovery can begin on day two.",
+          "After a major event, check symptoms, pain, sleep, fuelling, subjective fatigue and what comes next. Complete rest is often sensible, but logistics and individual response matter more than a compulsory day-one formula.",
       },
     ],
     commonMistakes: [
@@ -624,14 +627,14 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         mistake: "Avoiding active recovery entirely because 'rest means rest'.",
         fix:
-          "Complete inactivity on consecutive days leads to stiffening, slowed metabolite clearance, and a heavier feeling on the first return session. A short easy spin usually produces a better next session than lying still.",
+          "Active recovery is optional. If light movement helps you feel better, use it; if complete rest leaves you fresher, rest. Do not turn preference into a universal physiological claim.",
       },
     ],
     faq: [
       {
         question: "What counts as active recovery for cyclists?",
         answer:
-          "A 20–45 minute easy spin at zone 1 power or heart rate — well below conversational threshold, no intervals, no pushing. Easy yoga, light walking, or swimming at low effort also qualify. Anything that raises your heart rate above 65–70% of max is no longer passive recovery.",
+          "A deliberately low-cost activity, such as a 20–45 minute spin at RPE 1–2, an easy walk or gentle mobility. Conversation should be effortless and there should be no intervals or chasing. No single heart-rate percentage defines active recovery for every rider.",
       },
       {
         question: "Can strength training count as active recovery?",
@@ -641,7 +644,7 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         question: "Is active recovery better than ice baths or compression?",
         answer:
-          "They serve different purposes. Active recovery addresses blood flow and metabolite clearance over time. Cold water immersion may blunt acute inflammation — useful after extreme events, potentially counterproductive after regular training where some inflammation signals adaptation. They are not directly comparable.",
+          "They target different outcomes and none replaces sleep, fuelling or sensible load management. Active recovery may change soreness or how loose you feel; that is not the same as proving faster repair or adaptation. Choose an intervention for a defined outcome rather than ranking recovery tools universally.",
       },
       {
         question: "Should I do active recovery the morning of a hard afternoon session?",
@@ -660,15 +663,17 @@ export const recoveryAnswers: AnswerPage[] = [
       "ep-31-5-things-pogacar-always-does-after-a-ride",
     ],
     relatedTopics: [
-      { label: "Active Recovery for Cyclists", href: "/blog/cycling-active-recovery-explained" },
-      { label: "Active Recovery Rides Guide", href: "/blog/cycling-active-recovery-rides-guide" },
+      { label: "Active Recovery Rides for Cyclists", href: "/blog/cycling-active-recovery-rides-guide" },
       { label: "How many rest days do cyclists need?", href: "/answers/how-many-rest-days-cycling" },
       { label: "Recovery Topic Hub", href: "/topics/cycling-recovery" },
       { label: "World Tour Recovery Protocols", href: "/blog/recovery-for-cyclists-world-tour-protocols" },
     ],
     evidenceLevel: "moderate",
+    evidenceNote:
+      "The active cool-down and post-exercise recovery literature reports outcome-specific and inconsistent effects. It does not establish a universal next-day cycling performance advantage, power cap, heart-rate cap or duration.",
     publishDate: "2026-05-26",
-    updatedDate: "2026-05-26",
+    updatedDate: "2026-08-31",
+    reviewedBy: "Anthony Walsh",
   },
 
   // ============================================================
