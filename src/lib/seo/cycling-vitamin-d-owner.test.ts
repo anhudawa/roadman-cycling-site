@@ -78,6 +78,23 @@ describe("vitamin D cycling search owner and medical trust", () => {
     expect(source).toContain("not a do-it-yourself cycling protocol");
   });
 
+  it("keeps supporting articles aligned with the canonical answer", () => {
+    const supportingPages = [
+      "content/blog/supplements-cyclists-what-works-guide.mdx",
+      "content/blog/blood-testing-cyclists-what-to-check-guide.mdx",
+    ];
+
+    for (const path of supportingPages) {
+      const source = read(path);
+      expect(source).toContain(`/blog/${SLUG}`);
+      expect(source).toContain("safety ceiling");
+      expect(source).not.toMatch(/athletic optimal range:\*\* 75/i);
+      expect(source).not.toMatch(/vitamin d \(clinical sufficiency:[^\n]+75-125/i);
+      expect(source).not.toMatch(/supplementing 2,000-4,000 IU daily/i);
+      expect(source).not.toMatch(/maintain levels in the 75[\u2013-]100 nmol\/L range/i);
+    }
+  });
+
   it("renders reviewed references and extends recrawl and AI discovery", () => {
     expect(read("src/lib/blog.ts")).toContain(
       "reviewedSources?: ReviewedSource[]",

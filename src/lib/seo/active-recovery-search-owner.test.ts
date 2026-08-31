@@ -66,8 +66,14 @@ describe("active-recovery search ownership and trust", () => {
     const files = ["content", "src", "scripts"].flatMap((directory) =>
       sourceFiles(resolve(root, directory)),
     );
+    const generatedAuditFiles = [
+      "scripts/audit-links-report.json",
+      "scripts/route-inventory.json",
+    ];
 
     for (const path of files) {
+      if (generatedAuditFiles.some((generated) => path === resolve(root, generated)))
+        continue;
       if (path.endsWith("active-recovery-search-owner.test.ts")) continue;
       const source = readFileSync(path, "utf8");
       for (const retired of RETIRED) expect(source).not.toContain(retired);
