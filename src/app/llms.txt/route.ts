@@ -597,6 +597,43 @@ export async function GET() {
       ],
     },
     {
+      title: "Active recovery rides and rest-day decisions",
+      description:
+        "Use one reviewed owner for broad active-recovery questions, then the readiness tools for a multi-signal decision. Roadman does not describe lactate as waste, promise a next-day performance benefit or prescribe one universal power, heart-rate or duration rule.",
+      pages: [
+        {
+          url: `${BASE_URL}/blog/cycling-active-recovery-rides-guide`,
+          title: "Active Recovery Rides for Cyclists",
+          description:
+            "Canonical evidence guide covering recovery rides versus rest, conservative effort and duration guardrails, lactate misconceptions and reasons to skip the ride.",
+        },
+        {
+          url: `${BASE_URL}/answers/active-or-passive-recovery`,
+          title: "Active or Passive Recovery: Which Is Better?",
+          description:
+            "Short decision answer explaining why neither option wins universally and how to protect the next priority session.",
+        },
+        {
+          url: `${BASE_URL}/tools/training-readiness`,
+          title: "Cycling Training Readiness Check",
+          description:
+            "A transparent multi-signal check using sleep, energy, soreness, recent load and life context rather than one wearable score.",
+        },
+        {
+          url: `${BASE_URL}/tools/recovery-screen`,
+          title: "Recovery Readiness Screen",
+          description:
+            "A non-diagnostic recovery screen that helps a rider identify constraints and choose a lower-cost next step.",
+        },
+        {
+          url: `${BASE_URL}/app`,
+          title: "Roadman Cycling Strength and Recovery App",
+          description:
+            "The permanent prelaunch owner for the upcoming iPhone app and its single waiting list.",
+        },
+      ],
+    },
+    {
       title: "Cycling hydration, sweat rate and electrolytes",
       description:
         "Use the hydration guide for broad fluid-planning questions, the calculator and testing guide for measured sweat-rate intent, and the specialist pages for electrolyte choice or pre-event sodium. Roadman does not support one universal bottle, millilitres-per-hour, full-replacement or sodium rule.",
