@@ -50,20 +50,19 @@ describe("creatine answer AI-search trust owner", () => {
     expect(route).toContain('answer.reviewedBy?.startsWith("Anthony Walsh")');
   });
 
-  it("connects evidence to the app, strength tool and distinct companions", () => {
+  it("connects evidence to the app, strength tool and consolidated owner", () => {
     const links = answer?.relatedTopics.map((topic) => topic.href);
 
     expect(links).toEqual(
       expect.arrayContaining([
-        "/app?source=creatine-answer",
+        "/app?source=creatine-guide",
         "/tools/strength-session-planner",
         "/blog/creatine-for-cyclists-thirty-day-data",
-        "/blog/creatine-for-cyclists-30-day-protocol",
       ]),
     );
   });
 
-  it("places all three canonical owners in priority recrawl", () => {
+  it("places the direct answer and consolidated owner in priority recrawl", () => {
     const indexNow = read("scripts/submit-indexnow.ts");
 
     expect(indexNow).toContain(
@@ -71,9 +70,6 @@ describe("creatine answer AI-search trust owner", () => {
     );
     expect(indexNow).toContain(
       "`https://${HOST}/blog/creatine-for-cyclists-thirty-day-data`",
-    );
-    expect(indexNow).toContain(
-      "`https://${HOST}/blog/creatine-for-cyclists-30-day-protocol`",
     );
   });
 });

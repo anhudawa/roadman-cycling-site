@@ -731,7 +731,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     extendedDefinition: "The standard 3-5g/day dose raises intramuscular creatine stores over 3-4 weeks. For cyclists, the relevant benefits are: faster between-session recovery, modest increase in muscle glycogen capacity (cells hold more water and more glycogen), small but measurable cognitive performance benefit on long rides. The ~1kg water-weight gain is not ideal for climbers in peak season but is a non-issue for base training. Safe, well-studied, cheap.",
     pillar: "nutrition",
     relatedTerms: ["glycogen", "protein-timing"],
-    relatedArticle: "/blog/cycling-creatine-supplementation-guide",
+    relatedArticle: "/blog/creatine-for-cyclists-thirty-day-data",
     relatedTopicHub: "/topics/cycling-nutrition",
   },
   {

@@ -11,10 +11,9 @@ direct evidence supports.
 ## Intent boundary
 
 - `/answers/should-cyclists-take-creatine` owns the concise evidence verdict.
-- `/blog/creatine-for-cyclists-thirty-day-data` owns Anthony's first-party n=1
-  report and must not be presented as a controlled population result.
-- `/blog/creatine-for-cyclists-30-day-protocol` owns practical protocol intent.
-- `/tools/strength-session-planner` and `/app?source=creatine-answer` own the
+- `/blog/creatine-for-cyclists-thirty-day-data` is the consolidated long-form
+  owner for research, protocol, safety and Anthony's clearly labelled n=1 report.
+- `/tools/strength-session-planner` and `/app?source=creatine-guide` own the
   next strength-and-recovery action, not the supplement verdict itself.
 
 ## Release changes
@@ -31,7 +30,7 @@ direct evidence supports.
 - Added eight visible sources, review date/reviewer, medical and anti-doping
   product-quality boundaries, eight qualified FAQs and links into the app and
   strength planner.
-- Added the answer and both companion articles to priority IndexNow recrawl.
+- Added the answer and consolidated owner to priority IndexNow recrawl.
 
 ## Evidence hierarchy
 

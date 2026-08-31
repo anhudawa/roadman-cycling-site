@@ -118,6 +118,25 @@ const nextConfig: NextConfig = {
         destination: "/blog/cycling-strength-training-guide",
         permanent: true,
       },
+      // Four creatine pages split 188 clicks, 22,246 web impressions and 5,521
+      // Google AI impressions in the latest three-month GSC baseline. Keep the
+      // strongest URL (123 clicks, 10,028 impressions, position 8.2) and
+      // consolidate the evidence, protocol and duplicate experiment pages.
+      {
+        source: "/blog/cycling-creatine-supplementation-guide",
+        destination: "/blog/creatine-for-cyclists-thirty-day-data",
+        permanent: true,
+      },
+      {
+        source: "/blog/creatine-for-cyclists-30-day-experiment",
+        destination: "/blog/creatine-for-cyclists-thirty-day-data",
+        permanent: true,
+      },
+      {
+        source: "/blog/creatine-for-cyclists-30-day-protocol",
+        destination: "/blog/creatine-for-cyclists-thirty-day-data",
+        permanent: true,
+      },
       // Search Console shows cycling-core-workout-routine owns the broad core
       // exercise query family. Consolidate the later complete-guide duplicate
       // on that reviewed owner while the plank page keeps its narrower intent.
