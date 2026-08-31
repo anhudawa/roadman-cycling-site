@@ -93,6 +93,8 @@ describe("strength and recovery app acquisition paths", () => {
         "/app?source=hrv-guide",
       "content/blog/magnesium-cyclists-recovery-performance-guide.mdx":
         "/app?source=magnesium-guide",
+      "content/blog/resting-heart-rate-masters-cyclists.mdx":
+        "/app?source=rhr-guide",
       "content/blog/cycling-strength-training-guide.mdx":
         "/app?source=strength-guide",
       "content/blog/strength-training-cyclists-over-50.mdx":

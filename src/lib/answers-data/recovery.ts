@@ -277,15 +277,15 @@ export const recoveryAnswers: AnswerPage[] = [
     question: "What Are the Signs of Overtraining?",
     seoTitle: "Signs of Overtraining in Cyclists: What to Look For",
     seoDescription:
-      "The real signs of overtraining in cyclists — declining power, elevated resting heart rate, disrupted sleep, and mood changes. What separates normal fatigue from overtraining syndrome.",
+      "Cycling fatigue signs include sustained performance, effort, sleep, mood and health changes. No resting-rate or HRV cutoff diagnoses overtraining syndrome.",
     pillar: "recovery",
     directAnswer:
-      "The clearest signs of overtraining in cyclists are: power output declining despite consistent training, resting heart rate elevated by 5–8 beats per minute above your normal, sleep becoming fragmented or unrefreshing, and persistent mood changes — irritability, low motivation, or flat affect that does not lift after a rest day. A single bad week is normal fatigue. These signs appearing together over 2–3 weeks signal overtraining syndrome.",
+      "Back off when fatigue becomes a pattern: repeatable cycling performance falls, usual power feels unusually hard, tiredness does not improve as expected, or sleep, mood, motivation or health change together. No fixed resting-heart-rate, HRV, duration or symptom-count threshold diagnoses overtraining. Persistent or disproportionate fatigue needs clinical assessment because overtraining syndrome is a diagnosis of exclusion and overlaps with illness, iron deficiency, low energy availability, sleep and mental-health conditions.",
     keyTakeaways: [
-      "Power declining over weeks despite consistent training is the key performance signal.",
-      "Elevated resting heart rate (5–8 bpm above baseline) is an early physiological flag.",
-      "Sleep disruption and persistent low mood are the most overlooked markers.",
-      "Overtraining syndrome takes weeks to months to fully reverse — catching it early is the priority.",
+      "Look for repeated changes in performance, perceived effort, recovery, sleep, mood, motivation and health.",
+      "Resting heart rate and HRV can add context, but neither has a universal diagnostic cutoff.",
+      "One poor session is not overtraining; the pattern, duration and departure from the rider's normal matter.",
+      "Persistent or disproportionate fatigue needs assessment because other health conditions can look like under-recovery.",
     ],
     whoFor: [
       {
@@ -301,7 +301,7 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "Laurens ten Dam was on the podcast and he talked about this from the other side — the pro who overtrained himself into career crisis and had to find gravel racing to rediscover his relationship with the bike. The story is extreme, but the pattern behind it is not. Overtraining syndrome is what happens when you ignore the early warning signals for months.",
-      "The problem is that the early signs feel almost identical to normal training fatigue — the same tired legs, the same flat power on a hard day. The difference is time. Normal fatigue clears after 2–3 days of easy riding. The first sign that something more serious is happening is when it does not clear, when the power on a fresh morning after decent sleep is still 10–15 watts lower than it was three weeks ago.",
+      "Early signs can look like ordinary training fatigue: tired legs, flat power or a hard-feeling session. There is no day or watt threshold that separates normal fatigue, overreaching and overtraining syndrome prospectively. A repeated multi-system change that does not improve as expected deserves a lower training cost and, when persistent or disproportionate, clinical assessment.",
       "Anthony's position is direct: the riders who recover fastest from overtraining are the ones who catch it early and act quickly. A week off when you are overtrained is far less costly than two months off when it becomes full syndrome. Listen to the numbers, listen to your mood, and resist the voice that says you just need to push harder.",
     ],
     expertEvidence: [
@@ -324,19 +324,19 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     practicalApplication: [
       {
-        title: "Track resting heart rate daily for 4 weeks",
+        title: "Track a consistent personal pattern",
         detail:
-          "Measure it each morning before getting out of bed — the same time, same position. Your personal baseline becomes clear within two weeks. Anything 5 bpm or more above that baseline for 2–3 consecutive days is a signal to reduce load immediately.",
+          "Measure resting rate with one repeatable method and record symptoms, wellbeing, sleep, recent load and comparable performance. There is no universal calibration period or 5-bpm rule; use agreement across observations to justify a cheaper session or further investigation.",
       },
       {
         title: "Monitor mood and motivation honestly",
         detail:
-          "Rate your motivation to train out of 10 each day. A single day of 3 or 4 is normal. A week averaging under 5, combined with sleep disruption, is an early overtraining signal. Many athletes ignore this data because it feels subjective — it is not.",
+          "Use the same simple scale and note meaningful changes rather than chasing a population cutoff. Athlete-monitoring reviews show subjective wellbeing often responds consistently to load, but it still cannot diagnose a syndrome by itself.",
       },
       {
-        title: "Take a full recovery week at the first real signal",
+        title: "Reduce the cost of training while you reassess",
         detail:
-          "Cut volume to 40–50%, remove all intensity, sleep 8–9 hours, eat full carbohydrates. Do not wait until the power is deep in a hole. Responding early to early signals is how you stay in the training cycle rather than dropping out of it.",
+          "Remove the next hard stimulus, restore adequate fuelling and regular sleep, reduce non-essential load and review the response. The amount and duration should follow severity, cause and response rather than one mandatory percentage.",
       },
     ],
     commonMistakes: [
@@ -360,17 +360,17 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         question: "What is the difference between overreaching and overtraining?",
         answer:
-          "Overreaching is a short-term state — excessive fatigue that resolves within 1–2 weeks of reduced load. Overtraining syndrome is a longer-term condition taking weeks or months to reverse. The distinction matters: functional overreaching (planned short hard blocks) is a legitimate training tool; overtraining syndrome is not.",
+          "Functional overreaching is a short-term performance reduction followed by recovery and possible improvement. Non-functional overreaching lasts longer without benefit, while overtraining syndrome is prolonged maladaptation and a diagnosis of exclusion. The boundary is judged retrospectively from the course and other causes, not from a simple day count.",
       },
       {
         question: "How long does it take to recover from overtraining?",
         answer:
-          "Functional overreaching resolves in 1–2 weeks. Full overtraining syndrome typically takes 4–12 weeks of significantly reduced training, sometimes longer. The more advanced the syndrome before intervention, the longer the recovery.",
+          "There is no universal recovery calendar. Duration depends on the state, the underlying contributors and the individual response. Suspected overtraining syndrome warrants appropriate clinical assessment and a progressive return rather than an internet timetable.",
       },
       {
         question: "Can HRV detect overtraining early?",
         answer:
-          "HRV is one of the most sensitive early indicators available to amateur cyclists. A downward trend in morning HRV scores over 5–7 days, particularly when combined with elevated resting heart rate, is a reliable early flag. It often appears before power or mood changes become obvious.",
+          "No. HRV findings in overreached endurance athletes are inconsistent and depend on the metric and method. A consistently measured pattern can add context beside performance, perceived effort, sleep, mood, illness and load, but it cannot diagnose or reliably predict overtraining by itself.",
       },
       {
         question: "Does overtraining cause weight loss?",
@@ -380,7 +380,7 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         question: "Is overtraining more common in masters cyclists?",
         answer:
-          "Yes. Recovery capacity declines with age — masters cyclists tolerate high training loads less well and need longer recovery windows. A 50-year-old running the same weekly structure as a 30-year-old is carrying a proportionally higher physiological burden.",
+          "Age changes health and recovery context, but masters status alone does not prescribe one training tolerance or recovery window. Compare the individual rider's response and include medication, cardiovascular history, sleep, fuelling and life stress.",
       },
       {
         question: "Should I see a doctor if I suspect overtraining?",
@@ -402,7 +402,7 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     evidenceLevel: "strong",
     publishDate: "2026-05-26",
-    updatedDate: "2026-05-26",
+    updatedDate: "2026-08-31",
   },
 
   // ============================================================
@@ -2149,15 +2149,15 @@ export const recoveryAnswers: AnswerPage[] = [
     question: "How Do I Know If I'm Fully Recovered?",
     seoTitle: "How Do I Know If I'm Fully Recovered for Cycling?",
     seoDescription:
-      "You are recovered when 3 things line up: resting heart rate back to baseline, power normal at a given heart rate on an easy ride, and genuine motivation to train. Why one marker alone misleads, and how to read them together.",
+      "No single resting-heart-rate, HRV, power or motivation threshold proves that a cyclist is recovered. Use repeatable measurements, symptoms and actual function together.",
     pillar: "recovery",
     directAnswer:
-      "You are fully recovered when three signals line up: your resting heart rate is back within 2–3 beats of baseline, your power at a given heart rate on an easy ride has returned to normal, and your motivation to train is actually there. No single marker is reliable on its own. When all three agree, you are ready for a hard session. When they conflict, default to the more conservative reading and ride easy.",
+      "There is no measurement that proves a cyclist is fully recovered or ready for a hard session. Build a repeatable personal pattern from resting heart rate, sleep, symptoms and subjective wellbeing, then compare it with recent load and performance. Agreement across repeated observations raises confidence; disagreement should trigger a lower-cost training choice or more investigation, not an automatic green or red light.",
     keyTakeaways: [
-      "Use three markers together: resting heart rate, power-at-heart-rate, and genuine motivation.",
-      "Resting heart rate within 2–3 bpm of baseline is a reliable physiological green light.",
-      "If power is depressed at your normal easy heart rate, the legs are still fatigued.",
-      "When the signals conflict, ride easy — false-positive readiness costs more than a missed hard day.",
+      "No resting-heart-rate, HRV or wearable threshold proves readiness for every cyclist.",
+      "Compare one consistent personal pattern with symptoms, subjective wellbeing, recent load and actual function.",
+      "Power and heart rate during a standard effort add context, but heat, hydration, fuelling and measurement error also change them.",
+      "When signals conflict, reduce the cost of the decision and investigate rather than forcing a binary score.",
     ],
     whoFor: [
       {
@@ -2173,8 +2173,8 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     roadmanView: [
       "The honest answer is that no app can tell you this with certainty, and the riders who improve most are the ones who learn to read their own signals rather than outsourcing the decision to a readiness score. Anthony's framing on the podcast has been consistent: the wearable gives you a number, but you make the call, and the call gets better with practice.",
-      "Three markers, read together, get you most of the way there. First, resting heart rate measured the same way every morning — back near baseline means the nervous system has settled. Second, power at a controlled easy heart rate — if you are 10–15 watts down at your normal zone 1 pulse, the legs have not rebuilt yet. Third, and most underrated, genuine desire to train. Dread is data. When all three agree, trust them.",
-      "Where it gets useful is in the conflicts. HRV says recovered, legs feel flat — what do you do? The fixable mistake is forcing the hard session on a false green light. A missed quality day costs you almost nothing. A hard session done on a body that wasn't ready costs you the session, the recovery, and often the next two days. When the signals disagree, the conservative read wins.",
+      "Several observations, read together, are more useful than one threshold. Measure resting heart rate with the same method, record sleep, symptoms and subjective wellbeing, and compare performance only under reasonably similar conditions. Each has plausible alternative explanations, so agreement raises confidence without proving readiness.",
+      "Where monitoring becomes useful is in the conflicts. If a wearable score says recovered but the rider feels unwell or unusually flat, recheck the measurement and choose a session whose cost is easy to reverse. If the rider feels good but a device produces one surprising value, verify it rather than treating the algorithm as a diagnosis.",
     ],
     expertEvidence: [
       {
@@ -2196,19 +2196,19 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     practicalApplication: [
       {
-        title: "Run a 5-minute readiness check before every quality session",
+        title: "Run a short context check before a quality session",
         detail:
-          "Measure morning resting heart rate (within 2–3 bpm of baseline = green), rate your motivation out of 10 (7+ = green), and on the warm-up note your power at your normal easy heart rate. Two or three greens means proceed; two or three reds means switch to easy.",
+          "Check symptoms, subjective wellbeing, sleep and recent training beside a consistently measured resting rate. During the warm-up, notice whether ordinary work feels and performs as expected. Do not convert any one value or score into an automatic instruction.",
       },
       {
         title: "Use a fixed easy-effort power-at-heart-rate test",
         detail:
-          "Pick a repeatable 10-minute easy effort — same route or trainer setting. Hold your normal zone 1 heart rate and note the power. When you are recovered, the power returns to its usual figure. Power 10–15 watts low at that heart rate means the legs are still fatigued, whatever the apps say.",
+          "A repeatable easy effort can show whether the heart-rate, power and perceived-effort relationship has changed. Compare similar conditions and remember that temperature, hydration, fuelling, stress and device error can move the result without proving muscular fatigue.",
       },
       {
-        title: "Keep a one-line daily log for 6 weeks",
+        title: "Keep a one-line daily log",
         detail:
-          "Resting heart rate, hours slept, motivation out of 10, and how the legs felt. After six weeks your personal recovery signature becomes obvious — you will know which marker leads for you and what your real baseline looks like.",
+          "Record resting heart rate, sleep, symptoms, recent load and how the rider feels. Include ordinary easy, hard, rest, stressful and warm-weather days; there is no universal number of weeks after which the pattern becomes definitive.",
       },
     ],
     commonMistakes: [
@@ -2232,32 +2232,32 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         question: "Is resting heart rate a reliable recovery marker?",
         answer:
-          "It is one of the most reliable simple markers, provided you measure it consistently — same time each morning, before getting out of bed. A resting heart rate elevated 5+ bpm above your established baseline for two or more days signals incomplete recovery. On its own it is not definitive, but combined with other markers it is strong.",
+          "It can add useful context when measured consistently, but athlete-monitoring reviews find that training-related changes can overlap normal day-to-day variability. No universal 5-bpm or two-day rule diagnoses incomplete recovery. Read repeated change beside symptoms, wellbeing, load and performance.",
       },
       {
         question: "How does HRV tell me if I'm recovered?",
         answer:
-          "HRV reflects autonomic nervous system balance — higher trending values generally mean better recovery. The key is trend, not single days: a reading consistently below your baseline over several days indicates accumulated fatigue. A single low day is usually noise from poor sleep, alcohol, or measurement error.",
+          "It does not tell you that directly. HRV describes variation between normal beat intervals and is affected by method, training, sleep, alcohol, stress, illness and other factors. Compare like with like and use the pattern beside symptoms, wellbeing, load and performance; high is not an automatic green light and low is not a diagnosis.",
       },
       {
         question: "Can I be recovered enough for easy riding but not hard sessions?",
         answer:
-          "Yes, and this is the most common state. Partial recovery is enough for zone 1–2 riding but not for quality intervals. If your markers are mixed, an easy ride is almost always appropriate even when a hard session would not be. Most days are easy days for a reason.",
+          "A rider may tolerate a low-cost session when a hard session would be a poor choice, but no score proves that distinction. When the picture is mixed, shortening the ride, riding easily or resting are reversible options; symptoms and health context can make exercise inappropriate altogether.",
       },
       {
         question: "Why do I feel recovered but my power is still down?",
         answer:
-          "Subjective freshness can return before full muscular and metabolic recovery, especially the day after a long ride. Power at a controlled heart rate is a more objective check than feel. If the legs feel fine but the watts are low at your normal easy pulse, the rebuild is not finished.",
+          "Power can move because of calibration, conditions, heat, hydration, fuelling, pacing, recent load or health as well as fatigue. Repeat the observation under comparable conditions and interpret it beside perceived effort and symptoms rather than assuming one mechanism.",
       },
       {
         question: "How long should I wait if I'm not fully recovered?",
         answer:
-          "Add easy days until the markers return — usually one to three more for a normal hard block, longer after an event or illness. There is no fixed number. Recheck readiness each morning and let the markers, not the calendar, decide when the next quality session lands.",
+          "There is no fixed wait. Reduce training cost, restore sleep and adequate fuelling, then reassess symptoms, wellbeing and function. Illness, persistent symptoms or an unexpectedly poor response needs appropriate guidance rather than waiting for a watch number to normalise.",
       },
       {
         question: "Do masters cyclists read recovery markers differently?",
         answer:
-          "The markers are the same, but the response should be more conservative and the recovery windows longer. Masters cyclists over 45 take longer to return to baseline after hard efforts, so a marker that is borderline warrants an extra easy day more often than it would for a younger rider.",
+          "Use the same multi-input principles, while adding medication, cardiovascular history and symptoms to the context. Age alone does not create one longer recovery window or resting-rate threshold for every masters cyclist.",
       },
     ],
     relatedEpisodes: [
@@ -2274,7 +2274,7 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     evidenceLevel: "moderate",
     publishDate: "2026-05-26",
-    updatedDate: "2026-05-26",
+    updatedDate: "2026-08-31",
   },
 
   // ============================================================
@@ -2700,12 +2700,12 @@ export const recoveryAnswers: AnswerPage[] = [
       "Monitor recovery with 4 markers tracked daily: resting heart rate, HRV trend, sleep, and subjective wellness. Why no single number decides readiness, and how to build a simple system in under 2 minutes a day.",
     pillar: "recovery",
     directAnswer:
-      "Monitor recovery with four markers tracked daily: resting heart rate, HRV trend, sleep duration and quality, and a subjective wellness score out of 10. No single number decides readiness — the signal comes from the markers agreeing or conflicting. The whole system takes under two minutes a day once set up, and after 4–6 weeks it reveals your personal recovery signature, which matters more than any app's generic readiness score.",
+      "Monitor recovery with a small repeatable set of observations: symptoms and subjective wellbeing, sleep, recent training load, resting heart rate and—if measured validly—HRV. No single number decides readiness and there is no universal 3-to-5-day trend or 4-to-6-week baseline rule. Agreement across repeated observations can raise confidence; conflicting or concerning signals need investigation rather than a generic score.",
     keyTakeaways: [
-      "Track four markers daily: resting heart rate, HRV trend, sleep, and subjective wellness out of 10.",
-      "Readiness comes from the markers agreeing — no single number is decisive.",
-      "Trends over 3–5 days matter far more than any individual day's reading.",
-      "Build a personal baseline over 4–6 weeks before letting the data change your training.",
+      "Track a small set consistently: symptoms, wellbeing, sleep, recent load, resting rate and optional HRV.",
+      "No single number, rolling window or percentage threshold decides readiness.",
+      "Repeated agreement adds context, but it does not diagnose fatigue, illness or overtraining.",
+      "Collect representative easy, hard, rest and life-stress days before interpreting a personal pattern.",
     ],
     whoFor: [
       {
@@ -2722,7 +2722,7 @@ export const recoveryAnswers: AnswerPage[] = [
     roadmanView: [
       "The wearable market has handed every amateur a flood of recovery data and very little guidance on what to do with it. Anthony has covered this on the podcast because the confusion costs riders training time — people cancel sessions over a single low number or chase a readiness score that has no idea what their week actually looked like. More data without a framework is just more noise.",
       "The system that works is boring and reliable: four markers, tracked the same way every day. Resting heart rate and HRV measured first thing before getting up. Sleep duration and quality from whatever device you already own. And a subjective wellness score out of 10 — how do the legs feel, how is the motivation. That last one is the most underrated, because it captures life stress and fatigue that no sensor sees.",
-      "Here's the fixable bit. The point of monitoring is not the daily number — it is the trend and the agreement between markers. A single low HRV day is noise. Five days trending down, with resting heart rate creeping up and motivation flat, is signal worth acting on. Build your baseline over six weeks first, then read the markers together. Used that way, the data earns its place. Used as a daily go/no-go switch, it just creates anxiety.",
+      "The point of monitoring is not the daily number; it is better context for a decision. Repeated agreement across symptoms, wellbeing, load, performance and valid measurements deserves attention, but research does not validate one five-day decline or six-week baseline as a universal rule. Used as evidence rather than a daily go/no-go switch, the data earns its place.",
     ],
     expertEvidence: [
       {
@@ -2746,24 +2746,24 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         title: "Measure resting heart rate and HRV the same way every morning",
         detail:
-          "First thing, lying still, before coffee or getting up. Use whatever you own consistently — a chest strap is most accurate, but a wrist or ring device trends reliably if you never switch. Consistency of method matters more than the absolute precision of the device.",
+          "Use one repeatable protocol and avoid combining unlike device outputs. A validated ECG-derived method is the reference for beat intervals; wrist optical devices can estimate heart rate acceptably at rest on average, but performance varies and unexpected readings should be checked.",
       },
       {
         title: "Add a 10-second subjective wellness score",
         detail:
-          "Rate the legs and motivation out of 10 each morning. This single number captures life stress, sleep quality, and fatigue that sensors miss. Logged daily for a few weeks, it often becomes your most predictive marker of how a session will actually go.",
+          "Use the same short scale for fatigue, legs, motivation or stress. It can capture information a sensor misses, and athlete-monitoring reviews support taking subjective wellbeing seriously, but it remains one input rather than a prediction or diagnosis.",
       },
       {
-        title: "Read the four markers together, on a 3–5 day trend",
+        title: "Read repeated observations together",
         detail:
-          "Look for agreement and direction, not single-day values. Markers aligned and stable means train as planned. A multi-day downward trend across two or more markers means cut volume and remove intensity for 2–3 days, then recheck. Respond to trends systematically, not to daily spikes.",
+          "Look for agreement and direction rather than a single-day value. When several observations change and the rider is unwell or functioning poorly, lower the cost of the session and investigate. No fixed number of markers or days mandates a universal volume cut.",
       },
     ],
     commonMistakes: [
       {
         mistake: "Reacting to a single day's low reading by cancelling training.",
         fix:
-          "One low day is usually noise — poor sleep, a late meal, a sensor glitch. Act on 3–5 day trends and on multiple markers agreeing, not on any single number in isolation.",
+          "A single value can reflect biology, conditions or measurement error. Recheck the method and interpret it beside symptoms, wellbeing, load and function instead of applying a universal rolling window.",
       },
       {
         mistake: "Trusting the wearable's readiness score without context.",
@@ -2773,14 +2773,14 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         mistake: "Switching devices or measurement times and breaking the baseline.",
         fix:
-          "HRV and resting heart rate are only meaningful against a consistent personal baseline. Measure with the same device, in the same position, at the same time — changing any of those resets the data and removes its value.",
+          "Changing device, position, timing or metric can create an artificial shift. Start a clearly labelled new series or overlap methods long enough to understand the difference; do not splice unlike outputs into one seamless baseline.",
       },
     ],
     faq: [
       {
         question: "What are the best recovery markers to track?",
         answer:
-          "The most useful and accessible four are morning resting heart rate, HRV trend, sleep duration and quality, and a subjective wellness score out of 10. Together they cover the autonomic nervous system, the recovery process, and the life stress and fatigue that sensors miss. No single one is sufficient alone.",
+          "A practical small set is symptoms and subjective wellbeing, sleep, recent training load, resting heart rate and optional HRV measured consistently. These are observations, not complete measures of the nervous system or recovery, and none is sufficient alone.",
       },
       {
         question: "Do I need an expensive wearable to monitor recovery?",
@@ -2790,22 +2790,22 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         question: "How long before recovery data is useful?",
         answer:
-          "Around four to six weeks. HRV and resting heart rate only mean something against your established personal baseline, so the first month or so is calibration. Avoid changing training based on the numbers until you have a reliable normal range to compare against.",
+          "There is no validated universal calibration period. Collect enough representative days to see how the same method behaves across rest, easy and hard training, sleep disruption, work stress and different conditions. Keep updating that personal distribution rather than declaring it complete after a fixed number of weeks.",
       },
       {
         question: "What should I do when my markers conflict?",
         answer:
-          "Default to the more conservative reading and ride easy. If HRV says recovered but resting heart rate is up and motivation is flat, treat the day as a non-quality day. A missed hard session costs little; a hard session on an under-recovered body costs the session and the days after it.",
+          "Recheck measurement quality and look for explanations such as symptoms, recent load, heat, alcohol, sleep disruption or life stress. When uncertainty is meaningful, choose a lower-cost, reversible session decision; acute illness or concerning symptoms can make exercise inappropriate.",
       },
       {
         question: "Can monitoring help me catch overtraining early?",
         answer:
-          "Yes. A sustained downward HRV trend combined with rising resting heart rate and falling motivation over 5–7 days is one of the earliest warning signs of accumulating fatigue — often appearing before power drops. That early signal is the main practical payoff of daily monitoring for a self-coached rider.",
+          "It can identify a pattern worth investigating, but it cannot diagnose overtraining or reliably predict it from one combination or timeframe. Reviews find resting-heart-rate changes can overlap daily variability, while subjective wellbeing often responds consistently to training load. Persistent multi-system symptoms and performance decline need broader assessment.",
       },
       {
         question: "Should subjective feel override the data?",
         answer:
-          "Neither should automatically override the other — they are both inputs. Consistently ignoring downward objective trends because the legs feel fine is a known route into overtraining, while panicking over data when everything else feels good wastes good training days. Read them together and let conflicts default to caution.",
+          "Neither automatically overrides the other. Subjective wellbeing often responds to training load consistently, while objective measures have method and interpretation limits. Read repeated observations together, verify conflicts and let symptoms set the health boundary.",
       },
     ],
     relatedEpisodes: [
@@ -2822,7 +2822,7 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     evidenceLevel: "moderate",
     publishDate: "2026-05-26",
-    updatedDate: "2026-05-26",
+    updatedDate: "2026-08-31",
   },
 
   // ============================================================
