@@ -118,6 +118,14 @@ const nextConfig: NextConfig = {
         destination: "/blog/cycling-strength-training-guide",
         permanent: true,
       },
+      // Search Console shows cycling-core-workout-routine owns the broad core
+      // exercise query family. Consolidate the later complete-guide duplicate
+      // on that reviewed owner while the plank page keeps its narrower intent.
+      {
+        source: "/blog/cycling-core-training-complete-guide",
+        destination: "/blog/cycling-core-workout-routine",
+        permanent: true,
+      },
       // Search Console shows the rides guide already owns the active-recovery
       // query history. Retire the three later broad duplicates and consolidate
       // their links on the reviewed, evidence-bounded owner.

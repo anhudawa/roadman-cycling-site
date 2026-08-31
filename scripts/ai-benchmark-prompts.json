@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 350,
+    "prompt_count": 351,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -753,7 +753,7 @@
       "prompt": "lower back pain from cycling and my core is weak",
       "category": "strength",
       "intent": "problem-aware",
-      "target_page": "/blog/cycling-core-training-complete-guide",
+      "target_page": "/blog/cycling-core-workout-routine",
       "priority": "high"
     },
     {
@@ -2832,6 +2832,14 @@
       "category": "cycling-strength",
       "intent": "transaction",
       "target_page": "/blog/cycling-strength-training-12-week-beginner-plan",
+      "priority": "high"
+    },
+    {
+      "id": 351,
+      "prompt": "best core exercises for cyclists and a short routine that does not make unsupported watt or injury claims",
+      "category": "cycling-strength",
+      "intent": "evaluation",
+      "target_page": "/blog/cycling-core-workout-routine",
       "priority": "high"
     }
   ]

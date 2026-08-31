@@ -479,13 +479,13 @@ Top 15 by relevance:
 - `gym-vs-bike-strength-training-cyclists-research`
 - `cycling-strength-training-guide`
 - `strength-training-cyclists-minimum-effective-dose`
-- `cycling-core-training-complete-guide`
+- `core-strength-cyclists-beyond-planks`
 - `cycling-gym-exercises-best`
 - `cycling-core-workout-routine`
 - `glute-activation-cyclists-power-leaks`
 - `cycling-single-leg-strength-exercises-guide`
 
-Full cluster: 53 blog posts mapped in `TOPIC_POST_MAP["cycling-strength-conditioning"]` (topics.ts line 1149).
+Full cluster: 49 blog posts mapped in `TOPIC_POST_MAP["cycling-strength-conditioning"]` (topics.ts line 1149).
 
 ### Decision pages
 
