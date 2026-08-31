@@ -19,13 +19,13 @@ describe("in-ride cycling nutrition owner and evidence trust", () => {
     expect(data.seoTitle.length).toBeLessThanOrEqual(60);
     expect(data.seoDescription.length).toBeGreaterThanOrEqual(120);
     expect(data.seoDescription.length).toBeLessThanOrEqual(160);
-    expect(data.updatedDate).toBe("2026-08-26");
-    expect(data.lastReviewed).toBe("2026-08-26");
+    expect(data.updatedDate).toBe("2026-08-31");
+    expect(data.lastReviewed).toBe("2026-08-31");
     expect(data.reviewedBy).toContain("exercise-hyponatraemia");
     expect(data.answerCapsule.split(/\s+/).length).toBeGreaterThanOrEqual(60);
     expect(data.answerCapsule.split(/\s+/).length).toBeLessThanOrEqual(100);
     expect(data.citedClaims).toHaveLength(6);
-    expect(data.faq).toHaveLength(6);
+    expect(data.faq).toHaveLength(7);
     expect(data.howTo.steps).toHaveLength(6);
     expect(content).toContain("three separate numbers: **carbohydrate, fluid and sodium**");
     expect(content).toContain("This is a planning framework, not a diagnosis");
@@ -51,6 +51,20 @@ describe("in-ride cycling nutrition owner and evidence trust", () => {
     expect(content).toContain("There is no evidence-based reason to assign every cyclist 500–750 ml/h");
     expect(content).toContain("Sodium cannot make forced overdrinking safe");
     expect(content).toContain("sweat rate (L/h) = sweat loss ÷ ride hours");
+  });
+
+  it("answers the demonstrated 90 g/h brand-and-product planning intent", () => {
+    expect(content).toContain(
+      "## 90 g carbohydrates per hour: gel-and-drink buying plans",
+    );
+    expect(content).toContain("40 + 25 + 25 = **90 g**");
+    expect(content).toContain("30 + 30 + 30 = **90 g**");
+    expect(content).toContain("https://www.maurten.com/education/how-to-fuel");
+    expect(content).toContain(
+      "https://www.precisionhydration.com/products/pf-30-gel/",
+    );
+    expect(content).toContain("Formulations, serving sizes and availability can change");
+    expect(content).toContain("not product rankings or medical prescriptions");
   });
 
   it("removes unsupported universal intake and timing prescriptions", () => {
@@ -89,6 +103,30 @@ describe("in-ride cycling nutrition owner and evidence trust", () => {
         target_page: `/blog/${OWNER}`,
       }),
     );
+    expect(prompts.prompts).toContainEqual(
+      expect.objectContaining({
+        id: 347,
+        prompt:
+          "cycling fueling plan with brands for 90g carbs per hour using gels and drink what should I buy",
+        target_page: `/blog/${OWNER}`,
+      }),
+    );
+  });
+
+  it("records the Google generative-AI and product-intent baseline", () => {
+    const decision = read(
+      "docs/seo/gsc-fuelling-ai-opportunity-2026-08-31.md",
+    );
+    for (const signal of [
+      "5,399",
+      "188",
+      "839 impressions",
+      "0.6% CTR",
+      "average position of 14.6",
+      "63 impressions",
+    ]) {
+      expect(decision).toContain(signal);
+    }
   });
 
   it("records the GSC baseline and measurement dates", () => {
