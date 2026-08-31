@@ -134,6 +134,14 @@ const nextConfig: NextConfig = {
         destination: "/blog/cycling-recovery-week-what-to-actually-do",
         permanent: true,
       },
+      // Search Console shows the earlier glute guide owns almost the entire
+      // cycling-glutes query family. Consolidate the later near-duplicate so
+      // its links and history strengthen the reviewed, evidence-bounded owner.
+      {
+        source: "/blog/cycling-glute-activation-power-guide",
+        destination: "/blog/glute-activation-cyclists-power-leaks",
+        permanent: true,
+      },
       // Search Console shows the rides guide already owns the active-recovery
       // query history. Retire the three later broad duplicates and consolidate
       // their links on the reviewed, evidence-bounded owner.

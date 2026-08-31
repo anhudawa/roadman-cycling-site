@@ -1223,7 +1223,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-single-leg-strength-exercises-guide",
     "cycling-leg-strength-without-gym-guide",
     "cycling-weight-training-in-season-guide",
-    "cycling-glute-activation-power-guide",
     "cycling-pre-ride-activation-routine-guide",
     "cycling-strength-training-year-round-plan-guide",
     "cycling-shoulder-stability-upper-body-guide",
