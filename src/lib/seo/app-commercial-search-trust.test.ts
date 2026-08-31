@@ -10,6 +10,12 @@ const APP_GUIDE_SLUGS = [
   "best-cycling-apps-structured-training",
 ] as const;
 
+const APP_COMPARISON_PROMPT_OWNERS = {
+  319: "/best/best-cycling-strength-training-apps",
+  321: "/best/best-cycling-recovery-apps",
+  324: "/best/best-cycling-apps-structured-training",
+} as const;
+
 function source(path: string) {
   return readFileSync(resolve(process.cwd(), path), "utf8");
 }
@@ -87,6 +93,25 @@ describe("app commercial search owners", () => {
     );
     for (const slug of APP_GUIDE_SLUGS) {
       expect(`${keywordMap}\n${launchSprint}`).toContain(`/best/${slug}`);
+    }
+  });
+
+  it("routes neutral app-comparison benchmarks to the comparison owners", () => {
+    const benchmark = JSON.parse(
+      source("scripts/ai-benchmark-prompts.json"),
+    ) as { prompts: Array<{ id: number; target_page: string }> };
+
+    for (const [id, owner] of Object.entries(APP_COMPARISON_PROMPT_OWNERS)) {
+      expect(benchmark.prompts.find((prompt) => prompt.id === Number(id)))
+        .toMatchObject({ target_page: owner });
+    }
+  });
+
+  it("keeps every app comparison owner in the default IndexNow submission", () => {
+    const indexNow = source("scripts/submit-indexnow.ts");
+
+    for (const slug of APP_GUIDE_SLUGS) {
+      expect(indexNow).toContain(`https://\${HOST}/best/${slug}`);
     }
   });
 });
