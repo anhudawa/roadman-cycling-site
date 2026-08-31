@@ -813,15 +813,15 @@ export const recoveryAnswers: AnswerPage[] = [
     question: "Should Cyclists Use HRV?",
     seoTitle: "Should Cyclists Use HRV? What It Measures and When It Helps",
     seoDescription:
-      "HRV is the most sensitive daily recovery indicator available to amateur cyclists. How to use it, what the numbers mean, and where self-coached riders get it wrong.",
+      "Should cyclists use HRV? Learn what the evidence supports, why no high or low score decides training, and how to combine HRV with symptoms and load.",
     pillar: "recovery",
     directAnswer:
-      "Yes — HRV (heart rate variability) is the most sensitive daily recovery indicator most amateur cyclists can access. A consistent downward trend in morning HRV over 3–5 days signals accumulating fatigue before power or mood changes become obvious. Used correctly, it helps you decide when to push and when to back off. Used incorrectly — responding to every single-day dip — it creates anxiety rather than better training.",
+      "Cyclists can use HRV as one recovery input, but the evidence does not support treating it as a diagnostic or universal go/no-go score. Keep the metric, device and measurement method consistent; compare a personal pattern; and interpret it beside symptoms, subjective wellbeing, resting heart rate, sleep and recent training load. Reviews suggest HRV-guided endurance training may help some physiological outcomes or responder rates, while performance and VO2peak advantages over predefined training remain small or uncertain.",
     keyTakeaways: [
-      "HRV tracks autonomic nervous system recovery — a reliable proxy for physiological readiness.",
-      "Trend matters more than single-day values — look for 3–5 day patterns, not daily spikes.",
-      "A consistent downward trend over 5–7 days is an early overtraining signal.",
-      "Establish your personal baseline over 4–6 weeks before drawing conclusions from the data.",
+      "HRV reflects autonomic-related variation; it does not directly measure fitness, muscle recovery, fuel stores or readiness.",
+      "Higher is not always recovered and lower is not automatically fatigue, illness or overtraining.",
+      "There is no universal rolling window or percentage threshold that tells every cyclist how to train.",
+      "Use one consistent method and combine HRV with symptoms, wellbeing, resting heart rate, sleep, recent load and performance.",
     ],
     whoFor: [
       {
@@ -832,20 +832,20 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         label: "The cyclist prone to overreaching",
         detail:
-          "You consistently train too hard for too long before noticing the signs — HRV can surface them 3–5 days earlier.",
+          "You want another signal that can prompt a wider fatigue check without pretending to diagnose overtraining.",
       },
     ],
     roadmanView: [
-      "HRV has gone from niche physiology tool to consumer wearable standard in five years, and with that shift came the usual problem: tools used incorrectly. Anthony covered HRV on the podcast specifically because the confusion around it costs riders training time rather than saving it. People cancel sessions based on a single low HRV number when that number means nothing without context.",
-      "The protocol that actually works is simple: measure every morning at the same time before getting up, for at least four to six weeks to establish a personal baseline. Then look at trends. A single low day might be alcohol, poor sleep, an empty stomach, or a sensor glitch. A week of readings 15% below your baseline, trending down, is a signal worth responding to — usually by cutting volume and removing intensity for 2–3 days.",
-      "Used that way, HRV is properly useful. It can catch overtraining 3–5 days before power output drops and mood changes become obvious. For a self-coached rider with no coach watching the data, that early warning is valuable. But it requires consistency and patience in the setup before it starts paying back.",
+      "HRV has moved from niche physiology tool to consumer wearable standard, and the familiar failure is treating a score as a command. One value can reflect measurement noise, posture, breathing, sleep, alcohol, stress, recent training or health.",
+      "Use one validated resting or overnight method consistently and learn your own distribution. A rolling average can reduce noise, but no 3-day, 7-day, 60-day or percentage rule has been validated as a universal training instruction.",
+      "The metric earns its place when it prompts a whole-athlete check. If HRV, symptoms, wellbeing, sleep, resting heart rate and recent load agree, make the session cheaper. If they conflict, do not let a favourable score overrule obvious symptoms or a low score manufacture panic.",
     ],
     expertEvidence: [
       {
         name: "Roadman Podcast",
         credential: "Episode: Heart Rate Variability Training Simplified",
         insight:
-          "The most common error in amateur HRV use is treating daily values as binary go/no-go signals. The meaningful unit is the weekly trend. A consistently elevated or depressed trend, not a single reading, is what warrants a training change.",
+          "The most common error in amateur HRV use is treating daily values as binary go/no-go signals. A repeated personal pattern can add context, but the wider athlete—not one number or rolling window—determines the response.",
         episodeSlug: "ep-2163-heart-rate-variability-training-simplified",
       },
       {
@@ -859,19 +859,19 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     practicalApplication: [
       {
-        title: "Measure every morning for 6 weeks to establish a baseline",
+        title: "Keep one measurement method consistent",
         detail:
-          "Same time, lying still, before coffee or movement. Garmin, Polar, Oura, or a chest strap with an HRV app all work. The first four to six weeks is calibration — do not change training based on readings until you have a reliable personal normal range.",
+          "Use a validated resting chest-strap or overnight wearable method. Keep the device, metric, posture and routine comparable, and do not splice unlike platforms into one baseline.",
       },
       {
-        title: "Respond to 5-day trends, not daily numbers",
+        title: "Interpret a pattern, not a universal threshold",
         detail:
-          "A single low reading is noise. Five days consistently 10–15% below your baseline is signal. When that pattern appears, cut volume to 50–60% and remove all intensity for 2–3 days, then recheck. The response to signal should be systematic, not panicked.",
+          "Inspect an unusual value for signal quality and context, then see whether repeated change agrees with symptoms, wellbeing, resting heart rate, sleep, recent load and the warm-up. No fixed percentage dictates the adjustment.",
       },
       {
         title: "Combine HRV with resting heart rate and subjective mood",
         detail:
-          "HRV alone is one variable. When HRV is low and resting heart rate is elevated and motivation is flat, the combined signal is reliable. If HRV is low but everything else feels fine, continue with a slightly reduced load rather than cancelling the session.",
+          "HRV alone is one variable. Agreement across several inputs is more persuasive than one score, while disagreement calls for judgement about symptoms, session cost and the consequences of being wrong.",
       },
     ],
     commonMistakes: [
@@ -888,34 +888,34 @@ export const recoveryAnswers: AnswerPage[] = [
       {
         mistake: "Ignoring HRV data when it conflicts with how you feel.",
         fix:
-          "Both matter. Consistently ignoring downward HRV trends because 'the legs feel fine' is one of the patterns that precedes overtraining syndrome. Use both sources of data together.",
+          "Both matter, but neither is a diagnosis. Check repeated data, symptoms, recent load and actual performance, and seek appropriate assessment when fatigue persists.",
       },
     ],
     faq: [
       {
         question: "What device should I use to measure HRV?",
         answer:
-          "A chest strap (Polar H10, Garmin HRM-Pro) gives the most accurate ECG-accurate HRV data. Wrist-based wearables (Garmin, Wahoo TICKR) are less precise but trend reliably enough for training decisions if used consistently on the same device.",
+          "A validated ECG-derived chest strap is the practical reference for short recordings, while some optical devices perform well at rest. Accuracy varies, and optical pulse-rate variability is not interchangeable with ECG-derived HRV, so stay within one method.",
       },
       {
         question: "What is a normal HRV for cyclists?",
         answer:
-          "There is no universal normal. HRV varies enormously between individuals — well-trained athletes often have higher baseline values, but the key metric is your personal baseline, not a population average. That is why 4–6 weeks of measurement is necessary before using the data.",
+          "There is no universal normal. HRV depends on the metric, device, protocol and individual. Compare like with like inside your own repeated pattern rather than using a population table or somebody else's value.",
       },
       {
         question: "Can HRV predict illness before symptoms appear?",
         answer:
-          "Sometimes. A sudden, unexplained drop in HRV — with no obvious training load explanation — can precede illness by a day or two. It is not perfectly reliable, but several athletes report that their lowest HRV readings in a year come 24–48 hours before flu or infection symptoms appear.",
+          "Not reliably enough for diagnosis or prediction. HRV can change around illness, training, sleep, alcohol, stress and measurement conditions. Treat an unusual pattern as a prompt to check symptoms and context, not proof that infection is coming.",
       },
       {
         question: "Does HRV measure fitness or recovery?",
         answer:
-          "Recovery and readiness, not fitness directly. A high HRV score means your autonomic nervous system is well-recovered and parasympathetic-dominant — which generally means you are ready to train hard. It does not tell you your VO2 max or FTP.",
+          "Neither directly. HRV reflects autonomic-related variation. It does not measure FTP, VO2 max, muscle recovery or readiness, and a high value does not automatically clear a hard session.",
       },
       {
         question: "Should masters cyclists use HRV differently?",
         answer:
-          "The protocol is the same, but the response to signals should be more conservative. Masters cyclists' HRV trends downward with age, and the recovery window after a HRV dip is typically longer. React earlier and recover longer than younger athletes would.",
+          "Use the same principles: a consistent personal method and multiple inputs. Do not apply a fixed age correction or assume every older rider needs the same response; health, medication, training history and symptoms matter.",
       },
     ],
     relatedEpisodes: [
@@ -932,7 +932,7 @@ export const recoveryAnswers: AnswerPage[] = [
     ],
     evidenceLevel: "moderate",
     publishDate: "2026-05-26",
-    updatedDate: "2026-05-26",
+    updatedDate: "2026-08-31",
   },
 
   // ============================================================

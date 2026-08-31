@@ -141,13 +141,13 @@ export const trainingPhysiologyAnswers: AnswerPage[] = [
     question: "What Is Heart Rate Variability (HRV) for Cyclists?",
     seoTitle: "What Is HRV for Cyclists? Heart Rate Variability Explained",
     seoDescription:
-      "HRV is the variation in time between heartbeats — a window into how recovered your nervous system is. What it measures, what the trend tells you, and how to use it.",
+      "HRV is variation between normal heartbeats. Learn what it can tell cyclists, why high or low is not a diagnosis, and how to use a personal pattern.",
     pillar: "recovery",
     directAnswer:
-      "Heart rate variability (HRV) is the variation in the time interval between consecutive heartbeats. A recovered, well-rested body under low stress tends to show higher variability; fatigue, illness, poor sleep and accumulated training load tend to suppress it. For cyclists, HRV is a daily window into how well the autonomic nervous system has recovered — read as a personal trend over time, not as a single number to compare against anyone else.",
+      "Heart rate variability (HRV) is variation in the interval between normal heartbeats. It can add context to autonomic regulation and recovery when cyclists compare the same metric, device and method with their own repeated pattern. A low value does not automatically mean fatigue, a high value does not prove readiness, and HRV cannot diagnose illness or overtraining. Use it beside symptoms, subjective wellbeing, resting heart rate, sleep and recent training load.",
     keyTakeaways: [
       "HRV measures the tiny beat-to-beat differences in your heart rhythm, not your heart rate.",
-      "Higher and stable usually signals recovery; a suppressed reading signals stress or fatigue.",
+      "Higher is not always recovered and lower is not automatically fatigued; direction only makes sense inside the rider's measurement method and wider context.",
       "It's a personal trend, not a leaderboard — your baseline is the only thing worth comparing to.",
       "Use it to confirm what your body's telling you, not to override how you actually feel.",
     ],
@@ -160,20 +160,20 @@ export const trainingPhysiologyAnswers: AnswerPage[] = [
       {
         label: "The masters cyclist watching recovery",
         detail:
-          "Recovery slows with age, and HRV gives you an early warning when load is outrunning your ability to absorb it.",
+          "You want another recovery input without applying a fixed age correction or universal HRV threshold.",
       },
     ],
     roadmanView: [
-      "HRV is one of the few consumer recovery metrics with real physiology behind it, and it's also one of the easiest to misuse. The number reflects the balance of your autonomic nervous system — the push and pull between stress and recovery. When you're rested, that balance shows up as more variation between beats. When you're buried, ill, under-slept or stressed at work, the variation collapses.",
-      "The mistake is reading a single morning number like a school grade. HRV is noisy day to day, it's deeply individual, and absolute values mean almost nothing across people. What it's really good for is the trend against your own baseline: a reading that's drifted down and stayed there for several days, while training and life stress pile up, is the signal worth acting on.",
-      "Where it earns its place is as a tie-breaker. On a morning when your legs feel flat and your HRV has dropped, that's two votes for an easier day. When the two disagree, trust how you feel over the gadget — HRV informs the decision, it doesn't make it. Used that way, it's a useful early-warning system, especially for older riders whose recovery margin is thinner.",
+      "HRV has real physiology behind it, but a consumer score does not isolate recovery. Training, sleep, alcohol, psychological stress, illness, breathing, posture and measurement quality can all influence it.",
+      "The mistake is reading one number like a school grade—or turning one rolling average and percentage threshold into a universal law. Compare like with like inside your own method and ask whether repeated change agrees with how you feel and perform.",
+      "Where it earns a place is as one vote in the decision. If HRV, symptoms, sleep, resting heart rate and the warm-up agree, act on the cluster. When they conflict, do not let the gadget overrule obvious symptoms or manufacture a hard day.",
     ],
     expertEvidence: [
       {
         name: "Joe Friel",
         credential: "Co-founder of TrainingPeaks, author of The Cyclist's Training Bible",
         insight:
-          "Friel has long advocated using HRV trends — not single readings — to guide how hard to train, easing off when the autonomic signal is suppressed and pushing when it's stable. The value is in letting an objective recovery marker inform the week's intensity rather than training blind to it.",
+          "HRV can inform a weekly training conversation when it is read as a personal pattern beside the athlete's wider context, rather than used as a binary daily command.",
         guestSlug: "joe-friel",
       },
     ],
@@ -181,17 +181,17 @@ export const trainingPhysiologyAnswers: AnswerPage[] = [
       {
         title: "Measure at the same time, the same way",
         detail:
-          "Take your reading first thing each morning, in the same position, before caffeine. Consistency is what turns a noisy number into a usable baseline.",
+          "Follow one validated resting or overnight method and keep the device, metric, posture and routine comparable. Consistency makes interpretation more defensible.",
       },
       {
         title: "Read the trend, not the day",
         detail:
-          "Ignore single-day swings. Watch the rolling baseline: a sustained drop across several days, alongside hard training or life stress, is the meaningful signal.",
+          "Inspect an unusual value for artefact and context, then see whether repeated change agrees with symptoms, wellbeing, resting heart rate, sleep and recent load.",
       },
       {
         title: "Let it inform, not dictate",
         detail:
-          "Use a suppressed HRV as a prompt to consider an easier day, then weigh it against how you actually feel. When they agree, act. When they don't, trust your body.",
+          "Use HRV to sharpen the question, not settle it. Symptoms and function outrank a favourable score, and one low score does not automatically cancel training.",
       },
     ],
     commonMistakes: [
@@ -203,24 +203,24 @@ export const trainingPhysiologyAnswers: AnswerPage[] = [
       {
         mistake: "Reacting to every single morning reading.",
         fix:
-          "HRV is noisy day to day. Act on a sustained trend across several days, not on one low number after a bad night's sleep.",
+          "Do not obey one reading, but do not blindly obey one smoothing window either. Check measurement quality and whether the wider recovery picture agrees.",
       },
     ],
     faq: [
       {
         question: "What is a good HRV for a cyclist?",
         answer:
-          "There's no universal good number — HRV is highly individual and depends on age, genetics and measurement method. What matters is your personal baseline and its trend: stable or rising relative to your own norm is the encouraging sign, not a particular value.",
+          "There's no universal good number. HRV depends on the metric, device, protocol and individual. Compare like with like inside your own repeated pattern; stable or rising is not automatically good and lower is not automatically fatigue.",
       },
       {
         question: "How do I measure HRV?",
         answer:
-          "Most riders use a chest strap or a wearable with a dedicated app, taking a short reading at the same time each morning. Measuring under consistent conditions — same time, same position, before caffeine — is what makes the data usable.",
+          "Use a validated resting chest-strap method or an overnight wearable protocol, then keep the device, metric and routine stable. Optical pulse-rate variability and ECG-derived HRV should not be treated as interchangeable.",
       },
       {
         question: "Does HRV go up or down when I'm fatigued?",
         answer:
-          "It usually drops. Fatigue, illness, poor sleep and high stress suppress heart rate variability as the nervous system shifts toward a stressed state. A sustained fall is a common early sign that load is outrunning recovery.",
+          "It can fall, but the direction is not reliable enough to diagnose fatigue. Training status, load, sleep, illness, stress and measurement conditions can produce different patterns, so check HRV against symptoms and performance.",
       },
       {
         question: "Should I skip training if my HRV is low?",
@@ -247,9 +247,9 @@ export const trainingPhysiologyAnswers: AnswerPage[] = [
     ],
     evidenceLevel: "moderate",
     evidenceNote:
-      "HRV's link to autonomic recovery is well-established; its day-to-day predictive value for individual training decisions is supported but noisier, so framing emphasises trend over single readings.",
+      "HRV reflects autonomic-related variation, but reviews show only small or uncertain superiority of HRV-guided training for performance. Interpretation requires a consistent personal method and multiple recovery inputs.",
     publishDate: "2026-06-20",
-    updatedDate: "2026-06-20",
+    updatedDate: "2026-08-31",
   },
 
   // ============================================================

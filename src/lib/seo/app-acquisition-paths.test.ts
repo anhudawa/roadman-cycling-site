@@ -89,6 +89,8 @@ describe("strength and recovery app acquisition paths", () => {
       "content/blog/cycling-recovery-tips.mdx": "/app?source=recovery-guide",
       "content/blog/cycling-sleep-performance-guide.mdx":
         "/app?source=sleep-guide",
+      "content/blog/cycling-hrv-training-guide.mdx":
+        "/app?source=hrv-guide",
       "content/blog/cycling-strength-training-guide.mdx":
         "/app?source=strength-guide",
       "content/blog/strength-training-cyclists-over-50.mdx":
