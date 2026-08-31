@@ -22,6 +22,7 @@ conversion can be compared without changing the audience.
 | Identify a recovery constraint           | `/tools/recovery-screen`                     | `/app?source=recovery-screen`            |
 | Understand cycling strength evidence     | `/blog/cycling-strength-training-guide`      | `/app?source=strength-guide`             |
 | Choose cyclist-specific gym exercises    | `/blog/cycling-gym-exercises-best`           | `/app?source=gym-exercises`              |
+| Apply Derek Teel's strength interview    | `/blog/derek-teel-best-exercises-cyclists`   | `/app?source=derek-teel-exercises`       |
 | Understand recovery                      | `/blog/cycling-recovery-tips`                | `/app?source=recovery-guide`             |
 | Decide on an active-recovery ride        | `/blog/cycling-active-recovery-rides-guide`  | `/app?source=active-recovery-guide`      |
 | Fit training into a limited week         | `/blog/cycling-time-crunched-training-guide` | `/app?source=time-crunched-guide`        |

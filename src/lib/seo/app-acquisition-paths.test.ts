@@ -64,6 +64,8 @@ describe("strength and recovery app acquisition paths", () => {
     const handoffs = {
       "content/blog/cycling-active-recovery-rides-guide.mdx":
         "/app?source=active-recovery-guide",
+      "content/blog/derek-teel-best-exercises-cyclists.mdx":
+        "/app?source=derek-teel-exercises",
       "content/blog/cycling-gym-exercises-best.mdx":
         "/app?source=gym-exercises",
       "content/blog/cycling-recovery-tips.mdx": "/app?source=recovery-guide",

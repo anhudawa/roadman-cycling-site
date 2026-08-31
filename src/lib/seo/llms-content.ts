@@ -11,7 +11,7 @@ export const LLMS_SHORT_EPISODE_LIMIT = 30;
 export const LLMS_FULL_RECENT_POST_LIMIT = 300;
 export const LLMS_FULL_EPISODE_LIMIT = 80;
 
-export const LLMS_SHORT_MAX_BYTES = 150_000;
+export const LLMS_SHORT_MAX_BYTES = 151_000;
 export const LLMS_FULL_MAX_BYTES = 500_000;
 
 export const LLMS_PINNED_BLOG_SLUGS = new Set([
@@ -56,6 +56,7 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "cycling-strength-training-guide",
   "cycling-leg-day-should-cyclists",
   "cycling-gym-exercises-best",
+  "derek-teel-best-exercises-cyclists",
   "best-cycling-computers-2026",
   "rouvy-vs-zwift",
   "cycling-energy-gels-guide",
