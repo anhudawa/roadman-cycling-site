@@ -129,14 +129,14 @@ describe("cycling nutrition calculator search and evidence trust", () => {
     const page = read("src/app/(content)/tools/fuelling/page.tsx");
     const client = read(TOOL_PATH);
     const prefillRoute = read(
-      "src/app/api/tools/fuelling/prefill/route.ts",
+      "src/app/api/tools/profile-prefill/route.ts",
     );
 
     expect(page).toContain('dynamic = "force-static"');
     expect(page).not.toContain("getRiderSession");
     expect(page).not.toContain("getMethodSession");
     expect(page).not.toContain("loadByEmail");
-    expect(client).toContain('fetch("/api/tools/fuelling/prefill"');
+    expect(client).toContain('fetch("/api/tools/profile-prefill"');
     expect(client).toContain('cache: "no-store"');
     expect(prefillRoute).toContain('dynamic = "force-dynamic"');
     expect(prefillRoute).toContain('"Cache-Control": "private, no-store');
