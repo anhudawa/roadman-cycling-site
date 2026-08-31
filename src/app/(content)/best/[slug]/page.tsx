@@ -386,7 +386,7 @@ export default async function BestForPage({
                 </p>
                 <div className="mt-7">
                   <Button
-                    href={`/app?source=best-${slug}`}
+                    href={`/app?source=${slug}`}
                     size="lg"
                     dataTrack={`best_${slug}_app`}
                   >

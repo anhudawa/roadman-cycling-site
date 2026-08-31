@@ -78,7 +78,7 @@ describe("app commercial search owners", () => {
     expect(route).toContain("COMMERCIAL DISCLOSURE");
     expect(route).toContain("Verify on official site");
     expect(route).toContain("research={page.officialSources}");
-    expect(route).toContain("href={`/app?source=best-${slug}`}");
+    expect(route).toContain("href={`/app?source=${slug}`}");
     expect(route).not.toContain("EmailCapture");
 
     for (const slug of APP_GUIDE_SLUGS) {
