@@ -214,6 +214,10 @@ const CURATED: string[] = [
 
   // Roadman cycling strength and recovery app prelaunch owner
   `https://${HOST}/app`,
+  `https://${HOST}/best/best-cycling-training-apps`,
+  `https://${HOST}/best/best-cycling-strength-training-apps`,
+  `https://${HOST}/best/best-cycling-recovery-apps`,
+  `https://${HOST}/best/best-cycling-apps-structured-training`,
   `https://${HOST}/strength-training`,
   `https://${HOST}/topics/cycling-strength-conditioning`,
   `https://${HOST}/topics/cycling-recovery`,
