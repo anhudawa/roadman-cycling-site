@@ -70,6 +70,10 @@ describe("strength and recovery app acquisition paths", () => {
         "/app?source=beginner-strength-plan",
       "content/blog/cycling-gym-exercises-best.mdx":
         "/app?source=gym-exercises",
+      "content/blog/cycling-core-workout-routine.mdx":
+        "/app?source=core-workout",
+      "content/blog/core-strength-cyclists-beyond-planks.mdx":
+        "/app?source=core-progressions",
       "content/blog/cycling-recovery-tips.mdx": "/app?source=recovery-guide",
       "content/blog/cycling-strength-training-guide.mdx":
         "/app?source=strength-guide",
