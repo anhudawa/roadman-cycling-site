@@ -56,7 +56,11 @@ describe("cycling strength session planner search owner", () => {
     };
 
     expect(benchmark.metadata.prompt_count).toBe(benchmark.prompts.length);
-    expect(benchmark.prompts.slice(-4)).toMatchObject(
+    const placementPrompts = benchmark.prompts.filter(
+      (prompt) => prompt.target_page === "/tools/strength-session-planner",
+    );
+
+    expect(placementPrompts).toMatchObject(
       Array.from({ length: 4 }, (_, index) => ({
         id: 327 + index,
         target_page: "/tools/strength-session-planner",

@@ -112,7 +112,10 @@ High intent, high visibility. Own these via authoritative listicles and review p
 | cycling podcasts ireland | /blog/best-cycling-podcasts | Geo cross-target |
 | cycling podcasts uk | /blog/best-cycling-podcasts | |
 | best cycling books | /blog/best-cycling-books | |
-| best cycling training apps | /blog/best-cycling-training-apps | |
+| best cycling training apps | /best/best-cycling-training-apps | Job-based comparison; app product remains `/app`. |
+| best cycling strength training apps | /best/best-cycling-strength-training-apps | Cycling-specific gym software and bike-week placement. |
+| best cycling recovery apps | /best/best-cycling-recovery-apps | Readiness and recovery software by next-action quality. |
+| best cycling training app for masters | /best/best-cycling-apps-structured-training | Masters-specific density, recovery and strength lens. |
 | best training peaks coach | /blog/best-trainingpeaks-coaches | |
 | trainerroad vs coach | /blog/trainerroad-vs-cycling-coach | Comparison |
 | zwift vs cycling coach | /blog/zwift-vs-cycling-coach | Comparison |
