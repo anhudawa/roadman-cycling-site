@@ -560,11 +560,11 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   },
   {
     slug: "sleep-performance",
-    title: "Sleep & Cycling Performance — The Recovery You Can't Skip",
-    headline: "SLEEP IS YOUR BEST SESSION",
-    ctaHeadline: "RECOVERY THAT STARTS AT LIGHTS-OUT.",
+    title: "Sleep & Cycling Performance — Evidence-Based Guidance",
+    headline: "MAKE SLEEP WORK FOR YOUR RIDING",
+    ctaHeadline: "RECOVERY GUIDANCE WITHOUT FALSE PRECISION.",
     description:
-      "The complete guide to sleep and cycling performance. Why sleep is the highest-leverage recovery tool, how sleep debt erodes adaptation, optimisation strategies, and the sleep habits of the world's best endurance athletes.",
+      "Evidence-based sleep and cycling guidance: individual sleep need, caffeine, naps, evening training, wearable limits and when symptoms need qualified help.",
     pillar: "recovery",
     keywords: [
       "sleep cycling performance",
@@ -1099,7 +1099,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "andrew-sellars-breathing-co2-cycling",
     "cycling-recovery-tips",
     "cycling-sleep-performance-guide",
-    "cycling-sleep-optimisation",
     "cycling-knee-pain-causes-fixes",
     "bike-fit-guide-cyclists",
     "cycling-returning-after-break",
@@ -1119,7 +1118,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "masters-cycling-recovery-after-40-guide",
     "recovery-readiness-self-assessment-cycling-guide",
     "cycling-over-50-training",
-    "sleep-cycling-performance-complete-guide",
     "daily-training-readiness-check-cycling-guide",
     "cycling-with-chronic-conditions-evidence-guide",
     "comeback-after-cycling-crash-guide",
@@ -1151,7 +1149,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-post-ride-stretching-routine-guide",
     "cycling-post-covid-return-guide",
     "cycling-sunscreen-protection-guide",
-    "cycling-sleep-optimisation-performance-guide",
     "cycling-hip-pain-causes-fixes-guide",
     "cycling-foot-pain-hot-foot-guide",
     "cycling-wrist-hand-numbness-guide",
@@ -1649,7 +1646,6 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-strength-training-what-transfers-guide",
     "zone-2-cycling-heart-rate-vs-power-vs-rpe",
     "protein-for-cyclists-complete-guide",
-    "sleep-cycling-performance-complete-guide",
     "cycling-with-chronic-conditions-evidence-guide",
     "injury-prevention-cyclists-over-40",
     "comeback-after-cycling-crash-guide",
@@ -2046,14 +2042,11 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
   ],
   "sleep-performance": [
     "cycling-sleep-performance-guide",
-    "cycling-sleep-optimisation",
     "sleep-and-the-masters-cyclist",
     "sleep-debt-hrv-cycling-adaptation",
     "cycling-hrv-training-guide",
     "cycling-recovery-tips",
     "masters-recovery-audit-seven-things-to-check",
-    "cycling-sleep-optimisation-performance-guide",
-    "sleep-cycling-performance-complete-guide",
   ],
   "cycling-cadence": [
     "cycling-cadence-optimal-guide",
@@ -3582,22 +3575,22 @@ const TOPIC_FAQS: Record<string, TopicFAQ[]> = {
     {
       question: "How much sleep do cyclists need?",
       answer:
-        "7-9 hours per night, consistently. Sleep is where growth hormone release peaks, muscle repair happens, and the neural adaptations from training consolidate. Consistently getting less than 7 hours measurably reduces power output, reaction time, and immune function.",
+        "Healthy adults should regularly sleep at least seven hours, while athlete consensus recommends individualising the opportunity around perceived need, existing sleep and specific risks. Do not convert training volume or age into one fixed target for every cyclist.",
     },
     {
       question: "Does sleep debt affect cycling performance?",
       answer:
-        "Yes — and it accumulates. Even moderate sleep debt (1-2 hours per night over a week) reduces endurance performance, increases perceived effort, and impairs recovery. You can't fully 'catch up' with a single long night. Consistency matters more than occasional long sleeps.",
+        "Acute sleep deprivation impairs several sport-performance categories on average. The effects of a few ordinary partially restricted nights are less certain, so treat repeated short sleep as a problem to solve without assigning it an exact watt or endurance penalty.",
     },
     {
       question: "How do I optimise sleep for recovery?",
       answer:
-        "Keep a consistent wake time (even on weekends), sleep in a cool dark room, avoid screens for 30-60 minutes before bed, and time caffeine to stop at least 8 hours before sleep. These basics outperform every supplement and gadget on the market.",
+        "Protect enough regular sleep opportunity, then identify the barrier: insufficient time, caffeine, late arousal, pain, travel and possible sleep disorders need different answers. Use dose and timing for caffeine rather than one cutoff, and make the bedroom comfortable rather than chasing one temperature.",
     },
     {
       question: "Is napping useful for cyclists?",
       answer:
-        "A 20-30 minute nap in the early afternoon can partially offset a bad night's sleep and improve afternoon training quality. Longer naps risk disrupting nighttime sleep. If you regularly need naps to function, the real fix is your nighttime sleep, not the nap.",
+        "Naps are promising, but no single length or cutoff fits every cyclist. Test timing and duration against alertness, training quality and the following night; persistent need for naps despite adequate opportunity can deserve further assessment.",
     },
   ],
   "cycling-cadence": [

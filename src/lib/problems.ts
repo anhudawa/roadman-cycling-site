@@ -579,7 +579,7 @@ export const PROBLEM_PAGES: ProblemPage[] = [
     solutions: [
       { title: "Use an HRV check on day one back", description: "If HRV is down >15% from baseline, start with zone 2 only for 48-72 hours", href: "/blog/cycling-hrv-training-guide" },
       { title: "Pack a travel mobility routine", description: "10 minutes daily on the road keeps the body primed to ride when you return", href: "/blog/cycling-stretching-routine" },
-      { title: "Prioritise sleep over mileage for 72 hours", description: "A week of under-sleeping needs 3 nights of 9+ hours to rebuild", href: "/blog/cycling-sleep-optimisation" },
+      { title: "Restore a normal sleep opportunity", description: "Do not chase missed training while travel and sleep disruption are still affecting normal function", href: "/blog/cycling-sleep-performance-guide" },
       { title: "Plan 2 easy days before resuming intensity", description: "Don't chase the block you missed — rebuild the platform, then add intensity", href: "/blog/cycling-active-recovery-rides-guide" },
     ],
     toolHref: "/assessment",
@@ -804,7 +804,7 @@ export const PROBLEM_PAGES: ProblemPage[] = [
       "Screen exposure post-ride compounding sympathetic arousal",
     ],
     solutions: [
-      { title: "Time hard sessions", description: "Finish intervals 3+ hours before bed", href: "/blog/cycling-sleep-optimisation" },
+      { title: "Test session timing", description: "Move late intensity earlier when a repeated pattern shows it is delaying or fragmenting sleep", href: "/blog/cycling-sleep-performance-guide" },
       { title: "Check energy availability", description: "Under-fuelling drives cortisol", href: "/tools/energy-availability" },
       { title: "Track HRV trends", description: "Declining HRV + bad sleep = overreaching. Schedule a deload", href: "/blog/cycling-hrv-training-guide" },
       { title: "Read the sleep guide", description: "Full sleep optimisation protocol for cyclists", href: "/blog/cycling-sleep-performance-guide" },
