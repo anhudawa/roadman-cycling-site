@@ -182,6 +182,14 @@ const nextConfig: NextConfig = {
         destination: "/blog/cycling-sleep-performance-guide",
         permanent: true,
       },
+      // GSC (latest three months): two broad HRV guides split 61 clicks,
+      // 14,276 web impressions and 2,754 Google AI impressions. Consolidate
+      // the later duplicate on the stronger query-matched owner at position 6.7.
+      {
+        source: "/blog/cycling-heart-rate-variability-guide",
+        destination: "/blog/cycling-hrv-training-guide",
+        permanent: true,
+      },
       // Search Console shows the rides guide already owns the active-recovery
       // query history. Retire the three later broad duplicates and consolidate
       // their links on the reviewed, evidence-bounded owner.

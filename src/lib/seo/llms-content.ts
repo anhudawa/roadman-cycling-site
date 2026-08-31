@@ -83,6 +83,7 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "cycling-active-recovery-rides-guide",
   "cycling-recovery-tips",
   "cycling-sleep-performance-guide",
+  "cycling-hrv-training-guide",
   "best-recovery-foods-after-cycling",
   "cycling-recovery-week-what-to-actually-do",
   "cycling-fatigue-signs-when-to-back-off",
