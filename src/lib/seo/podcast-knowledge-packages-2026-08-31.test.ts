@@ -54,7 +54,9 @@ describe("31 August podcast knowledge packages", () => {
       expect(episode.updatedDate).toBe("2026-08-31");
       expect(episode.youtubeId).toBeTruthy();
       expect(episode.transcript.length).toBeGreaterThan(5_000);
-      expect(episode.answerCapsule.split(/\s+/).length).toBeGreaterThanOrEqual(60);
+      expect(episode.answerCapsule.split(/\s+/).length).toBeGreaterThanOrEqual(
+        60,
+      );
       expect(episode.guest).toBe(guest);
       expect(episode.guestBio.length).toBeGreaterThan(150);
       expect(episode.chapters.length).toBeGreaterThanOrEqual(minimumChapters);
@@ -65,28 +67,33 @@ describe("31 August podcast knowledge packages", () => {
           (offset, index) => index === 0 || offset > offsets[index - 1],
         ),
       ).toBe(true);
-      expect(new Set(episode.chapters.map((chapter) => chapter.title)).size).toBe(
-        episode.chapters.length,
-      );
-      expect(episode.claims.every((claim) => claim.reviewed === true)).toBe(true);
-      expect(episode.citations.every((citation) => citation.reviewed === true)).toBe(
+      expect(
+        new Set(episode.chapters.map((chapter) => chapter.title)).size,
+      ).toBe(episode.chapters.length);
+      expect(episode.claims.every((claim) => claim.reviewed === true)).toBe(
         true,
       );
+      expect(
+        episode.citations.every((citation) => citation.reviewed === true),
+      ).toBe(true);
       expect(source).toContain(`[guest profile](${guestPath})`);
       expect(source).toContain("[Roadman Cycling Podcast archive](/podcast)");
     },
   );
 
-  it("keeps one episode route, one transcript route and one watch route per package", () => {
+  it("keeps one episode route and one watch route per package without advertising missing transcript URLs", () => {
     const podcastPage = read("src/app/(content)/podcast/[slug]/page.tsx");
     const watchPage = read("src/app/(content)/watch/[slug]/page.tsx");
     const sitemap = read("src/app/sitemap.ts");
+    const indexNow = read("scripts/submit-indexnow.ts");
 
-    expect(podcastPage).toContain('href={`/watch/${episode.slug}`}');
-    expect(podcastPage).toContain('href={`/podcast/${slug}/transcript`}');
-    expect(watchPage).toContain('href={`/podcast/${slug}`}');
+    expect(podcastPage).toContain("href={`/watch/${episode.slug}`}");
+    expect(watchPage).toContain("href={`/podcast/${slug}`}");
     expect(sitemap).toContain("const watchEntries");
     expect(sitemap).toContain("const transcriptEntries");
+    for (const { slug } of PACKAGES) {
+      expect(indexNow).not.toContain(`/podcast/${slug}/transcript`);
+    }
   });
 
   it("records the demand-led choice and reusable media briefs", () => {

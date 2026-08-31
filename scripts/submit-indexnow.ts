@@ -117,7 +117,6 @@ const CURATED: string[] = [
   `https://${HOST}/guests/andrew-feather`,
   `https://${HOST}/experts/andrew-feather`,
   `https://${HOST}/podcast/ep-24-i-asked-a-40-year-old-amateur-how-he-beat-pogacar`,
-  `https://${HOST}/podcast/ep-24-i-asked-a-40-year-old-amateur-how-he-beat-pogacar/transcript`,
   `https://${HOST}/watch/ep-24-i-asked-a-40-year-old-amateur-how-he-beat-pogacar`,
   `https://${HOST}/blog/climb-faster-cycling-five-fixable-reasons`,
   `https://${HOST}/blog/cycling-climbing-time-estimate-guide`,
@@ -258,7 +257,6 @@ const CURATED: string[] = [
   `https://${HOST}/blog/daryl-fitzgerald-saddle-height-one-change`,
   `https://${HOST}/guests/daryl-fitzgerald`,
   `https://${HOST}/podcast/ep-1-pro-bike-fitter-reveals-the-1-change-amateurs-should-make`,
-  `https://${HOST}/podcast/ep-1-pro-bike-fitter-reveals-the-1-change-amateurs-should-make/transcript`,
   `https://${HOST}/watch/ep-1-pro-bike-fitter-reveals-the-1-change-amateurs-should-make`,
   `https://${HOST}/tools/masters-ftp-benchmark`,
   `https://${HOST}/answers/ftp-by-age`,
@@ -463,9 +461,7 @@ const HEAT_ANSWER_TRUST_CLUSTER = [
 
 // One broad active-recovery owner plus the two narrow decision answers. The
 // topic hub, readiness tools and app owner are already in CURATED above.
-const ACTIVE_RECOVERY_TRUST_CLUSTER = [
-  "cycling-active-recovery-rides-guide",
-];
+const ACTIVE_RECOVERY_TRUST_CLUSTER = ["cycling-active-recovery-rides-guide"];
 
 const ACTIVE_RECOVERY_ANSWER_TRUST_CLUSTER = [
   "active-or-passive-recovery",

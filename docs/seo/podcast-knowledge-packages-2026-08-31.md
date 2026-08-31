@@ -6,10 +6,10 @@ Two established episodes were selected from demonstrated demand, guest authority
 and useful adjacency to Roadman's training products. No replacement URL was
 created.
 
-| Package | Before-state | Search owner | Supporting surfaces |
-| --- | --- | --- | --- |
-| Andrew Feather and the 2025 Pogi Challenge | The episode earned 42 of 68 exact-name clicks and appeared against 2,729 exact-query impressions in the three months captured 26 August. It had no navigable chapters. | `/podcast/ep-24-i-asked-a-40-year-old-amateur-how-he-beat-pogacar` owns interview, watch and transcript intent. | `/guests/andrew-feather` owns biography; `/experts/andrew-feather` owns advice navigation; `/podcast` owns broad cycling-podcast intent. |
-| Daryl Fitzgerald bike-fit interview | The episode recorded 26 clicks, 2,892 page impressions, 0.9% CTR and position 11.5 in the three months captured 25 August. It had no chapters or episode-level guest biography. | `/podcast/ep-1-pro-bike-fitter-reveals-the-1-change-amateurs-should-make` owns Daryl interview, watch and transcript intent. | `/guests/daryl-fitzgerald` owns identity; the Daryl saddle-height article owns the researched answer; `/podcast` owns broad cycling-podcast intent. |
+| Package                                    | Before-state                                                                                                                                                                    | Search owner                                                                                                                                                                                                              | Supporting surfaces                                                                                                                                 |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Andrew Feather and the 2025 Pogi Challenge | The episode earned 42 of 68 exact-name clicks and appeared against 2,729 exact-query impressions in the three months captured 26 August. It had no navigable chapters.          | `/podcast/ep-24-i-asked-a-40-year-old-amateur-how-he-beat-pogacar` owns interview and inline-transcript intent; `/watch/ep-24-i-asked-a-40-year-old-amateur-how-he-beat-pogacar` owns the video experience.               | `/guests/andrew-feather` owns biography; `/experts/andrew-feather` owns advice navigation; `/podcast` owns broad cycling-podcast intent.            |
+| Daryl Fitzgerald bike-fit interview        | The episode recorded 26 clicks, 2,892 page impressions, 0.9% CTR and position 11.5 in the three months captured 25 August. It had no chapters or episode-level guest biography. | `/podcast/ep-1-pro-bike-fitter-reveals-the-1-change-amateurs-should-make` owns interview and inline-transcript intent; `/watch/ep-1-pro-bike-fitter-reveals-the-1-change-amateurs-should-make` owns the video experience. | `/guests/daryl-fitzgerald` owns identity; the Daryl saddle-height article owns the researched answer; `/podcast` owns broad cycling-podcast intent. |
 
 ## Release
 
@@ -21,8 +21,10 @@ created.
   reviewed claim/source boundary.
 - Added Daryl Fitzgerald's episode-level biography and linked both episodes to
   their guest profiles and the broad podcast archive.
-- Preserved one automatically generated `/watch/[slug]` page and one
-  `/podcast/[slug]/transcript` page for each source episode.
+- Preserved one automatically generated `/watch/[slug]` page for each source
+  episode. Each episode keeps its complete inline transcript; no separate
+  transcript URL is advertised because these two slugs do not have a dedicated
+  transcript source file.
 - Added both packages to the short AI discovery file, IndexNow cluster and AI
   benchmark set.
 
@@ -99,7 +101,7 @@ created.
 - Decision-grade 28-day review: **1 October 2026** or later, after data is
   complete through 28 September.
 - Track exact episode clicks, impressions, CTR and position; video-page indexing;
-  transcript impressions; guest-profile overlap; and assisted visits to the
+  inline-transcript query impressions; guest-profile overlap; and assisted visits to the
   podcast hub, bike-fit guide, coaching and app.
 - A successful package improves discovery without shifting broad biography or
   broad podcast intent onto the episode.
