@@ -121,6 +121,8 @@ describe("strength and recovery app acquisition paths", () => {
         "/app?source=persistent-fatigue-guide",
       "content/blog/blood-testing-cyclists-what-to-check-guide.mdx":
         "/app?source=blood-testing-guide",
+      "content/blog/iron-deficiency-cyclists-masters.mdx":
+        "/app?source=iron-guide",
       "content/blog/cycling-strength-training-guide.mdx":
         "/app?source=strength-guide",
       "content/blog/strength-training-cyclists-over-50.mdx":

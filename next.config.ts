@@ -174,6 +174,20 @@ const nextConfig: NextConfig = {
         destination: "/blog/cycling-fatigue-signs-when-to-back-off",
         permanent: true,
       },
+      // Three pages split the same iron-deficiency, ferritin, symptoms and
+      // treatment intent across 179 clicks, 11,520 web impressions and about
+      // 6,600 Google AI impressions. Keep the strongest established URL and
+      // consolidate the two later threshold-led duplicates on the reviewed owner.
+      {
+        source: "/blog/cycling-iron-ferritin-endurance-guide",
+        destination: "/blog/iron-deficiency-cyclists-masters",
+        permanent: true,
+      },
+      {
+        source: "/blog/cycling-iron-deficiency-performance-guide",
+        destination: "/blog/iron-deficiency-cyclists-masters",
+        permanent: true,
+      },
       // GSC (latest three months): the two broad recovery guides split 73
       // clicks, 7,863 web impressions and 1,841 Google AI impressions. Merge
       // the later World Tour page into the shorter, query-matched owner.
