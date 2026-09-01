@@ -62,6 +62,10 @@ describe("priority search-owner schema", () => {
         path: "src/app/(marketing)/training-camps/page.tsx",
         reviewed: "25 August 2026",
       },
+      "cycling-strength-recovery-app": {
+        path: "src/app/(marketing)/app/page.tsx",
+        reviewed: "1 September 2026",
+      },
     } as const;
 
     for (const [ownerId, ownerPage] of Object.entries(ownerPages)) {
@@ -70,7 +74,7 @@ describe("priority search-owner schema", () => {
         "utf8",
       );
 
-      expect(source).toContain(`buildSearchOwnerTrustProperties("${ownerId}")`);
+      expect(source).toContain(`buildSearchOwnerTrustProperties("${ownerId}"`);
       expect(source).toContain("<EvidenceBlock");
       expect(source).toContain(`lastReviewed="${ownerPage.reviewed}"`);
       expect(source).toContain('"@type": "BreadcrumbList"');

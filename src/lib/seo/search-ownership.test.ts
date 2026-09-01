@@ -12,9 +12,9 @@ import {
 
 describe("search ownership registry", () => {
   it("declares one unique route for every priority query family", () => {
-    expect(SEARCH_OWNERS).toHaveLength(5);
-    expect(new Set(SEARCH_OWNERS.map((owner) => owner.path)).size).toBe(5);
-    expect(new Set(SEARCH_OWNERS.map((owner) => owner.primaryQuery)).size).toBe(5);
+    expect(SEARCH_OWNERS).toHaveLength(6);
+    expect(new Set(SEARCH_OWNERS.map((owner) => owner.path)).size).toBe(6);
+    expect(new Set(SEARCH_OWNERS.map((owner) => owner.primaryQuery)).size).toBe(6);
   });
 
   it("maps narrow supporting content to its broad owner", () => {
@@ -26,6 +26,12 @@ describe("search ownership registry", () => {
     );
     expect(resolveSearchOwner(["Is an online cycling coach worth it?"])?.path).toBe(
       "/coaching",
+    );
+    expect(resolveSearchOwner(["best cycling recovery app"])?.path).toBe(
+      "/app",
+    );
+    expect(resolveSearchOwner(["strength training app for cyclists"])?.path).toBe(
+      "/app",
     );
   });
 
@@ -41,6 +47,12 @@ describe("search ownership registry", () => {
         currentPath: "/coaching/",
       }),
     ).toBeNull();
+
+    expect(
+      resolveSearchOwner(["Best Cycling Strength Training Apps"], {
+        currentPath: "/best/best-cycling-strength-training-apps",
+      })?.path,
+    ).toBe("/app");
   });
 
   it("uses editorial topic ownership only as a broad fallback", () => {

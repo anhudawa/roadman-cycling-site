@@ -9,7 +9,9 @@ import { Container, Footer, Header, Section } from "@/components/layout";
 import { Card, ScrollReveal } from "@/components/ui";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
+import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
 
 const APP_PATH = "/app";
 const APP_URL = `${SITE_ORIGIN}${APP_PATH}`;
@@ -167,13 +169,20 @@ export default function AppLandingPage() {
               url: APP_URL,
               name: "Roadman Cycling strength and recovery app",
               description: APP_DESCRIPTION,
-              isPartOf: { "@id": ENTITY_IDS.website },
-              about: { "@id": `${APP_URL}#software` },
+              ...buildSearchOwnerTrustProperties("cycling-strength-recovery-app", "2026-09-01"),
+              about: [
+                {
+                  "@type": "Thing",
+                  name: "Cycling strength and recovery app",
+                  description: APP_DESCRIPTION,
+                },
+                { "@id": `${APP_URL}#software` },
+              ],
               primaryImageOfPage: {
                 "@type": "ImageObject",
                 url: STRUCTURED_IMAGE_URL,
               },
-              dateModified: "2026-08-31",
+              dateModified: "2026-09-01",
             },
             {
               "@type": ["SoftwareApplication", "MobileApplication"],
@@ -528,6 +537,35 @@ export default function AppLandingPage() {
                 ))}
               </ul>
             </div>
+          </Container>
+        </Section>
+
+        <Section background="charcoal" className="!py-12">
+          <Container width="narrow">
+            <EvidenceBlock
+              lastReviewed="1 September 2026"
+              reviewedBy="Anthony Walsh and the Roadman Cycling coaching team"
+              reviewedSources={[
+                {
+                  name: "Strength Training for Cyclists — evidence and programming guide",
+                  href: "/blog/cycling-strength-training-guide",
+                  publisher: "Roadman Cycling",
+                  note: "Supports the strength scope; it does not validate a universal app prescription.",
+                },
+                {
+                  name: "Daily Training Readiness Check for Cyclists",
+                  href: "/blog/daily-training-readiness-check-cycling-guide",
+                  publisher: "Roadman Cycling",
+                  note: "Defines the readiness inputs, adjustment boundary and medical red flags.",
+                },
+                {
+                  name: "Cycling Recovery Research Library",
+                  href: "/topics/cycling-recovery",
+                  publisher: "Roadman Cycling",
+                  note: "Separates recovery context and optional modalities from diagnosis or guaranteed performance effects.",
+                },
+              ]}
+            />
           </Container>
         </Section>
 

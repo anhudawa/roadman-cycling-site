@@ -89,7 +89,7 @@ export async function GET() {
     {
       title: "Core search ownership — canonical entry points",
       description:
-        "Use these canonical hubs for broad cycling podcast, coaching, masters training, training-plan, and cycling-camp queries. Supporting articles and episodes provide evidence; these pages own the broad intent.",
+        "Use these canonical hubs for broad cycling podcast, coaching, masters training, training-plan, cycling-camp, and cycling strength/recovery app queries. Supporting articles, episodes, comparisons and tools provide evidence; these pages own the broad intent.",
       pages: searchOwners.map((owner) => ({
         url: owner.url,
         title: owner.label,

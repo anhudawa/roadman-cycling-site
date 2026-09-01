@@ -1,4 +1,7 @@
-import { SEARCH_OWNERS, type SearchOwnerId } from "./search-ownership";
+import {
+  GSC_MEASURED_SEARCH_OWNERS,
+  type SearchOwnerId,
+} from "./search-ownership";
 
 export type GscQueryMatch = "exact" | "contains";
 
@@ -71,7 +74,7 @@ export interface GscSnapshot {
     days: number;
   };
   site: GscMetric;
-  /** Exact-URL Web-search metrics for all five canonical search owners. */
+  /** Exact-URL Web-search metrics for the fixed five-owner 24 August cohort. */
   ownerPages: GscPageMetric[];
   queries: GscQueryMetric[];
   urlSplits: GscUrlSplit[];
@@ -313,7 +316,7 @@ function validateSnapshot(snapshot: GscSnapshot, label: string): void {
   );
   assertSameKeySet(
     "canonical owner pages",
-    SEARCH_OWNERS.map((owner) => normalisePath(owner.path)),
+    GSC_MEASURED_SEARCH_OWNERS.map((owner) => normalisePath(owner.path)),
     ownerPageKeys,
   );
   snapshot.ownerPages.forEach((row, index) =>
@@ -531,7 +534,7 @@ export function compareGscSnapshots(
   const currentOwnerPages = new Map(
     current.ownerPages.map((row) => [normalisePath(row.path), row]),
   );
-  const ownerPages = SEARCH_OWNERS.map((owner) => {
+  const ownerPages = GSC_MEASURED_SEARCH_OWNERS.map((owner) => {
     const path = normalisePath(owner.path);
     const before = baselineOwnerPages.get(path)!;
     const after = currentOwnerPages.get(path)!;
@@ -622,7 +625,7 @@ export function compareGscSnapshots(
     current.ownerLinkClicks?.byOwner.map((row) => [row.ownerId, row.clicks]) ??
       [],
   );
-  const ownerClicks = SEARCH_OWNERS.map((owner) => {
+  const ownerClicks = GSC_MEASURED_SEARCH_OWNERS.map((owner) => {
     const before = baseline.ownerLinkClicks
       ? (baselineOwnerClicks.get(owner.id) ?? 0)
       : null;

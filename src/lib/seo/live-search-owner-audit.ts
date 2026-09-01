@@ -4,6 +4,7 @@ export const LIVE_SEARCH_OWNER_ROUTES = [
   "/training-plans",
   "/training-camps",
   "/podcast",
+  "/app",
 ] as const;
 
 type JsonRecord = Record<string, unknown>;

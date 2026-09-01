@@ -16,6 +16,7 @@ describe("RouteBreadcrumbJsonLd", () => {
     "/training-plans",
     "/training-camps",
     "/podcast",
+    "/app",
   ])("does not duplicate the hand-authored breadcrumb on %s", (pathname) => {
     pathnameState.value = pathname;
 
