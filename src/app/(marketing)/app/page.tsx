@@ -517,6 +517,12 @@ export default function AppLandingPage() {
                     cycling plan.
                   </p>
                 </div>
+                <Link
+                  href="/app/methodology"
+                  className="mt-6 inline-flex text-sm font-semibold text-coral transition-colors hover:text-coral/80"
+                >
+                  Read the public decision methodology →
+                </Link>
               </div>
             </div>
           </Container>
@@ -647,6 +653,12 @@ export default function AppLandingPage() {
               Explore the knowledge behind the product
             </p>
             <div className="mt-7 flex flex-wrap justify-center gap-x-7 gap-y-4 text-sm">
+              <Link
+                href="/app/methodology"
+                className="text-foreground-muted transition-colors hover:text-coral"
+              >
+                App decision methodology
+              </Link>
               <Link
                 href="/best/best-cycling-training-apps"
                 className="text-foreground-muted transition-colors hover:text-coral"

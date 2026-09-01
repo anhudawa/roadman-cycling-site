@@ -84,6 +84,7 @@ describe("Roadman strength and recovery app search owner", () => {
     expect(html).not.toContain("Pocket Coach");
 
     for (const href of [
+      "/app/methodology",
       "/topics/cycling-strength-conditioning",
       "/topics/cycling-recovery",
       "/tools/strength-session-planner",

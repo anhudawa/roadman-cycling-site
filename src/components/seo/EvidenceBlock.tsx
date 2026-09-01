@@ -31,9 +31,9 @@ function isRenderableHref(href?: string): href is string {
 }
 
 interface EvidenceBlockProps {
-  experts?: EvidenceSource[];
-  episodes?: { title: string; href: string }[];
-  reviewedSources?: ReviewedSource[];
+  experts?: readonly EvidenceSource[];
+  episodes?: readonly { title: string; href: string }[];
+  reviewedSources?: readonly ReviewedSource[];
   lastReviewed?: string;
   reviewedBy?: string;
   /** Override the default author link ("/author/anthony-walsh"). */
