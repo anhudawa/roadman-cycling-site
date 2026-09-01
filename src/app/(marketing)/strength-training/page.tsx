@@ -1,75 +1,130 @@
 import type { Metadata } from "next";
-import { Header, Footer, Section, Container } from "@/components/layout";
-import { Button, Card, ScrollReveal, GradientText } from "@/components/ui";
+import Link from "next/link";
 import { CheckoutButton } from "@/components/features/conversion/CheckoutButton";
+import { Footer, Header, Section, Container } from "@/components/layout";
+import { FAQSchema } from "@/components/seo/FAQSchema";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { Card, ScrollReveal } from "@/components/ui";
+import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
+
+const PRODUCT_PATH = "/strength-training";
+const PRODUCT_URL = `${SITE_ORIGIN}${PRODUCT_PATH}`;
+const PRODUCT_PRICE = 65;
+const PRODUCT_DESCRIPTION =
+  "A self-guided 12-week strength and conditioning plan for cyclists, with two weekly sessions, exercise demonstrations, progression, core work and mobility guidance.";
 
 export const metadata: Metadata = {
-  title: "Strength Training for Cyclists — 12-Week S&C Plan for Riders 30+",
-  description:
-    "The 12-week S&C plan built for cyclists over 30. Periodised weekly programme, video demos, core and mobility guides. One-time payment, money-back guarantee.",
-  alternates: {
-    canonical: "https://roadmancycling.com/strength-training",
+  title: {
+    absolute: "Cycling Strength Training Plan: 12-Week S&C Programme",
   },
+  description:
+    "A self-guided 12-week cycling strength training plan: two weekly sessions, exercise videos, progression and honest limits on performance transfer.",
+  alternates: { canonical: PRODUCT_URL },
   openGraph: {
-    title: "Strength Training for Cyclists — 12-Week S&C Plan for Riders 30+",
-    description:
-      "The 12-week S&C plan built for cyclists over 30. Periodised weekly programme, video demos, core and mobility guides. One-time payment.",
+    title: "12-Week Strength Training Plan for Cyclists",
+    description: PRODUCT_DESCRIPTION,
     type: "website",
-    url: "https://roadmancycling.com/strength-training",
+    url: PRODUCT_URL,
+    siteName: "Roadman Cycling",
+    images: [
+      {
+        url: `${SITE_ORIGIN}/images/blog/cyclist-strength-training-gym.webp`,
+        width: 1200,
+        height: 630,
+        alt: "Cyclist completing strength training in a gym",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "12-Week Strength Training Plan for Cyclists",
+    description: PRODUCT_DESCRIPTION,
+    images: [`${SITE_ORIGIN}/images/blog/cyclist-strength-training-gym.webp`],
   },
 };
 
-const whatsIncluded = [
+const FAQS = [
   {
-    number: "01",
-    title: "The 12-Week Training Plan",
-    description:
-      "Outlines exactly what to do on a weekly basis. Periodised, progressive, and aligned with your riding — so you get stronger in the gym without wrecking your legs for the bike.",
+    question: "What is included in the Roadman cycling strength plan?",
+    answer:
+      "It is a self-guided 12-week programme with two strength sessions per week, staged progression, deload weeks, exercise demonstrations, set-and-rep tracking, core work, warm-ups, mobility and stretching guidance. It is a fixed programme rather than individual coaching or an adaptive app.",
   },
   {
-    number: "02",
-    title: "Instructional Videos",
-    description:
-      "Every exercise demonstrated with correct technique so you can train safely and effectively. No guessing, no bad form, no wasted reps.",
+    question: "How often should cyclists strength train?",
+    answer:
+      "This programme uses two sessions per week. That is a practical programme design, not a research-proven optimum for every cyclist. The latest cyclist-only meta-analysis included one to three weekly sessions and could not establish the best implementation. Reduce or move work when priority riding repeatedly loses quality.",
   },
   {
-    number: "03",
-    title: "Stretching Guide for Cyclists",
-    description:
-      "Targets the key muscle groups used in pedalling — more mobility, less soreness, and the tightness that leads to injury stopped before it starts.",
+    question: "Will the programme improve my FTP or prevent injury?",
+    answer:
+      "No individual result is guaranteed. Pooled cyclist research supports possible improvements in cycling performance, efficiency and anaerobic power, but not a significant overall VO2max or maximal-steady-state effect. The programme is not physiotherapy and does not diagnose pain or guarantee injury prevention.",
   },
   {
-    number: "04",
-    title: "Core Training Guide",
-    description:
-      "Build a stronger core for more power on the bike. Transfer more force through the legs, improve posture, reduce back pain, and support long-term riding health.",
+    question: "Is the plan suitable for cyclists over 40 or 50?",
+    answer:
+      "It can suit a healthy masters cyclist who can perform and progress the movements, but age alone does not clear the programme. Training history, health, joint comfort and current cycling load matter. Osteoporosis, cardiovascular risk, persistent pain or another medical concern needs appropriate professional advice.",
   },
   {
-    number: "05",
-    title: "Goal Setting Audio Guide",
-    description:
-      "A 20-minute walkthrough of the goal-setting framework I use with coached athletes. What to target, how to structure a 12-week block, and what to do in week four when the initial motivation wears off and you need a system instead.",
+    question: "Will strength training make me heavier?",
+    answer:
+      "Body-mass and lean-mass changes vary with training volume, nutrition and the individual. This page does not promise that a cyclist will add bulk or remain exactly the same weight. Track body mass and cycling outcomes if power-to-weight is important to your goal.",
   },
-];
+  {
+    question: "How is the fixed plan different from the upcoming Roadman app?",
+    answer:
+      "The $65 course is a fixed 12-week self-guided programme. The upcoming iPhone app is being built to fit 30, 45 or 60-minute strength sessions around the riding week and use readiness guardrails. The app name, launch date and subscription price have not been announced.",
+  },
+  {
+    question: "How much does the programme cost?",
+    answer:
+      "The current price is $65 USD as a one-time payment with lifetime access. Checkout is handled by Stripe. The course is separate from the upcoming app and from Roadman coaching.",
+  },
+] as const;
 
-const results = [
+const INCLUDED = [
   {
-    stat: "8–15%",
-    label: "power increase in 12 weeks",
-    source: "Rønnestad et al., 2010",
+    title: "12-week progression",
+    body: "Two sessions per week across foundation, strength, deload and power-oriented phases, with the weekly work visible before you begin.",
   },
   {
-    stat: "4–5%",
-    label: "improvement in cycling economy",
-    source: "Rønnestad et al., 2010",
+    title: "Exercise demonstrations",
+    body: "Video examples and coaching cues for the programmed movements. A video cannot assess your technique or replace in-person supervision when you need it.",
   },
   {
-    stat: "17%",
-    label: "longer time to exhaustion",
-    source: "Sunde et al., 2010",
+    title: "Set and rep tracking",
+    body: "Record the work completed and compare it with the next exposure instead of relying on memory or adding load automatically.",
   },
-];
+  {
+    title: "Core and warm-up work",
+    body: "Supporting trunk and preparation sessions are included without claiming that one exercise directly creates watts or prevents back pain.",
+  },
+  {
+    title: "Mobility and stretching",
+    body: "Optional mobility, stretching and foam-rolling guidance for riders who find it useful. These methods are not presented as injury treatment.",
+  },
+  {
+    title: "Lifetime access",
+    body: "One purchase gives ongoing access to the self-guided course. It does not include individual programme changes or medical review.",
+  },
+] as const;
+
+const DECISION_ROWS = [
+  {
+    need: "A fixed programme I can follow myself",
+    answer: "This 12-week course",
+    href: "#enrol",
+  },
+  {
+    need: "Strength placed around an existing ride week",
+    answer: "Upcoming Roadman app",
+    href: "/app?source=strength-plan",
+  },
+  {
+    need: "Bike and gym training reviewed by a person",
+    answer: "Roadman coaching",
+    href: "/coaching",
+  },
+] as const;
 
 export default function StrengthTrainingPage() {
   return (
@@ -77,431 +132,370 @@ export default function StrengthTrainingPage() {
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [
+          "@graph": [
             {
-              "@type": "ListItem",
-              position: 1,
-              name: "Home",
-              item: "https://roadmancycling.com",
+              "@type": "Product",
+              "@id": `${PRODUCT_URL}#product`,
+              name: "Roadman 12-Week Strength & Conditioning Plan",
+              description: PRODUCT_DESCRIPTION,
+              category: "Cycling strength training programme",
+              brand: { "@type": "Brand", name: "Roadman Cycling" },
+              image: `${SITE_ORIGIN}/images/blog/cyclist-strength-training-gym.webp`,
+              url: PRODUCT_URL,
+              offers: {
+                "@type": "Offer",
+                price: String(PRODUCT_PRICE),
+                priceCurrency: "USD",
+                availability: "https://schema.org/InStock",
+                url: PRODUCT_URL,
+              },
             },
             {
-              "@type": "ListItem",
-              position: 2,
-              name: "Strength Training",
-              item: "https://roadmancycling.com/strength-training",
+              "@type": "WebPage",
+              "@id": `${PRODUCT_URL}#webpage`,
+              url: PRODUCT_URL,
+              name: "12-Week Strength Training Plan for Cyclists",
+              description: PRODUCT_DESCRIPTION,
+              isPartOf: { "@id": ENTITY_IDS.website },
+              about: { "@id": `${PRODUCT_URL}#product` },
+              dateModified: "2026-09-01",
+            },
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: SITE_ORIGIN,
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Cycling strength training plan",
+                  item: PRODUCT_URL,
+                },
+              ],
             },
           ],
         }}
       />
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Product",
-          name: "Roadman Strength & Conditioning Plan",
-          description:
-            "12-week S&C plan for cyclists. Training plan, instructional videos, stretching guide, core guide, goal setting audio.",
-          brand: { "@type": "Brand", name: "Roadman Cycling" },
-          // `image` and `url` are strongly recommended for the Product
-          // rich result — without an image Google suppresses it and flags
-          // the item. og-image.jpg is the only shared brand asset.
-          image: ["https://roadmancycling.com/og-image.jpg"],
-          url: "https://roadmancycling.com/strength-training",
-          offers: {
-            "@type": "Offer",
-            price: "65",
-            priceCurrency: "USD",
-            availability: "https://schema.org/InStock",
-            url: "https://roadmancycling.com/strength-training",
-          },
-        }}
-      />
-
+      <FAQSchema faqs={[...FAQS]} />
       <Header />
 
       <main id="main-content">
-        {/* Hero */}
         <Section background="deep-purple" grain className="pt-32 pb-20">
-          <Container className="text-center">
-            <ScrollReveal direction="up">
-              <p className="text-coral font-heading text-sm tracking-widest mb-6">
-                ROADMAN STRENGTH &amp; CONDITIONING
+          <Container>
+            <div className="mx-auto max-w-4xl text-center">
+              <p className="mb-6 font-heading text-sm tracking-[0.2em] text-coral">
+                SELF-GUIDED · 12 WEEKS · TWO SESSIONS A WEEK
               </p>
               <h1
-                className="font-heading text-off-white mb-6"
+                className="font-heading leading-[0.94] text-off-white"
                 style={{ fontSize: "var(--text-hero)" }}
               >
-                STOP LOSING WATTS
-                <br />
-                <span className="text-coral">TO A WEAK BODY</span>
+                A STRENGTH TRAINING PLAN
+                <span className="mt-2 block text-coral">BUILT FOR CYCLISTS.</span>
               </h1>
-              <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
-                A 12-week strength and conditioning plan built specifically for
-                cyclists over 30. Target the exact muscles and movement patterns
-                that drive better cycling — your glutes, core, and posterior
-                chain — without adding bulk or draining your energy.
+              <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-foreground-muted md:text-xl">
+                Follow a visible 12-week progression, log every set and fit two
+                gym sessions around the cycling that matters. No guaranteed FTP,
+                pain or injury claims—just the programme, its evidence and its
+                limits.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-                <Button href="#enrol" size="lg">
-                  Get the Plan — $65
-                </Button>
-
-                <Button href="#whats-inside" variant="ghost" size="lg">
-                  See What&apos;s Inside
-                </Button>
+              <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <Link
+                  href="#enrol"
+                  className="inline-flex items-center justify-center rounded-md bg-coral px-8 py-4 font-heading tracking-wider text-off-white transition-colors hover:bg-coral/90"
+                >
+                  GET THE PLAN — $65
+                </Link>
+                <Link
+                  href="/sc/programme"
+                  className="inline-flex items-center justify-center rounded-md border border-white/20 px-8 py-4 font-heading tracking-wider text-off-white transition-colors hover:border-white/40"
+                >
+                  PREVIEW THE STRUCTURE
+                </Link>
               </div>
-              <p className="text-foreground-subtle text-sm">
-                One-time payment. Lifetime access. 100% money back guarantee.
+              <p className="mt-4 text-sm text-foreground-subtle">
+                One-time payment · Lifetime access · 100% money-back guarantee
               </p>
-            </ScrollReveal>
-          </Container>
-        </Section>
-
-        {/* Gradient divider */}
-        <div className="gradient-divider" />
-
-        <Section background="charcoal" className="py-10 md:py-12">
-          <Container>
-            <div className="flex flex-col items-start justify-between gap-6 rounded-2xl border border-coral/20 bg-coral/[0.07] p-6 md:flex-row md:items-center md:p-8">
-              <div className="max-w-3xl">
-                <p className="font-heading text-sm tracking-[0.18em] text-coral">
-                  WANT STRENGTH PLACED AROUND YOUR REAL RIDING WEEK?
-                </p>
-                <p className="mt-2 leading-relaxed text-foreground-muted">
-                  Roadman is building an iPhone strength and recovery app with
-                  30, 45 and 60-minute sessions, readiness checks and key-ride
-                  protection. The final product name and price are not yet
-                  announced.
-                </p>
-              </div>
-              <Button
-                href="/app?source=strength-plan"
-                variant="outline"
-                className="shrink-0"
-                dataTrack="strength_plan_app_early_access"
-              >
-                Join app early access
-              </Button>
             </div>
           </Container>
         </Section>
 
-        {/* The Science */}
-        <Section background="charcoal">
+        <Section background="charcoal" className="!py-12">
           <Container>
-            <ScrollReveal direction="up" className="text-center mb-12">
-              <h2
-                className="font-heading text-off-white mb-4"
-                style={{ fontSize: "var(--text-section)" }}
-              >
-                THE SCIENCE IS NOT SUBTLE
-              </h2>
-              <p className="text-foreground-muted max-w-xl mx-auto">
-                Peer-reviewed research on strength training for endurance
-                cyclists. These aren&apos;t opinions — they&apos;re results.
-              </p>
-            </ScrollReveal>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              {results.map((r, i) => (
-                <ScrollReveal key={r.stat} direction="up" delay={i * 0.1}>
-                  <Card
-                    className="p-8 text-center h-full"
-                    glass
-                    hoverable={false}
-                  >
-                    <p className="font-heading text-5xl text-coral mb-2">
-                      {r.stat}
-                    </p>
-                    <p className="text-off-white font-medium mb-3">{r.label}</p>
-                    <p className="text-xs text-foreground-subtle">{r.source}</p>
-                  </Card>
-                </ScrollReveal>
+            <div className="grid gap-4 md:grid-cols-3">
+              {DECISION_ROWS.map((row) => (
+                <Link
+                  key={row.need}
+                  href={row.href}
+                  className="rounded-xl border border-white/10 bg-white/[0.03] p-5 transition-colors hover:border-coral/40"
+                >
+                  <p className="text-sm leading-relaxed text-foreground-muted">
+                    {row.need}
+                  </p>
+                  <p className="mt-3 font-heading tracking-wide text-coral">
+                    {row.answer} →
+                  </p>
+                </Link>
               ))}
             </div>
           </Container>
         </Section>
 
-        {/* The Problem */}
-        <Section background="deep-purple" grain>
+        <Section background="charcoal">
+          <Container>
+            <ScrollReveal direction="up" className="mx-auto max-w-3xl text-center">
+              <p className="mb-4 font-heading text-xs tracking-[0.2em] text-coral">
+                WHAT THE CYCLIST EVIDENCE SAYS
+              </p>
+              <h2
+                className="font-heading text-off-white"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                USEFUL EVIDENCE. HONEST LIMITS.
+              </h2>
+              <p className="mt-6 text-lg leading-relaxed text-foreground-muted">
+                The latest cyclist-only meta-analysis included 17 controlled
+                studies and 262 riders. Heavy strength training improved pooled
+                cycling performance, efficiency and anaerobic power, but the
+                certainty was low and the review could not establish the best
+                frequency or implementation.
+              </p>
+            </ScrollReveal>
+
+            <div className="mx-auto mt-12 grid max-w-5xl gap-5 md:grid-cols-3">
+              <Card className="p-6" hoverable={false}>
+                <p className="font-heading text-3xl text-coral">1–3</p>
+                <p className="mt-2 font-heading text-off-white">sessions per week</p>
+                <p className="mt-3 text-sm leading-relaxed text-foreground-muted">
+                  The reviewed studies used a range. This course uses two as its
+                  design, not as a universal physiological law.
+                </p>
+              </Card>
+              <Card className="p-6" hoverable={false}>
+                <p className="font-heading text-3xl text-coral">5–25</p>
+                <p className="mt-2 font-heading text-off-white">weeks studied</p>
+                <p className="mt-3 text-sm leading-relaxed text-foreground-muted">
+                  A 12-week course sits inside the evidence range. That does not
+                  make this exact programme the one tested intervention.
+                </p>
+              </Card>
+              <Card className="p-6" hoverable={false}>
+                <p className="font-heading text-3xl text-coral">LOW</p>
+                <p className="mt-2 font-heading text-off-white">certainty</p>
+                <p className="mt-3 text-sm leading-relaxed text-foreground-muted">
+                  No automatic FTP gain, fixed watt increase, injury prevention
+                  or pain relief should be promised to an individual rider.
+                </p>
+              </Card>
+            </div>
+
+            <p className="mx-auto mt-8 max-w-3xl text-center text-sm leading-relaxed text-foreground-muted">
+              Read the full claim-by-claim analysis in Roadman&apos;s{" "}
+              <Link
+                href="/blog/cycling-strength-training-guide"
+                className="text-coral hover:text-coral/80"
+              >
+                strength training for cyclists guide
+              </Link>
+              , including the outcomes that did not improve significantly.
+            </p>
+          </Container>
+        </Section>
+
+        <Section background="deep-purple" grain id="whats-inside">
+          <Container>
+            <div className="mx-auto max-w-3xl text-center">
+              <h2
+                className="font-heading text-off-white"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                WHAT YOU GET
+              </h2>
+              <p className="mt-4 text-lg text-foreground-muted">
+                The product is a fixed self-guided course. Here is exactly what
+                that means—and what it does not mean.
+              </p>
+            </div>
+            <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {INCLUDED.map((item) => (
+                <Card key={item.title} className="p-6" glass hoverable={false}>
+                  <h3 className="font-heading text-xl text-off-white">
+                    {item.title.toUpperCase()}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-foreground-muted">
+                    {item.body}
+                  </p>
+                </Card>
+              ))}
+            </div>
+          </Container>
+        </Section>
+
+        <Section background="charcoal">
           <Container width="narrow">
-            <div className="grid md:grid-cols-2 gap-12 items-start">
-              <ScrollReveal direction="left">
-                <h2
-                  className="font-heading text-off-white mb-6"
-                  style={{ fontSize: "var(--text-section)" }}
-                >
-                  <GradientText as="span">
-                    MOST STRENGTH PLANS AREN&apos;T MADE FOR CYCLISTS.
-                  </GradientText>
-                </h2>
-                <div className="space-y-4 text-foreground-muted leading-relaxed">
-                  <p>
-                    They&apos;re built by gym bros who&apos;ve never touched a
-                    bike, or they pile on movements that leave you too sore to
-                    ride. Bodybuilding splits that add bulk you don&apos;t need.
-                    CrossFit WODs that wreck your legs before Tuesday&apos;s
-                    intervals.
+            <h2
+              className="font-heading text-off-white"
+              style={{ fontSize: "var(--text-section)" }}
+            >
+              FIT THE GYM AROUND THE BIKE
+            </h2>
+            <div className="mt-8 space-y-6 text-lg leading-relaxed text-foreground-muted">
+              <p>
+                This course cannot see your calendar. Start by marking races,
+                key intervals and long rides, then place the strength sessions
+                where they are least likely to compromise those priorities.
+              </p>
+              <ol className="space-y-4 pl-6 marker:font-heading marker:text-coral">
+                <li>
+                  Protect the cycling session most connected to the current goal.
+                </li>
+                <li>
+                  Avoid introducing a demanding lift immediately before a key
+                  ride when you do not yet know your soreness response.
+                </li>
+                <li>
+                  Record gym performance, soreness, joint comfort and the next
+                  priority ride—not the lift in isolation.
+                </li>
+                <li>
+                  Reduce sets, move the session or repeat a week when the whole
+                  programme stops being recoverable. Missed work is not debt.
+                </li>
+              </ol>
+              <p>
+                Illness, unexplained pain, movement-altering pain or a health
+                concern needs the appropriate clinician or qualified
+                professional. This programme is training education, not
+                diagnosis or rehabilitation.
+              </p>
+            </div>
+          </Container>
+        </Section>
+
+        <Section background="charcoal" className="!pt-0">
+          <Container>
+            <div className="rounded-2xl border border-coral/25 bg-coral/[0.07] p-7 md:p-10">
+              <div className="grid items-center gap-8 lg:grid-cols-[1fr_auto]">
+                <div>
+                  <p className="font-heading text-xs tracking-[0.2em] text-coral">
+                    WANT THE WEEK TO ADAPT?
                   </p>
-                  <p>
-                    This plan is different — because it&apos;s built by
-                    cyclists, for cyclists. We target the exact muscles and
-                    movement patterns that drive better cycling. It&apos;s all
-                    periodised, progressive, and aligned with your riding.
-                  </p>
-                  <p className="text-off-white font-medium">
-                    You won&apos;t just feel stronger in the gym — you&apos;ll
-                    feel faster, more stable, and pain-free on the bike.
+                  <h2 className="mt-3 font-heading text-3xl text-off-white md:text-4xl">
+                    THE UPCOMING APP IS A DIFFERENT PRODUCT.
+                  </h2>
+                  <p className="mt-4 max-w-3xl leading-relaxed text-foreground-muted">
+                    Roadman is building an iPhone strength and recovery app that
+                    places 30, 45 or 60-minute work around your existing rides
+                    and explains readiness adjustments. Its final name, date and
+                    price are not announced. Everyone joins the same early-access
+                    list; this link records that the fixed course led you there.
                   </p>
                 </div>
-              </ScrollReveal>
-
-              <ScrollReveal direction="right">
-                <Card className="p-6" hoverable={false}>
-                  <h3 className="font-heading text-lg text-off-white mb-4">
-                    WHY S&amp;C FOR CYCLISTS?
-                  </h3>
-                  <ul className="space-y-3">
-                    {[
-                      "More watts per pedal stroke — Rønnestad's research showed 8–15% power increases in 12 weeks of cycling-specific strength work. Not gym power. Bike power.",
-                      "Your position stops collapsing at hour three — a stronger posterior chain and core means you hold your aero position when everyone else is sitting up",
-                      "Knees and lower back stop complaining — most cycling pain comes from muscle imbalances that strength work fixes in weeks, not months",
-                      "Faster on climbs without more saddle time — force production per pedal stroke goes up, so the same effort produces more speed",
-                      "After 30, you lose 3–8% of muscle mass per decade. Strength training is the only thing that reverses it. Not more riding. Not stretching. Lifting.",
-                    ].map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-start gap-2 text-sm text-foreground-muted"
-                      >
-                        <span className="text-coral mt-0.5 shrink-0">
-                          &#10003;
-                        </span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </Card>
-              </ScrollReveal>
+                <Link
+                  href="/app?source=strength-plan"
+                  data-track="strength_plan_app_early_access"
+                  className="inline-flex shrink-0 items-center justify-center rounded-md bg-coral px-7 py-4 font-heading tracking-wider text-off-white transition-colors hover:bg-coral/90"
+                >
+                  JOIN APP EARLY ACCESS
+                </Link>
+              </div>
             </div>
           </Container>
         </Section>
 
-        {/* Visual break — abstract gradient divider */}
-        <div className="relative h-[25vh] overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-coral/20 via-deep-purple to-charcoal" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(255,107,74,0.15),transparent_70%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(139,92,246,0.2),transparent_60%)]" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <p className="font-heading text-off-white/10 text-[8rem] md:text-[12rem] select-none tracking-tighter leading-none">
-              S&amp;C
-            </p>
-          </div>
-        </div>
-
-        {/* What's Inside */}
-        <Section background="charcoal" id="whats-inside">
-          <Container>
-            <ScrollReveal direction="up" className="text-center mb-16">
-              <h2
-                className="font-heading text-off-white mb-4"
-                style={{ fontSize: "var(--text-section)" }}
-              >
-                WHAT&apos;S INCLUDED
-              </h2>
-              <p className="text-foreground-muted max-w-xl mx-auto">
-                Everything you need to get stronger on the bike. No guesswork.
-                No gym experience required.
-              </p>
-            </ScrollReveal>
-
-            <div className="max-w-4xl mx-auto space-y-4">
-              {whatsIncluded.map((item, i) => (
-                <ScrollReveal key={item.title} direction="up" delay={i * 0.06}>
-                  <Card
-                    className="p-6 card-shimmer group"
-                    glass
-                    tilt
-                    tiltStrength={4}
-                  >
-                    <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-8">
-                      <div className="shrink-0">
-                        <span className="font-heading text-4xl text-coral/40 group-hover:text-coral transition-colors duration-300">
-                          {item.number}
-                        </span>
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-heading text-xl text-off-white mb-2 group-hover:text-coral transition-colors duration-300">
-                          {item.title.toUpperCase()}
-                        </h3>
-                        <p className="text-sm text-foreground-muted leading-relaxed">
-                          {item.description}
-                        </p>
-                      </div>
-                    </div>
-                  </Card>
-                </ScrollReveal>
-              ))}
-            </div>
-          </Container>
-        </Section>
-
-        {/* Who This Is For */}
         <Section background="deep-purple" grain>
           <Container width="narrow">
-            <ScrollReveal direction="up" className="text-center mb-12">
-              <h2
-                className="font-heading text-off-white mb-4"
-                style={{ fontSize: "var(--text-section)" }}
-              >
-                IS THIS FOR YOU?
-              </h2>
-              <p className="text-foreground-muted max-w-lg mx-auto">
-                Designed specifically for cyclists over 30 who want to rebuild
-                strength, hold their position deeper into long rides, kill the
-                niggling pains, and get faster on the bike.
-              </p>
-            </ScrollReveal>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              <ScrollReveal direction="left">
-                <Card
-                  className="p-6 h-full border-l-2 border-l-coral"
-                  hoverable={false}
-                >
-                  <h3 className="font-heading text-lg text-coral mb-4">
-                    YES, IF YOU...
+            <h2
+              className="text-center font-heading text-off-white"
+              style={{ fontSize: "var(--text-section)" }}
+            >
+              QUESTIONS BEFORE YOU START
+            </h2>
+            <div className="mt-12 space-y-8">
+              {FAQS.map((faq) => (
+                <div key={faq.question} className="border-b border-white/10 pb-8">
+                  <h3 className="font-heading text-xl text-off-white">
+                    {faq.question}
                   </h3>
-                  <ul className="space-y-3">
-                    {[
-                      "Ride regularly but do zero strength work",
-                      "Feel your position collapse on long rides",
-                      "Get lower back or knee pain after 3+ hours",
-                      "Want to be faster without adding more saddle time",
-                      "Have tried gym plans that didn't stick or didn't transfer",
-                      "Are over 30 and notice the power isn't where it was",
-                    ].map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-start gap-2 text-sm text-foreground-muted"
-                      >
-                        <span className="text-coral mt-0.5 shrink-0">
-                          &#10003;
-                        </span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </Card>
-              </ScrollReveal>
-
-              <ScrollReveal direction="right">
-                <Card
-                  className="p-6 h-full border-l-2 border-l-foreground-subtle"
-                  hoverable={false}
-                >
-                  <h3 className="font-heading text-lg text-foreground-subtle mb-4">
-                    NOT IF YOU...
-                  </h3>
-                  <ul className="space-y-3">
-                    {[
-                      "Already follow a structured S&C plan from a coach",
-                      "Are looking for a bodybuilding or muscle-gain programme",
-                      "Want a personal coaching service (this is self-guided)",
-                    ].map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-start gap-2 text-sm text-foreground-muted"
-                      >
-                        <span className="text-foreground-subtle mt-0.5 shrink-0">
-                          &times;
-                        </span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </Card>
-              </ScrollReveal>
-            </div>
-          </Container>
-        </Section>
-
-        {/* Social Proof */}
-        <Section background="charcoal">
-          <Container width="narrow">
-            <ScrollReveal direction="up" className="text-center mb-12">
-              <h2
-                className="font-heading text-off-white mb-4"
-                style={{ fontSize: "var(--text-section)" }}
-              >
-                FROM CYCLISTS WHO&apos;VE DONE IT
-              </h2>
-            </ScrollReveal>
-
-            <div className="space-y-4">
-              {[
-                {
-                  quote:
-                    "I've been riding for over four decades and never realized how much I was leaving on the table. I'm more powerful, more stable, and recovering faster. I only wish I found this sooner.",
-                  name: "Kevin L",
-                  detail: "Age 67",
-                },
-                {
-                  quote:
-                    "I love how targeted it is to cycling — not just general gym stuff. Every session feels like it's actually helping my performance on the bike. Core's stronger, legs feel more connected, and even my position on the bike feels better.",
-                  name: "Mary K",
-                  detail: "Age 56",
-                },
-              ].map((t, i) => (
-                <ScrollReveal
-                  key={t.name + i}
-                  direction={i % 2 === 0 ? "left" : "right"}
-                >
-                  <Card className="p-6" glass hoverable={false}>
-                    <p className="text-foreground-muted italic leading-relaxed mb-4">
-                      &ldquo;{t.quote}&rdquo;
-                    </p>
-                    <div className="flex items-center gap-2">
-                      <p className="text-xs text-coral font-heading tracking-wider">
-                        {t.name.toUpperCase()}
-                      </p>
-                      {t.detail && (
-                        <p className="text-xs text-foreground-subtle">
-                          &middot; {t.detail}
-                        </p>
-                      )}
-                    </div>
-                  </Card>
-                </ScrollReveal>
+                  <p className="mt-3 leading-relaxed text-foreground-muted">
+                    {faq.answer}
+                  </p>
+                </div>
               ))}
             </div>
           </Container>
         </Section>
 
-        {/* Enrol CTA */}
+        <Section background="charcoal">
+          <Container width="narrow">
+            <p className="font-heading text-xs tracking-[0.2em] text-coral">
+              SOURCES AND EDITORIAL BOUNDARIES
+            </p>
+            <ul className="mt-5 space-y-3 text-sm leading-relaxed text-foreground-muted">
+              <li>
+                <a
+                  href="https://pubmed.ncbi.nlm.nih.gov/40632222/"
+                  className="text-coral hover:text-coral/80"
+                >
+                  Cyclist-only heavy strength training systematic review and
+                  meta-analysis (PMID 40632222)
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://pubmed.ncbi.nlm.nih.gov/35728627/"
+                  className="text-coral hover:text-coral/80"
+                >
+                  Concurrent training in adults over 50 systematic review and
+                  meta-analysis (PMID 35728627)
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://pubmed.ncbi.nlm.nih.gov/23256921/"
+                  className="text-coral hover:text-coral/80"
+                >
+                  Cycling and bone health systematic review (PMID 23256921)
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.who.int/publications/i/item/9789240015128"
+                  className="text-coral hover:text-coral/80"
+                >
+                  WHO guidelines on physical activity and sedentary behaviour
+                </a>
+              </li>
+            </ul>
+            <p className="mt-6 text-sm leading-relaxed text-foreground-subtle">
+              Last reviewed 1 September 2026. The research describes group
+              outcomes; Roadman&apos;s course is a practical product, not the exact
+              pooled intervention and not a guarantee of an individual result.
+            </p>
+          </Container>
+        </Section>
+
         <Section background="coral" className="!py-16 md:!py-24" id="enrol">
           <Container className="text-center">
             <h2
-              className="font-heading text-off-white mb-4"
+              className="font-heading text-off-white"
               style={{ fontSize: "var(--text-section)" }}
             >
-              STRONGER ON THE BIKE.
-              <br />
-              STARTING THIS WEEK.
+              START THE 12-WEEK PLAN
             </h2>
-            <p className="text-off-white/80 max-w-lg mx-auto mb-2">
-              12-week training plan. Instructional videos. Stretching guide.
-              Core guide. Goal setting audio. Everything you need — nothing you
-              don&apos;t.
+            <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-off-white/80">
+              Two weekly sessions, exercise demonstrations, progression, core
+              work, mobility guidance and tracking in one self-guided course.
             </p>
-            <p className="font-heading text-5xl text-off-white my-8">$65</p>
-            <CheckoutButton>Get the Plan</CheckoutButton>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6 text-off-white/60 text-sm">
-              <span>One-time payment</span>
-              <span className="hidden sm:inline">&middot;</span>
-              <span>Lifetime access</span>
-              <span className="hidden sm:inline">&middot;</span>
-              <span>100% money back guarantee</span>
-            </div>
+            <p className="my-8 font-heading text-6xl text-off-white">$65</p>
+            <CheckoutButton>Get the plan</CheckoutButton>
+            <p className="mt-6 text-sm text-off-white/70">
+              One-time payment · Lifetime access · 100% money-back guarantee
+            </p>
           </Container>
         </Section>
       </main>

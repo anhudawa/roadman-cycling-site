@@ -133,6 +133,8 @@ describe("strength and recovery app acquisition paths", () => {
         "/app?source=reds-guide",
       "src/app/(content)/tools/energy-availability/page.tsx":
         "/app?source=energy-availability-estimate",
+      "src/app/(marketing)/strength-training/page.tsx":
+        "/app?source=strength-plan",
       "content/blog/cycling-strength-training-guide.mdx":
         "/app?source=strength-guide",
       "content/blog/strength-training-cyclists-over-50.mdx":
