@@ -7,8 +7,8 @@
  * context or download budget is exhausted.
  */
 export const LLMS_SHORT_RECENT_POST_LIMIT = 0;
-export const LLMS_SHORT_EPISODE_LIMIT = 30;
-export const LLMS_FULL_RECENT_POST_LIMIT = 294;
+export const LLMS_SHORT_EPISODE_LIMIT = 29;
+export const LLMS_FULL_RECENT_POST_LIMIT = 293;
 export const LLMS_FULL_EPISODE_LIMIT = 80;
 
 export const LLMS_SHORT_MAX_BYTES = 151_000;
@@ -103,6 +103,7 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "cycling-chronic-fatigue-when-tiredness-persists-guide",
   "blood-testing-cyclists-what-to-check-guide",
   "iron-deficiency-cyclists-masters",
+  "cycling-testosterone-and-training-over-40-guide",
   "cycling-vitamin-d-performance-guide",
   "cycling-time-crunched-training-guide",
   "cycling-hydration-guide",

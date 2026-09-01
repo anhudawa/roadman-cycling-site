@@ -1100,7 +1100,7 @@ export const mastersAnswers: AnswerPage[] = [
       "ep-2154-how-to-beat-99-by-getting-faster-with-age-dr-david-lipman",
     ],
     relatedTopics: [
-      { label: "Free Testosterone and Masters Cyclists", href: "/blog/free-testosterone-cyclists-50th-percentile-dr-gordon" },
+      { label: "Cycling, Testosterone and TRT", href: "/blog/cycling-testosterone-and-training-over-40-guide" },
       { label: "Masters Recovery Audit", href: "/blog/masters-recovery-audit-seven-things-to-check" },
       { label: "Cycling Recovery — Topic Hub", href: "/topics/cycling-recovery" },
       { label: "Why does recovery take longer with age?", href: "/answers/why-does-recovery-take-longer-with-age" },
@@ -2506,7 +2506,7 @@ export const mastersAnswers: AnswerPage[] = [
     relatedTopics: [
       { label: "Testosterone and masters cyclists", href: "/answers/testosterone-and-masters-cyclists" },
       { label: "How should women train through menopause?", href: "/answers/cycling-through-menopause" },
-      { label: "Within Range, Still Knackered: Testosterone", href: "/blog/free-testosterone-cyclists-50th-percentile-dr-gordon" },
+      { label: "Cycling, Testosterone and TRT", href: "/blog/cycling-testosterone-and-training-over-40-guide" },
       { label: "Why does recovery take longer with age?", href: "/answers/why-does-recovery-take-longer-with-age" },
       { label: "Cycling Recovery — Topic Hub", href: "/topics/cycling-recovery" },
     ],

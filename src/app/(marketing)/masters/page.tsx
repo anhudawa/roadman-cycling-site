@@ -400,7 +400,7 @@ const LIBRARY: LibraryGroup[] = [
     blurb: "The factors that move with age and quietly stall good riders.",
     links: [
       {
-        href: "/blog/free-testosterone-cyclists-50th-percentile-dr-gordon",
+        href: "/blog/cycling-testosterone-and-training-over-40-guide",
         label: "Free testosterone in cyclists: what the research says",
       },
       {
