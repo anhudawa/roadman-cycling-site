@@ -14,6 +14,7 @@ import { getAllTools } from "@/lib/tools-registry";
 import { getExpertsWithTopics, getExpertTopic } from "@/lib/experts";
 import { SEARCH_OWNERS } from "@/lib/seo/search-ownership";
 import { getResearchAssetCatalog } from "@/data/research-assets";
+import { ROADMAN_APP_PRODUCT } from "@/data/app-product";
 import {
   FEED_BASE_URL,
   FEED_CACHE_HEADERS,
@@ -25,7 +26,7 @@ import {
  * GET /knowledge-graph.json
  *
  * A single-document, machine-readable graph of every first-class entity
- * on the site (people, topics, tools, episodes, articles, glossary
+ * on the site (people, topics, tools, software, episodes, articles, glossary
  * terms, training events, and the entity sub-types — comparisons,
  * problems, questions, best-for picks) plus the typed relationships
  * between them.
@@ -48,12 +49,13 @@ type NodeType =
   | "term"
   | "event"
   | "research-asset"
+  | "software"
   | "entity";
 
 interface GraphNode {
   id: string;
   type: NodeType;
-  /** Sub-classification for entity and research-asset nodes. */
+  /** Sub-classification for entity, research-asset and software nodes. */
   subtype?: string;
   name: string;
   url: string | null;
@@ -66,6 +68,13 @@ interface GraphNode {
   dataUrl?: string;
   limitations?: readonly string[];
   reuseTerms?: string;
+  /** Product identity fields. Unset on non-software nodes. */
+  applicationCategory?: string;
+  operatingSystems?: readonly string[];
+  lifecycleStatus?: string;
+  audience?: string;
+  earlyAccessUrl?: string;
+  features?: readonly string[];
 }
 
 interface GraphEdge {
@@ -92,6 +101,12 @@ interface GraphEdge {
    *   - documented_by           (research asset → method/article page)
    *   - supported_by            (search owner → supporting evidence)
    *   - supports_owner          (supporting evidence → search owner)
+   *   - developed_by            (software → organization)
+   *   - represented_by          (software → canonical search owner)
+   *   - represents_product      (canonical search owner → software)
+   *   - previewed_by            (software → public deterministic tool)
+   *   - compared_in             (software → category comparison)
+   *   - supports_product        (evidence article → software)
    */
   relationship: string;
 }
@@ -175,6 +190,69 @@ export function GET() {
     description:
       "Host of the Roadman Cycling Podcast and founder of Roadman Cycling.",
   });
+
+  // ----- ROADMAN ORGANIZATION & UPCOMING APP -----
+  // The search-owner node tells agents which URL owns broad product intent;
+  // this software node describes the actual product. Keeping them separate
+  // avoids treating a ranking policy as the product itself and gives the
+  // prelaunch app one stable identity before its final public name exists.
+  const roadmanOrganizationId = "entity:organization:roadman-cycling";
+  upsertNode({
+    id: roadmanOrganizationId,
+    type: "entity",
+    subtype: "organization",
+    name: "Roadman Cycling",
+    url: feedUrl("/entity/roadman-cycling"),
+    description:
+      "Cycling media, coaching and athlete-education organization founded by Anthony Walsh.",
+  });
+  pushEdge(roadmanOrganizationId, "person:anthony-walsh", "founded_by");
+
+  upsertNode({
+    id: ROADMAN_APP_PRODUCT.graphId,
+    type: "software",
+    subtype: "mobile-application",
+    name: ROADMAN_APP_PRODUCT.name,
+    url: ROADMAN_APP_PRODUCT.canonicalUrl,
+    description: ROADMAN_APP_PRODUCT.description,
+    updatedDate: ROADMAN_APP_PRODUCT.updatedDate,
+    applicationCategory: ROADMAN_APP_PRODUCT.applicationCategory,
+    operatingSystems: ROADMAN_APP_PRODUCT.operatingSystems,
+    lifecycleStatus: ROADMAN_APP_PRODUCT.lifecycleStatus,
+    audience: ROADMAN_APP_PRODUCT.audience,
+    earlyAccessUrl: ROADMAN_APP_PRODUCT.earlyAccessUrl,
+    features: ROADMAN_APP_PRODUCT.features,
+    limitations: ROADMAN_APP_PRODUCT.limitations,
+  });
+  pushEdge(ROADMAN_APP_PRODUCT.graphId, roadmanOrganizationId, "developed_by");
+  pushEdge(
+    ROADMAN_APP_PRODUCT.graphId,
+    "person:anthony-walsh",
+    "maintained_by",
+  );
+
+  const appOwnerId = "entity:search-owner:cycling-strength-recovery-app";
+  pushEdge(ROADMAN_APP_PRODUCT.graphId, appOwnerId, "represented_by");
+  pushEdge(appOwnerId, ROADMAN_APP_PRODUCT.graphId, "represents_product");
+
+  for (const topicSlug of ROADMAN_APP_PRODUCT.topicSlugs) {
+    pushEdge(ROADMAN_APP_PRODUCT.graphId, `topic:${topicSlug}`, "about_topic");
+  }
+  for (const toolSlug of ROADMAN_APP_PRODUCT.previewToolSlugs) {
+    pushEdge(ROADMAN_APP_PRODUCT.graphId, `tool:${toolSlug}`, "previewed_by");
+  }
+  for (const comparisonSlug of ROADMAN_APP_PRODUCT.comparisonSlugs) {
+    pushEdge(
+      ROADMAN_APP_PRODUCT.graphId,
+      `entity:best-for:${comparisonSlug}`,
+      "compared_in",
+    );
+  }
+  for (const articleSlug of ROADMAN_APP_PRODUCT.evidenceArticleSlugs) {
+    const articleId = `article:${articleSlug}`;
+    pushEdge(ROADMAN_APP_PRODUCT.graphId, articleId, "supported_by");
+    pushEdge(articleId, ROADMAN_APP_PRODUCT.graphId, "supports_product");
+  }
 
   // ----- CANONICAL SEARCH OWNERS -----
   // Broad podcast, coaching, masters, plan and camp intent must resolve to a
@@ -663,7 +741,7 @@ export function GET() {
       meta: {
         generatedAt: new Date().toISOString(),
         baseUrl: FEED_BASE_URL,
-        schemaVersion: 2,
+        schemaVersion: 3,
         nodeCount: nodeArr.length,
         edgeCount: edges.length,
         nodesByType,
