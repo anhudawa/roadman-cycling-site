@@ -523,6 +523,12 @@ export default function AppLandingPage() {
                 >
                   Read the public decision methodology →
                 </Link>
+                <Link
+                  href="/app/testing"
+                  className="ml-5 mt-6 inline-flex text-sm font-semibold text-foreground-muted transition-colors hover:text-coral"
+                >
+                  See how the app will be tested →
+                </Link>
               </div>
             </div>
           </Container>
@@ -658,6 +664,12 @@ export default function AppLandingPage() {
                 className="text-foreground-muted transition-colors hover:text-coral"
               >
                 App decision methodology
+              </Link>
+              <Link
+                href="/app/testing"
+                className="text-foreground-muted transition-colors hover:text-coral"
+              >
+                App testing standard
               </Link>
               <Link
                 href="/best/best-cycling-training-apps"
