@@ -7,6 +7,7 @@ export type SearchOwnerId =
   | "cycling-training-plans"
   | "cycling-training-camps"
   | "cycling-strength-recovery-app"
+  | "cycling-strength-training"
   | "cycling-recovery";
 
 export interface SearchOwner {
@@ -330,16 +331,66 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
           "Free deterministic preview of strength-session placement around key rides",
       },
       {
-        path: "/blog/cycling-strength-training-guide",
-        label: "Strength Training for Cyclists",
-        intent:
-          "Broad informational strength-training evidence and programming guide",
-      },
-      {
         path: "/blog/daily-training-readiness-check-cycling-guide",
         label: "Daily Training Readiness for Cyclists",
         intent:
           "Evidence-bounded daily readiness decision guide, not a product page or medical diagnosis",
+      },
+    ],
+  },
+  {
+    id: "cycling-strength-training",
+    path: "/blog/cycling-strength-training-guide",
+    label: "Strength Training for Cyclists",
+    primaryQuery: "strength training for cyclists",
+    description:
+      "Canonical educational guide for cyclist strength and conditioning evidence, adaptable programming, gym placement and implementation limits.",
+    primaryHubSlugs: ["cycling-strength-conditioning"],
+    matchPhrases: [
+      "strength training for cyclists",
+      "cycling strength training",
+      "strength training for cycling",
+      "strength and conditioning for cyclists",
+      "cycling strength and conditioning",
+      "gym training for cyclists",
+      "weight training for cyclists",
+    ],
+    supportingDestinations: [
+      {
+        path: "/topics/cycling-strength-conditioning",
+        label: "Cycling Strength & Conditioning Research Library",
+        intent:
+          "Reviewed evidence map and question-led navigation across strength topics",
+      },
+      {
+        path: "/blog/cycling-strength-training-12-week-beginner-plan",
+        label: "12-Week Beginner Strength Plan for Cyclists",
+        intent: "Beginner progression, technique and weekly structure",
+      },
+      {
+        path: "/blog/cycling-gym-exercises-best",
+        label: "Gym Exercises for Cyclists",
+        intent: "Movement selection, alternatives and practical exercise setup",
+      },
+      {
+        path: "/blog/strength-training-cyclists-over-50",
+        label: "Strength Training for Cyclists Over 50",
+        intent: "Masters-specific context, progression and recovery boundaries",
+      },
+      {
+        path: "/blog/strength-training-cyclists-minimum-effective-dose",
+        label: "Minimum Effective Strength Dose for Cyclists",
+        intent: "Time-constrained dose and consistency questions",
+      },
+      {
+        path: "/blog/cycling-weight-training-in-season-guide",
+        label: "In-Season Weight Training for Cyclists",
+        intent: "Maintenance volume and placement during riding or racing load",
+      },
+      {
+        path: "/sc/exercises",
+        label: "Cyclist Exercise Library",
+        intent: "Structured movement catalogue and exercise discovery",
       },
     ],
   },
@@ -403,12 +454,13 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
 /**
  * The original five-owner GSC experiment has a fixed 24 August deployment
  * cohort. Keep its comparisons stable when new owner families are added.
- * The app and cycling-recovery hub begin separate baselines from their formal
- * owner releases.
+ * The app, cycling-recovery and cycling-strength owners begin separate
+ * baselines from their formal owner releases.
  */
 export const GSC_MEASURED_SEARCH_OWNERS = SEARCH_OWNERS.filter(
   (owner) =>
     owner.id !== "cycling-strength-recovery-app" &&
+    owner.id !== "cycling-strength-training" &&
     owner.id !== "cycling-recovery",
 );
 
