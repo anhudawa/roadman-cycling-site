@@ -23,6 +23,7 @@ export const APP_ACQUISITION_SOURCES = new Set([
   "masters-hub",
   "mobility-guide",
   "off-season-strength",
+  "overreaching-guide",
   "recovery-guide",
   "recovery-hub",
   "recovery-nutrition",
