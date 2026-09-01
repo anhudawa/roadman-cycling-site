@@ -66,6 +66,9 @@ rows, never by dividing a page row by the card total.
   record impressions for the same window.
 - In Roadman analytics, capture the one app waitlist's total submissions,
   attributed submissions and source breakdown for the same window.
+- Use `/admin/funnel/app` for the live operational view: server-recorded unique
+  joins, acquisition sources and form placement are kept separate from the
+  consented visit-to-capture funnel.
 - A missing historical conversion capture is `null`, not zero. Once comparable
   captures exist, keep all subscribers in the same audience and compare source
   attribution rather than creating another list.

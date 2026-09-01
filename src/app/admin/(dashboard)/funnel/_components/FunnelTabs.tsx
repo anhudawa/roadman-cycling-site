@@ -1,12 +1,18 @@
 import Link from "next/link";
 
-type FunnelView = "lifecycle" | "acquisition";
+type FunnelView = "lifecycle" | "acquisition" | "app";
 
 interface FunnelTabsProps {
   active: FunnelView;
 }
 
 const TABS: Array<{ key: FunnelView; label: string; href: string; description: string }> = [
+  {
+    key: "app",
+    label: "App waitlist",
+    href: "/admin/funnel/app",
+    description: "App visit → form start → early-access join",
+  },
   {
     key: "acquisition",
     label: "Acquisition",

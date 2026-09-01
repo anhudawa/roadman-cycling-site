@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { track } from "@/lib/analytics/events";
 
 interface EmailCaptureProps {
@@ -24,6 +24,13 @@ export function EmailCapture({
   const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+  const formStartTracked = useRef(false);
+
+  const handleFormStart = () => {
+    if (formStartTracked.current) return;
+    formStartTracked.current = true;
+    track("form_start", { source, form: "email_capture" });
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -78,7 +85,9 @@ export function EmailCapture({
             aria-label="Email address"
             placeholder="Your email"
             value={email}
+            onFocus={handleFormStart}
             onChange={(e) => {
+              handleFormStart();
               setEmail(e.target.value);
               if (status !== "idle") setStatus("idle");
             }}
@@ -158,7 +167,9 @@ export function EmailCapture({
                   aria-label="Email address"
                   placeholder="Your email"
                   value={email}
+                  onFocus={handleFormStart}
                   onChange={(e) => {
+                    handleFormStart();
                     setEmail(e.target.value);
                     if (status !== "idle") setStatus("idle");
                   }}
@@ -230,7 +241,9 @@ export function EmailCapture({
                 aria-label="Email address"
                 placeholder="Your email"
                 value={email}
+                onFocus={handleFormStart}
                 onChange={(e) => {
+                  handleFormStart();
                   setEmail(e.target.value);
                   if (status !== "idle") setStatus("idle");
                 }}
