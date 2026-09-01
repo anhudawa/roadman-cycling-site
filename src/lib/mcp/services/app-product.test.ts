@@ -1,0 +1,23 @@
+import { describe, expect, it } from "vitest";
+import { ROADMAN_APP_PRODUCT } from "@/data/app-product";
+import { getAppProduct } from "./app-product";
+
+describe("MCP app product service", () => {
+  it("points agents to the same public product feed and bounded facts", () => {
+    const record = getAppProduct();
+
+    expect(record.product).toMatchObject({
+      product_id: ROADMAN_APP_PRODUCT.id,
+      graph_id: ROADMAN_APP_PRODUCT.graphId,
+      final_name_announced: false,
+      lifecycle_status: "prelaunch",
+      launch_date: null,
+      price: null,
+      early_access_url: ROADMAN_APP_PRODUCT.earlyAccessUrl,
+    });
+    expect(record.discovery.product_feed_url).toBe(
+      ROADMAN_APP_PRODUCT.feedUrl,
+    );
+    expect(JSON.stringify(record)).not.toMatch(/pocket coach/i);
+  });
+});

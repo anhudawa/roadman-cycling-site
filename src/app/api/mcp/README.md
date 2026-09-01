@@ -32,7 +32,7 @@ curl -X POST https://roadmancycling.com/api/mcp \
 | `search_methodology` | Semantic search over Roadman coaching principles |
 | `list_research_assets` | Typed datasets, archive studies, frameworks and evidence benchmarks with limitations and downloads |
 | `list_products` | Currently available products with pricing; excludes the prelaunch app |
-| `get_cycling_strength_recovery_app` | Verified prelaunch app identity, features, boundaries, previews and single early-access URL |
+| `get_cycling_strength_recovery_app` | Verified prelaunch app identity, features, boundaries, public product feed, previews and single early-access URL |
 | `list_upcoming_events` | Calendar of group rides, Q&As, and training camps |
 | `qualify_lead` | Recommends the right product tier based on cyclist profile |
 

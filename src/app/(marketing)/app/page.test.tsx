@@ -55,6 +55,10 @@ describe("Roadman strength and recovery app search owner", () => {
     );
     expect(metadata.alternates).toMatchObject({
       canonical: "https://roadmancycling.com/app",
+      types: {
+        "application/json":
+          "https://roadmancycling.com/feeds/app-product.json",
+      },
     });
     expect(JSON.stringify(metadata)).not.toContain("Pocket Coach");
   });
@@ -72,6 +76,10 @@ describe("Roadman strength and recovery app search owner", () => {
     expect(html).toContain('"SoftwareApplication"');
     expect(html).toContain('"MobileApplication"');
     expect(html).toContain('"operatingSystem":"iOS"');
+    expect(html).toContain('"@type":"DataFeed"');
+    expect(html).toContain(
+      "https://roadmancycling.com/feeds/app-product.json",
+    );
     expect(html).not.toContain('"offers"');
     expect(html).not.toContain("Pocket Coach");
 

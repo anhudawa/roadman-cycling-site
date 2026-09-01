@@ -21,7 +21,10 @@ const STRUCTURED_IMAGE_URL = `${SITE_ORIGIN}/api/og/blog-hero?title=${encodeURIC
 export const metadata: Metadata = {
   title: { absolute: "Cycling Strength & Recovery App | Roadman Cycling" },
   description: APP_DESCRIPTION,
-  alternates: { canonical: APP_URL },
+  alternates: {
+    canonical: APP_URL,
+    types: { "application/json": ROADMAN_APP_PRODUCT.feedUrl },
+  },
   openGraph: {
     title: "Strength That Fits Your Cycling. Recovery That Has a Job.",
     description: APP_DESCRIPTION,
@@ -181,6 +184,11 @@ export default function AppLandingPage() {
                 "@type": "ImageObject",
                 url: STRUCTURED_IMAGE_URL,
               },
+              subjectOf: {
+                "@type": "DataFeed",
+                name: "Roadman Cycling strength and recovery app product feed",
+                url: ROADMAN_APP_PRODUCT.feedUrl,
+              },
               dateModified: "2026-09-01",
             },
             {
@@ -194,6 +202,10 @@ export default function AppLandingPage() {
               publisher: { "@id": ENTITY_IDS.organization },
               image: STRUCTURED_IMAGE_URL,
               featureList: ROADMAN_APP_PRODUCT.features,
+              subjectOf: {
+                "@type": "DataFeed",
+                url: ROADMAN_APP_PRODUCT.feedUrl,
+              },
             },
             {
               "@type": "BreadcrumbList",
