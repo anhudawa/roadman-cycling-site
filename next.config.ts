@@ -188,6 +188,15 @@ const nextConfig: NextConfig = {
         destination: "/blog/iron-deficiency-cyclists-masters",
         permanent: true,
       },
+      // Both pages rank for the same cycling/testosterone questions. Keep the
+      // query-matched reviewed guide and fold the guest-led percentile article
+      // into that single clinical and anti-doping owner.
+      {
+        source: "/blog/free-testosterone-cyclists-50th-percentile-dr-gordon",
+        destination:
+          "/blog/cycling-testosterone-and-training-over-40-guide",
+        permanent: true,
+      },
       // GSC (latest three months): the two broad recovery guides split 73
       // clicks, 7,863 web impressions and 1,841 Google AI impressions. Merge
       // the later World Tour page into the shorter, query-matched owner.
