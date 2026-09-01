@@ -6,11 +6,14 @@ export type SearchOwnerId =
   | "masters-cycling"
   | "cycling-training-plans"
   | "cycling-training-camps"
-  | "cycling-strength-recovery-app";
+  | "cycling-strength-recovery-app"
+  | "cycling-recovery";
 
 export interface SearchOwner {
   id: SearchOwnerId;
   path: string;
+  /** Stable machine-readable record for the owner when one exists. */
+  dataPath?: string;
   label: string;
   primaryQuery: string;
   description: string;
@@ -328,15 +331,73 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
       },
     ],
   },
+  {
+    id: "cycling-recovery",
+    path: "/blog/cycling-recovery-tips",
+    dataPath: "/feeds/cycling-recovery.json",
+    label: "Cycling Recovery: What Actually Helps",
+    primaryQuery: "cycling recovery",
+    description:
+      "Canonical educational guide for broad cycling-recovery searches across sleep, food and fluid, low-load days, monitoring, recovery modalities and clinical handoff.",
+    primaryHubSlugs: ["cycling-recovery"],
+    matchPhrases: [
+      "cycling recovery",
+      "cyclist recovery",
+      "recovery after cycling",
+      "cycling recovery tips",
+      "recovery strategies for cyclists",
+      "how to recover after cycling",
+    ],
+    supportingDestinations: [
+      {
+        path: "/topics/cycling-recovery",
+        label: "Cycling Recovery Research Library",
+        intent: "Reviewed evidence map, source index and supporting-guide directory",
+      },
+      {
+        path: "/blog/cycling-sleep-performance-guide",
+        label: "Sleep and Cycling Performance",
+        intent: "Sleep opportunity, quality, timing and screening questions",
+      },
+      {
+        path: "/blog/best-recovery-foods-after-cycling",
+        label: "Best Recovery Foods After Cycling",
+        intent: "Food-first recovery options matched to session demand",
+      },
+      {
+        path: "/blog/cycling-active-recovery-rides-guide",
+        label: "Active Recovery Rides for Cyclists",
+        intent: "Active-versus-passive recovery decision and ride guardrails",
+      },
+      {
+        path: "/blog/cycling-rest-day-what-to-do-guide",
+        label: "Rest Days for Cyclists",
+        intent: "Complete rest, active recovery and easy-training distinction",
+      },
+      {
+        path: "/blog/cycling-recovery-week-what-to-actually-do",
+        label: "Cycling Recovery Week",
+        intent: "Easier-week planning, signals and resumption decisions",
+      },
+      {
+        path: "/blog/daily-training-readiness-check-cycling-guide",
+        label: "Daily Training Readiness for Cyclists",
+        intent: "Multi-signal readiness decision without diagnosis",
+      },
+    ],
+  },
 ] as const;
 
 /**
  * The original five-owner GSC experiment has a fixed 24 August deployment
  * cohort. Keep its comparisons stable when new owner families are added.
- * The app begins a separate baseline from its formal owner release.
+ * The app and cycling-recovery hub begin separate baselines from their formal
+ * owner releases.
  */
 export const GSC_MEASURED_SEARCH_OWNERS = SEARCH_OWNERS.filter(
-  (owner) => owner.id !== "cycling-strength-recovery-app",
+  (owner) =>
+    owner.id !== "cycling-strength-recovery-app" &&
+    owner.id !== "cycling-recovery",
 );
 
 export const SEARCH_OWNER_BY_ID = new Map(
@@ -454,34 +515,52 @@ export function resolveSearchOwner(
   if (declaredOwner) return declaredOwner;
 
   const haystack = normaliseSearchText(values.filter(Boolean).join(" | "));
-  let winner: { owner: SearchOwner; score: number } | null = null;
+  let winner: {
+    owner: SearchOwner;
+    score: number;
+    specificity: number;
+  } | null = null;
 
   for (const owner of SEARCH_OWNERS) {
     if (owner.path === currentPath) continue;
     const primary = normaliseSearchText(owner.primaryQuery);
     let score = haystack.includes(primary) ? 12 : 0;
+    let specificity = haystack.includes(primary)
+      ? primary.split(" ").length
+      : 0;
 
     for (const phrase of owner.matchPhrases) {
-      if (haystack.includes(normaliseSearchText(phrase))) {
+      const normalisedPhrase = normaliseSearchText(phrase);
+      if (haystack.includes(normalisedPhrase)) {
         score += phrase === owner.primaryQuery ? 8 : 5;
+        specificity = Math.max(
+          specificity,
+          normalisedPhrase.split(" ").length,
+        );
       }
     }
 
-    if (score > 0 && (!winner || score > winner.score)) {
-      winner = { owner, score };
+    if (
+      score > 0 &&
+      (!winner ||
+        specificity > winner.specificity ||
+        (specificity === winner.specificity && score > winner.score))
+    ) {
+      winner = { owner, score, specificity };
     }
   }
 
   if (winner) return winner.owner;
-  return options.fallbackId
-    ? (SEARCH_OWNER_BY_ID.get(options.fallbackId) ?? null)
-    : null;
+  if (!options.fallbackId) return null;
+  const fallbackOwner = SEARCH_OWNER_BY_ID.get(options.fallbackId) ?? null;
+  return fallbackOwner?.path === currentPath ? null : fallbackOwner;
 }
 
 export function serialiseSearchOwners() {
   return SEARCH_OWNERS.map((owner) => ({
     ...owner,
     url: `${SITE_ORIGIN}${owner.path}`,
+    ...(owner.dataPath && { dataUrl: `${SITE_ORIGIN}${owner.dataPath}` }),
     supportingDestinations: owner.supportingDestinations.map((destination) => ({
       ...destination,
       url: `${SITE_ORIGIN}${destination.path}`,

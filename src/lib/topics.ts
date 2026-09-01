@@ -160,18 +160,27 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
   },
   {
     slug: "cycling-recovery",
-    title: "Cycling Recovery — The Complete Evidence-Based Guide",
-    headline: "RECOVER HARDER",
+    title: "Cycling Recovery Research Library: Sleep, Food & Rest",
+    headline: "CYCLING RECOVERY RESEARCH LIBRARY",
     ctaHeadline: "RECOVERY, PLANNED — NOT ASSUMED.",
     description:
-      "Recovery is where adaptation happens — not on the bike. Sleep, nutrition, active recovery, and stress management for cyclists who want to get faster without breaking down.",
+      "Cycling recovery starts with enough individual sleep opportunity, food and fluid matched to the session, genuinely low-load time and a plan change when fatigue, pain or health signals persist. No wearable, supplement or single recovery session proves readiness.",
     pillar: "recovery",
+    lastReviewed: "2026-09-01",
+    reviewedBy: {
+      name: "Anthony Walsh",
+      role: "Roadman Cycling founder and head coach",
+      href: "/author/anthony-walsh",
+    },
     keywords: [
       "cycling recovery",
-      "cycling injury prevention",
-      "cycling knee pain",
+      "recovery after cycling",
+      "cycling recovery tips",
+      "cyclist recovery",
+      "cycling rest day",
+      "cycling active recovery",
       "sleep cycling performance",
-      "cycling comeback",
+      "cycling readiness",
     ],
   },
   {
@@ -2516,6 +2525,77 @@ const TOPIC_ENRICHMENT: Record<string, {
       "cycling-sleep-performance-guide",
       "cycling-fatigue-signs-when-to-back-off",
     ],
+    claimsHeading: "THE CYCLING RECOVERY POSITION",
+    claimsCaption:
+      "What the evidence can support, what remains context-dependent and what no recovery score or product can establish.",
+    citedClaims: [
+      {
+        claim: "Recovery is a decision problem, not one magic intervention",
+        roadmanPosition:
+          "Start with the next training demand, the rider's current symptoms and the shortest turnaround. Sleep opportunity, adequate food and fluid, and appropriate training load come before optional modalities.",
+        evidenceSource:
+          "The 2025 UCI Sports Nutrition Project review supports meal-by-meal recovery matched to training demand; modality reviews remain heterogeneous and context-specific (PMID 41130458).",
+        practicalImplication:
+          "Name the job first—restore fuel, protect sleep, reduce load, improve comfort or seek assessment—then choose the lowest-cost action that addresses it.",
+        evidenceLevel: "strong",
+      },
+      {
+        claim: "One sleep target does not fit every athlete",
+        roadmanPosition:
+          "Protect adequate sleep opportunity and investigate persistent poor quality, but do not promise that one duration, wearable stage score or supplement guarantees recovery.",
+        evidenceSource:
+          "The athlete sleep consensus describes a one-size-fits-all 7–9-hour prescription as unlikely to be ideal and recommends individual assessment (PMID 33144349).",
+        practicalImplication:
+          "Track opportunity, quality and symptoms over time; seek qualified assessment for snoring, gasping, dangerous sleepiness or persistent insomnia.",
+        evidenceLevel: "strong",
+      },
+      {
+        claim: "Readiness needs repeated context, not a single score",
+        roadmanPosition:
+          "Sleep, soreness, energy, mood, resting heart rate, HRV and recent load may inform a conservative decision, but none alone diagnoses recovery, illness, injury or overtraining syndrome.",
+        evidenceSource:
+          "Systematic reviews support subjective monitoring while also finding validation and measurement-error limits; overtraining remains a clinical exclusion problem (PMIDs 26423706, 32957081 and 23247672).",
+        practicalImplication:
+          "Compare like with like against the rider's own pattern, show the reason for a change and escalate persistent or concerning symptoms.",
+        evidenceLevel: "moderate",
+      },
+      {
+        claim: "Optional modalities solve narrower jobs",
+        roadmanPosition:
+          "Active recovery, cold water, massage, foam rolling, compression and supplements can affect selected outcomes, but no universal hierarchy proves faster cycling recovery or replaces sleep, food, fluid and load management.",
+        evidenceSource:
+          "Recent modality reviews report heterogeneous protocols, populations and outcomes; Roadman's supporting reviews keep soreness, comfort, performance and adaptation claims separate.",
+        practicalImplication:
+          "Use a modality only when its intended outcome, timing, safety boundary and possible trade-off are explicit.",
+        evidenceLevel: "emerging",
+      },
+    ],
+    sources: [
+      {
+        title: "UCI Sports Nutrition Project: training adaptation and recovery (PMID 41130458)",
+        href: "https://pubmed.ncbi.nlm.nih.gov/41130458/",
+      },
+      {
+        title: "Athlete sleep consensus recommendations (PMID 33144349)",
+        href: "https://pubmed.ncbi.nlm.nih.gov/33144349/",
+      },
+      {
+        title: "Subjective athlete-monitoring systematic review (PMID 26423706)",
+        href: "https://pubmed.ncbi.nlm.nih.gov/26423706/",
+      },
+      {
+        title: "Athlete-reported measure validation review (PMID 32957081)",
+        href: "https://pubmed.ncbi.nlm.nih.gov/32957081/",
+      },
+      {
+        title: "HRV-guided endurance-training review (PMID 34639599)",
+        href: "https://pubmed.ncbi.nlm.nih.gov/34639599/",
+      },
+      {
+        title: "ECSS/ACSM overtraining syndrome consensus (PMID 23247672)",
+        href: "https://pubmed.ncbi.nlm.nih.gov/23247672/",
+      },
+    ],
   },
   "cycling-strength-conditioning": {
     tools: [
@@ -3106,22 +3186,22 @@ const TOPIC_FAQS: Record<string, TopicFAQ[]> = {
     {
       question: "How important is sleep for cycling performance?",
       answer:
-        "Sleep is where most adaptation and repair happens, which makes it the highest-leverage recovery tool a cyclist has. Consistently getting 7–9 hours does more for performance than any supplement or gadget.",
+        "Sleep is a core training input, but athlete consensus does not support one ideal duration for every rider. Protect enough opportunity for your own need and investigate persistent poor quality, snoring, gasping, dangerous sleepiness or insomnia rather than treating a wearable stage score as proof of recovery.",
     },
     {
       question: "What is active recovery?",
       answer:
-        "Active recovery is very easy riding, well below endurance pace, that promotes blood flow without adding training stress. Done correctly it should feel almost too easy; if it leaves you tired, it was too hard.",
+        "Active recovery is optional low-load movement used for a defined comfort or routine goal. It is not proven necessary for every cyclist; if a ride adds fatigue, symptoms are worsening or the rider needs complete rest, passive recovery is the better choice.",
     },
     {
       question: "How do I know if I'm overtraining?",
       answer:
-        "Persistent fatigue, declining performance, poor sleep, an elevated resting heart rate and low motivation are common warning signs. The fix is almost always more recovery and reduced intensity, not pushing harder.",
+        "No single symptom, wearable value or questionnaire diagnoses overtraining syndrome. Persistent fatigue or performance decline deserves load reduction and a qualified assessment that considers illness, low energy availability, sleep, mental health, medication and other causes.",
     },
     {
       question: "How many rest days should cyclists take?",
       answer:
-        "Most cyclists benefit from at least one full rest day a week, plus a lighter recovery week roughly every three to four weeks. Recovery isn't lost fitness — it's when the training you've done actually takes effect.",
+        "There is no universal number. One or two low-load days is a practical starting structure for many amateur weeks, then the mix of complete rest, normal movement and easy riding should change with health, sleep, session quality, life stress and the total bike-and-gym load.",
     },
   ],
   "cycling-strength-conditioning": [

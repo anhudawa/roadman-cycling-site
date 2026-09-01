@@ -41,6 +41,9 @@ export function getAppProduct() {
         ROADMAN_APP_PRODUCT.relatedStrengthProgrammeUrl,
       related_strength_programme_feed_url:
         ROADMAN_APP_PRODUCT.relatedStrengthProgrammeFeedUrl,
+      recovery_knowledge_url: ROADMAN_APP_PRODUCT.recoveryKnowledgeUrl,
+      recovery_library_url: ROADMAN_APP_PRODUCT.recoveryLibraryUrl,
+      recovery_feed_url: ROADMAN_APP_PRODUCT.recoveryFeedUrl,
       knowledge_graph_url: `${SITE_ORIGIN}/knowledge-graph.json`,
       topic_urls: ROADMAN_APP_PRODUCT.topicSlugs.map(
         (slug) => `${SITE_ORIGIN}/topics/${slug}`,

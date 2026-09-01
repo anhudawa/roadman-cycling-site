@@ -37,6 +37,11 @@ export async function generateMetadata({
     keywords: topic.keywords,
     alternates: {
       canonical: `https://roadmancycling.com/topics/${slug}`,
+      ...(slug === "cycling-recovery" && {
+        types: {
+          "application/json": `${SITE_ORIGIN}/feeds/cycling-recovery.json`,
+        },
+      }),
     },
     openGraph: {
       title: topic.title,

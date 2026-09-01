@@ -49,8 +49,10 @@ import {
   getSearchOwnerFallbackForTopicHub,
   getSearchOwnerWebPageId,
   resolveSearchOwner,
+  SEARCH_OWNERS,
   stripRoadmanBrandSuffix,
 } from "@/lib/seo/search-ownership";
+import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -73,6 +75,11 @@ export async function generateMetadata({
     keywords: post.keywords ?? [],
     alternates: {
       canonical: `https://roadmancycling.com/blog/${slug}`,
+      ...(slug === "cycling-recovery-tips" && {
+        types: {
+          "application/json": `${SITE_ORIGIN}/feeds/cycling-recovery.json`,
+        },
+      }),
     },
     openGraph: {
       title: cleanTitle,
@@ -125,6 +132,9 @@ export default async function BlogPostPage({
   );
   const parentTopics = getTopicsForPost(slug);
   const currentPath = `/blog/${slug}`;
+  const directSearchOwner = SEARCH_OWNERS.find(
+    (owner) => owner.path === currentPath,
+  );
   // Some established articles are also the canonical identity owner for a
   // person. Keep the entity data in content/entities, but co-locate the full
   // Person node on the article that owns the search intent. The legacy entity
@@ -195,22 +205,24 @@ export default async function BlogPostPage({
       : "");
 
   const publishDate = new Date(post.publishDate);
-  const searchOwner = resolveSearchOwner(
-    [
-      post.title,
-      post.seoTitle,
-      post.seoDescription,
-      ...(post.keywords ?? []),
-    ],
-    {
-      currentPath,
-      // Editorial hub membership supplies the broad owner only when the
-      // article metadata does not identify a narrower family. For example,
-      // a training-camp preparation article remains owned by camps even
-      // though its methodology lives in the training-plan topic hub.
-      fallbackId: getSearchOwnerFallbackForTopicHub(primaryHubSlug),
-    },
-  );
+  const searchOwner = directSearchOwner
+    ? null
+    : resolveSearchOwner(
+        [
+          post.title,
+          post.seoTitle,
+          post.seoDescription,
+          ...(post.keywords ?? []),
+        ],
+        {
+          currentPath,
+          // Editorial hub membership supplies the broad owner only when the
+          // article metadata does not identify a narrower family. For example,
+          // a training-camp preparation article remains owned by camps even
+          // though its methodology lives in the training-plan topic hub.
+          fallbackId: getSearchOwnerFallbackForTopicHub(primaryHubSlug),
+        },
+      );
 
   // Pick the intent CTA off the article's metadata. When inference
   // turns up "event" we need a concrete event name for the variant —
@@ -406,6 +418,25 @@ export default async function BlogPostPage({
           })()),
         }}
       />
+      {directSearchOwner && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "@id": getSearchOwnerWebPageId(directSearchOwner),
+            url: `${SITE_ORIGIN}${currentPath}`,
+            name: post.seoTitle || post.title,
+            description: post.seoDescription,
+            mainEntity: {
+              "@id": `${SITE_ORIGIN}/blog/${slug}#article`,
+            },
+            ...buildSearchOwnerTrustProperties(
+              directSearchOwner.id,
+              post.updatedDate || post.publishDate,
+            ),
+          }}
+        />
+      )}
       {canonicalOwnerEntities.map((entity) => {
         const subjectOf = (entity.relatedEpisodes ?? [])
           .map((episodeSlug) => getEpisodeBySlug(episodeSlug))

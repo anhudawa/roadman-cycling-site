@@ -40,7 +40,7 @@ describe("priority search-owner schema", () => {
     ]);
   });
 
-  it("keeps the shared schema and visible trust block on every owner page", () => {
+  it("keeps the shared schema and visible trust block on every static owner page", () => {
     const ownerPages = {
       "cycling-podcast": {
         path: "src/app/(content)/podcast/page.tsx",
@@ -79,6 +79,18 @@ describe("priority search-owner schema", () => {
       expect(source).toContain(`lastReviewed="${ownerPage.reviewed}"`);
       expect(source).toContain('"@type": "BreadcrumbList"');
     }
+  });
+
+  it("applies owner trust and visible evidence to the recovery article owner", () => {
+    const source = readFileSync(
+      resolve(process.cwd(), "src/app/(content)/blog/[slug]/page.tsx"),
+      "utf8",
+    );
+
+    expect(source).toContain("buildSearchOwnerTrustProperties(");
+    expect(source).toContain("getSearchOwnerWebPageId(directSearchOwner)");
+    expect(source).toContain("<EvidenceBlock");
+    expect(source).toContain("/feeds/cycling-recovery.json");
   });
 
   it("keeps visible and structured owner backlinks on both content templates", () => {
