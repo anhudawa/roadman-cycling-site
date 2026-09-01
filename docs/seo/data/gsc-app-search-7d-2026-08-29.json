@@ -6,6 +6,7 @@
   "period": { "start": "2026-08-23", "end": "2026-08-29", "days": 7 },
   "pages": [
     { "path": "/app", "clicks": 0, "impressions": 9, "ctr": 0, "position": 5.7 },
+    { "path": "/app/masters", "clicks": 0, "impressions": 0, "ctr": 0, "position": null },
     { "path": "/best/best-cycling-training-apps", "clicks": 1, "impressions": 192, "ctr": 0.005, "position": 22.1 },
     { "path": "/best/best-cycling-strength-training-apps", "clicks": 0, "impressions": 0, "ctr": 0, "position": null },
     { "path": "/best/best-cycling-recovery-apps", "clicks": 0, "impressions": 0, "ctr": 0, "position": null }
@@ -17,6 +18,17 @@
       "match": "regex",
       "regex": "^(cycling strength and recovery app|cycling strength app|strength training app for cyclists|cycling recovery app|cycling readiness app|roadman cycling app|roadman app)$",
       "expectedOwner": "/app",
+      "aggregate": { "clicks": 0, "impressions": 0, "ctr": 0, "position": null },
+      "reportedUrlCount": 0,
+      "pageRows": [],
+      "queryRows": []
+    },
+    {
+      "id": "masters-cycling-app-product",
+      "label": "Masters and over-40 cycling app product intent",
+      "match": "regex",
+      "regex": "(cycling|cyclist).*(app).*(over 40|over 50|masters)|(over 40|over 50|masters).*(cycling|cyclist).*app",
+      "expectedOwner": "/app/masters",
       "aggregate": { "clicks": 0, "impressions": 0, "ctr": 0, "position": null },
       "reportedUrlCount": 0,
       "pageRows": [],
@@ -61,11 +73,17 @@
       ]
     }
   ],
-  "ai": { "pages": [{ "path": "/app", "impressions": 1 }] },
+  "ai": {
+    "pages": [
+      { "path": "/app", "impressions": 1 },
+      { "path": "/app/masters", "impressions": 0 }
+    ]
+  },
   "waitlist": null,
   "notes": [
     "Read-only Search Console capture on 1 September 2026; Web and generative-AI reports were complete through 29 August.",
     "Exact-page filters were used for monitored pages and custom regex filters for query lanes.",
-    "Filtered card totals and Pages rows are partial and can differ; visible owner share uses stored Pages rows only."
+    "Filtered card totals and Pages rows are partial and can differ; visible owner share uses stored Pages rows only.",
+    "The masters app page, its exact product-intent lane and its AI page filter all had zero pre-release data because /app/masters did not yet exist."
   ]
 }

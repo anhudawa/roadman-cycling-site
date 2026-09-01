@@ -48,5 +48,8 @@ owners.
   app for cyclists, cycling recovery app, cycling readiness app and Roadman
   app.
 - Track supporting-page clicks into `/app` and waitlist conversion by source.
+- Track `/app/masters` separately for exact-page Web and Google AI visibility,
+  plus the fixed masters/over-40/over-50 cycling-app query lane. It remains a
+  segment page under the broad `/app` product owner, not another product.
 - Check for query splits against the two comparison pages at 7 and 28 complete
   days; comparison intent should stay on `/best/*`, product intent on `/app`.
