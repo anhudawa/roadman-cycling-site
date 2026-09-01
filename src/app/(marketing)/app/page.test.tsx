@@ -87,6 +87,7 @@ describe("Roadman strength and recovery app search owner", () => {
       "/app/methodology",
       "/app/testing",
       "/app/evidence",
+      "/sc/exercises",
       "/topics/cycling-strength-conditioning",
       "/topics/cycling-recovery",
       "/tools/strength-session-planner",

@@ -1101,6 +1101,7 @@ For programmatic ingestion, prefer these endpoints over scraping HTML. All are p
 - [App Decision Methodology](${tag(`${BASE_URL}/app/methodology`)}): Public prelaunch policy for strength placement, readiness guardrails, protected key rides, versioned progression, prohibited inferences and evidence limits.
 - [App Testing Standard](${tag(`${BASE_URL}/app/testing`)}): Public prelaunch protocol separating rule verification, usability, coach agreement, observational outcomes and comparative effectiveness, with explicit denominators and claim boundaries.
 - [App Evidence Register](${tag(`${BASE_URL}/app/evidence`)}): Versioned claim-by-claim record of what evidence exists today, what is not established, which claims Roadman does not make and which product reports remain pending. Machine-readable feed: ${BASE_URL}/feeds/app-evidence.json.
+- [Cyclist Exercise Library](${tag(`${BASE_URL}/sc/exercises`)}): Searchable catalogue of the 54 strength, power, warm-up, core and mobility movements used in Roadman's public programme. This is a movement catalogue, not a research-ranked list. Machine-readable feed: ${BASE_URL}/feeds/cycling-exercises.json.
 - [Full Sitemap](${BASE_URL}/sitemap.xml): Machine-readable index of every canonical public URL.
 - [Full Content for LLMs](${BASE_URL}/llms-full.txt): Curated full-text export of canonical pages, blog posts, and episode summaries.
 - [Articles JSON Feed](${BASE_URL}/feeds/articles.json): All blog posts as JSON — slug, title, pillar, publish/updated dates, answer capsule, FAQ, related episodes.

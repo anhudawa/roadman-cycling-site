@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "property": "sc-domain:roadmancycling.com",
+  "capturedDate": "2026-09-01",
+  "dataThroughDate": "2026-08-29",
+  "range": {
+    "start": "2026-08-02",
+    "end": "2026-08-29",
+    "days": 28
+  },
+  "searchType": "web",
+  "queryFilter": {
+    "type": "custom-regex",
+    "value": "(cyclist|cycling).*(exercise|gym|strength|squat|deadlift|lunge|core)|(exercise|gym|strength|squat|deadlift|lunge|core).*(cyclist|cycling)"
+  },
+  "totals": {
+    "clicks": 225,
+    "impressions": 6020,
+    "ctrPercent": 3.7,
+    "averagePosition": 8.0
+  },
+  "topVisibleQueries": [
+    { "query": "strength training for cyclists", "clicks": 27, "impressions": 532 },
+    { "query": "strength training for cyclists over 50", "clicks": 11, "impressions": 46 },
+    { "query": "core exercises for cyclists", "clicks": 8, "impressions": 206 },
+    { "query": "12-week strength training program for cyclists", "clicks": 7, "impressions": 61 },
+    { "query": "gym workout for cyclists", "clicks": 7, "impressions": 46 },
+    { "query": "cycling strength training", "clicks": 6, "impressions": 280 },
+    { "query": "best gym exercises for cyclists", "clicks": 6, "impressions": 34 },
+    { "query": "cycling gym workout", "clicks": 5, "impressions": 167 },
+    { "query": "gym exercises for cyclists", "clicks": 5, "impressions": 62 },
+    { "query": "strength training for cyclist", "clicks": 5, "impressions": 37 }
+  ],
+  "zeroClickOpportunities": [
+    { "query": "cycling exercises", "clicks": 0, "impressions": 146 },
+    { "query": "cycling gym", "clicks": 0, "impressions": 121 },
+    { "query": "strength and conditioning for cyclists", "clicks": 0, "impressions": 87 },
+    { "query": "cyclist squat benefits", "clicks": 0, "impressions": 64 },
+    { "query": "best exercises for cyclists", "clicks": 0, "impressions": 53 },
+    { "query": "leg exercises for cyclists", "clicks": 0, "impressions": 51 },
+    { "query": "cycling gym workouts", "clicks": 0, "impressions": 51 }
+  ],
+  "topVisiblePages": [
+    { "path": "/blog/cycling-strength-training-guide", "clicks": 67, "impressions": 1969 },
+    { "path": "/blog/cycling-gym-exercises-best", "clicks": 51, "impressions": 1216 },
+    { "path": "/blog/cycling-core-workout-routine", "clicks": 39, "impressions": 826 },
+    { "path": "/blog/strength-training-cyclists-over-50", "clicks": 12, "impressions": 92 },
+    { "path": "/blog/cycling-strength-training-12-week-beginner-plan", "clicks": 11, "impressions": 114 },
+    { "path": "/blog/strength-training-cyclists-complete-guide", "clicks": 8, "impressions": 295 },
+    { "path": "/answers/are-squats-good-for-cyclists", "clicks": 7, "impressions": 482 },
+    { "path": "/blog/cycling-mobility-routine", "clicks": 4, "impressions": 65 },
+    { "path": "/blog/derek-teel-best-exercises-cyclists", "clicks": 3, "impressions": 259 },
+    { "path": "/blog/off-season-gym-routine-cyclists-12-week-block", "clicks": 3, "impressions": 27 }
+  ],
+  "notes": [
+    "Search Console states that chart totals and table results may be partial when filters are applied.",
+    "Page rows are visible rows, not a complete attribution model, and must not be summed as if they equal the card total.",
+    "The pre-release /sc/exercises page was absent from the visible page rows and inherited a section-level noindex directive."
+  ]
+}

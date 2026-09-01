@@ -80,6 +80,8 @@ interface GraphNode {
   testingStandardUrl?: string;
   evidenceRegisterUrl?: string;
   evidenceFeedUrl?: string;
+  exerciseLibraryUrl?: string;
+  exerciseFeedUrl?: string;
 }
 
 interface GraphEdge {
@@ -233,6 +235,8 @@ export function GET() {
     testingStandardUrl: ROADMAN_APP_PRODUCT.testingStandardUrl,
     evidenceRegisterUrl: ROADMAN_APP_PRODUCT.evidenceRegisterUrl,
     evidenceFeedUrl: ROADMAN_APP_PRODUCT.evidenceFeedUrl,
+    exerciseLibraryUrl: ROADMAN_APP_PRODUCT.exerciseLibraryUrl,
+    exerciseFeedUrl: ROADMAN_APP_PRODUCT.exerciseFeedUrl,
   });
   pushEdge(ROADMAN_APP_PRODUCT.graphId, roadmanOrganizationId, "developed_by");
   pushEdge(
