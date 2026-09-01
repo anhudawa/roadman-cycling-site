@@ -64,9 +64,15 @@ describe("app search measurement", () => {
 
     expect(comparison.pages[0].path).toBe("/app");
     expect(comparison.pages[0].impressions.after).toBe(120);
+    expect(comparison.pages[1].path).toBe("/app/masters");
+    expect(comparison.pages[1].impressions.after).toBe(0);
     expect(comparison.lanes[0].expectedOwner).toBe("/app");
     expect(comparison.lanes[0].visibleOwnerShareAfter).toBe(1);
     expect(comparison.aiPages[0].impressions.absolute).toBe(29);
+    expect(comparison.aiPages[1]).toMatchObject({
+      path: "/app/masters",
+      impressions: { before: 0, after: 0, absolute: 0 },
+    });
     expect(comparison.waitlist.baselineAvailable).toBe(false);
   });
 
@@ -78,6 +84,24 @@ describe("app search measurement", () => {
 
     expect(baseline.pages[0]).toMatchObject({ impressions: 9, position: 5.7 });
     expect(baseline.ai.pages[0].impressions).toBe(1);
+    expect(baseline.pages[1]).toMatchObject({
+      path: "/app/masters",
+      impressions: 0,
+      position: null,
+    });
+    expect(baseline.ai.pages[1]).toEqual({
+      path: "/app/masters",
+      impressions: 0,
+    });
+    expect(
+      baseline.lanes.find(
+        (candidate) => candidate.id === "masters-cycling-app-product",
+      ),
+    ).toMatchObject({
+      expectedOwner: "/app/masters",
+      aggregate: { clicks: 0, impressions: 0, position: null },
+      reportedUrlCount: 0,
+    });
     expect(lane.aggregate).toMatchObject({ clicks: 1, impressions: 27 });
     expect(lane.pageRows.reduce((sum, row) => sum + row.impressions, 0)).toBe(
       56,
@@ -92,6 +116,12 @@ describe("app search measurement", () => {
     expect(() => compareAppSearchSnapshots(baseline, changedPage)).toThrow(
       /monitored pages must stay fixed/,
     );
+
+    const renamedMastersPage = currentFrom(baseline);
+    renamedMastersPage.pages[1].path = "/pocket-coach/masters";
+    expect(() =>
+      compareAppSearchSnapshots(baseline, renamedMastersPage),
+    ).toThrow(/monitored pages must stay fixed/);
 
     const changedRegex = currentFrom(baseline);
     changedRegex.lanes[0].regex = ".*app.*";

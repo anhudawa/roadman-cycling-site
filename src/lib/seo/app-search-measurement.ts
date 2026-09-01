@@ -1,5 +1,6 @@
 export type AppSearchLaneId =
   | "roadman-app-product"
+  | "masters-cycling-app-product"
   | "cycling-strength-app-category"
   | "cycling-recovery-app-category"
   | "cycling-training-app-discovery";
@@ -65,12 +66,13 @@ export interface AppSearchSnapshot {
 
 export const APP_MONITORED_PAGES = [
   "/app",
+  "/app/masters",
   "/best/best-cycling-training-apps",
   "/best/best-cycling-strength-training-apps",
   "/best/best-cycling-recovery-apps",
 ] as const;
 
-export const APP_AI_PAGES = ["/app"] as const;
+export const APP_AI_PAGES = ["/app", "/app/masters"] as const;
 
 export const APP_SEARCH_LANES = [
   {
@@ -79,6 +81,13 @@ export const APP_SEARCH_LANES = [
     regex:
       "^(cycling strength and recovery app|cycling strength app|strength training app for cyclists|cycling recovery app|cycling readiness app|roadman cycling app|roadman app)$",
     expectedOwner: "/app",
+  },
+  {
+    id: "masters-cycling-app-product",
+    label: "Masters and over-40 cycling app product intent",
+    regex:
+      "(cycling|cyclist).*(app).*(over 40|over 50|masters)|(over 40|over 50|masters).*(cycling|cyclist).*app",
+    expectedOwner: "/app/masters",
   },
   {
     id: "cycling-strength-app-category",

@@ -4,6 +4,11 @@ This is a separate scorecard for the 1 September 2026 formal `/app` search-owner
 release. It does not add the app retroactively to the fixed five-owner 24 August
 experiment.
 
+It also fixes the new `/app/masters` segment into the same scorecard. `/app`
+remains the broad formal product owner; `/app/masters` is the expected landing
+page only when the search explicitly combines masters or over-40/over-50
+cycling with app intent.
+
 ## Frozen baselines
 
 - Seven days: 23–29 August —
@@ -35,6 +40,7 @@ The release day is excluded from every before/after window.
 Use **Exact URL** and record clicks, impressions, decimal CTR and position for:
 
 - `/app`
+- `/app/masters`
 - `/best/best-cycling-training-apps`
 - `/best/best-cycling-strength-training-apps`
 - `/best/best-cycling-recovery-apps`
@@ -52,6 +58,7 @@ row.
 The owner jobs remain distinct:
 
 - Roadman product intent → `/app`.
+- Masters and over-40/over-50 cycling app product intent → `/app/masters`.
 - Strength app comparisons → `/best/best-cycling-strength-training-apps`.
 - Recovery/readiness app comparisons → `/best/best-cycling-recovery-apps`.
 - Broad training app discovery → `/best/best-cycling-training-apps`.
@@ -62,8 +69,8 @@ rows, never by dividing a page row by the card total.
 
 ## AI and waitlist
 
-- In Google Search generative-AI features, apply an exact `/app` page filter and
-  record impressions for the same window.
+- In Google Search generative-AI features, apply separate exact page filters for
+  `/app` and `/app/masters`, and record impressions for the same window.
 - In Roadman analytics, capture the one app waitlist's total submissions,
   attributed submissions and source breakdown for the same window.
 - Use `/admin/funnel/app` for the live operational view: server-recorded unique
@@ -102,6 +109,9 @@ post-period capture made before Google's three-day lag allowance.
 - `/app`: 9 Web impressions, 0 clicks, 0% CTR, position 5.7 in both frozen
   windows; 1 Google AI impression.
 - Exact Roadman product lane: no reported impressions before release.
+- `/app/masters`, its exact masters-app query lane and its Google AI page filter:
+  no reported impressions before release. The page did not yet exist, so these
+  are legitimate pre-release zeroes rather than missing captures.
 - Strength and recovery app comparison lanes: no reported impressions before
   release.
 - Broad cycling training app lane: 1 click / 27 impressions / 3.7% CTR /
