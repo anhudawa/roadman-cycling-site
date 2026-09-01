@@ -50,6 +50,29 @@ export default function ProgrammeDashboard() {
           pick a week to see the full session detail.
         </p>
 
+        <div className="mt-8 max-w-3xl rounded-xl border border-white/10 bg-[#2E2E30] p-5 text-sm leading-relaxed text-foreground-muted">
+          <p>
+            This is Roadman&apos;s public two-session-per-week example, not an
+            individual prescription. The sets and repetitions show the exact
+            programme structure; adjust only with appropriate coaching and
+            health context.
+          </p>
+          <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+            <Link
+              href="/blog/cycling-strength-training-12-week-beginner-plan"
+              className="font-heading text-xs tracking-wide text-coral hover:text-off-white"
+            >
+              READ THE 12-WEEK GUIDE →
+            </Link>
+            <Link
+              href="/feeds/cycling-strength-programme.json"
+              className="font-heading text-xs tracking-wide text-coral hover:text-off-white"
+            >
+              VIEW SOURCE DATA →
+            </Link>
+          </div>
+        </div>
+
         {/* ── Phase filter tabs ────────────────────────────────────── */}
         <div className="mt-10 flex flex-wrap gap-2">
           {FILTER_OPTIONS.map((opt) => {
@@ -121,7 +144,8 @@ export default function ProgrammeDashboard() {
                         DAY 1 &mdash; {day1.type.toUpperCase()}
                       </span>
                       <span className="text-foreground-muted text-xs font-body">
-                        {day1.workout.length} exercise{day1.workout.length !== 1 ? "s" : ""}
+                        {day1.workout.length} exercise
+                        {day1.workout.length !== 1 ? "s" : ""}
                       </span>
                     </div>
                     {day1A1 && (
@@ -138,7 +162,8 @@ export default function ProgrammeDashboard() {
                         DAY 2 &mdash; {day2.type.toUpperCase()}
                       </span>
                       <span className="text-foreground-muted text-xs font-body">
-                        {day2.workout.length} exercise{day2.workout.length !== 1 ? "s" : ""}
+                        {day2.workout.length} exercise
+                        {day2.workout.length !== 1 ? "s" : ""}
                       </span>
                     </div>
                     {day2A1 && (

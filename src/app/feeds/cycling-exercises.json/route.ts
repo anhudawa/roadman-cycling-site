@@ -47,6 +47,7 @@ export function GET() {
         coreGuideUrl: CYCLING_EXERCISE_LIBRARY.coreGuideUrl,
         mobilityGuideUrl: CYCLING_EXERCISE_LIBRARY.mobilityGuideUrl,
         programmeUrl: CYCLING_EXERCISE_LIBRARY.programmeUrl,
+        programmeFeedUrl: CYCLING_EXERCISE_LIBRARY.programmeFeedUrl,
         appUrl: CYCLING_EXERCISE_LIBRARY.appUrl,
         strengthPlannerUrl: feedUrl("/tools/strength-session-planner"),
       },

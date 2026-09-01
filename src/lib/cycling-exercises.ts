@@ -19,6 +19,7 @@ export const CYCLING_EXERCISE_LIBRARY = {
   coreGuideUrl: `${SITE_ORIGIN}/blog/cycling-core-workout-routine`,
   mobilityGuideUrl: `${SITE_ORIGIN}/blog/cycling-mobility-routine`,
   programmeUrl: `${SITE_ORIGIN}/sc/programme`,
+  programmeFeedUrl: `${SITE_ORIGIN}/feeds/cycling-strength-programme.json`,
   appUrl: `${SITE_ORIGIN}/app`,
 } as const;
 

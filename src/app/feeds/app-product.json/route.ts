@@ -50,6 +50,10 @@ export function GET() {
         evidenceFeedUrl: ROADMAN_APP_PRODUCT.evidenceFeedUrl,
         exerciseLibraryUrl: ROADMAN_APP_PRODUCT.exerciseLibraryUrl,
         exerciseFeedUrl: ROADMAN_APP_PRODUCT.exerciseFeedUrl,
+        relatedStrengthProgrammeUrl:
+          ROADMAN_APP_PRODUCT.relatedStrengthProgrammeUrl,
+        relatedStrengthProgrammeFeedUrl:
+          ROADMAN_APP_PRODUCT.relatedStrengthProgrammeFeedUrl,
         knowledgeGraphUrl: feedUrl("/knowledge-graph.json"),
         mcpManifestUrl: feedUrl("/.well-known/mcp.json"),
         topicUrls: ROADMAN_APP_PRODUCT.topicSlugs.map((slug) =>
