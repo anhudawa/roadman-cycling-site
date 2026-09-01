@@ -113,6 +113,15 @@ const nextConfig: NextConfig = {
       // Google already prefers cycling-strength-training-guide for the broad
       // query. Retire the later near-duplicate so links and ranking history
       // consolidate on the established evidence-bounded owner.
+      // The /sc launch draft duplicated the live $65 course, advertised a
+      // conflicting $95 price and had no checkout. Keep /strength-training as
+      // the single commercial owner; /sc/programme remains the noindex course
+      // interface for customers.
+      {
+        source: "/sc",
+        destination: "/strength-training",
+        permanent: true,
+      },
       {
         source: "/blog/strength-training-cyclists-complete-guide",
         destination: "/blog/cycling-strength-training-guide",
