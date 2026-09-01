@@ -75,7 +75,7 @@ describe("daily cycling readiness search owner", () => {
 
     expect(baseline).toContain("286 impressions");
     expect(baseline).toContain("Generative AI features: 39 impressions");
-    expect(benchmark.metadata.prompt_count).toBe(382);
+    expect(benchmark.metadata.prompt_count).toBe(benchmark.prompts.length);
     expect(benchmark.prompts.find((prompt) => prompt.id === 382)).toMatchObject(
       {
         target_page: "/blog/daily-training-readiness-check-cycling-guide",

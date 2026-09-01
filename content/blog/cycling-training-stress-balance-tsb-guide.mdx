@@ -1,187 +1,256 @@
 ---
-title: "Using TSB to Time Your Best Performance — A Practical Guide"
-seoTitle: "Using TSB to Peak for a Race — Practical Cycling Guide"
-seoDescription: "How to use Training Stress Balance to time peak performance. TSB targets for race day, taper protocols, the CTL trap, and reading form across a season."
-excerpt: "You know what TSB is. You have watched the line on TrainingPeaks wiggle up and down for months. But you still do not know what number you are looking for on race morning, or how to get there without losing the fitness you built. This is that guide."
-pillar: "coaching"
-primaryHub: "cycling-training-plans"
-author: "anthony-walsh"
+title: "Training Stress Balance for Cyclists: Using TSB for a Race Taper Without Chasing a Magic Number"
+seoTitle: "TSB Cycling: Training Stress Balance & Race Form"
+seoDescription: "Learn what TSB means in cycling, how CTL minus ATL is calculated, why there is no universal race-day target, and how to use form during a taper."
+excerpt: >-
+  Training Stress Balance describes the difference between modelled chronic and
+  acute training load. It can show whether recent load is high or low relative
+  to the longer training history. It does not measure recovery or predict race
+  performance, and there is no validated universal race-day TSB target.
+pillar: coaching
+primaryHub: cycling-training-plans
+author: Anthony Walsh
 publishDate: "2026-07-10"
+updatedDate: "2026-09-01"
+lastReviewed: "2026-09-01"
+reviewedBy: "Anthony Walsh, with TSB definitions checked against TrainingPeaks documentation and taper claims checked against the cited endurance meta-analyses"
+featuredImage: /images/cycling/gravel-canyon-rest.jpg
+keywords:
+  - tsb cycling
+  - training stress balance cycling
+  - tsb race day cycling
+  - cycling form trainingpeaks
+  - performance management chart cycling
+  - cycling taper tsb
+  - ctl atl tsb cycling
+  - what should tsb be for a race
 answerCapsule: >-
-  Aim for a race-day TSB of +5 to +25, with masters riders typically
-  performing best at the higher end. A standard taper drops volume by 40-60%
-  over 10-14 days while keeping two short intensity sessions per week. TSB is
-  a lagging indicator reflecting decisions made 7-10 days ago, so plan
-  backwards from race day. Track your TSB at your three best performances to
-  find your personal sweet spot — individual targets vary by as much as 15
-  points between riders.
+  In TrainingPeaks, today's Training Stress Balance is yesterday's Chronic
+  Training Load minus yesterday's Acute Training Load. Positive and negative
+  values describe recent training stress relative to longer-term modelled load;
+  they do not directly measure freshness, adaptation or race readiness. No
+  validated universal +5, +15 or +25 race-day target exists. Use TSB to check
+  whether a planned build, recovery period or taper is moving in the intended
+  direction, then interpret it alongside event demands, actual performance,
+  sleep, symptoms, fuelling, life stress and your own history.
 keyTakeaways:
-  - "Race-day TSB of +5 to +25 is the target for most amateur cyclists. Masters riders typically perform best at the higher end of that range because accumulated fatigue clears more slowly after 40."
-  - "The biggest mistake with TSB is chasing a high CTL number at the expense of specificity. A CTL of 80 built on junk miles produces worse racing than a CTL of 60 built on targeted intervals."
-  - "A standard taper drops training volume by 40 to 60 per cent over 10 to 14 days while maintaining two short, sharp intensity sessions per week to keep neuromuscular sharpness."
-  - "TSB is a lagging indicator. The number you see today reflects decisions you made 7 to 10 days ago. Planning your taper requires working backwards from race day, not reacting to yesterday's number."
-  - "Negative TSB sustained below minus 30 for more than two weeks is a warning sign for overreaching. The Performance Management Chart is an early-alert system, not a fitness score."
-  - "Individual TSB sweet spots vary by as much as 15 points between riders. Track your TSB at your three best performances over a season and you will find your personal target zone."
-  - "Form is not just a number. TSB tells you about the balance between training load and recovery, but it cannot measure sleep quality, nutrition status, or life stress — all of which affect race-day performance."
+  - "TrainingPeaks defines TSB as yesterday's CTL minus yesterday's ATL. It is a model output built from recorded training stress, not a physiological measurement."
+  - "TrainingPeaks explicitly says TSB is not a predictor of performance. A positive value does not prove a cyclist is ready, and a negative value does not diagnose overtraining."
+  - "There is no research-validated universal race-day TSB range or masters-specific target. Historical values from comparable events can provide context, not a personal law."
+  - "Endurance-taper meta-analyses support reducing volume while retaining intensity and frequency at group level, but they do not validate one TSB destination."
+  - "Poor source data, changed FTP, unrecorded strength work, device differences and missing life context can all make the chart look more precise than it is."
+  - "Use TSB for plan-versus-actual review; use performance, symptoms and structured readiness context to decide whether the rider is responding."
+evidenceLevel: emerging
+evidenceNote: >-
+  TSB is a proprietary implementation of modelled training load rather than a
+  validated diagnostic or standalone performance predictor. Taper research
+  supports broad group-level strategies, but the cited meta-analyses do not
+  establish a race-day TSB target, a masters-specific number or a threshold for
+  injury, illness, non-functional overreaching or overtraining syndrome.
+claimsHeading: "WHAT TSB CAN AND CANNOT CLAIM"
+claimsCaption: "The chart describes recorded training stress. It does not see the whole athlete."
+citedClaims:
+  - claim: "TrainingPeaks TSB equals yesterday's CTL minus yesterday's ATL."
+    roadmanPosition: "That is the platform definition. The resulting number describes modelled load balance, not measured recovery."
+    evidenceSource: "TrainingPeaks Form (TSB) product documentation"
+    practicalImplication: "Confirm which platform, settings and source data produced the number before comparing it."
+    evidenceLevel: moderate
+  - claim: "A universal positive TSB target predicts race performance."
+    roadmanPosition: "Not established. TrainingPeaks says TSB is not a performance predictor, and the taper meta-analyses did not test one universal TSB destination."
+    evidenceSource: "TrainingPeaks documentation; endurance taper meta-analysis, PMID 37163550"
+    practicalImplication: "Review personal history from comparable events without turning three observations into a guaranteed range."
+    evidenceLevel: emerging
+  - claim: "A taper can improve endurance time-trial performance."
+    roadmanPosition: "Supported at group level. The 2023 meta-analysis included 14 studies and found significant time-trial and time-to-exhaustion improvements, not a guaranteed individual gain."
+    evidenceSource: "Endurance-athlete taper systematic review and meta-analysis; PMID 37163550"
+    practicalImplication: "Reduce load deliberately while preserving event-relevant work, then judge the whole response rather than TSB alone."
+    evidenceLevel: moderate
+  - claim: "Masters cyclists need a higher TSB target because fatigue always clears more slowly."
+    roadmanPosition: "No cited taper review established an age-specific TSB range. Age alone cannot set a model target."
+    evidenceSource: "Evidence boundary from endurance taper meta-analyses; PMIDs 37163550 and 17762369"
+    practicalImplication: "Use the rider's history, training age, event, recent load and response instead of a birthday rule."
+    evidenceLevel: emerging
 faq:
-  - question: "What TSB should I aim for on race day?"
-    answer: "Most amateur cyclists perform best with a TSB between +5 and +25 on race day. The exact number is individual — track your TSB at your best performances over a season and a personal pattern will emerge. If you tend to feel flat at +20 but sharp at +10, your sweet spot is lower than average. Masters riders over 40 generally need a higher TSB because fatigue dissipates more slowly."
-  - question: "How long should I taper to raise my TSB?"
-    answer: "A standard taper for a single-day target event runs 10 to 14 days. Drop training volume by 40 to 60 per cent while keeping two short intensity sessions per week. The intensity keeps your legs sharp while the volume reduction lets fatigue clear. For a stage race or multi-day event, a shorter 7-day taper often works better because you need residual fitness more than peak freshness."
-  - question: "Can you have too high a TSB on race day?"
-    answer: "Yes. A TSB above +30 usually means you have rested so much that sharpness has started to fade. Fitness decays slowly, but neuromuscular responsiveness drops faster with prolonged rest. The goal is to shed enough fatigue to feel fresh without losing the snap that comes from regular training stimulus."
-  - question: "Why does my CTL keep dropping during taper?"
-    answer: "Because CTL is a 42-day weighted average of your daily training stress. When you reduce volume during a taper, each low-TSS day drags the average down. This is expected and desirable — the small CTL drop is the cost of the larger fatigue drop that puts you in good form. A two-week taper typically costs 5 to 10 CTL points, which is a worthwhile trade for the freshness it delivers."
-  - question: "Is TSB accurate for masters cyclists?"
-    answer: "TSB uses the same time constants for everyone — a 42-day fitness decay and a 7-day fatigue decay. For masters cyclists, the fatigue time constant is arguably too short, meaning the model underestimates how long it takes you to recover from hard training. The practical effect is that masters riders often need a higher TSB number to feel the same freshness as a younger rider at a lower TSB."
+  - question: "What is TSB in cycling?"
+    answer: >-
+      TSB means Training Stress Balance. In TrainingPeaks, today's TSB is
+      yesterday's Chronic Training Load minus yesterday's Acute Training Load.
+      It compares recent modelled training stress with the longer load history;
+      it does not directly measure recovery, fitness or readiness.
+  - question: "What should my TSB be on race day?"
+    answer: >-
+      There is no validated universal race-day value. Positive TSB can confirm
+      that recent modelled load has fallen relative to chronic load, but event
+      demands, taper structure, performance history, sleep, symptoms and
+      fuelling still matter. Use comparable personal events as context, not a
+      guaranteed target.
+  - question: "Does negative TSB mean I am overtraining?"
+    answer: >-
+      No. A negative value means modelled acute load exceeds modelled chronic
+      load. That can be expected during a build. TSB cannot diagnose functional
+      overreaching, non-functional overreaching or overtraining syndrome, and no
+      fixed negative threshold does so.
+  - question: "Can TSB tell me how long to taper?"
+    answer: >-
+      It can show the modelled direction of load during a planned taper. Research
+      supports several taper durations and a substantial volume reduction while
+      maintaining intensity and frequency, but TSB does not choose the duration
+      or validate the plan for an individual cyclist.
+  - question: "Is TSB less accurate for masters cyclists?"
+    answer: >-
+      The model cannot see age, sleep, health, strength work or life stress unless
+      those affect recorded training stress. Individual response may differ, but
+      there is no validated masters-only TSB target. Use personal response and
+      event history rather than assuming one age correction.
 relatedPosts:
-  - "training-load-ctl-atl-tsb-explained-cyclists"
-  - "cycling-tapering-guide"
-  - "how-to-peak-cycling-a-race-guide"
-  - "training-stress-score-tss-cycling-guide"
-  - "cycling-periodisation-plan-guide"
-  - "training-load-management-cyclists-guide"
+  - training-load-ctl-atl-tsb-explained-cyclists
+  - cycling-tapering-guide
+  - how-to-peak-cycling-a-race-guide
+  - training-stress-score-tss-cycling-guide
+  - cycling-periodisation-plan-guide
+  - training-load-management-cyclists-guide
 relatedTools:
-  - "tss"
-  - "training-load"
-  - "ftp-zones"
+  - training-load
+  - tss
+  - training-readiness
 whoFor:
-  - "Cyclists who can see their TSB number but do not know what to do with it"
-  - "Riders tapering for a target event and unsure how much to back off"
-  - "Anyone who has arrived at a race feeling flat despite weeks of good training"
-  - "Masters riders whose taper never seems to produce the freshness they expected"
+  - "Cyclists using TrainingPeaks, WKO or another performance-management chart before a target event"
+  - "Self-coached riders who want to taper without chasing a generic TSB range"
+  - "Masters cyclists who have been told to apply an age-specific form number"
+  - "Coaches who need a clear boundary between modelled load, monitoring and performance prediction"
 roadmanView:
-  - "I have seen riders ruin their A-race because they chased a CTL number instead of planning a proper taper. The Performance Management Chart is a tool, not a scoreboard."
-  - "Your TSB sweet spot is personal. Track it across your three best performances and the pattern will emerge — stop guessing and start recording."
-  - "TSB is a lagging indicator. The number you see today reflects decisions you made a week ago. Plan backwards from race day or you are always reacting."
+  - "TSB is best used to ask whether the planned load change actually appeared in the chart. It is weakest when used as a verdict on the rider."
+  - "A personal history is more relevant than a generic range, but a small sample is still context—not proof of a magic number."
+  - "The taper has to serve the event and the athlete. Making the yellow line look perfect is not the objective."
 ---
 
-Here is the thing nobody tells you about TSB: knowing the number is the easy part. Every cyclist with a TrainingPeaks account can see where their form line sits. The hard part — the part that separates people who peak well from people who arrive at races feeling either flat or buried — is knowing what to *do* with it.
+Training Stress Balance is useful because it compresses recent cycling load and longer-term load into one visible line. It is dangerous when that convenience gets mistaken for biological certainty.
 
-If you need the background on what CTL, ATL, and TSB actually are and how the Banister model works, the [companion post covers the theory](/blog/training-load-ctl-atl-tsb-explained-cyclists). This is the practical application. You already know the definitions. What follows is how to use those numbers to arrive at your target event with the right legs, on the right day, by design rather than by luck.
+The practical answer is simple: **use TSB to check the direction of a planned build, recovery period or taper; do not use it to declare that a cyclist is ready, overtrained or guaranteed to perform.**
 
-## The race-day TSB target: +5 to +25
+If you need the definitions and maths for the whole Performance Management Chart, start with [CTL, ATL and TSB explained for cyclists](/blog/training-load-ctl-atl-tsb-explained-cyclists). This page owns the narrower practical question: how should TSB influence a cycling race taper?
 
-Let me be really clear about this. There is no magic number. There is a window, and for most amateur cyclists that window sits between +5 and +25 on race morning.
+## TSB in 30 seconds
 
-Below +5, you are still carrying meaningful fatigue. You might feel okay warming up, but 90 minutes into the race when the elastic is supposed to snap, it will not snap. The reserves that come from genuine freshness will not be there.
+| Question                        | Evidence-bounded answer                                                                                |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| What is TSB?                    | A modelled difference between chronic and acute training load.                                         |
+| TrainingPeaks formula           | Today's TSB = yesterday's CTL − yesterday's ATL.                                                       |
+| Does positive mean race-ready?  | No. It means recent modelled load is lower relative to chronic load.                                   |
+| Does negative mean overtrained? | No. It means acute modelled load exceeds chronic modelled load.                                        |
+| Best race-day number?           | No universal value has been validated.                                                                 |
+| Useful job                      | Confirm that load is moving in the intended direction and compare the model with the rider's response. |
 
-Above +25, you have probably rested too long. Fitness decays slowly — the 42-day time constant means your CTL drops only a couple of points per week during taper — but neuromuscular sharpness decays faster than the model shows. The legs lose that snappy, responsive feeling that comes from regular hard efforts. You arrive rested but flat, like a car that has been sitting in the garage for a month with a full tank but a flat battery.
+TrainingPeaks describes TSB as “Form” and calculates it from the previous day's Fitness (CTL) and Fatigue (ATL). Its own documentation also states that TSB is not a predictor of performance ([TrainingPeaks Form/TSB documentation](https://help.trainingpeaks.com/hc/en-us/articles/204071764-Form-TSB)).
 
-The sweet spot within that window depends on you. Some riders perform best at +8. Others need +18 before the fatigue fog lifts. Here is where it gets really interesting: the variance between riders is bigger than most people expect. I have spoken to coaches on the podcast — Joe Friel, Stephen Barrett, John Wakefield — who all confirm the same observation: individual TSB targets can differ by 15 points between athletes they coach. The population average is a starting point, not a prescription.
+That product boundary should govern how Roadman talks about the number.
 
-## Finding your personal TSB sweet spot
+## What positive, neutral and negative TSB really mean
 
-This is the single most useful thing you can do with the Performance Management Chart over the course of a season: build a personal database.
+**Negative TSB:** the modelled acute load is greater than the modelled chronic load. That is common during a training block. The size of the negative number does not diagnose fatigue, injury risk, illness or overtraining.
 
-After every race or hard group ride where you performed well — properly well, not just survived — note your TSB from that morning. Do the same after the days you felt terrible. After three or four data points in each column, a pattern will emerge. Maybe you raced brilliantly at +12, +10, and +14 but felt rubbish at +22 and +4. Now you know: your window is roughly +10 to +15, tighter than the population average, and you can taper to hit it deliberately.
+**Near-zero TSB:** the two modelled loads are similar. It does not mean “nothing is happening,” and it does not identify a physiological plateau.
 
-The good news is this takes no extra equipment and no extra effort. Just a notebook and the discipline to record three numbers after your best and worst days: TSB, hours of sleep the night before, and a one-to-ten subjective readiness score. Over twelve months, that log becomes more valuable than any training plan.
+**Positive TSB:** the modelled acute load has fallen below the chronic load. That often happens during reduced training. It does not prove freshness, preserve event-specific sharpness or show that the athlete has slept and fuelled well.
 
-One thing to watch: do not confuse race performance with race results. You might finish tenth but ride a personal best power for the course. That is a "performed well" data point regardless of the result. The TSB log tracks your physiology, not the strength of the field.
+The chart knows the load values it receives. It does not know why the athlete feels different.
 
-## The CTL trap
+## Why there is no magic race-day TSB
 
-This is the most common mistake I see, and it is worth saying plainly because nearly everyone falls into it at least once.
+The old version of this guide prescribed +5 to +25 for most riders, said values above +30 meant lost sharpness and assigned masters cyclists to the upper end. Those claims were not tied to a validation study.
 
-CTL is seductive. It goes up when you train hard. It feels like a fitness score. And it is natural to start treating it like a high score — adding volume to push the number higher, skipping rest days because you do not want it to drop, filling recovery weeks with junk miles that serve no purpose except keeping the line from dipping.
+Three problems make a universal range unreliable:
 
-Here is what most people do: they build CTL as high as possible, then try to taper down to a target TSB for their race. The logic seems sound. Higher CTL means higher fitness, right?
+1. **The input can differ.** FTP setting, estimated versus power-based TSS, unrecorded sessions, strength training and platform calculations change the load history.
+2. **The same number can come from different training.** Event-specific intervals, endurance volume and unrelated stress may produce similar chart values but different preparation.
+3. **Performance has more inputs.** Sleep, fuelling, illness, travel, heat, motivation, pacing and competition context sit outside TSB.
 
-What actually works is different. A CTL of 80 built on well-structured polarised training — easy days actually easy, hard days truly hard, with proper recovery and race-specific intervals — will produce better racing than a CTL of 100 built on monotonous grey-zone riding, insufficient recovery, and no specificity. The PMC cannot distinguish between those two scenarios. Both show a nice, rising CTL line. Only one of them produces an athlete ready to race.
+Historical TSB from a rider's strong and weak events can still help. Compare like with like: similar event duration, training phase, data quality and taper. Treat the result as a clue. Three good races at the same TSB do not prove that the fourth requires it.
 
-The question is never "how high is my CTL?" The question is "what went into building it?" If the answer is structured training with clear objectives for each session, good recovery practices, and progressive specificity toward your target event, then the CTL number — whatever it is — represents genuine, race-ready fitness. If the answer is maximum volume with minimum thought, the number is a comfortable fiction.
+## What taper research supports
 
-Let me break this down another way. Imagine two riders. Both have a CTL of 75 on the day they start their taper. Rider A got there with five quality sessions per week — two hard interval days, two endurance rides, one active recovery — plus a recovery week every fourth week. Rider B got there by riding hard six days a week with no recovery weeks, no interval structure, and no variation. Same CTL. Completely different preparedness. Rider A will respond to the taper with a sharp, race-ready peak. Rider B is so buried in accumulated fatigue that the taper will barely scratch the surface.
+A 2023 systematic review and meta-analysis included 14 endurance-athlete studies. The pooled analysis found improvements in time-trial and time-to-exhaustion performance after tapering, while VO2max and movement economy did not significantly improve ([PMID 37163550](https://pubmed.ncbi.nlm.nih.gov/37163550/)).
 
-## Reading your PMC across a season
+Subgroup results supported tapers lasting up to 21 days that reduced volume by 41–60% while maintaining training intensity and frequency. An earlier 27-study athlete meta-analysis also favoured an approximately two-week taper with a 41–60% volume reduction and maintained intensity and frequency ([PMID 17762369](https://pubmed.ncbi.nlm.nih.gov/17762369/)).
 
-The Performance Management Chart tells a story across months, not days. Here is how to read the shapes.
+Those results provide a starting framework, not a compulsory cyclist prescription:
 
-**The build block.** Three weeks of progressive loading followed by a recovery week. On the PMC, CTL climbs steadily across the three build weeks. TSB drops into the minus 10 to minus 25 range — uncomfortable but productive. ATL is elevated, reflecting the week-to-week fatigue accumulation. In the recovery week, volume drops, ATL crashes, TSB swings back toward zero, and CTL gives back a point or two. That small CTL loss is the cost of recovery. It is always worth paying.
+- the included athletes, sports and taper designs varied;
+- a group mean does not choose one rider's volume, interval count or duration;
+- retaining “intensity” does not mean reproducing the full pre-taper workload; and
+- neither meta-analysis validated a destination on a TSB chart.
 
-**The staircase.** Zoom out to three months and you should see CTL climbing in a staircase pattern — three steps up, one step back, three steps up, one step back. Each "landing" (the recovery week) sits higher than the one before. This is progressive overload made visible. If the staircase is flat, the training stimulus is not progressing. If it is a straight line with no steps, you are not recovering.
+Plan the taper from the event demands and the rider's history. Use the chart to see whether recorded load fell as intended.
 
-**The pre-race taper.** In the final two weeks before a target event, the PMC shows a distinctive pattern: CTL holds roughly steady or drops slightly, ATL falls sharply, and TSB climbs from negative territory into the positive window. The divergence between the fatigue line falling and the form line rising is the visual signature of a well-timed taper. If TSB is climbing but CTL is dropping like a stone, the taper started too early or cut too much.
+## A practical TSB taper workflow
 
-**The post-race dip.** After a target event and the recovery that follows, CTL will drop. This is fine. It is the natural consequence of reducing training load after a peak. The drop usually bottoms out after two to three weeks, and the next build block starts from a slightly lower CTL baseline. This is normal periodisation, not a crisis.
+### 1. Verify the source data
 
-## The taper protocol: what to cut and what to keep
+Check FTP changes, missing rides, duplicate activities, estimated load, indoor/outdoor device differences and whether strength work appears. A precise-looking TSB built from inconsistent inputs is still inconsistent.
 
-The mechanics of raising TSB for race day come down to a simple trade: reduce fatigue (ATL) faster than you lose fitness (CTL). Because ATL uses a 7-day time constant and CTL uses a 42-day constant, this is mathematically guaranteed to work — as long as you get the dosing right.
+### 2. Define the event priority
 
-**Volume is what you cut.** Drop total weekly training volume by 40 to 60 per cent. If you normally ride 12 hours a week, taper weeks should be 5 to 7 hours. This is where the fatigue reduction comes from. Every low-TSS day pulls ATL down, and ATL drops fast.
+A one-day hill climb, long sportive, criterium and multi-day event do not ask the same thing. Identify the work that should remain familiar and the fatigue you are trying to reduce.
 
-**Intensity is what you keep.** Maintain two short, sharp sessions per week during the taper. These are not long threshold efforts. They are brief, punchy openers — 4 to 6 intervals of 30 seconds to 2 minutes at race pace or above, with full recovery between efforts. The purpose is neuromuscular: keeping the fast-twitch fibres firing, maintaining pedalling efficiency at high cadences, preserving the snap that prolonged rest erodes.
+### 3. Write the taper before reacting to the chart
 
-**Duration is what you shorten.** Your interval sessions get shorter but not easier. A build-phase session of 5x5 minutes at VO2max becomes 3x3 minutes. A threshold session of 2x20 minutes becomes 2x10. The stimulus stays sharp; the volume drops. This is the key distinction that most riders get wrong. They cut intensity along with volume and arrive at the race rested but blunt.
+Choose the volume reduction, retained event-relevant work and recovery days. TSB should report the effect of the plan, not provoke a new plan every morning.
 
-**Timeline: 10 to 14 days for a single-day event.** Start the taper 10 to 14 days before your target race. For most riders, 12 days is the sweet spot — long enough for meaningful fatigue clearance, short enough that fitness does not erode. For a stage race or multi-day event, shorten to 7 to 10 days. You need more residual fitness for sustained efforts across multiple days, so the taper is shorter and less aggressive.
+### 4. Watch direction and pace, not a destination alone
 
-**What a two-week taper costs.** Expect to lose 5 to 10 CTL points over a 14-day taper. That is normal. What you gain in return — a TSB swing of 20 to 30 points from pre-taper to race day — is a far better trade. The research consistently shows a well-executed taper delivers a 2 to 3 per cent performance improvement. On a 60-minute climb, that is nearly two minutes. On a 40-kilometre time trial, that is over a minute. The CTL cost is trivially small compared to the performance gain.
+Is ATL falling? Is CTL behaving roughly as expected? Is TSB moving positive as reduced load enters the model? A surprising curve should trigger a data and plan review, not a panic rest day.
 
-## TSB is a lagging indicator — plan backwards
+### 5. Cross-check the athlete
 
-Here is a mistake I see constantly. A rider checks their TSB on Monday, sees it at minus 15, panics because their race is on Saturday, and slashes everything to try to get the number positive by the weekend.
+Record sleep, energy, soreness, mood, symptoms and actual session response. Athlete-monitoring research supports structured subjective reports as useful trend information, while also showing that common measures have validation limits ([PMID 26423706](https://pubmed.ncbi.nlm.nih.gov/26423706/); [PMID 32957081](https://pubmed.ncbi.nlm.nih.gov/32957081/)).
 
-That is not how this works.
+### 6. Review after the event
 
-The TSB you see today reflects the training decisions you made 7 to 10 days ago. It is a trailing indicator, not a real-time readout. The fatigue from last weekend's big ride is still washing through the 7-day exponential average. Today's rest day will not show up meaningfully in your TSB until midweek.
+Save the model values, taper, sleep/fuelling context, warm-up response and performance. That makes the next comparison more specific than copying a generic internet range.
 
-This means taper planning works backwards from race day, not forwards from today. You look at the calendar, find your race date, count back 12 days, and that is where the taper begins. The decisions about what to ride in those 12 days are made in advance, not reactively adjusted based on yesterday's number.
+## Common TSB mistakes
 
-In practice, this means your taper week plan should be written before it starts. The daily TSB readings during taper are confirmation that the plan is tracking, not inputs for last-minute changes. If TSB is climbing roughly as expected, stay the course. If it is climbing faster than expected, you might add one short session. If it is not climbing at all, something unusual is happening — poor sleep, illness, life stress — and the response should address the cause, not pile on more rest.
+### Chasing CTL before chasing form
 
-The riders who peak well are the ones who trust the plan. The ones who peak badly are the ones who react to every daily TSB reading like it is a stock price.
+CTL summarises modelled load. It does not prove fitness gained, session specificity or successful adaptation. Adding low-value work to protect a chart line can damage the taper's actual purpose.
 
-## What TSB cannot tell you
+### Treating TSB as today's readiness score
 
-TSB is a model, and every model has blind spots. Here is what the number leaves out.
+TSB is based on recorded training load; a [daily cycling readiness check](/blog/daily-training-readiness-check-cycling-guide) organises sleep, soreness, energy, mood, stress and recent context. Neither is a medical diagnosis or standalone command. They answer different questions.
 
-**Sleep.** A rider sleeping six hours a night and a rider sleeping eight hours a night can have identical TSB values. Their readiness to perform is not remotely similar. Sleep is the single largest recovery variable that the PMC ignores entirely. If your TSB says +15 but you have slept badly for five nights, trust the sleep data over the model.
+### Using one negative threshold to diagnose overreaching
 
-**Nutrition.** A rider fuelling properly during and after training sessions recovers faster and more completely than one who is chronically under-eating or skipping post-ride nutrition. The PMC treats both identically. A TSB of +12 on race morning means something very different if you have spent the taper eating well versus if you have been restricting calories to "make race weight."
+No −20, −30 or other TSB cut-off diagnoses functional overreaching, non-functional overreaching or overtraining syndrome. The ECSS/ACSM consensus describes overtraining syndrome as a difficult exclusion diagnosis without one generally accepted marker ([PMID 23247672](https://pubmed.ncbi.nlm.nih.gov/23247672/)).
 
-**Life stress.** Work deadlines, family pressure, moving house, relationship strain — none of it appears on the PMC. But all of it affects the autonomic nervous system, suppresses recovery, disrupts sleep, and changes the effective fatigue load your body is carrying. I have seen riders with textbook TSB values perform terribly because their life outside cycling was absorbing all the recovery capacity that was supposed to go toward the taper.
+### Assuming masters riders need one correction
 
-**Specificity.** TSB does not know what kind of training produced the load. A CTL of 80 built entirely on flat Zone 2 rides will not prepare you for a hilly road race. A CTL of 80 built on indoor trainer sessions will not prepare you for a gravel event in hot conditions. The model counts stress. It does not evaluate whether that stress matches the demands of the event you are tapering for. That judgement sits with you and your training plan.
+The taper reviews did not establish an over-40 TSB range or a universal longer fatigue constant. Training age, event, health, recent load and individual response matter. Use history; do not add points because of a birthday.
 
-**Accumulated fatigue across seasons.** TSB resets its fatigue calculation every 7 days. But fatigue from two years of hard training without a proper off-season does not follow a 7-day decay curve. Deep, systemic fatigue — the kind that comes from year after year of pushing without adequate breaks — sits below the model's resolution. You can have a positive TSB and still be chronically tired.
+### Ignoring low energy availability or illness
 
-## Warning signs in your PMC
+A positive TSB cannot rule out illness, inadequate fuelling, iron deficiency, sleep problems or low energy availability. Persistent fatigue, performance decline or concerning symptoms need the appropriate investigation rather than a more favourable chart.
 
-The Performance Management Chart is at its most valuable not when things are going well, but when things are going wrong. Here are the patterns that should make you pause.
+## Which Roadman resource should you use?
 
-**TSB stuck below minus 30 for more than two weeks.** A planned overreach block might dip below minus 30 for a few days. That is fine if it is deliberate and followed by genuine recovery. But if TSB has been below minus 30 for two weeks or more and is not climbing, you are in overreaching territory. The risk of illness, injury, and burnout rises sharply. Back off. Add rest days. Reduce volume by 50 per cent for a week and watch whether TSB recovers. If it does not, something deeper is going on.
+| Need                                                   | Owner                                                                                                                   |
+| ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| Understand CTL, ATL, TSB and the PMC                   | [Training load explained](/blog/training-load-ctl-atl-tsb-explained-cyclists)                                           |
+| Calculate a modelled load sequence                     | [Training load calculator](/tools/training-load)                                                                        |
+| Estimate one ride's TSS                                | [TSS calculator](/tools/tss)                                                                                            |
+| Review today's subjective context                      | [Daily readiness guide](/blog/daily-training-readiness-check-cycling-guide) and [free check](/tools/training-readiness) |
+| Build a taper for a target event                       | [Cycling taper guide](/blog/cycling-tapering-guide)                                                                     |
+| Fit strength and recovery around an existing ride week | Upcoming [Roadman strength and recovery app](/app?source=tsb-guide)                                                     |
+| Have bike and gym load reviewed by a person            | [Roadman cycling coaching](/coaching)                                                                                   |
 
-**CTL rising but performance falling.** This is the classic overtraining precursor. You are doing the work, the numbers say you should be getting fitter, but your power numbers in sessions are stagnant or dropping, your heart rate is elevated at rest, and you feel terrible. The PMC shows a healthy picture, but the body is telling a different story. When CTL and performance diverge, always trust performance.
+The upcoming app will use recent bike load as context when placing strength and recovery. It will not convert one TSB value into a new cycling plan or diagnose the rider.
 
-**Form that never recovers.** You take a recovery week, TSB climbs back toward zero, but you still feel flat. You take another easy week, TSB goes positive, and you still feel awful. When subjective feel and TSB disagree persistently, the model is missing something — usually sleep deficit, nutritional inadequacy, or life stress. The fix is not more rest. The fix is identifying what the model cannot see and addressing it directly.
+## Sources and editorial limits
 
-**Flat CTL for months.** If CTL has not moved in eight weeks despite consistent training, you have hit a plateau. The training stimulus is no longer sufficient to force adaptation. This usually means the intensity distribution needs to change — more time at the extremes (easy or hard), less time in the moderate middle — or the overall volume needs to step up. A flat CTL line is not necessarily a problem if you are in a maintenance phase, but if you expect to be getting fitter and the line disagrees, something needs to change.
+- [TrainingPeaks: Form (TSB) definition and formula](https://help.trainingpeaks.com/hc/en-us/articles/204071764-Form-TSB)
+- [Endurance taper systematic review and meta-analysis (PMID 37163550)](https://pubmed.ncbi.nlm.nih.gov/37163550/)
+- [Athlete taper meta-analysis (PMID 17762369)](https://pubmed.ncbi.nlm.nih.gov/17762369/)
+- [Athlete subjective monitoring systematic review (PMID 26423706)](https://pubmed.ncbi.nlm.nih.gov/26423706/)
+- [Athlete-reported measure validation review (PMID 32957081)](https://pubmed.ncbi.nlm.nih.gov/32957081/)
+- [ECSS/ACSM overtraining consensus (PMID 23247672)](https://pubmed.ncbi.nlm.nih.gov/23247672/)
 
-## Masters-specific considerations
-
-If you are over 40, the standard TSB model needs a mental adjustment. Not because the maths is wrong — it is the same model for everyone — but because the time constants it uses are population averages that skew toward younger athletes.
-
-The practical reality for masters cyclists: fatigue takes longer to clear. The model uses a 7-day time constant for ATL, but many riders over 40 have an effective fatigue decay closer to 9 or 10 days. The consequence is that the TSB number on your screen is slightly more optimistic than your actual readiness. The model says your fatigue should have cleared by Wednesday; your legs say Thursday or Friday.
-
-This is why masters riders typically perform best at the higher end of the TSB window — closer to +20 than +10. Not because they need more rest in theory, but because the model underestimates how much residual fatigue they carry. An extra few days of taper costs a negligible amount of CTL but allows the fatigue that the model does not fully capture to clear.
-
-Three practical adjustments for masters riders:
-
-**Extend your taper by two to three days.** If the standard recommendation is 12 days, plan 14 to 15. The additional days allow the slower fatigue clearance to finish its work. You will lose an extra CTL point or two, but you will arrive with properly fresh legs rather than legs the model says should be fresh.
-
-**Target TSB +15 to +25 for your A-race.** Younger riders can get away with racing at +5 to +10 because their fatigue clears on schedule. Masters riders who race at +5 often find that residual fatigue — invisible to the model — dulls the performance. Push the target higher and see whether your race-day legs improve.
-
-**Watch recovery weeks more carefully.** During a recovery week, track whether TSB actually returns to zero or stays negative. If you consistently finish recovery weeks with a TSB of minus 5 or worse, your recovery weeks are not recovering you. Reduce the volume further, or extend the recovery to five days instead of four. The recovery has to actually land, not just appear to land on the chart.
-
-## Putting it together
-
-TSB is not the answer. It is a very good question — asked in numbers — about whether you are ready. Pair it with subjective feel, sleep data, and awareness of what life is throwing at you, and it becomes legitimately predictive. Treat it as gospel and it will mislead you at least as often as it helps.
-
-The riders I see peak well for their target events share a few traits. They build fitness deliberately, with quality sessions and real recovery. They plan their taper backwards from race day, not forwards from wherever they happen to be. They know their personal TSB target from experience rather than from a generic chart. And they treat the PMC as one input among several, not as the single source of truth.
-
-If you do nothing else after reading this: go back to your three best races or hard efforts from the past twelve months, note the TSB from each, and find the pattern. That one step will tell you more about how to peak for your next event than any amount of theory.
-
-If you want to talk through your own numbers, your season plan, or how to read your PMC for an upcoming race, the [Roadman community on Skool](https://www.skool.com/roadmancycling) is where those conversations happen daily. Bring your chart.
+This page was last reviewed on **1 September 2026**. TSB terminology can differ by platform and settings. Roadman does not present a chart value as a diagnosis, performance forecast or guaranteed taper target.

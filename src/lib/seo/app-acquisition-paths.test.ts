@@ -143,6 +143,8 @@ describe("strength and recovery app acquisition paths", () => {
         "/app?source=strength-over-50-guide",
       "content/blog/cycling-time-crunched-training-guide.mdx":
         "/app?source=time-crunched-guide",
+      "content/blog/cycling-training-stress-balance-tsb-guide.mdx":
+        "/app?source=tsb-guide",
       "content/topics/cycling-recovery.mdx": "/app?source=recovery-hub",
       "content/topics/cycling-strength-conditioning.mdx":
         "/app?source=strength-hub",
