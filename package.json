@@ -98,6 +98,7 @@
     "seo:audit:ownership:strict": "tsx scripts/audit-search-ownership.ts --strict",
     "seo:audit:owners:live": "tsx scripts/audit-live-search-owners.ts",
     "seo:gsc:compare": "tsx scripts/compare-gsc-snapshots.ts",
+    "seo:app:compare": "tsx scripts/compare-app-search-snapshots.ts",
     "seo:opportunities": "tsx scripts/prioritise-search-opportunities.ts",
     "seed:mcp:community-stats": "tsx scripts/seed-mcp-community-stats.ts",
     "seed:mcp:content": "tsx scripts/seed-mcp-content.ts",
