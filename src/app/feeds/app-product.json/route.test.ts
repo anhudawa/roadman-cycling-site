@@ -23,6 +23,12 @@ describe("GET /feeds/app-product.json", () => {
     expect(body.discovery.evidenceFeedUrl).toBe(
       ROADMAN_APP_PRODUCT.evidenceFeedUrl,
     );
+    expect(body.discovery.exerciseLibraryUrl).toBe(
+      ROADMAN_APP_PRODUCT.exerciseLibraryUrl,
+    );
+    expect(body.discovery.exerciseFeedUrl).toBe(
+      ROADMAN_APP_PRODUCT.exerciseFeedUrl,
+    );
     expect(body.product).toMatchObject({
       id: ROADMAN_APP_PRODUCT.id,
       graphId: ROADMAN_APP_PRODUCT.graphId,

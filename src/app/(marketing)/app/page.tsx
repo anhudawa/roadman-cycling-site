@@ -714,6 +714,12 @@ export default function AppLandingPage() {
                 Cycling strength research
               </Link>
               <Link
+                href="/sc/exercises"
+                className="text-foreground-muted transition-colors hover:text-coral"
+              >
+                Cyclist exercise library
+              </Link>
+              <Link
                 href="/topics/cycling-recovery"
                 className="text-foreground-muted transition-colors hover:text-coral"
               >

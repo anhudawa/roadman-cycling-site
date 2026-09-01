@@ -1,177 +1,282 @@
-"use client";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  CYCLING_EXERCISE_LIBRARY,
+  getCyclingExerciseCatalog,
+} from "@/lib/cycling-exercises";
+import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
+import { ExerciseLibraryClient } from "./ExerciseLibraryClient";
 
-import { useState, useMemo } from "react";
-import { getAllExercises, EXERCISE_VIDEO_MAP } from "@/lib/sc-programme";
+const LIBRARY = CYCLING_EXERCISE_LIBRARY;
+const EXERCISES = getCyclingExerciseCatalog();
 
-const CATEGORY_LABELS: Record<string, string> = {
-  warmup: "Warmup",
-  workout: "Workout",
-  "core-circuit": "Core Circuit",
-  "core-standalone": "Core",
-  stretch: "Stretch",
-};
-
-const CATEGORY_BADGE_CLASSES: Record<string, string> = {
-  warmup: "bg-purple text-off-white",
-  workout: "bg-coral text-off-white",
-  "core-circuit": "bg-[#FF9800] text-off-white",
-  "core-standalone": "bg-purple text-off-white",
-  stretch: "bg-[#2196F3] text-off-white",
-};
-
-const FILTER_TABS = [
-  { key: "all", label: "All" },
-  { key: "warmup", label: "Warmup" },
-  { key: "workout", label: "Workout" },
-  { key: "core-circuit", label: "Core Circuit" },
-  { key: "core-standalone", label: "Core" },
-  { key: "stretch", label: "Stretch" },
+const SOURCES = [
+  {
+    name: "Heavy strength training effects in endurance cyclists: systematic review and meta-analysis",
+    href: "https://pubmed.ncbi.nlm.nih.gov/40632222/",
+    publisher: "PubMed",
+    note: "Supports strength training as a category while reporting low-certainty evidence and no universal named-exercise list.",
+  },
+  {
+    name: "Core training effects on sport performance: systematic review and meta-analysis",
+    href: "https://pubmed.ncbi.nlm.nih.gov/36829378/",
+    publisher: "PubMed",
+    note: "Supports cautious claims about trunk capacity rather than automatic cycling-power transfer.",
+  },
+  {
+    name: "Resistance training to failure versus non-failure: systematic review and meta-analysis",
+    href: "https://pubmed.ncbi.nlm.nih.gov/42410632/",
+    publisher: "PubMed",
+    note: "Supports the boundary that technical failure is not required for an exercise set to be useful.",
+  },
 ] as const;
 
+export const metadata: Metadata = {
+  title: { absolute: "Cyclist Exercise Library: Strength, Core & Mobility" },
+  description:
+    "Browse 54 cycling exercises by training job: strength, power, warm-up, core and mobility. Includes programme weeks, coaching cues and evidence links.",
+  alternates: {
+    canonical: LIBRARY.canonicalUrl,
+    types: { "application/json": LIBRARY.feedUrl },
+  },
+  robots: { index: true, follow: true },
+  openGraph: {
+    title: "Cyclist Exercise Library",
+    description:
+      "Search 54 strength, power, core, warm-up and mobility movements used in Roadman's public cycling programme.",
+    type: "website",
+    url: LIBRARY.canonicalUrl,
+    siteName: "Roadman Cycling",
+  },
+};
+
 export default function ExerciseLibraryPage() {
-  const allExercises = useMemo(() => getAllExercises(), []);
-  const [search, setSearch] = useState("");
-  const [activeCategory, setActiveCategory] = useState("all");
-
-  const filtered = useMemo(() => {
-    return allExercises.filter((ex) => {
-      const matchesSearch =
-        search === "" ||
-        ex.name.toLowerCase().includes(search.toLowerCase());
-      const matchesCategory =
-        activeCategory === "all" || ex.category === activeCategory;
-      return matchesSearch && matchesCategory;
-    });
-  }, [allExercises, search, activeCategory]);
-
   return (
     <>
-      {/* Hero */}
-      <section className="bg-deep-purple pt-24 pb-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "CollectionPage",
+              "@id": `${LIBRARY.canonicalUrl}#webpage`,
+              url: LIBRARY.canonicalUrl,
+              name: "Roadman cyclist exercise library",
+              description: metadata.description,
+              isPartOf: { "@id": ENTITY_IDS.website },
+              author: { "@id": ENTITY_IDS.person },
+              publisher: { "@id": ENTITY_IDS.organization },
+              dateModified: LIBRARY.updatedDate,
+              mainEntity: { "@id": `${LIBRARY.canonicalUrl}#exercise-list` },
+              subjectOf: {
+                "@type": "DataFeed",
+                name: "Roadman cycling exercise catalogue",
+                url: LIBRARY.feedUrl,
+              },
+            },
+            {
+              "@type": "ItemList",
+              "@id": `${LIBRARY.canonicalUrl}#exercise-list`,
+              name: "Cyclist strength, core and mobility exercises",
+              numberOfItems: EXERCISES.length,
+              itemListElement: EXERCISES.map((exercise, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                url: exercise.canonicalUrl,
+                item: {
+                  "@type": "Thing",
+                  name: exercise.name,
+                  description:
+                    exercise.description ??
+                    `${exercise.categoryLabel} movement used in Roadman's public cyclist strength programme.`,
+                },
+              })),
+            },
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: SITE_ORIGIN,
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Cycling strength training",
+                  item: `${SITE_ORIGIN}/strength-training`,
+                },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: "Cyclist exercise library",
+                  item: LIBRARY.canonicalUrl,
+                },
+              ],
+            },
+          ],
+        }}
+      />
+
+      <section className="bg-deep-purple pt-24 pb-14">
+        <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+          <p className="font-heading text-sm tracking-[0.22em] text-coral">
+            ROADMAN S&amp;C · 54 MOVEMENTS
+          </p>
           <h1
-            className="font-heading text-off-white mb-4"
-            style={{ fontSize: "var(--text-section)" }}
+            className="mt-4 font-heading leading-[0.95] text-off-white"
+            style={{ fontSize: "var(--text-hero)" }}
           >
-            EXERCISE LIBRARY
+            CYCLIST EXERCISE LIBRARY.
+            <span className="block text-coral">SEARCH BY TRAINING JOB.</span>
           </h1>
-          <p className="text-foreground-muted max-w-xl mx-auto text-lg">
-            Every exercise in the 12-week programme, all in one place.{" "}
-            {allExercises.length} exercises across warmup, workout, core, and
-            stretching.
+          <p className="mx-auto mt-7 max-w-3xl text-lg leading-relaxed text-foreground-muted md:text-xl">
+            Browse every warm-up, strength, power, core and mobility movement in
+            Roadman&apos;s public 12-week programme. Use the catalogue to find a
+            movement; use the evidence guides to decide whether it earns a
+            place.
           </p>
         </div>
       </section>
 
-      {/* Search & Filter */}
-      <section className="bg-[#210140] py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            {/* Search input */}
-            <div className="mb-8">
-              <input
-                type="text"
-                placeholder="Search exercises by name..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-full bg-charcoal border border-white/10 rounded-lg px-4 py-3 text-off-white placeholder:text-mid-grey font-body text-base focus:outline-none focus:border-coral transition-colors"
-              />
-            </div>
-
-            {/* Category filter tabs */}
-            <div className="flex flex-wrap gap-2 mb-8">
-              {FILTER_TABS.map((tab) => (
-                <button
-                  key={tab.key}
-                  onClick={() => setActiveCategory(tab.key)}
-                  className={`px-4 py-2 rounded-lg font-body text-sm transition-colors ${
-                    activeCategory === tab.key
-                      ? "bg-coral text-off-white"
-                      : "bg-[#2E2E30] text-foreground-muted border border-white/10 hover:text-off-white hover:border-white/20"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-
-            {/* Count */}
-            <p className="text-foreground-muted text-sm mb-6">
-              Showing {filtered.length} exercise{filtered.length !== 1 ? "s" : ""}
+      <section className="bg-off-white py-14">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl border border-charcoal/10 bg-white p-6 shadow-sm md:p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-coral">
+              The short answer
             </p>
-
-            {/* Exercise grid */}
-            {filtered.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filtered.map((ex) => (
-                  <div
-                    key={ex.id}
-                    className="bg-[#2E2E30] border border-white/10 rounded-xl overflow-hidden hover:border-white/20 transition-colors"
-                  >
-                    {/* Video embed or placeholder */}
-                    {ex.videoUrl ? (
-                      <div className="relative w-full overflow-hidden" style={{ paddingBottom: '56.25%' }}>
-                        <iframe
-                          src={ex.videoUrl}
-                          title={ex.name}
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                          className="absolute inset-0 w-full h-full border-0"
-                          loading="lazy"
-                        />
-                      </div>
-                    ) : (
-                      <div className="aspect-video bg-[#1a1a1c] flex flex-col items-center justify-center gap-2">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" className="text-mid-grey">
-                          <circle cx="24" cy="24" r="22" stroke="currentColor" strokeWidth="2" opacity="0.4" />
-                          <path d="M19 16L34 24L19 32V16Z" fill="currentColor" opacity="0.4" />
-                        </svg>
-                        <span className="text-mid-grey text-xs font-body">Video coming soon</span>
-                      </div>
-                    )}
-
-                    {/* Card body */}
-                    <div className="p-5">
-                      <h3 className="font-heading text-off-white text-lg mb-2">
-                        {ex.name}
-                      </h3>
-                      <span
-                        className={`inline-block px-3 py-1 rounded-full text-xs font-body ${
-                          CATEGORY_BADGE_CLASSES[ex.category] ??
-                          "bg-mid-grey text-off-white"
-                        }`}
-                      >
-                        {CATEGORY_LABELS[ex.category] ?? ex.category}
-                      </span>
-                      {EXERCISE_VIDEO_MAP[ex.id]?.tip && (
-                        <div className="mt-3 flex items-start gap-2 rounded-lg bg-[#F16363]/8 border border-[#F16363]/20 px-3 py-2">
-                          <svg className="w-3.5 h-3.5 text-coral mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
-                          </svg>
-                          <p className="text-xs text-off-white/70 leading-relaxed">{EXERCISE_VIDEO_MAP[ex.id].tip}</p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-16">
-                <p className="text-foreground-muted text-lg">
-                  No exercises found matching your search.
-                </p>
-                <button
-                  onClick={() => {
-                    setSearch("");
-                    setActiveCategory("all");
-                  }}
-                  className="mt-4 text-coral hover:underline font-body text-sm"
-                >
-                  Clear filters
-                </button>
-              </div>
-            )}
+            <p className="mt-3 text-lg leading-relaxed text-charcoal/75">
+              {LIBRARY.answer}
+            </p>
           </div>
-        </section>
-      </>
+
+          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <RouteCard
+              eyebrow="CHOOSE A ROUTINE"
+              title="Gym exercise guide"
+              body="Build from movement patterns without pretending one lift is mandatory."
+              href="/blog/cycling-gym-exercises-best"
+            />
+            <RouteCard
+              eyebrow="FOLLOW A BLOCK"
+              title="12-week programme"
+              body="See where each exercise appears across general prep, strength and power phases."
+              href="/sc/programme"
+            />
+            <RouteCard
+              eyebrow="TRAIN THE TRUNK"
+              title="15-minute core routine"
+              body="Use a short, evidence-bounded trunk session with regressions and progressions."
+              href="/blog/cycling-core-workout-routine"
+            />
+            <RouteCard
+              eyebrow="COMING TO IPHONE"
+              title="Roadman app"
+              body="Join the single early-access list for strength placed around your riding week."
+              href="/app#early-access"
+            />
+          </div>
+        </div>
+      </section>
+
+      <ExerciseLibraryClient exercises={EXERCISES} />
+
+      <section className="bg-charcoal py-16">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+            <div>
+              <p className="font-heading text-sm tracking-[0.2em] text-coral">
+                THE EVIDENCE BOUNDARY
+              </p>
+              <h2
+                className="mt-3 font-heading text-off-white"
+                style={{ fontSize: "var(--text-section)" }}
+              >
+                A CATALOGUE IS NOT A RANKING.
+              </h2>
+              <p className="mt-5 leading-relaxed text-foreground-muted">
+                Research can support strength training as a category without
+                proving that one squat, hinge or core exercise is best for every
+                cyclist. Exercise choice still depends on the goal, competence,
+                equipment, symptoms, total dose and the next important ride.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-6 md:p-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-coral">
+                How to use this library
+              </p>
+              <ol className="mt-4 space-y-3 text-sm leading-relaxed text-foreground-muted">
+                <li>
+                  1. Start with the training job, not the trendiest exercise
+                  name.
+                </li>
+                <li>
+                  2. Choose a version you can control and progressively load.
+                </li>
+                <li>
+                  3. Use the programme examples as starting doses, not universal
+                  prescriptions.
+                </li>
+                <li>
+                  4. Change the exercise or dose when it repeatedly compromises
+                  priority riding.
+                </li>
+              </ol>
+              <div className="mt-6 flex flex-wrap gap-4 text-sm">
+                <Link
+                  className="text-coral hover:text-coral/80"
+                  href="/tools/strength-session-planner"
+                >
+                  Plan a strength session →
+                </Link>
+                <a
+                  className="text-foreground-muted hover:text-coral"
+                  href={LIBRARY.feedUrl}
+                >
+                  Exercise data feed →
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <EvidenceBlock
+            reviewedSources={SOURCES}
+            lastReviewed={LIBRARY.updatedDate}
+            reviewedBy={LIBRARY.reviewedBy}
+          />
+        </div>
+      </section>
+    </>
+  );
+}
+
+function RouteCard({
+  eyebrow,
+  title,
+  body,
+  href,
+}: {
+  eyebrow: string;
+  title: string;
+  body: string;
+  href: string;
+}) {
+  return (
+    <Link
+      href={href}
+      className="rounded-2xl border border-charcoal/10 bg-white p-5 shadow-sm transition-transform hover:-translate-y-1"
+    >
+      <p className="text-xs font-semibold tracking-[0.16em] text-coral">
+        {eyebrow}
+      </p>
+      <h2 className="mt-3 font-heading text-2xl text-charcoal">{title}</h2>
+      <p className="mt-2 text-sm leading-relaxed text-charcoal/65">{body}</p>
+      <span className="mt-4 inline-block text-sm font-semibold text-coral">
+        Open →
+      </span>
+    </Link>
   );
 }

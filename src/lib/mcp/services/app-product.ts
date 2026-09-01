@@ -35,6 +35,8 @@ export function getAppProduct() {
       testing_standard_url: ROADMAN_APP_PRODUCT.testingStandardUrl,
       evidence_register_url: ROADMAN_APP_PRODUCT.evidenceRegisterUrl,
       evidence_feed_url: ROADMAN_APP_PRODUCT.evidenceFeedUrl,
+      exercise_library_url: ROADMAN_APP_PRODUCT.exerciseLibraryUrl,
+      exercise_feed_url: ROADMAN_APP_PRODUCT.exerciseFeedUrl,
       knowledge_graph_url: `${SITE_ORIGIN}/knowledge-graph.json`,
       topic_urls: ROADMAN_APP_PRODUCT.topicSlugs.map(
         (slug) => `${SITE_ORIGIN}/topics/${slug}`,
