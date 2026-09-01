@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 384,
+    "prompt_count": 385,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -3104,6 +3104,14 @@
       "category": "cycling-training-plans",
       "intent": "evaluation",
       "target_page": "/blog/sportive-training-readiness-index-2026",
+      "priority": "high"
+    },
+    {
+      "id": 385,
+      "prompt": "how should an amateur cyclist benchmark a fuelling plan by ride duration intensity carbs per hour actual intake gut tolerance female evidence energy availability and late ride performance without copying a WorldTour 120 gram target",
+      "category": "cycling-nutrition",
+      "intent": "evaluation",
+      "target_page": "/blog/amateur-cyclist-fuelling-benchmarks-report-2026",
       "priority": "high"
     }
   ]
