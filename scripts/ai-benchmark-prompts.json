@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 377,
+    "prompt_count": 378,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -3048,6 +3048,14 @@
       "category": "masters-cycling",
       "intent": "evaluation",
       "target_page": "/blog/cycling-testosterone-and-training-over-40-guide",
+      "priority": "high"
+    },
+    {
+      "id": 378,
+      "prompt": "how do hormones affect cycling recovery after 40 and when should masters cyclists test testosterone cortisol thyroid growth hormone menopause or low energy availability",
+      "category": "masters-cycling",
+      "intent": "problem-aware",
+      "target_page": "/blog/masters-cycling-hormones-performance-guide",
       "priority": "high"
     }
   ]
