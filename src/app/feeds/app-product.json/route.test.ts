@@ -14,6 +14,9 @@ describe("GET /feeds/app-product.json", () => {
     expect(body.discovery.methodologyUrl).toBe(
       ROADMAN_APP_PRODUCT.methodologyUrl,
     );
+    expect(body.discovery.testingStandardUrl).toBe(
+      ROADMAN_APP_PRODUCT.testingStandardUrl,
+    );
     expect(body.product).toMatchObject({
       id: ROADMAN_APP_PRODUCT.id,
       graphId: ROADMAN_APP_PRODUCT.graphId,
