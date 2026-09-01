@@ -666,6 +666,12 @@ export default function AppLandingPage() {
             </p>
             <div className="mt-7 flex flex-wrap justify-center gap-x-7 gap-y-4 text-sm">
               <Link
+                href="/app/masters"
+                className="text-foreground-muted transition-colors hover:text-coral"
+              >
+                App for masters cyclists over 40
+              </Link>
+              <Link
                 href="/app/methodology"
                 className="text-foreground-muted transition-colors hover:text-coral"
               >

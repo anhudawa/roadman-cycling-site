@@ -295,10 +295,22 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
       "strength training app for cyclists",
       "cycling recovery app",
       "cycling readiness app",
+      "cycling app for over 40",
+      "cycling app for over 50",
+      "cycling app for masters cyclists",
+      "masters cycling app",
+      "cycling strength app for masters cyclists",
+      "cycling recovery app for older cyclists",
       "roadman cycling app",
       "roadman app",
     ],
     supportingDestinations: [
+      {
+        path: "/app/masters",
+        label: "Cycling Strength & Recovery App for Masters Cyclists",
+        intent:
+          "Product-fit and early-access questions from cyclists over 40 and over 50",
+      },
       {
         path: "/best/best-cycling-strength-training-apps",
         label: "Best Cycling Strength Training Apps",

@@ -84,6 +84,7 @@ describe("Roadman strength and recovery app search owner", () => {
     expect(html).not.toContain("Pocket Coach");
 
     for (const href of [
+      "/app/masters",
       "/app/methodology",
       "/app/testing",
       "/app/evidence",

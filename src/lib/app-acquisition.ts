@@ -24,6 +24,7 @@ export const APP_ACQUISITION_SOURCES = new Set([
   "magnesium-guide",
   "massage-gun-guide",
   "masters-hub",
+  "masters-app",
   "masters-hormones-guide",
   "mobility-guide",
   "off-season-strength",

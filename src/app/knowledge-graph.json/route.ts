@@ -87,6 +87,7 @@ interface GraphNode {
   recoveryKnowledgeUrl?: string;
   recoveryLibraryUrl?: string;
   recoveryFeedUrl?: string;
+  mastersSegmentUrl?: string;
 }
 
 interface GraphEdge {
@@ -249,6 +250,7 @@ export function GET() {
     recoveryKnowledgeUrl: ROADMAN_APP_PRODUCT.recoveryKnowledgeUrl,
     recoveryLibraryUrl: ROADMAN_APP_PRODUCT.recoveryLibraryUrl,
     recoveryFeedUrl: ROADMAN_APP_PRODUCT.recoveryFeedUrl,
+    mastersSegmentUrl: ROADMAN_APP_PRODUCT.mastersSegmentUrl,
   });
   pushEdge(ROADMAN_APP_PRODUCT.graphId, roadmanOrganizationId, "developed_by");
   pushEdge(

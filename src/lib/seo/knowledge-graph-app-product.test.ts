@@ -42,6 +42,7 @@ describe("Roadman app knowledge-graph entity", () => {
         recoveryKnowledgeUrl: ROADMAN_APP_PRODUCT.recoveryKnowledgeUrl,
         recoveryLibraryUrl: ROADMAN_APP_PRODUCT.recoveryLibraryUrl,
         recoveryFeedUrl: ROADMAN_APP_PRODUCT.recoveryFeedUrl,
+        mastersSegmentUrl: ROADMAN_APP_PRODUCT.mastersSegmentUrl,
       }),
     );
     expect(graph.nodes).toContainEqual(

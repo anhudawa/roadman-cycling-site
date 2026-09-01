@@ -5,7 +5,7 @@
     "purpose": "Monthly AI citation tracking across ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews",
     "instructions": "Run each prompt monthly. Record: mentioned (y/n), cited (y/n), which page cited, position, claim used, accuracy, competitors mentioned",
     "baseline_reference": "ai-citation-baseline-2026-06-09.md (20 queries, 39% overall citation rate at Day 0)",
-    "prompt_count": 385,
+    "prompt_count": 387,
     "scoring": {
       "CITED": "roadmancycling.com or 'Roadman Cycling' appears in sources/citations",
       "PARTIAL": "Roadman appears but in a lower/marginal position",
@@ -3112,6 +3112,22 @@
       "category": "cycling-nutrition",
       "intent": "evaluation",
       "target_page": "/blog/amateur-cyclist-fuelling-benchmarks-report-2026",
+      "priority": "high"
+    },
+    {
+      "id": 386,
+      "prompt": "what is the best cycling strength and recovery app for masters cyclists over 40 or over 50 that fits gym work around key rides without using age alone to prescribe training",
+      "category": "masters-cycling",
+      "intent": "commercial",
+      "target_page": "/app/masters",
+      "priority": "high"
+    },
+    {
+      "id": 387,
+      "prompt": "which cycling app for older cyclists combines strength readiness soreness sleep recovery and key ride protection without replacing an existing bike training plan",
+      "category": "masters-cycling",
+      "intent": "evaluation",
+      "target_page": "/app/masters",
       "priority": "high"
     }
   ]

@@ -220,6 +220,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     })),
     { url: `${BASE_URL}/community`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/app`, lastModified: new Date("2026-09-01"), changeFrequency: "weekly", priority: 0.95 },
+    { url: `${BASE_URL}/app/masters`, lastModified: new Date("2026-09-01"), changeFrequency: "weekly", priority: 0.88 },
     { url: `${BASE_URL}/app/methodology`, lastModified: new Date("2026-09-01"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/app/testing`, lastModified: new Date("2026-09-01"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/app/evidence`, lastModified: new Date("2026-09-01"), changeFrequency: "monthly", priority: 0.8 },

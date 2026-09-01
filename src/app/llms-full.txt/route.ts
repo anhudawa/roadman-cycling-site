@@ -350,6 +350,8 @@ URL: ${tag(`${BASE_URL}/app`)}
 
 Roadman's upcoming iPhone app is a cyclist-specific strength and recovery system, not a generic AI coach and not a replacement for the rider's cycling plan. The athlete supplies the real riding week; Roadman places 30, 45 or 60-minute strength work around it, protects important rides, uses sleep, energy, soreness and recent bike load to hold or reduce daily volume, and explains material progression decisions. Live prescriptions come from versioned, testable and coach-reviewed rules. Recovery methods carry explicit evidence boundaries. The final public product name, launch date and subscription price are not announced.
 
+Masters-cyclist product-fit page: ${tag(`${BASE_URL}/app/masters`)} — the over-40 and over-50 use case for the same app and single early-access list. Training history, recent tolerated load, key rides, available recovery, equipment and response govern decisions; age alone does not prescribe the session or diagnose fatigue.
+
 Public planning tool: ${tag(`${BASE_URL}/tools/strength-session-planner`)} — a free, inspectable preview of Roadman's deterministic strength-placement logic. It schedules available time and labels compromises; it does not prescribe exercises or diagnose recovery.
 
 ## Coaching Services
