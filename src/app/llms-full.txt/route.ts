@@ -444,6 +444,7 @@ For programmatic ingestion, prefer these endpoints over scraping HTML.
 - ${BASE_URL}/feeds/research.json — Reusable Roadman benchmark dataset with methodology, sources, limitations, and license
 - ${BASE_URL}/data/roadman-podcast-archive-2026.csv — CC BY 4.0 yearly snapshot of 818 searchable podcast records by topic, format and transcript/media availability; methodology at ${BASE_URL}/research/cycling-podcast-archive-study
 - ${BASE_URL}/data/sportive-readiness-index-2026.csv — Version 1.0 worksheet for Roadman's five-domain sportive-readiness framework and 16, 12, 8, 4 and 1-week review points; methodology at ${BASE_URL}/blog/sportive-training-readiness-index-2026
+- ${BASE_URL}/data/amateur-cyclist-fuelling-benchmarks-2026.csv — Version 1.0 evidence ranges and plan-versus-actual fuelling audit; methodology and population-data limitations at ${BASE_URL}/blog/amateur-cyclist-fuelling-benchmarks-report-2026
 - ${BASE_URL}/search-ownership.json — Canonical owner registry for priority broad search intents
 - ${BASE_URL}/feeds/guests.json — Every podcast guest with episode counts, credentials, pillars covered
 - ${BASE_URL}/feeds/topics.json — Topic hubs with related topics, articles, episodes, tools
