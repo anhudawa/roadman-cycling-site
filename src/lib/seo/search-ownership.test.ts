@@ -12,9 +12,9 @@ import {
 
 describe("search ownership registry", () => {
   it("declares one unique route for every priority query family", () => {
-    expect(SEARCH_OWNERS).toHaveLength(6);
-    expect(new Set(SEARCH_OWNERS.map((owner) => owner.path)).size).toBe(6);
-    expect(new Set(SEARCH_OWNERS.map((owner) => owner.primaryQuery)).size).toBe(6);
+    expect(SEARCH_OWNERS).toHaveLength(7);
+    expect(new Set(SEARCH_OWNERS.map((owner) => owner.path)).size).toBe(7);
+    expect(new Set(SEARCH_OWNERS.map((owner) => owner.primaryQuery)).size).toBe(7);
   });
 
   it("maps narrow supporting content to its broad owner", () => {
@@ -31,6 +31,12 @@ describe("search ownership registry", () => {
       "/app",
     );
     expect(resolveSearchOwner(["strength training app for cyclists"])?.path).toBe(
+      "/app",
+    );
+    expect(resolveSearchOwner(["how to recover after cycling"])?.path).toBe(
+      "/blog/cycling-recovery-tips",
+    );
+    expect(resolveSearchOwner(["best cycling recovery app"])?.path).toBe(
       "/app",
     );
   });
@@ -74,6 +80,15 @@ describe("search ownership registry", () => {
     expect(
       getSearchOwnerFallbackForTopicHub("cycling-nutrition"),
     ).toBeUndefined();
+    expect(getSearchOwnerFallbackForTopicHub("cycling-recovery")).toBe(
+      "cycling-recovery",
+    );
+    expect(
+      resolveSearchOwner(["Cycling Recovery: What Actually Works After a Ride"], {
+        currentPath: "/blog/cycling-recovery-tips",
+        fallbackId: "cycling-recovery",
+      }),
+    ).toBeNull();
   });
 
   it("does not manufacture a match for unrelated content", () => {
@@ -126,5 +141,9 @@ describe("search ownership registry", () => {
     expect(podcastOwner.supportingDestinations[0].url).toBe(
       "https://roadmancycling.com/blog/best-cycling-podcasts-2026",
     );
+    expect(
+      serialiseSearchOwners().find((owner) => owner.id === "cycling-recovery")
+        ?.dataUrl,
+    ).toBe("https://roadmancycling.com/feeds/cycling-recovery.json");
   });
 });

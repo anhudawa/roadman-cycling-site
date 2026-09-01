@@ -726,10 +726,22 @@ export default function AppLandingPage() {
                 12-week strength programme data
               </Link>
               <Link
+                href="/blog/cycling-recovery-tips"
+                className="text-foreground-muted transition-colors hover:text-coral"
+              >
+                Cycling recovery guide
+              </Link>
+              <Link
                 href="/topics/cycling-recovery"
                 className="text-foreground-muted transition-colors hover:text-coral"
               >
                 Cycling recovery research
+              </Link>
+              <Link
+                href="/feeds/cycling-recovery.json"
+                className="text-foreground-muted transition-colors hover:text-coral"
+              >
+                Cycling recovery evidence data
               </Link>
               <Link
                 href="/tools/strength-session-planner"

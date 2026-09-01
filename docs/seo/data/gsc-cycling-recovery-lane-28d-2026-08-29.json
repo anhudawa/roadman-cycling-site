@@ -1,0 +1,145 @@
+{
+  "property": "sc-domain:roadmancycling.com",
+  "searchType": "Web",
+  "dateRange": {
+    "preset": "28 days",
+    "start": "2026-08-02",
+    "end": "2026-08-29"
+  },
+  "capturedAt": "2026-09-01",
+  "queryFilter": {
+    "type": "custom-regex",
+    "value": "(cyclist|cycling).*(recovery|recover|rest.?day|soreness|sleep)|(recovery|recover|rest.?day|soreness|sleep).*(cyclist|cycling)"
+  },
+  "totals": {
+    "clicks": 10,
+    "impressions": 2400,
+    "impressionsDisplay": "2.4K",
+    "ctrPercent": 0.4,
+    "averagePosition": 15.3,
+    "matchingQueries": 139
+  },
+  "topRelevantQueryRows": [
+    {
+      "query": "active recovery cycling",
+      "clicks": 2,
+      "impressions": 29
+    },
+    {
+      "query": "cycling and sleep",
+      "clicks": 1,
+      "impressions": 74
+    },
+    {
+      "query": "cycling recovery week",
+      "clicks": 1,
+      "impressions": 19
+    },
+    {
+      "query": "cycling recovery",
+      "clicks": 0,
+      "impressions": 31
+    },
+    {
+      "query": "recovery ride cycling",
+      "clicks": 0,
+      "impressions": 68
+    },
+    {
+      "query": "cycling recovery drink",
+      "clicks": 0,
+      "impressions": 56
+    },
+    {
+      "query": "cycling rest days",
+      "clicks": 0,
+      "impressions": 20
+    },
+    {
+      "query": "recovery strategies for cyclists",
+      "clicks": 0,
+      "impressions": 10
+    }
+  ],
+  "visiblePageRows": [
+    {
+      "path": "/blog/cycling-active-recovery-rides-guide",
+      "clicks": 2,
+      "impressions": 225,
+      "intent": "active-recovery-owner"
+    },
+    {
+      "path": "/blog/best-recovery-foods-after-cycling",
+      "clicks": 1,
+      "impressions": 280,
+      "intent": "recovery-food-owner"
+    },
+    {
+      "path": "/blog/cycling-sleep-performance-guide",
+      "clicks": 1,
+      "impressions": 113,
+      "intent": "sleep-owner"
+    },
+    {
+      "path": "/blog/cycling-recovery-tips",
+      "clicks": 1,
+      "impressions": 105,
+      "intent": "recovery-tips-support"
+    },
+    {
+      "path": "/blog/cycling-recovery-week-what-to-actually-do",
+      "clicks": 1,
+      "impressions": 38,
+      "intent": "recovery-week-owner"
+    },
+    {
+      "path": "/topics/cycling-recovery",
+      "clicks": 0,
+      "impressions": 17,
+      "intent": "formalised-broad-owner"
+    }
+  ],
+  "decision": {
+    "broadEducationalOwner": "/blog/cycling-recovery-tips",
+    "supportingResearchLibrary": "/topics/cycling-recovery",
+    "productOwner": "/app",
+    "retainNarrowOwners": true,
+    "reason": "The lane has strong combined demand but fragmented Roadman visibility. Exact head-term validation shows the existing cycling-recovery-tips article leads broad intent, so it remains the owner while the topic hub becomes the research library and narrower articles keep active-recovery, food, sleep and recovery-week questions."
+  },
+  "headTermValidation": {
+    "queryFilter": "^(cycling recovery|cyclist recovery|recovery after cycling|cycling recovery tips|recovery strategies for cyclists|how to recover after cycling|road cycling recovery tips|recovery cycling)$",
+    "totals": {
+      "clicks": 2,
+      "impressions": 67,
+      "ctrPercent": 3,
+      "averagePosition": 21.3
+    },
+    "visiblePageRows": [
+      {
+        "path": "/blog/cycling-recovery-tips",
+        "clicks": 1,
+        "impressions": 73,
+        "decision": "retain-as-broad-owner"
+      },
+      {
+        "path": "/topics/cycling-recovery",
+        "clicks": 0,
+        "impressions": 10,
+        "decision": "supporting-research-library"
+      }
+    ],
+    "note": "Filtered page rows are partial and are not summed against the card total. They are used only for directional ownership evidence."
+  },
+  "confounders": [
+    {
+      "query": "masters cyclists lower back pain recovery tips questions",
+      "clicks": 0,
+      "impressions": 1245,
+      "note": "The broad regex captures a long lower-back query. It remains in the card total but is not treated as head-term recovery demand."
+    }
+  ],
+  "notes": [
+    "Google Search Console states that filtered chart totals and table rows may be partial; visible page rows are not summed as if they equal the card total.",
+    "The broad lane is retained as a reproducible fragmentation monitor. Follow-up measurement should also run narrower exact-query groups so the lower-back confounder cannot obscure owner movement."
+  ]
+}

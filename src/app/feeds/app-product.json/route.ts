@@ -54,6 +54,9 @@ export function GET() {
           ROADMAN_APP_PRODUCT.relatedStrengthProgrammeUrl,
         relatedStrengthProgrammeFeedUrl:
           ROADMAN_APP_PRODUCT.relatedStrengthProgrammeFeedUrl,
+        recoveryKnowledgeUrl: ROADMAN_APP_PRODUCT.recoveryKnowledgeUrl,
+        recoveryLibraryUrl: ROADMAN_APP_PRODUCT.recoveryLibraryUrl,
+        recoveryFeedUrl: ROADMAN_APP_PRODUCT.recoveryFeedUrl,
         knowledgeGraphUrl: feedUrl("/knowledge-graph.json"),
         mcpManifestUrl: feedUrl("/.well-known/mcp.json"),
         topicUrls: ROADMAN_APP_PRODUCT.topicSlugs.map((slug) =>

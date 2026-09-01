@@ -51,6 +51,13 @@ describe("knowledge graph search ownership", () => {
       target: "article:what-to-expect-cycling-training-camp",
       relationship: "supported_by",
     });
+    expect(graph.nodes).toContainEqual(
+      expect.objectContaining({
+        id: "entity:search-owner:cycling-recovery",
+        url: "https://roadmancycling.com/blog/cycling-recovery-tips",
+        dataUrl: "https://roadmancycling.com/feeds/cycling-recovery.json",
+      }),
+    );
 
     expect(graph.meta.edgesByRelationship.maintained_by).toBeGreaterThanOrEqual(
       SEARCH_OWNERS.length,

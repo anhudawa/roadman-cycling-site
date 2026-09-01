@@ -84,6 +84,9 @@ interface GraphNode {
   exerciseFeedUrl?: string;
   relatedStrengthProgrammeUrl?: string;
   relatedStrengthProgrammeFeedUrl?: string;
+  recoveryKnowledgeUrl?: string;
+  recoveryLibraryUrl?: string;
+  recoveryFeedUrl?: string;
 }
 
 interface GraphEdge {
@@ -243,6 +246,9 @@ export function GET() {
       ROADMAN_APP_PRODUCT.relatedStrengthProgrammeUrl,
     relatedStrengthProgrammeFeedUrl:
       ROADMAN_APP_PRODUCT.relatedStrengthProgrammeFeedUrl,
+    recoveryKnowledgeUrl: ROADMAN_APP_PRODUCT.recoveryKnowledgeUrl,
+    recoveryLibraryUrl: ROADMAN_APP_PRODUCT.recoveryLibraryUrl,
+    recoveryFeedUrl: ROADMAN_APP_PRODUCT.recoveryFeedUrl,
   });
   pushEdge(ROADMAN_APP_PRODUCT.graphId, roadmanOrganizationId, "developed_by");
   pushEdge(
@@ -288,6 +294,7 @@ export function GET() {
       name: owner.label,
       url: feedUrl(owner.path),
       description: owner.description,
+      ...(owner.dataPath && { dataUrl: feedUrl(owner.dataPath) }),
     });
     pushEdge(ownerNodeId, "person:anthony-walsh", "maintained_by");
 

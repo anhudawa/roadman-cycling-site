@@ -77,6 +77,15 @@ function intentKey(title: string): string {
 
 function routeExists(routePath: string): boolean {
   const target = routePath.replace(/^\//, "");
+  const [contentType, contentSlug, ...contentRemainder] = target.split("/");
+  if (
+    contentRemainder.length === 0 &&
+    (contentType === "blog" || contentType === "podcast") &&
+    contentSlug &&
+    fs.existsSync(path.join(root, "content", contentType, `${contentSlug}.mdx`))
+  ) {
+    return true;
+  }
   const appDir = path.join(root, "src/app");
   const stack = [appDir];
   while (stack.length) {

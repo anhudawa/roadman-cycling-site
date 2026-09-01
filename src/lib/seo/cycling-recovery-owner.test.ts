@@ -2,6 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { describe, expect, it } from "vitest";
+import { getTopicBySlug } from "@/lib/topics";
+import { SEARCH_OWNER_BY_ID } from "./search-ownership";
 
 const ROOT = process.cwd();
 const OWNER = "cycling-recovery-tips";
@@ -135,5 +137,32 @@ describe("cycling recovery search owner", () => {
     expect(prompts.prompts).toContainEqual(
       expect.objectContaining({ id: 358, target_page: `/blog/${OWNER}` }),
     );
+  });
+
+  it("publishes reviewed claims and primary sources on the research library", () => {
+    const topic = getTopicBySlug("cycling-recovery");
+
+    expect(topic?.lastReviewed).toBe("2026-09-01");
+    expect(topic?.citedClaims).toHaveLength(4);
+    expect(topic?.sources).toHaveLength(6);
+    expect(SEARCH_OWNER_BY_ID.get("cycling-recovery")?.path).toBe(
+      "/blog/cycling-recovery-tips",
+    );
+  });
+
+  it("connects the owner schema and removes unsafe library prescriptions", () => {
+    const ownerPage = read("src/app/(content)/blog/[slug]/page.tsx");
+    const libraryPage = read("src/app/(content)/topics/[slug]/page.tsx");
+    const content = read("content/topics/cycling-recovery.mdx");
+
+    expect(ownerPage).toContain("buildSearchOwnerTrustProperties(");
+    expect(ownerPage).toContain("directSearchOwner");
+    expect(ownerPage).toContain("/feeds/cycling-recovery.json");
+    expect(libraryPage).toContain("/feeds/cycling-recovery.json");
+    expect(content).toContain("machine-readable cycling recovery evidence map");
+    expect(content).not.toContain("magnesium-and-glycine combination");
+    expect(content).not.toContain("Every 3-4 weeks");
+    expect(content).not.toContain("under 30 kcal/kg/lbm/day");
+    expect(content).not.toContain("Three weeks of Zone 2 base");
   });
 });

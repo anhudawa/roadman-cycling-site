@@ -442,6 +442,7 @@ For programmatic ingestion, prefer these endpoints over scraping HTML.
 - ${BASE_URL}/sc/exercises — Searchable cyclist exercise catalogue with 54 programme movements, categories, coaching cues and links to the evidence owners
 - ${BASE_URL}/feeds/cycling-exercises.json — Machine-readable exercise catalogue with programme weeks, example prescriptions, video availability and explicit non-ranking status
 - ${BASE_URL}/feeds/cycling-strength-programme.json — Complete 12-week, 24-session cyclist strength programme example with phase structure, exact example doses, canonical editorial owner, noindex supporting-tool policy and explicit non-individualisation and app-evidence boundaries
+- ${BASE_URL}/feeds/cycling-recovery.json — Evidence-bounded cycling recovery map covering sleep, food and fluid, low-load time, readiness monitoring, optional modalities, clinical handoff and explicit separation from prelaunch app-effectiveness claims
 - ${BASE_URL}/sitemap.xml — Full canonical sitemap index for the live site
 - ${BASE_URL}/feed/podcast — Podcast RSS feed
 - ${BASE_URL}/feed/blog — Blog RSS 2.0 feed (latest 50 posts)

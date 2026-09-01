@@ -39,6 +39,9 @@ describe("Roadman app knowledge-graph entity", () => {
           ROADMAN_APP_PRODUCT.relatedStrengthProgrammeUrl,
         relatedStrengthProgrammeFeedUrl:
           ROADMAN_APP_PRODUCT.relatedStrengthProgrammeFeedUrl,
+        recoveryKnowledgeUrl: ROADMAN_APP_PRODUCT.recoveryKnowledgeUrl,
+        recoveryLibraryUrl: ROADMAN_APP_PRODUCT.recoveryLibraryUrl,
+        recoveryFeedUrl: ROADMAN_APP_PRODUCT.recoveryFeedUrl,
       }),
     );
     expect(graph.nodes).toContainEqual(

@@ -35,6 +35,15 @@ describe("GET /feeds/app-product.json", () => {
     expect(body.discovery.relatedStrengthProgrammeFeedUrl).toBe(
       ROADMAN_APP_PRODUCT.relatedStrengthProgrammeFeedUrl,
     );
+    expect(body.discovery.recoveryKnowledgeUrl).toBe(
+      ROADMAN_APP_PRODUCT.recoveryKnowledgeUrl,
+    );
+    expect(body.discovery.recoveryLibraryUrl).toBe(
+      ROADMAN_APP_PRODUCT.recoveryLibraryUrl,
+    );
+    expect(body.discovery.recoveryFeedUrl).toBe(
+      ROADMAN_APP_PRODUCT.recoveryFeedUrl,
+    );
     expect(body.product).toMatchObject({
       id: ROADMAN_APP_PRODUCT.id,
       graphId: ROADMAN_APP_PRODUCT.graphId,
