@@ -8,7 +8,9 @@ import { searchMethodology } from "./services/methodology";
 import { listProducts } from "./services/products";
 import { listUpcomingEvents } from "./services/events";
 import { qualifyLead } from "./services/qualification";
+import { listResearchAssets } from "./services/research";
 import { registerResources } from "./resources";
+import { RESEARCH_ASSET_KINDS } from "@/data/research-assets";
 
 async function withLogging<T>(
   toolName: string,
@@ -49,7 +51,7 @@ function toText(data: unknown): { content: [{ type: "text"; text: string }] } {
 export function buildMcpServer(ip = "unknown"): McpServer {
   const server = new McpServer({
     name: "roadman-cycling",
-    version: "1.0.0",
+    version: "1.1.0",
   });
 
   // ── get_community_stats ───────────────────────────────────
@@ -194,6 +196,34 @@ export function buildMcpServer(ip = "unknown"): McpServer {
       );
       return toText(results);
     }
+  );
+
+  // ── list_research_assets ─────────────────────────────────
+  server.tool(
+    "list_research_assets",
+    "Return Roadman Cycling's reusable datasets, archive studies, coaching frameworks and evidence benchmarks with method pages, downloads, reuse terms and explicit limitations. Filter by asset type or search term. Use this when a user needs a citable Roadman source or asks what Roadman's original research can support.",
+    {
+      query: z
+        .string()
+        .max(200)
+        .optional()
+        .describe("Optional subject search, for example 'fuelling' or 'sportive readiness'"),
+      kind: z
+        .enum(RESEARCH_ASSET_KINDS)
+        .optional()
+        .describe(
+          "Optional evidence-type filter: dataset, archive-study, coaching-framework, or evidence-benchmark",
+        ),
+    },
+    async ({ query, kind }) => {
+      const assets = await withLogging(
+        "list_research_assets",
+        ip,
+        { query, kind },
+        async () => listResearchAssets(query, kind),
+      );
+      return toText(assets);
+    },
   );
 
   // ── list_products ─────────────────────────────────────────

@@ -39,6 +39,7 @@ import { buildMcpServer } from "@/lib/mcp/server";
 import { searchEpisodes, getEpisode } from "@/lib/mcp/services/episodes";
 import { listExperts, getExpertInsights } from "@/lib/mcp/services/experts";
 import { searchMethodology } from "@/lib/mcp/services/methodology";
+import { listResearchAssets } from "@/lib/mcp/services/research";
 
 describe("search_episodes service", () => {
   it("returns array (even when no embeddings exist)", async () => {
@@ -105,6 +106,33 @@ describe("search_methodology service", () => {
   });
 });
 
+describe("list_research_assets service", () => {
+  it("returns all typed assets with limitations by default", () => {
+    const result = listResearchAssets();
+
+    expect(result.count).toBe(4);
+    expect(result.assets.every((asset) => asset.limitations.length >= 3)).toBe(
+      true,
+    );
+  });
+
+  it("filters by evidence type and subject without relabelling the asset", () => {
+    const byKind = listResearchAssets(undefined, "evidence-benchmark");
+    const bySubject = listResearchAssets("sportive readiness");
+
+    expect(byKind.assets).toHaveLength(1);
+    expect(byKind.assets[0].kind).toBe("evidence-benchmark");
+    expect(bySubject.assets).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: "sportive-readiness-index-2026",
+          kind: "coaching-framework",
+        }),
+      ]),
+    );
+  });
+});
+
 describe("MCP server — content tool names", () => {
   it("registers all content tools", () => {
     const server = buildMcpServer("test");
@@ -117,5 +145,6 @@ describe("MCP server — content tool names", () => {
     expect(tools).toContain("list_experts");
     expect(tools).toContain("get_expert_insights");
     expect(tools).toContain("search_methodology");
+    expect(tools).toContain("list_research_assets");
   });
 });

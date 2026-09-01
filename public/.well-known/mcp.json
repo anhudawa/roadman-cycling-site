@@ -3,8 +3,8 @@
     "roadman-cycling": {
       "url": "https://roadmancycling.com/api/mcp",
       "name": "Roadman Cycling",
-      "description": "MCP server for the Roadman Cycling platform. Provides semantic search over 1,400+ podcast episodes, expert coaching insights, training methodology, product catalogue, upcoming events, and community statistics. Useful for any AI assistant helping cyclists learn, train, or join the Roadman community.",
-      "version": "1.0.0",
+      "description": "MCP server for the Roadman Cycling platform. Provides semantic search over 1,400+ podcast episodes, expert coaching insights, evidence-bounded training methodology, typed research assets, product catalogue, upcoming events, and community statistics. Useful for any AI assistant helping cyclists learn, train, or join the Roadman community.",
+      "version": "1.1.0",
       "transport": "streamable-http",
       "tools": [
         {
@@ -32,6 +32,10 @@
           "description": "Semantic search over Roadman coaching methodology principles"
         },
         {
+          "name": "list_research_assets",
+          "description": "Typed Roadman datasets, studies, frameworks and evidence benchmarks with limitations and downloads"
+        },
+        {
           "name": "list_products",
           "description": "Active product catalogue with pricing"
         },
@@ -56,6 +60,10 @@
         {
           "uri": "roadman://experts/roster",
           "description": "Named expert credentials and specialist areas"
+        },
+        {
+          "uri": "roadman://research/assets",
+          "description": "Versioned research assets with evidence type, methodology, limitations, reuse terms and downloads"
         }
       ]
     }

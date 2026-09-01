@@ -78,6 +78,8 @@ describe("GET /llms.txt", () => {
     const body = await (await GET()).text();
     expect(body).toContain("get_community_stats");
     expect(body).toContain("search_episodes");
+    expect(body).toContain("list_research_assets");
+    expect(body).toContain("roadman://research/assets");
     expect(body).toContain("60 requests/minute per IP");
   });
 });

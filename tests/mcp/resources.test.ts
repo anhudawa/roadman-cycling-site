@@ -29,7 +29,7 @@ function getResource(server: ReturnType<typeof buildMcpServer>, uri: string) {
 }
 
 describe("MCP resources — registration", () => {
-  it("registers all 3 resource URIs", () => {
+  it("registers all 4 resource URIs", () => {
     const server = buildMcpServer("test");
     const registry = (
       server as unknown as { _registeredResources: Record<string, unknown> }
@@ -38,6 +38,7 @@ describe("MCP resources — registration", () => {
     expect(uris).toContain("roadman://brand/overview");
     expect(uris).toContain("roadman://methodology/principles");
     expect(uris).toContain("roadman://experts/roster");
+    expect(uris).toContain("roadman://research/assets");
   });
 });
 
@@ -63,6 +64,9 @@ describe("MCP resources — content", () => {
     expect(text).toContain("Polarised Training");
     expect(text).toContain("Seiler");
     expect(text).toContain("Masters");
+    expect(text).toContain("not a universal rule");
+    expect(text).not.toContain("causes chronic fatigue without corresponding adaptation");
+    expect(text).not.toContain("1:4 ratio minimum");
   });
 
   it("experts/roster lists named experts", async () => {
@@ -74,6 +78,35 @@ describe("MCP resources — content", () => {
     expect(text).toContain("Dan Lorang");
     expect(text).toContain("Dr. David Dunne");
     expect(text).toContain("Joe Friel");
+    expect(text).not.toContain("Coined the 80/20 rule");
+  });
+
+  it("research/assets preserves types, limitations and direct data URLs", async () => {
+    const server = buildMcpServer("test");
+    const resource = getResource(server, "roadman://research/assets");
+    const result = await resource.readCallback();
+    const body = JSON.parse(result.contents[0].text);
+
+    expect(body.assets).toHaveLength(4);
+    expect(body.assets).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: "sportive-readiness-index-2026",
+          kind: "coaching-framework",
+          dataUrl:
+            "https://roadmancycling.com/data/sportive-readiness-index-2026.csv",
+        }),
+        expect.objectContaining({
+          id: "amateur-cyclist-fuelling-benchmarks-2026",
+          kind: "evidence-benchmark",
+        }),
+      ]),
+    );
+    expect(
+      body.assets.every((asset: { limitations: string[] }) =>
+        asset.limitations.length >= 3,
+      ),
+    ).toBe(true);
   });
 
   it("each resource returns correct uri in contents", async () => {
@@ -82,6 +115,7 @@ describe("MCP resources — content", () => {
       "roadman://brand/overview",
       "roadman://methodology/principles",
       "roadman://experts/roster",
+      "roadman://research/assets",
     ]) {
       const resource = getResource(server, uri);
       const result = await resource.readCallback();

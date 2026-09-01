@@ -20,7 +20,7 @@ curl -X POST https://roadmancycling.com/api/mcp \
 
 ---
 
-## Tools (9)
+## Tools (10)
 
 | Tool | Description |
 |------|-------------|
@@ -30,19 +30,21 @@ curl -X POST https://roadmancycling.com/api/mcp \
 | `list_experts` | Roster of expert guests sorted by appearance count |
 | `get_expert_insights` | Quotes and key insights from a named expert |
 | `search_methodology` | Semantic search over Roadman coaching principles |
+| `list_research_assets` | Typed datasets, archive studies, frameworks and evidence benchmarks with limitations and downloads |
 | `list_products` | Active NDY products with pricing |
 | `list_upcoming_events` | Calendar of group rides, Q&As, and training camps |
 | `qualify_lead` | Recommends the right product tier based on cyclist profile |
 
 ---
 
-## Resources (3)
+## Resources (4)
 
 | URI | Description |
 |-----|-------------|
 | `roadman://brand/overview` | Brand identity, voice, and audience summary |
 | `roadman://methodology/principles` | Five content pillars and core training principles |
 | `roadman://experts/roster` | Named expert credentials and appearance counts |
+| `roadman://research/assets` | Versioned research assets with type, method, limitations, reuse terms and data URLs |
 
 ---
 
@@ -60,13 +62,14 @@ curl -X POST https://roadmancycling.com/api/mcp \
 POST /api/mcp
   └── checkRateLimit(ip)          # Upstash Redis sliding window
   └── WebStandardStreamableHTTP   # MCP SDK Web API transport
-  └── buildMcpServer(ip)          # Registers all 9 tools + 3 resources
+  └── buildMcpServer(ip)          # Registers all 10 tools + 4 resources
        ├── withLogging()           # Wraps every handler — logs to mcp_call_logs
        └── services/               # One file per domain
             ├── community.ts
             ├── episodes.ts        # pgvector cosine similarity search
             ├── experts.ts
             ├── methodology.ts     # pgvector cosine similarity search
+            ├── research.ts        # Typed public research registry lookup
             ├── products.ts
             ├── events.ts
             └── qualification.ts  # Pure logic — no DB
