@@ -44,6 +44,7 @@ export const APP_ACQUISITION_SOURCES = new Set([
   "strength-session-planner",
   "tart-cherry-guide",
   "testosterone-guide",
+  "thyroid-guide",
   "time-crunched-guide",
   "training-readiness",
 ]);
