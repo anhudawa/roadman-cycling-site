@@ -67,6 +67,7 @@ Google states that filtered chart totals and table rows may be partial, so page 
 
 ## Measurement
 
+- Use `docs/seo/recovery-search-measurement-runbook.md` and the fixed `seo:recovery:compare` scorecard for every checkpoint.
 - Hold the 31 August owner article through the freshness window unless a delivery error or material evidence issue appears.
 - Day 7: confirm the owner entity, feed and supporting backlinks are live; compare exact head-term impressions and page distribution directionally.
 - Day 14: review owner CTR/title fit only if the position and query mix are stable enough to interpret.

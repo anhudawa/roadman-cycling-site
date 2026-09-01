@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "property": "sc-domain:roadmancycling.com",
+  "capturedAt": "2026-09-01T06:10:00+01:00",
+  "releaseDate": "2026-09-01",
+  "period": { "start": "2026-08-02", "end": "2026-08-29", "days": 28 },
+  "lanes": [
+    {
+      "id": "cycling-recovery-head",
+      "label": "Clean cycling recovery head terms",
+      "match": "regex",
+      "regex": "^(cycling recovery|cyclist recovery|recovery after cycling|cycling recovery tips|recovery strategies for cyclists|how to recover after cycling|road cycling recovery tips|recovery cycling)$",
+      "expectedOwner": "/blog/cycling-recovery-tips",
+      "interpretation": "canonical-owner",
+      "aggregate": {
+        "clicks": 2,
+        "impressions": 67,
+        "ctr": 0.03,
+        "position": 21.3
+      },
+      "reportedPageCount": 9,
+      "reportedQueryCount": 7,
+      "pageRows": [
+        {
+          "path": "/blog/cycling-recovery-tips",
+          "clicks": 1,
+          "impressions": 73
+        },
+        {
+          "path": "/blog/post-ride-recovery-window-cyclists-over-40",
+          "clicks": 1,
+          "impressions": 2
+        },
+        {
+          "path": "/blog/cycling-active-recovery-rides-guide",
+          "clicks": 0,
+          "impressions": 19
+        },
+        { "path": "/topics/cycling-recovery", "clicks": 0, "impressions": 10 },
+        {
+          "path": "/blog/cycling-recovery-rides-how-to-do-them-properly-guide",
+          "clicks": 0,
+          "impressions": 10
+        },
+        {
+          "path": "/blog/recovery-for-cyclists-world-tour-protocols",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "path": "/blog/cycling-returning-after-break",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "path": "/blog/post-ride-recovery-nutrition-cyclists",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "path": "/blog/cycling-active-recovery-explained",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "queryRows": [
+        { "query": "recovery after cycling", "clicks": 1, "impressions": 3 },
+        { "query": "cycling recovery tips", "clicks": 1, "impressions": 1 },
+        { "query": "cycling recovery", "clicks": 0, "impressions": 31 },
+        { "query": "recovery cycling", "clicks": 0, "impressions": 16 },
+        {
+          "query": "recovery strategies for cyclists",
+          "clicks": 0,
+          "impressions": 10
+        },
+        {
+          "query": "road cycling recovery tips",
+          "clicks": 0,
+          "impressions": 3
+        },
+        { "query": "cyclist recovery", "clicks": 0, "impressions": 3 }
+      ]
+    },
+    {
+      "id": "cycling-recovery-broad",
+      "label": "Broad cycling recovery portfolio and fragmentation monitor",
+      "match": "regex",
+      "regex": "(cyclist|cycling).*(recovery|recover|rest.?day|soreness|sleep)|(recovery|recover|rest.?day|soreness|sleep).*(cyclist|cycling)",
+      "expectedOwner": "/blog/cycling-recovery-tips",
+      "interpretation": "portfolio-fragmentation",
+      "aggregate": {
+        "clicks": 10,
+        "impressions": 2404,
+        "ctr": 0.004,
+        "position": 15.3
+      },
+      "reportedPageCount": 129,
+      "reportedQueryCount": 139,
+      "pageRows": [
+        {
+          "path": "/blog/cycling-active-recovery-rides-guide",
+          "clicks": 2,
+          "impressions": 225
+        },
+        {
+          "path": "/blog/best-recovery-foods-after-cycling",
+          "clicks": 1,
+          "impressions": 280
+        },
+        {
+          "path": "/blog/cycling-sleep-performance-guide",
+          "clicks": 1,
+          "impressions": 113
+        },
+        {
+          "path": "/blog/cycling-recovery-tips",
+          "clicks": 1,
+          "impressions": 105
+        },
+        {
+          "path": "/blog/cycling-tart-cherry-juice-recovery-guide",
+          "clicks": 1,
+          "impressions": 60
+        },
+        {
+          "path": "/blog/cycling-recovery-week-what-to-actually-do",
+          "clicks": 1,
+          "impressions": 38
+        },
+        {
+          "path": "/blog/recovery-rides-for-runners",
+          "clicks": 1,
+          "impressions": 31
+        },
+        {
+          "path": "/blog/tour-de-france-recovery-between-stages",
+          "clicks": 1,
+          "impressions": 23
+        },
+        {
+          "path": "/answers/what-is-a-recovery-week",
+          "clicks": 1,
+          "impressions": 8
+        },
+        {
+          "path": "/blog/post-ride-recovery-window-cyclists-over-40",
+          "clicks": 1,
+          "impressions": 7
+        }
+      ],
+      "queryRows": [
+        { "query": "active recovery cycling", "clicks": 2, "impressions": 29 },
+        { "query": "cycling and sleep", "clicks": 1, "impressions": 74 },
+        { "query": "cycling recovery week", "clicks": 1, "impressions": 19 },
+        {
+          "query": "masters cyclists lower back pain recovery tips questions",
+          "clicks": 0,
+          "impressions": 1245
+        },
+        { "query": "cycling recovery", "clicks": 0, "impressions": 31 },
+        { "query": "recovery ride cycling", "clicks": 0, "impressions": 68 },
+        { "query": "cycling recovery drink", "clicks": 0, "impressions": 56 },
+        { "query": "cycling rest days", "clicks": 0, "impressions": 20 },
+        {
+          "query": "recovery strategies for cyclists",
+          "clicks": 0,
+          "impressions": 10
+        }
+      ]
+    },
+    {
+      "id": "cycling-recovery-app",
+      "label": "Cycling recovery and readiness app product intent",
+      "match": "regex",
+      "regex": "^(cycling recovery app|cycling readiness app|roadman cycling app|roadman app)$",
+      "expectedOwner": "/app",
+      "interpretation": "product-owner",
+      "aggregate": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": null
+      },
+      "reportedPageCount": 0,
+      "reportedQueryCount": 0,
+      "pageRows": [],
+      "queryRows": []
+    }
+  ],
+  "notes": [
+    "Read-only Search Console capture; Web reporting was complete through 29 August 2026.",
+    "Filtered card totals and table rows may be partial and can disagree. Owner share uses stored page rows only.",
+    "The broad lane is retained as a portfolio-fragmentation monitor and includes a known lower-back query confounder."
+  ]
+}
