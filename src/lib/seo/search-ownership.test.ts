@@ -12,9 +12,9 @@ import {
 
 describe("search ownership registry", () => {
   it("declares one unique route for every priority query family", () => {
-    expect(SEARCH_OWNERS).toHaveLength(7);
-    expect(new Set(SEARCH_OWNERS.map((owner) => owner.path)).size).toBe(7);
-    expect(new Set(SEARCH_OWNERS.map((owner) => owner.primaryQuery)).size).toBe(7);
+    expect(SEARCH_OWNERS).toHaveLength(8);
+    expect(new Set(SEARCH_OWNERS.map((owner) => owner.path)).size).toBe(8);
+    expect(new Set(SEARCH_OWNERS.map((owner) => owner.primaryQuery)).size).toBe(8);
   });
 
   it("maps narrow supporting content to its broad owner", () => {
@@ -32,6 +32,9 @@ describe("search ownership registry", () => {
     );
     expect(resolveSearchOwner(["strength training app for cyclists"])?.path).toBe(
       "/app",
+    );
+    expect(resolveSearchOwner(["strength and conditioning for cyclists"])?.path).toBe(
+      "/blog/cycling-strength-training-guide",
     );
     expect(resolveSearchOwner(["cycling app for masters cyclists"])?.path).toBe(
       "/app",

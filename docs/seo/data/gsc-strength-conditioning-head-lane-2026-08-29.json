@@ -1,0 +1,115 @@
+{
+  "property": "sc-domain:roadmancycling.com",
+  "searchType": "Web",
+  "capturedAt": "2026-09-01T06:20:00+01:00",
+  "queryFilter": {
+    "type": "custom-regex",
+    "value": "^(strength and conditioning for cyclists|cycling strength and conditioning|strength conditioning cycling|s&c for cyclists)$"
+  },
+  "owner": "/blog/cycling-strength-training-guide",
+  "windows": [
+    {
+      "period": { "start": "2026-08-23", "end": "2026-08-29", "days": 7 },
+      "aggregate": {
+        "clicks": 0,
+        "impressions": 17,
+        "ctrPercent": 0,
+        "averagePosition": 8.2
+      },
+      "reportedPageCount": 3,
+      "reportedQueryCount": 2,
+      "pageRows": [
+        {
+          "path": "/blog/cycling-strength-training-guide",
+          "clicks": 0,
+          "impressions": 16
+        },
+        {
+          "path": "/topics/cycling-strength-conditioning",
+          "clicks": 0,
+          "impressions": 8
+        },
+        {
+          "path": "/blog/strength-training-cyclists-complete-guide",
+          "clicks": 0,
+          "impressions": 7,
+          "status": "permanent-redirect"
+        }
+      ],
+      "queryRows": [
+        {
+          "query": "strength and conditioning for cyclists",
+          "clicks": 0,
+          "impressions": 16
+        },
+        {
+          "query": "cycling strength and conditioning",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "period": { "start": "2026-08-02", "end": "2026-08-29", "days": 28 },
+      "aggregate": {
+        "clicks": 0,
+        "impressions": 91,
+        "ctrPercent": 0,
+        "averagePosition": 7.6
+      },
+      "reportedPageCount": 4,
+      "reportedQueryCount": 2,
+      "pageRows": [
+        {
+          "path": "/blog/cycling-strength-training-guide",
+          "clicks": 0,
+          "impressions": 78
+        },
+        {
+          "path": "/blog/strength-training-cyclists-complete-guide",
+          "clicks": 0,
+          "impressions": 44,
+          "status": "permanent-redirect"
+        },
+        {
+          "path": "/topics/cycling-strength-conditioning",
+          "clicks": 0,
+          "impressions": 39
+        },
+        {
+          "path": "/blog/art-oconnor-strength-training-cyclists",
+          "clicks": 0,
+          "impressions": 4
+        }
+      ],
+      "queryRows": [
+        {
+          "query": "strength and conditioning for cyclists",
+          "clicks": 0,
+          "impressions": 87
+        },
+        {
+          "query": "cycling strength and conditioning",
+          "clicks": 0,
+          "impressions": 4
+        }
+      ]
+    }
+  ],
+  "broaderStrengthLane": {
+    "queryFilter": "(cycling|cyclist).*(strength|gym|conditioning)|(strength|gym|conditioning).*(cycling|cyclist)",
+    "period": { "start": "2026-08-02", "end": "2026-08-29", "days": 28 },
+    "aggregate": {
+      "clicks": 160,
+      "impressions": 3420,
+      "ctrPercent": 4.7,
+      "averagePosition": 7.9
+    },
+    "reportedQueryCount": 191
+  },
+  "notes": [
+    "The established owner was materially refreshed on 26 August and remains inside its freshness guardrail.",
+    "The retired complete-guide URL already permanently redirects to the owner; historical filtered impressions can remain visible during consolidation.",
+    "Filtered card totals and table rows may be partial and are not additive."
+  ]
+}
