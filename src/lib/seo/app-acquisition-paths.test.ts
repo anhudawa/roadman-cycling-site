@@ -117,6 +117,8 @@ describe("strength and recovery app acquisition paths", () => {
         "/app?source=overreaching-guide",
       "content/blog/cycling-recovering-from-overtraining-guide.mdx":
         "/app?source=overtraining-recovery-guide",
+      "content/blog/cycling-chronic-fatigue-when-tiredness-persists-guide.mdx":
+        "/app?source=persistent-fatigue-guide",
       "content/blog/cycling-strength-training-guide.mdx":
         "/app?source=strength-guide",
       "content/blog/strength-training-cyclists-over-50.mdx":
