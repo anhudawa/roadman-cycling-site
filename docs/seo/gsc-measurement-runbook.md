@@ -26,6 +26,26 @@ Do not compare “last 3 months” with “last 28 days.” The longer range ove
 
 Copy the matching baseline for the current period and replace every measured value; do not remove filters or owner rows simply because they have fallen to zero.
 
+## Weekly opportunity queue
+
+The fixed scorecards above judge the 24 August owner release. A separate rolling queue decides what Roadman should work on each week without contaminating those windows.
+
+Export the rolling 28-day versus previous-28-day scan, then run:
+
+```bash
+npm run seo:opportunities -- \
+  docs/seo/data/gsc-rolling-opportunity-scan-2026-08-29.json \
+  --as-of 2026-09-01
+```
+
+The queue is deterministic. It scores demand, click and impression loss, CTR opportunity, ranking band and commercial relevance. Git history supplies the most recent source-page change automatically.
+
+- Days 0–6: **protected**. Check delivery and indexing; do not rewrite.
+- Days 7–13: **measure**. Inspect exact-page queries, intended-owner share and conversion-path clicks.
+- Day 14 onward: **eligible**. Work down the ranked action queue, make one bounded change and restart the protection window.
+
+Use `--output <report.md>` for a Markdown handoff and `--json-output <queue.json>` when another process needs the scored rows. A high score never overrides canonical ownership, evidence boundaries or the fixed scorecard windows.
+
 ## Capture checklist
 
 Before capturing either checkpoint, verify that the live owner graph still
