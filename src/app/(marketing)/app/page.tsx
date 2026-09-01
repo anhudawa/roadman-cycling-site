@@ -11,12 +11,11 @@ import { FAQSchema } from "@/components/seo/FAQSchema";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
+import { ROADMAN_APP_PRODUCT } from "@/data/app-product";
 import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
 
-const APP_PATH = "/app";
-const APP_URL = `${SITE_ORIGIN}${APP_PATH}`;
-const APP_DESCRIPTION =
-  "A cyclist-specific strength and recovery app that fits 30, 45 or 60-minute gym work around your real riding week, protects key rides and explains every readiness adjustment.";
+const APP_URL = ROADMAN_APP_PRODUCT.canonicalUrl;
+const APP_DESCRIPTION = ROADMAN_APP_PRODUCT.description;
 const STRUCTURED_IMAGE_URL = `${SITE_ORIGIN}/api/og/blog-hero?title=${encodeURIComponent("Cycling Strength & Recovery App")}&pillar=strength`;
 
 export const metadata: Metadata = {
@@ -167,7 +166,7 @@ export default function AppLandingPage() {
               "@type": "WebPage",
               "@id": `${APP_URL}#webpage`,
               url: APP_URL,
-              name: "Roadman Cycling strength and recovery app",
+              name: ROADMAN_APP_PRODUCT.name,
               description: APP_DESCRIPTION,
               ...buildSearchOwnerTrustProperties("cycling-strength-recovery-app", "2026-09-01"),
               about: [
@@ -187,14 +186,14 @@ export default function AppLandingPage() {
             {
               "@type": ["SoftwareApplication", "MobileApplication"],
               "@id": `${APP_URL}#software`,
-              name: "Roadman Cycling strength and recovery app",
+              name: ROADMAN_APP_PRODUCT.name,
               url: APP_URL,
               description: APP_DESCRIPTION,
-              applicationCategory: "SportsApplication",
-              operatingSystem: "iOS",
+              applicationCategory: ROADMAN_APP_PRODUCT.applicationCategory,
+              operatingSystem: ROADMAN_APP_PRODUCT.operatingSystems.join(", "),
               publisher: { "@id": ENTITY_IDS.organization },
               image: STRUCTURED_IMAGE_URL,
-              featureList: FEATURES.map((feature) => feature.title),
+              featureList: ROADMAN_APP_PRODUCT.features,
             },
             {
               "@type": "BreadcrumbList",

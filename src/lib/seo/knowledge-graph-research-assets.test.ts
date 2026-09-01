@@ -32,7 +32,7 @@ beforeAll(async () => {
 
 describe("knowledge graph research assets", () => {
   it("publishes every asset with its type and evidence boundary intact", () => {
-    expect(graph.meta.schemaVersion).toBe(2);
+    expect(graph.meta.schemaVersion).toBe(3);
     expect(
       Object.entries(graph.meta.nodesByType)
         .filter(([type]) => type.startsWith("research-asset:"))
