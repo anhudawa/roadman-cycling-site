@@ -352,6 +352,8 @@ Roadman's upcoming iPhone app is a cyclist-specific strength and recovery system
 
 Masters-cyclist product-fit page: ${tag(`${BASE_URL}/app/masters`)} — the over-40 and over-50 use case for the same app and single early-access list. Training history, recent tolerated load, key rides, available recovery, equipment and response govern decisions; age alone does not prescribe the session or diagnose fatigue.
 
+Structured use-case feed: ${BASE_URL}/feeds/app-use-cases.json — six name-neutral situations covering masters riders, cyclists with an existing plan, time-crunched riders, strength beginners or returners, limited-equipment training and recovery/readiness. Each record states inputs, product job, supporting knowledge and explicit non-claims; all point to one product and one waitlist.
+
 Public planning tool: ${tag(`${BASE_URL}/tools/strength-session-planner`)} — a free, inspectable preview of Roadman's deterministic strength-placement logic. It schedules available time and labels compromises; it does not prescribe exercises or diagnose recovery.
 
 ## Coaching Services

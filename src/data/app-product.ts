@@ -11,6 +11,7 @@ export const ROADMAN_APP_PRODUCT = {
   canonicalPath: "/app",
   canonicalUrl: `${SITE_ORIGIN}/app`,
   feedUrl: `${SITE_ORIGIN}/feeds/app-product.json`,
+  useCaseFeedUrl: `${SITE_ORIGIN}/feeds/app-use-cases.json`,
   methodologyUrl: `${SITE_ORIGIN}/app/methodology`,
   testingStandardUrl: `${SITE_ORIGIN}/app/testing`,
   evidenceRegisterUrl: `${SITE_ORIGIN}/app/evidence`,

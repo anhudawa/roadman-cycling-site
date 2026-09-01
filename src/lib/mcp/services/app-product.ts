@@ -31,6 +31,7 @@ export function getAppProduct() {
     discovery: {
       canonical_search_owner_url: ROADMAN_APP_PRODUCT.canonicalUrl,
       product_feed_url: ROADMAN_APP_PRODUCT.feedUrl,
+      use_case_feed_url: ROADMAN_APP_PRODUCT.useCaseFeedUrl,
       methodology_url: ROADMAN_APP_PRODUCT.methodologyUrl,
       testing_standard_url: ROADMAN_APP_PRODUCT.testingStandardUrl,
       evidence_register_url: ROADMAN_APP_PRODUCT.evidenceRegisterUrl,

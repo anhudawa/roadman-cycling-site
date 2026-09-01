@@ -11,6 +11,9 @@ describe("GET /feeds/app-product.json", () => {
     expect(body.schemaVersion).toBe(1);
     expect(body.canonicalPage).toBe(ROADMAN_APP_PRODUCT.canonicalUrl);
     expect(body.feedUrl).toBe(ROADMAN_APP_PRODUCT.feedUrl);
+    expect(body.discovery.useCaseFeedUrl).toBe(
+      ROADMAN_APP_PRODUCT.useCaseFeedUrl,
+    );
     expect(body.discovery.methodologyUrl).toBe(
       ROADMAN_APP_PRODUCT.methodologyUrl,
     );

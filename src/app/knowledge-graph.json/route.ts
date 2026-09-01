@@ -76,6 +76,7 @@ interface GraphNode {
   earlyAccessUrl?: string;
   features?: readonly string[];
   productFeedUrl?: string;
+  useCaseFeedUrl?: string;
   methodologyUrl?: string;
   testingStandardUrl?: string;
   evidenceRegisterUrl?: string;
@@ -237,6 +238,7 @@ export function GET() {
     features: ROADMAN_APP_PRODUCT.features,
     limitations: ROADMAN_APP_PRODUCT.limitations,
     productFeedUrl: ROADMAN_APP_PRODUCT.feedUrl,
+    useCaseFeedUrl: ROADMAN_APP_PRODUCT.useCaseFeedUrl,
     methodologyUrl: ROADMAN_APP_PRODUCT.methodologyUrl,
     testingStandardUrl: ROADMAN_APP_PRODUCT.testingStandardUrl,
     evidenceRegisterUrl: ROADMAN_APP_PRODUCT.evidenceRegisterUrl,

@@ -18,6 +18,9 @@ describe("MCP app product service", () => {
     expect(record.discovery.product_feed_url).toBe(
       ROADMAN_APP_PRODUCT.feedUrl,
     );
+    expect(record.discovery.use_case_feed_url).toBe(
+      ROADMAN_APP_PRODUCT.useCaseFeedUrl,
+    );
     expect(record.discovery.methodology_url).toBe(
       ROADMAN_APP_PRODUCT.methodologyUrl,
     );
