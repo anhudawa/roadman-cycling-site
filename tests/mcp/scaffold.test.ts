@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 
 // ── DB mock ──────────────────────────────────────────────
 vi.mock("@/lib/db", () => ({
@@ -74,7 +74,7 @@ describe("MCP server — tool registration", () => {
     expect(() => buildMcpServer("test")).not.toThrow();
   });
 
-  it("server has all 9 tools registered", () => {
+  it("server has all 10 tools registered", () => {
     const server = buildMcpServer("test");
     // Access internal tool registry
     const toolNames = Object.keys(
@@ -88,6 +88,7 @@ describe("MCP server — tool registration", () => {
       "list_experts",
       "get_expert_insights",
       "search_methodology",
+      "list_research_assets",
       "list_products",
       "list_upcoming_events",
       "qualify_lead",
@@ -97,7 +98,7 @@ describe("MCP server — tool registration", () => {
     }
   });
 
-  it("server has all 3 resources registered", () => {
+  it("server has all 4 resources registered", () => {
     const server = buildMcpServer("test");
     const resourceUris = Object.keys(
       (server as unknown as { _registeredResources: Record<string, unknown> })
@@ -106,5 +107,6 @@ describe("MCP server — tool registration", () => {
     expect(resourceUris).toContain("roadman://brand/overview");
     expect(resourceUris).toContain("roadman://methodology/principles");
     expect(resourceUris).toContain("roadman://experts/roster");
+    expect(resourceUris).toContain("roadman://research/assets");
   });
 });

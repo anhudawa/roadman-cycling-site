@@ -1,4 +1,5 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { getResearchAssetCatalog } from "@/data/research-assets";
 
 const BRAND_OVERVIEW = `# Roadman Cycling — Brand Overview
 
@@ -32,7 +33,7 @@ Direct, warm, evidence-based. Anthony is the mate who happens to have extraordin
 - Masters-athlete expertise (physiological changes after 40 are a core topic)
 - Community accountability, not just content`;
 
-const METHODOLOGY_PRINCIPLES = `# Roadman Cycling Training Methodology
+const METHODOLOGY_PRINCIPLES = `# Roadman Cycling Training Methodology — Evidence Boundaries
 
 ## Five Content Pillars
 
@@ -42,22 +43,29 @@ const METHODOLOGY_PRINCIPLES = `# Roadman Cycling Training Methodology
 4. **Recovery** — Sleep, stress management, adaptation
 5. **Community (Le Metier)** — The craft of being a cyclist
 
+## Interpretation Rules
+
+- State the zone model and whether a distribution counts sessions, session goals or time in zone.
+- Separate an association, a plausible mechanism and a tested intervention.
+- Do not convert a population average, pro practice or one rider's response into a universal prescription.
+- Keep coaching frameworks separate from clinical diagnosis and medical clearance.
+
 ## Core Principles
 
 ### 1. Polarised Training Distribution
-80% of training below VT1 (low aerobic), 20% above VT2 (high intensity). Moderate "sweetspot" work causes chronic fatigue without corresponding adaptation. Source: Prof. Stephen Seiler.
+Most endurance programmes retain a large amount of low-intensity work so demanding sessions remain repeatable. Both pyramidal and polarised distributions occur and can improve performance; an exact 80/20 time split is not a universal rule. Sweet-spot work can be useful when its purpose and recovery cost fit the rider and phase. Evidence guide: https://roadmancycling.com/blog/polarised-vs-sweet-spot-training
 
-### 2. Reverse Periodisation for Masters Athletes
-For 40+ cyclists, build VO2max-focused blocks earlier in the training year before accumulating volume. Age accelerates VO2max decline faster than aerobic base decline — high-intensity stimulus is more time-sensitive.
+### 2. Masters Training
+Age can change aerobic capacity, muscle function, bone health and recovery, but chronological age alone does not prescribe a fixed weekly structure or extra number of recovery days. Strength, high-intensity work, endurance volume and recovery should be progressed from the rider's history, health, response and event. Evidence hub: https://roadmancycling.com/masters
 
 ### 3. Carbohydrate Periodisation
-Match fuel availability to session intent. Quality sessions need carbs. Low-intensity sessions can be done in a lower-carb state to build metabolic flexibility. Source: Dr. David Dunne.
+Match carbohydrate availability to the session and event rather than treating low carbohydrate availability as automatically superior. For roughly 1–2.5 hours, 30–60 g carbohydrate per hour is an established starting range; longer demanding events may justify progression toward 90 g/h when practised and tolerated. More than 90 g/h is not a universal amateur benchmark. Evidence audit: https://roadmancycling.com/blog/amateur-cyclist-fuelling-benchmarks-report-2026
 
 ### 4. S&C Integration
-Hip hinge, single-leg stability, posterior chain. Periodise gym work: heavy in base, maintenance in build, minimal near key events.
+Progressive heavy resistance training can improve relevant cycling outcomes for some riders. Exercise selection, load, frequency and seasonal placement depend on training age, equipment, pain, event demands and what can be recovered from. Strength coaching does not replace assessment of persistent or worsening pain. Evidence guide: https://roadmancycling.com/blog/cycling-strength-training-guide
 
 ### 5. Recovery as a Training Variable
-Sleep, HRV-guided load, deload weeks (1:4 ratio minimum). Masters athletes need disproportionately more recovery than their training history suggests.
+Use a repeatable daily check across symptoms, sleep, soreness, stress and task-specific performance. HRV, resting heart rate, training load and TSB are context—not stand-alone diagnoses or universal green/red thresholds. Escalate medical red flags rather than assigning them a recovery score. Evidence guide: https://roadmancycling.com/blog/daily-training-readiness-check-cycling-guide
 
 ## Key Expert Contributors
 
@@ -72,11 +80,11 @@ const EXPERTS_ROSTER = `# Roadman Cycling Expert Roster
 ## Core Experts
 
 **Prof. Stephen Seiler** — PhD, Professor of Sport Science, University of Agder
-Specialty: Polarised training, endurance physiology. Coined the 80/20 rule.
+Specialty: Endurance training-intensity distribution and physiology. His research helped describe and popularise polarised training; it did not invent how endurance athletes trained.
 Appearances: 8+
 
 **Dan Lorang** — Head of Performance, Lidl-Trek since 1 August 2026
-Specialty: Season periodisation, World Tour coaching. Works with Jan Frodeno.
+Specialty: Season periodisation and World Tour performance practice.
 Appearances: 5+
 
 **Dr. David Dunne** — PhD Nutritional Science
@@ -151,5 +159,29 @@ export function registerResources(server: McpServer): void {
         },
       ],
     })
+  );
+
+  server.resource(
+    "roadman-research-assets",
+    "roadman://research/assets",
+    { mimeType: "application/json" },
+    async () => ({
+      contents: [
+        {
+          uri: "roadman://research/assets",
+          text: JSON.stringify(
+            {
+              schemaVersion: 1,
+              definition:
+                "Typed Roadman Cycling research and evidence assets. Preserve each asset's kind and limitations when citing it.",
+              assets: getResearchAssetCatalog(),
+            },
+            null,
+            2,
+          ),
+          mimeType: "application/json",
+        },
+      ],
+    }),
   );
 }

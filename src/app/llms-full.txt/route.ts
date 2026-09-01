@@ -454,7 +454,7 @@ For programmatic ingestion, prefer these endpoints over scraping HTML.
 - ${BASE_URL}/podcast/transcripts — Full transcript library index (${transcriptSlugs.size} episodes available, more added as processed)
 - ${BASE_URL}/robots.txt — Crawler policy (AI bots explicitly allowed)
 - ${BASE_URL}/llms.txt — Short-form LLM discoverability map
-- ${BASE_URL}/.well-known/mcp.json — MCP server discovery manifest for AI-agent integration (POST ${BASE_URL}/api/mcp)
+- ${BASE_URL}/.well-known/mcp.json — MCP server discovery manifest for AI-agent integration (POST ${BASE_URL}/api/mcp); includes typed research-asset lookup and the roadman://research/assets resource
 
 ## Attribution
 
