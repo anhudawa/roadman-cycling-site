@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "property": "sc-domain:roadmancycling.com",
+  "capturedAt": "2026-09-01T06:32:00+01:00",
+  "releaseDate": "2026-09-01",
+  "period": { "start": "2026-08-02", "end": "2026-08-29", "days": 28 },
+  "lanes": [
+    {
+      "id": "strength-conditioning-head",
+      "label": "Cycling strength and conditioning synonym intent",
+      "match": "regex",
+      "regex": "^(strength and conditioning for cyclists|cycling strength and conditioning|strength conditioning cycling|s&c for cyclists)$",
+      "expectedOwner": "/blog/cycling-strength-training-guide",
+      "aggregate": {
+        "clicks": 0,
+        "impressions": 91,
+        "ctr": 0,
+        "position": 7.6
+      },
+      "reportedPageCount": 4,
+      "reportedQueryCount": 2,
+      "pageRows": [
+        {
+          "path": "/blog/cycling-strength-training-guide",
+          "clicks": 0,
+          "impressions": 78
+        },
+        {
+          "path": "/blog/strength-training-cyclists-complete-guide",
+          "clicks": 0,
+          "impressions": 44
+        },
+        {
+          "path": "/topics/cycling-strength-conditioning",
+          "clicks": 0,
+          "impressions": 39
+        },
+        {
+          "path": "/blog/art-oconnor-strength-training-cyclists",
+          "clicks": 0,
+          "impressions": 4
+        }
+      ],
+      "queryRows": [
+        {
+          "query": "strength and conditioning for cyclists",
+          "clicks": 0,
+          "impressions": 87
+        },
+        {
+          "query": "cycling strength and conditioning",
+          "clicks": 0,
+          "impressions": 4
+        }
+      ]
+    },
+    {
+      "id": "cycling-gym-head",
+      "label": "Cycling gym head term",
+      "match": "regex",
+      "regex": "^cycling gym$",
+      "expectedOwner": "/blog/cycling-gym-exercises-best",
+      "aggregate": {
+        "clicks": 0,
+        "impressions": 121,
+        "ctr": 0,
+        "position": 8.9
+      },
+      "reportedPageCount": 3,
+      "reportedQueryCount": 1,
+      "pageRows": [
+        {
+          "path": "/blog/cycling-gym-exercises-best",
+          "clicks": 0,
+          "impressions": 119
+        },
+        {
+          "path": "/blog/cycling-strength-training-guide",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "path": "/podcast/ep-2045-i-tried-gym-and-bike-for-30-days-the-results-shocked-me",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "queryRows": [{ "query": "cycling gym", "clicks": 0, "impressions": 121 }]
+    }
+  ],
+  "notes": [
+    "Read-only Search Console capture on 1 September 2026; Web reporting was complete through 29 August.",
+    "Custom regex filters were exact and are frozen in the executable contract.",
+    "Filtered chart totals and table rows can be partial and must not be added together.",
+    "The retired complete-guide URL permanently redirects to the strength owner; historical impressions may remain visible while Google consolidates signals.",
+    "The strength guide and gym-exercise owner were refreshed on 26 August and remain inside the freshness guardrail."
+  ]
+}

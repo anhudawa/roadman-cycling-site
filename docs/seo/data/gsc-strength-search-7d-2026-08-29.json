@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "property": "sc-domain:roadmancycling.com",
+  "capturedAt": "2026-09-01T06:32:00+01:00",
+  "releaseDate": "2026-09-01",
+  "period": { "start": "2026-08-23", "end": "2026-08-29", "days": 7 },
+  "lanes": [
+    {
+      "id": "strength-conditioning-head",
+      "label": "Cycling strength and conditioning synonym intent",
+      "match": "regex",
+      "regex": "^(strength and conditioning for cyclists|cycling strength and conditioning|strength conditioning cycling|s&c for cyclists)$",
+      "expectedOwner": "/blog/cycling-strength-training-guide",
+      "aggregate": {
+        "clicks": 0,
+        "impressions": 17,
+        "ctr": 0,
+        "position": 8.2
+      },
+      "reportedPageCount": 3,
+      "reportedQueryCount": 2,
+      "pageRows": [
+        {
+          "path": "/blog/cycling-strength-training-guide",
+          "clicks": 0,
+          "impressions": 16
+        },
+        {
+          "path": "/topics/cycling-strength-conditioning",
+          "clicks": 0,
+          "impressions": 8
+        },
+        {
+          "path": "/blog/strength-training-cyclists-complete-guide",
+          "clicks": 0,
+          "impressions": 7
+        }
+      ],
+      "queryRows": [
+        {
+          "query": "strength and conditioning for cyclists",
+          "clicks": 0,
+          "impressions": 16
+        },
+        {
+          "query": "cycling strength and conditioning",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ]
+    },
+    {
+      "id": "cycling-gym-head",
+      "label": "Cycling gym head term",
+      "match": "regex",
+      "regex": "^cycling gym$",
+      "expectedOwner": "/blog/cycling-gym-exercises-best",
+      "aggregate": {
+        "clicks": 0,
+        "impressions": 49,
+        "ctr": 0,
+        "position": 9.5
+      },
+      "reportedPageCount": 1,
+      "reportedQueryCount": 1,
+      "pageRows": [
+        {
+          "path": "/blog/cycling-gym-exercises-best",
+          "clicks": 0,
+          "impressions": 49
+        }
+      ],
+      "queryRows": [{ "query": "cycling gym", "clicks": 0, "impressions": 49 }]
+    }
+  ],
+  "notes": [
+    "Read-only Search Console capture on 1 September 2026; Web reporting was complete through 29 August.",
+    "Custom regex filters were exact and are frozen in the executable contract.",
+    "Filtered chart totals and table rows can be partial and must not be added together.",
+    "The strength guide and gym-exercise owner were refreshed on 26 August and remain inside the freshness guardrail."
+  ]
+}
