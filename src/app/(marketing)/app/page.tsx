@@ -529,6 +529,12 @@ export default function AppLandingPage() {
                 >
                   See how the app will be tested →
                 </Link>
+                <Link
+                  href="/app/evidence"
+                  className="ml-5 mt-6 inline-flex text-sm font-semibold text-foreground-muted transition-colors hover:text-coral"
+                >
+                  Check the current evidence →
+                </Link>
               </div>
             </div>
           </Container>
@@ -670,6 +676,12 @@ export default function AppLandingPage() {
                 className="text-foreground-muted transition-colors hover:text-coral"
               >
                 App testing standard
+              </Link>
+              <Link
+                href="/app/evidence"
+                className="text-foreground-muted transition-colors hover:text-coral"
+              >
+                App evidence register
               </Link>
               <Link
                 href="/best/best-cycling-training-apps"

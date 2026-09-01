@@ -130,6 +130,12 @@ export default function AppTestingPage() {
               >
                 Read the decision methodology →
               </Link>
+              <Link
+                className="text-foreground-muted hover:text-coral"
+                href="/app/evidence"
+              >
+                Check the current evidence →
+              </Link>
             </div>
           </Container>
         </Section>
@@ -175,8 +181,9 @@ export default function AppTestingPage() {
               <div className="mt-8 space-y-5">
                 {STANDARD.phases.map((phase) => (
                   <article
+                    id={phase.id}
                     key={phase.id}
-                    className="rounded-2xl border border-charcoal/10 bg-white p-6 shadow-sm md:p-8"
+                    className="scroll-mt-28 rounded-2xl border border-charcoal/10 bg-white p-6 shadow-sm md:p-8"
                   >
                     <div className="grid gap-6 lg:grid-cols-[76px_1fr]">
                       <div className="flex h-14 w-14 items-center justify-center rounded-full bg-deep-purple font-heading text-xl text-coral">
@@ -312,11 +319,12 @@ export default function AppTestingPage() {
               </p>
             </div>
 
-            <div className="mt-10 grid gap-3 sm:grid-cols-3">
+            <div className="mt-10 grid gap-3 sm:grid-cols-4">
               <MethodLink
                 href="/app/methodology"
                 label="Decision methodology"
               />
+              <MethodLink href="/app/evidence" label="Evidence register" />
               <MethodLink
                 href="/tools/strength-session-planner"
                 label="Strength-session preview"

@@ -75,6 +75,11 @@ interface GraphNode {
   audience?: string;
   earlyAccessUrl?: string;
   features?: readonly string[];
+  productFeedUrl?: string;
+  methodologyUrl?: string;
+  testingStandardUrl?: string;
+  evidenceRegisterUrl?: string;
+  evidenceFeedUrl?: string;
 }
 
 interface GraphEdge {
@@ -223,6 +228,11 @@ export function GET() {
     earlyAccessUrl: ROADMAN_APP_PRODUCT.earlyAccessUrl,
     features: ROADMAN_APP_PRODUCT.features,
     limitations: ROADMAN_APP_PRODUCT.limitations,
+    productFeedUrl: ROADMAN_APP_PRODUCT.feedUrl,
+    methodologyUrl: ROADMAN_APP_PRODUCT.methodologyUrl,
+    testingStandardUrl: ROADMAN_APP_PRODUCT.testingStandardUrl,
+    evidenceRegisterUrl: ROADMAN_APP_PRODUCT.evidenceRegisterUrl,
+    evidenceFeedUrl: ROADMAN_APP_PRODUCT.evidenceFeedUrl,
   });
   pushEdge(ROADMAN_APP_PRODUCT.graphId, roadmanOrganizationId, "developed_by");
   pushEdge(

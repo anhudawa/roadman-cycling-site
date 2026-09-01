@@ -17,6 +17,12 @@ describe("GET /feeds/app-product.json", () => {
     expect(body.discovery.testingStandardUrl).toBe(
       ROADMAN_APP_PRODUCT.testingStandardUrl,
     );
+    expect(body.discovery.evidenceRegisterUrl).toBe(
+      ROADMAN_APP_PRODUCT.evidenceRegisterUrl,
+    );
+    expect(body.discovery.evidenceFeedUrl).toBe(
+      ROADMAN_APP_PRODUCT.evidenceFeedUrl,
+    );
     expect(body.product).toMatchObject({
       id: ROADMAN_APP_PRODUCT.id,
       graphId: ROADMAN_APP_PRODUCT.graphId,

@@ -46,6 +46,8 @@ export function GET() {
         searchOwnerUrl: ROADMAN_APP_PRODUCT.canonicalUrl,
         methodologyUrl: ROADMAN_APP_PRODUCT.methodologyUrl,
         testingStandardUrl: ROADMAN_APP_PRODUCT.testingStandardUrl,
+        evidenceRegisterUrl: ROADMAN_APP_PRODUCT.evidenceRegisterUrl,
+        evidenceFeedUrl: ROADMAN_APP_PRODUCT.evidenceFeedUrl,
         knowledgeGraphUrl: feedUrl("/knowledge-graph.json"),
         mcpManifestUrl: feedUrl("/.well-known/mcp.json"),
         topicUrls: ROADMAN_APP_PRODUCT.topicSlugs.map((slug) =>
