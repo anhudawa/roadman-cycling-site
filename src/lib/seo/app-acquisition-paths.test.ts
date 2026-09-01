@@ -113,6 +113,8 @@ describe("strength and recovery app acquisition paths", () => {
         "/app?source=cortisol-guide",
       "content/blog/recovery-between-hard-sessions-cycling.mdx":
         "/app?source=between-sessions-guide",
+      "content/blog/overtraining-vs-overreaching-cyclists.mdx":
+        "/app?source=overreaching-guide",
       "content/blog/cycling-strength-training-guide.mdx":
         "/app?source=strength-guide",
       "content/blog/strength-training-cyclists-over-50.mdx":
