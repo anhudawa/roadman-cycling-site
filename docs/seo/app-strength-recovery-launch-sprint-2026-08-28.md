@@ -72,6 +72,10 @@ Executable seven- and 28-day Search Console baselines, query-lane ownership,
 Google AI visibility, single-waitlist capture and comparison commands are in
 `docs/seo/app-search-measurement-runbook.md`.
 
+The live one-waitlist acquisition scorecard is at `/admin/funnel/app`; it shows
+server-recorded unique joins alongside consented visit, form-start and capture
+signals without inventing a second audience.
+
 - Search: impressions, clicks, CTR, position and query-to-page ownership by cluster.
 - Conversion: early-access signup rate by source and page.
 - Launch: waitlist-to-install, install-to-onboarding and first/second strength-session completion.
