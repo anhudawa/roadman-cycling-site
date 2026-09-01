@@ -3,6 +3,7 @@ export const APP_ACQUISITION_SOURCES = new Set([
   "autonomic-recovery-guide",
   "between-sessions-guide",
   "beginner-strength-plan",
+  "blood-testing-guide",
   "best-cycling-apps-structured-training",
   "best-cycling-recovery-apps",
   "best-cycling-strength-training-apps",
