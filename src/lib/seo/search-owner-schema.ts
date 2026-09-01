@@ -7,7 +7,7 @@ import {
 export const SEARCH_OWNER_LAST_REVIEWED = "2026-08-25";
 
 /**
- * Shared WebPage trust properties for Roadman's five priority search owners.
+ * Shared WebPage trust properties for Roadman's priority search owners.
  * Keeping these relationships in one builder prevents author, reviewer,
  * entity and supporting-link signals from drifting between pillar pages.
  */

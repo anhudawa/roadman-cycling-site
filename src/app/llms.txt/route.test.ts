@@ -103,7 +103,7 @@ describe("GET /llms.txt", () => {
     expect(text).toContain("Roadman Cycling brand since the 2021 rebrand");
   });
 
-  it("declares canonical owners for the five priority search categories", async () => {
+  it("declares canonical owners for the priority search categories", async () => {
     const { GET } = await import("./route");
     const res = await GET();
     const text = await res.text();
@@ -115,6 +115,7 @@ describe("GET /llms.txt", () => {
       "/masters",
       "/training-plans",
       "/training-camps",
+      "/app",
     ]) {
       expect(text).toContain(`https://roadmancycling.com${path}?utm=test`);
     }

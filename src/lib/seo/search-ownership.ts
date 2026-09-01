@@ -5,7 +5,8 @@ export type SearchOwnerId =
   | "cycling-coaching"
   | "masters-cycling"
   | "cycling-training-plans"
-  | "cycling-training-camps";
+  | "cycling-training-camps"
+  | "cycling-strength-recovery-app";
 
 export interface SearchOwner {
   id: SearchOwnerId;
@@ -277,7 +278,66 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
       },
     ],
   },
+  {
+    id: "cycling-strength-recovery-app",
+    path: "/app",
+    label: "Roadman Cycling Strength & Recovery App",
+    primaryQuery: "cycling strength and recovery app",
+    description:
+      "Permanent product, early-access and launch owner for Roadman's cyclist-specific iPhone strength, readiness and recovery app.",
+    primaryHubSlugs: [],
+    matchPhrases: [
+      "cycling strength and recovery app",
+      "cycling strength app",
+      "strength training app for cyclists",
+      "cycling recovery app",
+      "cycling readiness app",
+      "roadman cycling app",
+      "roadman app",
+    ],
+    supportingDestinations: [
+      {
+        path: "/best/best-cycling-strength-training-apps",
+        label: "Best Cycling Strength Training Apps",
+        intent:
+          "Independent category comparison for cyclists evaluating strength-training apps",
+      },
+      {
+        path: "/best/best-cycling-recovery-apps",
+        label: "Best Cycling Recovery Apps",
+        intent:
+          "Independent category comparison for recovery and readiness tools",
+      },
+      {
+        path: "/tools/strength-session-planner",
+        label: "Cycling Strength Session Planner",
+        intent:
+          "Free deterministic preview of strength-session placement around key rides",
+      },
+      {
+        path: "/blog/cycling-strength-training-guide",
+        label: "Strength Training for Cyclists",
+        intent:
+          "Broad informational strength-training evidence and programming guide",
+      },
+      {
+        path: "/blog/daily-training-readiness-check-cycling-guide",
+        label: "Daily Training Readiness for Cyclists",
+        intent:
+          "Evidence-bounded daily readiness decision guide, not a product page or medical diagnosis",
+      },
+    ],
+  },
 ] as const;
+
+/**
+ * The original five-owner GSC experiment has a fixed 24 August deployment
+ * cohort. Keep its comparisons stable when new owner families are added.
+ * The app begins a separate baseline from its formal owner release.
+ */
+export const GSC_MEASURED_SEARCH_OWNERS = SEARCH_OWNERS.filter(
+  (owner) => owner.id !== "cycling-strength-recovery-app",
+);
 
 export const SEARCH_OWNER_BY_ID = new Map(
   SEARCH_OWNERS.map((owner) => [owner.id, owner]),

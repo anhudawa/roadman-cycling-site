@@ -100,6 +100,7 @@ const SKIP_PATTERNS: RegExp[] = [
   /^\/plan(\/|$)/,
   /^\/about\/(corrections|expert-reviewers|how-we-coach|how-we-create-content|press)/,
   /^\/apps-vs-coaching(\/|$)/,
+  /^\/app$/,
   /^\/careers(\/|$)/,
   /^\/event-prep(\/|$)/,
   /^\/facts(\/|$)/,
