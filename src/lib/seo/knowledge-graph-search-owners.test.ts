@@ -52,7 +52,7 @@ describe("knowledge graph search ownership", () => {
       relationship: "supported_by",
     });
 
-    expect(graph.meta.edgesByRelationship.maintained_by).toBe(
+    expect(graph.meta.edgesByRelationship.maintained_by).toBeGreaterThanOrEqual(
       SEARCH_OWNERS.length,
     );
     expect(graph.meta.edgesByRelationship.supported_by).toBeGreaterThan(0);

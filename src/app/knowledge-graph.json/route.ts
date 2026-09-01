@@ -13,6 +13,7 @@ import { EVENTS } from "@/lib/training-plans";
 import { getAllTools } from "@/lib/tools-registry";
 import { getExpertsWithTopics, getExpertTopic } from "@/lib/experts";
 import { SEARCH_OWNERS } from "@/lib/seo/search-ownership";
+import { getResearchAssetCatalog } from "@/data/research-assets";
 import {
   FEED_BASE_URL,
   FEED_CACHE_HEADERS,
@@ -31,8 +32,8 @@ import {
  *
  * Goes beyond the per-type feeds at /feeds/*.json by giving AI agents
  * one document where they can traverse "guest → episode → topic →
- * article → glossary term → tool" without re-stitching shape-mismatched
- * payloads.
+ * article → research asset → glossary term → tool" without re-stitching
+ * shape-mismatched payloads.
  *
  * Node ids are namespaced (`type:slug` or `entity:subtype:slug`) so the
  * graph can be loaded into any property graph store without collisions.
@@ -46,20 +47,25 @@ type NodeType =
   | "article"
   | "term"
   | "event"
+  | "research-asset"
   | "entity";
 
 interface GraphNode {
   id: string;
   type: NodeType;
-  /** Sub-classification for `type: "entity"` nodes (comparison, problem,
-   *  question, best-for, expert-topic, property). Unset on the eight
-   *  first-class types. */
+  /** Sub-classification for entity and research-asset nodes. */
   subtype?: string;
   name: string;
   url: string | null;
   description?: string;
   /** Roadman content pillar — present where the source carries it. */
   pillar?: string;
+  /** Versioned research-asset fields. Unset on other node types. */
+  version?: string;
+  updatedDate?: string;
+  dataUrl?: string;
+  limitations?: readonly string[];
+  reuseTerms?: string;
 }
 
 interface GraphEdge {
@@ -83,6 +89,7 @@ interface GraphEdge {
    *   - covered_by_article      (event → article)
    *   - about_expert            (expert-topic page → person)
    *   - maintained_by           (search owner → person)
+   *   - documented_by           (research asset → method/article page)
    *   - supported_by            (search owner → supporting evidence)
    *   - supports_owner          (supporting evidence → search owner)
    */
@@ -193,6 +200,75 @@ export function GET() {
       pushEdge(supportingNodeId, ownerNodeId, "supports_owner");
     }
   }
+
+  // ----- VERSIONED RESEARCH & EVIDENCE ASSETS -----
+  // These nodes describe the reusable asset, not merely the page that
+  // documents it. The subtype preserves the claim boundary: datasets,
+  // archive studies, coaching frameworks and evidence benchmarks are not
+  // interchangeable. Blog-hosted method pages remain article nodes and are
+  // connected with documented_by rather than being silently duplicated.
+  const researchTopics: Record<string, readonly string[]> = {
+    "amateur-cycling-performance-report-2026": [
+      "ftp-training",
+      "masters-cycling",
+    ],
+    "cycling-podcast-archive-study-2026": [],
+    "sportive-readiness-index-2026": [
+      "race-preparation",
+      "cycling-training-plans",
+    ],
+    "amateur-cyclist-fuelling-benchmarks-2026": ["cycling-nutrition"],
+  };
+
+  for (const asset of getResearchAssetCatalog()) {
+    const assetNodeId = `research-asset:${asset.id}`;
+    upsertNode({
+      id: assetNodeId,
+      type: "research-asset",
+      subtype: asset.kind,
+      name: asset.name,
+      url: asset.canonicalUrl,
+      dataUrl: asset.dataUrl,
+      description: summarise(asset.summary),
+      version: asset.version,
+      updatedDate: asset.updatedDate,
+      limitations: asset.limitations,
+      reuseTerms: asset.reuse.terms,
+    });
+    pushEdge(assetNodeId, "person:anthony-walsh", "maintained_by");
+
+    const methodPageNodeId = nodeIdFromPath(asset.canonicalPath);
+    if (methodPageNodeId) {
+      pushEdge(assetNodeId, methodPageNodeId, "documented_by");
+    }
+
+    for (const topicSlug of researchTopics[asset.id] ?? []) {
+      pushEdge(assetNodeId, `topic:${topicSlug}`, "about_topic");
+    }
+  }
+
+  // Structured evidence can support a broad owner without competing for the
+  // owner's query intent.
+  pushEdge(
+    "research-asset:cycling-podcast-archive-study-2026",
+    "entity:search-owner:cycling-podcast",
+    "supports_owner",
+  );
+  pushEdge(
+    "entity:search-owner:cycling-podcast",
+    "research-asset:cycling-podcast-archive-study-2026",
+    "supported_by",
+  );
+  pushEdge(
+    "research-asset:sportive-readiness-index-2026",
+    "entity:search-owner:cycling-training-plans",
+    "supports_owner",
+  );
+  pushEdge(
+    "entity:search-owner:cycling-training-plans",
+    "research-asset:sportive-readiness-index-2026",
+    "supported_by",
+  );
 
   // ----- TOPICS -----
   const topicSlugSet = new Set(getAllTopicSlugs());
@@ -587,7 +663,7 @@ export function GET() {
       meta: {
         generatedAt: new Date().toISOString(),
         baseUrl: FEED_BASE_URL,
-        schemaVersion: 1,
+        schemaVersion: 2,
         nodeCount: nodeArr.length,
         edgeCount: edges.length,
         nodesByType,
