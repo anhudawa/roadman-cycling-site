@@ -885,80 +885,81 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
 
   "energy-availability": {
     slug: "energy-availability",
-    title: "Energy Availability Calculator",
+    title: "Energy Availability Estimator",
     description:
-      "Calculate energy availability and screen for RED-S risk based on training load, calorie intake, body weight, and gender.",
+      "Estimate energy availability from intake, exercise expenditure and fat-free mass, with clear limits on what the result can tell a cyclist.",
     url: `${ROADMAN_BASE}/tools/energy-availability`,
     breadcrumbName: "Energy Availability Calculator",
     answerSummary:
-      "Enter training hours, daily calorie intake, body weight, and gender. The calculator returns energy availability in kcal per kg of fat-free mass and screens you against RED-S risk thresholds (under 30, 30-45, and over 45 kcal/kg FFM/day).",
+      "Enter daily energy intake, exercise energy expenditure, body weight and estimated body fat. The tool applies the standard energy-availability equation and returns an educational estimate in kcal per kg of fat-free mass. It does not screen for or diagnose RED-S.",
     whatItDoes:
-      "Energy availability is the calories left over for everyday physiological function once you've subtracted what training burned. Chronic low energy availability is the root cause of RED-S — Relative Energy Deficiency in Sport — which costs cyclists power, immune function, sleep, hormonal health, and bone density. This tool tells you whether you're under-fuelling without realising.",
+      "Energy availability describes dietary energy remaining after exercise expenditure, scaled to fat-free mass. The equation is useful in research and can structure a fuelling conversation, but free-living food intake, exercise expenditure and body composition are difficult to measure accurately. This tool shows the arithmetic without converting it into a clinical traffic light.",
     whoItsFor: [
       "Riders pursuing race weight",
-      "High-volume cyclists training 12+ hours per week",
+      "High-volume cyclists reviewing how intake relates to exercise demand",
       "Anyone with persistent fatigue, frequent illness, or stalled progress",
       "Female cyclists with menstrual irregularity or stress fractures",
-      "Coaches screening athletes",
+      "Coaches explaining the energy-availability concept without diagnosing an athlete",
     ],
     howItWorks:
-      "Energy Availability (EA) = (Daily intake kcal − Exercise energy expenditure kcal) ÷ Fat-free mass (kg). Three thresholds matter: above 45 kcal/kg FFM/day = optimal; 30-45 = sub-optimal but not severely impaired; below 30 = clinical low energy availability with measurable hormonal and performance consequences.",
+      "Energy Availability (EA) = (daily energy intake − exercise energy expenditure) ÷ fat-free mass. Values around 30 and 45 kcal/kg FFM/day are widely cited research reference points, largely derived from controlled work in young women. They are not universal diagnostic boundaries across sexes, sports, durations or individuals.",
     howToSteps: [
-      { name: "Track intake honestly for 7 days", text: "Use a food-tracking app and weigh portions. Most amateurs under-report by 20-30%. Use the 7-day average rather than a single day." },
-      { name: "Estimate exercise energy expenditure", text: "Cycling watts × hours × 3.6 ≈ kcal. A 75kg rider doing 10 hours/week at 180W average burns roughly 6,500 kcal/week (≈930/day)." },
-      { name: "Estimate fat-free mass", text: "Body weight × (1 − body fat fraction). Use a DXA, bioimpedance scale, or skinfolds. A 75kg rider at 15% body fat has ~64 kg fat-free mass." },
-      { name: "Read the result", text: "If EA is under 30 kcal/kg FFM/day, raise food intake or reduce training load — ideally both. If 30-45, you're under-fuelling enough to limit adaptation. Above 45 is the target zone." },
+      { name: "Choose a comparable period", text: "Use an average that matches the same days for intake and exercise. A single unusually long ride or incomplete food day will distort the result." },
+      { name: "Estimate intake", text: "Record food and drink as carefully as practical, while recognising that self-reported energy intake in athletes commonly differs from reference measurements." },
+      { name: "Enter exercise expenditure", text: "Use exercise energy only, not total daily expenditure. Power-meter kilojoules may inform cycling estimates, but devices and metabolic assumptions still introduce error." },
+      { name: "Estimate fat-free mass", text: "Fat-free mass equals body weight minus estimated fat mass. DXA, bioimpedance and circumference methods are not interchangeable and each adds uncertainty." },
+      { name: "Use the result as context", text: "Do not label the value optimal, dangerous or diagnostic. Compare it with symptoms, health history, training and qualified assessment." },
     ],
     howToTotalTime: "PT4M",
     limitations:
-      "EA estimates depend on accurate calorie tracking and accurate exercise expenditure — both have meaningful error bars. The thresholds (30 / 45 kcal/kg FFM/day) come from research mostly on female athletes; male data is more sparse. EA is a screening tool, not a diagnosis. RED-S diagnosis requires medical input and looks at symptoms (low resting HR, missing periods, recurrent illness, stress fractures) alongside the number.",
+      "This is not a RED-S screener. Every input has meaningful error, and the 30/45 reference points do not operate as universal clinical cut-offs. The IOC REDs CAT2 uses screening, severity and risk assessment, exclusion of other causes, and a physician-led diagnosis informed by a multidisciplinary team.",
     whenToSeeACoach:
-      "If your EA is below 30, you've had recurrent illness, stress fractures, missing periods, or your power is dropping despite training — stop adjusting calories alone and book in with a sports physician and a registered dietitian. RED-S is a medical issue, not a coaching one.",
+      "Seek qualified medical and sports-dietetic assessment for menstrual disturbance, low libido or sexual-function change, recurrent bone stress injury, persistent fatigue or illness, marked performance change, rapid weight change, disordered eating or distress around food and training. A coach and app can provide context but cannot make the diagnosis.",
     examples: [
       {
         scenario: "Female 60kg rider, 12hr/week training",
         inputs: ["Intake: 2,400 kcal/day", "Training: 12 hr/week at 150W", "Weight: 60kg", "Body fat: 22%"],
-        output: "EA: ~28 kcal/kg FFM/day — clinical low EA. Add 300-400 kcal/day to lift above the 30 threshold.",
+        output: "The arithmetic produces an estimate near 28 kcal/kg FFM/day. Because the inputs and research boundaries are uncertain, this is a prompt to review the wider context—not a clinical category or automatic calorie prescription.",
       },
       {
         scenario: "Male 75kg rider, 8hr/week training",
         inputs: ["Intake: 3,200 kcal/day", "Training: 8 hr/week at 200W", "Weight: 75kg", "Body fat: 15%"],
-        output: "EA: ~46 kcal/kg FFM/day — optimal. Maintain intake around hard training blocks.",
+        output: "The arithmetic produces an estimate near 46 kcal/kg FFM/day. It does not prove that intake is adequate or rule out a health problem.",
       },
     ],
     faqs: [
       {
         question: "What is RED-S in cycling?",
-        answer: "RED-S — Relative Energy Deficiency in Sport — is a syndrome caused by chronically low energy availability. Symptoms include drops in performance, recurrent illness, low libido, missing periods (in females), low testosterone (in males), bone stress injuries, low resting HR, sleep disruption, and irritability. Cyclists are at high risk because the sport is body-weight sensitive.",
+        answer: "Relative Energy Deficiency in Sport describes impaired health and performance associated with exposure to problematic low energy availability. It can affect female and male cyclists, but its indicators are non-specific and other causes must be considered. Diagnosis is physician-led, not calculator-led.",
       },
       {
         question: "What is a healthy energy availability for cyclists?",
-        answer: "Above 45 kcal per kg of fat-free mass per day is considered optimal. 30-45 is sub-optimal and limits training adaptation. Below 30 is clinical low energy availability with measurable hormonal and performance consequences and shouldn't be sustained beyond short, supervised body-comp phases.",
+        answer: "There is no single validated healthy cut-off for every cyclist. Values around 30 and 45 kcal/kg FFM/day are useful research references but responses vary with sex, duration, baseline status and measurement method. Health, symptoms and performance require wider assessment.",
       },
       {
         question: "How is energy availability different from calorie deficit?",
-        answer: "A calorie deficit is intake minus total energy expenditure (BMR + activity). Energy availability is intake minus exercise expenditure, divided by fat-free mass — what's left over to fuel basic physiological function. You can be in a small calorie deficit AND in healthy EA, or in calorie balance and dangerously low EA if training volume is high. EA is the more useful number for athletes.",
+        answer: "Energy balance compares intake with total expenditure. Energy availability subtracts exercise expenditure from intake and scales the remainder to fat-free mass. They describe different concepts; neither a short food log nor body-weight stability can diagnose RED-S.",
       },
       {
         question: "Can I diet for race weight without low energy availability?",
-        answer: "Yes — but only if the deficit is small (≤300-400 kcal/day), the duration is limited (4-12 weeks), protein is high (1.6-2.2 g/kg), and you fuel hard training days fully. The danger is dieting through a high-volume training block with under-fuelled key sessions — that's the recipe for RED-S.",
+        answer: "Body-composition goals should be individualised and should not compromise health or useful training. This estimator cannot set a safe deficit, duration, protein target or minimum body weight. Riders with symptoms, previous RED-S, bone stress injury or disordered eating need qualified support before pursuing weight loss.",
       },
       {
         question: "How do I know if I have RED-S?",
-        answer: "EA below 30 for an extended period plus symptoms — drops in power, recurrent illness, missing periods, stress fractures, low resting HR, poor sleep, low libido. Diagnosis requires medical input, blood work, and DXA. Don't self-diagnose; do screen yourself with this calculator and book in if multiple flags are present.",
+        answer: "You cannot diagnose RED-S from this estimate, one symptom, one blood test or one DXA result. The IOC CAT2 uses a three-step process culminating in physician-led diagnosis and treatment after other causes are considered. Seek assessment when indicators persist or health is affected.",
       },
     ],
     related: [
       { label: "Race Weight Calculator", href: "/tools/race-weight", kind: "tool" },
       { label: "In-Ride Fuelling Calculator", href: "/tools/fuelling", kind: "tool" },
-      { label: "RED-S complete guide", href: "/blog/cycling-weight-loss-fuel-for-the-work-required", kind: "article" },
+      { label: "RED-S complete guide", href: "/blog/energy-availability-red-s-cyclists-guide", kind: "article" },
       { label: "Cycling nutrition topic hub", href: "/topics/cycling-nutrition", kind: "topic" },
     ],
     webAppFeatures: [
       "EA calculation in kcal per kg fat-free mass",
-      "RED-S risk screening (3 thresholds)",
-      "Training-load and intake inputs",
-      "Recommendations to lift above clinical low",
+      "Clear warning that the estimate is not a RED-S screen",
+      "Direct intake, exercise-expenditure and body-composition inputs",
+      "Research-reference context without clinical traffic lights",
     ],
   },
 

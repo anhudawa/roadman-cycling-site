@@ -295,6 +295,7 @@ const CURATED: string[] = [
   `https://${HOST}/blog/free-testosterone-cyclists-50th-percentile-dr-gordon`,
   `https://${HOST}/blog/masters-cycling-hormones-performance-guide`,
   `https://${HOST}/blog/cycling-thyroid-function-performance-guide`,
+  `https://${HOST}/blog/energy-availability-red-s-cyclists-guide`,
   `https://${HOST}/blog/cycling-overtraining-signs-guide`,
   `https://${HOST}/blog/recognising-overtraining-cyclists-guide`,
   `https://${HOST}/blog/best-cycling-computers-2026`,
