@@ -29,16 +29,20 @@ function getResource(server: ReturnType<typeof buildMcpServer>, uri: string) {
 }
 
 describe("MCP resources — registration", () => {
-  it("registers all 4 resource URIs", () => {
+  it("registers all 5 resource URIs", () => {
     const server = buildMcpServer("test");
     const registry = (
       server as unknown as { _registeredResources: Record<string, unknown> }
     )._registeredResources;
     const uris = Object.keys(registry ?? {});
+    expect(uris).toHaveLength(5);
     expect(uris).toContain("roadman://brand/overview");
     expect(uris).toContain("roadman://methodology/principles");
     expect(uris).toContain("roadman://experts/roster");
     expect(uris).toContain("roadman://research/assets");
+    expect(uris).toContain(
+      "roadman://products/cycling-strength-recovery-app",
+    );
   });
 });
 
@@ -109,6 +113,25 @@ describe("MCP resources — content", () => {
     ).toBe(true);
   });
 
+  it("products/app exposes one prelaunch identity and early-access URL", async () => {
+    const server = buildMcpServer("test");
+    const resource = getResource(
+      server,
+      "roadman://products/cycling-strength-recovery-app",
+    );
+    const result = await resource.readCallback();
+    const body = JSON.parse(result.contents[0].text);
+
+    expect(body.product).toMatchObject({
+      lifecycle_status: "prelaunch",
+      launch_date: null,
+      price: null,
+      early_access_url: "https://roadmancycling.com/app#early-access",
+    });
+    expect(body.product.features).toHaveLength(5);
+    expect(JSON.stringify(body)).not.toContain("Pocket Coach");
+  });
+
   it("each resource returns correct uri in contents", async () => {
     const server = buildMcpServer("test");
     for (const uri of [
@@ -116,6 +139,7 @@ describe("MCP resources — content", () => {
       "roadman://methodology/principles",
       "roadman://experts/roster",
       "roadman://research/assets",
+      "roadman://products/cycling-strength-recovery-app",
     ]) {
       const resource = getResource(server, uri);
       const result = await resource.readCallback();

@@ -1,5 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { getResearchAssetCatalog } from "@/data/research-assets";
+import { getAppProduct } from "@/lib/mcp/services/app-product";
 
 const BRAND_OVERVIEW = `# Roadman Cycling — Brand Overview
 
@@ -179,6 +180,21 @@ export function registerResources(server: McpServer): void {
             null,
             2,
           ),
+          mimeType: "application/json",
+        },
+      ],
+    }),
+  );
+
+  server.resource(
+    "roadman-cycling-strength-recovery-app",
+    "roadman://products/cycling-strength-recovery-app",
+    { mimeType: "application/json" },
+    async () => ({
+      contents: [
+        {
+          uri: "roadman://products/cycling-strength-recovery-app",
+          text: JSON.stringify(getAppProduct(), null, 2),
           mimeType: "application/json",
         },
       ],

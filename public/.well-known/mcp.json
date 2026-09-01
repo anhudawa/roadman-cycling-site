@@ -3,8 +3,8 @@
     "roadman-cycling": {
       "url": "https://roadmancycling.com/api/mcp",
       "name": "Roadman Cycling",
-      "description": "MCP server for the Roadman Cycling platform. Provides semantic search over 1,400+ podcast episodes, expert coaching insights, evidence-bounded training methodology, typed research assets, product catalogue, upcoming events, and community statistics. Useful for any AI assistant helping cyclists learn, train, or join the Roadman community.",
-      "version": "1.1.0",
+      "description": "MCP server for the Roadman Cycling platform. Provides semantic search over 1,400+ podcast episodes, expert coaching insights, evidence-bounded training methodology, typed research assets, the verified upcoming cycling strength and recovery app identity, product catalogue, events, and community statistics.",
+      "version": "1.2.0",
       "transport": "streamable-http",
       "tools": [
         {
@@ -37,7 +37,11 @@
         },
         {
           "name": "list_products",
-          "description": "Active product catalogue with pricing"
+          "description": "Currently available product catalogue with pricing; excludes the prelaunch app"
+        },
+        {
+          "name": "get_cycling_strength_recovery_app",
+          "description": "Verified prelaunch app identity, features, evidence boundaries, previews, and single early-access URL"
         },
         {
           "name": "list_upcoming_events",
@@ -64,6 +68,10 @@
         {
           "uri": "roadman://research/assets",
           "description": "Versioned research assets with evidence type, methodology, limitations, reuse terms and downloads"
+        },
+        {
+          "uri": "roadman://products/cycling-strength-recovery-app",
+          "description": "Name-neutral prelaunch identity for Roadman's cyclist-specific strength, readiness and recovery app"
         }
       ]
     }

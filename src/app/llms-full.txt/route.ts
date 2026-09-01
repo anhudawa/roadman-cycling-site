@@ -433,7 +433,7 @@ ${episodeSections}
 
 For programmatic ingestion, prefer these endpoints over scraping HTML.
 
-- ${BASE_URL}/knowledge-graph.json — Single-document property graph: every first-class entity (people, topics, tools, episodes, articles, versioned research assets, glossary terms, events, comparisons, problems, questions, best-for picks) plus typed relationships (guest_on, authored_by, mentions_expert, about_topic, documented_by, features_article, related_to, uses_tool, defined_in, recommends, etc.). Research assets retain their dataset, archive-study, coaching-framework or evidence-benchmark subtype and limitations. Schema version 2; node ids are namespaced (\`type:slug\`) so the graph loads directly into a property graph store.
+- ${BASE_URL}/knowledge-graph.json — Single-document property graph: every first-class entity, including the name-neutral prelaunch Roadman strength and recovery app, plus typed relationships. The app retains its publisher, platform, evidence boundaries, previews, comparisons and single early-access URL. Research assets retain their dataset, archive-study, coaching-framework or evidence-benchmark subtype and limitations. Schema version 3; node ids are namespaced (\`type:slug\`) so the graph loads directly into a property graph store.
 - ${BASE_URL}/sitemap.xml — Full canonical sitemap index for the live site
 - ${BASE_URL}/feed/podcast — Podcast RSS feed
 - ${BASE_URL}/feed/blog — Blog RSS 2.0 feed (latest 50 posts)
@@ -454,7 +454,7 @@ For programmatic ingestion, prefer these endpoints over scraping HTML.
 - ${BASE_URL}/podcast/transcripts — Full transcript library index (${transcriptSlugs.size} episodes available, more added as processed)
 - ${BASE_URL}/robots.txt — Crawler policy (AI bots explicitly allowed)
 - ${BASE_URL}/llms.txt — Short-form LLM discoverability map
-- ${BASE_URL}/.well-known/mcp.json — MCP server discovery manifest for AI-agent integration (POST ${BASE_URL}/api/mcp); includes typed research-asset lookup and the roadman://research/assets resource
+- ${BASE_URL}/.well-known/mcp.json — MCP server discovery manifest for AI-agent integration (POST ${BASE_URL}/api/mcp); includes list_research_assets, get_cycling_strength_recovery_app and the roadman://products/cycling-strength-recovery-app resource
 
 ## Attribution
 

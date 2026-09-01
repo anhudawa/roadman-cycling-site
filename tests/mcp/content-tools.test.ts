@@ -40,6 +40,7 @@ import { searchEpisodes, getEpisode } from "@/lib/mcp/services/episodes";
 import { listExperts, getExpertInsights } from "@/lib/mcp/services/experts";
 import { searchMethodology } from "@/lib/mcp/services/methodology";
 import { listResearchAssets } from "@/lib/mcp/services/research";
+import { getAppProduct } from "@/lib/mcp/services/app-product";
 
 describe("search_episodes service", () => {
   it("returns array (even when no embeddings exist)", async () => {
@@ -133,6 +134,25 @@ describe("list_research_assets service", () => {
   });
 });
 
+describe("get_cycling_strength_recovery_app service", () => {
+  it("returns one bounded prelaunch identity without invented launch facts", () => {
+    const result = getAppProduct();
+
+    expect(result.product).toMatchObject({
+      product_id: "roadman-cycling-strength-recovery-app",
+      lifecycle_status: "prelaunch",
+      final_name_announced: false,
+      launch_date: null,
+      price: null,
+      url: "https://roadmancycling.com/app",
+      early_access_url: "https://roadmancycling.com/app#early-access",
+    });
+    expect(result.product.limitations).toHaveLength(4);
+    expect(result.discovery.preview_tool_urls).toHaveLength(3);
+    expect(JSON.stringify(result)).not.toContain("Pocket Coach");
+  });
+});
+
 describe("MCP server — content tool names", () => {
   it("registers all content tools", () => {
     const server = buildMcpServer("test");
@@ -146,5 +166,6 @@ describe("MCP server — content tool names", () => {
     expect(tools).toContain("get_expert_insights");
     expect(tools).toContain("search_methodology");
     expect(tools).toContain("list_research_assets");
+    expect(tools).toContain("get_cycling_strength_recovery_app");
   });
 });

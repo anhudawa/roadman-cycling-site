@@ -74,7 +74,7 @@ describe("MCP server — tool registration", () => {
     expect(() => buildMcpServer("test")).not.toThrow();
   });
 
-  it("server has all 10 tools registered", () => {
+  it("server has all 11 tools registered", () => {
     const server = buildMcpServer("test");
     // Access internal tool registry
     const toolNames = Object.keys(
@@ -90,23 +90,29 @@ describe("MCP server — tool registration", () => {
       "search_methodology",
       "list_research_assets",
       "list_products",
+      "get_cycling_strength_recovery_app",
       "list_upcoming_events",
       "qualify_lead",
     ];
+    expect(toolNames).toHaveLength(11);
     for (const name of expected) {
       expect(toolNames).toContain(name);
     }
   });
 
-  it("server has all 4 resources registered", () => {
+  it("server has all 5 resources registered", () => {
     const server = buildMcpServer("test");
     const resourceUris = Object.keys(
       (server as unknown as { _registeredResources: Record<string, unknown> })
         ._registeredResources ?? {}
     );
+    expect(resourceUris).toHaveLength(5);
     expect(resourceUris).toContain("roadman://brand/overview");
     expect(resourceUris).toContain("roadman://methodology/principles");
     expect(resourceUris).toContain("roadman://experts/roster");
     expect(resourceUris).toContain("roadman://research/assets");
+    expect(resourceUris).toContain(
+      "roadman://products/cycling-strength-recovery-app",
+    );
   });
 });

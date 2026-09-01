@@ -20,7 +20,7 @@ curl -X POST https://roadmancycling.com/api/mcp \
 
 ---
 
-## Tools (10)
+## Tools (11)
 
 | Tool | Description |
 |------|-------------|
@@ -31,13 +31,14 @@ curl -X POST https://roadmancycling.com/api/mcp \
 | `get_expert_insights` | Quotes and key insights from a named expert |
 | `search_methodology` | Semantic search over Roadman coaching principles |
 | `list_research_assets` | Typed datasets, archive studies, frameworks and evidence benchmarks with limitations and downloads |
-| `list_products` | Active NDY products with pricing |
+| `list_products` | Currently available products with pricing; excludes the prelaunch app |
+| `get_cycling_strength_recovery_app` | Verified prelaunch app identity, features, boundaries, previews and single early-access URL |
 | `list_upcoming_events` | Calendar of group rides, Q&As, and training camps |
 | `qualify_lead` | Recommends the right product tier based on cyclist profile |
 
 ---
 
-## Resources (4)
+## Resources (5)
 
 | URI | Description |
 |-----|-------------|
@@ -45,6 +46,7 @@ curl -X POST https://roadmancycling.com/api/mcp \
 | `roadman://methodology/principles` | Five content pillars and core training principles |
 | `roadman://experts/roster` | Named expert credentials and appearance counts |
 | `roadman://research/assets` | Versioned research assets with type, method, limitations, reuse terms and data URLs |
+| `roadman://products/cycling-strength-recovery-app` | Name-neutral prelaunch app identity and public discovery routes |
 
 ---
 
@@ -62,7 +64,7 @@ curl -X POST https://roadmancycling.com/api/mcp \
 POST /api/mcp
   └── checkRateLimit(ip)          # Upstash Redis sliding window
   └── WebStandardStreamableHTTP   # MCP SDK Web API transport
-  └── buildMcpServer(ip)          # Registers all 10 tools + 4 resources
+  └── buildMcpServer(ip)          # Registers all 11 tools + 5 resources
        ├── withLogging()           # Wraps every handler — logs to mcp_call_logs
        └── services/               # One file per domain
             ├── community.ts
@@ -70,6 +72,7 @@ POST /api/mcp
             ├── experts.ts
             ├── methodology.ts     # pgvector cosine similarity search
             ├── research.ts        # Typed public research registry lookup
+            ├── app-product.ts     # Static, verified prelaunch app identity
             ├── products.ts
             ├── events.ts
             └── qualification.ts  # Pure logic — no DB

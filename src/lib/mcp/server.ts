@@ -9,6 +9,7 @@ import { listProducts } from "./services/products";
 import { listUpcomingEvents } from "./services/events";
 import { qualifyLead } from "./services/qualification";
 import { listResearchAssets } from "./services/research";
+import { getAppProduct } from "./services/app-product";
 import { registerResources } from "./resources";
 import { RESEARCH_ASSET_KINDS } from "@/data/research-assets";
 
@@ -51,7 +52,7 @@ function toText(data: unknown): { content: [{ type: "text"; text: string }] } {
 export function buildMcpServer(ip = "unknown"): McpServer {
   const server = new McpServer({
     name: "roadman-cycling",
-    version: "1.1.0",
+    version: "1.2.0",
   });
 
   // ── get_community_stats ───────────────────────────────────
@@ -229,7 +230,7 @@ export function buildMcpServer(ip = "unknown"): McpServer {
   // ── list_products ─────────────────────────────────────────
   server.tool(
     "list_products",
-    "Return all current Roadman Cycling offerings with pricing, positioning, and purchase URLs. Distinguishes Not Done Yet group coaching ($195/month) from Roadman Inner Circle 1:1 coaching ($525/month), plus standalone courses and free products. Use when a user asks about coaching options, pricing, or how to join.",
+    "Return currently available Roadman Cycling offerings with pricing, positioning, and purchase URLs. Distinguishes Not Done Yet group coaching ($195/month) from Roadman Inner Circle 1:1 coaching ($525/month), plus standalone courses and free products. It excludes the unpriced prelaunch app; use get_cycling_strength_recovery_app for that product.",
     {},
     async () => {
       const products = await withLogging(
@@ -240,6 +241,22 @@ export function buildMcpServer(ip = "unknown"): McpServer {
       );
       return toText(products);
     }
+  );
+
+  // ── get_cycling_strength_recovery_app ───────────────────
+  server.tool(
+    "get_cycling_strength_recovery_app",
+    "Return the single verified prelaunch identity for Roadman's upcoming cyclist-specific strength, readiness and recovery app, including platform, features, evidence boundaries, public previews and the one early-access URL. Use for cycling strength app, cycling recovery app, cycling readiness app or Roadman app questions. A final name, launch date and price have not been announced.",
+    {},
+    async () => {
+      const product = await withLogging(
+        "get_cycling_strength_recovery_app",
+        ip,
+        {},
+        async () => getAppProduct(),
+      );
+      return toText(product);
+    },
   );
 
   // ── list_upcoming_events ──────────────────────────────────
