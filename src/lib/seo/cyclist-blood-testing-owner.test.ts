@@ -93,7 +93,7 @@ describe("cyclist blood-testing search owner", () => {
   it("preserves the narrower marker, fatigue, REDs and OTS owners", () => {
     for (const slug of [
       "cycling-chronic-fatigue-when-tiredness-persists-guide",
-      "cycling-iron-ferritin-endurance-guide",
+      "iron-deficiency-cyclists-masters",
       "cycling-vitamin-d-performance-guide",
       "cycling-thyroid-function-performance-guide",
       "masters-cycling-hormones-performance-guide",

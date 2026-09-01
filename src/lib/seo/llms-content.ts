@@ -6,9 +6,9 @@
  * the canonical owners and highest-value evidence visible before a crawler's
  * context or download budget is exhausted.
  */
-export const LLMS_SHORT_RECENT_POST_LIMIT = 1;
+export const LLMS_SHORT_RECENT_POST_LIMIT = 0;
 export const LLMS_SHORT_EPISODE_LIMIT = 30;
-export const LLMS_FULL_RECENT_POST_LIMIT = 296;
+export const LLMS_FULL_RECENT_POST_LIMIT = 294;
 export const LLMS_FULL_EPISODE_LIMIT = 80;
 
 export const LLMS_SHORT_MAX_BYTES = 151_000;
@@ -102,6 +102,7 @@ export const LLMS_PINNED_BLOG_SLUGS = new Set([
   "cycling-recovering-from-overtraining-guide",
   "cycling-chronic-fatigue-when-tiredness-persists-guide",
   "blood-testing-cyclists-what-to-check-guide",
+  "iron-deficiency-cyclists-masters",
   "cycling-vitamin-d-performance-guide",
   "cycling-time-crunched-training-guide",
   "cycling-hydration-guide",
