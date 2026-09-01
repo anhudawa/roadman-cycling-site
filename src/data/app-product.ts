@@ -13,6 +13,8 @@ export const ROADMAN_APP_PRODUCT = {
   feedUrl: `${SITE_ORIGIN}/feeds/app-product.json`,
   methodologyUrl: `${SITE_ORIGIN}/app/methodology`,
   testingStandardUrl: `${SITE_ORIGIN}/app/testing`,
+  evidenceRegisterUrl: `${SITE_ORIGIN}/app/evidence`,
+  evidenceFeedUrl: `${SITE_ORIGIN}/feeds/app-evidence.json`,
   name: "Roadman Cycling strength and recovery app",
   description:
     "A cyclist-specific strength and recovery app that fits 30, 45 or 60-minute gym work around the real riding week, protects key rides and explains every readiness adjustment.",

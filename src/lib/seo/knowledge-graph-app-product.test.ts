@@ -31,6 +31,8 @@ describe("Roadman app knowledge-graph entity", () => {
         applicationCategory: "SportsApplication",
         operatingSystems: ["iOS"],
         limitations: ROADMAN_APP_PRODUCT.limitations,
+        evidenceRegisterUrl: ROADMAN_APP_PRODUCT.evidenceRegisterUrl,
+        evidenceFeedUrl: ROADMAN_APP_PRODUCT.evidenceFeedUrl,
       }),
     );
     expect(graph.nodes).toContainEqual(

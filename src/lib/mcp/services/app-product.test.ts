@@ -24,6 +24,12 @@ describe("MCP app product service", () => {
     expect(record.discovery.testing_standard_url).toBe(
       ROADMAN_APP_PRODUCT.testingStandardUrl,
     );
+    expect(record.discovery.evidence_register_url).toBe(
+      ROADMAN_APP_PRODUCT.evidenceRegisterUrl,
+    );
+    expect(record.discovery.evidence_feed_url).toBe(
+      ROADMAN_APP_PRODUCT.evidenceFeedUrl,
+    );
     expect(JSON.stringify(record)).not.toMatch(/pocket coach/i);
   });
 });

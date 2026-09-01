@@ -437,6 +437,8 @@ For programmatic ingestion, prefer these endpoints over scraping HTML.
 - ${BASE_URL}/feeds/app-product.json — Stable name-neutral product record for the prelaunch Roadman strength and recovery app, including explicit null launch date and price, features, limitations, linked previews, comparisons, evidence and its single early-access URL
 - ${BASE_URL}/app/methodology — Public prelaunch decision policy: strength placement, same-day readiness guardrails, protected key rides, versioned progression, prohibited diagnoses and evidence limits
 - ${BASE_URL}/app/testing — Public prelaunch testing standard: rule verification, beta usability, coach-review agreement, observational pilots, comparative effectiveness, denominators and claim boundaries
+- ${BASE_URL}/app/evidence — Versioned app evidence register: current claim status, explicit non-claims, zero-result state and pending product reports
+- ${BASE_URL}/feeds/app-evidence.json — Machine-readable version of the app evidence register with null schedules and result URLs preserved
 - ${BASE_URL}/sitemap.xml — Full canonical sitemap index for the live site
 - ${BASE_URL}/feed/podcast — Podcast RSS feed
 - ${BASE_URL}/feed/blog — Blog RSS 2.0 feed (latest 50 posts)

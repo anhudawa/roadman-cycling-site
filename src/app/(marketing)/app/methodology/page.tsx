@@ -105,6 +105,9 @@ export default function AppMethodologyPage() {
               <Link className="text-foreground-muted hover:text-coral" href="/app/testing">
                 Public testing standard →
               </Link>
+              <Link className="text-foreground-muted hover:text-coral" href="/app/evidence">
+                Current evidence register →
+              </Link>
             </div>
           </Container>
         </Section>
@@ -259,8 +262,9 @@ export default function AppMethodologyPage() {
               </div>
             </div>
 
-            <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               <MethodLink href="/app/testing" label="See the testing standard" />
+              <MethodLink href="/app/evidence" label="Check the evidence register" />
               <MethodLink href="/tools/strength-session-planner" label="Preview strength placement" />
               <MethodLink href="/tools/training-readiness" label="Use the readiness check" />
               <MethodLink href="/blog/cycling-strength-training-guide" label="Read the strength evidence" />
