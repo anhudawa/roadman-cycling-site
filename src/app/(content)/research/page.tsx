@@ -191,6 +191,80 @@ export default function ResearchPage() {
                 </a>
               </div>
             </div>
+            <div className="max-w-4xl mx-auto mb-8">
+              <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+                <div>
+                  <p className="text-coral font-heading text-xs tracking-widest mb-2">
+                    PRACTICE FRAMEWORKS &amp; EVIDENCE AUDITS
+                  </p>
+                  <h2 className="font-heading text-off-white text-xl md:text-2xl">
+                    REUSABLE CYCLING RESEARCH ASSETS
+                  </h2>
+                </div>
+                <a
+                  href="/feeds/research-assets.json"
+                  className="text-coral text-xs font-heading tracking-wider hover:text-coral/80 transition-colors"
+                >
+                  Browse the typed asset feed →
+                </a>
+              </div>
+              <div className="grid gap-5 md:grid-cols-2">
+                <Card className="p-6" hoverable={false}>
+                  <p className="text-coral font-heading text-xs tracking-widest mb-2">
+                    COACHING FRAMEWORK · NOT POPULATION DATA
+                  </p>
+                  <h3 className="font-heading text-off-white text-lg mb-3">
+                    SPORTIVE READINESS INDEX 2026
+                  </h3>
+                  <p className="text-foreground-muted text-sm leading-relaxed mb-5">
+                    Five evidence domains, three honest readiness states and a
+                    16-to-1-week review worksheet—with no invented pass score.
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <Link
+                      href="/blog/sportive-training-readiness-index-2026"
+                      className="text-coral text-xs font-heading tracking-wider hover:text-coral/80 transition-colors"
+                    >
+                      Use the framework →
+                    </Link>
+                    <a
+                      href="/data/sportive-readiness-index-2026.csv"
+                      download
+                      className="text-off-white text-xs font-heading tracking-wider hover:text-coral transition-colors"
+                    >
+                      Download CSV →
+                    </a>
+                  </div>
+                </Card>
+                <Card className="p-6" hoverable={false}>
+                  <p className="text-coral font-heading text-xs tracking-widest mb-2">
+                    EVIDENCE BENCHMARK · NOT A RIDER SURVEY
+                  </p>
+                  <h3 className="font-heading text-off-white text-lg mb-3">
+                    AMATEUR CYCLIST FUELLING BENCHMARKS 2026
+                  </h3>
+                  <p className="text-foreground-muted text-sm leading-relaxed mb-5">
+                    Evidence-bounded carbohydrate ranges plus a repeatable
+                    plan-versus-actual fuelling and tolerance audit.
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <Link
+                      href="/blog/amateur-cyclist-fuelling-benchmarks-report-2026"
+                      className="text-coral text-xs font-heading tracking-wider hover:text-coral/80 transition-colors"
+                    >
+                      Read the report →
+                    </Link>
+                    <a
+                      href="/data/amateur-cyclist-fuelling-benchmarks-2026.csv"
+                      download
+                      className="text-off-white text-xs font-heading tracking-wider hover:text-coral transition-colors"
+                    >
+                      Download CSV →
+                    </a>
+                  </div>
+                </Card>
+              </div>
+            </div>
             <div className="space-y-8 max-w-4xl mx-auto">
               {RESEARCH_AREAS.map((area, i) => (
                 <ScrollReveal key={area.title} direction="up" delay={i * 0.04}>
