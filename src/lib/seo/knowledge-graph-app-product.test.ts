@@ -32,6 +32,7 @@ describe("Roadman app knowledge-graph entity", () => {
         operatingSystems: ["iOS"],
         limitations: ROADMAN_APP_PRODUCT.limitations,
         evidenceRegisterUrl: ROADMAN_APP_PRODUCT.evidenceRegisterUrl,
+        useCaseFeedUrl: ROADMAN_APP_PRODUCT.useCaseFeedUrl,
         evidenceFeedUrl: ROADMAN_APP_PRODUCT.evidenceFeedUrl,
         exerciseLibraryUrl: ROADMAN_APP_PRODUCT.exerciseLibraryUrl,
         exerciseFeedUrl: ROADMAN_APP_PRODUCT.exerciseFeedUrl,

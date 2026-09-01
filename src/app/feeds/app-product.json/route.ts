@@ -44,6 +44,7 @@ export function GET() {
       },
       discovery: {
         searchOwnerUrl: ROADMAN_APP_PRODUCT.canonicalUrl,
+        useCaseFeedUrl: ROADMAN_APP_PRODUCT.useCaseFeedUrl,
         methodologyUrl: ROADMAN_APP_PRODUCT.methodologyUrl,
         testingStandardUrl: ROADMAN_APP_PRODUCT.testingStandardUrl,
         evidenceRegisterUrl: ROADMAN_APP_PRODUCT.evidenceRegisterUrl,
