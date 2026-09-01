@@ -30,6 +30,7 @@ export function getAppProduct() {
     },
     discovery: {
       canonical_search_owner_url: ROADMAN_APP_PRODUCT.canonicalUrl,
+      product_feed_url: ROADMAN_APP_PRODUCT.feedUrl,
       knowledge_graph_url: `${SITE_ORIGIN}/knowledge-graph.json`,
       topic_urls: ROADMAN_APP_PRODUCT.topicSlugs.map(
         (slug) => `${SITE_ORIGIN}/topics/${slug}`,
