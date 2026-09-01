@@ -127,6 +127,8 @@ describe("strength and recovery app acquisition paths", () => {
         "/app?source=testosterone-guide",
       "content/blog/masters-cycling-hormones-performance-guide.mdx":
         "/app?source=masters-hormones-guide",
+      "content/blog/cycling-thyroid-function-performance-guide.mdx":
+        "/app?source=thyroid-guide",
       "content/blog/cycling-strength-training-guide.mdx":
         "/app?source=strength-guide",
       "content/blog/strength-training-cyclists-over-50.mdx":

@@ -7,7 +7,7 @@ import {
 
 describe("app acquisition attribution", () => {
   it("retains every approved origin and form placement", () => {
-    expect(APP_ACQUISITION_SOURCES.size).toBe(47);
+    expect(APP_ACQUISITION_SOURCES.size).toBe(48);
     expect(buildAppWaitlistSource("strength-guide", "hero")).toBe(
       "roadman-app-waitlist-strength-guide-hero",
     );
@@ -61,6 +61,9 @@ describe("app acquisition attribution", () => {
     );
     expect(buildAppWaitlistSource("masters-hormones-guide", "bottom")).toBe(
       "roadman-app-waitlist-masters-hormones-guide-bottom",
+    );
+    expect(buildAppWaitlistSource("thyroid-guide", "bottom")).toBe(
+      "roadman-app-waitlist-thyroid-guide-bottom",
     );
     expect(buildAppWaitlistSource("magnesium-guide", "bottom")).toBe(
       "roadman-app-waitlist-magnesium-guide-bottom",
