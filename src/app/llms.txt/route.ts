@@ -848,6 +848,7 @@ ${answersClusterBlock}
 - [The Roadman Method](${tag(`${BASE_URL}/methodology`)}): The five-pillar coaching methodology that informs every plan, article, and podcast conversation. Coaching, Nutrition, Strength, Recovery, Community.
 - [Research & Evidence Base](${tag(`${BASE_URL}/research`)}): The named experts, published studies, and on-the-record podcast conversations behind every article and coaching decision.
 - [Roadman Benchmarks](${tag(`${BASE_URL}/benchmarks`)}): Anonymised performance benchmarks across the Roadman coaching cohort — FTP, W/kg, training volume, age-group medians, and 90th-percentile values for serious amateurs.
+- [Sportive Readiness Index 2026](${tag(`${BASE_URL}/blog/sportive-training-readiness-index-2026`)}): Transparent five-domain framework for event demands, pacing and climbing, late-ride durability, practised fuelling, and training/recovery execution. It uses confirmed, partial and not-yet-demonstrated evidence states rather than an unvalidated pass score; includes a free CSV worksheet.
 - [Member Results & Case Studies](${tag(`${BASE_URL}/case-studies`)}): Documented coaching outcomes — Cat 3 to Cat 1, body composition transformations, Women's National Series results, comeback stories. Each case study names the rider, the inputs, and the timeline.
 - [Member Reviews & Testimonials](${tag(`${BASE_URL}/proof`)}): On-record member reviews and testimonials for Roadman coaching and the podcast.
 - [Editorial Standards](${tag(`${BASE_URL}/editorial-standards`)}): The full editorial standards page.

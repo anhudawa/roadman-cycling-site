@@ -231,6 +231,12 @@ export const SEARCH_OWNERS: readonly SearchOwner[] = [
           "Plan-format selection checklist, service comparison and red flags",
       },
       {
+        path: "/blog/sportive-training-readiness-index-2026",
+        label: "Sportive Readiness Index 2026",
+        intent:
+          "Evidence checklist for event demands, pacing, durability, fuelling and practical execution rather than a training-plan sale",
+      },
+      {
         path: "/blog/how-pro-cyclist-trains-60-days",
         label: "Pro Training Principles: 60-Day Case Study",
         intent: "First-person training-plan experiment and results",
