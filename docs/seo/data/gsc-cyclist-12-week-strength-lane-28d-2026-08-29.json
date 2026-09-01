@@ -1,0 +1,71 @@
+{
+  "property": "sc-domain:roadmancycling.com",
+  "searchType": "Web",
+  "dateRange": {
+    "preset": "28 days",
+    "start": "2026-08-02",
+    "end": "2026-08-29"
+  },
+  "capturedAt": "2026-09-01",
+  "queryFilter": {
+    "type": "custom-regex",
+    "value": "(12.?week|twelve.?week).*(strength|gym).*(program|programme)|(strength|gym).*(program|programme).*(12.?week|twelve.?week)"
+  },
+  "totals": {
+    "clicks": 10,
+    "impressions": 100,
+    "ctrPercent": 10,
+    "averagePosition": 11.3
+  },
+  "queryRows": [
+    {
+      "query": "12-week strength training program for cyclists",
+      "clicks": 7,
+      "impressions": 61
+    },
+    {
+      "query": "12 week strength training program for cyclists pdf free download",
+      "clicks": 2,
+      "impressions": 9
+    },
+    {
+      "query": "12 week strength training program for cyclists",
+      "clicks": 1,
+      "impressions": 9
+    },
+    {
+      "query": "12 week strength program for cyclists",
+      "clicks": 0,
+      "impressions": 20
+    }
+  ],
+  "visiblePageRows": [
+    {
+      "path": "/blog/cycling-strength-training-12-week-beginner-plan",
+      "clicks": 8,
+      "impressions": 68,
+      "decision": "retain-as-editorial-owner"
+    },
+    {
+      "path": "/blog/off-season-gym-routine-cyclists-12-week-block",
+      "clicks": 3,
+      "impressions": 23,
+      "decision": "retain-as-seasonal-support"
+    },
+    {
+      "path": "/blog/cycling-strength-training-guide",
+      "clicks": 0,
+      "impressions": 28,
+      "decision": "retain-as-broad-evidence-guide"
+    }
+  ],
+  "supportingTool": {
+    "path": "/sc/programme",
+    "visibleInPageRows": false,
+    "indexPolicy": "noindex-follow"
+  },
+  "notes": [
+    "Google Search Console states that filtered chart totals and table rows may be partial; visible page rows are not summed as if they equal the card total.",
+    "The regex also returned one non-cycling query with one impression; the frozen totals preserve the actual filtered card while the opportunity rows above retain the cycling intent used for the decision."
+  ]
+}

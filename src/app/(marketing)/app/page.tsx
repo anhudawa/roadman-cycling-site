@@ -720,6 +720,12 @@ export default function AppLandingPage() {
                 Cyclist exercise library
               </Link>
               <Link
+                href="/feeds/cycling-strength-programme.json"
+                className="text-foreground-muted transition-colors hover:text-coral"
+              >
+                12-week strength programme data
+              </Link>
+              <Link
                 href="/topics/cycling-recovery"
                 className="text-foreground-muted transition-colors hover:text-coral"
               >

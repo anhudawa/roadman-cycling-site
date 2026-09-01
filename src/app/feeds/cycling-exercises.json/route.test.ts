@@ -34,5 +34,8 @@ describe("GET /feeds/cycling-exercises.json", () => {
     expect(sidePlank.description).toContain("Lateral core stability");
     expect(sidePlank.targetAreas).toContain("obliques");
     expect(body.discovery.appUrl).toBe("https://roadmancycling.com/app");
+    expect(body.discovery.programmeFeedUrl).toBe(
+      "https://roadmancycling.com/feeds/cycling-strength-programme.json",
+    );
   });
 });
