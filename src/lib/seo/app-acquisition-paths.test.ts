@@ -129,6 +129,10 @@ describe("strength and recovery app acquisition paths", () => {
         "/app?source=masters-hormones-guide",
       "content/blog/cycling-thyroid-function-performance-guide.mdx":
         "/app?source=thyroid-guide",
+      "content/blog/energy-availability-red-s-cyclists-guide.mdx":
+        "/app?source=reds-guide",
+      "src/app/(content)/tools/energy-availability/page.tsx":
+        "/app?source=energy-availability-estimate",
       "content/blog/cycling-strength-training-guide.mdx":
         "/app?source=strength-guide",
       "content/blog/strength-training-cyclists-over-50.mdx":
@@ -142,7 +146,11 @@ describe("strength and recovery app acquisition paths", () => {
     } as const;
 
     for (const [path, href] of Object.entries(handoffs)) {
-      expect(read(path), path).toContain(`](${href})`);
+      const content = read(path);
+      expect(
+        content.includes(`](${href})`) || content.includes(`href=\"${href}\"`),
+        path,
+      ).toBe(true);
     }
   });
 
