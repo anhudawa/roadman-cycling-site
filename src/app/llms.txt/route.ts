@@ -1103,6 +1103,7 @@ For programmatic ingestion, prefer these endpoints over scraping HTML. All are p
 - [Episodes JSON Feed](${BASE_URL}/feeds/episodes.json): All podcast episodes as JSON — guest, credential, transcript URL where available, pillar, topic tags.
 - [Podcast Knowledge Feed](${BASE_URL}/feeds/podcast-knowledge.json): Evidence-aware episode catalogue with transcript status, takeaways, reviewed claims, citations, chapters, and citation-readiness coverage.
 - [Research Dataset Feed](${BASE_URL}/feeds/research.json): Roadman's reusable benchmark dataset with methodology, source notes, limitations, and CC BY 4.0 licensing.
+- [Research Asset Catalogue](${BASE_URL}/feeds/research-assets.json): Typed index of Roadman datasets, archive studies, coaching frameworks, and evidence benchmarks with methodology, limitations, reuse terms, and download URLs.
 - [Search Ownership Registry](${BASE_URL}/search-ownership.json): Canonical owner for each priority broad query family, plus the phrases routed to it.
 - [Guests JSON Feed](${BASE_URL}/feeds/guests.json): Every podcast guest with episode counts, credentials, and pillars covered.
 - [Topics JSON Feed](${BASE_URL}/feeds/topics.json): Topic hubs with pillar tags, related topics, articles, episodes, and tools.

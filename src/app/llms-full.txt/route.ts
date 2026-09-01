@@ -442,6 +442,7 @@ For programmatic ingestion, prefer these endpoints over scraping HTML.
 - ${BASE_URL}/feeds/podcast-archive-study.json — Versioned JSON for the 31 August 2026 podcast archive study, including methodology, limitations, pillar and format totals, and yearly rows
 - ${BASE_URL}/feeds/articles.json — All blog posts as JSON (slug, title, pillar, dates, answer capsule, FAQ, related episodes)
 - ${BASE_URL}/feeds/research.json — Reusable Roadman benchmark dataset with methodology, sources, limitations, and license
+- ${BASE_URL}/feeds/research-assets.json — Typed catalogue of Roadman datasets, archive studies, coaching frameworks, and evidence benchmarks with methodology, limitations, reuse terms, and download URLs
 - ${BASE_URL}/data/roadman-podcast-archive-2026.csv — CC BY 4.0 yearly snapshot of 818 searchable podcast records by topic, format and transcript/media availability; methodology at ${BASE_URL}/research/cycling-podcast-archive-study
 - ${BASE_URL}/data/sportive-readiness-index-2026.csv — Version 1.0 worksheet for Roadman's five-domain sportive-readiness framework and 16, 12, 8, 4 and 1-week review points; methodology at ${BASE_URL}/blog/sportive-training-readiness-index-2026
 - ${BASE_URL}/data/amateur-cyclist-fuelling-benchmarks-2026.csv — Version 1.0 evidence ranges and plan-versus-actual fuelling audit; methodology and population-data limitations at ${BASE_URL}/blog/amateur-cyclist-fuelling-benchmarks-report-2026
