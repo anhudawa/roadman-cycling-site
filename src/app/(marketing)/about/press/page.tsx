@@ -9,18 +9,22 @@ import {
   BRAND_STATS,
   PODCAST_HISTORY,
 } from "@/lib/brand-facts";
+import {
+  RESEARCH_ASSETS,
+  type ResearchAssetKind,
+} from "@/data/research-assets";
 
 export const metadata: Metadata = {
   title: "Press & Media Kit — Anthony Walsh & Roadman Cycling",
   description:
-    "Press enquiries, brand stats, founder bio, guest credentials, approved assets, and podcast-guesting availability for Roadman Cycling and Anthony Walsh.",
+    "Press enquiries, verified brand facts, original cycling research, founder bio, approved assets, and interview availability for Roadman Cycling and Anthony Walsh.",
   alternates: {
     canonical: "https://roadmancycling.com/about/press",
   },
   openGraph: {
     title: "Press & Media Kit — Anthony Walsh & Roadman Cycling",
     description:
-      "Press enquiries, brand stats, founder bio, guest credentials and approved assets for Roadman Cycling and Anthony Walsh.",
+      "Press enquiries, verified brand facts, original cycling research, founder bio and approved assets for Roadman Cycling and Anthony Walsh.",
     type: "profile",
     url: "https://roadmancycling.com/about/press",
   },
@@ -97,6 +101,13 @@ const pitchAngles = [
     body: "Masters cyclists are the fastest-growing segment in the sport. What the science says about getting faster — not slower — after 40, 50, and beyond.",
   },
 ];
+
+const researchKindLabels: Record<ResearchAssetKind, string> = {
+  dataset: "Dataset",
+  "archive-study": "Archive study",
+  "coaching-framework": "Coaching framework",
+  "evidence-benchmark": "Evidence benchmark",
+};
 
 const brandAssets = [
   {
@@ -191,7 +202,8 @@ export default function PressPage() {
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto leading-relaxed">
                 For interviews, features, podcast guesting, and media enquiries
                 — everything journalists and producers need in one place.
-                Brand stats, bio, approved assets, and direct contact below.
+                Verified facts, original research, approved assets, and direct
+                contact below.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
                 <Button
@@ -326,24 +338,70 @@ export default function PressPage() {
             </ScrollReveal>
 
             <div className="mb-8 rounded-xl border border-coral/30 bg-coral/[0.06] p-6 md:p-8">
-              <p className="font-heading text-xs tracking-widest text-coral">
-                NEW ORIGINAL DATA
+              <div className="flex flex-wrap items-end justify-between gap-4">
+                <div>
+                  <p className="font-heading text-xs tracking-widest text-coral">
+                    ROADMAN CYCLING SOURCE DESK
+                  </p>
+                  <h3 className="mt-2 font-heading text-2xl text-off-white">
+                    ORIGINAL RESEARCH &amp; REUSABLE EVIDENCE
+                  </h3>
+                </div>
+                <a
+                  href="/feeds/research-assets.json"
+                  className="font-heading text-xs tracking-wider text-coral transition-colors hover:text-coral/80"
+                >
+                  Machine-readable catalogue →
+                </a>
+              </div>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-foreground-muted">
+                Every asset includes a maintained method, explicit limitations,
+                reuse terms and a direct data or worksheet download. The type
+                label is part of the claim: a coaching framework is not a rider
+                dataset, and an evidence benchmark is not a survey.
               </p>
-              <h3 className="mt-2 font-heading text-2xl text-off-white">
-                818-RECORD CYCLING PODCAST ARCHIVE STUDY
-              </h3>
-              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-foreground-muted">
-                A citable, versioned snapshot of Roadman&apos;s searchable podcast
-                archive covering publication mix, episode format, named guests
-                and transcript availability. The methodology and CSV are open
-                for editorial use under CC BY 4.0.
-              </p>
-              <Link
-                href="/research/cycling-podcast-archive-study"
-                className="mt-5 inline-flex rounded-md bg-coral px-4 py-2 font-heading text-sm text-off-white transition-colors hover:bg-coral/90"
-              >
-                Open report and CSV →
-              </Link>
+              <div className="mt-6 grid gap-4 md:grid-cols-2">
+                {RESEARCH_ASSETS.map((asset) => {
+                  const editorialDownload =
+                    "supplementaryDataPaths" in asset
+                      ? asset.supplementaryDataPaths[0] ?? asset.dataPath
+                      : asset.dataPath;
+
+                  return (
+                    <Card key={asset.id} className="p-5" hoverable={false}>
+                      <p className="font-heading text-[11px] tracking-widest text-coral">
+                        {researchKindLabels[asset.kind].toUpperCase()} · VERSION {asset.version}
+                      </p>
+                      <h4 className="mt-2 font-heading text-lg text-off-white">
+                        {asset.name.toUpperCase()}
+                      </h4>
+                      <p className="mt-3 text-sm leading-relaxed text-foreground-muted">
+                        {asset.summary}
+                      </p>
+                      <p className="mt-3 border-l-2 border-coral/40 pl-3 text-xs leading-relaxed text-foreground-subtle">
+                        <strong className="text-off-white">Boundary:</strong>{" "}
+                        {asset.limitations[0]}
+                      </p>
+                      <div className="mt-5 flex flex-wrap gap-3">
+                        <Link
+                          href={asset.canonicalPath}
+                          className="font-heading text-xs tracking-wider text-coral transition-colors hover:text-coral/80"
+                        >
+                          Method and findings →
+                        </Link>
+                        <a
+                          href={editorialDownload}
+                          className="font-heading text-xs tracking-wider text-off-white transition-colors hover:text-coral"
+                        >
+                          {editorialDownload.endsWith(".csv")
+                            ? "Download CSV →"
+                            : "Open data →"}
+                        </a>
+                      </div>
+                    </Card>
+                  );
+                })}
+              </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-4">
