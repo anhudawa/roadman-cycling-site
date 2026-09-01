@@ -1,0 +1,27 @@
+{
+  "property": "sc-domain:roadmancycling.com",
+  "searchType": "Web",
+  "dateRange": {
+    "preset": "28 days",
+    "start": "2026-08-02",
+    "end": "2026-08-29"
+  },
+  "capturedAt": "2026-09-01",
+  "queryFilter": {
+    "type": "custom-regex",
+    "value": "(cycling|cyclist).*(app).*(over 40|over 50|masters)|(over 40|over 50|masters).*(cycling|cyclist).*app"
+  },
+  "totals": {
+    "clicks": 0,
+    "impressions": 0,
+    "ctrPercent": 0,
+    "averagePosition": 0,
+    "matchingQueries": 0
+  },
+  "tableState": "No data",
+  "notes": [
+    "Search Console reported its last update as eight hours before capture.",
+    "This is a pre-release demand baseline, not evidence that the segment has no addressable search demand.",
+    "Google states that filtered chart totals and table results may be partial."
+  ]
+}

@@ -856,6 +856,7 @@ ${answersClusterBlock}
 
 ## Strength & Recovery App
 - [Roadman Cycling Strength & Recovery App](${tag(`${BASE_URL}/app`)}): Permanent prelaunch owner for Roadman's upcoming iPhone app. The public scope is cyclist-specific 30/45/60-minute strength, daily readiness, key-ride protection, transparent progression and evidence-bounded recovery around the rider's existing cycling week. The final product name, launch date and price are not yet announced.
+- [Cycling App for Masters Cyclists Over 40](${tag(`${BASE_URL}/app/masters`)}): Product-fit and early-access page for over-40 and over-50 riders. It belongs to the same Roadman app and single waitlist; age is context, not a standalone prescription or diagnosis.
 - [Cycling Strength Session Planner](${tag(`${BASE_URL}/tools/strength-session-planner`)}): Free deterministic planner that places one or two available 30, 45 or 60-minute strength windows around a cyclist's real week, penalises placement directly before key and long rides, exposes its rules and labels compromises. It schedules time; it does not prescribe exercises or diagnose recovery.
 
 ## Core Coaching Services

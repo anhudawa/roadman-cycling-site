@@ -21,21 +21,28 @@ function Capture({ source }: { source: string }) {
 
 export function AppEarlyAccessCapture({
   placement,
+  acquisitionSource,
 }: {
   placement: AppWaitlistPlacement;
+  acquisitionSource?: string;
 }) {
   const searchParams = useSearchParams();
   return (
     <Capture
-      source={buildAppWaitlistSource(searchParams.get("source"), placement)}
+      source={buildAppWaitlistSource(
+        acquisitionSource ?? searchParams.get("source"),
+        placement,
+      )}
     />
   );
 }
 
 export function AppEarlyAccessCaptureFallback({
   placement,
+  acquisitionSource,
 }: {
   placement: AppWaitlistPlacement;
+  acquisitionSource?: string;
 }) {
-  return <Capture source={buildAppWaitlistSource(null, placement)} />;
+  return <Capture source={buildAppWaitlistSource(acquisitionSource, placement)} />;
 }

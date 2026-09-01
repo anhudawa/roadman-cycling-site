@@ -57,6 +57,7 @@ export function GET() {
         recoveryKnowledgeUrl: ROADMAN_APP_PRODUCT.recoveryKnowledgeUrl,
         recoveryLibraryUrl: ROADMAN_APP_PRODUCT.recoveryLibraryUrl,
         recoveryFeedUrl: ROADMAN_APP_PRODUCT.recoveryFeedUrl,
+        mastersSegmentUrl: ROADMAN_APP_PRODUCT.mastersSegmentUrl,
         knowledgeGraphUrl: feedUrl("/knowledge-graph.json"),
         mcpManifestUrl: feedUrl("/.well-known/mcp.json"),
         topicUrls: ROADMAN_APP_PRODUCT.topicSlugs.map((slug) =>

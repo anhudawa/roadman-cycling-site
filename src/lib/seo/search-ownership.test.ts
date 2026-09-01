@@ -33,6 +33,12 @@ describe("search ownership registry", () => {
     expect(resolveSearchOwner(["strength training app for cyclists"])?.path).toBe(
       "/app",
     );
+    expect(resolveSearchOwner(["cycling app for masters cyclists"])?.path).toBe(
+      "/app",
+    );
+    expect(
+      resolveSearchOwner(["cycling recovery app for older cyclists"])?.path,
+    ).toBe("/app");
     expect(resolveSearchOwner(["how to recover after cycling"])?.path).toBe(
       "/blog/cycling-recovery-tips",
     );
@@ -57,6 +63,12 @@ describe("search ownership registry", () => {
     expect(
       resolveSearchOwner(["Best Cycling Strength Training Apps"], {
         currentPath: "/best/best-cycling-strength-training-apps",
+      })?.path,
+    ).toBe("/app");
+
+    expect(
+      resolveSearchOwner(["Cycling app for masters cyclists"], {
+        currentPath: "/app/masters",
       })?.path,
     ).toBe("/app");
   });

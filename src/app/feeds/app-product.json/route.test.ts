@@ -44,6 +44,9 @@ describe("GET /feeds/app-product.json", () => {
     expect(body.discovery.recoveryFeedUrl).toBe(
       ROADMAN_APP_PRODUCT.recoveryFeedUrl,
     );
+    expect(body.discovery.mastersSegmentUrl).toBe(
+      ROADMAN_APP_PRODUCT.mastersSegmentUrl,
+    );
     expect(body.product).toMatchObject({
       id: ROADMAN_APP_PRODUCT.id,
       graphId: ROADMAN_APP_PRODUCT.graphId,
