@@ -7,7 +7,7 @@ import {
 
 describe("app acquisition attribution", () => {
   it("retains every approved origin and form placement", () => {
-    expect(APP_ACQUISITION_SOURCES.size).toBe(41);
+    expect(APP_ACQUISITION_SOURCES.size).toBe(42);
     expect(buildAppWaitlistSource("strength-guide", "hero")).toBe(
       "roadman-app-waitlist-strength-guide-hero",
     );
@@ -92,6 +92,9 @@ describe("app acquisition attribution", () => {
     expect(buildAppWaitlistSource("overreaching-guide", "hero")).toBe(
       "roadman-app-waitlist-overreaching-guide-hero",
     );
+    expect(
+      buildAppWaitlistSource("overtraining-recovery-guide", "bottom"),
+    ).toBe("roadman-app-waitlist-overtraining-recovery-guide-bottom");
   });
 
   it("rejects unknown and duplicated query values", () => {
