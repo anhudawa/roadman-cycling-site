@@ -68,6 +68,10 @@ deep-link contract is recorded in
 
 ## Measurement
 
+Executable seven- and 28-day Search Console baselines, query-lane ownership,
+Google AI visibility, single-waitlist capture and comparison commands are in
+`docs/seo/app-search-measurement-runbook.md`.
+
 - Search: impressions, clicks, CTR, position and query-to-page ownership by cluster.
 - Conversion: early-access signup rate by source and page.
 - Launch: waitlist-to-install, install-to-onboarding and first/second strength-session completion.

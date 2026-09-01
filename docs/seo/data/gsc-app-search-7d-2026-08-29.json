@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "property": "sc-domain:roadmancycling.com",
+  "capturedAt": "2026-09-01T04:42:00+01:00",
+  "releaseDate": "2026-09-01",
+  "period": { "start": "2026-08-23", "end": "2026-08-29", "days": 7 },
+  "pages": [
+    { "path": "/app", "clicks": 0, "impressions": 9, "ctr": 0, "position": 5.7 },
+    { "path": "/best/best-cycling-training-apps", "clicks": 1, "impressions": 192, "ctr": 0.005, "position": 22.1 },
+    { "path": "/best/best-cycling-strength-training-apps", "clicks": 0, "impressions": 0, "ctr": 0, "position": null },
+    { "path": "/best/best-cycling-recovery-apps", "clicks": 0, "impressions": 0, "ctr": 0, "position": null }
+  ],
+  "lanes": [
+    {
+      "id": "roadman-app-product",
+      "label": "Roadman strength, recovery and readiness app product intent",
+      "match": "regex",
+      "regex": "^(cycling strength and recovery app|cycling strength app|strength training app for cyclists|cycling recovery app|cycling readiness app|roadman cycling app|roadman app)$",
+      "expectedOwner": "/app",
+      "aggregate": { "clicks": 0, "impressions": 0, "ctr": 0, "position": null },
+      "reportedUrlCount": 0,
+      "pageRows": [],
+      "queryRows": []
+    },
+    {
+      "id": "cycling-strength-app-category",
+      "label": "Cycling strength app comparison intent",
+      "match": "regex",
+      "regex": "^(best cycling strength training apps?)$",
+      "expectedOwner": "/best/best-cycling-strength-training-apps",
+      "aggregate": { "clicks": 0, "impressions": 0, "ctr": 0, "position": null },
+      "reportedUrlCount": 0,
+      "pageRows": [],
+      "queryRows": []
+    },
+    {
+      "id": "cycling-recovery-app-category",
+      "label": "Cycling recovery and readiness app comparison intent",
+      "match": "regex",
+      "regex": "^(best cycling recovery apps?|best cycling readiness apps?)$",
+      "expectedOwner": "/best/best-cycling-recovery-apps",
+      "aggregate": { "clicks": 0, "impressions": 0, "ctr": 0, "position": null },
+      "reportedUrlCount": 0,
+      "pageRows": [],
+      "queryRows": []
+    },
+    {
+      "id": "cycling-training-app-discovery",
+      "label": "Broad cycling training app discovery intent",
+      "match": "regex",
+      "regex": "^(best cycling training apps?|best ai cycling training apps?|cycling training apps?)$",
+      "expectedOwner": "/best/best-cycling-training-apps",
+      "aggregate": { "clicks": 0, "impressions": 15, "ctr": 0, "position": 23.3 },
+      "reportedUrlCount": 1,
+      "pageRows": [
+        { "path": "/best/best-cycling-training-apps", "clicks": 0, "impressions": 28 }
+      ],
+      "queryRows": [
+        { "query": "cycling training app", "clicks": 0, "impressions": 11 },
+        { "query": "best cycling training apps", "clicks": 0, "impressions": 4 }
+      ]
+    }
+  ],
+  "ai": { "pages": [{ "path": "/app", "impressions": 1 }] },
+  "waitlist": null,
+  "notes": [
+    "Read-only Search Console capture on 1 September 2026; Web and generative-AI reports were complete through 29 August.",
+    "Exact-page filters were used for monitored pages and custom regex filters for query lanes.",
+    "Filtered card totals and Pages rows are partial and can differ; visible owner share uses stored Pages rows only."
+  ]
+}
