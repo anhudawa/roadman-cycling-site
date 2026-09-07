@@ -6,17 +6,14 @@ import {
   AppEarlyAccessCaptureFallback,
 } from "@/components/features/conversion/AppEarlyAccessCapture";
 import { Container, Footer, Header, Section } from "@/components/layout";
-import { Card, ScrollReveal } from "@/components/ui";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
 import { ROADMAN_APP_PRODUCT } from "@/data/app-product";
-import { buildSearchOwnerTrustProperties } from "@/lib/seo/search-owner-schema";
 
 const APP_URL = ROADMAN_APP_PRODUCT.canonicalUrl;
 const APP_DESCRIPTION = ROADMAN_APP_PRODUCT.description;
-const STRUCTURED_IMAGE_URL = `${SITE_ORIGIN}/api/og/blog-hero?title=${encodeURIComponent("Cycling Strength & Recovery App")}&pillar=strength`;
+const STRUCTURED_IMAGE_URL = `${SITE_ORIGIN}/api/og/blog-hero?title=${encodeURIComponent("Good Legs by Roadman")}&pillar=strength`;
 
 export const metadata: Metadata = {
   title: { absolute: "Good Legs by Roadman | Cycling Strength & Recovery App" },
@@ -26,7 +23,7 @@ export const metadata: Metadata = {
     types: { "application/json": ROADMAN_APP_PRODUCT.feedUrl },
   },
   openGraph: {
-    title: "Strength That Fits Your Cycling. Recovery That Has a Job.",
+    title: "Good Legs by Roadman — The ride is only half the story.",
     description: APP_DESCRIPTION,
     type: "website",
     url: APP_URL,
@@ -36,7 +33,7 @@ export const metadata: Metadata = {
         url: STRUCTURED_IMAGE_URL,
         width: 1200,
         height: 630,
-        alt: "Roadman Cycling strength and recovery app",
+        alt: "Good Legs by Roadman: strength and recovery for cyclists",
       },
     ],
   },
@@ -48,740 +45,188 @@ export const metadata: Metadata = {
   },
 };
 
-const FEATURES = [
-  {
-    number: "01",
-    title: "Your riding week comes first",
-    body: "Add the rides you already follow, including duration, demand and priority. Roadman uses that context to place strength work without silently rewriting your bike plan.",
-  },
-  {
-    number: "02",
-    title: "30, 45 or 60-minute strength",
-    body: "Choose a realistic session length and execute a cyclist-specific prescription with previous-performance context, simple set logging and clear next-exposure targets.",
-  },
-  {
-    number: "03",
-    title: "Readiness with guardrails",
-    body: "A short check-in uses sleep, energy, soreness and recent bike load. It can hold or reduce session volume; it does not use a bad morning to invent a new programme or add load.",
-  },
-  {
-    number: "04",
-    title: "Important rides stay protected",
-    body: "The calendar identifies key-ride conflicts before the gym session begins. Strength is adjusted around the cycling that matters instead of competing with it by accident.",
-  },
-  {
-    number: "05",
-    title: "Progression you can inspect",
-    body: "Load, reps, target RIR, soreness, joint comfort and completed cycling context feed versioned rules. Every material change gets a plain-language reason.",
-  },
-  {
-    number: "06",
-    title: "Recovery with a specific job",
-    body: "Sleep opportunity, guided downshift, mobility and optional recovery modalities are placed only when the week gives them a reason—not as a pile of wellness chores.",
-  },
-] as const;
-
-const HOW_IT_WORKS = [
-  {
-    step: "Map",
-    title: "Show Roadman the week",
-    body: "Add your current rides, priority days, available gym time, equipment and movement constraints.",
-  },
-  {
-    step: "Place",
-    title: "Fit strength around cycling",
-    body: "The app places a coach-reviewed strength block around the work already on the bike calendar.",
-  },
-  {
-    step: "Check",
-    title: "Read the day honestly",
-    body: "Sleep, energy, leg soreness, life stress and recent riding determine whether today's volume should hold or reduce.",
-  },
-  {
-    step: "Build",
-    title: "Progress without gym debt",
-    body: "Log the work, review how it felt and carry the exact decision into the next exposure. Missed work is not stacked as punishment.",
-  },
-] as const;
-
-const RECOVERY_JOBS = [
-  "Protect a sleep opportunity",
-  "Downshift after a late hard session",
-  "Place mobility around a named restriction",
-  "Use naps without ignoring sleep inertia",
-  "Separate cold-water relief from strength adaptation",
-  "Treat massage, rolling and compression as optional tools",
-] as const;
-
 const FAQS = [
   {
-    question: "Is Good Legs included with Not Done Yet?",
-    answer: ROADMAN_APP_PRODUCT.membershipInclusion + " Coaching, nutrition and community remain part of the wider Roadman system. Good Legs access is planned for launch; joining the free newsletter or Clubhouse does not create paid membership access.",
+    question: "When can I use Good Legs?",
+    answer: "Good Legs is in development for iPhone. You can join the beta waitlist at getgoodlegs.com. Joining the list does not guarantee an invitation. We have not announced a public launch date or standalone price.",
   },
   {
-    question: "What is Good Legs by Roadman?",
-    answer:
-      "Good Legs is an upcoming iPhone app for serious amateur and masters cyclists. It coordinates cyclist-specific strength sessions and recovery work with the riding week the athlete already follows, then explains how readiness and feedback change the next action.",
+    question: "Is it included with Not Done Yet?",
+    answer: "Yes. Not Done Yet members will receive Good Legs access at launch as part of their membership. It will cover strength and recovery alongside their cycling coaching, nutrition guidance and community.",
   },
   {
-    question: "Does the app replace my cycling coach or training plan?",
-    answer:
-      "No. The public app uses your rides as protected context for strength and recovery. It does not silently rewrite an external cycling plan, change FTP or expose Roadman's private cycling-coaching product.",
+    question: "How does it fit around my riding?",
+    answer: "Enter your planned rides and available gym time. Good Legs uses that week to place strength sessions and recovery work, with the hardest rides taken into account.",
   },
   {
-    question: "How does daily training readiness work?",
-    answer:
-      "The check-in considers sleep, energy, leg soreness and recent bike load alongside the next important ride. For the current strength prescription it can hold or reduce working-set volume, while load and target RIR remain governed by the reviewed progression rules.",
+    question: "Do I need a wearable?",
+    answer: "No. The daily check-in asks about sleep, energy and soreness. You can use Good Legs without a watch or other wearable.",
   },
   {
-    question: "Is the app an AI cycling coach?",
-    answer:
-      "No. Live training decisions come from versioned, testable and coach-reviewed rules. AI may eventually help explain a decision or organise feedback, but it does not invent the strength prescription.",
-  },
-  {
-    question: "Is the app suitable for cyclists over 40?",
-    answer:
-      "Yes. It is being built for serious amateur and masters cyclists, but age alone does not prescribe the session. Training history, riding load, available time, equipment, soreness and joint comfort all matter.",
-  },
-  {
-    question: "Which recovery methods are included?",
-    answer:
-      "The recovery system can place or explain sleep opportunity, guided downshift, mobility, naps and optional methods such as heat, cold water, massage, foam rolling and compression. Each method carries a practical boundary so it is not presented as a cure or guaranteed performance boost.",
-  },
-  {
-    question: "When will Good Legs launch and what will it cost?",
-    answer:
-      "Good Legs is preparing for iPhone beta. A public release date and standalone subscription price have not been announced. Not Done Yet members will receive access at launch as part of their membership. The Good Legs waitlist provides beta invitations and product updates.",
+    question: "What happens if I miss a gym session?",
+    answer: "Missed work is not added to the next session. The aim is to help you return to a routine you can keep alongside your riding.",
   },
 ] as const;
 
-const AUDIENCES = [
-  "You ride four to twelve hours a week and need the gym to support—not flatten—the bike.",
-  "You are returning to strength work and want progression without guessing at every load.",
-  "You are over 40 and need recovery decisions based on your response, not a blanket age rule.",
-  "You already have a cycling plan and want strength and recovery fitted around it.",
-] as const;
+function Waitlist({ placement }: { placement: "hero" | "bottom" }) {
+  return <Suspense fallback={<AppEarlyAccessCaptureFallback placement={placement} />}>
+    <AppEarlyAccessCapture placement={placement} />
+  </Suspense>;
+}
 
 export default function AppLandingPage() {
-  return (
-    <>
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "WebPage",
-              "@id": `${APP_URL}#webpage`,
-              url: APP_URL,
-              name: ROADMAN_APP_PRODUCT.name,
-              description: APP_DESCRIPTION,
-              ...buildSearchOwnerTrustProperties("cycling-strength-recovery-app", "2026-09-01"),
-              about: [
-                {
-                  "@type": "Thing",
-                  name: "Cycling strength and recovery app",
-                  description: APP_DESCRIPTION,
-                },
-                { "@id": `${APP_URL}#software` },
-              ],
-              primaryImageOfPage: {
-                "@type": "ImageObject",
-                url: STRUCTURED_IMAGE_URL,
-              },
-              subjectOf: {
-                "@type": "DataFeed",
-                name: "Roadman Cycling strength and recovery app product feed",
-                url: ROADMAN_APP_PRODUCT.feedUrl,
-              },
-              dateModified: "2026-09-01",
-            },
-            {
-              "@type": ["SoftwareApplication", "MobileApplication"],
-              "@id": `${APP_URL}#software`,
-              name: ROADMAN_APP_PRODUCT.name,
-              sameAs: ROADMAN_APP_PRODUCT.productWebsiteUrl,
-              url: APP_URL,
-              description: APP_DESCRIPTION,
-              applicationCategory: ROADMAN_APP_PRODUCT.applicationCategory,
-              operatingSystem: ROADMAN_APP_PRODUCT.operatingSystems.join(", "),
-              publisher: { "@id": ENTITY_IDS.organization },
-              image: STRUCTURED_IMAGE_URL,
-              featureList: ROADMAN_APP_PRODUCT.features,
-              subjectOf: {
-                "@type": "DataFeed",
-                url: ROADMAN_APP_PRODUCT.feedUrl,
-              },
-            },
-            {
-              "@type": "BreadcrumbList",
-              itemListElement: [
-                {
-                  "@type": "ListItem",
-                  position: 1,
-                  name: "Home",
-                  item: SITE_ORIGIN,
-                },
-                {
-                  "@type": "ListItem",
-                  position: 2,
-                  name: "Cycling strength and recovery app",
-                  item: APP_URL,
-                },
-              ],
-            },
+  return <>
+    <JsonLd data={{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage", "@id": `${APP_URL}#webpage`, url: APP_URL,
+          name: ROADMAN_APP_PRODUCT.name, description: APP_DESCRIPTION,
+          dateModified: ROADMAN_APP_PRODUCT.updatedDate,
+          publisher: { "@id": ENTITY_IDS.organization },
+          about: { "@id": `${APP_URL}#software` },
+          primaryImageOfPage: { "@type": "ImageObject", url: STRUCTURED_IMAGE_URL },
+          subjectOf: { "@type": "DataFeed", url: ROADMAN_APP_PRODUCT.feedUrl },
+        },
+        {
+          "@type": ["SoftwareApplication", "MobileApplication"],
+          "@id": `${APP_URL}#software`, name: ROADMAN_APP_PRODUCT.name,
+          url: APP_URL, sameAs: ROADMAN_APP_PRODUCT.productWebsiteUrl,
+          description: APP_DESCRIPTION,
+          applicationCategory: ROADMAN_APP_PRODUCT.applicationCategory,
+          operatingSystem: ROADMAN_APP_PRODUCT.operatingSystems.join(", "),
+          publisher: { "@id": ENTITY_IDS.organization },
+          image: STRUCTURED_IMAGE_URL, featureList: ROADMAN_APP_PRODUCT.features,
+        },
+        {
+          "@type": "BreadcrumbList", itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: SITE_ORIGIN },
+            { "@type": "ListItem", position: 2, name: "Good Legs", item: APP_URL },
           ],
-        }}
-      />
-      <FAQSchema faqs={[...FAQS]} />
-      <Header />
+        },
+      ],
+    }} />
+    <FAQSchema faqs={[...FAQS]} />
+    <Header />
+    <main id="main-content">
+      <Section background="deep-purple" grain className="pt-32 md:pt-40">
+        <Container>
+          <p className="mb-6 font-heading text-sm tracking-[0.2em] text-coral">GOOD LEGS BY ROADMAN</p>
+          <h1 className="max-w-5xl font-heading leading-[0.98] text-off-white" style={{ fontSize: "clamp(3.1rem, 7vw, 6.8rem)" }}>
+            The ride is only<br /><span className="text-coral">half the story.</span>
+          </h1>
+          <div className="mt-10 grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:gap-20">
+            <div className="max-w-2xl space-y-5 text-lg leading-relaxed text-foreground-muted md:text-xl">
+              <p>The long ride is in the diary. The gym is still a vague intention, and recovery is whatever time remains before bed.</p>
+              <p>Good Legs is the strength and recovery app we’re building at Roadman. Plan your gym sessions, record your lifts and follow your progress. Give recovery the same attention, with daily guidance that takes your sleep, energy and soreness into account.</p>
+            </div>
+            <div className="self-end"><Waitlist placement="hero" /></div>
+          </div>
+        </Container>
+      </Section>
 
-      <main id="main-content">
-        <Section
-          background="deep-purple"
-          grain
-          className="min-h-[88vh] pt-32 md:pt-40"
-        >
-          <div className="pointer-events-none absolute -right-20 top-12 h-80 w-80 rounded-full bg-coral/10 blur-[100px]" />
-          <div className="pointer-events-none absolute -left-32 bottom-0 h-96 w-96 rounded-full bg-purple/30 blur-[120px]" />
-          <Container className="relative">
-            <div className="grid items-center gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16">
-              <div>
-                <p className="mb-6 font-heading text-sm tracking-[0.24em] text-coral">
-                  GOOD LEGS BY ROADMAN · IPHONE BETA WAITLIST
-                </p>
-                <h1
-                  className="max-w-4xl font-heading leading-[0.92] text-off-white"
-                  style={{ fontSize: "clamp(3.25rem, 7.2vw, 7.4rem)" }}
-                >
-                  STRENGTH THAT FITS YOUR CYCLING.
-                  <span className="mt-3 block text-coral">
-                    RECOVERY THAT HAS A JOB.
-                  </span>
-                </h1>
-                <p className="mt-8 max-w-2xl text-lg leading-relaxed text-foreground-muted md:text-xl">
-                  Good Legs by Roadman is a cyclist-specific strength and recovery
-                  app in development around the week you actually ride. It protects the bike,
-                  progresses the gym and tells you why today&apos;s work
-                  changed.
-                </p>
-                <div className="mt-9 max-w-xl">
-                  <Suspense
-                    fallback={
-                      <AppEarlyAccessCaptureFallback placement="hero" />
-                    }
-                  >
-                    <AppEarlyAccessCapture placement="hero" />
-                  </Suspense>
-                </div>
-                <p className="mt-4 max-w-xl text-xs leading-relaxed text-foreground-subtle">
-                  Not Done Yet members will receive Good Legs access at launch.
-                  It covers strength and recovery within Roadman’s five pillars.
-                </p>
+      <Section background="charcoal">
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
+            <article>
+              <p className="font-heading text-sm tracking-[0.2em] text-coral">01 / IN THE GYM</p>
+              <h2 className="mt-4 font-heading text-4xl leading-tight text-off-white md:text-5xl">Pick up where you left off.</h2>
+              <div className="mt-6 space-y-5 text-lg leading-relaxed text-foreground-muted">
+                <p>The useful detail is what happened last time: the weight on the bar, the reps you completed and how hard they felt. Good Legs keeps that record beside the next session, so you can see what you’re being asked to do and why.</p>
+                <p>Choose the time you have for strength. Log the sets as you go. If the rack is taken, an exercise swap keeps the same movement in the session.</p>
               </div>
-
-              <div className="relative mx-auto w-full max-w-[500px]">
-                <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-coral/20 via-purple/10 to-transparent blur-2xl" />
-                <div className="relative rounded-[2.2rem] border border-white/15 bg-charcoal/95 p-3 shadow-[0_35px_100px_rgba(0,0,0,0.55)]">
-                  <div className="rounded-[1.7rem] border border-white/10 bg-deep-purple p-5 md:p-7">
-                    <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-5">
-                      <div>
-                        <p className="text-xs font-semibold tracking-[0.2em] text-coral">
-                          TODAY
-                        </p>
-                        <p className="mt-1 text-sm text-foreground-muted">
-                          One clear next action
-                        </p>
-                      </div>
-                      <span className="rounded-full border border-emerald-400/25 bg-emerald-400/10 px-3 py-1 text-xs text-emerald-300">
-                        Key ride protected
-                      </span>
-                    </div>
-
-                    <div className="mt-5 rounded-2xl border border-coral/25 bg-coral/10 p-5">
-                      <div className="flex items-center justify-between gap-3">
-                        <p className="font-heading text-2xl text-off-white">
-                          FOUNDATION B
-                        </p>
-                        <span className="text-sm font-semibold text-coral">
-                          45 MIN
-                        </span>
-                      </div>
-                      <p className="mt-2 text-sm leading-relaxed text-foreground-muted">
-                        Cyclist-specific strength placed around tomorrow&apos;s
-                        priority ride.
-                      </p>
-                      <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/10">
-                        <div className="h-full w-2/3 rounded-full bg-coral" />
-                      </div>
-                      <div className="mt-3 flex justify-between text-xs text-foreground-subtle">
-                        <span>Previous work visible</span>
-                        <span>4 movements</span>
-                      </div>
-                    </div>
-
-                    <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                      <div className="rounded-xl border border-white/10 bg-white/[0.035] p-4">
-                        <p className="text-xs tracking-[0.16em] text-foreground-subtle">
-                          READINESS
-                        </p>
-                        <p className="mt-2 font-heading text-xl text-off-white">
-                          CHECK THE DAY
-                        </p>
-                        <p className="mt-1 text-xs leading-relaxed text-foreground-muted">
-                          Sleep · energy · soreness · bike load
-                        </p>
-                      </div>
-                      <div className="rounded-xl border border-white/10 bg-white/[0.035] p-4">
-                        <p className="text-xs tracking-[0.16em] text-foreground-subtle">
-                          RECOVERY
-                        </p>
-                        <p className="mt-2 font-heading text-xl text-off-white">
-                          DOWNSHIFT
-                        </p>
-                        <p className="mt-1 text-xs leading-relaxed text-foreground-muted">
-                          One action, with a reason and boundary
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="mt-5 flex items-center gap-3 rounded-xl border border-white/10 px-4 py-3">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-purple/40 text-sm font-bold text-off-white">
-                        R
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-off-white">
-                          Explain every change
-                        </p>
-                        <p className="text-xs text-foreground-subtle">
-                          Reviewed rules, not a black-box score
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            </article>
+            <article>
+              <p className="font-heading text-sm tracking-[0.2em] text-coral">02 / BETWEEN SESSIONS</p>
+              <h2 className="mt-4 font-heading text-4xl leading-tight text-off-white md:text-5xl">Some days call for less.</h2>
+              <div className="mt-6 space-y-5 text-lg leading-relaxed text-foreground-muted">
+                <p>Sleep, energy and soreness help put today’s session in context. On a low-recovery day, Good Legs can take working sets out while holding the loads. It explains the adjustment so you know what to do when you reach the gym.</p>
+                <p>Recovery has a place in the diary too: time for sleep, mobility or a short breathing session. When the plan changes, the assistant coach explains the decision and what to do next.</p>
               </div>
+            </article>
+          </div>
+        </Container>
+      </Section>
+
+      <Section background="off-white" id="how-it-works">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+            <div>
+              <p className="font-heading text-sm tracking-[0.2em] text-coral">03 / FINDING THE DAY</p>
+              <h2 className="mt-4 font-heading text-charcoal" style={{ fontSize: "var(--text-section)" }}>Thursday matters.</h2>
             </div>
-          </Container>
-        </Section>
-
-        <Section background="charcoal">
-          <Container>
-            <ScrollReveal direction="up" className="max-w-3xl">
-              <p className="font-heading text-sm tracking-[0.2em] text-coral">
-                THE PRODUCT PROMISE
-              </p>
-              <h2
-                className="mt-4 font-heading text-off-white"
-                style={{ fontSize: "var(--text-section)" }}
-              >
-                THE BIKE IS THE POINT.
-                <span className="block text-coral">THE GYM SUPPORTS IT.</span>
-              </h2>
-              <p className="mt-6 text-lg leading-relaxed text-foreground-muted">
-                Most strength apps treat cycling as optional cardio. Most
-                cycling apps leave strength and recovery in separate tabs—or
-                outside the product entirely. Roadman starts with the complete
-                week and makes one coordinated decision.
-              </p>
-            </ScrollReveal>
-
-            <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {FEATURES.map((feature, index) => (
-                <ScrollReveal
-                  key={feature.number}
-                  direction="up"
-                  delay={index * 0.04}
-                >
-                  <Card className="h-full p-6 md:p-7" hoverable={false}>
-                    <p className="font-heading text-sm tracking-[0.18em] text-coral">
-                      {feature.number}
-                    </p>
-                    <h3 className="mt-4 font-heading text-2xl text-off-white">
-                      {feature.title}
-                    </h3>
-                    <p className="mt-3 leading-relaxed text-foreground-muted">
-                      {feature.body}
-                    </p>
-                  </Card>
-                </ScrollReveal>
-              ))}
+            <div className="space-y-5 text-lg leading-relaxed text-charcoal/75">
+              <p>A free evening isn’t always a good evening to lift. Wednesday might be empty in the diary, but a hard gym session then can follow you into Thursday’s ride.</p>
+              <p>Good Legs looks at the riding on either side of a possible gym session. In the example below, Thursday’s threshold work puts strength on Friday. If your gym day is fixed, the app adjusts the strength session to fit.</p>
             </div>
-          </Container>
-        </Section>
+          </div>
+          <div className="mt-10 overflow-x-auto rounded-xl border border-charcoal/15">
+            <table className="w-full border-collapse text-left text-sm text-charcoal sm:text-base">
+              <caption className="p-5 text-left text-sm text-charcoal/65">An example week from Good Legs: strength on Friday, after Thursday’s threshold ride.</caption>
+              <thead><tr className="border-y border-charcoal/15 bg-charcoal/[0.04]">
+                <th scope="col" className="p-4">Day</th><th scope="col" className="p-4">Your riding</th><th scope="col" className="p-4">Strength</th>
+              </tr></thead>
+              <tbody>
+                {[
+                  ["Monday", "Recovery ride", "—"], ["Tuesday", "Intervals", "—"], ["Wednesday", "No ride planned", "—"],
+                  ["Thursday", "Threshold", "—"], ["Friday", "No ride planned", "Gym session"],
+                  ["Saturday", "Easy ride", "—"], ["Sunday", "Long ride", "—"],
+                ].map(([day, ride, gym]) => <tr key={day} className={`border-b border-charcoal/10 last:border-0 ${day === "Friday" ? "bg-coral/10" : ""}`}>
+                  <th scope="row" className="p-4 font-semibold">{day}</th><td className="p-4">{ride}</td><td className="p-4">{gym}</td>
+                </tr>)}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 text-sm leading-relaxed text-charcoal/60">Friday suits this example; the right day depends on your own week.</p>
+        </Container>
+      </Section>
 
-        <Section background="off-white" id="how-it-works">
-          <Container>
-            <div className="grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
-              <div>
-                <p className="font-heading text-sm tracking-[0.2em] text-coral">
-                  HOW IT WORKS
-                </p>
-                <h2
-                  className="mt-4 font-heading text-charcoal"
-                  style={{ fontSize: "var(--text-section)" }}
-                >
-                  ONE WEEK.
-                  <span className="block text-coral">ONE NEXT ACTION.</span>
-                </h2>
-                <p className="mt-6 max-w-xl text-lg leading-relaxed text-charcoal/70">
-                  The app does not reward accumulating sessions. It helps you
-                  execute the right amount of work, in the right place, then
-                  records enough context to make the next decision better.
-                </p>
-              </div>
+      <Section background="off-white">
+        <Container width="narrow">
+          <p className="font-heading text-sm tracking-[0.2em] text-coral">FROM ROADMAN</p>
+          <h2 className="mt-4 font-heading text-charcoal" style={{ fontSize: "var(--text-section)" }}>Why we’re building it.</h2>
+          <div className="mt-6 space-y-5 text-lg leading-relaxed text-charcoal/75">
+            <p>The Roadman podcast has spent years asking riders, coaches and researchers how training works in practice. Good Legs takes on one recurring problem: fitting the work off the bike into a week already full of riding.</p>
+            <p>It’s also part of what we’re building for <Link href="/community/not-done-yet" className="underline decoration-coral underline-offset-4">Not Done Yet</Link>. Members will receive Good Legs access at launch for strength and recovery. Cycling coaching, nutrition guidance and the community complete Roadman’s five pillars.</p>
+            <p>For now, our coaches continue to support members with strength and recovery. The app is still in development.</p>
+          </div>
+        </Container>
+      </Section>
 
-              <div className="space-y-4">
-                {HOW_IT_WORKS.map((item, index) => (
-                  <div
-                    key={item.step}
-                    className="grid gap-4 rounded-2xl border border-charcoal/10 bg-white p-5 shadow-sm sm:grid-cols-[56px_1fr] sm:p-6"
-                  >
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-deep-purple font-heading text-lg text-coral">
-                      {index + 1}
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-coral">
-                        {item.step}
-                      </p>
-                      <h3 className="mt-1 font-heading text-2xl text-charcoal">
-                        {item.title}
-                      </h3>
-                      <p className="mt-2 leading-relaxed text-charcoal/65">
-                        {item.body}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Container>
-        </Section>
+      <Section background="charcoal" id="faq">
+        <Container width="narrow">
+          <h2 className="font-heading text-off-white" style={{ fontSize: "var(--text-section)" }}>Before you join.</h2>
+          <div className="mt-8 divide-y divide-white/15 border-y border-white/15">
+            {FAQS.map(faq => <details key={faq.question} className="group py-5">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-5 font-heading text-xl text-off-white">{faq.question}<span aria-hidden="true" className="text-coral group-open:rotate-45">+</span></summary>
+              <p className="mt-4 max-w-2xl leading-relaxed text-foreground-muted">{faq.answer}</p>
+            </details>)}
+          </div>
+        </Container>
+      </Section>
 
-        <Section background="deep-purple">
-          <Container>
-            <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
-              <div className="rounded-3xl border border-white/10 bg-white/[0.035] p-7 md:p-10">
-                <p className="font-heading text-sm tracking-[0.2em] text-coral">
-                  RECOVERY WITH BOUNDARIES
-                </p>
-                <h2
-                  className="mt-4 font-heading text-off-white"
-                  style={{ fontSize: "var(--text-section)" }}
-                >
-                  NO MAGIC SCORE.
-                  <span className="block text-coral">
-                    NO WELLNESS CHORE LIST.
-                  </span>
-                </h2>
-                <p className="mt-5 leading-relaxed text-foreground-muted">
-                  A recovery tool belongs in the week only when it has a job.
-                  Roadman states what a method may help, where the evidence is
-                  limited and when the sensible action is simply more sleep or
-                  less work.
-                </p>
-                <ul className="mt-7 space-y-3">
-                  {RECOVERY_JOBS.map((job) => (
-                    <li
-                      key={job}
-                      className="flex items-start gap-3 text-foreground-muted"
-                    >
-                      <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-coral" />
-                      <span>{job}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+      <Section background="deep-purple" id="early-access">
+        <Container width="narrow">
+          <h2 className="font-heading text-off-white" style={{ fontSize: "var(--text-section)" }}>A closer look at Good Legs.</h2>
+          <p className="mb-7 mt-5 text-lg leading-relaxed text-foreground-muted">See the product, read about the research behind it and put your name down for the iPhone beta.</p>
+          <Waitlist placement="bottom" />
+        </Container>
+      </Section>
 
-              <div className="rounded-3xl border border-coral/20 bg-coral/[0.07] p-7 md:p-10">
-                <p className="font-heading text-sm tracking-[0.2em] text-coral">
-                  NOT A GENERIC AI COACH
-                </p>
-                <h2
-                  className="mt-4 font-heading text-off-white"
-                  style={{ fontSize: "var(--text-section)" }}
-                >
-                  THE RULES ARE REVIEWED.
-                  <span className="block text-coral">
-                    THE REASON IS VISIBLE.
-                  </span>
-                </h2>
-                <p className="mt-5 leading-relaxed text-foreground-muted">
-                  Live prescriptions come from versioned coaching rules. The
-                  system records the session, readiness inputs, completed work
-                  and the reason for any material change so the decision can be
-                  reproduced instead of hidden behind a confidence score.
-                </p>
-                <div className="mt-7 rounded-2xl border border-white/10 bg-charcoal/50 p-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-coral">
-                    The boundary
-                  </p>
-                  <p className="mt-3 text-lg leading-relaxed text-off-white">
-                    AI may explain or organise. It does not invent the training
-                    dose, diagnose an injury or silently change the rider&apos;s
-                    cycling plan.
-                  </p>
-                </div>
-                <Link
-                  href="/app/methodology"
-                  className="mt-6 inline-flex text-sm font-semibold text-coral transition-colors hover:text-coral/80"
-                >
-                  Read the public decision methodology →
-                </Link>
-                <Link
-                  href="/app/testing"
-                  className="ml-5 mt-6 inline-flex text-sm font-semibold text-foreground-muted transition-colors hover:text-coral"
-                >
-                  See how the app will be tested →
-                </Link>
-                <Link
-                  href="/app/evidence"
-                  className="ml-5 mt-6 inline-flex text-sm font-semibold text-foreground-muted transition-colors hover:text-coral"
-                >
-                  Check the current evidence →
-                </Link>
-              </div>
-            </div>
-          </Container>
-        </Section>
-
-        <Section background="charcoal">
-          <Container>
-            <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-              <div>
-                <p className="font-heading text-sm tracking-[0.2em] text-coral">
-                  BUILT FOR THE SERIOUS AMATEUR
-                </p>
-                <h2
-                  className="mt-4 font-heading text-off-white"
-                  style={{ fontSize: "var(--text-section)" }}
-                >
-                  THIS IS LIKELY FOR YOU IF…
-                </h2>
-              </div>
-              <ul className="grid gap-4">
-                {AUDIENCES.map((audience) => (
-                  <li
-                    key={audience}
-                    className="flex items-start gap-4 rounded-xl border border-white/10 bg-white/[0.03] p-5 text-lg leading-relaxed text-foreground-muted"
-                  >
-                    <span className="mt-1 font-heading text-coral">✓</span>
-                    <span>{audience}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Container>
-        </Section>
-
-        <Section background="charcoal" className="!py-12">
-          <Container width="narrow">
-            <EvidenceBlock
-              lastReviewed="1 September 2026"
-              reviewedBy="Anthony Walsh and the Roadman Cycling coaching team"
-              reviewedSources={[
-                {
-                  name: "Strength Training for Cyclists — evidence and programming guide",
-                  href: "/blog/cycling-strength-training-guide",
-                  publisher: "Roadman Cycling",
-                  note: "Supports the strength scope; it does not validate a universal app prescription.",
-                },
-                {
-                  name: "Daily Training Readiness Check for Cyclists",
-                  href: "/blog/daily-training-readiness-check-cycling-guide",
-                  publisher: "Roadman Cycling",
-                  note: "Defines the readiness inputs, adjustment boundary and medical red flags.",
-                },
-                {
-                  name: "Cycling Recovery Research Library",
-                  href: "/topics/cycling-recovery",
-                  publisher: "Roadman Cycling",
-                  note: "Separates recovery context and optional modalities from diagnosis or guaranteed performance effects.",
-                },
-              ]}
-            />
-          </Container>
-        </Section>
-
-        <Section background="off-white" id="faq">
-          <Container width="narrow">
-            <div className="text-center">
-              <p className="font-heading text-sm tracking-[0.2em] text-coral">
-                QUESTIONS BEFORE LAUNCH
-              </p>
-              <h2
-                className="mt-4 font-heading text-charcoal"
-                style={{ fontSize: "var(--text-section)" }}
-              >
-                CYCLING STRENGTH &amp; RECOVERY APP FAQ
-              </h2>
-            </div>
-            <div className="mt-10 divide-y divide-charcoal/10 border-y border-charcoal/10">
-              {FAQS.map((faq) => (
-                <details key={faq.question} className="group py-5">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-heading text-xl text-charcoal">
-                    {faq.question}
-                    <span className="text-coral transition-transform group-open:rotate-45">
-                      +
-                    </span>
-                  </summary>
-                  <p className="mt-4 pr-8 leading-relaxed text-charcoal/70">
-                    {faq.answer}
-                  </p>
-                </details>
-              ))}
-            </div>
-          </Container>
-        </Section>
-
-        <Section background="deep-purple" id="early-access">
-          <Container>
-            <div className="mx-auto max-w-3xl text-center">
-              <p className="font-heading text-sm tracking-[0.2em] text-coral">
-                STRENGTH AND RECOVERY. PART OF ROADMAN.
-              </p>
-              <h2
-                className="mt-4 font-heading text-off-white"
-                style={{ fontSize: "var(--text-section)" }}
-              >
-                MEET GOOD LEGS.
-              </h2>
-              <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-foreground-muted">
-                Explore Good Legs and join its beta waitlist. For coaching across
-                all five pillars, Not Done Yet will include Good Legs access at launch.
-              </p>
-              <div className="mx-auto mt-8 max-w-xl">
-                <Suspense
-                  fallback={
-                    <AppEarlyAccessCaptureFallback placement="bottom" />
-                  }
-                >
-                  <AppEarlyAccessCapture placement="bottom" />
-                </Suspense>
-              </div>
-            </div>
-          </Container>
-        </Section>
-
-        <Section background="charcoal" className="py-14 md:py-18">
-          <Container>
-            <p className="text-center text-sm font-semibold uppercase tracking-[0.18em] text-foreground-subtle">
-              Explore the knowledge behind the product
-            </p>
-            <div className="mt-7 flex flex-wrap justify-center gap-x-7 gap-y-4 text-sm">
-              <Link
-                href="/app/masters"
-                className="text-foreground-muted transition-colors hover:text-coral"
-              >
-                App for masters cyclists over 40
-              </Link>
-              <Link
-                href="/app/methodology"
-                className="text-foreground-muted transition-colors hover:text-coral"
-              >
-                App decision methodology
-              </Link>
-              <Link
-                href="/app/testing"
-                className="text-foreground-muted transition-colors hover:text-coral"
-              >
-                App testing standard
-              </Link>
-              <Link
-                href="/app/evidence"
-                className="text-foreground-muted transition-colors hover:text-coral"
-              >
-                App evidence register
-              </Link>
-              <Link
-                href="/best/best-cycling-training-apps"
-                className="text-foreground-muted transition-colors hover:text-coral"
-              >
-                Best cycling training apps
-              </Link>
-              <Link
-                href="/best/best-cycling-strength-training-apps"
-                className="text-foreground-muted transition-colors hover:text-coral"
-              >
-                Cycling strength app comparison
-              </Link>
-              <Link
-                href="/best/best-cycling-recovery-apps"
-                className="text-foreground-muted transition-colors hover:text-coral"
-              >
-                Cycling recovery app comparison
-              </Link>
-              <Link
-                href="/best/best-cycling-apps-structured-training"
-                className="text-foreground-muted transition-colors hover:text-coral"
-              >
-                Masters cycling app comparison
-              </Link>
-              <Link
-                href="/topics/cycling-strength-conditioning"
-                className="text-foreground-muted transition-colors hover:text-coral"
-              >
-                Cycling strength research
-              </Link>
-              <Link
-                href="/sc/exercises"
-                className="text-foreground-muted transition-colors hover:text-coral"
-              >
-                Cyclist exercise library
-              </Link>
-              <Link
-                href="/feeds/cycling-strength-programme.json"
-                className="text-foreground-muted transition-colors hover:text-coral"
-              >
-                12-week strength programme data
-              </Link>
-              <Link
-                href="/blog/cycling-recovery-tips"
-                className="text-foreground-muted transition-colors hover:text-coral"
-              >
-                Cycling recovery guide
-              </Link>
-              <Link
-                href="/topics/cycling-recovery"
-                className="text-foreground-muted transition-colors hover:text-coral"
-              >
-                Cycling recovery research
-              </Link>
-              <Link
-                href="/feeds/cycling-recovery.json"
-                className="text-foreground-muted transition-colors hover:text-coral"
-              >
-                Cycling recovery evidence data
-              </Link>
-              <Link
-                href="/tools/strength-session-planner"
-                className="text-foreground-muted transition-colors hover:text-coral"
-              >
-                Strength session planner
-              </Link>
-              <Link
-                href="/tools/training-readiness"
-                className="text-foreground-muted transition-colors hover:text-coral"
-              >
-                Free readiness check
-              </Link>
-              <Link
-                href="/tools/recovery-screen"
-                className="text-foreground-muted transition-colors hover:text-coral"
-              >
-                Recovery screen
-              </Link>
-              <Link
-                href="/strength-training"
-                className="text-foreground-muted transition-colors hover:text-coral"
-              >
-                Current 12-week strength plan
-              </Link>
-            </div>
-          </Container>
-        </Section>
-      </main>
-
-      <Footer />
-    </>
-  );
+      <Section background="charcoal" className="!py-12">
+        <Container>
+          <nav aria-label="More about Good Legs" className="flex flex-wrap gap-x-7 gap-y-4 text-sm text-foreground-muted">
+            <Link href="/app/masters" className="underline">Good Legs for riders over 40</Link>
+            <Link href="/tools/strength-session-planner" className="underline">Try the strength planner</Link>
+            <Link href="/blog/cycling-strength-training-guide" className="underline">Strength training guide</Link>
+            <Link href="/blog/cycling-recovery-tips" className="underline">Recovery guide</Link>
+            <Link href="/app/methodology" className="underline">How training decisions are made</Link>
+            <Link href="/app/testing" className="underline">Testing plans</Link>
+            <Link href="/app/evidence" className="underline">Research and product evidence</Link>
+          </nav>
+        </Container>
+      </Section>
+    </main>
+    <Footer />
+  </>;
 }

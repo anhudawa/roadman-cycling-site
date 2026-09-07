@@ -51,7 +51,7 @@ describe("Roadman strength and recovery app search owner", () => {
       absolute: "Good Legs by Roadman | Cycling Strength & Recovery App",
     });
     expect(metadata.description).toContain(
-      "cyclist-specific strength and recovery app",
+      "strength and recovery app for cyclists",
     );
     expect(metadata.alternates).toMatchObject({
       canonical: "https://roadmancycling.com/app",
@@ -66,11 +66,10 @@ describe("Roadman strength and recovery app search owner", () => {
   it("renders the product boundary, structured entity and real waitlist sources", async () => {
     const html = await renderPage();
 
-    expect(html).toContain("STRENGTH THAT FITS YOUR CYCLING");
-    expect(html).toContain("RECOVERY THAT HAS A JOB");
-    expect(html).toContain("30, 45 or 60-minute strength");
-    expect(html).toContain("NOT A GENERIC AI COACH");
-    expect(html).toContain("versioned, testable and coach-reviewed rules");
+    expect(html).toContain("Good Legs");
+    expect(html).toContain("in development for iPhone");
+    expect(html).toContain("receive Good Legs access at launch");
+    expect(html).not.toContain("reviewedBy");
     expect(html).toContain('data-source="roadman-app-waitlist-hero"');
     expect(html).toContain('data-source="roadman-app-waitlist-bottom"');
     expect(html).toContain('"SoftwareApplication"');
@@ -88,16 +87,10 @@ describe("Roadman strength and recovery app search owner", () => {
       "/app/methodology",
       "/app/testing",
       "/app/evidence",
-      "/sc/exercises",
-      "/feeds/cycling-strength-programme.json",
-      "/topics/cycling-strength-conditioning",
+      "/blog/cycling-strength-training-guide",
       "/blog/cycling-recovery-tips",
-      "/topics/cycling-recovery",
-      "/feeds/cycling-recovery.json",
       "/tools/strength-session-planner",
-      "/tools/training-readiness",
-      "/tools/recovery-screen",
-      "/strength-training",
+      "/community/not-done-yet",
     ]) {
       expect(html).toContain(`href="${href}"`);
     }

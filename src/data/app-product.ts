@@ -25,7 +25,7 @@ export const ROADMAN_APP_PRODUCT = {
   membershipUrl: `${SITE_ORIGIN}/community/not-done-yet`,
   membershipInclusion: "Not Done Yet members will receive Good Legs access at launch, covering the strength and recovery pillars.",
   description:
-    "Good Legs by Roadman is a cyclist-specific strength and recovery app that fits 30, 45 or 60-minute gym work around the real riding week, protects key rides and explains every readiness adjustment.",
+    "Good Legs by Roadman is an upcoming strength and recovery app for cyclists. Gym sessions, steady progression and daily recovery, fitted around your riding.",
   applicationCategory: "SportsApplication",
   operatingSystems: ["iOS"],
   lifecycleStatus: "prelaunch",
@@ -33,17 +33,17 @@ export const ROADMAN_APP_PRODUCT = {
   audience: "Serious amateur and masters cyclists",
   earlyAccessUrl: "https://getgoodlegs.com/",
   features: [
-    "Cyclist-specific 30, 45 or 60-minute strength sessions",
-    "Strength placement around protected key rides",
-    "Readiness checks using sleep, energy, soreness and recent bike load",
-    "Versioned progression rules with plain-language adjustment reasons",
-    "Recovery actions attached to a specific job in the riding week",
+    "Strength sessions to suit your available gym time",
+    "Gym sessions scheduled around your riding",
+    "Daily check-ins for sleep, energy and soreness",
+    "Set logging and progression from your previous sessions",
+    "Recovery sessions and an explanation when the plan changes",
   ],
   limitations: [
     "Good Legs is preparing for iPhone beta. A public release date and standalone subscription price have not been announced.",
     "The app does not diagnose injury, illness or overtraining.",
     "AI may explain or organise feedback but does not invent the training dose.",
-    "The app does not silently rewrite an external cycling plan.",
+    "Cycling plans are supplied by the rider; Good Legs plans strength and recovery.",
   ],
   topicSlugs: ["cycling-strength-conditioning", "cycling-recovery"],
   previewToolSlugs: [

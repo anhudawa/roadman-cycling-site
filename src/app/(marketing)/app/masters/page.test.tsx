@@ -70,8 +70,8 @@ describe("masters cycling app acquisition page", () => {
   it("uses the single app waitlist with masters attribution and clear boundaries", async () => {
     const html = await renderPage();
 
-    expect(html).toContain("A CYCLING APP FOR MASTERS RIDERS");
-    expect(html).toContain("NOT AN AGE TEMPLATE");
+    expect(html).toContain("CYCLISTS OVER 40");
+    expect(html).toContain("Good Legs is in development for iPhone");
     expect(html).toContain(
       'data-source="roadman-app-waitlist-masters-app-hero"',
     );
@@ -79,7 +79,7 @@ describe("masters cycling app acquisition page", () => {
       'data-source="roadman-app-waitlist-masters-app-bottom"',
     );
     expect(html).toContain("Good Legs by Roadman");
-    expect(html).toContain("NOT A DIAGNOSIS OR A GENERIC AI COACH");
+    expect(html).toContain("receive access at launch");
     expect(html).toContain('"@id":"https://roadmancycling.com/app#software"');
     expect(html).toContain('href="/app"');
     expect(html).toContain('href="/masters"');

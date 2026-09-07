@@ -32,12 +32,12 @@ const whatYouGet = [
   {
     title: "Weekly coaching with Anthony",
     body:
-      "Live group calls every week with Anthony Walsh and the wider coaching team. Bring your data, your questions, your race plans — get answers from someone who has interviewed 1,400+ World Tour coaches and scientists.",
+      "Live group calls every week with Anthony Walsh and the wider coaching team. Bring your data, your questions, your race plans — talk through the decisions that will shape your next week of training.",
   },
   {
     title: "Good Legs for strength and recovery",
     body:
-      "Not Done Yet members will receive Good Legs by Roadman access at launch. The app covers strength and recovery, coordinated with the riding week, within the wider five-pillar coaching system.",
+      "Members receive strength guidance alongside their cycling. Good Legs, Roadman’s strength and recovery app, will be included when it launches.",
   },
   {
     title: "Expert masterclasses",
