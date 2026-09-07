@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "contentDigest": "f0148ce0c4fb676a944560577be5186ed9b98cba3e3079b877f268cb8e13ead2",
+  "scope": "First Roadman search-trust batch: coaching service wording, two coaching buyer-guide link passages, Dragon Ride training article and route guide, race directory/related-card edition labels, existing llms summary and sitemap dates. Good Legs visuals are excluded.",
+  "sections": [
+    {
+      "location": "/coaching — introduction, comparison links and training pillar",
+      "readerQuestion": "What work will Roadman do for me, and where can I compare options?",
+      "usefulAnswer": "Individual TrainingPeaks plan, weekly Roadman-team review and Anthony-led live group coaching; links lead to provider selection, prices and application.",
+      "evidence": "Existing service facts in this page and src/lib/offer-ladder.ts. No price, testimonial, availability or service-level change.",
+      "editorialDecision": "Replace guest-name credential shorthand, generic benefit wording and the algorithm comparison with the actual delivery. Keep the current search title and application tracking."
+    },
+    {
+      "location": "/blog/best-online-cycling-coach-how-to-choose — disclosure, masters link and quote checklist",
+      "readerQuestion": "Where can I check price, coaching format and support for masters riders?",
+      "usefulAnswer": "Direct links explain what the reader can compare, with the existing commercial disclosure retained.",
+      "evidence": "Existing coaching, cost and comparison destinations. The previous dated source review remains unchanged; no new Anthony review is asserted.",
+      "editorialDecision": "Remove page-ownership and service-intent terminology while preserving useful links and the guide URL."
+    },
+    {
+      "location": "/blog/how-much-does-online-cycling-coach-cost-2026 — onward links",
+      "readerQuestion": "What should I examine after setting a coaching budget?",
+      "usefulAnswer": "Assess the people behind the packages, compare human support with software, then read Roadman delivery and application information.",
+      "evidence": "Existing linked destinations. The August 2026 price audit and its sample date are retained, not presented as fresh price research.",
+      "editorialDecision": "Replace internal search ownership language with reader-facing decisions; retain original prices and methodology."
+    },
+    {
+      "location": "/blog/dragon-ride-training-guide — metadata, answer capsule, takeaways, FAQ and opening",
+      "readerQuestion": "Which Dragon Ride is this guide describing, and when is the next event?",
+      "usefulAnswer": "Separate the four 2026 distances and identify the announced 2027 date with unconfirmed routes.",
+      "evidence": "Organiser route announcement and next-event update, checked 7 September 2026; URLs recorded in docs/seo/roadman-search-trust-sprint-2026-09-07.md.",
+      "editorialDecision": "Remove 311km Gran Fondo, unsupported minimum weeks, W/kg cutoffs, finish-time promises and unverified weather/nutrition assertions from all answer surfaces."
+    },
+    {
+      "location": "/blog/dragon-ride-training-guide — route comparison",
+      "readerQuestion": "How do the available route choices differ?",
+      "usefulAnswer": "Four named historic routes with distance and ascent, plus named climbs and edition/direction context.",
+      "evidence": "The organiser’s specific 2026 reversed-route announcement. The next-event update has a different Cymru Classic ascent; use the route announcement consistently and record that discrepancy.",
+      "editorialDecision": "Keep a compact factual table whose cells distinguish actual options; place the year and source beside it."
+    },
+    {
+      "location": "/blog/dragon-ride-training-guide — training diary and long-ride rehearsal",
+      "readerQuestion": "What should I examine before choosing a route and placing long rides?",
+      "usefulAnswer": "Use recent distance/climbing, late-ride fatigue, food comfort, subsequent recovery and genuinely available weekends. Give rehearsals a pacing, food, gearing/handling or clothing question and record the change needed.",
+      "evidence": "General coaching guidance; no claim that a study validates an event-specific prescription. Published route/cut-off information must be checked for the entered edition.",
+      "editorialDecision": "Replace invented mandatory doses and finish guarantees with concrete observations a rider can bring to a coach."
+    },
+    {
+      "location": "/blog/dragon-ride-training-guide — fourteen weeks and target setting",
+      "readerQuestion": "Does a fourteen-week window or FTP number establish readiness?",
+      "usefulAnswer": "Neither alone establishes readiness; starting history, gradual preparation, recovery, course demands and stops shape the plan and target.",
+      "evidence": "Bounded general coaching guidance, explicitly without a validated W/kg threshold or universal programme.",
+      "editorialDecision": "Preserve useful planning intent without writing an unsupported calendar, minimum volume or predictive formula."
+    },
+    {
+      "location": "/blog/dragon-ride-training-guide — coaching and free-resource links",
+      "readerQuestion": "How can Roadman help with this event?",
+      "usefulAnswer": "Submit route, recent training and available hours; read the existing coaching offer or visit the free Clubhouse.",
+      "evidence": "Existing /apply, /coaching and /community/clubhouse routes and offer facts.",
+      "editorialDecision": "Remove outdated coaching prices and an invalid course-slug result-page link; distinguish the free Clubhouse from paid Not Done Yet."
+    },
+    {
+      "location": "/races/dragon-ride — hero, routes, preparation, sidebar and metadata",
+      "readerQuestion": "Which edition do the figures describe, and what can I do next?",
+      "usefulAnswer": "The year/route sits beside the historic figures, all four distances are compared, sources are linked, and preparation leads to the guide or coaching.",
+      "evidence": "Same organiser sources as the article. Current course simulation provenance was not established.",
+      "editorialDecision": "Remove unverified climb statistics, time bands and simulation promise from this guide. Do not emit future SportsEvent markup using historical route data."
+    },
+    {
+      "location": "/races directory and related race cards — Dragon Ride labels",
+      "readerQuestion": "Are these distance/elevation figures for my event edition?",
+      "usefulAnswer": "The corrected 222km/3,583m card explicitly identifies 2026 Gran Fondo.",
+      "evidence": "Shared verified routeEdition record in src/data/races.ts.",
+      "editorialDecision": "Keep the edition wherever these corrected directory figures are displayed. Unrelated race-guide content is not retrospectively endorsed."
+    },
+    {
+      "location": "/llms.txt and sitemap — Dragon Ride summary and modification dates",
+      "readerQuestion": "Can machine-readable discovery repeat the same facts as the pages?",
+      "usefulAnswer": "The summary states the corrected historical Gran Fondo and unconfirmed 2027 routes. Changed article, coaching and Dragon Ride modification dates align with the edit.",
+      "evidence": "Edited page content and organiser sources.",
+      "editorialDecision": "Correct existing discovery output; make no special AI-ranking claim and add no keyword-variation pages."
+    }
+  ],
+  "claimsAndSources": "Dragon Ride facts use the organiser’s 2026 reversed-route announcement and next-event update, with 2027 course uncertainty explicit. General preparation advice is identified as coaching guidance, with no invented research, individual result, event experience or dose. Existing coaching facts are retained; historical coaching-price research has not been refreshed. See docs/seo/roadman-search-trust-sprint-2026-09-07.md for URLs and the source discrepancy.",
+  "examplesAndReasoning": "No invented athlete, training week or predictive benchmark. Route comparison supplies actual named options, distance, ascent and edition. Preparation advice tells riders which observations to record and how those inform the next rehearsal or coaching discussion.",
+  "voiceAndCuts": "Removed internal ownership prose, generic hero payoff, unsupported algorithm contrast, wrong event distances, W/kg pass marks, finish guarantees, obligatory stacked training, unverified weather statistics, blanket intake prescriptions, unattributed guest prescriptions and repeated closing slogans. Retained practical decisions and useful links.",
+  "desktopReview": "Authenticated Vercel preview e3b1fb606e46e26162e5184b1e89db51d2a85983, viewport 1363x936 CSS pixels. Inspected coaching hero screenshot and rendered introduction; Dragon Ride race hero, all four route cards, sources and sidebar screenshots; training article hero, answer capsule and route-table screenshot; changed buyer-guide link paragraphs in both articles. Each of these five pages reported document width 1355px, with no horizontal overflow. The article route table is compact and readable; source/edition notices sit with their facts. Directory DOM confirms the 2026 Gran Fondo card, 222km/3,583m and no overflow; a final directory screenshot was interrupted by a browser connection reset, so a complete directory visual pass is not claimed. Rendered HTML tests cover the unchanged unrelated race layout and corrected related-card edition. Read-through and human editorial approval remain distinct from these checks.",
+  "mobileReview": "Not yet complete. The available browser exposes no viewport-resizing capability. Mobile rendered review remains required; responsive source inspection is not represented as a phone review.",
+  "productAndOfferAccuracy": "No changes to live prices, membership inclusion, product availability, testimony or payment flow. New coaching copy reflects existing plan/team-review/group-call facts. Free resources link to /community/clubhouse; paid coaching links to /coaching and /apply. No live race database was updated or simulated course validated."
+}
