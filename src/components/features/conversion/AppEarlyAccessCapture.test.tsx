@@ -10,9 +10,7 @@ describe("Good Legs waitlist handoff", () => {
     const html = renderToStaticMarkup(<AppEarlyAccessCaptureFallback placement="hero" acquisitionSource="strength-guide" />);
     expect(html).toContain('href="https://getgoodlegs.com/?utm_source=roadman');
     expect(html).toContain("roadman-app-waitlist-strength-guide-hero");
-    expect(html).toContain('href="/community/not-done-yet"');
-    expect(html).toContain("will receive access at launch");
-    expect(html).toContain("does not guarantee a beta invitation");
+    expect(html).toContain("IPHONE BETA WAITLIST");
     expect(html).not.toContain("<form");
     expect(html).not.toContain("Saturday Spin");
   });

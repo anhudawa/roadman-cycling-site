@@ -70,9 +70,9 @@ const FAQS = [
       "Body-mass and lean-mass changes vary with training volume, nutrition and the individual. This page does not promise that a cyclist will add bulk or remain exactly the same weight. Track body mass and cycling outcomes if power-to-weight is important to your goal.",
   },
   {
-    question: "How is the fixed plan different from the upcoming Roadman app?",
+    question: "How does the course compare with Good Legs?",
     answer:
-      "The $65 course is a fixed 12-week self-guided programme. The upcoming iPhone app is being built to fit 30, 45 or 60-minute strength sessions around the riding week and use readiness guardrails. Good Legs by Roadman will be included with Not Done Yet membership at launch. The standalone price and public release date are not yet announced.",
+      "The $65 course gives you a fixed 12-week programme to follow yourself. Good Legs is our strength and recovery app, in development for iPhone, with session planning, set logging and progression. It will be included with Not Done Yet at launch. The course is a separate purchase.",
   },
   {
     question: "How much does the programme cost?",
@@ -382,17 +382,16 @@ export default function StrengthTrainingPage() {
               <div className="grid items-center gap-8 lg:grid-cols-[1fr_auto]">
                 <div>
                   <p className="font-heading text-xs tracking-[0.2em] text-coral">
-                    WANT THE WEEK TO ADAPT?
+                    ALSO IN DEVELOPMENT
                   </p>
                   <h2 className="mt-3 font-heading text-3xl text-off-white md:text-4xl">
-                    GOOD LEGS: STRENGTH AND RECOVERY AROUND YOUR WEEK.
+                    GOOD LEGS BY ROADMAN
                   </h2>
                   <p className="mt-4 max-w-3xl leading-relaxed text-foreground-muted">
-                    Good Legs by Roadman is an upcoming iPhone app that
-                    places 30, 45 or 60-minute work around your existing rides
-                    and explains readiness adjustments. Good Legs access will be
-                    included with Not Done Yet membership at launch. This $65
-                    fixed course remains a separate purchase.
+                    We’re building Good Legs for cyclists who want their strength
+                    and recovery planned from week to week. The app will be
+                    included with Not Done Yet at launch. This $65 course is
+                    available now as a separate, self-guided programme.
                   </p>
                 </div>
                 <Link

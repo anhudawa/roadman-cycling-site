@@ -116,8 +116,8 @@ const delivery = [
   },
   {
     number: "03",
-    title: "One connected performance system",
-    copy: "Coaching, nutrition, strength, recovery and community work together. Good Legs will deliver the strength and recovery portion at launch.",
+    title: "Coaching beyond the bike plan",
+    copy: "Your coach considers strength, fuelling and recovery alongside the riding. Good Legs will join the membership at launch.",
   },
   {
     number: "04",
@@ -148,7 +148,7 @@ const offerInclusions = [
   "Personalised TrainingPeaks plan, reviewed every week",
   "Weekly live group coaching with Anthony — recordings included",
   "Individual plan adjustments when training or life changes",
-  "Nutrition guidance matched to your training",
+  "Nutrition and strength guidance matched to your training",
   "Good Legs access at launch for strength and recovery",
   "Private Not Done Yet rider community",
 ] as const;
@@ -156,7 +156,7 @@ const offerInclusions = [
 const faqs = [
   {
     question: "Is Good Legs included in Not Done Yet?",
-    answer: "Yes. Not Done Yet members will receive Good Legs access at launch as part of their membership. Good Legs covers the strength and recovery pillars; your Roadman coaching, nutrition guidance and community complete the five-pillar system.",
+    answer: "Yes. Good Legs, our strength and recovery app, will be included with Not Done Yet at launch. Your membership already includes cycling coaching, nutrition and strength guidance, and the private rider community.",
   },
   {
     question: "How much time do I need to train?",
@@ -189,7 +189,7 @@ const discoveryPaths = [
   {
     number: "01", category: "Build", title: "Good Legs by Roadman",
     href: "/app?source=homepage",
-    copy: "Strength and recovery around the week you ride. Included with Not Done Yet at launch.",
+    copy: "Our strength and recovery app, in development for iPhone. Included with Not Done Yet at launch.",
     secondaryLabel: "Try the free strength planner", secondaryHref: "/tools/strength-session-planner",
     track: "home_discovery_good_legs",
   },
@@ -228,7 +228,7 @@ const discoveryPaths = [
     category: "Ride",
     title: "Roadman training camps",
     href: "/training-camps",
-    copy: "Focused riding experiences that bring the Roadman method beyond the screen.",
+    copy: "Ride with the Roadman team in Girona. Road and gravel camps, with coaching and time together off the bike.",
     secondaryLabel: "Find an event training plan",
     secondaryHref: "/plan",
     track: "home_discovery_camps",
@@ -238,7 +238,7 @@ const discoveryPaths = [
     category: "Belong",
     title: "The Roadman community",
     href: "/community/clubhouse",
-    copy: "Share the questions, rides and small wins with people who care about cycling.",
+    copy: "Join the free Clubhouse for training discussions and resources from the podcast.",
     secondaryLabel: "Explore Not Done Yet",
     secondaryHref: "/community/not-done-yet",
     track: "home_discovery_community",

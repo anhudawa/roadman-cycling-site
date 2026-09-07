@@ -26,31 +26,31 @@ const PILLAR_COPY: Record<
     eyebrow: "NEXT STEP",
     headline: "APPLY WHAT YOU JUST READ.",
     subheadline:
-      "Reading about training structure is different from having one built around your numbers and your calendar.",
+      "Work with the Roadman coaching team on a plan for your event, your available hours and the riding you’re doing now.",
   },
   nutrition: {
     eyebrow: "NEXT STEP",
-    headline: "TURN THE SCIENCE INTO A PLAN.",
+    headline: "FUEL THE WEEK AHEAD.",
     subheadline:
-      "Fuelling principles only matter when they're applied to your actual training week. That's what coaching is for.",
+      "Bring your training and nutrition questions to the Roadman coaching team. Plan the riding and the meals that support it.",
   },
   strength: {
     eyebrow: "NEXT STEP",
-    headline: "LIFT LIKE A CYCLIST, NOT A BODYBUILDER.",
+    headline: "MAKE ROOM FOR STRENGTH.",
     subheadline:
-      "Fit strength around your riding. Not Done Yet will include Good Legs access at launch for strength and recovery, alongside coaching, nutrition and community.",
+      "Work with a coach on the gym sessions as well as the rides. Not Done Yet includes strength guidance and regular review of your training.",
   },
   recovery: {
     eyebrow: "NEXT STEP",
-    headline: "MAKE RECOVERY NON-NEGOTIABLE.",
+    headline: "PLAN THE DAYS BETWEEN.",
     subheadline:
-      "Connect recovery with the rest of your week. Not Done Yet will include Good Legs access at launch, with coaching and support across all five Roadman pillars.",
+      "Talk through your training, fatigue and recovery with the Roadman coaching team. Not Done Yet gives you a plan and someone to review it with.",
   },
   community: {
     eyebrow: "NEXT STEP",
     headline: "KEEP EXPLORING THE CRAFT.",
     subheadline:
-      "The best way to get better at cycling is to talk to people who are obsessed with it. We have a free community for that.",
+      "Join the free Clubhouse to ask questions, share your riding and find resources from the podcast.",
   },
 };
 
@@ -96,7 +96,7 @@ export function NextStepBlock({
       </p>
 
       {(pillar === "strength" || pillar === "recovery") && (
-        <p className="mb-6 text-sm text-foreground-muted">Looking specifically for an app? <Link href="/app" data-track={`${source}-good-legs`} className="underline">Explore Good Legs by Roadman</Link>.</p>
+        <p className="mb-6 text-sm text-foreground-muted">We’re also building <Link href="/app" data-track={`${source}-good-legs`} className="underline">Good Legs</Link>, our strength and recovery app. Included with Not Done Yet at launch.</p>
       )}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {/* Primary — coaching */}
@@ -145,7 +145,7 @@ export function NextStepBlock({
             Roadman Clubhouse community
           </span>
           <span className="text-sm text-foreground-muted mt-3">
-            Q&amp;A with Anthony · training plans · 2,100+ riders
+            Training discussions · podcast resources
           </span>
           <span
             aria-hidden="true"
@@ -173,7 +173,7 @@ export function NextStepBlock({
             {tertiary.label}
           </span>
           <span className="text-sm text-foreground-muted mt-3">
-            Curated from 1,400+ episodes and 1,000+ articles.
+            Selected Roadman articles and conversations.
           </span>
           <span
             aria-hidden="true"

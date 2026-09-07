@@ -299,12 +299,12 @@ export default function StrengthSessionPlannerPage() {
 
                 <div className="rounded-2xl border border-coral/25 bg-coral/[0.06] p-6 text-center">
                   <p className="font-heading text-xl text-off-white">
-                    WANT THE SESSION INSIDE THE WEEK?
+                    MEET GOOD LEGS
                   </p>
                   <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-foreground-muted">
-                    Good Legs by Roadman will connect this
-                    placement logic to cyclist-specific strength, daily
-                    readiness and recovery context. Not Done Yet members will receive access at launch.
+                    Good Legs is our strength and recovery app, in development
+                    for iPhone. Plan your gym work, record your lifts and follow
+                    your progress. Included with Not Done Yet at launch.
                   </p>
                   <Link
                     href="/app?source=strength-session-planner"
