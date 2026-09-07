@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Suspense } from "react";
 import {
   AppEarlyAccessCapture,
@@ -110,18 +111,30 @@ export default function AppLandingPage() {
     <Header />
     <main id="main-content">
       <Section background="deep-purple" grain className="pt-32 md:pt-40">
-        <Container>
-          <p className="mb-6 font-heading text-sm tracking-[0.2em] text-coral">GOOD LEGS BY ROADMAN</p>
-          <h1 className="max-w-5xl font-heading leading-[0.98] text-off-white" style={{ fontSize: "clamp(3.1rem, 7vw, 6.8rem)" }}>
-            The ride is only<br /><span className="text-coral">half the story.</span>
-          </h1>
-          <div className="mt-10 grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:gap-20">
-            <div className="max-w-2xl space-y-5 text-lg leading-relaxed text-foreground-muted md:text-xl">
-              <p>The long ride is in the diary. The gym is still a vague intention, and recovery is whatever time remains before bed.</p>
-              <p>Good Legs is the strength and recovery app we’re building at Roadman. Plan your gym sessions, record your lifts and follow your progress. Give recovery the same attention, with daily guidance that takes your sleep, energy and soreness into account.</p>
-            </div>
-            <div className="self-end"><Waitlist placement="hero" /></div>
+        <Container className="relative grid items-center gap-x-12 gap-y-8 lg:grid-cols-[1.45fr_0.85fr]">
+          <div className="lg:col-start-1 lg:row-start-1">
+            <p className="mb-6 font-heading text-sm tracking-[0.2em] text-coral">GOOD LEGS BY ROADMAN</p>
+            <h1 className="font-heading leading-[0.98] text-off-white" style={{ fontSize: "clamp(3rem, 6vw, 5.4rem)" }}>
+              The ride is only<br /><span className="text-coral">half the story.</span>
+            </h1>
           </div>
+          <figure className="relative flex justify-center lg:col-start-2 lg:row-span-3 lg:row-start-1 lg:self-stretch">
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(245,111,97,0.16),transparent_68%)]" />
+            <Image
+              src="/images/good-legs/coach.webp"
+              width={762}
+              height={1519}
+              alt="The Good Legs cat coach in a branded black hoodie."
+              preload
+              sizes="(max-width: 1023px) 161px, 330px"
+              className="relative h-[320px] w-auto max-w-full object-contain lg:h-full lg:max-h-[660px]"
+            />
+          </figure>
+          <div className="max-w-2xl space-y-5 text-lg leading-relaxed text-foreground-muted md:text-xl lg:col-start-1 lg:row-start-2">
+            <p>The long ride is in the diary. The gym is still a vague intention, and recovery is whatever time remains before bed.</p>
+            <p>Good Legs is the strength and recovery app we’re building at Roadman. Plan your gym sessions, record your lifts and follow your progress. Give recovery the same attention, with daily guidance that takes your sleep, energy and soreness into account.</p>
+          </div>
+          <div className="lg:col-start-1 lg:row-start-3"><Waitlist placement="hero" /></div>
         </Container>
       </Section>
 
@@ -129,6 +142,16 @@ export default function AppLandingPage() {
         <Container>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
             <article>
+              <div className="mb-8 flex aspect-[3/2] items-center justify-center rounded-2xl bg-[radial-gradient(ellipse_at_top_left,#fff6ee,#e6d8e9)] p-5 sm:p-8">
+                <Image
+                  src="/images/good-legs/strength.webp"
+                  width={1536}
+                  height={1031}
+                  alt="The Good Legs cat mascot performing a barbell squat."
+                  sizes="(max-width: 767px) calc(100vw - 80px), (max-width: 1023px) calc(100vw - 128px), 480px"
+                  className="h-full w-full object-contain"
+                />
+              </div>
               <p className="font-heading text-sm tracking-[0.2em] text-coral">01 / IN THE GYM</p>
               <h2 className="mt-4 font-heading text-4xl leading-tight text-off-white md:text-5xl">Pick up where you left off.</h2>
               <div className="mt-6 space-y-5 text-lg leading-relaxed text-foreground-muted">
@@ -137,6 +160,16 @@ export default function AppLandingPage() {
               </div>
             </article>
             <article>
+              <div className="mb-8 flex aspect-[3/2] items-center justify-center rounded-2xl bg-[radial-gradient(ellipse_at_top_right,#f5eee6,#d8dae9)] p-5 sm:p-8">
+                <Image
+                  src="/images/good-legs/recovery.webp"
+                  width={1536}
+                  height={1000}
+                  alt="The Good Legs cat mascot resting with headphones and feet up."
+                  sizes="(max-width: 767px) calc(100vw - 80px), (max-width: 1023px) calc(100vw - 128px), 480px"
+                  className="h-full w-full object-contain"
+                />
+              </div>
               <p className="font-heading text-sm tracking-[0.2em] text-coral">02 / BETWEEN SESSIONS</p>
               <h2 className="mt-4 font-heading text-4xl leading-tight text-off-white md:text-5xl">Some days call for less.</h2>
               <div className="mt-6 space-y-5 text-lg leading-relaxed text-foreground-muted">

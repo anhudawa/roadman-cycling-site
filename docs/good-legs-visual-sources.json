@@ -1,0 +1,30 @@
+{
+  "retrieved": "2026-09-07",
+  "originalsUnmodified": true,
+  "assets": [
+    {
+      "file": "public/images/good-legs/coach.webp",
+      "source": "https://getgoodlegs.com/assets/mascot/coach-hero.webp",
+      "sha256": "b432e75989070d3d311817436f2adbc05dfee8a0e334f73f4f13d2de245f7f6b",
+      "width": 762,
+      "height": 1519,
+      "bytes": 177274
+    },
+    {
+      "file": "public/images/good-legs/strength.webp",
+      "source": "https://getgoodlegs.com/assets/mascot/scene-strength-1536.webp",
+      "sha256": "1e991b2e09a99f13f01843a96c0ed729585de3a5bcd370e888cabebfe8e186fa",
+      "width": 1536,
+      "height": 1031,
+      "bytes": 199576
+    },
+    {
+      "file": "public/images/good-legs/recovery.webp",
+      "source": "https://getgoodlegs.com/assets/mascot/scene-recovery-1536.webp",
+      "sha256": "23f4b0e2c87fce65ae850c4f24e6e721a640792e0e7dd3addee27f19ba9ac8d3",
+      "width": 1536,
+      "height": 1000,
+      "bytes": 184768
+    }
+  ]
+}
