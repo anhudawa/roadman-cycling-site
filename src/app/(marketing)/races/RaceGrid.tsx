@@ -154,6 +154,10 @@ export function RaceGrid({ races }: RaceGridProps) {
                 {race.name.toUpperCase()}
               </h2>
 
+              {race.routeEdition && (
+                <p className="text-coral text-xs mb-2">{race.routeEdition.year} {race.routeEdition.routeName}</p>
+              )}
+
               {/* Location */}
               <p className="text-foreground-muted text-xs mb-4">{race.location}</p>
 

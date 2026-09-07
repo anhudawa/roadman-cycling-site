@@ -28,8 +28,12 @@ export async function generateMetadata({
   const race = getRaceBySlug(slug);
   if (!race) return {};
 
-  const title = `${race.name} Race Guide — Distance, Elevation & Finish Times`;
-  const description = `Complete ${race.name} guide: ${race.distance_km}km, ${race.elevation_m.toLocaleString()}m elevation. Key climbs, typical finish times for all abilities and training advice from Roadman Cycling.`;
+  const title = race.routeEdition
+    ? `${race.name}: Routes, Distances & ${race.routeEdition.nextEventDate.slice(-4)} Update`
+    : `${race.name} Race Guide — Distance, Elevation & Finish Times`;
+  const description = race.routeEdition
+    ? `Compare the ${race.routeEdition.year} ${race.name} routes, distances and climbing. Next event: ${race.routeEdition.nextEventDate}; new routes unconfirmed. Training guidance from Roadman.`
+    : `Complete ${race.name} guide: ${race.distance_km}km, ${race.elevation_m.toLocaleString()}m elevation. Key climbs, typical finish times for all abilities and training advice from Roadman Cycling.`;
 
   return {
     title,
@@ -125,7 +129,8 @@ export default async function RacePage({
   // usually runs (e.g. "July"), so derive the next upcoming occurrence.
   // Races with no known month (self-supported raids, no fixed calendar
   // slot) get NO Event markup rather than a date-less, invalid Event.
-  const raceStartDate = nextAnnualStartDate(race.month);
+  // An edition-specific route comparison is a guide, not a future course announcement.
+  const raceStartDate = race.routeEdition ? null : nextAnnualStartDate(race.month);
   const jsonLd = raceStartDate
     ? {
         "@context": "https://schema.org",
@@ -226,11 +231,18 @@ export default async function RacePage({
 
             <DifficultyBar level={race.difficulty} />
 
+            {race.routeEdition && (
+              <p className="text-foreground-muted text-base max-w-2xl mt-6 leading-relaxed">
+                Next event: {race.routeEdition.nextEventDate}. The new routes are
+                not yet confirmed. Figures below describe the {race.routeEdition.year} {race.routeEdition.routeName}.
+              </p>
+            )}
+
             {/* Key stats */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-10">
               <StatBox label="Distance" value={race.distance_km} unit="km" />
               <StatBox label="Elevation" value={race.elevation_m} unit="m" />
-              <StatBox label="Climbs" value={race.key_climbs.length} />
+              <StatBox label={race.routeEdition ? "Route options" : "Climbs"} value={race.routeEdition ? race.routeEdition.routes.length : race.key_climbs.length} />
               <StatBox label="Difficulty" value={DIFFICULTY_LABELS[race.difficulty]} />
             </div>
           </div>
@@ -247,6 +259,36 @@ export default async function RacePage({
                   <SectionLabel>Course Overview</SectionLabel>
                   <p className="text-off-white text-base leading-relaxed">{race.description}</p>
                 </div>
+
+                {race.routeEdition && (
+                  <div>
+                    <h2 className="font-heading text-off-white text-2xl mb-4">
+                      Compare the {race.routeEdition.year} routes
+                    </h2>
+                    <div className="space-y-4">
+                      {race.routeEdition.routes.map((route) => (
+                        <div key={route.name} className="rounded-xl border border-white/10 p-5">
+                          <h3 className="font-heading text-off-white text-lg">{route.name}</h3>
+                          <p className="text-coral mt-2">{route.distance_km}km · {route.elevation_m.toLocaleString()}m ascent</p>
+                          <p className="text-foreground-muted text-sm mt-2">Named climbs: {route.climbs}.</p>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-foreground-muted text-sm mt-5 leading-relaxed">
+                      Source: the organiser&apos;s <a href={race.routeEdition.sourceUrl} className="text-coral underline">2026 route announcement</a>.
+                      Routes were reversed for that edition. Read the <a href={race.routeEdition.updateUrl} className="text-coral underline">next-event update</a> before planning around an old course.
+                    </p>
+                    <h2 className="font-heading text-off-white text-2xl mt-10 mb-4">Choose your distance, then plan the work</h2>
+                    <p className="text-off-white leading-relaxed">
+                      Compare the route with your recent long rides, the climbing you can practise
+                      and the time available to train. Check the published cut-offs for your edition.
+                      FTP alone does not establish whether a distance or finish-time target is realistic.
+                    </p>
+                    <Link href={race.routeEdition.trainingGuide} className="inline-block text-coral underline mt-4">
+                      Read the Dragon Ride training guide
+                    </Link>
+                  </div>
+                )}
 
                 {/* Key climbs */}
                 {race.key_climbs.length > 0 && (
@@ -297,8 +339,8 @@ export default async function RacePage({
                   </div>
                 )}
 
-                {/* Finish times */}
-                <div>
+                {/* Finish times are omitted when no supported estimates are recorded. */}
+                {race.typical_finish_times && <div>
                   <SectionLabel>Typical Finish Times</SectionLabel>
                   <p className="text-foreground-muted text-sm mb-4">
                     Based on FTP, weekly training volume and previous event experience.
@@ -320,13 +362,13 @@ export default async function RacePage({
                           {label}
                         </p>
                         <p className="font-heading text-coral text-xl leading-none mb-1">
-                          {race.typical_finish_times[key]}
+                          {race.typical_finish_times?.[key]}
                         </p>
                         <p className="text-foreground-subtle text-xs">{sub}</p>
                       </div>
                     ))}
                   </div>
-                </div>
+                </div>}
 
                 {/* Tags */}
                 {race.tags.length > 0 && (
@@ -348,7 +390,20 @@ export default async function RacePage({
 
               {/* Right: sidebar */}
               <div className="space-y-6">
-                {/* Predict Your Time CTA */}
+                {race.routeEdition ? (
+                  <div className="rounded-xl border border-coral/30 bg-coral/[0.06] p-6">
+                    <h2 className="font-heading text-off-white text-xl mb-3">Prepare for your route</h2>
+                    <p className="text-foreground-muted text-sm leading-relaxed mb-5">
+                      Bring your chosen distance, recent training and available weekly hours.
+                      Roadman can review how the event fits your starting point and schedule.
+                    </p>
+                    <Link href="/apply" className="block text-center font-heading text-sm bg-coral hover:bg-coral-hover text-off-white px-5 py-3 rounded-md">
+                      Apply for coaching
+                    </Link>
+                    <Link href="/coaching" className="block text-center text-coral text-sm underline mt-4">See what coaching includes</Link>
+                  </div>
+                ) : (
+                /* Predict Your Time CTA */
                 <div className="rounded-xl border border-coral/30 bg-coral/[0.06] p-6">
                   <SectionLabel>Predict Your Time</SectionLabel>
                   <h2 className="font-heading text-off-white text-xl mb-3 leading-tight">
@@ -377,10 +432,11 @@ export default async function RacePage({
                     Free · No account required
                   </p>
                 </div>
+                )}
 
                 {/* Quick facts */}
                 <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6">
-                  <SectionLabel>Quick Facts</SectionLabel>
+                  <SectionLabel>{race.routeEdition ? `${race.routeEdition.year} ${race.routeEdition.routeName}` : "Quick Facts"}</SectionLabel>
                   <dl className="space-y-3">
                     <div className="flex justify-between gap-4">
                       <dt className="text-foreground-muted text-sm">Distance</dt>
@@ -406,10 +462,10 @@ export default async function RacePage({
                         <dd className="text-off-white text-sm font-medium">{race.month}</dd>
                       </div>
                     )}
-                    <div className="flex justify-between gap-4">
+                    {!race.routeEdition && <div className="flex justify-between gap-4">
                       <dt className="text-foreground-muted text-sm">Key climbs</dt>
                       <dd className="text-off-white text-sm font-medium">{race.key_climbs.length}</dd>
-                    </div>
+                    </div>}
                     <div className="flex justify-between gap-4">
                       <dt className="text-foreground-muted text-sm">Difficulty</dt>
                       <dd className={`text-sm font-medium ${DIFFICULTY_COLORS[race.difficulty]}`}>
@@ -472,6 +528,9 @@ export default async function RacePage({
                     <h3 className="font-heading text-off-white group-hover:text-coral transition-colors text-base leading-tight mb-2">
                       {r.name.toUpperCase()}
                     </h3>
+                    {r.routeEdition && (
+                      <p className="text-coral text-xs mb-2">{r.routeEdition.year} {r.routeEdition.routeName}</p>
+                    )}
                     <div className="flex gap-3 text-sm text-foreground-muted mb-3">
                       <span>{r.distance_km}km</span>
                       <span>·</span>

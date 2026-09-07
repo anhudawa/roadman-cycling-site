@@ -83,14 +83,14 @@ const COACHING_INTENT_PATHS = [
     eyebrow: "COMPARE",
     title: "Choose the right coach",
     description:
-      "A practical selection framework, the questions to ask, and the red flags that expose plan-delivery services.",
+      "Nine questions to ask before hiring, covering the coach, the feedback you receive and the terms you agree to.",
   },
   {
     href: "/blog/how-much-does-online-cycling-coach-cost-2026",
     eyebrow: "PRICE",
-    title: "Audit coaching costs",
+    title: "Compare coaching prices",
     description:
-      "A dated audit of public coaching prices, billing periods, review cadence, contact and contract terms.",
+      "Compare published packages by price, billing period, calls and the work a coach does between plan updates.",
   },
   {
     href: "/apply",
@@ -146,7 +146,7 @@ const pillars = [
     number: "01",
     title: "Training",
     description:
-      "Personalised TrainingPeaks plans built around your life, your goals, and your data. Adjusted weekly based on how you actually responded — not how an algorithm predicted you would.",
+      "Your TrainingPeaks plan is reviewed each week against completed rides, your feedback and the time available for the next block.",
   },
   {
     number: "02",
@@ -348,7 +348,7 @@ export default function CoachingPage() {
           description:
             "Evidence-based online cycling coaching for serious amateur and masters cyclists, with personalised TrainingPeaks plans and weekly review.",
           ...buildSearchOwnerTrustProperties("cycling-coaching"),
-          dateModified: "2026-08-26",
+          dateModified: "2026-09-07",
           editor: { "@id": ENTITY_IDS.person },
           publisher: { "@id": ENTITY_IDS.organization },
           mainEntity: { "@id": `${SITE_ORIGIN}/#coaching-service` },
@@ -504,11 +504,11 @@ export default function CoachingPage() {
                 <span className="text-coral">FOR SERIOUS AMATEURS.</span>
               </h1>
               <p className="text-foreground-muted text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
-                Evidence-based coaching for serious amateur and masters
-                cyclists. Personalised plans informed by 1,400+ podcast
-                episodes and interviews with leading coaches and scientists —
-                Seiler, Lorang, LeMond, Friel — structured into your week so
-                every session counts.
+                Your riding has to fit around work, family and the hours you
+                actually have. Not Done Yet gives you an individual TrainingPeaks
+                plan, weekly review by the Roadman coaching team and a live group
+                coaching call with Anthony. Strength, fuelling and recovery are
+                part of that work.
               </p>
 
               {/* Hero proof point — single killer stat + quote, above the fold */}
@@ -582,9 +582,8 @@ export default function CoachingPage() {
                   decision. Roadman&apos;s service pairs a personalised
                   TrainingPeaks plan with weekly review, live coaching,
                   cycling-specific strength, fuelling guidance and a private
-                  rider community. This page describes the service; the routes
-                  below cover education, provider-comparison questions and
-                  price research.
+                  rider community. Explore the guides below if you want to
+                  compare coaching options before applying.
                 </p>
               </div>
               <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
