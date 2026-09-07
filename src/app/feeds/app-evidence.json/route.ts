@@ -31,7 +31,7 @@ export function GET() {
         name: ROADMAN_APP_PRODUCT.name,
         lifecycleStatus: ROADMAN_APP_PRODUCT.lifecycleStatus,
         canonicalUrl: ROADMAN_APP_PRODUCT.canonicalUrl,
-        finalNameAnnounced: false,
+        finalNameAnnounced: true,
       },
       currentEvidenceState: {
         answer: REGISTER.answer,

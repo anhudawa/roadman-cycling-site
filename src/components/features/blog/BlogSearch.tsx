@@ -9,6 +9,8 @@ import { BlogPagination } from "@/components/features/blog/BlogPagination";
 import { isGenericImage } from "@/lib/blog-images";
 import { type ContentPillar, CONTENT_PILLARS } from "@/types";
 
+import { type BlogSearchItem, TOPIC_FILTERS, type getBlogSearchCounts } from "@/lib/blog-search";
+
 const INITIAL_POSTS_PER_PAGE = 24;
 const FEATURED_POST_COUNT = 4;
 
@@ -35,71 +37,15 @@ function heroSrcForCard(post: Pick<BlogSearchItem, "slug" | "featuredImage">): {
   return null;
 }
 
-interface BlogSearchItem {
-  slug: string;
-  title: string;
-  excerpt: string;
-  pillar: ContentPillar;
-  publishDate: string;
-  readTime: string;
-  featuredImage?: string;
-  keywords: string[];
-}
-
 interface BlogSearchProps {
-  posts: BlogSearchItem[];
   archivePosts: BlogSearchItem[];
+  counts: ReturnType<typeof getBlogSearchCounts>;
   currentPage: number;
   totalPages: number;
 }
 
-/** Topic filters — keyword-based filters that cut across pillars */
-const TOPIC_FILTERS: Array<{
-  id: string;
-  label: string;
-  match: (post: BlogSearchItem) => boolean;
-}> = [
-  {
-    id: "mtb",
-    label: "Mountain Biking",
-    match: (p) => {
-      const haystack =
-        `${p.title} ${(p.keywords ?? []).join(" ")} ${p.excerpt}`.toLowerCase();
-      return /\bmtb\b|mountain.?bik|fork.?setup|suspension.?setup|dropper|trail.?rid|enduro|shock.?pressur|tyre.?pressure.?mtb|rostrevor|ballinastoe|mtb.?trail|mountain.?bike.?trail/.test(
-        haystack,
-      );
-    },
-  },
-  {
-    id: "triathlon",
-    label: "Triathlon",
-    match: (p) => {
-      const haystack =
-        `${p.title} ${(p.keywords ?? []).join(" ")} ${p.excerpt}`.toLowerCase();
-      return /triath|ironman|70\.3|bike.?leg|tri.?bike/.test(haystack);
-    },
-  },
-  {
-    // Cycling's horology cluster — the watch features sit in the `community`
-    // pillar (cycling culture / le metier), so without a cross-cutting filter
-    // they're invisible on /blog unless you already know the brand name. This
-    // surfaces them as their own browsable group. Brand-name anchored to stay
-    // precise: bare "watch" would catch "57M watch hours" (the Netflix piece),
-    // and bare "omega" would catch omega-3 nutrition posts.
-    id: "watches",
-    label: "Watches",
-    match: (p) => {
-      const haystack =
-        `${p.title} ${(p.keywords ?? []).join(" ")} ${p.excerpt}`.toLowerCase();
-      return /\bwatches\b|cycling watch|wristwatch|smartwatch|chronograph|horolog|\btudor\b|breitling|richard mille|\brolex\b|\bcasio\b|\bbravur\b|omega (olympic|velodrome|timekeep)|f-?91w|black bay/.test(
-        haystack,
-      );
-    },
-  },
-];
-
 export function BlogSearch({
-  posts,
+  counts,
   archivePosts,
   currentPage,
   totalPages,
@@ -109,7 +55,22 @@ export function BlogSearch({
   const [topicFilter, setTopicFilter] = useState<string>("");
   const [visibleCount, setVisibleCount] = useState(INITIAL_POSTS_PER_PAGE);
 
+  const [catalogue, setCatalogue] = useState<BlogSearchItem[] | null>(null);
+  const [searchError, setSearchError] = useState(false);
+  const [retry, setRetry] = useState(0);
+  const posts = catalogue ?? archivePosts;
   const isBrowsingAll = !query.trim() && !pillarFilter && !topicFilter;
+
+  useEffect(() => {
+    if (isBrowsingAll || catalogue) return;
+    const controller = new AbortController();
+    setSearchError(false);
+    fetch("/api/blog/search-index", { signal: controller.signal })
+      .then(response => { if (!response.ok) throw new Error("Search unavailable"); return response.json(); })
+      .then(data => { if (!Array.isArray(data.posts)) throw new Error("Invalid search index"); setCatalogue(data.posts); })
+      .catch(() => { if (!controller.signal.aborted) setSearchError(true); });
+    return () => controller.abort();
+  }, [isBrowsingAll, catalogue, retry]);
 
   // The 4 most recent posts are the editorial picks (pinned via publishDate).
   // Hidden when any filter or search is active so the featured row stays
@@ -276,10 +237,10 @@ export function BlogSearch({
               : "bg-white/5 text-foreground-muted hover:bg-white/10"
           }`}
         >
-          All ({posts.length})
+          All ({counts.total})
         </button>
         {(Object.keys(CONTENT_PILLARS) as ContentPillar[]).map((key) => {
-          const count = posts.filter((p) => p.pillar === key).length;
+          const count = counts.pillars[key] ?? 0;
           return (
             <button
               key={key}
@@ -307,7 +268,7 @@ export function BlogSearch({
         aria-label="Filter by topic"
       >
         {TOPIC_FILTERS.map((topic) => {
-          const count = posts.filter(topic.match).length;
+          const count = counts.topics[topic.id] ?? 0;
           if (count === 0) return null;
           return (
             <button
@@ -336,15 +297,15 @@ export function BlogSearch({
             THE FULL CATALOGUE
           </h2>
           <span className="text-xs text-foreground-subtle">
-            {posts.length - featured.length} article
-            {posts.length - featured.length === 1 ? "" : "s"} across{" "}
+            {counts.total - featured.length} article
+            {counts.total - featured.length === 1 ? "" : "s"} across{" "}
             {totalPages} pages
           </span>
         </div>
       )}
 
       {/* Result count (only shown when filtered) */}
-      {!isBrowsingAll && (
+      {!isBrowsingAll && catalogue && (
         <p className="text-sm text-foreground-subtle mb-6 text-center">
           {filtered.length} article{filtered.length !== 1 ? "s" : ""}
           {query && ` matching "${query}"`}
@@ -352,7 +313,11 @@ export function BlogSearch({
       )}
 
       {/* Posts Grid */}
-      {filtered.length === 0 ? (
+      {!isBrowsingAll && !catalogue ? (
+        <div className="py-12 text-center" role="status">
+          {searchError ? <><p>Search is temporarily unavailable. You can still browse every archive page.</p><button type="button" className="mt-4 underline" onClick={() => setRetry(value => value + 1)}>Retry search</button></> : <p>Searching all Roadman articles…</p>}
+        </div>
+      ) : filtered.length === 0 ? (
         <div className="text-center py-20">
           <p className="text-foreground-muted text-lg">
             No articles found. Try a different search or filter.

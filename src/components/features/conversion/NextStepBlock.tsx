@@ -38,13 +38,13 @@ const PILLAR_COPY: Record<
     eyebrow: "NEXT STEP",
     headline: "LIFT LIKE A CYCLIST, NOT A BODYBUILDER.",
     subheadline:
-      "Strength work has to be periodised with your riding or it compromises both. A coached plan handles the interaction.",
+      "Fit strength around your riding. Not Done Yet will include Good Legs access at launch for strength and recovery, alongside coaching, nutrition and community.",
   },
   recovery: {
     eyebrow: "NEXT STEP",
     headline: "MAKE RECOVERY NON-NEGOTIABLE.",
     subheadline:
-      "Knowing you need recovery is easy. Structuring a week that actually delivers it — around work, family and fatigue — is where coaching lives.",
+      "Connect recovery with the rest of your week. Not Done Yet will include Good Legs access at launch, with coaching and support across all five Roadman pillars.",
   },
   community: {
     eyebrow: "NEXT STEP",
@@ -95,6 +95,9 @@ export function NextStepBlock({
         {copy.subheadline}
       </p>
 
+      {(pillar === "strength" || pillar === "recovery") && (
+        <p className="mb-6 text-sm text-foreground-muted">Looking specifically for an app? <Link href="/app" data-track={`${source}-good-legs`} className="underline">Explore Good Legs by Roadman</Link>.</p>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {/* Primary — coaching */}
         <Link

@@ -223,7 +223,7 @@ export default function MastersCyclingAppPage() {
                   </span>
                 </h1>
                 <p className="mt-8 max-w-2xl text-lg leading-relaxed text-foreground-muted md:text-xl">
-                  Roadman is building cyclist-specific strength, readiness and
+                  Good Legs by Roadman is being built for cyclist-specific strength, readiness and
                   recovery around the week you actually ride. It is designed for
                   the realities of cycling over 40 and over 50 without assuming
                   your age can prescribe your training.
@@ -232,7 +232,7 @@ export default function MastersCyclingAppPage() {
                   <MastersAppCapture placement="hero" />
                 </div>
                 <p className="mt-4 max-w-xl text-xs leading-relaxed text-foreground-subtle">
-                  One Roadman app waitlist. The final product name, launch date
+                  Good Legs by Roadman. The public launch date
                   and subscription price have not been announced.
                 </p>
               </div>
@@ -437,9 +437,9 @@ export default function MastersCyclingAppPage() {
                 HELP SHAPE THE APP FOR CYCLING AFTER 40.
               </h2>
               <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-foreground-muted">
-                Join the same Roadman app early-access list for beta,
-                product-name, launch and pricing updates. Your signup source
-                tells us that masters strength and recovery matter to you.
+                Explore Good Legs and join its beta waitlist for invitations
+                and product updates. Not Done Yet members will receive access
+                at launch for strength and recovery.
               </p>
               <div className="mx-auto mt-8 max-w-xl text-left">
                 <MastersAppCapture placement="bottom" />

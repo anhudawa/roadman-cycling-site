@@ -72,7 +72,7 @@ const FAQS = [
   {
     question: "How is the fixed plan different from the upcoming Roadman app?",
     answer:
-      "The $65 course is a fixed 12-week self-guided programme. The upcoming iPhone app is being built to fit 30, 45 or 60-minute strength sessions around the riding week and use readiness guardrails. The app name, launch date and subscription price have not been announced.",
+      "The $65 course is a fixed 12-week self-guided programme. The upcoming iPhone app is being built to fit 30, 45 or 60-minute strength sessions around the riding week and use readiness guardrails. Good Legs by Roadman will be included with Not Done Yet membership at launch. The standalone price and public release date are not yet announced.",
   },
   {
     question: "How much does the programme cost?",
@@ -116,7 +116,7 @@ const DECISION_ROWS = [
   },
   {
     need: "Strength placed around an existing ride week",
-    answer: "Upcoming Roadman app",
+    answer: "Good Legs by Roadman",
     href: "/app?source=strength-plan",
   },
   {
@@ -385,14 +385,14 @@ export default function StrengthTrainingPage() {
                     WANT THE WEEK TO ADAPT?
                   </p>
                   <h2 className="mt-3 font-heading text-3xl text-off-white md:text-4xl">
-                    THE UPCOMING APP IS A DIFFERENT PRODUCT.
+                    GOOD LEGS: STRENGTH AND RECOVERY AROUND YOUR WEEK.
                   </h2>
                   <p className="mt-4 max-w-3xl leading-relaxed text-foreground-muted">
-                    Roadman is building an iPhone strength and recovery app that
+                    Good Legs by Roadman is an upcoming iPhone app that
                     places 30, 45 or 60-minute work around your existing rides
-                    and explains readiness adjustments. Its final name, date and
-                    price are not announced. Everyone joins the same early-access
-                    list; this link records that the fixed course led you there.
+                    and explains readiness adjustments. Good Legs access will be
+                    included with Not Done Yet membership at launch. This $65
+                    fixed course remains a separate purchase.
                   </p>
                 </div>
                 <Link
@@ -400,7 +400,7 @@ export default function StrengthTrainingPage() {
                   data-track="strength_plan_app_early_access"
                   className="inline-flex shrink-0 items-center justify-center rounded-md bg-coral px-7 py-4 font-heading tracking-wider text-off-white transition-colors hover:bg-coral/90"
                 >
-                  JOIN APP EARLY ACCESS
+                  EXPLORE GOOD LEGS
                 </Link>
               </div>
             </div>
