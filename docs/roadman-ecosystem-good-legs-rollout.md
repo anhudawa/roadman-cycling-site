@@ -37,7 +37,18 @@ These are third-party UK estimates, not Search Console measurements, worldwide r
 
 The current Roadman `/api/skool-webhook` accepts free-community join/update events and flexible automation payloads. It is not an authoritative record of an active, paid Not Done Yet subscription. The Good Legs app has a `manual` entitlement type, but the inspected commerce manager currently validates against store-platform products. Public membership inclusion does not implement those runtime changes.
 
-**Required input:** identify the authoritative paid Not Done Yet subscription source and product/community identifier, including whether the seven-day trial qualifies. Existing code links free and paid paths to the same Skool community URL; that is insufficient to infer entitlement.
+**Confirmed source:** Anthony confirmed that Not Done Yet payments run through Skool. Authenticated admin inspection on 7 September 2026 verified the group at `https://www.skool.com/roadmancycling` as **Roadman Cycling (Not Done Yet)**. Skool admin access is available for this implementation.
+
+### Verified Skool integration constraints
+
+- The group's **Zapier integration is Off**. Its settings list a paid-member name/email trigger, a membership-question trigger, and actions to invite members or unlock a course. No renewal, cancellation or removal trigger was shown in this integration panel.
+- Skool's [official new-paid-member instructions](https://help.skool.com/article/162-zapier-new-paid-member-info-to-crm) describe a Pro-plan Zapier connection and a trigger returning a transaction ID, transaction date, name and subscription email. They do not establish a complete subscription lifecycle feed or the timing relative to a free trial. Verify actual payloads in the connected Zapier account before building an adapter.
+- The members interface exposes **Active**, **Cancelling**, **Churned** and **Banned** views, an Export control, membership tiers, renewal information and cancellation timing. Active membership includes complimentary/lifetime accounts and subscriptions marked cancelled with access remaining. Neither presence in the group nor a generic `active` label proves a paid subscription.
+- Skool says [cancellation removes a member at the end of their billing cycle](https://help.skool.com/article/99-how-to-cancel-my-subscription-to-a-community). Cancellation intent must therefore not immediately revoke an otherwise valid included benefit.
+- Anthony's inclusion promise is for Not Done Yet members. Trial and complimentary membership eligibility must be represented deliberately; a payment-only trigger must not silently redefine that promise. An unrelated free Clubhouse signup is not evidence of Not Done Yet membership.
+- No API key was revealed, generated or rotated. No integration was enabled, member modified, payment changed, or customer message sent during inspection. Member names, emails and billing records are not copied into this repository.
+
+**Remaining integration dependency:** connect the actual Zapier account and inspect its available Skool trigger fields and lifecycle capabilities. A new-paid-member event can start activation, but cannot alone guarantee continuing membership eligibility. Before production, establish an authoritative renewal/end-of-access reconciliation source, verify the existing-member import format, and resolve trial/complimentary policy. Do not convert the existing community webhook into a permanent app-access grant.
 
 Implementation acceptance criteria for the access bridge:
 
@@ -55,7 +66,7 @@ No membership grants, live billing changes, customer emails, migrations or app r
 
 | Work | Concrete next step | Dependency |
 |---|---|---|
-| Member access | Implement and test the verified entitlement bridge above | Paid-membership source and trial policy |
+| Member access | Implement and test the verified entitlement bridge above | Skool source confirmed; Zapier connection, lifecycle reconciliation and trial/complimentary policy remain |
 | Attribution | Carry campaign attribution through Good Legs navigation and confirmed signup; respect consent | Good Legs website/server change, no copy redesign |
 | Measurement | Join Search Console, GA4 and product revenue into separate coaching, course, camp and app outcomes with a deduplicated customer view | Private analytics and billing data |
 | Search consolidation | Check traffic, backlinks and canonical selection before merging exact duplicate intents | GSC and backlink review |
