@@ -148,39 +148,6 @@ export default function AppLandingPage() {
         </Container>
       </Section>
 
-      <Section background="off-white" id="how-it-works">
-        <Container>
-          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
-            <div>
-              <p className="font-heading text-sm tracking-[0.2em] text-coral">03 / FINDING THE DAY</p>
-              <h2 className="mt-4 font-heading text-charcoal" style={{ fontSize: "var(--text-section)" }}>Thursday matters.</h2>
-            </div>
-            <div className="space-y-5 text-lg leading-relaxed text-charcoal/75">
-              <p>A free evening isn’t always a good evening to lift. Wednesday might be empty in the diary, but a hard gym session then can follow you into Thursday’s ride.</p>
-              <p>Good Legs looks at the riding on either side of a possible gym session. In the example below, Thursday’s threshold work puts strength on Friday. If your gym day is fixed, the app adjusts the strength session to fit.</p>
-            </div>
-          </div>
-          <div className="mt-10 overflow-x-auto rounded-xl border border-charcoal/15">
-            <table className="w-full border-collapse text-left text-sm text-charcoal sm:text-base">
-              <caption className="p-5 text-left text-sm text-charcoal/65">An example week from Good Legs: strength on Friday, after Thursday’s threshold ride.</caption>
-              <thead><tr className="border-y border-charcoal/15 bg-charcoal/[0.04]">
-                <th scope="col" className="p-4">Day</th><th scope="col" className="p-4">Your riding</th><th scope="col" className="p-4">Strength</th>
-              </tr></thead>
-              <tbody>
-                {[
-                  ["Monday", "Recovery ride", "—"], ["Tuesday", "Intervals", "—"], ["Wednesday", "No ride planned", "—"],
-                  ["Thursday", "Threshold", "—"], ["Friday", "No ride planned", "Gym session"],
-                  ["Saturday", "Easy ride", "—"], ["Sunday", "Long ride", "—"],
-                ].map(([day, ride, gym]) => <tr key={day} className={`border-b border-charcoal/10 last:border-0 ${day === "Friday" ? "bg-coral/10" : ""}`}>
-                  <th scope="row" className="p-4 font-semibold">{day}</th><td className="p-4">{ride}</td><td className="p-4">{gym}</td>
-                </tr>)}
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-4 text-sm leading-relaxed text-charcoal/60">Friday suits this example; the right day depends on your own week.</p>
-        </Container>
-      </Section>
-
       <Section background="off-white">
         <Container width="narrow">
           <p className="font-heading text-sm tracking-[0.2em] text-coral">FROM ROADMAN</p>
