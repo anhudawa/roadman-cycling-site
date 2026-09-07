@@ -1,0 +1,19 @@
+name: Editorial publication gate
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  editorial-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Test publication rejection cases
+        run: node --test scripts/editorial-gate.test.mjs
+      - name: Verify content review and editor approval
+        run: node scripts/editorial-gate.mjs

@@ -1,5 +1,7 @@
 # Roadman release editorial review — 7 September 2026
 
+> **Subsequent rejection:** Anthony rejected the revised Good Legs example week later on 7 September. The table did not provide useful session detail or sufficient reasoning. The review below failed to identify that weakness and must not be treated as acceptance. The section has been removed; the new publishing standard is in `docs/editorial-publishing-standard.md`.
+
 ## Scope and decision
 
 Reviewed all public-facing additions in PR #336, including product metadata and shared article calls to action. This is a review of that release, not a claim that the complete Roadman archive has been edited.

@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "contentDigest": "TODO: output of npm run editorial:fingerprint after the content generators",
+  "scope": "TODO: list the changed pages and shared surfaces",
+  "sections": [{
+    "location": "TODO: route and section heading",
+    "readerQuestion": "TODO: the reader's actual question",
+    "usefulAnswer": "TODO: what the reader learns or can decide",
+    "evidence": "TODO: directly supporting source or verified product fact",
+    "editorialDecision": "TODO: why this earns its space, or what was cut"
+  }],
+  "claimsAndSources": "TODO: claims and directly supporting sources, with limitations",
+  "examplesAndReasoning": "TODO: inputs, useful output, reasoning and limits; explain if no examples",
+  "voiceAndCuts": "TODO: specific filler, repetition or jargon removed",
+  "desktopReview": "TODO: rendered revision, viewport, observations and fixes",
+  "mobileReview": "TODO: rendered revision, viewport, observations and fixes",
+  "productAndOfferAccuracy": "TODO: availability, benefits, membership and CTA verification"
+}

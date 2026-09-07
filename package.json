@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "prebuild": "npm run method:protocols && npm run podcast:hub-index && npm run check:coral",
-    "build": "next build",
+    "build": "node scripts/editorial-gate.mjs && next build",
     "start": "next start",
     "lint": "eslint",
     "check:coral": "node scripts/check-coral.mjs",
@@ -124,7 +124,10 @@
     "seo:batch": "tsx scripts/seo-batch.ts",
     "seo:batch:dry": "tsx scripts/seo-batch.ts --dry-run",
     "episode:enrich": "tsx scripts/enrich-episode.ts",
-    "episode:enrich:dry": "tsx scripts/enrich-episode.ts --dry-run"
+    "episode:enrich:dry": "tsx scripts/enrich-episode.ts --dry-run",
+    "editorial:check": "node scripts/editorial-gate.mjs",
+    "editorial:fingerprint": "node scripts/editorial-gate.mjs --fingerprint",
+    "editorial:test": "node --test scripts/editorial-gate.test.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.93.0",

@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "contentDigest": "1b094f8c05800bd1cb86bb12b74f52089f5210dc27f84b263ecc7f26f0779bf7",
+  "fileCount": 3975,
+  "established": "2026-09-07",
+  "previousProductionCommit": "013910794d459e7d81b7fb7315b1229dd32b1c3e",
+  "status": "Existing content freeze, not editorial approval",
+  "scope": "Existing repository content after removing the rejected Good Legs Thursday/example-week section. Generated method content is synchronized with the source used by the existing production prebuild. No new product promises or training prescriptions."
+}
