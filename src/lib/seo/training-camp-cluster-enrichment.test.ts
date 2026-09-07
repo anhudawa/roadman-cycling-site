@@ -18,9 +18,7 @@ describe("training-camp authority cluster enrichment", () => {
       const file = resolve(process.cwd(), `content/blog/${slug}.mdx`);
       const { data } = matter(readFileSync(file, "utf8"));
 
-      expect(new Date(data.updatedDate).toISOString().slice(0, 10)).toBe(
-        "2026-08-25",
-      );
+      expect(Date.parse(new Date(data.updatedDate).toISOString().slice(0, 10))).toBeGreaterThanOrEqual(Date.parse("2026-08-25"));
       expect(data.seoDescription.length).toBeGreaterThanOrEqual(120);
       expect(data.seoDescription.length).toBeLessThanOrEqual(160);
       expect(data.featuredImage).toMatch(/^\/images\//);

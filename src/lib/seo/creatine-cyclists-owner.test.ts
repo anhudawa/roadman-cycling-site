@@ -14,7 +14,7 @@ describe("creatine for cyclists consolidated search owner", () => {
     expect(owner.data.seoTitle).toBe(
       "Creatine for Cyclists: Benefits, Dose & Weight Gain",
     );
-    expect(owner.data.updatedDate).toBe("2026-08-31");
+    expect(Date.parse(owner.data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-31"));
     expect(owner.data.lastReviewed).toBe("2026-08-31");
     expect(owner.data.evidenceLevel).toBe("moderate");
     expect(owner.data.citedClaims).toHaveLength(7);

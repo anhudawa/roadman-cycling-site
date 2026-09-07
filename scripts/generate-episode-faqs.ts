@@ -133,7 +133,7 @@ function getEpisodesToProcess(): EpisodeInfo[] {
 function buildPrompt(ep: EpisodeInfo): string {
   const parts: string[] = [];
 
-  parts.push(`Generate 3-5 FAQ pairs for this podcast episode. Each FAQ must be a real question someone would type into Google about this topic.`);
+  parts.push(`Draft up to five FAQ pairs supported by the supplied episode material. Each FAQ must be a real question someone would type into Google about this topic.`);
   parts.push("");
   parts.push(`EPISODE DETAILS:`);
   parts.push(`Title: ${ep.title}`);
@@ -147,25 +147,15 @@ function buildPrompt(ep: EpisodeInfo): string {
 
   parts.push("");
   parts.push(`RULES:`);
-  parts.push(`- 3-5 FAQ pairs. Prefer 4.`);
+  parts.push(`- Return only questions the supplied material can answer. Return [] if none are supported.`);
   parts.push(`- Questions: natural Google search queries. Specific to the episode topic.`);
-  parts.push(`- Answers: 2-4 sentences. Direct, specific, no hedging. State facts and recommendations confidently.`);
+  parts.push(`- Answers: concise and direct, with material uncertainty preserved. The title or guest credential alone cannot support a training prescription, quotation or claimed result. Do not add facts from memory.`);
   parts.push(`- British English: programme, periodised, optimise, specialise, analyse, favourite, colour, centre.`);
-  parts.push(`- Reference the guest by name when the episode features one.`);
+  parts.push(`- Attribute a claim to the guest only when the supplied passage establishes that they made it. Do not invent first-person experience or imply human review.`);
   parts.push(`- No "unlock", "discover", "journey", "game-changing", "elevate", "level up".`);
   parts.push(`- No em-dashes.`);
   parts.push("");
-  parts.push(`OUTPUT FORMAT — return ONLY valid YAML (no code fences, no explanation). Example:`);
-  parts.push(`- question: What is Zone 2 training?`);
-  parts.push(`  answer: >-`);
-  parts.push(`    Zone 2 training is riding at 55-75% of FTP. It builds mitochondrial`);
-  parts.push(`    density and expands the aerobic base without accumulating excessive`);
-  parts.push(`    fatigue.`);
-  parts.push(`- question: How long should a Zone 2 ride be?`);
-  parts.push(`  answer: >-`);
-  parts.push(`    Ideally 2-4 hours for maximum adaptation. Even 60-minute sessions`);
-  parts.push(`    provide benefit, but rides over 90 minutes produce disproportionately`);
-  parts.push(`    larger gains.`);
+  parts.push(`OUTPUT FORMAT — return ONLY a valid YAML array of objects with question and answer fields (no code fences or explanation). Return [] when evidence is insufficient.`);
 
   return parts.join("\n");
 }

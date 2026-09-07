@@ -144,131 +144,104 @@ export const metricsAnswers: AnswerPage[] = [
   // WHAT IS CTL
   // ============================================================
   {
-    slug: "what-is-ctl",
-    cluster: "periodisation",
-    question: "What Is CTL in TrainingPeaks?",
-    seoTitle: "What Is CTL in TrainingPeaks? Chronic Training Load Explained",
-    seoDescription:
-      "CTL (Chronic Training Load) is your fitness — a 42-day average of your daily TSS in TrainingPeaks. What it means, why it moves slowly, and how to use the trend.",
-    pillar: "coaching",
-    directAnswer:
-      "CTL — Chronic Training Load — is your fitness, modelled in TrainingPeaks as a 42-day exponentially weighted average of your daily TSS. Because it averages over six weeks, it moves slowly: months of consistent training push it up, and a couple of easy weeks let it drift down. A higher CTL means a bigger engine, but it's the steady upward trend, not the absolute number, that matters.",
-    keyTakeaways: [
-      "CTL is your fitness — a rolling 42-day average of your daily training load (TSS).",
-      "It moves slowly by design. You build it over months and lose it slowly, not in a week.",
-      "Judge it on the trend: a steadily climbing CTL means your training is accumulating.",
-      "Ramp it sensibly — too fast a rise in CTL is how riders dig a fatigue hole.",
+    "slug": "what-is-ctl",
+    "cluster": "periodisation",
+    "question": "What Is CTL in TrainingPeaks?",
+    "seoTitle": "What Is CTL in TrainingPeaks? Chronic Training Load Explained",
+    "seoDescription": "CTL summarises accumulated training load from daily TSS. Understand the 42-day setting, why the score changes and what it cannot tell you about fitness.",
+    "pillar": "coaching",
+    "directAnswer": "CTL means Chronic Training Load. TrainingPeaks calculates it from daily Training Stress Scores using an exponentially weighted average, with a default 42-day time constant. The platform labels it Fitness, but the input is recorded training load. A rising score shows more accumulated modelled load; it does not by itself demonstrate that your riding has improved.",
+    "keyTakeaways": [
+      "CTL summarises training load; the Fitness label is not a direct measurement of performance.",
+      "The starting value, daily TSS, missing days and time constant affect the result.",
+      "A fall during reduced training is a change in the model, not a measurement of fitness lost.",
+      "Check the chart against actual riding and your response before changing the programme."
     ],
-    whoFor: [
+    "whoFor": [
       {
-        label: "The rider building toward an event",
-        detail:
-          "You want to know whether your fitness is actually climbing as your event approaches.",
+        "label": "Reading your training chart",
+        "detail": "You want to understand what the CTL line measures before acting on it."
       },
       {
-        label: "The data-curious amateur",
-        detail:
-          "You see a 'CTL' line in TrainingPeaks and want to know what it's actually telling you.",
-      },
+        "label": "Comparing platforms",
+        "detail": "Your tools show different values and you need to check the inputs and settings."
+      }
     ],
-    roadmanView: [
-      "CTL is the closest thing you have to a single dial for fitness, and its slowness is its strength. A 42-day average can't be faked by one heroic weekend or wrecked by one missed session. It rewards exactly the thing that actually builds cyclists: consistency over months. That's why the line you want to see is a patient, steady climb, not a spike.",
-      "The number itself means little in isolation — a CTL of 70 is meaningful for one rider and modest for another. What matters is your own trend and your own ramp rate. Push CTL up too quickly, by ramping your weekly load hard, and you build fatigue faster than you build fitness; let it slide for weeks and the engine quietly shrinks. The art is a sustainable rise, with recovery weeks that dip it slightly so the next block lands.",
-      "And CTL only earns its keep alongside its siblings. On its own it tells you how big the engine is. Read against ATL (fatigue) and TSB (form), it tells you whether you can actually use that engine right now. It's one line in a three-line story.",
+    "roadmanView": [],
+    "expertEvidence": [],
+    "practicalApplication": [
+      {
+        "title": "Check the diary first",
+        "detail": "Confirm that completed rides are recorded once and that rest days are included. Check the threshold setting used to generate your training scores before interpreting a change."
+      },
+      {
+        "title": "Compare like with like",
+        "detail": "When two platforms disagree, compare their starting CTL, daily scores and time constants over the same dates. Different inputs can explain a different line."
+      },
+      {
+        "title": "Look for a change in riding",
+        "detail": "Alongside the score, review comparable efforts, how late in a ride you can still do the work you intended, and your own training notes. Record the conditions so you are comparing more than a single number."
+      }
     ],
-    expertEvidence: [
+    "commonMistakes": [
       {
-        name: "Joe Friel",
-        credential: "Co-founder of TrainingPeaks, author of The Cyclist's Training Bible",
-        insight:
-          "Fitness is built slowly and consistently, which is exactly what a long rolling average captures. The value of a chronic-load line is that it ignores the noise of any single ride and shows whether the training is actually accumulating over time.",
-        episodeSlug: "ep-2205-the-training-secret-to-going-faster-after-40-joe-friel",
-        guestSlug: "joe-friel",
+        "mistake": "Adding training solely to keep the line rising.",
+        "fix": "Start with the purpose of the next session and the time you can recover. The chart does not choose the right training for your event."
       },
+      {
+        "mistake": "Treating a short calculator entry as a complete training history.",
+        "fix": "Enter the starting values from the day before the sequence. A model beginning at zero cannot recover the training you did before its first day."
+      }
     ],
-    practicalApplication: [
+    "faq": [
       {
-        title: "Track the slope, not the number",
-        detail:
-          "Open your Performance Management Chart and look at whether the CTL line is rising, flat or falling over the last several weeks. Rising means you're building; flat or falling means you're maintaining or detraining.",
+        "question": "Does CTL equal fitness?",
+        "answer": "No. TrainingPeaks labels CTL Fitness, but the calculation uses training scores. It does not measure your performance or establish how well you have adapted."
       },
       {
-        title: "Ramp it sensibly",
-        detail:
-          "Aim for a gradual rise across a build, with a recovery week every third or fourth week that lets the line dip slightly. A steep, relentless climb is a fast route to a fatigue hole.",
+        "question": "What is a good CTL for a cyclist?",
+        "answer": "There is no target that establishes readiness for every rider or event. Compare your own training history, riding and response instead of treating another rider’s CTL as a requirement."
       },
       {
-        title: "Use it to plan a peak",
-        detail:
-          "Build CTL through your training block, then in the taper hold it roughly steady while fatigue drops — that's how form arrives on the day.",
+        "question": "Can CTL fall during a taper?",
+        "answer": "Yes. Reducing the recorded daily load can lower CTL. That change alone does not tell you whether your taper is working."
       },
+      {
+        "question": "Why does my CTL differ between apps?",
+        "answer": "Check starting values, the dates included, missing or duplicated activities, training-score inputs and time constants. Match those before comparing the final score."
+      },
+      {
+        "question": "What is the difference between CTL and ATL?",
+        "answer": "They summarise load over different timescales. The standard CTL setting is 42 days; ATL uses 7 and responds faster to recent changes. TrainingPeaks calculates a day’s TSB from the previous day’s CTL minus ATL."
+      }
     ],
-    commonMistakes: [
+    "relatedEpisodes": [],
+    "relatedTopics": [
       {
-        mistake: "Chasing a higher CTL number for its own sake.",
-        fix:
-          "A bigger number built on unsustainable load just buries you. Aim for a steady, recoverable rise, not a record CTL.",
+        "label": "Calculate CTL, ATL and TSB from your starting values",
+        "href": "/tools/training-load"
       },
       {
-        mistake: "Panicking when CTL dips during a taper or rest week.",
-        fix:
-          "A small CTL drop while shedding fatigue is exactly what should happen. You lose a little fitness to gain a lot of freshness.",
+        "label": "TrainingPeaks: Performance Management Chart definitions",
+        "href": "https://www.trainingpeaks.com/learn/articles/what-is-the-performance-management-chart/"
       },
+      {
+        "label": "TrainingPeaks: CTL formula and default setting",
+        "href": "https://help.trainingpeaks.com/hc/en-us/articles/204071884-Fitness-CTL"
+      },
+      {
+        "label": "TrainingPeaks: why TSB uses the previous day",
+        "href": "https://help.trainingpeaks.com/hc/en-us/articles/204071764-Form-TSB"
+      },
+      {
+        "label": "Compare Roadman coaching and weekly training review",
+        "href": "/coaching"
+      }
     ],
-    faq: [
-      {
-        question: "What is a good CTL for a cyclist?",
-        answer:
-          "There's no universal good number — it's relative to the rider and the event. Many amateurs ride strong sportives and races with a CTL in the 60s to 80s, but what matters is your own trend, not comparing your figure to someone else's.",
-      },
-      {
-        question: "How fast can I raise my CTL?",
-        answer:
-          "Sustainably, only gradually. A modest week-on-week rise in training load is what builds CTL without digging a fatigue hole. Spiking your weekly TSS to force CTL up quickly usually backfires within a couple of weeks.",
-      },
-      {
-        question: "Does CTL equal fitness?",
-        answer:
-          "It's a good proxy for the size of your aerobic engine, but it's not the whole story. CTL says how much training load you can carry; it doesn't capture freshness, sharpness or event-specific skills. Read it alongside ATL and TSB.",
-      },
-      {
-        question: "Will my CTL drop on a rest week?",
-        answer:
-          "Yes, slightly, and that's intended. A recovery week reduces load, so the 42-day average dips a little. The fitness isn't lost — the brief dip lets accumulated fatigue clear so the next block is productive.",
-      },
-      {
-        question: "How much CTL do I lose when I stop training?",
-        answer:
-          "CTL falls gradually because it's a long average, so a few days off barely register. Longer breaks see it decline steadily, but it also rebuilds faster than it built the first time once you return to consistent training.",
-      },
-      {
-        question: "What's the difference between CTL and ATL?",
-        answer:
-          "CTL is a 42-day average representing fitness, so it moves slowly; ATL is a 7-day average representing fatigue, so it moves fast. The gap between them is your form (TSB). Together they show whether your engine is big and whether you're fresh enough to use it.",
-      },
-    ],
-    relatedEpisodes: [
-      "ep-2205-the-training-secret-to-going-faster-after-40-joe-friel",
-      "ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
-    ],
-    relatedTopics: [
-      {
-        label: "Reading Your Training Data: TSS, CTL, ATL & TSB",
-        href: "/blog/reading-your-training-data-tss-ctl-atl-tsb",
-      },
-      { label: "What is TSS in TrainingPeaks?", href: "/answers/what-is-tss" },
-      { label: "What is Training Stress Balance (TSB)?", href: "/answers/what-is-tsb" },
-      {
-        label: "Tracking Efficiency Factor in TrainingPeaks",
-        href: "/blog/efficiency-factor-trainingpeaks-tracking",
-      },
-      { label: "How should I taper for a race?", href: "/answers/how-to-taper-for-a-race" },
-    ],
-    evidenceLevel: "strong",
-    evidenceNote:
-      "CTL is a standard, well-defined training-load metric; framing reflects established TrainingPeaks methodology and coaching practice.",
-    publishDate: "2026-06-20",
-    updatedDate: "2026-06-20",
+    "evidenceLevel": "strong",
+    "evidenceNote": "The metric definitions follow TrainingPeaks documentation. The practical checks are editorial guidance; this page does not claim a universal CTL target, safe ramp rate or performance prediction.",
+    "publishDate": "2026-06-20",
+    "updatedDate": "2026-09-07"
   },
 
   // ============================================================

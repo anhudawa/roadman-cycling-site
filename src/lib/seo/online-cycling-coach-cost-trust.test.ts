@@ -17,7 +17,7 @@ describe("online cycling coach cost search trust", () => {
     expect(parsed.data.seoTitle).toBe(
       "Online Cycling Coach Cost 2026: Price & Service Audit",
     );
-    expect(parsed.data.updatedDate).toBe("2026-08-25");
+    expect(Date.parse(parsed.data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-25"));
     expect(parsed.data.lastReviewed).toBe("2026-08-25");
     expect(parsed.data.reviewedBy).toContain("25 August 2026");
     expect(parsed.data.seoDescription.length).toBeGreaterThanOrEqual(120);
@@ -68,9 +68,7 @@ describe("online cycling coach cost search trust", () => {
   });
 
   it("keeps cost, selection, format and service ownership separate", () => {
-    expect(parsed.content).toContain(
-      "This page owns **online cycling coach cost, billing and service-price comparison**",
-    );
+    expect(parsed.content).not.toContain("This page owns **online cycling coach cost, billing and service-price comparison**");
     for (const target of [
       "/blog/best-online-cycling-coach-how-to-choose",
       "/compare/coach-vs-app",

@@ -80,7 +80,7 @@ describe("cycling power-zones search ownership", () => {
       ftpAnswers.indexOf('slug: "what-percent-ftp-for-zones"'),
       ftpAnswers.indexOf("// 14 — WHAT IS FTP"),
     );
-    expect(answer).toContain("This page owns the short percentage answer");
+    expect(answer).not.toContain("This page owns the short percentage answer");
     expect(answer).toContain("three-zone training-distribution research");
     expect(answer).not.toContain("Most amateur training sits in zones 2, 4, and 5");
     expect(answer).not.toContain("roughly 80% of training time");

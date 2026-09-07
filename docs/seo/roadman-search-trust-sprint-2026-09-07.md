@@ -64,3 +64,74 @@ Google's [AI-feature guidance](https://developers.google.com/search/docs/appeara
 ## Publication
 
 This is a preview batch until the repository's editorial review and editor-comment requirements are satisfied. Automated verification is not editorial approval. Review evidence and any outstanding desktop/mobile checks belong in `editorial/release.json`; no reviewer is impersonated and no baseline is reset.
+
+## Continued work: goal and implementation log
+
+Goal: improve useful organic discovery and qualified demand across Roadman, while making the published evidence and editorial process more reliable. Continue through concrete batches without requiring Anthony to prompt between them. This is active session work, not a newly scheduled task.
+
+### Event dates
+
+Removed the helper that converted a usual month into the first day of a supposedly confirmed future event. All 25 race guides now describe a WebPage about a named Thing; the 16 event preparation guides and 17 plan hubs retain Article/CollectionPage/Course structures without fabricated SportsEvent dates. Real weekly community schedules remain outside this change. No race database was seeded or altered.
+
+Evidence: [Google event guidance](https://developers.google.com/search/docs/appearance/structured-data/event) and [Schema.org Thing](https://schema.org/Thing). Evergreen guidance is not an announcement of an event edition. Render tests cover all 58 routes, retaining their guide and breadcrumb structures. The first combined targeted run passed 74 checks.
+
+### UK and US coaching selection
+
+Rewrote both country guides around a rider's brief, discipline, relevant qualifications, actual feedback, calls, local skills needs and a complete written quote. Kept existing URLs and the distinction between selection articles and coaching offers. Not Done Yet remains US$195/month with an individual plan, team review and Anthony-led group calls; Inner Circle remains US$525/month for individual coaching. No additional service-level promise or client-distribution claim was introduced.
+
+The USA guide had the qualification ladder backwards. [USA Cycling](https://usacycling.org/coaches), checked 7 September 2026, lists Level 3 as entry, Level 2 Intermediate and Level 1 Advanced. Removed the unsupported Expert/Elite ladder, weekend-course claim, category generalisations, fixed time-zone promises and invented Anthony anecdotes.
+
+British Cycling's [coaching page](https://www.britishcycling.org.uk/coaching), [directory](https://www.britishcycling.org.uk/coachingdirectory) and [recognised-qualification page](https://www.britishcycling.org.uk/membership/article/20120504-recognised-qualifications-0) were visible in search results, but direct fetches returned 403. The revision therefore does not assert a current UK level hierarchy or unverified scope; it directs readers to verify the full credential and awarding body. Removed the unsupported Level 4 claim and universal qualification/price quality cutoffs. Do not describe this as a complete audit of British Cycling's current syllabus.
+
+Both rewritten articles omit the prior named review credit and invented first-person Roadman View fields. The byline remains subject to Anthony's actual editorial approval; no new human review is claimed.
+
+### Reader copy and authoring checks
+
+Removed internal page-ownership wording from navigation passages across 34 further blog articles and three podcast records, preserving useful links and the original transcript text. Removed the Sam Bennett section about Google rankings and redirect implementation. Corrected the matching public recovery-feed description and one power-zone answer takeaway. These are passage edits, not a retrospective fact-check of the whole archive.
+
+Added `findInternalSearchLanguage` to the existing SEO QA audit. It reports literal internal publishing phrases as errors in blog/podcast MDX, including wrapped frontmatter. A full scan of 1,772 files passes this check and the existing hard checks. There remain 1,866 enrichment warnings; those are not 1,866 verified SEO defects or a reason to fabricate missing metadata.
+
+Corrected answer/question authoring guidance and two generation prompts that encouraged unsupported confidence or numbers. Guest names now require source passages; insufficient evidence can produce no FAQ. Removed an unsupported training-prescription example from the FAQ prompt. No generation jobs were run. Existing tests that required internal copy now reject it; update-date checks permit later revisions while still rejecting dates earlier than the original release. Human-review requirements and the editorial production gate were not weakened.
+
+Scope limitation: this literal wording check covers blog/podcast files. It does not judge literary quality, validate every fact, or moderate runtime databases or the separate Good Legs website.
+
+### CTL search and calculator correction
+
+Semrush live UK/US `resource_organic` reports (7 September 2026):
+
+| Query / market | Existing page | Position | Estimated monthly volume |
+| --- | --- | ---: | ---: |
+| whats ctl / UK | /answers/what-is-ctl | 9 | 720 |
+| whats ctl / UK | /glossary/training-peaks-ctl | 19 | 720 |
+| what is ctl / US | /answers/what-is-ctl | 6 | 320 |
+| what is ctl / US | /glossary/training-peaks-ctl | 56 | 320 |
+| ctl meaning / US | /blog/reading-your-training-data-tss-ctl-atl-tsb | 13 | 590 |
+| ctl meaning / US | /answers/what-is-ctl | 26 | 590 |
+| intervals icu ctl / US | /tools/training-load | 39 | 50 |
+
+These are third-party estimates, not Search Console or revenue measurements. Semrush found five followed backlinks from one referring domain to the reading-your-training-data article. The answer and glossary lookups returned “nothing found”, which is not proof of zero backlinks. No CTL redirect was introduced; preserve the incumbent article until its query and link evidence is understood.
+
+The calculator had a more immediate correctness problem: it seeded CTL and ATL from the first day's TSS. A single 100-TSS day therefore became an apparent CTL of 100. It also labelled fixed TSB bands “race ready”, “overreaching” and “detrained”.
+
+Replaced that behaviour with explicit starting CTL/ATL from the day before the sequence; zero is disclosed as a hypothetical no-prior-load starting model. All entered days, including rest, advance the calculation. TSB for the last entered day uses the preceding day's values; the following day's TSB is separately identified. Removed diagnostic/performance labels, corrected the three demonstration-week totals to 225, 330 and 440 TSS, and added a worked rest-day calculation with inputs and results. No universal training dose or performance prediction is supplied.
+
+Primary method sources, checked 7 September 2026:
+
+- [TrainingPeaks CTL formula](https://help.trainingpeaks.com/hc/en-us/articles/204071884-Fitness-CTL)
+- [TrainingPeaks ATL formula](https://help.trainingpeaks.com/hc/en-us/articles/204071894-Fatigue-ATL)
+- [TrainingPeaks TSB timing](https://help.trainingpeaks.com/hc/en-us/articles/204071764-Form-TSB)
+- [Performance Management Chart explanation](https://www.trainingpeaks.com/learn/articles/what-is-the-performance-management-chart/)
+
+The engine follows the current Help Center recurrences using 1/42 and 1/7. An older TrainingPeaks blog describes exponential coefficients instead; this implementation identifies the chosen convention and does not promise exact cross-platform equivalence. Six calculation tests pass, including first-day load, rest, equilibrium, continuation and invalid inputs.
+
+Updated /answers/what-is-ctl and the glossary entry to separate recorded load from measured performance. Removed unsupported ramp limits, fitness verdicts and attributed guest insights without a verified passage. Added primary documentation and a direct route to the corrected tool.
+
+### Verification and remaining work
+
+All 42 changed MDX files compiled. The copy audit passes across the corpus; colour checks and whitespace checks pass. TypeScript passed after the main implementation; later test-only maintenance is rechecked before commit.
+
+The wider SEO suite exposed fixed-date/text expectations, export budgets and older unrelated failures. The date/text checks are being repaired without restoring bad copy. The two llms exports had exceeded their existing size budgets: the short list now preserves article titles and links without repeating descriptions, and the full export uses a smaller recent-article window while retaining every pinned article. No indexing or AI-ranking benefit is claimed for llms.txt.
+
+A clean main worktree reproduced 10 failures in seven unchanged legacy suites covering older app text, benchmark counts, podcast ownership, press links, shared schema assumptions and IndexNow lists. These are recorded as existing debt, not introduced regressions. Exact final test and preview results will be appended after verification.
+
+Next useful work: source-check the remaining CTL/ATL/TSB long-form articles before consolidation; inspect calculator acquisition paths; use current Search Console exports for actual click/conversion priorities; complete rendered editorial review before requesting publication approval. Mobile review is still pending because the available cloud browser exposes no viewport-resize capability. No approval comment has been posted on Anthony's behalf.

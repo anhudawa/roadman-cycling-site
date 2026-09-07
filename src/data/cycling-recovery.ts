@@ -16,7 +16,7 @@ export const CYCLING_RECOVERY_KNOWLEDGE = {
     researchLibraryUrl: `${SITE_ORIGIN}/topics/cycling-recovery`,
     productOwnerUrl: `${SITE_ORIGIN}/app`,
     ownerSeparation:
-      "The cycling recovery guide owns broad educational intent, the topic hub is the supporting research library, and the app page owns product, early-access and launch intent.",
+      "Use the recovery guide for practical decisions, the research library for supporting evidence, and the Good Legs page for the strength and recovery app and launch updates.",
   },
   decisionOrder: [
     {

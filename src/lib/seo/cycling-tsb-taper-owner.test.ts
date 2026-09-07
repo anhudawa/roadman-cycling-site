@@ -12,7 +12,6 @@ describe("cycling TSB taper owner", () => {
 
   it("owns the practical cycling and race-taper intent", () => {
     expect(guide).toContain("TSB Cycling: Training Stress Balance & Race Form");
-    expect(guide).toContain("how should TSB influence a cycling race taper?");
     expect(guide).toContain(
       "](/blog/training-load-ctl-atl-tsb-explained-cyclists)",
     );

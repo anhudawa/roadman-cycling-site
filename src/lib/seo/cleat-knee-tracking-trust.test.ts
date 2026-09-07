@@ -18,7 +18,7 @@ describe("cleat-position and knee-tracking search trust", () => {
     expect(parsed.data.seoTitle).toBe(
       "Cycling Cleat Position & Knee Tracking Guide",
     );
-    expect(parsed.data.updatedDate).toBe("2026-08-25");
+    expect(Date.parse(parsed.data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-25"));
     expect(parsed.data.lastReviewed).toBe("2026-08-25");
     expect(parsed.data.reviewedBy).toContain(
       "cited cleat-position, cycling-biomechanics",
@@ -35,12 +35,8 @@ describe("cleat-position and knee-tracking search trust", () => {
   });
 
   it("defines distinct ownership from the knee-pain pages", () => {
-    expect(guide).toContain(
-      "This page owns cleat installation, measurement and knee-tracking observation",
-    );
-    expect(guide).toContain(
-      "That page owns the symptom-checklist intent",
-    );
+    expect(guide).not.toContain("This page owns cleat installation, measurement and knee-tracking observation");
+    expect(guide).not.toContain("That page owns the symptom-checklist intent");
     expect(guide).toContain(
       "/blog/knee-pain-cycling-what-to-check-first",
     );

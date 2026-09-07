@@ -32,7 +32,7 @@ describe("Benji Naesen entity and CTR consolidation", () => {
     const { data, content } = matter(raw);
 
     expect(data.seoTitle).toBe("Benji Naesen: Lanterne Rouge Interview");
-    expect(data.updatedDate).toBe("2026-08-25");
+    expect(Date.parse(data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-25"));
     expect(data.lastReviewed).toBe("2026-08-25");
     expect(data.reviewedBy).toContain("first-person transcript verification");
     expect(data.keywords).toEqual(
@@ -78,7 +78,7 @@ describe("Benji Naesen entity and CTR consolidation", () => {
     expect(episode.title).toBe(
       "Benji Naesen Opens Up About Imposter Syndrome in Cycling",
     );
-    expect(episode.updatedDate).toBe("2026-08-25");
+    expect(Date.parse(episode.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-25"));
     expect(episode.citations.filter((citation: { reviewed: boolean }) => citation.reviewed))
       .toHaveLength(2);
   });

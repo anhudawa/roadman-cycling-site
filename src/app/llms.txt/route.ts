@@ -1071,7 +1071,7 @@ Focused clusters that interlink a definitive guide with its supporting articles.
 ${selectedBlogPosts
   .map(
     (p) =>
-      `- [${p.title}](${tag(`${BASE_URL}/blog/${p.slug}`)}): ${p.seoDescription}`,
+      `- [${p.title}](${tag(`${BASE_URL}/blog/${p.slug}`)})`,
   )
   .join("\n")}
 

@@ -52,15 +52,17 @@ import { highVolumeQuery15Answers } from "./answers-data/high-volume-queries-15"
  * top of this data, and references the site-wide Person/Organization graph
  * by @id.
  *
- * Authoring rules (editorial standard 9.5/10):
- *   - directAnswer is what gets cited. 40-80 words, lead with the verdict,
- *     no hedging, no preamble, a number with a unit in the first sentence.
- *   - Every claim names an expert, an episode, or a number. No generic
- *     health content. No AI-slop language (see voice-check.ts kill list).
- *   - expertEvidence attributes positions to real podcast guests with a
- *     resolvable episodeSlug / guestSlug. Do not invent slugs.
- *   - relatedEpisodes / relatedTopics must point at pages that exist.
- *   - Roadman voice: approachable expert, peer-to-peer, "fixable" framing.
+ * Authoring rules (see docs/editorial-publishing-standard.md):
+ *   - Answer the reader's question directly and retain material uncertainty.
+ *     Do not force a number, prescription or verdict into an unsupported claim.
+ *   - Use directly supporting sources. A resolvable episode is not proof that
+ *     the guest said a particular thing; verify the passage and attribution.
+ *   - Omit expertEvidence and roadmanView entries when no verified material
+ *     supports them. Never invent first-person experience or human review.
+ *   - Examples need inputs, outputs and reasoning. Cut those that add no useful
+ *     information. Avoid internal search-ownership language in public prose.
+ *   - relatedEpisodes / relatedTopics must lead to relevant existing sources.
+ *   - Technical checks do not establish editorial approval or a quality score.
  */
 
 export type AnswerCluster =

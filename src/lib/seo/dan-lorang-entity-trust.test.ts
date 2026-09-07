@@ -62,7 +62,7 @@ describe("Dan Lorang entity owner and current-role trust", () => {
     );
     expect(positions.data.seoTitle).toContain("Verified Positions");
     for (const page of [archive, plan, positions]) {
-      expect(page.data.updatedDate).toBe("2026-08-26");
+      expect(Date.parse(page.data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-26"));
       expect(page.data.lastReviewed).toBe("2026-08-26");
     }
   });

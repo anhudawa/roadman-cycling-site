@@ -16,6 +16,7 @@ import fs from "fs";
 import path from "path";
 import { execFileSync } from "child_process";
 import matter from "gray-matter";
+import { findInternalSearchLanguage } from "../src/lib/seo/reader-copy";
 
 type ContentType = "blog" | "podcast";
 type Severity = "error" | "warning";
@@ -86,6 +87,11 @@ function auditFile(relativeFile: string, issues: Issue[]) {
     : "podcast";
   const raw = fs.readFileSync(path.join(root, relativeFile), "utf8");
   const { data, content } = matter(raw);
+
+  for (const phrase of findInternalSearchLanguage(raw)) {
+    push(issues, relativeFile, type, "readerCopy", "error",
+      `Internal search language in reader copy: "${phrase}". Replace with useful reading guidance or remove it.`);
+  }
 
   for (const field of ["title", "seoDescription", "publishDate"] as const) {
     if (!data[field] || String(data[field]).trim().length === 0) {

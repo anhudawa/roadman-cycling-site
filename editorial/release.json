@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "contentDigest": "f0148ce0c4fb676a944560577be5186ed9b98cba3e3079b877f268cb8e13ead2",
-  "scope": "First Roadman search-trust batch: coaching service wording, two coaching buyer-guide link passages, Dragon Ride training article and route guide, race directory/related-card edition labels, existing llms summary and sitemap dates. Good Legs visuals are excluded.",
+  "contentDigest": "a8cf9a15f087d865942f32ca3bd44704e48fff0c6d942a6607cb025b786f9a99",
+  "scope": "Roadman search and editorial trust: first coaching/Dragon Ride batch plus all evergreen event dates, UK/US coaching selection, 34 archive navigation passages and three podcast records, CTL answer/glossary/calculator, source-grounded authoring guidance, internal-copy checks and bounded discovery exports. Good Legs visuals remain in their separate PR.",
   "sections": [
     {
       "location": "/coaching — introduction, comparison links and training pillar",
@@ -79,12 +79,369 @@
       "usefulAnswer": "The summary states the corrected historical Gran Fondo and unconfirmed 2027 routes. Changed article, coaching and Dragon Ride modification dates align with the edit.",
       "evidence": "Edited page content and organiser sources.",
       "editorialDecision": "Correct existing discovery output; make no special AI-ranking claim and add no keyword-variation pages."
+    },
+    {
+      "location": "/races/[slug], /event/[slug], /plan/[event] — structured data",
+      "readerQuestion": "Is this a dated event announcement or a preparation guide?",
+      "usefulAnswer": "The schema describes the guide without inventing a future calendar day.",
+      "evidence": "Google event guidance, schema.org Thing, and rendering across 58 routes.",
+      "editorialDecision": "Remove the month-to-first-day inference and synthetic organizer; retain breadcrumbs, Article/CollectionPage/Course and real weekly schedule code."
+    },
+    {
+      "location": "/blog/best-cycling-coach-uk — metadata, answer, takeaways and FAQ",
+      "readerQuestion": "How do I choose a coach and check their qualifications?",
+      "usefulAnswer": "Verify the full credential, discipline experience, feedback, schedule and complete quote.",
+      "evidence": "USA Cycling current pathway; British Cycling search-visible directory/qualification pages with direct-fetch limitation; existing Roadman offer facts.",
+      "editorialDecision": "Remove unsupported credential hierarchy, categorical price-quality claims and invented named review; retain the URL and commercial disclosure."
+    },
+    {
+      "location": "/blog/best-cycling-coach-uk — body and illustrative enquiry",
+      "readerQuestion": "What should I ask before hiring, and what does Roadman offer?",
+      "usefulAnswer": "A usable rider brief, discipline questions, local/remote trade-offs, review/contact terms and the two existing Roadman options.",
+      "evidence": "Editorial buying framework explicitly distinct from training prescription or client testimony; offer-ladder data.",
+      "editorialDecision": "Each section supports a buying decision. No unverified time-zone availability, client distribution, current-event calendar or guaranteed result."
+    },
+    {
+      "location": "/blog/best-cycling-coach-usa — metadata, answer, takeaways and FAQ",
+      "readerQuestion": "How do I choose a coach and check their qualifications?",
+      "usefulAnswer": "Verify the full credential, discipline experience, feedback, schedule and complete quote.",
+      "evidence": "USA Cycling current pathway; British Cycling search-visible directory/qualification pages with direct-fetch limitation; existing Roadman offer facts.",
+      "editorialDecision": "Remove unsupported credential hierarchy, categorical price-quality claims and invented named review; retain the URL and commercial disclosure."
+    },
+    {
+      "location": "/blog/best-cycling-coach-usa — body and illustrative enquiry",
+      "readerQuestion": "What should I ask before hiring, and what does Roadman offer?",
+      "usefulAnswer": "A usable rider brief, discipline questions, local/remote trade-offs, review/contact terms and the two existing Roadman options.",
+      "evidence": "Editorial buying framework explicitly distinct from training prescription or client testimony; offer-ladder data.",
+      "editorialDecision": "Each section supports a buying decision. No unverified time-zone availability, client distribution, current-event calendar or guaranteed result."
+    },
+    {
+      "location": "/blog/alpe-dhuez-tour-de-france-history — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/benji-naesen-imposter-syndrome-cycling-weight-loss — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/bike-fit-one-change-amateurs-should-make — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/brick-workouts-for-ironman — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/creatine-for-cyclists-thirty-day-data — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/cycling-cramp-prevention — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/cycling-knee-pain-causes-fixes — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/cycling-knee-tracking-cleat-setup-guide — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/cycling-over-40-complete-guide — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/cycling-power-to-weight-ratio-guide — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/cycling-training-camp-nutrition-guide — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/cycling-training-camp-preparation-guide — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/cycling-training-camps-what-to-expect-guide — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/cycling-training-plan-build-friel-lorang-johnson — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/cycling-training-stress-balance-tsb-guide — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/cycling-vo2max-intervals — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/cycling-zone-5-vo2max-intervals-guide — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/dan-lorang-amateur-training-plan — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/daryl-fitzgerald-saddle-height-one-change — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/dylan-johnson-oscillation-training-plan — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/every-roadman-episode-with-dan-lorang — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/ftp-benchmarks-by-age-and-experience — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/greg-lemond-interview-roadman-podcast — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/joe-friel-perfect-cycling-training-week — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/knee-pain-cycling-what-to-check-first — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/marco-pantani-death-doping-mafia-investigation — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/masters-cyclist-guide-getting-faster-after-40 — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/off-season-gym-routine-cyclists-12-week-block — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/overtraining-vs-overreaching-cyclists — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/polarised-training-cycling-complete-guide — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/sam-bennett-what-sprinters-do-differently — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/vo2max-decline-reversibility-masters-cyclists — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/what-to-expect-cycling-training-camp — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/blog/why-netflix-unchained-failed-cycling — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/podcast/ep-1-pro-bike-fitter-reveals-the-1-change-amateurs-should-make — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/podcast/the-secret-velominati-rules-part-2 — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/podcast/the-secret-velominati-rules-part-3 — onward-reading passage, internal heading or answer capsule",
+      "readerQuestion": "Which related resource helps with my next question?",
+      "usefulAnswer": "Links describe the information at the destination; redundant internal publishing explanations are removed.",
+      "evidence": "The existing linked Roadman resources and adjacent article context. Original transcript bytes and research claims outside the passage are retained.",
+      "editorialDecision": "Remove page/query ownership, ranking and redirect implementation language. Minor navigation edit only; do not claim a fresh fact-check or human review of the full article."
+    },
+    {
+      "location": "/tools/training-load — starting values and daily input",
+      "readerQuestion": "How do I enter my training history?",
+      "usefulAnswer": "Starting CTL/ATL apply before Day 1; every calendar day, including rest, advances the model. Zero starting values are explicitly hypothetical.",
+      "evidence": "TrainingPeaks current CTL/ATL recurrence documentation; first-day, rest-day, continuation and invalid-input tests.",
+      "editorialDecision": "Replace seeding from the first ride. Allow all-rest input. Correct example totals and distinguish demonstrations from training recommendations."
+    },
+    {
+      "location": "/tools/training-load — results, chart and explanation",
+      "readerQuestion": "What do the outputs mean and which day do they describe?",
+      "usefulAnswer": "CTL/ATL at the last day’s end; TSB before that day and a separate following-day value.",
+      "evidence": "TrainingPeaks TSB timing; worked example verified with the calculation engine.",
+      "editorialDecision": "Remove race-ready, overreaching and detrained score bands. Use one chart colour and describe modelled load without diagnosing the rider."
+    },
+    {
+      "location": "/tools/training-load — methodology, metadata, directory description and coaching link",
+      "readerQuestion": "Can I reproduce the calculation and get help with my own week?",
+      "usefulAnswer": "Published recurrences, explicit settings, a numerical rest-day example and a description of Roadman’s actual review service.",
+      "evidence": "TrainingPeaks CTL/ATL/TSB help pages; local offer facts.",
+      "editorialDecision": "Keep the canonical URL, explain cross-platform differences, and preserve the existing application tracking attribute."
+    },
+    {
+      "location": "/answers/what-is-ctl — all answer sections and sources",
+      "readerQuestion": "Does CTL measure my fitness, and how should I read it?",
+      "usefulAnswer": "It summarises recorded load; check inputs, settings and actual riding before changing training.",
+      "evidence": "TrainingPeaks primary metric documentation linked on the page.",
+      "editorialDecision": "Remove unsupported fitness/ramp assertions and unverified guest attribution; provide a direct path to the corrected calculator."
+    },
+    {
+      "location": "/glossary/training-peaks-ctl — definition and explanation",
+      "readerQuestion": "What does CTL stand for?",
+      "usefulAnswer": "A short model-based definition with the Fitness label distinguished from measured performance.",
+      "evidence": "TrainingPeaks metric definitions and the linked sourced answer.",
+      "editorialDecision": "Remove universal score bands and illness predictions; retain URL while backlink/query evidence is incomplete."
+    },
+    {
+      "location": "/answers/what-percent-ftp-for-zones — takeaway",
+      "readerQuestion": "Where can I interpret percentages or calculate watts?",
+      "usefulAnswer": "A reader-facing route to the power-zone guide and calculator.",
+      "evidence": "Existing related resources.",
+      "editorialDecision": "Replace internal search roles with useful onward guidance."
+    },
+    {
+      "location": "/feeds/cycling-recovery.json — resource description",
+      "readerQuestion": "Where can I find recovery guidance, evidence and Good Legs launch information?",
+      "usefulAnswer": "Names the practical guide, research library and strength/recovery app page.",
+      "evidence": "Existing Roadman destinations and confirmed prelaunch product scope.",
+      "editorialDecision": "Remove public internal ownership terminology without changing the product or evidence."
+    },
+    {
+      "location": "/llms.txt and /llms-full.txt — catalogue window",
+      "readerQuestion": "Where can a reader or retrieval system find the original material?",
+      "usefulAnswer": "Short article list keeps titles and URLs; full export retains all pinned articles plus a smaller recent window. Full catalogue feeds remain linked.",
+      "evidence": "Existing live-corpus byte-budget checks.",
+      "editorialDecision": "Remove repeated descriptions from the short list and reduce recent-item count without raising budgets or claiming AI-ranking effects."
+    },
+    {
+      "location": "Authoring guidance and SEO QA — non-rendered support code",
+      "readerQuestion": "How will another revision avoid these specific editorial mistakes?",
+      "usefulAnswer": "Generation instructions require source passages; the existing audit rejects literal internal search instructions in blog/podcast copy.",
+      "evidence": "Observed prompt text, corpus audit and focused fixtures; human approval remains independently required.",
+      "editorialDecision": "Preserve uncertainty and prohibit invented numbers, guest claims, first-person experience and review credits. No production-approval control is bypassed."
     }
   ],
-  "claimsAndSources": "Dragon Ride facts use the organiser’s 2026 reversed-route announcement and next-event update, with 2027 course uncertainty explicit. General preparation advice is identified as coaching guidance, with no invented research, individual result, event experience or dose. Existing coaching facts are retained; historical coaching-price research has not been refreshed. See docs/seo/roadman-search-trust-sprint-2026-09-07.md for URLs and the source discrepancy.",
-  "examplesAndReasoning": "No invented athlete, training week or predictive benchmark. Route comparison supplies actual named options, distance, ascent and edition. Preparation advice tells riders which observations to record and how those inform the next rehearsal or coaching discussion.",
-  "voiceAndCuts": "Removed internal ownership prose, generic hero payoff, unsupported algorithm contrast, wrong event distances, W/kg pass marks, finish guarantees, obligatory stacked training, unverified weather statistics, blanket intake prescriptions, unattributed guest prescriptions and repeated closing slogans. Retained practical decisions and useful links.",
-  "desktopReview": "Authenticated Vercel preview e3b1fb606e46e26162e5184b1e89db51d2a85983, viewport 1363x936 CSS pixels. Inspected coaching hero screenshot and rendered introduction; Dragon Ride race hero, all four route cards, sources and sidebar screenshots; training article hero, answer capsule and route-table screenshot; changed buyer-guide link paragraphs in both articles. Each of these five pages reported document width 1355px, with no horizontal overflow. The article route table is compact and readable; source/edition notices sit with their facts. Directory DOM confirms the 2026 Gran Fondo card, 222km/3,583m and no overflow; a final directory screenshot was interrupted by a browser connection reset, so a complete directory visual pass is not claimed. Rendered HTML tests cover the unchanged unrelated race layout and corrected related-card edition. Read-through and human editorial approval remain distinct from these checks.",
+  "claimsAndSources": "Dragon Ride facts use the organiser’s 2026 reversed-route announcement and next-event update, with 2027 course uncertainty explicit. General preparation advice is identified as coaching guidance, with no invented research, individual result, event experience or dose. Existing coaching facts are retained; historical coaching-price research has not been refreshed. See docs/seo/roadman-search-trust-sprint-2026-09-07.md for URLs and the source discrepancy. USA Cycling qualification tiers and TrainingPeaks CTL/ATL/TSB definitions checked against primary documentation on 7 September. British Cycling directory and qualification pages were visible in search but direct fetches were blocked, so no unverified UK level hierarchy is asserted. Further sources and Semrush limitations are recorded in the sprint document.",
+  "examplesAndReasoning": "The Dragon route comparison gives named historic options, distance, ascent and edition. UK/US rider enquiries are explicitly illustrative buying briefs, not client testimony or training prescriptions. The calculator gives explicit starting values, daily inputs, formulas, output timing and a worked rest-day example; its example weekly totals are demonstration data. Removed empty or unsupported verdicts and targets.",
+  "voiceAndCuts": "Removed internal ownership prose, generic hero payoff, unsupported algorithm contrast, wrong event distances, W/kg pass marks, finish guarantees, obligatory stacked training, unverified weather statistics, blanket intake prescriptions, unattributed guest prescriptions and repeated closing slogans. Retained practical decisions and useful links. Further cuts remove internal Search Console/redirect prose, invented first-person coaching claims, incorrect USAC tiers and the calculator’s fixed race-ready/detrained diagnoses. Generation instructions now require directly supporting sources and allow insufficient evidence to produce no answer. Existing tests no longer require internal ownership wording.",
+  "desktopReview": "Authenticated Vercel preview e3b1fb606e46e26162e5184b1e89db51d2a85983, viewport 1363x936 CSS pixels. Inspected coaching hero screenshot and rendered introduction; Dragon Ride race hero, all four route cards, sources and sidebar screenshots; training article hero, answer capsule and route-table screenshot; changed buyer-guide link paragraphs in both articles. Each of these five pages reported document width 1355px, with no horizontal overflow. The article route table is compact and readable; source/edition notices sit with their facts. Directory DOM confirms the 2026 Gran Fondo card, 222km/3,583m and no overflow; a final directory screenshot was interrupted by a browser connection reset, so a complete directory visual pass is not claimed. Rendered HTML tests cover the unchanged unrelated race layout and corrected related-card edition. Read-through and human editorial approval remain distinct from these checks. This observation applies only to the earlier code revision named above. The later country guides, CTL surfaces and archive passage edits have not yet completed rendered review on the new preview; that review is pending and must not be inferred from the earlier screenshots.",
   "mobileReview": "Not yet complete. The available browser exposes no viewport-resizing capability. Mobile rendered review remains required; responsive source inspection is not represented as a phone review.",
-  "productAndOfferAccuracy": "No changes to live prices, membership inclusion, product availability, testimony or payment flow. New coaching copy reflects existing plan/team-review/group-call facts. Free resources link to /community/clubhouse; paid coaching links to /coaching and /apply. No live race database was updated or simulated course validated."
+  "productAndOfferAccuracy": "No changes to live prices, membership inclusion, product availability, testimony or payment flow. New coaching copy reflects existing plan/team-review/group-call facts. Free resources link to /community/clubhouse; paid coaching links to /coaching and /apply. No live race database was updated or simulated course validated. UK/US guides retain US$195 Not Done Yet and US$525 Inner Circle, with individual-plan/team-review/group-call delivery distinguished from private coaching. No fixed international call availability or undocumented client geography is asserted."
 }

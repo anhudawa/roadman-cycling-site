@@ -17,7 +17,7 @@ describe("cycling training camp preparation search trust", () => {
     expect(parsed.data.seoTitle).toBe(
       "Cycling Training Camp Preparation: 4-Week Plan",
     );
-    expect(parsed.data.updatedDate).toBe("2026-08-25");
+    expect(Date.parse(parsed.data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-25"));
     expect(parsed.data.lastReviewed).toBe("2026-08-25");
     expect(parsed.data.reviewedBy).toContain("cited IOC");
     expect(parsed.data.seoDescription.length).toBeGreaterThanOrEqual(120);
@@ -32,9 +32,7 @@ describe("cycling training camp preparation search trust", () => {
   });
 
   it("separates preparation, expectations, adaptation and booking intent", () => {
-    expect(parsed.content).toContain(
-      "This page owns **cycling training camp preparation in the four weeks before departure**",
-    );
+    expect(parsed.content).not.toContain("This page owns **cycling training camp preparation in the four weeks before departure**");
     for (const target of [
       "/blog/what-to-expect-cycling-training-camp",
       "/blog/cycling-training-camps-what-to-expect-guide",

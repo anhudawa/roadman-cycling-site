@@ -7,10 +7,6 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 import {
-  nextAnnualStartDate,
-  EVENT_STATUS_SCHEDULED,
-} from "@/lib/event-schema";
-import {
   getEvent,
   getAllEventSlugs,
   PHASES,
@@ -117,21 +113,8 @@ export default async function PlanEventHubPage({
             name: `${event.name} — ${p.weeksOut} Weeks Out`,
             url: `${eventUrl}/${p.slug}`,
           })),
-          about: {
-            "@type": "SportsEvent",
-            name: event.name,
-            sport: "Cycling",
-            startDate: nextAnnualStartDate(event.defaultMonth),
-            eventStatus: EVENT_STATUS_SCHEDULED,
-            location: {
-              "@type": "Place",
-              name: event.region,
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: event.region,
-              },
-            },
-          },
+          // This is an evergreen training framework, not a dated event listing.
+          about: { "@type": "Thing", name: event.name },
           speakable: {
             "@type": "SpeakableSpecification",
             cssSelector: ["h1", ".event-hub-intro"],
@@ -156,21 +139,8 @@ export default async function PlanEventHubPage({
           inLanguage: "en",
           educationalLevel: "Intermediate",
           isAccessibleForFree: true,
-          about: {
-            "@type": "SportsEvent",
-            name: event.name,
-            sport: "Cycling",
-            startDate: nextAnnualStartDate(event.defaultMonth),
-            eventStatus: EVENT_STATUS_SCHEDULED,
-            location: {
-              "@type": "Place",
-              name: event.region,
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: event.region,
-              },
-            },
-          },
+          // This is an evergreen training framework, not a dated event listing.
+          about: { "@type": "Thing", name: event.name },
           hasCourseInstance: PHASES.map((p) => ({
             "@type": "CourseInstance",
             name: `${event.name} — ${p.weeksOut} ${p.weeksOut === 1 ? "Week" : "Weeks"} Out`,

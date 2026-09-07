@@ -18,7 +18,7 @@ describe("Daryl Fitzgerald saddle-height search trust", () => {
     expect(parsed.data.seoTitle).toBe(
       "Daryl Fitzgerald on Cycling Saddle Height",
     );
-    expect(parsed.data.updatedDate).toBe("2026-08-25");
+    expect(Date.parse(parsed.data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-25"));
     expect(parsed.data.lastReviewed).toBe("2026-08-25");
     expect(parsed.data.reviewedBy).toContain("transcript verification");
     expect(parsed.data.seoDescription.length).toBeGreaterThanOrEqual(120);

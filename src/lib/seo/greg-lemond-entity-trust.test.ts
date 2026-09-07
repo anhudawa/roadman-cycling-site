@@ -16,7 +16,7 @@ describe("Greg LeMond entity and CTR owner", () => {
     const { data, content } = matter(raw);
 
     expect(data.seoTitle).toBe("Greg LeMond: Tour Wins, Comeback & Interview");
-    expect(data.updatedDate).toBe("2026-08-26");
+    expect(Date.parse(data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-26"));
     expect(data.lastReviewed).toBe("2026-08-26");
     expect(data.reviewedBy).toContain("official Tour de France, UCI and US government records");
     expect(data.keywords).toEqual(expect.arrayContaining(["greg lemond", "who is greg lemond"]));

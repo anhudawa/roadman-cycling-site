@@ -11,10 +11,10 @@ import { type EvidenceLevelType } from "@/components/ui/EvidenceLevel";
  *
  * Authoring rules:
  *   - The shortAnswer block is what AI engines lift. 40-60 words, lead
- *     with the verdict, no hedging, no preamble.
- *   - Every fullExplanation paragraph should either name an expert,
- *     reference a study, or quote a number from on-the-record podcast
- *     conversations. No generic cycling advice.
+ *     with the useful answer and retain uncertainty that affects a decision.
+ *   - Each paragraph must answer a reader question. Support factual claims
+ *     with a directly relevant source passage. Never force an expert name,
+ *     number or prescription into copy to make it sound authoritative.
  *   - Evidence labels are short ("Seiler — polarised training") with
  *     plain-language detail. Link out where the source is on-site.
  *   - FAQ rows are real follow-ups readers ask, not synthetic. 1-3

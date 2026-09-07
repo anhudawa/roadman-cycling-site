@@ -1501,7 +1501,7 @@ export const ftpAnswers: AnswerPage[] = [
       "State the zone model beside the percentages; a three-zone research model and a seven-zone workout model do not share labels.",
       "Round once and make each whole-watt range start immediately after the preceding one so there are no gaps or overlaps.",
       "An FTP percentage is a starting target, not a measured biological switch. Cross-check it with breathing, RPE, heart rate and repeatability.",
-      "This page owns the short percentage answer; the full guide owns interpretation and the calculator owns watt computation.",
+      "Use the linked power-zone guide to interpret the percentages, or the calculator to convert them into watts.",
     ],
     whoFor: [
       {

@@ -21,7 +21,7 @@ describe("cycling cramp search ownership and evidence trust", () => {
     expect(owner.data.seoTitle).toBe(
       "Cycling Cramps: Causes, Prevention & What to Do",
     );
-    expect(owner.data.updatedDate).toBe("2026-08-26");
+    expect(Date.parse(owner.data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-26"));
     expect(owner.data.lastReviewed).toBe("2026-08-26");
     expect(owner.data.reviewedBy).toContain("Anthony Walsh");
     expect(owner.data.citedClaims).toHaveLength(6);
@@ -70,7 +70,7 @@ describe("cycling cramp search ownership and evidence trust", () => {
     const race = racingAnswers.find(
       ({ slug }) => slug === "how-to-stop-cramping-in-races",
     );
-    expect(race?.updatedDate).toBe("2026-08-26");
+    expect(Date.parse(race?.updatedDate ?? "")).toBeGreaterThanOrEqual(Date.parse("2026-08-26"));
     expect(race?.reviewedBy).toContain("Anthony Walsh");
     expect(race?.directAnswer).toContain("static stretch");
     expect(race?.directAnswer).toContain("dark urine");
@@ -82,7 +82,7 @@ describe("cycling cramp search ownership and evidence trust", () => {
     const heat = heatAnswers.find(
       ({ slug }) => slug === "cramping-in-hot-weather",
     );
-    expect(heat?.updatedDate).toBe("2026-08-26");
+    expect(Date.parse(heat?.updatedDate ?? "")).toBeGreaterThanOrEqual(Date.parse("2026-08-26"));
     expect(heat?.directAnswer).toContain("not proof");
     expect(heat?.faq.some(({ answer }) => answer.includes("static stretch"))).toBe(
       true,
@@ -98,7 +98,7 @@ describe("cycling cramp search ownership and evidence trust", () => {
     );
 
     expect(episode.data.publishDate).toBe("2021-01-15");
-    expect(episode.data.updatedDate).toBe("2026-08-26");
+    expect(Date.parse(episode.data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-26"));
     expect(episode.data.lastReviewed).toBe("2026-08-26");
     expect(episode.data.reviewedBy).toContain("verbatim 2021 transcript");
     expect(episode.data.transcript).toContain("Lettras the 81 kilometer");

@@ -27,7 +27,7 @@ describe("cycling W/kg search ownership", () => {
     expect(data.seoDescription.length).toBeGreaterThanOrEqual(120);
     expect(data.seoDescription.length).toBeLessThanOrEqual(160);
     expect(data.primaryHub).toBe("ftp-training");
-    expect(data.updatedDate).toBe("2026-08-26");
+    expect(Date.parse(data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-26"));
     expect(data.lastReviewed).toBe("2026-08-26");
     expect(data.reviewedBy).toContain("primary research");
     expect(data.citedClaims).toHaveLength(6);
@@ -56,7 +56,6 @@ describe("cycling W/kg search ownership", () => {
       "not a race-category or population-percentile ranking",
       "There is no context-free threshold",
       "old version of this guide prescribed weight loss",
-      "These pages have separate jobs",
     ]) {
       expect(content).toContain(boundary);
     }

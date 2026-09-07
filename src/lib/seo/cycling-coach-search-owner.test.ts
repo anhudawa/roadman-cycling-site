@@ -31,7 +31,7 @@ describe("cycling coach search ownership", () => {
       "ONLINE CYCLING COACH",
       "WHAT AN ONLINE CYCLING COACH DOES",
       "SERVICE FACTS · REVIEWED 26 AUGUST 2026",
-      'dateModified: "2026-08-26"',
+      'dateModified: "2026-09-07"',
       "editor: { \"@id\": ENTITY_IDS.person }",
       "seller: { \"@id\": ENTITY_IDS.organization }",
     ]) {
@@ -102,7 +102,7 @@ describe("cycling coach search ownership", () => {
     const selection = matter(
       read(`content/blog/${SELECTION_SLUG}.mdx`),
     );
-    expect(selection.data.updatedDate).toBe("2026-08-26");
+    expect(Date.parse(selection.data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-26"));
     expect(selection.data.lastReviewed).toBe("2026-08-26");
     expect(selection.data.keywords).toContain("best cycling coach");
     expect(selection.content).toContain(

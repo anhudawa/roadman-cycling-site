@@ -4,10 +4,6 @@ import Link from "next/link";
 import { Header, Footer } from "@/components/layout";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
-  nextAnnualStartDate,
-  EVENT_STATUS_SCHEDULED,
-} from "@/lib/event-schema";
-import {
   RACES,
   getRaceBySlug,
   getSimilarRaces,
@@ -124,40 +120,20 @@ export default async function RacePage({
     ? `/predict?course=${race.predictor_slug}`
     : `/predict/courses`;
 
-  // SportsEvent markup requires a `startDate` to be valid in Search
-  // Console. Race guides are evergreen and only know the month the event
-  // usually runs (e.g. "July"), so derive the next upcoming occurrence.
-  // Races with no known month (self-supported raids, no fixed calendar
-  // slot) get NO Event markup rather than a date-less, invalid Event.
-  // An edition-specific route comparison is a guide, not a future course announcement.
-  const raceStartDate = race.routeEdition ? null : nextAnnualStartDate(race.month);
-  const jsonLd = raceStartDate
-    ? {
-        "@context": "https://schema.org",
-        "@type": "SportsEvent",
-        name: race.name,
-        description: race.description,
-        url: `https://roadmancycling.com/races/${race.slug}`,
-        startDate: raceStartDate,
-        eventStatus: EVENT_STATUS_SCHEDULED,
-        eventAttendanceMode:
-          "https://schema.org/OfflineEventAttendanceMode",
-        location: {
-          "@type": "Place",
-          name: race.location,
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: race.location,
-            addressCountry: race.country,
-          },
-        },
-        sport: "Cycling",
-        organizer: {
-          "@type": "Organization",
-          name: race.name,
-        },
-      }
-    : null;
+  // Evergreen route guides describe an event, but do not announce an edition.
+  // Never turn a usual month into a supposedly confirmed calendar date.
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: `${race.name} Guide`,
+    description: race.description,
+    url: `https://roadmancycling.com/races/${race.slug}`,
+    about: {
+      "@type": "Thing",
+      name: race.name,
+      ...(race.website ? { sameAs: race.website } : {}),
+    },
+  };
 
   const breadcrumbLd = {
     "@context": "https://schema.org",
@@ -171,7 +147,7 @@ export default async function RacePage({
 
   return (
     <>
-      {jsonLd && <JsonLd data={jsonLd} />}
+      <JsonLd data={jsonLd} />
       <JsonLd data={breadcrumbLd} />
       <Header />
       <main id="main-content">

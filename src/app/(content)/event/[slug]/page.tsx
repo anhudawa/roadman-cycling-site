@@ -7,10 +7,6 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 import {
-  nextAnnualStartDate,
-  EVENT_STATUS_SCHEDULED,
-} from "@/lib/event-schema";
-import {
   getAllEventGuideSlugs,
   resolveEventGuide,
   type ResolvedEventGuide,
@@ -136,27 +132,11 @@ export default async function EventGuidePage({
           author: { "@id": ENTITY_IDS.person },
           publisher: { "@id": ENTITY_IDS.organization },
           isPartOf: { "@id": ENTITY_IDS.website },
+          // A usual month does not establish an event edition or its date.
           about: {
-            "@type": "SportsEvent",
+            "@type": "Thing",
             name: trainingEvent.name,
             description: trainingEvent.description,
-            sport: "Cycling",
-            // startDate + eventStatus are required for a valid Event.
-            // Annual sportives only know their usual month, so derive the
-            // next upcoming occurrence. defaultMonth is a required field
-            // on TrainingEvent, so this always resolves.
-            startDate: nextAnnualStartDate(trainingEvent.defaultMonth),
-            eventStatus: EVENT_STATUS_SCHEDULED,
-            eventAttendanceMode:
-              "https://schema.org/OfflineEventAttendanceMode",
-            location: {
-              "@type": "Place",
-              name: trainingEvent.region,
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: trainingEvent.region,
-              },
-            },
           },
         }}
       />
