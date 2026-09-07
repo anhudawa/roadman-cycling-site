@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "contentDigest": "8487020374fb0d8e3bc16efbdc7374e28de69928b0f94cdb7c5d1e540e1097c8",
+  "scope": "Visual additions to /app only: original Good Legs coach in the hero and original strength/recovery artwork in the two existing feature sections. No marketing paragraphs, offers or product claims changed.",
+  "sections": [
+    {
+      "location": "/app — hero and beta waitlist",
+      "readerQuestion": "Is Good Legs recognisably the same Roadman product as the one on getgoodlegs.com?",
+      "usefulAnswer": "The original brown-and-white cat, branded clothing and Good Legs wordmark establish the shared product identity beside the existing description and waitlist link.",
+      "evidence": "Unmodified coach-hero.webp from the current getgoodlegs.com homepage; source URL and SHA-256 are in docs/good-legs-visual-sources.json.",
+      "editorialDecision": "Use the complete original character at its natural aspect ratio. Desktop rendering shows both ears, tail and shoes intact, with no overlap over the text or button."
+    },
+    {
+      "location": "/app — 01 / IN THE GYM",
+      "readerQuestion": "Which part of the product concerns strength training?",
+      "usefulAnswer": "The original barbell-squat illustration makes the strength section immediately identifiable beside the existing explanation of previous lifts and session logging.",
+      "evidence": "Unmodified scene-strength-1536.webp from getgoodlegs.com; dimensions 1536 by 1031. It is mascot artwork, not a new exercise prescription or app screenshot.",
+      "editorialDecision": "Place the artwork immediately above its related heading, preserve the full barbell and feet, and use a light background for legibility."
+    },
+    {
+      "location": "/app — 02 / BETWEEN SESSIONS",
+      "readerQuestion": "Which part of the product concerns recovery?",
+      "usefulAnswer": "The original resting/headphones illustration identifies the recovery section and gives it the same visual weight as strength.",
+      "evidence": "Unmodified scene-recovery-1536.webp from getgoodlegs.com; dimensions 1536 by 1000. The alt text identifies the cat mascot resting.",
+      "editorialDecision": "Match the strength image container proportions, contain the entire illustration and keep the existing recovery explanation beside it."
+    }
+  ],
+  "claimsAndSources": "No new scientific, performance or product capability claims. Image provenance is recorded with original URLs and byte hashes. No new person, partner endorsement or product result is invented.",
+  "examplesAndReasoning": "No training example added. The rejected Thursday/example-week table remains absent. The illustrations identify the brand and its two existing product areas; they do not supply training doses.",
+  "voiceAndCuts": "The existing marketing paragraphs and headings are unchanged. Added alt text describes the original artwork plainly. No slogans, invented testimonials, interface labels or internal product boundaries were added.",
+  "desktopReview": "Reviewed the signed-in Vercel preview at 1363 by 936 CSS pixels on 7 September 2026, commit f9a0b083effb7b10d4aaa010552aa9d44518de41. All three images loaded. Hero box was 331.28 by 660 pixels; feature image boxes were 464 by 288 pixels. Document width was 1355, with no horizontal overflow. Hero and feature-section screenshots showed uncropped artwork, readable text and visible CTA. Existing cookie banner was dismissed through its Reject Non-Essential control for the feature review.",
+  "mobileReview": "Not yet verified in a rendered mobile viewport. Source inspection confirms a single-column layout below the desktop breakpoint, a 320-pixel contained hero image and contained feature images with reserved aspect ratios. The available browser has no viewport-resizing capability; keyboard attempts did not change its viewport. A phone screenshot or editor mobile review is still required before this review is complete.",
+  "productAndOfferAccuracy": "Existing prelaunch iPhone status and Not Done Yet access at launch remain unchanged. Both Good Legs outbound URLs retain their original attribution parameters. The artwork is reused from the user-owned Good Legs site; no stock UI or redesigned mascot was introduced."
+}
