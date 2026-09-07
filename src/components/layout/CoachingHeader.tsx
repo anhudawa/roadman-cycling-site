@@ -48,6 +48,7 @@ const DIAGNOSTIC_NAV_ITEMS = [
 ] as const;
 
 const EXPLORE_ITEMS = [
+  { label: "Good Legs", href: "/app", description: "Strength and recovery by Roadman", track: "home_nav_explore_good_legs" },
   {
     label: "Blog",
     href: "/blog",

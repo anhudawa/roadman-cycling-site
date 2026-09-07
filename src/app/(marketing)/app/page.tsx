@@ -19,7 +19,7 @@ const APP_DESCRIPTION = ROADMAN_APP_PRODUCT.description;
 const STRUCTURED_IMAGE_URL = `${SITE_ORIGIN}/api/og/blog-hero?title=${encodeURIComponent("Cycling Strength & Recovery App")}&pillar=strength`;
 
 export const metadata: Metadata = {
-  title: { absolute: "Cycling Strength & Recovery App | Roadman Cycling" },
+  title: { absolute: "Good Legs by Roadman | Cycling Strength & Recovery App" },
   description: APP_DESCRIPTION,
   alternates: {
     canonical: APP_URL,
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cycling Strength & Recovery App | Roadman Cycling",
+    title: "Good Legs by Roadman | Cycling Strength & Recovery App",
     description: APP_DESCRIPTION,
     images: [STRUCTURED_IMAGE_URL],
   },
@@ -115,9 +115,13 @@ const RECOVERY_JOBS = [
 
 const FAQS = [
   {
-    question: "What is Roadman's cycling strength and recovery app?",
+    question: "Is Good Legs included with Not Done Yet?",
+    answer: ROADMAN_APP_PRODUCT.membershipInclusion + " Coaching, nutrition and community remain part of the wider Roadman system. Good Legs access is planned for launch; joining the free newsletter or Clubhouse does not create paid membership access.",
+  },
+  {
+    question: "What is Good Legs by Roadman?",
     answer:
-      "It is an upcoming iPhone app for serious amateur and masters cyclists. It coordinates cyclist-specific strength sessions and recovery work with the riding week the athlete already follows, then explains how readiness and feedback change the next action.",
+      "Good Legs is an upcoming iPhone app for serious amateur and masters cyclists. It coordinates cyclist-specific strength sessions and recovery work with the riding week the athlete already follows, then explains how readiness and feedback change the next action.",
   },
   {
     question: "Does the app replace my cycling coach or training plan?",
@@ -145,9 +149,9 @@ const FAQS = [
       "The recovery system can place or explain sleep opportunity, guided downshift, mobility, naps and optional methods such as heat, cold water, massage, foam rolling and compression. Each method carries a practical boundary so it is not presented as a cure or guaranteed performance boost.",
   },
   {
-    question: "When will the Roadman app launch and what will it cost?",
+    question: "When will Good Legs launch and what will it cost?",
     answer:
-      "Roadman is targeting an iPhone launch within the next two months. The final product name, release date and subscription price have not been announced. Early-access subscribers will receive beta and launch updates first.",
+      "Good Legs is preparing for iPhone beta. A public release date and standalone subscription price have not been announced. Not Done Yet members will receive access at launch as part of their membership. The Good Legs waitlist provides beta invitations and product updates.",
   },
 ] as const;
 
@@ -195,6 +199,7 @@ export default function AppLandingPage() {
               "@type": ["SoftwareApplication", "MobileApplication"],
               "@id": `${APP_URL}#software`,
               name: ROADMAN_APP_PRODUCT.name,
+              sameAs: ROADMAN_APP_PRODUCT.productWebsiteUrl,
               url: APP_URL,
               description: APP_DESCRIPTION,
               applicationCategory: ROADMAN_APP_PRODUCT.applicationCategory,
@@ -242,7 +247,7 @@ export default function AppLandingPage() {
             <div className="grid items-center gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16">
               <div>
                 <p className="mb-6 font-heading text-sm tracking-[0.24em] text-coral">
-                  COMING TO IPHONE · EARLY ACCESS OPEN
+                  GOOD LEGS BY ROADMAN · IPHONE BETA WAITLIST
                 </p>
                 <h1
                   className="max-w-4xl font-heading leading-[0.92] text-off-white"
@@ -254,8 +259,8 @@ export default function AppLandingPage() {
                   </span>
                 </h1>
                 <p className="mt-8 max-w-2xl text-lg leading-relaxed text-foreground-muted md:text-xl">
-                  Roadman is building a cyclist-specific strength and recovery
-                  app around the week you actually ride. It protects the bike,
+                  Good Legs by Roadman is a cyclist-specific strength and recovery
+                  app in development around the week you actually ride. It protects the bike,
                   progresses the gym and tells you why today&apos;s work
                   changed.
                 </p>
@@ -269,9 +274,8 @@ export default function AppLandingPage() {
                   </Suspense>
                 </div>
                 <p className="mt-4 max-w-xl text-xs leading-relaxed text-foreground-subtle">
-                  The final product name, launch date and subscription price
-                  have not been announced. This page will remain the permanent
-                  Roadman app address.
+                  Not Done Yet members will receive Good Legs access at launch.
+                  It covers strength and recovery within Roadman’s five pillars.
                 </p>
               </div>
 
@@ -633,18 +637,17 @@ export default function AppLandingPage() {
           <Container>
             <div className="mx-auto max-w-3xl text-center">
               <p className="font-heading text-sm tracking-[0.2em] text-coral">
-                THE NAME CAN WAIT. THE LIST DOES NOT HAVE TO.
+                STRENGTH AND RECOVERY. PART OF ROADMAN.
               </p>
               <h2
                 className="mt-4 font-heading text-off-white"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                BE FIRST INTO THE ROADMAN APP.
+                MEET GOOD LEGS.
               </h2>
               <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-foreground-muted">
-                Join the early-access list for product-name, beta, launch and
-                pricing updates. We will not pretend the final details are set
-                before they are.
+                Explore Good Legs and join its beta waitlist. For coaching across
+                all five pillars, Not Done Yet will include Good Legs access at launch.
               </p>
               <div className="mx-auto mt-8 max-w-xl">
                 <Suspense

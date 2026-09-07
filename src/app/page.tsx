@@ -117,7 +117,7 @@ const delivery = [
   {
     number: "03",
     title: "One connected performance system",
-    copy: "Training, nutrition, strength, recovery and community work together — not as five unrelated content folders.",
+    copy: "Coaching, nutrition, strength, recovery and community work together. Good Legs will deliver the strength and recovery portion at launch.",
   },
   {
     number: "04",
@@ -148,11 +148,16 @@ const offerInclusions = [
   "Personalised TrainingPeaks plan, reviewed every week",
   "Weekly live group coaching with Anthony — recordings included",
   "Individual plan adjustments when training or life changes",
-  "Nutrition and strength guidance matched to your training",
+  "Nutrition guidance matched to your training",
+  "Good Legs access at launch for strength and recovery",
   "Private Not Done Yet rider community",
 ] as const;
 
 const faqs = [
+  {
+    question: "Is Good Legs included in Not Done Yet?",
+    answer: "Yes. Not Done Yet members will receive Good Legs access at launch as part of their membership. Good Legs covers the strength and recovery pillars; your Roadman coaching, nutrition guidance and community complete the five-pillar system.",
+  },
   {
     question: "How much time do I need to train?",
     answer:
@@ -182,7 +187,14 @@ const faqs = [
 
 const discoveryPaths = [
   {
-    number: "01",
+    number: "01", category: "Build", title: "Good Legs by Roadman",
+    href: "/app?source=homepage",
+    copy: "Strength and recovery around the week you ride. Included with Not Done Yet at launch.",
+    secondaryLabel: "Try the free strength planner", secondaryHref: "/tools/strength-session-planner",
+    track: "home_discovery_good_legs",
+  },
+  {
+    number: "02",
     category: "Listen",
     title: "The Roadman Podcast",
     href: "/podcast",
@@ -192,7 +204,7 @@ const discoveryPaths = [
     track: "home_discovery_podcast",
   },
   {
-    number: "02",
+    number: "03",
     category: "Learn",
     title: "Training knowledge, made useful",
     href: "/blog",
@@ -202,7 +214,7 @@ const discoveryPaths = [
     track: "home_discovery_blog",
   },
   {
-    number: "03",
+    number: "04",
     category: "Use",
     title: "Free cycling tools",
     href: "/tools",
@@ -212,14 +224,24 @@ const discoveryPaths = [
     track: "home_discovery_tools",
   },
   {
-    number: "04",
+    number: "05",
     category: "Ride",
     title: "Roadman training camps",
     href: "/training-camps",
     copy: "Focused riding experiences that bring the Roadman method beyond the screen.",
-    secondaryLabel: "Explore the free Clubhouse",
-    secondaryHref: "/community/clubhouse",
+    secondaryLabel: "Find an event training plan",
+    secondaryHref: "/plan",
     track: "home_discovery_camps",
+  },
+  {
+    number: "06",
+    category: "Belong",
+    title: "The Roadman community",
+    href: "/community/clubhouse",
+    copy: "Share the questions, rides and small wins with people who care about cycling.",
+    secondaryLabel: "Explore Not Done Yet",
+    secondaryHref: "/community/not-done-yet",
+    track: "home_discovery_community",
   },
 ] as const;
 

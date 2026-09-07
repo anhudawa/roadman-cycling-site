@@ -35,9 +35,9 @@ const whatYouGet = [
       "Live group calls every week with Anthony Walsh and the wider coaching team. Bring your data, your questions, your race plans — get answers from someone who has interviewed 1,400+ World Tour coaches and scientists.",
   },
   {
-    title: "Cycling-specific strength programme",
+    title: "Good Legs for strength and recovery",
     body:
-      "A structured strength and conditioning roadmap built for cyclists, not generic gym templates. Phased to align with on-bike training so you build strength without compromising your sessions.",
+      "Not Done Yet members will receive Good Legs by Roadman access at launch. The app covers strength and recovery, coordinated with the riding week, within the wider five-pillar coaching system.",
   },
   {
     title: "Expert masterclasses",

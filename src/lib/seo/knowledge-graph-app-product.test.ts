@@ -112,7 +112,7 @@ describe("Roadman app knowledge-graph entity", () => {
       resolve(process.cwd(), "src/app/llms.txt/route.ts"),
       "utf8",
     );
-    expect(llmsSource).toContain("one name-neutral software identity");
+    expect(llmsSource).toContain("one stable Good Legs by Roadman software identity");
     expect(llmsSource).toContain("Schema version 3");
   });
 });

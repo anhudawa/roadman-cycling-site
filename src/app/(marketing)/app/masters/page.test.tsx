@@ -78,7 +78,7 @@ describe("masters cycling app acquisition page", () => {
     expect(html).toContain(
       'data-source="roadman-app-waitlist-masters-app-bottom"',
     );
-    expect(html).toContain("One Roadman app waitlist");
+    expect(html).toContain("Good Legs by Roadman");
     expect(html).toContain("NOT A DIAGNOSIS OR A GENERIC AI COACH");
     expect(html).toContain('"@id":"https://roadmancycling.com/app#software"');
     expect(html).toContain('href="/app"');

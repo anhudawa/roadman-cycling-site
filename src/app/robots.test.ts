@@ -47,6 +47,7 @@ describe("robots()", () => {
     for (const rule of result.rules as Array<{ allow: string[]; disallow: string[] }>) {
       expect(rule.disallow).toContain("/api/");
       expect(rule.allow).toContain("/api/og/blog-hero");
+      expect(rule.allow).toContain("/_next/image");
     }
   });
 

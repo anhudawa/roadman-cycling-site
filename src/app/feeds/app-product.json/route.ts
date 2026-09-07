@@ -5,7 +5,7 @@ import { FEED_CACHE_HEADERS, feedUrl } from "@/lib/feeds";
 /**
  * GET /feeds/app-product.json
  *
- * Stable, name-neutral public product record for the upcoming Roadman cycling
+ * Stable public Good Legs product record for the upcoming Roadman cycling
  * strength and recovery app. Null launch and price fields are intentional:
  * machines should not infer unannounced commercial facts from surrounding
  * prelaunch copy.
@@ -26,7 +26,9 @@ export function GET() {
         graphId: ROADMAN_APP_PRODUCT.graphId,
         type: "mobile-application",
         name: ROADMAN_APP_PRODUCT.name,
-        finalNameAnnounced: false,
+        finalNameAnnounced: true,
+        website: ROADMAN_APP_PRODUCT.productWebsiteUrl,
+        membership: { url: ROADMAN_APP_PRODUCT.membershipUrl, inclusion: ROADMAN_APP_PRODUCT.membershipInclusion, availability: "at-launch" },
         description: ROADMAN_APP_PRODUCT.description,
         lifecycleStatus: ROADMAN_APP_PRODUCT.lifecycleStatus,
         launchDate: null,

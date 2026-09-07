@@ -1,5 +1,9 @@
 export const APP_ACQUISITION_SOURCES = new Set([
   "active-recovery-guide",
+  "not-done-yet",
+  "homepage",
+  "minimum-dose-guide",
+  "strength-over-40-guide",
   "autonomic-recovery-guide",
   "between-sessions-guide",
   "beginner-strength-plan",
@@ -69,4 +73,17 @@ export function buildAppWaitlistSource(
   return source
     ? `roadman-app-waitlist-${source}-${placement}`
     : `roadman-app-waitlist-${placement}`;
+}
+
+/** Only editorial identifiers cross domains, never email or arbitrary query values. */
+export function buildGoodLegsReferralUrl(
+  acquisitionSource: string | string[] | null | undefined,
+  placement: AppWaitlistPlacement,
+): string {
+  const url = new URL("https://getgoodlegs.com/");
+  url.searchParams.set("utm_source", "roadman");
+  url.searchParams.set("utm_medium", "referral");
+  url.searchParams.set("utm_campaign", "good-legs-launch");
+  url.searchParams.set("utm_content", buildAppWaitlistSource(acquisitionSource, placement));
+  return url.toString();
 }

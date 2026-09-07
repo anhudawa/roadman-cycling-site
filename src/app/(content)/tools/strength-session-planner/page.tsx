@@ -302,16 +302,16 @@ export default function StrengthSessionPlannerPage() {
                     WANT THE SESSION INSIDE THE WEEK?
                   </p>
                   <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-foreground-muted">
-                    Roadman&apos;s upcoming iPhone app will connect this
+                    Good Legs by Roadman will connect this
                     placement logic to cyclist-specific strength, daily
-                    readiness and recovery context.
+                    readiness and recovery context. Not Done Yet members will receive access at launch.
                   </p>
                   <Link
                     href="/app?source=strength-session-planner"
                     data-track="strength_placement_app"
                     className="mt-5 inline-flex items-center justify-center rounded-md bg-coral px-6 py-3 font-heading text-sm uppercase tracking-wider text-off-white transition-colors hover:bg-coral/90"
                   >
-                    Join App Early Access
+                    Explore Good Legs
                   </Link>
                 </div>
               </aside>

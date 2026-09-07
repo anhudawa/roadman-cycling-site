@@ -35,7 +35,7 @@ const tiers = [
     features: [
       "Personalised TrainingPeaks plans",
       "Weekly live group coaching led by Anthony",
-      "Cycling-specific strength programme",
+      "Good Legs access at launch for strength and recovery",
       "Race weight & nutrition guidance",
       "Individual plan reviews by the Roadman coaching team",
       "Riders training alongside you, not beginners",
@@ -103,6 +103,7 @@ const memberTestimonials = getTestimonialsByName([
 ]);
 
 const objections = [
+  { question: "Will I get Good Legs with my membership?", answer: "Yes. Not Done Yet members will receive Good Legs access at launch as part of their membership. The app covers strength and recovery within the five pillars. Your personalised cycling coaching, nutrition guidance and private community complete the system." },
   {
     question: "I already listen to the podcast — why would I pay?",
     answer:
@@ -123,6 +124,14 @@ const objections = [
     answer:
       "Those deliver workouts. Roadman delivers understanding. Plans built on conversations with Dan Lorang and Professor Seiler, not templates. Plus a community of serious cyclists, not beginners.",
   },
+];
+
+const pillars = [
+  { name: "Coaching", body: "Your personalised cycling plan and regular review by the Roadman coaching team.", href: "/apply" },
+  { name: "Nutrition", body: "Fuelling guidance connected to your training, events and real life.", href: "/blog/cycling-energy-gels-guide" },
+  { name: "Strength", body: "Good Legs by Roadman: strength work that fits around your riding. Member access included at launch.", href: "/app?source=not-done-yet" },
+  { name: "Recovery", body: "Good Legs by Roadman: readiness and recovery context for your week. Member access included at launch.", href: "/app?source=not-done-yet" },
+  { name: "Community", body: "Riders, shared experience and the craft of cycling, with people who understand your goals.", href: "/community/not-done-yet" },
 ];
 
 export default function NotDoneYetPage() {
@@ -215,6 +224,19 @@ export default function NotDoneYetPage() {
                 &middot; cancel anytime
               </p>
             </ScrollReveal>
+          </Container>
+        </Section>
+        <Section background="charcoal" className="py-12">
+          <Container>
+            <h2 className="font-heading text-3xl text-off-white">FIVE PILLARS. ONE ROADMAN MEMBERSHIP.</h2>
+            <p className="mt-4 max-w-3xl text-foreground-muted">Not Done Yet brings the whole training week together. Good Legs access will be included at launch, covering strength and recovery.</p>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+              {pillars.map(pillar => <article key={pillar.name} className="rounded-xl border border-white/10 p-5">
+                <h3 className="font-heading text-xl text-off-white">{pillar.name}</h3>
+                <p className="mt-3 text-sm text-foreground-muted">{pillar.body}</p>
+                <a href={pillar.href} className="mt-4 inline-block text-sm text-coral underline">Explore {pillar.name.toLowerCase()}</a>
+              </article>)}
+            </div>
           </Container>
         </Section>
 

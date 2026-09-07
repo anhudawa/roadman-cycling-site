@@ -37,7 +37,7 @@ const DISALLOW_PATHS = [
 // structured data as a stable, high-resolution image fallback, so it
 // must remain crawlable even though the broader /api/ tree is blocked.
 // Under the REP, the more-specific Allow wins.
-const ALLOW_PATHS = ["/", "/_next/static/", "/api/og/blog-hero"];
+const ALLOW_PATHS = ["/", "/_next/static/", "/_next/image", "/api/og/blog-hero"];
 
 export default function robots(): MetadataRoute.Robots {
   return {

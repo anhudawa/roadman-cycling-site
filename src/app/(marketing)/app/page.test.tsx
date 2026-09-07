@@ -44,11 +44,11 @@ async function renderPage() {
 }
 
 describe("Roadman strength and recovery app search owner", () => {
-  it("publishes stable, name-neutral metadata", async () => {
+  it("publishes the Good Legs name with a stable Roadman canonical", async () => {
     const { metadata } = await import("./page");
 
     expect(metadata.title).toMatchObject({
-      absolute: "Cycling Strength & Recovery App | Roadman Cycling",
+      absolute: "Good Legs by Roadman | Cycling Strength & Recovery App",
     });
     expect(metadata.description).toContain(
       "cyclist-specific strength and recovery app",

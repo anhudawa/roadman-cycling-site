@@ -81,7 +81,7 @@ const delivery = [
   {
     number: "04",
     title: "Your full system",
-    body: "Nutrition and strength guidance matched to your training.",
+    body: "Nutrition guidance matched to your training, with Good Legs access included at launch for strength and recovery.",
   },
   {
     number: "05",

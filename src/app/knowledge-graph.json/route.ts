@@ -69,6 +69,8 @@ interface GraphNode {
   limitations?: readonly string[];
   reuseTerms?: string;
   /** Product identity fields. Unset on non-software nodes. */
+  sameAs?: string;
+  membershipInclusion?: string;
   applicationCategory?: string;
   operatingSystems?: readonly string[];
   lifecycleStatus?: string;
@@ -227,6 +229,8 @@ export function GET() {
     type: "software",
     subtype: "mobile-application",
     name: ROADMAN_APP_PRODUCT.name,
+    sameAs: ROADMAN_APP_PRODUCT.productWebsiteUrl,
+    membershipInclusion: ROADMAN_APP_PRODUCT.membershipInclusion,
     url: ROADMAN_APP_PRODUCT.canonicalUrl,
     description: ROADMAN_APP_PRODUCT.description,
     updatedDate: ROADMAN_APP_PRODUCT.updatedDate,

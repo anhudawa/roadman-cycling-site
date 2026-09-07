@@ -54,7 +54,7 @@ describe("GET /feeds/app-product.json", () => {
       id: ROADMAN_APP_PRODUCT.id,
       graphId: ROADMAN_APP_PRODUCT.graphId,
       name: ROADMAN_APP_PRODUCT.name,
-      finalNameAnnounced: false,
+      finalNameAnnounced: true,
       lifecycleStatus: "prelaunch",
       launchDate: null,
       price: null,

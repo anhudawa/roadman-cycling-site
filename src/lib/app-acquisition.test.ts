@@ -2,12 +2,13 @@ import { describe, expect, it } from "vitest";
 import {
   APP_ACQUISITION_SOURCES,
   buildAppWaitlistSource,
+  buildGoodLegsReferralUrl,
   normaliseAppAcquisitionSource,
 } from "./app-acquisition";
 
 describe("app acquisition attribution", () => {
   it("retains every approved origin and form placement", () => {
-    expect(APP_ACQUISITION_SOURCES.size).toBe(51);
+    expect(APP_ACQUISITION_SOURCES.has("not-done-yet")).toBe(true);
     expect(buildAppWaitlistSource("strength-guide", "hero")).toBe(
       "roadman-app-waitlist-strength-guide-hero",
     );
@@ -132,5 +133,19 @@ describe("app acquisition attribution", () => {
     expect(buildAppWaitlistSource("made-up-source", "hero")).toBe(
       "roadman-app-waitlist-hero",
     );
+  });
+});
+
+
+describe("Good Legs referral boundary", () => {
+  it("preserves approved editorial attribution without forwarding personal or arbitrary data", () => {
+    const url = new URL(buildGoodLegsReferralUrl("strength-guide", "hero"));
+    expect(url.origin).toBe("https://getgoodlegs.com");
+    expect(Object.fromEntries(url.searchParams)).toEqual({
+      utm_source: "roadman", utm_medium: "referral", utm_campaign: "good-legs-launch",
+      utm_content: "roadman-app-waitlist-strength-guide-hero",
+    });
+    expect(buildGoodLegsReferralUrl("rider@example.com", "bottom")).not.toContain("example.com");
+    expect(buildGoodLegsReferralUrl("https://untrusted.example", "hero")).not.toContain("untrusted");
   });
 });

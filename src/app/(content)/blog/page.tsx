@@ -4,6 +4,7 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 import { ScrollReveal } from "@/components/ui";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS } from "@/lib/brand-facts";
+import { getBlogSearchCounts, toBlogSearchItem } from "@/lib/blog-search";
 import { getAllPosts } from "@/lib/blog";
 import { BlogSearch } from "@/components/features/blog/BlogSearch";
 import {
@@ -51,7 +52,7 @@ export async function generateMetadata({
 
 export default async function BlogPage({ searchParams }: BlogPageProps) {
   const page = parsePage((await searchParams).page);
-  const posts = getAllPosts();
+  const posts = getAllPosts().map(toBlogSearchItem);
   const totalPages = getBlogArchivePageCount(posts.length);
   if (page > totalPages) notFound();
 
@@ -135,7 +136,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         <Section background="charcoal">
           <Container>
             <BlogSearch
-              posts={posts}
+              counts={getBlogSearchCounts(posts)}
               archivePosts={archivePosts}
               currentPage={page}
               totalPages={totalPages}
