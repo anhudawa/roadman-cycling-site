@@ -37,21 +37,21 @@ export function ApplicationNextSteps() {
 
   return <div className="mt-10 space-y-6">
     <section className="rounded-xl border border-coral/40 bg-white/[0.04] p-6 sm:p-8">
-      <h2 className="font-heading text-2xl">I’M READY TO JOIN</h2>
-      <p className="mt-3 text-base leading-7 text-foreground-muted">Not Done Yet coaching is <strong className="text-off-white">{offer.price}</strong>. Review the programme and select the $195 monthly coaching option on Skool.</p>
+      <h2 className="font-heading text-2xl">START YOUR FREE TRIAL</h2>
+      <p className="mt-3 text-base leading-7 text-foreground-muted">Start with a {offer.trialDays}-day free trial. After that, coaching is <strong className="text-off-white">{offer.price}</strong>, plus applicable taxes. Select the monthly plan on Skool.</p>
       {token ? <button type="button" disabled={Boolean(busy)} onClick={() => void act("join")} className="mt-6 min-h-12 w-full rounded-md bg-coral px-5 py-3 font-semibold text-deep-purple disabled:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral">
-        {busy === "join" ? "Opening Skool…" : "Join coaching — $195 USD/month"}
-      </button> : <a href={offer.checkoutUrl} rel="noreferrer" className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-md bg-coral px-5 py-3 text-center font-semibold text-deep-purple">Join coaching — $195 USD/month</a>}
-      <a className="mt-4 inline-block whitespace-nowrap text-sm text-coral underline underline-offset-4" href={offer.aboutUrl} target="_blank" rel="noreferrer">Read about Not Done Yet on Skool</a>
+        {busy === "join" ? "Opening Skool…" : "Start my 7-day free trial"}
+      </button> : <a href={offer.checkoutUrl} rel="noreferrer" className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-md bg-coral px-5 py-3 text-center font-semibold text-deep-purple">Start my 7-day free trial</a>}
+      <a className="mt-4 inline-block text-sm text-coral underline underline-offset-4" href={offer.aboutUrl} target="_blank" rel="noreferrer">See what’s included</a>
     </section>
     <section className="rounded-xl border border-white/15 p-6 sm:p-8">
-      <h2 className="font-heading text-2xl">I HAVE A QUESTION</h2>
-      {saved ? <p role="status" className="mt-4 text-base leading-7">Your question is saved for Sarah against your application. She’ll reply by email.</p> : token ? <form onSubmit={(event) => { event.preventDefault(); void act("questions"); }}>
+      <h2 className="font-heading text-2xl">EMAIL SARAH</h2>
+      {saved ? <p role="status" className="mt-4 text-base leading-7">Your question is saved for Sarah. She’ll reply by email.</p> : token ? <form onSubmit={(event) => { event.preventDefault(); void act("questions"); }}>
         <label htmlFor="ndy-question" className="mt-4 block text-base text-foreground-muted">What would you like to know before joining?</label>
         <textarea ref={questionInput} id="ndy-question" required minLength={3} maxLength={2000} rows={4} value={question} onChange={(event) => setQuestion(event.target.value)}
           className="mt-3 w-full rounded-md border border-white/20 bg-white/5 p-3 text-base leading-6 focus:border-coral focus:outline-none focus:ring-1 focus:ring-coral" />
-        <button type="submit" disabled={Boolean(busy)} className="mt-4 min-h-12 w-full rounded-md border border-coral px-5 py-3 font-semibold text-coral disabled:opacity-50">{busy === "questions" ? "Saving your question…" : "Send my question to Sarah"}</button>
-        <p className="mt-3 text-sm leading-6 text-foreground-muted">Sarah will receive your question with a link to your application.</p>
+        <button type="submit" disabled={Boolean(busy)} className="mt-4 min-h-12 w-full rounded-md border border-coral px-5 py-3 font-semibold text-coral disabled:opacity-50">{busy === "questions" ? "Sending your question…" : "Send to Sarah"}</button>
+        <p className="mt-3 text-sm leading-6 text-foreground-muted">Your message will be emailed to sarah@roadmancycling.com with your application.</p>
       </form> : <p className="mt-4 text-base leading-7 text-foreground-muted">Open the personal link in your application email to send a question linked to your application.</p>}
       <p className="mt-4 break-words text-sm leading-6 text-foreground-muted">You can also email <a className="text-coral underline" href={`mailto:${offer.sarahEmail}`}>{offer.sarahEmail}</a>.</p>
     </section>

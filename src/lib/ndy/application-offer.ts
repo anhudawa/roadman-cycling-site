@@ -3,6 +3,7 @@ export const NDY_APPLICATION_OFFER = {
   aboutUrl: "https://www.skool.com/roadmancycling/about",
   checkoutUrl: "https://www.skool.com/roadmancycling/plans?src=join",
   price: "$195 USD/month",
+  trialDays: 7,
   sarahEmail: "sarah@roadmancycling.com",
 } as const;
 
@@ -25,8 +26,8 @@ export function assessApplication(input: { goal: string; hours: string; frustrat
   return {
     outcome: ready ? "ready" as const : "review" as const,
     message: ready
-      ? "We've automatically reviewed your application. Based on your cycling goal and available training time, we think Not Done Yet is a great fit for you."
-      : "Thanks for applying to Not Done Yet. We'd like to check how the coaching fits your circumstances. You can explore the programme below, or ask Sarah a question before joining.",
+      ? "Your application to Not Done Yet has been approved."
+      : "We've received your application. Please ask Sarah about the programme before joining so she can check that it suits you.",
   };
 }
 

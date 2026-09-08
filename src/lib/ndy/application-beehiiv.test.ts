@@ -100,11 +100,13 @@ describe("NDY Beehiiv application email", () => {
 
 describe("the automatic fit screen", () => {
   it("gives the fit message for a supported cycling goal and sufficient time", () => {
-    expect(assessApplication(input).outcome).toBe("ready");
+    expect(assessApplication(input)).toMatchObject({
+      outcome: "ready", message: expect.stringContaining("has been approved"),
+    });
   });
   it.each([{ hours: "Under 4 hours" }, { frustration: "Injury or comeback — trying to get back" }, { frustration: "Knee pain" }, { goal: "Something unrelated" }])("does not imply a perfect fit for cases needing discussion", (change) => {
     const result = assessApplication({ ...input, ...change });
-    expect(result.outcome).toBe("review"); expect(result.message).not.toContain("great fit");
+    expect(result.outcome).toBe("review"); expect(result.message).not.toContain("approved");
   });
   it("keeps bearer tokens out of URL queries and server request paths", () => {
     const url = new URL(applicationNextUrl(input.accessToken));
