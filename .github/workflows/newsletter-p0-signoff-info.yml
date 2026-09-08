@@ -1,0 +1,24 @@
+name: Newsletter P0 signoff info
+on:
+  push:
+    branches: [codex/newsletter-p0-2026-09-08]
+permissions:
+  contents: read
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Print release binding values
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync } from 'node:fs';
+          import { fingerprint, sha256, controlDigest } from './scripts/editorial-gate.mjs';
+          const reviewBytes = readFileSync('editorial/release.json', 'utf8');
+          console.log('CONTENT_DIGEST=' + fingerprint(process.cwd()).digest);
+          console.log('REVIEW_HASH=' + sha256(reviewBytes));
+          console.log('CONTROLS_HASH=' + controlDigest(process.cwd()));
+          NODE
