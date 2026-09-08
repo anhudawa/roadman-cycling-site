@@ -9,8 +9,16 @@ interface EmailCaptureProps {
   subheading?: string;
   buttonText?: string;
   source?: string;
+  captureQueryAttribution?: boolean;
   className?: string;
 }
+
+type SignupAttribution = {
+  source: string;
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+};
 
 export function EmailCapture({
   variant = "inline",
@@ -18,6 +26,7 @@ export function EmailCapture({
   subheading = "One email every Saturday. What the best coaches and scientists said this week — translated into stuff you can actually use on the bike.",
   buttonText = "SUBSCRIBE",
   source = "website",
+  captureQueryAttribution = false,
   className = "",
 }: EmailCaptureProps) {
   const [email, setEmail] = useState("");
@@ -26,10 +35,32 @@ export function EmailCapture({
   const [message, setMessage] = useState("");
   const formStartTracked = useRef(false);
 
+  const getAttribution = (): SignupAttribution => {
+    if (!captureQueryAttribution || typeof window === "undefined") {
+      return { source };
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const querySource = params.get("source")?.trim();
+    const utmSource = params.get("utm_source")?.trim();
+    const utmMedium = params.get("utm_medium")?.trim();
+    const utmCampaign = params.get("utm_campaign")?.trim();
+
+    return {
+      source: querySource || source,
+      ...(utmSource ? { utm_source: utmSource } : {}),
+      ...(utmMedium ? { utm_medium: utmMedium } : {}),
+      ...(utmCampaign ? { utm_campaign: utmCampaign } : {}),
+    };
+  };
+
   const handleFormStart = () => {
     if (formStartTracked.current) return;
     formStartTracked.current = true;
-    track("form_start", { source, form: "email_capture" });
+    track("form_start", {
+      source: getAttribution().source,
+      form: "email_capture",
+    });
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -48,12 +79,13 @@ export function EmailCapture({
     }
 
     setStatus("loading");
+    const attribution = getAttribution();
 
     try {
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source, consent: true }),
+        body: JSON.stringify({ email, ...attribution, consent: true }),
       });
 
       if (res.ok) {
@@ -63,7 +95,7 @@ export function EmailCapture({
         // Email Captured stage isn't inflated by validation failures or
         // backend rejections. The /api/newsletter route does its own
         // signup-side recordEvent; this is the funnel-typed mirror.
-        track("email_captured", { source, email });
+        track("email_captured", { source: attribution.source, email });
         setEmail("");
       } else {
         const data = await res.json();
