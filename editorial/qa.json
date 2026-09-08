@@ -2,71 +2,71 @@
   "version": 1,
   "reviewer": "Codex",
   "decision": "publish",
-  "reviewedAt": "2026-09-08T13:48:00Z",
-  "contentDigest": "969570c172711f2a3b580737b8f522a59d838b3199ef993fddde42e4a4e1147f",
-  "reviewHash": "bd347cce13b0510d70292d64d6ad2b2b210abcd6ae482690aa4f96b41ea2dc88",
-  "controlsHash": "9c233311b92e46f4bd8c05a019987717d6c3bcec5857ebb9d3c92ca714307ee2",
+  "reviewedAt": "2026-09-08T14:31:30Z",
+  "contentDigest": "f77f8cf73f94a62d97f1dfe311506eb73bc0d50811bb983573a52360bdc149c1",
+  "reviewHash": "47def3a6f16df316f071a7cdfae7f9cc4e55f19fe311f2fbab94d4f0cd6bd92f",
+  "controlsHash": "c4fe4a1cb3d6f94dea33a8d22c174aa923998f35a871497d02bbb1b61fa89b87",
   "blockers": [],
   "checks": {
     "claims": {
       "status": "pass",
-      "evidence": "The edited newsletter claims use Anthony's supplied active Beehiiv count of about 23,215, rounded to 23,000 on public UI. The Core Guide source metadata reports application/pdf and 6,592,307 bytes. No replacement open-rate, sponsor-performance, scientific, guest or financial claim was introduced."
+      "evidence": "Newsletter audience proof uses Anthony's supplied active Beehiiv figure of about 23,215, rounded to 23,000. The connected Drive source is application/pdf and 6,592,307 bytes. No public open-rate replacement, sponsor-performance, science, guest, member-count or wider financial claim is introduced."
     },
     "editorial": {
       "status": "pass",
-      "evidence": "The P0 copy edits are narrow corrections: 30K/30,000+ and 65%+ newsletter claims were removed or replaced with 23K/23,000, while the existing weekly-letter promise and page structure remain intact. Visual review of the full rendered newsletter and partners pages found the changed proof legible and consistent with the surrounding layout."
+      "evidence": "The release remains a narrow P0 correction. Newsletter and partners copy preserve the existing structure and weekly-letter positioning while removing inflated 30K/30,000+ and 65% proof. The fallback route adds no promotional copy."
     },
     "offers": {
       "status": "pass",
-      "evidence": "The release leaves coaching prices, membership counts, sponsor packages, paid acquisition, Beehiiv automations and referral configuration unchanged. The Core Guide stays a referral reward asset rather than becoming a newsletter signup incentive."
+      "evidence": "Beehiiv posts, automations, referral configuration, coaching prices, sponsor packages, Skool and paid acquisition are unchanged. The Core Guide remains a referral reward asset and is not offered as the newsletter signup incentive."
     },
     "desktop": {
       "status": "pass",
-      "evidence": "Playwright rendered the exact P0 revision at 1440x1000 for the newsletter and partners pages. Automated checks found 23K/23,000 present, 30K/30,000+ absent, 65% absent and no horizontal overflow; the screenshots were visually inspected after capture.",
+      "evidence": "The exact P0 page bytes were rendered in Chromium at 1440x1000 for /newsletter and /partners. The checks found 23K/23,000 present, 30K/30,000+ absent, 65% absent and no horizontal overflow. The fallback changes only the download route and restores deployment config; it does not alter those page components or styles.",
       "pages": [
         {
           "url": "http://127.0.0.1:3000/newsletter?source=youtube&utm_source=youtube&utm_medium=video&utm_campaign=p0-qa",
           "width": 1440,
           "height": 1000,
-          "observations": "The Saturday Spin hero, signup form, 23,000-reader proof, content sections and bottom signup banner render cleanly. The corrected audience proof is readable, there is no 30K or 65% text, and the layout shows no release-caused clipping or overflow."
+          "observations": "The Saturday Spin hero, signup form, corrected 23,000-reader proof, content sections and bottom signup banner render cleanly with no 30K/65% copy or horizontal overflow."
         },
         {
           "url": "http://127.0.0.1:3000/partners",
           "width": 1440,
           "height": 1000,
-          "observations": "The media-kit hero, reach cards and newsletter sponsorship card render cleanly. Newsletter reach is 23K/23,000, no open-rate figure remains, and the edited cards preserve the existing visual hierarchy without horizontal overflow."
+          "observations": "The media-kit hero and newsletter reach cards render cleanly with 23K/23,000 reach and no open-rate percentage; the existing hierarchy and layout remain intact."
         }
       ]
     },
     "mobile": {
       "status": "pass",
-      "evidence": "Playwright rendered the exact P0 revision at 390x844 for the newsletter and partners pages. Automated checks found 23K/23,000 present, 30K/30,000+ absent, 65% absent and document width equal to the viewport; the full-page screenshots were visually inspected after capture.",
+      "evidence": "The exact P0 page bytes were rendered in Chromium at 390x844 for /newsletter and /partners. Corrected audience proof remained readable, 30K/30,000+/65% claims were absent and document width matched the viewport. The fallback does not change mobile UI.",
       "pages": [
         {
           "url": "http://127.0.0.1:3000/newsletter?source=podcast",
           "width": 390,
           "height": 844,
-          "observations": "The newsletter hero, form, consent copy, 23,000-reader proof, content cards and bottom signup banner remain readable at 390px. The release introduces no horizontal clipping and the audience correction appears in both proof locations."
+          "observations": "The hero, form, consent copy, 23,000-reader proof, content cards and bottom signup banner remain readable without clipping or overflow."
         },
         {
           "url": "http://127.0.0.1:3000/partners",
           "width": 390,
           "height": 844,
-          "observations": "The media-kit reach cards and newsletter sponsorship content stack correctly at 390px. The newsletter card shows 23K, the sponsorship copy uses 23,000 weekly readers, no 65% claim remains and the page has no release-caused horizontal overflow."
+          "observations": "The media-kit reach cards remain readable and the corrected newsletter figure fits the existing mobile layout without horizontal overflow."
         }
       ]
     },
     "interactions": {
       "status": "pass",
-      "evidence": "The newsletter form reads source and optional utm_source, utm_medium and utm_campaign only when URL attribution is enabled on /newsletter, then posts them to /api/newsletter. The API sanitizes those values and passes them into the existing Beehiiv subscribe helper, whose request body maps them to Beehiiv utm_source, utm_medium and utm_campaign fields. Existing fixed-source EmailCapture callers keep their supplied sources."
+      "evidence": "Newsletter EmailCapture reads source and optional utm_source, utm_medium and utm_campaign only when query attribution is enabled, submits them through the existing /api/newsletter path, and the existing Beehiiv helper maps those values to Beehiiv UTM subscription fields. Existing fixed-source asset funnels remain unchanged. No real subscriber was created during QA."
     },
     "seo": {
       "status": "pass",
-      "evidence": "The newsletter canonical remains https://roadmancycling.com/newsletter and the corrected 23,000 figure is reflected in newsletter metadata and Open Graph description. The partners page canonical and existing metadata structure are unchanged. The download route uses a stable Roadman path rather than an expiring signed URL."
+      "evidence": "The newsletter metadata/social audience statement was corrected to 23,000 with no new search claim. The canonical download path is same-domain and stable. No new doorway page, keyword variant or sponsor marketing surface was added."
     },
     "technical": {
       "status": "pass",
-      "evidence": "The repository's 55 editorial-gate rejection tests pass. The dedicated preview production build completed successfully after the attribution type fix, including npm ci, prebuild generators, coral check, Next.js compilation and TypeScript checking. The rendered Playwright workflow also completed successfully and uploaded four screenshots for review."
+      "evidence": "The exact fallback content digest completed a full Next.js production-mode build: compilation and TypeScript succeeded, all 4,463 static pages generated, and the route table contains dynamic /downloads/core-training-guide.pdf. The route follows the Drive download, rejects any upstream body that does not begin %PDF-, and on success returns application/pdf with Content-Length, stable filename, cache headers and nosniff. vercel.json is restored to the known-good pre-P0 configuration. Final public HTTP verification is the required post-deploy smoke check, not a pre-deploy assertion."
     }
   }
 }
