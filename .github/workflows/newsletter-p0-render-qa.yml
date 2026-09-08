@@ -1,0 +1,67 @@
+name: Newsletter P0 rendered QA
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Install browser for rendered QA
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start local site
+        run: |
+          npm run dev -- -p 3000 > /tmp/roadman-dev.log 2>&1 &
+          for i in {1..60}; do
+            if curl -fsS http://127.0.0.1:3000/newsletter >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          cat /tmp/roadman-dev.log
+          exit 1
+      - name: Render desktop and mobile targets
+        run: |
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          (async () => {
+            const browser = await chromium.launch({headless:true});
+            const targets = [
+              ['newsletter-desktop','http://127.0.0.1:3000/newsletter?source=youtube&utm_source=youtube&utm_medium=video&utm_campaign=p0-qa',1440,1000],
+              ['newsletter-mobile','http://127.0.0.1:3000/newsletter?source=podcast',390,844],
+              ['partners-desktop','http://127.0.0.1:3000/partners',1440,1000],
+              ['partners-mobile','http://127.0.0.1:3000/partners',390,844],
+            ];
+            for (const [name,url,width,height] of targets) {
+              const page = await browser.newPage({viewport:{width,height}});
+              await page.goto(url,{waitUntil:'networkidle'});
+              const info = await page.evaluate(() => ({
+                title: document.title,
+                h1: document.querySelector('h1')?.textContent?.replace(/\s+/g,' ').trim(),
+                body: document.body.innerText.replace(/\s+/g,' ').trim(),
+                scrollWidth: document.documentElement.scrollWidth,
+                innerWidth: window.innerWidth,
+              }));
+              console.log(`QA ${name}: ${JSON.stringify({title:info.title,h1:info.h1,overflow:info.scrollWidth>info.innerWidth,scrollWidth:info.scrollWidth,innerWidth:info.innerWidth,has23k:/23,000|23K/.test(info.body),has30k:/30,000|30K\+/.test(info.body),has65:/65%/.test(info.body)})}`);
+              await page.screenshot({path:`${name}.png`,fullPage:true});
+              await page.close();
+            }
+            await browser.close();
+          })().catch(err => { console.error(err); process.exit(1); });
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: newsletter-p0-rendered-qa
+          path: |
+            newsletter-desktop.png
+            newsletter-mobile.png
+            partners-desktop.png
+            partners-mobile.png
