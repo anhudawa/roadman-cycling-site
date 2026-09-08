@@ -1,22 +1,84 @@
 {
   "version": 1,
   "reviewer": "Codex",
-  "decision": "hold",
-  "reviewedAt": null,
-  "contentDigest": "TODO: exact content digest after generators and final changes",
-  "reviewHash": "TODO: SHA256 of final release.json bytes",
-  "controlsHash": "TODO: final publication control digest",
-  "blockers": [
-    "Not Done Yet integration setup, rendered QA and production activation are still in progress."
-  ],
+  "decision": "publish",
+  "reviewedAt": "2026-09-08T22:42:48Z",
+  "contentDigest": "e869ccf37c3c3e211b73d71b952f79c130587ea94497621ffe8d00996764d6b9",
+  "reviewHash": "8b8ba3ed6d8e918706bef58d876e7cad03d5e8adf17d94628a2b29b66dd742d9",
+  "controlsHash": "484c375122cad722f4283273b9393f0c0a2b5b028695c61b325a15c4814c2041",
+  "blockers": [],
   "checks": {
-    "claims": { "status": "pending", "evidence": "Final evidence will be recorded after integration and rendered review." },
-    "editorial": { "status": "pending", "evidence": "Final copy review is pending on the reconciled revision." },
-    "offers": { "status": "pending", "evidence": "The live Skool plan and personalised Beehiiv destinations still require verification." },
-    "desktop": { "status": "pending", "evidence": "Desktop rendered review is not complete.", "pages": [] },
-    "mobile": { "status": "pending", "evidence": "Mobile rendered review is not complete.", "pages": [] },
-    "interactions": { "status": "pending", "evidence": "Live workflow interaction checks are not complete." },
-    "seo": { "status": "pending", "evidence": "Final affected-surface metadata and link checks are pending." },
-    "technical": { "status": "pending", "evidence": "Post-merge technical checks and production build are pending." }
+    "claims": {
+      "status": "pass",
+      "evidence": "Anthony authorised operational alert delivery to anthony@roadmancycling.com and Sarah's daily admin review. The live Skool plan showed a seven-day free trial followed by $195 USD per month plus applicable taxes."
+    },
+    "editorial": {
+      "status": "pass",
+      "evidence": "The enabled application and email copy clearly distinguishes automatic approval from Sarah review, uses direct next-step language, and does not claim that inbox replies are written into the admin timeline."
+    },
+    "offers": {
+      "status": "pass",
+      "evidence": "The Skool programme and plans destinations resolved to Roadman Cycling's Not Done Yet offer. The rendered website and live Beehiiv email state the seven-day trial and $195 USD monthly price consistently."
+    },
+    "desktop": {
+      "status": "pass",
+      "evidence": "The exact source revision was rendered at 1540 CSS pixels. Application, next-step and authenticated admin queue content was readable, correctly grouped and free of horizontal overflow.",
+      "pages": [
+        {
+          "url": "http://127.0.0.1:3001/apply",
+          "width": 1540,
+          "height": 900,
+          "observations": "The application hero, seven-day-trial offer, four-step form and enabled next-step promise rendered with clear hierarchy and usable controls."
+        },
+        {
+          "url": "http://127.0.0.1:3001/apply/next",
+          "width": 1540,
+          "height": 900,
+          "observations": "The trial, programme and Email Sarah actions were distinct; the supporting link stayed on one line and the queue-versus-alert explanation matched the backend routing."
+        },
+        {
+          "url": "http://127.0.0.1:3001/admin/applications",
+          "width": 1540,
+          "height": 900,
+          "observations": "The authenticated application board displayed a separate Sarah Review column and retained its link to detailed workflow status."
+        }
+      ]
+    },
+    "mobile": {
+      "status": "pass",
+      "evidence": "The application and personal next-step surfaces were reviewed at 390 by 844 CSS pixels; the authenticated follow-up view was also reviewed at the same width. Content wrapped correctly and controls remained usable.",
+      "pages": [
+        {
+          "url": "http://127.0.0.1:3001/apply",
+          "width": 390,
+          "height": 844,
+          "observations": "The hero, price, free-trial statement and application call to action fit the viewport without horizontal overflow."
+        },
+        {
+          "url": "http://127.0.0.1:3001/apply/next",
+          "width": 390,
+          "height": 844,
+          "observations": "Trial and Sarah-question sections stacked cleanly; button labels, price copy and direct email fallback remained legible."
+        },
+        {
+          "url": "http://127.0.0.1:3001/admin/applications/followups",
+          "width": 390,
+          "height": 844,
+          "observations": "The authenticated operational view fit the mobile viewport and exposed applicant, question, delivery, Anthony-alert and retry states without clipping."
+        }
+      ]
+    },
+    "interactions": {
+      "status": "pass",
+      "evidence": "A rolled-back production-database transaction exercised application creation, outbox deduplication, question persistence and Sarah Review status. Controlled Beehiiv and Resend sends reached Anthony, while GET route checks returned no applicant data and caused no writes."
+    },
+    "seo": {
+      "status": "pass",
+      "evidence": "The offline audit scanned 18,384 internal references: 15,814 resolved successfully, zero were broken or indeterminate, and 2,570 external references were intentionally skipped. Personal action tokens remain in URL fragments and analytics are suppressed on that route."
+    },
+    "technical": {
+      "status": "pass",
+      "evidence": "Ninety-nine focused workflow tests, TypeScript, targeted ESLint, the 55-test publication gate, Coral validation and whitespace checks pass. The selective Next.js production build compiled and typechecked the changed application, admin, API and cron surfaces successfully."
+    }
   }
 }
