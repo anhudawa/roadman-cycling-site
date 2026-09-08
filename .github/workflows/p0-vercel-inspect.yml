@@ -1,0 +1,19 @@
+name: P0 Vercel inspect
+on:
+  push:
+    branches: [codex/p0-vercel-repro]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Vercel CI credential and inspect failed production deploy
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo 'VERCEL_TOKEN_MISSING'
+            exit 2
+          fi
+          npx --yes vercel@latest inspect dpl_E95BR5WooU9fQjjHhahwu7YFyASv --logs --token="$VERCEL_TOKEN" --scope=anhudawas-projects
