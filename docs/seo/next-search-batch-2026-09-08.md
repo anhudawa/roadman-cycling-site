@@ -36,6 +36,14 @@ The domain report previously put Roadman's tyre tool at 12; this separate phrase
 
 Raw reports: [coaching](data/semrush-uk-serp-cycling-coaching-2026-09-08.csv), [tyre pressure](data/semrush-uk-serp-bike-tyre-pressure-2026-09-08.csv), [Fred Whitton](data/semrush-uk-serp-fred-whitton-2026-09-08.csv). These describe returned results; competitor page quality was not exhaustively audited here.
 
+## 4. Separate ordinary Bing search from AI referrals
+
+Source inspection found that `src/lib/analytics/ai-referrer.ts` treats the entire `bing.com` hostname as an AI source. The server helper applies the same map without checking the path. A local execution of `detectAIReferrerFromRequest` with an ordinary `https://www.bing.com/search?q=cycling+coaching` referrer returned `bing.com` in the AI bucket; the Copilot-host example separately returned `copilot.microsoft.com`. Tracker and application-attribution code consume this classifier.
+
+This can misclassify ordinary search traffic as AI discovery. It does not establish how many production events were affected. Correct the classification before comparing SEO and AEO conversion totals. Keep explicit Copilot evidence distinct; do not infer an AI visit from a generic Bing origin or from a copied llms.txt campaign URL alone. Preserve raw source information and label uncertain cases honestly.
+
+Acceptance: ordinary Bing search is not assigned to an AI assistant; known assistant referrals remain attributable; hostile lookalike hostnames do not match; ambiguous or missing referrers remain unknown; historical reports clearly identify the definition change instead of presenting it as a traffic trend. Regression checks must cover both client and server attribution and the first-touch session behavior.
+
 ## Release discipline
 
 Keep the current approved release intact while preparing each small follow-up. A subsequent public change needs its own source review, rendered checks and updated hashes. Preserve the baseline and reject unfinished evidence. Measure coaching applications, newsletter subscriptions, memberships and other Roadman outcomes separately; Good Legs remains one forthcoming strength/recovery part of the wider business.
