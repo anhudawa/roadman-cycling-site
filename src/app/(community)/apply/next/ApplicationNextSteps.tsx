@@ -42,7 +42,7 @@ export function ApplicationNextSteps() {
       {token ? <button type="button" disabled={Boolean(busy)} onClick={() => void act("join")} className="mt-6 min-h-12 w-full rounded-md bg-coral px-5 py-3 font-semibold text-deep-purple disabled:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral">
         {busy === "join" ? "Opening Skool…" : "Join coaching — $195 USD/month"}
       </button> : <a href={offer.checkoutUrl} rel="noreferrer" className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-md bg-coral px-5 py-3 text-center font-semibold text-deep-purple">Join coaching — $195 USD/month</a>}
-      <a className="mt-4 inline-block text-sm text-coral underline underline-offset-4" href={offer.aboutUrl} target="_blank" rel="noreferrer">Read about Not Done Yet on Skool</a>
+      <a className="mt-4 inline-block whitespace-nowrap text-sm text-coral underline underline-offset-4" href={offer.aboutUrl} target="_blank" rel="noreferrer">Read about Not Done Yet on Skool</a>
     </section>
     <section className="rounded-xl border border-white/15 p-6 sm:p-8">
       <h2 className="font-heading text-2xl">I HAVE A QUESTION</h2>
