@@ -93,7 +93,8 @@ export async function check(root, { production = true } = {}) {
   const controlsHash = controlDigest(root);
   if (qa.controlsHash !== controlsHash) {
     const details = CONTROL_FILES.map(path => `${path}=${sha256(readFileSync(resolve(root, path)))}`).join(', ');
-    throw new Error(`QA is stale: controls expected ${qa.controlsHash}, actual ${controlsHash}; files: ${details}.`);
+    const deployedConfig = JSON.stringify(readFileSync(resolve(root, 'vercel.json'), 'utf8'));
+    throw new Error(`QA is stale: controls expected ${qa.controlsHash}, actual ${controlsHash}; files: ${details}; deployed vercel.json: ${deployedConfig}.`);
   }
   validateQA(qa, current.digest, sha256(reviewBytes), controlsHash);
   return `Final agent QA verified for ${current.digest}.`;
