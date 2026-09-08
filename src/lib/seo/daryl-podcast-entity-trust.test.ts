@@ -49,9 +49,7 @@ describe("Daryl Fitzgerald podcast and entity search trust", () => {
       expect.arrayContaining(["bike-fitting", "cycling-strength-conditioning"]),
     );
     expect(parsed.content.match(/^# /gm)).toBeNull();
-    expect(parsed.content).toContain(
-      "This episode page owns searches for the **Daryl Fitzgerald podcast, interview, audio, video and transcript**",
-    );
+    expect(parsed.content).not.toContain("This episode page owns searches for the **Daryl Fitzgerald podcast, interview, audio, video and transcript**");
   });
 
   it("keeps the transcript but labels surfaced claims by evidence type", () => {

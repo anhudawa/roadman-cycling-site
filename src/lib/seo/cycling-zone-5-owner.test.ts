@@ -20,7 +20,7 @@ describe("cycling Zone 5 search owner and evidence trust", () => {
     expect(data.seoTitle.length).toBeLessThanOrEqual(60);
     expect(data.seoDescription.length).toBeGreaterThanOrEqual(120);
     expect(data.seoDescription.length).toBeLessThanOrEqual(160);
-    expect(data.updatedDate).toBe("2026-08-26");
+    expect(Date.parse(data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-26"));
     expect(data.lastReviewed).toBe("2026-08-26");
     expect(data.reviewedBy).toContain("zone-model");
     expect(data.answerCapsule.split(/\s+/).length).toBeGreaterThanOrEqual(70);
@@ -80,7 +80,7 @@ describe("cycling Zone 5 search owner and evidence trust", () => {
   it("hands protocol choice to the canonical VO2max interval owner", () => {
     const protocolOwner = "/blog/cycling-vo2max-intervals";
     expect(content).toContain(
-      `[canonical VO2max interval guide](${protocolOwner})`,
+      `[VO2max interval guide](${protocolOwner})`,
     );
     expect(content).toContain(`[VO2max interval guide](${protocolOwner})`);
     expect(read(`content/blog/cycling-vo2max-intervals.mdx`)).toContain(

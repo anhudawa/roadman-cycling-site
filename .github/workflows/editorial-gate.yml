@@ -15,5 +15,5 @@ jobs:
           node-version: 20
       - name: Test publication rejection cases
         run: node --test scripts/editorial-gate.test.mjs
-      - name: Verify content review and editor approval
+      - name: Verify content review and final agent QA
         run: node scripts/editorial-gate.mjs

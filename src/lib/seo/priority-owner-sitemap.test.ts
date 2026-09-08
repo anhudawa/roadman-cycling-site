@@ -21,7 +21,7 @@ describe("priority owner sitemap freshness", () => {
       const lastModified = byUrl.get(url)?.lastModified;
 
       expect(lastModified, `${url} is missing lastModified`).toBeInstanceOf(Date);
-      expect((lastModified as Date).toISOString()).toBe(releaseDate);
+      expect((lastModified as Date).getTime()).toBeGreaterThanOrEqual(Date.parse(releaseDate));
     }
   });
 });

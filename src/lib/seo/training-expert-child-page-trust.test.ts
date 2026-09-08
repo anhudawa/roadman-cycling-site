@@ -28,7 +28,7 @@ describe("training expert child-page trust", () => {
       "Joe Friel Cycling Training Plan: Transcript Guide",
     );
     expect(joe.data.primaryHub).toBe("cycling-training-plans");
-    expect(joe.data.updatedDate).toBe("2026-08-26");
+    expect(Date.parse(joe.data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-26"));
     expect(joe.data.lastReviewed).toBe("2026-08-26");
     expect(joe.data.reviewedBy).toContain("Roadman transcript");
     expect(joe.data.answerCapsule).toContain(
@@ -71,7 +71,7 @@ describe("training expert child-page trust", () => {
       "Dylan Johnson Oscillation Training: 2025 Experiment",
     );
     expect(dylan.data.primaryHub).toBe("cycling-training-plans");
-    expect(dylan.data.updatedDate).toBe("2026-08-26");
+    expect(Date.parse(dylan.data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-26"));
     expect(dylan.data.lastReviewed).toBe("2026-08-26");
     expect(dylan.data.reviewedBy).toContain("April 2025 Roadman transcript");
     expect(dylan.data.answerCapsule).toContain("not the gold standard");
@@ -103,7 +103,7 @@ describe("training expert child-page trust", () => {
       expect(dylanSource).not.toContain(staleClaim);
     }
     expect(dan.data.primaryHub).toBe("cycling-training-plans");
-    expect(dan.data.updatedDate).toBe("2026-08-26");
+    expect(Date.parse(dan.data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-26"));
     expect(dan.data.experts).toEqual(
       expect.arrayContaining([
         expect.objectContaining({

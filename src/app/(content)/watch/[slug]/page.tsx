@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header, Footer, Section, Container } from "@/components/layout";
@@ -7,6 +8,7 @@ import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ENTITY_IDS } from "@/lib/brand-facts";
 import { getEpisodeBySlug } from "@/lib/podcast";
+import { WatchVideo, WatchVideoFrame } from "@/components/features/podcast/WatchVideo";
 import { stripRoadmanBrandSuffix } from "@/lib/seo/search-ownership";
 import {
   durationToIso,
@@ -175,17 +177,9 @@ export default async function WatchPage({
         <Section background="charcoal" className="!pt-8 !pb-12">
           <Container>
             <div className="mx-auto max-w-6xl">
-              <div className="aspect-video overflow-hidden rounded-xl border border-white/10 bg-black shadow-[var(--shadow-elevated)]">
-                <iframe
-                  src={embedUrl}
-                  width="100%"
-                  height="100%"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  className="border-0"
-                  title={`Watch ${episode.title}`}
-                />
-              </div>
+              <Suspense fallback={<WatchVideoFrame youtubeId={episode.youtubeId} title={episode.title} />}>
+                <WatchVideo youtubeId={episode.youtubeId} title={episode.title} watchUrl={watchUrl} />
+              </Suspense>
 
               <div className="mt-6 flex flex-col gap-5 border-t border-white/10 pt-6 md:flex-row md:items-start md:justify-between">
                 <div className="max-w-3xl">

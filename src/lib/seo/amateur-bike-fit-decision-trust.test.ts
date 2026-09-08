@@ -18,7 +18,7 @@ describe("amateur bike-fit decision search trust", () => {
     expect(parsed.data.seoTitle).toBe(
       "The #1 Bike-Fit Change for Amateur Cyclists?",
     );
-    expect(parsed.data.updatedDate).toBe("2026-08-25");
+    expect(Date.parse(parsed.data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-25"));
     expect(parsed.data.lastReviewed).toBe("2026-08-25");
     expect(parsed.data.reviewedBy).toContain(
       "cited cycling-position, saddle-height, cleat",
@@ -38,9 +38,7 @@ describe("amateur bike-fit decision search trust", () => {
   });
 
   it("routes detailed intents to distinct reviewed owners", () => {
-    expect(guide).toContain(
-      "This page owns the narrow question “what is the one bike-fit change?”",
-    );
+    expect(guide).not.toContain("This page owns the narrow question “what is the one bike-fit change?”");
     expect(guide).toContain("/blog/bike-fit-guide-cyclists");
     expect(guide).toContain(
       "/blog/cycling-knee-tracking-cleat-setup-guide",

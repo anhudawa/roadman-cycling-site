@@ -260,7 +260,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
       priority: 0.65,
     })),
     { url: `${BASE_URL}/apply`, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${BASE_URL}/coaching`, lastModified: new Date("2026-08-26"), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/coaching`, lastModified: new Date("2026-09-07"), changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/coaching/triathletes`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/coaching/ireland`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/coaching/uk`, changeFrequency: "monthly", priority: 0.7 },
@@ -317,7 +317,7 @@ function buildStaticSitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/races`, changeFrequency: "monthly", priority: 0.7 },
     ...RACES.map((race) => ({
       url: `${BASE_URL}/races/${race.slug}`,
-      lastModified: new Date("2026-03-01"),
+      lastModified: new Date(race.routeEdition ? "2026-09-07" : "2026-03-01"),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),

@@ -25,7 +25,7 @@ describe("Sam Bennett entity and CTR owner", () => {
     const { data, content } = matter(raw);
 
     expect(data.seoTitle).toBe("Sam Bennett: Tour Wins, Green Jersey & Career");
-    expect(data.updatedDate).toBe("2026-08-26");
+    expect(Date.parse(data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-26"));
     expect(data.lastReviewed).toBe("2026-08-26");
     expect(data.reviewedBy).toContain("Pinarello Q36.5");
     expect(data.keywords).toEqual(

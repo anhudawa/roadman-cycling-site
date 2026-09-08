@@ -157,9 +157,9 @@ export const TOOLS: ToolEntry[] = [
     slug: "training-load",
     title: "Training Load Calculator (CTL/ATL/TSB)",
     description:
-      "Calculate Chronic Training Load, Acute Training Load and Training Stress Balance from daily TSS values — the Performance Management Chart math with form interpretation and TSB zone guidance.",
+      "Model CTL, ATL and TSB from starting load and daily TSS, with explicit timing, formulas and a worked rest-day example.",
     pillar: "coaching",
-    inputs: ["dailyTss"],
+    inputs: ["startingCtl", "startingAtl", "dailyTss"],
   },
   {
     slug: "cadence",

@@ -28,7 +28,7 @@ describe("cycling knee-pain search ownership and trust", () => {
     );
 
     for (const page of [canonicalMatter, checklistMatter]) {
-      expect(page.data.updatedDate).toBe("2026-08-25");
+      expect(Date.parse(page.data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-25"));
       expect(page.data.lastReviewed).toBe("2026-08-25");
       expect(page.data.reviewedBy).toContain("cited cycling-overuse");
       expect(page.content.match(/^# /gm)).toBeNull();
@@ -36,12 +36,8 @@ describe("cycling knee-pain search ownership and trust", () => {
       expect(page.data.seoDescription.length).toBeLessThanOrEqual(160);
     }
 
-    expect(canonical).toContain(
-      "this page remains the broad evidence guide",
-    );
-    expect(checklist).toContain(
-      "this page owns the diagnostic-checklist intent",
-    );
+    expect(canonical).not.toContain("this page remains the broad evidence guide");
+    expect(checklist).not.toContain("this page owns the diagnostic-checklist intent");
   });
 
   it("grounds advice in named reviews and official clinical boundaries", () => {

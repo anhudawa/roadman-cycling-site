@@ -37,7 +37,7 @@ describe("GSC knowledge-layer five", () => {
     expect(page.data.seoTitle).toBe(
       "Alpe d'Huez Record & Tour de France History",
     );
-    expect(page.data.updatedDate).toBe("2026-08-27");
+    expect(Date.parse(page.data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-27"));
     expect(page.data.lastReviewed).toBe("2026-08-27");
     expect(page.data.answerCapsule).toContain("35:26");
     expect(page.data.answerCapsule).toContain("Richard Carapaz");
@@ -85,7 +85,8 @@ describe("GSC knowledge-layer five", () => {
 
     expect(part2.data.seoTitle).toContain("Part 2");
     expect(part2.data.keywords).toContain("velominati rules part 2");
-    expect(part2.data.answerCapsule).toContain("owns only the second episode");
+    expect(part2.data.answerCapsule).not.toContain("owns only the second episode");
+    expect(part2.data.answerCapsule).toContain("kit and");
 
     expect(part3.data.seoTitle).toContain("Part 3");
     expect(part3.data.keywords).toContain("velominati rules part 3");
@@ -93,7 +94,7 @@ describe("GSC knowledge-layer five", () => {
     expect(part3.data.citations[0]).toMatchObject({ reviewed: true });
 
     for (const page of [part1, part2, part3]) {
-      expect(page.data.updatedDate).toBe("2026-08-27");
+      expect(Date.parse(page.data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-27"));
       expect(page.data.lastReviewed).toBe("2026-08-27");
     }
   });

@@ -432,8 +432,8 @@ export function AnswerTemplate({
               publisher: source.publisher,
               note: source.note,
             }))}
-            lastReviewed={dateFmt(updated)}
-            reviewedBy={answer.reviewedBy || "Anthony Walsh"}
+            lastReviewed={answer.lastReviewed}
+            reviewedBy={answer.reviewedBy}
           />
 
           <AuthorBio />

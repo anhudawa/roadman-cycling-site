@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "reviewer": "Codex",
+  "decision": "hold",
+  "reviewedAt": null,
+  "contentDigest": "TODO: exact content digest",
+  "reviewHash": "TODO: SHA256 of release.json bytes",
+  "controlsHash": "TODO: controlDigest output",
+  "blockers": [
+    "TODO: resolve actual blockers before changing decision"
+  ],
+  "checks": {
+    "claims": {
+      "status": "pending",
+      "evidence": "TODO: actual observations and reproducible test results"
+    },
+    "editorial": {
+      "status": "pending",
+      "evidence": "TODO: actual observations and reproducible test results"
+    },
+    "offers": {
+      "status": "pending",
+      "evidence": "TODO: actual observations and reproducible test results"
+    },
+    "desktop": {
+      "status": "pending",
+      "evidence": "TODO: actual observations and reproducible test results",
+      "pages": []
+    },
+    "mobile": {
+      "status": "pending",
+      "evidence": "TODO: actual observations and reproducible test results",
+      "pages": []
+    },
+    "interactions": {
+      "status": "pending",
+      "evidence": "TODO: actual observations and reproducible test results"
+    },
+    "seo": {
+      "status": "pending",
+      "evidence": "TODO: actual observations and reproducible test results"
+    },
+    "technical": {
+      "status": "pending",
+      "evidence": "TODO: actual observations and reproducible test results"
+    }
+  }
+}

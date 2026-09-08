@@ -16,8 +16,10 @@ import fs from "fs";
 import path from "path";
 import { execFileSync } from "child_process";
 import matter from "gray-matter";
+import { findInternalSearchLanguage } from "../src/lib/seo/reader-copy";
+import { TOOL_LANDING_CONTENT } from "../src/lib/tools/landing-content";
 
-type ContentType = "blog" | "podcast";
+type ContentType = "blog" | "podcast" | "tool";
 type Severity = "error" | "warning";
 
 interface Issue {
@@ -33,7 +35,7 @@ const changedOnly = args.includes("--changed-only");
 const noWrite = args.includes("--no-write");
 const base = args.find((arg) => arg.startsWith("--base="))?.slice(7) ?? "origin/main";
 const root = process.cwd();
-const contentRoots: Record<ContentType, string> = {
+const contentRoots: Record<"blog" | "podcast", string> = {
   blog: path.join(root, "content/blog"),
   podcast: path.join(root, "content/podcast"),
 };
@@ -86,6 +88,11 @@ function auditFile(relativeFile: string, issues: Issue[]) {
     : "podcast";
   const raw = fs.readFileSync(path.join(root, relativeFile), "utf8");
   const { data, content } = matter(raw);
+
+  for (const phrase of findInternalSearchLanguage(raw)) {
+    push(issues, relativeFile, type, "readerCopy", "error",
+      `Internal search language in reader copy: "${phrase}". Replace with useful reading guidance or remove it.`);
+  }
 
   for (const field of ["title", "seoDescription", "publishDate"] as const) {
     if (!data[field] || String(data[field]).trim().length === 0) {
@@ -171,6 +178,15 @@ const files = changedOnly ? changedContentFiles() : allContentFiles();
 const issues: Issue[] = [];
 for (const file of files) auditFile(file, issues);
 
+// This small shared registry is always checked, including --changed-only runs.
+// Inspect rendered data, not source-code comments containing editorial guidance.
+for (const [slug, content] of Object.entries(TOOL_LANDING_CONTENT)) {
+  for (const phrase of findInternalSearchLanguage(JSON.stringify(content))) {
+    push(issues, `src/lib/tools/landing-content.ts#${slug}`, "tool", "readerCopy", "error",
+      `Internal search language in calculator copy: "${phrase}".`);
+  }
+}
+
 const errors = issues.filter((issue) => issue.severity === "error");
 const warnings = issues.filter((issue) => issue.severity === "warning");
 const warningsByField = Object.entries(
@@ -183,6 +199,7 @@ const warningsByField = Object.entries(
 console.log("Search Quality QA");
 console.log(`  Scope: ${changedOnly ? `changed content vs ${base}` : "full corpus"}`);
 console.log(`  Files audited: ${files.length}`);
+console.log(`  Tool entries audited: ${Object.keys(TOOL_LANDING_CONTENT).length}`);
 console.log(`  Errors: ${errors.length}`);
 console.log(`  Enrichment warnings: ${warnings.length}`);
 for (const [field, count] of warningsByField) console.log(`    ${field}: ${count}`);

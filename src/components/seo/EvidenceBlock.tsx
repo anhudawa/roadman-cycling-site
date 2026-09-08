@@ -54,7 +54,7 @@ export function EvidenceBlock({
   episodes,
   reviewedSources,
   lastReviewed,
-  reviewedBy = FOUNDER.name,
+  reviewedBy,
   authorHref = FOUNDER.url,
   authorName = FOUNDER.name,
 }: EvidenceBlockProps) {

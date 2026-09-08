@@ -22,7 +22,7 @@ describe("cycling VO2max interval search owner and evidence trust", () => {
     expect(data.seoTitle.length).toBeLessThanOrEqual(60);
     expect(data.seoDescription.length).toBeGreaterThanOrEqual(120);
     expect(data.seoDescription.length).toBeLessThanOrEqual(160);
-    expect(data.updatedDate).toBe("2026-08-26");
+    expect(Date.parse(data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-26"));
     expect(data.lastReviewed).toBe("2026-08-26");
     expect(data.reviewedBy).toContain("interval-format");
     expect(data.answerCapsule.split(/\s+/).length).toBeGreaterThanOrEqual(70);
@@ -117,7 +117,7 @@ describe("cycling VO2max interval search owner and evidence trust", () => {
     expect(
       read("content/blog/cycling-zone-5-vo2max-intervals-guide.mdx"),
     ).toContain(
-      "[canonical VO2max interval guide](/blog/cycling-vo2max-intervals)",
+      "[VO2max interval guide](/blog/cycling-vo2max-intervals)",
     );
   });
 

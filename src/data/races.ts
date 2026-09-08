@@ -22,7 +22,17 @@ export interface Race {
   difficulty: 1 | 2 | 3 | 4 | 5;
   description: string;
   key_climbs: Climb[];
-  typical_finish_times: FinishTimes;
+  typical_finish_times?: FinishTimes;
+  /** Verified route figures must retain their edition beside the numbers. */
+  routeEdition?: {
+    year: number;
+    routeName: string;
+    nextEventDate: string;
+    sourceUrl: string;
+    updateUrl: string;
+    trainingGuide: string;
+    routes: Array<{ name: string; distance_km: number; elevation_m: number; climbs: string }>;
+  };
   similar_races: string[];
   month?: string;
   website?: string;
@@ -304,28 +314,32 @@ export const RACES: Race[] = [
   {
     name: "Dragon Ride",
     slug: "dragon-ride",
-    distance_km: 311,
-    elevation_m: 4700,
-    location: "Brecon Beacons, Wales",
+    distance_km: 222,
+    elevation_m: 3583,
+    location: "South Wales",
     country: "Wales",
     difficulty: 5,
     description:
-      "The UK's toughest sportive follows the quiet lanes of the Brecon Beacons and Black Mountains in South Wales. The Gran Fondo route covers 311km with nearly 5,000m of climbing — matching Alpine events for pure brutality, but on Welsh mountain roads rather than iconic passes. Multiple distance options make it accessible at all levels, but the full Gran Fondo is reserved for riders who mean serious business.",
-    key_climbs: [
-      { name: "Bwlch y Groes", elevation_m: 544, length_km: 7.6, avg_gradient: 7.2 },
-      { name: "Gospel Pass", elevation_m: 542, length_km: 8.3, avg_gradient: 6.5 },
-      { name: "Rhigos Mountain", elevation_m: 421, length_km: 5.3, avg_gradient: 7.9 },
-    ],
-    typical_finish_times: {
-      beginner: "14–18h",
-      intermediate: "10–14h",
-      advanced: "8–10h",
-      elite: "7–8h",
+      "Dragon Ride offers four distances through South Wales. The 2026 Gran Fondo covered 222km with 3,583m of ascent; the longer Dragon Devil covered 298km with 4,504m. Choose the route before building your training plan: the extra distance changes the time, climbing and fuelling you need to prepare for.",
+    key_climbs: [],
+    routeEdition: {
+      year: 2026,
+      routeName: "Gran Fondo",
+      nextEventDate: "13 June 2027",
+      sourceUrl: "https://www.dragonride.co.uk/news-item/2026-reversed-routes-revealed/",
+      updateUrl: "https://www.dragonride.co.uk/news-item/how-to-enter-the-2025-dragon-ride/",
+      trainingGuide: "/blog/dragon-ride-training-guide",
+      routes: [
+        { name: "Cymru Classic", distance_km: 99, elevation_m: 1324, climbs: "The Bwlch, Rhigos, Cimla Hill" },
+        { name: "Medio Fondo", distance_km: 153, elevation_m: 2332, climbs: "Devil's Elbow, The Bwlch, Rhigos" },
+        { name: "Gran Fondo", distance_km: 222, elevation_m: 3583, climbs: "Black Mountain, Devil's Elbow, Rhigos" },
+        { name: "Dragon Devil", distance_km: 298, elevation_m: 4504, climbs: "Devil's Staircase, Rhigos, The Bwlch" },
+      ],
     },
     similar_races: ["fred-whitton", "mallorca-312", "wicklow-200"],
     month: "June",
-    tags: ["gran fondo", "wales", "uk", "mountains", "ultra endurance"],
-    predictor_slug: "dragon-ride-gran-fondo",
+    website: "https://www.dragonride.co.uk/",
+    tags: ["sportive", "wales", "uk", "climbing"],
   },
   {
     name: "RideLondon-Surrey 100",

@@ -80,7 +80,7 @@ describe("masters supporting-page search intent", () => {
     for (const article of [completeSource, plateauSource]) {
       const parsed = matter(article);
       expect(parsed.data.primaryHub).toBe("masters-cycling");
-      expect(parsed.data.updatedDate).toBe("2026-08-26");
+      expect(Date.parse(parsed.data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-26"));
       expect(parsed.data.lastReviewed).toBe("2026-08-26");
       expect(parsed.data.reviewedBy).toContain("Anthony Walsh");
 

@@ -8,7 +8,7 @@
  */
 export const LLMS_SHORT_RECENT_POST_LIMIT = 0;
 export const LLMS_SHORT_EPISODE_LIMIT = 26;
-export const LLMS_FULL_RECENT_POST_LIMIT = 288;
+export const LLMS_FULL_RECENT_POST_LIMIT = 260;
 export const LLMS_FULL_EPISODE_LIMIT = 80;
 
 export const LLMS_SHORT_MAX_BYTES = 151_000;

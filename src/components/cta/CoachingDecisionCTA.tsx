@@ -33,9 +33,8 @@ export function CoachingDecisionCTA({
         TAKE THE QUIZ: COACH OR APP?
       </h3>
       <p className="text-foreground-muted text-sm md:text-base mb-5 leading-relaxed">
-        Six honest questions. We&apos;ll tell you whether you&apos;re actually
-        ready for a coach, or whether a structured app like TrainerRoad gets
-        you 80% of the way for now.
+        Compare the planning, feedback and contact you want from a coach
+        with the support a training app provides.
       </p>
       <Link
         href={href}

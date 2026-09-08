@@ -11,9 +11,11 @@ Passing technical tests is not editorial approval. Every changed section needs
 a reader question, a useful answer and evidence. Cut empty examples and filler.
 Do not claim a numerical literary-quality score or an invented human review.
 
-Content changes must pass `npm run editorial:check` before production. Prepare
-the complete review and a rendered preview before requesting the editor's review.
-Never post an editorial approval comment as Anthony through a connected account.
-Never refresh the initial baseline, change the approver, bypass the build gate,
-or weaken its checks to publish a revision. Such control changes require explicit
-authorization. Preview permission is not production approval.
+Content changes must pass `npm run editorial:check` before production. Anthony
+explicitly delegated final QA to Codex on 8 September 2026. Do the review and
+rendered checks yourself; do not ask him to review the whole site or post a GitHub
+approval string. Never impersonate a human review. Record actual observations,
+failed checks and limitations. A blocked browser is not a visual pass.
+Keep the initial baseline frozen. Missing, incomplete, failed or stale QA blocks
+publication. Further changes to the baseline or weakening publication controls
+require explicit authorization. Preview permission is not production approval.

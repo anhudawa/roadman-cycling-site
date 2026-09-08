@@ -97,9 +97,7 @@ describe("FTP cycling search ownership and evidence trust", () => {
     );
     const age = read("content/blog/age-group-ftp-benchmarks-2026.mdx");
 
-    expect(experience).toContain(
-      "This page owns the narrower experience-level comparison",
-    );
+    expect(experience).not.toContain("This page owns the narrower experience-level comparison");
     expect(age).toContain("This is the age-qualified benchmark owner");
     expect(experience).toContain("](/topics/ftp-training)");
     expect(age).toContain("](/topics/ftp-training)");

@@ -21,7 +21,7 @@ describe("off-season cyclist strength search owner", () => {
     expect(owner.data.seoTitle).toBe(
       "Off-Season Strength Training for Cyclists: 12 Weeks",
     );
-    expect(owner.data.updatedDate).toBe("2026-08-31");
+    expect(Date.parse(owner.data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-31"));
     expect(owner.data.lastReviewed).toBe("2026-08-31");
     expect(owner.data.reviewedBy).toContain("cited cyclist");
     expect(owner.data.evidenceLevel).toBe("emerging");

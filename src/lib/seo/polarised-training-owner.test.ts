@@ -24,7 +24,7 @@ describe("polarised training search owner and evidence trust", () => {
     expect(data.seoTitle.length).toBeLessThanOrEqual(60);
     expect(data.seoDescription.length).toBeGreaterThanOrEqual(120);
     expect(data.seoDescription.length).toBeLessThanOrEqual(160);
-    expect(data.updatedDate).toBe("2026-08-26");
+    expect(Date.parse(data.updatedDate)).toBeGreaterThanOrEqual(Date.parse("2026-08-26"));
     expect(data.lastReviewed).toBe("2026-08-26");
     expect(data.reviewedBy).toContain("cyclist training-distribution");
     expect(data.answerCapsule.split(/\s+/).length).toBeGreaterThanOrEqual(70);

@@ -1036,7 +1036,7 @@ Focused clusters that interlink a definitive guide with its supporting articles.
 - [Cape Town Cycle Tour Training Guide](${tag(`${BASE_URL}/blog/cape-town-cycle-tour-training-guide`)}): 109km around the Cape Peninsula — wind strategy, heat, Chapman's Peak pacing.
 - [Ötztaler Radmarathon Training Guide](${tag(`${BASE_URL}/blog/otztaler-radmarathon-training-guide`)}): 238km, four Alpine passes, 5500m climbing — Kühtai, Brenner, Jaufenpass, Timmelsjoch.
 - [L'Eroica Training Guide](${tag(`${BASE_URL}/blog/leroica-training-guide`)}): 209km of Tuscan strade bianche on a pre-1987 vintage bike.
-- [Dragon Ride Training Guide](${tag(`${BASE_URL}/blog/dragon-ride-training-guide`)}): 311km Gran Fondo across the Brecon Beacons, 4700m climbing — UK's hardest sportive.
+- [Dragon Ride Training Guide](${tag(`${BASE_URL}/blog/dragon-ride-training-guide`)}): Route selection and preparation. The 2026 Gran Fondo was 222km with 3,583m ascent; 2027 routes remain unconfirmed.
 - [Tour of Flanders Sportive Training Guide](${tag(`${BASE_URL}/blog/tour-of-flanders-sportive-training-guide`)}): Ronde van Vlaanderen cyclosportive — cobbled bergs, Oude Kwaremont, Paterberg, power over pacing.
 - [Nove Colli Training Guide](${tag(`${BASE_URL}/blog/nove-colli-training-guide`)}): 200km, nine hills through Romagna — Barbotto, Ciola, the Cesenatico classic.
 - [Quebrantahuesos Training Guide](${tag(`${BASE_URL}/blog/quebrantahuesos-training-guide`)}): 200km across the Spanish Pyrenees — Col du Portalet, Col du Marie Blanque, heat and altitude.
@@ -1071,7 +1071,7 @@ Focused clusters that interlink a definitive guide with its supporting articles.
 ${selectedBlogPosts
   .map(
     (p) =>
-      `- [${p.title}](${tag(`${BASE_URL}/blog/${p.slug}`)}): ${p.seoDescription}`,
+      `- [${p.title}](${tag(`${BASE_URL}/blog/${p.slug}`)})`,
   )
   .join("\n")}
 

@@ -1042,7 +1042,9 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "X-Frame-Options",
-            value: "DENY",
+            // Same-origin preview frames permit actual mobile viewport QA.
+            // The public production site retains its existing frame protection.
+            value: process.env.VERCEL_ENV === "preview" ? "SAMEORIGIN" : "DENY",
           },
           {
             key: "X-Content-Type-Options",
