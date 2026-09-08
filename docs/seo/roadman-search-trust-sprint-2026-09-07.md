@@ -63,7 +63,7 @@ Google's [AI-feature guidance](https://developers.google.com/search/docs/appeara
 
 ## Publication
 
-This is a preview batch until the repository's editorial review and editor-comment requirements are satisfied. Automated verification is not editorial approval. Review evidence and any outstanding desktop/mobile checks belong in `editorial/release.json`; no reviewer is impersonated and no baseline is reset.
+Anthony delegated final QA to Codex on 8 September. Publication now requires the completed review and exact-content QA record in `editorial/release.json` and `editorial/qa.json`. Automated verification alone remains insufficient; no human reviewer is impersonated and the baseline stays frozen.
 
 ## Continued work: goal and implementation log
 
@@ -83,7 +83,7 @@ The USA guide had the qualification ladder backwards. [USA Cycling](https://usac
 
 British Cycling's [coaching page](https://www.britishcycling.org.uk/coaching), [directory](https://www.britishcycling.org.uk/coachingdirectory) and [recognised-qualification page](https://www.britishcycling.org.uk/membership/article/20120504-recognised-qualifications-0) were visible in search results, but direct fetches returned 403. The revision therefore does not assert a current UK level hierarchy or unverified scope; it directs readers to verify the full credential and awarding body. Removed the unsupported Level 4 claim and universal qualification/price quality cutoffs. Do not describe this as a complete audit of British Cycling's current syllabus.
 
-Both rewritten articles omit the prior named review credit and invented first-person Roadman View fields. The byline remains subject to Anthony's actual editorial approval; no new human review is claimed.
+Both rewritten articles omit the prior named review credit and invented first-person Roadman View fields. The existing byline is retained under the delegated editorial workflow; no new human review is claimed. Final browser review also found and removed the shared template's automatic reviewer and inferred review-date fallbacks.
 
 ### Reader copy and authoring checks
 
@@ -134,4 +134,16 @@ The wider SEO suite exposed fixed-date/text expectations, export budgets and old
 
 A clean main worktree reproduced 10 failures in seven unchanged legacy suites covering older app text, benchmark counts, podcast ownership, press links, shared schema assumptions and IndexNow lists. These are recorded as existing debt, not introduced regressions. Exact final test and preview results will be appended after verification.
 
-Next useful work: source-check the remaining CTL/ATL/TSB long-form articles before consolidation; inspect calculator acquisition paths; use current Search Console exports for actual click/conversion priorities; complete rendered editorial review before requesting publication approval. Mobile review is still pending because the available cloud browser exposes no viewport-resize capability. No approval comment has been posted on Anthony's behalf.
+The initial mobile limitation was resolved on 8 September with a preview-only route that renders the real pages inside a narrow same-origin iframe. Completed observations supersede the earlier incomplete-review status. No approval comment was posted on Anthony's behalf.
+
+### Final QA — 8 September
+
+Codex completed desktop review at 1363x936 CSS pixels and responsive Chrome review at 390x844, with the video also checked at 320x844. This is a browser-layout check, not physical iPhone or Safari testing. Page-by-page evidence is in `editorial/qa.json`, tied to the content, review and publication-control hashes.
+
+QA found and fixed three additional defects: inferred reviewer credits and dates, an empty single-rest-day training chart, and a narrow video player that expanded beyond its container. The final 320px player measures 270x200 inside a 272x202 wrapper. Both 0:30 and 12:30 share URLs pass their times to the player. The CTL 60/ATL 90 rest-day example renders 59/77/-30, with following-day TSB -18.6; the empty chart is absent. Coaching links reach the application entry and mobile navigation works. No real applications, subscriptions or payments were submitted.
+
+Verification: 55 gate rejection tests; 139 focused release tests and 17 additional discovery/offer tests; final TypeScript check; full content audit across 1,772 MDX files and 19 tools with zero hard errors; internal link audit with 18,380 references, 15,810 valid internal links, zero broken links and 2,570 external links skipped. The 1,866 enrichment warnings and ten reproduced failures in seven unchanged legacy suites remain explicitly recorded. The content preview at `febbba9634b14adbe74583c9accf2a7e5c0ff595` built successfully, with SEO QA Audit and Episode SEO Coverage passing.
+
+The publication gate now uses the user's delegated final QA authority while rejecting incomplete or stale records. The initial baseline is unchanged. The preview helper returns 404 outside preview deployments and does not appear in sitemaps or public navigation; production framing remains DENY.
+
+This review covers changed sections and representative shared templates. It does not certify the entire archive. Older Wicklow numerical assertions, repeated mobile article panels and an obstructive newsletter overlay are recorded for subsequent work in [the next search-opportunity queue](search-opportunities-2026-09-08.md), together with fresh Semrush evidence.
