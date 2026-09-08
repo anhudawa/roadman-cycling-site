@@ -48,7 +48,11 @@ export function controlDigest(root) {
 }
 export function validateQA(qa, digest, reviewHash, controlsHash) {
   if (qa.version !== 1 || qa.reviewer !== 'Codex' || qa.decision !== 'publish') throw new Error('Final agent QA sign-off is required.');
-  if (qa.contentDigest !== digest || qa.reviewHash !== reviewHash || qa.controlsHash !== controlsHash) throw new Error('QA is stale: content, review or publication controls changed.');
+  const stale = [];
+  if (qa.contentDigest !== digest) stale.push(`content expected ${qa.contentDigest}, actual ${digest}`);
+  if (qa.reviewHash !== reviewHash) stale.push(`review expected ${qa.reviewHash}, actual ${reviewHash}`);
+  if (qa.controlsHash !== controlsHash) stale.push(`controls expected ${qa.controlsHash}, actual ${controlsHash}`);
+  if (stale.length) throw new Error(`QA is stale: ${stale.join('; ')}.`);
   if (!Number.isFinite(Date.parse(qa.reviewedAt))) throw new Error('QA needs a real review date.');
   if (!Array.isArray(qa.blockers) || qa.blockers.length) throw new Error('Unresolved release blockers.');
   for (const name of REQUIRED_CHECKS) {
