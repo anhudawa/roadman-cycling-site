@@ -1,4 +1,7 @@
+"use client";
+
 import Script from "next/script";
+import { usePathname } from "next/navigation";
 import { GOOGLE_ADS_ID } from "@/lib/analytics/third-party-tags";
 
 export const GOOGLE_CONSENT_MODE_BOOTSTRAP = `
@@ -18,6 +21,10 @@ window.gtag('config', '${GOOGLE_ADS_ID}');
 `;
 
 export function GoogleConsentMode() {
+  const pathname = usePathname();
+  // Personal application links contain a bearer token in the URL fragment.
+  // This page must not load a tag that can collect the full location.
+  if (pathname === "/apply/next") return null;
   return (
     <>
       <script

@@ -1,5 +1,6 @@
 export const APPLICATION_STAGES = [
   "awaiting_response",
+  "questions_requested",
   "contacted_once",
   "contacted_twice",
   "final_outreach",
@@ -11,6 +12,7 @@ export type ApplicationStage = (typeof APPLICATION_STAGES)[number];
 
 export const STAGE_LABELS: Record<ApplicationStage, string> = {
   awaiting_response: "New",
+  questions_requested: "Sarah Review",
   contacted_once: "Contacted Once",
   contacted_twice: "Contacted Twice",
   final_outreach: "Final Outreach",
@@ -26,6 +28,7 @@ export interface StageColor {
 }
 
 export const STAGE_COLORS: Record<ApplicationStage, StageColor> = {
+  questions_requested: { badge: "bg-violet-500/10 text-violet-200 border-violet-400/30", ring: "ring-violet-400/40", dot: "bg-violet-300", cardAccent: "before:bg-violet-400" },
   awaiting_response: {
     badge: "bg-slate-500/10 text-slate-300 border-slate-500/20",
     ring: "ring-slate-400/40",

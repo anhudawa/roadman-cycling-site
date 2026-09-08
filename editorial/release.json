@@ -1,41 +1,48 @@
 {
   "version": 1,
-  "contentDigest": "f77f8cf73f94a62d97f1dfe311506eb73bc0d50811bb983573a52360bdc149c1",
-  "scope": "The Saturday Spin P0 release: honest newsletter audience claims on /newsletter and /partners; newsletter source/UTM attribution; durable /downloads/core-training-guide.pdf delivery. This revision replaces the failed Vercel external rewrite with a normal Next.js route while restoring vercel.json to its known-good pre-P0 configuration.",
+  "contentDigest": "22c510701217890324c5396cb8f00ce425b24dc6b77e18550a41d92f2172b3ff",
+  "scope": "The existing Saturday Spin P0 release plus the Not Done Yet application follow-up workflow across the apply form, personal next-step page, delivery APIs, admin follow-up views, analytics privacy controls and scheduled retries.",
   "sections": [
     {
-      "location": "/newsletter — audience proof and signup forms",
-      "readerQuestion": "How many riders receive The Saturday Spin, and can a tagged YouTube or podcast visitor subscribe normally?",
-      "usefulAnswer": "The page uses the supplied active-list figure rounded to 23,000 weekly readers. Newsletter forms preserve source plus optional UTM source, medium and campaign values when posting to the existing newsletter endpoint.",
-      "evidence": "Anthony supplied an active Beehiiv count of about 23,215 for 8 September 2026. The existing Beehiiv integration accepts utm_source, utm_medium and utm_campaign. Rendered QA on the P0 page showed 23,000 and no 30,000+/65% claims at desktop and mobile widths.",
-      "editorialDecision": "Keep the existing weekly-letter promise and layout. Correct only the audience proof and attribution path; do not add a new lead magnet, open-rate claim, coaching CTA or paid-growth language."
+      "location": "/newsletter, /partners and /downloads/core-training-guide.pdf",
+      "readerQuestion": "Can readers rely on the corrected newsletter reach and stable Core Training Guide delivery introduced on main?",
+      "usefulAnswer": "The inherited main revision retains the corrected 23,000-reader proof, attribution handling and verified PDF route.",
+      "evidence": "Main already carried exact-revision publication evidence for these surfaces before the Not Done Yet branch was reconciled.",
+      "editorialDecision": "Preserve the reviewed main-branch work without reopening or weakening its claims."
     },
     {
-      "location": "/partners — newsletter reach claims",
-      "readerQuestion": "What newsletter audience figure can a prospective partner rely on?",
-      "usefulAnswer": "The media kit uses 23K/23,000 for newsletter reach and publishes no open-rate percentage.",
-      "evidence": "Anthony supplied the active Beehiiv list figure of about 23,215. Prior rendered P0 QA confirmed 23K/23,000 present and 30K+/30,000+/65% absent at 1440x1000 and 390x844.",
-      "editorialDecision": "Correct diligence-sensitive numbers only. Do not reopen sponsor sales, add CPMs, packages or a replacement engagement claim."
+      "location": "/apply form, confirmation and after-application FAQ",
+      "readerQuestion": "What happens when I submit my coaching application?",
+      "usefulAnswer": "With the feature enabled, a saved Not Done Yet application immediately offers a join path and a way to ask Sarah; Inner Circle retains its existing process.",
+      "evidence": "Anthony requested the immediate two-option flow on 8 September 2026. The server flag gates both the workflow and visible copy.",
+      "editorialDecision": "Replace the contradictory 48-hour promise only while the new flow is enabled and preserve existing copy otherwise."
     },
     {
-      "location": "/api/newsletter and EmailCapture — acquisition attribution",
-      "readerQuestion": "Will newsletter visitors arriving from tagged YouTube or podcast links retain acquisition information?",
-      "usefulAnswer": "The newsletter form reads source and optional utm_source, utm_medium and utm_campaign from the page URL, submits them to /api/newsletter, and the existing Beehiiv helper maps them to Beehiiv subscription UTM fields.",
-      "evidence": "TypeScript and a full Next.js production-mode build pass on this exact revision. The implementation is limited to newsletter forms, preserving existing asset-delivery funnel sources.",
-      "editorialDecision": "Use the existing subscribe pipeline and segmentation helper rather than creating a parallel list or new Beehiiv automation."
+      "location": "/apply/next join and questions sections",
+      "readerQuestion": "How do I join, or ask about the coaching before paying?",
+      "usefulAnswer": "Applicants can start a seven-day free trial before the stated monthly plan, or submit one short question linked to their application for Sarah.",
+      "evidence": "The live Skool plan was checked at seven days free followed by $195 USD per month plus applicable taxes, and both supplied destinations were verified.",
+      "editorialDecision": "Keep the two actions explicit and avoid invented urgency, member counts, medical assessment or checkout claims."
     },
     {
-      "location": "/downloads/core-training-guide.pdf — durable reward delivery",
-      "readerQuestion": "Can a rider use a stable Roadman URL for the Core Training Guide instead of an expiring signed Beehiiv file URL?",
-      "usefulAnswer": "A normal Next.js route now serves the guide from the canonical Roadman path, follows the Drive download upstream, verifies the returned body begins with %PDF-, then returns application/pdf with a stable filename and cache headers.",
-      "evidence": "The source Drive file Roadman New Core.pdf is application/pdf and 6,592,307 bytes. The exact fallback revision completed a full Next.js production-mode build, and the route table includes /downloads/core-training-guide.pdf as a dynamic route.",
-      "editorialDecision": "Remove the external Vercel rewrite that failed production deployment and restore vercel.json to its known-good pre-P0 configuration. Keep the reward asset separate from newsletter signup."
+      "location": "Application API, database outbox, Beehiiv adapter, cron and Anthony notification sender",
+      "readerQuestion": "Will applications and questions survive a delivery problem?",
+      "usefulAnswer": "The application and email job commit together; questions save before notification; known failures retry within bounds while uncertain enrollments stop for inspection.",
+      "evidence": "Ninety-nine focused tests cover deduplication, opt-outs, marker ordering, saved questions, Anthony routing and retry boundaries; the production table, draft transactions and live provider configuration were also verified.",
+      "editorialDecision": "Use precise delivery states, preserve opt-outs and payment state, and never equate checkout interest with payment."
+    },
+    {
+      "location": "/admin/applications, /admin/applications/followups and shared analytics bootstrap",
+      "readerQuestion": "Can staff see who needs a reply without exposing a personal action token?",
+      "usefulAnswer": "Authenticated staff can see the dedicated Sarah Review column, delivery and question status, while analytics and referrer leakage are suppressed on the personal next-step page.",
+      "evidence": "The implementation uses existing admin authentication, assigns question records to Sarah, alerts Anthony, and keeps personal tokens in URL fragments and POST bodies rather than query strings.",
+      "editorialDecision": "Expose useful operational states only to staff and scope analytics suppression to the personal action surface."
     }
   ],
-  "claimsAndSources": "Audience numbers come only from Anthony's supplied Beehiiv active-list snapshot (~23,215, rounded to 23,000). Core Guide file facts come from the connected Google Drive record: application/pdf, 6,592,307 bytes. No open rate, sponsor performance, science, guest claim, member count or wider financial figure is introduced. Production HTTP verification must occur immediately after deployment because a public URL cannot be verified before the release exists.",
-  "examplesAndReasoning": "For https://roadmancycling.com/newsletter?source=youtube&utm_source=youtube&utm_medium=video&utm_campaign=seiler, EmailCapture sends source=youtube and the three UTM values to the existing newsletter endpoint; the Beehiiv helper maps them to Beehiiv UTM fields. The Core Guide route rejects an upstream non-PDF body rather than returning HTML under an application/pdf header.",
-  "voiceAndCuts": "Kept the existing Saturday Spin voice and media-kit structure. Removed inflated 30K/30,000+ and 65%+ proof without replacing it with a more flattering metric. The fallback change adds no marketing copy.",
-  "desktopReview": "Previously rendered exact P0 page bytes at 1440x1000 for /newsletter and /partners: 23K/23,000 present, 30K/30,000+ absent, 65% absent, no horizontal overflow. The fallback revision does not alter those page components or styles; its new surface is a non-HTML download route.",
-  "mobileReview": "Previously rendered exact P0 page bytes at 390x844 for /newsletter and /partners: corrected audience proof remained readable, inflated claims were absent and document width matched the viewport. The fallback revision does not change mobile UI.",
-  "productAndOfferAccuracy": "Beehiiv posts, automations, referral configuration, reward email copy, paid ads, Boosts, Skool, Not Done Yet member counts, sponsor packages and wider Roadman financials remain untouched. The Core Guide remains a three-referral reward asset, not a signup incentive."
+  "claimsAndSources": "The workflow and inbox routing come from Anthony's 8 September 2026 instructions. The seven-day trial and $195 USD monthly price were checked on the live Skool plan; Sarah's direct address and ownership are confirmed in repository configuration. Existing main-branch audience and PDF claims remain unchanged.",
+  "examplesAndReasoning": "The suitability screen is a deterministic goal, time and injury/comeback routing rule, not a medical or human assessment. No training prescription or member result is invented.",
+  "voiceAndCuts": "The copy uses two direct next steps, removes the enabled-flow 48-hour holding message and avoids generic urgency or unsupported promises.",
+  "desktopReview": "Rendered review completed at 1540 CSS pixels for the application and next-step surfaces, plus the authenticated admin follow-up and pipeline views; copy, hierarchy, links and queue labels were legible without horizontal overflow.",
+  "mobileReview": "Rendered review completed at 390 by 844 CSS pixels for the application, personal next-step and authenticated admin follow-up surfaces; controls remained usable, content wrapped correctly and no horizontal overflow was present.",
+  "productAndOfferAccuracy": "The live Skool offer showed a seven-day free trial followed by $195 USD per month plus applicable taxes. The dedicated Beehiiv automation is live with personalised destinations and the publication reply-to remains Anthony; website questions persist in Sarah Review and send Anthony an operational alert."
 }

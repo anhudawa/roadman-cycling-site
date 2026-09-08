@@ -6,11 +6,14 @@ import { notifyCohortApplication, sendApplicantConfirmation } from "@/lib/notifi
 import { upsertContact, addActivity } from "@/lib/crm/contacts";
 import { getCohortState } from "@/lib/cohort";
 import { rateLimitOr429 } from "@/lib/rate-limit/ip-rate-limit";
+import { ndyApplicationFlowEnabled } from "@/lib/ndy/application-offer";
 import {
   clampString,
   LIMITS,
   normaliseEmail,
 } from "@/lib/validation";
+
+export const maxDuration = 60;
 
 const ATTRIBUTION_FIELDS = new Set([
   "landingPath",
@@ -229,6 +232,13 @@ export async function POST(request: Request) {
       submissionKey,
       attribution,
     };
+
+    if (!isInnerCircle && ndyApplicationFlowEnabled()) {
+      const { submitNdyApplication } = await import("@/lib/ndy/application-workflow");
+      return NextResponse.json(await submitNdyApplication(applicationValues), {
+        headers: { "Cache-Control": "no-store" },
+      });
+    }
 
     // The unique index makes the first application the only request allowed
     // to trigger CRM and email side effects. A repeat safely refreshes the

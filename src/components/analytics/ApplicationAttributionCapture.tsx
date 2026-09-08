@@ -11,6 +11,7 @@ export function ApplicationAttributionCapture() {
   const pathname = usePathname();
 
   useEffect(() => {
+    if (pathname === "/apply/next") return;
     captureApplicationAttribution();
     restoreAttributionToApplicationUrl();
   }, [pathname]);

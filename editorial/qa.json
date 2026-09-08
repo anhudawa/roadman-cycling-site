@@ -2,71 +2,83 @@
   "version": 1,
   "reviewer": "Codex",
   "decision": "publish",
-  "reviewedAt": "2026-09-08T14:31:30Z",
-  "contentDigest": "f77f8cf73f94a62d97f1dfe311506eb73bc0d50811bb983573a52360bdc149c1",
-  "reviewHash": "47def3a6f16df316f071a7cdfae7f9cc4e55f19fe311f2fbab94d4f0cd6bd92f",
-  "controlsHash": "c4fe4a1cb3d6f94dea33a8d22c174aa923998f35a871497d02bbb1b61fa89b87",
+  "reviewedAt": "2026-09-08T22:42:48Z",
+  "contentDigest": "22c510701217890324c5396cb8f00ce425b24dc6b77e18550a41d92f2172b3ff",
+  "reviewHash": "f93b261c1261edabfefae3845e5a05d8bc8c8d6c2a62c59cef33a89c5d393deb",
+  "controlsHash": "484c375122cad722f4283273b9393f0c0a2b5b028695c61b325a15c4814c2041",
   "blockers": [],
   "checks": {
     "claims": {
       "status": "pass",
-      "evidence": "Newsletter audience proof uses Anthony's supplied active Beehiiv figure of about 23,215, rounded to 23,000. The connected Drive source is application/pdf and 6,592,307 bytes. No public open-rate replacement, sponsor-performance, science, guest, member-count or wider financial claim is introduced."
+      "evidence": "Anthony authorised operational alert delivery to anthony@roadmancycling.com and Sarah's daily admin review. The live Skool plan showed a seven-day free trial followed by $195 USD per month plus applicable taxes."
     },
     "editorial": {
       "status": "pass",
-      "evidence": "The release remains a narrow P0 correction. Newsletter and partners copy preserve the existing structure and weekly-letter positioning while removing inflated 30K/30,000+ and 65% proof. The fallback route adds no promotional copy."
+      "evidence": "The enabled application and email copy clearly distinguishes automatic approval from Sarah review, uses direct next-step language, and does not claim that inbox replies are written into the admin timeline."
     },
     "offers": {
       "status": "pass",
-      "evidence": "Beehiiv posts, automations, referral configuration, coaching prices, sponsor packages, Skool and paid acquisition are unchanged. The Core Guide remains a referral reward asset and is not offered as the newsletter signup incentive."
+      "evidence": "The Skool programme and plans destinations resolved to Roadman Cycling's Not Done Yet offer. The rendered website and live Beehiiv email state the seven-day trial and $195 USD monthly price consistently."
     },
     "desktop": {
       "status": "pass",
-      "evidence": "The exact P0 page bytes were rendered in Chromium at 1440x1000 for /newsletter and /partners. The checks found 23K/23,000 present, 30K/30,000+ absent, 65% absent and no horizontal overflow. The fallback changes only the download route and restores deployment config; it does not alter those page components or styles.",
+      "evidence": "The exact source revision was rendered at 1540 CSS pixels. Application, next-step and authenticated admin queue content was readable, correctly grouped and free of horizontal overflow.",
       "pages": [
         {
-          "url": "http://127.0.0.1:3000/newsletter?source=youtube&utm_source=youtube&utm_medium=video&utm_campaign=p0-qa",
-          "width": 1440,
-          "height": 1000,
-          "observations": "The Saturday Spin hero, signup form, corrected 23,000-reader proof, content sections and bottom signup banner render cleanly with no 30K/65% copy or horizontal overflow."
+          "url": "http://127.0.0.1:3001/apply",
+          "width": 1540,
+          "height": 900,
+          "observations": "The application hero, seven-day-trial offer, four-step form and enabled next-step promise rendered with clear hierarchy and usable controls."
         },
         {
-          "url": "http://127.0.0.1:3000/partners",
-          "width": 1440,
-          "height": 1000,
-          "observations": "The media-kit hero and newsletter reach cards render cleanly with 23K/23,000 reach and no open-rate percentage; the existing hierarchy and layout remain intact."
+          "url": "http://127.0.0.1:3001/apply/next",
+          "width": 1540,
+          "height": 900,
+          "observations": "The trial, programme and Email Sarah actions were distinct; the supporting link stayed on one line and the queue-versus-alert explanation matched the backend routing."
+        },
+        {
+          "url": "http://127.0.0.1:3001/admin/applications",
+          "width": 1540,
+          "height": 900,
+          "observations": "The authenticated application board displayed a separate Sarah Review column and retained its link to detailed workflow status."
         }
       ]
     },
     "mobile": {
       "status": "pass",
-      "evidence": "The exact P0 page bytes were rendered in Chromium at 390x844 for /newsletter and /partners. Corrected audience proof remained readable, 30K/30,000+/65% claims were absent and document width matched the viewport. The fallback does not change mobile UI.",
+      "evidence": "The application and personal next-step surfaces were reviewed at 390 by 844 CSS pixels; the authenticated follow-up view was also reviewed at the same width. Content wrapped correctly and controls remained usable.",
       "pages": [
         {
-          "url": "http://127.0.0.1:3000/newsletter?source=podcast",
+          "url": "http://127.0.0.1:3001/apply",
           "width": 390,
           "height": 844,
-          "observations": "The hero, form, consent copy, 23,000-reader proof, content cards and bottom signup banner remain readable without clipping or overflow."
+          "observations": "The hero, price, free-trial statement and application call to action fit the viewport without horizontal overflow."
         },
         {
-          "url": "http://127.0.0.1:3000/partners",
+          "url": "http://127.0.0.1:3001/apply/next",
           "width": 390,
           "height": 844,
-          "observations": "The media-kit reach cards remain readable and the corrected newsletter figure fits the existing mobile layout without horizontal overflow."
+          "observations": "Trial and Sarah-question sections stacked cleanly; button labels, price copy and direct email fallback remained legible."
+        },
+        {
+          "url": "http://127.0.0.1:3001/admin/applications/followups",
+          "width": 390,
+          "height": 844,
+          "observations": "The authenticated operational view fit the mobile viewport and exposed applicant, question, delivery, Anthony-alert and retry states without clipping."
         }
       ]
     },
     "interactions": {
       "status": "pass",
-      "evidence": "Newsletter EmailCapture reads source and optional utm_source, utm_medium and utm_campaign only when query attribution is enabled, submits them through the existing /api/newsletter path, and the existing Beehiiv helper maps those values to Beehiiv UTM subscription fields. Existing fixed-source asset funnels remain unchanged. No real subscriber was created during QA."
+      "evidence": "A rolled-back production-database transaction exercised application creation, outbox deduplication, question persistence and Sarah Review status. Controlled Beehiiv and Resend sends reached Anthony, while GET route checks returned no applicant data and caused no writes."
     },
     "seo": {
       "status": "pass",
-      "evidence": "The newsletter metadata/social audience statement was corrected to 23,000 with no new search claim. The canonical download path is same-domain and stable. No new doorway page, keyword variant or sponsor marketing surface was added."
+      "evidence": "The offline audit scanned 18,384 internal references: 15,814 resolved successfully, zero were broken or indeterminate, and 2,570 external references were intentionally skipped. Personal action tokens remain in URL fragments and analytics are suppressed on that route."
     },
     "technical": {
       "status": "pass",
-      "evidence": "The exact fallback content digest completed a full Next.js production-mode build: compilation and TypeScript succeeded, all 4,463 static pages generated, and the route table contains dynamic /downloads/core-training-guide.pdf. The route follows the Drive download, rejects any upstream body that does not begin %PDF-, and on success returns application/pdf with Content-Length, stable filename, cache headers and nosniff. vercel.json is restored to the known-good pre-P0 configuration. Final public HTTP verification is the required post-deploy smoke check, not a pre-deploy assertion."
+      "evidence": "Ninety-nine focused workflow tests, TypeScript, targeted ESLint, the 55-test publication gate, Coral validation and whitespace checks pass. The selective Next.js production build compiled and typechecked the changed application, admin, API and cron surfaces successfully."
     }
   }
 }

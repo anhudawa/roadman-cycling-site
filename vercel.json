@@ -56,6 +56,10 @@
     {
       "path": "/api/cron/brand-citations",
       "schedule": "0 9 * * 1"
+    },
+    {
+      "path": "/api/cron/ndy-followups",
+      "schedule": "*/10 * * * *"
     }
   ],
   "buildCommand": "npm run build"

@@ -1,0 +1,20 @@
+Hi {{ndy_first_name | there}},
+
+{{ndy_application_message | Thanks for applying to Not Done Yet.}}
+
+You can get started today with a 7-day free trial. After that, coaching is $195 USD per month, plus applicable taxes.
+
+Start my 7-day free trial:
+{{ndy_join_url}}
+
+See what’s included:
+https://www.skool.com/roadmancycling/about
+
+Have a question about the programme before you join? Sarah can help.
+
+Email Sarah:
+{{ndy_questions_url}}
+
+Anthony
+
+You received this because you applied for Not Done Yet coaching.

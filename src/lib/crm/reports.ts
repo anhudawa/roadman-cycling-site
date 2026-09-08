@@ -149,6 +149,7 @@ export async function getOwnerBreakdown(): Promise<OwnerBreakdownRow[]> {
         total: 0,
         perStage: {
           awaiting_response: 0,
+    questions_requested: 0,
           contacted_once: 0,
           contacted_twice: 0,
           final_outreach: 0,

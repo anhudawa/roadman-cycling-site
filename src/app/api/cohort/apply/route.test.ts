@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const mocks = vi.hoisted(() => ({
   rateLimitOr429: vi.fn(),
@@ -14,7 +14,10 @@ const mocks = vi.hoisted(() => ({
   sendApplicantConfirmation: vi.fn(),
   upsertContact: vi.fn(),
   addActivity: vi.fn(),
+  submitNdyApplication: vi.fn(),
 }));
+
+vi.mock("@/lib/ndy/application-workflow", () => ({ submitNdyApplication: mocks.submitNdyApplication }));
 
 vi.mock("@/lib/rate-limit/ip-rate-limit", () => ({
   rateLimitOr429: mocks.rateLimitOr429,
@@ -82,7 +85,9 @@ function request(body: unknown, raw = false): Request {
 }
 
 describe("POST /api/cohort/apply", () => {
+  afterEach(() => vi.unstubAllEnvs());
   beforeEach(() => {
+    vi.stubEnv("NDY_APPLICATION_FLOW_ENABLED", "false");
     for (const mock of Object.values(mocks)) mock.mockReset();
 
     mocks.rateLimitOr429.mockResolvedValue(null);
@@ -116,6 +121,26 @@ describe("POST /api/cohort/apply", () => {
 
     expect(response.status).toBe(429);
     expect(mocks.insert).not.toHaveBeenCalled();
+  });
+
+  it("uses the durable Beehiiv workflow when enabled, without a second Resend confirmation", async () => {
+    vi.stubEnv("NDY_APPLICATION_FLOW_ENABLED", "true");
+    mocks.submitNdyApplication.mockResolvedValue({ success: true, nextUrl: "https://www.roadmancycling.com/apply/next#join/test" });
+    const { POST } = await import("./route");
+    const response = await POST(request(VALID_BODY));
+    expect(response.status).toBe(200);
+    expect(mocks.submitNdyApplication).toHaveBeenCalledWith(expect.objectContaining({ email: "sam@example.com", cohort: "ndy", submissionKey: VALID_BODY.submissionId }));
+    expect(mocks.sendApplicantConfirmation).not.toHaveBeenCalled();
+    expect(mocks.insert).not.toHaveBeenCalled();
+  });
+
+  it("keeps Inner Circle on its existing confirmation flow even when enabled", async () => {
+    vi.stubEnv("NDY_APPLICATION_FLOW_ENABLED", "true");
+    const { POST } = await import("./route");
+    const response = await POST(request({ ...VALID_BODY, cohort: "inner-circle" }));
+    expect(response.status).toBe(200);
+    expect(mocks.submitNdyApplication).not.toHaveBeenCalled();
+    expect(mocks.sendApplicantConfirmation).toHaveBeenCalledWith(expect.objectContaining({ isInnerCircle: true }));
   });
 
   it("returns 400 for malformed or non-object JSON", async () => {

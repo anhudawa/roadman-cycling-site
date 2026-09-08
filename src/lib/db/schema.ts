@@ -224,6 +224,37 @@ export const cohortApplications = pgTable(
   ]
 );
 
+// Durable NDY email outbox and applicant decisions. Never expose accessToken in
+// admin list responses; it authorises only this application's public actions.
+export const ndyApplicationFollowups = pgTable("ndy_application_followups", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  applicationId: integer("application_id").notNull().references(() => cohortApplications.id, { onDelete: "cascade" }),
+  submissionKey: text("submission_key").notNull(),
+  accessToken: text("access_token").notNull(),
+  fit: text("fit").notNull(),
+  emailStatus: text("email_status").notNull().default("pending"),
+  emailAttempts: integer("email_attempts").notNull().default(0),
+  emailAttemptedAt: timestamp("email_attempted_at", { withTimezone: true }),
+  emailError: text("email_error"),
+  subscriberId: text("subscriber_id"),
+  journeyId: text("journey_id"),
+  enrolledAt: timestamp("enrolled_at", { withTimezone: true }),
+  checkoutStartedAt: timestamp("checkout_started_at", { withTimezone: true }),
+  question: text("question"),
+  questionReceivedAt: timestamp("question_received_at", { withTimezone: true }),
+  sarahStatus: text("sarah_status").notNull().default("none"),
+  sarahAttempts: integer("sarah_attempts").notNull().default(0),
+  sarahAttemptedAt: timestamp("sarah_attempted_at", { withTimezone: true }),
+  sarahError: text("sarah_error"),
+  sarahNotifiedAt: timestamp("sarah_notified_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+}, (t) => [
+  uniqueIndex("ndy_followups_application_submission_idx").on(t.applicationId, t.submissionKey),
+  uniqueIndex("ndy_followups_access_token_idx").on(t.accessToken),
+  index("ndy_followups_delivery_idx").on(t.emailStatus, t.createdAt),
+  index("ndy_followups_sarah_idx").on(t.sarahStatus, t.questionReceivedAt),
+]);
+
 // --- Marketing Spend ---
 export const marketingSpend = pgTable(
   "marketing_spend",

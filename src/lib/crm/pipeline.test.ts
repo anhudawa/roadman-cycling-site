@@ -9,6 +9,7 @@ describe("application pipeline", () => {
   it("uses the outreach workflow without an accepted stage", () => {
     expect(APPLICATION_STAGES).toEqual([
       "awaiting_response",
+      "questions_requested",
       "contacted_once",
       "contacted_twice",
       "final_outreach",
@@ -16,6 +17,7 @@ describe("application pipeline", () => {
       "rejected",
     ]);
     expect(APPLICATION_STAGES).not.toContain("accepted");
+    expect(STAGE_LABELS.questions_requested).toBe("Sarah Review");
     expect(STAGE_LABELS.contacted_once).toBe("Contacted Once");
     expect(STAGE_LABELS.contacted_twice).toBe("Contacted Twice");
     expect(STAGE_LABELS.final_outreach).toBe("Final Outreach");
