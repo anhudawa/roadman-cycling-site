@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentDigest": "22c510701217890324c5396cb8f00ce425b24dc6b77e18550a41d92f2172b3ff",
+  "contentDigest": "85eb58fbcced13739b24568056b338e31c1855dd8a60a02aed115612ff00f2b3",
   "scope": "The existing Saturday Spin P0 release plus the Not Done Yet application follow-up workflow across the apply form, personal next-step page, delivery APIs, admin follow-up views, analytics privacy controls and scheduled retries.",
   "sections": [
     {
@@ -28,7 +28,7 @@
       "location": "Application API, database outbox, Beehiiv adapter, cron and Anthony notification sender",
       "readerQuestion": "Will applications and questions survive a delivery problem?",
       "usefulAnswer": "The application and email job commit together; questions save before notification; known failures retry within bounds while uncertain enrollments stop for inspection.",
-      "evidence": "Ninety-nine focused tests cover deduplication, opt-outs, marker ordering, saved questions, Anthony routing and retry boundaries; the production table, draft transactions and live provider configuration were also verified.",
+      "evidence": "One hundred and sixteen focused tests cover deduplication, opt-outs, marker ordering, accepted-journey confirmation, saved questions, Anthony routing and retry boundaries; the production table, draft transactions and live provider configuration were also verified.",
       "editorialDecision": "Use precise delivery states, preserve opt-outs and payment state, and never equate checkout interest with payment."
     },
     {
