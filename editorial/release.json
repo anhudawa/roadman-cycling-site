@@ -1,48 +1,48 @@
 {
   "version": 1,
-  "contentDigest": "78742db2cc2e73fa9336b0f29d6a61b9a0943e493468b3b4fd3c105fa43bcb93",
-  "scope": "Not Done Yet application follow-up: apply form and FAQ, immediate Beehiiv outbox, personal next-step screen, Sarah inquiry logging, application board and private delivery view. Shared analytics are disabled only on the personal action page.",
+  "contentDigest": "TODO: output after generators and final changes",
+  "scope": "The existing Saturday Spin P0 release plus the Not Done Yet application follow-up workflow across the apply form, personal next-step page, delivery APIs, admin follow-up views, analytics privacy controls and scheduled retries.",
   "sections": [
+    {
+      "location": "/newsletter, /partners and /downloads/core-training-guide.pdf",
+      "readerQuestion": "Can readers rely on the corrected newsletter reach and stable Core Training Guide delivery introduced on main?",
+      "usefulAnswer": "The inherited main revision retains the corrected 23,000-reader proof, attribution handling and verified PDF route.",
+      "evidence": "Main already carried exact-revision publication evidence for these surfaces before the Not Done Yet branch was reconciled.",
+      "editorialDecision": "Preserve the reviewed main-branch work without reopening or weakening its claims."
+    },
     {
       "location": "/apply form, confirmation and after-application FAQ",
       "readerQuestion": "What happens when I submit my coaching application?",
-      "usefulAnswer": "With the feature enabled, the saved application offers immediate next steps, with a Beehiiv email and a choice to join or ask Sarah. Existing manual copy remains while disabled.",
-      "evidence": "Anthony requested an immediate two-option flow on 8 September 2026. The server flag gates both the transactional implementation and visible copy. The API keeps Inner Circle on the existing path.",
-      "editorialDecision": "Replace the contradictory 48-hour promise only when the new flow is enabled. Preserve existing offer and trial copy elsewhere."
+      "usefulAnswer": "With the feature enabled, a saved Not Done Yet application immediately offers a join path and a way to ask Sarah; Inner Circle retains its existing process.",
+      "evidence": "Anthony requested the immediate two-option flow on 8 September 2026. The server flag gates both the workflow and visible copy.",
+      "editorialDecision": "Replace the contradictory 48-hour promise only while the new flow is enabled and preserve existing copy otherwise."
     },
     {
       "location": "/apply/next join and questions sections",
       "readerQuestion": "How do I join, or ask about the coaching before paying?",
-      "usefulAnswer": "Open the Skool about page or the monthly coaching selection; submit one short question linked to the existing application and Sarah.",
-      "evidence": "User specified $195 USD/month. Skool public search confirms the programme price. About destination verified from existing site and Skool references. Actual checkout selection and personalised email links still require live QA.",
-      "editorialDecision": "Keep two clear actions and visible pricing. Avoid countdowns, invented scarcity, member counts or unsupported benefits. Fit cases needing discussion receive honest wording."
+      "usefulAnswer": "Applicants can review the programme, choose the stated monthly plan or submit one short question linked to their application for Sarah.",
+      "evidence": "Anthony specified $195 USD per month and supplied the Skool programme and plan-selection destinations; live offer and link checks will be recorded before publication.",
+      "editorialDecision": "Keep the two actions explicit and avoid invented urgency, member counts, medical assessment or checkout claims."
     },
     {
-      "location": "Application API, database outbox, Beehiiv adapter, cron and notification sender",
+      "location": "Application API, database outbox, Beehiiv adapter, cron and Sarah notification sender",
       "readerQuestion": "Will applications and questions survive a delivery problem?",
-      "usefulAnswer": "The job commits with the application. Saved questions commit before notification. Known failures have bounded retries, while uncertain Beehiiv enrollment stops for inspection.",
-      "evidence": "Focused tests cover enrollment request failures, opt-outs, durable marker ordering, duplicate action handling, stage preservation and sender boundaries. Database calls are mocked; real transaction concurrency has not been tested here.",
-      "editorialDecision": "Use precise statuses such as Beehiiv accepted, not delivered. Keep checkout intent separate from confirmed payment. No changes to Skool memberships or payments."
+      "usefulAnswer": "The application and email job commit together; questions save before notification; known failures retry within bounds while uncertain enrollments stop for inspection.",
+      "evidence": "Focused source and integration checks cover deduplication, opt-outs, marker ordering, saved questions and retry boundaries; final live evidence will be added after setup.",
+      "editorialDecision": "Use precise delivery states, preserve opt-outs and payment state, and never equate checkout interest with payment."
     },
     {
-      "location": "/admin/applications, follow-up dashboard and pipeline reports",
-      "readerQuestion": "Who needs a reply and did the automation run?",
-      "usefulAnswer": "Questions for Sarah stage, saved question text, email enrollment status, Sarah notification state and safe failed-delivery retries are visible behind existing admin authentication.",
-      "evidence": "Existing Sarah address and owner slug verified from the repository. The new board stage is included in reporting totals and stage normalization. Source checks and TypeScript cover integration; rendered admin QA remains pending.",
-      "editorialDecision": "Use neutral existing admin colors and expose useful outcomes without claiming provider inbox delivery."
-    },
-    {
-      "location": "Shared analytics bootstrap, consent runtimes and attribution capture",
-      "readerQuestion": "Does my personal application link remain private?",
-      "usefulAnswer": "The personal follow-up page suppresses analytics and marketing runtimes and does not send its URL fragment to the application attribution collector.",
-      "evidence": "Existing Google page-view code used window.location.href. The private route now omits the Google bootstrap and optional runtimes even with consent. Focused rendering tests verify the exclusion and preserve ordinary page bootstrap.",
-      "editorialDecision": "Scope the exclusion to /apply/next, keep tokens in fragments and POST bodies, and retain noindex and no-referrer metadata."
+      "location": "/admin/applications, /admin/applications/followups and shared analytics bootstrap",
+      "readerQuestion": "Can staff see who needs a reply without exposing a personal action token?",
+      "usefulAnswer": "Authenticated staff can see delivery and question status, while analytics and referrer leakage are suppressed on the personal next-step page.",
+      "evidence": "The implementation uses existing admin authentication and keeps personal tokens in URL fragments and POST bodies rather than query strings.",
+      "editorialDecision": "Expose useful operational states only to staff and scope analytics suppression to the personal action surface."
     }
   ],
-  "claimsAndSources": "The price and requested two-option workflow come from Anthony. Sarah email is confirmed in repository team configuration. Beehiiv API and merge-tag documentation were consulted. No performance, purchase, subscriber-count or medical outcome is claimed.",
-  "examplesAndReasoning": "No training prescriptions or case-result examples were added. The suitability screen is an explicit deterministic routing rule. Supported goals and time receive a fit message; injury/comeback, low-time and unknown-goal cases receive discussion wording.",
-  "voiceAndCuts": "Removed the enabled-flow 48-hour holding message and generic nothing-else-to-do confirmation. The next step is a direct join or question choice with the price visible. No invented urgency or absolute suitability claim.",
-  "desktopReview": "Pending: browser can read Beehiiv pages but interaction controls time out. The application and admin screens have not yet completed rendered desktop QA. No visual pass is asserted.",
-  "mobileReview": "Pending: no verified mobile viewport review of the new flow or received email is available in this session. Publication remains held until actual rendered checks complete.",
-  "productAndOfferAccuracy": "Not Done Yet coaching is $195 USD/month as explicitly specified by Anthony and publicly listed by Skool. About link is grounded. Plans route appears in search but selected checkout and email merge URLs require live verification before activation. Existing trial copy is preserved; this new email does not introduce a trial claim."
+  "claimsAndSources": "The Not Done Yet price and workflow come from Anthony's instruction; Sarah's address and ownership are confirmed in repository configuration. Existing main-branch audience and PDF claims remain unchanged. Final live offer and provider evidence will be recorded before publication.",
+  "examplesAndReasoning": "The suitability screen is a deterministic goal, time and injury/comeback routing rule, not a medical or human assessment. No training prescription or member result is invented.",
+  "voiceAndCuts": "The copy uses two direct next steps, removes the enabled-flow 48-hour holding message and avoids generic urgency or unsupported promises.",
+  "desktopReview": "Pending final rendered review of the reconciled revision at a desktop viewport of at least 1000 CSS pixels.",
+  "mobileReview": "Pending final rendered review of the reconciled revision at a mobile viewport between 320 and 480 CSS pixels.",
+  "productAndOfferAccuracy": "The feature remains disabled until the $195 USD monthly Skool option, dedicated Beehiiv automation, merge-tag button destinations and reply-to behavior are verified."
 }

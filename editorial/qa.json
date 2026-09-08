@@ -2,50 +2,21 @@
   "version": 1,
   "reviewer": "Codex",
   "decision": "hold",
-  "reviewedAt": "2026-09-08T14:30:26.552647+00:00",
-  "contentDigest": "78742db2cc2e73fa9336b0f29d6a61b9a0943e493468b3b4fd3c105fa43bcb93",
-  "reviewHash": "796f72e0a75d3503762355edb3ce35afd3ca94643bd87bd159e0e87f3cee15f9",
-  "controlsHash": "60cec3d1086213a171414671c66202276391bd3c00dbb5d5d2cea53d17b4471b",
+  "reviewedAt": null,
+  "contentDigest": "TODO: exact content digest after generators and final changes",
+  "reviewHash": "TODO: SHA256 of final release.json bytes",
+  "controlsHash": "TODO: final publication control digest",
   "blockers": [
-    "Production migration and environment configuration unavailable in this session.",
-    "Beehiiv Create Automation actions time out; automation and personalised email still require setup and verification.",
-    "Rendered desktop/mobile and real integration QA incomplete.",
-    "Vercel connection exposes no accessible teams."
+    "Not Done Yet integration setup, rendered QA and production activation are still in progress."
   ],
   "checks": {
-    "claims": {
-      "status": "pass",
-      "evidence": "Price from explicit user instruction; Sarah email from existing team schema and notifications; deterministic fit wording without medical or human-review claims."
-    },
-    "editorial": {
-      "status": "pass",
-      "evidence": "Reviewed source copy for the two choices, price, question context, truthful email statuses and conditional removal of the old 48-hour promise."
-    },
-    "offers": {
-      "status": "pending",
-      "evidence": "Live Skool checkout selection, Beehiiv personalised button URLs and automation reply-to need verification."
-    },
-    "desktop": {
-      "status": "pending",
-      "evidence": "No completed rendered desktop review is claimed; browser action requests time out.",
-      "pages": []
-    },
-    "mobile": {
-      "status": "pending",
-      "evidence": "No completed mobile viewport review is claimed; email and application rendering remain to check.",
-      "pages": []
-    },
-    "interactions": {
-      "status": "pending",
-      "evidence": "63 focused tests pass, but live database transactions, Beehiiv enrollment and Sarah notification remain untested."
-    },
-    "seo": {
-      "status": "pass",
-      "evidence": "Existing canonicals retained. New action page has noindex and no-referrer metadata; no sitemap entry added. Internal route audit found zero broken destinations."
-    },
-    "technical": {
-      "status": "pending",
-      "evidence": "63 focused tests, 55 publication-gate tests and TypeScript passed. Content audit: zero hard errors and 1,866 existing warnings. Preview compilation did not complete after its execution session ended with a cancelled network approval. Full build and live integration remain pending."
-    }
+    "claims": { "status": "pending", "evidence": "Final evidence will be recorded after integration and rendered review." },
+    "editorial": { "status": "pending", "evidence": "Final copy review is pending on the reconciled revision." },
+    "offers": { "status": "pending", "evidence": "The live Skool plan and personalised Beehiiv destinations still require verification." },
+    "desktop": { "status": "pending", "evidence": "Desktop rendered review is not complete.", "pages": [] },
+    "mobile": { "status": "pending", "evidence": "Mobile rendered review is not complete.", "pages": [] },
+    "interactions": { "status": "pending", "evidence": "Live workflow interaction checks are not complete." },
+    "seo": { "status": "pending", "evidence": "Final affected-surface metadata and link checks are pending." },
+    "technical": { "status": "pending", "evidence": "Post-merge technical checks and production build are pending." }
   }
 }
