@@ -103,9 +103,9 @@ const platformReach = [
         <polyline points="22,6 12,13 2,6" />
       </svg>
     ),
-    stat: "30K+",
+    stat: "23K",
     statLabel: "weekly readers",
-    description: "65%+ open rate (industry avg: 21%). The Saturday Spin Newsletter every week. Direct click-through.",
+    description: "The Saturday Spin Newsletter every week. Direct click-through.",
     color: "from-emerald-500/20 to-emerald-500/5",
   },
 ];
@@ -135,10 +135,9 @@ const partnershipOptions = [
     title: "NEWSLETTER SPONSORSHIP",
     badge: "Highest ROI",
     description:
-      "The Saturday Spin Newsletter lands in 30,000+ inboxes every week with a 65%+ open rate. Dedicated sends or banner placements — your brand in front of cyclists who actually open, read, and click.",
+      "The Saturday Spin Newsletter reaches 23,000 weekly readers. Dedicated sends or banner placements — your brand in front of cyclists who actually open, read, and click.",
     features: [
-      "30,000+ engaged subscribers",
-      "65%+ open rate — 3x industry average",
+      "23,000 weekly readers",
       "Dedicated send or banner placement",
       "Direct link to purchase or landing page",
     ],
@@ -203,7 +202,7 @@ const audienceProfile = [
   },
   {
     label: "Avg. Annual Spend",
-    value: "\u00a33,500+",
+    value: "£3,500+",
     detail: "On cycling gear & services",
     icon: (
       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -224,7 +223,7 @@ const audienceProfile = [
   },
   {
     label: "Household Income",
-    value: "\u00a365K+",
+    value: "£65K+",
     detail: "Above UK national average",
     icon: (
       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -311,7 +310,7 @@ export default function PartnersPage() {
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.2}>
               <p className="text-foreground-muted text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-4">
-                100 million podcast downloads. 30,000+ newsletter subscribers.
+                100 million podcast downloads. 23,000 newsletter readers.
                 A community of serious cyclists who train with power meters,
                 race on weekends, and spend real money on equipment, nutrition, and coaching.
               </p>
