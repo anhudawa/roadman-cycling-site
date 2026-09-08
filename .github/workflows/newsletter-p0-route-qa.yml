@@ -12,12 +12,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-      - run: npm ci
-      - name: Preview production build
-        env:
-          VERCEL_ENV: preview
-        run: npm run build
       - name: Print release binding values
         run: |
           node --input-type=module <<'NODE'
