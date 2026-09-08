@@ -1,0 +1,20 @@
+Hi {{ndy_first_name | there}},
+
+{{ndy_application_message | Thanks for applying to Not Done Yet.}}
+
+Coaching costs $195 USD a month, plus any applicable taxes. You can join below.
+
+Join Not Done Yet:
+{{ndy_join_url}}
+
+See what’s included:
+https://www.skool.com/roadmancycling/about
+
+Have a question before you join? Send it to Sarah:
+{{ndy_questions_url}}
+
+Or email sarah@roadmancycling.com.
+
+Anthony
+
+You received this because you applied for Not Done Yet coaching.
