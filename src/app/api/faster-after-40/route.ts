@@ -11,24 +11,28 @@ import { getLeadMagnet } from "@/lib/cta/lead-magnets";
 
 const MAGNET = getLeadMagnet("faster-after-40");
 const RESEND_FROM_ADDRESS = "Roadman Cycling <noreply@roadmancycling.com>";
-const SOURCE = "lead-magnet-faster-after-40";
+const DEFAULT_SOURCE = "named_pdf";
+const ALLOWED_SOURCES = new Set(["named_pdf", "podcast", "youtube", "site"]);
+
+function cleanAttribution(value: unknown): string | undefined {
+  if (typeof value !== "string") return undefined;
+  const cleaned = value.trim().slice(0, 120);
+  if (!cleaned || !/^[a-zA-Z0-9._-]+$/.test(cleaned)) return undefined;
+  return cleaned;
+}
 
 /**
- * Faster After 40 squeeze page — subscribe + asset delivery.
+ * Faster After 40 landing — Saturday Spin subscribe + report delivery.
  *
  * Flow:
  *   1. Validate email (required) + firstName (optional)
- *   2. Record analytics event + CRM subscriber row
- *   3. Subscribe in Beehiiv with "faster-after-40" tag
- *   4. Send transactional welcome email via Resend with PDF download link
- *   5. Return success with download URL for immediate gratification
+ *   2. Record analytics/CRM attribution
+ *   3. Subscribe to The Saturday Spin in Beehiiv
+ *   4. Send the existing transactional report email via Resend
+ *   5. Return the durable on-site PDF URL for immediate download
  *
- * CORS: allows requests from roadmancycling.com, localhost, and any
- * Vercel preview deployment so the standalone HTML squeeze page works
- * regardless of where it's hosted.
+ * Beehiiv automations are intentionally not managed here.
  */
-
-// ── CORS helpers ────────────────────────────────────────────
 
 const ALLOWED_ORIGINS = [
   "https://roadmancycling.com",
@@ -38,9 +42,7 @@ const ALLOWED_ORIGINS = [
 function isAllowedOrigin(origin: string | null): boolean {
   if (!origin) return false;
   if (ALLOWED_ORIGINS.includes(origin)) return true;
-  // Vercel preview deployments
   if (origin.endsWith(".vercel.app")) return true;
-  // Local dev
   if (origin.startsWith("http://localhost:")) return true;
   if (origin.startsWith("http://127.0.0.1:")) return true;
   return false;
@@ -59,8 +61,6 @@ function corsHeaders(request: Request): HeadersInit {
   return {};
 }
 
-// ── OPTIONS (CORS preflight) ────────────────────────────────
-
 export async function OPTIONS(request: Request) {
   return new NextResponse(null, {
     status: 204,
@@ -68,12 +68,9 @@ export async function OPTIONS(request: Request) {
   });
 }
 
-// ── POST handler ────────────────────────────────────────────
-
 export async function POST(request: Request) {
   const cors = corsHeaders(request);
 
-  // Rate limit: 10 requests per 10 minutes per IP
   const limited = await rateLimitOr429(request, {
     namespace: "faster-after-40",
     tokens: 10,
@@ -90,6 +87,10 @@ export async function POST(request: Request) {
     const raw = (await request.json()) as {
       email?: unknown;
       firstName?: unknown;
+      source?: unknown;
+      utm_source?: unknown;
+      utm_medium?: unknown;
+      utm_campaign?: unknown;
     };
 
     const email = normaliseEmail(raw.email);
@@ -101,27 +102,38 @@ export async function POST(request: Request) {
     }
 
     const firstName = clampString(raw.firstName, LIMITS.name) ?? undefined;
+    const requestedSource = cleanAttribution(raw.source);
+    const acquisitionSource =
+      requestedSource && ALLOWED_SOURCES.has(requestedSource)
+        ? requestedSource
+        : DEFAULT_SOURCE;
+    const utmSource = cleanAttribution(raw.utm_source);
+    const utmMedium = cleanAttribution(raw.utm_medium);
+    const utmCampaign = cleanAttribution(raw.utm_campaign);
 
     const customFields: Record<string, string> = {
       last_lead_magnet: "faster-after-40",
+      acquisition_source: acquisitionSource,
     };
-
-    // ── Analytics + CRM subscriber (non-fatal) ──────────────
 
     try {
       await Promise.all([
-        recordEvent("signup", SOURCE, {
+        recordEvent("signup", acquisitionSource, {
           email,
-          source: SOURCE,
+          source: acquisitionSource,
           userAgent: request.headers.get("user-agent") || undefined,
+          meta: {
+            leadMagnet: "faster-after-40",
+            ...(utmSource ? { utm_source: utmSource } : {}),
+            ...(utmMedium ? { utm_medium: utmMedium } : {}),
+            ...(utmCampaign ? { utm_campaign: utmCampaign } : {}),
+          },
         }),
-        upsertOnSignup(email, SOURCE, SOURCE),
+        upsertOnSignup(email, acquisitionSource, acquisitionSource),
       ]);
     } catch (err) {
       console.error("[faster-after-40] Analytics recording failed:", err);
     }
-
-    // ── CRM contact (non-fatal) ─────────────────────────────
 
     try {
       const contact = await upsertContact({
@@ -133,14 +145,12 @@ export async function POST(request: Request) {
       await addActivity(contact.id, {
         type: "tag_added",
         title: `Requested lead magnet: ${MAGNET.label}`,
-        meta: { magnet: "faster-after-40" },
+        meta: { magnet: "faster-after-40", source: acquisitionSource },
         authorName: "system",
       });
     } catch (err) {
       console.error("[faster-after-40] CRM sync failed:", err);
     }
-
-    // ── Beehiiv subscribe ───────────────────────────────────
 
     const result = await subscribeToBeehiiv({
       email,
@@ -149,13 +159,11 @@ export async function POST(request: Request) {
       customFields,
       sendWelcomeEmail: false,
       utm: {
-        source: "site",
-        medium: "lead-magnet",
-        campaign: "faster-after-40",
+        source: utmSource || acquisitionSource,
+        medium: utmMedium || "lead-magnet",
+        campaign: utmCampaign || "faster-after-40",
       },
     });
-
-    // ── Transactional welcome email via Resend ──────────────
 
     const resend = getResendClient();
     if (resend) {
@@ -170,23 +178,21 @@ export async function POST(request: Request) {
           replyTo: "anthony@roadmancycling.com",
           tags: [
             { name: "campaign", value: "faster-after-40" },
-            { name: "source", value: "squeeze-page" },
+            { name: "source", value: acquisitionSource },
           ],
         });
         console.log(
-          "[faster-after-40] Welcome email sent:",
+          "[faster-after-40] Report email sent:",
           JSON.stringify(sendResult),
         );
       } catch (emailErr) {
-        console.error("[faster-after-40] Resend welcome failed:", emailErr);
+        console.error("[faster-after-40] Resend report email failed:", emailErr);
       }
     } else {
       console.warn(
-        "[faster-after-40] RESEND_API_KEY not configured — welcome email skipped",
+        "[faster-after-40] RESEND_API_KEY not configured — report email skipped",
       );
     }
-
-    // ── Response ────────────────────────────────────────────
 
     return NextResponse.json(
       {
