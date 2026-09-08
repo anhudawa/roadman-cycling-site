@@ -98,13 +98,19 @@ export async function POST(request: Request) {
 
     // Analytics event + subscriber upsert — non-fatal group.
     try {
+      const attributionMeta = Object.fromEntries(
+        Object.entries({
+          utm_source: utmSource,
+          utm_medium: utmMedium,
+          utm_campaign: utmCampaign,
+        }).filter((entry): entry is [string, string] => Boolean(entry[1])),
+      );
+
       await Promise.all([
         recordEvent("signup", source, {
           email,
           source,
-          utmSource,
-          utmMedium,
-          utmCampaign,
+          meta: attributionMeta,
           userAgent: request.headers.get("user-agent") || undefined,
         }),
         upsertOnSignup(email, source, source),
