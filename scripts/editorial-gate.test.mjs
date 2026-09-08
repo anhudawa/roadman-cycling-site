@@ -56,6 +56,14 @@ test('changed controls invalidate QA', async t => {
   const f = fixture(t); prepare(f); f.write('package.json', 'Changed build wiring');
   await assert.rejects(check(f.root), /QA is stale/);
 });
+test('Vercel config formatting does not invalidate QA', async t => {
+  const f = fixture(t);
+  const config = { buildCommand: 'npm run build', crons: [{ path: '/api/cron/example', schedule: '0 8 * * *' }] };
+  f.write('vercel.json', JSON.stringify(config, null, 2));
+  prepare(f);
+  f.write('vercel.json', `${JSON.stringify(config)}\n`);
+  assert.match(await check(f.root), /Final agent QA verified/);
+});
 test('edits after QA invalidate the review', async t => {
   const f = fixture(t); prepare(f); f.write('content/article.mdx', 'Unreviewed rewrite');
   await assert.rejects(check(f.root), /does not match/);
