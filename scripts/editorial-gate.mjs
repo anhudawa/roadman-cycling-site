@@ -43,8 +43,14 @@ export function validateReview(review, digest) {
 
 export const REQUIRED_CHECKS = ['claims', 'editorial', 'offers', 'desktop', 'mobile', 'interactions', 'seo', 'technical'];
 export const CONTROL_FILES = ['scripts/editorial-gate.mjs', 'scripts/editorial-gate.test.mjs', '.github/workflows/editorial-gate.yml', 'package.json', 'vercel.json', 'next.config.ts', 'AGENTS.md', 'docs/editorial-publishing-standard.md'];
+function controlBytes(root, path) {
+  const bytes = readFileSync(resolve(root, path));
+  if (path !== 'vercel.json') return bytes;
+  try { return JSON.stringify(JSON.parse(bytes.toString('utf8'))); }
+  catch { return bytes; }
+}
 export function controlDigest(root) {
-  return sha256(JSON.stringify(CONTROL_FILES.map(path => [path, sha256(readFileSync(resolve(root, path)))])));
+  return sha256(JSON.stringify(CONTROL_FILES.map(path => [path, sha256(controlBytes(root, path))])));
 }
 export function validateQA(qa, digest, reviewHash, controlsHash) {
   if (qa.version !== 1 || qa.reviewer !== 'Codex' || qa.decision !== 'publish') throw new Error('Final agent QA sign-off is required.');
@@ -92,9 +98,8 @@ export async function check(root, { production = true } = {}) {
   const qa = JSON.parse(readFileSync(qaPath, 'utf8'));
   const controlsHash = controlDigest(root);
   if (qa.controlsHash !== controlsHash) {
-    const details = CONTROL_FILES.map(path => `${path}=${sha256(readFileSync(resolve(root, path)))}`).join(', ');
-    const deployedConfig = JSON.stringify(readFileSync(resolve(root, 'vercel.json'), 'utf8'));
-    throw new Error(`QA is stale: controls expected ${qa.controlsHash}, actual ${controlsHash}; files: ${details}; deployed vercel.json: ${deployedConfig}.`);
+    const details = CONTROL_FILES.map(path => `${path}=${sha256(controlBytes(root, path))}`).join(', ');
+    throw new Error(`QA is stale: controls expected ${qa.controlsHash}, actual ${controlsHash}; files: ${details}.`);
   }
   validateQA(qa, current.digest, sha256(reviewBytes), controlsHash);
   return `Final agent QA verified for ${current.digest}.`;
