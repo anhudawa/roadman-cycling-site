@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "reviewer": "Codex",
+  "decision": "publish",
+  "reviewedAt": "2026-09-08T13:48:00Z",
+  "contentDigest": "969570c172711f2a3b580737b8f522a59d838b3199ef993fddde42e4a4e1147f",
+  "reviewHash": "bd347cce13b0510d70292d64d6ad2b2b210abcd6ae482690aa4f96b41ea2dc88",
+  "controlsHash": "9c233311b92e46f4bd8c05a019987717d6c3bcec5857ebb9d3c92ca714307ee2",
+  "blockers": [],
+  "checks": {
+    "claims": {
+      "status": "pass",
+      "evidence": "The edited newsletter claims use Anthony's supplied active Beehiiv count of about 23,215, rounded to 23,000 on public UI. The Core Guide source metadata reports application/pdf and 6,592,307 bytes. No replacement open-rate, sponsor-performance, scientific, guest or financial claim was introduced."
+    },
+    "editorial": {
+      "status": "pass",
+      "evidence": "The P0 copy edits are narrow corrections: 30K/30,000+ and 65%+ newsletter claims were removed or replaced with 23K/23,000, while the existing weekly-letter promise and page structure remain intact. Visual review of the full rendered newsletter and partners pages found the changed proof legible and consistent with the surrounding layout."
+    },
+    "offers": {
+      "status": "pass",
+      "evidence": "The release leaves coaching prices, membership counts, sponsor packages, paid acquisition, Beehiiv automations and referral configuration unchanged. The Core Guide stays a referral reward asset rather than becoming a newsletter signup incentive."
+    },
+    "desktop": {
+      "status": "pass",
+      "evidence": "Playwright rendered the exact P0 revision at 1440x1000 for the newsletter and partners pages. Automated checks found 23K/23,000 present, 30K/30,000+ absent, 65% absent and no horizontal overflow; the screenshots were visually inspected after capture.",
+      "pages": [
+        {
+          "url": "http://127.0.0.1:3000/newsletter?source=youtube&utm_source=youtube&utm_medium=video&utm_campaign=p0-qa",
+          "width": 1440,
+          "height": 1000,
+          "observations": "The Saturday Spin hero, signup form, 23,000-reader proof, content sections and bottom signup banner render cleanly. The corrected audience proof is readable, there is no 30K or 65% text, and the layout shows no release-caused clipping or overflow."
+        },
+        {
+          "url": "http://127.0.0.1:3000/partners",
+          "width": 1440,
+          "height": 1000,
+          "observations": "The media-kit hero, reach cards and newsletter sponsorship card render cleanly. Newsletter reach is 23K/23,000, no open-rate figure remains, and the edited cards preserve the existing visual hierarchy without horizontal overflow."
+        }
+      ]
+    },
+    "mobile": {
+      "status": "pass",
+      "evidence": "Playwright rendered the exact P0 revision at 390x844 for the newsletter and partners pages. Automated checks found 23K/23,000 present, 30K/30,000+ absent, 65% absent and document width equal to the viewport; the full-page screenshots were visually inspected after capture.",
+      "pages": [
+        {
+          "url": "http://127.0.0.1:3000/newsletter?source=podcast",
+          "width": 390,
+          "height": 844,
+          "observations": "The newsletter hero, form, consent copy, 23,000-reader proof, content cards and bottom signup banner remain readable at 390px. The release introduces no horizontal clipping and the audience correction appears in both proof locations."
+        },
+        {
+          "url": "http://127.0.0.1:3000/partners",
+          "width": 390,
+          "height": 844,
+          "observations": "The media-kit reach cards and newsletter sponsorship content stack correctly at 390px. The newsletter card shows 23K, the sponsorship copy uses 23,000 weekly readers, no 65% claim remains and the page has no release-caused horizontal overflow."
+        }
+      ]
+    },
+    "interactions": {
+      "status": "pass",
+      "evidence": "The newsletter form reads source and optional utm_source, utm_medium and utm_campaign only when URL attribution is enabled on /newsletter, then posts them to /api/newsletter. The API sanitizes those values and passes them into the existing Beehiiv subscribe helper, whose request body maps them to Beehiiv utm_source, utm_medium and utm_campaign fields. Existing fixed-source EmailCapture callers keep their supplied sources."
+    },
+    "seo": {
+      "status": "pass",
+      "evidence": "The newsletter canonical remains https://roadmancycling.com/newsletter and the corrected 23,000 figure is reflected in newsletter metadata and Open Graph description. The partners page canonical and existing metadata structure are unchanged. The download route uses a stable Roadman path rather than an expiring signed URL."
+    },
+    "technical": {
+      "status": "pass",
+      "evidence": "The repository's 55 editorial-gate rejection tests pass. The dedicated preview production build completed successfully after the attribution type fix, including npm ci, prebuild generators, coral check, Next.js compilation and TypeScript checking. The rendered Playwright workflow also completed successfully and uploaded four screenshots for review."
+    }
+  }
+}
