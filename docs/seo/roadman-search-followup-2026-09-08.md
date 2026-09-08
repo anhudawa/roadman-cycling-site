@@ -66,3 +66,12 @@ The existing SEO QA audit now checks all 19 tool-registry entries, including on 
 - [Google: video structured data](https://developers.google.com/search/docs/appearance/structured-data/video): deep-linking and additional eligibility requirements for video moments.
 
 Next: complete actual desktop/mobile preview review; source-check and link a small set of interview passages; use current Search Console queries and conversion data to choose the next commercial-page improvements. The outstanding CTL article consolidation needs backlink and query context; do not redirect the linked long-form article simply because several pages rank for related terms. Good Legs membership/payment integration remains deferred until launch.
+
+
+## Authorized final-QA ownership change
+
+Anthony delegated final QA to Codex in chat on 8 September. The GitHub-comment requirement is replaced with an exact-revision agent QA record, including all eight required checks and observed desktop/mobile dimensions. The frozen content baseline is unchanged. Changes to content, review evidence or publication controls invalidate sign-off. The gate does not establish literary quality by itself.
+
+Validation: all 55 publication-gate tests pass, including rejection of pending/failed/skipped checks, missing records, unresolved blockers, incomplete rendered review, invalid mobile dimensions and stale control/review hashes. The production gate rejects the current unfinished desktop review, as intended. No final QA record or production approval has been fabricated.
+
+Cloud browser recovered for the training-load preview: 1363 × 936 CSS pixels, document width 1355, no horizontal overflow in the initial viewport. Inspected the opening, input labels, examples and methodology in the rendered DOM and the initial screen visually. This is partial desktop evidence, not whole-release completion. Browser device-toolbar shortcuts did not change the viewport; mobile review remains unresolved. Production publication remains blocked until the remaining rendered and interaction checks are completed.

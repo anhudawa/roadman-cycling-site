@@ -3,8 +3,6 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-export const REPOSITORY = 'anhudawa/roadman-cycling-site';
-export const EDITOR_ID = 209098968;
 const ROOTS = ['content', 'src', 'public'];
 export const sha256 = value => createHash('sha256').update(value).digest('hex');
 
@@ -43,17 +41,33 @@ export function validateReview(review, digest) {
   // This validates a review record, not the quality or truth of its prose.
 }
 
-export function approvalText(digest, reviewHash) {
-  return `APPROVE ROADMAN EDITORIAL ${digest} ${reviewHash}`;
+export const REQUIRED_CHECKS = ['claims', 'editorial', 'offers', 'desktop', 'mobile', 'interactions', 'seo', 'technical'];
+export const CONTROL_FILES = ['scripts/editorial-gate.mjs', 'scripts/editorial-gate.test.mjs', '.github/workflows/editorial-gate.yml', 'package.json', 'vercel.json', 'AGENTS.md', 'docs/editorial-publishing-standard.md'];
+export function controlDigest(root) {
+  return sha256(JSON.stringify(CONTROL_FILES.map(path => [path, sha256(readFileSync(resolve(root, path)))])));
+}
+export function validateQA(qa, digest, reviewHash, controlsHash) {
+  if (qa.version !== 1 || qa.reviewer !== 'Codex' || qa.decision !== 'publish') throw new Error('Final agent QA sign-off is required.');
+  if (qa.contentDigest !== digest || qa.reviewHash !== reviewHash || qa.controlsHash !== controlsHash) throw new Error('QA is stale: content, review or publication controls changed.');
+  if (!Number.isFinite(Date.parse(qa.reviewedAt))) throw new Error('QA needs a real review date.');
+  if (!Array.isArray(qa.blockers) || qa.blockers.length) throw new Error('Unresolved release blockers.');
+  for (const name of REQUIRED_CHECKS) {
+    const result = qa.checks?.[name];
+    if (result?.status !== 'pass') throw new Error(`QA check incomplete or failed: ${name}`);
+    substantive(result.evidence, `${name} evidence`);
+    if (/\b(pending|not yet complete|not completed|not performed|not tested|not reviewed|not verified|unverified|blocked|TODO|TBD)\b/i.test(result.evidence)) throw new Error(`Incomplete QA evidence: ${name}`);
+    if (['desktop', 'mobile'].includes(name)) {
+      if (!Array.isArray(result.pages) || !result.pages.length) throw new Error(`Missing rendered pages: ${name}`);
+      for (const page of result.pages) {
+        if (typeof page.url !== 'string' || !/^https?:\/\//.test(page.url)) throw new Error(`Missing rendered URL: ${name}`);
+        if (!Number.isInteger(page.width) || !Number.isInteger(page.height) || page.height < 200 || (name === 'mobile' ? page.width < 320 || page.width > 480 : page.width < 1000)) throw new Error(`Invalid actual viewport: ${name}`);
+        substantive(page.observations, `${name} page observations`);
+      }
+    }
+  }
 }
 
-export function validateApproval(comment, expected, pullRequest) {
-  if (comment.user?.id !== EDITOR_ID || comment.user?.type !== 'User') throw new Error('Approval is not from the designated Roadman editor.');
-  if (comment.issue_url !== `https://api.github.com/repos/${REPOSITORY}/issues/${pullRequest}`) throw new Error('Approval belongs to a different review.');
-  if (comment.body?.trim() !== expected) throw new Error('Approval is missing, revoked, or for different content/review evidence.');
-}
-
-export async function check(root, { production = true, fetcher = fetch } = {}) {
+export async function check(root, { production = true } = {}) {
   const current = fingerprint(root);
   const baseline = JSON.parse(readFileSync(resolve(root, 'editorial/baseline.json'), 'utf8'));
   if (current.digest === baseline.contentDigest) return `Existing content freeze: ${current.count} files. This is not an editorial endorsement of the archive.`;
@@ -65,18 +79,15 @@ export async function check(root, { production = true, fetcher = fetch } = {}) {
   const reviewBytes = readFileSync(reviewPath, 'utf8');
   const review = JSON.parse(reviewBytes);
   validateReview(review, current.digest);
-  const expected = approvalText(current.digest, sha256(reviewBytes));
-  if (!production) return `PREVIEW ONLY. Required editor comment after reviewing the rendered pages:\n${expected}`;
-  const approval = JSON.parse(readFileSync(resolve(root, 'editorial/approval.json'), 'utf8'));
-  if (!Number.isSafeInteger(approval.commentId) || approval.commentId <= 0 || !Number.isSafeInteger(approval.pullRequest) || approval.pullRequest <= 0) throw new Error('A real GitHub editorial approval is required.');
-  const response = await fetcher(`https://api.github.com/repos/${REPOSITORY}/issues/comments/${approval.commentId}`, {
-    headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'Roadman-editorial-gate' },
-    signal: AbortSignal.timeout(15000),
-    redirect: 'error',
-  });
-  if (!response.ok) throw new Error(`Could not verify editorial approval (GitHub ${response.status}); publication blocked.`);
-  validateApproval(await response.json(), expected, approval.pullRequest);
-  return `Editorial approval verified for ${current.digest}.`;
+  if (!production) return `PREVIEW ONLY: final agent QA required for ${current.digest}`;
+  for (const key of ['desktopReview', 'mobileReview']) {
+    if (/\b(pending|not yet complete|not completed|not performed|not tested|not reviewed)\b/i.test(review[key])) throw new Error(`Incomplete rendered review: ${key}`);
+  }
+  const qaPath = resolve(root, 'editorial/qa.json');
+  if (!existsSync(qaPath)) throw new Error('Publication blocked: final agent QA record is missing.');
+  validateQA(JSON.parse(readFileSync(qaPath, 'utf8')), current.digest, sha256(reviewBytes), controlDigest(root));
+  return `Final agent QA verified for ${current.digest}.`;
+
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

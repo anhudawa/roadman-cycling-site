@@ -3,12 +3,13 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, mkdirSync, writeFileSync, rmSync, symlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { fingerprint, check, sha256, approvalText, EDITOR_ID, REPOSITORY } from './editorial-gate.mjs';
+import { fingerprint, check, sha256, controlDigest, CONTROL_FILES, REQUIRED_CHECKS } from './editorial-gate.mjs';
 
 function fixture(t) {
   const root = mkdtempSync(join(tmpdir(), 'roadman-editorial-'));
   t.after(() => rmSync(root, { recursive: true, force: true }));
-  for (const dir of ['content', 'src', 'public', 'editorial']) mkdirSync(join(root, dir));
+  for (const dir of ['content', 'src', 'public', 'editorial', 'scripts', '.github/workflows', 'docs']) mkdirSync(join(root, dir), { recursive: true });
+  for (const path of CONTROL_FILES) writeFileSync(join(root, path), 'Fixture control');
   const write = (path, value) => writeFileSync(join(root, path), typeof value === 'string' ? value : JSON.stringify(value));
   write('content/article.mdx', 'Original published article.');
   write('editorial/baseline.json', { contentDigest: fingerprint(root).digest });
@@ -24,10 +25,11 @@ function prepare(f) {
     desktopReview: detail, mobileReview: detail, productAndOfferAccuracy: detail };
   const save = () => f.write('editorial/release.json', review);
   save();
-  f.write('editorial/approval.json', { commentId: 123, pullRequest: 456 });
-  const comment = { user: { id: EDITOR_ID, type: 'User' }, issue_url: `https://api.github.com/repos/${REPOSITORY}/issues/456`, body: approvalText(digest, sha256(JSON.stringify(review))) };
-  const fetcher = async () => ({ ok: true, json: async () => comment });
-  return { review, save, comment, fetcher };
+  const qa = {version: 1, reviewer: 'Codex', decision: 'publish', reviewedAt: '2026-09-08T10:00:00Z', contentDigest: digest, reviewHash: sha256(JSON.stringify(review)), controlsHash: controlDigest(f.root), blockers: [], checks: Object.fromEntries(REQUIRED_CHECKS.map(name => [name, {status: 'pass', evidence: detail, ...(['desktop', 'mobile'].includes(name) ? {pages: [{url: 'https://preview.example.com/page', width: name === 'mobile' ? 390 : 1280, height: 844, observations: detail}]} : {})}]))};
+  const saveQA = () => f.write('editorial/qa.json', qa);
+  saveQA();
+  return { review, save, qa, saveQA };
+
 }
 test('unchanged frozen content builds without a network call', async t => {
   const f = fixture(t);
@@ -44,32 +46,45 @@ test('preview is available but explicitly unapproved', async t => {
   assert.match(await check(f.root, { production: false }), /PREVIEW ONLY/);
   await assert.rejects(check(f.root), /Publication blocked/);
 });
-test('verified approval binds both content and review evidence', async t => {
+test('agent QA binds content, review and controls', async t => {
   const f = fixture(t), p = prepare(f);
-  assert.match(await check(f.root, p), /approval verified/);
-  p.review.voiceAndCuts += ' A later change to the review.'; p.save();
-  await assert.rejects(check(f.root, p), /different content\/review evidence/);
+  assert.match(await check(f.root), /Final agent QA verified/);
+  p.review.voiceAndCuts += ' A later change to review evidence.'; p.save();
+  await assert.rejects(check(f.root), /QA is stale/);
 });
-test('edits after approval invalidate the review', async t => {
-  const f = fixture(t), p = prepare(f); f.write('content/article.mdx', 'Unreviewed rewrite');
-  await assert.rejects(check(f.root, p), /does not match/);
+test('changed controls invalidate QA', async t => {
+  const f = fixture(t); prepare(f); f.write('package.json', 'Changed build wiring');
+  await assert.rejects(check(f.root), /QA is stale/);
+});
+test('edits after QA invalidate the review', async t => {
+  const f = fixture(t); prepare(f); f.write('content/article.mdx', 'Unreviewed rewrite');
+  await assert.rejects(check(f.root), /does not match/);
 });
 test('missing section evidence is rejected', async t => {
   const f = fixture(t), p = prepare(f); p.review.sections[0].usefulAnswer = 'TODO'; p.save();
-  await assert.rejects(check(f.root, p), /Missing review evidence/);
+  await assert.rejects(check(f.root), /Missing review evidence/);
 });
-for (const kind of ['wrong editor', 'bot', 'wrong PR', 'revoked']) test(`${kind} cannot authorize publication`, async t => {
+for (const name of REQUIRED_CHECKS) for (const status of ['pending', 'fail', 'skipped', undefined]) test(`${name} ${status} blocks production`, async t => {
+  const f = fixture(t), p = prepare(f); p.qa.checks[name].status = status; p.saveQA();
+  await assert.rejects(check(f.root), /incomplete or failed/);
+});
+for (const kind of ['missing record', 'blocker', 'false completion', 'wrong reviewer', 'wrong decision', 'missing page', 'fake mobile viewport', 'missing desktop viewport', 'incomplete review']) test(`${kind} blocks publication`, async t => {
   const f = fixture(t), p = prepare(f);
-  if (kind === 'wrong editor') p.comment.user.id = 999;
-  if (kind === 'bot') p.comment.user.type = 'Bot';
-  if (kind === 'wrong PR') p.comment.issue_url += '9';
-  if (kind === 'revoked') p.comment.body = 'REVOKED';
-  await assert.rejects(check(f.root, p), /Approval/);
+  if (kind === 'missing record') { rmSync(join(f.root, 'editorial/qa.json')); await assert.rejects(check(f.root), /missing/); return; }
+  if (kind === 'blocker') p.qa.blockers.push('Unresolved broken CTA');
+  if (kind === 'false completion') p.qa.checks.mobile.evidence = 'Mobile review not yet complete because browser unavailable.';
+  if (kind === 'wrong reviewer') p.qa.reviewer = 'Anthony';
+  if (kind === 'wrong decision') p.qa.decision = 'preview';
+  if (kind === 'missing page') p.qa.checks.mobile.pages = [];
+  if (kind === 'fake mobile viewport') p.qa.checks.mobile.pages[0].width = 1280;
+  if (kind === 'missing desktop viewport') delete p.qa.checks.desktop.pages[0].height;
+  if (kind === 'incomplete review') {p.review.mobileReview = 'Mobile review pending; source inspection only performed.'; p.save(); p.qa.reviewHash = sha256(JSON.stringify(p.review));}
+  p.saveQA(); await assert.rejects(check(f.root));
 });
-test('GitHub unavailable fails closed', async t => {
-  const f = fixture(t); prepare(f);
-  await assert.rejects(check(f.root, { fetcher: async () => ({ ok: false, status: 403 }) }), /publication blocked/);
-  await assert.rejects(check(f.root, { fetcher: async () => { throw Error('network unavailable'); } }), /network unavailable/);
+test('preview remains available while QA is incomplete', async t => {
+  const f = fixture(t); prepare(f); rmSync(join(f.root, 'editorial/qa.json'));
+  assert.match(await check(f.root, { production: false }), /PREVIEW ONLY/);
+  await assert.rejects(check(f.root), /missing/);
 });
 test('test-only edits do not require a content approval', async t => {
   const f = fixture(t); f.write('src/page.test.tsx', 'A technical test');
