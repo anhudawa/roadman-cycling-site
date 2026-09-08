@@ -38,7 +38,7 @@ export default async function NdyFollowupsPage() {
           {row.sarahNotifiedAt && <p className="mt-2 text-sm text-foreground-muted">Notification accepted by email provider · {row.sarahNotifiedAt.toISOString().slice(0, 16).replace("T", " ")} UTC</p>}
           {row.sarahError && <p className="mt-2 text-sm text-amber-200">{row.sarahError}</p>}
           {row.sarahStatus === "failed" && <RetryDelivery id={row.id} target="sarah" />}
-          <a href={`mailto:${row.email}?subject=Your%20Not%20Done%20Yet%20question`} className="mt-4 inline-block min-h-11 w-fit whitespace-nowrap rounded-md bg-[var(--color-raised)] px-4 py-3 text-sm font-semibold text-[var(--color-fg)]">Reply to applicant</a>
+          <a href={`mailto:${row.email}?subject=Your%20Not%20Done%20Yet%20question`} className="mt-4 inline-block min-h-11 min-w-[9rem] whitespace-nowrap rounded-md bg-[var(--color-raised)] px-4 py-3 text-center text-sm font-semibold text-[var(--color-fg)]">Reply to applicant</a>
         </div>}
       </article>)}
     </div>}
