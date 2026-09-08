@@ -42,7 +42,7 @@ export function validateReview(review, digest) {
 }
 
 export const REQUIRED_CHECKS = ['claims', 'editorial', 'offers', 'desktop', 'mobile', 'interactions', 'seo', 'technical'];
-export const CONTROL_FILES = ['scripts/editorial-gate.mjs', 'scripts/editorial-gate.test.mjs', '.github/workflows/editorial-gate.yml', 'package.json', 'vercel.json', 'AGENTS.md', 'docs/editorial-publishing-standard.md'];
+export const CONTROL_FILES = ['scripts/editorial-gate.mjs', 'scripts/editorial-gate.test.mjs', '.github/workflows/editorial-gate.yml', 'package.json', 'vercel.json', 'next.config.ts', 'AGENTS.md', 'docs/editorial-publishing-standard.md'];
 export function controlDigest(root) {
   return sha256(JSON.stringify(CONTROL_FILES.map(path => [path, sha256(readFileSync(resolve(root, path)))])));
 }
