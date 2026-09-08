@@ -1,6 +1,10 @@
 "use client";
 
 import { useMemo } from "react";
+import { runPrediction, type PredictMode, type RaceEventType } from "@/lib/race-predictor/run";
+import type { Course, RidingPosition, SurfaceType } from "@/lib/race-predictor/types";
+
+type Drafting = "solo" | "small_group" | "large_group";
 
 interface WhatIfSlidersProps {
   ftp: number;
@@ -15,40 +19,16 @@ interface WhatIfSlidersProps {
   distanceKm: number;
   /** Course elevation gain in metres. */
   elevationGainM: number;
-}
-
-/**
- * Quick client-side speed/time estimator based on a steady-state W/kg
- * approximation. Not the physics engine — purely directional feedback so
- * users see the effect of their inputs in real time before they submit.
- */
-function quickEstimate(args: {
-  ftp: number;
-  bodyMass: number;
-  bikeMass: number;
-  windSpeed: number;
-  distanceKm: number;
-  elevationGainM: number;
-}): { timeS: number; speedKmh: number; wkg: number } {
-  const { ftp, bodyMass, bikeMass, windSpeed, distanceKm, elevationGainM } = args;
-  const totalMass = Math.max(40, bodyMass + bikeMass);
-  const wkg = ftp / Math.max(40, bodyMass);
-  const sustained = ftp * 0.78;
-
-  // Crude flat-equivalent speed from sustained power. Empirical curve fitted
-  // to give ~32 km/h at 200 W on a 75 kg system.
-  const flatBaseKmh = 17 + (sustained / totalMass) * 5.6;
-
-  // Climbing penalty: every 1000m of gain at 5% reduces avg speed by ~3 km/h.
-  const climbPerKm = elevationGainM / Math.max(1, distanceKm);
-  const climbPenalty = climbPerKm * 0.18;
-
-  // Headwind penalty.
-  const windPenalty = Math.max(0, windSpeed) * 0.7;
-
-  const speedKmh = Math.max(10, flatBaseKmh - climbPenalty - windPenalty);
-  const timeS = (distanceKm / speedKmh) * 3600;
-  return { timeS, speedKmh, wkg };
+  /** Lightweight course profile used for the live physics simulation. */
+  course: Course;
+  mode: PredictMode;
+  position: RidingPosition;
+  surface: SurfaceType;
+  drafting: Drafting;
+  eventType: RaceEventType;
+  drivetrainEfficiency: number;
+  airTempC: number;
+  windDirectionDeg: number;
 }
 
 function fmt(seconds: number): string {
@@ -57,48 +37,99 @@ function fmt(seconds: number): string {
   return `${h}h ${m.toString().padStart(2, "0")}m`;
 }
 
+function signedMinutes(seconds: number): string {
+  const rounded = Math.round(seconds / 60);
+  if (rounded === 0) return "±0 min";
+  return `${rounded > 0 ? "+" : ""}${rounded} min`;
+}
+
 export function WhatIfSliders(props: WhatIfSlidersProps) {
-  const est = useMemo(
-    () =>
-      quickEstimate({
-        ftp: props.ftp,
+  const est = useMemo(() => {
+    const run = runPrediction({
+      course: props.course,
+      mode: props.mode,
+      rider: {
         bodyMass: props.bodyMass,
         bikeMass: props.bikeMass,
-        windSpeed: props.windSpeed,
-        distanceKm: props.distanceKm,
-        elevationGainM: props.elevationGainM,
-      }),
-    [props.ftp, props.bodyMass, props.bikeMass, props.windSpeed, props.distanceKm, props.elevationGainM],
-  );
+        position: props.position,
+        surface: props.surface,
+        drafting: props.drafting,
+        eventType: props.eventType,
+        drivetrainEfficiency: props.drivetrainEfficiency,
+        powerProfile: { ftp: props.ftp },
+      },
+      environment: {
+        airTemperatureC: props.airTempC,
+        windSpeedMs: props.windSpeed,
+        windDirectionRad: (props.windDirectionDeg * Math.PI) / 180,
+      },
+    });
+
+    return {
+      timeS: run.result.totalTime,
+      speedKmh: run.result.averageSpeed * 3.6,
+      wkg: props.ftp / Math.max(40, props.bodyMass),
+      averagePower: run.result.averagePower,
+      normalizedPower: run.result.normalizedPower,
+      confidenceLowS: run.confidence.low,
+      confidenceHighS: run.confidence.high,
+    };
+  }, [
+    props.airTempC,
+    props.bikeMass,
+    props.bodyMass,
+    props.course,
+    props.drafting,
+    props.drivetrainEfficiency,
+    props.eventType,
+    props.ftp,
+    props.mode,
+    props.position,
+    props.surface,
+    props.windDirectionDeg,
+    props.windSpeed,
+  ]);
+
+  const confidenceMinus = est.timeS - est.confidenceLowS;
+  const confidencePlus = est.confidenceHighS - est.timeS;
 
   return (
-    <div className="rounded-xl border border-white/8 bg-gradient-to-br from-deep-purple/30 to-charcoal p-5">
-      <div className="flex items-end justify-between mb-4 flex-wrap gap-2">
+    <div className="rounded-2xl border border-coral/25 bg-gradient-to-br from-deep-purple/45 via-charcoal to-charcoal p-5 shadow-[0_18px_70px_-35px_rgba(241,99,99,0.75)]">
+      <div className="flex items-start justify-between mb-4 flex-wrap gap-3">
         <div>
           <p
             className="text-[0.62rem] tracking-[0.22em] uppercase text-coral"
             style={{ fontFamily: "var(--font-jetbrains-mono)" }}
           >
-            LIVE ESTIMATE — WHAT-IF
+            LIVE PHYSICS MODEL
           </p>
-          <p className="font-heading text-3xl md:text-4xl uppercase tracking-tight text-off-white leading-none mt-1">
+          <p className="font-heading text-4xl md:text-5xl uppercase tracking-tight text-off-white leading-none mt-1 tabular-nums">
             {fmt(est.timeS)}
           </p>
+          <p className="mt-2 text-xs text-foreground-muted">
+            Confidence: {signedMinutes(-confidenceMinus)} / {signedMinutes(confidencePlus)} from the same engine used at submit.
+          </p>
         </div>
-        <div className="text-right">
+        <div className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-right">
           <p
             className="text-[0.62rem] tracking-[0.18em] uppercase text-foreground-subtle"
             style={{ fontFamily: "var(--font-jetbrains-mono)" }}
           >
             AVG SPEED
           </p>
-          <p className="font-heading text-2xl text-off-white">
+          <p className="font-heading text-2xl text-off-white tabular-nums">
             {est.speedKmh.toFixed(1)}<span className="text-foreground-subtle text-base"> km/h</span>
           </p>
           <p className="text-[0.62rem] tracking-[0.15em] uppercase text-foreground-subtle mt-1">
             {est.wkg.toFixed(2)} W/kg
           </p>
         </div>
+      </div>
+
+      <div className="grid grid-cols-3 gap-2 mb-5">
+        <MiniStat label="Avg power" value={`${Math.round(est.averagePower)}W`} />
+        <MiniStat label="Norm power" value={`${Math.round(est.normalizedPower)}W`} />
+        <MiniStat label="Route" value={`${props.distanceKm.toFixed(0)}km`} />
       </div>
 
       <div className="space-y-4">
@@ -130,7 +161,7 @@ export function WhatIfSliders(props: WhatIfSlidersProps) {
           onChange={props.onBikeMass}
         />
         <Slider
-          label="Headwind"
+          label="Wind speed"
           unit="m/s"
           value={props.windSpeed}
           min={0}
@@ -140,12 +171,33 @@ export function WhatIfSliders(props: WhatIfSlidersProps) {
         />
       </div>
 
+      <div className="mt-5 rounded-xl border border-white/8 bg-white/[0.03] p-3">
+        <p
+          className="text-[0.62rem] tracking-[0.15em] uppercase text-coral mb-2"
+          style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+        >
+          Accuracy inputs still missing?
+        </p>
+        <ul className="space-y-1.5 text-xs text-foreground-muted leading-relaxed">
+          <li>• Use real body/bike mass and choose the closest surface.</li>
+          <li>• Open conditions for wind direction — a tailwind-only estimate is usually wrong.</li>
+          <li>• Submit to save the full segment-by-segment pacing plan.</li>
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+function MiniStat({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-lg border border-white/8 bg-white/[0.03] px-3 py-2">
       <p
-        className="mt-4 pt-3 border-t border-white/5 text-[0.62rem] tracking-[0.15em] uppercase text-foreground-subtle"
+        className="text-[0.56rem] tracking-[0.16em] uppercase text-foreground-subtle"
         style={{ fontFamily: "var(--font-jetbrains-mono)" }}
       >
-        Quick estimate · Submit for the full course simulation
+        {label}
       </p>
+      <p className="font-heading text-lg text-off-white tabular-nums">{value}</p>
     </div>
   );
 }
@@ -173,9 +225,7 @@ function Slider({ label, unit, value, min, max, step, onChange }: SliderProps) {
         >
           {label}
         </label>
-        <span
-          className="font-heading text-base text-off-white tabular-nums"
-        >
+        <span className="font-heading text-base text-off-white tabular-nums">
           {Number.isInteger(step) ? Math.round(value) : value.toFixed(1)}
           <span className="text-foreground-subtle text-xs ml-1">{unit}</span>
         </span>

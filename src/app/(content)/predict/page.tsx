@@ -1188,6 +1188,15 @@ export default function PredictPage() {
                       onWindSpeed={setWindSpeedMs}
                       distanceKm={previewData.distanceKm}
                       elevationGainM={previewData.elevationGainM}
+                      course={previewData.course}
+                      mode={mode}
+                      position={position}
+                      surface={surface}
+                      drafting={drafting}
+                      eventType={eventType}
+                      drivetrainEfficiency={drivetrainEfficiency}
+                      airTempC={airTempC}
+                      windDirectionDeg={windDirectionDeg}
                     />
                   ) : (
                     <div className="rounded-xl border border-white/8 bg-gradient-to-br from-deep-purple/30 to-charcoal p-6 md:p-7 text-center">
