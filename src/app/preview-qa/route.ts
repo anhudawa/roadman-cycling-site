@@ -6,6 +6,8 @@ const PAGES = [
   "/blog/dragon-ride-training-guide", "/races/dragon-ride", "/races",
   "/tools/training-load", "/tools/tyre-pressure", "/tools/hr-zones",
   "/answers/what-is-ctl", "/glossary/training-peaks-ctl",
+  "/topics/ftp-training", "/event/wicklow-200-training-plan", "/plan/wicklow-200",
+  "/blog/best-online-cycling-coach-how-to-choose", "/blog/how-much-does-online-cycling-coach-cost-2026",
   "/watch/ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
 ];
 

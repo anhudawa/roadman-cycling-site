@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CONTACT, FOUNDER } from "@/lib/brand-facts";
+import { CONTACT } from "@/lib/brand-facts";
 
 interface NamedSource {
   name: string;
@@ -23,18 +23,15 @@ interface SourceMethodologyProps {
   research?: LinkedSource[];
   /**
    * One paragraph explaining how the answer was put together — the
-   * judgement, not the inputs. Optional. When omitted, a sensible default
-   * is rendered.
+   * judgement, not the inputs. Omitted when no method is recorded.
    */
   methodology?: string;
-  /** Last review date; falls back to today for live-rendered pages. */
+  /** Actual recorded review date; never inferred from modification time. */
   lastReviewed?: string;
-  /** Reviewer name; defaults to the founder. */
+  /** Actual recorded reviewer; never inferred from authorship. */
   reviewedBy?: string;
   className?: string;
 }
-
-const DEFAULT_METHODOLOGY = `Roadman answers are grounded in on-the-record podcast conversations with named coaches, sports scientists, and pro riders, plus the published research those experts cite. We don't invent numbers and we say "it depends" when it does.`;
 
 /**
  * "What this answer is based on" trust block for answer-native templates
@@ -49,9 +46,9 @@ export function SourceMethodology({
   episodes,
   articles,
   research,
-  methodology = DEFAULT_METHODOLOGY,
+  methodology,
   lastReviewed,
-  reviewedBy = FOUNDER.name,
+  reviewedBy,
   className = "",
 }: SourceMethodologyProps) {
   const hasNamedSources =
@@ -69,9 +66,11 @@ export function SourceMethodology({
         WHAT THIS ANSWER IS BASED ON
       </p>
 
-      <p className="text-foreground-muted text-sm leading-relaxed mb-4">
-        {methodology}
-      </p>
+      {methodology && (
+        <p className="text-foreground-muted text-sm leading-relaxed mb-4">
+          {methodology}
+        </p>
+      )}
 
       {experts && experts.length > 0 && (
         <div className="mb-4">
@@ -162,16 +161,18 @@ export function SourceMethodology({
 
       {!hasNamedSources && (
         <p className="text-xs text-foreground-subtle italic mb-4">
-          No external sources cited on this page — the answer reflects the
-          Roadman editorial position synthesised from the full podcast catalogue.
+          No external sources are listed for this page.
         </p>
       )}
 
       <div className="text-xs text-foreground-subtle border-t border-white/10 pt-3 mt-3 space-y-1">
-        <p>
-          <span>Reviewed by {reviewedBy}</span>
-          {lastReviewed && <span> · Last reviewed {lastReviewed}</span>}
-        </p>
+        {(reviewedBy || lastReviewed) && (
+          <p>
+            {reviewedBy && <span>Reviewed by {reviewedBy}</span>}
+            {reviewedBy && lastReviewed && <span> · </span>}
+            {lastReviewed && <span>Last reviewed {lastReviewed}</span>}
+          </p>
+        )}
         <p>
           <Link
             href={CONTACT.editorialStandardsUrl.replace(/^https?:\/\/[^/]+/, "")}

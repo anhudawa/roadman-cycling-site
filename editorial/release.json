@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentDigest": "0700e752ac90b590f4774fdc6797098e9b5e0a1b9c2c7e3105143076fa6e6726",
+  "contentDigest": "c6f575984a8702229d9f9ed38ace939bc68fded68af6cf6c4bf4b23884f9d5fe",
   "scope": "Roadman search and editorial trust: first coaching/Dragon Ride batch plus all evergreen event dates, UK/US coaching selection, 34 archive navigation passages and three podcast records, CTL answer/glossary/calculator, source-grounded authoring guidance, internal-copy checks and bounded discovery exports. Good Legs visuals remain in their separate PR. 8 September continuation: shareable video moments, calculator navigation/source links, and further reader-copy checks.",
   "sections": [
     {
@@ -471,6 +471,20 @@
       "usefulAnswer": "The preview helper embeds the unchanged site routes at 320, 390 or 430 by 844 CSS pixels with working native controls.",
       "evidence": "Route tests verify production/development 404, noindex/no-store, allowed route selection, rejection of external URLs and unchanged production DENY framing.",
       "editorialDecision": "Internal QA helper only; absent from public navigation and sitemaps. Same-origin framing is allowed only on previews. Browser rendering must still be observed before sign-off."
+    },
+    {
+      "location": "Shared EvidenceBlock, SourceMethodology, blog and answer templates — review credits and methodology",
+      "readerQuestion": "Who actually reviewed this page and when?",
+      "usefulAnswer": "Only explicitly recorded review names and dates are shown; authorship and content modification remain separate. Methodology appears only when supplied for the page.",
+      "evidence": "Rendered UK/US guides exposed the fabricated fallback. Regression tests cover absent and explicit credits, date propagation, and absent versus provided methodology.",
+      "editorialDecision": "Remove the automatic Anthony Walsh reviewer, inferred review dates and unsupported full-catalogue methodology claims. Keep existing recorded review credits, source links, authorship and correction contact."
+    },
+    {
+      "location": "Shared coaching decision CTA — short description",
+      "readerQuestion": "What will the coach-or-app comparison help me decide?",
+      "usefulAnswer": "Compare planning, feedback and contact needs with the support a training app provides.",
+      "evidence": "Existing coach-or-app comparison destination; no research supports the removed 80-percent equivalence claim.",
+      "editorialDecision": "Remove an unsupported numerical claim and the judgment about being ready for coaching; preserve the CTA destination and tracking."
     }
   ],
   "claimsAndSources": "Dragon Ride facts use the organiser’s 2026 reversed-route announcement and next-event update, with 2027 course uncertainty explicit. General preparation advice is identified as coaching guidance, with no invented research, individual result, event experience or dose. Existing coaching facts are retained; historical coaching-price research has not been refreshed. See docs/seo/roadman-search-trust-sprint-2026-09-07.md for URLs and the source discrepancy. USA Cycling qualification tiers and TrainingPeaks CTL/ATL/TSB definitions checked against primary documentation on 7 September. British Cycling directory and qualification pages were visible in search but direct fetches were blocked, so no unverified UK level hierarchy is asserted. Further sources and Semrush limitations are recorded in the sprint document. 8 September: Google link best practices and video structured-data guidance; YouTube embedded-player start documentation. Timestamp support is prepared without adding SeekToAction or unverified Clip markup.",

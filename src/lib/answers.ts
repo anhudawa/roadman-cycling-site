@@ -182,6 +182,8 @@ export interface AnswerPage {
   evidenceNote?: string;
   publishDate: string;
   updatedDate: string;
+  /** Actual editorial review date, independent of content modification. */
+  lastReviewed?: string;
   reviewedBy?: string;
 }
 

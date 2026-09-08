@@ -1015,10 +1015,8 @@ export default async function BlogPostPage({
                   : undefined
               }
               reviewedSources={post.reviewedSources}
-              lastReviewed={String(
-                post.lastReviewed || post.updatedDate || post.publishDate
-              )}
-              reviewedBy={post.reviewedBy || "Anthony Walsh"}
+              lastReviewed={post.lastReviewed ? String(post.lastReviewed) : undefined}
+              reviewedBy={post.reviewedBy}
             />
 
             {/* Ask Roadman handoff — pre-fills the assistant input with
