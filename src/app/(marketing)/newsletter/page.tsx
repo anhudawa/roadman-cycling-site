@@ -70,6 +70,7 @@ export default async function NewsletterPage() {
                 subheading=""
                 buttonText="SUBSCRIBE"
                 source="newsletter-page"
+                captureQueryAttribution
                 className="max-w-md mx-auto"
               />
             </ScrollReveal>
@@ -184,6 +185,7 @@ export default async function NewsletterPage() {
           heading="STOP GUESSING. START KNOWING."
           subheading="23,000 weekly readers get the week's sharpest training insights every Saturday. Join them."
           source="newsletter-page-bottom"
+          captureQueryAttribution
         />
       </main>
       <Footer />
