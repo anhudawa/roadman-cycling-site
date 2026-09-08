@@ -50,7 +50,12 @@ describe("NDY Beehiiv application email", () => {
     fetcher.mockResolvedValueOnce(json([])).mockResolvedValueOnce(json(subscriber))
       .mockResolvedValueOnce(json({})).mockResolvedValueOnce(json({})).mockResolvedValueOnce(json({ id: "aj_new" }));
     expect((await enrollNdyApplicant(input, beforeEnroll)).status).toBe("enrolled");
-    expect(JSON.parse(String(fetcher.mock.calls[1][1]?.body))).toMatchObject({ reactivate_existing: false, send_welcome_email: false });
+    expect(JSON.parse(String(fetcher.mock.calls[1][1]?.body))).toMatchObject({
+      reactivate_existing: false,
+      send_welcome_email: false,
+      double_opt_override: "off",
+      skip_newsletter_list_auto_subscribe: true,
+    });
     expect(JSON.parse(String(fetcher.mock.calls[1][1]?.body))).not.toHaveProperty("automation_ids");
   });
 

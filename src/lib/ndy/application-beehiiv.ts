@@ -39,6 +39,7 @@ export async function enrollNdyApplicant(
     if (!subscriber) {
       const res = await request("/subscriptions", { method: "POST", body: JSON.stringify({
         email: input.email, reactivate_existing: false, send_welcome_email: false,
+        double_opt_override: "off", skip_newsletter_list_auto_subscribe: true,
         utm_source: "roadman-site", utm_medium: "coaching-application", utm_campaign: "ndy-application",
       }) });
       if (res.status === 409) subscriber = await lookup();
