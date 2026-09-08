@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentDigest": "24f64efd05da07e5d5fd987a7d3b56e52f860f7440db66b4da722ef27ed307d1",
+  "contentDigest": "71405f8ca7183a453830be6448d920e5bdbfaaf8d4c525af0d9b55bc2d377a52",
   "scope": "Roadman search and editorial trust: first coaching/Dragon Ride batch plus all evergreen event dates, UK/US coaching selection, 34 archive navigation passages and three podcast records, CTL answer/glossary/calculator, source-grounded authoring guidance, internal-copy checks and bounded discovery exports. Good Legs visuals remain in their separate PR. 8 September continuation: shareable video moments, calculator navigation/source links, and further reader-copy checks.",
   "sections": [
     {
@@ -442,7 +442,7 @@
       "readerQuestion": "How can I share the passage I want someone to watch?",
       "usefulAnswer": "Enter seconds, minutes:seconds or hours:minutes:seconds; the time link opens the Roadman page with that start point passed to the YouTube player. Playback remains a user action.",
       "evidence": "YouTube embedded-player start parameter documentation; timestamp parser and rendered-player tests. Existing titles, video IDs, descriptions and canonical URLs retained.",
-      "editorialDecision": "Add a compact control immediately below the primary video. No invented chapter labels, verified quotation claims, autoplay or unsupported promise of Google key moments. Keep a server-rendered fallback player and static routes."
+      "editorialDecision": "Add a compact control immediately below the primary video. No invented chapter labels, verified quotation claims, autoplay or unsupported promise of Google key moments. Keep a server-rendered fallback player and static routes. Mobile QA at 320px found aspect-ratio width expansion. Set an explicit full width and position the iframe inside a minimum 202px wrapper, preserving a 200px player after the border."
     },
     {
       "location": "All registered calculator guides — navigation, evidence links and date label",

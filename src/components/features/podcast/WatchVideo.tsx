@@ -12,14 +12,14 @@ interface WatchVideoProps {
 
 export function WatchVideoFrame({ youtubeId, title, start = 0 }: Omit<WatchVideoProps, "watchUrl"> & { start?: number }) {
   return (
-    <div id="video" className="aspect-video min-h-[200px] scroll-mt-24 overflow-hidden rounded-xl border border-white/10 bg-black shadow-[var(--shadow-elevated)]">
+    <div id="video" className="relative aspect-video min-h-[202px] w-full min-w-0 scroll-mt-24 overflow-hidden rounded-xl border border-white/10 bg-black shadow-[var(--shadow-elevated)]">
       <iframe
         src={getYouTubeEmbedUrl(youtubeId, start)}
         width="100%"
         height="100%"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
-        className="border-0"
+        className="absolute inset-0 h-full w-full border-0"
         title={`Watch ${title}`}
       />
     </div>
