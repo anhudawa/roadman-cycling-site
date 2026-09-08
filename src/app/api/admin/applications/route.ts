@@ -108,6 +108,7 @@ export async function GET(request: Request) {
       (ApplicationRow & { contactId: number | null; owner: string | null })[]
     > = {
       awaiting_response: [],
+      questions_requested: [],
       contacted_once: [],
       contacted_twice: [],
       final_outreach: [],

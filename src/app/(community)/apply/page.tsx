@@ -9,6 +9,7 @@ import { CASE_STUDIES } from "@/lib/case-studies";
 import { TESTIMONIALS } from "@/lib/testimonials";
 import type { StoredSubmission } from "@/lib/diagnostic/store";
 import { CohortApplicationForm } from "./CohortApplicationForm";
+import { ndyApplicationFlowEnabled } from "@/lib/ndy/application-offer";
 import { PersonalisedDiagnosticBlock } from "./PersonalisedDiagnosticBlock";
 import styles from "./ApplyPage.module.css";
 
@@ -123,6 +124,8 @@ export function ApplyPageView({
   submission: StoredSubmission | null;
 }) {
   const personalised = submission !== null;
+  const instantFollowup = ndyApplicationFlowEnabled();
+  const applicationQuestions = questions.map((item) => item.q === "What happens after I apply?" && instantFollowup ? { ...item, a: "We check your answers automatically and email the next steps through Beehiiv. You can join Not Done Yet on Skool for $195 USD/month or ask Sarah a question first. If your answers need a closer look, we’ll suggest a fit discussion. No credit card is needed to apply." } : item);
 
   return (
     <>
@@ -170,7 +173,7 @@ export function ApplyPageView({
           data={{
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            mainEntity: questions.map((item) => ({
+            mainEntity: applicationQuestions.map((item) => ({
               "@type": "Question",
               name: item.q,
               acceptedAnswer: {
@@ -241,15 +244,12 @@ export function ApplyPageView({
                     <p>2-MINUTE APPLICATION</p>
                     <h2>TELL US WHERE YOU&apos;RE STUCK.</h2>
                     <span>
-                      Four quick questions. No credit card. Anthony replies
-                      within 48 hours.
+                      {instantFollowup ? "Four quick questions. No credit card. Get your next steps by email." : "Four quick questions. No credit card. Anthony replies within 48 hours."}
                     </span>
                   </div>
-                  <CohortApplicationForm />
+                  <CohortApplicationForm instantFollowup={instantFollowup} />
                   <p className={styles.formPrivacy}>
-                    Your application goes straight to Anthony. No spam. Just a
-                    personal reply about whether the coaching fits. An unfinished
-                    draft stays on this device for up to 24 hours.
+                    {instantFollowup ? "Your answers are saved for the coaching team. We use Beehiiv to email your application next steps. " : "Your application goes straight to Anthony. No spam. Just a personal reply about whether the coaching fits. "}An unfinished draft stays on this device for up to 24 hours.
                   </p>
                 </div>
               </div>
@@ -398,7 +398,7 @@ export function ApplyPageView({
                 </div>
 
                 <div className={styles.questions}>
-                  {questions.map((item, index) => (
+                  {applicationQuestions.map((item, index) => (
                     <details key={item.q} open={index === 0}>
                       <summary>
                         <span className={styles.questionIndex}>

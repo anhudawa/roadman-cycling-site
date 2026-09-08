@@ -9,6 +9,7 @@ describe("application pipeline", () => {
   it("uses the outreach workflow without an accepted stage", () => {
     expect(APPLICATION_STAGES).toEqual([
       "awaiting_response",
+      "questions_requested",
       "contacted_once",
       "contacted_twice",
       "final_outreach",

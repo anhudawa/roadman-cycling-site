@@ -197,7 +197,8 @@ const FRUSTRATIONS = [
 
 type Step = "goal" | "hours" | "frustration" | "details" | "submitted";
 
-export function CohortApplicationForm() {
+export function CohortApplicationForm({ instantFollowup = false }: { instantFollowup?: boolean }) {
+  const [nextUrl, setNextUrl] = useState<string | null>(null);
   const [step, setStep] = useState<Step>("goal");
   const [goal, setGoal] = useState("");
   const [hours, setHours] = useState("");
@@ -371,6 +372,7 @@ export function CohortApplicationForm() {
         persona?: string;
         duplicate?: boolean;
         discarded?: boolean;
+        nextUrl?: string;
       };
       if (data.discarded) {
         setWebsite("");
@@ -390,6 +392,7 @@ export function CohortApplicationForm() {
         trackFunnel("coaching_apply_submitted", { source: "cohort-apply" });
       }
       // Success — wipe the draft so next visit starts fresh
+      if (data.nextUrl?.startsWith("https://www.roadmancycling.com/apply/next#")) setNextUrl(data.nextUrl);
       clearDraft();
       submissionIdRef.current = null;
       setStep("submitted");
@@ -764,8 +767,7 @@ export function CohortApplicationForm() {
                 {submitting ? "SUBMITTING..." : cohortCopy.buttonText}
               </button>
               <p className="text-foreground-subtle text-xs text-center">
-                Anthony reviews every application. You&apos;ll hear back within
-                48 hours.
+                {instantFollowup ? "We’ll email your next steps through Beehiiv: join coaching or ask Sarah a question." : <>Anthony reviews every application. You&apos;ll hear back within 48 hours.</>}
               </p>
               <button
                 type="button"
@@ -802,13 +804,11 @@ export function CohortApplicationForm() {
               {cohortCopy.submittedHeadline}
             </h3>
             <p className="text-foreground-muted max-w-sm mx-auto mb-6">
-              {cohortCopy.submittedBody}
-              {" "}We&apos;ll reply to{" "}
+              {nextUrl ? "Your application is saved for" : cohortCopy.submittedBody}
+              {nextUrl ? " " : " We’ll reply to "}
               <span className="text-coral">{email}</span>.
             </p>
-            <p className="text-foreground-subtle text-sm">
-              Nothing else to do right now.
-            </p>
+            {nextUrl ? <a href={nextUrl} className="inline-flex min-h-12 items-center justify-center rounded-md bg-coral px-5 py-3 font-semibold text-deep-purple">Join coaching or ask Sarah</a> : <p className="text-foreground-subtle text-sm">Nothing else to do right now.</p>}
           </motion.div>
         )}
       </AnimatePresence>

@@ -93,6 +93,7 @@ export default async function ApplicationsPage({ searchParams }: PageProps) {
 
   const initialStages: StageMap = {
     awaiting_response: [],
+      questions_requested: [],
     contacted_once: [],
     contacted_twice: [],
     final_outreach: [],
@@ -162,6 +163,7 @@ export default async function ApplicationsPage({ searchParams }: PageProps) {
             <p className="text-foreground-muted text-sm mt-1.5">
               {visibleCount} /apply submission{visibleCount === 1 ? "" : "s"}
             </p>
+            <Link href="/admin/applications/followups" className="mt-3 inline-block text-sm text-[var(--color-fg)] underline">Application emails &amp; questions for Sarah</Link>
           </div>
           <div className="inline-flex rounded-lg border border-white/10 bg-background-elevated p-0.5 text-[11px] shrink-0">
             <Link

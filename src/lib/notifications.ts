@@ -38,6 +38,7 @@ async function sendEmail(params: SendEmailParams): Promise<{ success: boolean; e
 
   try {
     const response = await fetch("https://api.resend.com/emails", {
+      signal: AbortSignal.timeout(10_000),
       method: "POST",
       headers: {
         "Content-Type": "application/json",

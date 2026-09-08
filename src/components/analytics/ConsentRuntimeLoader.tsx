@@ -73,6 +73,7 @@ function AnalyticsEventBootstrap({ enabled }: { enabled: boolean }) {
 }
 
 export function ConsentRuntimeLoader() {
+  const pathname = usePathname();
   const [consent, setConsent] = useState(() => readClientConsent());
 
   useEffect(() => {
@@ -94,6 +95,7 @@ export function ConsentRuntimeLoader() {
       window.removeEventListener("consent-updated", onConsentUpdated);
   }, []);
 
+  if (pathname === "/apply/next") return null;
   return (
     <>
       <AnalyticsEventBootstrap enabled={consent.analytics} />
