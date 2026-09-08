@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "reviewer": "Codex",
+  "decision": "publish",
+  "reviewedAt": "2026-09-08T14:31:30Z",
+  "contentDigest": "f77f8cf73f94a62d97f1dfe311506eb73bc0d50811bb983573a52360bdc149c1",
+  "reviewHash": "47def3a6f16df316f071a7cdfae7f9cc4e55f19fe311f2fbab94d4f0cd6bd92f",
+  "controlsHash": "c4fe4a1cb3d6f94dea33a8d22c174aa923998f35a871497d02bbb1b61fa89b87",
+  "blockers": [],
+  "checks": {
+    "claims": {
+      "status": "pass",
+      "evidence": "Newsletter audience proof uses Anthony's supplied active Beehiiv figure of about 23,215, rounded to 23,000. The connected Drive source is application/pdf and 6,592,307 bytes. No public open-rate replacement, sponsor-performance, science, guest, member-count or wider financial claim is introduced."
+    },
+    "editorial": {
+      "status": "pass",
+      "evidence": "The release remains a narrow P0 correction. Newsletter and partners copy preserve the existing structure and weekly-letter positioning while removing inflated 30K/30,000+ and 65% proof. The fallback route adds no promotional copy."
+    },
+    "offers": {
+      "status": "pass",
+      "evidence": "Beehiiv posts, automations, referral configuration, coaching prices, sponsor packages, Skool and paid acquisition are unchanged. The Core Guide remains a referral reward asset and is not offered as the newsletter signup incentive."
+    },
+    "desktop": {
+      "status": "pass",
+      "evidence": "The exact P0 page bytes were rendered in Chromium at 1440x1000 for /newsletter and /partners. The checks found 23K/23,000 present, 30K/30,000+ absent, 65% absent and no horizontal overflow. The fallback changes only the download route and restores deployment config; it does not alter those page components or styles.",
+      "pages": [
+        {
+          "url": "http://127.0.0.1:3000/newsletter?source=youtube&utm_source=youtube&utm_medium=video&utm_campaign=p0-qa",
+          "width": 1440,
+          "height": 1000,
+          "observations": "The Saturday Spin hero, signup form, corrected 23,000-reader proof, content sections and bottom signup banner render cleanly with no 30K/65% copy or horizontal overflow."
+        },
+        {
+          "url": "http://127.0.0.1:3000/partners",
+          "width": 1440,
+          "height": 1000,
+          "observations": "The media-kit hero and newsletter reach cards render cleanly with 23K/23,000 reach and no open-rate percentage; the existing hierarchy and layout remain intact."
+        }
+      ]
+    },
+    "mobile": {
+      "status": "pass",
+      "evidence": "The exact P0 page bytes were rendered in Chromium at 390x844 for /newsletter and /partners. Corrected audience proof remained readable, 30K/30,000+/65% claims were absent and document width matched the viewport. The fallback does not change mobile UI.",
+      "pages": [
+        {
+          "url": "http://127.0.0.1:3000/newsletter?source=podcast",
+          "width": 390,
+          "height": 844,
+          "observations": "The hero, form, consent copy, 23,000-reader proof, content cards and bottom signup banner remain readable without clipping or overflow."
+        },
+        {
+          "url": "http://127.0.0.1:3000/partners",
+          "width": 390,
+          "height": 844,
+          "observations": "The media-kit reach cards remain readable and the corrected newsletter figure fits the existing mobile layout without horizontal overflow."
+        }
+      ]
+    },
+    "interactions": {
+      "status": "pass",
+      "evidence": "Newsletter EmailCapture reads source and optional utm_source, utm_medium and utm_campaign only when query attribution is enabled, submits them through the existing /api/newsletter path, and the existing Beehiiv helper maps those values to Beehiiv UTM subscription fields. Existing fixed-source asset funnels remain unchanged. No real subscriber was created during QA."
+    },
+    "seo": {
+      "status": "pass",
+      "evidence": "The newsletter metadata/social audience statement was corrected to 23,000 with no new search claim. The canonical download path is same-domain and stable. No new doorway page, keyword variant or sponsor marketing surface was added."
+    },
+    "technical": {
+      "status": "pass",
+      "evidence": "The exact fallback content digest completed a full Next.js production-mode build: compilation and TypeScript succeeded, all 4,463 static pages generated, and the route table contains dynamic /downloads/core-training-guide.pdf. The route follows the Drive download, rejects any upstream body that does not begin %PDF-, and on success returns application/pdf with Content-Length, stable filename, cache headers and nosniff. vercel.json is restored to the known-good pre-P0 configuration. Final public HTTP verification is the required post-deploy smoke check, not a pre-deploy assertion."
+    }
+  }
+}
