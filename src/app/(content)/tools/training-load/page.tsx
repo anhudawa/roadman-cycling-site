@@ -261,7 +261,7 @@ export default function TrainingLoadPage() {
                     </div>
 
                     {/* TSS bar chart */}
-                    <div className="mb-8">
+                    {days.length > 1 && days.some(tss => tss > 0) && <div className="mb-8">
                       <p className="font-heading text-sm text-off-white mb-3">DAILY TSS</p>
                       <div className="flex items-end gap-1" style={{ height: "120px" }}>
                         {days.map((val, i) => {
@@ -284,7 +284,7 @@ export default function TrainingLoadPage() {
                         <span>Day 1</span>
                         <span>Day {days.length}</span>
                       </div>
-                    </div>
+                    </div>}
 
                     {/* What Next */}
                     <div className="rounded-xl border border-white/10 p-6 mb-8">

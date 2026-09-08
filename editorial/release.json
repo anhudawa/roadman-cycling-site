@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentDigest": "c6f575984a8702229d9f9ed38ace939bc68fded68af6cf6c4bf4b23884f9d5fe",
+  "contentDigest": "24f64efd05da07e5d5fd987a7d3b56e52f860f7440db66b4da722ef27ed307d1",
   "scope": "Roadman search and editorial trust: first coaching/Dragon Ride batch plus all evergreen event dates, UK/US coaching selection, 34 archive navigation passages and three podcast records, CTL answer/glossary/calculator, source-grounded authoring guidance, internal-copy checks and bounded discovery exports. Good Legs visuals remain in their separate PR. 8 September continuation: shareable video moments, calculator navigation/source links, and further reader-copy checks.",
   "sections": [
     {
@@ -386,7 +386,7 @@
       "readerQuestion": "What do the outputs mean and which day do they describe?",
       "usefulAnswer": "CTL/ATL at the last day’s end; TSB before that day and a separate following-day value.",
       "evidence": "TrainingPeaks TSB timing; worked example verified with the calculation engine.",
-      "editorialDecision": "Remove race-ready, overreaching and detrained score bands. Use one chart colour and describe modelled load without diagnosing the rider."
+      "editorialDecision": "Remove race-ready, overreaching and detrained score bands. Use one chart colour and describe modelled load without diagnosing the rider. Render the daily-TSS chart only for a multi-day diary with some training; a single rest day no longer produces an empty chart and duplicated Day 1 endpoints."
     },
     {
       "location": "/tools/training-load — methodology, metadata, directory description and coaching link",
