@@ -100,14 +100,30 @@ describe("NDY Beehiiv application email", () => {
 
 describe("the automatic fit screen", () => {
   it("gives the fit message for a supported cycling goal and sufficient time", () => {
-    expect(assessApplication(input).outcome).toBe("ready");
+    expect(assessApplication(input)).toMatchObject({
+      outcome: "ready", message: expect.stringContaining("has been approved"),
+    });
   });
   it.each([{ hours: "Under 4 hours" }, { frustration: "Injury or comeback — trying to get back" }, { frustration: "Knee pain" }, { goal: "Something unrelated" }])("does not imply a perfect fit for cases needing discussion", (change) => {
     const result = assessApplication({ ...input, ...change });
-    expect(result.outcome).toBe("review"); expect(result.message).not.toContain("great fit");
+    expect(result.outcome).toBe("review"); expect(result.message).not.toContain("approved");
   });
   it("keeps bearer tokens out of URL queries and server request paths", () => {
     const url = new URL(applicationNextUrl(input.accessToken));
     expect(url.search).toBe(""); expect(url.pathname).toBe("/apply/next"); expect(url.hash).toContain(input.accessToken);
+  });
+  it("keeps preview tokens on the deployment that created their records", () => {
+    vi.stubEnv("VERCEL_ENV", "preview");
+    vi.stubEnv("VERCEL_URL", "roadman-preview.example.vercel.app");
+    expect(applicationNextUrl(input.accessToken, "questions")).toBe(
+      `https://roadman-preview.example.vercel.app/apply/next#questions/${input.accessToken}`,
+    );
+  });
+  it("uses the public origin for production tokens", () => {
+    vi.stubEnv("VERCEL_ENV", "production");
+    vi.stubEnv("VERCEL_URL", "roadman-build.example.vercel.app");
+    expect(applicationNextUrl(input.accessToken)).toBe(
+      `https://www.roadmancycling.com/apply/next#join/${input.accessToken}`,
+    );
   });
 });

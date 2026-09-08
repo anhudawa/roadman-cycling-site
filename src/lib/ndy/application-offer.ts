@@ -4,6 +4,7 @@ export const NDY_APPLICATION_OFFER = {
   checkoutUrl: "https://www.skool.com/roadmancycling/plans?src=join",
   price: "$195 USD/month",
   adminNotificationEmail: "anthony@roadmancycling.com",
+  trialDays: 7,
   sarahEmail: "sarah@roadmancycling.com",
 } as const;
 
@@ -26,8 +27,8 @@ export function assessApplication(input: { goal: string; hours: string; frustrat
   return {
     outcome: ready ? "ready" as const : "review" as const,
     message: ready
-      ? "We've automatically reviewed your application. Based on your cycling goal and available training time, we think Not Done Yet is a great fit for you."
-      : "Thanks for applying to Not Done Yet. We'd like to check how the coaching fits your circumstances. You can explore the programme below, or ask Sarah a question before joining.",
+      ? "Your application to Not Done Yet has been approved."
+      : "We've received your application. Please ask Sarah about the programme before joining so she can check that it suits you.",
   };
 }
 
@@ -37,5 +38,12 @@ export function ndyApplicationFlowEnabled() {
 
 export function applicationNextUrl(token: string, view: "join" | "questions" = "join") {
   // Fragment keeps the bearer token out of request URLs, access logs and referrers.
-  return `https://www.roadmancycling.com/apply/next#${view}/${token}`;
+  // Preview applications share the configured database, but their action API is
+  // enabled only on the preview deployment during release QA. Keep each token on
+  // the deployment that created it; production always uses the public origin.
+  const deploymentHost = process.env.VERCEL_URL?.trim();
+  const origin = process.env.VERCEL_ENV === "preview" && deploymentHost
+    ? `https://${deploymentHost.replace(/^https?:\/\//, "").replace(/\/$/, "")}`
+    : "https://www.roadmancycling.com";
+  return `${origin}/apply/next#${view}/${token}`;
 }
