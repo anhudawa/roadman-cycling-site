@@ -59,6 +59,19 @@ describe("NDY Beehiiv application email", () => {
     expect(JSON.parse(String(fetcher.mock.calls[1][1]?.body))).not.toHaveProperty("automation_ids");
   });
 
+  it("waits for Beehiiv to validate a newly created subscriber before enrolling", async () => {
+    vi.stubGlobal("setTimeout", (callback: () => void) => { callback(); return 0; });
+    fetcher.mockResolvedValueOnce(json([]))
+      .mockResolvedValueOnce(json({ ...subscriber, status: "validating" }))
+      .mockResolvedValueOnce(json([subscriber]))
+      .mockResolvedValueOnce(json({})).mockResolvedValueOnce(json({})).mockResolvedValueOnce(json({ id: "aj_validated" }));
+
+    expect(await enrollNdyApplicant(input, beforeEnroll)).toEqual({
+      status: "enrolled", subscriberId: "sub_123", journeyId: "aj_validated",
+    });
+    expect(String(fetcher.mock.calls[2][0])).toContain("?email=");
+  });
+
   it("handles a subscriber created concurrently by another form", async () => {
     fetcher.mockResolvedValueOnce(json([])).mockResolvedValueOnce(json({}, 409)).mockResolvedValueOnce(json([subscriber]))
       .mockResolvedValueOnce(json({})).mockResolvedValueOnce(json({})).mockResolvedValueOnce(json({ id: "aj_123" }));

@@ -36,6 +36,7 @@ export async function enrollNdyApplicant(
       return json.data?.find((s) => s.email.toLowerCase() === input.email.toLowerCase());
     };
     let subscriber = await lookup();
+    let createdSubscriber = false;
     if (!subscriber) {
       const res = await request("/subscriptions", { method: "POST", body: JSON.stringify({
         email: input.email, reactivate_existing: false, send_welcome_email: false,
@@ -46,7 +47,17 @@ export async function enrollNdyApplicant(
       else {
         if (!res.ok) throw new Error(`Beehiiv subscriber creation failed (${res.status})`);
         subscriber = (await res.json() as { data?: Subscriber }).data;
+        createdSubscriber = true;
       }
+    }
+    // Beehiiv acknowledges a new API subscriber as `validating` while its
+    // asynchronous address check runs, even when double opt-in is disabled.
+    // Wait only for the subscriber created by this request; never poll or
+    // reactivate a pre-existing opt-out. Live provider QA observed the normal
+    // transition to active on the first one-second lookup.
+    for (let attempt = 0; createdSubscriber && subscriber?.status === "validating" && attempt < 3; attempt += 1) {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      subscriber = await lookup();
     }
     if (!subscriber?.id) throw new Error("Beehiiv did not return a subscriber ID");
     subscriberId = subscriber.id;

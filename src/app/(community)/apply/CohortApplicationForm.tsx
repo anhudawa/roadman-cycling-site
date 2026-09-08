@@ -10,6 +10,7 @@ import {
   trackConsentedMetaEvent,
 } from "@/lib/analytics/third-party-tags";
 import { getCohortState } from "@/lib/cohort";
+import { safeApplicationNextUrl } from "@/lib/ndy/application-next-url";
 
 /** RFC-5322 lite — rejects `foo@`, `@bar`, and other common fat-finger failures. */
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -392,7 +393,8 @@ export function CohortApplicationForm({ instantFollowup = false }: { instantFoll
         trackFunnel("coaching_apply_submitted", { source: "cohort-apply" });
       }
       // Success — wipe the draft so next visit starts fresh
-      if (data.nextUrl?.startsWith("https://www.roadmancycling.com/apply/next#")) setNextUrl(data.nextUrl);
+      const safeNextUrl = safeApplicationNextUrl(data.nextUrl, window.location.origin);
+      if (safeNextUrl) setNextUrl(safeNextUrl);
       clearDraft();
       submissionIdRef.current = null;
       setStep("submitted");
