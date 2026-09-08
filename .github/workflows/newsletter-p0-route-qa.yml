@@ -1,0 +1,27 @@
+name: Newsletter P0 route QA
+on:
+  push:
+    branches: [codex/newsletter-p0-static-pdf]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Preview production build
+        env:
+          VERCEL_ENV: preview
+        run: npm run build
+      - name: Print release binding values
+        run: |
+          node --input-type=module <<'NODE'
+          import { fingerprint, controlDigest } from './scripts/editorial-gate.mjs';
+          console.log('CONTENT_DIGEST=' + fingerprint(process.cwd()).digest);
+          console.log('CONTROLS_HASH=' + controlDigest(process.cwd()));
+          NODE
