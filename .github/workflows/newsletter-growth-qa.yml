@@ -37,7 +37,7 @@ jobs:
           exit 1
       - name: Render desktop and mobile acceptance checks
         run: |
-          cat > /tmp/qa.mjs <<'EOF'
+          cat > .newsletter-growth-qa.mjs <<'EOF'
           import { chromium } from 'playwright';
           const browser = await chromium.launch({headless:true});
           const cases = [
@@ -86,4 +86,5 @@ jobs:
           await browser.close();
           if (failed) process.exit(1);
           EOF
-          node /tmp/qa.mjs
+          node .newsletter-growth-qa.mjs
+          rm .newsletter-growth-qa.mjs
