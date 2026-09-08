@@ -17,9 +17,9 @@ export async function enrollNdyApplicant(
   input: { name: string; email: string; accessToken: string; goal: string; hours: string; frustration: string },
   beforeEnroll: (subscriberId: string) => Promise<void>,
 ): Promise<EnrollmentResult> {
-  const key = process.env.BEEHIIV_API_KEY;
-  const pub = process.env.BEEHIIV_PUBLICATION_ID;
-  const automation = process.env.BEEHIIV_AUTOMATION_NDY_APPLICATION;
+  const key = process.env.BEEHIIV_API_KEY?.trim();
+  const pub = process.env.BEEHIIV_PUBLICATION_ID?.trim();
+  const automation = process.env.BEEHIIV_AUTOMATION_NDY_APPLICATION?.trim();
   if (!key || !pub || !automation) return { status: "failed", error: "Beehiiv application automation is not configured" };
   const base = `https://api.beehiiv.com/v2/publications/${pub}`;
   const headers = { Authorization: `Bearer ${key}`, "Content-Type": "application/json" };

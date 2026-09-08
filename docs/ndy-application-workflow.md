@@ -56,7 +56,7 @@ Ordinary replies reach Sarah through Reply-To, but email-inbox replies do **not*
 ## Activation sequence
 
 1. Restore Vercel access to the Roadman project and the working Beehiiv browser controls. This session's Vercel team list was empty. Beehiiv pages were readable, but every attempted Create Automation action timed out; no automation draft was created.
-2. Apply the additive migration `drizzle/0063_ndy_application_followups.sql` using the project's normal migration process. Keep `NDY_APPLICATION_FLOW_ENABLED=false` until the rest passes. Do not run a destructive schema push.
+2. Apply the additive migration `drizzle/0064_ndy_application_followups.sql` using the project's targeted migration process. Production's historical Drizzle ledger is empty, so do not run the broad `npm run db:migrate` command or a destructive schema push. Keep `NDY_APPLICATION_FLOW_ENABLED=false` until the rest passes.
 3. Create the four custom fields and the dedicated API-triggered email automation described above. Capture its actual `aut_...` ID.
 4. Set `BEEHIIV_AUTOMATION_NDY_APPLICATION` to that ID in the correct deployment environments. The existing `BEEHIIV_API_KEY`, `BEEHIIV_PUBLICATION_ID`, `RESEND_API_KEY`, `POSTGRES_URL` and `CRON_SECRET` must also exist. Do not copy credentials into Git, email or chat.
 5. Run `node --import tsx scripts/check-ndy-application-setup.ts` in an environment with those credentials. It performs read-only configuration and table checks; inspect the returned automation status and verify its active Add by API trigger.

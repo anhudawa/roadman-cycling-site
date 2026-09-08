@@ -33,6 +33,19 @@ describe("NDY Beehiiv application email", () => {
     expect(fetcher.mock.calls.filter(([url]) => String(url).endsWith("/journeys"))).toHaveLength(1);
   });
 
+  it("normalises whitespace accidentally stored with Beehiiv configuration", async () => {
+    vi.stubEnv("BEEHIIV_API_KEY", " test-only\n");
+    vi.stubEnv("BEEHIIV_PUBLICATION_ID", " pub_test\n");
+    vi.stubEnv("BEEHIIV_AUTOMATION_NDY_APPLICATION", " aut_test\n");
+    fetcher.mockResolvedValueOnce(json([subscriber])).mockResolvedValueOnce(json({}))
+      .mockResolvedValueOnce(json({})).mockResolvedValueOnce(json({ id: "aj_trimmed" }));
+
+    expect((await enrollNdyApplicant(input, beforeEnroll)).status).toBe("enrolled");
+    expect(String(fetcher.mock.calls[0][0]).startsWith("https://api.beehiiv.com/v2/publications/pub_test/")).toBe(true);
+    expect(fetcher.mock.calls[0][1]?.headers).toMatchObject({ Authorization: "Bearer test-only" });
+    expect(String(fetcher.mock.calls[3][0]).endsWith("/automations/aut_test/journeys")).toBe(true);
+  });
+
   it("creates a new subscriber without triggering a generic welcome or reactivation", async () => {
     fetcher.mockResolvedValueOnce(json([])).mockResolvedValueOnce(json(subscriber))
       .mockResolvedValueOnce(json({})).mockResolvedValueOnce(json({})).mockResolvedValueOnce(json({ id: "aj_new" }));
