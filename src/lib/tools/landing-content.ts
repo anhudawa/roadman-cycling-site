@@ -88,7 +88,7 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
     answerSummary:
       "Enter a recent FTP and this calculator converts it into seven conventional cycling power ranges. It returns continuous whole-watt bands with no gaps. These are starting targets, not measured lactate or ventilatory thresholds: two riders with the same FTP can still have different power-duration profiles and responses.",
     whatItDoes:
-      "This is a transparent percentage conversion, not a laboratory test or a complete training prescription. It turns one FTP value into seven whole-watt ranges so a workout written in power zones has usable targets. Every watt belongs to exactly one range.\n\nIt is the general FTP calculator for training-zone intent. If the question is how your FTP compares with riders of the same age and gender, use the separate masters benchmark calculator.",
+      "This is a transparent percentage conversion, not a laboratory test or a complete training prescription. It turns one FTP value into seven whole-watt ranges so a workout written in power zones has usable targets. Every watt belongs to exactly one range.\n\nFor a comparison with riders of the same age and gender, see the masters FTP benchmark calculator and its explanation of the comparison bands.",
     whoItsFor: [
       "Cyclists who have a recent FTP and need power targets for a structured plan",
       "Riders setting cycling power zones in a head unit or training platform",
@@ -523,7 +523,7 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
     answerSummary:
       "Enter a measured cycling maximum heart rate or a cycling-specific LTHR estimate. The calculator returns five continuous whole-bpm ranges. Max-HR mode uses 50%, 60%, 70%, 80%, 90% and 100% boundaries; LTHR mode condenses Joe Friel's cycling convention into five displayed bands. The output is a coaching estimate, not a laboratory threshold measurement.",
     whatItDoes:
-      "This is Roadman's canonical calculator and explanation for broad cycling heart-rate-zone searches. It converts one cycling-specific anchor into five gap-free ranges that can be copied into a head unit or training platform. Within the displayed Max-HR span—or across the open-ended LTHR table—each whole bpm belongs to exactly one range.\n\nHeart rate describes the body's internal response, while power describes external work and perceived exertion describes how the effort feels. Those signals can disagree, so the calculated bands are starting points to interpret alongside breathing, RPE, power, conditions and the purpose of the session.",
+      "This calculator converts one cycling-specific anchor into five gap-free ranges that can be copied into a head unit or training platform. Within the displayed Max-HR span—or across the open-ended LTHR table—each whole bpm belongs to exactly one range.\n\nHeart rate describes the body's internal response, while power describes external work and perceived exertion describes how the effort feels. Those signals can disagree, so the calculated bands are starting points to interpret alongside breathing, RPE, power, conditions and the purpose of the session.",
     whoItsFor: [
       "Cyclists who need five heart-rate ranges for a head unit or training platform",
       "Riders training without a power meter",
@@ -774,7 +774,7 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
     answerSummary:
       "Enter body weight, riding-kit weight, fork travel, shock stroke and sag targets. Roadman calculates sag in millimetres and returns an official starting pressure only where the selected model-year source supports one. For bike-specific or serial-specific products, it sends you to the manufacturer lookup instead of inventing a universal PSI.",
     whatItDoes:
-      "This is a source-aware setup assistant, not a universal pressure formula. It converts your chosen fork and rear sag percentages into millimetres, matches a dressed rider to the published 2026 FOX 38 chart, and applies FOX's published body-weight starting method to the selected 2026 FLOAT rear shocks. Those values begin the setup; measured sag decides it.\n\nFor RockShox, another FOX generation, another air shock or a coil shock, the tool deliberately withholds an unsupported number and routes you to the product, serial-number or bicycle-specific source. Tyre pressure has its own canonical calculator rather than a second hidden model on this page.",
+      "This is a source-aware setup assistant, not a universal pressure formula. It converts your chosen fork and rear sag percentages into millimetres, matches a dressed rider to the published 2026 FOX 38 chart, and applies FOX's published body-weight starting method to the selected 2026 FLOAT rear shocks. Those values begin the setup; measured sag decides it.\n\nFor RockShox, another FOX generation, another air shock or a coil shock, the tool deliberately withholds an unsupported number and routes you to the product, serial-number or bicycle-specific source. For tyre setup, use the tyre-pressure calculator and check the limits published by your tyre and wheel manufacturers.",
     whoItsFor: [
       "MTB riders who need a measurable fork and rear-sag target",
       "FOX 38 owners who can confirm the exact 2026 chassis variant",
@@ -1394,7 +1394,7 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
       "Side-by-side tempo, sweet spot, and threshold zone comparison",
       "Session builder with six interval structures from 30 to 90 minutes",
       "Training-phase questions without a universal weekly prescription",
-      "Evidence boundaries linked to the canonical sweet spot guide",
+      "Links to the sweet spot training guide and supporting evidence",
     ],
     evidenceSources: [
       {
@@ -1432,7 +1432,7 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
     answerSummary:
       "Map each day's riding demand and available gym window. The planner ranks one or two strength placements, penalises the day before a key or long ride, prefers off-bike or easy-ride days and flags compromises. It places time only: exercises, sets, load and medical decisions remain outside the tool.",
     whatItDoes:
-      "This tool solves a scheduling problem: where one or two strength sessions can sit in the cycling week with the least obvious conflict. It uses the week you enter rather than inventing a generic Monday-to-Sunday plan. Every recommendation includes the rules and compromises that produced it.\n\nThe planner is the tool-intent owner for placing strength around rides. The broad evidence and programming owner remains Roadman's strength-training guide; the forthcoming app owns ongoing strength, readiness and recovery delivery.",
+      "This tool solves a scheduling problem: where one or two strength sessions can sit in the cycling week with the least obvious conflict. It uses the week you enter rather than inventing a generic Monday-to-Sunday plan. Every recommendation includes the rules and compromises that produced it.\n\nUse Roadman's strength-training guide to read the evidence and plan your progression. Good Legs, our forthcoming strength and recovery app, is in development; Not Done Yet members will receive access at launch.",
     whoItsFor: [
       "Cyclists who already have bike sessions and need to find realistic gym windows",
       "Masters riders adding strength without sacrificing a key interval or long ride",
@@ -1785,7 +1785,7 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
     answerSummary:
       "Choose your chainrings, exact cassette sprockets and wheel rollout. The calculator divides front teeth by rear teeth, then uses wheel circumference to show gear inches, metres travelled per pedal revolution and speed at each cadence. It compares gearing geometry; it does not certify derailleur, chain, freehub or frame compatibility.",
     whatItDoes:
-      "This is the canonical Roadman owner for bike gear ratio calculator intent. It maps every selected chainring-and-cog pair, identifies the easiest and hardest combinations, and makes duplicated or widely spaced gears visible before you buy a cassette. The companion gear-ratio guide owns explanatory intent and worked training examples.\n\nPreset tooth sequences are tied to named Shimano and SRAM configurations. You can enter any cassette manually, and a custom loaded-rollout input prevents a nominal tyre label from pretending to be an exact circumference.",
+      "This calculator maps every selected chainring-and-cog pair, identifies the easiest and hardest combinations, and makes duplicated or widely spaced gears visible before you buy a cassette. The companion gear-ratio guide explains how those numbers affect cadence, climbing and gear choice.\n\nPreset tooth sequences are tied to named Shimano and SRAM configurations. You can enter any cassette manually, and a custom loaded-rollout input prevents a nominal tyre label from pretending to be an exact circumference.",
     whoItsFor: [
       "Road, gravel and sportive riders comparing cassette or chainring options",
       "Cyclists checking climbing gears before a hilly event or training camp",

@@ -9,6 +9,9 @@ describe("reader copy does not expose internal search instructions", () => {
     "This episode page owns the interview intent.",
     "The canonical owner keeps a distinct Search Console footprint.",
     "This page\n  owns only the second episode's kit-and-caps intent.",
+    "This is Roadman's canonical calculator for zone searches.",
+    "The planner is the tool-intent owner.",
+    "The companion guide owns explanatory intent.",
   ])("reports internal language: %s", (text) => {
     expect(findInternalSearchLanguage(text).length).toBeGreaterThan(0);
   });

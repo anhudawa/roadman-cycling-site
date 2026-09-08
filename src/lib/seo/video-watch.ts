@@ -13,9 +13,7 @@ export function getWatchUrl(slug: string): string {
   return `${SITE_ORIGIN}/watch/${slug}`;
 }
 
-export function getYouTubeEmbedUrl(youtubeId: string): string {
-  return `https://www.youtube.com/embed/${youtubeId}`;
-}
+export { getYouTubeEmbedUrl } from "./video-seek";
 
 export function getYouTubeThumbnailUrl(youtubeId: string): string {
   return `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`;

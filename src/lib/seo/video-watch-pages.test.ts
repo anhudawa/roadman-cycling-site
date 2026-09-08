@@ -28,7 +28,8 @@ describe("video watch pages", () => {
     expect(watchPage).toContain("export const dynamicParams = false;");
     expect(watchPage).toContain('"@type": "VideoObject"');
     expect(watchPage).toContain("alternates: { canonical: watchUrl }");
-    expect(watchPage).toContain("src={embedUrl}");
+    expect(watchPage).toContain("<Suspense fallback={<WatchVideoFrame");
+    expect(watchPage).toContain("<WatchVideo youtubeId={episode.youtubeId}");
     expect(watchPage).not.toContain('loading="lazy"');
     expect(watchPage).toContain('href={`/podcast/${slug}`}');
     expect(podcastPage).toContain('href={`/watch/${episode.slug}`}');

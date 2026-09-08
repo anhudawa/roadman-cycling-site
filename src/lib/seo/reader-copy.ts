@@ -5,6 +5,9 @@ const INTERNAL_SEARCH_LANGUAGE = [
   /\b(?:this|that|the) (?:page|guide|article|episode page) owns\b/i,
   /\b(?:what|why) this (?:page|guide|article) owns\b/i,
   /\bcanonical owner\b/i,
+  /\bcanonical (?:Roadman owner|calculator)\b/i,
+  /\b(?:tool-intent owner|programming owner)\b/i,
+  /\b(?:training-zone|calculator|explanatory) intent\b/i,
   /\bSearch Console footprint\b/i,
   /\b(?:search|query|diagnostic-checklist|kit-and-caps|biography-and-racecraft) intent\b/i,
 ];

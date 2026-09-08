@@ -34,8 +34,14 @@ export function ToolLanding({ slug }: ToolLandingProps) {
 
 function AnswerSection({ content }: { content: ToolLandingContent }) {
   return (
-    <Section background="charcoal" className="!py-12">
+    <Section id="quick-answer" background="charcoal" className="!py-12 scroll-mt-24">
       <Container width="narrow">
+        <nav aria-label="Calculator guide" className="mb-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-coral">
+          <a href="#methodology" className="underline underline-offset-4">How it works</a>
+          {content.examples.length > 0 && <a href="#worked-examples" className="underline underline-offset-4">Worked examples</a>}
+          <a href="#limitations" className="underline underline-offset-4">Limitations</a>
+          {Boolean(content.evidenceSources?.length) && <a href="#sources" className="underline underline-offset-4">Sources</a>}
+        </nav>
         <div className="rounded-2xl border border-coral/30 bg-coral/5 p-6 md:p-8">
           <p className="text-coral text-xs font-body font-medium uppercase tracking-widest mb-3">
             Quick answer
@@ -85,7 +91,7 @@ function WhatWhoSection({ content }: { content: ToolLandingContent }) {
 
 function HowSection({ content }: { content: ToolLandingContent }) {
   return (
-    <Section background="charcoal" className="!py-12">
+    <Section id="methodology" background="charcoal" className="!py-12 scroll-mt-24">
       <Container width="narrow">
         <h2 className="font-heading text-off-white mb-4" style={{ fontSize: "var(--text-section-sm, 1.75rem)" }}>
           HOW IT WORKS
@@ -114,7 +120,7 @@ function HowSection({ content }: { content: ToolLandingContent }) {
 function ExamplesSection({ content }: { content: ToolLandingContent }) {
   if (!content.examples.length) return null;
   return (
-    <Section background="deep-purple" grain className="!py-12">
+    <Section id="worked-examples" background="deep-purple" grain className="!py-12 scroll-mt-24">
       <Container width="narrow">
         <h2 className="font-heading text-off-white mb-6" style={{ fontSize: "var(--text-section-sm, 1.75rem)" }}>
           EXAMPLE CALCULATIONS
@@ -141,7 +147,7 @@ function ExamplesSection({ content }: { content: ToolLandingContent }) {
 
 function LimitationsSection({ content }: { content: ToolLandingContent }) {
   return (
-    <Section background="charcoal" className="!py-12">
+    <Section id="limitations" background="charcoal" className="!py-12 scroll-mt-24">
       <Container width="narrow">
         <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 md:p-8">
           <h2 className="font-heading text-off-white mb-4" style={{ fontSize: "var(--text-section-sm, 1.75rem)" }}>
@@ -171,11 +177,12 @@ function ToolEvidenceBlock({ content }: { content: ToolLandingContent }) {
   const reviewedBy = [content.reviewedBy, content.reviewScope]
     .filter(Boolean)
     .join(" — ");
-  const reviewedDate = formatReviewDate(content.dateModified);
+  const updatedDate = formatReviewDate(content.dateModified);
 
   return (
     <aside
-      className="rounded-xl border border-white/10 bg-white/[0.03] p-5 md:p-6 mt-10"
+      id="sources"
+      className="scroll-mt-24 rounded-xl border border-white/10 bg-white/[0.03] p-5 md:p-6 mt-10"
       aria-label="Evidence sources, author, and editorial standards"
     >
       <p className="font-heading text-coral text-xs tracking-widest mb-4">
@@ -203,9 +210,6 @@ function ToolEvidenceBlock({ content }: { content: ToolLandingContent }) {
         <ul className="space-y-2">
           {content.evidenceSources?.map((source) => (
             <li key={source.href} className="text-sm text-foreground-muted">
-              <span className="text-off-white">{source.name}</span>
-              {" — "}
-              {source.role}{" "}
               <a
                 href={source.href}
                 target="_blank"
@@ -213,18 +217,19 @@ function ToolEvidenceBlock({ content }: { content: ToolLandingContent }) {
                 className="text-coral hover:text-coral/80 transition-colors"
                 aria-label={`Read source: ${source.name}`}
               >
-                <span aria-hidden="true">→</span>
+                {source.name}
               </a>
+              {" — "}{source.role}
             </li>
           ))}
         </ul>
       </div>
       <div className="text-xs text-foreground-subtle border-t border-white/10 pt-3 mt-3 space-y-1">
-        {(reviewedBy || reviewedDate) && (
+        {(reviewedBy || updatedDate) && (
           <p>
             {reviewedBy && <span>Reviewed by {reviewedBy}</span>}
-            {reviewedBy && reviewedDate && <span> · </span>}
-            {reviewedDate && <span>Last reviewed {reviewedDate}</span>}
+            {reviewedBy && updatedDate && <span> · </span>}
+            {updatedDate && <span>Updated {updatedDate}</span>}
           </p>
         )}
         <p>

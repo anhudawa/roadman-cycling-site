@@ -1,7 +1,6 @@
 import Link from "next/link";
 import {
   resolveJourney,
-  type FunnelStage,
   type JourneyContentType,
   type JourneyInput,
   type JourneyLink,
@@ -51,13 +50,6 @@ export interface JourneyLinksProps {
   eyebrow?: string;
   className?: string;
 }
-
-const STAGE_BADGE: Record<FunnelStage, { label: string; tone: string }> = {
-  awareness: { label: "AWARENESS", tone: "text-coral/70" },
-  comparison: { label: "COMPARISON", tone: "text-coral/70" },
-  tools: { label: "TOOL", tone: "text-coral" },
-  coaching: { label: "COACHING", tone: "text-coral" },
-};
 
 const KIND_LABEL: Record<JourneyLink["kind"], string> = {
   article: "ARTICLE",
@@ -113,7 +105,6 @@ export function JourneyLinks({
   if (!hasContent) return null;
 
   const lead = eyebrow ?? defaultEyebrow(currentType);
-  const stageBadge = STAGE_BADGE[journey.currentStage];
 
   const wrapperClass =
     variant === "panel"
@@ -131,12 +122,6 @@ export function JourneyLinks({
           <p className="font-heading text-coral text-xs tracking-widest">
             {lead}
           </p>
-          <span
-            className={`font-heading text-[10px] tracking-widest ${stageBadge.tone}`}
-            aria-hidden
-          >
-            {stageBadge.label}
-          </span>
         </div>
 
         {(journey.lateral.length > 0 || journey.forward.length > 0) && (
