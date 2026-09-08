@@ -1,0 +1,34 @@
+name: P0 Vercel repro
+on:
+  push:
+    branches: [codex/p0-vercel-repro]
+permissions:
+  contents: read
+jobs:
+  repro:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Fingerprint before prebuild
+        run: node scripts/editorial-gate.mjs --fingerprint
+      - name: Run prebuild generators
+        run: npm run prebuild
+      - name: Show generated public-content drift
+        run: |
+          echo '--- git status ---'
+          git status --short -- content src public
+          echo '--- changed files ---'
+          git diff --name-only -- content src public
+          echo '--- fingerprint after prebuild ---'
+          node scripts/editorial-gate.mjs --fingerprint
+      - name: Run production editorial gate
+        env:
+          VERCEL_ENV: production
+        run: node scripts/editorial-gate.mjs
+      - name: Run Next production build
+        run: npx next build
