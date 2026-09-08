@@ -89,9 +89,23 @@ export async function enrollNdyApplicant(
       status: enrolled.status >= 500 ? "uncertain" : "failed", subscriberId,
       error: `Beehiiv automation enrollment failed (${enrolled.status})`,
     };
-    const journey = (await enrolled.json() as { data?: { id?: string } }).data;
-    if (!journey?.id) return { status: "uncertain", subscriberId, error: "Beehiiv accepted enrollment without a journey ID; check before retrying" };
-    return { status: "enrolled", subscriberId, journeyId: journey.id };
+    const journey = (await enrolled.json().catch(() => ({})) as { data?: { id?: string } }).data;
+    let journeyId = journey?.id;
+    if (!journeyId) {
+      // Beehiiv can return a successful but empty acknowledgement even though
+      // the journey exists. Confirm it through the documented list endpoint;
+      // do not repeat the enrollment request and risk a duplicate email.
+      for (let attempt = 0; !journeyId && attempt < 3; attempt += 1) {
+        if (attempt > 0) await new Promise((resolve) => setTimeout(resolve, 1000));
+        const check = await request(`/automations/${automation}/journeys?limit=100`);
+        if (check.ok) {
+          const listed = await check.json() as { data?: Array<{ id?: string; subscription_id?: string }> };
+          journeyId = listed.data?.find((item) => item.subscription_id === subscriberId)?.id;
+        }
+      }
+    }
+    if (!journeyId) return { status: "uncertain", subscriberId, error: "Beehiiv accepted enrollment without a verifiable journey ID; check before retrying" };
+    return { status: "enrolled", subscriberId, journeyId };
   } catch (err) {
     return {
       status: enrolling ? "uncertain" : "failed", subscriberId,
