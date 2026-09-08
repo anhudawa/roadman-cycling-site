@@ -18,6 +18,8 @@ jobs:
       - run: npm ci
       - name: Print exact content fingerprint
         run: node scripts/editorial-gate.mjs --fingerprint
+      - name: Remove stale sign-off inside QA workspace only
+        run: rm -f editorial/release.json editorial/qa.json
       - name: Build exact branch in preview mode
         env:
           VERCEL_ENV: preview
