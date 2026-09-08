@@ -1,0 +1,38 @@
+name: P0 live watch
+on:
+  push:
+    branches: [codex/p0-vercel-repro]
+permissions:
+  contents: read
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Poll production until P0 is live
+        run: |
+          set -euo pipefail
+          PDF='https://roadmancycling.com/downloads/core-training-guide.pdf'
+          NEWS='https://roadmancycling.com/newsletter'
+          PARTNERS='https://roadmancycling.com/partners'
+          for i in $(seq 1 40); do
+            rm -f /tmp/core.pdf /tmp/pdf.h /tmp/news.html /tmp/partners.html
+            pdf_code=$(curl -L -sS --max-time 40 -D /tmp/pdf.h -o /tmp/core.pdf -w '%{http_code}' "$PDF" || true)
+            news_code=$(curl -L -sS --max-time 40 -o /tmp/news.html -w '%{http_code}' "$NEWS" || true)
+            partners_code=$(curl -L -sS --max-time 40 -o /tmp/partners.html -w '%{http_code}' "$PARTNERS" || true)
+            pdf_type=$(awk 'BEGIN{IGNORECASE=1}/^content-type:/{gsub(/\r/,""); v=$0} END{sub(/^content-type:[[:space:]]*/,"",v); print v}' /tmp/pdf.h)
+            pdf_size=$(wc -c < /tmp/core.pdf 2>/dev/null || echo 0)
+            pdf_magic=$(head -c 5 /tmp/core.pdf 2>/dev/null || true)
+            news23=0; newsbad=0; partners23=0; partnersbad=0
+            grep -q '23,000 weekly readers' /tmp/news.html && news23=1 || true
+            grep -Eq '30,000\+|30K\+|65%\+' /tmp/news.html && newsbad=1 || true
+            (grep -q '23,000 weekly readers' /tmp/partners.html || grep -q '>23K<' /tmp/partners.html || grep -q '23K+' /tmp/partners.html) && partners23=1 || true
+            grep -Eq '30,000\+|30K\+|65%\+' /tmp/partners.html && partnersbad=1 || true
+            echo "attempt=$i pdf=$pdf_code type=$pdf_type bytes=$pdf_size magic=$pdf_magic news=$news_code news23=$news23 newsbad=$newsbad partners=$partners_code partners23=$partners23 partnersbad=$partnersbad"
+            if [ "$pdf_code" = 200 ] && [[ "$pdf_type" == application/pdf* ]] && [ "$pdf_size" -gt 6500000 ] && [ "$pdf_size" -lt 6700000 ] && [ "$pdf_magic" = '%PDF-' ] && [ "$news_code" = 200 ] && [ "$news23" = 1 ] && [ "$newsbad" = 0 ] && [ "$partners_code" = 200 ] && [ "$partners23" = 1 ] && [ "$partnersbad" = 0 ]; then
+              echo 'P0_LIVE_OK'
+              exit 0
+            fi
+            sleep 20
+          done
+          echo 'P0_LIVE_NOT_READY'
+          exit 1
