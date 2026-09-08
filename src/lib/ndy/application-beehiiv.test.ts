@@ -112,4 +112,18 @@ describe("the automatic fit screen", () => {
     const url = new URL(applicationNextUrl(input.accessToken));
     expect(url.search).toBe(""); expect(url.pathname).toBe("/apply/next"); expect(url.hash).toContain(input.accessToken);
   });
+  it("keeps preview tokens on the deployment that created their records", () => {
+    vi.stubEnv("VERCEL_ENV", "preview");
+    vi.stubEnv("VERCEL_URL", "roadman-preview.example.vercel.app");
+    expect(applicationNextUrl(input.accessToken, "questions")).toBe(
+      `https://roadman-preview.example.vercel.app/apply/next#questions/${input.accessToken}`,
+    );
+  });
+  it("uses the public origin for production tokens", () => {
+    vi.stubEnv("VERCEL_ENV", "production");
+    vi.stubEnv("VERCEL_URL", "roadman-build.example.vercel.app");
+    expect(applicationNextUrl(input.accessToken)).toBe(
+      `https://www.roadmancycling.com/apply/next#join/${input.accessToken}`,
+    );
+  });
 });

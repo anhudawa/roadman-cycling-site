@@ -37,5 +37,12 @@ export function ndyApplicationFlowEnabled() {
 
 export function applicationNextUrl(token: string, view: "join" | "questions" = "join") {
   // Fragment keeps the bearer token out of request URLs, access logs and referrers.
-  return `https://www.roadmancycling.com/apply/next#${view}/${token}`;
+  // Preview applications share the configured database, but their action API is
+  // enabled only on the preview deployment during release QA. Keep each token on
+  // the deployment that created it; production always uses the public origin.
+  const deploymentHost = process.env.VERCEL_URL?.trim();
+  const origin = process.env.VERCEL_ENV === "preview" && deploymentHost
+    ? `https://${deploymentHost.replace(/^https?:\/\//, "").replace(/\/$/, "")}`
+    : "https://www.roadmancycling.com";
+  return `${origin}/apply/next#${view}/${token}`;
 }
