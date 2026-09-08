@@ -89,7 +89,13 @@ export async function check(root, { production = true } = {}) {
   }
   const qaPath = resolve(root, 'editorial/qa.json');
   if (!existsSync(qaPath)) throw new Error('Publication blocked: final agent QA record is missing.');
-  validateQA(JSON.parse(readFileSync(qaPath, 'utf8')), current.digest, sha256(reviewBytes), controlDigest(root));
+  const qa = JSON.parse(readFileSync(qaPath, 'utf8'));
+  const controlsHash = controlDigest(root);
+  if (qa.controlsHash !== controlsHash) {
+    const details = CONTROL_FILES.map(path => `${path}=${sha256(readFileSync(resolve(root, path)))}`).join(', ');
+    throw new Error(`QA is stale: controls expected ${qa.controlsHash}, actual ${controlsHash}; files: ${details}.`);
+  }
+  validateQA(qa, current.digest, sha256(reviewBytes), controlsHash);
   return `Final agent QA verified for ${current.digest}.`;
 
 }
