@@ -2,185 +2,71 @@
   "version": 1,
   "reviewer": "Codex",
   "decision": "publish",
-  "reviewedAt": "2026-09-08T10:16:26.610Z",
-  "contentDigest": "71405f8ca7183a453830be6448d920e5bdbfaaf8d4c525af0d9b55bc2d377a52",
-  "reviewHash": "ffd90bd90e7e1971d5b44466f0e51e50d5cb3acee894a888d7ba198df625aed9",
-  "controlsHash": "c4fe4a1cb3d6f94dea33a8d22c174aa923998f35a871497d02bbb1b61fa89b87",
+  "reviewedAt": "2026-09-08T13:48:00Z",
+  "contentDigest": "969570c172711f2a3b580737b8f522a59d838b3199ef993fddde42e4a4e1147f",
+  "reviewHash": "bd347cce13b0510d70292d64d6ad2b2b210abcd6ae482690aa4f96b41ea2dc88",
+  "controlsHash": "9c233311b92e46f4bd8c05a019987717d6c3bcec5857ebb9d3c92ca714307ee2",
   "blockers": [],
   "checks": {
     "claims": {
       "status": "pass",
-      "evidence": "Changed factual claims were checked against the source records in the release and sprint document: organiser route announcements, USA Cycling qualifications and TrainingPeaks formula/timing documentation. Unsupported numerical targets and guest attributions were removed. Existing explicit review credits remain; automatic names, inferred review dates and default methodology claims were removed and regression-tested. This sign-off covers the changed material, with older event-guide evidence debt documented separately."
+      "evidence": "The edited newsletter claims use Anthony's supplied active Beehiiv count of about 23,215, rounded to 23,000 on public UI. The Core Guide source metadata reports application/pdf and 6,592,307 bytes. No replacement open-rate, sponsor-performance, scientific, guest or financial claim was introduced."
     },
     "editorial": {
       "status": "pass",
-      "evidence": "Read the changed coaching, country-guide, Dragon Ride and CTL sections in their rendered context and reviewed the archive passage edits. The country examples give usable buying briefs; the route table distinguishes four actual historic options; the calculator example supplies inputs, formulas, outputs and timing. Removed internal search instructions, the visible funnel badge, generic comparisons and the unsupported 80-percent coaching equivalence. No numerical literary score or human approval is asserted."
+      "evidence": "The P0 copy edits are narrow corrections: 30K/30,000+ and 65%+ newsletter claims were removed or replaced with 23K/23,000, while the existing weekly-letter promise and page structure remain intact. Visual review of the full rendered newsletter and partners pages found the changed proof legible and consistent with the surrounding layout."
     },
     "offers": {
       "status": "pass",
-      "evidence": "Checked the rendered coaching, country-guide and application entry against the existing offer ladder: US$195 Not Done Yet with individual plan/team review/live group coaching and US$525 Inner Circle. Good Legs remains forthcoming with Not Done Yet access at launch. Free Clubhouse and paid coaching destinations remain distinct. No application, payment, membership or subscription was submitted or changed."
+      "evidence": "The release leaves coaching prices, membership counts, sponsor packages, paid acquisition, Beehiiv automations and referral configuration unchanged. The Core Guide stays a referral reward asset rather than becoming a newsletter signup incentive."
     },
     "desktop": {
       "status": "pass",
-      "evidence": "Observed Chrome at 1363x936, including rendered copy, screenshots, source navigation, calculation and timestamp interaction. Final video fix was checked on the ready febbba9634b14adbe74583c9accf2a7e5c0ff595 preview; other observations cover identical page bytes in this release. Inspected documents measured 1355px without horizontal overflow.",
+      "evidence": "Playwright rendered the exact P0 revision at 1440x1000 for the newsletter and partners pages. Automated checks found 23K/23,000 present, 30K/30,000+ absent, 65% absent and no horizontal overflow; the screenshots were visually inspected after capture.",
       "pages": [
         {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/coaching",
-          "width": 1363,
-          "height": 936,
-          "observations": "Hero and introduction explain the actual plan, team review and group coaching; buyer-guide links and coaching CTA remain legible."
+          "url": "http://127.0.0.1:3000/newsletter?source=youtube&utm_source=youtube&utm_medium=video&utm_campaign=p0-qa",
+          "width": 1440,
+          "height": 1000,
+          "observations": "The Saturday Spin hero, signup form, 23,000-reader proof, content sections and bottom signup banner render cleanly. The corrected audience proof is readable, there is no 30K or 65% text, and the layout shows no release-caused clipping or overflow."
         },
         {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/blog/best-cycling-coach-uk",
-          "width": 1363,
-          "height": 936,
-          "observations": "Read the complete buying guide and inspected the opening; practical enquiry and commercial disclosure have distinct purposes."
-        },
-        {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/blog/best-cycling-coach-usa",
-          "width": 1363,
-          "height": 936,
-          "observations": "Read the complete guide, checked qualification order and the two Roadman service prices; no automatic review credit is present after the template fix."
-        },
-        {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/blog/dragon-ride-training-guide",
-          "width": 1363,
-          "height": 936,
-          "observations": "Inspected the historic route table and its year/source context; all four route options and preparation questions are readable."
-        },
-        {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/races/dragon-ride",
-          "width": 1363,
-          "height": 936,
-          "observations": "Hero, four route cards, sources and sidebar show the corrected historical edition and future-route uncertainty."
-        },
-        {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/tools/training-load",
-          "width": 1363,
-          "height": 936,
-          "observations": "Starting 60/90 with one zero day yields CTL 59, ATL 77, TSB -30 and following-day -18.6; timing and model limitations are explicit."
-        },
-        {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/tools/tyre-pressure",
-          "width": 1363,
-          "height": 936,
-          "observations": "Sources jump link reached approximately 96px below the viewport top after scrolling settled, below the fixed header; descriptive source links are readable."
-        },
-        {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/answers/what-is-ctl",
-          "width": 1363,
-          "height": 936,
-          "observations": "Hero, answer and takeaways inspected; canonical is the answer URL, update date remains separate and no inferred reviewer appears."
-        },
-        {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/glossary/training-peaks-ctl",
-          "width": 1363,
-          "height": 936,
-          "observations": "Definition, explanatory paragraph and onward links fit the desktop column; canonical remains the glossary URL."
-        },
-        {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/watch/ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler?t=750#video",
-          "width": 1363,
-          "height": 936,
-          "observations": "Final player measured 1134x637; 12:30 is loaded from the URL and YouTube receives start=750. Canonical excludes t; robots is index, follow."
+          "url": "http://127.0.0.1:3000/partners",
+          "width": 1440,
+          "height": 1000,
+          "observations": "The media-kit hero, reach cards and newsletter sponsorship card render cleanly. Newsletter reach is 23K/23,000, no open-rate figure remains, and the edited cards preserve the existing visual hierarchy without horizontal overflow."
         }
       ]
     },
     "mobile": {
       "status": "pass",
-      "evidence": "Rendered the actual site inside a preview-only iframe at 390x844 and the video at 320x844 CSS pixels. Document widths were 382/312 respectively after scrollbar space. Inspected content and controls, including the actual table, example blocks, source block and calculator result. This checks responsive Chrome layout; it does not claim hardware, touch or Safari coverage.",
+      "evidence": "Playwright rendered the exact P0 revision at 390x844 for the newsletter and partners pages. Automated checks found 23K/23,000 present, 30K/30,000+ absent, 65% absent and document width equal to the viewport; the full-page screenshots were visually inspected after capture.",
       "pages": [
         {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/preview-qa?path=%2Fcoaching&width=390",
+          "url": "http://127.0.0.1:3000/newsletter?source=podcast",
           "width": 390,
           "height": 844,
-          "observations": "Hero and service introduction fit; mobile menu opens/closes. Apply for Coaching navigated inside the frame to /apply and displayed Step 1 of 4 without a submission."
+          "observations": "The newsletter hero, form, consent copy, 23,000-reader proof, content cards and bottom signup banner remain readable at 390px. The release introduces no horizontal clipping and the audience correction appears in both proof locations."
         },
         {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/preview-qa?path=%2Fblog%2Fbest-cycling-coach-uk&width=390",
+          "url": "http://127.0.0.1:3000/partners",
           "width": 390,
           "height": 844,
-          "observations": "Hero/answer and illustrative rider-enquiry block were inspected visually. The explanation connects the enquiry to a buying decision; no overflow."
-        },
-        {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/preview-qa?path=%2Fblog%2Fbest-cycling-coach-usa&width=390",
-          "width": 390,
-          "height": 844,
-          "observations": "Hero/answer and full enquiry block inspected visually. US$195/US$525 delivery text and absent inferred review credit checked in rendered copy."
-        },
-        {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/preview-qa?path=%2Fblog%2Fdragon-ride-training-guide&width=390",
-          "width": 390,
-          "height": 844,
-          "observations": "The 342px-wide table shows Cymru Classic 99km/1324m, Medio 153km/2332m, Gran Fondo 222km/3583m and Dragon Devil 298km/4504m. Year and route context are visible."
-        },
-        {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/preview-qa?path=%2Fraces%2Fdragon-ride&width=390",
-          "width": 390,
-          "height": 844,
-          "observations": "Hero and all four route cards fit the phone layout; source and edition text read alongside the corrected data."
-        },
-        {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/preview-qa?path=%2Ftools%2Ftyre-pressure&width=390",
-          "width": 390,
-          "height": 844,
-          "observations": "Sources navigation lands below the header; the 342px source section wraps readable link titles without horizontal overflow."
-        },
-        {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/preview-qa?path=%2Ftools%2Ftraining-load&width=390",
-          "width": 390,
-          "height": 844,
-          "observations": "Final preview: starting CTL60/ATL90, remove days to one and enter zero, then Calculate. Results are 59/77/-30 and following-day -18.6. The former empty daily chart is absent; result labels fit."
-        },
-        {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/preview-qa?path=%2Fanswers%2Fwhat-is-ctl&width=390",
-          "width": 390,
-          "height": 844,
-          "observations": "Read the full answer, practical checks, mistakes, FAQ labels and primary-documentation links; document width 382 and no invented review credit."
-        },
-        {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/preview-qa?path=%2Fglossary%2Ftraining-peaks-ctl&width=390",
-          "width": 390,
-          "height": 844,
-          "observations": "Definition and explanation fit; full guide points to the sourced CTL answer and calculator link points to training-load."
-        },
-        {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/preview-qa?path=%2Ftopics%2Fftp-training&width=390",
-          "width": 390,
-          "height": 844,
-          "observations": "Representative SourceMethodology block is 342px wide with wrapped, readable sources. The existing explicit 26 August review credit is retained; this is a template check, not a fresh endorsement of all hub claims."
-        },
-        {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/preview-qa?path=%2Fevent%2Fwicklow-200-training-plan&width=390",
-          "width": 390,
-          "height": 844,
-          "observations": "Representative event layout renders without horizontal overflow after schema-only change. Existing numeric prose was logged for a subsequent evidence audit, not certified by this release."
-        },
-        {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/preview-qa?path=%2Fplan%2Fwicklow-200&width=390",
-          "width": 390,
-          "height": 844,
-          "observations": "Representative plan hub renders without horizontal overflow after schema-only change; existing training prose is outside this revision."
-        },
-        {
-          "url": "https://roadman-cycling-site-git-feat-roadman-8a14a3-anhudawas-projects.vercel.app/preview-qa?path=%2Fwatch%2Fep-2148-80-20-training-to-ride-faster-dr-stephen-seiler&width=320",
-          "width": 320,
-          "height": 844,
-          "observations": "Final fix: actual player 270x200 inside a 272x202 wrapper, fully within the document. Entering 0:30 generated the canonical Roadman link with t=30 and YouTube start=30."
+          "observations": "The media-kit reach cards and newsletter sponsorship content stack correctly at 390px. The newsletter card shows 23K, the sponsorship copy uses 23,000 weekly readers, no 65% claim remains and the page has no release-caused horizontal overflow."
         }
       ]
     },
     "interactions": {
       "status": "pass",
-      "evidence": "Desktop and mobile timestamp controls generate correct Roadman share URLs and YouTube start values; invalid 12:60 was rejected on desktop. Calculator was exercised with explicit starting load and a rest day on both layouts. Source jump links settle below the header, mobile navigation opens/closes, and coaching CTA reaches the application entry. No real application, newsletter subscription or payment was sent."
+      "evidence": "The newsletter form reads source and optional utm_source, utm_medium and utm_campaign only when URL attribution is enabled on /newsletter, then posts them to /api/newsletter. The API sanitizes those values and passes them into the existing Beehiiv subscribe helper, whose request body maps them to Beehiiv utm_source, utm_medium and utm_campaign fields. Existing fixed-source EmailCapture callers keep their supplied sources."
     },
     "seo": {
       "status": "pass",
-      "evidence": "Focused render tests cover all 58 evergreen event/race/plan routes without fabricated SportsEvent days. Canonical/indexability checks on the preview show stable CTL URLs and the unsuffixed watch canonical; timestamp variants do not create separate canonicals. Link audit scanned 18380 references: 15810 internal OK, zero broken, 2570 external skipped. Preview-only QA route tests enforce noindex/no-store and production 404; production framing remains DENY."
+      "evidence": "The newsletter canonical remains https://roadmancycling.com/newsletter and the corrected 23,000 figure is reflected in newsletter metadata and Open Graph description. The partners page canonical and existing metadata structure are unchanged. The download route uses a stable Roadman path rather than an expiring signed URL."
     },
     "technical": {
       "status": "pass",
-      "evidence": "55 publication rejection tests passed. The focused release run passed 139 tests in 9 files, plus 17 discovery/offer tests in 3 files; the final video class change retained all 18 video-seek checks. TypeScript passed on the final source. Full content audit: 1772 MDX files and 19 tools, zero hard errors; 1866 existing enrichment warnings remain. Generators/coral/whitespace checks passed. Vercel preview for febbba9634b14adbe74583c9accf2a7e5c0ff595 is ready; SEO QA Audit and Episode SEO Coverage CI succeeded. Ten failures in seven unchanged legacy suites were reproduced on clean main and are documented as existing debt."
+      "evidence": "The repository's 55 editorial-gate rejection tests pass. The dedicated preview production build completed successfully after the attribution type fix, including npm ci, prebuild generators, coral check, Next.js compilation and TypeScript checking. The rendered Playwright workflow also completed successfully and uploaded four screenshots for review."
     }
   }
 }

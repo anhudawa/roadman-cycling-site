@@ -76,6 +76,9 @@ export async function POST(request: Request) {
       email?: unknown;
       source?: unknown;
       name?: unknown;
+      utm_source?: unknown;
+      utm_medium?: unknown;
+      utm_campaign?: unknown;
     };
 
     const email = normaliseEmail(raw.email);
@@ -88,14 +91,26 @@ export async function POST(request: Request) {
 
     const source = clampString(raw.source, LIMITS.shortText) ?? "/newsletter";
     const name = clampString(raw.name, LIMITS.name) ?? undefined;
+    const utmSource = clampString(raw.utm_source, LIMITS.shortText) ?? undefined;
+    const utmMedium = clampString(raw.utm_medium, LIMITS.shortText) ?? undefined;
+    const utmCampaign = clampString(raw.utm_campaign, LIMITS.shortText) ?? undefined;
     const asset = matchAssetDeliverable(source);
 
     // Analytics event + subscriber upsert — non-fatal group.
     try {
+      const attributionMeta = Object.fromEntries(
+        Object.entries({
+          utm_source: utmSource,
+          utm_medium: utmMedium,
+          utm_campaign: utmCampaign,
+        }).filter((entry): entry is [string, string] => Boolean(entry[1])),
+      );
+
       await Promise.all([
         recordEvent("signup", source, {
           email,
           source,
+          meta: attributionMeta,
           userAgent: request.headers.get("user-agent") || undefined,
         }),
         upsertOnSignup(email, source, source),
@@ -123,9 +138,9 @@ export async function POST(request: Request) {
       tags: beehiivSegmentation.tags,
       sendWelcomeEmail: !asset,
       utm: {
-        source: "website",
-        medium: source,
-        campaign: beehiivSegmentation.campaign,
+        source: utmSource ?? source,
+        medium: utmMedium ?? "website",
+        campaign: utmCampaign ?? beehiivSegmentation.campaign,
       },
     });
 
