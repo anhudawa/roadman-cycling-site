@@ -3,6 +3,7 @@ export const NDY_APPLICATION_OFFER = {
   aboutUrl: "https://www.skool.com/roadmancycling/about",
   checkoutUrl: "https://www.skool.com/roadmancycling/plans?src=join",
   price: "$195 USD/month",
+  adminNotificationEmail: "anthony@roadmancycling.com",
   sarahEmail: "sarah@roadmancycling.com",
 } as const;
 

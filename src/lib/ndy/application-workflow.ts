@@ -155,20 +155,20 @@ export async function deliverSarahNotification(id: string) {
   if (!app) return;
   try {
     const key = process.env.RESEND_API_KEY;
-    if (!key) throw new Error("Sarah email service is not configured");
+    if (!key) throw new Error("Admin notification email service is not configured");
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST", signal: AbortSignal.timeout(10_000),
       headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json", "Idempotency-Key": `ndy-question-${job.id}` },
       body: JSON.stringify({ from: "Roadman Cycling <noreply@roadmancycling.com>",
-        to: [NDY_APPLICATION_OFFER.sarahEmail], reply_to: app.email,
+        to: [NDY_APPLICATION_OFFER.adminNotificationEmail], reply_to: app.email,
         subject: "Not Done Yet — an applicant has a question",
         html: `<h1>Not Done Yet question</h1><p>Application #${job.applicationId}</p><p>${escapeHtml(job.question ?? "Please contact me before I join.").replace(/\n/g, "<br>")}</p><p><a href="https://www.roadmancycling.com/admin/applications/followups">Open the application and contact details</a></p><p>Reply to this email to answer the applicant.</p>`,
       }),
     });
-    if (!response.ok) throw new Error(`Sarah notification failed (${response.status})`);
+    if (!response.ok) throw new Error(`Admin notification failed (${response.status})`);
     await db.update(followups).set({ sarahStatus: "sent", sarahError: null, sarahNotifiedAt: new Date() }).where(eq(followups.id, id));
   } catch (err) {
-    await db.update(followups).set({ sarahStatus: "failed", sarahError: err instanceof Error ? err.message : "Sarah notification failed" }).where(eq(followups.id, id));
+    await db.update(followups).set({ sarahStatus: "failed", sarahError: err instanceof Error ? err.message : "Admin notification failed" }).where(eq(followups.id, id));
   }
 }
 

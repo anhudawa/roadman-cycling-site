@@ -25,6 +25,7 @@ beforeEach(() => {
   mocks.update.mockReturnValue({ set: mocks.set });
   mocks.values.mockResolvedValue(undefined); mocks.insert.mockReturnValue({ values: mocks.values });
   mocks.transaction.mockImplementation(async (work) => work({ select: mocks.select, update: mocks.update, insert: mocks.insert }));
+  vi.stubGlobal("fetch", mocks.fetch);
 });
 
 describe("application decision persistence", () => {
@@ -89,5 +90,18 @@ describe("outbox delivery boundaries", () => {
     expect(mocks.set).toHaveBeenCalledWith({ emailStatus: "enrolling", subscriberId: "sub_123" });
     expect(mocks.set).toHaveBeenLastCalledWith(expect.objectContaining({ emailStatus: "uncertain", emailError: "Timeout" }));
     expect(mocks.set.mock.lastCall?.[0]).not.toHaveProperty("enrolledAt");
+  });
+
+  it("alerts Anthony while keeping the applicant as the reply-to address", async () => {
+    vi.stubEnv("RESEND_API_KEY", "test-key");
+    mocks.returningRows.push([{ ...job, question: "Can Sarah review my schedule?", questionReceivedAt: new Date() }]);
+    mocks.selectRows.push([app]);
+    mocks.fetch.mockResolvedValue({ ok: true });
+    const { deliverSarahNotification } = await import("./application-workflow");
+    await deliverSarahNotification(job.id);
+    const request = mocks.fetch.mock.calls[0]?.[1] as RequestInit;
+    const payload = JSON.parse(String(request.body));
+    expect(payload.to).toEqual(["anthony@roadmancycling.com"]);
+    expect(payload.reply_to).toBe(app.email);
   });
 });

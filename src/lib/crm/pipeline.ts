@@ -12,7 +12,7 @@ export type ApplicationStage = (typeof APPLICATION_STAGES)[number];
 
 export const STAGE_LABELS: Record<ApplicationStage, string> = {
   awaiting_response: "New",
-  questions_requested: "Questions for Sarah",
+  questions_requested: "Sarah Review",
   contacted_once: "Contacted Once",
   contacted_twice: "Contacted Twice",
   final_outreach: "Final Outreach",
