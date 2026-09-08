@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     if (action === "questions") {
       // The question is already committed. Failure here is retried from the
       // durable outbox and shown to Sarah in admin, not lost or reported sent.
-      await deliverSarahNotification(result.id).catch(() => console.error("[NDY] Sarah notification remains queued"));
+      await deliverSarahNotification(result.id).catch(() => console.error("[NDY] Admin notification remains queued"));
     }
     return NextResponse.json({ success: true, duplicate: result.duplicate,
       ...(action === "join" ? { checkoutUrl: result.checkoutUrl } : {}),
