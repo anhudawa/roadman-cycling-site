@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentDigest": "85eb58fbcced13739b24568056b338e31c1855dd8a60a02aed115612ff00f2b3",
+  "contentDigest": "b68e2096165af1e21f18aa0934a68b0c4ce95e0676ec61b7e173bb6dfa466eca",
   "scope": "The existing Saturday Spin P0 release plus the Not Done Yet application follow-up workflow across the apply form, personal next-step page, delivery APIs, admin follow-up views, analytics privacy controls and scheduled retries.",
   "sections": [
     {
@@ -42,7 +42,7 @@
   "claimsAndSources": "The workflow and inbox routing come from Anthony's 8 September 2026 instructions. The seven-day trial and $195 USD monthly price were checked on the live Skool plan; Sarah's direct address and ownership are confirmed in repository configuration. Existing main-branch audience and PDF claims remain unchanged.",
   "examplesAndReasoning": "The suitability screen is a deterministic goal, time and injury/comeback routing rule, not a medical or human assessment. No training prescription or member result is invented.",
   "voiceAndCuts": "The copy uses two direct next steps, removes the enabled-flow 48-hour holding message and avoids generic urgency or unsupported promises.",
-  "desktopReview": "Rendered review completed at 1540 CSS pixels for the application and next-step surfaces, plus the authenticated admin follow-up and pipeline views; copy, hierarchy, links and queue labels were legible without horizontal overflow.",
+  "desktopReview": "Rendered review completed at 1540 CSS pixels for the application and next-step surfaces, plus the authenticated admin follow-up and pipeline views; copy, hierarchy, links and queue labels were legible without horizontal overflow, and the applicant reply control was corrected to remain on one line.",
   "mobileReview": "Rendered review completed at 390 by 844 CSS pixels for the application, personal next-step and authenticated admin follow-up surfaces; controls remained usable, content wrapped correctly and no horizontal overflow was present.",
   "productAndOfferAccuracy": "The live Skool offer showed a seven-day free trial followed by $195 USD per month plus applicable taxes. The dedicated Beehiiv automation is live with personalised destinations and the publication reply-to remains Anthony; website questions persist in Sarah Review and send Anthony an operational alert."
 }

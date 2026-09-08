@@ -2,9 +2,9 @@
   "version": 1,
   "reviewer": "Codex",
   "decision": "publish",
-  "reviewedAt": "2026-09-08T23:29:30Z",
-  "contentDigest": "85eb58fbcced13739b24568056b338e31c1855dd8a60a02aed115612ff00f2b3",
-  "reviewHash": "2b9c54c6c4ff04bdfc510f61c8a89616c726edd97e4e5122fddf0c7cf09bfe00",
+  "reviewedAt": "2026-09-08T23:34:13Z",
+  "contentDigest": "b68e2096165af1e21f18aa0934a68b0c4ce95e0676ec61b7e173bb6dfa466eca",
+  "reviewHash": "a4ec6dbcd5dc949166b18885b41b5dc0852a259e324a5c835eda50ba12a5af0e",
   "controlsHash": "484c375122cad722f4283273b9393f0c0a2b5b028695c61b325a15c4814c2041",
   "blockers": [],
   "checks": {
@@ -40,7 +40,7 @@
           "url": "http://127.0.0.1:3001/admin/applications",
           "width": 1540,
           "height": 900,
-          "observations": "The authenticated application board displayed a separate Sarah Review column and retained its link to detailed workflow status."
+          "observations": "The authenticated application board displayed a separate Sarah Review column and retained its link to detailed workflow status; the applicant reply action remains a single-line control."
         }
       ]
     },
