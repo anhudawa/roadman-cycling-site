@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "contentDigest": "f77f8cf73f94a62d97f1dfe311506eb73bc0d50811bb983573a52360bdc149c1",
+  "scope": "The Saturday Spin P0 release: honest newsletter audience claims on /newsletter and /partners; newsletter source/UTM attribution; durable /downloads/core-training-guide.pdf delivery. This revision replaces the failed Vercel external rewrite with a normal Next.js route while restoring vercel.json to its known-good pre-P0 configuration.",
+  "sections": [
+    {
+      "location": "/newsletter — audience proof and signup forms",
+      "readerQuestion": "How many riders receive The Saturday Spin, and can a tagged YouTube or podcast visitor subscribe normally?",
+      "usefulAnswer": "The page uses the supplied active-list figure rounded to 23,000 weekly readers. Newsletter forms preserve source plus optional UTM source, medium and campaign values when posting to the existing newsletter endpoint.",
+      "evidence": "Anthony supplied an active Beehiiv count of about 23,215 for 8 September 2026. The existing Beehiiv integration accepts utm_source, utm_medium and utm_campaign. Rendered QA on the P0 page showed 23,000 and no 30,000+/65% claims at desktop and mobile widths.",
+      "editorialDecision": "Keep the existing weekly-letter promise and layout. Correct only the audience proof and attribution path; do not add a new lead magnet, open-rate claim, coaching CTA or paid-growth language."
+    },
+    {
+      "location": "/partners — newsletter reach claims",
+      "readerQuestion": "What newsletter audience figure can a prospective partner rely on?",
+      "usefulAnswer": "The media kit uses 23K/23,000 for newsletter reach and publishes no open-rate percentage.",
+      "evidence": "Anthony supplied the active Beehiiv list figure of about 23,215. Prior rendered P0 QA confirmed 23K/23,000 present and 30K+/30,000+/65% absent at 1440x1000 and 390x844.",
+      "editorialDecision": "Correct diligence-sensitive numbers only. Do not reopen sponsor sales, add CPMs, packages or a replacement engagement claim."
+    },
+    {
+      "location": "/api/newsletter and EmailCapture — acquisition attribution",
+      "readerQuestion": "Will newsletter visitors arriving from tagged YouTube or podcast links retain acquisition information?",
+      "usefulAnswer": "The newsletter form reads source and optional utm_source, utm_medium and utm_campaign from the page URL, submits them to /api/newsletter, and the existing Beehiiv helper maps them to Beehiiv subscription UTM fields.",
+      "evidence": "TypeScript and a full Next.js production-mode build pass on this exact revision. The implementation is limited to newsletter forms, preserving existing asset-delivery funnel sources.",
+      "editorialDecision": "Use the existing subscribe pipeline and segmentation helper rather than creating a parallel list or new Beehiiv automation."
+    },
+    {
+      "location": "/downloads/core-training-guide.pdf — durable reward delivery",
+      "readerQuestion": "Can a rider use a stable Roadman URL for the Core Training Guide instead of an expiring signed Beehiiv file URL?",
+      "usefulAnswer": "A normal Next.js route now serves the guide from the canonical Roadman path, follows the Drive download upstream, verifies the returned body begins with %PDF-, then returns application/pdf with a stable filename and cache headers.",
+      "evidence": "The source Drive file Roadman New Core.pdf is application/pdf and 6,592,307 bytes. The exact fallback revision completed a full Next.js production-mode build, and the route table includes /downloads/core-training-guide.pdf as a dynamic route.",
+      "editorialDecision": "Remove the external Vercel rewrite that failed production deployment and restore vercel.json to its known-good pre-P0 configuration. Keep the reward asset separate from newsletter signup."
+    }
+  ],
+  "claimsAndSources": "Audience numbers come only from Anthony's supplied Beehiiv active-list snapshot (~23,215, rounded to 23,000). Core Guide file facts come from the connected Google Drive record: application/pdf, 6,592,307 bytes. No open rate, sponsor performance, science, guest claim, member count or wider financial figure is introduced. Production HTTP verification must occur immediately after deployment because a public URL cannot be verified before the release exists.",
+  "examplesAndReasoning": "For https://roadmancycling.com/newsletter?source=youtube&utm_source=youtube&utm_medium=video&utm_campaign=seiler, EmailCapture sends source=youtube and the three UTM values to the existing newsletter endpoint; the Beehiiv helper maps them to Beehiiv UTM fields. The Core Guide route rejects an upstream non-PDF body rather than returning HTML under an application/pdf header.",
+  "voiceAndCuts": "Kept the existing Saturday Spin voice and media-kit structure. Removed inflated 30K/30,000+ and 65%+ proof without replacing it with a more flattering metric. The fallback change adds no marketing copy.",
+  "desktopReview": "Previously rendered exact P0 page bytes at 1440x1000 for /newsletter and /partners: 23K/23,000 present, 30K/30,000+ absent, 65% absent, no horizontal overflow. The fallback revision does not alter those page components or styles; its new surface is a non-HTML download route.",
+  "mobileReview": "Previously rendered exact P0 page bytes at 390x844 for /newsletter and /partners: corrected audience proof remained readable, inflated claims were absent and document width matched the viewport. The fallback revision does not change mobile UI.",
+  "productAndOfferAccuracy": "Beehiiv posts, automations, referral configuration, reward email copy, paid ads, Boosts, Skool, Not Done Yet member counts, sponsor packages and wider Roadman financials remain untouched. The Core Guide remains a three-referral reward asset, not a signup incentive."
+}
