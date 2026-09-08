@@ -35,9 +35,24 @@ export function EmailCapture({
   const [message, setMessage] = useState("");
   const formStartTracked = useRef(false);
 
+  const isPodcastSource = source === "podcast" || source.startsWith("podcast-");
+  const podcastEpisode = source.startsWith("podcast-")
+    ? source.slice("podcast-".length)
+    : undefined;
+  const effectiveHeading = isPodcastSource ? "THE SATURDAY SPIN" : heading;
+  const effectiveSubheading = isPodcastSource
+    ? "Every Saturday I send one training takeaway from these conversations — something you can use on the bike this week. Free."
+    : subheading;
+
   const getAttribution = (): SignupAttribution => {
+    const defaultSource = isPodcastSource ? "podcast" : source;
+    const defaultCampaign = podcastEpisode || undefined;
+
     if (!captureQueryAttribution || typeof window === "undefined") {
-      return { source };
+      return {
+        source: defaultSource,
+        ...(defaultCampaign ? { utm_campaign: defaultCampaign } : {}),
+      };
     }
 
     const params = new URLSearchParams(window.location.search);
@@ -47,10 +62,14 @@ export function EmailCapture({
     const utmCampaign = params.get("utm_campaign")?.trim();
 
     return {
-      source: querySource || source,
+      source: querySource || defaultSource,
       ...(utmSource ? { utm_source: utmSource } : {}),
       ...(utmMedium ? { utm_medium: utmMedium } : {}),
-      ...(utmCampaign ? { utm_campaign: utmCampaign } : {}),
+      ...(utmCampaign
+        ? { utm_campaign: utmCampaign }
+        : defaultCampaign
+          ? { utm_campaign: defaultCampaign }
+          : {}),
     };
   };
 
@@ -178,11 +197,11 @@ export function EmailCapture({
             className="font-heading text-off-white mb-4"
             style={{ fontSize: "var(--text-section)" }}
           >
-            {heading}
+            {effectiveHeading}
           </h2>
-          {subheading && (
+          {effectiveSubheading && (
             <p className="text-off-white max-w-lg mx-auto mb-8">
-              {subheading}
+              {effectiveSubheading}
             </p>
           )}
 
@@ -257,9 +276,9 @@ export function EmailCapture({
     <div
       className={`bg-background-elevated rounded-xl border border-white/5 p-8 ${className}`}
     >
-      <h3 className="font-heading text-2xl text-off-white mb-2">{heading}</h3>
-      {subheading && (
-        <p className="text-foreground-muted mb-6">{subheading}</p>
+      <h3 className="font-heading text-2xl text-off-white mb-2">{effectiveHeading}</h3>
+      {effectiveSubheading && (
+        <p className="text-foreground-muted mb-6">{effectiveSubheading}</p>
       )}
 
       {status === "success" ? (
