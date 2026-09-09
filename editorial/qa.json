@@ -2,71 +2,95 @@
   "version": 1,
   "reviewer": "Codex",
   "decision": "publish",
-  "reviewedAt": "2026-09-08T14:31:30Z",
-  "contentDigest": "f77f8cf73f94a62d97f1dfe311506eb73bc0d50811bb983573a52360bdc149c1",
-  "reviewHash": "47def3a6f16df316f071a7cdfae7f9cc4e55f19fe311f2fbab94d4f0cd6bd92f",
-  "controlsHash": "c4fe4a1cb3d6f94dea33a8d22c174aa923998f35a871497d02bbb1b61fa89b87",
+  "reviewedAt": "2026-09-09T12:24:57Z",
+  "contentDigest": "b972e28c17373e9c1b6e6590c63a11c912aadf0d94593ed336900ce1a220614c",
+  "reviewHash": "f38f891477f92f02cfca769896ca31ac4008612819459d0d020e6373c0fcbbd1",
+  "controlsHash": "690e4b2ddb0fb631ba211762063a492b111885c239303964cf09357b2986281c",
   "blockers": [],
   "checks": {
     "claims": {
       "status": "pass",
-      "evidence": "Newsletter audience proof uses Anthony's supplied active Beehiiv figure of about 23,215, rounded to 23,000. The connected Drive source is application/pdf and 6,592,307 bytes. No public open-rate replacement, sponsor-performance, science, guest, member-count or wider financial claim is introduced."
+      "evidence": "The Saturday Spin audience proof uses Anthony's supplied active Beehiiv figure of about 23,215, rounded to 23,000. The newsletter render contains 23,000 weekly readers and no 30,000 or 65% claim. Faster After 40 adds no new performance-result, member-count, open-rate or sponsor-performance claim."
     },
     "editorial": {
       "status": "pass",
-      "evidence": "The release remains a narrow P0 correction. Newsletter and partners copy preserve the existing structure and weekly-letter positioning while removing inflated 30K/30,000+ and 65% proof. The fallback route adds no promotional copy."
+      "evidence": "The newsletter is focused on one useful training letter every Saturday; podcast capture copy uses that same promise; Faster After 40 is reduced to a neutral report-to-newsletter landing. The old coaching squeeze and its high-pressure sales framing are removed rather than replaced with new hype."
     },
     "offers": {
       "status": "pass",
-      "evidence": "Beehiiv posts, automations, referral configuration, coaching prices, sponsor packages, Skool and paid acquisition are unchanged. The Core Guide remains a referral reward asset and is not offered as the newsletter signup incentive."
+      "evidence": "YouTube, Beehiiv posts, Beehiiv automations, referral configuration, Skool, Not Done Yet pricing and sponsor packages are unchanged. Faster After 40 delivers the existing report and subscribes through the existing newsletter infrastructure; the Core Training Guide remains a separate referral reward."
     },
     "desktop": {
       "status": "pass",
-      "evidence": "The exact P0 page bytes were rendered in Chromium at 1440x1000 for /newsletter and /partners. The checks found 23K/23,000 present, 30K/30,000+ absent, 65% absent and no horizontal overflow. The fallback changes only the download route and restores deployment config; it does not alter those page components or styles.",
+      "evidence": "Chromium rendered the exact current-main PR merge at 1440x1000 for the newsletter, two Stephen Seiler podcast pages and Faster After 40. Every page returned HTTP 200 with no horizontal overflow; the newsletter and podcast promises were present and Faster After 40 contained none of the forbidden coaching-sales strings.",
       "pages": [
         {
-          "url": "http://127.0.0.1:3000/newsletter?source=youtube&utm_source=youtube&utm_medium=video&utm_campaign=p0-qa",
+          "url": "http://127.0.0.1:3000/newsletter?source=podcast",
           "width": 1440,
           "height": 1000,
-          "observations": "The Saturday Spin hero, signup form, corrected 23,000-reader proof, content sections and bottom signup banner render cleanly with no 30K/65% copy or horizontal overflow."
+          "observations": "The Saturday Spin renders as one useful training letter every Saturday, shows 23,000 weekly readers, contains no 30,000 or 65% claim, and has no horizontal overflow."
         },
         {
-          "url": "http://127.0.0.1:3000/partners",
+          "url": "http://127.0.0.1:3000/podcast/ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler",
           "width": 1440,
           "height": 1000,
-          "observations": "The media-kit hero and newsletter reach cards render cleanly with 23K/23,000 reach and no open-rate percentage; the existing hierarchy and layout remain intact."
+          "observations": "The episode returns HTTP 200, includes THE SATURDAY SPIN and the podcast-specific weekly training-takeaway promise, and has no horizontal overflow."
+        },
+        {
+          "url": "http://127.0.0.1:3000/podcast/ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
+          "width": 1440,
+          "height": 1000,
+          "observations": "The episode returns HTTP 200, includes THE SATURDAY SPIN and the podcast-specific weekly training-takeaway promise, and has no horizontal overflow."
+        },
+        {
+          "url": "http://127.0.0.1:3000/faster-after-40?source=podcast&utm_source=podcast&utm_medium=show-notes&utm_campaign=qa",
+          "width": 1440,
+          "height": 1000,
+          "observations": "The report landing returns HTTP 200, shows the free-report CTA and Saturday Spin path, contains none of Not Done Yet, $195, 100M+, 113 riders, START APPLICATION or Community, and has no horizontal overflow."
         }
       ]
     },
     "mobile": {
       "status": "pass",
-      "evidence": "The exact P0 page bytes were rendered in Chromium at 390x844 for /newsletter and /partners. Corrected audience proof remained readable, 30K/30,000+/65% claims were absent and document width matched the viewport. The fallback does not change mobile UI.",
+      "evidence": "Chromium rendered the exact current-main PR merge at 390x844 for the newsletter, both specified Stephen Seiler episodes and Faster After 40. Every page returned HTTP 200, preserved the intended messaging and had no horizontal overflow; the Faster After 40 sales-string checks were all clear.",
       "pages": [
         {
           "url": "http://127.0.0.1:3000/newsletter?source=podcast",
           "width": 390,
           "height": 844,
-          "observations": "The hero, form, consent copy, 23,000-reader proof, content cards and bottom signup banner remain readable without clipping or overflow."
+          "observations": "The focused Saturday Spin promise, signup form and 23,000-reader proof fit the mobile viewport with no 30,000 or 65% claim and no horizontal overflow."
         },
         {
-          "url": "http://127.0.0.1:3000/partners",
+          "url": "http://127.0.0.1:3000/podcast/ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler",
           "width": 390,
           "height": 844,
-          "observations": "The media-kit reach cards remain readable and the corrected newsletter figure fits the existing mobile layout without horizontal overflow."
+          "observations": "The episode returns HTTP 200, includes the Saturday Spin CTA and podcast-specific promise on mobile, and has no horizontal overflow."
+        },
+        {
+          "url": "http://127.0.0.1:3000/podcast/ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
+          "width": 390,
+          "height": 844,
+          "observations": "The episode returns HTTP 200, includes the Saturday Spin CTA and podcast-specific promise on mobile, and has no horizontal overflow."
+        },
+        {
+          "url": "http://127.0.0.1:3000/faster-after-40?source=podcast&utm_source=podcast&utm_medium=show-notes&utm_campaign=qa",
+          "width": 390,
+          "height": 844,
+          "observations": "The report landing returns HTTP 200, keeps the free-report and Saturday Spin path clear on mobile, contains none of the forbidden coaching-sales strings, and has no horizontal overflow."
         }
       ]
     },
     "interactions": {
       "status": "pass",
-      "evidence": "Newsletter EmailCapture reads source and optional utm_source, utm_medium and utm_campaign only when query attribution is enabled, submits them through the existing /api/newsletter path, and the existing Beehiiv helper maps those values to Beehiiv UTM subscription fields. Existing fixed-source asset funnels remain unchanged. No real subscriber was created during QA."
+      "evidence": "Podcast EmailCapture normalises podcast-episode sources to podcast and preserves the episode slug as the default UTM campaign. Faster After 40 accepts approved source values and optional UTM values, records acquisition internally, and forwards attribution through Beehiiv's native UTM source, medium and campaign fields. No real subscriber was created during QA."
     },
     "seo": {
       "status": "pass",
-      "evidence": "The newsletter metadata/social audience statement was corrected to 23,000 with no new search claim. The canonical download path is same-domain and stable. No new doorway page, keyword variant or sponsor marketing surface was added."
+      "evidence": "The newsletter title and canonical remain stable while metadata now describes the focused weekly product. Faster After 40 keeps its existing canonical and uses neutral report metadata instead of unsupported World Tour prescription language. No new doorway or keyword-variant page is introduced."
     },
     "technical": {
       "status": "pass",
-      "evidence": "The exact fallback content digest completed a full Next.js production-mode build: compilation and TypeScript succeeded, all 4,463 static pages generated, and the route table contains dynamic /downloads/core-training-guide.pdf. The route follows the Drive download, rejects any upstream body that does not begin %PDF-, and on success returns application/pdf with Content-Length, stable filename, cache headers and nosniff. vercel.json is restored to the known-good pre-P0 configuration. Final public HTTP verification is the required post-deploy smoke check, not a pre-deploy assertion."
+      "evidence": "The exact synthetic merge 55557e5c3c844490cf8f7dad30e96df781604ead passed the full Next.js build: compilation succeeded, TypeScript succeeded and 4,466 static pages generated. The subsequent Chromium matrix passed eight desktop/mobile page checks with HTTP 200, zero assertion failures and no horizontal overflow."
     }
   }
 }
