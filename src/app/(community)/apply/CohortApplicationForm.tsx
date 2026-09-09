@@ -810,7 +810,7 @@ export function CohortApplicationForm({ instantFollowup = false }: { instantFoll
               {nextUrl ? " " : " We’ll reply to "}
               <span className="text-coral">{email}</span>.
             </p>
-            {nextUrl ? <a href={nextUrl} className="inline-flex min-h-12 items-center justify-center rounded-md bg-coral px-5 py-3 font-semibold text-deep-purple">Join coaching or ask Sarah</a> : <p className="text-foreground-subtle text-sm">Nothing else to do right now.</p>}
+            {nextUrl ? <a href={nextUrl} className="inline-flex min-h-12 items-center justify-center rounded-md bg-coral px-5 py-3 font-semibold text-deep-purple">View my application result</a> : <p className="text-foreground-subtle text-sm">Nothing else to do right now.</p>}
           </motion.div>
         )}
       </AnimatePresence>
