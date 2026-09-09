@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "contentDigest": "8363bf94b2149e83b08e233cd7b22dc30f77f60e0afb1f53e81a6f944ac6055d",
-  "scope": "The existing Saturday Spin P0 release plus the Not Done Yet application follow-up workflow across the apply form, personal next-step page, delivery APIs, admin follow-up views, analytics privacy controls and scheduled retries.",
+  "contentDigest": "ea9dbe22bde6415c6ed745bbbb1d9e064331f386bb032b2b3d52057b4c2781ea",
+  "scope": "The existing Saturday Spin P0 release plus the Not Done Yet application workflow, including the new staged post-submission review and approved next-step presentation, personal actions, delivery APIs, admin follow-up views, analytics privacy controls and scheduled retries.",
   "sections": [
     {
       "location": "/newsletter, /partners and /downloads/core-training-guide.pdf",
@@ -11,18 +11,18 @@
       "editorialDecision": "Preserve the reviewed main-branch work without reopening or weakening its claims."
     },
     {
-      "location": "/apply form, confirmation and after-application FAQ",
+      "location": "/apply form, confirmation, /apply/next review transition and after-application FAQ",
       "readerQuestion": "What happens when I submit my coaching application?",
-      "usefulAnswer": "With the feature enabled, a saved Not Done Yet application immediately offers a join path and a way to ask Sarah; Inner Circle retains its existing process.",
-      "evidence": "Anthony requested the immediate two-option flow on 8 September 2026. The server flag gates both the workflow and visible copy.",
-      "editorialDecision": "Replace the contradictory 48-hour promise only while the new flow is enabled and preserve existing copy otherwise."
+      "usefulAnswer": "With the feature enabled, a saved Not Done Yet application moves through four short review messages before confirming approval and offering the join and Sarah paths; Inner Circle retains its existing process.",
+      "evidence": "Anthony requested the immediate two-option flow on 8 September 2026 and the staged post-submission review on 9 September 2026. The server flag gates the workflow and visible form copy.",
+      "editorialDecision": "Present the deterministic result after a brief 3.2-second transition, avoid implying a separate human decision, and preserve existing copy when the feature is disabled."
     },
     {
-      "location": "/apply/next join and questions sections",
+      "location": "/apply/next approval, join, onboarding and questions sections",
       "readerQuestion": "How do I join, or ask about the coaching before paying?",
-      "usefulAnswer": "Applicants can start a seven-day free trial before the stated monthly plan, or submit one short question linked to their application for Sarah.",
-      "evidence": "The live Skool plan was checked at seven days free followed by $195 USD per month plus applicable taxes, and both supplied destinations were verified.",
-      "editorialDecision": "Keep the two actions explicit and avoid invented urgency, member counts, medical assessment or checkout claims."
+      "usefulAnswer": "Approved applicants can start a seven-day risk-free trial before the stated monthly plan, learn that the team will arrange onboarding inside Skool, or send Sarah a question linked to their application.",
+      "evidence": "The live Skool plan was checked at seven days free followed by $195 USD per month plus applicable taxes. Anthony supplied the approval, onboarding and Sarah hold-or-question instructions.",
+      "editorialDecision": "Keep the two actions and two numbered steps explicit; describe availability without a countdown, quantity or unsupported scarcity claim."
     },
     {
       "location": "Application API, database outbox, Beehiiv adapter, cron and Anthony notification sender",
@@ -39,10 +39,10 @@
       "editorialDecision": "Expose useful operational states only to staff and scope analytics suppression to the personal action surface."
     }
   ],
-  "claimsAndSources": "The workflow and inbox routing come from Anthony's 8 September 2026 instructions. The seven-day trial and $195 USD monthly price were checked on the live Skool plan; Sarah's direct address and ownership are confirmed in repository configuration. Existing main-branch audience and PDF claims remain unchanged.",
-  "examplesAndReasoning": "The suitability screen is a deterministic goal, time and injury/comeback routing rule, not a medical or human assessment. No training prescription or member result is invented.",
-  "voiceAndCuts": "The copy uses two direct next steps, removes the enabled-flow 48-hour holding message and avoids generic urgency or unsupported promises.",
-  "desktopReview": "Rendered review completed at 1540 CSS pixels for the application and next-step surfaces, plus the authenticated admin follow-up and pipeline views; copy, hierarchy, links and queue labels were legible without horizontal overflow, and the applicant reply control was corrected to remain on one line.",
-  "mobileReview": "Rendered review completed at 390 by 844 CSS pixels for the application, personal next-step and authenticated admin follow-up surfaces; controls remained usable, content wrapped correctly and no horizontal overflow was present.",
+  "claimsAndSources": "The workflow and inbox routing come from Anthony's 8 September 2026 instructions; the staged review, approval, onboarding and Sarah hold-or-question language come from his 9 September 2026 brief. The seven-day trial and $195 USD monthly price were checked on the live Skool plan; Sarah's direct address and ownership are confirmed in repository configuration. Existing main-branch audience and PDF claims remain unchanged.",
+  "examplesAndReasoning": "The suitability result is determined by the existing goal, time and injury/comeback routing rule before this page loads. The four-message transition presents that completed application review; it is not described as a medical or human assessment. No training prescription or member result is invented.",
+  "voiceAndCuts": "The approved state uses the requested congratulatory tone, two numbered setup steps and a calm Sarah alternative. The transition lasts only a few seconds and makes no countdown, queue-position or limited-place claim.",
+  "desktopReview": "The exact source was rendered at 1440 by 900 CSS pixels for the staged review and approved personal next-step page. All four messages appeared in order, the Sarah field received focus for a questions link, the browser reported no warnings and the page had no horizontal overflow.",
+  "mobileReview": "The exact source was rendered at 390 by 844 CSS pixels for the staged review and approved personal next-step page. The loader card, headings, price, buttons and sections wrapped correctly; all four messages appeared in order and there was no horizontal overflow.",
   "productAndOfferAccuracy": "The live Skool offer showed a seven-day free trial followed by $195 USD per month plus applicable taxes. The dedicated Beehiiv automation is live with personalised destinations and the publication reply-to remains Anthony; website questions persist in Sarah Review and send Anthony an operational alert."
 }
