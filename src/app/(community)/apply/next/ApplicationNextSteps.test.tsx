@@ -16,13 +16,13 @@ describe("ApplicationNextSteps", () => {
     expect(html).not.toContain("CONGRATULATIONS");
   });
 
-  it("defines the complete review sequence and a short total delay", () => {
+  it("defines the complete review sequence and a deliberate total delay", () => {
     expect(APPLICATION_REVIEW_STEPS).toEqual([
       "Processing your application",
       "Assessing your suitability for the programme",
       "Checking available places",
       "Reviewing your start date",
     ]);
-    expect(APPLICATION_REVIEW_STEPS.length * APPLICATION_REVIEW_STEP_MS).toBe(3_200);
+    expect(APPLICATION_REVIEW_STEPS.length * APPLICATION_REVIEW_STEP_MS).toBe(8_000);
   });
 });

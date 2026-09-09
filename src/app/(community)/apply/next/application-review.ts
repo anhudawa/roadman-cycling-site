@@ -5,4 +5,4 @@ export const APPLICATION_REVIEW_STEPS = [
   "Reviewing your start date",
 ] as const;
 
-export const APPLICATION_REVIEW_STEP_MS = 800;
+export const APPLICATION_REVIEW_STEP_MS = 2_000;

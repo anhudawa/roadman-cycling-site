@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentDigest": "ea9dbe22bde6415c6ed745bbbb1d9e064331f386bb032b2b3d52057b4c2781ea",
+  "contentDigest": "d38f80db7e7f2dad83eb9449683312ba6ee5ab18a0c2f92cfc832e92f8839e70",
   "scope": "The existing Saturday Spin P0 release plus the Not Done Yet application workflow, including the new staged post-submission review and approved next-step presentation, personal actions, delivery APIs, admin follow-up views, analytics privacy controls and scheduled retries.",
   "sections": [
     {
@@ -15,7 +15,7 @@
       "readerQuestion": "What happens when I submit my coaching application?",
       "usefulAnswer": "With the feature enabled, a saved Not Done Yet application moves through four short review messages before confirming approval and offering the join and Sarah paths; Inner Circle retains its existing process.",
       "evidence": "Anthony requested the immediate two-option flow on 8 September 2026 and the staged post-submission review on 9 September 2026. The server flag gates the workflow and visible form copy.",
-      "editorialDecision": "Present the deterministic result after a brief 3.2-second transition, avoid implying a separate human decision, and preserve existing copy when the feature is disabled."
+      "editorialDecision": "Present the deterministic result after a deliberate eight-second transition, avoid implying a separate human decision, and preserve existing copy when the feature is disabled."
     },
     {
       "location": "/apply/next approval, join, onboarding and questions sections",
@@ -41,8 +41,8 @@
   ],
   "claimsAndSources": "The workflow and inbox routing come from Anthony's 8 September 2026 instructions; the staged review, approval, onboarding and Sarah hold-or-question language come from his 9 September 2026 brief. The seven-day trial and $195 USD monthly price were checked on the live Skool plan; Sarah's direct address and ownership are confirmed in repository configuration. Existing main-branch audience and PDF claims remain unchanged.",
   "examplesAndReasoning": "The suitability result is determined by the existing goal, time and injury/comeback routing rule before this page loads. The four-message transition presents that completed application review; it is not described as a medical or human assessment. No training prescription or member result is invented.",
-  "voiceAndCuts": "The approved state uses the requested congratulatory tone, two numbered setup steps and a calm Sarah alternative. The transition lasts only a few seconds and makes no countdown, queue-position or limited-place claim.",
-  "desktopReview": "The exact source was rendered at 1440 by 900 CSS pixels for the staged review and approved personal next-step page. All four messages appeared in order, the Sarah field received focus for a questions link, the browser reported no warnings and the page had no horizontal overflow.",
-  "mobileReview": "The exact source was rendered at 390 by 844 CSS pixels for the staged review and approved personal next-step page. The loader card, headings, price, buttons and sections wrapped correctly; all four messages appeared in order and there was no horizontal overflow.",
+  "voiceAndCuts": "The approved state uses the requested congratulatory tone, two numbered setup steps and a calm Sarah alternative. The transition gives each of the four review messages two seconds, creating a deliberate pause without a countdown, queue-position or limited-place claim.",
+  "desktopReview": "The exact source was rendered at 1432 by 900 CSS pixels for the staged review and approved personal next-step page. All four messages appeared at roughly two-second intervals before approval, the browser reported no warnings and the page had no horizontal overflow.",
+  "mobileReview": "The exact source was rendered in a 390 by 844 CSS pixel browser viewport for the staged review and approved personal next-step page. The loader card, headings, price, buttons and sections wrapped correctly; the eight-second transition completed and there was no horizontal overflow.",
   "productAndOfferAccuracy": "The live Skool offer showed a seven-day free trial followed by $195 USD per month plus applicable taxes. The dedicated Beehiiv automation is live with personalised destinations and the publication reply-to remains Anthony; website questions persist in Sarah Review and send Anthony an operational alert."
 }
