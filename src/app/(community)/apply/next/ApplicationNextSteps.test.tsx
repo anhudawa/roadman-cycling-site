@@ -2,7 +2,13 @@ import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import { ApplicationNextSteps } from "./ApplicationNextSteps";
-import { APPLICATION_REVIEW_STEPS, APPLICATION_REVIEW_STEP_MS } from "./application-review";
+import {
+  APPLICATION_DECISION_HAPTIC_PATTERN,
+  APPLICATION_REVIEW_HAPTIC_MS,
+  APPLICATION_REVIEW_STEPS,
+  APPLICATION_REVIEW_STEP_MS,
+  triggerApplicationHaptic,
+} from "./application-review";
 
 vi.stubGlobal("React", React);
 
@@ -24,5 +30,18 @@ describe("ApplicationNextSteps", () => {
       "Reviewing your start date",
     ]);
     expect(APPLICATION_REVIEW_STEPS.length * APPLICATION_REVIEW_STEP_MS).toBe(8_000);
+  });
+
+  it("uses subtle supported haptics for review stages and the decision", () => {
+    const vibrate = vi.fn(() => true);
+    vi.stubGlobal("window", {
+      matchMedia: () => ({ matches: true }),
+      navigator: { vibrate },
+    });
+
+    expect(triggerApplicationHaptic(APPLICATION_REVIEW_HAPTIC_MS)).toBe(true);
+    expect(triggerApplicationHaptic(APPLICATION_DECISION_HAPTIC_PATTERN)).toBe(true);
+    expect(vibrate).toHaveBeenNthCalledWith(1, 12);
+    expect(vibrate).toHaveBeenNthCalledWith(2, [24, 48, 36]);
   });
 });

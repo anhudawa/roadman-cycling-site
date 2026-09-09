@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "contentDigest": "d38f80db7e7f2dad83eb9449683312ba6ee5ab18a0c2f92cfc832e92f8839e70",
-  "scope": "The existing Saturday Spin P0 release plus the Not Done Yet application workflow, including the new staged post-submission review and approved next-step presentation, personal actions, delivery APIs, admin follow-up views, analytics privacy controls and scheduled retries.",
+  "contentDigest": "de40f2a78a83cf7a72de85d74d886d4a12154afc6e4b453d0a2750a24927e983",
+  "scope": "The existing Saturday Spin P0 release plus the Not Done Yet application workflow, including the deliberate staged post-submission review, supported-mobile haptics, approved next-step presentation, explanatory Beehiiv email, personal actions, delivery APIs, admin follow-up views, analytics privacy controls and scheduled retries.",
   "sections": [
     {
       "location": "/newsletter, /partners and /downloads/core-training-guide.pdf",
@@ -13,22 +13,22 @@
     {
       "location": "/apply form, confirmation, /apply/next review transition and after-application FAQ",
       "readerQuestion": "What happens when I submit my coaching application?",
-      "usefulAnswer": "With the feature enabled, a saved Not Done Yet application moves through four short review messages before confirming approval and offering the join and Sarah paths; Inner Circle retains its existing process.",
-      "evidence": "Anthony requested the immediate two-option flow on 8 September 2026 and the staged post-submission review on 9 September 2026. The server flag gates the workflow and visible form copy.",
-      "editorialDecision": "Present the deterministic result after a deliberate eight-second transition, avoid implying a separate human decision, and preserve existing copy when the feature is disabled."
+      "usefulAnswer": "With the feature enabled, a saved Not Done Yet application moves through four review messages over eight seconds before confirming approval and offering the join and Sarah paths; compatible coarse-pointer mobile browsers receive subtle haptic cues and Inner Circle retains its existing process.",
+      "evidence": "Anthony requested the immediate two-option flow on 8 September 2026, then approved the longer staged review, final copy and mobile haptics on 9 September 2026. The server flag gates the workflow and visible form copy.",
+      "editorialDecision": "Present the deterministic result after a deliberate eight-second transition, avoid implying a separate human decision, preserve existing copy when the feature is disabled, and treat vibration as a progressive enhancement only where the browser supports it."
     },
     {
       "location": "/apply/next approval, join, onboarding and questions sections",
       "readerQuestion": "How do I join, or ask about the coaching before paying?",
-      "usefulAnswer": "Approved applicants can start a seven-day risk-free trial before the stated monthly plan, learn that the team will arrange onboarding inside Skool, or send Sarah a question linked to their application.",
-      "evidence": "The live Skool plan was checked at seven days free followed by $195 USD per month plus applicable taxes. Anthony supplied the approval, onboarding and Sarah hold-or-question instructions.",
+      "usefulAnswer": "Approved applicants can start a seven-day free trial in Skool with no charge until it ends, see the stated monthly price, learn that the team will arrange onboarding once they are inside, or ask Sarah to hold their place, arrange a later start or answer questions.",
+      "evidence": "The live Skool plan was checked at seven days free followed by $195 USD per month plus applicable taxes. Anthony supplied and approved the signup, onboarding and Sarah hold-or-question instructions.",
       "editorialDecision": "Keep the two actions and two numbered steps explicit; describe availability without a countdown, quantity or unsupported scarcity claim."
     },
     {
-      "location": "Application API, database outbox, Beehiiv adapter, cron and Anthony notification sender",
+      "location": "Application API, database outbox, live Beehiiv automation, cron and Anthony notification sender",
       "readerQuestion": "Will applications and questions survive a delivery problem?",
       "usefulAnswer": "The application and email job commit together; questions save before notification; known failures retry within bounds while uncertain enrollments stop for inspection.",
-      "evidence": "One hundred and sixteen focused tests cover deduplication, opt-outs, marker ordering, accepted-journey confirmation, saved questions, Anthony routing and retry boundaries; the production table, draft transactions and live provider configuration were also verified.",
+      "evidence": "Focused workflow tests cover deduplication, opt-outs, marker ordering, accepted-journey confirmation, saved questions, Anthony routing and retry boundaries; the production table, draft transactions, live provider configuration and published Beehiiv email were also verified.",
       "editorialDecision": "Use precise delivery states, preserve opt-outs and payment state, and never equate checkout interest with payment."
     },
     {
@@ -39,10 +39,10 @@
       "editorialDecision": "Expose useful operational states only to staff and scope analytics suppression to the personal action surface."
     }
   ],
-  "claimsAndSources": "The workflow and inbox routing come from Anthony's 8 September 2026 instructions; the staged review, approval, onboarding and Sarah hold-or-question language come from his 9 September 2026 brief. The seven-day trial and $195 USD monthly price were checked on the live Skool plan; Sarah's direct address and ownership are confirmed in repository configuration. Existing main-branch audience and PDF claims remain unchanged.",
+  "claimsAndSources": "The workflow and inbox routing come from Anthony's 8 September 2026 instructions; the staged review, mobile haptics, signup, onboarding and Sarah hold-or-question language were supplied and approved by Anthony on 9 September 2026. The seven-day trial and $195 USD monthly price were checked on the live Skool plan; Sarah's direct address and ownership are confirmed in repository configuration. Existing main-branch audience and PDF claims remain unchanged.",
   "examplesAndReasoning": "The suitability result is determined by the existing goal, time and injury/comeback routing rule before this page loads. The four-message transition presents that completed application review; it is not described as a medical or human assessment. No training prescription or member result is invented.",
-  "voiceAndCuts": "The approved state uses the requested congratulatory tone, two numbered setup steps and a calm Sarah alternative. The transition gives each of the four review messages two seconds, creating a deliberate pause without a countdown, queue-position or limited-place claim.",
-  "desktopReview": "The exact source was rendered at 1432 by 900 CSS pixels for the staged review and approved personal next-step page. All four messages appeared at roughly two-second intervals before approval, the browser reported no warnings and the page had no horizontal overflow.",
-  "mobileReview": "The exact source was rendered in a 390 by 844 CSS pixel browser viewport for the staged review and approved personal next-step page. The loader card, headings, price, buttons and sections wrapped correctly; the eight-second transition completed and there was no horizontal overflow.",
-  "productAndOfferAccuracy": "The live Skool offer showed a seven-day free trial followed by $195 USD per month plus applicable taxes. The dedicated Beehiiv automation is live with personalised destinations and the publication reply-to remains Anthony; website questions persist in Sarah Review and send Anthony an operational alert."
+  "voiceAndCuts": "The approved state and email use the requested congratulatory tone, two numbered setup steps and a calm Sarah alternative. The transition gives each of the four review messages two seconds, creating a deliberate pause without a countdown, queue-position or limited-place claim.",
+  "desktopReview": "The exact source was rendered at 1432 by 900 CSS pixels for the staged review and approved personal next-step page. All four messages appeared at roughly two-second intervals before approval, the browser reported no warnings and the page had no horizontal overflow. The published Beehiiv email was also reviewed in its desktop preview with both numbered steps visible and correctly grouped.",
+  "mobileReview": "The exact source was rendered in a 390 by 844 CSS pixel browser viewport for the staged review and approved personal next-step page. The loader card, headings, price, buttons and sections wrapped correctly; the eight-second transition completed and there was no horizontal overflow. Beehiiv's mobile email preview kept the instructions, price and primary action readable in a single column.",
+  "productAndOfferAccuracy": "The live Skool offer showed a seven-day free trial followed by $195 USD per month plus applicable taxes. The dedicated Beehiiv automation is live with the approved two-step instructions, personalised destinations and a neutral preview line; the publication reply-to remains Anthony. Website questions persist in Sarah Review and send Anthony an operational alert."
 }
