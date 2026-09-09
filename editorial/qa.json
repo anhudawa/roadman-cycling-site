@@ -90,7 +90,7 @@
     },
     "technical": {
       "status": "pass",
-      "evidence": "One hundred and sixteen focused workflow tests, TypeScript, targeted ESLint, the 55-test publication gate, Coral validation and whitespace checks pass. The Next.js production build compiled and typechecked the changed application, admin, API and cron surfaces successfully."
+      "evidence": "One hundred and sixteen focused workflow tests, TypeScript, targeted ESLint, the 56-test publication gate, Coral validation and whitespace checks pass. The Next.js production build compiled and typechecked the changed application, admin, API and cron surfaces successfully."
     }
   }
 }
