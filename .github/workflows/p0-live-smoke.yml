@@ -1,0 +1,41 @@
+name: P0 live production smoke
+
+on:
+  push:
+    branches:
+      - codex/p0-live-smoke-2026-09-09
+
+jobs:
+  smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Verify live newsletter, partners and Core Guide
+        shell: bash
+        run: |
+          set -euo pipefail
+          stamp=$(date +%s)
+
+          curl -fsSL -H 'Cache-Control: no-cache' "https://roadmancycling.com/newsletter?smoke=${stamp}" -o /tmp/newsletter.html
+          curl -fsSL -H 'Cache-Control: no-cache' "https://roadmancycling.com/partners?smoke=${stamp}" -o /tmp/partners.html
+
+          echo 'newsletter 23k:'
+          grep -Eo '23,000|23K' /tmp/newsletter.html | head
+          ! grep -Eqi '30,000\+|30K\+|65%\+' /tmp/newsletter.html
+
+          echo 'partners 23k:'
+          grep -Eo '23,000|23K' /tmp/partners.html | head
+          ! grep -Eqi '30,000\+|30K\+|65%\+' /tmp/partners.html
+
+          curl -fsSL -D /tmp/core.headers -o /tmp/core.pdf \
+            -w 'status=%{http_code}\ncontent_type=%{content_type}\nfinal_url=%{url_effective}\n' \
+            'https://roadmancycling.com/downloads/core-training-guide.pdf' | tee /tmp/core.meta
+
+          bytes=$(wc -c < /tmp/core.pdf | tr -d ' ')
+          echo "bytes=${bytes}"
+          head -c 5 /tmp/core.pdf | grep -q '%PDF-'
+          grep -qi '^content-type: application/pdf' /tmp/core.headers
+          test "${bytes}" -ge 6500000
+          test "${bytes}" -le 6700000
+          grep -q 'status=200' /tmp/core.meta
+          grep -q 'final_url=https://roadmancycling.com/downloads/core-training-guide.pdf' /tmp/core.meta
