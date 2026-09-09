@@ -8,6 +8,10 @@ import { getCohortState } from "@/lib/cohort";
 import { rateLimitOr429 } from "@/lib/rate-limit/ip-rate-limit";
 import { ndyApplicationFlowEnabled } from "@/lib/ndy/application-offer";
 import {
+  isApplicationStartPreference,
+  isValidApplicationStartDate,
+} from "@/lib/ndy/application-start";
+import {
   clampString,
   LIMITS,
   normaliseEmail,
@@ -81,6 +85,17 @@ function sanitiseAttribution(
   return clean;
 }
 
+function todayInDublin(): string {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Europe/Dublin",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date());
+  const value = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${value.year}-${value.month}-${value.day}`;
+}
+
 export async function POST(request: Request) {
   const limited = await rateLimitOr429(request, {
     namespace: "coaching-application",
@@ -127,6 +142,16 @@ export async function POST(request: Request) {
         ? null
         : clampString(body.whyInnerCircle, LIMITS.longText);
     const cohortOverride = body.cohort;
+    const isInnerCircle =
+      typeof cohortOverride === "string" && cohortOverride.trim() === "inner-circle";
+    const startPreference = isApplicationStartPreference(body.startPreference)
+      ? body.startPreference
+      : null;
+    const preferredStartDate =
+      startPreference === "specific_date" &&
+      isValidApplicationStartDate(body.preferredStartDate, todayInDublin())
+        ? body.preferredStartDate
+        : null;
     const suppliedSubmissionKey =
       body.submissionId == null
         ? null
@@ -136,6 +161,22 @@ export async function POST(request: Request) {
     if (!name || !email || !goal || !hours || !frustration) {
       return NextResponse.json(
         { error: "Missing required fields" },
+        { status: 400 },
+      );
+    }
+    if (!isInnerCircle && !startPreference) {
+      return NextResponse.json(
+        { error: "Please choose when you would like to start." },
+        { status: 400 },
+      );
+    }
+    if (
+      !isInnerCircle &&
+      startPreference === "specific_date" &&
+      !preferredStartDate
+    ) {
+      return NextResponse.json(
+        { error: "Please choose today or a future start date." },
         { status: 400 },
       );
     }
@@ -197,8 +238,6 @@ export async function POST(request: Request) {
 
     // Inner Circle applications come through the same endpoint but get a
     // distinct label so the admin Kanban filters them into their own column.
-    const isInnerCircle =
-      typeof cohortOverride === "string" && cohortOverride.trim() === "inner-circle";
     const cohortState = getCohortState();
     const cohortLabel = isInnerCircle ? "inner-circle" : "ndy";
 
@@ -227,6 +266,8 @@ export async function POST(request: Request) {
       hours,
       ftp,
       frustration: frustrationStored.slice(0, frustrationLimit),
+      startPreference: isInnerCircle ? null : startPreference,
+      preferredStartDate: isInnerCircle ? null : preferredStartDate,
       cohort: cohortLabel,
       persona,
       submissionKey,
@@ -261,6 +302,8 @@ export async function POST(request: Request) {
           hours,
           ftp,
           frustration: frustrationStored.slice(0, frustrationLimit),
+          startPreference: isInnerCircle ? null : startPreference,
+          preferredStartDate: isInnerCircle ? null : preferredStartDate,
           persona,
           submissionKey,
           attribution,
@@ -311,6 +354,8 @@ export async function POST(request: Request) {
           hours,
           ftp: ftp || null,
           frustration: frustrationStored,
+          startPreference: isInnerCircle ? null : startPreference,
+          preferredStartDate: isInnerCircle ? null : preferredStartDate,
           cohort: cohortLabel,
           persona,
           phase: isInnerCircle ? "inner-circle" : cohortState.phase,
@@ -320,12 +365,14 @@ export async function POST(request: Request) {
       await addActivity(contact.id, {
         type: sourceLabel,
         title: activityTitle,
-        body: `Goal: ${goal}\n\nHours/week: ${hours}\n\nFTP: ${ftp || "n/a"}\n\n${frustrationStored}`,
+        body: `Goal: ${goal}\n\nHours/week: ${hours}\n\nPreferred start: ${isInnerCircle ? "n/a" : startPreference}\n\nSpecific start date: ${preferredStartDate || "n/a"}\n\nFTP: ${ftp || "n/a"}\n\n${frustrationStored}`,
         meta: {
           goal,
           hours,
           ftp: ftp || null,
           frustration: frustrationStored,
+          startPreference: isInnerCircle ? null : startPreference,
+          preferredStartDate: isInnerCircle ? null : preferredStartDate,
           persona,
           cohort: cohortLabel,
           phase: isInnerCircle ? "inner-circle" : cohortState.phase,
@@ -348,6 +395,8 @@ export async function POST(request: Request) {
           hours,
           ftp,
           frustration: frustrationStored,
+          startPreference: isInnerCircle ? null : startPreference,
+          preferredStartDate: isInnerCircle ? null : preferredStartDate,
           persona,
           isInnerCircle,
           attribution,

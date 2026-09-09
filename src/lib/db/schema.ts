@@ -202,6 +202,8 @@ export const cohortApplications = pgTable(
     hours: text("hours").notNull(),
     ftp: text("ftp"),
     frustration: text("frustration").notNull(),
+    startPreference: text("start_preference"),
+    preferredStartDate: date("preferred_start_date"),
     cohort: text("cohort").notNull().default("2026"),
     persona: text("persona"),
     submissionKey: text("submission_key"),

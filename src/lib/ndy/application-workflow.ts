@@ -7,10 +7,12 @@ import { notifyCohortApplication } from "@/lib/notifications";
 import { escapeHtml } from "@/lib/validation";
 import { enrollNdyApplicant } from "./application-beehiiv";
 import { applicationNextUrl, assessApplication, NDY_APPLICATION_OFFER } from "./application-offer";
+import { formatApplicationStart, type ApplicationStartPreference } from "./application-start";
 
 type ApplicationInput = {
   name: string; email: string; goal: string; hours: string; ftp: string | null;
   frustration: string; cohort: string; persona: string; submissionKey: string;
+  startPreference: ApplicationStartPreference | null; preferredStartDate: string | null;
   attribution?: Record<string, string>;
 };
 const tokenLifetimeMs = 30 * 86400_000;
@@ -60,12 +62,12 @@ export async function submitNdyApplication(input: ApplicationInput) {
   if (!saved.duplicate) {
     try {
       const contact = await upsertContact({ email: input.email, name: input.name, source: "cohort_application",
-        customFields: { goal: input.goal, hours: input.hours, cohort: "ndy", persona: input.persona, attribution: input.attribution ?? null },
+        customFields: { goal: input.goal, hours: input.hours, startPreference: input.startPreference, preferredStartDate: input.preferredStartDate, cohort: "ndy", persona: input.persona, attribution: input.attribution ?? null },
       });
       await addActivity(contact.id, {
         type: "cohort_application", title: `${saved.reapplication ? "Reapplied" : "Applied"} to Not Done Yet`,
-        body: `Goal: ${input.goal}\nHours/week: ${input.hours}\n${input.frustration}`,
-        meta: { applicationId: saved.application.id, fit: saved.job.fit }, authorName: "system",
+        body: `Goal: ${input.goal}\nHours/week: ${input.hours}\nPreferred start: ${formatApplicationStart(input.startPreference, input.preferredStartDate)}\n${input.frustration}`,
+        meta: { applicationId: saved.application.id, fit: saved.job.fit, startPreference: input.startPreference, preferredStartDate: input.preferredStartDate }, authorName: "system",
       });
     } catch { console.error("[NDY] Application saved; CRM mirror requires attention"); }
     const notification = await notifyCohortApplication(input).catch(() => ({ success: false }));
@@ -199,6 +201,7 @@ export async function listNdyFollowups() {
     fit: followups.fit, emailStatus: followups.emailStatus, emailError: followups.emailError,
     emailAttempts: followups.emailAttempts, enrolledAt: followups.enrolledAt,
     question: followups.question, questionReceivedAt: followups.questionReceivedAt,
+    startPreference: cohortApplications.startPreference, preferredStartDate: cohortApplications.preferredStartDate,
     sarahStatus: followups.sarahStatus, sarahError: followups.sarahError, sarahNotifiedAt: followups.sarahNotifiedAt,
     checkoutStartedAt: followups.checkoutStartedAt, createdAt: followups.createdAt,
   }).from(followups).innerJoin(cohortApplications, eq(followups.applicationId, cohortApplications.id))
