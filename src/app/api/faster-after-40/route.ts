@@ -113,7 +113,6 @@ export async function POST(request: Request) {
 
     const customFields: Record<string, string> = {
       last_lead_magnet: "faster-after-40",
-      acquisition_source: acquisitionSource,
     };
 
     try {
