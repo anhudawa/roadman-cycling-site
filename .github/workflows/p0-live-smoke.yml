@@ -1,4 +1,4 @@
-name: P0 live production smoke
+name: Newsletter growth live production smoke
 
 on:
   push:
@@ -8,34 +8,102 @@ on:
 jobs:
   smoke:
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
-      - name: Verify live newsletter, partners and Core Guide
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Wait for production alias and verify P0 HTTP invariants
         shell: bash
         run: |
           set -euo pipefail
-          stamp=$(date +%s)
+          for i in {1..40}; do
+            stamp=$(date +%s)
+            if curl -fsSL -H 'Cache-Control: no-cache' "https://roadmancycling.com/newsletter?smoke=${stamp}" -o /tmp/newsletter.html \
+              && grep -q 'ONE USEFUL TRAINING LETTER' /tmp/newsletter.html; then
+              break
+            fi
+            if [ "$i" -eq 40 ]; then
+              echo 'Production alias did not expose the newsletter-growth release.' >&2
+              exit 1
+            fi
+            sleep 15
+          done
 
-          curl -fsSL -H 'Cache-Control: no-cache' "https://roadmancycling.com/newsletter?smoke=${stamp}" -o /tmp/newsletter.html
-          curl -fsSL -H 'Cache-Control: no-cache' "https://roadmancycling.com/partners?smoke=${stamp}" -o /tmp/partners.html
-
-          echo 'newsletter 23k:'
-          grep -Eo '23,000|23K' /tmp/newsletter.html | head
+          curl -fsSL -H 'Cache-Control: no-cache' "https://roadmancycling.com/partners?smoke=$(date +%s)" -o /tmp/partners.html
+          grep -Eoq '23,000|23K' /tmp/newsletter.html
           ! grep -Eqi '30,000\+|30K\+|65%\+' /tmp/newsletter.html
-
-          echo 'partners 23k:'
-          grep -Eo '23,000|23K' /tmp/partners.html | head
+          grep -Eoq '23,000|23K' /tmp/partners.html
           ! grep -Eqi '30,000\+|30K\+|65%\+' /tmp/partners.html
 
           curl -fsSL -D /tmp/core.headers -o /tmp/core.pdf \
             -w 'status=%{http_code}\ncontent_type=%{content_type}\nfinal_url=%{url_effective}\n' \
             'https://roadmancycling.com/downloads/core-training-guide.pdf' | tee /tmp/core.meta
-
           bytes=$(wc -c < /tmp/core.pdf | tr -d ' ')
-          echo "bytes=${bytes}"
+          echo "core_bytes=${bytes}"
+          test "${bytes}" -eq 6592307
           head -c 5 /tmp/core.pdf | grep -q '%PDF-'
           grep -qi '^content-type: application/pdf' /tmp/core.headers
-          test "${bytes}" -ge 6500000
-          test "${bytes}" -le 6700000
           grep -q 'status=200' /tmp/core.meta
           grep -q 'final_url=https://roadmancycling.com/downloads/core-training-guide.pdf' /tmp/core.meta
+
+      - run: npm ci
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Hydrated production acceptance matrix
+        run: |
+          cat > .live-growth-smoke.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          const browser = await chromium.launch({headless:true});
+          const stamp = Date.now();
+          const cases = [
+            [`/newsletter?source=podcast&smoke=${stamp}`, 'newsletter'],
+            [`/podcast/ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler?smoke=${stamp}`, 'seiler-low-hr'],
+            [`/podcast/ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler?smoke=${stamp}`, 'seiler-80-20'],
+            [`/faster-after-40?source=podcast&utm_source=podcast&utm_medium=show-notes&utm_campaign=live-smoke&smoke=${stamp}`, 'fa40'],
+          ];
+          const viewports = [
+            {name:'desktop', width:1440, height:1000},
+            {name:'mobile', width:390, height:844},
+          ];
+          let failed = false;
+          for (const viewport of viewports) {
+            const context = await browser.newContext({viewport:{width:viewport.width,height:viewport.height}});
+            const page = await context.newPage();
+            for (const [path,label] of cases) {
+              const response = await page.goto(`https://roadmancycling.com${path}`, {waitUntil:'domcontentloaded'});
+              await page.waitForTimeout(1500);
+              const text = await page.locator('body').innerText();
+              const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+              const status = response?.status() ?? 0;
+              const assertions = [];
+              if (status !== 200) assertions.push(`status=${status}`);
+              if (overflow) assertions.push('horizontal-overflow');
+              if (label === 'newsletter') {
+                if (!text.includes('23,000 weekly readers')) assertions.push('missing-23k');
+                if (text.includes('30,000') || text.includes('65%')) assertions.push('inflated-claim');
+                if (!text.includes('ONE USEFUL TRAINING LETTER')) assertions.push('missing-focused-promise');
+              }
+              if (label.startsWith('seiler')) {
+                if (!text.includes('THE SATURDAY SPIN')) assertions.push('missing-spin-cta');
+                if (!text.includes('Every Saturday I send one training takeaway')) assertions.push('missing-podcast-promise');
+              }
+              if (label === 'fa40') {
+                for (const forbidden of ['Not Done Yet', '$195', '100M+', '113 riders', 'START APPLICATION', 'Community']) {
+                  if (text.includes(forbidden)) assertions.push(`forbidden:${forbidden}`);
+                }
+                if (!text.includes('GET THE FREE REPORT')) assertions.push('missing-report-cta');
+                if (!text.includes('The Saturday Spin')) assertions.push('missing-spin-path');
+              }
+              console.log(JSON.stringify({viewport:viewport.name,label,status,overflow,assertions}));
+              if (assertions.length) failed = true;
+            }
+            await context.close();
+          }
+          await browser.close();
+          if (failed) process.exit(1);
+          EOF
+          node .live-growth-smoke.mjs
+          rm .live-growth-smoke.mjs
