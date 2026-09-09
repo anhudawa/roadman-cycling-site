@@ -2,63 +2,63 @@
   "version": 1,
   "reviewer": "Codex",
   "decision": "publish",
-  "reviewedAt": "2026-09-09T09:05:00Z",
-  "contentDigest": "ea9dbe22bde6415c6ed745bbbb1d9e064331f386bb032b2b3d52057b4c2781ea",
-  "reviewHash": "41b9f841f8eac13d8ec9a9ed5383e744d5110bd6c45cc63d141cb1da7fd33f8b",
+  "reviewedAt": "2026-09-09T10:25:58Z",
+  "contentDigest": "de40f2a78a83cf7a72de85d74d886d4a12154afc6e4b453d0a2750a24927e983",
+  "reviewHash": "3f2b8ed882029c5c46ba368b656485f952ff90c25ff2fc376cac9ce5174dfa59",
   "controlsHash": "690e4b2ddb0fb631ba211762063a492b111885c239303964cf09357b2986281c",
   "blockers": [],
   "checks": {
     "claims": {
       "status": "pass",
-      "evidence": "Anthony supplied the approval, onboarding and Sarah hold-or-question language. He previously authorised operational alert delivery to anthony@roadmancycling.com and Sarah's daily admin review; the live Skool plan showed a seven-day free trial followed by $195 USD per month plus applicable taxes."
+      "evidence": "Anthony supplied and approved the final signup, onboarding and Sarah hold-or-question language. He previously authorised operational alert delivery to anthony@roadmancycling.com and Sarah's daily admin review; the live Skool plan showed a seven-day free trial followed by $195 USD per month plus applicable taxes."
     },
     "editorial": {
       "status": "pass",
-      "evidence": "The four-message transition presents the already-determined application result for 3.2 seconds before approval. It does not describe a human, medical or second server assessment, and the approved state keeps the Skool and Sarah actions distinct."
+      "evidence": "The four-message transition presents the already-determined application result for eight seconds before approval, holding each stage for two seconds. It does not describe a human, medical or second server assessment. Mobile vibration is a subtle, feature-detected enhancement for compatible coarse-pointer browsers and never blocks the visual fallback."
     },
     "offers": {
       "status": "pass",
-      "evidence": "The Skool programme and plans destinations resolved to Roadman Cycling's Not Done Yet offer. The rendered website and live Beehiiv email state the seven-day trial and $195 USD monthly price consistently."
+      "evidence": "The Skool programme and plans destinations resolved to Roadman Cycling's Not Done Yet offer. The rendered website and published Beehiiv email consistently explain that the seven-day trial starts in Skool, no charge occurs until the trial ends, and coaching then costs $195 USD per month plus applicable taxes."
     },
     "desktop": {
       "status": "pass",
-      "evidence": "The exact source was rendered at 1440 by 900 CSS pixels. The application page and both staged and approved next-step states were readable, correctly grouped and free of horizontal overflow; the questions action focused its textarea and browser logs were clean.",
+      "evidence": "The exact source was rendered at 1432 by 900 CSS pixels. The four review stages held for about two seconds each before approval; the approved next-step state remained readable, correctly grouped and free of horizontal overflow, with clean browser logs. The published Beehiiv email was reviewed in desktop preview and retained both numbered steps and actions.",
       "pages": [
         {
-          "url": "http://localhost:3003/apply",
-          "width": 1440,
+          "url": "http://localhost:3006/apply",
+          "width": 1432,
           "height": 900,
           "observations": "The application hero, seven-day-trial offer and four-step form rendered with clear hierarchy, usable controls, clean browser logs and no horizontal overflow."
         },
         {
-          "url": "http://localhost:3003/apply/next",
-          "width": 1440,
+          "url": "http://localhost:3006/apply/next",
+          "width": 1432,
           "height": 900,
-          "observations": "All four review messages appeared in order before congratulations; the price, trial, onboarding and Sarah sections remained distinct, and a questions link focused the response field without console warnings or horizontal overflow."
+          "observations": "All four review messages appeared in order for about two seconds each before congratulations; the price, trial, onboarding and Sarah sections remained distinct, without console warnings or horizontal overflow."
         }
       ]
     },
     "mobile": {
       "status": "pass",
-      "evidence": "The exact source was rendered at 390 by 844 CSS pixels for the application and personal next-step surfaces. The loader card and approved state wrapped correctly, controls remained usable, all four status messages appeared in order, browser logs were clean and neither page overflowed horizontally.",
+      "evidence": "The exact source was rendered at a 390 by 844 CSS pixel browser viewport for the personal next-step surface. The loader card and approved state wrapped correctly, controls remained usable, the eight-second transition completed, browser logs were clean and the page did not overflow horizontally. Beehiiv's mobile preview kept the instructions, price and primary action legible in one column.",
       "pages": [
         {
-          "url": "http://localhost:3003/apply",
+          "url": "http://localhost:3006/apply",
           "width": 390,
           "height": 844,
           "observations": "The hero, price, free-trial statement and application call to action fit the viewport without warnings or horizontal overflow."
         },
         {
-          "url": "http://localhost:3003/apply/next",
+          "url": "http://localhost:3006/apply/next",
           "width": 390,
           "height": 844,
-          "observations": "The staged-review card, congratulations header, price, trial and numbered setup sections fit the viewport; all four messages appeared in order and the page had no warnings or horizontal overflow."
+          "observations": "The staged-review card, congratulations header, price, trial and numbered setup sections fit the viewport; the transition remained on the review state before completing after eight seconds, with no warnings or horizontal overflow."
         }
       ]
     },
     "interactions": {
       "status": "pass",
-      "evidence": "Browser verification on the exact source observed Processing, Assessing, Checking and Reviewing in order, then the approved state; questions links focused Sarah's field. The inherited production workflow remains covered by controlled applications 219 and 220, and 122 focused tests pass across application persistence, Beehiiv delivery, tracked Skool and Sarah actions, routing and deduplication."
+      "evidence": "Browser verification on the exact source observed Processing, Assessing, Checking and Reviewing in order at roughly two-second intervals, then the approved state after 8.4 seconds. Unit coverage verifies the supported-mobile haptic pattern without claiming vibration on browsers that do not expose the API. The inherited production workflow remains covered by controlled applications 219 and 220."
     },
     "seo": {
       "status": "pass",
@@ -66,7 +66,7 @@
     },
     "technical": {
       "status": "pass",
-      "evidence": "One hundred and twenty-two focused workflow tests, TypeScript, targeted ESLint, the 56-test publication gate, Coral validation, whitespace checks, the 18,384-reference offline link audit and the 1,772-file search-quality audit pass. The full 4,466-page production build also completed successfully."
+      "evidence": "The focused workflow suite, TypeScript, targeted ESLint, the 56-test publication gate, Coral validation, whitespace checks, the 18,384-reference offline link audit and the 1,772-file search-quality audit pass. The full 4,466-page production build also completed successfully."
     }
   }
 }

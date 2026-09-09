@@ -6,7 +6,7 @@ Built for Anthony Walsh's 8 September 2026 request. The feature flag defaults of
 
 1. Submit the existing Not Done Yet application. Save the application and its email job in one database transaction. Inner Circle continues through its existing process.
 2. Start one immediate Beehiiv automation. Email contains two choices: start a **7-day free trial**, then **$195 USD/month** plus applicable taxes via Skool, or ask Sarah a question. The Skool about page is also linked.
-3. The applicant can open the same next-step page immediately after submitting, even if email is delayed or held.
+3. The applicant can open the same next-step page immediately after submitting, even if email is delayed or held. The page presents four review messages over eight seconds before revealing the result; supported coarse-pointer browsers receive subtle best-effort vibration cues, while unsupported browsers continue without them.
 4. Asking Sarah opens a short form. Submitting it records the question, moves the application to **Sarah Review**, assigns its existing CRM contact to Sarah, records a timeline entry and queues an operational alert to **anthony@roadmancycling.com**. Sarah reviews the dedicated admin column daily; the question remains visible there if the alert email fails.
 5. Opening checkout records intent only. It does not mark a person paid, change membership counts or unlock Good Legs.
 
@@ -18,7 +18,7 @@ The automatic fit screen checks the supported cycling goals, the selected traini
 
 - Automation name: **Not Done Yet — application next steps**
 - Subject: **Your Not Done Yet application**
-- Preview: **Start your 7-day free trial, or email Sarah with a question.**
+- Preview: **Your Not Done Yet application: here’s what happens next.**
 - Use the publication's existing verified sender identity and its current reply-to, **anthony@roadmancycling.com**.
 - Email HTML content: `docs/email/ndy-application.html`; plain text: `docs/email/ndy-application.txt`.
 - Keep Beehiiv's normal sender/address/unsubscribe footer. Do not publish this as a public newsletter post or send it to the whole list.
@@ -36,7 +36,7 @@ Create these case-sensitive Beehiiv text fields first:
 
 Insert the two URL fields as the buttons' destinations. Preview with a test subscriber and verify the received HTML retains the full `#join/<token>` and `#questions/<token>` fragments after click tracking. If Beehiiv's editor cannot resolve a merge tag in an href, that blocks activation until its supported personalised-link mechanism is verified; do not send a literal unresolved merge tag.
 
-Ordinary replies reach Anthony through Reply-To, while the public next-step page retains Sarah’s direct email address. Email-inbox replies do **not** automatically enter the website database. The **Email Sarah** button opens the personal message form, which emails an operational alert to Anthony and saves the inquiry in Sarah’s admin queue. Ordinary inbox replies require an authenticated inbound mail integration before they can be included in the admin timeline; that integration is not implemented. Do not claim every email conversation is tracked.
+Ordinary replies reach Anthony through Reply-To, while the public next-step page retains Sarah’s direct email address. Email-inbox replies do **not** automatically enter the website database. The **Ask Sarah a question** button opens the personal message form, which emails an operational alert to Anthony and saves the inquiry in Sarah’s admin queue. Ordinary inbox replies require an authenticated inbound mail integration before they can be included in the admin timeline; that integration is not implemented. Do not claim every email conversation is tracked.
 
 ## Delivery reliability
 

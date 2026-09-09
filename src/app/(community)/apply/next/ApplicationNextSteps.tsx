@@ -2,7 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { NDY_APPLICATION_OFFER as offer } from "@/lib/ndy/application-offer";
-import { APPLICATION_REVIEW_STEPS, APPLICATION_REVIEW_STEP_MS } from "./application-review";
+import {
+  APPLICATION_DECISION_HAPTIC_PATTERN,
+  APPLICATION_REVIEW_HAPTIC_MS,
+  APPLICATION_REVIEW_STEPS,
+  APPLICATION_REVIEW_STEP_MS,
+  triggerApplicationHaptic,
+} from "./application-review";
 
 export function ApplicationNextSteps() {
   const [token, setToken] = useState("");
@@ -21,11 +27,17 @@ export function ApplicationNextSteps() {
 
   useEffect(() => {
     const timers = APPLICATION_REVIEW_STEPS.slice(1).map((_, index) => window.setTimeout(
-      () => setReviewStep(index + 1),
+      () => {
+        setReviewStep(index + 1);
+        triggerApplicationHaptic(APPLICATION_REVIEW_HAPTIC_MS);
+      },
       (index + 1) * APPLICATION_REVIEW_STEP_MS,
     ));
     const completionTimer = window.setTimeout(
-      () => setReviewComplete(true),
+      () => {
+        setReviewComplete(true);
+        triggerApplicationHaptic(APPLICATION_DECISION_HAPTIC_PATTERN);
+      },
       APPLICATION_REVIEW_STEPS.length * APPLICATION_REVIEW_STEP_MS,
     );
     return () => {
@@ -89,13 +101,12 @@ export function ApplicationNextSteps() {
         <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-coral font-heading text-lg text-deep-purple">1</span>
         <div>
           <h2 className="font-heading text-2xl">JOIN NOT DONE YET</h2>
-          <p className="mt-3 text-base leading-7 text-foreground-muted">Use the sign-up link below to get started. Coaching costs <strong className="text-off-white">{offer.price}</strong>, plus applicable taxes.</p>
+          <p className="mt-3 text-base leading-7 text-foreground-muted">Start your seven-day free trial in Skool. You won’t be charged until the trial ends. After that, coaching is <strong className="text-off-white">{offer.price}</strong>, plus applicable taxes.</p>
         </div>
       </div>
       {token ? <button type="button" disabled={Boolean(busy)} onClick={() => void act("join")} className="mt-6 min-h-12 w-full rounded-md bg-coral px-5 py-3 font-semibold text-deep-purple disabled:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral">
         {busy === "join" ? "Opening Skool…" : "Get started in Skool"}
       </button> : <a href={offer.checkoutUrl} rel="noreferrer" className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-md bg-coral px-5 py-3 text-center font-semibold text-deep-purple">Start my 7-day free trial</a>}
-      <p className="mt-4 text-sm leading-6 text-foreground-muted">Remember, your {offer.trialDays}-day trial is risk-free: you won’t be charged until it ends.</p>
       <a className="mt-3 inline-block whitespace-nowrap text-sm text-coral underline underline-offset-4" href={offer.aboutUrl} target="_blank" rel="noreferrer">See what’s included</a>
     </section>
 
@@ -112,7 +123,7 @@ export function ApplicationNextSteps() {
     <section className="rounded-xl border border-white/15 p-6 sm:p-8">
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral">Not ready to start today?</p>
       <h2 className="mt-3 font-heading text-2xl">TALK TO SARAH</h2>
-      <p className="mt-3 text-base leading-7 text-foreground-muted">Sarah can help hold your place, arrange a later start, or answer any questions you have about the programme.</p>
+      <p className="mt-3 text-base leading-7 text-foreground-muted">Sarah can hold your place, arrange a later start, or answer any questions you have about the programme.</p>
       {saved ? <p role="status" className="mt-4 text-base leading-7">Your question is saved for Sarah. She’ll reply by email.</p> : token ? <form onSubmit={(event) => { event.preventDefault(); void act("questions"); }}>
         <label htmlFor="ndy-question" className="mt-5 block text-base text-foreground-muted">What would you like Sarah to help with?</label>
         <textarea ref={questionInput} id="ndy-question" required minLength={3} maxLength={2000} rows={4} value={question} onChange={(event) => setQuestion(event.target.value)}
