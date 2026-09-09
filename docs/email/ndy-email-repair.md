@@ -1,7 +1,7 @@
 # Not Done Yet email repair — 8 September 2026
 
 ## Status
-Template repair only. This commit does not update Beehiiv, deploy the application route, or establish that a received mobile email passes QA. Preserve the existing release gates. Do not announce this workflow live on the strength of this commit.
+Installation and activation QA completed on 9 September 2026. The corrected email is installed in the dedicated live Add by API automation; the application route, personal next-step route, Sarah Review tracking and provider recovery are covered by the release workflow and can still be disabled with `NDY_APPLICATION_FLOW_ENABLED=false`.
 
 ## Confirmed defects
 Inspection of the received test email found:
@@ -36,21 +36,19 @@ The about URL https://www.skool.com/roadmancycling/about resolves through web re
 - What does joining cost and where do I go? State the user-approved $195 USD monthly offer once and provide Join plus the verified about destination. The user confirmed a 7-day trial and the Skool about page lists it. Verify that the selected monthly checkout actually offers that trial. The Skool page separately discloses applicable taxes.
 - How do I ask a question? The Email Sarah action opens the message form, saves the question in Roadman admin and queues the email to Sarah. Ordinary replies to Sarah’s inbox are not synced yet.
 - Remove the billboard heading, numbered sales panels and repeated price. Do not add unverified promises, testimonials or urgency.
-Pending: actual Beehiiv installation, delivered light/dark rendering, real-token question/admin/email test and checkout navigation.
+Completed: the live automation delivered personalized test messages, the real tracked question action persisted in Sarah Review and generated one Anthony alert, and the trial action opened the verified seven-day Skool checkout without starting a purchase.
 
 ## Tracking scope after the copy revision
 | Event | Current Roadman record | Remaining requirement |
 | --- | --- | --- |
-| Application decision | fit=ready/review saved with the follow-up creation time; admin shows Approved automatically / Sarah review required | Verify against a synthetic submission |
-| Beehiiv enrollment | Status, attempts, errors, enrollment time and provider identifiers | Actual inbox delivery/open/bounce feedback is not synced |
-| Trial-start selection | checkoutStartedAt, relabelled Selected start trial | Confirm actual trial activation using a trusted Skool/provider event; a click is not a trial |
-| Question submitted via Email Sarah | Question text, timestamp, application stage and CRM owner/activity | End-to-end form test |
-| Notification to Sarah | Queue/failure/sent status and timestamp | Controlled received-email test |
+| Application decision | fit=ready/review saved with the follow-up creation time; admin shows Approved automatically / Sarah review required | Verified with controlled submissions |
+| Beehiiv enrollment | Status, attempts, errors, enrollment time and provider identifiers | Journey completion and inbox delivery verified; open/bounce feedback remains in Beehiiv |
+| Trial-start selection | checkoutStartedAt, relabelled Selected start trial | Seven-day checkout verified without purchase; a click remains distinct from trial activation |
+| Question submitted via Email Sarah | Question text, timestamp, application stage and CRM owner/activity | Verified end to end |
+| Notification to Sarah | Queue/failure/sent status and timestamp | One controlled Anthony inbox alert verified with applicant Reply-To |
 | Ordinary email reply | Not captured by this workflow | Connect authenticated inbound mail and deduplicate by provider message ID; match applicant/thread, then persist messages without triggering duplicate notifications |
 | Paid signup | Existing authenticated application workflow | Verify billing evidence; never derive from clicks |
 
-The approval and trial copy is prepared, not installed in Beehiiv. The source changes invalidate prior rendered editorial QA. Keep publication held until the actual revised revision passes.
+The delivered Beehiiv message is HTML-only. The automation editor exposes the HTML body, subject and preview text but no separate plain-text control, and the received MIME source contains no `text/plain` alternative. The companion text file remains the approved fallback copy for any future provider or editor that supports a text part; do not claim Beehiiv emitted it.
 
-The next-step page now uses the same trial wording and a short Email Sarah form. The admin view displays assessment, Beehiiv enrollment, trial-start selection, question receipt and notification timestamps where those records exist. The about link can wrap at narrow widths. Desktop/mobile rendering remains unverified in this window.
-
-Copy-revision validation: 41 focused tests across the Beehiiv adapter, action persistence and next-step API passed after loading the current PR dependencies. These use mocks and are not live delivery tests. `editorial:check` correctly rejected publication because the review does not match the revised content. No publish sign-off is claimed.
+Final verification covered 116 focused workflow tests across 12 files, 56 publication-gate tests, a full production build, responsive application/next-step/admin rendering, a 375px and 1200px received-email render, real tracked action clicks, database state and the live Skool checkout. Controlled test applications 217–220 remain deliberately labelled in admin; no payment was initiated.

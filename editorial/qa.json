@@ -2,9 +2,9 @@
   "version": 1,
   "reviewer": "Codex",
   "decision": "publish",
-  "reviewedAt": "2026-09-08T22:42:48Z",
-  "contentDigest": "22c510701217890324c5396cb8f00ce425b24dc6b77e18550a41d92f2172b3ff",
-  "reviewHash": "f93b261c1261edabfefae3845e5a05d8bc8c8d6c2a62c59cef33a89c5d393deb",
+  "reviewedAt": "2026-09-09T00:02:00Z",
+  "contentDigest": "8363bf94b2149e83b08e233cd7b22dc30f77f60e0afb1f53e81a6f944ac6055d",
+  "reviewHash": "9e071566c87b1e2e53d6da2bf6290e2a6386486cab45e37965d73a4f67482e4d",
   "controlsHash": "690e4b2ddb0fb631ba211762063a492b111885c239303964cf09357b2986281c",
   "blockers": [],
   "checks": {
@@ -22,7 +22,7 @@
     },
     "desktop": {
       "status": "pass",
-      "evidence": "The exact source revision was rendered at 1540 CSS pixels. Application, next-step and authenticated admin queue content was readable, correctly grouped and free of horizontal overflow.",
+      "evidence": "The exact source revision was rendered at 1540 CSS pixels and the delivered Beehiiv email at 1200 CSS pixels. Application, next-step, authenticated admin queue and email content were readable, correctly grouped and free of horizontal overflow.",
       "pages": [
         {
           "url": "http://127.0.0.1:3001/apply",
@@ -40,13 +40,19 @@
           "url": "http://127.0.0.1:3001/admin/applications",
           "width": 1540,
           "height": 900,
-          "observations": "The authenticated application board displayed a separate Sarah Review column and retained its link to detailed workflow status."
+          "observations": "The authenticated application board displayed a separate Sarah Review column and retained its link to detailed workflow status; the applicant reply action remains a single-line control."
+        },
+        {
+          "url": "https://mail.google.com/mail/u/0/popout",
+          "width": 1200,
+          "height": 900,
+          "observations": "The received personalized Beehiiv message retained its 560-pixel content column, readable body, two full-width action buttons, about link and provider footer."
         }
       ]
     },
     "mobile": {
       "status": "pass",
-      "evidence": "The application and personal next-step surfaces were reviewed at 390 by 844 CSS pixels; the authenticated follow-up view was also reviewed at the same width. Content wrapped correctly and controls remained usable.",
+      "evidence": "The application and personal next-step surfaces were reviewed between 326 and 390 CSS pixels; the authenticated follow-up view and delivered Beehiiv email were also reviewed at mobile width. Content wrapped correctly and controls remained usable under the Mac's dark system preference.",
       "pages": [
         {
           "url": "http://127.0.0.1:3001/apply",
@@ -65,12 +71,18 @@
           "width": 390,
           "height": 844,
           "observations": "The authenticated operational view fit the mobile viewport and exposed applicant, question, delivery, Anthony-alert and retry states without clipping."
+        },
+        {
+          "url": "https://mail.google.com/mail/u/0/",
+          "width": 375,
+          "height": 812,
+          "observations": "The received personalized email's body, pricing, both action buttons and footer remained readable without message-content overflow while the system reported a dark color preference."
         }
       ]
     },
     "interactions": {
       "status": "pass",
-      "evidence": "A rolled-back production-database transaction exercised application creation, outbox deduplication, question persistence and Sarah Review status. Controlled Beehiiv and Resend sends reached Anthony, while GET route checks returned no applicant data and caused no writes."
+      "evidence": "Controlled application 219 reached Anthony through the live Beehiiv automation, and its delivered actions persisted the Sarah Review question, sent exactly one Anthony alert, recorded checkout interest and opened the verified Skool trial checkout without a charge. Application 220 confirmed that one empty-response enrollment records the completed Beehiiv journey and delivers one personalized message without a duplicate request. GET route checks returned no applicant data and caused no writes."
     },
     "seo": {
       "status": "pass",
@@ -78,7 +90,7 @@
     },
     "technical": {
       "status": "pass",
-      "evidence": "Ninety-nine focused workflow tests, TypeScript, targeted ESLint, the 55-test publication gate, Coral validation and whitespace checks pass. The selective Next.js production build compiled and typechecked the changed application, admin, API and cron surfaces successfully."
+      "evidence": "One hundred and sixteen focused workflow tests, TypeScript, targeted ESLint, the 56-test publication gate, Coral validation and whitespace checks pass. The Next.js production build compiled and typechecked the changed application, admin, API and cron surfaces successfully."
     }
   }
 }

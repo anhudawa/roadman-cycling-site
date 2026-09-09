@@ -97,12 +97,41 @@ describe("NDY Beehiiv application email", () => {
     expect(fetcher).toHaveBeenCalledTimes(3);
   });
 
-  it.each(["timeout", "server-error", "missing-id"])("holds ambiguous %s enrollment instead of silently retrying", async (failure) => {
+  it.each(["timeout", "server-error"])("holds ambiguous %s enrollment instead of silently retrying", async (failure) => {
     fetcher.mockResolvedValueOnce(json([subscriber])).mockResolvedValueOnce(json({})).mockResolvedValueOnce(json({}));
     if (failure === "timeout") fetcher.mockRejectedValueOnce(new Error("Timed out"));
-    else fetcher.mockResolvedValueOnce(json({}, failure === "server-error" ? 503 : 200));
+    else fetcher.mockResolvedValueOnce(json({}, 503));
     expect((await enrollNdyApplicant(input, beforeEnroll)).status).toBe("uncertain");
     expect(fetcher).toHaveBeenCalledTimes(4);
+  });
+
+  it("confirms a successful empty acknowledgement without enrolling twice", async () => {
+    fetcher.mockResolvedValueOnce(json([subscriber])).mockResolvedValueOnce(json({})).mockResolvedValueOnce(json({}))
+      .mockResolvedValueOnce(json({})).mockResolvedValueOnce(json([{ id: "aj_confirmed", subscription_id: subscriber.id }]));
+    expect(await enrollNdyApplicant(input, beforeEnroll)).toEqual({
+      status: "enrolled", subscriberId: subscriber.id, journeyId: "aj_confirmed",
+    });
+    expect(fetcher.mock.calls.filter(([url], index) => index === 3 && String(url).endsWith("/journeys"))).toHaveLength(1);
+    expect(String(fetcher.mock.calls[4][0])).toContain("/journeys?limit=100");
+  });
+
+  it("waits for an accepted journey to appear in the provider list", async () => {
+    vi.stubGlobal("setTimeout", (callback: () => void) => { callback(); return 0; });
+    fetcher.mockResolvedValueOnce(json([subscriber])).mockResolvedValueOnce(json({})).mockResolvedValueOnce(json({}))
+      .mockResolvedValueOnce(json({})).mockResolvedValueOnce(json([]))
+      .mockResolvedValueOnce(json([{ id: "aj_late", subscription_id: subscriber.id }]));
+    expect(await enrollNdyApplicant(input, beforeEnroll)).toEqual({
+      status: "enrolled", subscriberId: subscriber.id, journeyId: "aj_late",
+    });
+    expect(fetcher.mock.calls.filter(([url]) => String(url).includes("/journeys?limit=100"))).toHaveLength(2);
+  });
+
+  it("holds an empty acknowledgement when the accepted journey cannot be verified", async () => {
+    vi.stubGlobal("setTimeout", (callback: () => void) => { callback(); return 0; });
+    fetcher.mockResolvedValueOnce(json([subscriber])).mockResolvedValueOnce(json({})).mockResolvedValueOnce(json({}))
+      .mockResolvedValueOnce(json({})).mockResolvedValueOnce(json([])).mockResolvedValueOnce(json([])).mockResolvedValueOnce(json([]));
+    expect((await enrollNdyApplicant(input, beforeEnroll)).status).toBe("uncertain");
+    expect(fetcher).toHaveBeenCalledTimes(7);
   });
 
   it("leaves a rejected enrollment retryable", async () => {

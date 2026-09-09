@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentDigest": "22c510701217890324c5396cb8f00ce425b24dc6b77e18550a41d92f2172b3ff",
+  "contentDigest": "8363bf94b2149e83b08e233cd7b22dc30f77f60e0afb1f53e81a6f944ac6055d",
   "scope": "The existing Saturday Spin P0 release plus the Not Done Yet application follow-up workflow across the apply form, personal next-step page, delivery APIs, admin follow-up views, analytics privacy controls and scheduled retries.",
   "sections": [
     {
@@ -28,7 +28,7 @@
       "location": "Application API, database outbox, Beehiiv adapter, cron and Anthony notification sender",
       "readerQuestion": "Will applications and questions survive a delivery problem?",
       "usefulAnswer": "The application and email job commit together; questions save before notification; known failures retry within bounds while uncertain enrollments stop for inspection.",
-      "evidence": "Ninety-nine focused tests cover deduplication, opt-outs, marker ordering, saved questions, Anthony routing and retry boundaries; the production table, draft transactions and live provider configuration were also verified.",
+      "evidence": "One hundred and sixteen focused tests cover deduplication, opt-outs, marker ordering, accepted-journey confirmation, saved questions, Anthony routing and retry boundaries; the production table, draft transactions and live provider configuration were also verified.",
       "editorialDecision": "Use precise delivery states, preserve opt-outs and payment state, and never equate checkout interest with payment."
     },
     {
@@ -42,7 +42,7 @@
   "claimsAndSources": "The workflow and inbox routing come from Anthony's 8 September 2026 instructions. The seven-day trial and $195 USD monthly price were checked on the live Skool plan; Sarah's direct address and ownership are confirmed in repository configuration. Existing main-branch audience and PDF claims remain unchanged.",
   "examplesAndReasoning": "The suitability screen is a deterministic goal, time and injury/comeback routing rule, not a medical or human assessment. No training prescription or member result is invented.",
   "voiceAndCuts": "The copy uses two direct next steps, removes the enabled-flow 48-hour holding message and avoids generic urgency or unsupported promises.",
-  "desktopReview": "Rendered review completed at 1540 CSS pixels for the application and next-step surfaces, plus the authenticated admin follow-up and pipeline views; copy, hierarchy, links and queue labels were legible without horizontal overflow.",
+  "desktopReview": "Rendered review completed at 1540 CSS pixels for the application and next-step surfaces, plus the authenticated admin follow-up and pipeline views; copy, hierarchy, links and queue labels were legible without horizontal overflow, and the applicant reply control was corrected to remain on one line.",
   "mobileReview": "Rendered review completed at 390 by 844 CSS pixels for the application, personal next-step and authenticated admin follow-up surfaces; controls remained usable, content wrapped correctly and no horizontal overflow was present.",
   "productAndOfferAccuracy": "The live Skool offer showed a seven-day free trial followed by $195 USD per month plus applicable taxes. The dedicated Beehiiv automation is live with personalised destinations and the publication reply-to remains Anthony; website questions persist in Sarah Review and send Anthony an operational alert."
 }
