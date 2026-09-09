@@ -10,14 +10,14 @@ import { fetchNewsletterIssues } from "@/lib/integrations/beehiiv";
 export const metadata: Metadata = {
   title: "The Saturday Spin — Weekly Cycling Newsletter",
   description:
-    "The weekly training breakdown 23,000 serious cyclists read on Saturday. What's working, what the pros do, how to apply it this week. From Anthony. Free.",
+    "One useful cycling training letter every Saturday, read by 23,000 weekly readers. A clear takeaway, why it matters, and what to do with it on the bike. Free.",
   alternates: {
     canonical: "https://roadmancycling.com/newsletter",
   },
   openGraph: {
     title: "The Saturday Spin — Weekly Cycling Newsletter",
     description:
-      "The weekly training breakdown 23,000 serious cyclists read on Saturday. What's working, what the pros do, how to apply it this week.",
+      "One useful cycling training letter every Saturday. A clear takeaway, why it matters, and what to do with it on the bike.",
     type: "website",
     url: "https://roadmancycling.com/newsletter",
   },
@@ -35,7 +35,7 @@ export default async function NewsletterPage() {
           "@type": "WebPage",
           name: "The Saturday Spin Newsletter — Roadman Cycling",
           description:
-            "Weekly cycling insights from Anthony Walsh. Training, nutrition, and performance content drawn from conversations with the world's best coaches and scientists.",
+            "One useful cycling training letter from Anthony Walsh every Saturday: a clear takeaway, why it matters, and what to do with it on the bike.",
           url: "https://roadmancycling.com/newsletter",
           isPartOf: { "@id": ENTITY_IDS.website },
           publisher: { "@id": ENTITY_IDS.organization },
@@ -47,7 +47,7 @@ export default async function NewsletterPage() {
           <Container width="narrow" className="text-center">
             <ScrollReveal direction="up">
               <p className="text-coral font-heading text-sm tracking-widest mb-4">
-                EVERY SATURDAY · FROM THE ROADMAN PODCAST
+                ONE USEFUL TRAINING LETTER · EVERY SATURDAY
               </p>
               <h1
                 className="font-heading text-off-white mb-6"
@@ -56,10 +56,9 @@ export default async function NewsletterPage() {
                 THE SATURDAY SPIN
               </h1>
               <p className="text-foreground-muted text-xl leading-relaxed mb-8">
-                The week&apos;s sharpest training takeaway, one specific
-                action you can use this week, and what the pros did
-                differently &mdash; distilled from the conversations most of
-                the sport will never hear. Free. Once a week.
+                One training idea worth knowing. Why it matters. And one
+                specific thing you can do with it on the bike this week. Free,
+                every Saturday.
               </p>
             </ScrollReveal>
 
@@ -90,36 +89,30 @@ export default async function NewsletterPage() {
                 className="font-heading text-off-white text-center mb-4"
                 style={{ fontSize: "var(--text-section)" }}
               >
-                WHAT YOU&apos;LL GET
+                WHAT LANDS IN YOUR INBOX
               </h2>
               <p className="text-foreground-muted text-center mb-12 max-w-lg mx-auto">
-                No fluff. No filler. No generic fitness advice. Everything is
-                cycling-specific, grounded in science, and drawn from real
-                conversations with the experts.
+                Not a digest. Not a list of links. One focused training letter
+                designed to leave you with something useful before your next ride.
               </p>
             </ScrollReveal>
 
             <div className="space-y-6">
               {[
                 {
-                  title: "Training insights you can apply this week",
+                  title: "One clear training takeaway",
                   description:
-                    "Zone 2 structure, interval sessions, periodisation — the principles from Seiler, Lorang, and Wakefield translated into actionable training advice.",
+                    "A single idea from coaching, physiology, fuelling, recovery, or performance — explained without the jargon.",
                 },
                 {
-                  title: "Nutrition that actually works for cyclists",
+                  title: "Why it matters",
                   description:
-                    "Fuelling, body composition, race weight — the stuff that makes a real difference to your power-to-weight ratio. No diet culture.",
+                    "The context that tells you when the idea is useful, what problem it solves, and where riders commonly get it wrong.",
                 },
                 {
-                  title: "The stories behind the podcast",
+                  title: "What to do this week",
                   description:
-                    "Extended insights from podcast conversations. The things that didn't make the final cut. Context that makes the episodes even more valuable.",
-                },
-                {
-                  title: "Community highlights and member results",
-                  description:
-                    "Real results from Clubhouse and Not Done Yet coaching members. What's working, what's not, and what you can learn from their experience.",
+                    "A practical action you can take into your own training instead of another piece of cycling content to save and forget.",
                 },
               ].map((item, i) => (
                 <ScrollReveal key={item.title} direction="up" delay={i * 0.1}>
@@ -182,8 +175,8 @@ export default async function NewsletterPage() {
 
         <EmailCapture
           variant="banner"
-          heading="STOP GUESSING. START KNOWING."
-          subheading="23,000 weekly readers get the week's sharpest training insights every Saturday. Join them."
+          heading="GET THE SATURDAY SPIN"
+          subheading="23,000 weekly readers get one useful training letter every Saturday. Join them."
           source="newsletter-page-bottom"
           captureQueryAttribution
         />
