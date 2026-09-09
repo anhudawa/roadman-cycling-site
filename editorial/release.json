@@ -1,48 +1,48 @@
 {
   "version": 1,
-  "contentDigest": "1f0674dafcf28b2f78c04d3915d38c3b246d2c4e8f19aed9e333450070609f32",
-  "scope": "The existing Saturday Spin P0 release plus the Not Done Yet application workflow, including the five-question initial application with preferred start timing, deliberate staged post-submission review, supported-mobile haptics, approved next-step presentation, explanatory Beehiiv email, personal actions, delivery APIs, admin follow-up views, analytics privacy controls and scheduled retries.",
+  "contentDigest": "b972e28c17373e9c1b6e6590c63a11c912aadf0d94593ed336900ce1a220614c",
+  "scope": "The Saturday Spin site-side growth follow-through: focus /newsletter on one useful Saturday training letter; make podcast episode signup CTAs lead with The Saturday Spin and preserve podcast attribution; replace the Faster After 40 coaching squeeze with a report-to-newsletter acquisition path; and keep Faster After 40 free of global coaching conversion chrome. YouTube and Beehiiv editorial/automation operations remain outside this release.",
   "sections": [
     {
-      "location": "/newsletter, /partners and /downloads/core-training-guide.pdf",
-      "readerQuestion": "Can readers rely on the corrected newsletter reach and stable Core Training Guide delivery introduced on main?",
-      "usefulAnswer": "The inherited main revision retains the corrected 23,000-reader proof, attribution handling and verified PDF route.",
-      "evidence": "Main already carried exact-revision publication evidence for these surfaces before the Not Done Yet branch was reconciled.",
-      "editorialDecision": "Preserve the reviewed main-branch work without reopening or weakening its claims."
+      "location": "/newsletter — Saturday Spin positioning",
+      "readerQuestion": "What exactly will I receive if I subscribe to The Saturday Spin?",
+      "usefulAnswer": "One useful cycling training letter every Saturday: one clear takeaway, why it matters, and one practical action to use on the bike that week.",
+      "evidence": "Anthony supplied the active-list figure of about 23,215, rounded to 23,000 weekly readers. The exact PR merge rendered at 1440x1000 and 390x844 with the focused promise, 23,000-reader proof, no 30,000/65% claim and no horizontal overflow.",
+      "editorialDecision": "Remove podcast-digest and community-promo framing from the landing page. Keep the product promise narrow, useful and weekly while preserving the already-corrected 23,000 audience proof."
     },
     {
-      "location": "/apply form, confirmation, /apply/next review transition and after-application FAQ",
-      "readerQuestion": "What happens when I submit my coaching application?",
-      "usefulAnswer": "The initial form asks five quick questions, including whether the rider wants to start right now, in the coming weeks or on a specific future date. With the feature enabled, a saved Not Done Yet application then moves through four review messages over eight seconds before confirming approval and offering the join and Sarah paths; compatible coarse-pointer mobile browsers receive subtle haptic cues and Inner Circle retains its existing process.",
-      "evidence": "Anthony requested the immediate two-option flow on 8 September 2026, then approved the longer staged review, final copy and mobile haptics on 9 September 2026. On 9 September 2026 he also requested the new start-timing question and supplied its three answer choices. The server flag gates the follow-up workflow and visible form copy.",
-      "editorialDecision": "Require start timing for Not Done Yet applications, reveal a date selector only for the specific-date choice, reject past dates, preserve Inner Circle's existing process, present the deterministic result after a deliberate eight-second transition, avoid implying a separate human decision, and treat vibration as a progressive enhancement only where the browser supports it."
+      "location": "Podcast episode EmailCapture — shared conversion path",
+      "readerQuestion": "What should a podcast listener be asked to do after consuming an episode, and can acquisition still be attributed to the episode?",
+      "usefulAnswer": "Podcast episode forms now lead with The Saturday Spin. They normalise acquisition source to podcast and retain the episode slug as the default UTM campaign, while explicit query UTM values can override that campaign.",
+      "evidence": "The shared EmailCapture implementation detects podcast and podcast-<slug> sources. The exact PR merge rendered both specified Stephen Seiler episode pages at desktop and mobile widths; each showed The Saturday Spin promise, returned HTTP 200 and had no horizontal overflow.",
+      "editorialDecision": "Use the newsletter as the primary listener conversion door without deleting the wider episode content or introducing a new Beehiiv list, automation or YouTube write."
     },
     {
-      "location": "/apply/next approval, join, onboarding and questions sections",
-      "readerQuestion": "How do I join, or ask about the coaching before paying?",
-      "usefulAnswer": "Approved applicants can start a seven-day free trial in Skool with no charge until it ends, see the stated monthly price, learn that the team will arrange onboarding once they are inside, or ask Sarah to hold their place, arrange a later start or answer questions.",
-      "evidence": "The live Skool plan was checked at seven days free followed by $195 USD per month plus applicable taxes. Anthony supplied and approved the signup, onboarding and Sarah hold-or-question instructions.",
-      "editorialDecision": "Keep the two actions and two numbered steps explicit; describe availability without a countdown, quantity or unsupported scarcity claim."
+      "location": "/faster-after-40 — report-to-newsletter landing",
+      "readerQuestion": "What does a visitor get from Faster After 40, and what happens after they request it?",
+      "usefulAnswer": "The page offers the existing Faster After 40 report, then clearly states that the requester also joins The Saturday Spin. It describes the report in neutral terms around training, fuelling, strength and recovery and provides the existing on-site PDF download after a successful request.",
+      "evidence": "The old long-form coaching squeeze and its scoped CSS were removed. The exact PR merge rendered /faster-after-40 at 1440x1000 and 390x844 with HTTP 200, no horizontal overflow, the free-report CTA and Saturday Spin path, and none of the QA-forbidden sales strings including Not Done Yet, $195, 100M+, 113 riders, START APPLICATION or Community.",
+      "editorialDecision": "Treat Faster After 40 as a named-PDF acquisition surface rather than a coaching sales page. The PDF file itself is unchanged by this release and is not re-certified here."
     },
     {
-      "location": "Application API, database outbox, live Beehiiv automation, cron and Anthony notification sender",
-      "readerQuestion": "Will applications and questions survive a delivery problem?",
-      "usefulAnswer": "The application and email job commit together; questions save before notification; known failures retry within bounds while uncertain enrollments stop for inspection.",
-      "evidence": "Focused workflow tests cover deduplication, opt-outs, marker ordering, accepted-journey confirmation, saved questions, Anthony routing and retry boundaries; the production table, draft transactions, live provider configuration and published Beehiiv email were also verified.",
-      "editorialDecision": "Use precise delivery states, preserve opt-outs and payment state, and never equate checkout interest with payment."
+      "location": "/api/faster-after-40 — acquisition attribution",
+      "readerQuestion": "Can Faster After 40 signups be attributed cleanly without creating a new Beehiiv workflow or risky custom field?",
+      "usefulAnswer": "The endpoint accepts named_pdf, podcast, youtube or site source values plus optional UTM source, medium and campaign. Attribution is passed through Beehiiv's native UTM fields; the existing last_lead_magnet custom field remains, and no new acquisition_source custom field is introduced.",
+      "evidence": "The existing Beehiiv helper maps source, medium and campaign to Beehiiv utm_source, utm_medium and utm_campaign. The exact merge build passed TypeScript and generated 4,466 static pages; no real subscriber was created during QA.",
+      "editorialDecision": "Use native Beehiiv UTM attribution and existing lead-magnet metadata only. Do not edit Beehiiv posts, automations, referral configuration or welcome automation."
     },
     {
-      "location": "/admin/applications, /admin/applications/followups and shared analytics bootstrap",
-      "readerQuestion": "Can staff see who needs a reply without exposing a personal action token?",
-      "usefulAnswer": "Authenticated staff can see each rider's preferred start timing in the application detail and Sarah Review queue alongside delivery and question status, while analytics and referrer leakage are suppressed on the personal next-step page.",
-      "evidence": "The implementation stores the start choice and optional date on the application record, exposes them through existing authenticated admin views, assigns question records to Sarah, alerts Anthony, and keeps personal tokens in URL fragments and POST bodies rather than query strings.",
-      "editorialDecision": "Expose useful operational states only to staff and scope analytics suppression to the personal action surface."
+      "location": "Global ConversionChrome — Faster After 40 exception",
+      "readerQuestion": "Can the lead-magnet page remain a single-purpose acquisition experience without Roadman's global coaching overlays reappearing?",
+      "usefulAnswer": "Faster After 40 is now a lean route, so the global coaching conversion chrome does not load on that page.",
+      "evidence": "Earlier rendered QA identified $195 and START APPLICATION as global chrome rather than page content. Adding /faster-after-40 to the existing lean-route list removed those strings; the final exact-merge desktop and mobile browser checks found no forbidden sales strings.",
+      "editorialDecision": "Suppress only the global conversion chrome on this lead-magnet route. Leave Roadman's coaching conversion surfaces unchanged elsewhere."
     }
   ],
-  "claimsAndSources": "The workflow and inbox routing come from Anthony's 8 September 2026 instructions; the staged review, mobile haptics, signup, onboarding and Sarah hold-or-question language were supplied and approved by Anthony on 9 September 2026. Anthony also supplied the new start-timing question and its Right now, Coming weeks and Specific date choices on 9 September 2026. The seven-day trial and $195 USD monthly price were checked on the live Skool plan; Sarah's direct address and ownership are confirmed in repository configuration. Existing main-branch audience and PDF claims remain unchanged.",
-  "examplesAndReasoning": "The suitability result is determined by the existing goal, time and injury/comeback routing rule before this page loads. The four-message transition presents that completed application review; it is not described as a medical or human assessment. No training prescription or member result is invented.",
-  "voiceAndCuts": "The approved state and email use the requested congratulatory tone, two numbered setup steps and a calm Sarah alternative. The transition gives each of the four review messages two seconds, creating a deliberate pause without a countdown, queue-position or limited-place claim.",
-  "desktopReview": "The exact source was rendered at 1432 by 900 CSS pixels for the five-step application, staged review and approved personal next-step page. The new question displayed all three timing choices, Specific date revealed a future-date selector, the selected date survived back navigation, and the page had no horizontal overflow. The prior four-message and published Beehiiv email reviews remain applicable.",
-  "mobileReview": "The exact source was rendered in a 390 by 844 CSS pixel browser viewport for the five-step application and personal next-step surface. The timing choices stacked into usable full-width buttons, Coming weeks advanced to the final details step, and the page had no horizontal overflow. The prior staged-review and Beehiiv mobile email reviews remain applicable.",
-  "productAndOfferAccuracy": "The live Skool offer showed a seven-day free trial followed by $195 USD per month plus applicable taxes. The dedicated Beehiiv automation is live with the approved two-step instructions, personalised destinations and a neutral preview line; the publication reply-to remains Anthony. Website questions persist in Sarah Review and send Anthony an operational alert."
+  "claimsAndSources": "The only audience number used in this release is Anthony's supplied Beehiiv active-list snapshot of about 23,215, rounded to 23,000. No open-rate claim, sponsor-performance metric, coaching member count, science efficacy claim or new Faster After 40 result claim is added. The existing Faster After 40 PDF body is unchanged.",
+  "examplesAndReasoning": "A podcast episode form with source podcast-<episode-slug> resolves Beehiiv acquisition source to podcast and uses the episode slug as the default UTM campaign. Faster After 40 defaults to named_pdf, accepts approved source values plus optional UTM parameters, and sends attribution through Beehiiv's native UTM fields.",
+  "voiceAndCuts": "The Saturday Spin copy was simplified around one useful training letter every Saturday. The Faster After 40 landing removes high-pressure coaching and community sales framing rather than replacing it with new performance hype. Podcast pages use the same plain Saturday Spin promise through the shared capture component.",
+  "desktopReview": "Chromium rendered the exact PR merge revision at 1440x1000 for /newsletter, both specified Stephen Seiler podcast pages and /faster-after-40. All four returned HTTP 200, showed the intended newsletter/report messaging and had no horizontal overflow; the Faster After 40 route contained none of the forbidden coaching-sales strings.",
+  "mobileReview": "Chromium rendered the exact PR merge revision at 390x844 for /newsletter, both specified Stephen Seiler podcast pages and /faster-after-40. All four returned HTTP 200, preserved the intended CTA/message hierarchy and had no horizontal overflow; Faster After 40 remained free of the forbidden coaching-sales strings.",
+  "productAndOfferAccuracy": "This release does not edit YouTube, Beehiiv posts, Beehiiv automations, Beehiiv referral/reward configuration, Skool, Not Done Yet pricing or sponsor packages. The Faster After 40 PDF remains the existing report asset, and the Core Training Guide remains a separate referral reward rather than a newsletter signup incentive."
 }
