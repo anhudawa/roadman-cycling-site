@@ -27,9 +27,11 @@ const LEAN_PATH_PREFIXES = [
   // tank conversion. The page itself drives users to /plateau where
   // the full conversion machinery lives.
   "/go",
-  // Lead-magnet squeeze page for the Masters Cycling Training Report.
-  // Same single-purpose rationale as /go — the form is the page.
+  // Lead-magnet squeeze pages are single-purpose acquisition surfaces.
+  // Coaching/exit-intent chrome competes with the promised report and
+  // can reintroduce sales copy that the landing intentionally removed.
   "/masters-report",
+  "/faster-after-40",
   // Authenticated/admin and self-contained product areas do not use the
   // public acquisition overlays.
   "/admin",
