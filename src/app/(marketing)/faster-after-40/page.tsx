@@ -1,23 +1,22 @@
 import type { Metadata } from "next";
-import FA40Squeeze from "./FA40Squeeze";
+import FA40NewsletterLanding from "./FA40NewsletterLanding";
 
 export const metadata: Metadata = {
-  title: "Faster After 40 — Free Guide by Roadman Cycling",
+  title: "Faster After 40 — Free Cycling Report | Roadman Cycling",
   description:
-    "A free 30-page guide on what World Tour coaches actually prescribe to riders over 40. The 5-pillar system behind every cyclist who got quicker when everyone said they wouldn't.",
+    "A free Roadman Cycling report for riders over 40 covering training, fuelling, strength, recovery, and practical habits for better riding.",
   alternates: {
     canonical: "https://roadmancycling.com/faster-after-40",
   },
   openGraph: {
-    title:
-      "Faster After 40 — What World Tour Coaches Actually Prescribe to Riders Your Age",
+    title: "Faster After 40 — Free Cycling Report",
     description:
-      "A free 30-page field manual built from conversations with Dan Lorang, Professor Seiler, and the coaches behind Grand Tour wins. For cyclists who refuse to slow down.",
+      "Get the Faster After 40 report and join The Saturday Spin: one useful training letter every Saturday.",
     type: "website",
     url: "https://roadmancycling.com/faster-after-40",
   },
 };
 
 export default function FasterAfter40Page() {
-  return <FA40Squeeze />;
+  return <FA40NewsletterLanding />;
 }

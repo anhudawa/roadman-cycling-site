@@ -1,0 +1,90 @@
+name: Newsletter growth merge QA
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  qa:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Print exact merge content fingerprint
+        run: node scripts/editorial-gate.mjs --fingerprint
+      - name: Remove stale sign-off inside QA workspace only
+        run: rm -f editorial/release.json editorial/qa.json
+      - name: Build exact PR merge in preview mode
+        env:
+          VERCEL_ENV: preview
+        run: npm run build
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Start built site
+        run: |
+          nohup npm start > /tmp/roadman-next.log 2>&1 &
+          for i in {1..60}; do
+            if curl -fsS http://127.0.0.1:3000/newsletter >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          cat /tmp/roadman-next.log
+          exit 1
+      - name: Render desktop and mobile acceptance checks
+        run: |
+          cat > .newsletter-growth-qa.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          const browser = await chromium.launch({headless:true});
+          const cases = [
+            ['/newsletter?source=podcast', 'newsletter'],
+            ['/podcast/ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler', 'seiler-low-hr'],
+            ['/podcast/ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler', 'seiler-80-20'],
+            ['/faster-after-40?source=podcast&utm_source=podcast&utm_medium=show-notes&utm_campaign=qa', 'fa40'],
+          ];
+          const viewports = [
+            {name:'desktop', width:1440, height:1000},
+            {name:'mobile', width:390, height:844},
+          ];
+          let failed = false;
+          for (const viewport of viewports) {
+            const context = await browser.newContext({ viewport: {width: viewport.width, height: viewport.height} });
+            const page = await context.newPage();
+            for (const [path, label] of cases) {
+              const response = await page.goto(`http://127.0.0.1:3000${path}`, {waitUntil:'networkidle'});
+              const text = await page.locator('body').innerText();
+              const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+              const status = response?.status() ?? 0;
+              const assertions = [];
+              if (status !== 200) assertions.push(`status=${status}`);
+              if (overflow) assertions.push('horizontal-overflow');
+              if (label === 'newsletter') {
+                if (!text.includes('23,000 weekly readers')) assertions.push('missing-23k');
+                if (text.includes('30,000') || text.includes('65%')) assertions.push('inflated-claim');
+                if (!text.includes('ONE USEFUL TRAINING LETTER')) assertions.push('missing-focused-promise');
+              }
+              if (label.startsWith('seiler')) {
+                if (!text.includes('THE SATURDAY SPIN')) assertions.push('missing-spin-cta');
+                if (!text.includes('Every Saturday I send one training takeaway')) assertions.push('missing-podcast-promise');
+              }
+              if (label === 'fa40') {
+                for (const forbidden of ['Not Done Yet', '$195', '100M+', '113 riders', 'START APPLICATION', 'Community']) {
+                  if (text.includes(forbidden)) assertions.push(`forbidden:${forbidden}`);
+                }
+                if (!text.includes('GET THE FREE REPORT')) assertions.push('missing-report-cta');
+                if (!text.includes('The Saturday Spin')) assertions.push('missing-spin-path');
+              }
+              console.log(JSON.stringify({viewport:viewport.name,label,status,overflow,assertions}));
+              if (assertions.length) failed = true;
+            }
+            await context.close();
+          }
+          await browser.close();
+          if (failed) process.exit(1);
+          EOF
+          node .newsletter-growth-qa.mjs
+          rm .newsletter-growth-qa.mjs
