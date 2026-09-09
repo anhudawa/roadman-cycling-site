@@ -3,6 +3,7 @@ import { requireAuth } from "@/lib/admin/auth";
 import { listNdyFollowups } from "@/lib/ndy/application-workflow";
 import { ndyApplicationFlowEnabled } from "@/lib/ndy/application-offer";
 import { RetryDelivery } from "./RetryDelivery";
+import { formatApplicationStart } from "@/lib/ndy/application-start";
 
 export const dynamic = "force-dynamic";
 const emailLabels: Record<string, string> = {
@@ -26,6 +27,7 @@ export default async function NdyFollowupsPage() {
           <div><h2 className="text-xl font-semibold text-off-white">{row.name}</h2><a className="break-all text-sm text-[var(--color-fg)] underline" href={`mailto:${row.email}`}>{row.email}</a><p className="mt-2 text-sm text-foreground-muted">Application #{row.applicationId} · {row.createdAt.toISOString().slice(0, 16).replace("T", " ")} UTC · {row.fit === "ready" ? "Approved automatically" : "Sarah review required"}</p></div>
           <span className="rounded-md border border-white/15 px-3 py-2 text-sm text-off-white">{emailLabels[row.emailStatus] ?? row.emailStatus}</span>
         </div>
+        <p className="mt-4 text-sm text-off-white">Preferred start: {formatApplicationStart(row.startPreference, row.preferredStartDate)}</p>
         {row.enrolledAt && <p className="mt-4 text-sm text-foreground-muted">Beehiiv enrollment accepted · {row.enrolledAt.toISOString().slice(0, 16).replace("T", " ")} UTC</p>}
         {row.emailError && <p className="mt-4 text-sm text-amber-200">{row.emailError}</p>}
         {row.emailStatus === "failed" && <RetryDelivery id={row.id} target="email" />}

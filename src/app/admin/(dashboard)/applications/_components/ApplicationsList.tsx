@@ -9,6 +9,7 @@ import {
   type ApplicationStage,
   normalizeApplicationStage,
 } from "@/lib/crm/pipeline";
+import { formatApplicationStart } from "@/lib/ndy/application-start";
 
 export interface Application {
   id: number;
@@ -18,6 +19,8 @@ export interface Application {
   hours: string;
   ftp: string | null;
   frustration: string;
+  startPreference: string | null;
+  preferredStartDate: string | null;
   cohort: string;
   persona: string | null;
   status: string;
@@ -228,6 +231,17 @@ export function ApplicationsList({ initialApplications }: Props) {
                   </p>
                   <p className="text-off-white text-sm">
                     {selected.ftp || "Not provided"}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-foreground-subtle text-xs tracking-widest uppercase mb-1">
+                    Preferred start
+                  </p>
+                  <p className="text-off-white text-sm">
+                    {formatApplicationStart(
+                      selected.startPreference,
+                      selected.preferredStartDate,
+                    )}
                   </p>
                 </div>
                 <div>

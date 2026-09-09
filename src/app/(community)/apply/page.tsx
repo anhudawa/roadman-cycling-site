@@ -244,7 +244,7 @@ export function ApplyPageView({
                     <p>2-MINUTE APPLICATION</p>
                     <h2>TELL US WHERE YOU&apos;RE STUCK.</h2>
                     <span>
-                      {instantFollowup ? "Four quick questions. No credit card. Get your next steps by email." : "Four quick questions. No credit card. Anthony replies within 48 hours."}
+                      {instantFollowup ? "Five quick questions. No credit card. Get your next steps by email." : "Five quick questions. No credit card. Anthony replies within 48 hours."}
                     </span>
                   </div>
                   <CohortApplicationForm instantFollowup={instantFollowup} />

@@ -73,6 +73,8 @@ const VALID_BODY = {
   hours: "6-9 hours",
   ftp: "245W",
   frustration: "Plateaued and stuck",
+  startPreference: "right_now",
+  preferredStartDate: null,
   submissionId: "submission-key-123",
 };
 
@@ -137,7 +139,14 @@ describe("POST /api/cohort/apply", () => {
   it("keeps Inner Circle on its existing confirmation flow even when enabled", async () => {
     vi.stubEnv("NDY_APPLICATION_FLOW_ENABLED", "true");
     const { POST } = await import("./route");
-    const response = await POST(request({ ...VALID_BODY, cohort: "inner-circle" }));
+    const response = await POST(
+      request({
+        ...VALID_BODY,
+        startPreference: undefined,
+        preferredStartDate: undefined,
+        cohort: "inner-circle",
+      }),
+    );
     expect(response.status).toBe(200);
     expect(mocks.submitNdyApplication).not.toHaveBeenCalled();
     expect(mocks.sendApplicantConfirmation).toHaveBeenCalledWith(expect.objectContaining({ isInnerCircle: true }));
@@ -187,6 +196,8 @@ describe("POST /api/cohort/apply", () => {
         email: "sam@example.com",
         cohort: "ndy",
         persona: "plateau",
+        startPreference: "right_now",
+        preferredStartDate: null,
         submissionKey: "submission-key-123",
       }),
     );
@@ -327,5 +338,54 @@ describe("POST /api/cohort/apply", () => {
     expect(missingName.status).toBe(400);
     expect(invalidEmail.status).toBe(400);
     expect(mocks.insert).not.toHaveBeenCalled();
+  });
+
+  it("requires one of the supported start choices for Not Done Yet", async () => {
+    const { POST } = await import("./route");
+    const missing = await POST(
+      request({ ...VALID_BODY, startPreference: undefined }),
+    );
+    const unsupported = await POST(
+      request({ ...VALID_BODY, startPreference: "sometime" }),
+    );
+
+    expect(missing.status).toBe(400);
+    expect(unsupported.status).toBe(400);
+    expect(mocks.insert).not.toHaveBeenCalled();
+  });
+
+  it("requires a real future date only for the specific-date choice", async () => {
+    const { POST } = await import("./route");
+    const missing = await POST(
+      request({
+        ...VALID_BODY,
+        startPreference: "specific_date",
+        preferredStartDate: null,
+      }),
+    );
+    const past = await POST(
+      request({
+        ...VALID_BODY,
+        startPreference: "specific_date",
+        preferredStartDate: "2000-01-01",
+      }),
+    );
+    const valid = await POST(
+      request({
+        ...VALID_BODY,
+        startPreference: "specific_date",
+        preferredStartDate: "2099-10-05",
+      }),
+    );
+
+    expect(missing.status).toBe(400);
+    expect(past.status).toBe(400);
+    expect(valid.status).toBe(200);
+    expect(mocks.insertValues).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        startPreference: "specific_date",
+        preferredStartDate: "2099-10-05",
+      }),
+    );
   });
 });

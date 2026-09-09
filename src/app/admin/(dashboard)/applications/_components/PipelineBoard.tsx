@@ -8,6 +8,7 @@ import {
   STAGE_LABELS,
   type ApplicationStage,
 } from "@/lib/crm/pipeline";
+import { formatApplicationStart } from "@/lib/ndy/application-start";
 
 export interface KanbanApplication {
   id: number;
@@ -17,6 +18,8 @@ export interface KanbanApplication {
   hours: string;
   ftp: string | null;
   frustration: string;
+  startPreference: string | null;
+  preferredStartDate: string | null;
   cohort: string;
   persona: string | null;
   status: string;
@@ -582,6 +585,7 @@ function ApplicationDetailModal({
     `Email: ${app.email}`,
     `Cohort: ${app.cohort}`,
     `Hours/week: ${app.hours}`,
+    `Preferred start: ${formatApplicationStart(app.startPreference, app.preferredStartDate)}`,
     `FTP: ${app.ftp ?? "—"}`,
     `Persona: ${app.persona ?? "—"}`,
     `Status: ${app.status}`,
@@ -699,6 +703,13 @@ function ApplicationDetailModal({
           <div className="grid grid-cols-2 gap-3">
             <Field label="Cohort" value={app.cohort} />
             <Field label="Hours / week" value={app.hours} />
+            <Field
+              label="Preferred start"
+              value={formatApplicationStart(
+                app.startPreference,
+                app.preferredStartDate,
+              )}
+            />
             <Field label="FTP" value={app.ftp} mono />
             <Field label="Persona" value={app.persona} />
           </div>

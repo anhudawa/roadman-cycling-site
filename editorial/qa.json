@@ -2,19 +2,19 @@
   "version": 1,
   "reviewer": "Codex",
   "decision": "publish",
-  "reviewedAt": "2026-09-09T10:25:58Z",
-  "contentDigest": "de40f2a78a83cf7a72de85d74d886d4a12154afc6e4b453d0a2750a24927e983",
-  "reviewHash": "3f2b8ed882029c5c46ba368b656485f952ff90c25ff2fc376cac9ce5174dfa59",
+  "reviewedAt": "2026-09-09T11:53:53Z",
+  "contentDigest": "1f0674dafcf28b2f78c04d3915d38c3b246d2c4e8f19aed9e333450070609f32",
+  "reviewHash": "03c3e6cc8bb3b61055254f76f107080de99cd39541af0ac15e5de395de82454b",
   "controlsHash": "690e4b2ddb0fb631ba211762063a492b111885c239303964cf09357b2986281c",
   "blockers": [],
   "checks": {
     "claims": {
       "status": "pass",
-      "evidence": "Anthony supplied and approved the final signup, onboarding and Sarah hold-or-question language. He previously authorised operational alert delivery to anthony@roadmancycling.com and Sarah's daily admin review; the live Skool plan showed a seven-day free trial followed by $195 USD per month plus applicable taxes."
+        "evidence": "Anthony supplied the new start-timing question and its Right now, Coming weeks and Specific date choices. He also supplied and approved the final signup, onboarding and Sarah hold-or-question language, authorised operational alert delivery to anthony@roadmancycling.com and Sarah's daily admin review; the live Skool plan showed a seven-day free trial followed by $195 USD per month plus applicable taxes."
     },
     "editorial": {
       "status": "pass",
-      "evidence": "The four-message transition presents the already-determined application result for eight seconds before approval, holding each stage for two seconds. It does not describe a human, medical or second server assessment. Mobile vibration is a subtle, feature-detected enhancement for compatible coarse-pointer browsers and never blocks the visual fallback."
+        "evidence": "The new fifth question records start timing without changing the suitability decision. A specific date reveals a native selector and cannot be submitted with a past or malformed date. The four-message transition still presents the already-determined application result for eight seconds before approval. Mobile vibration remains a subtle, feature-detected enhancement for compatible coarse-pointer browsers and never blocks the visual fallback."
     },
     "offers": {
       "status": "pass",
@@ -22,13 +22,13 @@
     },
     "desktop": {
       "status": "pass",
-      "evidence": "The exact source was rendered at 1432 by 900 CSS pixels. The four review stages held for about two seconds each before approval; the approved next-step state remained readable, correctly grouped and free of horizontal overflow, with clean browser logs. The published Beehiiv email was reviewed in desktop preview and retained both numbered steps and actions.",
+        "evidence": "The exact source was rendered at 1432 by 900 CSS pixels. The application showed Step 4 of 5 with all three timing options; Specific date revealed a picker constrained from 9 September 2026, continued to Last step and retained the chosen date after Back. There was no horizontal overflow; the only console message was the existing development CSP report-only warning.",
       "pages": [
         {
           "url": "http://localhost:3006/apply",
           "width": 1432,
           "height": 900,
-          "observations": "The application hero, seven-day-trial offer and four-step form rendered with clear hierarchy, usable controls, clean browser logs and no horizontal overflow."
+          "observations": "The application hero, seven-day-trial offer and five-step form rendered with clear hierarchy. All three start choices were usable, the specific-date picker and back navigation worked, and there was no horizontal overflow."
         },
         {
           "url": "http://localhost:3006/apply/next",
@@ -40,13 +40,13 @@
     },
     "mobile": {
       "status": "pass",
-      "evidence": "The exact source was rendered at a 390 by 844 CSS pixel browser viewport for the personal next-step surface. The loader card and approved state wrapped correctly, controls remained usable, the eight-second transition completed, browser logs were clean and the page did not overflow horizontally. Beehiiv's mobile preview kept the instructions, price and primary action legible in one column.",
+        "evidence": "The exact source was rendered at a 390 by 844 CSS pixel browser viewport. The new timing choices stacked into full-width tap targets, Coming weeks advanced to Last step, and the page did not overflow horizontally. The only console message was the existing development CSP report-only warning; the prior personal next-step and Beehiiv mobile reviews remain applicable.",
       "pages": [
         {
           "url": "http://localhost:3006/apply",
           "width": 390,
           "height": 844,
-          "observations": "The hero, price, free-trial statement and application call to action fit the viewport without warnings or horizontal overflow."
+          "observations": "The five-step application fit the viewport without horizontal overflow. The three start-timing choices stacked clearly and Coming weeks advanced to the final details step."
         },
         {
           "url": "http://localhost:3006/apply/next",
@@ -58,7 +58,7 @@
     },
     "interactions": {
       "status": "pass",
-      "evidence": "Browser verification on the exact source observed Processing, Assessing, Checking and Reviewing in order at roughly two-second intervals, then the approved state after 8.4 seconds. Unit coverage verifies the supported-mobile haptic pattern without claiming vibration on browsers that do not expose the API. The inherited production workflow remains covered by controlled applications 219 and 220."
+        "evidence": "Browser verification on the exact source exercised both the specific-date path on desktop and Coming weeks path on mobile, including back navigation and date preservation. Focused tests cover the three allowed values, real calendar dates, past-date rejection, required server fields and Inner Circle isolation. Prior browser and unit coverage continues to verify the staged decision and supported-mobile haptics."
     },
     "seo": {
       "status": "pass",
@@ -66,7 +66,7 @@
     },
     "technical": {
       "status": "pass",
-      "evidence": "The focused workflow suite, TypeScript, targeted ESLint, the 56-test publication gate, Coral validation, whitespace checks, the 18,384-reference offline link audit and the 1,772-file search-quality audit pass. The full 4,466-page production build also completed successfully."
+        "evidence": "The 26 focused application, start-date and workflow tests pass, TypeScript passes, and targeted ESLint reports no errors. The exact desktop and mobile application paths were exercised in Chrome with no horizontal overflow. The broader repository suite still has pre-existing unrelated search-owner and generated-content expectation failures; none touch this application workflow."
     }
   }
 }

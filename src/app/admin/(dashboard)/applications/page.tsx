@@ -33,6 +33,8 @@ function serialize(
     hours: row.hours,
     ftp: row.ftp,
     frustration: row.frustration,
+    startPreference: row.startPreference,
+    preferredStartDate: row.preferredStartDate,
     cohort: row.cohort,
     persona: row.persona,
     status: row.status,

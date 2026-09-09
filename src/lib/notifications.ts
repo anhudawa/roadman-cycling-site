@@ -10,6 +10,7 @@ import {
   getAttributionTouch,
   MARKETING_CHANNEL_LABELS,
 } from "@/lib/marketing/attribution";
+import { formatApplicationStart } from "@/lib/ndy/application-start";
 
 const FROM_ADDRESS = "Roadman Cycling <noreply@roadmancycling.com>";
 
@@ -390,6 +391,8 @@ export async function notifyCohortApplication(data: {
   hours: string;
   ftp: string | null;
   frustration: string;
+  startPreference?: string | null;
+  preferredStartDate?: string | null;
   persona: string;
   isInnerCircle?: boolean;
   attribution?: Record<string, string>;
@@ -444,6 +447,12 @@ export async function notifyCohortApplication(data: {
       row("Goal", data.goal) +
       row("Hours/week", data.hours) +
       row("FTP", data.ftp || "Not provided") +
+      (!isInnerCircle
+        ? row(
+            "Preferred start",
+            formatApplicationStart(data.startPreference, data.preferredStartDate),
+          )
+        : "") +
       row(isInnerCircle ? "Detail" : "Frustration", data.frustration) +
       row("Persona", personaLabels[data.persona] ?? data.persona) +
       row(touchesDiffer ? "Last-touch source" : "Acquisition source", lastSource) +

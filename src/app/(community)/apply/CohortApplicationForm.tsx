@@ -11,13 +11,18 @@ import {
 } from "@/lib/analytics/third-party-tags";
 import { getCohortState } from "@/lib/cohort";
 import { safeApplicationNextUrl } from "@/lib/ndy/application-next-url";
+import {
+  APPLICATION_START_OPTIONS,
+  isApplicationStartPreference,
+  type ApplicationStartPreference,
+} from "@/lib/ndy/application-start";
 
 /** RFC-5322 lite — rejects `foo@`, `@bar`, and other common fat-finger failures. */
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /** localStorage key for persisting in-progress application answers. */
-const DRAFT_KEY = "roadman-cohort-draft-v2";
-const LEGACY_DRAFT_KEY = "roadman-cohort-draft-v1";
+const DRAFT_KEY = "roadman-cohort-draft-v3";
+const LEGACY_DRAFT_KEYS = ["roadman-cohort-draft-v2", "roadman-cohort-draft-v1"];
 const DRAFT_TTL_MS = 24 * 60 * 60 * 1000;
 const NDY_GOOGLE_ADS_SEND_TO =
   process.env.NEXT_PUBLIC_GOOGLE_ADS_NDY_APPLICATION_SEND_TO?.trim();
@@ -27,6 +32,8 @@ interface DraftState {
   goal: string;
   hours: string;
   frustration: string;
+  startPreference: ApplicationStartPreference | "";
+  preferredStartDate: string;
   name: string;
   email: string;
   ftp: string;
@@ -36,7 +43,7 @@ interface DraftState {
 function loadDraft(): Partial<DraftState> | null {
   if (typeof window === "undefined") return null;
   try {
-    localStorage.removeItem(LEGACY_DRAFT_KEY);
+    for (const key of LEGACY_DRAFT_KEYS) localStorage.removeItem(key);
     const raw = localStorage.getItem(DRAFT_KEY);
     if (!raw) return null;
     const parsed = JSON.parse(raw) as Partial<DraftState> & {
@@ -196,7 +203,29 @@ const FRUSTRATIONS = [
   "Training hard but not seeing results",
 ];
 
-type Step = "goal" | "hours" | "frustration" | "details" | "submitted";
+type Step =
+  | "goal"
+  | "hours"
+  | "frustration"
+  | "start"
+  | "details"
+  | "submitted";
+
+const APPLICATION_STEPS: Exclude<Step, "submitted">[] = [
+  "goal",
+  "hours",
+  "frustration",
+  "start",
+  "details",
+];
+
+function localTodayIso() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
 
 export function CohortApplicationForm({ instantFollowup = false }: { instantFollowup?: boolean }) {
   const [nextUrl, setNextUrl] = useState<string | null>(null);
@@ -204,6 +233,11 @@ export function CohortApplicationForm({ instantFollowup = false }: { instantFoll
   const [goal, setGoal] = useState("");
   const [hours, setHours] = useState("");
   const [frustration, setFrustration] = useState("");
+  const [startPreference, setStartPreference] = useState<
+    ApplicationStartPreference | ""
+  >("");
+  const [preferredStartDate, setPreferredStartDate] = useState("");
+  const [todayIso, setTodayIso] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [ftp, setFtp] = useState("");
@@ -213,6 +247,7 @@ export function CohortApplicationForm({ instantFollowup = false }: { instantFoll
   const [errorField, setErrorField] = useState<"name" | "email" | null>(null);
   const formRootRef = useRef<HTMLDivElement>(null);
   const errorRef = useRef<HTMLParagraphElement>(null);
+  const specificDateRef = useRef<HTMLInputElement>(null);
   const submissionIdRef = useRef<string | null>(null);
   const previousStepRef = useRef<Step>("goal");
   const formStartedRef = useRef(false);
@@ -222,8 +257,9 @@ export function CohortApplicationForm({ instantFollowup = false }: { instantFoll
   const cohortCopy = cohortState.form;
 
   // Restore in-progress draft on mount so a failed submit or
-  // accidental tab-close doesn't lose 4 steps of answers.
+  // accidental tab-close doesn't lose 5 steps of answers.
   useEffect(() => {
+    setTodayIso(localTodayIso());
     const draft = loadDraft();
     if (!draft) return;
     // Don't restore to the submitted step — force user back into flow
@@ -231,6 +267,12 @@ export function CohortApplicationForm({ instantFollowup = false }: { instantFoll
     if (draft.goal) setGoal(draft.goal);
     if (draft.hours) setHours(draft.hours);
     if (draft.frustration) setFrustration(draft.frustration);
+    if (isApplicationStartPreference(draft.startPreference)) {
+      setStartPreference(draft.startPreference);
+    }
+    if (draft.preferredStartDate) {
+      setPreferredStartDate(draft.preferredStartDate);
+    }
     if (draft.name) setName(draft.name);
     if (draft.email) setEmail(draft.email);
     if (draft.ftp) setFtp(draft.ftp);
@@ -250,14 +292,26 @@ export function CohortApplicationForm({ instantFollowup = false }: { instantFoll
       goal,
       hours,
       frustration,
+      startPreference,
+      preferredStartDate,
       name,
       email,
       ftp,
       submissionId: submissionIdRef.current ?? undefined,
     });
-  }, [step, goal, hours, frustration, name, email, ftp]);
+  }, [
+    step,
+    goal,
+    hours,
+    frustration,
+    startPreference,
+    preferredStartDate,
+    name,
+    email,
+    ftp,
+  ]);
 
-  const stepIndex = ["goal", "hours", "frustration", "details", "submitted"].indexOf(step);
+  const stepIndex = [...APPLICATION_STEPS, "submitted"].indexOf(step);
 
   useEffect(() => {
     if (previousStepRef.current === step) return;
@@ -333,6 +387,8 @@ export function CohortApplicationForm({ instantFollowup = false }: { instantFoll
         goal,
         hours,
         frustration,
+        startPreference,
+        preferredStartDate,
         name,
         email,
         ftp,
@@ -357,6 +413,9 @@ export function CohortApplicationForm({ instantFollowup = false }: { instantFoll
           hours,
           ftp: ftp.trim(),
           frustration,
+          startPreference,
+          preferredStartDate:
+            startPreference === "specific_date" ? preferredStartDate : null,
           website,
           submissionId: submissionIdRef.current,
           attribution,
@@ -435,15 +494,15 @@ export function CohortApplicationForm({ instantFollowup = false }: { instantFoll
           role="progressbar"
           aria-label="Application progress"
           aria-valuemin={1}
-          aria-valuemax={4}
+          aria-valuemax={5}
           aria-valuenow={stepIndex + 1}
-          aria-valuetext={`Step ${stepIndex + 1} of 4`}
+          aria-valuetext={`Step ${stepIndex + 1} of 5`}
         >
           <div
             className="flex items-center justify-center gap-2"
             aria-hidden="true"
           >
-            {["goal", "hours", "frustration", "details"].map((s, i) => (
+            {APPLICATION_STEPS.map((s, i) => (
               <div
                 key={s}
                 className={`h-1.5 rounded-full transition-all duration-300 motion-reduce:transition-none ${
@@ -453,7 +512,7 @@ export function CohortApplicationForm({ instantFollowup = false }: { instantFoll
             ))}
           </div>
           <p className="mt-3 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-foreground-subtle">
-            Step {stepIndex + 1} of 4
+            Step {stepIndex + 1} of 5
           </p>
         </div>
       )}
@@ -606,7 +665,7 @@ export function CohortApplicationForm({ instantFollowup = false }: { instantFoll
                       source: "ndy-application",
                       step: "frustration",
                     });
-                    setStep("details");
+                    setStep("start");
                   }}
                   className="flex items-center gap-3 w-full text-left px-5 py-4 rounded-md border border-white/10 bg-white/[0.03] hover:border-coral/40 hover:bg-coral/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2 focus-visible:ring-offset-deep-purple transition-all duration-200 group"
                 >
@@ -625,6 +684,108 @@ export function CohortApplicationForm({ instantFollowup = false }: { instantFoll
             <button
               type="button"
               onClick={() => setStep("hours")}
+              className="mx-auto mt-7 block min-h-11 px-3 text-xs font-semibold uppercase tracking-widest text-foreground-muted transition-colors hover:text-off-white"
+            >
+              ← Back
+            </button>
+          </motion.div>
+        )}
+
+        {step === "start" && (
+          <motion.div
+            key="start"
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={slideTransition}
+          >
+            <h3
+              id="start-question"
+              data-application-step="start"
+              tabIndex={-1}
+              className="font-heading text-off-white text-2xl md:text-3xl text-center mb-2"
+            >
+              WHAT DATE WOULD YOU LIKE TO START?
+            </h3>
+            <p className="text-foreground-muted text-center mb-8 text-sm">
+              Choose the timing that works for you
+            </p>
+            <div
+              className="grid gap-3 max-w-lg mx-auto sm:grid-cols-3"
+              role="group"
+              aria-labelledby="start-question"
+            >
+              {APPLICATION_START_OPTIONS.map((option) => (
+                <button
+                  type="button"
+                  key={option.value}
+                  aria-pressed={startPreference === option.value}
+                  onClick={() => {
+                    trackFormStartOnce();
+                    setStartPreference(option.value);
+                    if (option.value !== "specific_date") {
+                      setPreferredStartDate("");
+                      trackFunnel("apply_step_completed", {
+                        source: "ndy-application",
+                        step: "start",
+                      });
+                      setStep("details");
+                      return;
+                    }
+                    window.setTimeout(() => specificDateRef.current?.focus(), 0);
+                  }}
+                  className={`min-h-14 rounded-md border px-4 py-4 text-center text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2 focus-visible:ring-offset-deep-purple ${
+                    startPreference === option.value
+                      ? "border-coral bg-coral/10 text-coral"
+                      : "border-white/10 bg-white/[0.03] text-off-white hover:border-coral/40 hover:bg-coral/5"
+                  }`}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+            {startPreference === "specific_date" && (
+              <div className="mx-auto mt-5 max-w-sm">
+                <label
+                  htmlFor="application-start-date"
+                  className="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-foreground-muted"
+                >
+                  Preferred start date
+                </label>
+                <input
+                  ref={specificDateRef}
+                  id="application-start-date"
+                  name="preferredStartDate"
+                  type="date"
+                  min={todayIso || undefined}
+                  required
+                  value={preferredStartDate}
+                  onChange={(event) => setPreferredStartDate(event.target.value)}
+                  className="w-full rounded-md border border-white/15 bg-white/10 px-4 py-3 text-off-white [color-scheme:dark] focus:border-coral focus:outline-none focus:ring-2 focus:ring-coral focus:ring-offset-2 focus:ring-offset-deep-purple"
+                />
+                <button
+                  type="button"
+                  disabled={
+                    !preferredStartDate ||
+                    Boolean(todayIso && preferredStartDate < todayIso)
+                  }
+                  onClick={() => {
+                    trackFunnel("apply_step_completed", {
+                      source: "ndy-application",
+                      step: "start",
+                    });
+                    setStep("details");
+                  }}
+                  className="mt-4 w-full rounded-md bg-coral py-4 font-heading text-lg tracking-wider text-deep-purple shadow-lg shadow-coral/20 transition-all duration-200 hover:bg-coral/90 disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  CONTINUE
+                </button>
+              </div>
+            )}
+            <button
+              type="button"
+              onClick={() => setStep("frustration")}
               className="mx-auto mt-7 block min-h-11 px-3 text-xs font-semibold uppercase tracking-widest text-foreground-muted transition-colors hover:text-off-white"
             >
               ← Back
@@ -773,7 +934,7 @@ export function CohortApplicationForm({ instantFollowup = false }: { instantFoll
               </p>
               <button
                 type="button"
-                onClick={() => setStep("frustration")}
+                onClick={() => setStep("start")}
                 className="mx-auto block min-h-11 px-3 text-xs font-semibold uppercase tracking-widest text-foreground-muted transition-colors hover:text-off-white"
               >
                 ← Back
