@@ -2,6 +2,19 @@
 export const dynamic = "force-dynamic";
 
 const PAGES = [
+  "/app",
+  "/blog/why-were-building-good-legs",
+  "/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40",
+  "/blog/art-oconnor-strength-training-cyclists",
+  "/blog/strength-training-cyclists-over-40-what-works",
+  "/blog/cycling-strength-training-12-week-beginner-plan",
+  "/blog/cycling-strength-training-guide",
+  "/podcast/the-science-of-getting-faster-after-40-dr-andy-galpin",
+  "/podcast/ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n",
+  "/podcast/why-cyclists-need-to-strength-train-with-chris-peden",
+  "/guests/andy-galpin",
+  "/entity/andy-galpin",
+
   "/coaching", "/blog/best-cycling-coach-uk", "/blog/best-cycling-coach-usa",
   "/blog/dragon-ride-training-guide", "/races/dragon-ride", "/races",
   "/tools/training-load", "/tools/tyre-pressure", "/tools/hr-zones",

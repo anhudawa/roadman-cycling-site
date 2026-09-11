@@ -2,95 +2,191 @@
   "version": 1,
   "reviewer": "Codex",
   "decision": "publish",
-  "reviewedAt": "2026-09-09T12:24:57Z",
-  "contentDigest": "b972e28c17373e9c1b6e6590c63a11c912aadf0d94593ed336900ce1a220614c",
-  "reviewHash": "f38f891477f92f02cfca769896ca31ac4008612819459d0d020e6373c0fcbbd1",
+  "reviewedAt": "2026-09-11T20:20:16.524526+00:00",
+  "contentDigest": "cd195bcefc6c2cf7043ad0ad71b0b0f6d381616c969cb022ca93105287d23b43",
+  "reviewHash": "7210a1e0e9eafc365d02355b8b67e6ec3d4fee812bddcce83c2bbd45bf49243b",
   "controlsHash": "690e4b2ddb0fb631ba211762063a492b111885c239303964cf09357b2986281c",
   "blockers": [],
   "checks": {
     "claims": {
       "status": "pass",
-      "evidence": "The Saturday Spin audience proof uses Anthony's supplied active Beehiiv figure of about 23,215, rounded to 23,000. The newsletter render contains 23,000 weekly readers and no 30,000 or 65% claim. Faster After 40 adds no new performance-result, member-count, open-rate or sponsor-performance claim."
+      "evidence": "Galpin and O’Connor summaries checked against preserved imported transcripts; source strings compare equal to main. Removed unsupported quotations and universal prescriptions. Current Galpin affiliation checked against Parker University. Peden metadata checked against the original Spotify listing; no invented guest takeaways. The original Chris Peden preparation notes and podcast schedule also confirm the guest identity; planned interview questions are not treated as spoken answers or transcripts."
     },
     "editorial": {
       "status": "pass",
-      "evidence": "The newsletter is focused on one useful training letter every Saturday; podcast capture copy uses that same promise; Faster After 40 is reduced to a neutral report-to-newsletter landing. The old coaching squeeze and its high-pressure sales framing are removed rather than replaced with new hype."
+      "evidence": "Reviewed 43 changed-section records against the publishing standard and read the finished pages. Removed unsupported quotes/prescriptions, invented recollections, two redundant rhetorical sentences and an internal search instruction. Corrected the newsletter splitting the founder quotation. Practical answers and source context remain available before the optional product action."
     },
     "offers": {
       "status": "pass",
-      "evidence": "YouTube, Beehiiv posts, Beehiiv automations, referral configuration, Skool, Not Done Yet pricing and sponsor packages are unchanged. Faster After 40 delivers the existing report and subscribes through the existing newsletter infrastructure; the Core Training Guide remains a separate referral reward."
+      "evidence": "Good Legs is described as in development for iPhone, with a beta waitlist and no guaranteed invitation or announced public date/price. Existing member access is at launch. Original product destination and form inspected; no subscriber was submitted. Guest appearances are explicitly editorial sources."
     },
     "desktop": {
       "status": "pass",
-      "evidence": "Chromium rendered the exact current-main PR merge at 1440x1000 for the newsletter, two Stephen Seiler podcast pages and Faster After 40. Every page returned HTTP 200 with no horizontal overflow; the newsletter and podcast promises were present and Faster After 40 contained none of the forbidden coaching-sales strings.",
+      "evidence": "Codex read and visually inspected all twelve affected routes at 1363 × 936. Hero, body, tables, source players/captions, founder quotation, product cards, disclosures and linked expert profiles were reviewed. Actual defects in the external image, injected newsletter and expertise labels were corrected and rechecked. Final 3aa9a40 application source passed a fresh twelve-route DOM/canonical/schema scan; the final shorter paragraphs were read in that deployment. Full route observations are in docs/good-legs-rendered-qa-2026-09-11.json.",
       "pages": [
         {
-          "url": "http://127.0.0.1:3000/newsletter?source=podcast",
-          "width": 1440,
-          "height": 1000,
-          "observations": "The Saturday Spin renders as one useful training letter every Saturday, shows 23,000 weekly readers, contains no 30,000 or 65% claim, and has no horizontal overflow."
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/app",
+          "width": 1363,
+          "height": 936,
+          "observations": "Hero and two-column capability sections read clearly; original mascot image now loads at 960 × 645 with the illustration caption. Availability FAQ expands and distinguishes the beta list from public availability."
         },
         {
-          "url": "http://127.0.0.1:3000/podcast/ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler",
-          "width": 1440,
-          "height": 1000,
-          "observations": "The episode returns HTTP 200, includes THE SATURDAY SPIN and the podcast-specific weekly training-takeaway promise, and has no horizontal overflow."
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/blog/why-were-building-good-legs",
+          "width": 1363,
+          "height": 936,
+          "observations": "Read the full finished story. Quote introduction is immediately followed by the attributed founder quotation; injected newsletter count zero. Interview links and Good Legs card are readable. Actual CTA reaches /app?source=goodlegs-origin then the real product site with that source in utm_content."
         },
         {
-          "url": "http://127.0.0.1:3000/podcast/ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
-          "width": 1440,
-          "height": 1000,
-          "observations": "The episode returns HTTP 200, includes THE SATURDAY SPIN and the podcast-specific weekly training-takeaway promise, and has no horizontal overflow."
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40",
+          "width": 1363,
+          "height": 936,
+          "observations": "Read the complete article, research boundary and correction. Original 16:9 YouTube embed, readable source caption, body and separate contents fit. Final short introduction verified verbatim on 3aa9a40; one Good Legs card, zero injected newsletters and zero duplicate algorithmic content blocks."
         },
         {
-          "url": "http://127.0.0.1:3000/faster-after-40?source=podcast&utm_source=podcast&utm_medium=show-notes&utm_campaign=qa",
-          "width": 1440,
-          "height": 1000,
-          "observations": "The report landing returns HTTP 200, shows the free-report CTA and Saturday Spin path, contains none of Not Done Yet, $195, 100M+, 113 riders, START APPLICATION or Community, and has no horizontal overflow."
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/blog/art-oconnor-strength-training-cyclists",
+          "width": 1363,
+          "height": 936,
+          "observations": "Read full scheduling guide and corrections; header, original video and body fit. Final sentence reads: Keep the arrangement if the sessions remain useful and you can repeat the week. One Good Legs card and no duplicate algorithmic content block."
+        },
+        {
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/blog/strength-training-cyclists-over-40-what-works",
+          "width": 1363,
+          "height": 936,
+          "observations": "Read the full practical guide, Galpin source paragraph, research boundaries, records advice and product handoff. Hero and answer summary fit at 1363 × 936."
+        },
+        {
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/blog/cycling-strength-training-12-week-beginner-plan",
+          "width": 1363,
+          "height": 936,
+          "observations": "Read the complete programme and source note. Progression and session tables fit the 656 px desktop article. Final Good Legs paragraph accurately describes planning, logging and exercise swaps, with the beta waitlist link. Duplicate cross-content block removed."
+        },
+        {
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/blog/cycling-strength-training-guide",
+          "width": 1363,
+          "height": 936,
+          "observations": "Read the complete research guide, both tables and original-interview links. Tables fit the 656 px desktop article. Final maintenance sentence links the dose guide using reader-facing wording; the internal SEO instruction is removed. One product card and no duplicate algorithmic content block."
+        },
+        {
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/podcast/the-science-of-getting-faster-after-40-dr-andy-galpin",
+          "width": 1363,
+          "height": 936,
+          "observations": "Read the episode notes, accurate Parker University role, source relationship and correction. YouTube player and profile card render. Transcript search for window highlights two matches; closing/reopening the transcript works."
+        },
+        {
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/podcast/ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n",
+          "width": 1363,
+          "height": 936,
+          "observations": "Read the episode notes, source relationship and corrections. Correct original YouTube title/player render; episode header and guest credit fit."
+        },
+        {
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/podcast/why-cyclists-need-to-strength-train-with-chris-peden",
+          "width": 1363,
+          "height": 936,
+          "observations": "Read complete notes and source boundaries. Spotify preview displays the correct original title and Play changes to Pause; playback was stopped after the check. Full Spotify source link remains available."
+        },
+        {
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/guests/andy-galpin",
+          "width": 1363,
+          "height": 936,
+          "observations": "Read complete guest biography, source-grounded ideas, linked episodes/guides and attributed quotation; inspected full desktop page."
+        },
+        {
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/entity/andy-galpin",
+          "width": 1363,
+          "height": 936,
+          "observations": "Read complete corrected institutional profile and source-grounded claims. Final rendered labels measure approximately 111, 109 and 117 px wide, each 30 px tall, and fit on one row. Screenshot confirms all three labels are legible. Appearance count is two, matching the two listed episodes."
         }
       ]
     },
     "mobile": {
       "status": "pass",
-      "evidence": "Chromium rendered the exact current-main PR merge at 390x844 for the newsletter, both specified Stephen Seiler episodes and Faster After 40. Every page returned HTTP 200, preserved the intended messaging and had no horizontal overflow; the Faster After 40 sales-string checks were all clear.",
+      "evidence": "Codex inspected the same twelve routes in the actual 390 × 844 preview frame. Article copy, long headings, players, tables and CTA cards fit without page overflow. The beginner table scrolls inside its own 342 px box. Final expertise labels wrap across two rows without overlap. Availability and scheduling FAQs, transcript search and the source-to-app click work. External getgoodlegs.com refuses framing; its top-level form was checked independently on desktop, while the mobile outbound URL retains the article source.",
       "pages": [
         {
-          "url": "http://127.0.0.1:3000/newsletter?source=podcast",
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/app",
           "width": 390,
           "height": 844,
-          "observations": "The focused Saturday Spin promise, signup form and 23,000-reader proof fit the mobile viewport with no 30,000 or 65% claim and no horizontal overflow."
+          "observations": "390 × 844 hero, full mascot and caption, stacked capability copy and availability FAQ inspected; document scroll width 382. No horizontal overflow."
         },
         {
-          "url": "http://127.0.0.1:3000/podcast/ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler",
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/blog/why-were-building-good-legs",
           "width": 390,
           "height": 844,
-          "observations": "The episode returns HTTP 200, includes the Saturday Spin CTA and podcast-specific promise on mobile, and has no horizontal overflow."
+          "observations": "Quote, its introduction, source paragraphs and the full Good Legs card inspected at 390 × 844; text wraps and card/button fit. No injected newsletter or page overflow."
         },
         {
-          "url": "http://127.0.0.1:3000/podcast/ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40",
           "width": 390,
           "height": 844,
-          "observations": "The episode returns HTTP 200, includes the Saturday Spin CTA and podcast-specific promise on mobile, and has no horizontal overflow."
+          "observations": "390 × 844 hero, answer, introduction, original video and caption inspected. Final complete Good Legs card, button and availability note fit, with no page overflow. Source revision contains the reviewed shorter introduction."
         },
         {
-          "url": "http://127.0.0.1:3000/faster-after-40?source=podcast&utm_source=podcast&utm_medium=show-notes&utm_campaign=qa",
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/blog/art-oconnor-strength-training-cyclists",
           "width": 390,
           "height": 844,
-          "observations": "The report landing returns HTTP 200, keeps the free-report and Saturday Spin path clear on mobile, contains none of the forbidden coaching-sales strings, and has no horizontal overflow."
+          "observations": "390 × 844 body and full product card inspected. Scheduling FAQ opens with a qualified answer; longer question and button fit. Page width remains 382."
+        },
+        {
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/blog/strength-training-cyclists-over-40-what-works",
+          "width": 390,
+          "height": 844,
+          "observations": "390 × 844 hero, Galpin section, adjacent starting-point advice and complete Good Legs card inspected. No horizontal overflow."
+        },
+        {
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/blog/cycling-strength-training-12-week-beginner-plan",
+          "width": 390,
+          "height": 844,
+          "observations": "390 × 844 title, progression and both session tables inspected. Tables stay in their 342 px scroll boxes; scrolling the first table by 37 px exposes its final column. Final app paragraph and link visually inspected on 3aa9a40; page scroll width 382, with no overflow."
+        },
+        {
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/blog/cycling-strength-training-guide",
+          "width": 390,
+          "height": 844,
+          "observations": "390 × 844 hero and both evidence/exercise tables inspected; each fits its 342 px article area, with no page overflow. The final maintenance link replaces the internal instruction and uses the existing paragraph style."
+        },
+        {
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/podcast/the-science-of-getting-faster-after-40-dr-andy-galpin",
+          "width": 390,
+          "height": 844,
+          "observations": "390 × 844 header, long credential, YouTube player, episode notes, full Good Legs card and transcript inspected. Search for window shows two matches and highlights them. No page overflow."
+        },
+        {
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/podcast/ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n",
+          "width": 390,
+          "height": 844,
+          "observations": "390 × 844 title, video, movement-quality notes, full Good Legs card and transcript disclosure inspected. No overflow; CTA precedes the long transcript."
+        },
+        {
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/podcast/why-cyclists-need-to-strength-train-with-chris-peden",
+          "width": 390,
+          "height": 844,
+          "observations": "390 × 844 header, Spotify player and complete product CTA inspected. Actual click reaches /app?source=chris-peden-episode; onward link contains roadman-app-waitlist-chris-peden-episode-hero. The destination denies iframe embedding; its normal top-level form was verified independently on desktop."
+        },
+        {
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/guests/andy-galpin",
+          "width": 390,
+          "height": 844,
+          "observations": "390 × 844 biography and key ideas inspected. Labels and body fit. Final selected-route overlay suppression verified in shared source, desktop DOM and the linked mobile entity template; no conversion dialog appears on the final profile route."
+        },
+        {
+          "url": "https://roadman-cycling-site-git-codex-goodle-d90f56-anhudawas-projects.vercel.app/entity/andy-galpin",
+          "width": 390,
+          "height": 844,
+          "observations": "390 × 844 institutional role and source paragraphs fit. Final screenshot shows two expertise labels on the first row and the third on a second row with no overlap. The interrupting coaching popup is removed. Document scroll width 382; count matches two episodes."
         }
       ]
     },
     "interactions": {
       "status": "pass",
-      "evidence": "Podcast EmailCapture normalises podcast-episode sources to podcast and preserves the episode slug as the default UTM campaign. Faster After 40 accepts approved source values and optional UTM values, records acquisition internally, and forwards attribution through Beehiiv's native UTM source, medium and campaign fields. No real subscriber was created during QA."
+      "evidence": "Founder CTA reached /app?source=goodlegs-origin, then getgoodlegs.com with utm_content=roadman-app-waitlist-goodlegs-origin-hero; the actual top-level waitlist email field, privacy link and action rendered. Mobile Peden CTA reached /app?source=chris-peden-episode and its outbound link retained roadman-app-waitlist-chris-peden-episode-hero. The destination rejects iframe embedding, an external framing-policy limit; its top-level form was checked separately on desktop. App availability and Art scheduling FAQs expanded; desktop/mobile transcript search highlighted two window matches and disclosure toggling worked. Correct Spotify preview played and was stopped. No real signup or payment was submitted."
     },
     "seo": {
       "status": "pass",
-      "evidence": "The newsletter title and canonical remain stable while metadata now describes the focused weekly product. Faster After 40 keeps its existing canonical and uses neutral report metadata instead of unsupported World Tour prescription language. No new doorway or keyword-variant page is introduced."
+      "evidence": "Final internal-link audit: 18,387 references, zero broken and zero indeterminate internal links; 2,576 external references excluded. Fresh rendered DOM review of the final 3aa9a40 deployment found one H1, correct production canonical and parseable JSON-LD on all twelve routes. All nine selected content routes have one Good Legs card, zero inline newsletters and zero duplicate algorithmic cross-content blocks. Existing search-owner URLs are retained."
     },
     "technical": {
       "status": "pass",
-      "evidence": "The exact synthetic merge 55557e5c3c844490cf8f7dad30e96df781604ead passed the full Next.js build: compilation succeeded, TypeScript succeeded and 4,466 static pages generated. The subsequent Chromium matrix passed eight desktop/mobile page checks with HTTP 200, zero assertion failures and no horizontal overflow."
+      "evidence": "Application source 3aa9a40de305287a213d2ec7900f568644555201 completed Vercel preview EyrBqB9YQKE72SDc5k1xWZcHg883 successfully. GitHub SEO and episode coverage checks passed. Final local TypeScript, focused ESLint, 56 gate rejection tests, 22 focused tests across four files, edited MDX compilation and the internal-link audit passed. Earlier preview build generated 4,470 pages. Original Galpin/Art transcript strings remain byte-equivalent to their main-branch values. The legacy content-governance script is absent from main, so the publishing-standard source review and MDX/link audits supply the separately recorded content checks. Baseline and publishing controls are unchanged."
     }
   }
 }

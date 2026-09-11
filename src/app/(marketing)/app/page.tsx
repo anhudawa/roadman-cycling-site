@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Suspense } from "react";
 import {
   AppEarlyAccessCapture,
@@ -127,6 +128,10 @@ export default function AppLandingPage() {
 
       <Section background="charcoal">
         <Container>
+          <figure className="mb-14 overflow-hidden rounded-2xl bg-[#f4efe6]">
+            <Image src="/images/goodlegs/scene-strength.webp" alt="The Good Legs coach character in a strength-training scene" width={960} height={645} unoptimized className="mx-auto h-auto max-h-[420px] w-full object-contain" />
+            <figcaption className="px-6 pb-5 text-center text-sm text-charcoal/70">Meet the Good Legs coach. Illustration from the app’s website.</figcaption>
+          </figure>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
             <article>
               <p className="font-heading text-sm tracking-[0.2em] text-coral">01 / IN THE GYM</p>
@@ -156,6 +161,16 @@ export default function AppLandingPage() {
             <p>The Roadman podcast has spent years asking riders, coaches and researchers how training works in practice. Good Legs takes on one recurring problem: fitting the work off the bike into a week already full of riding.</p>
             <p>It’s also part of what we’re building for <Link href="/community/not-done-yet" className="underline decoration-coral underline-offset-4">Not Done Yet</Link>. Members will receive Good Legs access at launch for strength and recovery. Cycling coaching, nutrition guidance and the community complete Roadman’s five pillars.</p>
             <p>For now, our coaches continue to support members with strength and recovery. The app is still in development.</p>
+            <p><Link href="/blog/why-were-building-good-legs" className="underline decoration-coral underline-offset-4">Read the story behind Good Legs</Link>, including Anthony’s founder’s note.</p>
+          </div>
+          <div className="mt-10 border-t border-charcoal/15 pt-8">
+            <h3 className="font-heading text-2xl text-charcoal">Hear the original conversations.</h3>
+            <ul className="mt-5 space-y-4 text-lg text-charcoal/75">
+              <li><Link href="/podcast/the-science-of-getting-faster-after-40-dr-andy-galpin" className="underline decoration-coral underline-offset-4">Andy Galpin: strength progress and recovery after 40</Link></li>
+              <li><Link href="/podcast/ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n" className="underline decoration-coral underline-offset-4">Art O’Connor: fitting strength around cycling</Link></li>
+              <li><Link href="/podcast/why-cyclists-need-to-strength-train-with-chris-peden" className="underline decoration-coral underline-offset-4">Chris Peden: why cyclists need to strength train</Link></li>
+            </ul>
+            <p className="mt-5 text-sm leading-relaxed text-charcoal/65">These are Roadman podcast interviews. The guests’ appearances do not imply that they designed, tested or endorsed Good Legs.</p>
           </div>
         </Container>
       </Section>

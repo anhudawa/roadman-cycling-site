@@ -1,48 +1,314 @@
 {
   "version": 1,
-  "contentDigest": "b972e28c17373e9c1b6e6590c63a11c912aadf0d94593ed336900ce1a220614c",
-  "scope": "The Saturday Spin site-side growth follow-through: focus /newsletter on one useful Saturday training letter; make podcast episode signup CTAs lead with The Saturday Spin and preserve podcast attribution; replace the Faster After 40 coaching squeeze with a report-to-newsletter acquisition path; and keep Faster After 40 free of global coaching conversion chrome. YouTube and Beehiiv editorial/automation operations remain outside this release.",
+  "contentDigest": "cd195bcefc6c2cf7043ad0ad71b0b0f6d381616c969cb022ca93105287d23b43",
+  "scope": "Good Legs podcast acquisition: three interview sources; retained practical guide URLs and a founder story; focused waitlist journey, source attribution, original artwork and corrected Galpin profiles. Clip exports and external episode-description writes are separate outstanding tasks, not claimed as part of this website release.",
   "sections": [
     {
-      "location": "/newsletter — Saturday Spin positioning",
-      "readerQuestion": "What exactly will I receive if I subscribe to The Saturday Spin?",
-      "usefulAnswer": "One useful cycling training letter every Saturday: one clear takeaway, why it matters, and one practical action to use on the bike that week.",
-      "evidence": "Anthony supplied the active-list figure of about 23,215, rounded to 23,000 weekly readers. The exact PR merge rendered at 1440x1000 and 390x844 with the focused promise, 23,000-reader proof, no 30,000/65% claim and no horizontal overflow.",
-      "editorialDecision": "Remove podcast-digest and community-promo framing from the landing page. Keep the product promise narrow, useful and weekly while preserving the already-corrected 23,000 audience proof."
+      "location": "/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40 — title, description and editorial metadata",
+      "readerQuestion": "What is this page about, whose contribution is it and why should I read it?",
+      "usefulAnswer": "Andy Galpin says cyclists over 40 still have the capacity to improve strength and power. In his Roadman interview he distinguishes learning a new exercise from improving a well-trained cycling task, and explains why riding volume, sleep and energy availability matter. The practical starting point is to define the intended outcome and record gym progress and cycling performance separately.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Retain the established URL where available; remove unsupported quotations, universal prescriptions and invented first-person recollections. Keep original publication dates distinct from this editorial update."
     },
     {
-      "location": "Podcast episode EmailCapture — shared conversion path",
-      "readerQuestion": "What should a podcast listener be asked to do after consuming an episode, and can acquisition still be attributed to the episode?",
-      "usefulAnswer": "Podcast episode forms now lead with The Saturday Spin. They normalise acquisition source to podcast and retain the episode slug as the default UTM campaign, while explicit query UTM values can override that campaign.",
-      "evidence": "The shared EmailCapture implementation detects podcast and podcast-<slug> sources. The exact PR merge rendered both specified Stephen Seiler episode pages at desktop and mobile widths; each showed The Saturday Spin promise, returned HTTP 200 and had no horizontal overflow.",
-      "editorialDecision": "Use the newsletter as the primary listener conversion door without deleting the wider episode content or introducing a new Beehiiv list, automation or YouTube write."
+      "location": "/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40 — Decide what you want to improve",
+      "readerQuestion": "How should I define progress before starting strength training?",
+      "usefulAnswer": "Galpin separates strength, muscle growth and power, then asks how power is being measured. A vertical jump and cycling power are different tasks.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
     },
     {
-      "location": "/faster-after-40 — report-to-newsletter landing",
-      "readerQuestion": "What does a visitor get from Faster After 40, and what happens after they request it?",
-      "usefulAnswer": "The page offers the existing Faster After 40 report, then clearly states that the requester also joins The Saturday Spin. It describes the report in neutral terms around training, fuelling, strength and recovery and provides the existing on-site PDF download after a successful request.",
-      "evidence": "The old long-form coaching squeeze and its scoped CSS were removed. The exact PR merge rendered /faster-after-40 at 1440x1000 and 390x844 with HTTP 200, no horizontal overflow, the free-report CTA and Saturday Spin path, and none of the QA-forbidden sales strings including Not Done Yet, $195, 100M+, 113 riders, START APPLICATION or Community.",
-      "editorialDecision": "Treat Faster After 40 as a named-PDF acquisition surface rather than a coaching sales page. The PDF file itself is unchanged by this release and is not re-certified here."
+      "location": "/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40 — Expect learning to influence early results",
+      "readerQuestion": "What might rapid early improvement in a lift actually mean?",
+      "usefulAnswer": "Galpin describes how an unfamiliar exercise can improve quickly as someone learns the task. A trained cyclist can still be a beginner in the gym.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
     },
     {
-      "location": "/api/faster-after-40 — acquisition attribution",
-      "readerQuestion": "Can Faster After 40 signups be attributed cleanly without creating a new Beehiiv workflow or risky custom field?",
-      "usefulAnswer": "The endpoint accepts named_pdf, podcast, youtube or site source values plus optional UTM source, medium and campaign. Attribution is passed through Beehiiv's native UTM fields; the existing last_lead_magnet custom field remains, and no new acquisition_source custom field is introduced.",
-      "evidence": "The existing Beehiiv helper maps source, medium and campaign to Beehiiv utm_source, utm_medium and utm_campaign. The exact merge build passed TypeScript and generated 4,466 static pages; no real subscriber was created during QA.",
-      "editorialDecision": "Use native Beehiiv UTM attribution and existing lead-magnet metadata only. Do not edit Beehiiv posts, automations, referral configuration or welcome automation."
+      "location": "/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40 — Make room in the whole training week",
+      "readerQuestion": "What limits how much gym work I can add to existing riding?",
+      "usefulAnswer": "When Anthony asks about someone already riding ten to twelve hours a week, Galpin explains that this work uses recovery capacity. Sleep and energy availability also affect the opportunity to adapt.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
     },
     {
-      "location": "Global ConversionChrome — Faster After 40 exception",
-      "readerQuestion": "Can the lead-magnet page remain a single-purpose acquisition experience without Roadman's global coaching overlays reappearing?",
-      "usefulAnswer": "Faster After 40 is now a lean route, so the global coaching conversion chrome does not load on that page.",
-      "evidence": "Earlier rendered QA identified $195 and START APPLICATION as global chrome rather than page content. Adding /faster-after-40 to the existing lean-route list removed those strings; the final exact-merge desktop and mobile browser checks found no forbidden sales strings.",
-      "editorialDecision": "Suppress only the global conversion chrome on this lead-magnet route. Leave Roadman's coaching conversion surfaces unchanged elsewhere."
+      "location": "/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40 — Keep two records",
+      "readerQuestion": "How do I judge gym progress alongside cycling performance?",
+      "usefulAnswer": "Record what happens in the gym and what happens on the bike. Review them alongside sleep, fuelling and total training. Improvement in both is useful; improvement in one with repeated deterioration in the other calls for a closer look.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation. General research boundary: PMID 40632222 is low-certainty cyclist evidence, not an optimum masters programme.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
+    },
+    {
+      "location": "/blog/art-oconnor-strength-training-cyclists — title, description and editorial metadata",
+      "readerQuestion": "What is this page about, whose contribution is it and why should I read it?",
+      "usefulAnswer": "To fit strength around cycling, identify the rides that matter, compare possible gym slots and review how the combined week goes. Art O’Connor suggests putting demanding strength work on harder riding days to protect easier days. That is a coaching option, not a universal rule. If the arrangement repeatedly harms the priority ride or the quality of lifting, adjust the gym dose or placement.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Retain the established URL where available; remove unsupported quotations, universal prescriptions and invented first-person recollections. Keep original publication dates distinct from this editorial update."
+    },
+    {
+      "location": "/blog/art-oconnor-strength-training-cyclists — Start with the priority ride",
+      "readerQuestion": "What should I protect before choosing a gym slot?",
+      "usefulAnswer": "Write down the ride’s purpose, its day and the quality you need to preserve. An interval session and a social spin do not have the same role simply because both last an hour.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
+    },
+    {
+      "location": "/blog/art-oconnor-strength-training-cyclists — Consider combining demanding work",
+      "readerQuestion": "When might gym work and hard riding share a day?",
+      "usefulAnswer": "O’Connor’s suggestion to put strength on harder riding days can leave another day genuinely easier. It also creates a demanding day that has to be tolerable and practical.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
+    },
+    {
+      "location": "/blog/art-oconnor-strength-training-cyclists — Choose movements before chasing numbers",
+      "readerQuestion": "Should I copy the weights used by a professional rider?",
+      "usefulAnswer": "O’Connor starts his assessment with a bodyweight squat on video. He discusses squatting and hinging, single-leg work, pushing, pulling and carries, with adaptations for the person in front of him.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
+    },
+    {
+      "location": "/blog/art-oconnor-strength-training-cyclists — Adjust when the cycling week changes",
+      "readerQuestion": "What should change when the combined week stops being manageable?",
+      "usefulAnswer": "Record the exercise, weight, sets, reps and effort. Add how the priority ride went. Review the two records together before increasing the gym work.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
+    },
+    {
+      "location": "/blog/art-oconnor-strength-training-cyclists — Build a week you can repeat",
+      "readerQuestion": "Which free resources help me schedule and record the work?",
+      "usefulAnswer": "Use the [strength-session planner](/tools/strength-session-planner) to compare days. If you need exercise choices and a place to record your work, start with the [beginner strength plan](/blog/cycling-strength-training-12-week-beginner-plan).",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation. General research boundary: PMID 40632222 is low-certainty cyclist evidence, not an optimum masters programme.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
+    },
+    {
+      "location": "/blog/cycling-strength-training-12-week-beginner-plan — title, description and editorial metadata",
+      "readerQuestion": "What is this page about, whose contribution is it and why should I read it?",
+      "usefulAnswer": "A beginner cyclist can start with two non-consecutive full-body strength sessions per week, using one or two work sets per movement and several good repetitions in reserve. Weeks 1–2 learn and tolerate; weeks 3–6 build a repeatable two-session routine; weeks 7–12 progress selected movements while priority rides remain productive. Cover knee-dominant, hip-dominant, upper-body and trunk patterns, with single-leg or calf work when useful. This is a conservative Roadman framework, not the single 12-week protocol proved by a cyclist study.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Retain the established URL where available; remove unsupported quotations, universal prescriptions and invented first-person recollections. Keep original publication dates distinct from this editorial update."
+    },
+    {
+      "location": "/blog/cycling-strength-training-12-week-beginner-plan — Hear the coaching discussion",
+      "readerQuestion": "Which original interviews give context for this beginner plan?",
+      "usefulAnswer": "In our [interview with Art O’Connor](/podcast/ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n), he describes checking movement quality before loading and allowing people to spend longer developing the skills they need. That supports a useful question for this plan: can you perform and repeat the current work before progressing it?",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
+    },
+    {
+      "location": "/blog/cycling-strength-training-guide — title, description and editorial metadata",
+      "readerQuestion": "What is this page about, whose contribution is it and why should I read it?",
+      "usefulAnswer": "Heavy strength training can improve cycling performance, cycling efficiency and anaerobic power. In the latest cyclist-only meta-analysis, programmes used loads of at least 80% of one-repetition maximum for 5–25 weeks and 1–3 sessions per week. The certainty of evidence was low, however, and the review did not establish one best frequency, exercise list or year-round protocol. For many riders, two non-consecutive sessions per week is a practical starting point—not a proven universal minimum—followed by lower volume when riding or racing load rises.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Retain the established URL where available; remove unsupported quotations, universal prescriptions and invented first-person recollections. Keep original publication dates distinct from this editorial update."
+    },
+    {
+      "location": "/blog/cycling-strength-training-guide — Hear the original strength interviews",
+      "readerQuestion": "Where can I hear the sources behind Roadman’s strength discussions?",
+      "usefulAnswer": "For the decisions behind a programme, listen to [Andy Galpin on progress and recovery after 40](/podcast/the-science-of-getting-faster-after-40-dr-andy-galpin) and [Art O’Connor on movement and gym placement](/podcast/ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n). The [Chris Peden interview](/podcast/why-cyclists-need-to-strength-train-with-chris-peden) is also available in the archive.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
+    },
+    {
+      "location": "/blog/strength-training-cyclists-over-40-what-works — title, description and editorial metadata",
+      "readerQuestion": "What is this page about, whose contribution is it and why should I read it?",
+      "usefulAnswer": "Cyclists over 40 should plan strength around their training history, current riding, movement skill and recovery. Age alone does not establish a repetition range or weekly frequency. Cycling-specific research supports potential performance benefits, but does not establish one optimal masters programme.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Retain the established URL where available; remove unsupported quotations, universal prescriptions and invented first-person recollections. Keep original publication dates distinct from this editorial update."
+    },
+    {
+      "location": "/blog/strength-training-cyclists-over-40-what-works — What Andy Galpin said on Roadman",
+      "readerQuestion": "Have I missed my opportunity to get stronger after 40?",
+      "usefulAnswer": "Asked whether someone over 40 who has avoided strength work for years has missed the chance to improve, Galpin replied: “The window is not even remotely closed.” He then explained why the goal, existing riding volume and recovery capacity matter.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
+    },
+    {
+      "location": "/blog/strength-training-cyclists-over-40-what-works — Put the decisions on paper",
+      "readerQuestion": "How can I move from reading into planning my first sessions?",
+      "usefulAnswer": "Our [beginner strength plan](/blog/cycling-strength-training-12-week-beginner-plan) includes a printable log and adaptable exercise choices. Use the [scheduling guide](/blog/art-oconnor-strength-training-cyclists) when deciding where the sessions can fit.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
+    },
+    {
+      "location": "/entity/andy-galpin — title, description and editorial metadata",
+      "readerQuestion": "What is this page about, whose contribution is it and why should I read it?",
+      "usefulAnswer": "Dr Andy Galpin is Professor and Executive Director of the Human Performance Center at Parker University. His work focuses on human performance and muscle physiology.",
+      "evidence": "Current official Parker University profile https://www.parker.edu/research-at-parker/research-staff/andy-galpin/ and the original Roadman Galpin transcript.",
+      "editorialDecision": "Retain the established URL where available; remove unsupported quotations, universal prescriptions and invented first-person recollections. Keep original publication dates distinct from this editorial update."
+    },
+    {
+      "location": "/podcast/ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n — title, description and editorial metadata",
+      "readerQuestion": "What is this page about, whose contribution is it and why should I read it?",
+      "usefulAnswer": "Art O’Connor explains how he coaches strength alongside cycling. He starts by looking at movement quality, uses a range of lower-body, upper-body and trunk exercises, and adjusts the work to the rider. His suggestion to combine demanding gym work with hard riding days is intended to preserve easier days. His session frequencies and exercise examples describe coaching practice; they do not establish one optimal schedule for every cyclist.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Retain the established URL where available; remove unsupported quotations, universal prescriptions and invented first-person recollections. Keep original publication dates distinct from this editorial update."
+    },
+    {
+      "location": "/podcast/ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n — Start with the movement you can perform",
+      "readerQuestion": "How does O’Connor assess someone before adding load?",
+      "usefulAnswer": "O’Connor describes asking for a video of a bodyweight squat before prescribing loaded work. His exercise discussion includes squats and deadlifts, single-leg movements, pushing, pulling and carries. He also describes scaled versions, such as a row when a pull-up is not suitable.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
+    },
+    {
+      "location": "/podcast/ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n — Protect the easier days",
+      "readerQuestion": "Why does O’Connor group demanding work within the week?",
+      "usefulAnswer": "O’Connor suggests placing strength alongside harder riding days so that easier days can remain easier. That is his coaching approach to managing the week, rather than proof that every rider should use the same sequence.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
+    },
+    {
+      "location": "/podcast/ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n — Adapt the dose and progression",
+      "readerQuestion": "Are O’Connor’s session frequencies a universal prescription?",
+      "usefulAnswer": "O’Connor discusses different frequencies for recreational and professional riders, and changing gym work during the season. He also makes clear that some people need longer to develop movement skill before moving on.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
+    },
+    {
+      "location": "/podcast/the-science-of-getting-faster-after-40-dr-andy-galpin — title, description and editorial metadata",
+      "readerQuestion": "What is this page about, whose contribution is it and why should I read it?",
+      "usefulAnswer": "Asked whether a cyclist over 40 can regain strength and power after years away from the gym, Andy Galpin says the opportunity for progress remains. He explains that riding volume, sleep and energy availability affect the capacity to adapt. He also distinguishes learning an unfamiliar exercise from making that improvement transfer to a well-trained cycling task. This is an interview about training decisions, not a fixed programme for every masters rider.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Retain the established URL where available; remove unsupported quotations, universal prescriptions and invented first-person recollections. Keep original publication dates distinct from this editorial update."
+    },
+    {
+      "location": "/podcast/the-science-of-getting-faster-after-40-dr-andy-galpin — What changes when you already ride a lot?",
+      "readerQuestion": "How does an existing cycling workload affect the strength-training decision?",
+      "usefulAnswer": "Galpin describes cycling volume as a demand on recovery. A rider can still improve, but adding unfamiliar strength work to a full riding week creates a different problem from starting with plenty of spare training capacity. Sleep and energy availability also enter the discussion.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
+    },
+    {
+      "location": "/podcast/the-science-of-getting-faster-after-40-dr-andy-galpin — Getting better at a lift is one result",
+      "readerQuestion": "Does learning a new exercise prove my cycling has improved?",
+      "usefulAnswer": "When Anthony asks about a cyclist riding ten to twelve hours a week, Galpin first separates power, muscle growth and strength. Improving a vertical jump is a different target from improving cycling power.",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
+    },
+    {
+      "location": "/podcast/the-science-of-getting-faster-after-40-dr-andy-galpin — Use the conversation in your own week",
+      "readerQuestion": "Where can I apply the interview to my own training decisions?",
+      "usefulAnswer": "Roadman’s [guide to Galpin’s strength and recovery discussion](/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40) turns those questions into a training-record checklist. For exercise selection and starting loads, read [strength training for cyclists over 40](/blog/strength-training-cyclists-over-40-what-works).",
+      "evidence": "Roadman source interview transcripts: the-science-of-getting-faster-after-40-dr-andy-galpin (YouTube Fi7TY8M3b1Y) and ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n (YouTube 1BIr_B6KO0M). Descriptions distinguish guest explanation, personal coaching practice and Roadman interpretation. General research boundary: PMID 40632222 is low-certainty cyclist evidence, not an optimum masters programme.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
+    },
+    {
+      "location": "/blog/why-were-building-good-legs — title, description and editorial metadata",
+      "readerQuestion": "What is this page about, whose contribution is it and why should I read it?",
+      "usefulAnswer": "Knowing the riding plan is one thing. Knowing what to do in the gym around it is another. Good Legs starts with that gap.",
+      "evidence": "Anthony’s published founder note and product description at getgoodlegs.com; Roadman /app product definition; original Galpin and O’Connor stored transcripts and Peden Spotify listing. The guests are not presented as product endorsers.",
+      "editorialDecision": "Retain the established URL where available; remove unsupported quotations, universal prescriptions and invented first-person recollections. Keep original publication dates distinct from this editorial update. The byline uses Anthony Walsh consistently with the existing Roadman author schema; personal material is a directly attributed quotation from his published founder note."
+    },
+    {
+      "location": "/blog/why-were-building-good-legs — Anthony’s reason for building it",
+      "readerQuestion": "What practical problem is Anthony trying to solve with Good Legs?",
+      "usefulAnswer": "Anthony’s published founder note describes a rider who knows their riding plan but enters the gym unsure what to do. The story quotes that specific gap and connects it to the planning and logging capabilities being built.",
+      "evidence": "Anthony’s published founder note and product description at getgoodlegs.com; Roadman /app product definition; original Galpin and O’Connor stored transcripts and Peden Spotify listing. The guests are not presented as product endorsers.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
+    },
+    {
+      "location": "/blog/why-were-building-good-legs — The interviews worth revisiting",
+      "readerQuestion": "Which original podcast conversations relate to that problem?",
+      "usefulAnswer": "Roadman’s archive lets readers hear how researchers and coaches approach related questions, in their own context.",
+      "evidence": "Anthony’s published founder note and product description at getgoodlegs.com; Roadman /app product definition; original Galpin and O’Connor stored transcripts and Peden Spotify listing. The guests are not presented as product endorsers. General research boundary: PMID 40632222 is low-certainty cyclist evidence, not an optimum masters programme.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
+    },
+    {
+      "location": "/blog/why-were-building-good-legs — What Good Legs is being built to do",
+      "readerQuestion": "What is the app intended to help me do around my riding?",
+      "usefulAnswer": "The app is being developed to place strength sessions around planned rides, record sets, repetitions, loads and effort, and provide exercise swaps. Its recovery check-in asks about sleep, energy and soreness, so guidance can take today’s circumstances into account.",
+      "evidence": "Anthony’s published founder note and product description at getgoodlegs.com; Roadman /app product definition; original Galpin and O’Connor stored transcripts and Peden Spotify listing. The guests are not presented as product endorsers.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
+    },
+    {
+      "location": "/blog/why-were-building-good-legs — Where the build stands",
+      "readerQuestion": "Can I download Good Legs now, and what does joining the waitlist mean?",
+      "usefulAnswer": "Good Legs is in development for iPhone. The beta waitlist is open on the product website; joining does not guarantee an invitation. There is no announced public launch date or standalone price. Not Done Yet members will receive access at launch as part of their membership.",
+      "evidence": "Anthony’s published founder note and product description at getgoodlegs.com; Roadman /app product definition; original Galpin and O’Connor stored transcripts and Peden Spotify listing. The guests are not presented as product endorsers.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
+    },
+    {
+      "location": "/podcast/why-cyclists-need-to-strength-train-with-chris-peden — title, description and editorial metadata",
+      "readerQuestion": "What is this page about, whose contribution is it and why should I read it?",
+      "usefulAnswer": "Listen to Anthony Walsh’s Roadman conversation with Chris Peden about strength training for cyclists, originally published in August 2023.",
+      "evidence": "Original Spotify listing https://open.spotify.com/episode/5aGlg4fcLdwfZOX6jvjqb2. No transcript, quotations, takeaways or programme attributed to Peden.",
+      "editorialDecision": "Retain the established URL where available; remove unsupported quotations, universal prescriptions and invented first-person recollections. Keep original publication dates distinct from this editorial update."
+    },
+    {
+      "location": "/podcast/why-cyclists-need-to-strength-train-with-chris-peden — Ready to start strength training?",
+      "readerQuestion": "Where can a Chris Peden listener find a practical starting framework?",
+      "usefulAnswer": "Roadman’s [free beginner strength plan](/blog/cycling-strength-training-12-week-beginner-plan) provides adaptable sessions, a progression framework and a printable training log. It explains how to select manageable work and assess it alongside your important rides.",
+      "evidence": "Original Spotify listing https://open.spotify.com/episode/5aGlg4fcLdwfZOX6jvjqb2. No transcript, quotations, takeaways or programme attributed to Peden. General research boundary: PMID 40632222 is low-certainty cyclist evidence, not an optimum masters programme.",
+      "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
+    },
+    {
+      "location": "/app — original Good Legs artwork",
+      "readerQuestion": "What does the actual Good Legs brand look like?",
+      "usefulAnswer": "Use the existing Good Legs coach illustration, explicitly captioned as an illustration rather than an app screenshot.",
+      "evidence": "Exact original website-v2/assets/mascot/scene-strength-960.webp from anhudawa/roadman-performance, Git blob 7b806241e5992cb6c7cff9276413023a5d6684e4. Copied without modification to public/images/goodlegs/scene-strength.webp after the external image failed in the real preview. Dimensions remain 960 × 645.",
+      "editorialDecision": "Reuse the existing brand; do not generate a different mascot or fabricate a screen."
+    },
+    {
+      "location": "/app — founder story and original interview links",
+      "readerQuestion": "Where can I learn why Roadman is building this and hear the original expert conversations?",
+      "usefulAnswer": "Link the sourced founder story and all three original interview pages, with a clear editorial-source relationship.",
+      "evidence": "The new story, two preserved transcript sources and the original Chris Peden Spotify listing.",
+      "editorialDecision": "Add credibility through attributable original material; avoid implied guest product review or endorsement."
+    },
+    {
+      "location": "Selected blog/podcast templates — Good Legs next step",
+      "readerQuestion": "What should I do if I want help organising strength around my riding?",
+      "usefulAnswer": "A single Good Legs card leads to /app with a stable article-source ID and clear iPhone-development/waitlist wording.",
+      "evidence": "src/data/app-product.ts, existing /app and source website-v2; src/lib/app-acquisition.ts preserves allowed identifiers across domains.",
+      "editorialDecision": "Use the source-mapped Good Legs card as the selected pages’ product next step. Suppress the injected newsletter, end sales modules, Ask Roadman, generic offer journey and Clubhouse pitch on those pages. Retain related editorial resources and all unrelated archive behavior. The actual founder-page review caught a newsletter splitting the quote introduction from the quote; the selected-route condition removes that interruption. Keep the explicitly selected reading links; remove the duplicate algorithmic cross-content block and generic podcast tool pitch from this journey."
+    },
+    {
+      "location": "ConversionChrome — selected Good Legs acquisition routes",
+      "readerQuestion": "Will coaching overlays interrupt this product exploration?",
+      "usefulAnswer": "The existing lean-route mechanism now includes /app and the exact selected article/interview paths. Include the two linked Andy Galpin background pages after mobile review found an exit-intent popup obscuring the biography.",
+      "evidence": "Existing ConversionChrome route policy plus the explicit source mapping.",
+      "editorialDecision": "Suppress global coaching overlays on this focused journey without changing the homepage or unrelated articles."
+    },
+    {
+      "location": "Andy Galpin guest and entity structured information",
+      "readerQuestion": "What is Galpin’s current role and what did he contribute to Roadman?",
+      "usefulAnswer": "Use Parker University and source-grounded descriptions of the interview.",
+      "evidence": "Official Parker University profile checked 11 September 2026; original stored transcript.",
+      "editorialDecision": "Remove the outdated Fullerton role and unsupported detailed prescriptions from the current profile. Match the appearance count to the two episode records displayed on the page."
+    },
+    {
+      "location": "Preview QA route — additional allowlisted pages",
+      "readerQuestion": "Can this revision be inspected in an actual narrow browsing context?",
+      "usefulAnswer": "Add only this release’s routes to the existing preview-only iframe selector.",
+      "evidence": "Existing preview-qa guard and tests; production still returns 404.",
+      "editorialDecision": "Preserve the production boundary and use the established QA surface."
+    },
+    {
+      "location": "Podcast hub index — regenerated discovery records",
+      "readerQuestion": "Can readers find the corrected interviews through existing topic discovery?",
+      "usefulAnswer": "Regenerate compact records from the edited source metadata, including the newly indexed Chris Peden episode.",
+      "evidence": "scripts/generate-podcast-hub-index.ts run against this checkout; 819 records.",
+      "editorialDecision": "Keep generated discovery data aligned with its source and preserve the standard generator."
+    },
+    {
+      "location": "Expert entity template — expertise labels",
+      "readerQuestion": "Can I read the listed areas of expertise on desktop and mobile?",
+      "usefulAnswer": "Size each label to its text within the available width.",
+      "evidence": "Actual Galpin profile screenshots showed 48-pixel boxes with overlapping label text; inspected the rendered element dimensions. Final desktop and mobile screenshots confirm fit-content labels are legible; mobile wraps two labels plus one. Measured widths approximately 111, 109 and 117 px, height 30 px.",
+      "editorialDecision": "Retain the fit-content inline-flex labels with maximum width after actual desktop and mobile verification."
+    },
+    {
+      "location": "Existing strength and beginner guides — maintenance link and app paragraph",
+      "readerQuestion": "Where can I adjust strength volume or learn about the app?",
+      "usefulAnswer": "Link to the dose guide using reader-facing wording, and describe Good Legs through its verified planning, logging and exercise-swap capabilities with the beta waitlist link.",
+      "evidence": "Finished-page reading found an internal search-query instruction in the strength guide and older app wording in the beginner guide. Product capabilities checked against the existing Good Legs product definition and public product site.",
+      "editorialDecision": "Remove the internal publishing instruction and align the app handoff with the rest of the current release."
     }
   ],
-  "claimsAndSources": "The only audience number used in this release is Anthony's supplied Beehiiv active-list snapshot of about 23,215, rounded to 23,000. No open-rate claim, sponsor-performance metric, coaching member count, science efficacy claim or new Faster After 40 result claim is added. The existing Faster After 40 PDF body is unchanged.",
-  "examplesAndReasoning": "A podcast episode form with source podcast-<episode-slug> resolves Beehiiv acquisition source to podcast and uses the episode slug as the default UTM campaign. Faster After 40 defaults to named_pdf, accepts approved source values plus optional UTM parameters, and sends attribution through Beehiiv's native UTM fields.",
-  "voiceAndCuts": "The Saturday Spin copy was simplified around one useful training letter every Saturday. The Faster After 40 landing removes high-pressure coaching and community sales framing rather than replacing it with new performance hype. Podcast pages use the same plain Saturday Spin promise through the shared capture component.",
-  "desktopReview": "Chromium rendered the exact PR merge revision at 1440x1000 for /newsletter, both specified Stephen Seiler podcast pages and /faster-after-40. All four returned HTTP 200, showed the intended newsletter/report messaging and had no horizontal overflow; the Faster After 40 route contained none of the forbidden coaching-sales strings.",
-  "mobileReview": "Chromium rendered the exact PR merge revision at 390x844 for /newsletter, both specified Stephen Seiler podcast pages and /faster-after-40. All four returned HTTP 200, preserved the intended CTA/message hierarchy and had no horizontal overflow; Faster After 40 remained free of the forbidden coaching-sales strings.",
-  "productAndOfferAccuracy": "This release does not edit YouTube, Beehiiv posts, Beehiiv automations, Beehiiv referral/reward configuration, Skool, Not Done Yet pricing or sponsor packages. The Faster After 40 PDF remains the existing report asset, and the Core Training Guide remains a separate referral reward rather than a newsletter signup incentive."
+  "claimsAndSources": "Galpin and O’Connor summaries were checked against the original imported transcript strings, which remain unchanged. Fabricated-looking quotations and unsupported claims were removed. Galpin current affiliation is supported by Parker University. Chris Peden has original listing metadata and a playable Spotify reference only. PMID 40632222 is described as low-certainty cyclist research. Existing archived episode durations remain historical metadata and are not used to manufacture clip timestamps.",
+  "examplesAndReasoning": "The guides ask the reader to name a priority ride, compare gym slots, record work and effort, and assess cycling separately. They do not invent client outcomes or exact schedules that the interviews did not establish. The source-to-waitlist flow uses fixed editorial identifiers and retains consent-aware CTA click handling; a click is not a confirmed signup or an install.",
+  "voiceAndCuts": "Removed unsupported fast-twitch/protein prescriptions, fabricated quotations, universal optimal frequency, zero-recovery-cost claims, invented founder recollections and repeated sales modules on selected pages. Used plain explanations and directly linked original sources. Final rendered reading also cut two redundant rhetorical sentences from the companion articles.",
+  "desktopReview": "Codex read and visually inspected all twelve affected routes at 1363 × 936. Hero, body, tables, source players/captions, founder quotation, product cards, disclosures and linked expert profiles were reviewed. Actual defects in the external image, injected newsletter and expertise labels were corrected and rechecked. Final 3aa9a40 application source passed a fresh twelve-route DOM/canonical/schema scan; the final shorter paragraphs were read in that deployment. Full route observations are in docs/good-legs-rendered-qa-2026-09-11.json.",
+  "mobileReview": "Codex inspected the same twelve routes in the actual 390 × 844 preview frame. Article copy, long headings, players, tables and CTA cards fit without page overflow. The beginner table scrolls inside its own 342 px box. Final expertise labels wrap across two rows without overlap. Availability and scheduling FAQs, transcript search and the source-to-app click work. External getgoodlegs.com refuses framing; its top-level form was checked independently on desktop, while the mobile outbound URL retains the article source.",
+  "productAndOfferAccuracy": "Good Legs is in development for iPhone with an open beta waitlist, no promised invitation, public launch date or standalone price. Not Done Yet access is at launch. Guest appearances are editorial sources rather than product endorsements. Current product capabilities were checked against Roadman product definitions and the original product website source."
 }

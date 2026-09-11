@@ -1,4 +1,10 @@
 export const APP_ACQUISITION_SOURCES = new Set([
+  "andy-galpin-episode",
+  "art-oconnor-episode",
+  "chris-peden-episode",
+  "galpin-strength-guide",
+  "art-strength-guide",
+  "goodlegs-origin",
   "active-recovery-guide",
   "not-done-yet",
   "homepage",

@@ -370,7 +370,7 @@ function EntityPageContent({
                 {entity.knowsAbout.map((topic) => (
                   <span
                     key={topic}
-                    className="inline-block px-3 py-1.5 text-xs font-heading tracking-wider text-foreground-muted bg-white/[0.04] border border-white/10 rounded-md"
+                    className="inline-flex w-fit max-w-full px-3 py-1.5 text-xs font-heading tracking-wider text-foreground-muted bg-white/[0.04] border border-white/10 rounded-md"
                   >
                     {topic.toUpperCase()}
                   </span>
