@@ -41,7 +41,7 @@ const LEAN_PATH_PREFIXES = [
 
 export function isLeanRoute(pathname: string | null): boolean {
   if (!pathname) return false;
-  if (pathname === "/app") return true;
+  if (pathname === "/app" || pathname === "/guests/andy-galpin" || pathname === "/entity/andy-galpin") return true;
   const [, section, slug, extra] = pathname.split("/");
   if (!extra && (section === "blog" || section === "podcast") && getGoodLegsEditorialSource(slug)) return true;
   return LEAN_PATH_PREFIXES.some(

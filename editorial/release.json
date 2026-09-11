@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentDigest": "188b2af5c49c80f31da23b7cf30c0bbea88b8e0e856161f97713f31d6685850e",
+  "contentDigest": "60c091ef4e5e753d3066ed156754f7180e3a219d169c081154b69e7660c5f608",
   "scope": "Good Legs podcast acquisition: three interview sources; retained practical guide URLs and a founder story; focused waitlist journey, source attribution, original artwork and corrected Galpin profiles. Clip exports and external episode-description writes are separate outstanding tasks, not claimed as part of this website release.",
   "sections": [
     {
@@ -265,7 +265,7 @@
     {
       "location": "ConversionChrome — selected Good Legs acquisition routes",
       "readerQuestion": "Will coaching overlays interrupt this product exploration?",
-      "usefulAnswer": "The existing lean-route mechanism now includes /app and the exact selected article/interview paths.",
+      "usefulAnswer": "The existing lean-route mechanism now includes /app and the exact selected article/interview paths. Include the two linked Andy Galpin background pages after mobile review found an exit-intent popup obscuring the biography.",
       "evidence": "Existing ConversionChrome route policy plus the explicit source mapping.",
       "editorialDecision": "Suppress global coaching overlays on this focused journey without changing the homepage or unrelated articles."
     },
@@ -274,7 +274,7 @@
       "readerQuestion": "What is Galpin’s current role and what did he contribute to Roadman?",
       "usefulAnswer": "Use Parker University and source-grounded descriptions of the interview.",
       "evidence": "Official Parker University profile checked 11 September 2026; original stored transcript.",
-      "editorialDecision": "Remove the outdated Fullerton role and unsupported detailed prescriptions from the current profile."
+      "editorialDecision": "Remove the outdated Fullerton role and unsupported detailed prescriptions from the current profile. Match the appearance count to the two episode records displayed on the page."
     },
     {
       "location": "Preview QA route — additional allowlisted pages",
@@ -289,11 +289,18 @@
       "usefulAnswer": "Regenerate compact records from the edited source metadata, including the newly indexed Chris Peden episode.",
       "evidence": "scripts/generate-podcast-hub-index.ts run against this checkout; 819 records.",
       "editorialDecision": "Keep generated discovery data aligned with its source and preserve the standard generator."
+    },
+    {
+      "location": "Expert entity template — expertise labels",
+      "readerQuestion": "Can I read the listed areas of expertise on desktop and mobile?",
+      "usefulAnswer": "Size each label to its text within the available width.",
+      "evidence": "Actual Galpin profile screenshots showed 48-pixel boxes with overlapping label text; inspected the rendered element dimensions.",
+      "editorialDecision": "Use fit-content inline-flex labels with a maximum width, then verify the changed template at desktop and mobile widths."
     }
   ],
   "claimsAndSources": "Galpin and O’Connor summaries were checked against the original imported transcript strings, which remain unchanged. Fabricated-looking quotations and unsupported claims were removed. Galpin current affiliation is supported by Parker University. Chris Peden has original listing metadata and a playable Spotify reference only. PMID 40632222 is described as low-certainty cyclist research. Existing archived episode durations remain historical metadata and are not used to manufacture clip timestamps.",
   "examplesAndReasoning": "The guides ask the reader to name a priority ride, compare gym slots, record work and effort, and assess cycling separately. They do not invent client outcomes or exact schedules that the interviews did not establish. The source-to-waitlist flow uses fixed editorial identifiers and retains consent-aware CTA click handling; a click is not a confirmed signup or an install.",
-  "voiceAndCuts": "Removed unsupported fast-twitch/protein prescriptions, fabricated quotations, universal optimal frequency, zero-recovery-cost claims, invented founder recollections and repeated sales modules on selected pages. Used plain explanations and directly linked original sources.",
+  "voiceAndCuts": "Removed unsupported fast-twitch/protein prescriptions, fabricated quotations, universal optimal frequency, zero-recovery-cost claims, invented founder recollections and repeated sales modules on selected pages. Used plain explanations and directly linked original sources. Final rendered reading also cut two redundant rhetorical sentences from the companion articles.",
   "desktopReview": "In progress: authenticated branch preview accessible. The first actual desktop review at 1363 × 936 caught a broken external product image and an injected newsletter splitting the founder quotation. Both are corrected in source and await rendered verification. No final desktop pass yet.",
   "mobileReview": "In progress: actual preview iframe measured 390 × 844. Initial /app hero has no horizontal overflow. Final revised image and all selected reading/CTA layouts still require verification.",
   "productAndOfferAccuracy": "Good Legs is in development for iPhone with an open beta waitlist, no promised invitation, public launch date or standalone price. Not Done Yet access is at launch. Guest appearances are editorial sources rather than product endorsements. Current product capabilities were checked against Roadman product definitions and the original product website source."
