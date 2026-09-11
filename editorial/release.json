@@ -202,7 +202,7 @@
     {
       "location": "/blog/why-were-building-good-legs — Anthony’s reason for building it",
       "readerQuestion": "What practical problem is Anthony trying to solve with Good Legs?",
-      "usefulAnswer": "In his [founder’s note on the Good Legs website](https://getgoodlegs.com/), Anthony Walsh writes:",
+      "usefulAnswer": "Anthony’s published founder note describes a rider who knows their riding plan but enters the gym unsure what to do. The story quotes that specific gap and connects it to the planning and logging capabilities being built.",
       "evidence": "Anthony’s published founder note and product description at getgoodlegs.com; Roadman /app product definition; original Galpin and O’Connor stored transcripts and Peden Spotify listing. The guests are not presented as product endorsers.",
       "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
     },
@@ -294,8 +294,8 @@
       "location": "Expert entity template — expertise labels",
       "readerQuestion": "Can I read the listed areas of expertise on desktop and mobile?",
       "usefulAnswer": "Size each label to its text within the available width.",
-      "evidence": "Actual Galpin profile screenshots showed 48-pixel boxes with overlapping label text; inspected the rendered element dimensions.",
-      "editorialDecision": "Use fit-content inline-flex labels with a maximum width, then verify the changed template at desktop and mobile widths."
+      "evidence": "Actual Galpin profile screenshots showed 48-pixel boxes with overlapping label text; inspected the rendered element dimensions. Final desktop and mobile screenshots confirm fit-content labels are legible; mobile wraps two labels plus one. Measured widths approximately 111, 109 and 117 px, height 30 px.",
+      "editorialDecision": "Retain the fit-content inline-flex labels with maximum width after actual desktop and mobile verification."
     },
     {
       "location": "Existing strength and beginner guides — maintenance link and app paragraph",
@@ -308,7 +308,7 @@
   "claimsAndSources": "Galpin and O’Connor summaries were checked against the original imported transcript strings, which remain unchanged. Fabricated-looking quotations and unsupported claims were removed. Galpin current affiliation is supported by Parker University. Chris Peden has original listing metadata and a playable Spotify reference only. PMID 40632222 is described as low-certainty cyclist research. Existing archived episode durations remain historical metadata and are not used to manufacture clip timestamps.",
   "examplesAndReasoning": "The guides ask the reader to name a priority ride, compare gym slots, record work and effort, and assess cycling separately. They do not invent client outcomes or exact schedules that the interviews did not establish. The source-to-waitlist flow uses fixed editorial identifiers and retains consent-aware CTA click handling; a click is not a confirmed signup or an install.",
   "voiceAndCuts": "Removed unsupported fast-twitch/protein prescriptions, fabricated quotations, universal optimal frequency, zero-recovery-cost claims, invented founder recollections and repeated sales modules on selected pages. Used plain explanations and directly linked original sources. Final rendered reading also cut two redundant rhetorical sentences from the companion articles.",
-  "desktopReview": "In progress: authenticated branch preview accessible. The first actual desktop review at 1363 × 936 caught a broken external product image and an injected newsletter splitting the founder quotation. Both are corrected in source and await rendered verification. No final desktop pass yet.",
-  "mobileReview": "In progress: actual preview iframe measured 390 × 844. Initial /app hero has no horizontal overflow. Final revised image and all selected reading/CTA layouts still require verification.",
+  "desktopReview": "Codex read and visually inspected all twelve affected routes at 1363 × 936. Hero, body, tables, source players/captions, founder quotation, product cards, disclosures and linked expert profiles were reviewed. Actual defects in the external image, injected newsletter and expertise labels were corrected and rechecked. Final 3aa9a40 application source passed a fresh twelve-route DOM/canonical/schema scan; the final shorter paragraphs were read in that deployment. Full route observations are in docs/good-legs-rendered-qa-2026-09-11.json.",
+  "mobileReview": "Codex inspected the same twelve routes in the actual 390 × 844 preview frame. Article copy, long headings, players, tables and CTA cards fit without page overflow. The beginner table scrolls inside its own 342 px box. Final expertise labels wrap across two rows without overlap. Availability and scheduling FAQs, transcript search and the source-to-app click work. External getgoodlegs.com refuses framing; its top-level form was checked independently on desktop, while the mobile outbound URL retains the article source.",
   "productAndOfferAccuracy": "Good Legs is in development for iPhone with an open beta waitlist, no promised invitation, public launch date or standalone price. Not Done Yet access is at launch. Guest appearances are editorial sources rather than product endorsements. Current product capabilities were checked against Roadman product definitions and the original product website source."
 }

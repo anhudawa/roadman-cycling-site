@@ -11,12 +11,12 @@ Help cyclists discover Roadman's original strength interviews, answer their trai
 | Step | Deliverable | Completion evidence | Status |
 | --- | --- | --- | --- |
 | 1 | Audit the three interviews, existing guides, app claims and publishing workflow | Source inventory, exact existing URLs and evidence limitations | Complete |
-| 2 | Improve Galpin and Art interview pages; add the missing Chris Peden episode using verified source metadata | Accurate names, descriptions, playable source and useful related reading | Implemented; release QA outstanding |
-| 3 | Improve three practical guides on strength after 40, fitting gym around riding, and starting strength training | Useful standalone answers; source-specific attribution; retained URLs where available | Implemented; release QA outstanding |
-| 4 | Publish a Roadman founder/product story | Actual podcast material and verified product capabilities; no invented personal memories or guest endorsements | Implemented; release QA outstanding |
-| 5 | Connect these pages to a focused Good Legs preview | Relevant product imagery, one principal product action and article-level referral attribution | Implemented; release QA outstanding |
-| 6 | Produce six short clips and source-description link copy | Playable reviewed clips, accurate captions, source identification and relevant destination URLs | Briefs and description copy prepared; exports blocked by credits/source access |
-| 7 | Verify and publish | Editorial gate, TypeScript, focused behavior tests, content audit, links, SEO, desktop/mobile and post-release checks | Technical checks passing; visual QA blocked by protected preview |
+| 2 | Improve Galpin and Art interview pages; add the missing Chris Peden episode using verified source metadata | Accurate names, descriptions, playable source and useful related reading | Implemented and reviewed |
+| 3 | Improve three practical guides on strength after 40, fitting gym around riding, and starting strength training | Useful standalone answers; source-specific attribution; retained URLs where available | Implemented and reviewed |
+| 4 | Publish a Roadman founder/product story | Actual podcast material and verified product capabilities; no invented personal memories or guest endorsements | Implemented and reviewed |
+| 5 | Connect these pages to a focused Good Legs preview | Relevant product imagery, one principal product action and article-level referral attribution | Implemented and reviewed |
+| 6 | Produce six short clips and source-description link copy | Playable reviewed clips, accurate captions, source identification and relevant destination URLs | Six briefs and description copy prepared; actual clip exports require source media/service access |
+| 7 | Verify and publish | Editorial gate, TypeScript, focused behavior tests, content audit, links, SEO, desktop/mobile and post-release checks | Desktop/mobile and production editorial gate passed; merge and live verification next |
 
 ## Source inventory
 
@@ -47,7 +47,9 @@ Record the original article/episode and campaign in Good Legs referral URLs. Ver
 
 ## Release record
 
-This plan records intended work. It is not a release sign-off. Update the status table and append exact checks, changed URLs, commit/PR references and any remaining blockers after implementation.
+Website application source: `3aa9a40de305287a213d2ec7900f568644555201` in [PR #350](https://github.com/anhudawa/roadman-cycling-site/pull/350).
+
+The exact application revision completed its Vercel preview build and actual desktop/mobile review. Codex signed the 43-section release review and the production editorial gate passed. The following commit adds only review evidence, this plan and the dated search CSVs. Merge and production verification are the remaining release operations; the pull request records their outcome.
 
 ## Implemented acquisition routes
 
@@ -75,35 +77,36 @@ All nine sources lead to `/app?source=<identifier>`. The app preview sends an al
 
 ## Verification completed
 
-- 56 editorial-gate rejection tests passed; production publication still rejects this revision because visual QA is incomplete.
-- 23 focused tests passed across acquisition, source-to-referral continuity, preview routes and the existing waitlist component.
-- Standalone TypeScript check passed after fixing one JSX conditional. Focused ESLint check passed.
-- The first local preview production build completed successfully, including TypeScript and 4,470 generated pages. Expected fallback warnings appeared because the local checkout has no Postgres or Beehiiv production credentials. The remote branch build is checked separately.
-- Static HTML checks passed on 12 generated routes: one H1, correct canonical and parseable JSON-LD; all nine selected content pages contain exactly one main Good Legs CTA. These do not substitute for browser visual QA.
-- The final source refinements correct the image’s intrinsic dimensions, keep the founder byline consistent with Roadman’s existing author schema, preserve original frontmatter formatting on lightly edited guides and correct the preview selector’s /entity/ route.
-- Ten changed/new MDX documents compiled. The Galpin and Art transcript strings compare exactly equal to the original main-branch source.
-- Sitewide internal-link audit: 18,382 references; zero broken internal links; 2,576 external links excluded from that audit.
-- Standard method and podcast-index generators completed; 819 compact podcast records. The local runner required `node --import tsx` because the CLI's optional IPC listener was restricted. No build scripts or approval controls were changed.
-- The package's `audit:content-governance` target points to a script absent from main. Content was reviewed against the publishing standard, with the MDX compilation and link audit recorded separately; that nonexistent script is not reported as passed.
-- The actual Good Legs artwork loaded from its original public URL: 960 × 645 pixels. The destination's product information and waitlist form were inspected.
+- Production editorial gate passed for content digest `cd195bcefc6c2cf7043ad0ad71b0b0f6d381616c969cb022ca93105287d23b43`. Baseline and publishing controls remain unchanged.
+- Codex reviewed 43 substantive section records and all twelve affected routes at actual desktop 1363 × 936 and mobile 390 × 844 viewports. Per-route observations and the final DOM scan are in `good-legs-rendered-qa-2026-09-11.json`.
+- Real QA caught and fixed a broken external product image, an injected newsletter splitting the founder quotation, overlapping expertise labels and an inaccurate episode count. The original 960 × 645 mascot file is now served locally, without visual modification. Selected reading routes also lose duplicate content/sales modules and interrupting coaching overlays.
+- The founder CTA reached `/app?source=goodlegs-origin`, then the actual product site with `roadman-app-waitlist-goodlegs-origin-hero` in `utm_content`. The normal top-level waitlist form was inspected without creating a subscriber.
+- The mobile Peden CTA reached `/app?source=chris-peden-episode`; its onward link retained `roadman-app-waitlist-chris-peden-episode-hero`. The external destination refuses iframe embedding, so mobile external-form rendering is not claimed. The normal top-level destination was checked independently on desktop.
+- Availability and scheduling FAQs opened; transcript search highlighted two matches on desktop and mobile; transcript closing/reopening worked. The original Peden Spotify preview played and was stopped after the check.
+- Final rendered metadata scan: twelve correct canonicals, one H1 per page and valid JSON-LD. Each of nine selected content pages has one main Good Legs card, no injected newsletter and no duplicate algorithmic cross-content block.
+- 56 editorial-gate rejection tests and 22 final focused tests across four files passed. TypeScript, focused ESLint and edited MDX compilation passed. Earlier focused waitlist tests and a local preview production build also passed; that build generated 4,470 pages.
+- Final internal-link audit: 18,387 references, zero broken and zero indeterminate internal links; 2,576 external references excluded.
+- Original Galpin and Art transcript strings compare exactly equal to main. Standard method/index generators completed, producing 819 compact podcast records.
+- Final application source `3aa9a40de305287a213d2ec7900f568644555201` completed Vercel deployment `EyrBqB9YQKE72SDc5k1xWZcHg883` successfully. GitHub SEO and episode coverage checks passed.
+- The legacy `audit:content-governance` command references a script absent from main. It is not claimed as executed; the publishing-standard source review, MDX compilation and link audit are recorded separately.
 
-## Remaining blockers and exact continuation
+## Clip production and external follow-through
 
-The website implementation is in draft PR [#350](https://github.com/anhudawa/roadman-cycling-site/pull/350). It has not been merged or published to the production domain.
+Six editing briefs and original episode-description additions are prepared in `good-legs-podcast-clip-briefs-2026-09-11.md`. No clip exports or source-channel description posts are claimed.
 
-**Preview access:** The branch preview requires Vercel login. The connected Vercel app returns 403 for the owner scope `anhudawas-projects` and explicitly requires reauthentication to that scope. The local supervised preview stopped before browser review. `AGENTS.md` and `docs/editorial-publishing-standard.md` require actual desktop and mobile review before publication; neither was fabricated. Reconnect Vercel with access to that scope, then inspect the exact preview revision, resolve defects, refresh the digest-bound release and QA records, run the production gate, merge and verify live routes.
+Four passages are located in Galpin/Art stored transcripts. Their actual video in/out points and captions still require review against source media. Chris Peden's two selections require the original audio or transcript. Preparation notes and the podcast schedule confirm his identity, but planned questions do not establish spoken answers.
 
-**Clip exports:** The connected clip/transcript service has zero credits. The six detailed editing briefs and original-description additions are in `docs/good-legs-podcast-clip-briefs-2026-09-11.md`. Four passages are located in stored transcripts; Chris's two selections require the original audio/transcript. Provide the recordings or restore service credits, verify the actual in/out points and captions, export and play back each clip, then add embeds and source-description links after the web destinations are live.
+The connected transcript/clip service returned insufficient credits without a charge. Focused searches and inspection of three accessible podcast/video folders found no named original recordings. Complete the clips when the recordings or service access are available: verify passages, set actual in/out points, export, watch each result and add approved embeds to the live destinations. Obtain explicit authorization before posting the prepared description copy to source channels.
 
-Neither purchase, external source-channel write nor subscriber creation has occurred. These are execution/access limits, not a request to reapprove the agreed strategy.
+Search Console and site analytics were not available in this session. The dated Semrush snapshots below provide search-discovery context, while measured visits, impressions and confirmed conversions require the connected reports described above.
 
-## Continuation check — 11 September 2026
+## Search visibility snapshot — captured 11 September 2026
 
-- Application source commit `6e32609d1d3af4d091750fa9b817b6effaeab942` completed its Vercel preview deployment successfully. GitHub coverage and SEO QA checks also passed. The editorial gate remains correctly blocked by missing rendered review.
-- PR #350 is still a draft; main remains `c923e7d3747a1f18043565087b8a543ee4b600d8`. No production publication has occurred.
-- The Vercel connection still lists no teams and rejects the owner scope `anhudawas-projects` with 403. The completed preview still redirects to sign-in. Secure browser sign-in was attempted, but the browser connection ended before an authentication result. Follow-up verification could not establish access; no successful sign-in or visual QA is claimed.
-- Original preparation notes and the podcast schedule confirm the Chris Peden strength interview. These contain planned questions, not a transcript, so they do not support new attributed answers or clip timecodes.
-- Focused searches of accessible files found no Galpin, Peden or O’Connor recording. Three podcast/video folders were inspected; their listed material is older archive content and does not contain these named sources. The archive also contains a Chris Duffin folder; that is a separate guest, not evidence about the Peden episode.
-- The transcript service again returned insufficient credits without a charge. The six clip briefs therefore remain pending actual source media, selection, caption review and playback.
+Two Semrush organic-keyword reports are saved beside this plan:
 
-Next execution step: restore access to the existing Vercel owner scope, inspect the exact application preview on desktop and mobile, complete the linked journey, bind the release record to those observations, and run the production gate before merging. The website build is ready for that review; no renewed strategy approval is required.
+- `good-legs-search-baseline-uk-2026-09-11.csv`
+- `good-legs-search-baseline-us-2026-09-11.csv`
+
+Each report contains the top 30 returned rows for roadmancycling.com, filtered to URLs containing `strength` and sorted by estimated traffic. UK keyword observations span 20 July–5 September 2026; US observations span 19 July–7 September 2026. They are dated third-party search observations and traffic estimates, not live rankings, measured site visits or a complete organic baseline. Missing rows do not establish zero traffic.
+
+The broad strength guide appears at position 3 for “strength training for cyclists” in both returned databases. The beginner plan appears at position 3 for “12-week strength training program for cyclists” in the US report. This supports retaining those established URLs and adding source links and relevant product handoffs. Search Console and analytics data are still needed for measured impressions, clicks and conversion rates.
