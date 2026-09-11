@@ -13,7 +13,7 @@ const PAGES = [
   "/podcast/ep-2054-i-tried-keegan-swensons-insane-strength-routine-heres-what-n",
   "/podcast/why-cyclists-need-to-strength-train-with-chris-peden",
   "/guests/andy-galpin",
-  "/entities/andy-galpin",
+  "/entity/andy-galpin",
 
   "/coaching", "/blog/best-cycling-coach-uk", "/blog/best-cycling-coach-usa",
   "/blog/dragon-ride-training-guide", "/races/dragon-ride", "/races",

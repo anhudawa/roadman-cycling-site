@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentDigest": "bd87247afb65127e0fb419f9575481a1dc5f20dbfefeeb625007138f5c29b1ae",
+  "contentDigest": "75a6f54d95bb33b389d5fbf0e139b138bacf25152c00c4bbc13dd9f3d6e28603",
   "scope": "Good Legs podcast acquisition: three interview sources; retained practical guide URLs and a founder story; focused waitlist journey, source attribution, original artwork and corrected Galpin profiles. Clip exports and external episode-description writes are separate outstanding tasks, not claimed as part of this website release.",
   "sections": [
     {
@@ -130,7 +130,7 @@
       "editorialDecision": "Answer the practical reader question in full on the page. Link to the original interview or the specific next resource; do not require signup for the answer."
     },
     {
-      "location": "/entities/andy-galpin — title, description and editorial metadata",
+      "location": "/entity/andy-galpin — title, description and editorial metadata",
       "readerQuestion": "What is this page about, whose contribution is it and why should I read it?",
       "usefulAnswer": "Dr Andy Galpin is Professor and Executive Director of the Human Performance Center at Parker University. His work focuses on human performance and muscle physiology.",
       "evidence": "Current official Parker University profile https://www.parker.edu/research-at-parker/research-staff/andy-galpin/ and the original Roadman Galpin transcript.",
@@ -197,7 +197,7 @@
       "readerQuestion": "What is this page about, whose contribution is it and why should I read it?",
       "usefulAnswer": "Knowing the riding plan is one thing. Knowing what to do in the gym around it is another. Good Legs starts with that gap.",
       "evidence": "Anthony’s published founder note and product description at getgoodlegs.com; Roadman /app product definition; original Galpin and O’Connor stored transcripts and Peden Spotify listing. The guests are not presented as product endorsers.",
-      "editorialDecision": "Retain the established URL where available; remove unsupported quotations, universal prescriptions and invented first-person recollections. Keep original publication dates distinct from this editorial update."
+      "editorialDecision": "Retain the established URL where available; remove unsupported quotations, universal prescriptions and invented first-person recollections. Keep original publication dates distinct from this editorial update. The byline uses Anthony Walsh consistently with the existing Roadman author schema; personal material is a directly attributed quotation from his published founder note."
     },
     {
       "location": "/blog/why-were-building-good-legs — Anthony’s reason for building it",
@@ -245,7 +245,7 @@
       "location": "/app — original Good Legs artwork",
       "readerQuestion": "What does the actual Good Legs brand look like?",
       "usefulAnswer": "Use the existing Good Legs coach illustration, explicitly captioned as an illustration rather than an app screenshot.",
-      "evidence": "Existing website-v2 asset in anhudawa/roadman-performance: assets/mascot/scene-strength-960.webp, served from getgoodlegs.com.",
+      "evidence": "Existing website-v2 asset in anhudawa/roadman-performance: assets/mascot/scene-strength-960.webp, served from getgoodlegs.com. Original public asset loaded in the browser at 960 × 645 pixels; the component uses those dimensions.",
       "editorialDecision": "Reuse the existing brand; do not generate a different mascot or fabricate a screen."
     },
     {
@@ -294,7 +294,7 @@
   "claimsAndSources": "Galpin and O’Connor summaries were checked against the original imported transcript strings, which remain unchanged. Fabricated-looking quotations and unsupported claims were removed. Galpin current affiliation is supported by Parker University. Chris Peden has original listing metadata and a playable Spotify reference only. PMID 40632222 is described as low-certainty cyclist research. Existing archived episode durations remain historical metadata and are not used to manufacture clip timestamps.",
   "examplesAndReasoning": "The guides ask the reader to name a priority ride, compare gym slots, record work and effort, and assess cycling separately. They do not invent client outcomes or exact schedules that the interviews did not establish. The source-to-waitlist flow uses fixed editorial identifiers and retains consent-aware CTA click handling; a click is not a confirmed signup or an install.",
   "voiceAndCuts": "Removed unsupported fast-twitch/protein prescriptions, fabricated quotations, universal optimal frequency, zero-recovery-cost claims, invented founder recollections and repeated sales modules on selected pages. Used plain explanations and directly linked original sources.",
-  "desktopReview": "Pending rendered review of the exact preview revision. Local supervised browser preview stopped before it could be reached; preparing the repository branch preview for proper inspection.",
-  "mobileReview": "Pending rendered review of the exact preview revision at a narrow CSS viewport through the existing preview-only QA route.",
+  "desktopReview": "Blocked: the exact branch preview requires Vercel login. The connected Vercel app returned 403 requiring reauthentication to anhudawas-projects. The local supervised preview stopped before inspection. No desktop visual pass is claimed.",
+  "mobileReview": "Blocked by the same protected preview. The existing preview-only iframe selector includes the changed routes for a future 390 × 844 CSS-pixel review; no mobile visual pass is claimed.",
   "productAndOfferAccuracy": "Good Legs is in development for iPhone with an open beta waitlist, no promised invitation, public launch date or standalone price. Not Done Yet access is at launch. Guest appearances are editorial sources rather than product endorsements. Current product capabilities were checked against Roadman product definitions and the original product website source."
 }

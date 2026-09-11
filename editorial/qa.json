@@ -2,48 +2,48 @@
   "version": 1,
   "reviewer": "Codex",
   "decision": "hold",
-  "reviewedAt": null,
-  "contentDigest": "bd87247afb65127e0fb419f9575481a1dc5f20dbfefeeb625007138f5c29b1ae",
-  "reviewHash": "",
-  "controlsHash": "",
+  "reviewedAt": "2026-09-11T18:01:51.058588+00:00",
+  "contentDigest": "75a6f54d95bb33b389d5fbf0e139b138bacf25152c00c4bbc13dd9f3d6e28603",
+  "reviewHash": "fa7d3b7f1392f5bc6350992631f43fe2b0efc738d6c12399747b39f8237a777f",
+  "controlsHash": "690e4b2ddb0fb631ba211762063a492b111885c239303964cf09357b2986281c",
   "blockers": [
-    "Rendered desktop and mobile QA on this exact revision remains outstanding.",
-    "Production build and final interactions require completed verification."
+    "Vercel preview authentication prevents the required actual desktop and mobile review.",
+    "Final end-to-end interaction checks and current branch deployment verification remain outstanding."
   ],
   "checks": {
     "claims": {
-      "status": "pending",
-      "evidence": "Final release verification has not yet been completed for this revision."
+      "status": "pass",
+      "evidence": "Galpin and O’Connor summaries checked against preserved imported transcripts; source strings compare equal to main. Removed unsupported quotations and universal prescriptions. Current Galpin affiliation checked against Parker University. Peden metadata checked against the original Spotify listing; no invented guest takeaways."
     },
     "editorial": {
-      "status": "pending",
-      "evidence": "Final release verification has not yet been completed for this revision."
+      "status": "pass",
+      "evidence": "Reviewed 41 section records against the publishing standard. Cut invented recollections, zero-recovery-cost and universal optimal-frequency claims. Practical answers remain available before the optional product action. The absent legacy content-governance script is documented separately."
     },
     "offers": {
-      "status": "pending",
-      "evidence": "Final release verification has not yet been completed for this revision."
+      "status": "pass",
+      "evidence": "Good Legs is described as in development for iPhone, with a beta waitlist and no guaranteed invitation or announced public date/price. Existing member access is at launch. Original product destination and form inspected; no subscriber was submitted. Guest appearances are explicitly editorial sources."
     },
     "desktop": {
-      "status": "pending",
-      "evidence": "Final release verification has not yet been completed for this revision.",
+      "status": "blocked",
+      "evidence": "The branch preview redirects to Vercel login; the connected Vercel scope requires reauthentication. Actual desktop rendering has not been reviewed.",
       "pages": []
     },
     "mobile": {
-      "status": "pending",
-      "evidence": "Final release verification has not yet been completed for this revision.",
+      "status": "blocked",
+      "evidence": "The same preview authentication prevents the required actual narrow-viewport inspection. Static HTML checks are not a mobile layout review.",
       "pages": []
     },
     "interactions": {
       "status": "pending",
-      "evidence": "Final release verification has not yet been completed for this revision."
+      "evidence": "23 focused tests pass, including source-to-referral preservation and suppression of competing overlays. Real browser article-to-app-to-waitlist navigation still requires preview access; no confirmed signup or install is claimed."
     },
     "seo": {
-      "status": "pending",
-      "evidence": "Final release verification has not yet been completed for this revision."
+      "status": "pass",
+      "evidence": "Internal-link audit reports zero broken links across 18,382 references, with external links excluded. Twelve prerendered routes have one H1, correct canonicals and valid JSON-LD; nine selected content routes have one main Good Legs CTA. Existing search-owner URLs are retained."
     },
     "technical": {
       "status": "pending",
-      "evidence": "Final release verification has not yet been completed for this revision."
+      "evidence": "The initial local preview production build exited zero and generated 4,470 pages. Standalone TypeScript and focused ESLint passed; 56 gate tests and 23 focused tests passed. Final source refinements are prepared for the next branch build; this is not a production sign-off."
     }
   }
 }
