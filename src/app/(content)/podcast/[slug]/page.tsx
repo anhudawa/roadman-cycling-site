@@ -930,15 +930,17 @@ export default async function EpisodePage({
             {/* Ask Roadman handoff — episode-specific question seed so a
                 listener with a follow-up can take the topic into the
                 assistant without re-establishing context. */}
-            <AskRoadmanCTA
-              topic={episode.title}
-              question={
-                episode.guest
-                  ? `In the episode with ${episode.guest} on "${episode.title}", what's the most important takeaway for me to apply?`
-                  : `In the episode "${episode.title}", what's the most important takeaway for me to apply?`
-              }
-              source={`podcast-${slug}`}
-            />
+            {!goodLegsSource && (
+              <AskRoadmanCTA
+                topic={episode.title}
+                question={
+                  episode.guest
+                    ? `In the episode with ${episode.guest} on "${episode.title}", what's the most important takeaway for me to apply?`
+                    : `In the episode "${episode.title}", what's the most important takeaway for me to apply?`
+                }
+                source={`podcast-${slug}`}
+              />
+            )}
 
             {/* Newsletter */}
             {!goodLegsSource && (
@@ -1070,16 +1072,18 @@ export default async function EpisodePage({
                 episodes get the Inner Circle community pitch. The
                 forward links bridge listeners back to a reading-format
                 explainer and a related episode. */}
-            <JourneyLinks
-              currentType="podcast"
-              currentSlug={slug}
-              currentTitle={episode.title}
-              pillar={episode.pillar}
-              keywords={episode.keywords}
-              source={`podcast-${slug}`}
-              className="mt-12"
-            />
-            {episode.pillar !== "coaching" && (
+            {!goodLegsSource && (
+              <JourneyLinks
+                currentType="podcast"
+                currentSlug={slug}
+                currentTitle={episode.title}
+                pillar={episode.pillar}
+                keywords={episode.keywords}
+                source={`podcast-${slug}`}
+                className="mt-12"
+              />
+            )}
+            {!goodLegsSource && episode.pillar !== "coaching" && (
               <div className="mt-12 bg-deep-purple/30 rounded-xl border border-purple/20 p-8 text-center">
                 <h3 className="font-heading text-2xl text-off-white mb-3">
                   LIKED THIS EPISODE?

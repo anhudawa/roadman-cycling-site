@@ -129,7 +129,7 @@ export default function AppLandingPage() {
       <Section background="charcoal">
         <Container>
           <figure className="mb-14 overflow-hidden rounded-2xl bg-[#f4efe6]">
-            <Image src="https://getgoodlegs.com/assets/mascot/scene-strength-960.webp" alt="The Good Legs coach character in a strength-training scene" width={960} height={645} unoptimized className="mx-auto h-auto max-h-[420px] w-full object-contain" />
+            <Image src="/images/goodlegs/scene-strength.webp" alt="The Good Legs coach character in a strength-training scene" width={960} height={645} unoptimized className="mx-auto h-auto max-h-[420px] w-full object-contain" />
             <figcaption className="px-6 pb-5 text-center text-sm text-charcoal/70">Meet the Good Legs coach. Illustration from the app’s website.</figcaption>
           </figure>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">

@@ -816,10 +816,12 @@ export default async function BlogPostPage({
 
             {/* Mid-article inline CTA — injects after 3rd paragraph, pillar-aware.
                 Client-side portal so only JS users see it. */}
-            <InlineArticleCTA
-              pillar={post.pillar}
-              source={`blog-inline-${slug}`}
-            />
+            {!goodLegsSource && (
+              <InlineArticleCTA
+                pillar={post.pillar}
+                source={`blog-inline-${slug}`}
+              />
+            )}
 
             {/* Visible FAQ — rendered from frontmatter faq[] array so the
                 structured data we already emit as FAQPage JSON-LD also
@@ -1031,11 +1033,13 @@ export default async function BlogPostPage({
             {/* Ask Roadman handoff — pre-fills the assistant input with
                 a question framed around this article's topic so a reader
                 with a follow-up doesn't have to re-establish context. */}
-            <AskRoadmanCTA
-              topic={post.title}
-              question={`I just read "${post.title}". What should I do next based on this?`}
-              source={`blog-${slug}`}
-            />
+            {!goodLegsSource && (
+              <AskRoadmanCTA
+                topic={post.title}
+                question={`I just read "${post.title}". What should I do next based on this?`}
+                source={`blog-${slug}`}
+              />
+            )}
 
             {/* Graph-powered: related calculator tools — surfaces at least
                 one pillar-matched tool per article so every long-form piece
@@ -1144,15 +1148,17 @@ export default async function BlogPostPage({
                 top-of-funnel readers, /apply for coaching-pillar
                 readers). Replaces the static "Apply for coaching"
                 block with funnel-aware copy. */}
-            <JourneyLinks
-              currentType="blog"
-              currentSlug={slug}
-              currentTitle={post.title}
-              pillar={post.pillar}
-              keywords={post.keywords ?? []}
-              source={`blog-${slug}`}
-              className="mt-16"
-            />
+            {!goodLegsSource && (
+              <JourneyLinks
+                currentType="blog"
+                currentSlug={slug}
+                currentTitle={post.title}
+                pillar={post.pillar}
+                keywords={post.keywords ?? []}
+                source={`blog-${slug}`}
+                className="mt-16"
+              />
+            )}
 
             {/* Back to blog */}
             <div className="mt-12 text-center">

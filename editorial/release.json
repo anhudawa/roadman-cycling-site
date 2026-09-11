@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentDigest": "75a6f54d95bb33b389d5fbf0e139b138bacf25152c00c4bbc13dd9f3d6e28603",
+  "contentDigest": "188b2af5c49c80f31da23b7cf30c0bbea88b8e0e856161f97713f31d6685850e",
   "scope": "Good Legs podcast acquisition: three interview sources; retained practical guide URLs and a founder story; focused waitlist journey, source attribution, original artwork and corrected Galpin profiles. Clip exports and external episode-description writes are separate outstanding tasks, not claimed as part of this website release.",
   "sections": [
     {
@@ -245,7 +245,7 @@
       "location": "/app — original Good Legs artwork",
       "readerQuestion": "What does the actual Good Legs brand look like?",
       "usefulAnswer": "Use the existing Good Legs coach illustration, explicitly captioned as an illustration rather than an app screenshot.",
-      "evidence": "Existing website-v2 asset in anhudawa/roadman-performance: assets/mascot/scene-strength-960.webp, served from getgoodlegs.com. Original public asset loaded in the browser at 960 × 645 pixels; the component uses those dimensions.",
+      "evidence": "Exact original website-v2/assets/mascot/scene-strength-960.webp from anhudawa/roadman-performance, Git blob 7b806241e5992cb6c7cff9276413023a5d6684e4. Copied without modification to public/images/goodlegs/scene-strength.webp after the external image failed in the real preview. Dimensions remain 960 × 645.",
       "editorialDecision": "Reuse the existing brand; do not generate a different mascot or fabricate a screen."
     },
     {
@@ -260,7 +260,7 @@
       "readerQuestion": "What should I do if I want help organising strength around my riding?",
       "usefulAnswer": "A single Good Legs card leads to /app with a stable article-source ID and clear iPhone-development/waitlist wording.",
       "evidence": "src/data/app-product.ts, existing /app and source website-v2; src/lib/app-acquisition.ts preserves allowed identifiers across domains.",
-      "editorialDecision": "Replace competing end-of-article sales modules only on selected pages; leave the rest of the archive’s journeys intact."
+      "editorialDecision": "Use the source-mapped Good Legs card as the selected pages’ product next step. Suppress the injected newsletter, end sales modules, Ask Roadman, generic offer journey and Clubhouse pitch on those pages. Retain related editorial resources and all unrelated archive behavior. The actual founder-page review caught a newsletter splitting the quote introduction from the quote; the selected-route condition removes that interruption."
     },
     {
       "location": "ConversionChrome — selected Good Legs acquisition routes",
@@ -294,7 +294,7 @@
   "claimsAndSources": "Galpin and O’Connor summaries were checked against the original imported transcript strings, which remain unchanged. Fabricated-looking quotations and unsupported claims were removed. Galpin current affiliation is supported by Parker University. Chris Peden has original listing metadata and a playable Spotify reference only. PMID 40632222 is described as low-certainty cyclist research. Existing archived episode durations remain historical metadata and are not used to manufacture clip timestamps.",
   "examplesAndReasoning": "The guides ask the reader to name a priority ride, compare gym slots, record work and effort, and assess cycling separately. They do not invent client outcomes or exact schedules that the interviews did not establish. The source-to-waitlist flow uses fixed editorial identifiers and retains consent-aware CTA click handling; a click is not a confirmed signup or an install.",
   "voiceAndCuts": "Removed unsupported fast-twitch/protein prescriptions, fabricated quotations, universal optimal frequency, zero-recovery-cost claims, invented founder recollections and repeated sales modules on selected pages. Used plain explanations and directly linked original sources.",
-  "desktopReview": "Blocked: the exact branch preview requires Vercel login. The connected Vercel app returned 403 requiring reauthentication to anhudawas-projects. The local supervised preview stopped before inspection. No desktop visual pass is claimed.",
-  "mobileReview": "Blocked by the same protected preview. The existing preview-only iframe selector includes the changed routes for a future 390 × 844 CSS-pixel review; no mobile visual pass is claimed.",
+  "desktopReview": "In progress: authenticated branch preview accessible. The first actual desktop review at 1363 × 936 caught a broken external product image and an injected newsletter splitting the founder quotation. Both are corrected in source and await rendered verification. No final desktop pass yet.",
+  "mobileReview": "In progress: actual preview iframe measured 390 × 844. Initial /app hero has no horizontal overflow. Final revised image and all selected reading/CTA layouts still require verification.",
   "productAndOfferAccuracy": "Good Legs is in development for iPhone with an open beta waitlist, no promised invitation, public launch date or standalone price. Not Done Yet access is at launch. Guest appearances are editorial sources rather than product endorsements. Current product capabilities were checked against Roadman product definitions and the original product website source."
 }
