@@ -5,6 +5,7 @@ import { CitedClaimTable } from "@/components/ui/CitedClaimTable";
 import { CiteBlock } from "@/components/ui/CiteBlock";
 import { DownloadCSVButton } from "@/components/features/blog/DownloadCSVButton";
 import { EmailCapture } from "@/components/features/conversion/EmailCapture";
+import { InterviewSource } from "@/components/mdx/InterviewSource";
 
 /**
  * MDX component overrides.
@@ -78,4 +79,5 @@ export const mdxComponents = {
   CiteBlock,
   DownloadCSVButton,
   EmailCapture,
+  InterviewSource,
 };

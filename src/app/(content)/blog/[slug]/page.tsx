@@ -1,3 +1,5 @@
+import { GoodLegsEditorialCTA } from "@/components/features/conversion/GoodLegsEditorialCTA";
+import { getGoodLegsEditorialSource } from "@/lib/good-legs-editorial";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -117,6 +119,7 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  const goodLegsSource = getGoodLegsEditorialSource(slug);
   const post = getPostBySlug(slug);
 
   if (!post) {
@@ -783,7 +786,7 @@ export default async function BlogPostPage({
                 sales card. Renders on every blog post regardless of
                 topic; the topic-specific IntentCTA below still picks the
                 right deeper offer. */}
-            <PlateauCTA variant="inline" source={`blog-${slug}`} />
+            {!goodLegsSource && <PlateauCTA variant="inline" source={`blog-${slug}`} />}
 
             {/* WeeksOutSelector — only renders on event-specific training
                 plan posts whose slug matches an event in training-plans.ts.
@@ -873,6 +876,7 @@ export default async function BlogPostPage({
                 the FAQ because that's the natural scroll-stop where the
                 reader has just finished the "am I a fit?" decision loop
                 and is most likely to take action. */}
+            {goodLegsSource ? <GoodLegsEditorialCTA source={goodLegsSource} /> : (
             <NextStepBlock
               pillar={post.pillar}
               source={`blog-next-${slug}`}
@@ -885,9 +889,11 @@ export default async function BlogPostPage({
                   : undefined
               }
             />
+            )}
 
             {/* End-of-article email capture — SSR-rendered so Googlebot,
                 AI crawlers, and no-JS visitors all see a newsletter opp. */}
+            {!goodLegsSource && (
             <div className="mt-16">
               <EmailCapture
                 variant="inline"
@@ -897,6 +903,7 @@ export default async function BlogPostPage({
                 buttonText="SUBSCRIBE"
               />
             </div>
+            )}
 
             {/* Intent-specific CTA — picks the right offer from article
                 keywords (plateau / zones / event / masters / nutrition /
@@ -906,6 +913,7 @@ export default async function BlogPostPage({
                 coaching-pillar posts) keeps the Apply pitch alive — this
                 slot is now intent-routed instead of the old static
                 "Apply for Coaching" block. */}
+            {!goodLegsSource && (
             <div className="mt-10">
               {inferredCategory === "event" && intentEventName ? (
                 <IntentCTA
@@ -921,6 +929,7 @@ export default async function BlogPostPage({
                 <IntentCTA pillar={post.pillar} source={intentSource} />
               )}
             </div>
+            )}
 
             {/* Topic hub back-links — bidirectional signal for Google +
                 natural "keep exploring" path for readers. */}
@@ -1155,7 +1164,7 @@ export default async function BlogPostPage({
         </Section>
       </main>
 
-      {(post.pillar === "coaching" || post.pillar === "nutrition") && (
+      {!goodLegsSource && (post.pillar === "coaching" || post.pillar === "nutrition") && (
         <StickyCoachingBar source={slug} />
       )}
 

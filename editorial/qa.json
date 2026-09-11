@@ -1,96 +1,49 @@
 {
   "version": 1,
   "reviewer": "Codex",
-  "decision": "publish",
-  "reviewedAt": "2026-09-09T12:24:57Z",
-  "contentDigest": "b972e28c17373e9c1b6e6590c63a11c912aadf0d94593ed336900ce1a220614c",
-  "reviewHash": "f38f891477f92f02cfca769896ca31ac4008612819459d0d020e6373c0fcbbd1",
-  "controlsHash": "690e4b2ddb0fb631ba211762063a492b111885c239303964cf09357b2986281c",
-  "blockers": [],
+  "decision": "hold",
+  "reviewedAt": null,
+  "contentDigest": "bd87247afb65127e0fb419f9575481a1dc5f20dbfefeeb625007138f5c29b1ae",
+  "reviewHash": "",
+  "controlsHash": "",
+  "blockers": [
+    "Rendered desktop and mobile QA on this exact revision remains outstanding.",
+    "Production build and final interactions require completed verification."
+  ],
   "checks": {
     "claims": {
-      "status": "pass",
-      "evidence": "The Saturday Spin audience proof uses Anthony's supplied active Beehiiv figure of about 23,215, rounded to 23,000. The newsletter render contains 23,000 weekly readers and no 30,000 or 65% claim. Faster After 40 adds no new performance-result, member-count, open-rate or sponsor-performance claim."
+      "status": "pending",
+      "evidence": "Final release verification has not yet been completed for this revision."
     },
     "editorial": {
-      "status": "pass",
-      "evidence": "The newsletter is focused on one useful training letter every Saturday; podcast capture copy uses that same promise; Faster After 40 is reduced to a neutral report-to-newsletter landing. The old coaching squeeze and its high-pressure sales framing are removed rather than replaced with new hype."
+      "status": "pending",
+      "evidence": "Final release verification has not yet been completed for this revision."
     },
     "offers": {
-      "status": "pass",
-      "evidence": "YouTube, Beehiiv posts, Beehiiv automations, referral configuration, Skool, Not Done Yet pricing and sponsor packages are unchanged. Faster After 40 delivers the existing report and subscribes through the existing newsletter infrastructure; the Core Training Guide remains a separate referral reward."
+      "status": "pending",
+      "evidence": "Final release verification has not yet been completed for this revision."
     },
     "desktop": {
-      "status": "pass",
-      "evidence": "Chromium rendered the exact current-main PR merge at 1440x1000 for the newsletter, two Stephen Seiler podcast pages and Faster After 40. Every page returned HTTP 200 with no horizontal overflow; the newsletter and podcast promises were present and Faster After 40 contained none of the forbidden coaching-sales strings.",
-      "pages": [
-        {
-          "url": "http://127.0.0.1:3000/newsletter?source=podcast",
-          "width": 1440,
-          "height": 1000,
-          "observations": "The Saturday Spin renders as one useful training letter every Saturday, shows 23,000 weekly readers, contains no 30,000 or 65% claim, and has no horizontal overflow."
-        },
-        {
-          "url": "http://127.0.0.1:3000/podcast/ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler",
-          "width": 1440,
-          "height": 1000,
-          "observations": "The episode returns HTTP 200, includes THE SATURDAY SPIN and the podcast-specific weekly training-takeaway promise, and has no horizontal overflow."
-        },
-        {
-          "url": "http://127.0.0.1:3000/podcast/ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
-          "width": 1440,
-          "height": 1000,
-          "observations": "The episode returns HTTP 200, includes THE SATURDAY SPIN and the podcast-specific weekly training-takeaway promise, and has no horizontal overflow."
-        },
-        {
-          "url": "http://127.0.0.1:3000/faster-after-40?source=podcast&utm_source=podcast&utm_medium=show-notes&utm_campaign=qa",
-          "width": 1440,
-          "height": 1000,
-          "observations": "The report landing returns HTTP 200, shows the free-report CTA and Saturday Spin path, contains none of Not Done Yet, $195, 100M+, 113 riders, START APPLICATION or Community, and has no horizontal overflow."
-        }
-      ]
+      "status": "pending",
+      "evidence": "Final release verification has not yet been completed for this revision.",
+      "pages": []
     },
     "mobile": {
-      "status": "pass",
-      "evidence": "Chromium rendered the exact current-main PR merge at 390x844 for the newsletter, both specified Stephen Seiler episodes and Faster After 40. Every page returned HTTP 200, preserved the intended messaging and had no horizontal overflow; the Faster After 40 sales-string checks were all clear.",
-      "pages": [
-        {
-          "url": "http://127.0.0.1:3000/newsletter?source=podcast",
-          "width": 390,
-          "height": 844,
-          "observations": "The focused Saturday Spin promise, signup form and 23,000-reader proof fit the mobile viewport with no 30,000 or 65% claim and no horizontal overflow."
-        },
-        {
-          "url": "http://127.0.0.1:3000/podcast/ep-2095-secret-to-cycling-fast-at-a-low-heart-rate-prof-seiler",
-          "width": 390,
-          "height": 844,
-          "observations": "The episode returns HTTP 200, includes the Saturday Spin CTA and podcast-specific promise on mobile, and has no horizontal overflow."
-        },
-        {
-          "url": "http://127.0.0.1:3000/podcast/ep-2148-80-20-training-to-ride-faster-dr-stephen-seiler",
-          "width": 390,
-          "height": 844,
-          "observations": "The episode returns HTTP 200, includes the Saturday Spin CTA and podcast-specific promise on mobile, and has no horizontal overflow."
-        },
-        {
-          "url": "http://127.0.0.1:3000/faster-after-40?source=podcast&utm_source=podcast&utm_medium=show-notes&utm_campaign=qa",
-          "width": 390,
-          "height": 844,
-          "observations": "The report landing returns HTTP 200, keeps the free-report and Saturday Spin path clear on mobile, contains none of the forbidden coaching-sales strings, and has no horizontal overflow."
-        }
-      ]
+      "status": "pending",
+      "evidence": "Final release verification has not yet been completed for this revision.",
+      "pages": []
     },
     "interactions": {
-      "status": "pass",
-      "evidence": "Podcast EmailCapture normalises podcast-episode sources to podcast and preserves the episode slug as the default UTM campaign. Faster After 40 accepts approved source values and optional UTM values, records acquisition internally, and forwards attribution through Beehiiv's native UTM source, medium and campaign fields. No real subscriber was created during QA."
+      "status": "pending",
+      "evidence": "Final release verification has not yet been completed for this revision."
     },
     "seo": {
-      "status": "pass",
-      "evidence": "The newsletter title and canonical remain stable while metadata now describes the focused weekly product. Faster After 40 keeps its existing canonical and uses neutral report metadata instead of unsupported World Tour prescription language. No new doorway or keyword-variant page is introduced."
+      "status": "pending",
+      "evidence": "Final release verification has not yet been completed for this revision."
     },
     "technical": {
-      "status": "pass",
-      "evidence": "The exact synthetic merge 55557e5c3c844490cf8f7dad30e96df781604ead passed the full Next.js build: compilation succeeded, TypeScript succeeded and 4,466 static pages generated. The subsequent Chromium matrix passed eight desktop/mobile page checks with HTTP 200, zero assertion failures and no horizontal overflow."
+      "status": "pending",
+      "evidence": "Final release verification has not yet been completed for this revision."
     }
   }
 }

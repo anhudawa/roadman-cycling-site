@@ -1,3 +1,5 @@
+import { GoodLegsEditorialCTA } from "@/components/features/conversion/GoodLegsEditorialCTA";
+import { getGoodLegsEditorialSource } from "@/lib/good-legs-editorial";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -111,6 +113,7 @@ export default async function EpisodePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  const goodLegsSource = getGoodLegsEditorialSource(slug);
   const episode = getEpisodeBySlug(slug);
 
   if (!episode) {
@@ -820,7 +823,7 @@ export default async function EpisodePage({
                 diagnostic before the offer-ladder pitch. High-intent
                 position after content, before transcript. */}
             <div className="mt-12">
-              <PlateauCTA variant="inline" source={`podcast-${slug}`} />
+              {goodLegsSource ? <GoodLegsEditorialCTA source={goodLegsSource} /> : <PlateauCTA variant="inline" source={`podcast-${slug}`} />}
             </div>
 
             {/* Read full transcript link — surfaces the dedicated
@@ -938,6 +941,7 @@ export default async function EpisodePage({
             />
 
             {/* Newsletter */}
+            {!goodLegsSource && (
             <EmailCapture
               variant="inline"
               heading="NEVER MISS AN EPISODE"
@@ -945,6 +949,7 @@ export default async function EpisodePage({
               source={`podcast-${slug}`}
               className="mt-16"
             />
+            )}
 
             {/* Author-curated related blog posts — explicit episode→blog
                 link equity. Populated by

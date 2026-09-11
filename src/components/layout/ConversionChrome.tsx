@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type ComponentType } from "react";
 import { usePathname } from "next/navigation";
+import { getGoodLegsEditorialSource } from "@/lib/good-legs-editorial";
 
 /**
  * Public tool routes that should ship the leanest possible JS — no
@@ -40,6 +41,9 @@ const LEAN_PATH_PREFIXES = [
 
 export function isLeanRoute(pathname: string | null): boolean {
   if (!pathname) return false;
+  if (pathname === "/app") return true;
+  const [, section, slug, extra] = pathname.split("/");
+  if (!extra && (section === "blog" || section === "podcast") && getGoodLegsEditorialSource(slug)) return true;
   return LEAN_PATH_PREFIXES.some(
     (prefix) => pathname === prefix || pathname.startsWith(prefix + "/"),
   );
