@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentDigest": "60c091ef4e5e753d3066ed156754f7180e3a219d169c081154b69e7660c5f608",
+  "contentDigest": "cd195bcefc6c2cf7043ad0ad71b0b0f6d381616c969cb022ca93105287d23b43",
   "scope": "Good Legs podcast acquisition: three interview sources; retained practical guide URLs and a founder story; focused waitlist journey, source attribution, original artwork and corrected Galpin profiles. Clip exports and external episode-description writes are separate outstanding tasks, not claimed as part of this website release.",
   "sections": [
     {
@@ -260,7 +260,7 @@
       "readerQuestion": "What should I do if I want help organising strength around my riding?",
       "usefulAnswer": "A single Good Legs card leads to /app with a stable article-source ID and clear iPhone-development/waitlist wording.",
       "evidence": "src/data/app-product.ts, existing /app and source website-v2; src/lib/app-acquisition.ts preserves allowed identifiers across domains.",
-      "editorialDecision": "Use the source-mapped Good Legs card as the selected pages’ product next step. Suppress the injected newsletter, end sales modules, Ask Roadman, generic offer journey and Clubhouse pitch on those pages. Retain related editorial resources and all unrelated archive behavior. The actual founder-page review caught a newsletter splitting the quote introduction from the quote; the selected-route condition removes that interruption."
+      "editorialDecision": "Use the source-mapped Good Legs card as the selected pages’ product next step. Suppress the injected newsletter, end sales modules, Ask Roadman, generic offer journey and Clubhouse pitch on those pages. Retain related editorial resources and all unrelated archive behavior. The actual founder-page review caught a newsletter splitting the quote introduction from the quote; the selected-route condition removes that interruption. Keep the explicitly selected reading links; remove the duplicate algorithmic cross-content block and generic podcast tool pitch from this journey."
     },
     {
       "location": "ConversionChrome — selected Good Legs acquisition routes",
@@ -296,6 +296,13 @@
       "usefulAnswer": "Size each label to its text within the available width.",
       "evidence": "Actual Galpin profile screenshots showed 48-pixel boxes with overlapping label text; inspected the rendered element dimensions.",
       "editorialDecision": "Use fit-content inline-flex labels with a maximum width, then verify the changed template at desktop and mobile widths."
+    },
+    {
+      "location": "Existing strength and beginner guides — maintenance link and app paragraph",
+      "readerQuestion": "Where can I adjust strength volume or learn about the app?",
+      "usefulAnswer": "Link to the dose guide using reader-facing wording, and describe Good Legs through its verified planning, logging and exercise-swap capabilities with the beta waitlist link.",
+      "evidence": "Finished-page reading found an internal search-query instruction in the strength guide and older app wording in the beginner guide. Product capabilities checked against the existing Good Legs product definition and public product site.",
+      "editorialDecision": "Remove the internal publishing instruction and align the app handoff with the rest of the current release."
     }
   ],
   "claimsAndSources": "Galpin and O’Connor summaries were checked against the original imported transcript strings, which remain unchanged. Fabricated-looking quotations and unsupported claims were removed. Galpin current affiliation is supported by Parker University. Chris Peden has original listing metadata and a playable Spotify reference only. PMID 40632222 is described as low-certainty cyclist research. Existing archived episode durations remain historical metadata and are not used to manufacture clip timestamps.",

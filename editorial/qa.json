@@ -3,8 +3,8 @@
   "reviewer": "Codex",
   "decision": "hold",
   "reviewedAt": "2026-09-11T19:36:42.616720+00:00",
-  "contentDigest": "60c091ef4e5e753d3066ed156754f7180e3a219d169c081154b69e7660c5f608",
-  "reviewHash": "1b8b6a968575a29cdda774e56291c176d8f6bbe5ec893017a690db574bc9325b",
+  "contentDigest": "cd195bcefc6c2cf7043ad0ad71b0b0f6d381616c969cb022ca93105287d23b43",
+  "reviewHash": "98ceb822d8b451ae2cd815abefbe73ac72264649590421708afdfd0c9fa2453d",
   "controlsHash": "690e4b2ddb0fb631ba211762063a492b111885c239303964cf09357b2986281c",
   "blockers": [
     "Final rendered verification of the product-image and selected-page CTA fixes remains in progress.",

@@ -1132,13 +1132,15 @@ export default async function BlogPostPage({
             })()}
 
             {/* Related Content (cross-content: blog + podcast) */}
-            <RelatedContent
-              currentSlug={slug}
-              currentType="blog"
-              pillar={post.pillar}
-              keywords={post.keywords ?? []}
-              className="mt-16"
-            />
+            {!goodLegsSource && (
+              <RelatedContent
+                currentSlug={slug}
+                currentType="blog"
+                pillar={post.pillar}
+                keywords={post.keywords ?? []}
+                className="mt-16"
+              />
+            )}
 
             {/* Journey-aware internal-linking engine — classifies the
                 article (awareness vs comparison) and routes the reader

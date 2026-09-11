@@ -1009,7 +1009,7 @@ export default async function EpisodePage({
               </div>
             )}
 
-            <RelevantTools tools={relevantTools} className="mt-10" />
+            {!goodLegsSource && <RelevantTools tools={relevantTools} className="mt-10" />}
 
             {/* Related Episodes (podcast-only, server-rendered for SEO) */}
             <RelatedEpisodes
@@ -1057,13 +1057,15 @@ export default async function EpisodePage({
             )}
 
             {/* Related Content (cross-content: blog + podcast) */}
-            <RelatedContent
-              currentSlug={slug}
-              currentType="podcast"
-              pillar={episode.pillar}
-              keywords={episode.keywords}
-              className="mt-16"
-            />
+            {!goodLegsSource && (
+              <RelatedContent
+                currentSlug={slug}
+                currentType="podcast"
+                pillar={episode.pillar}
+                keywords={episode.keywords}
+                className="mt-16"
+              />
+            )}
 
             {/* Journey-aware funnel block — replaces the static "Want
                 this applied to your training?" CTA with stage + pillar
