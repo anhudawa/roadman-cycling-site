@@ -66,3 +66,7 @@ Good Legs is in development for iPhone. The beta waitlist is open. This is a Roa
 ## Acceptance checklist for each export
 
 Record original URL, verified start/end times, caption review, guest/host identification, destination response, export filename and final playback review. Mark complete only when the video file exists and plays correctly. Publish the site embed and original description links only after their destination pages are live.
+
+## Source retrieval update
+
+The original Chris Peden and Art O’Connor preparation documents were located, along with the podcast schedule. They contain planned questions rather than recorded answers and cannot establish clip wording or timecodes. Focused recording searches and inspection of three accessible podcast/video folders did not locate the Galpin, Peden or O’Connor source media. A new transcript request again returned insufficient credits and charged nothing. All six exports remain unproduced; the briefs above retain their source-dependent status.

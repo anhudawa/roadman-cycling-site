@@ -2,18 +2,18 @@
   "version": 1,
   "reviewer": "Codex",
   "decision": "hold",
-  "reviewedAt": "2026-09-11T18:01:51.058588+00:00",
+  "reviewedAt": "2026-09-11T18:46:00.528307+00:00",
   "contentDigest": "75a6f54d95bb33b389d5fbf0e139b138bacf25152c00c4bbc13dd9f3d6e28603",
   "reviewHash": "fa7d3b7f1392f5bc6350992631f43fe2b0efc738d6c12399747b39f8237a777f",
   "controlsHash": "690e4b2ddb0fb631ba211762063a492b111885c239303964cf09357b2986281c",
   "blockers": [
     "Vercel preview authentication prevents the required actual desktop and mobile review.",
-    "Final end-to-end interaction checks and current branch deployment verification remain outstanding."
+    "Final browser article-to-app-to-waitlist interaction checks remain outstanding."
   ],
   "checks": {
     "claims": {
       "status": "pass",
-      "evidence": "Galpin and O’Connor summaries checked against preserved imported transcripts; source strings compare equal to main. Removed unsupported quotations and universal prescriptions. Current Galpin affiliation checked against Parker University. Peden metadata checked against the original Spotify listing; no invented guest takeaways."
+      "evidence": "Galpin and O’Connor summaries checked against preserved imported transcripts; source strings compare equal to main. Removed unsupported quotations and universal prescriptions. Current Galpin affiliation checked against Parker University. Peden metadata checked against the original Spotify listing; no invented guest takeaways. The original Chris Peden preparation notes and podcast schedule also confirm the guest identity; planned interview questions are not treated as spoken answers or transcripts."
     },
     "editorial": {
       "status": "pass",
@@ -25,7 +25,7 @@
     },
     "desktop": {
       "status": "blocked",
-      "evidence": "The branch preview redirects to Vercel login; the connected Vercel scope requires reauthentication. Actual desktop rendering has not been reviewed.",
+      "evidence": "The completed preview redirects to Vercel login. Owner scope anhudawas-projects still returns 403. A secure browser sign-in request lost its connection before returning a result; the subsequent verification could not establish access. No desktop rendering pass is claimed.",
       "pages": []
     },
     "mobile": {
@@ -42,8 +42,8 @@
       "evidence": "Internal-link audit reports zero broken links across 18,382 references, with external links excluded. Twelve prerendered routes have one H1, correct canonicals and valid JSON-LD; nine selected content routes have one main Good Legs CTA. Existing search-owner URLs are retained."
     },
     "technical": {
-      "status": "pending",
-      "evidence": "The initial local preview production build exited zero and generated 4,470 pages. Standalone TypeScript and focused ESLint passed; 56 gate tests and 23 focused tests passed. Final source refinements are prepared for the next branch build; this is not a production sign-off."
+      "status": "pass",
+      "evidence": "Application source commit 6e32609d1d3af4d091750fa9b817b6effaeab942 completed its Vercel preview deployment successfully. GitHub coverage and SEO QA checks passed. Local TypeScript, focused ESLint, 56 gate rejection tests, 23 focused tests, ten MDX compilations and the internal-link audit passed. The first local preview production build generated 4,470 pages. The legacy content-governance script is absent from main; the source review and MDX/link checks are recorded separately. The production editorial gate correctly remains blocked by missing rendered review; no production sign-off is claimed."
     }
   }
 }

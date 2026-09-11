@@ -96,3 +96,14 @@ The website implementation is in draft PR [#350](https://github.com/anhudawa/roa
 **Clip exports:** The connected clip/transcript service has zero credits. The six detailed editing briefs and original-description additions are in `docs/good-legs-podcast-clip-briefs-2026-09-11.md`. Four passages are located in stored transcripts; Chris's two selections require the original audio/transcript. Provide the recordings or restore service credits, verify the actual in/out points and captions, export and play back each clip, then add embeds and source-description links after the web destinations are live.
 
 Neither purchase, external source-channel write nor subscriber creation has occurred. These are execution/access limits, not a request to reapprove the agreed strategy.
+
+## Continuation check — 11 September 2026
+
+- Application source commit `6e32609d1d3af4d091750fa9b817b6effaeab942` completed its Vercel preview deployment successfully. GitHub coverage and SEO QA checks also passed. The editorial gate remains correctly blocked by missing rendered review.
+- PR #350 is still a draft; main remains `c923e7d3747a1f18043565087b8a543ee4b600d8`. No production publication has occurred.
+- The Vercel connection still lists no teams and rejects the owner scope `anhudawas-projects` with 403. The completed preview still redirects to sign-in. Secure browser sign-in was attempted, but the browser connection ended before an authentication result. Follow-up verification could not establish access; no successful sign-in or visual QA is claimed.
+- Original preparation notes and the podcast schedule confirm the Chris Peden strength interview. These contain planned questions, not a transcript, so they do not support new attributed answers or clip timecodes.
+- Focused searches of accessible files found no Galpin, Peden or O’Connor recording. Three podcast/video folders were inspected; their listed material is older archive content and does not contain these named sources. The archive also contains a Chris Duffin folder; that is a separate guest, not evidence about the Peden episode.
+- The transcript service again returned insufficient credits without a charge. The six clip briefs therefore remain pending actual source media, selection, caption review and playback.
+
+Next execution step: restore access to the existing Vercel owner scope, inspect the exact application preview on desktop and mobile, complete the linked journey, bind the release record to those observations, and run the production gate before merging. The website build is ready for that review; no renewed strategy approval is required.
