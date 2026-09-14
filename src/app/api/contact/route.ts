@@ -5,6 +5,7 @@ import { upsertContact, addActivity } from "@/lib/crm/contacts";
 import { subscribeToBeehiiv } from "@/lib/integrations/beehiiv";
 import { getResendClient } from "@/lib/integrations/resend";
 import { rateLimitOr429 } from "@/lib/rate-limit/ip-rate-limit";
+import { classifyContactSpam } from "@/lib/contact-spam";
 import {
   clampString,
   escapeHtml,
@@ -32,7 +33,17 @@ export async function POST(request: Request) {
       email?: unknown;
       subject?: unknown;
       message?: unknown;
+      website?: unknown;
     };
+
+    // Stop bots before they create a DB row, CRM contact, Beehiiv subscriber,
+    // or notification email. Return the normal success shape so the filter is
+    // not an oracle that helps automated senders tune their payloads.
+    const spamReason = classifyContactSpam(raw);
+    if (spamReason) {
+      console.info(`[Contact Form] Discarded likely spam: ${spamReason}`);
+      return NextResponse.json({ success: true });
+    }
 
     // Validate + normalise. Each helper returns null if input is
     // missing, wrong type, empty after trim, or over the length cap.

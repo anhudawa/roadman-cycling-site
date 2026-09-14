@@ -5,7 +5,13 @@ import { Header, Footer, Section, Container } from "@/components/layout";
 
 export default function ContactPage() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
+  const [formData, setFormData] = useState(() => ({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+    website: "",
+  }));
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -20,7 +26,13 @@ export default function ContactPage() {
 
       if (res.ok) {
         setStatus("success");
-        setFormData({ name: "", email: "", subject: "", message: "" });
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+          website: "",
+        });
       } else {
         setStatus("error");
       }
@@ -132,6 +144,26 @@ export default function ContactPage() {
                 onSubmit={handleSubmit}
                 className="bg-background-elevated rounded-xl border border-white/5 p-8 space-y-6"
               >
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -left-[10000px] top-auto h-px w-px overflow-hidden"
+                >
+                  <label htmlFor="contact-website">Website</label>
+                  <input
+                    id="contact-website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    data-1p-ignore
+                    data-lpignore="true"
+                    data-bwignore
+                    value={formData.website}
+                    onChange={(e) =>
+                      setFormData({ ...formData, website: e.target.value })
+                    }
+                  />
+                </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="contact-name" className="block font-heading text-sm text-off-white mb-2">
