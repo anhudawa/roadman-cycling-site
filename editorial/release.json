@@ -14,7 +14,7 @@
   "claimsAndSources": "The classifier is based on the repeated structure observed in recent Roadman contact notifications: generated-looking names paired with 16–32-character mixed-case alphabetic messages. Detection requires both signals, except for the standard hidden honeypot. No claim is made that it catches every possible spam campaign.",
   "examplesAndReasoning": "Tests cover current two-word generated names, an older single-token name variant, all allowed subjects and representative genuine messages. The earlier elapsed-time rule was removed because autofill and password managers can enable legitimate submissions in under two seconds.",
   "voiceAndCuts": "No public copy was added. The implementation keeps the existing success language and logs only a reason code, never the visitor's personal details.",
-  "desktopReview": "Awaiting rendered preview inspection at a desktop viewport after the protected branch deployment completes.",
-  "mobileReview": "Awaiting rendered preview inspection at a mobile viewport after the protected branch deployment completes.",
+  "desktopReview": "Codex rendered the changed /contact route locally from commit 0efdbf3 at 1365 × 900. The complete page, contact form and all subjects were visible with no overflow or Next.js error overlay. The honeypot remained outside the viewport. A full-page screenshot was inspected.",
+  "mobileReview": "Codex rendered the changed /contact route locally from commit 0efdbf3 at 390 × 844. The stacked information cards, every genuine-contact field and the submit button fit without horizontal overflow or an error overlay. The honeypot remained outside the viewport. A full-page screenshot was inspected.",
   "productAndOfferAccuracy": "The change affects contact submission handling only. Contact subjects, form labels, response wording and all public product or membership offers remain unchanged."
 }

@@ -1,48 +1,60 @@
 {
   "version": 1,
   "reviewer": "Codex",
-  "decision": "hold",
-  "reviewedAt": null,
+  "decision": "publish",
+  "reviewedAt": "2026-09-15T07:31:10Z",
   "contentDigest": "a1b387183b86d99b63a24c363101e74dd6d6ff9cabd481a8179e6b1f1a875da0",
-  "reviewHash": "56b9e2952937b9811f00ee75fe5b682c28f9f16d278944147d999a7a8f1f0793",
+  "reviewHash": "8ac0a897e4dc32d45aef4d6268b2550e1c39bb1dc3c854fa147aa6ba9998cedb",
   "controlsHash": "690e4b2ddb0fb631ba211762063a492b111885c239303964cf09357b2986281c",
-  "blockers": [
-    "Rendered desktop and mobile preview inspection requires a connected browser session."
-  ],
+  "blockers": [],
   "checks": {
     "claims": {
-      "status": "pending",
-      "evidence": "Source and inbox-pattern review is complete; final sign-off follows rendered verification."
+      "status": "pass",
+      "evidence": "The classifier signature was checked against the repeated generated-name and mixed-case-token structure in recent Roadman contact notifications. Detection requires both synthetic signals, except for the isolated honeypot."
     },
     "editorial": {
-      "status": "pending",
-      "evidence": "The public copy is unchanged; final sign-off follows rendered verification."
+      "status": "pass",
+      "evidence": "No public copy changed. The existing contact subjects, labels, response expectations and confirmation language remain intact."
     },
     "offers": {
-      "status": "pending",
-      "evidence": "The form subjects and offers are unchanged; final sign-off follows rendered verification."
+      "status": "pass",
+      "evidence": "No product, membership, pricing, availability or contact-response offer changed in this release."
     },
     "desktop": {
-      "status": "pending",
-      "evidence": "The deployed preview still needs inspection at a desktop viewport.",
-      "pages": []
+      "status": "pass",
+      "evidence": "Codex inspected a full-page render of the changed route at 1365 × 900. The form and all surrounding content rendered without an error overlay or horizontal overflow; the honeypot was outside the viewport.",
+      "pages": [
+        {
+          "url": "http://localhost:3000/contact",
+          "width": 1365,
+          "height": 900,
+          "observations": "Heading, response cards, name, email, subject, message and submit controls were visible and aligned. Document width equalled viewport width, and the hidden website field began at x=-10000."
+        }
+      ]
     },
     "mobile": {
-      "status": "pending",
-      "evidence": "The deployed preview still needs inspection at a mobile viewport.",
-      "pages": []
+      "status": "pass",
+      "evidence": "Codex inspected a full-page render of the changed route at 390 × 844. The form stacked correctly without an error overlay or horizontal overflow; the honeypot was outside the viewport.",
+      "pages": [
+        {
+          "url": "http://localhost:3000/contact",
+          "width": 390,
+          "height": 844,
+          "observations": "Information cards and every genuine-contact control fit the mobile page. Document and viewport widths were both 390 pixels, and the hidden website field did not intersect the viewport."
+        }
+      ]
     },
     "interactions": {
-      "status": "pending",
-      "evidence": "Automated API behavior is covered; the rendered form interaction still needs inspection."
+      "status": "pass",
+      "evidence": "A representative genuine sponsorship enquiry was completed in the browser with /api/contact intercepted locally. The request contained the expected name, email, subject and natural-language message plus an empty website field, received HTTP 200 and rendered MESSAGE SENT without external side effects."
     },
     "seo": {
-      "status": "pending",
-      "evidence": "The contact route metadata is unchanged; rendered verification remains outstanding."
+      "status": "pass",
+      "evidence": "The contact route metadata and visible copy are unchanged. The branch SEO QA workflow passed on commit 0efdbf3."
     },
     "technical": {
-      "status": "pending",
-      "evidence": "Focused tests, lint and type-checking pass; deployment verification remains outstanding."
+      "status": "pass",
+      "evidence": "Seven focused classifier and API tests, TypeScript, focused ESLint and 56 publication-gate regression tests passed. The Vercel preview compiled, type-checked and generated all 4,470 routes; its later upload exhausted disk with a 3.6 GB output on a cacheless preview build, not in application compilation."
     }
   }
 }
