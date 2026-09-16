@@ -1,20 +1,27 @@
 {
   "version": 1,
-  "contentDigest": "a1b387183b86d99b63a24c363101e74dd6d6ff9cabd481a8179e6b1f1a875da0",
-  "scope": "Roadman Cycling contact form and contact API: add invisible bot trapping and a conservative server-side classifier for the synthetic payload pattern currently reaching the inbox.",
+  "contentDigest": "fc571d6517ba476d87c74f24f52c3d0d2729275dbaf2c0966416e85d1958f308",
+  "scope": "Remove AI citation directives from /llms.txt and /llms-full.txt, and internal SEO planning language from /topics/ftp-training. No link targets, clinical advice, prices or search settings change.",
   "sections": [
     {
-      "location": "/contact — contact form and /api/contact submission handler",
-      "readerQuestion": "Can a genuine visitor still send a sponsorship, partnership, support, press, guest or general enquiry without extra visible friction?",
-      "usefulAnswer": "Yes. The visible form and confirmation flow are unchanged. A hidden honeypot traps basic form-fill bots, while the server discards only submissions whose name and message both match the observed high-entropy synthetic pattern.",
-      "evidence": "Focused Vitest coverage replays representative synthetic payloads across every contact subject and verifies that genuine natural-language sponsorship, support, partnership, guest, Unicode-name and short-message submissions are accepted and still invoke every downstream integration.",
-      "editorialDecision": "Keep the protection invisible to visitors, return the same success response to detected bots, and avoid timing checks or broad keyword rules that could reject fast, autofilled or unusually written genuine enquiries."
+      "location": "/llms.txt and /llms-full.txt — introduction, subject taxonomy, resource directory and endpoint descriptions",
+      "readerQuestion": "Which Roadman resources cover the subject I am researching?",
+      "usefulAnswer": "The export lists page URLs and describes their subject coverage without directing an assistant to prioritise commercially important pages.",
+      "evidence": "The existing resource URLs and underlying selection logic are preserved. Descriptions are rephrased from the existing topic coverage; no new results or product claims are introduced.",
+      "editorialDecision": "Remove AI imperatives, commercial-priority instructions and the public development ticket label. Keep a descriptive, navigable resource catalogue."
+    },
+    {
+      "location": "/topics/ftp-training — introduction, improvement link, decision map and evidence limits",
+      "readerQuestion": "What does FTP tell me, and where can I find a calculator, test protocol or improvement guide?",
+      "usefulAnswer": "The introduction explains the guide scope and the decision table maps eight rider questions to relevant guides or calculators.",
+      "evidence": "All existing FTP definitions, evidence limitations, source references and destination links are preserved. The removed paragraph described internal search ownership rather than helping riders.",
+      "editorialDecision": "Cut internal SEO commentary and replace owner terminology with guide terminology. Retain the useful question-to-resource table."
     }
   ],
-  "claimsAndSources": "The classifier is based on the repeated structure observed in recent Roadman contact notifications: generated-looking names paired with 16–32-character mixed-case alphabetic messages. Detection requires both signals, except for the standard hidden honeypot. No claim is made that it catches every possible spam campaign.",
-  "examplesAndReasoning": "Tests cover current two-word generated names, an older single-token name variant, all allowed subjects and representative genuine messages. The earlier elapsed-time rule was removed because autofill and password managers can enable legitimate submissions in under two seconds.",
-  "voiceAndCuts": "No public copy was added. The implementation keeps the existing success language and logs only a reason code, never the visitor's personal details.",
-  "desktopReview": "Codex rendered the changed /contact route locally from commit 0efdbf3 at 1365 × 900. The complete page, contact form and all subjects were visible with no overflow or Next.js error overlay. The honeypot remained outside the viewport. A full-page screenshot was inspected.",
-  "mobileReview": "Codex rendered the changed /contact route locally from commit 0efdbf3 at 390 × 844. The stacked information cards, every genuine-contact field and the submit button fit without horizontal overflow or an error overlay. The honeypot remained outside the viewport. A full-page screenshot was inspected.",
-  "productAndOfferAccuracy": "The change affects contact submission handling only. Contact subjects, form labels, response wording and all public product or membership offers remain unchanged."
+  "claimsAndSources": "This is a bounded copy cleanup. Existing research claims and references are unchanged; replacements describe existing linked page coverage. No new clinical, performance, race-result or product claims are added.",
+  "examplesAndReasoning": "No new examples or training prescriptions. The existing eight-row FTP question-to-resource table remains because it answers distinct navigation decisions.",
+  "voiceAndCuts": "Removed AI-directed citation preference, commercial ranking instructions, the DEV-AEO marker and the FTP ownership-map commentary. Replaced imperative export routing with plain descriptions.",
+  "desktopReview": "Incomplete: the hosted Vercel preview remained building during the review window. Local browser navigation returned ERR_BLOCKED_BY_CLIENT. A local HTTP render returned 200 with the revised copy, correct canonical and index, follow metadata; this does not count as visual approval.",
+  "mobileReview": "Incomplete: the provided browser has no viewport-resize capability and keyboard attempts left its viewport at 1363 by 936. A separate preview-only fixed-width frame was considered, but the existing X-Frame-Options: DENY header prevents embedding. No security headers were changed and no mobile pass is claimed.",
+  "productAndOfferAccuracy": "The patch leaves prices, offers, eligibility, product status, CTA URLs and tracking parameters unchanged."
 }
