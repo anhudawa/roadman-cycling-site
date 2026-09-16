@@ -1,60 +1,13 @@
 {
   "version": 1,
   "reviewer": "Codex",
-  "decision": "publish",
-  "reviewedAt": "2026-09-15T07:31:10Z",
-  "contentDigest": "a1b387183b86d99b63a24c363101e74dd6d6ff9cabd481a8179e6b1f1a875da0",
-  "reviewHash": "8ac0a897e4dc32d45aef4d6268b2550e1c39bb1dc3c854fa147aa6ba9998cedb",
+  "decision": "hold",
+  "reviewedAt": "2026-09-16T10:35:21.380Z",
+  "contentDigest": "fc571d6517ba476d87c74f24f52c3d0d2729275dbaf2c0966416e85d1958f308",
+  "reviewHash": "e946d246a21f04bd3be472ed9e89dd8aa228e1e2bbab1cc873d995ffee892a4d",
   "controlsHash": "690e4b2ddb0fb631ba211762063a492b111885c239303964cf09357b2986281c",
-  "blockers": [],
-  "checks": {
-    "claims": {
-      "status": "pass",
-      "evidence": "The classifier signature was checked against the repeated generated-name and mixed-case-token structure in recent Roadman contact notifications. Detection requires both synthetic signals, except for the isolated honeypot."
-    },
-    "editorial": {
-      "status": "pass",
-      "evidence": "No public copy changed. The existing contact subjects, labels, response expectations and confirmation language remain intact."
-    },
-    "offers": {
-      "status": "pass",
-      "evidence": "No product, membership, pricing, availability or contact-response offer changed in this release."
-    },
-    "desktop": {
-      "status": "pass",
-      "evidence": "Codex inspected a full-page render of the changed route at 1365 × 900. The form and all surrounding content rendered without an error overlay or horizontal overflow; the honeypot was outside the viewport.",
-      "pages": [
-        {
-          "url": "http://localhost:3000/contact",
-          "width": 1365,
-          "height": 900,
-          "observations": "Heading, response cards, name, email, subject, message and submit controls were visible and aligned. Document width equalled viewport width, and the hidden website field began at x=-10000."
-        }
-      ]
-    },
-    "mobile": {
-      "status": "pass",
-      "evidence": "Codex inspected a full-page render of the changed route at 390 × 844. The form stacked correctly without an error overlay or horizontal overflow; the honeypot was outside the viewport.",
-      "pages": [
-        {
-          "url": "http://localhost:3000/contact",
-          "width": 390,
-          "height": 844,
-          "observations": "Information cards and every genuine-contact control fit the mobile page. Document and viewport widths were both 390 pixels, and the hidden website field did not intersect the viewport."
-        }
-      ]
-    },
-    "interactions": {
-      "status": "pass",
-      "evidence": "A representative genuine sponsorship enquiry was completed in the browser with /api/contact intercepted locally. The request contained the expected name, email, subject and natural-language message plus an empty website field, received HTTP 200 and rendered MESSAGE SENT without external side effects."
-    },
-    "seo": {
-      "status": "pass",
-      "evidence": "The contact route metadata and visible copy are unchanged. The branch SEO QA workflow passed on commit 0efdbf3."
-    },
-    "technical": {
-      "status": "pass",
-      "evidence": "Seven focused classifier and API tests, TypeScript, focused ESLint and 56 publication-gate regression tests passed. The Vercel preview compiled, type-checked and generated all 4,470 routes; its later upload exhausted disk with a 3.6 GB output on a cacheless preview build, not in application compilation."
-    }
-  }
+  "blockers": [
+    "Hosted desktop and mobile rendered verification is required before publication."
+  ],
+  "checks": {}
 }

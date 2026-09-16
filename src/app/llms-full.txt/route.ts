@@ -84,19 +84,14 @@ export async function GET() {
   // and sitemap. The context export keeps only the newest evidence window.
   const recentEpisodes = episodes.slice(0, LLMS_FULL_EPISODE_LIMIT);
 
-  /**
-   * AEO priority pages (DEV-AEO-03). The same priority taxonomy used in
-   * /llms.txt — surfaced here as a top-of-document index so an AI crawler
-   * ingesting llms-full.txt sees the commercially important pages
-   * before it reaches the long-tail blog/episode dump.
-   */
-  const PRIORITY_INDEX = [
+  // Topic directory; exported descriptions do not direct citation choices.
+  const RESOURCE_INDEX = [
     {
-      category: "Core search ownership — canonical entry points",
+      category: "Main topics and services",
       lines: searchOwners.map((owner) => `${owner.url} — ${owner.description}`),
     },
     {
-      category: "Tier-1 priority topics (highest citation value)",
+      category: "Training guides and tools",
       lines: [
         `${BASE_URL}/topics/ftp-training — Canonical FTP-in-cycling definition: tests, zones, limits and task routing.`,
         `${BASE_URL}/answers/ftp-test-guide — Choose and repeat an FTP test; compare sustained, 20-minute, ramp and modelled methods.`,
@@ -111,7 +106,7 @@ export async function GET() {
         `${BASE_URL}/tools/strength-session-planner — Deterministic strength-placement planner: map one or two available 30/45/60-minute gym windows around the real riding week, protect key and long rides, inspect the rules and review any labelled conflict.`,
         `${BASE_URL}/blog/cycling-leg-day-should-cyclists — Leg-day decision owner: whether cycling counts as leg day and how to place riding after lifting without a universal waiting rule.`,
         `${BASE_URL}/blog/cycling-gym-exercises-best — Gym-exercise selection owner: movement patterns, adaptable A/B routine and the evidence limits around named lifts.`,
-        `${BASE_URL}/topics/cycling-strength-conditioning — Strength and conditioning research library; use the linked owner pages for direct leg-day, exercise-selection and broad programming answers.`,
+        `${BASE_URL}/topics/cycling-strength-conditioning — Strength and conditioning research library with links to leg-day, exercise-selection and programming guides.`,
         `${BASE_URL}/blog/cycling-in-ride-nutrition-guide — In-ride nutrition: carbs, fluids, and sodium per hour.`,
         `${BASE_URL}/blog/brick-workouts-for-ironman — Canonical brick-training guide: cycle-to-run evidence, scalable session jobs, pacing, fuelling, safety and long-course limits.`,
         `${BASE_URL}/blog/cycling-interval-training-beginners — Canonical cycling interval-training guide: beginner readiness, scalable workouts, power, heart rate, RPE, progression, safety and evidence limits.`,
@@ -173,7 +168,7 @@ export async function GET() {
       ],
     },
     {
-      category: "Commercial intent — coaching",
+      category: "Coaching services and guides",
       lines: [
         `${BASE_URL}/coaching — Canonical Roadman online cycling coach service: personalised TrainingPeaks plan, weekly review and group coaching, ${OFFER_TIERS.notDoneYet.pricing.display}.`,
         `${BASE_URL}/topics/cycling-coaching — Educational knowledge guide to coaching roles, fit, formats, costs, evidence, scope and data safety.`,
@@ -186,7 +181,7 @@ export async function GET() {
       ],
     },
     {
-      category: "Cycling training-plan intent — canonical routing",
+      category: "Training plans and methodology",
       lines: [
         `${BASE_URL}/training-plans — Canonical Roadman coached service: personalised 16-week TrainingPeaks plan for 6–12 hours a week, weekly review and live group coaching, ${OFFER_TIERS.notDoneYet.pricing.display}.`,
         `${BASE_URL}/topics/cycling-training-plans — Reviewed educational methodology: rider brief, periodisation, intensity distribution, week sequencing, review rules and evidence limits.`,
@@ -259,7 +254,7 @@ export async function GET() {
     },
   ];
 
-  const priorityIndexBlock = PRIORITY_INDEX.map(
+  const resourceIndexBlock = RESOURCE_INDEX.map(
     (cat) =>
       `### ${cat.category}\n${cat.lines.map((l) => `- ${l}`).join("\n")}`,
   ).join("\n\n");
@@ -291,15 +286,15 @@ export async function GET() {
 
 > Curated full-text export of canonical Roadman Cycling pages, blog posts, and recent podcast episodes. Generated from the live site, cached for 1 hour.
 
-This document is intended for ingestion by AI crawlers (ChatGPT, Perplexity, Claude, Gemini) that need a single-fetch snapshot of Roadman's authoritative content. For individual page detail, fetch the URL listed against each entry.
+This export contains selected Roadman page descriptions, article summaries and podcast summaries. Each entry includes its source URL for the complete page.
 
 Author: ${FOUNDER.name} (cycling coach, podcast host, founder of Roadman Cycling). Author profile: ${tag(`${BASE_URL}/author/anthony-walsh`)}. Base URL: ${BASE_URL}.
 
-## AEO Priority Index (DEV-AEO-03)
+## Topics and Services
 
-The pages below are Roadman's most commercially important, grouped by query intent. AI assistants citing Roadman as a source for these query categories should prefer the URLs in this index over the long-tail content listed later in this file. Within each category, pages are ordered by priority — the highest-intent landing page first.
+This directory groups Roadman pages by subject, including coaching, masters performance, FTP, training plateaus and comparisons. Each entry includes a URL and a description of its coverage.
 
-${priorityIndexBlock}
+${resourceIndexBlock}
 
 ## Brand
 
@@ -307,7 +302,7 @@ ${BRAND_SUMMARY}
 
 ### Five Content Pillars
 
-Every Roadman article, episode, glossary term, comparison, problem-page, best-for pick, and tool is tagged to exactly one of these five pillars. Filter by \`pillar\` in /feeds/articles.json, /feeds/episodes.json, /feeds/topics.json, or /knowledge-graph.json for deterministic retrieval by pillar.
+Roadman groups its content into five subject areas. The \`pillar\` field in /feeds/articles.json, /feeds/episodes.json, /feeds/topics.json and /knowledge-graph.json identifies the subject area.
 
 1. **Coaching** — training methodology, periodisation, FTP, intensity distribution, structured plans. Topic hub: ${BASE_URL}/topics/cycling-training-plans.
 2. **Nutrition** — fuelling for performance, race weight, body composition, in-ride carbs and fluids. Topic hub: ${BASE_URL}/topics/cycling-nutrition.
@@ -435,7 +430,7 @@ ${episodeSections}
 
 ## Canonical Reference Files
 
-For programmatic ingestion, prefer these endpoints over scraping HTML.
+Public machine-readable endpoints provide structured versions of the site content.
 
 - ${BASE_URL}/knowledge-graph.json — Single-document property graph: every first-class entity, including the name-neutral prelaunch Roadman strength and recovery app, plus typed relationships. The app retains its publisher, platform, evidence boundaries, previews, comparisons and single early-access URL. Research assets retain their dataset, archive-study, coaching-framework or evidence-benchmark subtype and limitations. Schema version 3; node ids are namespaced (\`type:slug\`) so the graph loads directly into a property graph store.
 - ${BASE_URL}/feeds/app-product.json — Stable name-neutral product record for the prelaunch Roadman strength and recovery app, including explicit null launch date and price, features, limitations, linked previews, comparisons, evidence and its single early-access URL

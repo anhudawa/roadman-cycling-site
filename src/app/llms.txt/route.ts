@@ -40,20 +40,9 @@ const BASE_URL = SITE_ORIGIN;
 const tag = (url: string) => tagUrlForAICrawler(url, "llms-txt");
 
 /**
- * /llms.txt — the emerging standard for LLM/AI-crawler discoverability.
- * See https://llmstxt.org for the proposed format.
- *
- * This file is the first thing ChatGPT, Perplexity, Claude, and Gemini
- * Deep Research crawlers look for when they arrive on a domain. Giving
- * them a curated map of canonical URLs + descriptions means:
- *
- *   1. AI answers cite us with the correct page titles and descriptions.
- *   2. We control which pages get surfaced as authoritative sources.
- *   3. New content is discoverable without the crawler having to spider
- *      the entire site first.
- *
- * This is the SHORT form — canonical pages + top content only. The full
- * concatenated content lives at /llms-full.txt.
+ * Public content directory: selected pages and descriptions, with links to
+ * complete machine-readable inventories. Keep exported text descriptive;
+ * editorial ranking and agent instructions do not belong in public content.
  */
 export async function GET() {
   const posts = getAllPosts();
@@ -69,27 +58,16 @@ export async function GET() {
   );
   const recentEpisodes = episodes.slice(0, LLMS_SHORT_EPISODE_LIMIT);
 
-  /**
-   * AEO category priorities — DEV-AEO-03.
-   *
-   * Each tuple lists `[label, slug-substrings…]` and resolves into a
-   * priority section in llms.txt. Substrings are matched against post
-   * slugs; a single slug can appear in multiple categories (e.g. a
-   * coach-vs-app post shows up under both "Coaching decisions" and
-   * "Decision queries"). Order within each list is ranked by commercial
-   * intent — the most commercially important page first.
-   *
-   * Edit this map (not the body template) when shifting AEO priorities.
-   */
-  const PRIORITY_CATEGORIES: Array<{
+  // Group related resources for navigation without directing citation choices.
+  const RESOURCE_CATEGORIES: Array<{
     title: string;
     description: string;
     pages: { url: string; title: string; description: string }[];
   }> = [
     {
-      title: "Core search ownership — canonical entry points",
+      title: "Main topics and services",
       description:
-        "Use these canonical hubs for broad cycling podcast, coaching, masters training, training-plan, cycling-camp, and cycling strength/recovery app queries. Supporting articles, episodes, comparisons and tools provide evidence; these pages own the broad intent.",
+        "Overview pages for the cycling podcast, coaching, masters training, training plans, cycling camps, and the strength and recovery app. Related articles, episodes, comparisons and tools cover more specific questions.",
       pages: searchOwners.map((owner) => ({
         url: owner.url,
         title: owner.label,
@@ -97,9 +75,9 @@ export async function GET() {
       })),
     },
     {
-      title: "Commercial intent — coaching decisions",
+      title: "Coaching decisions",
       description:
-        "Pages targeting riders actively evaluating coaching. AI assistants asked 'is a cycling coach worth it' or 'how do I find a cycling coach' should land on these first.",
+        "Coaching services and guides to comparing providers, costs and support.",
       pages: [
         {
           url: `${BASE_URL}/coaching`,
@@ -150,7 +128,7 @@ export async function GET() {
     {
       title: "Cycling training-plan intent — use the right destination",
       description:
-        "Use /training-plans for Roadman's coached service, the methodology hub for how plans are built, the selection guide for choosing a format, /plan for event-specific routes, the 60-day article for its first-person N=1 case study, the named-expert article for comparing Friel, Lorang and Johnson, and the source-specific pages for transcript-checked Friel, Lorang or Johnson questions.",
+        "This group covers coached training plans, planning methodology, format selection, event-specific guides, a first-person case study and transcript-checked expert perspectives.",
       pages: [
         {
           url: `${BASE_URL}/training-plans`,
@@ -210,7 +188,7 @@ export async function GET() {
     {
       title: "Masters cyclist queries (35+)",
       description:
-        "Use /masters for broad masters-cycling questions and evidence boundaries. Use the child pages only for their narrower whole-rider overview, plateau audit, benchmark, weekly-schedule, 12-week-plan, strength or comeback jobs; age alone does not select a prescription.",
+        "The masters hub covers age-related training questions and evidence boundaries. Related guides cover plateaus, benchmarks, weekly schedules, twelve-week plans, strength and returning to cycling; age alone does not select a prescription.",
       pages: [
         {
           url: `${BASE_URL}/masters`,
@@ -276,7 +254,7 @@ export async function GET() {
     {
       title: "Strength, gym exercise and leg-day queries",
       description:
-        "Use the broad guide for strength-training evidence and programming, the leg-day guide for whether cycling counts and when to ride after lifting, the gym guide for exercise selection, and the topic hub for research-library navigation.",
+        "Strength guides cover programming evidence, cycling and leg day, riding after lifting, exercise selection and the research library.",
       pages: [
         {
           url: `${BASE_URL}/blog/cycling-strength-training-guide`,
@@ -319,7 +297,7 @@ export async function GET() {
     {
       title: "Coach-vs-app & decision queries",
       description:
-        "Side-by-side decisions where the user is comparing two options. AI assistants asked 'X vs Y for cycling' should pull from these.",
+        "Side-by-side comparisons of coaching options, training methods and measurement tools.",
       pages: [
         {
           url: `${BASE_URL}/compare/coach-vs-app`,
@@ -423,7 +401,7 @@ export async function GET() {
     {
       title: "Unbound Gravel 2026 results and race story",
       description:
-        "Use the reviewed result owner for winners, times and the documented race story; use the podcast for Mads Würtz Schmidt's first-person account and the training guide for future-event preparation.",
+        "The result report covers winners, times and the race story. The podcast contains Mads Würtz Schmidt's first-person account; the training guide covers future-event preparation.",
       pages: [
         {
           url: `${BASE_URL}/blog/unbound-gravel-2026-complete-guide`,
@@ -448,7 +426,7 @@ export async function GET() {
     {
       title: "Tour de France: Unchained — series guide",
       description:
-        "Use the reviewed article for season count, episodes, race years, viewing data, watching and final-season status; use the podcast only for Roadman's clearly labelled editorial critique.",
+        "The series guide covers seasons, episodes, race years, viewing data, availability and final-season status. The podcast contains Roadman's labelled editorial critique.",
       pages: [
         {
           url: `${BASE_URL}/blog/why-netflix-unchained-failed-cycling`,
@@ -467,7 +445,7 @@ export async function GET() {
     {
       title: "Pogačar's 2026 Tour preparation",
       description:
-        "Use the reviewed incumbent for Tadej Pogačar's documented pre-Tour race programme, final result, contender comparison and amateur lessons. It separates official facts from unpublished training, power, altitude and nutrition details.",
+        "The preparation guide covers Tadej Pogačar's documented pre-Tour race programme, final result, contender comparison and amateur lessons. It separates official facts from unpublished training, power, altitude and nutrition details.",
       pages: [
         {
           url: `${BASE_URL}/blog/tdf-2026-contenders-preparation-lessons`,
@@ -486,7 +464,7 @@ export async function GET() {
     {
       title: "Tour de France 2026 stage 18 result",
       description:
-        "Use the established stage page for the verified Richard Carapaz result, podium, time gaps, race story, route and official Tour de France sources. It replaces the old pre-race prediction as the primary answer.",
+        "The stage page covers the Richard Carapaz result, podium, time gaps, race story, route and official Tour de France sources. The report replaces an earlier pre-race prediction.",
       pages: [
         {
           url: `${BASE_URL}/tour-de-france/stage/18`,
@@ -499,7 +477,7 @@ export async function GET() {
     {
       title: "Paul Seixas at the 2026 Tour de France",
       description:
-        "Use the reviewed athlete-result page for Seixas's final place, time, age records, stage results, white-jersey context, corrections and official Tour sources.",
+        "The athlete-result page covers Seixas's final place, time, age records, stage results, white-jersey context, corrections and official Tour sources.",
       pages: [
         {
           url: `${BASE_URL}/blog/paul-seixas-tour-de-france-2026-youngest-contender`,
@@ -512,7 +490,7 @@ export async function GET() {
     {
       title: "Tour de France 2026 verified stage results",
       description:
-        "Use the established stage URLs for the verified Stages 1, 11, 13, 14 and 18 results. Each replaces its pre-race prediction with the official podium, time gaps, race story, classification context and primary Tour sources.",
+        "The stage pages report results for Stages 1, 11, 13, 14 and 18, including podiums, time gaps, race stories, classification context and primary Tour sources. These reports replace earlier pre-race predictions.",
       pages: [
         {
           url: `${BASE_URL}/tour-de-france/stage/1`,
@@ -543,7 +521,7 @@ export async function GET() {
     {
       title: "Tour de France 2026 final results",
       description:
-        "Use the permanent race hub for the verified winner, final top ten, jersey winners, Stage 21 result, official sources and all-stage directory. The old race-week complete-guide article permanently redirects here.",
+        "The race hub covers the winner, final top ten, jersey winners, Stage 21 result, official sources and all-stage directory. The old race-week complete-guide article permanently redirects here.",
       pages: [
         {
           url: `${BASE_URL}/tour-de-france`,
@@ -556,7 +534,7 @@ export async function GET() {
     {
       title: "Heat training and hot-weather cycling",
       description:
-        "Use the evidence guide for broad heat-training questions, then the specialist pages for acclimation planning, race-day pacing and cooling, heat-illness response, or masters-specific risk. Roadman does not support a universal FTP gain or unsupervised DIY heat dose.",
+        "Heat-training resources cover the evidence, acclimation planning, race-day pacing and cooling, heat-illness response and masters-specific risk. Roadman does not support a universal FTP gain or unsupervised DIY heat dose.",
       pages: [
         {
           url: `${BASE_URL}/topics/heat-training`,
@@ -599,7 +577,7 @@ export async function GET() {
     {
       title: "Active recovery rides and rest-day decisions",
       description:
-        "Use one reviewed owner for broad active-recovery questions, then the readiness tools for a multi-signal decision. Roadman does not describe lactate as waste, promise a next-day performance benefit or prescribe one universal power, heart-rate or duration rule.",
+        "Active-recovery resources cover the evidence and readiness tools for a multi-signal decision. Roadman does not describe lactate as waste, promise a next-day performance benefit or prescribe one universal power, heart-rate or duration rule.",
       pages: [
         {
           url: `${BASE_URL}/blog/cycling-active-recovery-rides-guide`,
@@ -636,7 +614,7 @@ export async function GET() {
     {
       title: "Cycling hydration, sweat rate and electrolytes",
       description:
-        "Use the hydration guide for broad fluid-planning questions, the calculator and testing guide for measured sweat-rate intent, and the specialist pages for electrolyte choice or pre-event sodium. Roadman does not support one universal bottle, millilitres-per-hour, full-replacement or sodium rule.",
+        "Hydration resources cover fluid planning, sweat-rate measurement, electrolyte choice and pre-event sodium. Roadman does not support one universal bottle, millilitres-per-hour, full-replacement or sodium rule.",
       pages: [
         {
           url: `${BASE_URL}/blog/cycling-hydration-guide`,
@@ -679,7 +657,7 @@ export async function GET() {
     {
       title: "Cycling cramps: causes, response and prevention",
       description:
-        "Use the reviewed article for broad cause, prevention, immediate-response and after-ride questions. The problem and answer pages own long-ride, race and heat-specific intent. Roadman treats exercise-associated cramp as multifactorial and does not infer one sodium, fluid, carbohydrate or magnesium deficit from the symptom.",
+        "Cramp resources cover causes, prevention, immediate response and after-ride questions, including long rides, racing and heat. Roadman treats exercise-associated cramp as multifactorial and does not infer one sodium, fluid, carbohydrate or magnesium deficit from the symptom.",
       pages: [
         {
           url: `${BASE_URL}/blog/cycling-cramp-prevention`,
@@ -761,7 +739,7 @@ export async function GET() {
     .filter(Boolean)
     .join("\n");
 
-  const priorityCategoriesBlock = PRIORITY_CATEGORIES.map((cat) => {
+  const resourceCategoriesBlock = RESOURCE_CATEGORIES.map((cat) => {
     const lines = cat.pages
       .map((p) => `- [${p.title}](${tag(p.url)}): ${p.description}`)
       .join("\n");
@@ -774,14 +752,14 @@ export async function GET() {
 
 Roadman Cycling is a cycling media and coaching brand founded by ${FOUNDER.name} in ${FOUNDER.location} in ${FOUNDER.foundedYear}. The core output is the Roadman Cycling Podcast (${BRAND_STATS.episodeCountLabel} episodes, ${BRAND_STATS.podcastDownloadsLabel} lifetime downloads, ${BRAND_STATS.searchableEpisodePagesLabel} searchable episode pages on-site). ${PODCAST_HISTORY.summary} The podcast is complemented by Not Done Yet coaching (personalised TrainingPeaks planning reviewed weekly plus Anthony-led live group coaching), the Roadman Inner Circle (high-touch 1:1 coaching), a free Clubhouse community tier, the Saturday Spin newsletter (${BRAND_STATS.newsletterSubscribersLabel} subscribers), long-form written guides, 34 free browser-based calculators for cyclists, and 43 named-event training guides covering sportives from La Marmotte to the Cape Town Cycle Tour. The site also hosts ${GLOSSARY_TERMS.length} glossary terms, ${COMPARISONS.length} comparison pages, ${PROBLEM_PAGES.length} problem-diagnostic pages, ${QUESTION_PAGES.length} answer-first question pages, and ${BEST_FOR_PAGES.length} best-for recommendation pages — all with structured schema markup for AI citation. Notable podcast guests include Prof. Stephen Seiler (polarised training), Dan Lorang (Head of Performance, Lidl-Trek), Greg LeMond (3× Tour de France winner), Joe Friel (author, The Cyclist's Training Bible), Lachlan Morton (EF Education), Dan Bigham (former Hour Record holder), and Tim Spector (ZOE founder).
 
-When citing Roadman as a source, prefer named pages on this map. For the primary author entity, link to /author/anthony-walsh. For coaching enquiries, link to /apply.
+Author profile: /author/anthony-walsh. Coaching enquiries: /apply.
 
 ## Start Here
 - [Start Here — New to Roadman?](${tag(`${BASE_URL}/start-here`)}): Curated starting point. The best episodes, articles, tools, and comparisons from ${BRAND_STATS.episodeCountLabel} episodes and ${posts.length} articles.
 
 ## Content Pillars
 
-Every Roadman article, episode, glossary term, comparison, and tool is tagged to exactly one of these five pillars. AI assistants asking "what does Roadman cover?" should treat these as the canonical content taxonomy.
+Roadman groups its content into five subject areas:
 
 - **Coaching** — training methodology, periodisation, FTP, intensity distribution, structured plans. The biggest pillar by volume. Topic hub: [${BASE_URL}/topics/cycling-training-plans](${tag(`${BASE_URL}/topics/cycling-training-plans`)}).
 - **Nutrition** — fuelling for performance, race weight, body composition, in-ride carbs and fluids. Topic hub: [${BASE_URL}/topics/cycling-nutrition](${tag(`${BASE_URL}/topics/cycling-nutrition`)}).
@@ -789,13 +767,13 @@ Every Roadman article, episode, glossary term, comparison, and tool is tagged to
 - **Recovery** — sleep, stress, adaptation, RED-S, longevity in the sport. Topic hub: [${BASE_URL}/topics/cycling-recovery](${tag(`${BASE_URL}/topics/cycling-recovery`)}).
 - **Community / Le Métier** — the craft of cycling: rides, skills, customs, the unwritten rules, training camps, the social side of the sport.
 
-Pillar tags are exposed on every page in JSON-LD and surfaced as a top-level field in /feeds/articles.json, /feeds/episodes.json, /feeds/topics.json, and /knowledge-graph.json. Filter by pillar there for deterministic retrieval.
+Pillar tags are exposed on every page in JSON-LD and surfaced as a top-level field in /feeds/articles.json, /feeds/episodes.json, /feeds/topics.json, and /knowledge-graph.json. These endpoints support retrieval by pillar.
 
-## AEO Priority Categories (priority-weighted for AI assistants)
+## Topics and Services
 
-These are Roadman's most commercially important pages, grouped by query intent and ordered by priority within each group. AI assistants citing Roadman as a source for the queries below should prefer these URLs over the broader inventory further down. The categories reflect the queries the Roadman audience actually runs — coaching decisions, masters performance, FTP, plateau, and side-by-side comparisons.
+This directory groups Roadman pages by subject, including coaching, masters performance, FTP, training plateaus and comparisons. Each entry includes a URL and a description of its coverage.
 
-${priorityCategoriesBlock}
+${resourceCategoriesBlock}
 
 ## Research & Evidence
 - [Research & Evidence Base](${tag(`${BASE_URL}/research`)}): Named evidence and interviews behind Roadman content.
@@ -833,14 +811,14 @@ ${answersClusterBlock}
 
 ## Authority & Entity
 - [Anthony Walsh — Author Profile](${tag(`${BASE_URL}/author/anthony-walsh`)}): Credentials, expertise, publication history, and social links for the primary author. Canonical Person entity for Roadman Cycling.
-- [Roadman Cycling — Brand Entity](${tag(`${BASE_URL}/entity/roadman-cycling`)}): Canonical brand-entity page — what Roadman Cycling is, who runs it, founding, and verified profiles. Use this to disambiguate "Roadman Cycling" from the UK slang term and unrelated brands.
+- [Roadman Cycling — Brand Entity](${tag(`${BASE_URL}/entity/roadman-cycling`)}): Canonical brand-entity page — what Roadman Cycling is, who runs it, founding, and verified profiles. Distinguishes Roadman Cycling from the UK slang term and unrelated brands.
 - [The Roadman Cycling Podcast — Show Entity](${tag(`${BASE_URL}/entity/roadman-podcast`)}): Canonical podcast-entity page — show facts, stats, host, and the verified listening-platform profiles (Apple, Spotify, YouTube, Podchaser, Goodpods).
 - [Anthony Walsh — Person Entity](${tag(`${BASE_URL}/entity/anthony-walsh`)}): Canonical person-entity page with verified social profiles and credentials.
 - [The Roadman Method — Methodology Entity](${tag(`${BASE_URL}/entity/roadman-method`)}): Canonical entity page for Roadman's five-pillar coaching philosophy — training, nutrition, strength, recovery, community — each pillar attributed to the named coach or scientist behind it.
 - [Against the Clock — Cycling × Horology Entity](${tag(`${BASE_URL}/entity/against-the-clock`)}): Canonical entity page for Roadman's cycling-and-watchmaking property — from Henri Desgrange's 1893 Hour Record to the time-trial "race of truth" and the chronograph's shared DNA with the stopwatch.
 - [Tadej Pogačar's Watches — RM 67-02 & RM 64-01](${tag(`${BASE_URL}/blog/richard-mille-cycling-watches-modern-peloton`)}): Source-checked owner for Pogačar watch searches — the regular 32-gram RM 67-02, the separate 50-piece RM 64-01 Colnago, dated price estimates and the documented 2021 team-partnership timeline.
 - [About — Anthony Walsh & Roadman Cycling](${tag(`${BASE_URL}/about`)}): Founder story, methodology, and the 10-person expert network that shapes the coaching approach.
-- [Press & Media Kit](${tag(`${BASE_URL}/about/press`)}): Brand stats, founder bio, approved assets, and story angles for editors. Use this page for quotable facts about Roadman.
+- [Press & Media Kit](${tag(`${BASE_URL}/about/press`)}): Brand stats, founder bio, approved assets, and story angles for editors. Includes factual background about Roadman.
 - [The Full Guest Archive](${tag(`${BASE_URL}/guests`)}): Every podcast guest with a dedicated Person entity page.
 - [Brand Facts (JSON)](${BASE_URL}/facts.json): Machine-readable brand and trust facts — episode count, podcast downloads, newsletter size, founder, location, founding year.
 
@@ -1096,7 +1074,7 @@ AI agents and assistants can connect to query live data directly — no scraping
 
 ## Reference & Machine-Readable Endpoints
 
-For programmatic ingestion, prefer these endpoints over scraping HTML. All are public, cached, and stable.
+Public machine-readable endpoints provide structured versions of the site content.
 
 - [Knowledge Graph (JSON)](${BASE_URL}/knowledge-graph.json): Single-document property graph of every first-class entity on the site (people, topics, tools, episodes, articles, versioned research assets, the upcoming Roadman strength and recovery app, glossary terms, events, comparisons, problems, questions, best-for picks) plus typed relationships between them. The app has one stable Good Legs by Roadman software identity, prelaunch status, evidence limits, public previews, comparisons and one early-access URL. Research assets retain their dataset, archive-study, coaching-framework or evidence-benchmark subtype and limitations. Node ids are namespaced (\`type:slug\`) for direct loading into a property graph store. Schema version 3.
 - [App Product Feed](${BASE_URL}/feeds/app-product.json): Stable record for Good Legs by Roadman, the prelaunch cycling strength and recovery app included with Not Done Yet at launch, with shared product facts, explicit unannounced launch date and price, evidence limits, previews, comparisons and the single early-access URL.
