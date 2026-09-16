@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "contentDigest": "fc571d6517ba476d87c74f24f52c3d0d2729275dbaf2c0966416e85d1958f308",
-  "scope": "Remove AI citation directives from /llms.txt and /llms-full.txt, and internal SEO planning language from /topics/ftp-training. No link targets, clinical advice, prices or search settings change.",
+  "contentDigest": "b6a132f25601500f63019c4dd4e5fdf4d06b91d8c5ca8d2f71a913132d7e93c8",
+  "scope": "Remove AI citation directives from /llms.txt and /llms-full.txt, and internal SEO planning language from /topics/ftp-training. No link targets, clinical advice, prices or search settings change. Temporary fixed-width browser QA fixture on a separate preview-only branch; never merge this branch.",
   "sections": [
     {
       "location": "/llms.txt and /llms-full.txt — introduction, subject taxonomy, resource directory and endpoint descriptions",
