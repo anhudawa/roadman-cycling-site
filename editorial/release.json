@@ -21,7 +21,7 @@
   "claimsAndSources": "This is a bounded copy cleanup. Existing research claims and references are unchanged; replacements describe existing linked page coverage. No new clinical, performance, race-result or product claims are added.",
   "examplesAndReasoning": "No new examples or training prescriptions. The existing eight-row FTP question-to-resource table remains because it answers distinct navigation decisions.",
   "voiceAndCuts": "Removed AI-directed citation preference, commercial ranking instructions, the DEV-AEO marker and the FTP ownership-map commentary. Replaced imperative export routing with plain descriptions.",
-  "desktopReview": "Pending hosted preview: local browser navigation was rejected with ERR_BLOCKED_BY_CLIENT. Source review is complete but does not count as rendered approval.",
-  "mobileReview": "Pending hosted preview and an actual mobile viewport review. No visual pass is claimed.",
+  "desktopReview": "Incomplete: the hosted Vercel preview remained building during the review window. Local browser navigation returned ERR_BLOCKED_BY_CLIENT. A local HTTP render returned 200 with the revised copy, correct canonical and index, follow metadata; this does not count as visual approval.",
+  "mobileReview": "Incomplete: the provided browser has no viewport-resize capability and keyboard attempts left its viewport at 1363 by 936. A separate preview-only fixed-width frame was considered, but the existing X-Frame-Options: DENY header prevents embedding. No security headers were changed and no mobile pass is claimed.",
   "productAndOfferAccuracy": "The patch leaves prices, offers, eligibility, product status, CTA URLs and tracking parameters unchanged."
 }

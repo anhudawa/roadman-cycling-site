@@ -2,12 +2,49 @@
   "version": 1,
   "reviewer": "Codex",
   "decision": "hold",
-  "reviewedAt": "2026-09-16T10:35:21.380Z",
+  "reviewedAt": "2026-09-16T10:54:31.347Z",
   "contentDigest": "fc571d6517ba476d87c74f24f52c3d0d2729275dbaf2c0966416e85d1958f308",
-  "reviewHash": "e946d246a21f04bd3be472ed9e89dd8aa228e1e2bbab1cc873d995ffee892a4d",
+  "reviewHash": "da8fdbddd5fefca8d7b261a8aebdaf040e02c761d198fce8054b0879d0588251",
   "controlsHash": "690e4b2ddb0fb631ba211762063a492b111885c239303964cf09357b2986281c",
   "blockers": [
-    "Hosted desktop and mobile rendered verification is required before publication."
+    "Required desktop and mobile visual review is incomplete. The hosted preview remains building; local browser access was rejected. A browser with an actual 320–480 CSS-pixel viewport is needed for mobile review.",
+    "The site sends X-Frame-Options: DENY, so the separate preview-frame approach cannot be used. The temporary QA PR is being closed without merging.",
+    "Vercel deployment inspection returns 403 for anhudawas-projects. The current connection cannot inspect build logs or diagnose the prolonged preview build."
   ],
-  "checks": {}
+  "checks": {
+    "claims": {
+      "status": "pass",
+      "evidence": "Compared the entire patch: research claims, existing source citations, performance results and clinical guidance are unchanged. New wording describes the existing resources only."
+    },
+    "editorial": {
+      "status": "pass",
+      "evidence": "Read every replacement in context. Removed AI citation preference and commercial-priority directives, the development-ticket marker and internal FTP ownership commentary. The FTP question table remains useful navigation."
+    },
+    "offers": {
+      "status": "pass",
+      "evidence": "Compared link literals and template interpolations: prices, service terms, product status, eligibility, offers and CTA targets are unchanged."
+    },
+    "desktop": {
+      "status": "pending",
+      "evidence": "Incomplete: the hosted Vercel preview remained building during the review window. Local browser navigation returned ERR_BLOCKED_BY_CLIENT. A local HTTP render returned 200 with the revised copy, correct canonical and index, follow metadata; this does not count as visual approval.",
+      "pages": []
+    },
+    "mobile": {
+      "status": "pending",
+      "evidence": "Incomplete: the provided browser has no viewport-resize capability and keyboard attempts left its viewport at 1363 by 936. A separate preview-only fixed-width frame was considered, but the existing X-Frame-Options: DENY header prevents embedding. No security headers were changed and no mobile pass is claimed.",
+      "pages": []
+    },
+    "interactions": {
+      "status": "pending",
+      "evidence": "All 30 FTP markdown links and 517 executable export URL literals remain identical to the base revision. Rendered navigation checks await the hosted preview."
+    },
+    "seo": {
+      "status": "pass",
+      "evidence": "No canonical, schema, metadata, sitemap, robots or indexing-setting code changed. The content audit passed across 1774 files and 19 tool entries with zero errors; strict ownership audit reports zero errors and no review queue. Real-data export handlers return 200 text/plain with unchanged cache headers. The local FTP HTML returns 200 with canonical https://roadmancycling.com/topics/ftp-training, index/follow metadata and four parseable JSON-LD blocks; revised introduction and table label are present and both old directive passages are absent."
+    },
+    "technical": {
+      "status": "pass",
+      "evidence": "56 editorial-gate rejection tests and 6 existing llms route tests passed. Next typegen followed by TypeScript completed with zero diagnostics; focused ESLint passed. Content generators produced no tracked changes; coral check passed. Internal link audit validated 15811 references with zero broken links (2576 external references skipped). Both full real-data export outputs contain none of the targeted AI directives or development marker. Production gate correctly rejects the incomplete rendered review."
+    }
+  }
 }
