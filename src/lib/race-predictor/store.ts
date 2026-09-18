@@ -124,10 +124,8 @@ export async function listVerifiedCourses(): Promise<CourseCatalogRow[]> {
       courseData: row.courseData as Course,
     }));
   } catch (err) {
-    if (canUseFixtureFallback(err)) {
-      return getFixtureCourses().map(fixtureToCatalog);
-    }
-    throw err;
+    console.error("[race-predictor] listVerifiedCourses DB error, using fixtures:", err);
+    return getFixtureCourses().map(fixtureToCatalog);
   }
 }
 
@@ -141,8 +139,8 @@ export async function getCourseBySlug(slug: string): Promise<CourseRow | null> {
       .limit(1);
     return row ? rowToCourse(row) : null;
   } catch (err) {
-    if (canUseFixtureFallback(err)) return getFixtureCourseBySlug(slug) as CourseRow | null;
-    throw err;
+    console.error("[race-predictor] getCourseBySlug DB error, using fixtures:", err);
+    return getFixtureCourseBySlug(slug) as CourseRow | null;
   }
 }
 
@@ -154,10 +152,8 @@ export async function getCourseById(id: number): Promise<CourseRow | null> {
     const [row] = await db.select().from(courses).where(eq(courses.id, id)).limit(1);
     return row ? rowToCourse(row) : null;
   } catch (err) {
-    if (canUseFixtureFallback(err)) {
-      return (getFixtureCourses().find((c) => c.id === id) ?? null) as CourseRow | null;
-    }
-    throw err;
+    console.error("[race-predictor] getCourseById DB error, using fixtures:", err);
+    return (getFixtureCourses().find((c) => c.id === id) ?? null) as CourseRow | null;
   }
 }
 
@@ -453,8 +449,8 @@ export async function getPredictionBySlug(
       .limit(1);
     return row ? rowToPrediction(row) : null;
   } catch (err) {
-    if (canUseFixtureFallback(err)) return readFixtureFile().predictions[slug] ?? null;
-    throw err;
+    console.error("[race-predictor] getPredictionBySlug DB error, using fixtures:", err);
+    return readFixtureFile().predictions[slug] ?? null;
   }
 }
 
@@ -468,10 +464,8 @@ export async function getPredictionById(
     const [row] = await db.select().from(predictions).where(eq(predictions.id, id)).limit(1);
     return row ? rowToPrediction(row) : null;
   } catch (err) {
-    if (canUseFixtureFallback(err)) {
-      return Object.values(readFixtureFile().predictions).find((p) => p.id === id) ?? null;
-    }
-    throw err;
+    console.error("[race-predictor] getPredictionById DB error, using fixtures:", err);
+    return Object.values(readFixtureFile().predictions).find((p) => p.id === id) ?? null;
   }
 }
 
