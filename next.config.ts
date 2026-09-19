@@ -118,6 +118,11 @@ const nextConfig: NextConfig = {
       // the single commercial owner; /sc/programme remains the noindex course
       // interface for customers.
       {
+        source: "/good-legs",
+        destination: "/app",
+        statusCode: 301,
+      },
+      {
         source: "/sc",
         destination: "/strength-training",
         permanent: true,
