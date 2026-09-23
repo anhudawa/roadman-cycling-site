@@ -169,9 +169,15 @@ export function PipelineBoard({ initialStages }: Props) {
       setError(null);
 
       // Suggest the relevant email only when the outcome is definitive.
-      if ((to === "signed_up" || to === "rejected") && found.card.contactId) {
-        const templateSlug =
-          to === "signed_up" ? "cohort-welcome" : "cohort-rejection";
+      // Approving is definitive too: /apply/next stays closed until this move,
+      // so the applicant only learns the decision when this email goes out.
+      const OUTCOME_TEMPLATES: Partial<Record<ApplicationStage, string>> = {
+        signed_up: "cohort-welcome",
+        rejected: "cohort-rejection",
+        approved: "cohort-approved",
+      };
+      const templateSlug = OUTCOME_TEMPLATES[to];
+      if (templateSlug && found.card.contactId) {
         router.push(
           `/admin/contacts/${found.card.contactId}?email=${encodeURIComponent(templateSlug)}`
         );

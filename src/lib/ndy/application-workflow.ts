@@ -104,6 +104,32 @@ export async function deliverApplicationEmail(id: string) {
   }).where(eq(followups.id, id));
 }
 
+export type ApplicationDecision = "approved" | "pending" | "invalid";
+
+/**
+ * Server-side decision for the /apply/next page. REVIEWED mode: an application
+ * is only ever "approved" once a human has moved it to the approved stage in
+ * admin (or it is already a recorded signup). Everything else — no token, a
+ * forged or expired token, a token superseded by a reapplication, a rejected
+ * application, or any database failure — resolves to a state that shows no
+ * offer. The page must never derive approval on the client.
+ */
+export async function getApplicationDecision(token: string): Promise<ApplicationDecision> {
+  if (!/^[a-f0-9]{64}$/.test(token)) return "invalid";
+  const [job] = await db.select().from(followups).where(and(
+    eq(followups.accessToken, token), gt(followups.createdAt, new Date(Date.now() - tokenLifetimeMs)),
+  ));
+  if (!job) return "invalid";
+  const [application] = await db.select().from(cohortApplications)
+    .where(eq(cohortApplications.id, job.applicationId));
+  // A reapplication issues a fresh token; the superseded one stops working.
+  if (!application || application.submissionKey !== job.submissionKey) return "invalid";
+  // A confirmed purchase stays approved regardless of pipeline position, so
+  // paying members never lose the page they were sent to.
+  if (application.signedUpAt) return "approved";
+  return application.status === "approved" ? "approved" : "pending";
+}
+
 export async function recordApplicantAction(token: string, action: "join" | "questions", question?: string) {
   return db.transaction(async (tx) => {
     const [candidate] = await tx.select().from(followups).where(and(

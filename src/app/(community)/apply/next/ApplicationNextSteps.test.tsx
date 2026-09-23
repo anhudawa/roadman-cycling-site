@@ -2,46 +2,48 @@ import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import { ApplicationNextSteps } from "./ApplicationNextSteps";
+import { NDY_APPLICATION_OFFER } from "@/lib/ndy/application-offer";
 import {
   APPLICATION_DECISION_HAPTIC_PATTERN,
-  APPLICATION_REVIEW_HAPTIC_MS,
-  APPLICATION_REVIEW_STEPS,
-  APPLICATION_REVIEW_STEP_MS,
+  readApplicationDecision,
   triggerApplicationHaptic,
 } from "./application-review";
 
 vi.stubGlobal("React", React);
 
 describe("ApplicationNextSteps", () => {
-  it("starts with the staged application review instead of revealing the decision", () => {
+  it("renders no decision and no way to pay before the server has answered", () => {
     const html = renderToStaticMarkup(<ApplicationNextSteps />);
 
     expect(html).toContain("Application review");
-    expect(html).toContain("Processing your application");
-    expect(html).toContain("This should only take a few seconds.");
+    expect(html).toContain("Checking your application");
     expect(html).not.toContain("CONGRATULATIONS");
+    expect(html).not.toContain("Application approved");
+    expect(html).not.toContain(NDY_APPLICATION_OFFER.checkoutUrl);
+    expect(html).not.toContain("skool.com");
   });
 
-  it("defines the complete review sequence and a deliberate total delay", () => {
-    expect(APPLICATION_REVIEW_STEPS).toEqual([
-      "Processing your application",
-      "Assessing your suitability for the programme",
-      "Checking available places",
-      "Reviewing your start date",
-    ]);
-    expect(APPLICATION_REVIEW_STEPS.length * APPLICATION_REVIEW_STEP_MS).toBe(8_000);
+  it("has no client-side timer that could reveal a decision on its own", () => {
+    const source = ApplicationNextSteps.toString();
+    expect(source).not.toContain("setTimeout");
+    expect(source).not.toContain("setInterval");
   });
 
-  it("uses subtle supported haptics for review stages and the decision", () => {
+  it("treats anything but an explicit approval as not approved", () => {
+    expect(readApplicationDecision("approved")).toBe("approved");
+    expect(readApplicationDecision("invalid")).toBe("invalid");
+    expect(readApplicationDecision("pending")).toBe("pending");
+    // Unrecognised payloads must never open the offer.
+    for (const value of [undefined, null, "", "APPROVED", "ok", true, 1, {}, ["approved"]]) {
+      expect(readApplicationDecision(value)).toBe("pending");
+    }
+  });
+
+  it("uses a subtle supported haptic for the decision", () => {
     const vibrate = vi.fn(() => true);
-    vi.stubGlobal("window", {
-      matchMedia: () => ({ matches: true }),
-      navigator: { vibrate },
-    });
+    vi.stubGlobal("window", { matchMedia: () => ({ matches: true }), navigator: { vibrate } });
 
-    expect(triggerApplicationHaptic(APPLICATION_REVIEW_HAPTIC_MS)).toBe(true);
     expect(triggerApplicationHaptic(APPLICATION_DECISION_HAPTIC_PATTERN)).toBe(true);
-    expect(vibrate).toHaveBeenNthCalledWith(1, 12);
-    expect(vibrate).toHaveBeenNthCalledWith(2, [24, 48, 36]);
+    expect(vibrate).toHaveBeenCalledWith([24, 48, 36]);
   });
 });

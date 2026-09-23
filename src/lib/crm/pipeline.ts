@@ -4,6 +4,7 @@ export const APPLICATION_STAGES = [
   "contacted_once",
   "contacted_twice",
   "final_outreach",
+  "approved",
   "signed_up",
   "rejected",
 ] as const;
@@ -16,6 +17,7 @@ export const STAGE_LABELS: Record<ApplicationStage, string> = {
   contacted_once: "Contacted Once",
   contacted_twice: "Contacted Twice",
   final_outreach: "Final Outreach",
+  approved: "Approved",
   signed_up: "Signed Up",
   rejected: "Rejected",
 };
@@ -52,6 +54,12 @@ export const STAGE_COLORS: Record<ApplicationStage, StageColor> = {
     ring: "ring-amber-500/40",
     dot: "bg-amber-400",
     cardAccent: "before:bg-amber-400",
+  },
+  approved: {
+    badge: "bg-teal-500/15 text-teal-200 border-teal-400/30",
+    ring: "ring-teal-400/50",
+    dot: "bg-teal-300",
+    cardAccent: "before:bg-teal-300",
   },
   signed_up: {
     badge: "bg-green-500/15 text-green-200 border-green-400/30",

@@ -153,6 +153,7 @@ export async function getOwnerBreakdown(): Promise<OwnerBreakdownRow[]> {
           contacted_once: 0,
           contacted_twice: 0,
           final_outreach: 0,
+          approved: 0,
           signed_up: 0,
           rejected: 0,
         },

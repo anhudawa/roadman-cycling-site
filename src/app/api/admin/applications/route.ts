@@ -112,6 +112,7 @@ export async function GET(request: Request) {
       contacted_once: [],
       contacted_twice: [],
       final_outreach: [],
+      approved: [],
       signed_up: [],
       rejected: [],
     };

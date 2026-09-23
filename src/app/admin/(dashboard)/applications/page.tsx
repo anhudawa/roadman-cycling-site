@@ -99,6 +99,7 @@ export default async function ApplicationsPage({ searchParams }: PageProps) {
     contacted_once: [],
     contacted_twice: [],
     final_outreach: [],
+    approved: [],
     signed_up: [],
     rejected: [],
   };
