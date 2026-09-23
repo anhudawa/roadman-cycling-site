@@ -2,9 +2,9 @@
   "version": 1,
   "reviewer": "Codex",
   "decision": "publish",
-  "reviewedAt": "2026-09-23T12:10:16Z",
-  "contentDigest": "aecc80030d663ea082ded510ecb3206a4ff3e94fc67c8d2943a9a3dddc1c26b5",
-  "reviewHash": "b4b43f06bd3948979b24680acdbcf7d542a3cb3f04c305f52efaf6b9f3a2da72",
+  "reviewedAt": "2026-09-23T14:35:00Z",
+  "contentDigest": "9c67c1706891d1a5e1b1a3a847e4be7fd0aba515c5dd433c188a58c3ccf2eec2",
+  "reviewHash": "7f28adf53db5704cd3b421a28d21777adfa9d34d1911357159e4969e54a87693",
   "controlsHash": "6a304ed86cbeed53a3450bd944380310498970c411550dc46ac5b3117bb90c5b",
   "blockers": [],
   "checks": {

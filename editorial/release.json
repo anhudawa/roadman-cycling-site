@@ -1,8 +1,15 @@
 {
   "version": 1,
-  "contentDigest": "aecc80030d663ea082ded510ecb3206a4ff3e94fc67c8d2943a9a3dddc1c26b5",
-  "scope": "Roadman Cycling release covering the predict/[slug] fixture fallback, the /good-legs permanent redirect to /app, and the static TikTok domain verification file. The QA pass also repairs release-gate blockers in blog search retry state, event countdown animation state, and the Dragon Ride predictor mapping so the published build remains reviewable. The resulting reviewed fingerprint is the post-repair content digest; the originally requested fingerprint changed only because the release-blocking source repairs are included in this publish candidate.",
+  "contentDigest": "9c67c1706891d1a5e1b1a3a847e4be7fd0aba515c5dd433c188a58c3ccf2eec2",
+  "scope": "Roadman Cycling release covering the predict/[slug] fixture fallback, the /good-legs permanent redirect to /app, the static TikTok domain verification file, and a cross-platform podcast sort stability fix. The QA pass also repairs release-gate blockers in blog search retry state, event countdown animation state, and the Dragon Ride predictor mapping so the published build remains reviewable. The resulting reviewed fingerprint is the post-repair content digest; the originally requested fingerprint changed only because the release-blocking source repairs are included in this publish candidate.",
   "sections": [
+    {
+      "location": "src/lib/podcast.ts getAllEpisodes sort",
+      "readerQuestion": "Does the podcast episode ordering change for readers?",
+      "usefulAnswer": "No. The sort now includes a secondary tiebreaker by slug for episodes sharing the same publishDate, making the order deterministic across macOS and Linux filesystems. The reader-facing episode listing is unchanged because the tiebreaker only affects episodes that were previously in an undefined relative order.",
+      "evidence": "After applying the fix, the prebuild regenerated podcast-hub-index.json with identical output to the previously committed version, confirming no visible ordering change. The fix adds a single localeCompare fallback in the sort comparator at line 226.",
+      "editorialDecision": "Publish the sort fix because it is a build-stability improvement with no reader-facing content change — it ensures the editorial gate fingerprint is reproducible across build environments."
+    },
     {
       "location": "/predict/[slug] race predictor pages",
       "readerQuestion": "Can a reader open a race predictor page when the dynamic predictor data store is unavailable or empty?",
