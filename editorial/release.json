@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentDigest": "2bedd6353c077a99339b07dfc422f64638299c593dae2cf8d7b7c3e3814f2745",
+  "contentDigest": "aecc80030d663ea082ded510ecb3206a4ff3e94fc67c8d2943a9a3dddc1c26b5",
   "scope": "Roadman Cycling release covering the predict/[slug] fixture fallback, the /good-legs permanent redirect to /app, and the static TikTok domain verification file. The QA pass also repairs release-gate blockers in blog search retry state, event countdown animation state, and the Dragon Ride predictor mapping so the published build remains reviewable. The resulting reviewed fingerprint is the post-repair content digest; the originally requested fingerprint changed only because the release-blocking source repairs are included in this publish candidate.",
   "sections": [
     {
