@@ -135,10 +135,13 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
 
   useEffect(() => {
     if (prevRef.current !== value) {
-      setAnimate(true);
       prevRef.current = value;
-      const t = setTimeout(() => setAnimate(false), 300);
-      return () => clearTimeout(t);
+      const start = setTimeout(() => setAnimate(true), 0);
+      const end = setTimeout(() => setAnimate(false), 300);
+      return () => {
+        clearTimeout(start);
+        clearTimeout(end);
+      };
     }
   }, [value]);
 

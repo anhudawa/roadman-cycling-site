@@ -338,6 +338,7 @@ export const RACES: Race[] = [
     },
     similar_races: ["fred-whitton", "mallorca-312", "wicklow-200"],
     month: "June",
+    predictor_slug: "dragon-ride-gran-fondo",
     website: "https://www.dragonride.co.uk/",
     tags: ["sportive", "wales", "uk", "climbing"],
   },

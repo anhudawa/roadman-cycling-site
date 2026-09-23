@@ -64,10 +64,13 @@ export function BlogSearch({
   useEffect(() => {
     if (isBrowsingAll || catalogue) return;
     const controller = new AbortController();
-    setSearchError(false);
     fetch("/api/blog/search-index", { signal: controller.signal })
       .then(response => { if (!response.ok) throw new Error("Search unavailable"); return response.json(); })
-      .then(data => { if (!Array.isArray(data.posts)) throw new Error("Invalid search index"); setCatalogue(data.posts); })
+      .then(data => {
+        if (!Array.isArray(data.posts)) throw new Error("Invalid search index");
+        setSearchError(false);
+        setCatalogue(data.posts);
+      })
       .catch(() => { if (!controller.signal.aborted) setSearchError(true); });
     return () => controller.abort();
   }, [isBrowsingAll, catalogue, retry]);
@@ -315,7 +318,7 @@ export function BlogSearch({
       {/* Posts Grid */}
       {!isBrowsingAll && !catalogue ? (
         <div className="py-12 text-center" role="status">
-          {searchError ? <><p>Search is temporarily unavailable. You can still browse every archive page.</p><button type="button" className="mt-4 underline" onClick={() => setRetry(value => value + 1)}>Retry search</button></> : <p>Searching all Roadman articles…</p>}
+          {searchError ? <><p>Search is temporarily unavailable. You can still browse every archive page.</p><button type="button" className="mt-4 underline" onClick={() => { setSearchError(false); setRetry(value => value + 1); }}>Retry search</button></> : <p>Searching all Roadman articles…</p>}
         </div>
       ) : filtered.length === 0 ? (
         <div className="text-center py-20">

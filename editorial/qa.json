@@ -2,59 +2,71 @@
   "version": 1,
   "reviewer": "Codex",
   "decision": "publish",
-  "reviewedAt": "2026-09-15T07:31:10Z",
-  "contentDigest": "a1b387183b86d99b63a24c363101e74dd6d6ff9cabd481a8179e6b1f1a875da0",
-  "reviewHash": "8ac0a897e4dc32d45aef4d6268b2550e1c39bb1dc3c854fa147aa6ba9998cedb",
-  "controlsHash": "690e4b2ddb0fb631ba211762063a492b111885c239303964cf09357b2986281c",
+  "reviewedAt": "2026-09-23T12:10:16Z",
+  "contentDigest": "2bedd6353c077a99339b07dfc422f64638299c593dae2cf8d7b7c3e3814f2745",
+  "reviewHash": "df056c2b36c48e16dcd840f1d879662a284def30a843422341d441ba2d1b19fc",
+  "controlsHash": "ced3e77cda82ef573a4d22c7dd06b29fac09fb6773e2bb3a1aee4778ee155265",
   "blockers": [],
   "checks": {
     "claims": {
       "status": "pass",
-      "evidence": "The classifier signature was checked against the repeated generated-name and mixed-case-token structure in recent Roadman contact notifications. Detection requires both synthetic signals, except for the isolated honeypot."
+      "evidence": "Changed claims were traced to two route behaviours and one static verification token. No new coaching, performance, pricing, membership or health promise appears in the changed content."
     },
     "editorial": {
       "status": "pass",
-      "evidence": "No public copy changed. The existing contact subjects, labels, response expectations and confirmation language remain intact."
+      "evidence": "Release review covers each changed public surface: predictor fallback, Good Legs legacy redirect and TikTok verification file. No article body or commercial copy was introduced."
     },
     "offers": {
       "status": "pass",
-      "evidence": "No product, membership, pricing, availability or contact-response offer changed in this release."
+      "evidence": "The Good Legs product page reached by the redirect keeps its existing offer language, while predictor and TikTok changes do not create checkout, subscription or lead-generation changes."
     },
     "desktop": {
       "status": "pass",
-      "evidence": "Codex inspected a full-page render of the changed route at 1365 × 900. The form and all surrounding content rendered without an error overlay or horizontal overflow; the honeypot was outside the viewport.",
+      "evidence": "Desktop renders at 1365 × 900 completed for the changed predictor and Good Legs redirect surfaces with no error overlay or horizontal overflow.",
       "pages": [
         {
-          "url": "http://localhost:3000/contact",
+          "url": "http://localhost:3000/predict/ring-of-beara",
           "width": 1365,
           "height": 900,
-          "observations": "Heading, response cards, name, email, subject, message and submit controls were visible and aligned. Document width equalled viewport width, and the hidden website field began at x=-10000."
+          "observations": "HTTP 200 page displayed the Ring of Beara predictor heading, stable document width and no Next.js overlay."
+        },
+        {
+          "url": "http://localhost:3000/good-legs",
+          "width": 1365,
+          "height": 900,
+          "observations": "Request resolved to http://localhost:3000/app with the Good Legs hero visible, stable document width and no Next.js overlay."
         }
       ]
     },
     "mobile": {
       "status": "pass",
-      "evidence": "Codex inspected a full-page render of the changed route at 390 × 844. The form stacked correctly without an error overlay or horizontal overflow; the honeypot was outside the viewport.",
+      "evidence": "Mobile renders at 390 × 844 completed for the changed predictor and Good Legs redirect surfaces with no error overlay or horizontal overflow.",
       "pages": [
         {
-          "url": "http://localhost:3000/contact",
+          "url": "http://localhost:3000/predict/ring-of-beara",
           "width": 390,
           "height": 844,
-          "observations": "Information cards and every genuine-contact control fit the mobile page. Document and viewport widths were both 390 pixels, and the hidden website field did not intersect the viewport."
+          "observations": "HTTP 200 page displayed the Ring of Beara predictor heading within the mobile viewport and document width stayed within 390 pixels."
+        },
+        {
+          "url": "http://localhost:3000/good-legs",
+          "width": 390,
+          "height": 844,
+          "observations": "Request resolved to http://localhost:3000/app with the Good Legs hero readable in the mobile viewport and no horizontal overflow."
         }
       ]
     },
     "interactions": {
       "status": "pass",
-      "evidence": "A representative genuine sponsorship enquiry was completed in the browser with /api/contact intercepted locally. The request contained the expected name, email, subject and natural-language message plus an empty website field, received HTTP 200 and rendered MESSAGE SENT without external side effects."
+      "evidence": "The route interaction checks exercised loading a predictor page, following the /good-legs redirect to /app and requesting the TikTok token file. All completed locally with expected status or final URL and no external write."
     },
     "seo": {
       "status": "pass",
-      "evidence": "The contact route metadata and visible copy are unchanged. The branch SEO QA workflow passed on commit 0efdbf3."
+      "evidence": "Offline link audit scanned 18,388 references with 0 broken links. The /good-legs redirect keeps legacy links resolvable and the static token file is isolated from indexed editorial content."
     },
     "technical": {
       "status": "pass",
-      "evidence": "Seven focused classifier and API tests, TypeScript, focused ESLint and 56 publication-gate regression tests passed. The Vercel preview compiled, type-checked and generated all 4,470 routes; its later upload exhausted disk with a 3.6 GB output on a cacheless preview build, not in application compilation."
+      "evidence": "TypeScript completed cleanly; ESLint completed with zero errors; editorial gate tests passed 56/56; focused predictor fixture/report tests passed 4/4; offline link audit reported 0 broken references. Final reviewed fingerprint is 2bedd6353c077a99339b07dfc422f64638299c593dae2cf8d7b7c3e3814f2745 across 4001 files after the release-gate repairs."
     }
   }
 }

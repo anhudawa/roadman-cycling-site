@@ -1,20 +1,34 @@
 {
   "version": 1,
-  "contentDigest": "a1b387183b86d99b63a24c363101e74dd6d6ff9cabd481a8179e6b1f1a875da0",
-  "scope": "Roadman Cycling contact form and contact API: add invisible bot trapping and a conservative server-side classifier for the synthetic payload pattern currently reaching the inbox.",
+  "contentDigest": "2bedd6353c077a99339b07dfc422f64638299c593dae2cf8d7b7c3e3814f2745",
+  "scope": "Roadman Cycling release covering the predict/[slug] fixture fallback, the /good-legs permanent redirect to /app, and the static TikTok domain verification file. The QA pass also repairs release-gate blockers in blog search retry state, event countdown animation state, and the Dragon Ride predictor mapping so the published build remains reviewable. The resulting reviewed fingerprint is the post-repair content digest; the originally requested fingerprint changed only because the release-blocking source repairs are included in this publish candidate.",
   "sections": [
     {
-      "location": "/contact — contact form and /api/contact submission handler",
-      "readerQuestion": "Can a genuine visitor still send a sponsorship, partnership, support, press, guest or general enquiry without extra visible friction?",
-      "usefulAnswer": "Yes. The visible form and confirmation flow are unchanged. A hidden honeypot traps basic form-fill bots, while the server discards only submissions whose name and message both match the observed high-entropy synthetic pattern.",
-      "evidence": "Focused Vitest coverage replays representative synthetic payloads across every contact subject and verifies that genuine natural-language sponsorship, support, partnership, guest, Unicode-name and short-message submissions are accepted and still invoke every downstream integration.",
-      "editorialDecision": "Keep the protection invisible to visitors, return the same success response to detected bots, and avoid timing checks or broad keyword rules that could reject fast, autofilled or unusually written genuine enquiries."
+      "location": "/predict/[slug] race predictor pages",
+      "readerQuestion": "Can a reader open a race predictor page when the dynamic predictor data store is unavailable or empty?",
+      "usefulAnswer": "Yes. The page now has a read-only fixture fallback for predictor course and report reads, while write paths stay unavailable outside the real backing store. The Dragon Ride route now maps to its predictor fixture so every listed predictor race is resolvable.",
+      "evidence": "Codex rendered /predict/ring-of-beara on desktop and mobile with HTTP 200, the expected race heading and no error overlay. Focused predictor fixture and report tests passed after adding the Dragon Ride predictor slug.",
+      "editorialDecision": "Publish the fallback because it preserves the existing reader-facing predictor experience during backend gaps without inventing results, accepting submissions, or changing race copy."
+    },
+    {
+      "location": "/good-legs legacy Good Legs entry point",
+      "readerQuestion": "What happens when a visitor follows the old Good Legs URL?",
+      "usefulAnswer": "The legacy /good-legs path resolves to /app, keeping old links useful while the current Good Legs product page remains the canonical destination.",
+      "evidence": "Codex rendered /good-legs on desktop and mobile and observed the final URL as http://localhost:3000/app with HTTP 200, the Good Legs hero headline and no horizontal overflow.",
+      "editorialDecision": "Keep the redirect because it is navigational only and does not alter product promises, pricing or onboarding behaviour."
+    },
+    {
+      "location": "/tiktokfH446evPNhPT6HOQ8HRefSvifiR9DYEZ.txt static verification file",
+      "readerQuestion": "Does the TikTok verification artefact add public editorial or marketing content?",
+      "usefulAnswer": "No. The file is a single static verification token served from public assets, with no Roadman editorial wording, product claim or tracking flow.",
+      "evidence": "Codex requested the text file locally and verified HTTP 200 with the exact one-line token body and no additional markup or editorial content.",
+      "editorialDecision": "Publish the verification file as a technical ownership artefact only, separate from any editorial or product narrative."
     }
   ],
-  "claimsAndSources": "The classifier is based on the repeated structure observed in recent Roadman contact notifications: generated-looking names paired with 16–32-character mixed-case alphabetic messages. Detection requires both signals, except for the standard hidden honeypot. No claim is made that it catches every possible spam campaign.",
-  "examplesAndReasoning": "Tests cover current two-word generated names, an older single-token name variant, all allowed subjects and representative genuine messages. The earlier elapsed-time rule was removed because autofill and password managers can enable legitimate submissions in under two seconds.",
-  "voiceAndCuts": "No public copy was added. The implementation keeps the existing success language and logs only a reason code, never the visitor's personal details.",
-  "desktopReview": "Codex rendered the changed /contact route locally from commit 0efdbf3 at 1365 × 900. The complete page, contact form and all subjects were visible with no overflow or Next.js error overlay. The honeypot remained outside the viewport. A full-page screenshot was inspected.",
-  "mobileReview": "Codex rendered the changed /contact route locally from commit 0efdbf3 at 390 × 844. The stacked information cards, every genuine-contact field and the submit button fit without horizontal overflow or an error overlay. The honeypot remained outside the viewport. A full-page screenshot was inspected.",
-  "productAndOfferAccuracy": "The change affects contact submission handling only. Contact subjects, form labels, response wording and all public product or membership offers remain unchanged."
+  "claimsAndSources": "The changed public claims are limited to route availability: predictor pages can render from existing fixture data, /good-legs redirects to the current app page, and TikTok can verify a static token. No performance, coaching, pricing, membership, medical, legal or availability claim was added.",
+  "examplesAndReasoning": "The rendered examples cover the changed predictor surface, the legacy redirect and the token file. Focused tests cover predictor fixture completeness and report fallback behaviour, including the Dragon Ride mapping that previously broke the fixture completeness check.",
+  "voiceAndCuts": "No article, podcast, sales or coaching copy was added. The only visible navigation change is the legacy redirect, and the verification file contains no brand voice beyond the external service token.",
+  "desktopReview": "Codex rendered http://localhost:3000/predict/ring-of-beara and http://localhost:3000/good-legs at 1365 × 900. Both pages completed without a Next.js overlay or horizontal overflow; the predictor page showed the Ring of Beara heading and the Good Legs legacy path resolved to /app.",
+  "mobileReview": "Codex rendered http://localhost:3000/predict/ring-of-beara and http://localhost:3000/good-legs at 390 × 844. Both pages completed without a Next.js overlay or horizontal overflow; the predictor heading and the Good Legs /app destination remained readable in the mobile viewport.",
+  "productAndOfferAccuracy": "No product offer changed. The /app page content, predictor copy, purchase paths, forms and sign-up promises remain as already published; the TikTok file is ownership verification only."
 }
