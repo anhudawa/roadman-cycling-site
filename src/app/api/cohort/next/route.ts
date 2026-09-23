@@ -27,6 +27,9 @@ export async function POST(request: Request) {
     }
     const result = await recordApplicantAction(token, action, typeof question === "string" ? question.trim() : undefined);
     if (!result) return NextResponse.json({ error: "This link has expired or been replaced. Use the link in your latest application email, or email Sarah." }, { status: 410, headers });
+    if ("blocked" in result && result.blocked) {
+      return NextResponse.json({ error: "Your application is still being reviewed. We'll email you as soon as it's been looked at." }, { status: 409, headers });
+    }
     if (action === "questions") {
       // The question is already committed. Failure here is retried from the
       // durable outbox and shown to Sarah in admin, not lost or reported sent.

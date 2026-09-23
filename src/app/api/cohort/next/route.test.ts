@@ -46,6 +46,14 @@ describe("the applicant decision endpoint", () => {
   it.each([null, [], { token: "123", action: "join" }, { token, action: "signed_up" }, { token, action: "questions", question: "" }, { token, action: "questions", question: "a".repeat(2001) }])("rejects malformed decisions", async (body) => {
     const { POST } = await import("./route"); expect((await POST(request(body))).status).toBe(400); expect(mocks.record).not.toHaveBeenCalled();
   });
+  it("refuses to open checkout while the application is still under review", async () => {
+    mocks.record.mockResolvedValue({ id: "job-1", blocked: true });
+    const { POST } = await import("./route");
+    const response = await POST(request({ token, action: "join" }));
+    expect(response.status).toBe(409);
+    expect((await response.json() as { checkoutUrl?: string }).checkoutUrl).toBeUndefined();
+    expect(mocks.notify).not.toHaveBeenCalled();
+  });
   it("returns a checkout destination without notifying Sarah", async () => {
     mocks.record.mockResolvedValue({ id: "job-1", checkoutUrl: "https://www.skool.com/roadmancycling/plans?src=join" });
     const { POST } = await import("./route");

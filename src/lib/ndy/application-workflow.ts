@@ -143,6 +143,10 @@ export async function recordApplicantAction(token: string, action: "join" | "que
     const [job] = await tx.select().from(followups).where(eq(followups.id, candidate.id)).for("update");
     if (!job) return null;
     if (action === "join") {
+      // REVIEWED mode: joining requires the same manual approval the page
+      // checks, so a held application cannot be talked into checkout by
+      // posting a valid token straight at this endpoint.
+      if (!application.signedUpAt && application.status !== "approved") return { id: job.id, blocked: true as const };
       if (!job.checkoutStartedAt) await tx.update(followups).set({ checkoutStartedAt: new Date() }).where(eq(followups.id, job.id));
       // Checkout intent is not proof of payment. Only confirmed purchases may
       // set signed_up/signedUpAt through the existing authenticated workflow.
