@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "contentDigest": "681098d08d62ca59c5fe101860be0010d3c7f361db8a97109130f0017541f387",
+  "scope": "Roadman Cycling release covering: the Not Done Yet application follow-up page (/apply/next) and its API now resolving an applicant's decision on the server, with a join action that requires manual approval; a new Approved stage in the admin applications pipeline; the /good-legs redirect switched from 301 to permanent 308; the corrected TikTok domain verification file; and the deterministic podcast sort. Commits 39cfd78, dbb26c0, 7be6f09, 91a90b3 and 8cd82bf and 0f5f412 (byte-level podcast slug tiebreaker, fuller gate error message) on top of the Codex-reviewed c52379e release. Reviewed by Instinct.",
+  "sections": [
+    {
+      "location": "/apply/next applicant follow-up page (src/app/(community)/apply/next)",
+      "readerQuestion": "After applying to Not Done Yet, what does an applicant see when they open the link in their email, and can the page show an offer they have not been given?",
+      "usefulAnswer": "The page starts in a checking state and asks the server for the decision. Applicants not yet approved see that their application is with Anthony, that every application is read personally, and that they will get an email when it has been reviewed, with a way to message Sarah. Only an application a human has moved to Approved, or a recorded signup, shows the offer. A missing, forged or expired link shows a plain explanation and a link to apply.",
+      "evidence": "Code review of ApplicationNextSteps.tsx, application-review.ts and getApplicationDecision in src/lib/ndy/application-workflow.ts; focused vitest suites for the page, the status route and the next route pass (42 tests across 5 files).",
+      "editorialDecision": "Publish. The copy is short, answers the applicant's actual question (where is my application and what happens next) and makes no promise beyond a personal review and an email."
+    },
+    {
+      "location": "POST /api/cohort/next join action and new POST /api/cohort/application-status",
+      "readerQuestion": "Can someone skip the review by posting a valid token straight at the join endpoint?",
+      "usefulAnswer": "No. The join action now returns 409 with 'Your application is still being reviewed' unless the application is approved or already signed up. The status route is POST-only, same-origin, rate limited, and fails closed to 'pending' on any database error.",
+      "evidence": "Route tests cover the blocked join, the approved join, forged and superseded tokens, origin rejection and the fail-closed path; all pass locally.",
+      "editorialDecision": "Publish. This is an access-control fix; its only reader-facing text is the 409 message, which is accurate and plain."
+    },
+    {
+      "location": "Admin applications pipeline (Approved stage)",
+      "readerQuestion": "How does Sarah or Anthony approve an application so the applicant sees the offer?",
+      "usefulAnswer": "A new Approved column sits between Final Outreach and Signed Up in the admin pipeline, reports and API, and moving an application there is what opens the offer on /apply/next.",
+      "evidence": "APPLICATION_STAGES, STAGE_LABELS, STAGE_COLORS, the admin page, the admin API and reports all gain the approved key; the status column is free text in schema.ts, so no migration is needed; pipeline tests pass.",
+      "editorialDecision": "Publish. Internal admin only; no public copy."
+    },
+    {
+      "location": "/good-legs legacy redirect (next.config.ts)",
+      "readerQuestion": "Does the old Good Legs link still work?",
+      "usefulAnswer": "Yes. /good-legs now sends a permanent 308 to /app instead of a 301. Visitors land on the same page; search engines treat the move as permanent.",
+      "evidence": "next.config.ts diff: statusCode 301 replaced by permanent: true.",
+      "editorialDecision": "Publish. Navigational only."
+    },
+    {
+      "location": "/tiktokfH446evPNhPT6HOQ8HRefSvifiR9DYEZ.txt",
+      "readerQuestion": "Does this file add public content?",
+      "usefulAnswer": "No. It is TikTok's domain-ownership token. The content is corrected to the exact line TikTok's developer portal issues for this app, tiktok-developers-site-verification=fH446evPNhPT6HOQ8HRefSvifiR9DYEZ, after TikTok rejected the earlier token.",
+      "evidence": "The portal's download for URL prefix https://roadmancycling.com/ produced exactly this line; the earlier token failed TikTok's verify step on 23 September.",
+      "editorialDecision": "Publish as a technical ownership artefact only."
+    },
+    {
+      "location": "src/lib/podcast.ts getAllEpisodes sort",
+      "readerQuestion": "Does the episode order change for readers?",
+      "usefulAnswer": "No. A slug tiebreaker only orders episodes that share a publish date, making builds reproducible.",
+      "evidence": "Single comparator change; generated podcast hub index unchanged in order for distinct dates.",
+      "editorialDecision": "Publish. Build stability only."
+    }
+  ],
+  "claimsAndSources": "The only new public statements are on /apply/next: applications are read personally rather than scored automatically, the applicant will be emailed once reviewed, and questions go to Sarah. The code enforces the first two: approval requires a human moving the application to Approved, and nothing on the page approves automatically. No price, performance, coaching or medical claim was added.",
+  "examplesAndReasoning": "No worked examples were added. The page states three states (checking, under review, approved/offer) and an invalid-link state, each with the one action the applicant can take.",
+  "voiceAndCuts": "Copy is short and plain. The earlier animated review steps that implied an automated assessment were removed, which removes a misleading impression rather than adding filler.",
+  "desktopReview": "Rendered review of the preview deployment is recorded in the QA record once the preview build is available.",
+  "mobileReview": "Rendered review of the preview deployment is recorded in the QA record once the preview build is available.",
+  "productAndOfferAccuracy": "The Not Done Yet offer text itself is unchanged (NDY_APPLICATION_OFFER). What changes is when it is shown: only to approved applicants or recorded signups."
+}
