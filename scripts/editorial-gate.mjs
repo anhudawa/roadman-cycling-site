@@ -31,7 +31,7 @@ function substantive(value, label) {
 }
 
 export function validateReview(review, digest) {
-  if (review.version !== 1 || review.contentDigest !== digest) throw new Error('Review does not match the current content. Prepare a new review.');
+  if (review.version !== 1 || review.contentDigest !== digest) throw new Error(`Review does not match the current content. Expected ${review.contentDigest}, got ${digest}. Prepare a new review.`);
   substantive(review.scope, 'scope');
   if (!Array.isArray(review.sections) || !review.sections.length) throw new Error('Review each changed section.');
   for (const section of review.sections) {

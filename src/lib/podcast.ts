@@ -224,7 +224,7 @@ export function getAllEpisodes(): EpisodeMeta[] {
   const sorted = episodes.sort(
     (a, b) =>
       new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime() ||
-      a.slug.localeCompare(b.slug)
+      (a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0)
   );
 
   if (process.env.NODE_ENV === "production") allEpisodesCache = sorted;

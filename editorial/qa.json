@@ -3,9 +3,9 @@
   "reviewer": "Codex",
   "decision": "publish",
   "reviewedAt": "2026-09-23T14:35:00Z",
-  "contentDigest": "9c67c1706891d1a5e1b1a3a847e4be7fd0aba515c5dd433c188a58c3ccf2eec2",
-  "reviewHash": "7f28adf53db5704cd3b421a28d21777adfa9d34d1911357159e4969e54a87693",
-  "controlsHash": "6a304ed86cbeed53a3450bd944380310498970c411550dc46ac5b3117bb90c5b",
+  "contentDigest": "14adf52ac3f2b3b9b7080a6c41897647afc0cf29dff9c4a617ac2dbd85ee2906",
+  "reviewHash": "b8467dc318c8f4aa0bd18f317d892446fcf89bd03a1c1f70de04301961dc1ce5",
+  "controlsHash": "8870145847b79540ff55a60f9885ec8b0ca8d0535d93f76ae2481e89f5acc93b",
   "blockers": [],
   "checks": {
     "claims": {
