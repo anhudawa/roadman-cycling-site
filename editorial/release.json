@@ -1,14 +1,14 @@
 {
   "version": 1,
-  "contentDigest": "681098d08d62ca59c5fe101860be0010d3c7f361db8a97109130f0017541f387",
-  "scope": "Roadman Cycling release covering: the Not Done Yet application follow-up page (/apply/next) and its API now resolving an applicant's decision on the server, with a join action that requires manual approval; a new Approved stage in the admin applications pipeline; the /good-legs redirect switched from 301 to permanent 308; the corrected TikTok domain verification file; and the deterministic podcast sort. Commits 39cfd78, dbb26c0, 7be6f09, 91a90b3 and 8cd82bf and 0f5f412 (byte-level podcast slug tiebreaker, fuller gate error message) on top of the Codex-reviewed c52379e release. Reviewed by Instinct.",
+  "contentDigest": "8240f29870eac94fca72686be54311d14c3d67f23e705bddb1849b7ff079cfcd",
+  "scope": "Roadman Cycling release covering: the Not Done Yet application follow-up page (/apply/next) and its API now resolving an applicant's decision on the server, with a join action that requires manual approval; a new Approved stage in the admin applications pipeline; the /good-legs redirect switched from 301 to permanent 308; the corrected TikTok domain verification file; and the deterministic podcast sort. Commits 39cfd78, dbb26c0, 7be6f09, 91a90b3 and 8cd82bf and 0f5f412 (byte-level podcast slug tiebreaker, fuller gate error message) on top of the Codex-reviewed c52379e release. Includes one QA copy fix to the invalid-link headline. Reviewed by Instinct.",
   "sections": [
     {
       "location": "/apply/next applicant follow-up page (src/app/(community)/apply/next)",
       "readerQuestion": "After applying to Not Done Yet, what does an applicant see when they open the link in their email, and can the page show an offer they have not been given?",
       "usefulAnswer": "The page starts in a checking state and asks the server for the decision. Applicants not yet approved see that their application is with Anthony, that every application is read personally, and that they will get an email when it has been reviewed, with a way to message Sarah. Only an application a human has moved to Approved, or a recorded signup, shows the offer. A missing, forged or expired link shows a plain explanation and a link to apply.",
       "evidence": "Code review of ApplicationNextSteps.tsx, application-review.ts and getApplicationDecision in src/lib/ndy/application-workflow.ts; focused vitest suites for the page, the status route and the next route pass (42 tests across 5 files).",
-      "editorialDecision": "Publish. The copy is short, answers the applicant's actual question (where is my application and what happens next) and makes no promise beyond a personal review and an email."
+      "editorialDecision": "Publish. The copy is short, answers the applicant's actual question (where is my application and what happens next) and makes no promise beyond a personal review and an email. QA fix by Instinct: the invalid-link state headline read \"UNDER REVIEW\" to visitors with no matching application; it now reads \"CHECK YOUR LINK\", while the real under-review state keeps \"UNDER REVIEW\"."
     },
     {
       "location": "POST /api/cohort/next join action and new POST /api/cohort/application-status",
