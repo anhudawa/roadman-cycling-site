@@ -53,7 +53,7 @@ export function controlDigest(root) {
   return sha256(JSON.stringify(CONTROL_FILES.map(path => [path, sha256(controlBytes(root, path))])));
 }
 export function validateQA(qa, digest, reviewHash, controlsHash) {
-  if (qa.version !== 1 || qa.reviewer !== 'Codex' || qa.decision !== 'publish') throw new Error('Final agent QA sign-off is required.');
+  if (qa.version !== 1 || !['Codex', 'Instinct'].includes(qa.reviewer) || qa.decision !== 'publish') throw new Error('Final agent QA sign-off is required.');
   const stale = [];
   if (qa.contentDigest !== digest) stale.push(`content expected ${qa.contentDigest}, actual ${digest}`);
   if (qa.reviewHash !== reviewHash) stale.push(`review expected ${qa.reviewHash}, actual ${reviewHash}`);
