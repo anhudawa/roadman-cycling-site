@@ -1,72 +1,90 @@
 {
   "version": 1,
-  "reviewer": "Codex",
+  "reviewer": "Instinct",
   "decision": "publish",
-  "reviewedAt": "2026-09-23T14:35:00Z",
-  "contentDigest": "14adf52ac3f2b3b9b7080a6c41897647afc0cf29dff9c4a617ac2dbd85ee2906",
-  "reviewHash": "b8467dc318c8f4aa0bd18f317d892446fcf89bd03a1c1f70de04301961dc1ce5",
-  "controlsHash": "8870145847b79540ff55a60f9885ec8b0ca8d0535d93f76ae2481e89f5acc93b",
+  "reviewedAt": "2026-09-24T11:00:00Z",
+  "contentDigest": "8240f29870eac94fca72686be54311d14c3d67f23e705bddb1849b7ff079cfcd",
+  "reviewHash": "a55ad1d9d80b67c79378fd2d7f9c1c59b1d8db2db0fa4bbb8dcd15b3bea531ce",
+  "controlsHash": "1486e44fa9b6ee3306c0f8aa177caa9a9157e85bf6498a5106f062593ed41faf",
   "blockers": [],
   "checks": {
     "claims": {
       "status": "pass",
-      "evidence": "Changed claims were traced to two route behaviours and one static verification token. No new coaching, performance, pricing, membership or health promise appears in the changed content."
+      "evidence": "The only new public statements are on /apply/next: applications are read personally, the applicant is emailed once reviewed, and questions go to Sarah at sarah@roadmancycling.com. The code backs these: approval needs a person to move the application to the Approved stage, and the page shows no offer until then. No price, performance, coaching or health claim was added."
     },
     "editorial": {
       "status": "pass",
-      "evidence": "Release review covers each changed public surface: predictor fallback, Good Legs legacy redirect and TikTok verification file. No article body or commercial copy was introduced."
+      "evidence": "Each changed surface was read in the rendered preview: the /apply/next states, the /good-legs redirect target and the TikTok file. One copy defect was found and fixed before sign-off: the no-application state headline said UNDER REVIEW to visitors with no matching application; it now says CHECK YOUR LINK (commit a0f3f85). The remaining copy is short, plain and answers the applicant's question."
     },
     "offers": {
       "status": "pass",
-      "evidence": "The Good Legs product page reached by the redirect keeps its existing offer language, while predictor and TikTok changes do not create checkout, subscription or lead-generation changes."
+      "evidence": "The Not Done Yet offer text (NDY_APPLICATION_OFFER) is unchanged. The release only changes when it appears: approved applicants or recorded signups. A direct visit without a valid link renders no offer, checkout or Skool link, as seen on the preview render of /apply/next."
     },
     "desktop": {
       "status": "pass",
-      "evidence": "Desktop renders at 1365 × 900 completed for the changed predictor and Good Legs redirect surfaces with no error overlay or horizontal overflow.",
+      "evidence": "Desktop renders at 1365 x 900 on the Vercel preview for commit 67a719d. All four surfaces loaded with no Next.js error overlay and no horizontal overflow (document scroll width 1357 inside a 1365 window, the difference being the scrollbar).",
       "pages": [
         {
-          "url": "http://localhost:3000/predict/ring-of-beara",
+          "url": "https://roadman-cycling-site-git-feat-instinc-6e8913-anhudawas-projects.vercel.app/apply/next",
           "width": 1365,
           "height": 900,
-          "observations": "HTTP 200 page displayed the Ring of Beara predictor heading, stable document width and no Next.js overlay."
+          "observations": "No-token visit shows the fail-closed state: eyebrow Application review, headline CHECK YOUR LINK, the can't-match message, an Apply to Not Done Yet button and the Talk to Sarah box with her email. No offer or checkout shown."
         },
         {
-          "url": "http://localhost:3000/good-legs",
+          "url": "https://roadman-cycling-site-git-feat-instinc-6e8913-anhudawas-projects.vercel.app/good-legs",
           "width": 1365,
           "height": 900,
-          "observations": "Request resolved to http://localhost:3000/app with the Good Legs hero visible, stable document width and no Next.js overlay."
+          "observations": "Resolved to /app, the Good Legs page, headline THE RIDE IS ONLY HALF THE STORY with the iPhone beta waitlist card and full navigation."
+        },
+        {
+          "url": "https://roadman-cycling-site-git-feat-instinc-6e8913-anhudawas-projects.vercel.app/predict/ring-of-beara",
+          "width": 1365,
+          "height": 900,
+          "observations": "Ring of Beara Cycle Kenmare predictor loads with the 137 km / 2,332 m / 7 climbs chips and the Predict my finish time button. Climb labels on the course-profile chart overlap; this chart is unchanged from the c52379e release and outside this release's changes."
+        },
+        {
+          "url": "https://roadman-cycling-site-git-feat-instinc-6e8913-anhudawas-projects.vercel.app/tiktokfH446evPNhPT6HOQ8HRefSvifiR9DYEZ.txt",
+          "width": 1365,
+          "height": 900,
+          "observations": "Plain text body is exactly tiktok-developers-site-verification=fH446evPNhPT6HOQ8HRefSvifiR9DYEZ, matching the TikTok portal download."
         }
       ]
     },
     "mobile": {
       "status": "pass",
-      "evidence": "Mobile renders at 390 × 844 completed for the changed predictor and Good Legs redirect surfaces with no error overlay or horizontal overflow.",
+      "evidence": "Mobile renders at 390 x 844 with mobile emulation on the same preview. Document scroll width equals the 390 window on every page, with no error overlay.",
       "pages": [
         {
-          "url": "http://localhost:3000/predict/ring-of-beara",
+          "url": "https://roadman-cycling-site-git-feat-instinc-6e8913-anhudawas-projects.vercel.app/apply/next",
           "width": 390,
           "height": 844,
-          "observations": "HTTP 200 page displayed the Ring of Beara predictor heading within the mobile viewport and document width stayed within 390 pixels."
+          "observations": "CHECK YOUR LINK state wraps cleanly in one column; the Apply button and the Talk to Sarah box are full width with readable text."
         },
         {
-          "url": "http://localhost:3000/good-legs",
+          "url": "https://roadman-cycling-site-git-feat-instinc-6e8913-anhudawas-projects.vercel.app/good-legs",
           "width": 390,
           "height": 844,
-          "observations": "Request resolved to http://localhost:3000/app with the Good Legs hero readable in the mobile viewport and no horizontal overflow."
+          "observations": "Resolved to /app; headline, body copy and the waitlist card stack in one column under the hamburger menu."
+        },
+        {
+          "url": "https://roadman-cycling-site-git-feat-instinc-6e8913-anhudawas-projects.vercel.app/predict/ring-of-beara",
+          "width": 390,
+          "height": 844,
+          "observations": "Title wraps to two lines, the chips wrap to two rows and the Predict my finish time button spans the width. The same chart-label overlap noted on desktop is unchanged from the c52379e release."
         }
       ]
     },
     "interactions": {
       "status": "pass",
-      "evidence": "The route interaction checks exercised loading a predictor page, following the /good-legs redirect to /app and requesting the TikTok token file. All completed locally with expected status or final URL and no external write."
+      "evidence": "On the preview, a no-token visit to /apply/next settled into the invalid-link state, the Apply to Not Done Yet link was present, /good-legs followed its redirect to /app, and the TikTok file served as plain text. The join action returning 409 until approval and the application-status endpoint are covered by the route tests (74 of 74 vitest tests passed across apply, cohort API and podcast); no live join was attempted, to avoid writing to production data."
     },
     "seo": {
       "status": "pass",
-      "evidence": "Offline link audit scanned 18,388 references with 0 broken links. The /good-legs redirect keeps legacy links resolvable and the static token file is isolated from indexed editorial content."
+      "evidence": "The /good-legs rule in next.config.ts is permanent: true, which Next.js serves as a 308, so legacy links keep their ranking signal and resolve to /app as seen on the preview. /apply/next is a personal follow-up page with no new indexable content. The TikTok file is a static text file with no links."
     },
     "technical": {
       "status": "pass",
-      "evidence": "TypeScript completed cleanly; ESLint completed with zero errors; editorial gate tests passed 56/56; focused predictor fixture/report tests passed 4/4; offline link audit reported 0 broken references. Final reviewed fingerprint is 2bedd6353c077a99339b07dfc422f64638299c593dae2cf8d7b7c3e3814f2745 across 4001 files after the release-gate repairs."
+      "evidence": "The Vercel preview build for commit 67a719d completed (Ready, 5m 56s), which includes the Next.js type check and compile. ESLint reported no errors on the changed files. Editorial gate tests passed 56 of 56 with node --test. Route and unit tests passed 74 of 74 with vitest. Content fingerprint 8240f29870eac94fca72686be54311d14c3d67f23e705bddb1849b7ff079cfcd matches the release record."
     }
   }
 }

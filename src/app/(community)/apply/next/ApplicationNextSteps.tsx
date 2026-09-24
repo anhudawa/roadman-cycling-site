@@ -118,7 +118,7 @@ export function ApplicationNextSteps() {
       <header className="pb-3">
         <div aria-hidden="true" className="flex h-14 w-14 items-center justify-center rounded-full border border-coral/35 bg-coral/10 text-2xl text-coral">⏳</div>
         <p className="mt-6 text-xs font-semibold uppercase tracking-[0.24em] text-coral">Application review</p>
-        <h1 className="mt-3 font-heading text-4xl sm:text-5xl">UNDER REVIEW</h1>
+        <h1 className="mt-3 font-heading text-4xl sm:text-5xl">{unmatched ? "CHECK YOUR LINK" : "UNDER REVIEW"}</h1>
         {unmatched ? <>
           <p className="mt-5 text-xl leading-8 text-off-white">We can’t match this page to an application.</p>
           <p className="mt-3 max-w-xl text-base leading-7 text-foreground-muted">If you’ve already applied, open the personal link in your application email to see where yours is up to. If you haven’t applied yet, you can start now.</p>
