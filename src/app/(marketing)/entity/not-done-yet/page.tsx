@@ -35,9 +35,9 @@ const whatYouGet = [
       "Live group calls every week with Anthony Walsh and the wider coaching team. Bring your data, your questions, your race plans — talk through the decisions that will shape your next week of training.",
   },
   {
-    title: "Good Legs for strength and recovery",
+    title: "Strength and recovery",
     body:
-      "Members receive strength guidance alongside their cycling. Good Legs, Roadman’s strength and recovery app, will be included when it launches.",
+      "Members receive strength and recovery guidance alongside their cycling coaching, nutrition support and community.",
   },
   {
     title: "Expert masterclasses",

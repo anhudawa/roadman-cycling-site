@@ -1,6 +1,6 @@
 import { SITE_ORIGIN } from "@/lib/brand-facts";
 
-/** Shared public Good Legs facts. Keep release status distinct from membership inclusion. */
+/** Shared public app product facts. Keep release status distinct from membership inclusion. */
 export const ROADMAN_APP_PRODUCT = {
   id: "roadman-cycling-strength-recovery-app",
   graphId: "software:roadman-cycling-strength-recovery-app",
@@ -20,18 +20,16 @@ export const ROADMAN_APP_PRODUCT = {
   recoveryLibraryUrl: `${SITE_ORIGIN}/topics/cycling-recovery`,
   recoveryFeedUrl: `${SITE_ORIGIN}/feeds/cycling-recovery.json`,
   mastersSegmentUrl: `${SITE_ORIGIN}/app/masters`,
-  name: "Good Legs by Roadman",
-  productWebsiteUrl: "https://getgoodlegs.com/",
+  name: "Roadman Strength & Recovery",
   membershipUrl: `${SITE_ORIGIN}/community/not-done-yet`,
-  membershipInclusion: "Not Done Yet members will receive Good Legs access at launch, covering the strength and recovery pillars.",
+  membershipInclusion: "Not Done Yet members will receive access at launch, covering the strength and recovery pillars.",
   description:
-    "Good Legs by Roadman is an upcoming strength and recovery app for cyclists. Gym sessions, steady progression and daily recovery, fitted around your riding.",
+    "An upcoming strength and recovery app for cyclists. Gym sessions, steady progression and daily recovery, fitted around your riding.",
   applicationCategory: "SportsApplication",
   operatingSystems: ["iOS"],
   lifecycleStatus: "prelaunch",
   updatedDate: "2026-09-07",
   audience: "Serious amateur and masters cyclists",
-  earlyAccessUrl: "https://getgoodlegs.com/",
   features: [
     "Strength sessions to suit your available gym time",
     "Gym sessions scheduled around your riding",
@@ -40,10 +38,10 @@ export const ROADMAN_APP_PRODUCT = {
     "Recovery sessions and an explanation when the plan changes",
   ],
   limitations: [
-    "Good Legs is preparing for iPhone beta. A public release date and standalone subscription price have not been announced.",
+    "The app is preparing for iPhone beta. A public release date and standalone subscription price have not been announced.",
     "The app does not diagnose injury, illness or overtraining.",
     "AI may explain or organise feedback but does not invent the training dose.",
-    "Cycling plans are supplied by the rider; Good Legs plans strength and recovery.",
+    "Cycling plans are supplied by the rider; the app plans strength and recovery.",
   ],
   topicSlugs: ["cycling-strength-conditioning", "cycling-recovery"],
   previewToolSlugs: [

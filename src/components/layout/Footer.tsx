@@ -47,7 +47,6 @@ const footerColumns = {
       { label: "How It Works", href: "/coaching" },
       { label: "Not Done Yet Coaching", href: "/community/not-done-yet" },
       { label: "Inner Circle", href: "/inner-circle" },
-      { label: "Good Legs by Roadman", href: "/app" },
       { label: "Strength Training", href: "/strength-training" },
       { label: "Cycling Coach Ireland", href: "/coaching/ireland" },
       { label: "Cycling Coach UK", href: "/coaching/uk" },

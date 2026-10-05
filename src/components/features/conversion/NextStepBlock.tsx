@@ -95,9 +95,6 @@ export function NextStepBlock({
         {copy.subheadline}
       </p>
 
-      {(pillar === "strength" || pillar === "recovery") && (
-        <p className="mb-6 text-sm text-foreground-muted">We’re also building <Link href="/app" data-track={`${source}-good-legs`} className="underline">Good Legs</Link>, our strength and recovery app. Included with Not Done Yet at launch.</p>
-      )}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {/* Primary — coaching */}
         <Link

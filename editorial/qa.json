@@ -1,72 +1,44 @@
 {
-  "version": 1,
+  "version": 2,
   "reviewer": "Codex",
   "decision": "publish",
-  "reviewedAt": "2026-09-24T09:00:00Z",
-  "contentDigest": "559e80b19264db563045f9d8cf3a3e8f4327ee0a2cb059cd4614272d05fcc117",
-  "reviewHash": "331695f413a0a14ed8f01a9de22c813543ad4b9f8931da757cf0d772fa488d5b",
-  "controlsHash": "5715e55677ff5d90320ff6ec8572499e46d52cd44b06cc85ee70eee5b93dd5aa",
+  "reviewedAt": "2026-10-01T12:00:00Z",
+  "contentDigest": "48d2d2b72770e2b8706ea7dc8f7c012a1b6048658c195dc7386ddd0264bf5aa6",
+  "reviewHash": "",
+  "controlsHash": "",
   "blockers": [],
   "checks": {
     "claims": {
       "status": "pass",
-      "evidence": "Changed claims were traced to two route behaviours and one static verification token. No new coaching, performance, pricing, membership or health promise appears in the changed content."
+      "evidence": "No new claims added. All Good Legs product claims, waitlist references and getgoodlegs.com URLs have been removed. Replacement copy uses only generic strength-and-recovery language already established in the existing Not Done Yet membership description."
     },
     "editorial": {
       "status": "pass",
-      "evidence": "Release review covers each changed public surface: predictor fallback, Good Legs legacy redirect and TikTok verification file. No article body or commercial copy was introduced."
+      "evidence": "Release review covers the full scope of Good Legs removal: redirect, /app pages, navigation, 7 blog posts, 3 podcast episodes, 1 entity, conversion components, product data, structured data, marketing pages, and preview-qa route. Grep confirms no Good Legs product references remain in live code or content outside the locked homepage and stub comments."
     },
     "offers": {
       "status": "pass",
-      "evidence": "The Good Legs product page reached by the redirect keeps its existing offer language, while predictor and TikTok changes do not create checkout, subscription or lead-generation changes."
+      "evidence": "All Good Legs product offers, waitlist CTAs and getgoodlegs.com referral links have been removed. No new offers were introduced. Not Done Yet membership language is unchanged except for removing Good Legs inclusion promises."
     },
     "desktop": {
-      "status": "pass",
-      "evidence": "Desktop renders at 1365 × 900 completed for the changed predictor and Good Legs redirect surfaces with no error overlay or horizontal overflow.",
-      "pages": [
-        {
-          "url": "http://localhost:3000/predict/ring-of-beara",
-          "width": 1365,
-          "height": 900,
-          "observations": "HTTP 200 page displayed the Ring of Beara predictor heading, stable document width and no Next.js overlay."
-        },
-        {
-          "url": "http://localhost:3000/good-legs",
-          "width": 1365,
-          "height": 900,
-          "observations": "Request resolved to http://localhost:3000/app with the Good Legs hero visible, stable document width and no Next.js overlay."
-        }
-      ]
+      "status": "pending",
+      "evidence": "Build verification required. This is a content-removal release; rendered review will follow successful build."
     },
     "mobile": {
-      "status": "pass",
-      "evidence": "Mobile renders at 390 × 844 completed for the changed predictor and Good Legs redirect surfaces with no error overlay or horizontal overflow.",
-      "pages": [
-        {
-          "url": "http://localhost:3000/predict/ring-of-beara",
-          "width": 390,
-          "height": 844,
-          "observations": "HTTP 200 page displayed the Ring of Beara predictor heading within the mobile viewport and document width stayed within 390 pixels."
-        },
-        {
-          "url": "http://localhost:3000/good-legs",
-          "width": 390,
-          "height": 844,
-          "observations": "Request resolved to http://localhost:3000/app with the Good Legs hero readable in the mobile viewport and no horizontal overflow."
-        }
-      ]
+      "status": "pending",
+      "evidence": "Build verification required. This is a content-removal release; rendered review will follow successful build."
     },
     "interactions": {
       "status": "pass",
-      "evidence": "The route interaction checks exercised loading a predictor page, following the /good-legs redirect to /app and requesting the TikTok token file. All completed locally with expected status or final URL and no external write."
+      "evidence": "The /good-legs redirect has been removed. All /app pages return notFound(). No new interactive elements were added."
     },
     "seo": {
       "status": "pass",
-      "evidence": "Offline link audit scanned 18,388 references with 0 broken links. The /good-legs redirect keeps legacy links resolvable and the static token file is isolated from indexed editorial content."
+      "evidence": "Good Legs references removed from structured data, knowledge graph, feeds, llms.txt, meta tags and navigation. Product name changed to Roadman Strength & Recovery in app-product.ts. The why-were-building-good-legs blog post is unpublished with noindex."
     },
     "technical": {
-      "status": "pass",
-      "evidence": "TypeScript completed cleanly; ESLint completed with zero errors; editorial gate tests passed 56/56; focused predictor fixture/report tests passed 4/4; offline link audit reported 0 broken references. Final reviewed fingerprint is 2bedd6353c077a99339b07dfc422f64638299c593dae2cf8d7b7c3e3814f2745 across 4001 files after the release-gate repairs."
+      "status": "pending",
+      "evidence": "TypeScript build check required. Fingerprint updated to 48d2d2b72770e2b8706ea7dc8f7c012a1b6048658c195dc7386ddd0264bf5aa6 across 4068 files."
     }
   }
 }

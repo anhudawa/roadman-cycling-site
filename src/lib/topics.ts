@@ -731,6 +731,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
 /** Map of topic slugs to relevant blog post slugs */
 const TOPIC_POST_MAP: Record<string, string[]> = {
   "ftp-training": [
+    "best-and-worst-cycling-sessions-fitness-per-hour",
     "ftp-training-zones-cycling-complete-guide",
     "how-to-improve-ftp-cycling",
     "sweet-spot-training-cycling-guide",
@@ -877,6 +878,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-caffeine-tolerance-reset-guide",
     "cycling-glycogen-management-fuelling-guide",
     "cycling-supplement-timing-stacking-guide",
+    "contador-clenbuterol-steak-case-explained",
   ],
   "cycling-training-plans": [
     "training-load-ctl-atl-tsb-explained-cyclists",
@@ -1905,6 +1907,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-menopause-training-guide",
   ],
   "race-preparation": [
+    "montreal-worlds-2026-how-mcnulty-and-vollering-won",
     "cycling-sportive-preparation",
     "cycling-taper-guide-peak-race-day",
     "cycling-taper-race-preparation-system",

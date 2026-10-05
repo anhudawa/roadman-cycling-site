@@ -27,7 +27,6 @@ describe("Roadman app knowledge-graph entity", () => {
         name: ROADMAN_APP_PRODUCT.name,
         url: ROADMAN_APP_PRODUCT.canonicalUrl,
         lifecycleStatus: "prelaunch",
-        earlyAccessUrl: ROADMAN_APP_PRODUCT.earlyAccessUrl,
         applicationCategory: "SportsApplication",
         operatingSystems: ["iOS"],
         limitations: ROADMAN_APP_PRODUCT.limitations,
@@ -112,7 +111,7 @@ describe("Roadman app knowledge-graph entity", () => {
       resolve(process.cwd(), "src/app/llms.txt/route.ts"),
       "utf8",
     );
-    expect(llmsSource).toContain("one stable Good Legs by Roadman software identity");
+    expect(llmsSource).toContain("one stable Roadman Strength \& Recovery software identity");
     expect(llmsSource).toContain("Schema version 3");
   });
 });

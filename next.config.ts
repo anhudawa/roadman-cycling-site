@@ -118,13 +118,6 @@ const nextConfig: NextConfig = {
       // the single commercial owner; /sc/programme remains the noindex course
       // interface for customers.
       {
-        // 308 keeps the method and tells search engines the move is permanent;
-        // /app is the canonical indexed page for the acquired podcast.
-        source: "/good-legs",
-        destination: "/app",
-        permanent: true,
-      },
-      {
         source: "/sc",
         destination: "/strength-training",
         permanent: true,

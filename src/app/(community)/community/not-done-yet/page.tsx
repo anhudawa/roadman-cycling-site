@@ -36,7 +36,7 @@ const tiers = [
       "Personalised TrainingPeaks plans",
       "Weekly live group coaching led by Anthony",
       "Cycling-specific strength guidance",
-      "Good Legs access at launch for strength and recovery",
+      "Strength and recovery guidance",
       "Race weight & nutrition guidance",
       "Individual plan reviews by the Roadman coaching team",
       "Riders training alongside you, not beginners",
@@ -104,7 +104,7 @@ const memberTestimonials = getTestimonialsByName([
 ]);
 
 const objections = [
-  { question: "Will I get Good Legs with my membership?", answer: "Yes. Good Legs, our strength and recovery app, will be included at launch. Members already receive cycling coaching, strength and nutrition guidance, and access to the private community." },
+  { question: "Does membership include strength and recovery?", answer: "Yes. Strength and recovery guidance is included at launch. Members already receive cycling coaching, nutrition guidance, and access to the private community." },
   {
     question: "I already listen to the podcast — why would I pay?",
     answer:
@@ -230,7 +230,7 @@ export default function NotDoneYetPage() {
         <Section background="charcoal" className="py-12">
           <Container>
             <h2 className="font-heading text-3xl text-off-white">WHAT YOUR MEMBERSHIP COVERS</h2>
-            <p className="mt-4 max-w-3xl text-foreground-muted">Our five pillars cover the work on the bike and everything that supports it. Good Legs, our strength and recovery app, will be included at launch.</p>
+            <p className="mt-4 max-w-3xl text-foreground-muted">Our five pillars cover the work on the bike and everything that supports it. Strength and recovery guidance is included with your membership.</p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
               {pillars.map(pillar => <article key={pillar.name} className="rounded-xl border border-white/10 p-5">
                 <h3 className="font-heading text-xl text-off-white">{pillar.name}</h3>

@@ -13,7 +13,6 @@ describe("MCP app product service", () => {
       lifecycle_status: "prelaunch",
       launch_date: null,
       price: null,
-      early_access_url: ROADMAN_APP_PRODUCT.earlyAccessUrl,
     });
     expect(record.discovery.product_feed_url).toBe(
       ROADMAN_APP_PRODUCT.feedUrl,

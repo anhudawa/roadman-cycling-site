@@ -1432,7 +1432,7 @@ export const TOOL_LANDING_CONTENT: Record<string, ToolLandingContent> = {
     answerSummary:
       "Map each day's riding demand and available gym window. The planner ranks one or two strength placements, penalises the day before a key or long ride, prefers off-bike or easy-ride days and flags compromises. It places time only: exercises, sets, load and medical decisions remain outside the tool.",
     whatItDoes:
-      "This tool solves a scheduling problem: where one or two strength sessions can sit in the cycling week with the least obvious conflict. It uses the week you enter rather than inventing a generic Monday-to-Sunday plan. Every recommendation includes the rules and compromises that produced it.\n\nUse Roadman's strength-training guide to read the evidence and plan your progression. Good Legs, our forthcoming strength and recovery app, is in development; Not Done Yet members will receive access at launch.",
+      "This tool solves a scheduling problem: where one or two strength sessions can sit in the cycling week with the least obvious conflict. It uses the week you enter rather than inventing a generic Monday-to-Sunday plan. Every recommendation includes the rules and compromises that produced it.\n\nUse Roadman's strength-training guide to read the evidence and plan your progression. Not Done Yet members receive strength and recovery guidance alongside their coaching.",
     whoItsFor: [
       "Cyclists who already have bike sessions and need to find realistic gym windows",
       "Masters riders adding strength without sacrificing a key interval or long ride",

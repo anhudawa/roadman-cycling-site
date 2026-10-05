@@ -23,7 +23,6 @@ export function getAppProduct() {
       operating_systems: ROADMAN_APP_PRODUCT.operatingSystems,
       audience: ROADMAN_APP_PRODUCT.audience,
       url: ROADMAN_APP_PRODUCT.canonicalUrl,
-      early_access_url: ROADMAN_APP_PRODUCT.earlyAccessUrl,
       facts_updated_date: ROADMAN_APP_PRODUCT.updatedDate,
       features: ROADMAN_APP_PRODUCT.features,
       limitations: ROADMAN_APP_PRODUCT.limitations,

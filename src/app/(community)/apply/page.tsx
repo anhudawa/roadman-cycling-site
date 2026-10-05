@@ -82,7 +82,7 @@ const delivery = [
   {
     number: "04",
     title: "Strength, nutrition and recovery",
-    body: "Strength and nutrition guidance alongside your cycling. Good Legs, our strength and recovery app, will be included at launch.",
+    body: "Strength and nutrition guidance alongside your cycling. Strength and recovery support is included with your membership.",
   },
   {
     number: "05",

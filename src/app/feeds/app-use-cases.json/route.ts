@@ -27,7 +27,6 @@ export function GET() {
       audienceModel: {
         productCount: 1,
         waitlistCount: 1,
-        earlyAccessUrl: ROADMAN_APP_PRODUCT.earlyAccessUrl,
         note: "Entry-page attribution is retained without creating separate products or subscriber lists.",
       },
       useCases: ROADMAN_APP_USE_CASES,

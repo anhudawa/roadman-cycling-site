@@ -19,7 +19,6 @@ describe("GET /feeds/app-use-cases.json", () => {
       expect.objectContaining({
         productCount: 1,
         waitlistCount: 1,
-        earlyAccessUrl: ROADMAN_APP_PRODUCT.earlyAccessUrl,
       }),
     );
     expect(body.useCases).toHaveLength(6);

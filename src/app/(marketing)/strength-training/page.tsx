@@ -70,9 +70,9 @@ const FAQS = [
       "Body-mass and lean-mass changes vary with training volume, nutrition and the individual. This page does not promise that a cyclist will add bulk or remain exactly the same weight. Track body mass and cycling outcomes if power-to-weight is important to your goal.",
   },
   {
-    question: "How does the course compare with Good Legs?",
+    question: "Is this the same as Not Done Yet?",
     answer:
-      "The $65 course gives you a fixed 12-week programme to follow yourself. Good Legs is our strength and recovery app, in development for iPhone, with session planning, set logging and progression. It will be included with Not Done Yet at launch. The course is a separate purchase.",
+      "No. The $65 course gives you a fixed 12-week programme to follow yourself. Not Done Yet members receive personalised coaching, strength and recovery guidance, and the private rider community. The course is a separate purchase.",
   },
   {
     question: "How much does the programme cost?",
@@ -116,8 +116,8 @@ const DECISION_ROWS = [
   },
   {
     need: "Strength placed around an existing ride week",
-    answer: "Good Legs by Roadman",
-    href: "/app?source=strength-plan",
+    answer: "Roadman coaching",
+    href: "/coaching",
   },
   {
     need: "Bike and gym training reviewed by a person",
@@ -382,24 +382,23 @@ export default function StrengthTrainingPage() {
               <div className="grid items-center gap-8 lg:grid-cols-[1fr_auto]">
                 <div>
                   <p className="font-heading text-xs tracking-[0.2em] text-coral">
-                    ALSO IN DEVELOPMENT
+                    WANT MORE?
                   </p>
                   <h2 className="mt-3 font-heading text-3xl text-off-white md:text-4xl">
-                    GOOD LEGS BY ROADMAN
+                    NOT DONE YET COACHING
                   </h2>
                   <p className="mt-4 max-w-3xl leading-relaxed text-foreground-muted">
-                    We’re building Good Legs for cyclists who want their strength
-                    and recovery planned from week to week. The app will be
-                    included with Not Done Yet at launch. This $65 course is
-                    available now as a separate, self-guided programme.
+                    Not Done Yet members receive personalised strength and
+                    recovery guidance alongside their cycling coaching. This $65
+                    course is available now as a separate, self-guided programme.
                   </p>
                 </div>
                 <Link
-                  href="/app?source=strength-plan"
-                  data-track="strength_plan_app_early_access"
+                  href="/community/not-done-yet"
+                  data-track="strength_plan_ndy"
                   className="inline-flex shrink-0 items-center justify-center rounded-md bg-coral px-7 py-4 font-heading tracking-wider text-off-white transition-colors hover:bg-coral/90"
                 >
-                  EXPLORE GOOD LEGS
+                  LEARN ABOUT NOT DONE YET
                 </Link>
               </div>
             </div>

@@ -16,7 +16,7 @@ export const CYCLING_RECOVERY_KNOWLEDGE = {
     researchLibraryUrl: `${SITE_ORIGIN}/topics/cycling-recovery`,
     productOwnerUrl: `${SITE_ORIGIN}/app`,
     ownerSeparation:
-      "Use the recovery guide for practical decisions, the research library for supporting evidence, and the Good Legs page for the strength and recovery app and launch updates.",
+      "Use the recovery guide for practical decisions and the research library for supporting evidence.",
   },
   decisionOrder: [
     {

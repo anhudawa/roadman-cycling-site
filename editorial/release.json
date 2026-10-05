@@ -1,48 +1,62 @@
 {
-  "version": 1,
-  "contentDigest": "559e80b19264db563045f9d8cf3a3e8f4327ee0a2cb059cd4614272d05fcc117",
-  "scope": "Roadman Cycling release covering the predict/[slug] fixture fallback, the /good-legs permanent redirect to /app, the static TikTok domain verification file, a cross-platform podcast sort stability fix, and the exclusion of prebuild-generated files from the editorial fingerprint so the gate is reproducible across macOS and Linux build environments. The QA pass also repairs release-gate blockers in blog search retry state, event countdown animation state, and the Dragon Ride predictor mapping so the published build remains reviewable.",
+  "version": 2,
+  "contentDigest": "48d2d2b72770e2b8706ea7dc8f7c012a1b6048658c195dc7386ddd0264bf5aa6",
+  "scope": "Remove all Good Legs branding and references from the Roadman Cycling website. Good Legs is now an independent brand, fully disconnected from Roadman Cycling. This release removes the /good-legs redirect, stubs out /app product pages with notFound(), removes Good Legs from navigation, editorial CTAs, blog/podcast content mentions, acquisition funnels, product data, and structured data. Podcast transcripts using 'good legs' as a cycling expression are preserved. The homepage is locked and retains its existing references for a separate update.",
   "sections": [
     {
-      "location": "src/lib/podcast.ts getAllEpisodes sort",
-      "readerQuestion": "Does the podcast episode ordering change for readers?",
-      "usefulAnswer": "No. The sort now includes a secondary tiebreaker by slug for episodes sharing the same publishDate, making the order deterministic across macOS and Linux filesystems. The reader-facing episode listing is unchanged because the tiebreaker only affects episodes that were previously in an undefined relative order.",
-      "evidence": "After applying the fix, the prebuild regenerated podcast-hub-index.json with identical output to the previously committed version, confirming no visible ordering change. The fix adds a single localeCompare fallback in the sort comparator at line 226.",
-      "editorialDecision": "Publish the sort fix because it is a build-stability improvement with no reader-facing content change — it ensures the editorial gate fingerprint is reproducible across build environments."
+      "location": "next.config.ts /good-legs redirect",
+      "readerQuestion": "What happens when a visitor follows the old /good-legs URL?",
+      "usefulAnswer": "The redirect has been removed. The path now returns a 404.",
+      "evidence": "The redirect block was removed from the async redirects() function in next.config.ts.",
+      "editorialDecision": "Remove the redirect because Good Legs is now an independent brand with no connection to Roadman Cycling."
     },
     {
-      "location": "scripts/editorial-gate.mjs fingerprint GENERATED exclusion",
-      "readerQuestion": "Does excluding prebuild-generated files from the editorial fingerprint weaken content review?",
-      "usefulAnswer": "No. The two excluded files (src/generated/podcast-hub-index.json and src/lib/method/protocol-content.ts) are fully derived from other tracked source files that remain in the fingerprint. They are regenerated on every build by the prebuild step, so their committed content was never the authoritative version — the source MDX files are. Excluding them removes a cross-platform non-determinism that blocked deploys without reducing editorial coverage.",
-      "evidence": "The fingerprint dropped from 4063 to 4061 files, confirming exactly two files excluded. The source files they derive from (content/podcast/*.mdx and content/method/protocols/*.mdx) remain fingerprinted. The prebuild regenerates the excluded files from those sources before every build.",
-      "editorialDecision": "Publish the exclusion because it fixes a deploy-blocking cross-platform divergence without removing any editorially meaningful content from the review gate."
+      "location": "/app product pages (page, masters, methodology, testing, evidence)",
+      "readerQuestion": "What happened to the Good Legs product pages?",
+      "usefulAnswer": "All /app pages now return notFound(). The Good Legs product has its own independent website.",
+      "evidence": "All ten files under src/app/(marketing)/app/ were replaced with notFound() stubs.",
+      "editorialDecision": "Remove the product pages because Good Legs is a separate brand identity."
     },
     {
-      "location": "/predict/[slug] race predictor pages",
-      "readerQuestion": "Can a reader open a race predictor page when the dynamic predictor data store is unavailable or empty?",
-      "usefulAnswer": "Yes. The page now has a read-only fixture fallback for predictor course and report reads, while write paths stay unavailable outside the real backing store. The Dragon Ride route now maps to its predictor fixture so every listed predictor race is resolvable.",
-      "evidence": "Codex rendered /predict/ring-of-beara on desktop and mobile with HTTP 200, the expected race heading and no error overlay. Focused predictor fixture and report tests passed after adding the Dragon Ride predictor slug.",
-      "editorialDecision": "Publish the fallback because it preserves the existing reader-facing predictor experience during backend gaps without inventing results, accepting submissions, or changing race copy."
+      "location": "Navigation (CoachingHeader.tsx, Footer.tsx)",
+      "readerQuestion": "Can visitors still find Good Legs in the site navigation?",
+      "usefulAnswer": "No. Good Legs has been removed from both the header explore menu and the footer coaching links.",
+      "evidence": "The nav item and footer link were removed from their respective arrays.",
+      "editorialDecision": "Remove navigation entries to fully decouple the brands."
     },
     {
-      "location": "/good-legs legacy Good Legs entry point",
-      "readerQuestion": "What happens when a visitor follows the old Good Legs URL?",
-      "usefulAnswer": "The legacy /good-legs path resolves to /app, keeping old links useful while the current Good Legs product page remains the canonical destination.",
-      "evidence": "Codex rendered /good-legs on desktop and mobile and observed the final URL as http://localhost:3000/app with HTTP 200, the Good Legs hero headline and no horizontal overflow.",
-      "editorialDecision": "Keep the redirect because it is navigational only and does not alter product promises, pricing or onboarding behaviour."
+      "location": "Blog and podcast content (7 blog posts, 3 podcast episodes, 1 entity)",
+      "readerQuestion": "Do any articles or episodes still mention Good Legs?",
+      "usefulAnswer": "No. Good Legs paragraphs, FAQ entries, related-post links and editorial CTAs have been removed from all content pages. The why-were-building-good-legs blog post has been unpublished. Podcast transcript references to 'good legs' as a cycling expression are unchanged.",
+      "evidence": "Grep for Good Legs across content/ returns only cycling-expression uses in transcripts.",
+      "editorialDecision": "Remove product mentions to prevent any association between the brands."
     },
     {
-      "location": "/tiktokfH446evPNhPT6HOQ8HRefSvifiR9DYEZ.txt static verification file",
-      "readerQuestion": "Does the TikTok verification artefact add public editorial or marketing content?",
-      "usefulAnswer": "No. The file is a single static verification token served from public assets, with no Roadman editorial wording, product claim or tracking flow.",
-      "evidence": "Codex requested the text file locally and verified HTTP 200 with the exact one-line token body and no additional markup or editorial content.",
-      "editorialDecision": "Publish the verification file as a technical ownership artefact only, separate from any editorial or product narrative."
+      "location": "Conversion components (GoodLegsEditorialCTA, AppEarlyAccessCapture, NextStepBlock, ConversionChrome)",
+      "readerQuestion": "Are any Good Legs conversion funnels still active?",
+      "usefulAnswer": "No. All Good Legs CTAs, waitlist captures and editorial conversion flows have been removed or stubbed.",
+      "evidence": "Components were emptied or had Good Legs sections removed. The good-legs-editorial module was cleared.",
+      "editorialDecision": "Remove conversion components to stop driving traffic from Roadman to Good Legs."
+    },
+    {
+      "location": "Product data and structured data (app-product.ts, app-acquisition.ts, knowledge graph, feeds, llms.txt)",
+      "readerQuestion": "Does any structured data or machine-readable content still reference Good Legs?",
+      "usefulAnswer": "No. The product name was changed to Roadman Strength & Recovery, getgoodlegs.com URLs were removed, and all Good Legs string literals were replaced across data files, feeds and SEO outputs.",
+      "evidence": "Grep for Good Legs/goodlegs/getgoodlegs across src/ returns only stub comments and the locked homepage.",
+      "editorialDecision": "Remove structured data references to prevent search engines associating the brands."
+    },
+    {
+      "location": "Marketing pages (strength-training, not-done-yet, apply, entity/not-done-yet, strength-session-planner)",
+      "readerQuestion": "Do any other marketing or community pages still mention Good Legs?",
+      "usefulAnswer": "No. Good Legs references were replaced with generic strength-and-recovery language or Not Done Yet membership references.",
+      "evidence": "Each page was edited to replace Good Legs copy with brand-neutral alternatives.",
+      "editorialDecision": "Replace with generic language to maintain useful content without the brand association."
     }
   ],
-  "claimsAndSources": "The changed public claims are limited to route availability: predictor pages can render from existing fixture data, /good-legs redirects to the current app page, and TikTok can verify a static token. No performance, coaching, pricing, membership, medical, legal or availability claim was added.",
-  "examplesAndReasoning": "The rendered examples cover the changed predictor surface, the legacy redirect and the token file. Focused tests cover predictor fixture completeness and report fallback behaviour, including the Dragon Ride mapping that previously broke the fixture completeness check.",
-  "voiceAndCuts": "No article, podcast, sales or coaching copy was added. The only visible navigation change is the legacy redirect, and the verification file contains no brand voice beyond the external service token.",
-  "desktopReview": "Codex rendered http://localhost:3000/predict/ring-of-beara and http://localhost:3000/good-legs at 1365 × 900. Both pages completed without a Next.js overlay or horizontal overflow; the predictor page showed the Ring of Beara heading and the Good Legs legacy path resolved to /app.",
-  "mobileReview": "Codex rendered http://localhost:3000/predict/ring-of-beara and http://localhost:3000/good-legs at 390 × 844. Both pages completed without a Next.js overlay or horizontal overflow; the predictor heading and the Good Legs /app destination remained readable in the mobile viewport.",
-  "productAndOfferAccuracy": "No product offer changed. The /app page content, predictor copy, purchase paths, forms and sign-up promises remain as already published; the TikTok file is ownership verification only."
+  "claimsAndSources": "No new claims were added. Existing Good Legs product claims were removed. Replacement copy uses generic language about strength and recovery guidance included with Not Done Yet membership.",
+  "examplesAndReasoning": "No new examples were added. The Good Legs example week (previously rejected) remains removed.",
+  "voiceAndCuts": "Copy changes replace branded Good Legs language with generic strength-and-recovery membership language. No new sales promises or marketing copy was introduced.",
+  "desktopReview": "Pending: build must succeed before rendered review. This release is a content removal, not an addition.",
+  "mobileReview": "Pending: build must succeed before rendered review.",
+  "productAndOfferAccuracy": "No new product offers. Existing Good Legs offers, waitlist CTAs and getgoodlegs.com links have been removed. Not Done Yet membership language is unchanged except for removing Good Legs inclusion promises."
 }

@@ -1,5 +1,3 @@
-import { GoodLegsEditorialCTA } from "@/components/features/conversion/GoodLegsEditorialCTA";
-import { getGoodLegsEditorialSource } from "@/lib/good-legs-editorial";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -119,7 +117,6 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const goodLegsSource = getGoodLegsEditorialSource(slug);
   const post = getPostBySlug(slug);
 
   if (!post) {
@@ -786,7 +783,7 @@ export default async function BlogPostPage({
                 sales card. Renders on every blog post regardless of
                 topic; the topic-specific IntentCTA below still picks the
                 right deeper offer. */}
-            {!goodLegsSource && <PlateauCTA variant="inline" source={`blog-${slug}`} />}
+            <PlateauCTA variant="inline" source={`blog-${slug}`} />
 
             {/* WeeksOutSelector — only renders on event-specific training
                 plan posts whose slug matches an event in training-plans.ts.
@@ -816,12 +813,11 @@ export default async function BlogPostPage({
 
             {/* Mid-article inline CTA — injects after 3rd paragraph, pillar-aware.
                 Client-side portal so only JS users see it. */}
-            {!goodLegsSource && (
-              <InlineArticleCTA
+            <InlineArticleCTA
                 pillar={post.pillar}
                 source={`blog-inline-${slug}`}
               />
-            )}
+
 
             {/* Visible FAQ — rendered from frontmatter faq[] array so the
                 structured data we already emit as FAQPage JSON-LD also
@@ -878,8 +874,7 @@ export default async function BlogPostPage({
                 the FAQ because that's the natural scroll-stop where the
                 reader has just finished the "am I a fit?" decision loop
                 and is most likely to take action. */}
-            {goodLegsSource ? <GoodLegsEditorialCTA source={goodLegsSource} /> : (
-            <NextStepBlock
+                        <NextStepBlock
               pillar={post.pillar}
               source={`blog-next-${slug}`}
               relatedReading={
@@ -891,11 +886,9 @@ export default async function BlogPostPage({
                   : undefined
               }
             />
-            )}
 
             {/* End-of-article email capture — SSR-rendered so Googlebot,
                 AI crawlers, and no-JS visitors all see a newsletter opp. */}
-            {!goodLegsSource && (
             <div className="mt-16">
               <EmailCapture
                 variant="inline"
@@ -905,7 +898,7 @@ export default async function BlogPostPage({
                 buttonText="SUBSCRIBE"
               />
             </div>
-            )}
+
 
             {/* Intent-specific CTA — picks the right offer from article
                 keywords (plateau / zones / event / masters / nutrition /
@@ -915,7 +908,6 @@ export default async function BlogPostPage({
                 coaching-pillar posts) keeps the Apply pitch alive — this
                 slot is now intent-routed instead of the old static
                 "Apply for Coaching" block. */}
-            {!goodLegsSource && (
             <div className="mt-10">
               {inferredCategory === "event" && intentEventName ? (
                 <IntentCTA
@@ -931,7 +923,7 @@ export default async function BlogPostPage({
                 <IntentCTA pillar={post.pillar} source={intentSource} />
               )}
             </div>
-            )}
+
 
             {/* Topic hub back-links — bidirectional signal for Google +
                 natural "keep exploring" path for readers. */}
@@ -1033,13 +1025,12 @@ export default async function BlogPostPage({
             {/* Ask Roadman handoff — pre-fills the assistant input with
                 a question framed around this article's topic so a reader
                 with a follow-up doesn't have to re-establish context. */}
-            {!goodLegsSource && (
-              <AskRoadmanCTA
+            <AskRoadmanCTA
                 topic={post.title}
                 question={`I just read "${post.title}". What should I do next based on this?`}
                 source={`blog-${slug}`}
               />
-            )}
+
 
             {/* Graph-powered: related calculator tools — surfaces at least
                 one pillar-matched tool per article so every long-form piece
@@ -1132,15 +1123,14 @@ export default async function BlogPostPage({
             })()}
 
             {/* Related Content (cross-content: blog + podcast) */}
-            {!goodLegsSource && (
-              <RelatedContent
+            <RelatedContent
                 currentSlug={slug}
                 currentType="blog"
                 pillar={post.pillar}
                 keywords={post.keywords ?? []}
                 className="mt-16"
               />
-            )}
+
 
             {/* Journey-aware internal-linking engine — classifies the
                 article (awareness vs comparison) and routes the reader
@@ -1150,8 +1140,7 @@ export default async function BlogPostPage({
                 top-of-funnel readers, /apply for coaching-pillar
                 readers). Replaces the static "Apply for coaching"
                 block with funnel-aware copy. */}
-            {!goodLegsSource && (
-              <JourneyLinks
+            <JourneyLinks
                 currentType="blog"
                 currentSlug={slug}
                 currentTitle={post.title}
@@ -1160,7 +1149,7 @@ export default async function BlogPostPage({
                 source={`blog-${slug}`}
                 className="mt-16"
               />
-            )}
+
 
             {/* Back to blog */}
             <div className="mt-12 text-center">
@@ -1172,7 +1161,7 @@ export default async function BlogPostPage({
         </Section>
       </main>
 
-      {!goodLegsSource && (post.pillar === "coaching" || post.pillar === "nutrition") && (
+      {(post.pillar === "coaching" || post.pillar === "nutrition") && (
         <StickyCoachingBar source={slug} />
       )}
 

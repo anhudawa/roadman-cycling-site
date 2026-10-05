@@ -2,8 +2,6 @@
 export const dynamic = "force-dynamic";
 
 const PAGES = [
-  "/app",
-  "/blog/why-were-building-good-legs",
   "/blog/andy-galpin-fast-twitch-fibres-cyclist-after-40",
   "/blog/art-oconnor-strength-training-cyclists",
   "/blog/strength-training-cyclists-over-40-what-works",

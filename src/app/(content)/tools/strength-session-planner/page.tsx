@@ -299,19 +299,19 @@ export default function StrengthSessionPlannerPage() {
 
                 <div className="rounded-2xl border border-coral/25 bg-coral/[0.06] p-6 text-center">
                   <p className="font-heading text-xl text-off-white">
-                    MEET GOOD LEGS
+                    STRENGTH & RECOVERY
                   </p>
                   <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-foreground-muted">
-                    Good Legs is our strength and recovery app, in development
-                    for iPhone. Plan your gym work, record your lifts and follow
-                    your progress. Included with Not Done Yet at launch.
+                    Not Done Yet members receive strength and recovery guidance
+                    alongside their cycling coaching, nutrition support and
+                    community.
                   </p>
                   <Link
-                    href="/app?source=strength-session-planner"
-                    data-track="strength_placement_app"
+                    href="/community/not-done-yet"
+                    data-track="strength_placement_ndy"
                     className="mt-5 inline-flex items-center justify-center rounded-md bg-coral px-6 py-3 font-heading text-sm uppercase tracking-wider text-off-white transition-colors hover:bg-coral/90"
                   >
-                    Explore Good Legs
+                    Learn about Not Done Yet
                   </Link>
                 </div>
               </aside>

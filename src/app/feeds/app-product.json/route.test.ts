@@ -61,10 +61,6 @@ describe("GET /feeds/app-product.json", () => {
       currency: null,
       features: ROADMAN_APP_PRODUCT.features,
       limitations: ROADMAN_APP_PRODUCT.limitations,
-      earlyAccess: {
-        url: ROADMAN_APP_PRODUCT.earlyAccessUrl,
-        audienceModel: "single-waitlist",
-      },
     });
   });
 

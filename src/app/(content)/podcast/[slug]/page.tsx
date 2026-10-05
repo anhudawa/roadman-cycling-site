@@ -1,5 +1,3 @@
-import { GoodLegsEditorialCTA } from "@/components/features/conversion/GoodLegsEditorialCTA";
-import { getGoodLegsEditorialSource } from "@/lib/good-legs-editorial";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -113,7 +111,6 @@ export default async function EpisodePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const goodLegsSource = getGoodLegsEditorialSource(slug);
   const episode = getEpisodeBySlug(slug);
 
   if (!episode) {
@@ -823,7 +820,7 @@ export default async function EpisodePage({
                 diagnostic before the offer-ladder pitch. High-intent
                 position after content, before transcript. */}
             <div className="mt-12">
-              {goodLegsSource ? <GoodLegsEditorialCTA source={goodLegsSource} /> : <PlateauCTA variant="inline" source={`podcast-${slug}`} />}
+              <PlateauCTA variant="inline" source={`podcast-${slug}`} />
             </div>
 
             {/* Read full transcript link — surfaces the dedicated
@@ -930,8 +927,7 @@ export default async function EpisodePage({
             {/* Ask Roadman handoff — episode-specific question seed so a
                 listener with a follow-up can take the topic into the
                 assistant without re-establishing context. */}
-            {!goodLegsSource && (
-              <AskRoadmanCTA
+            <AskRoadmanCTA
                 topic={episode.title}
                 question={
                   episode.guest
@@ -940,10 +936,9 @@ export default async function EpisodePage({
                 }
                 source={`podcast-${slug}`}
               />
-            )}
+
 
             {/* Newsletter */}
-            {!goodLegsSource && (
             <EmailCapture
               variant="inline"
               heading="NEVER MISS AN EPISODE"
@@ -951,7 +946,7 @@ export default async function EpisodePage({
               source={`podcast-${slug}`}
               className="mt-16"
             />
-            )}
+
 
             {/* Author-curated related blog posts — explicit episode→blog
                 link equity. Populated by
@@ -1009,7 +1004,7 @@ export default async function EpisodePage({
               </div>
             )}
 
-            {!goodLegsSource && <RelevantTools tools={relevantTools} className="mt-10" />}
+            <RelevantTools tools={relevantTools} className="mt-10" />
 
             {/* Related Episodes (podcast-only, server-rendered for SEO) */}
             <RelatedEpisodes
@@ -1057,15 +1052,14 @@ export default async function EpisodePage({
             )}
 
             {/* Related Content (cross-content: blog + podcast) */}
-            {!goodLegsSource && (
-              <RelatedContent
+            <RelatedContent
                 currentSlug={slug}
                 currentType="podcast"
                 pillar={episode.pillar}
                 keywords={episode.keywords}
                 className="mt-16"
               />
-            )}
+
 
             {/* Journey-aware funnel block — replaces the static "Want
                 this applied to your training?" CTA with stage + pillar
@@ -1074,8 +1068,7 @@ export default async function EpisodePage({
                 episodes get the Inner Circle community pitch. The
                 forward links bridge listeners back to a reading-format
                 explainer and a related episode. */}
-            {!goodLegsSource && (
-              <JourneyLinks
+            <JourneyLinks
                 currentType="podcast"
                 currentSlug={slug}
                 currentTitle={episode.title}
@@ -1084,8 +1077,8 @@ export default async function EpisodePage({
                 source={`podcast-${slug}`}
                 className="mt-12"
               />
-            )}
-            {!goodLegsSource && episode.pillar !== "coaching" && (
+
+            {episode.pillar !== "coaching" && (
               <div className="mt-12 bg-deep-purple/30 rounded-xl border border-purple/20 p-8 text-center">
                 <h3 className="font-heading text-2xl text-off-white mb-3">
                   LIKED THIS EPISODE?

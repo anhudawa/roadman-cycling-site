@@ -75,7 +75,6 @@ interface GraphNode {
   operatingSystems?: readonly string[];
   lifecycleStatus?: string;
   audience?: string;
-  earlyAccessUrl?: string;
   features?: readonly string[];
   productFeedUrl?: string;
   useCaseFeedUrl?: string;
@@ -229,7 +228,6 @@ export function GET() {
     type: "software",
     subtype: "mobile-application",
     name: ROADMAN_APP_PRODUCT.name,
-    sameAs: ROADMAN_APP_PRODUCT.productWebsiteUrl,
     membershipInclusion: ROADMAN_APP_PRODUCT.membershipInclusion,
     url: ROADMAN_APP_PRODUCT.canonicalUrl,
     description: ROADMAN_APP_PRODUCT.description,
@@ -238,7 +236,6 @@ export function GET() {
     operatingSystems: ROADMAN_APP_PRODUCT.operatingSystems,
     lifecycleStatus: ROADMAN_APP_PRODUCT.lifecycleStatus,
     audience: ROADMAN_APP_PRODUCT.audience,
-    earlyAccessUrl: ROADMAN_APP_PRODUCT.earlyAccessUrl,
     features: ROADMAN_APP_PRODUCT.features,
     limitations: ROADMAN_APP_PRODUCT.limitations,
     productFeedUrl: ROADMAN_APP_PRODUCT.feedUrl,
