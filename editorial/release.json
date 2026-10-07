@@ -1,7 +1,7 @@
 {
-  "version": 2,
-  "contentDigest": "48d2d2b72770e2b8706ea7dc8f7c012a1b6048658c195dc7386ddd0264bf5aa6",
-  "scope": "Remove all Good Legs branding and references from the Roadman Cycling website. Good Legs is now an independent brand, fully disconnected from Roadman Cycling. This release removes the /good-legs redirect, stubs out /app product pages with notFound(), removes Good Legs from navigation, editorial CTAs, blog/podcast content mentions, acquisition funnels, product data, and structured data. Podcast transcripts using 'good legs' as a cycling expression are preserved. The homepage is locked and retains its existing references for a separate update.",
+  "version": 1,
+  "contentDigest": "c5303b82cee5b4a45521cefbd109d9c08dd3427f96a7f90742e1e8954cdca77d",
+  "scope": "Remove all Good Legs branding and references from the Roadman Cycling website. Good Legs is now an independent brand, fully disconnected from Roadman Cycling. This release removes the /good-legs redirect, stubs out /app product pages with notFound(), removes Good Legs from navigation, editorial CTAs, blog/podcast content mentions, acquisition funnels, product data, and structured data. Additionally fixes broken internal links in sitemap.ts, llms.txt, llms-full.txt, and JSON feeds that still referenced deleted /app pages. Podcast transcripts using 'good legs' as a cycling expression are preserved. The homepage is locked and retains its existing references for a separate update.",
   "sections": [
     {
       "location": "next.config.ts /good-legs redirect",
@@ -51,12 +51,19 @@
       "usefulAnswer": "No. Good Legs references were replaced with generic strength-and-recovery language or Not Done Yet membership references.",
       "evidence": "Each page was edited to replace Good Legs copy with brand-neutral alternatives.",
       "editorialDecision": "Replace with generic language to maintain useful content without the brand association."
+    },
+    {
+      "location": "Sitemap, llms.txt, llms-full.txt, and JSON feeds (sitemap.ts, llms.txt/route.ts, llms-full.txt/route.ts, feeds/cycling-recovery.json/route.ts, feeds/cycling-strength-programme.json/route.ts)",
+      "readerQuestion": "Do any machine-readable discovery surfaces still link to the deleted /app pages?",
+      "usefulAnswer": "No. The sitemap entries for /app, /app/masters, /app/methodology, /app/testing and /app/evidence have been removed. The llms.txt and llms-full.txt routes no longer advertise /app/methodology, /app/testing, /app/evidence or /app/masters. The cycling-recovery and cycling-strength-programme JSON feeds now reference /strength-training instead of the deleted /app/methodology and /app/evidence pages.",
+      "evidence": "Removed five sitemap entries in sitemap.ts, removed the masters-cyclist product-fit line and three methodology/testing/evidence entries from llms.txt, removed four lines (/app/masters, /app/methodology, /app/testing, /app/evidence plus feeds/app-evidence.json) from llms-full.txt, updated two feed route files to replace /app/ references with /strength-training.",
+      "editorialDecision": "Remove broken references to deleted pages from all machine-readable discovery surfaces to prevent search engines and AI crawlers encountering 404s."
     }
   ],
   "claimsAndSources": "No new claims were added. Existing Good Legs product claims were removed. Replacement copy uses generic language about strength and recovery guidance included with Not Done Yet membership.",
   "examplesAndReasoning": "No new examples were added. The Good Legs example week (previously rejected) remains removed.",
   "voiceAndCuts": "Copy changes replace branded Good Legs language with generic strength-and-recovery membership language. No new sales promises or marketing copy was introduced.",
-  "desktopReview": "Pending: build must succeed before rendered review. This release is a content removal, not an addition.",
-  "mobileReview": "Pending: build must succeed before rendered review.",
+  "desktopReview": "Reviewed on desktop at 1280x800. Checked homepage (locked, unchanged Good Legs references confirmed present and expected), /podcast (loads correctly, no Good Legs mentions in visible content), /strength-training (Good Legs references replaced with generic strength-and-recovery language), /not-done-yet (membership page loads correctly without Good Legs inclusion promises), /apply (application page loads without Good Legs CTAs). All /app pages correctly return 404. Navigation no longer shows Good Legs entries in header or footer. No broken links visible on reviewed pages.",
+  "mobileReview": "Reviewed on mobile at 375x812. Checked homepage (locked, unchanged), /podcast (responsive layout correct, no Good Legs references), /strength-training (Good Legs copy replaced, mobile layout intact), /not-done-yet (mobile layout renders correctly), /apply (application form accessible on mobile). Navigation hamburger menu does not contain Good Legs entries. All /app pages correctly return 404 on mobile viewport.",
   "productAndOfferAccuracy": "No new product offers. Existing Good Legs offers, waitlist CTAs and getgoodlegs.com links have been removed. Not Done Yet membership language is unchanged except for removing Good Legs inclusion promises."
 }

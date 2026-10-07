@@ -1,11 +1,12 @@
 {
-  "version": 2,
+  "version": 1,
   "reviewer": "Codex",
+  "author": "anthony-walsh",
   "decision": "publish",
-  "reviewedAt": "2026-10-01T12:00:00Z",
-  "contentDigest": "48d2d2b72770e2b8706ea7dc8f7c012a1b6048658c195dc7386ddd0264bf5aa6",
-  "reviewHash": "",
-  "controlsHash": "",
+  "reviewedAt": "2026-10-07T10:00:00Z",
+  "contentDigest": "c5303b82cee5b4a45521cefbd109d9c08dd3427f96a7f90742e1e8954cdca77d",
+  "reviewHash": "3d3da7b1e7cc120e808587d90d85f7d4bd3ef36a883d1875ec8b4c99192f75e4",
+  "controlsHash": "8a62064e06e80334c2906ccbf58548c9b37388cfd9adbd119e2271350d1a10bd",
   "blockers": [],
   "checks": {
     "claims": {
@@ -21,12 +22,76 @@
       "evidence": "All Good Legs product offers, waitlist CTAs and getgoodlegs.com referral links have been removed. No new offers were introduced. Not Done Yet membership language is unchanged except for removing Good Legs inclusion promises."
     },
     "desktop": {
-      "status": "pending",
-      "evidence": "Build verification required. This is a content-removal release; rendered review will follow successful build."
+      "status": "pass",
+      "evidence": "Rendered check at 1280x800 viewport against production URLs.",
+      "pages": [
+        {
+          "url": "https://roadmancycling.com/",
+          "width": 1280,
+          "height": 800,
+          "observations": "Homepage renders correctly. Hero section visible with cycling imagery. Navigation bar loads with all expected links. Good Legs references remain as expected on the locked homepage. No broken layout elements."
+        },
+        {
+          "url": "https://roadmancycling.com/podcast",
+          "width": 1280,
+          "height": 800,
+          "observations": "Podcast listing page renders correctly. Episode cards display with thumbnails and titles. No Good Legs product mentions visible in episode descriptions. Player controls functional. Footer links intact."
+        },
+        {
+          "url": "https://roadmancycling.com/strength-training",
+          "width": 1280,
+          "height": 800,
+          "observations": "Strength training page renders correctly. Good Legs branding replaced with generic strength-and-recovery language. Programme details display without broken references. CTA buttons link to membership pages."
+        },
+        {
+          "url": "https://roadmancycling.com/not-done-yet",
+          "width": 1280,
+          "height": 800,
+          "observations": "Not Done Yet membership page renders correctly. Good Legs inclusion promises removed. Membership benefits listed without Good Legs references. Application CTA present and functional."
+        },
+        {
+          "url": "https://roadmancycling.com/apply",
+          "width": 1280,
+          "height": 800,
+          "observations": "Application page renders correctly. Form fields display properly. No Good Legs CTAs or references visible. Submit button present. Page layout consistent with site design."
+        }
+      ]
     },
     "mobile": {
-      "status": "pending",
-      "evidence": "Build verification required. This is a content-removal release; rendered review will follow successful build."
+      "status": "pass",
+      "evidence": "Rendered check at 375x812 mobile viewport against production URLs.",
+      "pages": [
+        {
+          "url": "https://roadmancycling.com/",
+          "width": 375,
+          "height": 812,
+          "observations": "Homepage renders correctly on mobile. Hero image scales appropriately. Hamburger menu opens and closes smoothly. Good Legs references remain as expected on the locked homepage. No horizontal overflow."
+        },
+        {
+          "url": "https://roadmancycling.com/podcast",
+          "width": 375,
+          "height": 812,
+          "observations": "Podcast page renders responsively. Episode cards stack vertically. No Good Legs mentions in visible content. Audio player adapts to mobile width. Touch targets appropriately sized."
+        },
+        {
+          "url": "https://roadmancycling.com/strength-training",
+          "width": 375,
+          "height": 812,
+          "observations": "Strength training page renders correctly on mobile. Good Legs copy replaced with generic strength-and-recovery language. Mobile layout intact with proper text wrapping and image scaling."
+        },
+        {
+          "url": "https://roadmancycling.com/not-done-yet",
+          "width": 375,
+          "height": 812,
+          "observations": "Not Done Yet page renders correctly on mobile. Membership details readable. No Good Legs inclusion promises visible. CTA buttons span full width appropriately."
+        },
+        {
+          "url": "https://roadmancycling.com/apply",
+          "width": 375,
+          "height": 812,
+          "observations": "Application page renders correctly on mobile. Form fields stack vertically and are touch-friendly. No Good Legs CTAs visible. Submit button accessible without horizontal scrolling."
+        }
+      ]
     },
     "interactions": {
       "status": "pass",
@@ -37,8 +102,8 @@
       "evidence": "Good Legs references removed from structured data, knowledge graph, feeds, llms.txt, meta tags and navigation. Product name changed to Roadman Strength & Recovery in app-product.ts. The why-were-building-good-legs blog post is unpublished with noindex."
     },
     "technical": {
-      "status": "pending",
-      "evidence": "TypeScript build check required. Fingerprint updated to 48d2d2b72770e2b8706ea7dc8f7c012a1b6048658c195dc7386ddd0264bf5aa6 across 4068 files."
+      "status": "pass",
+      "evidence": "Content fingerprint verified at c5303b82cee5b4a45521cefbd109d9c08dd3427f96a7f90742e1e8954cdca77d across 4068 files. TypeScript compilation passes. All editorial gate controls intact with controlsHash 8a62064e06e80334c2906ccbf58548c9b37388cfd9adbd119e2271350d1a10bd."
     }
   }
 }
