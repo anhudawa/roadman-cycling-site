@@ -93,6 +93,14 @@ const nextConfig: NextConfig = {
         destination: "https://roadmancycling.com/:path*",
         permanent: true,
       },
+      // Good Legs is now an independent brand at getgoodlegs.com. The
+      // former /app pages return notFound(); send their search history and
+      // any saved links to the matching Good Legs page instead of a 404.
+      { source: "/app", destination: "https://getgoodlegs.com/", permanent: true },
+      { source: "/app/masters", destination: "https://getgoodlegs.com/cycling", permanent: true },
+      { source: "/app/evidence", destination: "https://getgoodlegs.com/lab", permanent: true },
+      { source: "/app/methodology", destination: "https://getgoodlegs.com/lab", permanent: true },
+      { source: "/app/testing", destination: "https://getgoodlegs.com/lab", permanent: true },
       // Consolidate two overlapping Benji Naesen interview articles onto the
       // URL that already owns the query history in Google Search Console.
       {
