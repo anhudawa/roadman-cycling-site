@@ -8,7 +8,7 @@ Built for Anthony Walsh's 8 September 2026 request. The feature flag defaults of
 2. Start one immediate Beehiiv automation. Email contains two choices: start a **7-day free trial**, then **$195 USD/month** plus applicable taxes via Skool, or ask Sarah a question. The Skool about page is also linked.
 3. The applicant can open the same next-step page immediately after submitting, even if email is delayed or held. The page presents four review messages over eight seconds before revealing the result; supported coarse-pointer browsers receive subtle best-effort vibration cues, while unsupported browsers continue without them.
 4. Asking Sarah opens a short form. Submitting it records the question, moves the application to **Sarah Review**, assigns its existing CRM contact to Sarah, records a timeline entry and queues an operational alert to **anthony@roadmancycling.com**. Sarah reviews the dedicated admin column daily; the question remains visible there if the alert email fails.
-5. Opening checkout records intent only. It does not mark a person paid, change membership counts or unlock Good Legs.
+5. Opening checkout records intent only. It does not mark a person paid or change NDY membership counts.
 
 The approved email states “Your application to Not Done Yet has been approved.” That sentence is supplied only for a persisted `fit=ready` assessment; the neutral fallback never asserts approval. The admin labels the stored result **Approved automatically** or **Sarah review required**. Existing queued jobs use the current assessment wording when enrolled; already-sent emails do not change.
 
