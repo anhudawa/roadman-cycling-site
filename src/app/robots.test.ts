@@ -51,9 +51,12 @@ describe("robots()", () => {
     }
   });
 
-  it("advertises only the canonical sitemap index", async () => {
+  it("advertises the sitemap index and the video sitemap", async () => {
     const { default: robots } = await import("./robots");
     const result = robots();
-    expect(result.sitemap).toBe("https://roadmancycling.com/sitemap.xml");
+    expect(result.sitemap).toEqual([
+      "https://roadmancycling.com/sitemap.xml",
+      "https://roadmancycling.com/video-sitemap.xml",
+    ]);
   });
 });

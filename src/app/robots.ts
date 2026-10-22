@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { SITEMAP_INDEX_URL } from "@/lib/seo/sitemaps";
+import { SITEMAP_INDEX_URL, VIDEO_SITEMAP_URL } from "@/lib/seo/sitemaps";
 
 /**
  * Non-indexable paths. The transactional ones (/cart, /checkout,
@@ -65,8 +65,9 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "Bytespider", allow: ALLOW_PATHS, disallow: DISALLOW_PATHS },
     ],
     // The index is the canonical discovery point for every child sitemap.
-    // Listing children here as well duplicates signals and can drift when a
-    // new partition is added.
-    sitemap: SITEMAP_INDEX_URL,
+    // The video sitemap is listed separately so crawlers discover it without
+    // parsing the index first — Google recommends explicit robots.txt
+    // references for specialist sitemaps (video, news, image).
+    sitemap: [SITEMAP_INDEX_URL, VIDEO_SITEMAP_URL],
   };
 }
