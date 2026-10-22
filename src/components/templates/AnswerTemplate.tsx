@@ -55,6 +55,7 @@ export function AnswerTemplate({
   answer,
   relatedEpisodes,
   episodeTitleBySlug,
+  relatedTools = [],
   source,
 }: AnswerTemplateProps) {
   const { color } = CONTENT_PILLARS[answer.pillar];
@@ -416,6 +417,37 @@ export function AnswerTemplate({
                   >
                     <p className="font-heading text-sm text-off-white group-hover:text-coral transition-colors m-0">
                       {ep.title}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* 8b — Related tools */}
+          {relatedTools.length > 0 && (
+            <section className="mt-12" aria-label="Related tools">
+              <p className="font-heading text-coral text-xs tracking-[0.3em] mb-3">
+                RELATED TOOLS
+              </p>
+              <h2 className="font-heading text-off-white text-2xl mb-6">
+                CRUNCH THE NUMBERS
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {relatedTools.map((tool) => (
+                  <Link
+                    key={tool.href}
+                    href={tool.href}
+                    className="block rounded-lg border border-white/10 bg-white/[0.03] p-4 hover:border-coral/30 transition-colors group"
+                  >
+                    <p className="font-heading text-off-white text-sm leading-snug group-hover:text-coral transition-colors m-0">
+                      {tool.title}{" "}
+                      <span aria-hidden="true" className="text-coral">
+                        &rarr;
+                      </span>
+                    </p>
+                    <p className="text-foreground-subtle text-xs mt-1.5 leading-snug m-0">
+                      {tool.description}
                     </p>
                   </Link>
                 ))}

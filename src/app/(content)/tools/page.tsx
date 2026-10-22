@@ -7,14 +7,14 @@ import { ENTITY_IDS } from "@/lib/brand-facts";
 export const metadata: Metadata = {
   title: "Free Cycling Calculators & Tools — FTP, Fuelling, Weight",
   description:
-    "30+ free cycling tools built on the science discussed on the podcast. FTP zones, race weight, in-ride fuelling, tyre pressure, energy availability, and more. Stop guessing.",
+    "35+ free cycling tools built on the science discussed on the podcast. FTP zones, race weight, in-ride fuelling, tyre pressure, energy availability, and more. Stop guessing.",
   alternates: {
     canonical: "https://roadmancycling.com/tools",
   },
   openGraph: {
     title: "Free Cycling Calculators & Tools — FTP, Fuelling, Weight",
     description:
-      "30+ free cycling tools built on the science discussed on the podcast. FTP zones, race weight, in-ride fuelling, tyre pressure, energy availability, and more.",
+      "35+ free cycling tools built on the science discussed on the podcast. FTP zones, race weight, in-ride fuelling, tyre pressure, energy availability, and more.",
     type: "website",
     url: "https://roadmancycling.com/tools",
   },
@@ -124,6 +124,174 @@ const tools = [
     description:
       "Where your FTP sits among trained amateur masters cyclists in your age group — 40-44, 45-49, 50-54, 55-59, 60+. Percentile and watts to next band.",
     href: "/tools/masters-ftp-benchmark",
+    status: "live" as const,
+  },
+  {
+    title: "FTP Test Calculator",
+    description:
+      "Enter your 20-minute, 8-minute, or ramp test result and get your estimated FTP. Includes W/kg, zone preview, and protocol comparison.",
+    href: "/tools/ftp-test",
+    status: "live" as const,
+  },
+  {
+    title: "W/kg Calculator",
+    description:
+      "Calculate cycling FTP watts per kilogram from power and body weight. Reference ranges, evidence, and interpretation limits included.",
+    href: "/tools/wkg",
+    status: "live" as const,
+  },
+  {
+    title: "TSS Calculator",
+    description:
+      "Calculate Training Stress Score from your ride duration, power, and FTP. Recovery benchmarks and training load interpretation included.",
+    href: "/tools/tss",
+    status: "live" as const,
+  },
+  {
+    title: "Heart Rate Zone Calculator",
+    description:
+      "Calculate five continuous cycling heart-rate zones from measured max HR or a cycling LTHR estimate. Transparent method, worked examples, and evidence limits.",
+    href: "/tools/hr-zones",
+    status: "live" as const,
+  },
+  {
+    title: "VO2max Estimator",
+    description:
+      "Estimate your VO2max from ramp test peak power or FTP. Age-adjusted percentiles, masters benchmarks, and classification from recreational to world-class.",
+    href: "/tools/vo2max",
+    status: "live" as const,
+  },
+  {
+    title: "Sweet Spot Calculator",
+    description:
+      "Calculate the common 88–94% FTP sweet spot band, compare neighbouring ranges, and review response-led sample sessions.",
+    href: "/tools/sweet-spot",
+    status: "live" as const,
+  },
+  {
+    title: "Interval Session Builder",
+    description:
+      "Enter your FTP, pick a training goal, and get a complete structured interval session with power targets, cadence, TSS estimate, and recovery guidance.",
+    href: "/tools/interval-builder",
+    status: "live" as const,
+  },
+  {
+    title: "Training Load Calculator",
+    description:
+      "Calculate CTL, ATL, and TSB from starting load and daily TSS. See the formulas, a worked rest-day example, and how to interpret the result.",
+    href: "/tools/training-load",
+    status: "live" as const,
+  },
+  {
+    title: "Training Readiness Check",
+    description:
+      "Organise eight daily cycling-readiness signals before training. A free 0–24 context check with clear evidence limits.",
+    href: "/tools/training-readiness",
+    status: "live" as const,
+  },
+  {
+    title: "Power-to-Speed Calculator",
+    description:
+      "Convert between cycling power and speed using real physics. Gradient, wind, riding position, rolling resistance, altitude — see what your watts buy you on any road.",
+    href: "/tools/power-speed",
+    status: "live" as const,
+  },
+  {
+    title: "Calories Burned Calculator",
+    description:
+      "How many calories you actually burn on the bike. Calculate from effort level or average power, see fat vs carb fuel split, and get post-ride refuelling targets.",
+    href: "/tools/calories",
+    status: "live" as const,
+  },
+  {
+    title: "Sweat Rate Calculator",
+    description:
+      "Calculate cycling sweat rate from pre/post body mass, fluid, urine, and ride time. See the formula, assumptions, and safe planning boundaries.",
+    href: "/tools/hydration",
+    status: "live" as const,
+  },
+  {
+    title: "Fuelling Self-Assessment",
+    description:
+      "A 10-question self-assessment that evaluates your cycling nutrition across pre-ride fuelling, in-ride carbs, recovery nutrition, hydration, and race-day planning. Scored 0–30.",
+    href: "/tools/fuelling-screen",
+    status: "live" as const,
+  },
+  {
+    title: "Climbing Time Estimator",
+    description:
+      "Estimate how long it will take to climb any hill or col based on your power, weight, gradient, and distance. Physics-based model with famous climb comparisons.",
+    href: "/tools/climb-time",
+    status: "live" as const,
+  },
+  {
+    title: "VAM Calculator",
+    description:
+      "Calculate your VAM (vertical ascent rate) from elevation and time. Amateur-to-pro benchmarks, climbing W/kg estimate, and famous col comparisons.",
+    href: "/tools/vam",
+    status: "live" as const,
+  },
+  {
+    title: "Gear Ratio Calculator",
+    description:
+      "Compare exact chainring and cassette combinations. Speed at cadence, gear inches, development, range, overlap, and custom wheel rollout.",
+    href: "/tools/gear-ratio",
+    status: "live" as const,
+  },
+  {
+    title: "Cadence Calculator",
+    description:
+      "Calculate cycling cadence from speed, gear ratio, and wheel size — or find your speed at any RPM. Cadence zone benchmarks and research-backed guidance included.",
+    href: "/tools/cadence",
+    status: "live" as const,
+  },
+  {
+    title: "Body Composition Calculator",
+    description:
+      "Estimate body fat, lean mass, and fat mass using the US Navy method. Cycling-specific W/kg projections, minimum safe racing weight, and RED-S risk flags.",
+    href: "/tools/body-composition",
+    status: "live" as const,
+  },
+  {
+    title: "Cycling Age Grade Calculator",
+    description:
+      "Age-grade your cycling power to see how your FTP compares to your peak potential. Percentile rankings for trained masters cyclists by age and gender.",
+    href: "/tools/age-grade",
+    status: "live" as const,
+  },
+  {
+    title: "Your Cycling Age",
+    description:
+      "How old is your cycling body? Your birth certificate says one thing — your power numbers say something else. Find out whether you're riding younger or older than your real age.",
+    href: "/tools/cycling-age",
+    status: "live" as const,
+  },
+  {
+    title: "Recovery Readiness Screen",
+    description:
+      "Organise ten cycling-recovery signals across sleep, recent load, fuelling, stress, and wellbeing. Free 0–30 context screen with clear evidence limits.",
+    href: "/tools/recovery-screen",
+    status: "live" as const,
+  },
+  {
+    title: "Wind Chill Calculator",
+    description:
+      "Calculate the wind chill effect at cycling speed. Enter air temperature, riding speed, and wind conditions — with clothing recommendations and descent scenarios.",
+    href: "/tools/wind-chill",
+    status: "live" as const,
+  },
+  {
+    title: "Run-to-Ride Converter",
+    description:
+      "Convert running and cycling distance or time with published MET values. See an energy-cost match plus clear limits on fitness, impact, and training.",
+    href: "/tools/run-ride-converter",
+    status: "live" as const,
+  },
+  {
+    title: "Race Day Checklist",
+    description:
+      "An interactive pre-race checklist that guides you through 48 hours before, night before, and race morning preparation. Check items off, add your own, track progress.",
+    href: "/tools/race-day-checklist",
     status: "live" as const,
   },
 ];

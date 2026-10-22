@@ -7,6 +7,7 @@ import { getAllAnswerSlugs, getAnswerBySlug } from "@/lib/answers";
 import { getEpisodeBySlug } from "@/lib/podcast";
 import { getTopicTitleBySlug } from "@/lib/topics";
 import { ENTITY_IDS, SITE_ORIGIN } from "@/lib/brand-facts";
+import { getToolsForCluster } from "@/lib/cluster-tools";
 
 export function generateStaticParams() {
   return getAllAnswerSlugs().map((slug) => ({ slug }));
@@ -238,6 +239,7 @@ export default async function AnswerPageRoute({
         answer={answer}
         relatedEpisodes={relatedEpisodes}
         episodeTitleBySlug={episodeTitleBySlug}
+        relatedTools={getToolsForCluster(answer.cluster)}
         source={slug}
       />
 
