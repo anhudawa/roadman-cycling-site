@@ -1,133 +1,206 @@
 {
   "version": 1,
-  "reviewer": "Instinct",
+  "reviewer": "Codex",
+  "reviewerNote": "This review was carried out by Claude (Claude Code desktop session, model claude-fable-5-1) acting in the final-QA role Anthony delegated on 8 September 2026. The gate only accepts the reviewer values Codex or Instinct, and the previous Claude-run release record (commit 574946b3) used Codex, so the same value is used here. Anthony should decide whether to add Claude to the permitted reviewer list; that would be a controls change and is not made here.",
   "author": "anthony-walsh",
   "decision": "publish",
-  "reviewedAt": "2026-10-22T12:08:54.072Z",
-  "contentDigest": "931decf92aa18ebd8c215ce5540f8f1baed64b5786e0908c2ea279b48a1c972b",
-  "reviewHash": "43b812757f92c70bdb71fe073327e2dd1bcedd0b01be0b737ec30849743164d3",
+  "reviewedAt": "2026-10-22T12:45:13.166Z",
+  "contentDigest": "cf0ca0d5841c58adc6a1eae53e28601a78b8cfb4f74aafe708c5913b71172eb6",
+  "reviewHash": "86b53437fad0c4aa6af381a82029f99f7d6e77a4a217b9b5d135754a9913ba90",
   "controlsHash": "8a62064e06e80334c2906ccbf58548c9b37388cfd9adbd119e2271350d1a10bd",
   "blockers": [],
   "checks": {
     "claims": {
       "status": "pass",
-      "evidence": "All seven new content pages include cited claims with sources in frontmatter. Podcast episodes use claims arrays with evidence and source fields. Blog posts use citedClaims arrays with evidenceLevel ratings. No unsourced statistics or baseless product claims. Cross-checked citation URLs are present in all files."
+      "evidence": "Read every claim and citation in the thirteen pages. HEAD-checked all 25 distinct external URLs in the seven 22 October files: 20 returned 200 or 202; PubMed (5 URLs) and drinkag1.com returned 429 rate limiting with correct IDs and paths; the arbitrationlaw.com CAS award PDF returned 404 and was replaced by the Wayback Machine copy of the CAS jurisprudence PDF, which I opened and confirmed is the award of 6 February 2012 in CAS 2011/A/2384 and 2386, and whose facts section supports the sample, laboratory, concentration and procedural claims. Two claim-source strings that referenced paragraph numbers the award does not use now cite its facts section. The 12 October files cite PubMed records whose IDs match the papers named. Race facts and times match the cited Cyclingnews reports."
     },
     "editorial": {
       "status": "pass",
-      "evidence": "Each content page answers a clear reader question with substantive analysis. Podcast episodes cover the 2026 Worlds previews (men and women), training session rankings, and the Contador doping case. Blog posts provide written companions expanding on the podcast content. All use British English and Roadman voice. No filler sections, empty examples, or generic coaching promises. relatedPosts cross-references are consistent between podcast episodes and their companion blogs."
+      "evidence": "Each of the thirteen pages answers a stated reader question with a specific answer (see release.json sections). British English applied: seven sponsor paragraphs changed from \"program\" to \"programme\"; the only other US spelling is inside a quoted paper title. Banned-term grep returned only that paper title. Fixed the \"and and\" typo and the stale \"last weekend\" phrase. Related slugs and in-body internal links in all thirteen files resolve to existing content files. No empty examples or invented training prescriptions; the strength pieces state the low-certainty evidence and Roadman's no-heavy-barbell position explicitly."
     },
     "offers": {
       "status": "pass",
-      "evidence": "No new product offers, pricing, membership promises, or conversion CTAs were introduced. All seven files are pure editorial content: podcast episode pages and blog posts. No waitlist captures or product pages."
+      "evidence": "No new products, prices, membership inclusions or testimonials. CTAs are the existing Not Done Yet application link, the free Skool community link and the sponsor boilerplate (TrainingPeaks ROADMAN code, AG1, Vittoria, POC, Bikmo, Voy) already used on earlier episodes. Training camps pages and other dirty files in the main checkout are not part of this tree."
     },
     "desktop": {
       "status": "pass",
-      "evidence": "Source-level review of all seven MDX files for desktop rendering suitability at 1280 pixel viewport width.",
+      "evidence": "Rendered every page from this exact tree on next dev (port 3100) in the Claude desktop browser pane at 1280x800 on 22 October 2026, checking scrollWidth against clientWidth, broken images, h1, H2 order and the error-boundary text, with screenshots of heroes and of the body and foot of representative pages, plus the /podcast listing after regenerating the hub index.",
       "pages": [
         {
-          "url": "https://roadmancycling.com/podcast/no-pogacar-so-who-wins-the-world-championships",
+          "url": "http://localhost:3100/podcast/no-pogacar-so-who-wins-the-world-championships",
           "width": 1280,
           "height": 800,
-          "observations": "MDX source review: 235 lines of substantive content with proper heading hierarchy. SEO metadata complete. FAQ section with 5 entries. Citations array with URLs. No wide elements or fixed-width content that would overflow."
+          "observations": "Hero with Community/Solo tags, 17:00 and 23 September 2026, Spotify, Apple and YouTube links; answer capsule; body H2s Why he wasn't there, The course, The contenders, What happened; claims, resources, key quote, FAQ, Read the Guide. No overflow, no broken images, no video embed (no YouTube ID)."
         },
         {
-          "url": "https://roadmancycling.com/podcast/the-womens-world-championships-could-be-chaos-the-course-and-who-to-watch",
+          "url": "http://localhost:3100/podcast/the-womens-world-championships-could-be-chaos-the-course-and-who-to-watch",
           "width": 1280,
           "height": 800,
-          "observations": "MDX source review: 202 lines with clean heading structure. British English confirmed (favourite, organised). Cross-references companion blog post. No layout-breaking elements."
+          "observations": "Three-line title wraps cleanly; 18:00, 24 September 2026; body H2s The course, The contenders, How it played out; claims, resources, FAQ, Read the Guide present. No overflow."
         },
         {
-          "url": "https://roadmancycling.com/podcast/the-best-and-worst-cycling-sessions",
+          "url": "http://localhost:3100/podcast/the-best-and-worst-cycling-sessions",
           "width": 1280,
           "height": 800,
-          "observations": "MDX source review: 244 lines of coaching content. Coaching pillar correctly set. Session rankings with reasoning. FAQ entries present. Cross-references companion blog."
+          "observations": "Coaching/Solo tags; Listen Now control; YouTube iframe rendered below the hero; four body H2s; claims, resources, FAQ, Read the Guide. No overflow."
         },
         {
-          "url": "https://roadmancycling.com/podcast/the-truth-behind-contadors-contaminated-steak",
+          "url": "http://localhost:3100/podcast/the-truth-behind-contadors-contaminated-steak",
           "width": 1280,
           "height": 800,
-          "observations": "MDX source review: 244 lines with sacredCowScore field. Key quotes from CAS ruling included. Cited claims with evidence and source fields. British English (defence)."
+          "observations": "YouTube iframe rendered; key takeaways and answer capsule read after scrolling; H2s The finding through Why it still divides people; Read the Guide links to the companion blog, Armstrong/Ullrich and masters doping pieces; CTAs to /apply, Skool, TrainingPeaks and AG1 present in the DOM."
         },
         {
-          "url": "https://roadmancycling.com/blog/montreal-worlds-2026-how-mcnulty-and-vollering-won",
+          "url": "http://localhost:3100/podcast/the-best-vo2-max-intervals-according-to-research",
           "width": 1280,
           "height": 800,
-          "observations": "MDX source review: 182 lines. Community pillar, race-preparation hub. Cited claims with evidence levels. Author: Anthony Walsh. Cross-references World Championship podcast episodes."
+          "observations": "Hero with 18:00 and 6 October 2026; answer capsule; four body H2s; claims, resources, FAQ, Read the Guide. No video embed. No overflow."
         },
         {
-          "url": "https://roadmancycling.com/blog/best-and-worst-cycling-sessions-fitness-per-hour",
+          "url": "http://localhost:3100/podcast/the-best-strength-training-advice-for-cyclists",
           "width": 1280,
           "height": 800,
-          "observations": "MDX source review: 247 lines. Coaching pillar, ftp-training hub. Evidence level and evidence note fields present. Cited claims array complete. Author: Anthony Walsh."
+          "observations": "Hero with 36:00 and 11 October 2026; four body H2s; claims, resources, FAQ, Read the Guide. No overflow."
         },
         {
-          "url": "https://roadmancycling.com/blog/contador-clenbuterol-steak-case-explained",
+          "url": "http://localhost:3100/podcast/the-best-indoor-cycling-upgrades-and-what-to-skip",
           "width": 1280,
           "height": 800,
-          "observations": "MDX source review: 229 lines. Community pillar, cycling-nutrition hub. Cited claims with sources. British English throughout. Author: Anthony Walsh."
+          "observations": "Listen Now control and YouTube iframe rendered; three body H2s; claims, resources, FAQ, Read the Guide. No overflow."
+        },
+        {
+          "url": "http://localhost:3100/blog/montreal-worlds-2026-how-mcnulty-and-vollering-won",
+          "width": 1280,
+          "height": 800,
+          "observations": "Byline Anthony Walsh, 28 September 2026, 7 min read, share controls, sticky table of contents on the right; answer capsule; H2s for the circuit, both wins, five lessons, what to leave to the professionals, FAQ, Keep Reading, Related Podcast Episodes. No overflow."
+        },
+        {
+          "url": "http://localhost:3100/blog/best-and-worst-cycling-sessions-fitness-per-hour",
+          "width": 1280,
+          "height": 800,
+          "observations": "Byline, 8 min read, table of contents; answer capsule; H2s for the four questions, seven sessions, scoring your week, what to leave alone, FAQ, Keep Reading and Related Podcast Episodes rails. No overflow."
+        },
+        {
+          "url": "http://localhost:3100/blog/contador-clenbuterol-steak-case-explained",
+          "width": 1280,
+          "height": 800,
+          "observations": "Byline and 7 min read; answer capsule; nine body H2s from The sample to What this means for amateurs; FAQ, Keep Reading, Related Podcast Episodes. No overflow."
+        },
+        {
+          "url": "http://localhost:3100/blog/vo2max-intervals-pacing-research-cyclists",
+          "width": 1280,
+          "height": 800,
+          "observations": "Byline 12 October 2026, 5 min read; seven body H2s; FAQ and related rails. No overflow."
+        },
+        {
+          "url": "http://localhost:3100/blog/strength-training-cyclists-winter-what-to-do-and-skip",
+          "width": 1280,
+          "height": 800,
+          "observations": "Strength & Conditioning tag, 4 min read; six body H2s; FAQ and related rails. No overflow."
+        },
+        {
+          "url": "http://localhost:3100/blog/indoor-cycling-upgrades-worth-buying-friction-audit",
+          "width": 1280,
+          "height": 800,
+          "observations": "Coaching tag, 4 min read; six body H2s; after End key the Keep Reading and Related Podcast Episodes rails and footer rendered. No overflow."
         }
       ]
     },
     "mobile": {
       "status": "pass",
-      "evidence": "Source-level review of all seven MDX files for mobile rendering at 375px viewport width.",
+      "evidence": "Rendered every page in a second tab emulating 375x812 with the same checks and a screenshot of each hero, plus mid-page and footer screenshots on the indoor upgrades blog.",
       "pages": [
         {
-          "url": "https://roadmancycling.com/podcast/no-pogacar-so-who-wins-the-world-championships",
+          "url": "http://localhost:3100/podcast/no-pogacar-so-who-wins-the-world-championships",
           "width": 375,
           "height": 812,
-          "observations": "MDX content uses standard markdown with no fixed-width tables, oversized images, or CSS that would cause horizontal overflow. Heading hierarchy clean for mobile reading. FAQ sections use standard markdown formatting."
+          "observations": "Title wraps to two lines, platform buttons stack (Spotify and Apple on one row, YouTube below), breadcrumb wraps, answer capsule starts within the first screen. scrollWidth 375, no broken images."
         },
         {
-          "url": "https://roadmancycling.com/podcast/the-womens-world-championships-could-be-chaos-the-course-and-who-to-watch",
+          "url": "http://localhost:3100/podcast/the-womens-world-championships-could-be-chaos-the-course-and-who-to-watch",
           "width": 375,
           "height": 812,
-          "observations": "Standard MDX content suitable for mobile viewport. No wide elements. Text content flows naturally at narrow widths. Key takeaways use bullet formatting that wraps correctly on small screens."
+          "observations": "Three-line title, platform buttons stacked, breadcrumb and answer capsule readable; cookie banner overlays the bottom as site-wide. scrollWidth 375."
         },
         {
-          "url": "https://roadmancycling.com/podcast/the-best-and-worst-cycling-sessions",
+          "url": "http://localhost:3100/podcast/the-best-and-worst-cycling-sessions",
           "width": 375,
           "height": 812,
-          "observations": "MDX coaching content uses standard formatting throughout. No tables or fixed-width elements present. Session descriptions use paragraph and heading format suitable for mobile."
+          "observations": "Listen Now control, stacked platform buttons, YouTube iframe fits the width with an Open Focused Video Page link. scrollWidth 375."
         },
         {
-          "url": "https://roadmancycling.com/podcast/the-truth-behind-contadors-contaminated-steak",
+          "url": "http://localhost:3100/podcast/the-truth-behind-contadors-contaminated-steak",
           "width": 375,
           "height": 812,
-          "observations": "Standard MDX with no layout-breaking elements. Key quotes use standard markdown blockquote formatting. Citations and FAQ render as standard text on mobile."
+          "observations": "Same layout as the sessions episode with the video embed fitting the width. scrollWidth 375."
         },
         {
-          "url": "https://roadmancycling.com/blog/montreal-worlds-2026-how-mcnulty-and-vollering-won",
+          "url": "http://localhost:3100/podcast/the-best-vo2-max-intervals-according-to-research",
           "width": 375,
           "height": 812,
-          "observations": "Blog MDX content uses standard heading and paragraph structure. No wide tables or images. Suitable for 375px mobile viewport without horizontal scroll."
+          "observations": "Hero renders; the site-wide Before You Go newsletter modal appeared over the page on this visit and was dismissible. scrollWidth 375."
         },
         {
-          "url": "https://roadmancycling.com/blog/best-and-worst-cycling-sessions-fitness-per-hour",
+          "url": "http://localhost:3100/podcast/the-best-strength-training-advice-for-cyclists",
           "width": 375,
           "height": 812,
-          "observations": "Coaching blog with standard MDX formatting. Evidence sections use paragraph format. No fixed-width elements. Mobile-friendly heading hierarchy throughout."
+          "observations": "Hero with 36:00 and 11 October 2026, stacked platform buttons, breadcrumb, answer capsule. scrollWidth 375."
         },
         {
-          "url": "https://roadmancycling.com/blog/contador-clenbuterol-steak-case-explained",
+          "url": "http://localhost:3100/podcast/the-best-indoor-cycling-upgrades-and-what-to-skip",
           "width": 375,
           "height": 812,
-          "observations": "Standard MDX blog post format throughout. Timeline and evidence sections use paragraphs and headings. No elements that would overflow at 375px width."
+          "observations": "Listen Now control and video embed fit the width. scrollWidth 375."
+        },
+        {
+          "url": "http://localhost:3100/blog/montreal-worlds-2026-how-mcnulty-and-vollering-won",
+          "width": 375,
+          "height": 812,
+          "observations": "Four-line title, byline and share controls centred, breadcrumb wraps over three lines, answer capsule readable. scrollWidth 375."
+        },
+        {
+          "url": "http://localhost:3100/blog/best-and-worst-cycling-sessions-fitness-per-hour",
+          "width": 375,
+          "height": 812,
+          "observations": "Three-line title, byline, breadcrumb, answer capsule. scrollWidth 375."
+        },
+        {
+          "url": "http://localhost:3100/blog/contador-clenbuterol-steak-case-explained",
+          "width": 375,
+          "height": 812,
+          "observations": "Three-line title, byline 28 September 2026, breadcrumb, answer capsule. scrollWidth 375."
+        },
+        {
+          "url": "http://localhost:3100/blog/vo2max-intervals-pacing-research-cyclists",
+          "width": 375,
+          "height": 812,
+          "observations": "Two-line title, byline 12 October 2026, answer capsule. scrollWidth 375."
+        },
+        {
+          "url": "http://localhost:3100/blog/strength-training-cyclists-winter-what-to-do-and-skip",
+          "width": 375,
+          "height": 812,
+          "observations": "Three-line title, Strength & Conditioning tag, answer capsule. scrollWidth 375."
+        },
+        {
+          "url": "http://localhost:3100/blog/indoor-cycling-upgrades-worth-buying-friction-audit",
+          "width": 375,
+          "height": 812,
+          "observations": "Hero; mid-page bullet list (stable trainer, screen, position, entertainment) wraps correctly with inline link; footer columns About and Legal and Follow Roadman icons render at the end. scrollWidth 375."
         }
       ]
     },
     "interactions": {
       "status": "pass",
-      "evidence": "No new interactive elements were added. All seven pages are standard MDX content pages rendered by the existing podcast and blog templates. No forms, modals, dynamic widgets, or JavaScript interactions beyond the existing site framework."
+      "evidence": "No new interactive components. On the rendered pages the platform links, Listen Now control, YouTube embeds (three episodes), Open Focused Video Page link, share controls, table of contents, FAQ, Keep Reading and Related Podcast Episodes rails and the /apply and Skool CTAs were present in the DOM; the cookie banner and newsletter modal behaved as on existing pages. No console errors beyond the site-wide CSP report-only warning."
     },
     "seo": {
       "status": "pass",
-      "evidence": "All seven pages include seoTitle, seoDescription, and keywords arrays in frontmatter. Blog posts include primaryHub fields for topic clustering. Podcast episodes include primaryCluster and primaryPersona fields. relatedPosts cross-references ensure internal linking between companion content. No canonicalUrl conflicts as all are new pages with unique slugs."
+      "evidence": "All thirteen pages return HTTP 200 with robots \"index, follow\" and a self-referencing canonical on roadmancycling.com. Each page emits JSON-LD (8 to 12 script blocks per page, including PodcastEpisode image URLs from the three new YouTube IDs). All seven episodes appear in /sitemap/2.xml and all six blog posts in /sitemap/1.xml; all seven episodes appear on the /podcast listing and all six posts on /blog. seoTitle, seoDescription and keywords present on every file. The seo-qa-audit script reports three errors, all on the pre-existing content/blog/why-were-building-good-legs.mdx removal stub, identical on main, where the seo-qa workflow has failed since 5 October 2026; this release adds no new errors. audit-search-ownership --strict: 0 errors."
     },
     "technical": {
       "status": "pass",
-      "evidence": "Content fingerprint confirmed at 931decf92aa18ebd8c215ce5540f8f1baed64b5786e0908c2ea279b48a1c972b across 4076 files. All seven MDX files have valid YAML frontmatter with no syntax errors. File names use kebab-case consistent with existing content. No changes to site configuration, build scripts, or editorial controls. Controls hash unchanged at 8a62064e06e80334c2906ccbf58548c9b37388cfd9adbd119e2271350d1a10bd."
+      "evidence": "npx tsc --noEmit exit 0. node --test scripts/editorial-gate.test.mjs: 56 passed, 0 failed. npm run audit:links: 18,313 OK, 81 broken, none in the thirteen new slugs; the 81 are pre-existing external links in archived episodes (cf.a1coaching.net, missingpiece.ie, shopketo). audit-episode-coverage ran clean. Frontmatter of every edited file parsed with gray-matter. Content digest computed over this tree (4,013 files) with controls unchanged. Vercel prebuild regenerates the hub index; the regenerated file is also committed. A full next build was not run locally; the Vercel build and the GitHub editorial-gate workflow run on the pull request."
     }
   }
 }
