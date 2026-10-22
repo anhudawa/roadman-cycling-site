@@ -113,10 +113,12 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
       "ftp training",
       "ftp cycling",
       "ftp zones",
+      "cycling power zones",
       "improve ftp",
       "ftp test",
       "functional threshold power",
       "ftp plateau",
+      "how to get faster at cycling",
     ],
   },
   {
@@ -214,7 +216,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
     headline: "LOSE WEIGHT WITHOUT LOSING POWER",
     ctaHeadline: "LOSE WEIGHT WITHOUT LOSING WATTS.",
     description:
-      "How to lose weight while cycling without sacrificing performance. Body composition, fuel for the work required, and the mistakes that keep cyclists heavy.",
+      "How to lose weight while cycling without sacrificing performance. Body composition, fuel for the work required, power-to-weight ratio, and the common mistakes that keep cyclists heavy — evidence-based guidance from the Roadman Cycling Podcast.",
     pillar: "nutrition",
     keywords: [
       "cycling weight loss",
@@ -222,6 +224,8 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
       "cycling body composition",
       "power to weight ratio",
       "cycling diet plan",
+      "how to lose weight cycling",
+      "cycling weight management",
     ],
   },
   {
@@ -230,14 +234,17 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
     headline: "START HERE",
     ctaHeadline: "A COACHED START — WHEN YOU'RE READY.",
     description:
-      "Everything a new cyclist needs to know. Group ride etiquette, bike fit, gravel cycling, tyre pressure, and the culture of the sport.",
+      "The complete beginner's guide to cycling. How to get started, which bike to choose, group ride etiquette, basic bike fit, tyre pressure, gravel and road options, and the culture of the sport — from the Roadman Cycling Podcast.",
     pillar: "community",
     keywords: [
+      "cycling for beginners",
       "beginner cycling",
       "start cycling",
+      "how to get into cycling",
       "cycling tips beginners",
       "group ride etiquette",
       "cycling basics",
+      "getting into cycling",
     ],
   },
   {
@@ -361,6 +368,8 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
       "grey zone training",
       "intensity distribution cycling",
       "zone 2 training",
+      "cycling endurance",
+      "endurance training cycling",
     ],
   },
   {
@@ -407,6 +416,8 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
       "Roadman's bike-fitting knowledge hub: evidence limits, saddle and cleat methods, cockpit and crank decisions, expert interviews, pain boundaries, and the route to the canonical DIY guide.",
     pillar: "community",
     keywords: [
+      "bike fit",
+      "bike fitting",
       "bike fitting knowledge",
       "bike fit evidence",
       "cycling saddle position",
@@ -414,6 +425,7 @@ const TOPIC_DEFINITIONS: Omit<TopicHub, "posts" | "episodes" | "tools" | "commer
       "bike fit after 40",
       "cycling position",
       "professional bike fit",
+      "bike fit guide",
     ],
   },
   {
@@ -2283,7 +2295,7 @@ const TOPIC_ENRICHMENT: Record<string, {
       { slug: "body-composition", title: "Cycling Body Composition Calculator", href: "/tools/body-composition" },
     ],
     commercialPath: "/coaching",
-    relatedTopics: ["cycling-recovery", "cycling-strength-conditioning", "cycling-training-plans"],
+    relatedTopics: ["cycling-recovery", "cycling-strength-conditioning", "cycling-training-plans", "heat-training", "bike-fitting"],
     featuredPostSlugs: [
       "cycling-over-40-complete-guide",
       "masters-cycling-training-plan-over-40",
@@ -2362,7 +2374,7 @@ const TOPIC_ENRICHMENT: Record<string, {
       { slug: "interval-builder", title: "Interval Session Builder", href: "/tools/interval-builder" },
     ],
     commercialPath: "/coaching",
-    relatedTopics: ["cycling-training-plans", "cycling-coaching"],
+    relatedTopics: ["cycling-training-plans", "cycling-coaching", "vo2max-training", "cycling-plateaus", "power-meter-training"],
     featuredPostSlugs: [
       "ftp-training-zones-cycling-complete-guide",
       "how-to-improve-ftp-cycling",
@@ -2454,7 +2466,7 @@ const TOPIC_ENRICHMENT: Record<string, {
       { slug: "fuel-planner", title: "Cycling Fuel Planner", href: "/tools/fuel-planner" },
     ],
     commercialPath: "/coaching",
-    relatedTopics: ["cycling-weight-loss", "ftp-training"],
+    relatedTopics: ["cycling-weight-loss", "ftp-training", "race-preparation", "triathlon-cycling"],
     featuredPostSlugs: [
       "cycling-weight-loss-fuel-for-the-work-required",
       "cycling-in-ride-nutrition-guide",
@@ -2475,7 +2487,7 @@ const TOPIC_ENRICHMENT: Record<string, {
       { slug: "race-predictor", title: "Race Time Predictor", href: "/tools/race-predictor" },
     ],
     commercialPath: "/training-plans",
-    relatedTopics: ["ftp-training", "cycling-coaching"],
+    relatedTopics: ["ftp-training", "cycling-coaching", "cycling-periodisation", "polarised-training", "cycling-beginners"],
     featuredPostSlugs: [
       "polarised-training-cycling-complete-guide",
       "how-to-structure-cycling-training-plan",
@@ -2525,7 +2537,7 @@ const TOPIC_ENRICHMENT: Record<string, {
       { slug: "training-readiness", title: "Training Readiness Check", href: "/tools/training-readiness" },
     ],
     commercialPath: "/coaching",
-    relatedTopics: ["cycling-strength-conditioning", "cycling-training-plans", "masters-cycling"],
+    relatedTopics: ["cycling-strength-conditioning", "cycling-training-plans", "masters-cycling", "sleep-performance", "cycling-psychology"],
     featuredPostSlugs: [
       "cycling-recovery-tips",
       "cycling-sleep-performance-guide",
@@ -2610,7 +2622,7 @@ const TOPIC_ENRICHMENT: Record<string, {
       { slug: "training-readiness", title: "Training Readiness Check", href: "/tools/training-readiness" },
     ],
     commercialPath: "/strength-training",
-    relatedTopics: ["cycling-recovery", "ftp-training"],
+    relatedTopics: ["cycling-recovery", "ftp-training", "masters-cycling", "sprint-training"],
     featuredPostSlugs: [
       "cycling-strength-training-guide",
       "derek-teel-best-exercises-cyclists",
@@ -2642,7 +2654,7 @@ const TOPIC_ENRICHMENT: Record<string, {
       { slug: "wind-chill", title: "Wind Chill Calculator", href: "/tools/wind-chill" },
     ],
     commercialPath: "/start-here",
-    relatedTopics: ["ftp-training", "cycling-training-plans"],
+    relatedTopics: ["ftp-training", "cycling-training-plans", "bike-fitting", "mountain-biking"],
     featuredPostSlugs: [
       "how-to-get-faster-cycling",
       "cycling-indoor-training-tips",
@@ -2685,7 +2697,7 @@ const TOPIC_ENRICHMENT: Record<string, {
       { slug: "body-composition", title: "Body Composition Calculator", href: "/tools/body-composition" },
     ],
     commercialPath: "/coaching",
-    relatedTopics: ["ftp-training", "cycling-training-plans"],
+    relatedTopics: ["ftp-training", "cycling-training-plans", "cycling-plateaus", "masters-cycling", "cycling-beginners"],
     featuredPostSlugs: [
       "is-a-cycling-coach-worth-it",
       "cycling-coaching-results-before-and-after",
@@ -2745,7 +2757,7 @@ const TOPIC_ENRICHMENT: Record<string, {
       { slug: "hr-zones", title: "HR Zone Calculator", href: "/tools/hr-zones" },
     ],
     commercialPath: "/coaching",
-    relatedTopics: ["ftp-training", "cycling-training-plans", "sweet-spot-training"],
+    relatedTopics: ["ftp-training", "cycling-training-plans", "sweet-spot-training", "vo2max-training"],
     featuredPostSlugs: [
       "polarised-training-cycling-complete-guide",
       "polarised-vs-sweet-spot-training",
@@ -2859,7 +2871,7 @@ const TOPIC_ENRICHMENT: Record<string, {
       { slug: "race-predictor", title: "Race Time Predictor", href: "/tools/race-predictor" },
     ],
     commercialPath: "/coaching",
-    relatedTopics: ["cycling-nutrition", "cycling-periodisation", "ftp-training"],
+    relatedTopics: ["cycling-nutrition", "cycling-periodisation", "ftp-training", "cycling-psychology", "heat-training"],
     featuredPostSlugs: [
       "cycling-taper-guide-peak-race-day",
       "race-day-checklist-cyclists",
@@ -2947,7 +2959,7 @@ const TOPIC_ENRICHMENT: Record<string, {
       { slug: "wkg", title: "W/kg Calculator", href: "/tools/wkg" },
     ],
     commercialPath: "/coaching",
-    relatedTopics: ["ftp-training", "cycling-coaching", "cycling-training-plans"],
+    relatedTopics: ["ftp-training", "cycling-coaching", "cycling-training-plans", "cycling-tech"],
     featuredPostSlugs: [
       "power-meter-buying-guide-cyclists",
       "power-meter-training-cyclists-how-to-use",
