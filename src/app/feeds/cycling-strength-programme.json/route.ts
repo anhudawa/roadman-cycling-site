@@ -44,7 +44,7 @@ export function GET() {
         exerciseLibraryUrl: CYCLING_STRENGTH_PROGRAMME.exerciseLibraryUrl,
         exerciseFeedUrl: feedUrl("/feeds/cycling-exercises.json"),
         appUrl: CYCLING_STRENGTH_PROGRAMME.appUrl,
-        appEvidenceRegisterUrl: feedUrl("/app/evidence"),
+        strengthTrainingUrl: feedUrl("/strength-training"),
       },
     },
     { headers: FEED_CACHE_HEADERS },

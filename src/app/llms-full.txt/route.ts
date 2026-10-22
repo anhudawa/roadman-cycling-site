@@ -350,8 +350,6 @@ URL: ${tag(`${BASE_URL}/app`)}
 
 Roadman's upcoming iPhone app is a cyclist-specific strength and recovery system, not a generic AI coach and not a replacement for the rider's cycling plan. The athlete supplies the real riding week; Roadman places 30, 45 or 60-minute strength work around it, protects important rides, uses sleep, energy, soreness and recent bike load to hold or reduce daily volume, and explains material progression decisions. Live prescriptions come from versioned, testable and coach-reviewed rules. Recovery methods carry explicit evidence boundaries. The final public product name, launch date and subscription price are not announced.
 
-Masters-cyclist product-fit page: ${tag(`${BASE_URL}/app/masters`)} — the over-40 and over-50 use case for the same app and single early-access list. Training history, recent tolerated load, key rides, available recovery, equipment and response govern decisions; age alone does not prescribe the session or diagnose fatigue.
-
 Structured use-case feed: ${BASE_URL}/feeds/app-use-cases.json — six name-neutral situations covering masters riders, cyclists with an existing plan, time-crunched riders, strength beginners or returners, limited-equipment training and recovery/readiness. Each record states inputs, product job, supporting knowledge and explicit non-claims; all point to one product and one waitlist.
 
 Public planning tool: ${tag(`${BASE_URL}/tools/strength-session-planner`)} — a free, inspectable preview of Roadman's deterministic strength-placement logic. It schedules available time and labels compromises; it does not prescribe exercises or diagnose recovery.
@@ -439,10 +437,6 @@ For programmatic ingestion, prefer these endpoints over scraping HTML.
 
 - ${BASE_URL}/knowledge-graph.json — Single-document property graph: every first-class entity, including the name-neutral prelaunch Roadman strength and recovery app, plus typed relationships. The app retains its publisher, platform, evidence boundaries, previews, comparisons and single early-access URL. Research assets retain their dataset, archive-study, coaching-framework or evidence-benchmark subtype and limitations. Schema version 3; node ids are namespaced (\`type:slug\`) so the graph loads directly into a property graph store.
 - ${BASE_URL}/feeds/app-product.json — Stable name-neutral product record for the prelaunch Roadman strength and recovery app, including explicit null launch date and price, features, limitations, linked previews, comparisons, evidence and its single early-access URL
-- ${BASE_URL}/app/methodology — Public prelaunch decision policy: strength placement, same-day readiness guardrails, protected key rides, versioned progression, prohibited diagnoses and evidence limits
-- ${BASE_URL}/app/testing — Public prelaunch testing standard: rule verification, beta usability, coach-review agreement, observational pilots, comparative effectiveness, denominators and claim boundaries
-- ${BASE_URL}/app/evidence — Versioned app evidence register: current claim status, explicit non-claims, zero-result state and pending product reports
-- ${BASE_URL}/feeds/app-evidence.json — Machine-readable version of the app evidence register with null schedules and result URLs preserved
 - ${BASE_URL}/sc/exercises — Searchable cyclist exercise catalogue with 54 programme movements, categories, coaching cues and links to the evidence owners
 - ${BASE_URL}/feeds/cycling-exercises.json — Machine-readable exercise catalogue with programme weeks, example prescriptions, video availability and explicit non-ranking status
 - ${BASE_URL}/feeds/cycling-strength-programme.json — Complete 12-week, 24-session cyclist strength programme example with phase structure, exact example doses, canonical editorial owner, noindex supporting-tool policy and explicit non-individualisation and app-evidence boundaries

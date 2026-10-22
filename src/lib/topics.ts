@@ -1194,6 +1194,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-sleep-apnoea-performance-guide",
   ],
   "cycling-strength-conditioning": [
+    "strength-training-cyclists-winter-what-to-do-and-skip",
     "cycling-strength-training-guide",
     "cycling-stretching-routine",
     "cycling-knee-pain-causes-fixes",
@@ -1705,6 +1706,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-polarised-vs-pyramidal-training-guide",
   ],
   "vo2max-training": [
+    "vo2max-intervals-pacing-research-cyclists",
     "cycling-vo2max-intervals",
     "vo2max-cycling-fixable-reasons-low",
     "vo2max-decline-reversibility-masters-cyclists",
@@ -1721,6 +1723,7 @@ const TOPIC_POST_MAP: Record<string, string[]> = {
     "cycling-zone-5-vo2max-intervals-guide",
   ],
   "indoor-training": [
+    "indoor-cycling-upgrades-worth-buying-friction-audit",
     "cycling-zwift-training-guide",
     "best-indoor-cycling-workouts-winter",
     "best-indoor-smart-trainers-2026",

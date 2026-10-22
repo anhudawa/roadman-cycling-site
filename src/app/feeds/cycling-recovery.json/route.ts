@@ -32,8 +32,7 @@ export function GET() {
       discovery: {
         researchLibraryUrl: CYCLING_RECOVERY_KNOWLEDGE.researchLibraryUrl,
         searchOwnershipRegistryUrl: feedUrl("/search-ownership.json"),
-        appMethodologyUrl: feedUrl("/app/methodology"),
-        appEvidenceRegisterUrl: feedUrl("/app/evidence"),
+        strengthTrainingUrl: feedUrl("/strength-training"),
         trainingReadinessToolUrl: feedUrl("/tools/training-readiness"),
         recoveryScreenUrl: feedUrl("/tools/recovery-screen"),
       },

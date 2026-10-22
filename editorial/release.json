@@ -1,62 +1,118 @@
 {
-  "version": 2,
-  "contentDigest": "48d2d2b72770e2b8706ea7dc8f7c012a1b6048658c195dc7386ddd0264bf5aa6",
-  "scope": "Remove all Good Legs branding and references from the Roadman Cycling website. Good Legs is now an independent brand, fully disconnected from Roadman Cycling. This release removes the /good-legs redirect, stubs out /app product pages with notFound(), removes Good Legs from navigation, editorial CTAs, blog/podcast content mentions, acquisition funnels, product data, and structured data. Podcast transcripts using 'good legs' as a cycling expression are preserved. The homepage is locked and retains its existing references for a separate update.",
+  "version": 1,
+  "contentDigest": "cf0ca0d5841c58adc6a1eae53e28601a78b8cfb4f74aafe708c5913b71172eb6",
+  "scope": "Release thirteen content pages that are committed on this branch but not yet on main: four podcast episodes and three companion blog posts added in commit acbfb4dd on 22 October 2026 (Worlds men's and women's previews with results, best and worst sessions, Contador clenbuterol case), plus three podcast episodes and three companion blog posts from commit 2e752130 on 12 October 2026 (VO2 max intervals research, strength training advice, indoor upgrades) which had no editorial record. Also covers the mechanical relatedPosts edits and topics.ts slugs from 2e752130, this review's copy fixes (British English \"programme\" in seven sponsor paragraphs, one typo, one dated phrase, one dead citation link replaced, two claim-source references corrected, three verified YouTube IDs added) and the regenerated podcast hub index. No homepage, navigation, product or offer changes.",
   "sections": [
     {
-      "location": "next.config.ts /good-legs redirect",
-      "readerQuestion": "What happens when a visitor follows the old /good-legs URL?",
-      "usefulAnswer": "The redirect has been removed. The path now returns a 404.",
-      "evidence": "The redirect block was removed from the async redirects() function in next.config.ts.",
-      "editorialDecision": "Remove the redirect because Good Legs is now an independent brand with no connection to Roadman Cycling."
+      "location": "content/podcast/no-pogacar-so-who-wins-the-world-championships.mdx (new page, /podcast/no-pogacar-so-who-wins-the-world-championships)",
+      "readerQuestion": "With Pogačar out injured, what did the 2026 men's Worlds course in Montréal demand and who was placed to win it, and how did the race actually go?",
+      "usefulAnswer": "Explains why Pogačar was absent (Vuelta crash, season ended 5 September), the 273.4km course (12 laps of 13.4km, 269m per lap, Camillien-Houde 2.3km at 6.2%), the spread of contenders, and the result: McNulty's solo from a flat section 32km out, winning by 13 seconds. Ends with a club-rider lesson about attacking where the group relaxes.",
+      "evidence": "Six claims each cite a named source (Cyclingnews 5 and 25 and 27 September 2026, UCI course release March 2026). All seven external citation URLs returned HTTP 200 on 22 October 2026. relatedPosts slugs and in-body links resolve to existing content files. Rendered at 1280x800 and 375x812 on the dev server: h1, four body H2s, claims, resources, key quote, FAQ and Read the Guide sections present.",
+      "editorialDecision": "Publish. Changed only the sponsor boilerplate from \"coaching program\" to \"coaching programme\" for British English. No YouTube ID: the episode was not in the channel feed, so the page shows audio platform links only."
     },
     {
-      "location": "/app product pages (page, masters, methodology, testing, evidence)",
-      "readerQuestion": "What happened to the Good Legs product pages?",
-      "usefulAnswer": "All /app pages now return notFound(). The Good Legs product has its own independent website.",
-      "evidence": "All ten files under src/app/(marketing)/app/ were replaced with notFound() stubs.",
-      "editorialDecision": "Remove the product pages because Good Legs is a separate brand identity."
+      "location": "content/podcast/the-womens-world-championships-could-be-chaos-the-course-and-who-to-watch.mdx (new page)",
+      "readerQuestion": "What made the 2026 women's Worlds road race hard to call, and how did Vollering win it?",
+      "usefulAnswer": "Course (180.1km, eight laps, 2,570m), the home-favourite pressure on Vallières, the contenders, then the result: the crash 95km out that ended Vallières's race, Vollering's attack at 38.5km, being caught at 15km and still winning the two-up sprint. Closes with the point that counting your remaining efforts is a skill, not fitness.",
+      "evidence": "Five cited claims with sources (Cyclingnews 24, 26 and 27 September 2026; UCI course release). External URLs returned 200. Companion blog and men's preview links resolve. Rendered desktop and mobile: no overflow, no broken images, FAQ and claims sections present.",
+      "editorialDecision": "Publish. Sponsor boilerplate changed to \"programme\". No YouTube ID available in the channel feed."
     },
     {
-      "location": "Navigation (CoachingHeader.tsx, Footer.tsx)",
-      "readerQuestion": "Can visitors still find Good Legs in the site navigation?",
-      "usefulAnswer": "No. Good Legs has been removed from both the header explore menu and the footer coaching links.",
-      "evidence": "The nav item and footer link were removed from their respective arrays.",
-      "editorialDecision": "Remove navigation entries to fully decouple the brands."
+      "location": "content/podcast/the-best-and-worst-cycling-sessions.mdx (new page)",
+      "readerQuestion": "Which of my regular rides return the most fitness for the hour, once I count the recovery they cost?",
+      "usefulAnswer": "Sets out the fitness-per-hour test (what it builds, what it costs, who controls the dose), explains why social and fasted rides score lower, cites Seiler's intensity-distribution work and the Rønnestad and Appelhans interval trials, and gives a three-question exercise for the reader's last seven days. Does not invent a league table; points to the episode for the ranking.",
+      "evidence": "Four claims with sources including PubMed IDs 16430681, 24382021 and 40328438; PubMed returned HTTP 429 rate limiting to the link checker but the IDs match the cited papers. Eight relatedPosts and all in-body links resolve. YouTube ID cocruIsv69A added after matching the channel feed entry dated 21 September 2026 titled \"The Best & Worst Cycling Sessions To Get Faster\"; the thumbnail shows the ranked-tier graphic. Rendered desktop and mobile with the video embed present.",
+      "editorialDecision": "Publish with the YouTube embed added and \"programme\" spelling."
     },
     {
-      "location": "Blog and podcast content (7 blog posts, 3 podcast episodes, 1 entity)",
-      "readerQuestion": "Do any articles or episodes still mention Good Legs?",
-      "usefulAnswer": "No. Good Legs paragraphs, FAQ entries, related-post links and editorial CTAs have been removed from all content pages. The why-were-building-good-legs blog post has been unpublished. Podcast transcript references to 'good legs' as a cycling expression are unchanged.",
-      "evidence": "Grep for Good Legs across content/ returns only cycling-expression uses in transcripts.",
-      "editorialDecision": "Remove product mentions to prevent any association between the brands."
+      "location": "content/podcast/the-truth-behind-contadors-contaminated-steak.mdx (new page)",
+      "readerQuestion": "What did the Court of Arbitration for Sport actually decide about Contador's clenbuterol positive, and why does it still divide people?",
+      "usefulAnswer": "Walks through the 50 pg/mL finding, the strict-liability burden of proof, why the meat explanation failed on evidence, why CAS also rated the transfusion theory unlikely, the contaminated-supplement conclusion, the sanction and the 2021 WADA rule change. Each step is tied to the award or contemporaneous reporting.",
+      "evidence": "Six claims cite the CAS award, Cyclingnews, Cycling Weekly, The Inner Ring, CBS/AP and the WADA 2021 stakeholder notice. The original arbitrationlaw.com award PDF link returned HTTP 404, so it was replaced with the Wayback Machine copy of the CAS jurisprudence database PDF (snapshot 21 January 2022); I opened that PDF and confirmed it is the award of 6 February 2012 in CAS 2011/A/2384 and 2386. The award's facts section (pages 4 and 5) supports the sample date, time, laboratory and concentration and the examining judge, acquittal and appeal sequence; the claim sources now cite the facts section instead of invented paragraph numbers. YouTube ID MaWO089sRZc matched to the feed entry dated 25 September 2026 (thumbnail reads \"Contador: the case doesn't add up\"). Rendered desktop and mobile with the video embed.",
+      "editorialDecision": "Publish with the corrected award citation, the YouTube embed and \"programme\" spelling."
     },
     {
-      "location": "Conversion components (GoodLegsEditorialCTA, AppEarlyAccessCapture, NextStepBlock, ConversionChrome)",
-      "readerQuestion": "Are any Good Legs conversion funnels still active?",
-      "usefulAnswer": "No. All Good Legs CTAs, waitlist captures and editorial conversion flows have been removed or stubbed.",
-      "evidence": "Components were emptied or had Good Legs sections removed. The good-legs-editorial module was cleared.",
-      "editorialDecision": "Remove conversion components to stop driving traffic from Roadman to Good Legs."
+      "location": "content/podcast/the-best-vo2-max-intervals-according-to-research.mdx (committed in 2e752130 on 12 October 2026, not yet released)",
+      "readerQuestion": "Which VO2 max interval format is best, and why do the same intervals work for one rider and not another?",
+      "usefulAnswer": "Summarises the Seiler 2013, Rønnestad 2015 and Appelhans 2025 findings, explains that pacing and how intensity is controlled change the answer, treats the 4.6%-in-four-weeks block with stated caution, and gives a repeatable rule: one format, even pacing, four to six weeks.",
+      "evidence": "Five claims cite PubMed 21812820, 24382021, 40328438 and 42237396 plus the episode description. relatedPosts and relatedEpisodes resolve. Rendered desktop and mobile: no overflow, claims and FAQ sections present. Not in the YouTube channel feed, so no video embed.",
+      "editorialDecision": "Publish. Only change since commit: \"programme\" spelling in the sponsor boilerplate."
     },
     {
-      "location": "Product data and structured data (app-product.ts, app-acquisition.ts, knowledge graph, feeds, llms.txt)",
-      "readerQuestion": "Does any structured data or machine-readable content still reference Good Legs?",
-      "usefulAnswer": "No. The product name was changed to Roadman Strength & Recovery, getgoodlegs.com URLs were removed, and all Good Legs string literals were replaced across data files, feeds and SEO outputs.",
-      "evidence": "Grep for Good Legs/goodlegs/getgoodlegs across src/ returns only stub comments and the locked homepage.",
-      "editorialDecision": "Remove structured data references to prevent search engines associating the brands."
+      "location": "content/podcast/the-best-strength-training-advice-for-cyclists.mdx (committed in 2e752130, not yet released)",
+      "readerQuestion": "Should I skip the gym and ride more this winter, and what does the best advice say about dose, selection and timing?",
+      "usefulAnswer": "Pulls together Galpin, O'Connor and Teel advice with the 2025 Llanos-Lagos meta-analysis (benefits found, low-certainty evidence, no best programme) and the age-related muscle-loss figure, names the three mistakes, and states Roadman's position against heavy barbell lifts for the 35-55 rider.",
+      "evidence": "Three claims cite PubMed 40632222 and 15192443 and the episode description. Four relatedEpisodes and six relatedPosts resolve. Rendered desktop and mobile with sections present. Not in the YouTube feed.",
+      "editorialDecision": "Publish. \"programme\" spelling applied to the sponsor boilerplate."
     },
     {
-      "location": "Marketing pages (strength-training, not-done-yet, apply, entity/not-done-yet, strength-session-planner)",
-      "readerQuestion": "Do any other marketing or community pages still mention Good Legs?",
-      "usefulAnswer": "No. Good Legs references were replaced with generic strength-and-recovery language or Not Done Yet membership references.",
-      "evidence": "Each page was edited to replace Good Legs copy with brand-neutral alternatives.",
-      "editorialDecision": "Replace with generic language to maintain useful content without the brand association."
+      "location": "content/podcast/the-best-indoor-cycling-upgrades-and-what-to-skip.mdx (committed in 2e752130, not yet released)",
+      "readerQuestion": "Which indoor setup purchases change whether I actually finish sessions, and which can wait?",
+      "usefulAnswer": "Argues that adherence, cooling and friction decide the return on an indoor setup, lists what is worth paying for and what to skip early in winter, and gives the zero-cost changes.",
+      "evidence": "Two practice-level claims attributed to Roadman guides and the episode. Internal links resolve. YouTube ID Rm9psanDpfw matched to the feed entry dated 9 October 2026 \"Cheap vs Expensive Indoor Cycling Setups\" (thumbnail reads \"Spend here first\"). Rendered desktop and mobile with the embed present.",
+      "editorialDecision": "Publish. Fixed the typo \"and and\" in the opening paragraph, added the YouTube embed and \"programme\" spelling."
+    },
+    {
+      "location": "content/blog/montreal-worlds-2026-how-mcnulty-and-vollering-won.mdx (new page)",
+      "readerQuestion": "How were the two Montréal world titles won, and what can a club racer copy?",
+      "usefulAnswer": "Race narratives for Vollering and McNulty with times and gaps, then five transferable lessons (attack where the group relaxes, pace for the total, commit when the chase is disorganised, a failed attack is not the end, position is protection) and a caution about what to leave to professionals.",
+      "evidence": "Two citedClaims rated anecdotal, sourced to Cyclingnews reports; five reviewedSources all returned HTTP 200. Three relatedEpisodes and four relatedPosts resolve. Rendered desktop (TOC sidebar, answer capsule, five H2s, FAQ, Keep Reading and Related Podcast Episodes) and mobile (no overflow).",
+      "editorialDecision": "Publish. Changed \"last weekend\" to \"on the last weekend of September\" because the page goes live on 22 October."
+    },
+    {
+      "location": "content/blog/best-and-worst-cycling-sessions-fitness-per-hour.mdx (new page)",
+      "readerQuestion": "How do I score the sessions in my own week by fitness per hour, and what do I change when one scores badly?",
+      "usefulAnswer": "Four scoring questions, seven common sessions run through them with a fix for each, a seven-day scoring exercise, and two cautions against stripping joy or changing everything at once. evidenceLevel moderate with a note that no study ranks amateur sessions this way.",
+      "evidence": "Four citedClaims with evidenceSource fields naming PubMed 33826121, 16430681, 39888556, 24382021 and 40328438; five reviewedSources. Five relatedEpisodes and eight relatedPosts resolve. Rendered desktop and mobile.",
+      "editorialDecision": "Publish with no changes to the file since commit."
+    },
+    {
+      "location": "content/blog/contador-clenbuterol-steak-case-explained.mdx (new page)",
+      "readerQuestion": "What is the full Contador case, step by step, and what does strict liability mean for an amateur who takes supplements?",
+      "usefulAnswer": "Timeline, burden of proof, the CAS reasoning, the Mexican footballers and Michael Rogers contrasts, the 2021 rule change, and four practical habits for licensed amateurs.",
+      "evidence": "Three citedClaims rated strong; eight reviewedSources, of which the CAS award link was replaced with the archived CAS jurisprudence PDF after the original returned 404, and the other seven returned 200 or 202. Rendered desktop and mobile with nine body H2s and FAQ.",
+      "editorialDecision": "Publish with the corrected award link."
+    },
+    {
+      "location": "content/blog/vo2max-intervals-pacing-research-cyclists.mdx (committed in 2e752130, not yet released)",
+      "readerQuestion": "Why do my VO2 max intervals not work, and how should I pace them?",
+      "usefulAnswer": "Format research summarised with its limits, why pacing decides the stimulus, a simple first-versus-last repetition check, frequency and fatigue guidance.",
+      "evidence": "Four citations to PubMed records; inline links to the studies and to four internal guides resolve. Rendered desktop and mobile.",
+      "editorialDecision": "Publish with no changes to the file since commit."
+    },
+    {
+      "location": "content/blog/strength-training-cyclists-winter-what-to-do-and-skip.mdx (committed in 2e752130, not yet released)",
+      "readerQuestion": "What should a winter strength plan contain for a 35-55 rider, and what should I skip?",
+      "usefulAnswer": "Why extra riding is not free, the three mistakes, principles for a small repeatable dose without heavy barbell lifts, how to place it in the week and when to back off.",
+      "evidence": "Two citations (PubMed 40632222 and 15192443). Three relatedEpisodes and five relatedPosts resolve. Rendered desktop and mobile.",
+      "editorialDecision": "Publish with no changes to the file since commit."
+    },
+    {
+      "location": "content/blog/indoor-cycling-upgrades-worth-buying-friction-audit.mdx (committed in 2e752130, not yet released)",
+      "readerQuestion": "What stops me using my indoor setup, and which upgrades are worth the money?",
+      "usefulAnswer": "A ten-minute friction audit, cooling first, a short list of purchases that change the session, what to skip early, and four free fixes.",
+      "evidence": "Internal citations and links resolve. Rendered desktop and mobile, including the mid-page bullet list and the footer at 375px.",
+      "editorialDecision": "Publish with no changes to the file since commit."
+    },
+    {
+      "location": "Mechanical cross-link edits in commit 2e752130: relatedPosts/relatedEpisodes additions to content/blog/art-oconnor-strength-training-cyclists.mdx, cycling-vo2max-intervals.mdx, cycling-zone-5-vo2max-intervals-guide.mdx, indoor-training-setup-complete-guide.mdx, pain-cave-setup-guide-cyclists.mdx, strength-training-cyclists-minimum-effective-dose.mdx, content/podcast/ep-2108, ep-2177, ep-2183 and the-science-of-getting-faster-after-40 pages, plus three slugs added to src/lib/topics.ts",
+      "readerQuestion": "Does the related-content rail on these existing pages point readers to the new companion pieces?",
+      "usefulAnswer": "Each addition is a slug for one of the six October pages, so the existing guides now surface the new pieces in their related rails.",
+      "evidence": "Every added slug corresponds to a content file in this tree (verified by file lookup). The link audit reported no broken internal links for any of the thirteen new slugs. Representative rendered instance: /blog/best-and-worst-cycling-sessions-fitness-per-hour shows Keep Reading and Related Podcast Episodes rails at 1280x800.",
+      "editorialDecision": "Publish. Frontmatter-only edits; no body copy changed."
+    },
+    {
+      "location": "src/generated/podcast-hub-index.json (regenerated with npm run podcast:hub-index; excluded from the fingerprint and rebuilt by prebuild on Vercel)",
+      "readerQuestion": "Do the three October episodes appear in the /podcast archive listing?",
+      "usefulAnswer": "Before regeneration the dev listing omitted the three episodes from 2e752130; after regeneration all seven new episodes appear on /podcast.",
+      "evidence": "curl of /podcast on the dev server showed zero matches for the three slugs before regeneration and two matches each afterwards. Production runs the same generator in prebuild.",
+      "editorialDecision": "Commit the regenerated file so dev and production listings match."
     }
   ],
-  "claimsAndSources": "No new claims were added. Existing Good Legs product claims were removed. Replacement copy uses generic language about strength and recovery guidance included with Not Done Yet membership.",
-  "examplesAndReasoning": "No new examples were added. The Good Legs example week (previously rejected) remains removed.",
-  "voiceAndCuts": "Copy changes replace branded Good Legs language with generic strength-and-recovery membership language. No new sales promises or marketing copy was introduced.",
-  "desktopReview": "Pending: build must succeed before rendered review. This release is a content removal, not an addition.",
-  "mobileReview": "Pending: build must succeed before rendered review.",
-  "productAndOfferAccuracy": "No new product offers. Existing Good Legs offers, waitlist CTAs and getgoodlegs.com links have been removed. Not Done Yet membership language is unchanged except for removing Good Legs inclusion promises."
+  "claimsAndSources": "Read every claim, citedClaim, citation and reviewedSource in the thirteen files. Every external citation URL in the seven 22 October files was HEAD-checked on 22 October 2026: all returned 200 or 202 except PubMed and drinkag1.com (HTTP 429 rate limiting, IDs and paths match the cited records) and the arbitrationlaw.com CAS award PDF (404), which was replaced with the Wayback Machine copy of the CAS jurisprudence PDF after opening it and confirming it is the 6 February 2012 award. Two claim sources that cited paragraph numbers the award does not use now cite its facts section. The PubMed IDs in the 12 October files match the papers named. Race facts match the Cyclingnews reports cited. No product claims.",
+  "examplesAndReasoning": "The sessions pieces give the scoring questions, a fix per session and a reader exercise rather than an invented league table. The Worlds blog ties each of five lessons to a specific race moment with times and distances. The Contador pages explain the burden of proof before the verdict. The strength and VO2 pieces state the limits of the evidence (low-certainty meta-analysis, small trials, crossover design). No invented sets, loads or results.",
+  "voiceAndCuts": "Read all thirteen pages in full. British English throughout; the only US spellings were \"program\" in the shared sponsor paragraph of seven episodes, changed to \"programme\", and \"Optimize\" inside a quoted paper title, left as the title. No banned slop terms found (grep for the Roadman banned list returned only that paper title). The \"and and\" typo in the indoor upgrades episode was fixed. \"Last weekend\" in the Worlds blog became \"on the last weekend of September\". Nothing else cut.",
+  "desktopReview": "Rendered each of the thirteen pages on the dev server built from this exact tree (worktree at .claude/worktrees/qa-2026-10-22, next dev on port 3100) in the Claude desktop browser pane at 1280x800. For each page: document scrollWidth equalled clientWidth (no horizontal overflow), zero broken images, h1 and body H2 sequence read in order, the global error boundary text was not visible, and screenshots were taken of the hero, body and foot of representative pages. Also rendered /podcast after regenerating the hub index. Console errors were only the site-wide CSP report-only warning.",
+  "mobileReview": "Rendered the same thirteen pages in a second tab emulating 375x812. Each page: scrollWidth 375 equal to clientWidth, no broken images, h1 present, error boundary not visible. Screenshots of the hero of every page, plus the mid-page bullet list and footer of the indoor upgrades blog. The newsletter modal and cookie banner overlay content on mobile as they do site-wide; no new interaction was added.",
+  "productAndOfferAccuracy": "No new offers, prices or membership promises. The sponsor paragraphs (TrainingPeaks code, AG1, Vittoria, POC, Bikmo, Voy) repeat the existing episode boilerplate. The Not Done Yet application link and the free Skool community link are the existing CTAs."
 }
