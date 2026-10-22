@@ -6,8 +6,10 @@ import { EvidenceLevel } from "@/components/ui/EvidenceLevel";
 import { EvidenceBlock } from "@/components/seo/EvidenceBlock";
 import { SearchOwnerLink } from "@/components/seo/SearchOwnerLink";
 import { AuthorBio } from "@/components/features/blog/AuthorBio";
+import { IntentCTA, inferIntentCategory } from "@/components/cta";
 import { CONTENT_PILLARS } from "@/types";
 import { type AnswerPage } from "@/lib/answers";
+import type { RelatedTool } from "@/lib/cluster-tools";
 import { resolveSearchOwner } from "@/lib/seo/search-ownership";
 
 interface ResolvedEpisode {
@@ -21,6 +23,8 @@ interface AnswerTemplateProps {
   relatedEpisodes: ResolvedEpisode[];
   /** Episode slug → title, for expert-evidence "heard it here" links. */
   episodeTitleBySlug: Record<string, string>;
+  /** Tools related to this answer's cluster. */
+  relatedTools?: RelatedTool[];
   /** Analytics source string. */
   source: string;
 }
@@ -61,6 +65,15 @@ export function AnswerTemplate({
     answer.seoDescription,
     ...answer.relatedTopics.map((topic) => topic.label),
   ]);
+
+  // Intent inference for contextual CTAs — same system blog posts use.
+  const inferredCategory = inferIntentCategory({
+    title: answer.question,
+    excerpt: answer.directAnswer,
+    pillar: answer.pillar,
+    keywords: answer.keyTakeaways,
+  });
+  const intentSource = `answer_${source}`;
 
   return (
     <main id="main-content">
@@ -108,6 +121,19 @@ export function AnswerTemplate({
             variant="block"
             note={answer.evidenceNote}
           />
+
+          {/* Inline CTA 1 — contextual lead magnet after the direct answer.
+              Uses intent inference to pick the right offer from the answer's
+              question/pillar, matching the blog post pattern. Event category
+              needs a named event prop we don't have here, so fall back to
+              pillar in that case. */}
+          <div className="mt-10">
+            {inferredCategory && inferredCategory !== "event" ? (
+              <IntentCTA category={inferredCategory} source={intentSource} />
+            ) : (
+              <IntentCTA pillar={answer.pillar} source={intentSource} />
+            )}
+          </div>
 
           {/* 2 — Who this answer is for */}
           {answer.whoFor.length > 0 && (
@@ -348,6 +374,30 @@ export function AnswerTemplate({
             </section>
           )}
 
+          {/* Inline CTA 2 — NDY coaching offer. Positioned at the
+              natural decision point after they've read the practical
+              advice and FAQ but before "keep exploring" content. */}
+          <div className="mt-12 rounded-xl border border-coral/20 bg-coral/[0.04] p-6 md:p-8">
+            <p className="font-heading text-coral text-xs tracking-[0.3em] mb-3">
+              NOT DONE YET
+            </p>
+            <h3 className="font-heading text-off-white text-xl md:text-2xl mb-3 leading-tight">
+              STOP GUESSING. START PROGRESSING.
+            </h3>
+            <p className="text-foreground-muted text-sm md:text-base leading-relaxed mb-5">
+              Not Done Yet is structured coaching for cyclists who want more than
+              generic plans. Personalised programming, direct coach access, and a
+              community of riders pushing each other forward — $195/month.
+            </p>
+            <Button
+              href="/not-done-yet"
+              size="lg"
+              dataTrack={`${intentSource}_ndy`}
+            >
+              Learn More About NDY
+            </Button>
+          </div>
+
           {/* 8 — Related episodes */}
           {relatedEpisodes.length > 0 && (
             <section className="mt-12" aria-label="Related podcast episodes">
@@ -413,6 +463,28 @@ export function AnswerTemplate({
             </p>
             <Button href="/apply" size="lg" dataTrack={`answer_${source}_apply`}>
               Apply for Coaching
+            </Button>
+          </div>
+
+          {/* Inline CTA 3 — Skool community. Low-friction entry
+              point after the coaching pitch, before the trust block. */}
+          <div className="mt-12 rounded-xl border border-white/10 bg-white/[0.03] p-6 md:p-8 text-center">
+            <p className="font-heading text-coral text-xs tracking-[0.3em] mb-3">
+              FREE COMMUNITY
+            </p>
+            <h3 className="font-heading text-off-white text-xl md:text-2xl mb-3 leading-tight">
+              JOIN 1,000+ CYCLISTS IN THE ROADMAN COMMUNITY
+            </h3>
+            <p className="text-foreground-muted text-sm md:text-base leading-relaxed mb-5">
+              Training chat, ride advice, and direct access to coaches — all free
+              inside our Skool group.
+            </p>
+            <Button
+              href="https://www.skool.com/roadmancycling"
+              size="lg"
+              dataTrack={`${intentSource}_skool`}
+            >
+              Join Free on Skool
             </Button>
           </div>
 
