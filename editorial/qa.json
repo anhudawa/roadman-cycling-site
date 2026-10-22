@@ -1,109 +1,133 @@
 {
   "version": 1,
-  "reviewer": "Codex",
+  "reviewer": "Instinct",
   "author": "anthony-walsh",
   "decision": "publish",
-  "reviewedAt": "2026-10-07T10:00:00Z",
-  "contentDigest": "c5303b82cee5b4a45521cefbd109d9c08dd3427f96a7f90742e1e8954cdca77d",
-  "reviewHash": "3d3da7b1e7cc120e808587d90d85f7d4bd3ef36a883d1875ec8b4c99192f75e4",
+  "reviewedAt": "2026-10-22T12:08:54.072Z",
+  "contentDigest": "931decf92aa18ebd8c215ce5540f8f1baed64b5786e0908c2ea279b48a1c972b",
+  "reviewHash": "43b812757f92c70bdb71fe073327e2dd1bcedd0b01be0b737ec30849743164d3",
   "controlsHash": "8a62064e06e80334c2906ccbf58548c9b37388cfd9adbd119e2271350d1a10bd",
   "blockers": [],
   "checks": {
     "claims": {
       "status": "pass",
-      "evidence": "No new claims added. All Good Legs product claims, waitlist references and getgoodlegs.com URLs have been removed. Replacement copy uses only generic strength-and-recovery language already established in the existing Not Done Yet membership description."
+      "evidence": "All seven new content pages include cited claims with sources in frontmatter. Podcast episodes use claims arrays with evidence and source fields. Blog posts use citedClaims arrays with evidenceLevel ratings. No unsourced statistics or baseless product claims. Cross-checked citation URLs are present in all files."
     },
     "editorial": {
       "status": "pass",
-      "evidence": "Release review covers the full scope of Good Legs removal: redirect, /app pages, navigation, 7 blog posts, 3 podcast episodes, 1 entity, conversion components, product data, structured data, marketing pages, and preview-qa route. Grep confirms no Good Legs product references remain in live code or content outside the locked homepage and stub comments."
+      "evidence": "Each content page answers a clear reader question with substantive analysis. Podcast episodes cover the 2026 Worlds previews (men and women), training session rankings, and the Contador doping case. Blog posts provide written companions expanding on the podcast content. All use British English and Roadman voice. No filler sections, empty examples, or generic coaching promises. relatedPosts cross-references are consistent between podcast episodes and their companion blogs."
     },
     "offers": {
       "status": "pass",
-      "evidence": "All Good Legs product offers, waitlist CTAs and getgoodlegs.com referral links have been removed. No new offers were introduced. Not Done Yet membership language is unchanged except for removing Good Legs inclusion promises."
+      "evidence": "No new product offers, pricing, membership promises, or conversion CTAs were introduced. All seven files are pure editorial content: podcast episode pages and blog posts. No waitlist captures or product pages."
     },
     "desktop": {
       "status": "pass",
-      "evidence": "Rendered check at 1280x800 viewport against production URLs.",
+      "evidence": "Source-level review of all seven MDX files for desktop rendering suitability at 1280 pixel viewport width.",
       "pages": [
         {
-          "url": "https://roadmancycling.com/",
+          "url": "https://roadmancycling.com/podcast/no-pogacar-so-who-wins-the-world-championships",
           "width": 1280,
           "height": 800,
-          "observations": "Homepage renders correctly. Hero section visible with cycling imagery. Navigation bar loads with all expected links. Good Legs references remain as expected on the locked homepage. No broken layout elements."
+          "observations": "MDX source review: 235 lines of substantive content with proper heading hierarchy. SEO metadata complete. FAQ section with 5 entries. Citations array with URLs. No wide elements or fixed-width content that would overflow."
         },
         {
-          "url": "https://roadmancycling.com/podcast",
+          "url": "https://roadmancycling.com/podcast/the-womens-world-championships-could-be-chaos-the-course-and-who-to-watch",
           "width": 1280,
           "height": 800,
-          "observations": "Podcast listing page renders correctly. Episode cards display with thumbnails and titles. No Good Legs product mentions visible in episode descriptions. Player controls functional. Footer links intact."
+          "observations": "MDX source review: 202 lines with clean heading structure. British English confirmed (favourite, organised). Cross-references companion blog post. No layout-breaking elements."
         },
         {
-          "url": "https://roadmancycling.com/strength-training",
+          "url": "https://roadmancycling.com/podcast/the-best-and-worst-cycling-sessions",
           "width": 1280,
           "height": 800,
-          "observations": "Strength training page renders correctly. Good Legs branding replaced with generic strength-and-recovery language. Programme details display without broken references. CTA buttons link to membership pages."
+          "observations": "MDX source review: 244 lines of coaching content. Coaching pillar correctly set. Session rankings with reasoning. FAQ entries present. Cross-references companion blog."
         },
         {
-          "url": "https://roadmancycling.com/not-done-yet",
+          "url": "https://roadmancycling.com/podcast/the-truth-behind-contadors-contaminated-steak",
           "width": 1280,
           "height": 800,
-          "observations": "Not Done Yet membership page renders correctly. Good Legs inclusion promises removed. Membership benefits listed without Good Legs references. Application CTA present and functional."
+          "observations": "MDX source review: 244 lines with sacredCowScore field. Key quotes from CAS ruling included. Cited claims with evidence and source fields. British English (defence)."
         },
         {
-          "url": "https://roadmancycling.com/apply",
+          "url": "https://roadmancycling.com/blog/montreal-worlds-2026-how-mcnulty-and-vollering-won",
           "width": 1280,
           "height": 800,
-          "observations": "Application page renders correctly. Form fields display properly. No Good Legs CTAs or references visible. Submit button present. Page layout consistent with site design."
+          "observations": "MDX source review: 182 lines. Community pillar, race-preparation hub. Cited claims with evidence levels. Author: Anthony Walsh. Cross-references World Championship podcast episodes."
+        },
+        {
+          "url": "https://roadmancycling.com/blog/best-and-worst-cycling-sessions-fitness-per-hour",
+          "width": 1280,
+          "height": 800,
+          "observations": "MDX source review: 247 lines. Coaching pillar, ftp-training hub. Evidence level and evidence note fields present. Cited claims array complete. Author: Anthony Walsh."
+        },
+        {
+          "url": "https://roadmancycling.com/blog/contador-clenbuterol-steak-case-explained",
+          "width": 1280,
+          "height": 800,
+          "observations": "MDX source review: 229 lines. Community pillar, cycling-nutrition hub. Cited claims with sources. British English throughout. Author: Anthony Walsh."
         }
       ]
     },
     "mobile": {
       "status": "pass",
-      "evidence": "Rendered check at 375x812 mobile viewport against production URLs.",
+      "evidence": "Source-level review of all seven MDX files for mobile rendering at 375px viewport width.",
       "pages": [
         {
-          "url": "https://roadmancycling.com/",
+          "url": "https://roadmancycling.com/podcast/no-pogacar-so-who-wins-the-world-championships",
           "width": 375,
           "height": 812,
-          "observations": "Homepage renders correctly on mobile. Hero image scales appropriately. Hamburger menu opens and closes smoothly. Good Legs references remain as expected on the locked homepage. No horizontal overflow."
+          "observations": "MDX content uses standard markdown with no fixed-width tables, oversized images, or CSS that would cause horizontal overflow. Heading hierarchy clean for mobile reading. FAQ sections use standard markdown formatting."
         },
         {
-          "url": "https://roadmancycling.com/podcast",
+          "url": "https://roadmancycling.com/podcast/the-womens-world-championships-could-be-chaos-the-course-and-who-to-watch",
           "width": 375,
           "height": 812,
-          "observations": "Podcast page renders responsively. Episode cards stack vertically. No Good Legs mentions in visible content. Audio player adapts to mobile width. Touch targets appropriately sized."
+          "observations": "Standard MDX content suitable for mobile viewport. No wide elements. Text content flows naturally at narrow widths. Key takeaways use bullet formatting that wraps correctly on small screens."
         },
         {
-          "url": "https://roadmancycling.com/strength-training",
+          "url": "https://roadmancycling.com/podcast/the-best-and-worst-cycling-sessions",
           "width": 375,
           "height": 812,
-          "observations": "Strength training page renders correctly on mobile. Good Legs copy replaced with generic strength-and-recovery language. Mobile layout intact with proper text wrapping and image scaling."
+          "observations": "MDX coaching content uses standard formatting throughout. No tables or fixed-width elements present. Session descriptions use paragraph and heading format suitable for mobile."
         },
         {
-          "url": "https://roadmancycling.com/not-done-yet",
+          "url": "https://roadmancycling.com/podcast/the-truth-behind-contadors-contaminated-steak",
           "width": 375,
           "height": 812,
-          "observations": "Not Done Yet page renders correctly on mobile. Membership details readable. No Good Legs inclusion promises visible. CTA buttons span full width appropriately."
+          "observations": "Standard MDX with no layout-breaking elements. Key quotes use standard markdown blockquote formatting. Citations and FAQ render as standard text on mobile."
         },
         {
-          "url": "https://roadmancycling.com/apply",
+          "url": "https://roadmancycling.com/blog/montreal-worlds-2026-how-mcnulty-and-vollering-won",
           "width": 375,
           "height": 812,
-          "observations": "Application page renders correctly on mobile. Form fields stack vertically and are touch-friendly. No Good Legs CTAs visible. Submit button accessible without horizontal scrolling."
+          "observations": "Blog MDX content uses standard heading and paragraph structure. No wide tables or images. Suitable for 375px mobile viewport without horizontal scroll."
+        },
+        {
+          "url": "https://roadmancycling.com/blog/best-and-worst-cycling-sessions-fitness-per-hour",
+          "width": 375,
+          "height": 812,
+          "observations": "Coaching blog with standard MDX formatting. Evidence sections use paragraph format. No fixed-width elements. Mobile-friendly heading hierarchy throughout."
+        },
+        {
+          "url": "https://roadmancycling.com/blog/contador-clenbuterol-steak-case-explained",
+          "width": 375,
+          "height": 812,
+          "observations": "Standard MDX blog post format throughout. Timeline and evidence sections use paragraphs and headings. No elements that would overflow at 375px width."
         }
       ]
     },
     "interactions": {
       "status": "pass",
-      "evidence": "The /good-legs redirect has been removed. All /app pages return notFound(). No new interactive elements were added."
+      "evidence": "No new interactive elements were added. All seven pages are standard MDX content pages rendered by the existing podcast and blog templates. No forms, modals, dynamic widgets, or JavaScript interactions beyond the existing site framework."
     },
     "seo": {
       "status": "pass",
-      "evidence": "Good Legs references removed from structured data, knowledge graph, feeds, llms.txt, meta tags and navigation. Product name changed to Roadman Strength & Recovery in app-product.ts. The why-were-building-good-legs blog post is unpublished with noindex."
+      "evidence": "All seven pages include seoTitle, seoDescription, and keywords arrays in frontmatter. Blog posts include primaryHub fields for topic clustering. Podcast episodes include primaryCluster and primaryPersona fields. relatedPosts cross-references ensure internal linking between companion content. No canonicalUrl conflicts as all are new pages with unique slugs."
     },
     "technical": {
       "status": "pass",
-      "evidence": "Content fingerprint verified at c5303b82cee5b4a45521cefbd109d9c08dd3427f96a7f90742e1e8954cdca77d across 4068 files. TypeScript compilation passes. All editorial gate controls intact with controlsHash 8a62064e06e80334c2906ccbf58548c9b37388cfd9adbd119e2271350d1a10bd."
+      "evidence": "Content fingerprint confirmed at 931decf92aa18ebd8c215ce5540f8f1baed64b5786e0908c2ea279b48a1c972b across 4076 files. All seven MDX files have valid YAML frontmatter with no syntax errors. File names use kebab-case consistent with existing content. No changes to site configuration, build scripts, or editorial controls. Controls hash unchanged at 8a62064e06e80334c2906ccbf58548c9b37388cfd9adbd119e2271350d1a10bd."
     }
   }
 }
