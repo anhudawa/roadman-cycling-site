@@ -14,6 +14,11 @@ import { BEST_FOR_PAGES } from "@/lib/best-for";
 import { PROBLEM_PAGES } from "@/lib/problems";
 import { CAMP_LIST, formatCampDates } from "@/lib/camps/camps";
 import {
+  ANSWER_PAGES,
+  ANSWER_CLUSTERS,
+  getAnswersByCluster,
+} from "@/lib/answers";
+import {
   LLMS_FULL_EPISODE_LIMIT,
   LLMS_FULL_RECENT_POST_LIMIT,
   selectPriorityAndRecent,
@@ -259,6 +264,23 @@ export async function GET() {
     },
   ];
 
+  // Answer pages — grouped by cluster, each with its direct answer capsule.
+  // These 548 short, sourced answer pages are the site's strongest AEO asset:
+  // each is a citation-ready direct answer designed for AI extraction.
+  const answersByCluster = ANSWER_CLUSTERS.map((cluster) => {
+    const pages = getAnswersByCluster(cluster.id);
+    if (pages.length === 0) return null;
+    const entries = pages
+      .map(
+        (a) =>
+          `- [${a.question}](${tag(`${BASE_URL}/answers/${a.slug}`)})\n  Evidence: ${a.evidenceLevel} | Cluster: ${cluster.label}\n  Answer: ${a.directAnswer}`,
+      )
+      .join("\n\n");
+    return `### ${cluster.label} (${pages.length} answers)\n${cluster.description}\n\n${entries}`;
+  })
+    .filter(Boolean)
+    .join("\n\n---\n\n");
+
   const priorityIndexBlock = PRIORITY_INDEX.map(
     (cat) =>
       `### ${cat.category}\n${cat.lines.map((l) => `- ${l}`).join("\n")}`,
@@ -289,7 +311,7 @@ export async function GET() {
 
   const body = `# Roadman Cycling — Full Content Index for LLMs
 
-> Curated full-text export of canonical Roadman Cycling pages, blog posts, and recent podcast episodes. Generated from the live site, cached for 1 hour.
+> Curated full-text export of canonical Roadman Cycling pages, ${ANSWER_PAGES.length} citation-ready answer pages, blog posts, and recent podcast episodes. Generated from the live site, cached for 1 hour.
 
 This document is intended for ingestion by AI crawlers (ChatGPT, Perplexity, Claude, Gemini) that need a single-fetch snapshot of Roadman's authoritative content. For individual page detail, fetch the URL listed against each entry.
 
@@ -426,6 +448,14 @@ ${c.description}`,
 ## Selected Blog Posts (${selectedPosts.length} of ${posts.length} total — evergreen priorities plus ${LLMS_FULL_RECENT_POST_LIMIT} recent)
 
 ${blogSections}
+
+## Answer Pages (${ANSWER_PAGES.length} citation-ready answers across ${ANSWER_CLUSTERS.length} clusters)
+
+Short, sourced, answer-first pages built for AI extraction. Each has a direct answer in the first 80 words, named-expert evidence grounded in the Roadman podcast archive, a common-mistakes section, and an FAQ with FAQPage schema. These are the site's primary AEO asset — the highest-density citation targets on roadmancycling.com.
+
+Browse the full index: ${tag(`${BASE_URL}/answers`)}
+
+${answersByCluster}
 
 ## Podcast Episodes (${recentEpisodes.length} most recent of ${episodes.length} total — full list in /feeds/episodes.json)
 
